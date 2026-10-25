@@ -1,0 +1,1 @@
+{"type":"event","event":"synthesis_complete","stem":"deep_review.synthesis_complete","runId":"review","sessionId":"review","activeP0":0,"activeP1":10,"activeP2":59,"dimensionCoverage":1,"mode":"review","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached","totalIterations":40,"verdict":"CONDITIONAL","timestamp":"2026-10-25T18:31:13.853Z"}

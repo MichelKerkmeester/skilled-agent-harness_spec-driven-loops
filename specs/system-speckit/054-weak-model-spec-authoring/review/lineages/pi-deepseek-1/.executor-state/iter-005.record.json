@@ -1,0 +1,196 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "status": "complete",
+  "focus": "traceability",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts:8",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts:12",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md:34",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:26",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md:18",
+    ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:1"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {"P0": 0, "P1": 0, "P2": 1},
+  "findingsNew": {"P0": 0, "P1": 0, "P2": 1},
+  "findingDetails": [
+    {
+      "id": "R5-P2-001",
+      "severity": "P2",
+      "title": "Both guard wrappers in the suite assert only that today's tree passes",
+      "dimension": "traceability",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts:8",
+      "evidence": "Each wrapper holds one test with one positive assertion (EXAMPLE_DRIFT_OK, CARD SYNC OK); neither presents drift, so a guard that always prints success keeps the suite green, and the failure branches live only in scenarios 479 and 482.",
+      "recommendation": "Add a scratch-copy case per wrapper that injects the drift each guard is meant to catch and asserts exit 1 with the named failure line.",
+      "disposition": "active",
+      "findingClass": "test-coverage-gap",
+      "scopeProof": "Both test files read in full; one it block and one positive assertion each; the leaves' source tables name these wrappers as the automated coverage.",
+      "affectedSurfaceHints": ["example drift guard test", "card sync guard test", "catalog leaves", "phase 004 and 005 handoff criteria"]
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {"required": 2, "executed": 2, "pass": 0, "partial": 2, "fail": 0, "blocked": 0, "notApplicable": 0, "gatingFailures": 0},
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["runtime/cli/tests/example-drift.vitest.ts:8-13", "runtime/cli/tests/card-sync.vitest.ts:12-15"],
+        "findingRefs": ["R5-P2-001"],
+        "summary": "The automated evidence for two shipped guards covers one branch each."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pending",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 0, "fail": 0},
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "Phase 004 and 005 acceptance rows are read in the checklist-evidence pass."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 1, "partial": 0, "fail": 0},
+        "evidence": ["spec-authoring-card.md:20-24", "SKILL.md intent rows"],
+        "findingRefs": [],
+        "summary": "The leaf's router claim matches the router."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["four leaves", "feature-catalog.md index rows", "48-leaf path scan"],
+        "findingRefs": ["R5-P2-001"],
+        "summary": "Leaves exist, are indexed once and name no missing path; only the tests they name are thin."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 1, "partial": 0, "fail": 0},
+        "evidence": ["scenarios 479, 481, 482, 483"],
+        "findingRefs": [],
+        "summary": "Every scenario a leaf names exists."
+      }
+    ]
+  },
+  "newFindingsRatio": 0.25,
+  "noveltyJustification": "One finding new to this lineage; the guard-wrapper coverage angle is distinct from the wave-1 parity-test finding, which covered the placeholder test cells.",
+  "sessionId": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-25T18:28:40Z",
+  "durationMs": 335000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "catalog leaves are the traceability carrier for the packet's shipped guards",
+    "evidenceRefs": ["feature-catalog/tooling-and-scripts/example-drift-guard.md:34", "runtime/cli/tests/card-sync.vitest.ts:12"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts"
+    ],
+    "selectionReason": "Overlay protocol feature_catalog_code reads the leaf against the artifact it names, and each of these leaves names a test.",
+    "discoveryMethods": ["direct_read", "scripted_path_scan"],
+    "omittedHighRiskTargets": ["versioned-placeholder-gate parity claim (wave-1 P2, not re-entered)", "addon fill-line coverage (wave-1 P2, not re-entered)"],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": ["example-drift.vitest.ts:8", "card-sync.vitest.ts:12"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["test_coverage_gap", "dangling_catalog_path", "catalog_index_gap"],
+    "covered": ["test_coverage_gap", "dangling_catalog_path", "catalog_index_gap"],
+    "ruledOut": ["addon_fill_line_gap"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-5-001",
+      "dimension": "traceability",
+      "targetRefs": ["example-drift.vitest.ts", "card-sync.vitest.ts"],
+      "bugClass": "test_coverage_gap",
+      "hypothesis": "The suite proves each guard fails on drift",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "example-drift.vitest.ts:1-14", "result": "One test, one positive assertion", "evidenceRefs": ["example-drift.vitest.ts:8-13"]},
+        {"method": "direct_read", "queryOrPath": "card-sync.vitest.ts:1-16", "result": "One test, one positive assertion", "evidenceRefs": ["card-sync.vitest.ts:12-15"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R5-P2-001",
+      "rationale": "Failure branches are manual-only."
+    },
+    {
+      "id": "SL-5-002",
+      "dimension": "traceability",
+      "targetRefs": ["feature-catalog/tooling-and-scripts/*"],
+      "bugClass": "dangling_catalog_path",
+      "hypothesis": "A new leaf names an artifact that does not exist",
+      "searchActions": [
+        {"method": "scripted_check", "queryOrPath": "path scan over 48 tooling leaves", "result": "Two missing paths, both in leaves the packet never touched", "evidenceRefs": ["feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md:1"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "The two dangling paths sit in out-of-scope leaves that precede the packet.",
+      "rationale": "Scope discipline; not reported."
+    },
+    {
+      "id": "SL-5-003",
+      "dimension": "traceability",
+      "targetRefs": ["feature-catalog/feature-catalog.md"],
+      "bugClass": "catalog_index_gap",
+      "hypothesis": "A new leaf is missing from the catalog index",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "grep -c for each of the four leaves in feature-catalog.md", "result": "1 each", "evidenceRefs": ["feature-catalog/feature-catalog.md:1"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "All four leaves are indexed exactly once.",
+      "rationale": "Checked and closed."
+    },
+    {
+      "id": "SL-5-004",
+      "dimension": "traceability",
+      "targetRefs": ["template-section-fill-guidance.md"],
+      "bugClass": "addon_fill_line_gap",
+      "hypothesis": "The addon templates' fill lines are unguarded",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "runtime/cli/tests/template-fill-guidance.vitest.ts:1-12", "result": "DOCS covers the four core documents only", "evidenceRefs": ["runtime/cli/tests/template-fill-guidance.vitest.ts:6"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Already an active wave-1 P2 finding; re-reporting would duplicate across the merge.",
+      "rationale": "Not re-entered."
+    }
+  ],
+  "ruledOutDirections": [
+    {"direction": "Addon template fill-line regression guard", "reason": "active wave-1 P2 covers it."},
+    {"direction": "Dangling paths in catalog leaves", "reason": "the two found sit in out-of-scope leaves outside the packet."}
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "test:example-drift.vitest", "kind": "TEST", "label": "example drift wrapper"},
+    {"type": "node", "id": "test:card-sync.vitest", "kind": "TEST", "label": "card sync wrapper"},
+    {"type": "node", "id": "leaf:example-drift-guard", "kind": "INVARIANT", "label": "example drift guard catalog leaf"},
+    {"type": "edge", "id": "edge:leaf-claims-test", "source": "leaf:example-drift-guard", "target": "test:example-drift.vitest", "relation": "COVERS"}
+  ]
+}

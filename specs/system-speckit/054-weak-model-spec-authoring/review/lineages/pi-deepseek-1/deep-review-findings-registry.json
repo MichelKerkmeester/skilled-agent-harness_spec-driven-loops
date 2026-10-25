@@ -1,0 +1,1803 @@
+{
+  "sessionId": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-10-25T18:06:44.331Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R10-P1-001",
+      "severity": "P1",
+      "title": "Criterion 7's evidence no longer reproduces: every packet commit is contained in origin/main",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+      "line": 96,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The removal block deletes the branch without the branch-tip condition its operator approved",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md",
+      "line": 868,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Scenario 483 runs a gate-disabled writer in dangerous mode and never checks containment",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md",
+      "line": 92,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Phase 009's completion gate names the run set that failed, not the one that decided it",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md",
+      "line": 43,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The drift guard discards out_of_order_anchor, so a reordered example passes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "check-card-sync.sh asks jq -e a per-mode question and reads only the last answer",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 98,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The drift guard reports success when rg is not installed",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "The checklist check proves only that the old sentence is gone",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 110,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The acceptance evidence for the removal row was assembled by hand, not produced by the command it cites",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Two child descriptions carry the previous child's phase number",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/description.json",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The card and the checklist describe different authoring surfaces, and the guard compares one sentence",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 150,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The end-to-end card scenario leaves its own state behind and still reports cleanup",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Both guard wrappers in the suite assert only that today's tree passes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts",
+      "line": 8,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "The anchor rule script counts anchors instead of identifying them, while the criterion it certifies is written as identity",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-002",
+      "severity": "P2",
+      "title": "The baseline and the final set compute out_of_scope_writes with different exclusion lists",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/run-fresh2.sh",
+      "line": 82,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "One acceptance row's command needs a variable the row never defines",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "The release notes promise a good and a weak example in every core section, and two sections carry neither",
+      "file": ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P2-001",
+      "severity": "P2",
+      "title": "The only agent that names the card names neither the token rule nor the guards",
+      "file": ".skilled/agents/markdown.md",
+      "line": 208,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 14
+  },
+  "openFindingsCount": 18,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "baseline_number_drift",
+      "catalog_index_gap",
+      "dangling_catalog_path",
+      "dangling_evidence_pointer",
+      "derived_metadata_drift",
+      "environment_dependency",
+      "evidence_command_not_self_contained",
+      "evidence_contamination",
+      "followability_gap",
+      "gate_coverage_gap",
+      "gate_evidence_misbinding",
+      "gate_false_negative",
+      "hand_assembled_evidence",
+      "incomplete_alignment",
+      "measure_definition_drift",
+      "metric_implementation_gap",
+      "mirror_divergence",
+      "missing_agent",
+      "missing_commit",
+      "missing_nested_changelog",
+      "non_hermetic_test",
+      "non_reproducible_closure_evidence",
+      "registry_drift",
+      "scope_leak",
+      "stale_version_carrier",
+      "test_coverage_gap",
+      "unenforced_release_claim",
+      "unguarded_destructive_operation",
+      "unmet_acceptance_row",
+      "unverified_containment"
+    ],
+    "ruledOut": [
+      "addon_fill_line_gap",
+      "audit_unavailable",
+      "baseline_number_drift",
+      "catalog_index_gap",
+      "command_injection",
+      "credential_exposure",
+      "dangling_catalog_path",
+      "dangling_evidence_pointer",
+      "evidence_contamination",
+      "l3plus_label_drift",
+      "mirror_divergence",
+      "missing_agent",
+      "missing_commit",
+      "missing_nested_changelog",
+      "number_misstatement",
+      "path_traversal",
+      "playbook_index_gap",
+      "registry_drift",
+      "scope_leak",
+      "stale_version_carrier",
+      "unmet_acceptance_row",
+      "version_carrier_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "gate_false_negative": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gate_coverage_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "environment_dependency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "concurrency": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unguarded_destructive_operation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unverified_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "hand_assembled_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "credential_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "gate_evidence_misbinding": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "derived_metadata_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dangling_evidence_pointer": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          7
+        ]
+      },
+      "number_misstatement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "followability_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "non_hermetic_test": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "registry_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "version_carrier_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "playbook_index_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_coverage_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "dangling_catalog_path": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "catalog_index_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "addon_fill_line_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "metric_implementation_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "measure_definition_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "evidence_contamination": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "session_audit_sqlite_path": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "audit_unavailable": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "unmet_acceptance_row": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "evidence_command_not_self_contained": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "baseline_number_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "unenforced_release_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "stale_version_carrier": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "missing_nested_changelog": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "l3plus_label_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "incomplete_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "mirror_divergence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "missing_agent": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "non_reproducible_closure_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "missing_commit": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "scope_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-1-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "create.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Not re-entered.",
+      "evidenceRefs": [
+        "review/lineages/deepseek/review-report.md"
+      ],
+      "reason": "Covered by an active wave-1 P1; re-reporting would duplicate across the merge."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-004",
+      "dimension": "security",
+      "targetRefs": [
+        "goal.md",
+        "012 preconditions"
+      ],
+      "bugClass": "credential_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md:91"
+      ],
+      "reason": "No credential material appears in the packet or its reports."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-005",
+      "dimension": "security",
+      "targetRefs": [
+        "example-drift-guard-catches-leak.md"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "example-drift-guard-catches-leak.md:51-70"
+      ],
+      "reason": "Variables are quoted and derived from mktemp; no user input reaches a command position."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "all child acceptance-criteria.md files"
+      ],
+      "bugClass": "dangling_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "Checked mechanically and closed.",
+      "evidenceRefs": [
+        "009-authoring-benchmark-and-closeout/acceptance-criteria.md:55"
+      ],
+      "reason": "No acceptance evidence path in phase 009 is missing from disk."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ],
+      "bugClass": "number_misstatement",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv:11-13"
+      ],
+      "reason": "README aggregates match the CSV for the deciding set."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "templates/spec-kit-docs.json"
+      ],
+      "bugClass": "registry_drift",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "templates/spec-kit-docs.json:4",
+        "runtime/cli/tests/template-version-parity.vitest.ts:1"
+      ],
+      "reason": "The registry and the stamps agree, and a dedicated test guards them."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "playbook_index_gap",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "manual-testing-playbook.md:341-348"
+      ],
+      "reason": "The packet's scenarios are all indexed; the wider gap predates the packet and is out of scope."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "feature-catalog/tooling-and-scripts/*"
+      ],
+      "bugClass": "dangling_catalog_path",
+      "disposition": "ruled_out",
+      "rationale": "Scope discipline; not reported.",
+      "evidenceRefs": [
+        "feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md:1"
+      ],
+      "reason": "The two dangling paths sit in out-of-scope leaves that precede the packet."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "catalog_index_gap",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "feature-catalog/feature-catalog.md:1"
+      ],
+      "reason": "All four leaves are indexed exactly once."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "template-section-fill-guidance.md"
+      ],
+      "bugClass": "addon_fill_line_gap",
+      "disposition": "ruled_out",
+      "rationale": "Not re-entered.",
+      "evidenceRefs": [
+        "runtime/cli/tests/template-fill-guidance.vitest.ts:6"
+      ],
+      "reason": "Already an active wave-1 P2 finding; re-reporting would duplicate across the merge."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-6-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "amend3/fresh2/runs/T005-3.hits"
+      ],
+      "bugClass": "evidence_contamination",
+      "disposition": "ruled_out",
+      "rationale": "Strongest P0 candidate, replayed and dismissed with evidence.",
+      "evidenceRefs": [
+        "amend3/fresh2/runs/T005-3.hits:1",
+        "benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv:11-13"
+      ],
+      "reason": "Hits are deleted-path names from a status listing, never file contents."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-6-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "run-fresh2.sh session audit"
+      ],
+      "bugClass": "audit_unavailable",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "amend3/fresh2/runs/T005-1.audit:1"
+      ],
+      "reason": "Every deciding run resolved exactly one session."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-7-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "0*/acceptance-criteria.md"
+      ],
+      "bugClass": "unmet_acceptance_row",
+      "disposition": "ruled_out",
+      "rationale": "Swept and closed.",
+      "evidenceRefs": [
+        "009-authoring-benchmark-and-closeout/acceptance-criteria.md:55"
+      ],
+      "reason": "Every row reads Met."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-7-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "0*/acceptance-criteria.md"
+      ],
+      "bugClass": "dangling_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "Swept and closed.",
+      "evidenceRefs": [
+        "005-weak-model-authoring-card/acceptance-criteria.md:61"
+      ],
+      "reason": "No acceptance evidence path is missing."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-7-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "001 scratch baseline",
+        "amend3 baseline-deepseek"
+      ],
+      "bugClass": "baseline_number_drift",
+      "disposition": "ruled_out",
+      "rationale": "Compared, not assumed.",
+      "evidenceRefs": [
+        "001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json:1"
+      ],
+      "reason": "Both baselines reproduce exactly against goal.md and the report tables."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-8-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "templates/core/tasks.md.tmpl"
+      ],
+      "bugClass": "l3plus_label_drift",
+      "disposition": "ruled_out",
+      "rationale": "The changelog's strongest claim verified.",
+      "evidenceRefs": [
+        "templates/core/tasks.md.tmpl:229"
+      ],
+      "reason": "All six notes carry the corrected opening sentence."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-8-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/changelog"
+      ],
+      "bugClass": "missing_nested_changelog",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "changelog/changelog-054-root.md:1"
+      ],
+      "reason": "One file per phase exists."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-8-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "SKILL.md",
+        "changelog/v2.9.0.0.md"
+      ],
+      "bugClass": "stale_version_carrier",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "changelog/v2.9.0.0.md:1"
+      ],
+      "reason": "Both carriers agree."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-9-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "five markdown.md mirrors"
+      ],
+      "bugClass": "mirror_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Parity verified rather than assumed.",
+      "evidenceRefs": [
+        ".claude/agents/markdown.md:194"
+      ],
+      "reason": "Every mirror that ships the agent carries the same authoring row."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "goal.md progress rows"
+      ],
+      "bugClass": "missing_commit",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "goal.md:127"
+      ],
+      "reason": "Every cited commit resolves."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "spec.md files-to-change table"
+      ],
+      "bugClass": "scope_leak",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "spec.md:105-108"
+      ],
+      "reason": "Every created path named by the scope table exists."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-1-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "create.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Not re-entered.",
+      "evidenceRefs": [
+        "review/lineages/deepseek/review-report.md"
+      ],
+      "proof": "Covered by an active wave-1 P1; re-reporting would duplicate across the merge."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-004",
+      "dimension": "security",
+      "targetRefs": [
+        "goal.md",
+        "012 preconditions"
+      ],
+      "bugClass": "credential_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md:91"
+      ],
+      "proof": "No credential material appears in the packet or its reports."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-005",
+      "dimension": "security",
+      "targetRefs": [
+        "example-drift-guard-catches-leak.md"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "example-drift-guard-catches-leak.md:51-70"
+      ],
+      "proof": "Variables are quoted and derived from mktemp; no user input reaches a command position."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "all child acceptance-criteria.md files"
+      ],
+      "bugClass": "dangling_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "Checked mechanically and closed.",
+      "evidenceRefs": [
+        "009-authoring-benchmark-and-closeout/acceptance-criteria.md:55"
+      ],
+      "proof": "No acceptance evidence path in phase 009 is missing from disk."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ],
+      "bugClass": "number_misstatement",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv:11-13"
+      ],
+      "proof": "README aggregates match the CSV for the deciding set."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "templates/spec-kit-docs.json"
+      ],
+      "bugClass": "registry_drift",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "templates/spec-kit-docs.json:4",
+        "runtime/cli/tests/template-version-parity.vitest.ts:1"
+      ],
+      "proof": "The registry and the stamps agree, and a dedicated test guards them."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "playbook_index_gap",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "manual-testing-playbook.md:341-348"
+      ],
+      "proof": "The packet's scenarios are all indexed; the wider gap predates the packet and is out of scope."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "feature-catalog/tooling-and-scripts/*"
+      ],
+      "bugClass": "dangling_catalog_path",
+      "disposition": "ruled_out",
+      "rationale": "Scope discipline; not reported.",
+      "evidenceRefs": [
+        "feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md:1"
+      ],
+      "proof": "The two dangling paths sit in out-of-scope leaves that precede the packet."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "catalog_index_gap",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "feature-catalog/feature-catalog.md:1"
+      ],
+      "proof": "All four leaves are indexed exactly once."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "template-section-fill-guidance.md"
+      ],
+      "bugClass": "addon_fill_line_gap",
+      "disposition": "ruled_out",
+      "rationale": "Not re-entered.",
+      "evidenceRefs": [
+        "runtime/cli/tests/template-fill-guidance.vitest.ts:6"
+      ],
+      "proof": "Already an active wave-1 P2 finding; re-reporting would duplicate across the merge."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-6-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "amend3/fresh2/runs/T005-3.hits"
+      ],
+      "bugClass": "evidence_contamination",
+      "disposition": "ruled_out",
+      "rationale": "Strongest P0 candidate, replayed and dismissed with evidence.",
+      "evidenceRefs": [
+        "amend3/fresh2/runs/T005-3.hits:1",
+        "benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv:11-13"
+      ],
+      "proof": "Hits are deleted-path names from a status listing, never file contents."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-6-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "run-fresh2.sh session audit"
+      ],
+      "bugClass": "audit_unavailable",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "amend3/fresh2/runs/T005-1.audit:1"
+      ],
+      "proof": "Every deciding run resolved exactly one session."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-7-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "0*/acceptance-criteria.md"
+      ],
+      "bugClass": "unmet_acceptance_row",
+      "disposition": "ruled_out",
+      "rationale": "Swept and closed.",
+      "evidenceRefs": [
+        "009-authoring-benchmark-and-closeout/acceptance-criteria.md:55"
+      ],
+      "proof": "Every row reads Met."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-7-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "0*/acceptance-criteria.md"
+      ],
+      "bugClass": "dangling_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "Swept and closed.",
+      "evidenceRefs": [
+        "005-weak-model-authoring-card/acceptance-criteria.md:61"
+      ],
+      "proof": "No acceptance evidence path is missing."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-7-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "001 scratch baseline",
+        "amend3 baseline-deepseek"
+      ],
+      "bugClass": "baseline_number_drift",
+      "disposition": "ruled_out",
+      "rationale": "Compared, not assumed.",
+      "evidenceRefs": [
+        "001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json:1"
+      ],
+      "proof": "Both baselines reproduce exactly against goal.md and the report tables."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-8-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "templates/core/tasks.md.tmpl"
+      ],
+      "bugClass": "l3plus_label_drift",
+      "disposition": "ruled_out",
+      "rationale": "The changelog's strongest claim verified.",
+      "evidenceRefs": [
+        "templates/core/tasks.md.tmpl:229"
+      ],
+      "proof": "All six notes carry the corrected opening sentence."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-8-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/changelog"
+      ],
+      "bugClass": "missing_nested_changelog",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "changelog/changelog-054-root.md:1"
+      ],
+      "proof": "One file per phase exists."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-8-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "SKILL.md",
+        "changelog/v2.9.0.0.md"
+      ],
+      "bugClass": "stale_version_carrier",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "changelog/v2.9.0.0.md:1"
+      ],
+      "proof": "Both carriers agree."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-9-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "five markdown.md mirrors"
+      ],
+      "bugClass": "mirror_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Parity verified rather than assumed.",
+      "evidenceRefs": [
+        ".claude/agents/markdown.md:194"
+      ],
+      "proof": "Every mirror that ships the agent carries the same authoring row."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-9-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".codex/agents",
+        ".devin/agents"
+      ],
+      "bugClass": "missing_agent",
+      "disposition": "not_applicable",
+      "rationale": "Scope discipline; no finding raised.",
+      "evidenceRefs": [
+        ".skilled/agents/markdown.md:208"
+      ],
+      "proof": "The absence predates the packet and sits outside its declared change surface."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "goal.md progress rows"
+      ],
+      "bugClass": "missing_commit",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "goal.md:127"
+      ],
+      "proof": "Every cited commit resolves."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "spec.md files-to-change table"
+      ],
+      "bugClass": "scope_leak",
+      "disposition": "ruled_out",
+      "rationale": "Checked and closed.",
+      "evidenceRefs": [
+        "spec.md:105-108"
+      ],
+      "proof": "Every created path named by the scope table exists."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "non_reproducible_closure_evidence",
+      "missing_commit",
+      "scope_leak"
+    ],
+    "covered": [
+      "non_reproducible_closure_evidence",
+      "missing_commit",
+      "scope_leak"
+    ],
+    "ruledOut": [
+      "missing_commit",
+      "scope_leak"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 6,
+      "executed": 6,
+      "pass": 2,
+      "partial": 4,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "goal.md:96",
+          "criteria.txt:10",
+          "git rev-list HEAD...origin/main"
+        ],
+        "findingRefs": [
+          "R10-P1-001"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Six of seven criteria reproduce; the seventh cannot be replayed."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "criteria.txt C7 line against live remote state"
+        ],
+        "findingRefs": [
+          "R10-P1-001"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "The evidence line is a checkpoint, not a final-state property."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          "scenarios 479, 481, 482, 483"
+        ],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "Every scenario a leaf names exists."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "template-section-fill-guidance.md:20"
+        ],
+        "findingRefs": [
+          "R8-P2-001"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "The leaf repeats the promise without hedging the two sections that lack the pair."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          "SKILL.md intent rows"
+        ],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "The router matches the card claim."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "five mirrors with an identical authoring row"
+        ],
+        "findingRefs": [
+          "R9-P2-001"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "partial",
+        "summary": "Parity holds across every runtime that ships the agent; completeness does not."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

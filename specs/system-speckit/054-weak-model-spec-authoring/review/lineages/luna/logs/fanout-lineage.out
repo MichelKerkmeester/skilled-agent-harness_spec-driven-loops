@@ -1,0 +1,3 @@
+The review artifacts and terminal synthesis are present: 10 iterations, 0 P0, 2 P1, 7 P2; verdict **CONDITIONAL**, with `stopReason: maxIterationsReached`. The report is [review-report.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/review/lineages/luna/review-report.md).
+
+I did not print `FANOUT_LINEAGE_COMPLETE:luna`: the recovered session record reports an earlier out-of-lineage write, which your instructions say invalidates the lineage. The report also records a malformed timestamp in iteration 6’s append-only state record.

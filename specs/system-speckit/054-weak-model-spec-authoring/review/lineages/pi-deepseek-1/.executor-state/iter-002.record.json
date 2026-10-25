@@ -1,0 +1,216 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "status": "complete",
+  "focus": "security",
+  "dimensions": ["security"],
+  "filesReviewed": [
+    "specs/system-speckit/054-weak-model-spec-authoring/goal.md:166",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:868",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:394",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md:62",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md:92",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md:51"
+  ],
+  "findingsCount": 3,
+  "findingsSummary": {"P0": 0, "P1": 2, "P2": 1},
+  "findingsNew": {"P0": 0, "P1": 2, "P2": 1},
+  "findingDetails": [
+    {
+      "id": "R2-P1-001",
+      "severity": "P1",
+      "title": "The removal block deletes the branch without the branch-tip condition its operator approved",
+      "dimension": "security",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:868",
+      "evidence": "goal.md:166 lists four pre-approval conditions including no commit beyond BASE_REF; the block checks RUNS_RECORDED, EMPTY and UNPATCHED plus PATCH_GATE_COVERED, then runs worktree remove --force and branch -D with no tip comparison.",
+      "recommendation": "Add a BASE_REF tip comparison that prints REMOVAL_REFUSED before the destructive pair, and use branch -d so git enforces the same condition.",
+      "disposition": "active",
+      "findingClass": "unguarded-destructive-operation",
+      "scopeProof": "Pre-approval row and the full T016 block read directly; rev-list, merge-base and BASE_REF were searched across the block and appear only in the sourced env.",
+      "affectedSurfaceHints": ["phase 008 T016 removal block", "phase 008 plan removal procedure", "operator pre-approval record"],
+      "claimAdjudication": {"claim": "The T016 removal block executes branch -D without checking the branch tip against BASE_REF, though the operator pre-approval requires that check.", "evidenceRefs": ["goal.md:166", "tasks.md:868-869", "plan.md:394-395"], "counterevidenceSought": "Searched the whole block for rev-list, merge-base, BASE_REF and any conditional guard around the two destructive commands; found none.", "alternativeExplanation": "The tip check may have been performed manually before the block ran. Rejected as a control: a manual check leaves no artifact the script can read, and the block still executes -D unattended.", "finalSeverity": "P1", "confidence": 0.9, "downgradeTrigger": "A tip check found in a sourced file the block runs before the delete, or a recorded refusal path for a moved branch."}
+    },
+    {
+      "id": "R2-P1-002",
+      "severity": "P1",
+      "title": "Scenario 483 runs a gate-disabled writer in dangerous mode and never checks containment",
+      "dimension": "security",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md:92",
+      "evidence": "The dispatch disables the framework gate and permissions, the only bound is a prose ban list, and the Pass criteria check the packet, validation, token count and cleanup only - no path-scoped containment check exists.",
+      "recommendation": "Add a status or out-of-scope comparison against the run boundary to step 3 and to the Pass criteria, reusing the benchmark's out_of_scope_writes measure.",
+      "disposition": "active",
+      "findingClass": "unverified-containment",
+      "scopeProof": "Dispatch line, brief ban list, all four steps and the Pass/Fail block read end to end; no git status or scoped diff appears in the procedure.",
+      "affectedSurfaceHints": ["playbook scenario 483", "cli-devin dangerous-mode dispatch", "phase 008 run report"],
+      "claimAdjudication": {"claim": "Scenario 483's procedure and Pass criteria contain no containment check after a dangerous-mode, gate-disabled writer run.", "evidenceRefs": ["level-1-packet-authored-from-card.md:92", "level-1-packet-authored-from-card.md:74", "level-1-packet-authored-from-card.md:118-124"], "counterevidenceSought": "Read all four steps and the Failure Triage paragraph for any status, diff or path check; the triage only re-runs the scenario.", "alternativeExplanation": "Containment might be assumed from the CLI's own workspace scoping. Rejected: the same line passes --permission-mode dangerous, and the packet's benchmark records out_of_scope_writes precisely because the CLI does not bound the writer.", "finalSeverity": "P1", "confidence": 0.85, "downgradeTrigger": "A containment step found in the scenario file or in the phase 008 wrapper that runs it, graded PASS with the run."}
+    },
+    {
+      "id": "R2-P2-001",
+      "severity": "P2",
+      "title": "The acceptance evidence for the removal row was assembled by hand, not produced by the command it cites",
+      "dimension": "security",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md:62",
+      "evidence": "AC-009 states that SCRATCH_CLEAN, PATCH_SAVED and STATUS_SAVED were prepended from console output because the block prints them outside its tee; the tee boundary at tasks.md:874 starts after those echoes.",
+      "recommendation": "Wrap the whole block in the tee, or add the missing echoes inside the redirected group, then re-record the row from a real run.",
+      "disposition": "active",
+      "findingClass": "hand-assembled-evidence",
+      "scopeProof": "AC row observed text and the block tee boundary both read; the three lines sit before the redirect.",
+      "affectedSurfaceHints": ["phase 008 AC-009", "T016 block", "removal.txt evidence artifact"]
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {"required": 2, "executed": 2, "pass": 0, "partial": 1, "fail": 1, "blocked": 0, "notApplicable": 0, "gatingFailures": 1},
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["goal.md:166", "tasks.md:828-874"],
+        "findingRefs": ["R2-P1-001"],
+        "summary": "The removal gate implements three of the four approved conditions."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 0, "fail": 1},
+        "evidence": ["008-playbook-run-in-worktree/acceptance-criteria.md:62"],
+        "findingRefs": ["R2-P2-001"],
+        "summary": "The row discloses a manual edit to its own evidence artifact."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 0, "fail": 1},
+        "evidence": ["level-1-packet-authored-from-card.md:92", "level-1-packet-authored-from-card.md:118-124"],
+        "findingRefs": ["R2-P1-002"],
+        "summary": "A scenario claims containment it never checks."
+      }
+    ]
+  },
+  "newFindingsRatio": 0.75,
+  "noveltyJustification": "Three findings new to this lineage; the destructive-authority angle was not entered by iteration 1 or by the wave-1 lineages.",
+  "sessionId": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-25T18:09:40Z",
+  "durationMs": 449000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "phase runbooks and playbook scenarios that ship destructive and gate-disabled procedures",
+    "evidenceRefs": ["008-playbook-run-in-worktree/tasks.md:868", "level-1-packet-authored-from-card.md:92"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+      "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md",
+      "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md"
+    ],
+    "selectionReason": "The packet's destructive authority lives in its own runbooks and playbook procedures, not in the templates it ships.",
+    "discoveryMethods": ["direct_read", "exact_search"],
+    "omittedHighRiskTargets": ["create.sh --track traversal (wave-1 P1, not re-entered)", "cli-devin dangerous-mode approval row (operator-approved, no finding)"],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": ["tasks.md:868", "level-1-packet-authored-from-card.md:92"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["unguarded_destructive_operation", "unverified_containment", "hand_assembled_evidence"],
+    "covered": ["unguarded_destructive_operation", "unverified_containment", "hand_assembled_evidence"],
+    "ruledOut": ["credential_exposure", "command_injection"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-2-001",
+      "dimension": "security",
+      "targetRefs": ["008-playbook-run-in-worktree/tasks.md", "goal.md"],
+      "bugClass": "unguarded_destructive_operation",
+      "hypothesis": "The removal block enforces every condition the operator attached to it",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "goal.md:166", "result": "Four conditions, one of them the branch tip against BASE_REF", "evidenceRefs": ["goal.md:166"]},
+        {"method": "exact_search", "queryOrPath": "rg -n 'rev-list|merge-base|BASE_REF' 008/tasks.md", "result": "No tip comparison; BASE_REF only lives in the sourced env", "evidenceRefs": ["tasks.md:828-874"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R2-P1-001",
+      "rationale": "Destructive pair runs one condition short and uses -D."
+    },
+    {
+      "id": "SL-2-002",
+      "dimension": "security",
+      "targetRefs": ["level-1-packet-authored-from-card.md"],
+      "bugClass": "unverified_containment",
+      "hypothesis": "The scenario proves the dangerous writer stayed inside its throwaway track",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "level-1-packet-authored-from-card.md:86-135", "result": "Four steps, none inspecting changes outside specs/zz-pb-card", "evidenceRefs": ["level-1-packet-authored-from-card.md:118-124"]},
+        {"method": "direct_read", "queryOrPath": "level-1-packet-authored-from-card.md:74", "result": "Ban list is prose in the brief only", "evidenceRefs": ["level-1-packet-authored-from-card.md:74"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R2-P1-002",
+      "rationale": "No artifact can distinguish contained from escaped."
+    },
+    {
+      "id": "SL-2-003",
+      "dimension": "security",
+      "targetRefs": ["008-playbook-run-in-worktree/acceptance-criteria.md"],
+      "bugClass": "hand_assembled_evidence",
+      "hypothesis": "The AC evidence file is the raw command output",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "acceptance-criteria.md:62", "result": "Observed text discloses a manual prepend", "evidenceRefs": ["acceptance-criteria.md:62"]},
+        {"method": "direct_read", "queryOrPath": "tasks.md:874", "result": "tee opens after the three echoes", "evidenceRefs": ["tasks.md:834-840"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R2-P2-001",
+      "rationale": "Evidence artifact unfalsifiable for the lines it is cited for."
+    },
+    {
+      "id": "SL-2-004",
+      "dimension": "security",
+      "targetRefs": ["goal.md", "012 preconditions"],
+      "bugClass": "credential_exposure",
+      "hypothesis": "A credential or token is written into the packet or a report",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "rg -n 'api[_-]?key|token=|Bearer' specs/system-speckit/054-weak-model-spec-authoring", "result": "Only placeholder-token documentation matches", "evidenceRefs": ["specs/system-speckit/054-weak-model-spec-authoring/spec.md:91"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "No credential material appears in the packet or its reports.",
+      "rationale": "Checked and closed."
+    },
+    {
+      "id": "SL-2-005",
+      "dimension": "security",
+      "targetRefs": ["example-drift-guard-catches-leak.md"],
+      "bugClass": "command_injection",
+      "hypothesis": "A scenario interpolates untrusted output into a shell command",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "example-drift-guard-catches-leak.md:45-84", "result": "Fixed paths and a quoted mktemp directory only", "evidenceRefs": ["example-drift-guard-catches-leak.md:51-70"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Variables are quoted and derived from mktemp; no user input reaches a command position.",
+      "rationale": "Checked and closed."
+    }
+  ],
+  "ruledOutDirections": [
+    {"direction": "Credential or token exposure in packet artifacts", "reason": "exact search found only placeholder-token documentation."},
+    {"direction": "Command injection in the drift-guard scenario", "reason": "all variables are quoted and mktemp-derived."}
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "runbook:008-t016", "kind": "REMEDIATION", "label": "phase 008 removal block"},
+    {"type": "node", "id": "scenario:483", "kind": "TEST", "label": "level-1 packet authored from card scenario"},
+    {"type": "edge", "id": "edge:483-contains-writer", "source": "scenario:483", "target": "runbook:008-t016", "relation": "COVERS"}
+  ]
+}

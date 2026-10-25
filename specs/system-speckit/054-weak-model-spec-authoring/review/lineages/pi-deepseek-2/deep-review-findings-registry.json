@@ -1,0 +1,1963 @@
+{
+  "sessionId": "fanout-pi-deepseek-2-1792950661620-vss1cp",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-10-25T18:09:18.636Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Obsolete /spec_kit: command prefix survives in the shipped phase-parent template and five reference docs, and no ledger row ever owned it",
+      "file": ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+      "line": 108,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Parent spec launch precondition names swe-2-max as the benchmark subject, contradicting its own Out of Scope section and frozen decision D8",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 117,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "The post-edit hook placeholder scan cannot see the colon token form the v2.3 templates now emit",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "line": 99,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-002",
+      "severity": "P1",
+      "title": "The scan exits 1 on 55 legitimate bracketed matches in this strict-passing packet, so the hook blocks its own packet",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "line": 149,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "Both new guards depend on rg without a preflight or declaration, and the drift guard prints EXAMPLE_DRIFT_OK on a drifted tree when rg is absent",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 31,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "template-mapping.md still teaches [PLACEHOLDER] as the marker to replace and no validator detects it",
+      "file": ".skilled/skills/system-spec-kit/assets/template-mapping.md",
+      "line": 233,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "graph-metadata.json derived.status says in_progress while the parent reads Complete and last_active_child_id is still phase 004",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "line": 47,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Parent Branch metadata reads main while every phase ran on the worktree branch",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 52,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Two parent-spec pointers dangle: Parent Spec ../spec.md and the phase 003 decision record",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P2-001",
+      "severity": "P2",
+      "title": "Continuity frontmatter was never refreshed when seven phase documents closed and the parent still sends a reader to phase 001",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/acceptance-criteria.md",
+      "line": 22,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Phase 009 acceptance rows carry the benchmark on the superseded first set, so the deciding set has no acceptance row",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+      "line": 55,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Benchmark report subject line still names swe-2-max although the deciding set ran on DeepSeek",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Placeholder marker sets diverge: the orchestrator flags the legacy angle-bracket form and the shell mirror never sees it",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 665,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Fence detection differs between the orchestrator and the shell mirror, and a second fence helper in the same file recognises tilde fences the gate does not",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 729,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The code-block exclusion skips only fence delimiter lines, so fenced example content is still scanned",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "line": 137,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Card sync checks its fourth surface only negatively, so a checklist that names no example passes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The drift guard has no coverage floor over the example tree, so an empty level directory fails with a misleading description message",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 18,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "Phase 006 summary attributes the card and the filled example to four agent definitions but three carry neither",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md",
+      "line": 68,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-002",
+      "severity": "P2",
+      "title": "The plan asset describes authoring and names the guard scripts but neither the card nor the v2.3 token form",
+      "file": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      "line": 313,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "template-mapping.md states decision-record.md is required while the contract makes it optional and this packet omits it in all nine phases",
+      "file": ".skilled/skills/system-spec-kit/assets/template-mapping.md",
+      "line": 283,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-002",
+      "severity": "P2",
+      "title": "The two new catalog sections are linked from the playbook but carry no verification marker",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "line": 218,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "Two run-set files are named baseline.json while neither holds a baseline",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/baseline.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-002",
+      "severity": "P2",
+      "title": "The deciding delta.json carries arithmetic with no experiment identity",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P2-001",
+      "severity": "P2",
+      "title": "The L3+ clarifier reaches all six tasks.md sections and none of the three plan.md sections with the same heading",
+      "file": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      "line": 330,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 18
+  },
+  "openFindingsCount": 24,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9583,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "contradiction",
+      "dangling_reference",
+      "doc_code_contradiction",
+      "fail_open",
+      "false_negative",
+      "false_positive",
+      "fence_bypass",
+      "implementation_divergence",
+      "label_inconsistency",
+      "mislabeled_artifact",
+      "missing_naming",
+      "negative_only_assertion",
+      "overstated_claim",
+      "stale_continuity",
+      "stale_guidance",
+      "stale_metadata",
+      "superseded_evidence",
+      "test_gap",
+      "undeclared_dependency",
+      "unowned_followup",
+      "unowned_repair",
+      "unreproducible_claim",
+      "unsupported_claim"
+    ],
+    "ruledOut": [
+      "anchor_drift",
+      "arithmetic_mismatch",
+      "brief_drift",
+      "comment_hygiene",
+      "contract_violation",
+      "contradiction",
+      "cross_runtime_drift",
+      "dangling_reference",
+      "implementation_divergence",
+      "injection",
+      "missing_artifact",
+      "missing_evidence",
+      "missing_fill_guidance",
+      "path_traversal",
+      "retired_reference",
+      "stale_metadata",
+      "stamp_drift",
+      "status_disagreement",
+      "tree_mismatch",
+      "vacuous_guard",
+      "verdict_steering"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "contradiction": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "dangling_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          10
+        ]
+      },
+      "stale_metadata": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unowned_repair": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unsupported_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "superseded_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "arithmetic_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          8
+        ]
+      },
+      "missing_artifact": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "implementation_divergence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "test_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "contract_violation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "fence_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "false_negative": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "false_positive": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "verdict_steering": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "fail_open": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "undeclared_dependency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "negative_only_assertion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "vacuous_guard": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "overstated_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "missing_naming": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "retired_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "cross_runtime_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "stale_guidance": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "doc_code_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "unowned_followup": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "missing_evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "mislabeled_artifact": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "brief_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "tree_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "unreproducible_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "label_inconsistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "missing_fill_guidance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "stamp_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "anchor_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "stale_continuity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "status_disagreement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-104",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/*/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "No waived or superseded row exists in the packet; folder-structure.md:140 makes decision-record.md optional. The dangling pointers that remain are recorded separately as R1-P2-003",
+      "evidenceRefs": [
+        "specs/system-spec-kit/references/structure/folder-structure.md:140"
+      ],
+      "reason": "No waived or superseded row exists in the packet; folder-structure.md:140 makes decision-record.md optional. The dangling pointers that remain are recorded separately as R1-P2-003"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-105",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/description.json"
+      ],
+      "bugClass": "stale_metadata",
+      "disposition": "ruled_out",
+      "rationale": "Both files read Level 2 and the packet is a phase parent without plan.md or tasks.md",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/description.json:2"
+      ],
+      "reason": "Both files read Level 2 and the packet is a phase parent without plan.md or tasks.md"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/b-final.tsv"
+      ],
+      "bugClass": "arithmetic_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Counts reproduce exactly and the before and after cuts are byte-identical",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/b-final.tsv:1"
+      ],
+      "reason": "Counts reproduce exactly and the before and after cuts are byte-identical"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/results.csv"
+      ],
+      "bugClass": "missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "Rows and verdicts match the criterion and criteria.txt line C6",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/results.csv:2"
+      ],
+      "reason": "Rows and verdicts match the criterion and criteria.txt line C6"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ],
+      "bugClass": "contradiction",
+      "disposition": "ruled_out",
+      "rationale": "Section labels and the table caption scope the FAIL numbers to the historical first set; only the subject line drifts, recorded as R2-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:30"
+      ],
+      "reason": "Section labels and the table caption scope the FAIL numbers to the historical first set; only the subject line drifts, recorded as R2-P2-002"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts"
+      ],
+      "bugClass": "contract_violation",
+      "disposition": "ruled_out",
+      "rationale": "Every cell is asserted against validate.sh and the shell rule, including the warn status",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts:83"
+      ],
+      "reason": "Every cell is asserted against validate.sh and the shell rule, including the warn status"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
+      ],
+      "bugClass": "implementation_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Normalization and row selection agree",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh:22"
+      ],
+      "reason": "Normalization and row selection agree"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation on the path",
+      "evidenceRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:472"
+      ],
+      "reason": "No shell interpolation on the path"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No link traversal and no absolute-path injection",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh:177"
+      ],
+      "reason": "No link traversal and no absolute-path injection"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh"
+      ],
+      "bugClass": "verdict_steering",
+      "disposition": "ruled_out",
+      "rationale": "A non-spec document cannot influence the status gate",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:51"
+      ],
+      "reason": "A non-spec document cannot influence the status gate"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh"
+      ],
+      "bugClass": "vacuous_guard",
+      "disposition": "ruled_out",
+      "rationale": "It fails closed; only the message is misleading, recorded as R5-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh:18"
+      ],
+      "reason": "It fails closed; only the message is misleading, recorded as R5-P2-002"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md"
+      ],
+      "bugClass": "contract_violation",
+      "disposition": "ruled_out",
+      "rationale": "Every section carries one guidance comment",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:53"
+      ],
+      "reason": "Every section carries one guidance comment"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents",
+        ".claude/agents/markdown.md",
+        ".opencode/agents/markdown.md"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "Every difference is a runtime-specific contract line",
+      "evidenceRefs": [
+        ".claude/agents/markdown.md:12"
+      ],
+      "reason": "Every difference is a runtime-specific contract line"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands",
+        ".skilled/agents"
+      ],
+      "bugClass": "retired_reference",
+      "disposition": "ruled_out",
+      "rationale": "Every earlier hit was a different file whose name ends in checklist.md",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/assets/speckit-complete.yaml:469"
+      ],
+      "reason": "Every earlier hit was a different file whose name ends in checklist.md"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "Every reported row has a transcript and a check file",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt:1"
+      ],
+      "reason": "Every reported row has a transcript and a check file"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "Index coverage is complete for the eight new scenarios",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:346"
+      ],
+      "reason": "Index coverage is complete for the eight new scenarios"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.json"
+      ],
+      "bugClass": "arithmetic_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every cell reproduces from the stored runs",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.md:12"
+      ],
+      "reason": "Every cell reproduces from the stored runs"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/briefs"
+      ],
+      "bugClass": "brief_drift",
+      "disposition": "ruled_out",
+      "rationale": "One frozen brief on both sides",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/briefs/T005-1.txt:1"
+      ],
+      "reason": "One frozen brief on both sides"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+      ],
+      "bugClass": "tree_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The closing commit changed documentation only",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.md:4"
+      ],
+      "reason": "The closing commit changed documentation only"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-902",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/core"
+      ],
+      "bugClass": "missing_fill_guidance",
+      "disposition": "ruled_out",
+      "rationale": "Every section carries one guidance comment with a good and a weak example",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:53"
+      ],
+      "reason": "Every section carries one guidance comment with a good and a weak example"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-903",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/packet-types"
+      ],
+      "bugClass": "stamp_drift",
+      "disposition": "ruled_out",
+      "rationale": "D2 freezes the token gate to v2.3 documents and none of these four is on the weak-model authoring path",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:27"
+      ],
+      "reason": "D2 freezes the token gate to v2.3 documents and none of these four is on the weak-model authoring path"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-904",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/core"
+      ],
+      "bugClass": "anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "The examples and the template anchor contract agree",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh:1"
+      ],
+      "reason": "The examples and the template anchor contract agree"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "Comments state the durable reason only",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:661"
+      ],
+      "reason": "Comments state the durable reason only"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/README.md"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "Paths resolve; the earlier command-prefix defect is already R1-P1-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/README.md:625"
+      ],
+      "reason": "Paths resolve; the earlier command-prefix defect is already R1-P1-001"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring"
+      ],
+      "bugClass": "status_disagreement",
+      "disposition": "ruled_out",
+      "rationale": "Body statuses agree; only continuity metadata drifted",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md:50"
+      ],
+      "reason": "Body statuses agree; only continuity metadata drifted"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-104",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/*/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "No waived or superseded row exists in the packet; folder-structure.md:140 makes decision-record.md optional. The dangling pointers that remain are recorded separately as R1-P2-003",
+      "evidenceRefs": [
+        "specs/system-spec-kit/references/structure/folder-structure.md:140"
+      ],
+      "proof": "No waived or superseded row exists in the packet; folder-structure.md:140 makes decision-record.md optional. The dangling pointers that remain are recorded separately as R1-P2-003"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-105",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/description.json"
+      ],
+      "bugClass": "stale_metadata",
+      "disposition": "ruled_out",
+      "rationale": "Both files read Level 2 and the packet is a phase parent without plan.md or tasks.md",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/description.json:2"
+      ],
+      "proof": "Both files read Level 2 and the packet is a phase parent without plan.md or tasks.md"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/b-final.tsv"
+      ],
+      "bugClass": "arithmetic_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Counts reproduce exactly and the before and after cuts are byte-identical",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/b-final.tsv:1"
+      ],
+      "proof": "Counts reproduce exactly and the before and after cuts are byte-identical"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/results.csv"
+      ],
+      "bugClass": "missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "Rows and verdicts match the criterion and criteria.txt line C6",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/results.csv:2"
+      ],
+      "proof": "Rows and verdicts match the criterion and criteria.txt line C6"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ],
+      "bugClass": "contradiction",
+      "disposition": "ruled_out",
+      "rationale": "Section labels and the table caption scope the FAIL numbers to the historical first set; only the subject line drifts, recorded as R2-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:30"
+      ],
+      "proof": "Section labels and the table caption scope the FAIL numbers to the historical first set; only the subject line drifts, recorded as R2-P2-002"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts"
+      ],
+      "bugClass": "contract_violation",
+      "disposition": "ruled_out",
+      "rationale": "Every cell is asserted against validate.sh and the shell rule, including the warn status",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts:83"
+      ],
+      "proof": "Every cell is asserted against validate.sh and the shell rule, including the warn status"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
+      ],
+      "bugClass": "implementation_divergence",
+      "disposition": "ruled_out",
+      "rationale": "Normalization and row selection agree",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh:22"
+      ],
+      "proof": "Normalization and row selection agree"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation on the path",
+      "evidenceRefs": [
+        ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:472"
+      ],
+      "proof": "No shell interpolation on the path"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No link traversal and no absolute-path injection",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh:177"
+      ],
+      "proof": "No link traversal and no absolute-path injection"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh"
+      ],
+      "bugClass": "verdict_steering",
+      "disposition": "ruled_out",
+      "rationale": "A non-spec document cannot influence the status gate",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:51"
+      ],
+      "proof": "A non-spec document cannot influence the status gate"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh"
+      ],
+      "bugClass": "vacuous_guard",
+      "disposition": "ruled_out",
+      "rationale": "It fails closed; only the message is misleading, recorded as R5-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh:18"
+      ],
+      "proof": "It fails closed; only the message is misleading, recorded as R5-P2-002"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md"
+      ],
+      "bugClass": "contract_violation",
+      "disposition": "ruled_out",
+      "rationale": "Every section carries one guidance comment",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:53"
+      ],
+      "proof": "Every section carries one guidance comment"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents",
+        ".claude/agents/markdown.md",
+        ".opencode/agents/markdown.md"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "Every difference is a runtime-specific contract line",
+      "evidenceRefs": [
+        ".claude/agents/markdown.md:12"
+      ],
+      "proof": "Every difference is a runtime-specific contract line"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands",
+        ".skilled/agents"
+      ],
+      "bugClass": "retired_reference",
+      "disposition": "ruled_out",
+      "rationale": "Every earlier hit was a different file whose name ends in checklist.md",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/assets/speckit-complete.yaml:469"
+      ],
+      "proof": "Every earlier hit was a different file whose name ends in checklist.md"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "Every reported row has a transcript and a check file",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt:1"
+      ],
+      "proof": "Every reported row has a transcript and a check file"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "Index coverage is complete for the eight new scenarios",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:346"
+      ],
+      "proof": "Index coverage is complete for the eight new scenarios"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.json"
+      ],
+      "bugClass": "arithmetic_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every cell reproduces from the stored runs",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.md:12"
+      ],
+      "proof": "Every cell reproduces from the stored runs"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/briefs"
+      ],
+      "bugClass": "brief_drift",
+      "disposition": "ruled_out",
+      "rationale": "One frozen brief on both sides",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/briefs/T005-1.txt:1"
+      ],
+      "proof": "One frozen brief on both sides"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+      ],
+      "bugClass": "tree_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The closing commit changed documentation only",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.md:4"
+      ],
+      "proof": "The closing commit changed documentation only"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-902",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/core"
+      ],
+      "bugClass": "missing_fill_guidance",
+      "disposition": "ruled_out",
+      "rationale": "Every section carries one guidance comment with a good and a weak example",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:53"
+      ],
+      "proof": "Every section carries one guidance comment with a good and a weak example"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-903",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/packet-types"
+      ],
+      "bugClass": "stamp_drift",
+      "disposition": "ruled_out",
+      "rationale": "D2 freezes the token gate to v2.3 documents and none of these four is on the weak-model authoring path",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:27"
+      ],
+      "proof": "D2 freezes the token gate to v2.3 documents and none of these four is on the weak-model authoring path"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-904",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/core"
+      ],
+      "bugClass": "anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "The examples and the template anchor contract agree",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh:1"
+      ],
+      "proof": "The examples and the template anchor contract agree"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "Comments state the durable reason only",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:661"
+      ],
+      "proof": "Comments state the durable reason only"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/README.md"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "Paths resolve; the earlier command-prefix defect is already R1-P1-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/README.md:625"
+      ],
+      "proof": "Paths resolve; the earlier command-prefix defect is already R1-P1-001"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring"
+      ],
+      "bugClass": "status_disagreement",
+      "disposition": "ruled_out",
+      "rationale": "Body statuses agree; only continuity metadata drifted",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md:50"
+      ],
+      "proof": "Body statuses agree; only continuity metadata drifted"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "comment_hygiene",
+      "dangling_reference",
+      "status_disagreement",
+      "stale_continuity"
+    ],
+    "covered": [
+      "stale_continuity"
+    ],
+    "ruledOut": [
+      "comment_hygiene",
+      "dangling_reference",
+      "status_disagreement"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

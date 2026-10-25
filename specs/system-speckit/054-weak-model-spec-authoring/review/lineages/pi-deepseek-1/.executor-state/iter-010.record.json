@@ -1,0 +1,148 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "status": "complete",
+  "focus": "completeness",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    "specs/system-speckit/054-weak-model-spec-authoring/goal.md:96",
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md:93",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt:10",
+    "specs/system-speckit/054-weak-model-spec-authoring/goal.md:112-143"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {"P0": 0, "P1": 1, "P2": 0},
+  "findingsNew": {"P0": 0, "P1": 1, "P2": 0},
+  "findingDetails": [
+    {
+      "id": "R10-P1-001",
+      "severity": "P1",
+      "title": "Criterion 7's evidence no longer reproduces: every packet commit is contained in origin/main",
+      "dimension": "traceability",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/goal.md:96",
+      "evidence": "Criterion 7 and the parent scope row say nothing is pushed, and criteria.txt records remote_branches_with_head=0 three times. Today git rev-list --left-right --count HEAD...origin/main prints 0 5 and origin/main contains HEAD and both recorded close commits.",
+      "recommendation": "Re-state the criterion's evidence as a time-bound observation with the checkpoint commit, or record the operator merge that moved the branch, so the line can be re-run and interpreted.",
+      "disposition": "active",
+      "findingClass": "non-reproducible-closure-evidence",
+      "scopeProof": "Criterion text, parent scope row and recorded evidence line read directly; git probes run read-only and report 0 5, origin/main containment for HEAD and for both close commits.",
+      "affectedSurfaceHints": ["parent criterion 7", "closure criteria file", "worktree branch", "origin/main history"],
+      "claimAdjudication": {"claim": "Criterion 7's recorded evidence no longer reproduces from the final tree: the packet's commits, including both recorded close commits, are contained in origin/main.", "evidenceRefs": ["goal.md:96", "spec.md:93", "009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt:10"], "counterevidenceSought": "Checked whether the branch is ahead of origin/main (it is not), whether the containment applies only to the merge commits (it applies to the packet close commits too), and whether the recorded checkpoints predate the closing commits (they do).", "alternativeExplanation": "An operator merged the finished branch into main after closeout, which makes every checkpoint truthful and the criterion a statement about the run rather than about the tree. This explanation is consistent with the evidence but is not recorded anywhere in the packet, so the criterion still cannot be re-verified.", "finalSeverity": "P1", "confidence": 0.7, "downgradeTrigger": "A recorded operator merge after closeout, or a closure evidence line re-stated as a time-bound observation instead of a property of the final tree."}
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {"required": 2, "executed": 2, "pass": 0, "partial": 2, "fail": 0, "blocked": 0, "notApplicable": 0, "gatingFailures": 0},
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["goal.md:96", "criteria.txt:10", "git rev-list HEAD...origin/main"],
+        "findingRefs": ["R10-P1-001"],
+        "summary": "Six of seven criteria reproduce; the seventh cannot be replayed."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["criteria.txt C7 line against live remote state"],
+        "findingRefs": ["R10-P1-001"],
+        "summary": "The evidence line is a checkpoint, not a final-state property."
+      }
+    ]
+  },
+  "newFindingsRatio": 0.2,
+  "noveltyJustification": "One finding new to this lineage; no earlier iteration or wave-1 lineage re-ran criterion 7 against live git state.",
+  "sessionId": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-25T18:59:40Z",
+  "durationMs": 378000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "the completion criteria are the packet's closure contract, so each is replayed where it can be",
+    "evidenceRefs": ["goal.md:96", "criteria.txt:10"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+      "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt"
+    ],
+    "selectionReason": "Completeness for a phased packet is decided by the parent criteria, not by the child folders, which iteration 7 already swept.",
+    "discoveryMethods": ["direct_read", "git_read_only_probe"],
+    "omittedHighRiskTargets": ["parent scope-table doctor row (wave-1 P2 on record)", "parent graph metadata (wave-1 P2s on record)"],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": ["goal.md:96", "criteria.txt:10"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["non_reproducible_closure_evidence", "missing_commit", "scope_leak"],
+    "covered": ["non_reproducible_closure_evidence", "missing_commit", "scope_leak"],
+    "ruledOut": ["missing_commit", "scope_leak"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-10-001",
+      "dimension": "traceability",
+      "targetRefs": ["goal.md", "criteria.txt"],
+      "bugClass": "non_reproducible_closure_evidence",
+      "hypothesis": "Every completion criterion can be replayed from the final state",
+      "searchActions": [
+        {"method": "git_read_only_probe", "queryOrPath": "git rev-list --left-right --count HEAD...origin/main", "result": "0 5, so no packet commit is outside origin/main", "evidenceRefs": ["criteria.txt:10"]},
+        {"method": "git_read_only_probe", "queryOrPath": "git branch -r --contains a15bc0636e and 74a629a7af", "result": "origin/main contains both close commits", "evidenceRefs": ["goal.md:132"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R10-P1-001",
+      "rationale": "C7 cannot be re-verified; six other criteria reproduce."
+    },
+    {
+      "id": "SL-10-002",
+      "dimension": "traceability",
+      "targetRefs": ["goal.md progress rows"],
+      "bugClass": "missing_commit",
+      "hypothesis": "A recorded commit SHA does not exist",
+      "searchActions": [
+        {"method": "git_read_only_probe", "queryOrPath": "git cat-file -e for all 19 ten-character SHAs in goal.md", "result": "All resolve", "evidenceRefs": ["goal.md:127"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Every cited commit resolves.",
+      "rationale": "Checked and closed."
+    },
+    {
+      "id": "SL-10-003",
+      "dimension": "traceability",
+      "targetRefs": ["spec.md files-to-change table"],
+      "bugClass": "scope_leak",
+      "hypothesis": "A created path in the scope table does not exist",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "check the guard scripts, both report folders and the 041 child folder", "result": "All present", "evidenceRefs": ["spec.md:105-108"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Every created path named by the scope table exists.",
+      "rationale": "Checked and closed."
+    }
+  ],
+  "ruledOutDirections": [
+    {"direction": "A recorded commit that does not exist", "reason": "all 19 SHAs resolve."},
+    {"direction": "A scope-table create row with no artifact", "reason": "every named path exists."}
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "gate:c7-never-pushes", "kind": "INVARIANT", "label": "parent criterion 7"},
+    {"type": "node", "id": "evidence:remote-state", "kind": "EVIDENCE", "label": "origin/main containment probe"},
+    {"type": "edge", "id": "edge:c7-contradicted", "source": "gate:c7-never-pushes", "target": "evidence:remote-state", "relation": "CONTRADICTS"}
+  ]
+}

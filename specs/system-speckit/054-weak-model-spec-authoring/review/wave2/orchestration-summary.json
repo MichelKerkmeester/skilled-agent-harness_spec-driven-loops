@@ -1,0 +1,76 @@
+{
+  "run_id": "1792950661620-vss1cp",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/054-weak-model-spec-authoring",
+  "base_artifact_dir": "specs/system-speckit/054-weak-model-spec-authoring/review/wave2",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "pi-deepseek-1",
+      "state_log": "specs/system-speckit/054-weak-model-spec-authoring/review/wave2/lineages/pi-deepseek-1/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-25T17:51:01.626Z",
+        "end_at_iso": "2026-10-25T18:28:11.575Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T18:36:10Z",
+          "deltaMs": 358425
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T18:42:35Z",
+          "deltaMs": 743425
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T18:48:10Z",
+          "deltaMs": 1078425
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T18:53:20Z",
+          "deltaMs": 1388425
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T18:59:40Z",
+          "deltaMs": 1768425
+        }
+      ]
+    }
+  ]
+}

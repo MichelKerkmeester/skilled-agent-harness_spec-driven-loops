@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":9,"id":"fanout-luna-1792949481267-fym7sk-i009","severity":"info","title":"Iteration 9 completed with one new finding","newFindings":1,"timestamp":"2026-10-25T18:16:27Z"}
+{"type":"finding","id":"R9-P2-001","severity":"P2","title":"The fill-guidance regression test omits add-on templates","file":".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts:5-8,49-67","iteration":9}

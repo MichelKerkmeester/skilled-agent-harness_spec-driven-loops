@@ -1,0 +1,175 @@
+{
+  "type": "iteration",
+  "iteration": 8,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "status": "complete",
+  "focus": "maintainability",
+  "dimensions": ["maintainability"],
+  "filesReviewed": [
+    ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md:24",
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md:132",
+    ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:444",
+    ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:115",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts:60",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md:20"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {"P0": 0, "P1": 0, "P2": 1},
+  "findingsNew": {"P0": 0, "P1": 0, "P2": 1},
+  "findingDetails": [
+    {
+      "id": "R8-P2-001",
+      "severity": "P2",
+      "title": "The release notes promise a good and a weak example in every core section, and two sections carry neither",
+      "dimension": "maintainability",
+      "file": ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md:24",
+      "evidence": "68 of 70 FILL lines carry GOOD and WEAK; spec.md.tmpl:444 and tasks.md.tmpl:115 carry only an instruction. The fill-guidance test asserts one FILL line per section, no tokens and a trailing period, never the example pair.",
+      "recommendation": "Add GOOD and WEAK to the two lines, and assert both markers in the fill-guidance test so the release claim stays enforceable.",
+      "disposition": "active",
+      "findingClass": "unenforced-release-claim",
+      "scopeProof": "All four core templates scanned for FILL/GOOD/WEAK counts; both short lines read directly; the test body read to its closing brace.",
+      "affectedSurfaceHints": ["changelog v2.9.0.0", "parent scope row", "fill-guidance test", "core spec and tasks templates"]
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {"required": 2, "executed": 2, "pass": 0, "partial": 2, "fail": 0, "blocked": 0, "notApplicable": 0, "gatingFailures": 0},
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["changelog/v2.9.0.0.md:24", "spec.md:132", "templates/core/spec.md.tmpl:444", "templates/core/tasks.md.tmpl:115"],
+        "findingRefs": ["R8-P2-001"],
+        "summary": "The deliverable is 68 of 70 sections."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["004-template-section-fill-guidance/acceptance-criteria.md"],
+        "findingRefs": ["R8-P2-001"],
+        "summary": "The phase row requires a fill line, which is true; the example pair is not in the row."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0},
+        "evidence": ["template-section-fill-guidance.md:20"],
+        "findingRefs": ["R8-P2-001"],
+        "summary": "The leaf repeats the promise without hedging the two sections that lack the pair."
+      }
+    ]
+  },
+  "newFindingsRatio": 0.2,
+  "noveltyJustification": "One finding new to this lineage; the fill-line example pair was not read by earlier iterations, which looked at the guards around the templates rather than the template text.",
+  "sessionId": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-25T18:48:10Z",
+  "durationMs": 335000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "release notes are the carrier an external reader trusts without opening the packet",
+    "evidenceRefs": ["changelog/v2.9.0.0.md:24", "templates/core/spec.md.tmpl:444"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md",
+      "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      ".skilled/skills/system-spec-kit/templates/core",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts"
+    ],
+    "selectionReason": "Each release-note bullet was checked against the tree it describes rather than against another document.",
+    "discoveryMethods": ["direct_read", "scripted_check"],
+    "omittedHighRiskTargets": ["commands-and-agents bullet (wave-1 P1/P2 already on record)", "report set-count wording (wave-1 P2, corrected)"],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": ["changelog/v2.9.0.0.md:24", "template-fill-guidance.vitest.ts:60"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["unenforced_release_claim", "stale_version_carrier", "missing_nested_changelog"],
+    "covered": ["unenforced_release_claim", "stale_version_carrier", "missing_nested_changelog"],
+    "ruledOut": ["stale_version_carrier", "missing_nested_changelog", "l3plus_label_drift"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-8-001",
+      "dimension": "maintainability",
+      "targetRefs": ["changelog/v2.9.0.0.md", "templates/core"],
+      "bugClass": "unenforced_release_claim",
+      "hypothesis": "Every core section carries a good and a weak example",
+      "searchActions": [
+        {"method": "scripted_check", "queryOrPath": "count FILL, GOOD, WEAK per core template", "result": "70 fills, 68 with both markers; spec.md.tmpl:444 and tasks.md.tmpl:115 lack both", "evidenceRefs": ["templates/core/spec.md.tmpl:444"]},
+        {"method": "direct_read", "queryOrPath": "template-fill-guidance.vitest.ts:55-70", "result": "Asserts one fill line, no token, trailing period only", "evidenceRefs": ["template-fill-guidance.vitest.ts:60-70"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R8-P2-001",
+      "rationale": "Claim unenforced and false for two sections."
+    },
+    {
+      "id": "SL-8-002",
+      "dimension": "maintainability",
+      "targetRefs": ["templates/core/tasks.md.tmpl"],
+      "bugClass": "l3plus_label_drift",
+      "hypothesis": "Not every L3+ fill note was updated after the label fix",
+      "searchActions": [
+        {"method": "scripted_check", "queryOrPath": "grep -A1 '^## L3+:' tasks.md.tmpl | grep FILL", "result": "Six headings, six notes, all opening with the new sentence", "evidenceRefs": ["templates/core/tasks.md.tmpl:229"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "All six notes carry the corrected opening sentence.",
+      "rationale": "The changelog's strongest claim verified."
+    },
+    {
+      "id": "SL-8-003",
+      "dimension": "maintainability",
+      "targetRefs": ["specs/system-speckit/054-weak-model-spec-authoring/changelog"],
+      "bugClass": "missing_nested_changelog",
+      "hypothesis": "A phase lacks its nested changelog",
+      "searchActions": [
+        {"method": "scripted_check", "queryOrPath": "list the changelog folder", "result": "Nine phase files plus root", "evidenceRefs": ["changelog/changelog-054-root.md:1"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "One file per phase exists.",
+      "rationale": "Checked and closed."
+    },
+    {
+      "id": "SL-8-004",
+      "dimension": "maintainability",
+      "targetRefs": ["SKILL.md", "changelog/v2.9.0.0.md"],
+      "bugClass": "stale_version_carrier",
+      "hypothesis": "The skill version and the changelog file disagree",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "grep '^version:' SKILL.md and changelog", "result": "Both read 2.9.0.0", "evidenceRefs": ["changelog/v2.9.0.0.md:1"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Both carriers agree.",
+      "rationale": "Checked and closed."
+    }
+  ],
+  "ruledOutDirections": [
+    {"direction": "L3+ label fix incomplete", "reason": "all six notes carry the corrected sentence."},
+    {"direction": "Missing nested changelog for a phase", "reason": "one file per phase plus root."},
+    {"direction": "Skill version carrier drift", "reason": "SKILL.md and the changelog both read 2.9.0.0."}
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "doc:changelog-2.9.0.0", "kind": "CONSUMER", "label": "release changelog"},
+    {"type": "node", "id": "template:spec-core", "kind": "PRODUCER", "label": "core spec template"},
+    {"type": "node", "id": "test:fill-guidance", "kind": "TEST", "label": "fill guidance test"},
+    {"type": "edge", "id": "edge:changelog-claims-template", "source": "doc:changelog-2.9.0.0", "target": "template:spec-core", "relation": "COVERS"}
+  ]
+}

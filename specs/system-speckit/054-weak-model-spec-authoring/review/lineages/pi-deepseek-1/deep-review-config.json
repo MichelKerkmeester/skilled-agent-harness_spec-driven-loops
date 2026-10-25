@@ -1,0 +1,105 @@
+{
+  "topic": "Review: specs/system-speckit/054-weak-model-spec-authoring",
+  "sessionId": "fanout-pi-deepseek-1-1792950661620-vss1cp",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-speckit/054-weak-model-spec-authoring",
+  "createdAt": "2026-10-25T17:52:41Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/054-weak-model-spec-authoring",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "reviewScopeFiles": [
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+    ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md"
+  ],
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

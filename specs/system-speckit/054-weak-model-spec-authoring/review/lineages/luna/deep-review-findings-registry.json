@@ -1,0 +1,1355 @@
+{
+  "sessionId": "fanout-luna-1792949481267-fym7sk",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-10-25T18:26:33.419Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "--track can route scaffold writes above the repository root",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1291,
+      "description": "Resolve the track and final scaffold destination before the first mkdir, then fail unless the canonical destination remains beneath REPO_ROOT/specs.",
+      "findingClass": "path-containment",
+      "deltaStatus": null,
+      "scopeProof": "The phase 005 card explicitly invokes create.sh with --track and sets the authoring write boundary to the packet and scratch folders. This is the command implementation used by that in-scope card.",
+      "affectedSurfaceHints": [
+        "authoring-card scaffold path",
+        "specs tree containment",
+        "template writes"
+      ],
+      "contentHash": "sha256:336ae62f2f5b06a32b55b93621b45062d3012053cb6e9c540cad09a7d6cce27e",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "Strict validation can pass with a required task anchor missing",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P2-001",
+      "severity": "P2",
+      "title": "The checklist sync guard does not require a valid example route",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Indented fenced examples can diverge between the two checks",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+      "line": 115,
+      "description": "The shell mirror only recognizes fences at column one while the orchestrator accepts leading whitespace, so a fenced token can produce different rule results.",
+      "findingClass": "cross-implementation-contract",
+      "deltaStatus": "active",
+      "scopeProof": "Phase 003 REQ-002 requires the shell rule and orchestrator to agree; both implementation paths are in the declared target scope.",
+      "affectedSurfaceHints": [
+        "PLACEHOLDER_FILLED verdict",
+        "isolated shell-rule harness",
+        "fenced examples in spec documents"
+      ],
+      "contentHash": "sha256:85f72ee18210f9b1bf370f49888f5161c077e5d3c8bd232ce96acc3289f2c94e",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The shell-only title provenance check lacks orchestrator parity",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+      "line": 149,
+      "description": "The shell rule flags title provenance tokens that are absent from the orchestrator marker set, so the paired checks can return different results.",
+      "findingClass": "cross-implementation-contract",
+      "deltaStatus": "active",
+      "scopeProof": "Phase 003 calls this shell script a mirror and REQ-002 requires the paired implementations to agree.",
+      "affectedSurfaceHints": [
+        "PLACEHOLDER_FILLED verdict",
+        "title provenance cleanup",
+        "isolated shell-rule harness"
+      ],
+      "contentHash": "sha256:a23144da3c19acaf630fb3627a8af621e6c088114fecb6da3efab4692513f38d",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The authoring card omits the tracked scaffold metadata write",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 20,
+      "description": "State the script-managed track-root metadata update as an explicit scaffold exception in the card, or adjust the scaffold flow so its writes match the card boundary.",
+      "findingClass": "contract-implementation-mismatch",
+      "deltaStatus": null,
+      "scopeProof": "The phase 005 target creates the card, and the card itself defines the authoring write boundary for the tracked create.sh command.",
+      "affectedSurfaceHints": [
+        "authoring-card write boundary",
+        "track-root graph-metadata.json",
+        "scaffold command effects"
+      ],
+      "contentHash": "sha256:7d15bc305a5016180bb30833220ffcd608cee5a86309e1383c86b2194b812c2e",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The S8 playbook overrides the card's current scaffold command",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md",
+      "line": 559,
+      "description": "Add --with-goal to the S8 scaffold command, or narrow the S8 coverage claim to the card steps the scenario actually exercises.",
+      "findingClass": "playbook-card-alignment",
+      "deltaStatus": null,
+      "scopeProof": "The phase 005 card is a named input to phase 008 S8, whose plan and implementation summary claim a Level 1 packet was authored from that card.",
+      "affectedSurfaceHints": [
+        "S8 command brief",
+        "goal.md scaffold path",
+        "authoring-card conformance evidence"
+      ],
+      "contentHash": "sha256:7f065b9f60eb2bf2878ede4a92598db8cb4d563b36ab4b55622d1fc820bd3b2e",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "The deciding anchor-score rule is missing from the benchmark recipe",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P2-001",
+      "severity": "P2",
+      "title": "The fill-guidance regression test omits add-on templates",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 7
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_evidence_alignment",
+      "addon_fill_line_coverage",
+      "all_authoring_intents_load_card",
+      "anchor_metric_procedure_alignment",
+      "benchmark_closeout_evidence",
+      "c5_closeout_status_consistency",
+      "catalog_root_leaf_traceability",
+      "checklist_example_route_assertion",
+      "executor_override_documentation",
+      "fenced_code_parity",
+      "frontier_review_disposition",
+      "frozen_card_content_sync",
+      "generated_agent_mirror_card_route",
+      "guard_wrapper_scope",
+      "legacy_angle_marker_parity",
+      "package_warning_baseline_stability",
+      "phase004_test_scope_alignment",
+      "phase006_card_first_reference",
+      "readme_validation_guidance_alignment",
+      "recorded_mirror_check_parity",
+      "required_anchor_presence_gate",
+      "s8_scaffold_command_alignment",
+      "smoke_metric_consistency",
+      "status_consistency",
+      "title_marker_parity",
+      "track_path_containment",
+      "tracked_write_scope"
+    ],
+    "ruledOut": [
+      "acceptance_evidence_alignment",
+      "all_authoring_intents_load_card",
+      "benchmark_closeout_evidence",
+      "c5_closeout_status_consistency",
+      "catalog_root_leaf_traceability",
+      "executor_override_documentation",
+      "frontier_review_disposition",
+      "frozen_card_content_sync",
+      "generated_agent_mirror_card_route",
+      "guard_wrapper_scope",
+      "legacy_angle_marker_parity",
+      "package_warning_baseline_stability",
+      "phase004_test_scope_alignment",
+      "phase006_card_first_reference",
+      "readme_validation_guidance_alignment",
+      "recorded_mirror_check_parity",
+      "smoke_metric_consistency",
+      "status_consistency"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "status_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "benchmark_closeout_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "fenced_code_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "title_marker_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "legacy_angle_marker_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "track_path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "tracked_write_scope": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "acceptance_evidence_alignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "smoke_metric_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "frontier_review_disposition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "frozen_card_content_sync": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "s8_scaffold_command_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "executor_override_documentation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "phase006_card_first_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "generated_agent_mirror_card_route": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "recorded_mirror_check_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "readme_validation_guidance_alignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "catalog_root_leaf_traceability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "package_warning_baseline_stability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "required_anchor_presence_gate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "anchor_metric_procedure_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "c5_closeout_status_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "addon_fill_line_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "phase004_test_scope_alignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "all_authoring_intents_load_card": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "checklist_example_route_assertion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "guard_wrapper_scope": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/goal.md"
+      ],
+      "bugClass": "status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The latest parent goal explicitly records the successful deciding set while preserving the earlier failures as history.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/goal.md:87-96",
+        "specs/system-speckit/054-weak-model-spec-authoring/goal.md:133-143"
+      ],
+      "reason": "The parent completion state matches the latest closeout outcome."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt"
+      ],
+      "bugClass": "benchmark_closeout_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The current acceptance state and the final C1-C7 evidence agree.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md:52-68",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md:91-95",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt:8-10"
+      ],
+      "reason": "No acceptance-to-closeout mismatch was observed in the selected evidence."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/goal.md"
+      ],
+      "bugClass": "legacy_angle_marker_parity",
+      "disposition": "ruled_out",
+      "rationale": "The current source contains the recorded guard.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:743",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/goal.md:143-147"
+      ],
+      "reason": "The angle-form Draft mismatch was fixed in the current implementation."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/implementation-summary.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md"
+      ],
+      "bugClass": "acceptance_evidence_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The recorded results and completion states agree across the four packet records reviewed.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md:41-105,250-266,315-350",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/acceptance-criteria.md:52-63",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/implementation-summary.md:105-118",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md:56-65,78-87,103-118"
+      ],
+      "reason": "Each reviewed acceptance row has matching task/result evidence in the implementation summary or goal, and the phase completion states align."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md"
+      ],
+      "bugClass": "smoke_metric_consistency",
+      "disposition": "ruled_out",
+      "rationale": "All three sources contain the same three strict passes, zero counts for the three quality metrics, and durations 266, 143, and 203 seconds.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.json:1-27",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.md:1-14",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md:56-62,114",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md:87"
+      ],
+      "reason": "The values match row-by-row; each baseline row has a run identifier plus the five measured metrics."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/review/T014.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md"
+      ],
+      "bugClass": "frontier_review_disposition",
+      "disposition": "ruled_out",
+      "rationale": "T014 has eight P1/P2 lines; the goal log records the findings and reasons, then records the two P1 card fixes in the later amendment.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/review/T014.txt:1-8",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md:110-114",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md:62",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/implementation-summary.md:116,118"
+      ],
+      "reason": "T014 count, acceptance evidence, goal disposition, and summary amendment agree."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"
+      ],
+      "bugClass": "frozen_card_content_sync",
+      "disposition": "ruled_out",
+      "rationale": "Both 172-line texts match after the recorded frontmatter version bump is normalized.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md:67-244",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:1-172",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md:118"
+      ],
+      "reason": "The in-memory comparison reported zero content differences after version normalization."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt"
+      ],
+      "bugClass": "executor_override_documentation",
+      "disposition": "ruled_out",
+      "rationale": "The phase goal records an approved cli-devin fallback and says the earlier model wording is historical.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md:51,104-105,111-112",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md:87",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt:3-10"
+      ],
+      "reason": "D8 and the executor amendment explicitly document the runtime override and the actual dispatch model."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/plan.md",
+        ".skilled/agents/markdown.md",
+        ".claude/agents/markdown.md"
+      ],
+      "bugClass": "phase006_card_first_reference",
+      "disposition": "ruled_out",
+      "rationale": "The frozen row table pairs R-016 with R-022, and both live agent rows route to the card first, then the matching filled example.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/plan.md:117,123",
+        ".skilled/agents/markdown.md:208",
+        ".claude/agents/markdown.md:194"
+      ],
+      "reason": "The scoped authored instruction is present in both runtime-specific agent files and the plan maps the mirror row to the same text."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".codex/agents/markdown.toml",
+        ".pi/agents/markdown.md",
+        ".hermes/skills/agent-markdown/SKILL.md"
+      ],
+      "bugClass": "generated_agent_mirror_card_route",
+      "disposition": "ruled_out",
+      "rationale": "The same spec-doc route is present in the generated Codex, Pi, and Hermes markdown agent surfaces.",
+      "evidenceRefs": [
+        ".codex/agents/markdown.toml:197",
+        ".pi/agents/markdown.md:201",
+        ".hermes/skills/agent-markdown/SKILL.md:196"
+      ],
+      "reason": "Direct search found the same instruction in each generated markdown agent mirror."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/summary.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-agent-bodies.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-hermes.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-runtime.txt"
+      ],
+      "bugClass": "recorded_mirror_check_parity",
+      "disposition": "ruled_out",
+      "rationale": "The phase records passing body, Hermes, and runtime mirror checks; the summary row records zero exit codes.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/summary.txt:1-8",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-agent-bodies.txt:1",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-hermes.txt:1",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-runtime.txt:1"
+      ],
+      "reason": "The direct check outputs report all agent bodies, Hermes copies, and 194 runtime mirrors in sync."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/README.md",
+        ".skilled/skills/system-spec-kit/templates/README.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md"
+      ],
+      "bugClass": "readme_validation_guidance_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The README and both validation references describe the v2.3-or-later Draft warning and strict behavior consistently.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/README.md:538,624-626,671",
+        ".skilled/skills/system-spec-kit/templates/README.md:24-25",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:288-301",
+        ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md:78-90"
+      ],
+      "reason": "The current source guidance agrees on the Draft-only warning and legacy error behavior."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/"
+      ],
+      "bugClass": "catalog_root_leaf_traceability",
+      "disposition": "ruled_out",
+      "rationale": "All four expected leaves exist, the root contains their feature entries, and the package check reports zero violations.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:218-228,560-566,714-716,794-796",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md:1",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md:1",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md:1",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:1",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/catalog.txt:1-5"
+      ],
+      "reason": "Direct inventory and the recorded validator output confirm the four catalog surfaces are present and valid."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/playbook-start.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/playbook.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/catalog.txt"
+      ],
+      "bugClass": "package_warning_baseline_stability",
+      "disposition": "ruled_out",
+      "rationale": "The phase goal names the one playbook warning and two catalog notes and records their unchanged baseline provenance.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/playbook-start.txt:4-5",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/playbook.txt:4-6",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/goal.md:89,106-107",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/catalog-start.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/catalog.txt:1-5"
+      ],
+      "reason": "The start and end evidence contain the same playbook warning text and count; the goal also records the same catalog notes as baseline."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ],
+      "bugClass": "c5_closeout_status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The later fourth-set row and C5 PASS evidence reconcile those historical failures; the acceptance rows and summary agree on Complete.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md:165-168",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt:5-8",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md:63-68",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md:128"
+      ],
+      "reason": "The goal preserves earlier sets as history, records a fourth final set with zero missing anchors, and names C5 PASS and seven PASS lines."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md"
+      ],
+      "bugClass": "phase004_test_scope_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The test uses four levels and four core docs, yielding 16 cases, matching T011's recorded test count.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts:6-19,49-53",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md:351"
+      ],
+      "reason": "The current loop covers each core doc at Levels 1, 2, 3, and 3+."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      ],
+      "bugClass": "all_authoring_intents_load_card",
+      "disposition": "ruled_out",
+      "rationale": "The current resource map contains the card in all four authoring lists and the guard checks each intent name.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md:173-176,191-196,232-235,270-273",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:65-85"
+      ],
+      "reason": "Direct reads confirm the four named router blocks all contain the card path."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts"
+      ],
+      "bugClass": "guard_wrapper_scope",
+      "disposition": "ruled_out",
+      "rationale": "The wrapper synchronously runs check-card-sync.sh from the skill root and expects CARD SYNC OK.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts:11-14"
+      ],
+      "reason": "The guard invocation and success assertion are direct and match the task's recorded usage."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/goal.md"
+      ],
+      "bugClass": "status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The latest parent goal explicitly records the successful deciding set while preserving the earlier failures as history.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/goal.md:87-96",
+        "specs/system-speckit/054-weak-model-spec-authoring/goal.md:133-143"
+      ],
+      "proof": "The parent completion state matches the latest closeout outcome."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt"
+      ],
+      "bugClass": "benchmark_closeout_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The current acceptance state and the final C1-C7 evidence agree.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md:52-68",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md:91-95",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt:8-10"
+      ],
+      "proof": "No acceptance-to-closeout mismatch was observed in the selected evidence."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/goal.md"
+      ],
+      "bugClass": "legacy_angle_marker_parity",
+      "disposition": "ruled_out",
+      "rationale": "The current source contains the recorded guard.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:743",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/goal.md:143-147"
+      ],
+      "proof": "The angle-form Draft mismatch was fixed in the current implementation."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/implementation-summary.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md"
+      ],
+      "bugClass": "acceptance_evidence_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The recorded results and completion states agree across the four packet records reviewed.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md:41-105,250-266,315-350",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/acceptance-criteria.md:52-63",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/implementation-summary.md:105-118",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md:56-65,78-87,103-118"
+      ],
+      "proof": "Each reviewed acceptance row has matching task/result evidence in the implementation summary or goal, and the phase completion states align."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md"
+      ],
+      "bugClass": "smoke_metric_consistency",
+      "disposition": "ruled_out",
+      "rationale": "All three sources contain the same three strict passes, zero counts for the three quality metrics, and durations 266, 143, and 203 seconds.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.json:1-27",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/baseline.md:1-14",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md:56-62,114",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md:87"
+      ],
+      "proof": "The values match row-by-row; each baseline row has a run identifier plus the five measured metrics."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/review/T014.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md"
+      ],
+      "bugClass": "frontier_review_disposition",
+      "disposition": "ruled_out",
+      "rationale": "T014 has eight P1/P2 lines; the goal log records the findings and reasons, then records the two P1 card fixes in the later amendment.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/review/T014.txt:1-8",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md:110-114",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md:62",
+        "specs/system-speckit/054-weak-model-authoring/005-weak-model-authoring-card/implementation-summary.md:116,118"
+      ],
+      "proof": "T014 count, acceptance evidence, goal disposition, and summary amendment agree."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"
+      ],
+      "bugClass": "frozen_card_content_sync",
+      "disposition": "ruled_out",
+      "rationale": "Both 172-line texts match after the recorded frontmatter version bump is normalized.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md:67-244",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:1-172",
+        "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md:118"
+      ],
+      "proof": "The in-memory comparison reported zero content differences after version normalization."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt"
+      ],
+      "bugClass": "executor_override_documentation",
+      "disposition": "ruled_out",
+      "rationale": "The phase goal records an approved cli-devin fallback and says the earlier model wording is historical.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md:51,104-105,111-112",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md:87",
+        "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt:3-10"
+      ],
+      "proof": "D8 and the executor amendment explicitly document the runtime override and the actual dispatch model."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/plan.md",
+        ".skilled/agents/markdown.md",
+        ".claude/agents/markdown.md"
+      ],
+      "bugClass": "phase006_card_first_reference",
+      "disposition": "ruled_out",
+      "rationale": "The frozen row table pairs R-016 with R-022, and both live agent rows route to the card first, then the matching filled example.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/plan.md:117,123",
+        ".skilled/agents/markdown.md:208",
+        ".claude/agents/markdown.md:194"
+      ],
+      "proof": "The scoped authored instruction is present in both runtime-specific agent files and the plan maps the mirror row to the same text."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".codex/agents/markdown.toml",
+        ".pi/agents/markdown.md",
+        ".hermes/skills/agent-markdown/SKILL.md"
+      ],
+      "bugClass": "generated_agent_mirror_card_route",
+      "disposition": "ruled_out",
+      "rationale": "The same spec-doc route is present in the generated Codex, Pi, and Hermes markdown agent surfaces.",
+      "evidenceRefs": [
+        ".codex/agents/markdown.toml:197",
+        ".pi/agents/markdown.md:201",
+        ".hermes/skills/agent-markdown/SKILL.md:196"
+      ],
+      "proof": "Direct search found the same instruction in each generated markdown agent mirror."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/summary.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-agent-bodies.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-hermes.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-runtime.txt"
+      ],
+      "bugClass": "recorded_mirror_check_parity",
+      "disposition": "ruled_out",
+      "rationale": "The phase records passing body, Hermes, and runtime mirror checks; the summary row records zero exit codes.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/summary.txt:1-8",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-agent-bodies.txt:1",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-hermes.txt:1",
+        "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-runtime.txt:1"
+      ],
+      "proof": "The direct check outputs report all agent bodies, Hermes copies, and 194 runtime mirrors in sync."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/README.md",
+        ".skilled/skills/system-spec-kit/templates/README.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md"
+      ],
+      "bugClass": "readme_validation_guidance_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The README and both validation references describe the v2.3-or-later Draft warning and strict behavior consistently.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/README.md:538,624-626,671",
+        ".skilled/skills/system-spec-kit/templates/README.md:24-25",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:288-301",
+        ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md:78-90"
+      ],
+      "proof": "The current source guidance agrees on the Draft-only warning and legacy error behavior."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/"
+      ],
+      "bugClass": "catalog_root_leaf_traceability",
+      "disposition": "ruled_out",
+      "rationale": "All four expected leaves exist, the root contains their feature entries, and the package check reports zero violations.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:218-228,560-566,714-716,794-796",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md:1",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md:1",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md:1",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:1",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/catalog.txt:1-5"
+      ],
+      "proof": "Direct inventory and the recorded validator output confirm the four catalog surfaces are present and valid."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/playbook-start.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/playbook.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/catalog.txt"
+      ],
+      "bugClass": "package_warning_baseline_stability",
+      "disposition": "ruled_out",
+      "rationale": "The phase goal names the one playbook warning and two catalog notes and records their unchanged baseline provenance.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/playbook-start.txt:4-5",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/playbook.txt:4-6",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/goal.md:89,106-107",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/catalog-start.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/validation/catalog.txt:1-5"
+      ],
+      "proof": "The start and end evidence contain the same playbook warning text and count; the goal also records the same catalog notes as baseline."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ],
+      "bugClass": "c5_closeout_status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The later fourth-set row and C5 PASS evidence reconcile those historical failures; the acceptance rows and summary agree on Complete.",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md:165-168",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt:5-8",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md:63-68",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md:128"
+      ],
+      "proof": "The goal preserves earlier sets as history, records a fourth final set with zero missing anchors, and names C5 PASS and seven PASS lines."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md"
+      ],
+      "bugClass": "phase004_test_scope_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The test uses four levels and four core docs, yielding 16 cases, matching T011's recorded test count.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts:6-19,49-53",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md:351"
+      ],
+      "proof": "The current loop covers each core doc at Levels 1, 2, 3, and 3+."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      ],
+      "bugClass": "all_authoring_intents_load_card",
+      "disposition": "ruled_out",
+      "rationale": "The current resource map contains the card in all four authoring lists and the guard checks each intent name.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/SKILL.md:173-176,191-196,232-235,270-273",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:65-85"
+      ],
+      "proof": "Direct reads confirm the four named router blocks all contain the card path."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts"
+      ],
+      "bugClass": "guard_wrapper_scope",
+      "disposition": "ruled_out",
+      "rationale": "The wrapper synchronously runs check-card-sync.sh from the skill root and expects CARD SYNC OK.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts:11-14"
+      ],
+      "proof": "The guard invocation and success assertion are direct and match the task's recorded usage."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "all_authoring_intents_load_card",
+      "checklist_example_route_assertion",
+      "guard_wrapper_scope"
+    ],
+    "covered": [
+      "all_authoring_intents_load_card",
+      "checklist_example_route_assertion",
+      "guard_wrapper_scope"
+    ],
+    "ruledOut": [
+      "all_authoring_intents_load_card",
+      "guard_wrapper_scope"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,910 @@
+{
+  "sessionId": "fanout-deepseek-1792949481267-fym7sk",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-10-25T17:44:46.252Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The scaffold command accepts a traversing track and creates it outside the repository",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1291,
+      "description": "",
+      "findingClass": "path-traversal",
+      "deltaStatus": null,
+      "scopeProof": "Assignment and mkdir read at create.sh:1291-1295; validated sibling at create.sh:1223; card command at spec-authoring-card.md:47.",
+      "affectedSurfaceHints": [
+        "create.sh argument parsing",
+        "scaffold destination",
+        "authoring card step 3",
+        "BOUNDS write contract"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "The example the card tells a weak model to imitate uses the task format the card forbids",
+      "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+      "line": 32,
+      "description": "",
+      "findingClass": "followability-contradiction",
+      "deltaStatus": null,
+      "scopeProof": "All four example task files read; template format at tasks.md.tmpl:53; card step 4 and step 7 read; phase 005 Out of Scope names the deferral.",
+      "affectedSurfaceHints": [
+        "authoring card step 4 and step 7",
+        "four example task files",
+        "tasks template format"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "A line whose first token is inline code hides a later unfilled token in both implementations",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 734,
+      "description": "",
+      "findingClass": "gate-false-negative",
+      "deltaStatus": null,
+      "scopeProof": "Both line loops read end to end; the regex has no g flag; the shell reports one line number per line.",
+      "affectedSurfaceHints": [
+        "orchestrator placeholder rule",
+        "shell mirror",
+        "authoring card inline-code guidance"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P1-001",
+      "severity": "P1",
+      "title": "speckit-implement.yaml describes spec-doc authoring but names neither the card nor the v2.3 token rule",
+      "file": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      "line": 288,
+      "description": "",
+      "findingClass": "incomplete-alignment",
+      "deltaStatus": null,
+      "scopeProof": "Three YAML assets compared key by key; rg returns 0 for v2.3/placeholder/card in implement.yaml.",
+      "affectedSurfaceHints": [
+        "implement workflow asset",
+        "implement command entry point",
+        "phase 006 handoff criterion"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Catalog leaf asserts a parity the code does not have",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md",
+      "line": 36,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Parity test pins four cells and none of the divergent shapes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts",
+      "line": 91,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The authoring card's token count covers three documents, the gate covers six",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 133,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P2-001",
+      "severity": "P2",
+      "title": "The parent spec and goal continuity blocks still point at pre-execution next actions",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 16,
+      "description": "",
+      "findingClass": "continuity-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "Both frontmatter blocks and the goal log close rows read directly.",
+      "affectedSurfaceHints": [
+        "parent spec continuity",
+        "parent goal continuity",
+        "resume surface"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P2-002",
+      "severity": "P2",
+      "title": "The benchmark report says it holds three final sets while documenting four",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+      "line": 11,
+      "description": "",
+      "findingClass": "report-count-drift",
+      "deltaStatus": null,
+      "scopeProof": "Headline, fourth-set paragraph and diagnostic paragraph read directly.",
+      "affectedSurfaceHints": [
+        "benchmark report headline",
+        "benchmark report diagnostic",
+        "phase 009 evidence"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "A [template:...] title token in spec.md is invisible to the production scaffold-marker rule",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-scaffold-never-touched.sh",
+      "line": 34,
+      "description": "",
+      "findingClass": "gate-coverage-gap",
+      "deltaStatus": null,
+      "scopeProof": "File list and title scan read at check-scaffold-never-touched.sh:34,79-88.",
+      "affectedSurfaceHints": [
+        "scaffold-never-touched rule",
+        "placeholder rule",
+        "spec template title"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Parent spec still names swe-2-max as the benchmark subject in launch precondition 4",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 117,
+      "description": "",
+      "findingClass": "documentation-contract-drift",
+      "deltaStatus": null,
+      "scopeProof": "Three parent-spec statements and goal D8 read directly; benchmark report names the DeepSeek subject.",
+      "affectedSurfaceHints": [
+        "parent spec launch preconditions",
+        "parent goal D8",
+        "benchmark report"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Parent graph metadata still reports the packet as in progress",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "line": 47,
+      "description": "",
+      "findingClass": "derived-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "Status line and spec status row read directly; all nine child status rows read.",
+      "affectedSurfaceHints": [
+        "parent graph metadata",
+        "parent spec status",
+        "resume and retrieval surfaces"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "Parent graph metadata's last-active pointer still names phase 004",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "line": 183,
+      "description": "",
+      "findingClass": "derived-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "Pointer and timestamp read directly; phase 009 close record and commit sequence show later activity.",
+      "affectedSurfaceHints": [
+        "parent graph metadata",
+        "parent spec Related Documents",
+        "child navigation"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The 61 addon fill lines have no regression guard",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+      "line": 49,
+      "description": "",
+      "findingClass": "test-coverage-gap",
+      "deltaStatus": null,
+      "scopeProof": "DOCS loop and drift-guard compare call read directly; addon counts re-run and match AC-002.",
+      "affectedSurfaceHints": [
+        "fill-guidance test",
+        "example drift guard",
+        "ten addon templates"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The card points at a long guide it never sends the reader to",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 18,
+      "description": "",
+      "findingClass": "followability-gap",
+      "deltaStatus": null,
+      "scopeProof": "Whole card read; rg for template-guide returns only line 18; router ON_DEMAND entry read.",
+      "affectedSurfaceHints": [
+        "authoring card",
+        "template guide",
+        "skill router ON_DEMAND tier"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The card's task acceptance command fails a correctly completed packet",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 122,
+      "description": "",
+      "findingClass": "acceptance-command-error",
+      "deltaStatus": null,
+      "scopeProof": "Card step 7 rules and command read; tasks template notation read.",
+      "affectedSurfaceHints": [
+        "authoring card step 7",
+        "tasks template notation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "Phase 005's closure statement still reports two findings as open after they were applied",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+      "line": 89,
+      "description": "",
+      "findingClass": "stale-closure-record",
+      "deltaStatus": null,
+      "scopeProof": "Closure paragraph, amendment row, card step 2 and step 3 read directly.",
+      "affectedSurfaceHints": [
+        "phase 005 acceptance criteria closure",
+        "phase 005 goal log",
+        "authoring card"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "The card-sync guard is described as failing on the first disagreement; it runs every check",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md",
+      "line": 30,
+      "description": "",
+      "findingClass": "documentation-contract-drift",
+      "deltaStatus": null,
+      "scopeProof": "Guard failure path read end to end; three doc lines read directly.",
+      "affectedSurfaceHints": [
+        "card-sync catalog leaf",
+        "card-sync playbook scenario",
+        "guard header comment"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-002",
+      "severity": "P2",
+      "title": "Two scenarios omit awk and rg from the tools their command blocks use",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md",
+      "line": 28,
+      "description": "",
+      "findingClass": "precondition-drift",
+      "deltaStatus": null,
+      "scopeProof": "Both preconditions and both guard scripts read; phase 008 limitation names the forwarded note.",
+      "affectedSurfaceHints": [
+        "playbook scenarios 479 and 482",
+        "example drift guard",
+        "card sync guard"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "Only the first Status row decides Draft, so a later Complete claim is invisible to every status rule",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh",
+      "line": 68,
+      "description": "",
+      "findingClass": "status-ambiguity",
+      "deltaStatus": null,
+      "scopeProof": "Both readers and the cross-doc rule read; each stops at the first Status row.",
+      "affectedSurfaceHints": [
+        "status classifier",
+        "placeholder gate",
+        "status cross-doc rule"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P2-001",
+      "severity": "P2",
+      "title": "Phase 006's summary says four agents were changed for the card and example; only one names the card",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md",
+      "line": 68,
+      "description": "",
+      "findingClass": "record-overstatement",
+      "deltaStatus": null,
+      "scopeProof": "All four agent files grepped for the card, example path and checklist.md.",
+      "affectedSurfaceHints": [
+        "phase 006 implementation summary",
+        "four agent files"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P2-002",
+      "severity": "P2",
+      "title": "The parent spec still lists doctor speckit entries as modified by phase 006",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 104,
+      "description": "",
+      "findingClass": "stale-scope-table",
+      "deltaStatus": null,
+      "scopeProof": "Table row, operator decision row and phase 006 summary read directly.",
+      "affectedSurfaceHints": [
+        "parent spec Files to Change",
+        "parent goal log",
+        "phase 006 audit"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 18
+  },
+  "openFindingsCount": 22,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.95,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 6,
+      "executed": 6,
+      "pass": 0,
+      "partial": 4,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "spec.md:16-17",
+          "goal.md:16-17",
+          "report README.md:11,18,194"
+        ],
+        "findingRefs": [
+          "R10-P2-001",
+          "R10-P2-002"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "The closing claims hold; two carriers are stale."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 83
+        },
+        "evidence": [
+          "84 AC rows",
+          "criteria.txt C1-C7"
+        ],
+        "findingRefs": [
+          "R6-P2-001"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "One stale closure note from iteration 6."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 2,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [
+          "spec-authoring-card.md:30",
+          "versioned-placeholder-gate.md:36"
+        ],
+        "findingRefs": [
+          "R7-P2-001",
+          "R1-P2-001"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "summary": "Two leaves misstate their code."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "spec-authoring-card.md:18"
+        ],
+        "findingRefs": [
+          "R4-P2-002"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "partial",
+        "summary": "Same dangling guide pointer as iteration 4."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 2,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [
+          "authoring-card-sync-guard.md:12,28",
+          "example-drift-guard-catches-leak.md:28"
+        ],
+        "findingRefs": [
+          "R7-P2-001",
+          "R7-P2-002"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "fail",
+        "summary": "Two scenarios carry a wrong tool list or a wrong guard behavior."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0
+        },
+        "evidence": [
+          "006.../implementation-summary.md:68"
+        ],
+        "findingRefs": [
+          "R9-P2-001"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "partial",
+        "summary": "The summary overstates the agent change; the mirror bodies match."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
