@@ -155,6 +155,7 @@ and findings belong here.
 | Speed loop | Built, smoke-run | 011/scratch/speed-loop: one round pre-054 vs 054, author 236 s vs 144 s, upkeep 103 s vs 40 s, n=1 INCONCLUSIVE; refined tree and more rounds on 2026-10-26 |
 | Correction | Done | The phase 012 alignment table holds 24 surfaces, not 23 as the Phase 012 closed row says |
 | Phase 010 closed | Done | 12/12 AC Met; census and six-rule census identical to baseline; suites match baseline; reviews leave no P0 or P1; commits d5ce52ffac 7a721f4388 b7268e491b bfcd44634a b0070fd179 on the worktree branch, not pushed |
+| Release renumber | Done | Main released an unrelated system-spec-kit 2.9.2.0 at 22:53Z, so this branch's record is 2.9.3.0 (6004420ef6). A merge with origin/main (62 ahead) conflicts in 4 files: two SKILL.md version lines (keep 2.9.3.0), the compiled deep-review contract (recompile) and the catalog version line (raise above 2.1.10.0) |
 
 ### Deviations and findings
 
