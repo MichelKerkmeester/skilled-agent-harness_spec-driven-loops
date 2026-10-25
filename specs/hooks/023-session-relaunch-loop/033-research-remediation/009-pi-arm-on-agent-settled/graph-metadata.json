@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled",
+  "spec_folder": "hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled",
+  "parent_id": "hooks/023-session-relaunch-loop/033-research-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi arm on agent settled",
+      "phase 9 pi arm on agent settled",
+      "pi arm on agent settled plan",
+      "pi arm on agent settled tasks",
+      "pi arm on agent settled acceptance criteria",
+      "pi arm on agent settled goal",
+      "pi arm on agent settled implementation summary"
+    ],
+    "key_topics": [
+      "arm",
+      "agent",
+      "settled",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "extension"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".pi/extensions/session-relaunch.ts",
+      ".pi/types/pi-coding-agent.d.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Event",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi extension arms the prepared record on `agentend` (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:526`) and withdraws an arm on `agentstart` (`:561`)",
+    "created_at": "2026-10-25T13:42:36Z",
+    "last_save_at": "2026-10-25T14:11:49.703Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ddce355a3355fb6b43e221db4bd6e4a7b4d2f06d5378e937b4d1bd26daf8e18b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9ba1d8ab7f0d543a2c54ce76c2ca10e29a14f6365632943b4bd447eacbbd0c83",
+      "plan.md": "a6b3662f1022776f27df486bd1f5bd6fab49c63b82a456fe85ad8207caf28d20",
+      "tasks.md": "4767b11319943dbf6146c5510e755c7599149e3505e844eff4ed4308468fd78d",
+      "implementation-summary.md": "c4a25885e87559a60d2013169b5d848a1c819c10da4bfe4293118bd58d7c21f0"
+    },
+    "last_active_at": null
+  }
+}

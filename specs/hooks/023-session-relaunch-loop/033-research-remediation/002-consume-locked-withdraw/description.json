@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw",
+  "description": "Phase 2: consume-locked-withdraw",
+  "keywords": [
+    "phase",
+    "consume-locked-withdraw"
+  ],
+  "lastUpdated": "2026-10-25T13:42:27.471Z",
+  "specId": "002",
+  "folderSlug": "consume-locked-withdraw",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

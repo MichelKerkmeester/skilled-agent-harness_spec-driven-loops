@@ -135,6 +135,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 30 | 030-opencode2-killer-target/ | An OpenCode 2 hop reaches its receiver: the killer signals the loop's child instead of the plugin's server, a signalled exit 130 counts as the hop, and the post-signal grace covers a slow TUI exit | Complete |
 | 31 | 031-relaunch-model-and-effort/ | A relaunched session starts on the sender's model and effort on every runtime that takes them at launch, from the launch flags or the sender's current state | Complete |
 | 32 | 032-opencode2-standalone-replay/ | The wrapper starts OpenCode 2 with `--standalone` on the first launch and every relaunch and drops the `-m` replay it rejects, so the loop hops more than once with no flag to remember | Complete |
+| 33 | 033-research-remediation/ | Nine children fix what the research after phase 32 verified: model and effort replay as one set, a locked consume that honours a withdraw, live settings and the goal packet on manual claims, hop validation, four test gaps, a dated compaction pointer, per-state claim errors and Pi arming on `agent_settled` | Draft |
 
 ### Phase Transition Rules
 
@@ -178,6 +179,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 028-goal-rebind-live-proof-and-docs | 030-opencode2-killer-target | Phase 28 recorded the OpenCode 2 hop as Unmet with its run evidence | `028` AC-009 names the failed run and the inferred cause |
 | 030-opencode2-killer-target | 031-relaunch-model-and-effort | Phase 30 is Complete and committed, because both change `skilled-loop` | `validate.sh 030-opencode2-killer-target --strict` RESULT: PASSED |
 | 030-opencode2-killer-target | 032-opencode2-standalone-replay | Phase 30 is pushed, and its live hop relied on a PATH shim that added `--standalone` | The 030 harness `run-hop.sh` holds the shim |
+| 032-opencode2-standalone-replay | 033-research-remediation | Phase 32 is Complete and the research after it has a merged report reviewed against the code | `validate.sh 032-opencode2-standalone-replay --strict` RESULT: PASSED, and `research/research.md` sections 9 to 15 hold the findings |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -117,7 +117,7 @@ Lessons worth adopting, as proposals:
 1. Deterministic decision capture: blackhole renders question-tool answers verbatim as `User decided: <question> → <answer>` (`src/extract/user-decisions.ts`). The after-compaction pointer could append the transcript's recorded answers, so approvals survive a compaction the note did not record.
 2. Staleness by evidence: blackhole clears an outstanding error only when the same command later succeeds (`src/core/build-sections.ts:138-154`). The pointer could list commits and changed files newer than the note, so a stale Remaining work is neither redone nor trusted.
 3. A clear dead end: the claim error for a non-open note could say the work is finished and must not be continued, as blackhole's recap says "Do not redo work already completed" (`src/core/format.ts:51-54`).
-4. Arm Pi on `agent_settled`: Pi emits it only when no auto-retry, compaction or queued continuation will run (`agent-session.js:531-545`), a cleaner arm point than `agent_end`.
+4. Arm Pi on `agent_settled`: Pi emits it only when no auto-retry, compaction or queued continuation will run (`agent-session.js:683-690`, the `_emitAgentSettled` emit, called from the run's finally block at :1471), a cleaner arm point than `agent_end`.
 
 Operator configuration note: Pi native compaction is off (`~/.pi/agent/settings.json` `compaction.enabled: false`), so Pi's overflow retry never runs, and blackhole's 272000-token threshold sits at the window Pi reports for `gpt-6-luna`. A lower `compactAfterTokens` leaves headroom.
 
