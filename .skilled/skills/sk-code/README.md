@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.20.0
+version: 2.2.21.0
 ---
 
 # sk-code
@@ -135,6 +135,17 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks, such as "two surfaces", in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
+
+### Add a Private Surface Outside the Hub
+
+A surface you keep out of the repository lives in its own skill beside the hub instead of inside it.
+
+1. Create the skill folder as `.skilled/skills/local-<name>/`. Git ignores every `local-*` skill, so the folder and its standards stay in your checkout. It can be a symlink to a folder in another repository.
+2. In the skill's own `graph-metadata.json`, set `"family": "sk-code"` and add a top-level `surface_detection` block with a `label`, `"role": "specific"` and at least one of `pathMarkers`, `fileMarkers` and `contentMarkers`. The example and the rules are in `shared/references/stack-detection.md`, under "Declaring an External Surface".
+3. Check the block by hand against those rules. `ci-skill-root-metadata.cjs` skips folders whose name starts with `local-`, so no check validates it for you.
+4. If the folder is a symlink whose target sits outside `.skilled/skills/`, add a folder that contains that target to `SPECKIT_PRIVATE_SKILL_ROOTS` for every advisor process. Without it, the advisor skips the skill.
+
+Stack detection tries the hub's own specific surfaces first, then the surfaces that skills outside the hub declare, sorted by skill id, and SKILLED last as the fallback. Nothing in the hub's registry, router or tracked files names the private skill.
 
 ### Verify The Result
 

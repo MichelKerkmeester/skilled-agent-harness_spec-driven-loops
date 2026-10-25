@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.20.0
+version: 2.2.21.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -186,7 +186,7 @@ Do not load Go/NextJS/React Native resources from canonical sk-code; those surfa
 
 Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the user explicitly asks for stack-agnostic guidance:
 
-- Confirm the detected surface (a declared specific surface, SKILLED or UNKNOWN)
+- Confirm the detected surface (a declared specific surface, the SKILLED fallback or UNKNOWN)
 - Confirm the task intent (implementation / debugging / verification / etc.)
 - Provide one concrete input, error, or expected output
 - Confirm the verification command set before completion
