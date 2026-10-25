@@ -99,9 +99,16 @@ function armPendingRecord(payload, dependencies = {}) {
       return null;
     }
 
+    // The plugin hands in the model and provider this session last asked for, so the
+    // relaunched session starts on them.
+    const settings = {};
+    for (const key of ['model', 'provider']) {
+      if (typeof payload[key] === 'string' && payload[key] !== '') settings[key] = payload[key];
+    }
     const armed = arm({
       loopId,
       cwd: payload.cwd || record.cwd || process.cwd(),
+      settings,
       env,
     });
     if (armed?.status !== 'armed') return null;

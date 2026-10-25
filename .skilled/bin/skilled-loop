@@ -652,6 +652,10 @@ relaunched_handoff=''
 relaunched_spec_folder=''
 
 while true; do
+  # Cursor keeps one model selection for all its sessions, so the CLI counts a selection as
+  # this session's only when it changed after this launch.
+  SKILLED_LOOP_LAUNCHED_AT="$(date +%s)000"
+  export SKILLED_LOOP_LAUNCHED_AT
   # Keep the wrapper alive so it can inspect relaunch state after the runtime exits.
   # The guarded expansion keeps empty arguments safe under Bash 3.2 with nounset.
   if "$runtime_command" "${launch_arguments[@]+"${launch_arguments[@]}"}"; then
@@ -794,10 +798,11 @@ while true; do
             "$live_model" >&2
         fi
       fi
-      # Only Pi takes a provider beside its model, and a model from one provider is not valid
-      # under another, so the two move together.
+      # Only Pi and Hermes take a provider beside the model, and a model from one provider is
+      # not valid under another, so the two move together.
       live_provider=$(consumed_field provider)
-      if [[ "$runtime" == 'pi' && -n "$live_provider" && "$live_model_accepted" == 1 ]]; then
+      if [[ "$runtime" == 'pi' || "$runtime" == 'hermes' ]] \
+        && [[ -n "$live_provider" && "$live_model_accepted" == 1 ]]; then
         if model_is_valid "$live_provider"; then
           SKILLED_LOOP_PROVIDER="$live_provider"
           export SKILLED_LOOP_PROVIDER

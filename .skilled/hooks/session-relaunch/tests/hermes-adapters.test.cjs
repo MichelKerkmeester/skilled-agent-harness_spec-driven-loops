@@ -285,6 +285,22 @@ test('session end arms only a matching pending Hermes loop and detaches its kill
   assert.equal(calls.length, 2);
 });
 
+test('session end hands the session model and provider to the armed record', async (t) => {
+  const sandboxed = sandbox(t);
+  const loopId = '1235';
+  sandboxed.env.SKILLED_LOOP_ID = loopId;
+  makePending(sandboxed.env, loopId, 'session-a');
+  const module = await import(pathToFileURL(armAdapter).href);
+  const result = await module.armPendingRecord(
+    { session_id: 'session-a', cwd: process.cwd(), model: 'gpt-6-luna', provider: 'openai' },
+    { env: sandboxed.env, targetPid: 4321, spawn() { return { unref() {} }; } },
+  );
+  assert.equal(result.status, 'armed');
+  const record = core.readRelaunchFile(loopId, sandboxed.env);
+  assert.equal(record.model, 'gpt-6-luna');
+  assert.equal(record.provider, 'openai');
+});
+
 test('session end respawns one killer for an armed record whose killer is gone', async (t) => {
   const sandboxed = sandbox(t);
   const loopId = '4321';

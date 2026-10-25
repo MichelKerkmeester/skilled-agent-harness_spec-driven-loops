@@ -2365,6 +2365,40 @@ test('prepare records neither value when the sender log is missing or holds no t
   assert.equal(emptyRecord.status, 'pending');
 });
 
+// Cursor keeps one model selection for every session in its CLI config, so a selection
+// counts as this session's only when the file changed after this hop's launch.
+function writeCursorConfig(sandbox, selectedModel) {
+  const configPath = path.join(sandbox.env.HOME, '.cursor', 'cli-config.json');
+  fs.mkdirSync(path.dirname(configPath), { recursive: true });
+  fs.writeFileSync(configPath, JSON.stringify({ version: 1, selectedModel }));
+  return configPath;
+}
+
+test('prepare records a Cursor model selected during this hop, with its parameters', (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_LAUNCHED_AT = String(Date.now() - 60000);
+  writeCursorConfig(sandbox, {
+    modelId: 'grok-4.7',
+    parameters: [{ id: 'context', value: '256k' }, { id: 'reasoning_effort', value: 'xhigh' }],
+  });
+
+  const record = prepareUnderLoop(sandbox, 'cursor');
+
+  assert.equal(record.model, 'grok-4.7[context=256k,reasoning_effort=xhigh]');
+});
+
+test('prepare ignores a Cursor selection made before this hop launched', (t) => {
+  const sandbox = createSandbox(t);
+  const configPath = writeCursorConfig(sandbox, { modelId: 'grok-4.7', parameters: [] });
+  const old = new Date(Date.now() - 120000);
+  fs.utimesSync(configPath, old, old);
+  sandbox.env.SKILLED_LOOP_LAUNCHED_AT = String(Date.now() - 60000);
+
+  const record = prepareUnderLoop(sandbox, 'cursor');
+
+  assert.equal(Object.hasOwn(record, 'model'), false);
+});
+
 test('prepare records no live values for a runtime with no session log to read', (t) => {
   const sandbox = createSandbox(t);
   writeClaudeGoalLog(sandbox, [{ type: 'assistant', requestedModel: 'claude-sonnet-5-5' }]);

@@ -161,6 +161,7 @@ const record = {
     SKILLED_LOOP_MODEL: process.env.SKILLED_LOOP_MODEL || "",
     SKILLED_LOOP_PROVIDER: process.env.SKILLED_LOOP_PROVIDER || "",
     SKILLED_LOOP_EFFORT: process.env.SKILLED_LOOP_EFFORT || "",
+    SKILLED_LOOP_LAUNCHED_AT: process.env.SKILLED_LOOP_LAUNCHED_AT || "",
     SKILLED_LOOP_MANUAL_TEMPLATE: process.env.SKILLED_LOOP_MANUAL_TEMPLATE || "",
     hasModel: Object.hasOwn(process.env, "SKILLED_LOOP_MODEL"),
     hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER"),
@@ -1326,6 +1327,51 @@ test('a Pi sender live provider, model and thinking level replace the launch val
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(readRecords(recordPath)[1].args, [
     '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'high', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a Hermes sender live provider and model replace the launch values', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+  });
+  const result = runWrapper(sandbox, [
+    'hermes', 'chat', '--provider', 'anthropic', '-m', 'claude-sonnet-5-5', '--reasoning', 'low',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    'chat', '--provider', 'openai', '-m', 'gpt-6-luna', '--reasoning', 'low', '-q',
+    `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('every launch carries the time it started, so a hop can tell its own changes apart', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const before = Date.now();
+  const result = runWrapper(sandbox, ['cursor', '--model', 'm', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const stamps = readRecords(recordPath).map((record) => Number(record.env.SKILLED_LOOP_LAUNCHED_AT));
+  assert.equal(stamps.length, 2);
+  for (const stamp of stamps) assert.ok(stamp >= before - 1000 && stamp <= Date.now(), String(stamp));
+  assert.ok(stamps[1] >= stamps[0]);
+});
+
+test('a Cursor live model keeps its bracketed parameters on the relaunch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'grok-4.7[context=256k,reasoning_effort=xhigh,fast=true]',
+  });
+  const result = runWrapper(sandbox, ['cursor', '--model', 'gpt-5.6-luna', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'grok-4.7[context=256k,reasoning_effort=xhigh,fast=true]', `${SEED} ${handoffPath}`,
   ]);
 });
 

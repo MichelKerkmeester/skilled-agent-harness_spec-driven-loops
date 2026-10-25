@@ -171,6 +171,29 @@ class SessionRelaunchTests(unittest.TestCase):
         self.assertIn("session-a", self.plugin.HERMES_SESSION_USAGE)
         self.assertIn("session-b", self.plugin.HERMES_SESSION_USAGE)
 
+    def test_session_end_hands_the_requested_model_and_provider_to_the_arm(self):
+        self.plugin.post_api_request(
+            session_id="session-a",
+            model="gpt-6-luna",
+            provider="openai",
+            response_model="gpt-6-luna-2026-10-01",
+            usage={"input_tokens": 10},
+        )
+        with mock.patch.object(self.plugin, "_run_core") as run_core, \
+             mock.patch.object(self.plugin, "_reap_session_helpers"):
+            self.plugin.on_session_end(session_id="session-a", cwd="/tmp/work")
+        arm_payload = run_core.call_args_list[0].args[1]
+        self.assertEqual(arm_payload["model"], "gpt-6-luna")
+        self.assertEqual(arm_payload["provider"], "openai")
+
+    def test_session_end_hands_no_model_for_a_session_with_no_request(self):
+        with mock.patch.object(self.plugin, "_run_core") as run_core, \
+             mock.patch.object(self.plugin, "_reap_session_helpers"):
+            self.plugin.on_session_end(session_id="session-z", cwd="/tmp/work")
+        arm_payload = run_core.call_args_list[0].args[1]
+        self.assertNotIn("model", arm_payload)
+        self.assertNotIn("provider", arm_payload)
+
     def test_usage_survives_the_per_message_session_end_into_the_next_turn(self):
         # Hermes fires on_session_end after every message, so the next turn's pre_llm_call
         # is the first place the recorded usage can be read.

@@ -577,6 +577,24 @@ function codexRolloutPath(sessionId, env) {
   return latest === null ? null : latest.file;
 }
 
+// Cursor writes its CLI model selection, with the model's parameters, to one config file
+// for every session. A selection is this session's only when the file changed after the
+// wrapper launched this hop, and it is returned in the bracketed form `--model` accepts.
+function cursorSelectedModel(env) {
+  const launchedAt = Number(env?.SKILLED_LOOP_LAUNCHED_AT);
+  if (!Number.isFinite(launchedAt) || launchedAt <= 0) return '';
+  const configPath = path.join(env?.HOME || os.homedir(), '.cursor', 'cli-config.json');
+  if (fs.statSync(configPath).mtimeMs <= launchedAt) return '';
+  const selected = JSON.parse(fs.readFileSync(configPath, 'utf8'))?.selectedModel;
+  if (!nonEmptyString(selected?.modelId)) return '';
+  const parameters = (Array.isArray(selected.parameters) ? selected.parameters : [])
+    .filter((entry) => nonEmptyString(entry?.id) && nonEmptyString(entry?.value))
+    .map((entry) => `${entry.id}=${entry.value}`);
+  return parameters.length === 0
+    ? selected.modelId
+    : `${selected.modelId}[${parameters.join(',')}]`;
+}
+
 function safeDirectory(directory) {
   try {
     return fs.readdirSync(directory);
@@ -587,8 +605,9 @@ function safeDirectory(directory) {
 
 /**
  * Find the model and effort the sending session is using now, so the relaunched session can
- * start on them. Only runtimes whose session log records both are read: Claude from the last
- * main-chain assistant entry and Codex from the last turn context. Every reader fails
+ * start on them. Claude is read from the last main-chain assistant entry, Codex from the last
+ * turn context, and Cursor from a CLI config change made during this hop, whose effort rides
+ * inside the model. Pi and Hermes hand their values over when they arm. Every reader fails
  * closed, since a hand-over never fails for want of a setting, and an empty string means the
  * value is not proven.
  *
@@ -610,6 +629,8 @@ function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) 
     } else if (runtime === 'codex') {
       const rolloutPath = codexRolloutPath(sessionId, env);
       found = rolloutPath === null ? null : usage.readCodexSettings(rolloutPath);
+    } else if (runtime === 'cursor') {
+      found = { model: cursorSelectedModel(env), effort: '' };
     }
     return found ?? none;
   } catch {
