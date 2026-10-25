@@ -1186,7 +1186,9 @@ Evidence: the check block printed `0` for `grep -c '| Unmet |'`, `22` for the AC
 
 ---
 
-### T033 [ ] Commit the closure edits (AC-001 to AC-022)
+### T033 [x] Commit the closure edits (AC-001 to AC-022)
+
+Evidence: the closure edits landed as `8811c7e36d`, `docs(spec): close the doctor ci and review wiring criteria`, and `git merge-base --is-ancestor 8811c7e36d origin/main` exits 0 (observed 2026-10-25). The 19 workflow runs on that push all concluded `success`, including Spec-Kit Check and Routing Registry Drift Guard.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -1227,7 +1229,7 @@ Stop and escalate if: the validator exits non-zero twice, or the committed subje
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` (T001 to T032 are `[x]`. T033, the closure commit, is the one open task and the orchestrator makes it. This box ticks after that commit, as in the closed sibling phases)
+- [x] All tasks marked `[x]` [EVIDENCE: T001 to T033 are `[x]`; the closure commit is `8811c7e36d`, on `origin/main`]
 - [x] No `[B]` blocked tasks remaining [EVIDENCE: re-run 2026-10-25: `grep -c '^### T0[0-9][0-9] \[B\]'` over this file prints `0`, and the 32 closed task headings read `[x]`]
 - [x] Manual verification passed [EVIDENCE: re-run 2026-10-25: the R28 probe record, the live report run and the compiled route runs listed under CHK-021 all hold, and the strict validator prints `RESULT: PASSED` on this folder]
 <!-- /ANCHOR:completion -->

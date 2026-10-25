@@ -1,0 +1,6 @@
+docs(spec): tick the doctor ci closure task
+
+The closure commit for the doctor ci and review wiring phase is on main,
+so its last task and completion box now point at it.
+
+Spec: system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring
