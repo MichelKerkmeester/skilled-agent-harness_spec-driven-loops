@@ -1,5 +1,5 @@
 {
-  "corpusHash": "960332c0f5c7a5f465a9f732c48d101d441c6e3c797924f2d71e921a61ad8baa",
+  "corpusHash": "fef2cf675df57ccaed6363097a41e43af7f00a1c6022deec1fcee4baf3586998",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25967,
+  "includedPathCount": 25993,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2720,7 +2720,10 @@
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-ci-compiled-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/workflow-alone-review-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/ceiling-comment-convention.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/implementer-anti-stall.md",
@@ -2783,6 +2786,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
@@ -7441,6 +7445,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/df-idf-corpus.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/doc-frontmatter-harvest.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/private-skill-containment.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/provenance-and-trust-lanes.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/sanitizer.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/sync.md",
@@ -8022,6 +8027,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-detection-scoring.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-system-knowledge-node.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/private-skill-commit-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md",
@@ -12062,6 +12068,10 @@
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/plan.md",
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md",
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/plan.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/spec.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/tasks.md",
     "specs/sk-code/013-private-surface-skills/goal.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-dashboard.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-strategy.md",
@@ -12077,6 +12087,8 @@
     "specs/sk-code/013-private-surface-skills/research/prompts/iteration-5.md",
     "specs/sk-code/013-private-surface-skills/research/research.md",
     "specs/sk-code/013-private-surface-skills/research/resource-map.md",
+    "specs/sk-code/013-private-surface-skills/review/fanout-attribution.md",
+    "specs/sk-code/013-private-surface-skills/review/review-report.md",
     "specs/sk-code/013-private-surface-skills/spec.md",
     "specs/sk-code/014-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
     "specs/sk-code/014-code-modes-research/001-quality-mode-research/decision-record.md",
@@ -12162,7 +12174,15 @@
     "specs/sk-code/014-code-modes-research/002-review-mode-research/research/synthesis-v1.md",
     "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
     "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/decision-record.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/goal.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/implementation-summary.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/plan.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/spec.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/tasks.md",
     "specs/sk-code/014-code-modes-research/goal.md",
+    "specs/sk-code/014-code-modes-research/review/fanout-attribution.md",
+    "specs/sk-code/014-code-modes-research/review/review-report.md",
     "specs/sk-code/014-code-modes-research/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
@@ -25928,7 +25948,13 @@
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
     "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/acceptance-criteria.md",
     "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/goal.md",
@@ -25998,7 +26024,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fa66c18c8845445461856b3b217db79991f73d8349c35d5492636c3d3547750f",
+  "manifestHash": "0057be58ba3b29b94bb81ad095fc7fd0ff597a830b3998e9e33833c1b6008d02",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28749,6 +28775,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/013-private-surface-skills/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/scratch",
       "reason": "excluded directory"
     },
@@ -28757,7 +28791,11 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/014-code-modes-research/scratch",
+      "path": "specs/sk-code/014-code-modes-research/003-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -33098,6 +33136,14 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/review/lineages",
       "reason": "excluded directory"
     },
     {
