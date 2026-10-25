@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -94,7 +94,7 @@ Cursor ships on the command trigger because its evidence is source-only and `sto
 
 ### Goal Carry-Over
 
-`prepare` and `keep` write an optional `goal_packet` line into the note when the sender's goal can be proven: from the active goal record on Pi, OpenCode, Devin, Cursor and Hermes, and from the session log on Claude. Codex senders write none. `skilled-loop` exports the packet as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session (`HERMES_SPEC_FOLDER` on Hermes), a Pi, OpenCode, Devin or Cursor receiver with no goal binds it on its first turn, and a Claude receiver starts on `/goal <slice>`. `SESSION_RELAUNCH_GOAL=0` turns all of it off and a dispatched child never binds. Live runs on 2026-10-25 showed the carry-over on Claude and Pi with off and no-goal controls. OpenCode 2 and Devin showed the receiver half only, because no hop reaches them yet, and Codex showed a no-goal control. Cursor and Hermes were skipped for credentials and quota.
+`prepare` and `keep` write an optional `goal_packet` line into the note when the sender's goal can be proven: from the active goal record on Pi, OpenCode, Devin, Cursor and Hermes, and from the session log on Claude. Codex senders write none. `skilled-loop` exports the packet as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session (`HERMES_SPEC_FOLDER` on Hermes), a Pi, OpenCode, Devin or Cursor receiver with no goal binds it on its first turn, and a Claude receiver starts on `/goal <slice>`. `SESSION_RELAUNCH_GOAL=0` turns all of it off and a dispatched child never binds. Live runs on 2026-10-25 showed the carry-over on Claude and Pi with off and no-goal controls, and on OpenCode 2 started with `--standalone`. Devin showed the receiver half only, because no hop reaches it, and Codex showed a no-goal control. Cursor and Hermes were skipped for credentials and quota.
 
 ### Hop History
 

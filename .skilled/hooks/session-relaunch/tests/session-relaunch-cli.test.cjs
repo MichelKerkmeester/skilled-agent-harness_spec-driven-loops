@@ -1278,6 +1278,7 @@ test('should-relaunch exits zero and prints JSON for an armed fresh record', (t)
     name: 'cli-session',
     runtime: 'claude',
     hops: 1,
+    signalled: false,
   });
 });
 
@@ -1309,6 +1310,7 @@ test('should-relaunch prints no-file JSON when the runtime directory is a file',
     name: null,
     runtime: null,
     hops: null,
+    signalled: false,
   });
 });
 
@@ -1435,6 +1437,7 @@ test('should-relaunch prints one no-file JSON line for a corrupt record', (t) =>
     name: null,
     runtime: null,
     hops: null,
+    signalled: false,
   });
 });
 

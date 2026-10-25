@@ -41,7 +41,7 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [B] T004 Run a live hop with an active goal on Claude, Codex, OpenCode and Pi and save the receiver status (`scratch/`). Claude and Pi pass. Codex carries no packet by design, so only its no-goal control ran. The OpenCode 2 hop did not reach its receiver (AC-009, Unmet)
+- [x] T004 Run a live hop with an active goal on Claude, Codex, OpenCode and Pi and save the receiver status (`scratch/`). Claude and Pi pass. Codex carries no packet by design, so only its no-goal control ran. The OpenCode 2 hop did not reach its receiver at first; it passed after the phase 030 fixes (AC-009, Met)
 - [x] T005 Run the same on Devin, Cursor and Hermes where the runtime allows, or record SKIP (Devin: no hop path, receiver half run and AC-010 waived; Cursor and Hermes: SKIP with the exact error)
 - [x] T006 Run the switch-off control and the no-goal control on the same runtimes (`scratch/`): Claude and Pi hops, OpenCode 2 and Devin receiver half, Codex no-goal
 - [x] T007 Add the scenarios to the three relaunch playbooks and the goal playbooks (the three relaunch playbooks only: the goal playbooks are not in the file list and are a follow-up)

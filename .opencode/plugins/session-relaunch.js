@@ -217,12 +217,24 @@ function logSpawnError(loopId, error) {
   });
 }
 
+// OpenCode 2 loads plugins in a server process its TUI starts, so signalling the plugin's
+// own pid ends that server and leaves the TUI the loop waits on still running. The loop's
+// direct child is the runtime the loop started on every version. A host the walk cannot
+// place below the loop keeps its own pid, which the killer then refuses.
+function killerTargetPid(loopId) {
+  try {
+    return core.findLoopChildPid(loopId, { pid: process.pid }) ?? process.pid;
+  } catch {
+    return process.pid;
+  }
+}
+
 function spawnKiller(loopId) {
   const command = process.versions.bun ? 'node' : process.execPath;
   try {
     const child = childProcess.spawn(
       command,
-      [KILLER_PATH, '--loop-id', loopId, '--target-pid', String(process.pid)],
+      [KILLER_PATH, '--loop-id', loopId, '--target-pid', String(killerTargetPid(loopId))],
       { detached: true, stdio: 'ignore' },
     );
     if (typeof child?.on === 'function') {

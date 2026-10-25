@@ -1021,6 +1021,41 @@ test(
 );
 
 test(
+  'session.idle targets the loop child above the plugin host, not the host itself',
+  async (t) => {
+    // OpenCode 2 loads plugins in a server its TUI starts, so the loop waits on the
+    // host's parent. The test process stands in for that server and its parent for the TUI.
+    setupEnv(t);
+    const spawn = stubSpawn(t);
+    const parents = core.parentMapFromTable(core.readProcessTable());
+    const loopPid = parents.get(process.ppid);
+    if (!Number.isSafeInteger(loopPid) || loopPid <= 1) {
+      t.skip('the test process has no grandparent to stand in for the loop');
+      return;
+    }
+    const loopId = String(loopPid);
+    const sessionID = 'ses_loopchildtarget0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    core.preparePending({
+      loopId,
+      handoffPath: '/workspace/opencode/handoff.md',
+      sessionId: sessionID,
+      runtime: 'opencode',
+      cwd: '/workspace/opencode',
+      env: process.env,
+    });
+    const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+    await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+
+    assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+    assert.equal(spawn.calls.length, 1);
+    const [, args] = spawn.calls[0];
+    assert.equal(args[args.indexOf('--target-pid') + 1], String(process.ppid));
+  },
+);
+
+test(
   'session.idle respawns one killer for an armed record whose killer is gone',
   async (t) => {
     const root = setupEnv(t);

@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: killer signals an idle armed target after --idle-ms without a transcript
+not ok 1 - killer signals an idle armed target after --idle-ms without a transcript
+  ---
+  duration_ms: 271.206583
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/killer.test.cjs:598:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'undefined'
+    - 'string'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'string'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/killer.test.cjs:613:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: markSignalled stamps only the armed record it was given, and a re-arm clears it
+not ok 2 - markSignalled stamps only the armed record it was given, and a re-arm clears it
+  ---
+  duration_ms: 11.404
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:634:1'
+  failureType: 'testCodeFailure'
+  error: 'markSignalled is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:651:5)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: wrapper relaunches after runtime exit 130 when the killer signalled the record
+not ok 3 - wrapper relaunches after runtime exit 130 when the killer signalled the record
+  ---
+  duration_ms: 312.029459
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1275:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    130 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 130
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1283:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 0
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 352.16525

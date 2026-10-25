@@ -21,7 +21,9 @@ const hopHistory = require('./hop-history.cjs');
 
 const POLL_INTERVAL_MS = 100;
 const TRANSCRIPT_MISSING_GRACE_MS = 1000;
-const SIGNAL_WAIT_MS = 5000;
+// How long a signalled runtime gets to exit before the hop is given up. An OpenCode 2 TUI
+// was measured taking about six seconds, so the bound leaves room above that.
+const SIGNAL_WAIT_MS = 15000;
 const NOTIFICATION_TIMEOUT_MS = 3000;
 const DEFAULT_IDLE_MS = 3000;
 const DEFAULT_TIMEOUT_MS = 30000;
@@ -769,17 +771,20 @@ async function supervise(options, environment, signalTracker) {
     }
 
     // A cancel can land after the checks above, and the signal cannot be taken back, so
-    // the record is read once more as the last step before it. The read of one small file
-    // goes after the ancestry snapshot rather than before it: a read ahead of the snapshot
-    // would leave the whole process-table walk as a window for a cancel, while behind it
-    // the pid-reuse window grows by only that read.
-    const lastLook = core.readRelaunchFile(options.loopId, environment);
-    if (
-      lastLook?.status !== 'armed'
-      || lastLook.handoff !== record.handoff
-      || recordArmId(lastLook) !== recordArmId(record)
-      || (recordArmId(record) === undefined && lastLook.armedAt !== record.armedAt)
-    ) {
+    // the record is checked once more as the last step before it, and stamped in the same
+    // locked step so the wrapper can tell this signal from an operator interrupt. The check
+    // goes after the ancestry snapshot rather than before it: ahead of the snapshot it would
+    // leave the whole process-table walk as a window for a cancel, while behind it the
+    // pid-reuse window grows by only that one locked write.
+    const stamped = core.markSignalled({
+      loopId: options.loopId,
+      handoff: record.handoff,
+      armId: recordArmId(record),
+      armedAt: record.armedAt,
+      env: environment,
+    });
+    if (stamped === null) {
+      const lastLook = core.readRelaunchFile(options.loopId, environment);
       log('killer-called-off', environment, {
         targetPid: options.targetPid,
         status: lastLook?.status ?? 'missing',

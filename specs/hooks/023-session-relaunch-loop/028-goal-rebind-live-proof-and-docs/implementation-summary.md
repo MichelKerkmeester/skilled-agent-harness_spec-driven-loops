@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Live hops show the goal surviving a hand-over on Claude and Pi, the controls show none, and the runs found that no hop reaches OpenCode 2, Devin or Cursor."
+description: "Live hops show the goal surviving a hand-over on Claude and Pi, the controls show none, and the runs found that no hop reaches Devin or Cursor; the OpenCode 2 hop passed after the phase 030 fixes."
 trigger_phrases:
   - "goal rebind live proof implementation summary"
 importance_tier: "normal"
@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-10-24T19:40:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Ran live hops and controls, wrote playbooks and docs"
-    next_safe_action: "Operator decides on the OpenCode 2 hop defect"
+    next_safe_action: "None; closed after the phase 030 OpenCode 2 hop rerun"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-28-goal-rebind-live-proof-and-docs"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,9 +36,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-goal-rebind-live-proof-and-docs |
-| **Completed** | Not completed: AC-009 is Unmet |
+| **Completed** | 2026-10-25, after the phase 030 OpenCode 2 hop rerun |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,7 +56,7 @@ No product code changed. The phase ran live hops with a goal on each runtime tha
 
 **Codex.** A hop carries no packet by design. The one run is the no-goal control: the note has no `goal_packet` line and the receiver's `printenv` printed nothing (`scratch/codex-c-no-goal/`). A first run was discarded because the sender judged the task short and finished it without a hand-over, so the prompt now says the operator requires the hand-over (`scratch/codex-c-discarded-run1/`).
 
-**OpenCode 2.1.4: no hop.** The sender's `prepare` wrote the packet from its goal record, so the sender half works. The killer then logged `killer-signal` and no `relaunch` followed: the TUI stayed up showing `Connection lost... Reconnecting to the server automatically`, and the note stayed open (`scratch/opencode-a-hop-attempt/`). The plugin passes its own `process.pid` to the killer, and the process tree shows the TUI with a `serve --stdio` child that probably hosts the plugin (`scratch/opencode-process-tree.txt`). That cause is inferred and needs the tree captured before the kill to confirm. Separately, the wrapper relaunches with `-m <model>`, which the OpenCode 2 root command rejects. The receiver half does work: a session started with the packet variable bound it, and the switch-off and no-packet controls bound nothing (`scratch/opencode-receiver-a-goal/`, `-b-switch-off/`, `-c-no-goal/`).
+**OpenCode 2.1.4: no hop.** The sender's `prepare` wrote the packet from its goal record, so the sender half works. The killer then logged `killer-signal` and no `relaunch` followed: the TUI stayed up showing `Connection lost... Reconnecting to the server automatically`, and the note stayed open (`scratch/opencode-a-hop-attempt/`). The plugin passes its own `process.pid` to the killer, and the process tree shows the TUI with a `serve --stdio` child that probably hosts the plugin (`scratch/opencode-process-tree.txt`). That cause is inferred and needs the tree captured before the kill to confirm. Separately, the wrapper relaunches with `-m <model>`, which the OpenCode 2 root command rejects. The receiver half does work: a session started with the packet variable bound it, and the switch-off and no-packet controls bound nothing (`scratch/opencode-receiver-a-goal/`, `-b-switch-off/`, `-c-no-goal/`). Phase 030 later confirmed that cause with a probe, fixed it and two defects behind it, and the rerun reached the receiver (`../030-opencode2-killer-target/`).
 
 **Devin and Cursor: no hop can reach them.** Both ship on the command trigger, so a prepared record stays pending and the wrapper never relaunches, and the manual command that `prepare` prints is a first launch that drops the packet. A headless Devin session started with the variable set by hand bound the packet, and the two controls bound nothing (`scratch/devin-receiver-*`). Cursor was not logged in.
 
@@ -128,11 +128,11 @@ Cleanup: every tmux server and runtime process this phase started was killed, th
 ## Known Limitations
 
 1. A live hop shows the behavior on these runtime versions and this machine only.
-2. The OpenCode 2 hop is Unmet (AC-009). The cause is inferred, not confirmed.
+2. The OpenCode 2 hop failed here and passed in phase 030 after three fixes (AC-009). It runs only with `--standalone`: on OpenCode 2's default background service nothing arms.
 3. Devin and Cursor receivers are never handed a packet by a hop. The Devin receiver half was shown by hand, not by a hop.
 4. The model-quoted goal line on Pi, `GOALSEEN.marker`, is the model's own report, and on Pi it sometimes quoted the note's Goal heading. The session log extract is the evidence.
 5. Follow-ups outside this phase's file list: `SESSION_RELAUNCH_GOAL` is still not named in `.skilled/hooks/hook-flags.env.example`, `.skilled/hooks/README.md`, `.skilled/commands/doctor/assets/doctor-env.yaml` and `.skilled/hooks/session-relaunch/tests/README.md`. The goal playbooks (the goal-opencode plugin playbook and the cli-opencode goal-hook playbook) were not given hop scenarios. The 060 parent has no row for this work.
-6. A defect the runs found, the wrapper relaunching OpenCode with `-m`, belongs to the wrapper's owner.
+6. The `-m` relaunch argument noted above is not a hop defect: the wrapper adds `-m` on a relaunch only when the first launch passed it, and OpenCode 2 rejects that first launch the same way (phase 030).
 <!-- /ANCHOR:limitations -->
 
 ---

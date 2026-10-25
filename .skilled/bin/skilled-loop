@@ -534,7 +534,8 @@ while true; do
           const record = JSON.parse(fs.readFileSync(0, "utf8"));
           const cwd = typeof record.cwd === "string" ? record.cwd : "";
           const handoff = typeof record.handoff === "string" ? record.handoff : "";
-          process.stdout.write(cwd + "\0" + handoff + "\0");
+          const signalled = record.signalled === true ? "1" : "0";
+          process.stdout.write(cwd + "\0" + handoff + "\0" + signalled + "\0");
         ' <<< "$decision_json" 2>/dev/null
       )
       if ! IFS= read -r -d '' relaunch_cwd <&3; then
@@ -549,6 +550,8 @@ while true; do
         consume_record
         exit 1
       fi
+      relaunch_signalled=0
+      IFS= read -r -d '' relaunch_signalled <&3 || relaunch_signalled=0
       exec 3<&-
 
       if [[ -z "$handoff_path" ]]; then
@@ -571,7 +574,9 @@ while true; do
         exit 1
       fi
 
-      if ((runtime_exit == 130)); then
+      # 130 is the operator's interrupt, unless the killer stamped the record before it
+      # signalled: some runtimes exit 130 on SIGTERM too.
+      if ((runtime_exit == 130)) && [[ "$relaunch_signalled" != 1 ]]; then
         consume_record
         spec_folder=$(consumed_spec_folder)
         print_manual_command "$handoff_path" "$spec_folder" || true

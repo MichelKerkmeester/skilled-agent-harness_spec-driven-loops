@@ -176,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,11 +198,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The goal-persistence work is only proven where a unit test can reach",
     "created_at": "2026-10-24T19:03:14Z",
-    "last_save_at": "2026-10-25T01:05:36.037Z",
+    "last_save_at": "2026-10-25T07:38:41.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58ea93fbd0117496e4e1b995371d1e3c2e7fbe3697b1439c0a5c925e49420818",
+    "source_fingerprint": "sha256:6d53433ef29f72236c3dfc95f69d0fc86a94b67677ffce1748ae44cfad04e7fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51d61b012e31d584c92c20721bbb28389ce8773940962424fe094d70b359a1fd",
+      "spec.md": "6ca0428d4c51fb04e1987b962e4764b7f3e2795af9d8fe641acd11961152aa33",
       "plan.md": "92105af0fa418b5f296fe378b6e9d2a16bcbf40307880a6e58cceb5d1c8580db",
-      "tasks.md": "6337c4d433a511e8cc5e33a46ee8535932fd4271cc0328682e86ce2b3f37f281",
+      "tasks.md": "44bdd9632d431432c3b85ee1f3dc2d195352bf1170af03fb80e656aeab163c18",
       "decision-record.md": "d8fb2a92497b1570eadb488ab9ca5a0487a475bb3818cd9449f93f30202852f4",
-      "implementation-summary.md": "e9bef2b29b008165bcc41b02726ddbb265ba5df567fdc6fb41961e8353b8671a"
+      "implementation-summary.md": "4e93aa8f4a415e3339267ae7fc0d9e7faf5a8ad0e989db8c833f60b357e41106"
     },
     "last_active_at": null
   }

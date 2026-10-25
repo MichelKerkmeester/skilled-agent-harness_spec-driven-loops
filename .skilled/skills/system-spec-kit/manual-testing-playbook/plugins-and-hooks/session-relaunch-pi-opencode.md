@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.12.0
+version: 1.0.13.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -463,9 +463,9 @@ In the switch-off run the note keeps its `goal_packet` line, because only the la
 
 PASS when both receivers have no goal block and `GOALENV.marker` holds `EMPTY`. FAIL when either receiver binds a goal.
 
-#### GR-O1 An OpenCode hop (Live, FAIL 2026-10-25 on OpenCode 2.1.4)
+#### GR-O1 An OpenCode hop (Live, PASS 2026-10-25 on OpenCode 2.1.4)
 
-OpenCode 2 is a TUI that talks to a server, and the harness starts it with `--standalone` so the server is private. The sender's `prepare` wrote the `goal_packet` line from its goal record, the killer logged `killer-signal`, and no `relaunch` line followed: the TUI stayed up showing `Connection lost... Reconnecting to the server automatically` and the note stayed `open`. The plugin passes its own `process.pid` to the killer, and the likely cause is that this pid belongs to the server child and not to the TUI. That cause is inferred from the process tree and the plugin source, so confirm it by capturing the tree before the kill. `skilled-loop` also relaunches with `-m <model>`, which the OpenCode 2 root command rejects, so a hop that carries a model fails there as well. Run it again with the harness once a hop reaches OpenCode 2:
+OpenCode 2 is a TUI that talks to a server, and the harness starts it with `--standalone` so the server is private. On its default shared background service the loop does not arm, because that service holds no `SKILLED_LOOP_ID`. The first run failed three ways in turn, each fixed before the next: the killer signalled the plugin's server instead of the TUI, the TUI exits 130 on SIGTERM and the wrapper read that as an interrupt, and the TUI took about six seconds to exit, past the old five-second grace. Run it with the harness:
 
 ~~~bash
 bash "$harness/build-sandbox.sh" opencode "$sandbox" 3990 "$repo_root"
@@ -516,7 +516,8 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | Pi switch off (GR-P2) | Pass | Note carried the packet, no goal block in the receiver log, one record, `GOALENV.marker` is `EMPTY`, note `done` | `pi-b-switch-off/` |
 | Pi switch off at `prepare` too | Pass | Note carried no packet, no goal block in the receiver log | `pi-b2-switch-off-at-prepare/` |
 | Pi no goal (GR-P2) | Pass | No `goal_packet`, no records, no goal block, note `done` | `pi-c-no-goal/` |
-| OpenCode hop (GR-O1) | Fail | Killer signalled, no relaunch, note stayed `open` | `opencode-a-hop-attempt/`, `opencode-process-tree.txt` |
+| OpenCode hop (GR-O1), first run | Fail | Killer signalled the server, no relaunch, note stayed `open` | `opencode-a-hop-attempt/`, `opencode-process-tree.txt` |
+| OpenCode hop (GR-O1), after the fixes | Pass | Killer signalled the TUI, `relaunch`, then `handed-over`, `claimed` and `done`; two records, `GOALENV.marker` is the packet | `specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/scratch/opencode-a-hop/` |
 | OpenCode receiver, goal (GR-O2) | Pass, receiver half only | Model quoted the goal id of the one record | `opencode-receiver-a-goal/` |
 | OpenCode receiver, switch off and no goal (GR-O2) | Pass, receiver half only | Model answered `NONE`, no record | `opencode-receiver-b-switch-off/`, `opencode-receiver-c-no-goal/` |
 

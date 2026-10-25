@@ -605,6 +605,7 @@ function shouldRelaunch(args) {
     name: record?.name ?? null,
     runtime: record?.runtime ?? null,
     hops: record?.hops ?? null,
+    signalled: typeof record?.signalledAt === 'string',
   };
   process.stdout.write(`${JSON.stringify(result)}\n`);
   // The JSON decision is the command result; its log is best-effort.

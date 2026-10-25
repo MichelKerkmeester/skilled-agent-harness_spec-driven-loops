@@ -1,0 +1,14 @@
+2026-10-25T07:19:28Z sender launched (opencode, label a, env:none, no_goal=0)
+2026-10-25T07:19:42Z sender ready=yes
+2026-10-25T07:19:51Z sender goal records in /private/tmp/claude-501/ev030/sb-oc-a/.skilled/skills/.state/goal: 1
+2026-10-25T07:20:26Z sender session: ses_e8e11f8dbffeXkM2z4XhoCt8EP
+2026-10-25T07:20:26Z wrapper pid (loop id): 27245
+2026-10-25T07:20:26Z prepare exit=0 ; [session-relaunch] handoff prepared; stop now and end this turn. The loop ends this session when it goes idle and a fresh session continues from /private/tmp/claude-501/ev030/sb-oc-a/.skilled/skills/.state/session-relaunch/handoffs/note-a.md.
+2026-10-25T07:20:26Z note goal_packet line: goal_packet: specs/demo/001-demo
+2026-10-25T07:20:27Z sent the ending prompt; waiting for the receiver
+2026-10-25T07:28:24Z note status: status: open
+2026-10-25T07:28:24Z GOALENV.marker: <absent>
+2026-10-25T07:28:24Z GOALSEEN.marker: <absent>
+goal records: 1
+record=e2a7322e399e goalId=goal-09a2da97-363d-4b92-bef4-758c32aeba2b runtime=undefined status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T07:19:49.838Z
+2026-10-25T07:28:24Z done

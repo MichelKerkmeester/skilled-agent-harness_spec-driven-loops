@@ -20,6 +20,7 @@ const {
   arm,
   unarm,
   markDeferred,
+  markSignalled,
   withdrawRecord,
   readRelaunchFile,
   shouldRelaunch,
@@ -624,6 +625,50 @@ test('a re-arm makes an armed record older than the age limit relaunchable again
   assert.deepEqual(
     shouldRelaunch(readRelaunchFile(LOOP_ID, sandbox.env), { now: NOW.getTime(), maxAgeMin: 10 }),
     { relaunch: true },
+  );
+});
+
+// Some runtimes exit 130 on SIGTERM as well as on an interrupt, so the stamp is how the
+// wrapper tells the killer's signal from the operator's. It must name only the arm the
+// killer watched, and a later arm must not inherit it.
+test('markSignalled stamps only the armed record it was given, and a re-arm clears it', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'pending',
+    loopId: LOOP_ID,
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'opencode',
+    cwd: '/tmp/cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
+  });
+  const armed = arm({ loopId: LOOP_ID, cwd: '/tmp/cwd', env: sandbox.env, now: NOW });
+  const expected = { handoff: armed.handoff, armId: armed.armId, armedAt: armed.armedAt };
+
+  assert.equal(
+    markSignalled({ loopId: LOOP_ID, ...expected, armId: 'another-arm', env: sandbox.env }),
+    null,
+  );
+  assert.equal(
+    markSignalled({ loopId: LOOP_ID, ...expected, handoff: '/tmp/other.md', env: sandbox.env }),
+    null,
+  );
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).signalledAt, undefined);
+
+  const signalled = markSignalled({ loopId: LOOP_ID, ...expected, env: sandbox.env, now: NOW });
+  assert.equal(signalled.signalledAt, NOW.toISOString());
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).signalledAt, NOW.toISOString());
+
+  const rearmed = arm({ loopId: LOOP_ID, cwd: '/tmp/cwd', env: sandbox.env, now: NOW });
+  assert.equal(Object.hasOwn(rearmed, 'signalledAt'), false);
+  assert.equal(Object.hasOwn(readRelaunchFile(LOOP_ID, sandbox.env), 'signalledAt'), false);
+
+  unarm({ loopId: LOOP_ID, reason: 'cancelled', env: sandbox.env });
+  assert.equal(
+    markSignalled({ loopId: LOOP_ID, handoff: rearmed.handoff, armId: rearmed.armId, env: sandbox.env }),
+    null,
   );
 });
 

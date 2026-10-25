@@ -609,6 +609,8 @@ test('killer signals an idle armed target after --idle-ms without a transcript',
     assert.equal(result.code, 0);
     assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
     assert.equal(fs.existsSync(lockPath(sandbox, loopId)), false);
+    // The wrapper reads this stamp to tell the signal from an operator interrupt.
+    assert.equal(typeof core.readRelaunchFile(loopId, sandbox.env).signalledAt, 'string');
   } finally {
     killChild(killer);
     killChild(target);
@@ -699,6 +701,29 @@ test('killer refuses loop id 1 and leaves the target alive', async (t) => {
     assert.equal(result.code, 1);
     assert.equal(fs.existsSync(signalPath), false);
     assert.equal(process.kill(target.pid, 0), true);
+  } finally {
+    killChild(killer);
+    killChild(target);
+  }
+});
+
+// A live OpenCode 2 TUI took about six seconds to exit after SIGTERM, so a runtime that
+// shuts down that slowly still has to find its record armed when it is gone.
+test('killer keeps the record armed for a target that takes several seconds to exit', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const target = startTarget(sandbox, signalPath, 6500);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100 });
+  try {
+    const result = await waitForExit(killer, 12000);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
+    assert.equal(core.readRelaunchFile(loopId, sandbox.env).status, 'armed');
+    assert.doesNotMatch(readKillerLog(sandbox), /killer-timeout/);
   } finally {
     killChild(killer);
     killChild(target);

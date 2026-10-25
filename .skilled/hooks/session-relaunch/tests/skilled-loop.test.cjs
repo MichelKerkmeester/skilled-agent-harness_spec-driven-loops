@@ -198,7 +198,10 @@ if (markerPath && fs.existsSync(markerPath)) {
       name: process.env.SKILLED_LOOP_NAME || null,
       cwd: process.env.RECORDED_CWD,
       hops: Number(process.env.SKILLED_LOOP_HOPS || 0),
-      armedAt
+      armedAt,
+      ...(process.env.SIGNALLED_ON_INVOCATION === String(invocation)
+        ? { signalledAt: new Date().toISOString() }
+        : {})
     };
     fs.writeFileSync(path.join(stateDir, "relaunch-" + loopId + ".json"), JSON.stringify(relaunch));
   }
@@ -1265,6 +1268,22 @@ test('wrapper prints the manual command after runtime exit 130', (t) => {
     `skilled-loop claude "[session-relaunch] claim and continue handoff ${handoffPath}"`,
   ));
   assert.equal(fs.existsSync(recordPathOnDisk), false);
+});
+
+// OpenCode 2 exits 130 on the killer's SIGTERM as well as on an interrupt, so a record the
+// killer stamped before signalling is a hop, not the operator stopping the loop.
+test('wrapper relaunches after runtime exit 130 when the killer signalled the record', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    exitCodes: '130,0',
+    SIGNALLED_ON_INVOCATION: '1',
+  });
+  const result = runWrapper(sandbox, ['opencode']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.ok(records[1].args.includes(`[session-relaunch] claim and continue handoff ${handoffPath}`));
 });
 
 test('wrapper names pi in the manual command after runtime exit 130', (t) => {

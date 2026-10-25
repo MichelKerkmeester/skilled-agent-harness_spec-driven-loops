@@ -32,7 +32,9 @@
     "hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode",
     "hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex",
     "hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
-    "hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift"
+    "hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift",
+    "hooks/023-session-relaunch-loop/030-opencode2-killer-target",
+    "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort"
   ],
   "manual": {
     "depends_on": [],
@@ -214,7 +216,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-25T01:04:11.530Z",
+    "last_save_at": "2026-10-25T07:39:01.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +224,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:68c0885d79e1e29c5dd854a75909c450e5b262e5c47b8b81187891e350dea31a",
+    "source_fingerprint": "sha256:4b6e886c6ed3843f6e8887d53af4122d937646f134002481e2647ba9fb90c924",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e19c02ef0f259d203b31d9e40ed4993441ef2bc4626d82ec2173e78b89a83198",
+      "spec.md": "fe4f01e083cfd3f303ad14c81ea0cd2409b7ce7ce1bb6f02e32a5855d25a84d1",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",

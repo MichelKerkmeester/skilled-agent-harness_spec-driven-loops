@@ -1,0 +1,3 @@
+skilled-loop opencode '--prompt' "[session-relaunch] claim and continue handoff /private/tmp/claude-501/ev030/sb-oc-a/.skilled/skills/.state/session-relaunch/handoffs/note-a.md | Spec folder: none (Ga
+te 3 answered D, Skip, in the sending session)"
+Pane is dead (status 130, Sun Oct 25 08:03:54 2026)

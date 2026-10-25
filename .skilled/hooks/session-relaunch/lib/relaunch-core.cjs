@@ -698,8 +698,10 @@ function armLocked({ loopId, cwd, env, now }) {
   // killer guarding a record the wrapper already declines as stale. An arm that lands
   // in the same millisecond as the record it replaces keeps the same armedAt, so each
   // arm also carries an identity a killer can compare against the one it watched.
+  // A signal stamp belongs to the arm its killer watched, so a new arm starts without one.
+  const { signalledAt: _signalledAt, ...unsignalled } = record;
   const armed = {
-    ...record,
+    ...unsignalled,
     status: 'armed',
     armedAt: toIsoTimestamp(now),
     armId: randomUUID(),
@@ -707,6 +709,36 @@ function armLocked({ loopId, cwd, env, now }) {
   };
   atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(armed)}\n`);
   return armed;
+}
+
+/**
+ * Stamp the armed record a killer is about to signal, as the last step before the signal.
+ * Some runtimes exit 130 on SIGTERM as well as on an interrupt, so the stamp is how the
+ * wrapper tells the killer's signal from the operator's. The check and the stamp share one
+ * lock, so a cancel or a re-arm cannot land between them.
+ *
+ * @param {Object} options - The arm the killer watched.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.handoff - Handoff path of the watched record.
+ * @param {string} [options.armId] - Arm identity of the watched record, when it has one.
+ * @param {string} [options.armedAt] - Arm time of the watched record; compared only without an armId.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {Date|number|string} [options.now] - Clock value for deterministic records.
+ * @returns {Object|null} The stamped record, or null when the record is no longer that arm.
+ */
+function markSignalled({ loopId, handoff, armId, armedAt, env = process.env, now }) {
+  return withAppendLock(relaunchFilePath(loopId, env), () => {
+    const record = readRelaunchFile(loopId, env);
+    if (
+      record?.status !== 'armed'
+      || record.handoff !== handoff
+      || record.armId !== armId
+      || (armId === undefined && record.armedAt !== armedAt)
+    ) return null;
+    const signalled = { ...record, signalledAt: toIsoTimestamp(now) };
+    atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(signalled)}\n`);
+    return signalled;
+  });
 }
 
 /**
@@ -1641,6 +1673,7 @@ module.exports = {
   armableRecord,
   unarm,
   markDeferred,
+  markSignalled,
   withdrawRecord,
   readRelaunchFile,
   shouldRelaunch,

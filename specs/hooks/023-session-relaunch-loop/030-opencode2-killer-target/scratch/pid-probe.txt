@@ -1,0 +1,19 @@
+Probe, 2026-10-25, OpenCode v2.1.4. A throwaway directory held one project plugin that appends its own
+process.pid, process.ppid, argv and SKILLED_LOOP_ID to a file at load time. It was started as
+'opencode --standalone' in a private tmux server with SKILLED_LOOP_ID=424242, and no prompt was sent.
+
+Plugin record (verbatim):
+{"pid":48933,"ppid":48867,"argv":["bun","/$bunfs/root/opencode","serve","--stdio"],"loop":"424242"}
+
+Process tree while it ran (ps -axo pid,ppid,command, paths shortened):
+  48867 48864  ~/.local/bin/opencode --standalone                       (the TUI, child of the launching shell)
+  48933 48867  .../opencode.exe serve --stdio --port 0                  (the server; the plugin's pid)
+  52566     1  .../opencode.exe serve --service                         (the operator's shared service, untouched)
+
+Then 'kill -TERM 48867' (the TUI). Four seconds later 'ps -p 48867,48933' listed neither process.
+
+The shared service's environment holds no SKILLED_LOOP_ID or SKILLED_LOOP_RUNTIME
+(ps eww -p 52566, filtered to those two names only).
+
+Exit status probe, 2026-10-25, OpenCode v2.1.4 ('opencode --standalone' in a private tmux, the shell
+recording $? after it): SIGTERM to the TUI -> EXIT=130. SIGINT to the TUI -> EXIT=130.
