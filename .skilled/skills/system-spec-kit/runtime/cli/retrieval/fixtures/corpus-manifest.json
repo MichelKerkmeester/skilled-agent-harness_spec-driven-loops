@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d105ad76f21dfe04d51c4455437b474a8a84954b3bba08515ff5c706620f92ff",
+  "corpusHash": "fd944d0ad23f3d5add9cf5e3822e458ea999628f44e1fefefdce7780b6226cef",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25998,
+  "includedPathCount": 26004,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10491,6 +10491,12 @@
     "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/tasks.md",
     "specs/hooks/023-session-relaunch-loop/033-research-remediation/goal.md",
     "specs/hooks/023-session-relaunch-loop/033-research-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/goal.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/plan.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/spec.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -26029,7 +26035,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fa84918bb10814a6481197ebbe0918b437514e2542eb5d482f5a324df15aba2a",
+  "manifestHash": "353930bd2a7122feff78fb09a2aaa4b9e590497cc22e03fb717744e4e39a6565",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28141,6 +28147,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
       "reason": "excluded directory"
     },
     {

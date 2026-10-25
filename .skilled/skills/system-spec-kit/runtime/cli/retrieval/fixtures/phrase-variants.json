@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fa84918bb10814a6481197ebbe0918b437514e2542eb5d482f5a324df15aba2a",
+  "manifestHash": "353930bd2a7122feff78fb09a2aaa4b9e590497cc22e03fb717744e4e39a6565",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -34827,6 +34827,24 @@
     ],
     "default off flag earn or delete": [
       "default off flag earn or delete"
+    ],
+    "default off hook concern": [
+      "default-off hook concern"
+    ],
+    "default off opt in acceptance criteria": [
+      "default off opt in acceptance criteria"
+    ],
+    "default off opt in goal": [
+      "default off opt in goal"
+    ],
+    "default off opt in implementation summary": [
+      "default off opt in implementation summary"
+    ],
+    "default off opt in plan": [
+      "default off opt in plan"
+    ],
+    "default off opt in tasks": [
+      "default off opt in tasks"
     ],
     "default on hubs cohort": [
       "default-on hubs cohort"
@@ -90766,6 +90784,12 @@
     "session relaunch conformance suite": [
       "session relaunch conformance suite"
     ],
+    "session relaunch default off": [
+      "session relaunch default off"
+    ],
+    "session relaunch enable flag plan": [
+      "session relaunch enable flag plan"
+    ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
     ],
@@ -90790,6 +90814,9 @@
     "session relaunch loop": [
       "Session relaunch loop",
       "session relaunch loop"
+    ],
+    "session relaunch opt in": [
+      "session relaunch opt in"
     ],
     "session relaunch pi opencode": [
       "session-relaunch-pi-opencode"
@@ -104544,6 +104571,9 @@
     ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
+    ],
+    "system session relaunch enabled": [
+      "SYSTEM_SESSION_RELAUNCH_ENABLED"
     ],
     "system skill advisor": [
       "system skill advisor"

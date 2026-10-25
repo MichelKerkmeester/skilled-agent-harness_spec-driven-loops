@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7283,
-    "ok": 15167,
+    "ok": 15173,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25998,
+  "documentsScanned": 26004,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fa84918bb10814a6481197ebbe0918b437514e2542eb5d482f5a324df15aba2a",
+  "manifestHash": "353930bd2a7122feff78fb09a2aaa4b9e590497cc22e03fb717744e4e39a6565",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37575,
+      "ok": 37585,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70691,6 +70691,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
       "reason": "excluded directory"
     },
     {
