@@ -39,6 +39,7 @@ jobs:
   frontmatter-coverage:
     name: Skill reference/asset frontmatter contract
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Run skill-doc frontmatter guard (coverage mode)
@@ -64,6 +65,7 @@ jobs:
     # commit made with SPECKIT_SKIP_DOC_VERSION_BUMP set, or one that never ran the hook.
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       # The comparison needs the base branch, so the full history is fetched.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

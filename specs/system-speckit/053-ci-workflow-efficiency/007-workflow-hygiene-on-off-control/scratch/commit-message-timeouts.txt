@@ -1,0 +1,16 @@
+ci(workflows): size every job timeout from its own samples
+
+Thirty-eight jobs carried no timeout, so a hung install or a stuck test
+held its runner for GitHub's six-hour default. Every job now declares
+one. Each value comes from the job's own start-to-finish timings over
+the newest 40 runs of its workflow: the larger of the 10 minute floor,
+three times the median and twice the longest run. No successful run
+uses more than half of its limit, and the one job with no history yet
+takes the floor.
+
+The six timeouts that already existed are re-sized by the same rule.
+Four of them fall by more than half (OpenCode battery, both-versions,
+plugin and hook tests, rename harness) because those runs finish in
+under five minutes.
+
+Spec: system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control

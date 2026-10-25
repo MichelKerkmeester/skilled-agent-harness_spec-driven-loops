@@ -14,6 +14,7 @@ jobs:
   metadata:
     name: Read the Dependabot update metadata
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     permissions:
       contents: read
@@ -33,6 +34,7 @@ jobs:
     name: Auto-merge Dependabot security patch updates
     needs: metadata
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # This job holds the only write scopes in the workflow and runs no
     # repository code: the metadata job reads the update, this one only merges.
     permissions:

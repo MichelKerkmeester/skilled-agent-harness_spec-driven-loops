@@ -32,6 +32,7 @@ jobs:
     # running, and a fail-open costs at most one run that finds nothing to commit.
     if: "${{ !endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci') }}"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # This job holds no secret and no write scope. It runs the repository's install,
     # build and generator, so nothing here may be able to reach the push token. The
     # push job receives the commit as a bundle and nothing else.
@@ -187,6 +188,7 @@ jobs:
     needs: rebuild
     if: needs.rebuild.outputs.committed == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       # contents: write is the push. actions: read lets gh list and fetch the run's
       # artifacts through the Actions API.

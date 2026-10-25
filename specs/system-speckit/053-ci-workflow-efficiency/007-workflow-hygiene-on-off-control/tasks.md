@@ -709,7 +709,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Implementation - R24 per-job timeouts
 
-### T024 Collect 40 runs of job-level timings per workflow (AC-003)
+### T024 [x] Collect 40 runs of job-level timings per workflow (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/` (new directory tree). Anchor: none.
 
@@ -733,9 +733,11 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hy
 
 Stop and escalate if: fewer than `30` run lists are written, or a job file is missing for a run id, or `gh` reports an authentication or scope error.
 
+Evidence: 32 run lists written before any per-run view; 1157 runs listed and 1157 job files written (`ls` counts `32`, `1157`, total `1157`, at or below the `1,280` ceiling); no job file missing; one cancelled `opencode-dual-version` run holds no job data and is ignored. No authentication or scope error; no rate-limit pause was logged. Counts, window dates and commands are in `scratch/r24/sample.md`. Five workflows have fewer than 40 runs in the API window (13, 20, 16, 18 and 10).
+
 ---
 
-### T025 Write the sizing script (AC-003, AC-004)
+### T025 [x] Write the sizing script (AC-003, AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/size-timeouts.mjs` (new file). Anchor: none.
 
@@ -755,9 +757,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the script exits non-zero, or the row count is not the job count plus `2`.
 
+Evidence: `size-timeouts.mjs --floor 10 | head -3` printed the header row, the divider row and the `advisory-checks.yml | advisory` row; `grep -c '^| '` printed `46`, the job count (44) plus 2; the script exits 0. Two additions to the row shape: a ninth column `n` repeats the sample count so the count sits after the marker, as the closing criterion's grep expects, and the divider is written `| --- |` so it starts with `| ` and counts as a row. An independent Python re-implementation matched all 44 rows, and using the lower, upper or nearest-rank median changed no final value. A job counts when its own conclusion is `success`; counting only jobs in fully successful runs would move one value (`spec-kit-check.yml` `check`, 51 to 52).
+
 ---
 
-### T026 Produce the sizing table (AC-003, AC-004)
+### T026 [x] Produce the sizing table (AC-003, AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md` (new file). Anchor: none.
 
@@ -779,9 +783,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the row count is not the job count plus `2`, or any row's `final` cell is empty, or any `final` cell is below the floor.
 
+Evidence: Floor read as `10` from `decisions.md` (the task's `sed` uses `\+`, which the BSD `sed` here does not support, so it was run as `sed -nE`). `timeouts.md` has `46` rows starting with `| ` (44 jobs plus 2); `1` marked row, `dependabot-auto-merge.yml | metadata | 0 | - | - | - | 10 | no-sample`; no final cell is empty or below 10. The `## Comparison` section lists the six jobs with old and new values as bullets, so the row count stays 46, and `Method` and `Diagnostics` sections follow.
+
 ---
 
-### T027 Give `advisory-checks.yml` a timeout (AC-003)
+### T027 [x] Give `advisory-checks.yml` a timeout (AC-003)
 
 File: `.github/workflows/advisory-checks.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `advisory` at `:17`).
 
@@ -800,9 +806,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `28`; `advisory` row: 39 samples, p50 1.017, p100 13.800, formula 28, final 28. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T028 Give `agent-mirror-sync.yml` a timeout (AC-003)
+### T028 [x] Give `agent-mirror-sync.yml` a timeout (AC-003)
 
 File: `.github/workflows/agent-mirror-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `agent-mirror-sync` at `:7`).
 
@@ -821,9 +829,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `agent-mirror-sync` row: 40 samples, p50 1.350, p100 2.367, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T029 Give `changed-packet-validation.yml` a timeout (AC-003)
+### T029 [x] Give `changed-packet-validation.yml` a timeout (AC-003)
 
 File: `.github/workflows/changed-packet-validation.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `changed-packets` at `:13`).
 
@@ -842,9 +852,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `changed-packets` row: 39 samples, p50 1.583, p100 2.100, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T030 Give `chart-corpus.yml` a timeout (AC-003)
+### T030 [x] Give `chart-corpus.yml` a timeout (AC-003)
 
 File: `.github/workflows/chart-corpus.yml:28`, anchor: `    runs-on: ubuntu-latest` (the only job, id `corpus` at `:26`).
 
@@ -863,9 +875,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `corpus` row: 39 samples, p50 1.600, p100 1.800, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T031 Give both `command-tree-parity.yml` jobs a timeout (AC-003)
+### T031 [x] Give both `command-tree-parity.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/command-tree-parity.yml:16` and `:52`, anchors: `    runs-on: ubuntu-latest` twice, first for `command-tree-parity` at `:14` and second for `hermes-mirror` at `:46`.
 
@@ -884,9 +898,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'command-tree-parity': 10, 'hermes-mirror': 10}`; `command-tree-parity` row: 40 samples, p50 1.158, p100 1.583, formula 4, final 10; `hermes-mirror` row: 40 samples, p50 1.183, p100 1.817, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T032 Give `comment-hygiene.yml` a timeout (AC-003)
+### T032 [x] Give `comment-hygiene.yml` a timeout (AC-003)
 
 File: `.github/workflows/comment-hygiene.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `comment-hygiene` at `:7`).
 
@@ -905,9 +921,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `comment-hygiene` row: 39 samples, p50 1.250, p100 2.083, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T033 Re-size `deep-loop-runtime.yml`'s existing timeout (AC-003)
+### T033 [x] Re-size `deep-loop-runtime.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/deep-loop-runtime.yml:36`, anchor: `    timeout-minutes: 45` (the only job, id `deep-loop-runtime` at `:33`).
 
@@ -926,9 +944,11 @@ Rollback: replace the value with `45`.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `34`; `deep-loop-runtime` row: 25 samples, p50 11.317, p100 12.783, formula 34, final 34. Each value equals its own row's final cell. Re-sized in place (`deep-loop-runtime` 45 to 34).
+
 ---
 
-### T034 Give both `dependabot-auto-merge.yml` jobs a timeout (AC-003)
+### T034 [x] Give both `dependabot-auto-merge.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/dependabot-auto-merge.yml`, anchors: `    runs-on: ubuntu-latest` in the `metadata` job and in the `auto-merge` job, both added by T019.
 
@@ -947,9 +967,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either job is missing, or a value is not the floor, or a row is not marked `no-sample`.
 
+Evidence: parse printed `{'metadata': 10, 'auto-merge': 10}`; `metadata` row: 0 samples, p50 -, p100 -, formula -, final 10, marked `no-sample`; `auto-merge` row: 24 samples, p50 0.067, p100 0.133, formula 1, final 10. Each value equals its own row's final cell, and both equal the floor. DEVIATION: the task expects both rows marked `no-sample`, but `auto-merge` shows 24 samples (p100 0.133) because the earlier single-job shape ran under the same job name; the new `auto-merge` job runs only the merge command, so those samples overstate it, and its final is the floor either way. Only `metadata` is `no-sample`. Inserted after `runs-on:`.
+
 ---
 
-### T035 Give `diagram-corpus.yml` a timeout (AC-003)
+### T035 [x] Give `diagram-corpus.yml` a timeout (AC-003)
 
 File: `.github/workflows/diagram-corpus.yml:28`, anchor: `    runs-on: ubuntu-latest` (the only job, id `corpus` at `:26`).
 
@@ -968,9 +990,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `corpus` row: 28 samples, p50 1.842, p100 3.517, formula 8, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T036 Give both `dispatch-enforcement-guard.yml` jobs a timeout (AC-003)
+### T036 [x] Give both `dispatch-enforcement-guard.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/dispatch-enforcement-guard.yml:16` and `:54`, anchors: `    runs-on: ubuntu-latest` twice, first for `dispatch-enforcement-guard` at `:14` and second for `hooks-vitest` at `:52`.
 
@@ -989,9 +1013,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'dispatch-enforcement-guard': 10, 'hooks-vitest': 10}`; `dispatch-enforcement-guard` row: 38 samples, p50 1.033, p100 1.967, formula 4, final 10; `hooks-vitest` row: 39 samples, p50 1.183, p100 1.267, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T037 Give `gate-inputs.yml` a timeout (AC-003)
+### T037 [x] Give `gate-inputs.yml` a timeout (AC-003)
 
 File: `.github/workflows/gate-inputs.yml:14`, anchor: `    runs-on: ubuntu-latest` (the only job, id `gate-inputs` at `:12`).
 
@@ -1010,9 +1036,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `gate-inputs` row: 36 samples, p50 1.658, p100 2.183, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T038 Give `markdown-link-integrity.yml` a timeout (AC-003)
+### T038 [x] Give `markdown-link-integrity.yml` a timeout (AC-003)
 
 File: `.github/workflows/markdown-link-integrity.yml:34`, anchor: `    runs-on: ubuntu-latest` (the only job, id `markdown-link-integrity` at `:32`).
 
@@ -1031,9 +1059,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `markdown-link-integrity` row: 40 samples, p50 1.000, p100 1.233, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T039 Give `message-contract.yml` a timeout (AC-003)
+### T039 [x] Give `message-contract.yml` a timeout (AC-003)
 
 File: `.github/workflows/message-contract.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `message-contract` at `:17`).
 
@@ -1052,9 +1082,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `20`; `message-contract` row: 38 samples, p50 1.317, p100 9.800, formula 20, final 20. Each value equals its own row's final cell. Inserted after `runs-on:`. No step and no step condition changed (the diff holds `timeout-minutes` lines only).
+
 ---
 
-### T040 Give `naming-standard-guard.yml` a timeout (AC-003)
+### T040 [x] Give `naming-standard-guard.yml` a timeout (AC-003)
 
 File: `.github/workflows/naming-standard-guard.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `naming-standard` at `:13`).
 
@@ -1073,9 +1105,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `naming-standard` row: 39 samples, p50 1.467, p100 2.733, formula 6, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T041 Re-size both `opencode-dual-version.yml` timeouts (AC-003)
+### T041 [x] Re-size both `opencode-dual-version.yml` timeouts (AC-003)
 
 File: `.github/workflows/opencode-dual-version.yml:74` and `:172`, anchors: `    timeout-minutes: 30` twice, first for `battery` at `:71` and second for `both` at `:169`.
 
@@ -1094,9 +1128,11 @@ Rollback: replace both values with `30`.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'battery': 10, 'both': 10}`; `battery` row: 78 samples, p50 2.233, p100 4.917, formula 10, final 10; `both` row: 39 samples, p50 2.283, p100 2.683, formula 7, final 10. Each value equals its own row's final cell. Re-sized in place (`battery` 30 to 10, `both` 30 to 10).
+
 ---
 
-### T042 Re-size `opencode-plugin-tests.yml`'s existing timeout (AC-003)
+### T042 [x] Re-size `opencode-plugin-tests.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/opencode-plugin-tests.yml:54`, anchor: `    timeout-minutes: 20`. After `004`'s hook merge the same line reads `    timeout-minutes: 40` and the job id is `plugin-and-hook-tests`; locate the file's only `timeout-minutes` line either way.
 
@@ -1116,9 +1152,11 @@ Rollback: replace the value with `20`, or `40` when the hook merge landed.
 
 Stop and escalate if: the file holds no `timeout-minutes` line, or more than one, or the value differs from the row.
 
+Evidence: parse printed `10`; `plugin-and-hook-tests` row: 5 samples, p50 3.200, p100 3.317, formula 10, final 10. Each value equals its own row's final cell. Re-sized in place (`plugin-and-hook-tests` 40 to 10). `grep -n timeout-minutes` printed one line, `78:    timeout-minutes: 10`; the job id is `plugin-and-hook-tests`, so the hook merge landed.
+
 ---
 
-### T043 Give both `pi-extension-tests.yml` jobs a timeout (AC-003)
+### T043 [x] Give both `pi-extension-tests.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/pi-extension-tests.yml:26` and `:51`, anchors: `    runs-on: ubuntu-latest` twice, first for `discover` at `:24` and second for `pi-extension` at `:48`.
 
@@ -1137,9 +1175,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'discover': 10, 'pi-extension': 10}`; `discover` row: 10 samples, p50 0.883, p100 0.933, formula 3, final 10; `pi-extension` row: 26 samples, p50 0.750, p100 1.300, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T044 Give `playbook-operator-contract.yml` a timeout (AC-003)
+### T044 [x] Give `playbook-operator-contract.yml` a timeout (AC-003)
 
 File: `.github/workflows/playbook-operator-contract.yml:16`, anchor: `    runs-on: ubuntu-latest` (the only job, id `operator-contract` at `:14`).
 
@@ -1158,9 +1198,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `operator-contract` row: 39 samples, p50 1.267, p100 1.583, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T045 Give `prompt-card-sync.yml` a timeout (AC-003)
+### T045 [x] Give `prompt-card-sync.yml` a timeout (AC-003)
 
 File: `.github/workflows/prompt-card-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `card-sync` at `:7`).
 
@@ -1179,9 +1221,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `card-sync` row: 39 samples, p50 0.900, p100 1.217, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T046 Give `repo-rules-corpus.yml` a timeout (AC-003)
+### T046 [x] Give `repo-rules-corpus.yml` a timeout (AC-003)
 
 File: `.github/workflows/repo-rules-corpus.yml:29`, anchor: `    runs-on: ubuntu-latest` (the only job, id `repo-rules-corpus` at `:27`).
 
@@ -1200,9 +1244,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `repo-rules-corpus` row: 18 samples, p50 1.150, p100 1.500, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T047 Give both `routing-registry-drift.yml` jobs a timeout (AC-003)
+### T047 [x] Give both `routing-registry-drift.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/routing-registry-drift.yml:124` and `:238`, anchors: `    runs-on: ubuntu-latest` twice, first for `routing-drift` at `:122` and second for `golden-prompt-gate` at `:230`.
 
@@ -1221,9 +1267,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'routing-drift': 10, 'golden-prompt-gate': 37}`; `routing-drift` row: 37 samples, p50 1.667, p100 3.867, formula 8, final 10; `golden-prompt-gate` row: 40 samples, p50 2.833, p100 18.433, formula 37, final 37. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T048 Give `rule-canary-sync.yml` a timeout (AC-003)
+### T048 [x] Give `rule-canary-sync.yml` a timeout (AC-003)
 
 File: `.github/workflows/rule-canary-sync.yml:11`, anchor: `    runs-on: ubuntu-latest` (the only job, id `rule-canary` at `:9`).
 
@@ -1242,9 +1290,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `rule-canary` row: 39 samples, p50 0.900, p100 3.450, formula 7, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T049 Give `runtime-no-spec-import.yml` a timeout (AC-003)
+### T049 [x] Give `runtime-no-spec-import.yml` a timeout (AC-003)
 
 File: `.github/workflows/runtime-no-spec-import.yml:25`, anchor: `    runs-on: ubuntu-latest` (the only job, id `no-spec-import` at `:23`).
 
@@ -1263,9 +1313,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `no-spec-import` row: 40 samples, p50 0.983, p100 1.200, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T050 Give `sk-code-script-tests.yml` a timeout (AC-003)
+### T050 [x] Give `sk-code-script-tests.yml` a timeout (AC-003)
 
 File: `.github/workflows/sk-code-script-tests.yml:27`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-code-scripts` at `:25`).
 
@@ -1284,9 +1336,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `sk-code-scripts` row: 16 samples, p50 0.950, p100 1.333, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T051 Re-size `sk-doc-rename-harness.yml`'s existing timeout (AC-003)
+### T051 [x] Re-size `sk-doc-rename-harness.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:31`, anchor: `    timeout-minutes: 30` (the only job, id `rename-harness` at `:28`).
 
@@ -1305,9 +1359,11 @@ Rollback: replace the value with `30`.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `rename-harness` row: 40 samples, p50 2.667, p100 3.350, formula 8, final 10. Each value equals its own row's final cell. Re-sized in place (`rename-harness` 30 to 10).
+
 ---
 
-### T052 Give all three `sk-doc-script-tests.yml` jobs a timeout (AC-003)
+### T052 [x] Give all three `sk-doc-script-tests.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/sk-doc-script-tests.yml:20`, `:60` and `:77`, anchors: `    runs-on: ubuntu-latest` three times, for `sk-doc-scripts` at `:18`, `catalog-packages` at `:58` and `citation-drift` at `:75`.
 
@@ -1326,9 +1382,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or a value is `None`, or a value is copied from a sibling job's row.
 
+Evidence: parse printed `{'sk-doc-scripts': 10, 'catalog-packages': 10, 'citation-drift': 10}`; `sk-doc-scripts` row: 39 samples, p50 3.150, p100 3.650, formula 10, final 10; `catalog-packages` row: 38 samples, p50 0.925, p100 1.083, formula 3, final 10; `citation-drift` row: 39 samples, p50 1.300, p100 1.667, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T053 Give `sk-git-script-tests.yml` a timeout (AC-003)
+### T053 [x] Give `sk-git-script-tests.yml` a timeout (AC-003)
 
 File: `.github/workflows/sk-git-script-tests.yml:35`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-git-scripts` at `:33`).
 
@@ -1347,9 +1405,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `sk-git-scripts` row: 18 samples, p50 1.042, p100 1.267, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T054 Re-size `skill-advisor-stress.yml`'s existing timeout (AC-003)
+### T054 [x] Re-size `skill-advisor-stress.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/skill-advisor-stress.yml:43`, anchor: `    timeout-minutes: 20` (the only job, id `skill-advisor-stress` at `:40`).
 
@@ -1368,9 +1428,11 @@ Rollback: replace the value with `20`.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `skill-advisor-stress` row: 31 samples, p50 1.783, p100 2.133, formula 6, final 10. Each value equals its own row's final cell. Re-sized in place (`skill-advisor-stress` 20 to 10).
+
 ---
 
-### T055 Give both `skill-doc-frontmatter.yml` jobs a timeout (AC-003)
+### T055 [x] Give both `skill-doc-frontmatter.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:28` and `:53`, anchors: `    runs-on: ubuntu-latest` twice, first for `frontmatter-coverage` at `:26` and second for `doc-version-raise` at `:48`.
 
@@ -1389,9 +1451,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'frontmatter-coverage': 10, 'doc-version-raise': 15}`; `frontmatter-coverage` row: 40 samples, p50 0.917, p100 1.067, formula 3, final 10; `doc-version-raise` row: 7 samples, p50 1.533, p100 7.050, formula 15, final 15. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T056 Give all three `spec-kit-check.yml` jobs a timeout (AC-003)
+### T056 [x] Give all three `spec-kit-check.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/spec-kit-check.yml:67`, `:148` and `:184`, anchors: `    runs-on: ubuntu-latest` three times, for `check` at `:65`, `mirrors` at `:146` and `doctor-scripts` at `:182`.
 
@@ -1410,9 +1474,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or a value is `None`, or a value is copied from a sibling job's row.
 
+Evidence: parse printed `{'check': 51, 'mirrors': 10, 'doctor-scripts': 10}`; `check` row: 37 samples, p50 16.717, p100 24.000, formula 51, final 51; `mirrors` row: 39 samples, p50 1.150, p100 1.483, formula 4, final 10; `doctor-scripts` row: 40 samples, p50 2.558, p100 3.067, formula 8, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T057 Give `strict-pass-freshness-report.yml` a timeout (AC-003)
+### T057 [x] Give `strict-pass-freshness-report.yml` a timeout (AC-003)
 
 File: `.github/workflows/strict-pass-freshness-report.yml:24`, anchor: `    runs-on: ubuntu-latest` (the only job, id `strict-pass-freshness` at `:23`, which has no `name:`).
 
@@ -1431,9 +1497,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `143`; `strict-pass-freshness` row: 9 samples, p50 43.483, p100 71.033, formula 143, final 143. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T058 Give both `trigger-index-rebuild.yml` jobs a timeout (AC-003)
+### T058 [x] Give both `trigger-index-rebuild.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/trigger-index-rebuild.yml:34` and `:187`, anchors: `    runs-on: ubuntu-latest` twice, first for `rebuild` at `:26` and second for `push` at `:178`.
 
@@ -1453,9 +1521,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or the trailer count changed.
 
+Evidence: parse printed `{'rebuild': 10, 'push': 10}`; `rebuild` row: 38 samples, p50 1.283, p100 1.383, formula 4, final 10; `push` row: 27 samples, p50 0.483, p100 1.000, formula 2, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`. `grep -c 'Trigger-Index-Rebuild: ci'` printed `2` after the edit and `2` on `HEAD`; no `if:` and no `permissions:` line changed.
+
 ---
 
-### T059 Re-size `hooks-node-tests.yml` when the hook merge was rejected (AC-003)
+### T059 [x] Re-size `hooks-node-tests.yml` when the hook merge was rejected (AC-003)
 
 File: `.github/workflows/hooks-node-tests.yml:46`, anchor: `    timeout-minutes: 20` (the only job, id `hook-node-tests` at `:43`).
 
@@ -1475,9 +1545,11 @@ Rollback: replace the value with `20`, or delete the `merged` line.
 
 Stop and escalate if: the file is present and the row is missing, or the file is absent and the `merged` line is not written.
 
+Evidence: `test -f .github/workflows/hooks-node-tests.yml` printed `absent`; `grep -c 'hooks-node-tests: merged into opencode-plugin-tests.yml' scratch/inventory.md` printed `1` (line 48, written by the inventory task, so it was not written twice). No workflow file changed for this task.
+
 ---
 
-### T060 Prove the timeout pass (AC-003, AC-004)
+### T060 [x] Prove the timeout pass (AC-003, AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md`. Anchor: none; append a `## R24 proof` section.
 
@@ -1498,6 +1570,8 @@ Expected: `values match formula: ok` and `50% rule: ok`, exit 0; `no-timeout []`
 Rollback: delete the `## R24 proof` section.
 
 Stop and escalate if: the assertion exits non-zero, or `no-timeout` is not `[]`, or a marked row lacks its sample count.
+
+Evidence: `size-timeouts.mjs --assert --floor 10` printed `values match formula: ok` and `50% rule: ok`, exit 0 (same without `--floor`); the inventory printed `jobs 44 no-timeout []`; `grep -c '^## R24 proof' timeouts.md` printed `1`; `parse ok` for every workflow; the gate printed `RESULT: PASSED`, exit 0 (`scratch/r24/gate-after-timeouts.txt`); 44 `timeout-minutes` lines for 44 jobs; the diff holds only `timeout-minutes` lines (38 inserted, 6 re-sized). Marked rows: 1, with its count.
 
 ---
 

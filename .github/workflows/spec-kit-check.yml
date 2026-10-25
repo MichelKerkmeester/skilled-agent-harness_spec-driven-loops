@@ -75,6 +75,7 @@ jobs:
   check:
     name: Typecheck, import policy and test suites for the spec-kit packages
     runs-on: ubuntu-latest
+    timeout-minutes: 51
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -168,6 +169,7 @@ jobs:
   mirrors:
     name: Runtime mirrors agree with their sources
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -204,6 +206,7 @@ jobs:
   doctor-scripts:
     name: Doctor script test suites
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 

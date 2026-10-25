@@ -128,6 +128,7 @@ jobs:
   routing-drift:
     name: Registry == advisor maps; compiled-routing freshness; parent-skill structure
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -233,6 +234,7 @@ jobs:
     # the @spec-kit/shared dist the scorer imports — which the lean job avoids on
     # purpose. Kept as its own job so the lean gate stays untouched and fast.
     runs-on: ubuntu-latest
+    timeout-minutes: 37
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

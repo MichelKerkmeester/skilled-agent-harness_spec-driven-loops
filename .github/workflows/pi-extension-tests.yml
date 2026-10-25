@@ -28,6 +28,7 @@ jobs:
   discover:
     name: Discover extensions
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       extensions: ${{ steps.list.outputs.extensions }}
     steps:
@@ -53,6 +54,7 @@ jobs:
     name: ${{ matrix.extension }} tests
     needs: discover
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:

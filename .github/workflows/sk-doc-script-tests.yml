@@ -22,6 +22,7 @@ jobs:
   sk-doc-scripts:
     name: sk-doc script tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -64,6 +65,7 @@ jobs:
   catalog-packages:
     name: Feature catalog packages validate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -81,6 +83,7 @@ jobs:
   citation-drift:
     name: No new broken citations
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # The base comparison needs the base commit, so the full history is fetched.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

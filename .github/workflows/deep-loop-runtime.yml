@@ -37,7 +37,7 @@ jobs:
   deep-loop-runtime:
     name: Deep-loop runtime vitest suites
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 34
     steps:
       # The mode-event suites bind each run to a commit and its parent, which a
       # depth-one checkout does not have.

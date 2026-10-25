@@ -16,6 +16,7 @@ jobs:
   rule-canary:
     name: Load-bearing rule wording stays in sync across copies
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # The canary reads AGENTS.md and the sk-code skill tree, and the step below calls
       # it through the .opencode/skills link, so those three paths are all it needs on
