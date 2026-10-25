@@ -23,7 +23,7 @@
  * so CI / pre-commit / sk-code verification can gate on it.
  *
  * Authoritative rule source:
- *   .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
+ *   .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
  *
  * Usage:
  *   node ephemeral-pointer-audit.mjs <path> [<path> ...] [--json]

@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript section organization"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # JavaScript Style Guide
@@ -319,7 +319,7 @@ Use a bracketed module prefix for inline comments:
 // [module-name] Description of what this does
 ```
 
-Cite only durable references — never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal-patterns/naming-and-commenting.md`](../shared/universal-patterns/naming-and-commenting.md) §4 and [`../../../shared/references/universal/code-style-guide.md`](../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers".
+Cite only durable references, never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal-patterns/naming-and-commenting.md`](../shared/universal-patterns/naming-and-commenting.md) §4 and [`../../../sk-code-quality/references/code-style-guide.md`](../../../sk-code-quality/references/code-style-guide.md) §4 "No ephemeral-artifact pointers".
 
 ```javascript
 // GOOD — durable WHY, no ephemeral id

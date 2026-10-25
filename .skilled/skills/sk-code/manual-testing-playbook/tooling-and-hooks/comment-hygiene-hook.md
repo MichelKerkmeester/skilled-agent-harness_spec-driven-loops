@@ -1,14 +1,14 @@
 ---
 title: "TH-002: check-comment-hygiene.sh wiring into claude-posttooluse.sh"
 description: "Verify that an Edit introducing a forbidden ephemeral-artifact comment makes the legacy PostToolUse hook print a COMMENT HYGIENE WARNING banner to stdout while always exiting 0, and that the direct check-comment-hygiene.sh checker returns rc=1 on the offending file and rc=0 once the comment is rewritten as a durable WHY."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # TH-002: check-comment-hygiene.sh wiring into claude-posttooluse.sh
 
 ## 1. OVERVIEW
 
-This scenario verifies the comment-hygiene half of `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, the legacy write-time hook, kept for direct tests and registered in no runtime (the live hook is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, covered by [`post-edit-quality-router.md`](../plugins-and-hooks/post-edit-quality-router.md)). This is the hook's original check; the dist-staleness branch validated by TH-001 was added later and runs alongside it on the same edit. When run directly, the script calls `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` against the file it is given. If a comment line carries an ephemeral-artifact pointer — a spec path, packet/phase number, or ADR/REQ/task/finding id (the forbidden classes in `shared/references/universal/code-style-guide.md` §4) — the checker prints each offending line to stdout as `<file>:<lineno>: <excerpt>` and exits 1. When the hook sees that `returncode == 1` with non-empty stdout, it wraps those lines in a `COMMENT HYGIENE WARNING:` banner. The hook is warn-only: it always exits 0 and never blocks the edit, regardless of what the checker finds or whether the checker itself fails.
+This scenario verifies the comment-hygiene half of `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, the legacy write-time hook, kept for direct tests and registered in no runtime (the live hook is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, covered by [`post-edit-quality-router.md`](../plugins-and-hooks/post-edit-quality-router.md)). This is the hook's original check; the dist-staleness branch validated by TH-001 was added later and runs alongside it on the same edit. When run directly, the script calls `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` against the file it is given. If a comment line carries an ephemeral-artifact pointer (a spec path, packet/phase number, or ADR/REQ/task/finding id, the forbidden classes in `sk-code-quality/references/code-style-guide.md` §4), the checker prints each offending line to stdout as `<file>:<lineno>: <excerpt>` and exits 1. When the hook sees that `returncode == 1` with non-empty stdout, it wraps those lines in a `COMMENT HYGIENE WARNING:` banner. The hook is warn-only: it always exits 0 and never blocks the edit, regardless of what the checker finds or whether the checker itself fails.
 
 **No gap found while authoring this scenario (contrast with TH-001)**: unlike its dist-staleness sibling — which shipped with a missing executable bit that silently suppressed the banner in a live session — `check-comment-hygiene.sh` ships with its executable bit intact (`-rwxr-xr-x`), which is exactly what `claude-posttooluse.sh`'s `subprocess.run([checker_path, file_path], ...)` invocation requires to exec the checker directly. The full hook path therefore fires the `COMMENT HYGIENE WARNING` banner to stdout as intended, verified end-to-end below in both directions: the positive case (forbidden comment present → banner reaches stdout → hook exits 0) and the negative case (comment rewritten as a durable WHY → checker clean → no banner → hook still exits 0). This scenario brings the pre-existing comment-hygiene branch under manual coverage for the first time; see §3 Failure Triage if the executable bit ever regresses (e.g. after a checkout that strips permissions), since that would reproduce the class of gap TH-001 documented for its sibling checker.
 
@@ -102,7 +102,7 @@ COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
 Violations in /tmp/skc-TH002-sandbox/sample.ts:
   /tmp/skc-TH002-sandbox/sample.ts:2:   // retry cap per ADR-014
-See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 ```
 
@@ -127,7 +127,7 @@ Evidence: `/tmp/th002-hook-stdout.txt` (full hook stdout), `/tmp/th002-direct-pr
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; prints the `COMMENT HYGIENE WARNING` banner only when the comment checker returns rc=1 with non-empty stdout; always exits 0.
 - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker (Python, `.sh` extension); ships executable (`-rwxr-xr-x`). Exit 0 clean, 1 violations (printed as `<file>:<lineno>: <excerpt>`), 2 skipped (excluded dir, unknown extension, or unreadable).
-- `.skilled/skills/sk-code/shared/references/universal/code-style-guide.md` §4 — The forbidden ephemeral-artifact-pointer classes and the durable-WHY convention the checker enforces.
+- `.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md` §4: the forbidden ephemeral-artifact-pointer classes and the durable-WHY convention the checker enforces.
 
 **Related**: `claude-posttooluse.sh` also runs the dist-staleness checker (`check-dist-staleness.sh`) on the same edit; that branch is validated by TH-001 (see `tooling-and-hooks/check-dist-staleness-hook.md`). The `ceiling:` intentional-simplification convention that must pass this same comment-hygiene checker without allow-listing is validated by DR-003 (see `design-restraint/ceiling-comment-convention.md`), which asserts the checker exits 0 on a well-formed ceiling comment; TH-002 is the complementary case, asserting rc=1 (and the banner) on a genuine violation.
 

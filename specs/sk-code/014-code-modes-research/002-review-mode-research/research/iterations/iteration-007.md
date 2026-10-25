@@ -23,7 +23,7 @@ Review keeps security and correctness as an unconditional baseline. Detected sur
 
 ### Finding 3 — DERIVED
 
-A surface can declare its own intent-to-reference map, but its local map alone does not register or route the packet to review. The hub registration and the second-stage resource map must carry it. The current hub lists two surfaces. [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:51] `sk-code-ci owns its intent -> reference routing`; [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:110] `The hub registration lives in`; [SOURCE: .skilled/skills/sk-code/SKILL.md:39] `The hub has exactly two surfaces`; [SOURCE: .skilled/skills/sk-code/ROUTER.md:397] `only the detected surface's slice`.
+A surface can declare its own intent-to-reference map, but its local map alone does not register or route the packet to review. The hub registration and the second-stage resource map must carry it. The current hub lists two surfaces. [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:51] `sk-code-ci owns its intent -> reference routing`; [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:110] `The hub registration lives in`; [SOURCE: .skilled/skills/sk-code/SKILL.md:39] `The hub has exactly two surfaces`; [SOURCE: .skilled/skills/sk-code/ROUTER.md:385] `narrows to the detected surface's slice`.
 
 ## Questions Answered
 

@@ -95,14 +95,14 @@ Phase 1 Implementation writes or changes files
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
 - `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
 - `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.
-- `../shared/references/universal/code-quality-standards.md` and `../shared/references/universal/code-style-guide.md` define shared standards consumed by this packet.
+- `../shared/references/universal/code-quality-standards.md` is the cross-mode severity standard this packet consumes, and `references/code-style-guide.md` is this packet's own style and comment-hygiene guide.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../ROUTER.md`, `../shared/references/phase-detection.md` |
-| ALWAYS | Before any implementation-done claim | `../sk-code-skilled/assets/checklists/universal-checklist.md`, `../shared/references/universal/code-quality-standards.md`, `../shared/references/universal/code-style-guide.md` |
+| ALWAYS | Before any implementation-done claim | `../sk-code-skilled/assets/checklists/universal-checklist.md`, `../shared/references/universal/code-quality-standards.md`, `references/code-style-guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
 | CONDITIONAL | `.js` or `.css` target | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
 | CONDITIONAL | `.skilled/skills/` target | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
@@ -327,4 +327,4 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### Universal Standards
 
 - [`../shared/references/universal/code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md) - Shared code quality standards.
-- [`../shared/references/universal/code-style-guide.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-style-guide.md) - Shared code style and comment hygiene guidance.
+- [`references/code-style-guide.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md) - Shared code style and comment hygiene guidance.

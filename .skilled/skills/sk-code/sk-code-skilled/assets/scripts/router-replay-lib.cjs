@@ -482,35 +482,102 @@ function selectIntents(scores) {
   return scores.filter((s) => top - s.score <= AMBIGUITY_DELTA).map((s) => s.intent);
 }
 
-// Which surface a resource belongs to, by its on-disk path prefix.
-// The SKILLED prefix identifies system-code resources; other resources stay universal.
-const SURFACE_PREFIXES = {
-  SKILLED: ['sk-code-skilled/'],
-};
-function resourceSurface(r) {
-  for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {
-    if (prefixes.some((p) => r.startsWith(p))) return surface;
+// The surfaces a hub declares for detection, in the order detection tries them.
+// Each surface entry in mode-registry.json may carry a surfaceDetection block, and
+// a skill outside the hub whose graph-metadata.json names the hub's family may
+// declare the same block as surface_detection. Every specific surface comes first,
+// hub entries in registry order and then outside skills by skill_id, and the one
+// fallback comes last, so the fallback never outranks a surface another repository
+// added. An outside block that claims the fallback role is ignored, because the
+// fallback is the hub's own code.
+const SURFACE_MARKER_KEYS = ['pathMarkers', 'fileMarkers', 'contentMarkers'];
+const declaredSurfaceCache = new Map();
+
+function surfaceEntry(block, extra) {
+  if (!block || typeof block !== 'object' || typeof block.label !== 'string' || !block.label.trim()) return null;
+  const markers = SURFACE_MARKER_KEYS.flatMap((key) => (Array.isArray(block[key]) ? block[key] : []))
+    .filter((marker) => typeof marker === 'string' && marker.length > 0)
+    .map((marker) => marker.toLowerCase());
+  if (markers.length === 0) return null;
+  return { label: block.label.toUpperCase(), role: block.role, markers, ...extra };
+}
+
+function outsideSurfaces(skillsDir, family) {
+  let names;
+  try {
+    names = fs.readdirSync(skillsDir);
+  } catch {
+    return [];
   }
-  return 'UNIVERSAL';
+  const out = [];
+  for (const name of names) {
+    const meta = readJsonObject(path.join(skillsDir, name, 'graph-metadata.json'));
+    if (!meta || meta.family !== family || meta.skill_id === family) continue;
+    const entry = surfaceEntry(meta.surface_detection, { skillId: String(meta.skill_id || name), packet: null });
+    if (entry && entry.role === 'specific') out.push(entry);
+  }
+  return out.sort((a, b) => (a.skillId < b.skillId ? -1 : a.skillId > b.skillId ? 1 : 0));
 }
-// Detect the task's code surface from path / extension / marker signals, mirroring
-// the prose stack-detection contract: OpenCode system code wins.
-function detectSurface(taskLower) {
-  const opencode = /\.opencode\/|\bskill\.md\b|\.cjs\b|\.mjs\b|\.tsx?\b|\.py\b|\.sh\b|\.rs\b|\bspec-folder\b|\bargparse\b|graph-metadata/.test(taskLower);
-  if (opencode) return 'SKILLED';
-  return 'UNKNOWN';
+
+function declaredSurfaces(skillRoot) {
+  if (declaredSurfaceCache.has(skillRoot)) return declaredSurfaceCache.get(skillRoot);
+  const registry = readJsonObject(path.join(skillRoot, 'mode-registry.json'));
+  const modes = registry && Array.isArray(registry.modes) ? registry.modes : [];
+  const hub = modes
+    .map((mode) => mode && surfaceEntry(mode.surfaceDetection, { packet: mode.packet ? String(mode.packet) : null }))
+    .filter(Boolean);
+  const outside = registry && typeof registry.skill === 'string'
+    ? outsideSurfaces(path.dirname(skillRoot), registry.skill)
+    : [];
+  const ordered = [
+    ...hub.filter((entry) => entry.role === 'specific'),
+    ...outside,
+    ...hub.filter((entry) => entry.role === 'fallback'),
+  ];
+  declaredSurfaceCache.set(skillRoot, ordered);
+  return ordered;
 }
+
+// A marker matches the lowercased task text as a substring, with a word boundary
+// on each side where the marker itself starts or ends with a word character.
+// That keeps `.ts` off `.tsx` and `argparse` off a longer word, while a path
+// marker such as `.skilled/` or a CSS prefix such as `--vw-` still matches inline.
+function markerPattern(marker) {
+  const escaped = marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const head = /^\w/.test(marker) ? '\\b' : '';
+  const tail = /\w$/.test(marker) ? '\\b' : '';
+  return new RegExp(`${head}${escaped}${tail}`);
+}
+
+// Which surface a resource belongs to: the declared surface whose packet folder
+// holds it. Every other resource stays universal.
+function resourceSurface(r, surfaces) {
+  const owner = surfaces.find((entry) => entry.packet && r.startsWith(`${entry.packet}/`));
+  return owner ? owner.label : 'UNIVERSAL';
+}
+
+// Every declared surface the task's text names, in detection order, so the first
+// entry leads and any later match, the fallback included, rides along as second
+// evidence. An empty list is UNKNOWN.
+function detectSurfaces(taskLower, surfaces) {
+  return surfaces
+    .filter((entry) => entry.markers.some((marker) => markerPattern(marker).test(taskLower)))
+    .map((entry) => entry.label);
+}
+
 // OpenCode-only language sub-detection (mirrors SKILL.md §2). A `.opencode/` task
 // is one language, so it needs only that language's guides — not every language
 // folder. The surface deliberately has no sub-detection.
 const SKILLED_LANGUAGES = ['typescript', 'python', 'shell', 'config', 'javascript', 'rust'];
+const SKILLED_PACKET = 'sk-code-skilled';
+const SKILLED_LANGUAGE_FOLDER = /^sk-code-skilled\/references\/([^/]+)\//;
 // Returns the SET of languages a task touches. An interop parity task legitimately
 // touches more than one (e.g. a napi-rs/WASM sidecar over a TypeScript backend must
 // load both the Rust and TypeScript standards), so selection is a set, not a single
 // first match. An empty set preserves the "no language slice" behaviour that a null
 // return used to signal. Rust is recognised by `.rs`, Cargo markers, or the
 // napi-rs/wasm-bindgen/WASI/cdylib interop vocabulary; those markers are consulted
-// here only after detectSurface has already resolved the Skilled surface.
+// here only after surface detection has already matched the Skilled surface.
 function detectSkilledLanguages(taskLower) {
   const langs = new Set();
   if (/\.tsx?\b/.test(taskLower)) langs.add('typescript');
@@ -594,23 +661,29 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
   let resources = [...resourceSet];
 
   const mapResources = Object.values(router.resourceMap).flat();
-  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('sk-code-skilled/references/'));
+  const surfaces = declaredSurfaces(skillRoot);
+  const hasSurfaceLayout = mapResources.some((r) => surfaces.some((entry) => (
+    entry.packet && r.startsWith(`${entry.packet}/references/`)
+  )));
   let surface;
+  let detected = [];
   if (hasSurfaceLayout) {
-    surface = detectSurface(taskLower);
-    // Within OpenCode, slice further to the touched-language set so a TypeScript task
-    // does not also pull the Python/shell/config guides, while an interop task that
-    // touches both Rust and TypeScript keeps both trios. Non-language OpenCode
-    // folders (e.g. `shared/`) are always kept.
-    const skilledLangs = surface === 'SKILLED' ? detectSkilledLanguages(taskLower) : new Set();
+    detected = detectSurfaces(taskLower, surfaces);
+    surface = detected[0] || 'UNKNOWN';
+    const kept = new Set(detected);
+    const skilledLabel = (surfaces.find((entry) => entry.packet === SKILLED_PACKET) || {}).label;
+    // Within the Skilled surface, slice further to the touched-language set so a
+    // TypeScript task does not also pull the Python/shell/config guides, while an
+    // interop task that touches both Rust and TypeScript keeps both trios.
+    // Non-language Skilled folders (e.g. `shared/`) are always kept.
+    const skilledLangs = kept.has(skilledLabel) ? detectSkilledLanguages(taskLower) : new Set();
     resources = resources.filter((r) => {
       if (r.includes('/assets/')) return false;
-      const rs = resourceSurface(r);
+      const rs = resourceSurface(r, surfaces);
       if (rs === 'UNIVERSAL') return true;
-      if (surface === 'UNKNOWN') return false;
-      if (rs !== surface) return false;
-      if (skilledLangs.size) {
-        const m = /^sk-code-skilled\/references\/([^/]+)\//.exec(r);
+      if (!kept.has(rs)) return false;
+      if (skilledLangs.size && rs === skilledLabel) {
+        const m = SKILLED_LANGUAGE_FOLDER.exec(r);
         if (m && SKILLED_LANGUAGES.includes(m[1]) && !skilledLangs.has(m[1])) return false;
       }
       return true;
@@ -619,7 +692,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
 
   const roots = [skillRoot, ...extraRoots];
   const missingResources = resources.filter((r) => !roots.some((root) => fs.existsSync(path.join(root, r))));
-  return { resources, missingResources, surface };
+  return { resources, missingResources, surface, surfaces: detected };
 }
 
 /**
@@ -672,7 +745,7 @@ function routeSkillResources({ skillRoot, taskText }) {
         resources: asm.resources,
         missingResources: asm.missingResources,
         scores,
-        ...(asm.surface ? { surface: asm.surface } : {}),
+        ...(asm.surface ? { surface: asm.surface, surfaces: asm.surfaces } : {}),
         routeTelemetry,
         ...(resourceContract ? { resourceContract } : {}),
       };
@@ -687,7 +760,7 @@ function routeSkillResources({ skillRoot, taskText }) {
     resources: asm.resources,
     missingResources: asm.missingResources,
     scores,
-    ...(asm.surface ? { surface: asm.surface } : {}),
+    ...(asm.surface ? { surface: asm.surface, surfaces: asm.surfaces } : {}),
     routeTelemetry,
     ...(resourceContract ? { resourceContract } : {}),
   };
@@ -697,5 +770,5 @@ function routeSkillResources({ skillRoot, taskText }) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { parseRouter, loadSurfaceRouter, registryPacketRoots, routeSkillResources };
+module.exports = { declaredSurfaces, parseRouter, loadSurfaceRouter, registryPacketRoots, routeSkillResources };
 

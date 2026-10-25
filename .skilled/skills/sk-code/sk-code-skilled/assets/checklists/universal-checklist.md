@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.28
+version: 1.0.1.0
 ---
 
 # Universal Code Quality Checklist
@@ -87,7 +87,7 @@ manual review gates; the alignment verifier does not parse intent from comments.
 [ ] No spec/packet/phase numbers, T###/REQ-###/CHK-###, feature-catalog, ADR, or ticket ids in comments
     - Keep the durable WHY; drop the perishable label
     - Structural path/globs the code needs (e.g. .opencode/specs/) and stable standards (CWE-###) are OK
-    - See references/universal/code-style-guide.md §4 "No ephemeral-artifact pointers"
+    - See sk-code-quality/references/code-style-guide.md §4 "No ephemeral-artifact pointers"
 ```
 
 ### Numbered ALL-CAPS Section Invariant

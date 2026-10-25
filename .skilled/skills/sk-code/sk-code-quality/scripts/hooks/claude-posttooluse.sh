@@ -20,7 +20,7 @@ Hook entry (settings.json):
                 "command": "bash -c 'cd \"/...repo...\" && python3 .skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh'",
                 "timeout": 10 }] }
 
-See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 """
 import sys
 import os
@@ -109,7 +109,7 @@ def main():
                     print(f"Violations in {file_path}:")
                     for line in lines:
                         print(f"  {line}")
-                    print("See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4")
+                    print("See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4")
                     print("Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.")
                     print()
 

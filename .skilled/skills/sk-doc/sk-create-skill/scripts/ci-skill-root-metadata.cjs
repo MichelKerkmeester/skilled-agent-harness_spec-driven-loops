@@ -81,6 +81,10 @@ const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
   'deprecated',
   'importance_tier',
   'enhance_when',
+  // An outside sk-code family skill declares where its surface is detected.
+  // The sk-code detectors read the inner block and rank it ahead of the
+  // fallback surface.
+  'surface_detection',
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -418,6 +422,19 @@ function checkGraphMetadata(skillDir) {
       file: 'graph-metadata.json',
       message: `${skillId}: graph-metadata.json has unknown top-level key(s): ${unknown.join(', ')}`,
     });
+  }
+
+  // The key is optional, but a present value must be an object: a string or
+  // array would reach the surface detectors as a block with no markers.
+  if (Object.prototype.hasOwnProperty.call(metadata, 'surface_detection')) {
+    const block = metadata.surface_detection;
+    if (!block || typeof block !== 'object' || Array.isArray(block)) {
+      violations.push({
+        code: 'GRAPH_METADATA_INVALID_SURFACE_DETECTION',
+        file: 'graph-metadata.json',
+        message: `${skillId}: graph-metadata.json surface_detection must be a JSON object`,
+      });
+    }
   }
 
   const intentSignals = Array.isArray(metadata.intent_signals)

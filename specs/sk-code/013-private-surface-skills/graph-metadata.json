@@ -9,7 +9,8 @@
     "sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup",
     "sk-code/013-private-surface-skills/004-private-local-skills",
     "sk-code/013-private-surface-skills/005-leak-and-routing-verification",
-    "sk-code/013-private-surface-skills/006-review-remediation"
+    "sk-code/013-private-surface-skills/006-review-remediation",
+    "sk-code/013-private-surface-skills/007-shared-references-and-detection-order"
   ],
   "manual": {
     "depends_on": [],
@@ -134,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -147,12 +154,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -214,7 +215,7 @@
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-25T18:24:39.832Z",
+    "last_save_at": "2026-10-25T19:45:18.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +223,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e75401768816d0228b89b3d602583a90d5dc89bf28b4851ee8cb09cb54d88956",
+    "source_fingerprint": "sha256:f2cc7e534fbca2d30b980e35bedfbbeb6a93f72b40587b4e66061f4a0eca2bf8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d728ee29403782780e8c22e0702fc4d3d430f2f0f6bdb869002505fd34dc32c",
+      "spec.md": "bc96b321df8e2ac255988e6db5b101e1ffe8deaaa66918b714aa7a0bcbb3b42e",
       "research/research.md": "271021e67ed463f16198332319ad5bba567eda43a94bb3115537a317956b5c4a"
     },
     "last_active_child_id": "sk-code/013-private-surface-skills/002-hub-surface-removal",

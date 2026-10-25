@@ -1,7 +1,7 @@
 ---
 title: "SD-002: SKILLED Surface Detection"
 description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the SKILLED surface and loads the opencode/* reference and asset trees with correct sub-language detection."
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # SD-002: SKILLED Surface Detection
@@ -12,7 +12,7 @@ This scenario verifies that sk-code's smart router identifies SKILLED as the act
 
 When SKILLED is detected, the router proceeds to language sub-detection (handled separately by LS-* scenarios) and loads the appropriate sub-language reference set.
 
-Detection markers are defined verbatim in `shared/references/stack-detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
+Detection markers are declared in the `surfaceDetection` block of `sk-code-skilled` in `mode-registry.json`, and the order is defined in `shared/references/stack-detection.md` section 2. SKILLED is the fallback surface: it leads here because the prompt matches no declared specific surface. When a specific surface also matches, that surface leads and SKILLED stays as second evidence.
 
 ---
 
@@ -89,7 +89,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
-2. If surface != SKILLED: verify target path detection in `shared/references/stack-detection.md:39-40`. The path `.skilled/...` should match.
+2. If surface != SKILLED: verify the `sk-code-skilled` `surfaceDetection` block in `mode-registry.json` and the order in `shared/references/stack-detection.md` section 2. The path `.skilled/...` should match. If another surface leads, confirm a declared specific surface really matches the prompt, because a specific surface outranks the SKILLED fallback by design.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
 4. Confirm that a generic library marker (motion.dev, GSAP, etc.) MUST NOT match this prompt; verify that marker grep patterns are anchored correctly.
 
@@ -99,7 +99,8 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
-- `.skilled/skills/sk-code/shared/references/stack-detection.md` — SKILLED marker definition (lines 39-40).
+- `.skilled/skills/sk-code/shared/references/stack-detection.md`: the detection order and the `surfaceDetection` contract (section 2).
+- `.skilled/skills/sk-code/mode-registry.json`: the SKILLED `surfaceDetection` block.
 - `.skilled/skills/sk-code/sk-code-skilled/references/typescript/` — Expected-loaded TypeScript references.
 - `.skilled/skills/sk-code/sk-code-skilled/references/shared/` — Expected-loaded shared SKILLED references.
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` — SKILLED alignment verifier (run after the edit for evidence).

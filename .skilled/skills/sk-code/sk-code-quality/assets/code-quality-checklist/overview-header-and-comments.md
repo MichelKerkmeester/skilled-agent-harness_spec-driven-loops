@@ -6,7 +6,7 @@ trigger_phrases:
   - "review baseline handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Code Quality Checklist
@@ -61,7 +61,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 - [ ] **[P1] CHK-HDR-04**: Category label is ALL CAPS
 - [ ] **[P1] CHK-HDR-05**: Component name is descriptive (2-4 words)
 - [ ] **[P2] CHK-HDR-06**: No metadata (dates, authors, version numbers) in header
-- [ ] **[P1] CHK-CMT-01**: No ephemeral artifact ids in any comment (ticket/ClickUp ids, spec/phase/packet numbers, ADR ids) — keep the WHY; see [references/universal/code-style-guide.md](../../../shared/references/universal/code-style-guide.md) §4
+- [ ] **[P1] CHK-CMT-01**: No ephemeral artifact ids in any comment (ticket/ClickUp ids, spec/phase/packet numbers, ADR ids). Keep the WHY and see [references/code-style-guide.md](../../references/code-style-guide.md) §4
 
 **Compliant Example:**
 ```javascript

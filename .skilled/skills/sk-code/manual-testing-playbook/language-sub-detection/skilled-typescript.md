@@ -1,7 +1,7 @@
 ---
 title: "LS-001: SKILLED TypeScript Sub-Detection"
 description: "Verify that within SKILLED surface, TypeScript file extensions trigger loading of typescript/* references (not python, shell, or config)."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # LS-001: SKILLED TypeScript Sub-Detection
@@ -10,7 +10,7 @@ version: 1.5.2.0
 
 This scenario verifies the language sub-detection layer within SKILLED. When the target file extension is `.ts`, `.tsx`, `.mts`, or `.d.ts`, sk-code MUST load the `sk-code-skilled/references/typescript/*` set and corresponding `sk-code-skilled/assets/checklists/typescript-checklist.md`, while excluding python, shell, and config sub-language references.
 
-Sub-detection rules are defined in SKILL.md lines 78-90 and `shared/references/stack-detection.md:50-62`.
+Sub-detection rules are defined in section 3 of `shared/references/stack-detection.md`.
 
 ---
 
@@ -76,8 +76,7 @@ Evidence: `/tmp/skc-LS001-loaded-refs.txt` (loaded-refs transcript).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` (lines 78-90 — sub-detection table).
-- `.skilled/skills/sk-code/shared/references/stack-detection.md` (lines 50-62).
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` (section 3, SKILLED language sub-detection).
 - `.skilled/skills/sk-code/sk-code-skilled/references/typescript/{style_guide,quality_standards,quick_reference}.md`.
 
 ---

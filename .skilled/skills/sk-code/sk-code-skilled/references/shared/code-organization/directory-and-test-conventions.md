@@ -8,7 +8,7 @@ trigger_phrases:
   - "script directory structure"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Directory & Test File Conventions
@@ -257,7 +257,7 @@ tests/
 └── vector-index.test.ts
 ```
 
-A test never sits beside its source, and no folder is named with double underscores. Both rules are universal: see [code-style-guide.md](../../../../shared/references/universal/code-style-guide.md) §3 "Folders and tests".
+A test never sits beside its source, and no folder is named with double underscores. Both rules are universal: see [code-style-guide.md](../../../../sk-code-quality/references/code-style-guide.md) §3 "Folders and tests".
 
 ### Test File Structure
 

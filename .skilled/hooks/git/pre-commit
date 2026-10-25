@@ -5,7 +5,7 @@
 # Compatibility helper retained for direct legacy invocations.
 # The installed Git hook is .opencode/scripts/git-hooks/pre-commit.
 # Blocks commits that add ephemeral-artifact pointers to code comments.
-# See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+# See: .opencode/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
@@ -64,7 +64,7 @@ rm -rf "$HYGIENE_DIR"
 if [[ $CHECKER_RC -eq 1 ]]; then
   echo ""
   echo "BLOCKED: staged files contain ephemeral-artifact pointers in code comments."
-  echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
+  echo "See: .opencode/skills/sk-code/sk-code-quality/references/code-style-guide.md §4"
   echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
   exit 1
 fi

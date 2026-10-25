@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.2.2.0
+version: 2.2.3.0
 ---
 
 # Universal Code Style Guide
@@ -58,7 +58,7 @@ Each surface and language has a convention. Follow the surface convention; do no
 | SKILLED JS/TS       | `camelCase` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants             |
 | SKILLED Python/Shell | `snake_case` for variables/functions; `PascalCase` for classes; `UPPER_SNAKE` for constants                 |
 
-The surface code quality checklist (see `code-quality-standards.md` §6) enforces the convention.
+The surface code quality checklist (see `../../shared/references/universal/code-quality-standards.md` §6) enforces the convention.
 
 ### Universal anti-patterns
 
@@ -108,7 +108,7 @@ These two rules hold on every surface.
 
 Well-named identifiers and clear structure self-document. Add a comment only when:
 
-- A hidden constraint exists (for example, "this works around browser bug X").
+- A hidden constraint exists (for example, "this works around platform bug X").
 - A non-obvious invariant must be preserved (for example, "must run before init Y").
 - A workaround needs its cause named (for example, "works around an upstream SDK hang on empty payloads") — name the symptom, not a ticket id (see "No ephemeral-artifact pointers" below).
 - Behavior would surprise a reader.
@@ -146,7 +146,7 @@ An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or 
 | The durable WHY — the constraint, invariant, or decision itself | Yes — required | Survives any artifact lifecycle change |
 | A path or glob the running code needs (`.opencode/specs/`, `specs/NNN-*`) | Yes | Structural — code the runtime reads, not a traceability comment |
 | A stable external standard (`CWE-79`, an RFC number, `POSIX`) | Yes | Externally versioned; does not get archived with a sprint |
-| A platform / library name (`WEBFLOW:`, `MOTION:`, `LENIS:`) | Yes | Names a durable platform, not a tracking artifact |
+| A platform / library name (`NODE:`, `SQLITE:`, `POSTGRES:`) | Yes | Names a durable platform, not a tracking artifact |
 
 The line that matters is *instance vs. structural*: a string the program reads at runtime (a `.opencode/specs/` path constant) stays; a comment that merely cites an artifact for traceability is what this rule forbids.
 
@@ -225,7 +225,7 @@ For the rules that ARE language-specific, see:
 
 ## 7. RELATED RESOURCES
 
-- [`./code-quality-standards.md`](./code-quality-standards.md) - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
-- [`./error-recovery.md`](./error-recovery.md) - what to do when a style violation can't be auto-fixed.
+- [`../../shared/references/universal/code-quality-standards.md`](../../shared/references/universal/code-quality-standards.md) - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
+- [`../../shared/references/workflow-debug.md`](../../shared/references/workflow-debug.md) - debugging and command-failure recovery when a style violation cannot be auto-fixed.
 - Surface standards under `.skilled/skills/sk-code/sk-code-skilled/references/`.
 - `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` - the surface checklists that operationalize this guide.

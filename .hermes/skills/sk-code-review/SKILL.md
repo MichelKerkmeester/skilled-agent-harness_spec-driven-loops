@@ -60,7 +60,7 @@ Review behavior follows a baseline+surface-evidence model:
 
 - Baseline (always): the `sk-code-review` mode (of the sk-code family) findings-first doctrine.
 - Surface standards evidence (when available): `sk-code` detected surface resources.
-- Surface detection: the markers and the precedence (SKILLED > UNKNOWN) come from the shared detection contract, [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) section 2. `detect_surface_evidence` below restates that contract and keeps no rules of its own, so it changes only when the contract does.
+- Surface detection: the markers and the order come from the shared detection contract, [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) section 2. Every declared specific surface comes first, then the SKILLED fallback, then UNKNOWN, and a specific surface that matches beside SKILLED leads while SKILLED stays as second evidence. `detect_surface_evidence` below restates that contract and keeps no rules or markers of its own, so it changes only when the contract does.
 - Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
 
 ### Phase Detection
@@ -223,27 +223,44 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
         selected.append(ranked[1][0])
     return selected[:max_intents]
 
-# Surface markers restate the shared detection contract,
-# ../shared/references/stack-detection.md section 2, which owns them. Change them only when it changes.
-SKILLED_PATH_MARKER = ".skilled/"
+# Surface markers and their order come from the declared surfaceDetection blocks
+# that the shared detection contract, ../shared/references/stack-detection.md
+# section 2, defines. declared_surfaces() returns them in the contract's order:
+# specific surfaces first, the one fallback last. Nothing here lists a surface.
 
-def detect_surface_evidence(task, workspace_files=None, changed_files=None, read_text=None) -> str:
-    """Return SKILLED or UNKNOWN, in the shared contract's precedence.
+def detect_surface_evidence(task, workspace_files=None, changed_files=None, read_text=None) -> list[str]:
+    """Return every matching surface label in the contract's order, or ["UNKNOWN"].
 
+    The first label leads and any later one, the fallback included, is second evidence.
     Paths are repository-relative and already resolved through symlinks, as the
-    contract's symlink guard requires. read_text(path) returns a file's text, or "".
+    contract's symlink guard requires, so the fallback, which is the hub's own code,
+    holds only for a path its path markers place inside the hub. read_text(path)
+    returns a file's text, or "".
     """
-    text = _task_text(task)
+    text = _task_text(task).lower()
     paths = [path.replace("\\", "/") for path in (workspace_files or []) + (changed_files or [])]
     read = read_text or (lambda path: "")
 
     def name(path: str) -> str:
         return path.rsplit("/", 1)[-1]
 
-    if any(path.startswith(SKILLED_PATH_MARKER) or "/" + SKILLED_PATH_MARKER in path for path in paths):
-        return "SKILLED"
+    def on_path(marker: str) -> bool:
+        return any(path.startswith(marker) or "/" + marker in path for path in paths)
+
+    def matches(surface) -> bool:
+        if surface.role == "fallback":
+            return any(on_path(marker) for marker in surface.path_markers)
+        return (
+            any(on_path(marker) for marker in surface.path_markers)
+            or any(name(path) == marker or (marker.startswith(".") and name(path).endswith(marker))
+                   for marker in surface.file_markers for path in paths)
+            or any(marker.lower() in text or any(marker in read(path) for path in paths)
+                   for marker in surface.content_markers)
+        )
+
+    labels = [surface.label for surface in declared_surfaces() if matches(surface)]
     # Generic Node (a package.json or src/ alone) is not owned by any surface.
-    return "UNKNOWN"
+    return labels or ["UNKNOWN"]
 
 def route_review_resources(task, workspace_files=None, changed_files=None, read_text=None):
     inventory = discover_markdown_resources()
@@ -352,7 +369,7 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]
 **Baseline used**: [sk-code (`sk-code-review`)]
-**Surface evidence used**: [SKILLED | UNKNOWN]
+**Surface evidence used**: [detected surface labels in order, such as `WEBFLOW, SKILLED` or `SKILLED` | UNKNOWN]
 
 ## Findings
 

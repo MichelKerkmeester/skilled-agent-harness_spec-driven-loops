@@ -356,6 +356,37 @@ function testGateAllowsKnownGraphMetadataExtra() {
   assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
 }
 
+function testGateAcceptsSurfaceDetectionObject() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'surface-detection-ok', {
+    'graph-metadata.json': {
+      skill_id: 'surface-detection-ok',
+      surface_detection: { label: 'FIXTURE', role: 'specific', pathMarkers: ['src/fixture/'] },
+    },
+    'leaf-manifest.config.json': { workflowMode: 'surface-detection-ok' },
+    'references/a.md': '# a\n',
+  });
+
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'pass');
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_INVALID_SURFACE_DETECTION'));
+}
+
+function testGateRejectsNonObjectSurfaceDetection() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'surface-detection-bad', {
+    'graph-metadata.json': { skill_id: 'surface-detection-bad', surface_detection: ['src/fixture/'] },
+    'leaf-manifest.config.json': { workflowMode: 'surface-detection-bad' },
+    'references/a.md': '# a\n',
+  });
+
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'fail');
+  assert.ok(codesOf(result).includes('GRAPH_METADATA_INVALID_SURFACE_DETECTION'));
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+}
+
 function testGateRejectsIntentSignalsBelowFloor() {
   const skillsDir = makeTmpSkillsDir();
   const dir = makeRoot(skillsDir, 'thin-intent-signals', {
@@ -604,6 +635,8 @@ try {
   testGateIgnoresSameNamedContinuityMetadata();
   testGateRejectsUnknownGraphMetadataKey();
   testGateAllowsKnownGraphMetadataExtra();
+  testGateAcceptsSurfaceDetectionObject();
+  testGateRejectsNonObjectSurfaceDetection();
   testGateRejectsIntentSignalsBelowFloor();
   testGateRejectsEmptyIntentSignalsAndTriggers();
   testGateAcceptsIntentSignalsAtFloor();

@@ -16,7 +16,8 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They bundle stack knowledge plus the workflow doctrine as read-only evidence; the acting agent applies it — the surface never executes the process itself.",
-      "surfaces": ["sk-code-ci", "sk-code-skilled"]
+      "surfaces": ["sk-code-ci", "sk-code-skilled"],
+      "surfaceDetection": "A surface entry may carry a surfaceDetection block: label (the detected surface name), role ('specific' or 'fallback'), and pathMarkers, fileMarkers and contentMarkers. A skill outside the hub whose graph-metadata.json names family 'sk-code' can declare the same block as surface_detection, and it is always specific. Detection tries every specific surface first, hub entries in modes[] order and then outside skills by skill_id, then the single fallback, then UNKNOWN. When a specific surface and the fallback both match, the specific surface leads and the fallback comes along as second evidence. The fallback is the hub's own code, so its path markers count only when the resolved real path lands inside the hub's own .skilled/ directory. A surface reached from request vocabulary alone, such as sk-code-ci, declares no block. The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in routerPolicy.tieBreak."
     }
   },
   "modes": [
@@ -73,6 +74,13 @@
       "aliases": ["opencode system code", "opencode system code workflow", "opencode typescript verification"],
       "advisorRouting": {
         "routingClass": "metadata"
+      },
+      "surfaceDetection": {
+        "label": "SKILLED",
+        "role": "fallback",
+        "pathMarkers": [".skilled/", ".opencode/"],
+        "fileMarkers": ["SKILL.md", ".ts", ".tsx", ".cjs", ".mjs", ".py", ".sh", ".rs"],
+        "contentMarkers": ["graph-metadata", "spec-folder", "argparse"]
       }
     },
     {

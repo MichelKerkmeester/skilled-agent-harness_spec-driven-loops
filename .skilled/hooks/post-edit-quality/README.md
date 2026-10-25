@@ -30,7 +30,7 @@ COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
 Violations in <file>:
   <file>:<line>: <offending comment excerpt>
-See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 ```
 
