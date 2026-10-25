@@ -33,7 +33,7 @@ Nine workflows run on every push with no path filter. They spend 13 jobs and 25 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |

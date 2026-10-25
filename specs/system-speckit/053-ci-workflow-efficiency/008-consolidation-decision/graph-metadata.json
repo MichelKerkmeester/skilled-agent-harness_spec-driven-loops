@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,12 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".github/workflows/README.md",
-      ".github/workflows/advisory-checks.yml",
-      "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
-      ".github/workflows/command-tree-parity.yml",
-      ".skilled/skills/sk-doc/SKILL.md",
-      "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md"
+      "scratch/consolidation-baseline.md",
+      "scratch/runs-after.json",
+      "scratch/window.json",
+      "scratch/consolidation-cost.mjs",
+      "scratch/d8-answer.md",
+      "scratch/consolidation-decision.md",
+      "scratch/phase-start-sha.txt",
+      "scratch/pre-merge-inventory.md",
+      "scratch/snapshot-window.md",
+      "scratch/no-merge.md",
+      "scratch/phase-result.md",
+      "scratch/consolidation-cost.md",
+      ".github/workflows/README.md"
     ],
     "entities": [
       {
@@ -77,7 +84,7 @@
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -99,33 +106,81 @@
         "source": "derived"
       },
       {
+        "name": "consolidation-baseline.md",
+        "kind": "doc",
+        "path": "scratch/consolidation-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "runs-after.json",
+        "kind": "config",
+        "path": "scratch/runs-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "window.json",
+        "kind": "config",
+        "path": "scratch/window.json",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-cost.mjs",
+        "kind": "file",
+        "path": "scratch/consolidation-cost.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "d8-answer.md",
+        "kind": "doc",
+        "path": "scratch/d8-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-decision.md",
+        "kind": "doc",
+        "path": "scratch/consolidation-decision.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-start-sha.txt",
+        "kind": "file",
+        "path": "scratch/phase-start-sha.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-merge-inventory.md",
+        "kind": "doc",
+        "path": "scratch/pre-merge-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "snapshot-window.md",
+        "kind": "doc",
+        "path": "scratch/snapshot-window.md",
+        "source": "derived"
+      },
+      {
+        "name": "no-merge.md",
+        "kind": "doc",
+        "path": "scratch/no-merge.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-cost.md",
+        "kind": "doc",
+        "path": "scratch/consolidation-cost.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".github/workflows/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "advisory-checks.yml",
-        "kind": "config",
-        "path": ".github/workflows/advisory-checks.yml",
-        "source": "derived"
-      },
-      {
-        "name": "summary.md",
-        "kind": "doc",
-        "path": "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-tree-parity.yml",
-        "kind": "config",
-        "path": ".github/workflows/command-tree-parity.yml",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
@@ -151,59 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Decision",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nine workflows run on every push with no path filter: eight on `main` or `skilled/`, and `message-contract.yml` on every branch",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-25T17:47:02.188Z",
+    "last_save_at": "2026-10-25T20:37:17.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b6a05bddf0f3083cdb6345f76e6c8b648072892399b5be2a58901f5aa52232a",
+    "source_fingerprint": "sha256:829add171d6b171c9472af115cde4b8926979c9545bfc7772acd491c44010350",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a39be2cba7c9c2d556fe6dffb1d76e8d9f932fc4efa50d5cece0b0f7fbc93190",
+      "spec.md": "8017291bc2b55d08382f976a6de0025465eeab56a026bcafd2dc2e4dca4f08f1",
       "plan.md": "fb07cab5524f9025e954f822aa34a5eac7707a495cb66dceb017a6bbe6e1794a",
-      "tasks.md": "0ea9cee175fc3b4d4414670a7a098d3c5658380e7f8fa04741005d1e1bae5921",
-      "decision-record.md": "2635ce91c241bf0ab45c62efa09957e341c3364974f1d0e7deb7b3e1dd5aef63",
-      "implementation-summary.md": "cc4a17331ae139cd5e1ed46d18d749db9cfe8315f708c3726b915adc61e3ad79"
+      "tasks.md": "fc8d042e964d0a183ccdf25b5871c2065eee2181e9d6924ef280e76c36b30f1b",
+      "decision-record.md": "7a4e87c543a21499cc9b6b933e14aa653948f7e7f47d06fb59cdc781a8d9a742",
+      "implementation-summary.md": "c7ef3d2a8a76b0aca660dfb180828729a6b8db28ddb7bda2f7c4648db2cd8d8e"
     },
     "last_active_at": null
   }

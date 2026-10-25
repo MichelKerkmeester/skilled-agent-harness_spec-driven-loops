@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built: this phase re-measures the nine always-run workflows' 13 jobs after phases 002 to 007, records the before and after numbers and the recomputed merge upper bound in a decision record, and merges workflows only if the operator answers D8 yes. Nothing has been implemented yet."
+description: "Measured and decided: the nine always-run workflows' 13 jobs were re-measured after phases 002 to 007, the merge bound was recomputed from 360 runs of job data, and D8 is no, so the eight always-run FRESHNESS workflows stay separate and no workflow file changed. D8 is the session's judgment under the operator's delegation, pending the operator's verification at the end of the session."
 trigger_phrases:
   - "consolidation decision implementation summary"
 importance_tier: "normal"
@@ -8,22 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
-    last_updated_at: "2026-10-23T14:30:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded the planned scope; no code has been built"
-    next_safe_action: "Run T001 to T025 once phases 002 to 007 have landed"
-    blockers:
-      - "D8 is unanswered; the default is no merge"
-      - "002 to 007 have not landed"
+    last_updated_at: "2026-10-25T20:45:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Measured the nine workflows, recorded D8 = no and closed the acceptance rows"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
+      - "scratch/consolidation-decision.md"
+      - "scratch/d8-answer.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-008-consolidation-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,8 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-consolidation-decision |
-| **Completed** | Not built |
+| **Completed** | Measured and decided 2026-10-25 at start SHA `1c317e13c5`. No workflow file changed. The two commit tasks, T022 and T025, are the orchestrator's |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,20 +51,30 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing. This packet is planned and no task has run. `tasks.md` carries T001 to T025, and every one of them is `[ ]`.
+A measurement and a decision, and no workflow change. The question was whether merging the always-run workflows is worth the check contexts it costs, answered with numbers taken after phases 002 to 007 rather than with the research's projection.
 
 ### Phase 8: consolidation-decision
 
-The phase exists to answer one question with a measurement instead of an estimate: whether merging the nine always-run workflows is worth the twelve check contexts it costs. The research priced the merge at 1,241-1,606 runner-min/day on a volume that R1 removes 35 of 73 push SHAs from, so the number has to be re-measured after phases 002 to 007 land. When the tasks run, they produce `scratch/consolidation-baseline.md` for the before numbers, `scratch/consolidation-cost.json` for the after numbers and the bound, and `scratch/consolidation-decision.md` for the decision itself.
+- **The before numbers** are in `scratch/consolidation-baseline.md`: the 001 dataset's nine workflows and 13 jobs, 1,065 job-seconds, 25 billed minutes per push, 1,866 runner-min/day, the 1,241..1,606 bound at that volume, and the 002 post-R1 rows (1,145 for the nine, 993 for the eight).
+- **The after numbers** come from a fresh snapshot: 1000 runs in `scratch/runs-after.json`, the newest 40 runs of each of the nine and 360 job files under `scratch/jobs/`, and the window in `scratch/window.json`. `scratch/consolidation-cost.mjs` computes the table and the bounds, and `--check` re-derives them.
+- **The result.** The plan's eight bill 944.8 runner-min/day today, 24 billed minutes per push. One merged job would bill 7, so the saving is 17 per push: 636.1 runner-min/day rate-aware, 749.7 by the plan's formula. The cost would be 12 check contexts collapsed into one, 382.5 s of serial work against a 190 s worst single job, and two protected-by-function workflows deleted. The one required status check, message-contract's, is outside the set.
+- **A finding the plan did not expect.** `command-tree-parity.yml` reads `SKILLED_CI_TESTS` in the tree, so the plan's eight span two switch groups. The script also reports the seven that read `SKILLED_CI_FRESHNESS`: 605.16 runner-min/day saved rate-aware.
+- **The decision** is `D8=no` (`scratch/d8-answer.md`, `scratch/consolidation-decision.md`, ADR-001). It is the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification at the end of the session.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `scratch/consolidation-baseline.md` | Planned create | The 9 workflow rows and 13 job rows with the 001 and 002 before numbers |
-| `scratch/consolidation-cost.mjs` | Planned create | The arithmetic, with `--check` to re-derive every figure from the saved JSON |
-| `scratch/consolidation-decision.md` | Planned create | The measured decision record with the before and after numbers and D8's answer |
-| `.github/workflows/always-run-guards.yml` | Planned create, only on `D8=yes` | One workflow, one job, the eight members' steps |
+| `scratch/phase-start-sha.txt` | Created | The start SHA for the phase's own diff range |
+| `scratch/pre-merge-inventory.md` | Created | The 13 jobs of the nine, with trigger, switch and timeout |
+| `scratch/consolidation-baseline.md` | Created | The before tables and the bound's arithmetic |
+| `scratch/runs-after.json`, `scratch/jobs/`, `scratch/window.json`, `scratch/snapshot-window.md` | Created | The after snapshot and its window |
+| `scratch/consolidation-cost.mjs`, `.json`, `.md` | Created | The arithmetic and its reproducible output |
+| `scratch/consolidation-decision.md` | Created | The measured decision record |
+| `scratch/d8-answer.md` | Created | D8's answer with its date, authority and numbers |
+| `scratch/no-merge.md` | Created | The empty workflow diff and status |
+| `scratch/phase-result.md` | Created | The setup checks, the deviations, the cost check, the hostile variants and the gates |
+| `spec.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `goal.md`, this file | Modified | Status, evidence and continuity |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +82,7 @@ The phase exists to answer one question with a measurement instead of an estimat
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The packet is at the plan stage: `spec.md` states the requirements, `plan.md` states the measurement basis and the merge shape, `tasks.md` states the ordered changes with their checks, `decision-record.md` freezes the six design choices, and `acceptance-criteria.md` states the nine criteria that decide closure. Nothing under `scratch/` exists, D8 is unanswered, and no workflow file has changed.
+The tasks ran in order from T001. T001 and T002 confirmed that phases 002 to 007 are in the tree: the FRESHNESS switch is in `gate-inputs.yml`, `command-tree-parity.yml` carries its concurrency block, and `hooks-node-tests.yml` is gone. T003 wrote the before tables, T004 to T007 took the snapshot, T008 to T010 wrote and checked the cost script, and T011 wrote the decision record. T012 and T013 recorded `D8=no`, and T014 proved the empty workflow diff. T015 to T020 and T023 are superseded by that answer. T021 ran the gates and T024 closed the rows. The script was also run against a throwaway copy with a tampered stored number, a skipped job, a job with no timestamps, missing checkout steps, empty runs and a short window, and it failed or flagged each one (`scratch/phase-result.md`, Hostile variants).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,10 +92,10 @@ Not delivered. The packet is at the plan stage: `spec.md` states the requirement
 
 | Decision | Why |
 |----------|-----|
-| No merge without an operator yes; the default is no merge | The saving is an upper bound on a volume R1 removes, and the mechanism that produces it is the loss of twelve check contexts |
-| The candidate set is the eight always-run FRESHNESS workflows | One job answering two switch variables would let one group's switch govern the other group's checks, and message-contract's context is required |
+| D8 = no: the eight always-run FRESHNESS workflows stay separate | The 636.1 runner-min/day saving costs the per-check signal on 12 checks, doubles the time to the last freshness verdict, widens five members' pull-request coverage and crosses a switch group |
+| The plan's eight stay the priced set, and the seven that read the switch are shown beside them | The plan fixes the eight, and the tree shows `command-tree-parity.yml` in TESTS, so the record shows both rather than changing the set silently |
+| The script reports a rate-aware saving next to the plan's formula | `command-tree-parity.yml` runs about 19 times a day against 43 to 50 for the others, so `savingPerPush x max(runsPerDay)` overstates the saving |
 | Measurement is job-level seconds at `ceil(seconds / 60)` | Billing and `timeout-minutes` see job execution, and the before number was measured this way |
-| The merged job keeps one `fetch-depth: 0` checkout and the daily schedule | Two members diff against their base, and one member carries a cron; a shallow, unscheduled merge would silently break both |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -94,9 +105,11 @@ Not delivered. The packet is at the plan stage: `spec.md` states the requirement
 
 | Check | Result |
 |-------|--------|
-| `node scratch/consolidation-cost.mjs --check` | Not run; the script does not exist yet |
-| `bash .github/scripts/check-gate-inputs.sh` | Not run against a changed tree; no workflow file has changed |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` | Run at plan time; the only failures are the two generated-metadata rules, which the orchestrator owns |
+| `node scratch/consolidation-cost.mjs --check` | `check: ok`, exit 0 |
+| `bash .github/scripts/check-gate-inputs.sh` | `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0`, `RESULT: PASSED`, exit 0 |
+| YAML parse of `.github/workflows/*.yml` | No output, exit 0 |
+| `git diff --stat 1c317e13c5..HEAD -- .github/workflows` and `git status --porcelain -- .github/workflows` | Both print nothing, exit 0 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0, after `repair-derived.cjs --folder <this folder> --apply` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,9 +117,10 @@ Not delivered. The packet is at the plan stage: `spec.md` states the requirement
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Every job count and line number is provisional.** Phases 002 to 007 add a `concurrency:` block, a `timeout-minutes` and an `if:` to each job, delete `hooks-node-tests.yml` and rewrite `.github/workflows/README.md`, so the anchors in `tasks.md` will have moved by the time the tasks run. Each task locates its quoted text and stops when it is absent.
-2. **The merge saving is an upper bound until T009 runs.** It is built from the 001 medians and a 50-76 s checkout, and the merged job pays a depth-0 checkout because two members need full history, so the measured saving is expected to be lower than the projection.
-3. **A subset answer to D8 is not planned.** The arithmetic, the step order and the README edits are written for the full eight-workflow set, so a subset needs a new plan rather than a task.
+1. **D8 is a delegated judgment.** The operator delegated the decision on 2026-10-25 and asked to verify at the end. If the operator answers yes, T015 to T020 reopen, and the plan needs a re-plan first, because `command-tree-parity.yml` now sits in another switch group.
+2. **The snapshot is about 19 h after the last edit to the nine, not 24 h.** That edit adds a job-level `if:` and changes no step, and the newest 40 runs of eight of the nine postdate the last step change, so the job seconds describe the current shape.
+3. **The empty-diff range will grow.** When the phase finished, `HEAD` was `7041b05478`, four commits past the start SHA, none of them touching `.github/workflows`, and the diff was empty. Rerun the diff after the orchestrator's commit of this phase.
+4. **The bound is an upper bound.** It credits only the removed checkouts and job ceilings. It does not charge the merged job for running `command-tree-parity.yml`'s steps on every push, and it does not credit the shared `npm ci` installs.
 <!-- /ANCHOR:limitations -->
 
 ---

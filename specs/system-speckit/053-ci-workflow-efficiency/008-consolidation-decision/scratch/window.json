@@ -1,0 +1,43 @@
+{
+  "start": "2026-10-24T14:27:40Z",
+  "end": "2026-10-25T20:19:19Z",
+  "hours": 29.86,
+  "perWorkflow": {
+    "advisory-checks.yml": {
+      "runs": 40,
+      "hours": 22.11
+    },
+    "changed-packet-validation.yml": {
+      "runs": 40,
+      "hours": 22.11
+    },
+    "command-tree-parity.yml": {
+      "runs": 40,
+      "hours": 51.18
+    },
+    "dispatch-enforcement-guard.yml": {
+      "runs": 40,
+      "hours": 22.11
+    },
+    "gate-inputs.yml": {
+      "runs": 40,
+      "hours": 22.11
+    },
+    "message-contract.yml": {
+      "runs": 40,
+      "hours": 19.1
+    },
+    "playbook-operator-contract.yml": {
+      "runs": 40,
+      "hours": 21.77
+    },
+    "rule-canary-sync.yml": {
+      "runs": 40,
+      "hours": 22.11
+    },
+    "sk-doc-script-tests.yml": {
+      "runs": 40,
+      "hours": 22.11
+    }
+  }
+}
