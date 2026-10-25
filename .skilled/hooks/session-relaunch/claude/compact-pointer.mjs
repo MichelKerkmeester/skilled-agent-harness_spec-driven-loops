@@ -161,7 +161,7 @@ function claimAfterGoalStart(payload) {
 async function main() {
   let enabled = false;
   try {
-    enabled = isHookEnabled(CONCERN, process.env, loadConfigFile(configPath()));
+    enabled = isHookEnabled(CONCERN, process.env, loadConfigFile(configPath()), { runtime: 'claude' });
   } catch {}
   if (!enabled) return done();
 

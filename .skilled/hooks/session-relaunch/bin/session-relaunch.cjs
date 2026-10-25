@@ -13,7 +13,7 @@ const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const hopHistory = require('../lib/hop-history.cjs');
 const withdraw = require('../lib/withdraw.cjs');
-const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
+const { hookFlagDecision, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = core.RUNTIMES;
 const GOAL_FILENAME = 'goal.md';
@@ -444,6 +444,21 @@ function validatedNote(options, runtime) {
   return { handoffPath, sessionId, specFolder };
 }
 
+// The refusal names the switch that turned the concern off, as the resolver reports it, so
+// the operator is never told to set a flag that is already set or that a kill switch overrides.
+function relaunchRefusal(decision, runtime) {
+  if (decision.reason === 'master' || decision.reason === 'kill') {
+    return `session relaunch is disabled by ${decision.key};`
+      + ' unset it to turn session relaunch back on';
+  }
+  if (decision.reason === 'runtime') {
+    return `session relaunch is off for ${runtime} by ${decision.key};`
+      + ` set it to 1 to turn it on for ${runtime}`;
+  }
+  return `session relaunch is disabled by hook flags for ${runtime}; set SYSTEM_SESSION_RELAUNCH_ENABLED=1`
+    + ` or SYSTEM_SESSION_RELAUNCH_${runtime.toUpperCase()}_ENABLED=1 to turn it on`;
+}
+
 function stateForLoop(loopId) {
   if (typeof loopId !== 'string' || !loopId.trim()) throw new Error('--loop-id is required');
   return core.readRelaunchFile(loopId);
@@ -477,16 +492,20 @@ function prepare(args) {
   // Inside the loop the exported runtime wins; outside it the flag names the runtime.
   const runtime = loopId ? envRuntime : (flagRuntime ?? envRuntime);
 
+  // A prepare that names no note is a usage error before it is a refusal.
+  if (!options['--handoff']) throw new Error('--handoff is required');
+  // A checkout that never opted in gets neither an armed record nor a printed claim command,
+  // so one check covers both paths and they refuse in the same words. It runs before the
+  // note is validated, because validation also records the goal packet into the note.
+  const decision = hookFlagDecision('session-relaunch', undefined, undefined, { runtime });
+  if (!decision.enabled) throw new Error(relaunchRefusal(decision, runtime));
+
   const { handoffPath, sessionId, specFolder } = validatedNote(options, runtime);
 
   if (!loopId) {
     supersedeClaimedNotes(handoffPath, { sessionId });
     printManualClaim(handoffPath, runtime, specFolder);
     return 3;
-  }
-
-  if (!isHookEnabled('session-relaunch')) {
-    throw new Error('session relaunch is disabled by hook flags');
   }
 
   refuseForShellChild(loopId, runtime);

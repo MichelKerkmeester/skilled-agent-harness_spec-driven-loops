@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Full 035 gate, run from the final tree: once with a clean relaunch env, once
+# with SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0 exported.
+set -u
+ROOT=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+OUT=$ROOT/specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/scratch
+cd "$ROOT" || exit 1
+
+# Strip every inherited relaunch or master switch so the clean run is clean.
+for v in $(env | sed -n 's/^\(SYSTEM_SESSION_RELAUNCH_[A-Z_]*\)=.*/\1/p; s/^\(SYSTEM_HOOKS_DISABLED\)=.*/\1/p; s/^\(MK_HOOKS_DISABLED\)=.*/\1/p'); do
+  unset "$v"
+done
+
+run_gate() {
+  local label=$1 log=$OUT/final-green-$1.txt
+  : > "$log"
+  {
+    echo "== gate $label ($(date -u +%FT%TZ)) HEAD $(git -c core.fsmonitor=false rev-parse --short HEAD)"
+    env | grep -E '^(SYSTEM_SESSION_RELAUNCH_|SYSTEM_HOOKS_DISABLED|MK_HOOKS_DISABLED|MK_GOAL_DISABLED|OPENCODE_GOAL_DISABLED)' || echo "(no relaunch or master switch exported)"
+
+    node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs > "$OUT/final-green-$label-node.txt" 2>&1
+    echo "node exit=$?"; grep -E '^ℹ (tests|pass|fail) ' "$OUT/final-green-$label-node.txt"
+
+    node --test .skilled/hooks/shared/hook-flags.test.cjs > "$OUT/final-green-$label-hookflags.txt" 2>&1
+    echo "hookflags exit=$?"; grep -E '^ℹ (tests|pass|fail) ' "$OUT/final-green-$label-hookflags.txt"
+
+    npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > "$OUT/final-green-$label-pi-vitest.txt" 2>&1
+    echo "pi-vitest exit=$?"; grep -E 'Tests ' "$OUT/final-green-$label-pi-vitest.txt"
+
+    (cd .skilled/skills/system-spec-kit/runtime/cli && VITE_CONFIG_NATIVE_IGNORE_WARNING=true npx vitest run --config ../../vitest.config.ts --project cli tests/validator-git-fsmonitor.vitest.ts tests/continuity-freshness.vitest.ts) > "$OUT/final-green-$label-validator-vitest.txt" 2>&1
+    echo "validator-vitest exit=$?"; grep -E 'Tests ' "$OUT/final-green-$label-validator-vitest.txt"
+
+    (cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/env-reference-drift.vitest.ts) > "$OUT/final-green-$label-envdrift.txt" 2>&1
+    echo "envdrift exit=$?"; grep -E 'Tests ' "$OUT/final-green-$label-envdrift.txt"
+
+    bash -n .skilled/bin/skilled-loop; echo "bash-n skilled-loop exit=$?"
+    bash -n .skilled/hooks/shared/hook-flags.sh; echo "bash-n hook-flags.sh exit=$?"
+    shellcheck -S warning .skilled/bin/skilled-loop .skilled/hooks/shared/hook-flags.sh; echo "shellcheck exit=$?"
+  } >> "$log" 2>&1
+  cat "$log"
+}
+
+run_gate clean
+export SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0
+run_gate claude0
+for r in CODEX PI OPENCODE HERMES CURSOR DEVIN; do export "SYSTEM_SESSION_RELAUNCH_${r}_ENABLED=0"; done
+export SYSTEM_SESSION_RELAUNCH_DISABLED=1 SYSTEM_HOOKS_DISABLED=1 MK_HOOKS_DISABLED=1 MK_GOAL_DISABLED=1 OPENCODE_GOAL_DISABLED=1
+run_gate hostile

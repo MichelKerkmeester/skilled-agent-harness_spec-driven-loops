@@ -1,0 +1,60 @@
+# tsc --noEmit --strict --module nodenext --moduleResolution nodenext --target es2022 --skipLibCheck on hook-flags.ts and pi/session-relaunch.ts
+# working tree: exit 2, 53 errors; HEAD copy: exit 2, 54 errors
+# normalized diff (HEAD vs working tree):
+53d52
+< .skilled/hooks/shared/hook-flags.ts: error TS1470: The 'import.meta' meta-property is not allowed in files which will build into CommonJS output.
+# diff exit=1
+# working tree errors:
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(5,23): error TS2307: Cannot find module 'node:child_process' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(6,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(8,53): error TS2307: Cannot find module '@earendil-works/pi-coding-agent' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(13,8): error TS2307: Cannot find module '../../.skilled/hooks/shared/hook-flags.mjs' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(32,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(38,10): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(42,73): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(44,23): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(46,41): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(93,36): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(94,25): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(98,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(104,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(106,25): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(109,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(115,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(120,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(124,53): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(133,11): error TS2503: Cannot find namespace 'NodeJS'.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(202,20): error TS2307: Cannot find module '../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(213,20): error TS2307: Cannot find module '../../.skilled/hooks/session-relaunch/lib/context-usage.cjs' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(223,20): error TS2307: Cannot find module '../../.skilled/hooks/session-relaunch/lib/nudge.cjs' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(234,20): error TS2307: Cannot find module '../../.skilled/hooks/session-relaunch/lib/withdraw.cjs' or its corresponding type declarations.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(253,31): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(253,55): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(267,35): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(288,25): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(296,40): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(310,39): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(336,8): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(349,58): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(357,84): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(395,12): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(402,7): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(444,18): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(447,56): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(452,10): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(460,10): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(485,31): error TS7006: Parameter 'event' implicitly has an 'any' type.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(485,38): error TS7006: Parameter 'ctx' implicitly has an 'any' type.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(502,14): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(509,58): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(520,59): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(526,38): error TS7006: Parameter 'event' implicitly has an 'any' type.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(526,45): error TS7006: Parameter 'ctx' implicitly has an 'any' type.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(545,29): error TS7006: Parameter '_event' implicitly has an 'any' type.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(545,37): error TS7006: Parameter 'ctx' implicitly has an 'any' type.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(606,22): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(617,14): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(638,48): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(648,49): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts(655,70): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+.skilled/hooks/shared/hook-flags.ts(9,31): error TS2307: Cannot find module 'node:module' or its corresponding type declarations.

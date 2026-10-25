@@ -17,6 +17,7 @@ const contextAdapter = path.join(__dirname, '..', 'hermes', 'context-nudge.mjs')
 const armAdapter = path.join(__dirname, '..', 'hermes', 'session-end-arm.mjs');
 const usage = require('../lib/context-usage.cjs');
 const core = require('../lib/relaunch-core.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
 // and every sandbox copies this environment into the hooks it spawns.
@@ -27,7 +28,7 @@ for (const key of Object.keys(process.env)) {
 function sandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-relaunch-'));
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     XDG_RUNTIME_DIR: path.join(root, 'runtime'),
     HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
     // The relaunch hooks are off until opted in; these cases exercise them on.

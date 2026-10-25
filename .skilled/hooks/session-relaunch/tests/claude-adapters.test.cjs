@@ -16,6 +16,7 @@ const POST_TOOL_USE = require('./fixtures/payload-post-tool-use.json');
 const USER_PROMPT_SUBMIT = require('./fixtures/payload-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/payload-stop.json');
 const { runNested } = require('./fixtures/nested-run.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 const SESSION_ID = 'session-adapter-00000001';
 
 function createSandbox(t) {
@@ -27,7 +28,7 @@ function createSandbox(t) {
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
@@ -367,6 +368,31 @@ test('context-nudge emits nothing when nothing enables the relaunch concern', as
   const optedIn = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
   assert.equal(optedIn.code, 0, optedIn.stderr);
   assert.notEqual(optedIn.stdout, '');
+});
+
+test('context-nudge stays silent with its runtime switched off while the global flag is on', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  sandbox.env.SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED = '0';
+  // Another runtime's switch says nothing about this one.
+  sandbox.env.SYSTEM_SESSION_RELAUNCH_PI_ENABLED = '1';
+  const transcriptPath = writeTranscript(sandbox, 950);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const silent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(silent.code, 0, silent.stderr);
+  assert.equal(silent.stdout, '');
+
+  // Emptying the runtime switch hands the answer back to the global flag.
+  sandbox.env.SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED = '';
+  const fallsThrough = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(fallsThrough.code, 0, fallsThrough.stderr);
+  assert.notEqual(fallsThrough.stdout, '');
 });
 
 test('context-nudge emits nothing when session_id fails the charset gate', async (t) => {

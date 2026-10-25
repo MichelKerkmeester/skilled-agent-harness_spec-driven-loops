@@ -1,0 +1,10 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+
+ Test Files  1 passed (1)
+      Tests  59 passed (59)
+   Start at  20:06:51
+   Duration  505ms (tests 86%, transform 10%, import 4%)
+
+exit=0

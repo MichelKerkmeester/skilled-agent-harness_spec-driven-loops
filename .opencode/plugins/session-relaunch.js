@@ -311,7 +311,7 @@ function sessionRelaunchPlugin(ctx = {}) {
 
   function isEnabled() {
     try {
-      return hookFlags.isHookEnabled(CONCERN, process.env, flagsConfig());
+      return hookFlags.isHookEnabled(CONCERN, process.env, flagsConfig(), { runtime: 'opencode' });
     } catch {
       return false;
     }

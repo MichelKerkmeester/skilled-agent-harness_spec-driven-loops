@@ -1,0 +1,36 @@
+✔ enabled by default when no flag is set (0.769708ms)
+✔ master switch disables every concern (0.083833ms)
+✔ canonical per-concern switch disables only that concern (0.056791ms)
+✔ concernFlag derives the canonical env name (0.066083ms)
+✔ legacy aliases still disable their concern (0.105709ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.061042ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.055834ms)
+✔ .mjs and .ts facades re-export identical behavior (20.56375ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.116208ms)
+✔ environment overrides the config file both ways (0.118917ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (5.827ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.623375ms)
+✔ session-relaunch is off by default while every other concern stays on (0.1065ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.058417ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.545917ms)
+✔ a kill switch beats the session-relaunch enable flag (0.050375ms)
+✔ the facades carry the session-relaunch default (0.128209ms)
+✔ the node and shell resolvers give the same session-relaunch answers (390.23975ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.211292ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.638709ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (80.482041ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.119459ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (55.665042ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (144.517834ms)
+✔ a byte order mark before the first line hides nothing from any reader (93.38675ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (579.976292ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (42.227708ms)
+✔ a per-runtime enable flag answers before the global one in every reader (1695.609667ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3159.544041

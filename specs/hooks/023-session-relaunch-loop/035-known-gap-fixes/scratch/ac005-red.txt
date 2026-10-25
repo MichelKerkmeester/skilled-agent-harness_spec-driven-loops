@@ -1,0 +1,41 @@
+$ npx vitest run --config ../../vitest.config.ts --project cli tests/validator-git-fsmonitor.vitest.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/validator-git-fsmonitor.vitest.ts (2 tests | 1 failed) 7ms
+     × passes -c core.fsmonitor=false on every git call in that set 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/validator-git-fsmonitor.vitest.ts > validator git calls turn the file-system monitor off > passes -c core.fsmonitor=false on every git call in that set
+AssertionError: expected [ …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ".skilled/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts:312",
++   ".skilled/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts:329",
++ ]
+
+ ❯ tests/validator-git-fsmonitor.vitest.ts:153:20
+    151|       return found.map((entry) => path.relative(REPO_ROOT, entry));
+    152|     });
+    153|     expect(misses).toEqual([]);
+       |                    ^
+    154|   });
+    155| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  20:48:15
+   Duration  87ms (transform 12ms, setup 10ms, import 12ms, tests 7ms, environment 0ms)
+
+exit=1

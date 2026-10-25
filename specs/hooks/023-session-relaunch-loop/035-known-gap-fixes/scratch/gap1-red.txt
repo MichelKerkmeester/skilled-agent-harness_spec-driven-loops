@@ -1,0 +1,34 @@
+✖ a note path holding the spec folder marker reads the same as the wrapper reads it (1.301417ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.294041
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/nudge.test.cjs:746:1
+✖ a note path holding the spec folder marker reads the same as the wrapper reads it (1.301417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '/tmp/odd'
+  - '/tmp/odd | Spec folder: x/handoff.md'
+             ^
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:753:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '/tmp/odd',
+    expected: '/tmp/odd | Spec folder: x/handoff.md',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1

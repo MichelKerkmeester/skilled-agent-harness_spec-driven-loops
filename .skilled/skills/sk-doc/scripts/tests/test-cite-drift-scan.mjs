@@ -183,8 +183,17 @@ const makeGitShowCounter = (root) => {
   fs.mkdirSync(bin);
   fs.writeFileSync(path.join(bin, 'git'), [
     '#!/bin/sh',
-    'if [ "$3" = "show" ]; then printf "%s\\n" "${4#*:}" >> "$CITE_GIT_SHOW_LOG"; fi',
-    'if [ "$3" = "cat-file" ]; then',
+    // The subcommand is found past git's global -c and -C options, so the
+    // count holds however many of them the caller puts in front.
+    'sub=""; first=""; skip=0',
+    'for a in "$@"; do',
+    '  if [ "$skip" = 1 ]; then skip=0; continue; fi',
+    '  if [ -z "$sub" ]; then',
+    '    case "$a" in -c|-C) skip=1 ;; *) sub="$a" ;; esac',
+    '  elif [ -z "$first" ]; then first="$a"; fi',
+    'done',
+    'if [ "$sub" = "show" ]; then printf "%s\\n" "${first#*:}" >> "$CITE_GIT_SHOW_LOG"; fi',
+    'if [ "$sub" = "cat-file" ]; then',
     '  input="$CITE_GIT_SHOW_LOG.stdin"',
     '  cat > "$input"',
     '  sed "s/^[^:]*://" "$input" >> "$CITE_GIT_SHOW_LOG"',

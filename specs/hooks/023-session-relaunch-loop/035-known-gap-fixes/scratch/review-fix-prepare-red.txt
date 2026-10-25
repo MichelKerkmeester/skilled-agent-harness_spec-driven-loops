@@ -1,0 +1,52 @@
+✖ prepare refusal names the flag that turned session relaunch off (36.232208ms)
+✖ a refused prepare leaves the note bytes unchanged (45.843375ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.432583
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:474:1
+✖ prepare refusal names the flag that turned session relaunch off (36.232208ms)
+  AssertionError [ERR_ASSERTION]: kill switch
+  + actual - expected
+  
+  + '[session-relaunch] session relaunch is disabled by hook flags for claude; set SYSTEM_SESSION_RELAUNCH_ENABLED=1 or SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=1 to turn it on\n'
+  - '[session-relaunch] session relaunch is disabled by SYSTEM_SESSION_RELAUNCH_DISABLED; unset it to turn session relaunch back on\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:511:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '[session-relaunch] session relaunch is disabled by hook flags for claude; set SYSTEM_SESSION_RELAUNCH_ENABLED=1 or SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=1 to turn it on\n',
+    expected: '[session-relaunch] session relaunch is disabled by SYSTEM_SESSION_RELAUNCH_DISABLED; unset it to turn session relaunch back on\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2460:1
+✖ a refused prepare leaves the note bytes unchanged (45.843375ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(fs.readFileSync(handoffPath).equals(before))
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2475:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit code: 1

@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.15.0
+version: 1.0.16.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -34,7 +34,7 @@ Operators run five automatable checks and one live hop in each runtime. They ver
 - Objective: Verify Pi and OpenCode adapter loading, event handling, seed injection, matching record arming and wrapper relaunch behavior, plus the hop history and calling off a prepared hand-over with a new turn or `cancel`.
 - Real user request: Carry a short task through a context handoff in Pi or OpenCode, then finish it in the new session.
 - Prompt: `Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready.`
-- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. The goal carry-over runs need it in the environment their scripts start from. The `node --test` suites set their own environment.
+- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` for the runtime under test (`PI` or `OPENCODE`) overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps that runtime silent. Unset it before a run. Another runtime's flag does not reach these checks, so `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0`, which keeps Claude Code off, leaves Pi and OpenCode on. The goal carry-over runs need it in the environment their scripts start from. The `node --test` suites set their own environment.
 - Expected execution process: Run the Pi extension smoke with -ne -e, the OpenCode import smoke, both adapter suites and the wrapper runtime suite. Start Pi with its provider, model and explicit extension selection. Start OpenCode with its model selection. Use separate tmux sessions with a low hop cap, follow each generated handoff and observe the wrapper relaunch.
 - Expected signals: Automatable commands exit 0. Pi loads the extension with `-ne -e`. OpenCode import prints `object`. Adapter suites pass. Wrapper tests record `SKILLED_LOOP_RUNTIME` and the Pi and OpenCode seed arguments. Each live handoff is prepared and armed for its matching runtime, then the wrapper starts a fresh runtime with the claim seed.
 - Desired user-visible outcome: The receiving session claims the same handoff and continues the unfinished task.

@@ -264,7 +264,7 @@ function loadModules(): Promise<AdapterModules> {
 
 function isEnabled(config: Record<string, string>): boolean {
   try {
-    return isHookEnabled(CONCERN, process.env, config);
+    return isHookEnabled(CONCERN, process.env, config, { runtime: 'pi' });
   } catch {
     return false;
   }

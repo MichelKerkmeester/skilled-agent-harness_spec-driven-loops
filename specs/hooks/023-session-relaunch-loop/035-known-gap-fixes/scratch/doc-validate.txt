@@ -1,0 +1,10 @@
+
+✅ VALID: .skilled/hooks/session-relaunch/README.md
+Document type: readme
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/commands/speckit/handoff.md
+Document type: command
+Total issues: 0
+exit=0

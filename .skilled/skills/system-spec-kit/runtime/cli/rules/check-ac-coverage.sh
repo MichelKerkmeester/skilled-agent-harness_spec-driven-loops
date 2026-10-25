@@ -510,7 +510,8 @@ run_check() {
 
     local analysis rows covered malformed malformed_ids cited unresolved root total
     # One lookup per run. Outside a repository the working directory stands in for the root.
-    root="$(git -C "$folder" rev-parse --show-toplevel 2>/dev/null)" || root=""
+    # The file-system monitor stays off so an unanswering daemon cannot stall the rule.
+    root="$(git -c core.fsmonitor=false -C "$folder" rev-parse --show-toplevel 2>/dev/null)" || root=""
     [[ -n "$root" ]] || root="$(pwd)"
     local ac_file="$folder/acceptance-criteria.md"
     local canonical=false

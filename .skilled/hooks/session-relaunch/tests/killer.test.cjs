@@ -15,6 +15,7 @@ const KILLER_PATH = path.resolve(__dirname, '../lib/killer.cjs');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const { hasAncestor, isLoopAncestor } = require('../lib/killer.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
 // and every sandbox copies this environment into the killer it spawns.
@@ -46,7 +47,7 @@ function createSandbox(t) {
     '',
   ].join('\n'), { mode: 0o755 });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,

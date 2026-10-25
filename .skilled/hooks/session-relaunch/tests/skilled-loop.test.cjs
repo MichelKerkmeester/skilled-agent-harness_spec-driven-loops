@@ -12,6 +12,7 @@ const path = require('node:path');
 const {
   RUNTIMES, manualClaimCommand, resolveSessionSettings, validSpecFolder,
 } = require('../lib/relaunch-core.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
 // and a manual template that carries options would change every printed claim command.
@@ -240,7 +241,7 @@ function createSandbox(t) {
   fs.mkdirSync(binDir, { recursive: true });
   fs.mkdirSync(recordedCwd, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
@@ -1523,6 +1524,43 @@ test('a Pi live model matching the provider-prefixed launch model keeps the laun
   ]);
 });
 
+// One model id under another provider is a different model, so a hop that changes only the
+// provider is a switch however the launch line spelled its provider.
+test('a Pi live provider that differs from the launch provider drops the launch thinking', (t) => {
+  for (const providerArguments of [['--provider', 'openai'], ['--provider=openai']]) {
+    const sandbox = createSandbox(t);
+    sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_MODEL: 'gpt-6-luna',
+      RECORD_PROVIDER: 'azure',
+    });
+    const result = runWrapper(sandbox, [
+      'pi', ...providerArguments, '--model', 'gpt-6-luna', '--thinking', 'low',
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(readRecords(recordPath)[1].args, [
+      '--provider', 'azure', '--model', 'gpt-6-luna', `${SEED} ${handoffPath}`,
+    ], providerArguments.join(' '));
+  }
+
+  const sameProvider = createSandbox(t);
+  sameProvider.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
+  const kept = installRuntimeStub(sameProvider, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+  });
+  const keptResult = runWrapper(sameProvider, [
+    'pi', '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low',
+  ]);
+  assert.equal(keptResult.status, 0, keptResult.stderr);
+  assert.deepEqual(readRecords(kept.recordPath)[1].args, [
+    '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low',
+    `${SEED} ${kept.handoffPath}`,
+  ]);
+});
+
 test('a Hermes live model with no live effort keeps the launch reasoning', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
@@ -2594,7 +2632,12 @@ test('wrapper and CLI both print the manual command on stdout', (t) => {
   const cliResult = spawnSync(process.execPath, [
     CLI_PATH, 'prepare', '--handoff', notePath,
     '--session', 'session-stream-0001', '--runtime', 'claude',
-  ], { cwd: sandbox.repoRoot, env: sandbox.env, encoding: 'utf8', timeout: 12000 });
+  ], {
+    cwd: sandbox.repoRoot,
+    env: { ...sandbox.env, SYSTEM_SESSION_RELAUNCH_ENABLED: '1' },
+    encoding: 'utf8',
+    timeout: 12000,
+  });
 
   assert.equal(cliResult.status, 3, cliResult.stderr);
   const cliLines = cliResult.stdout.split('\n').filter((line) => line.startsWith('skilled-loop '));

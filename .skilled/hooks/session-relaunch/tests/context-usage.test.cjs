@@ -23,6 +23,7 @@ const TRANSCRIPT_FIXTURE = path.join(__dirname, 'fixtures', 'transcript-usage.js
 const PI_CAPTURE = require('./fixtures/pi-assistant-message-end.json');
 const OPENCODE_CAPTURE = require('./fixtures/opencode-assistant-message-updated.json');
 const CODEX_ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 // Third transcript fixture row is the sidechain entry: 100 + 899900 + 2.
 const SIDECHAIN_FILL_TOKENS = 900002;
 
@@ -35,7 +36,7 @@ function createSandbox(t) {
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,

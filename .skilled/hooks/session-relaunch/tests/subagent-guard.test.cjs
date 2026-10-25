@@ -14,6 +14,7 @@ const { spawn } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 const SUBAGENT_GUARD_PATH = path.resolve(__dirname, '../claude/subagent-guard.mjs');
 const CLI_PATH = '.skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
@@ -32,7 +33,7 @@ function createSandbox(t) {
   fs.mkdirSync(home, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),

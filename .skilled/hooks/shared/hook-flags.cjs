@@ -105,6 +105,13 @@ const DEFAULT_OFF = {
   "session-relaunch": "SYSTEM_SESSION_RELAUNCH_ENABLED",
 };
 
+// The CLI runtimes that can carry a default-off concern. An operator may want the
+// relaunch loop on in one runtime and off in another, so each runtime gets its own
+// enable switch, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers before
+// the global one whenever it holds a value. A caller names its runtime explicitly;
+// the resolver never guesses it from the environment.
+const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "hermes", "cursor", "devin"]);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -182,7 +189,22 @@ function _resetConfigCache() {
 // When `env` is passed explicitly, the config file is skipped so tests stay
 // isolated — unless a `config` object is also injected to exercise the merge.
 // The environment always overrides the config file for a given key.
-function isHookEnabled(concern, env, config) {
+// `options.runtime` names the calling runtime. For a default-off concern, that
+// runtime's enable switch decides whenever it resolves to a non-empty value, and
+// the global enable switch decides otherwise; the master and kill switches still
+// win over both. With no runtime, or one outside RUNTIMES, only the global applies.
+function isHookEnabled(concern, env, config, options) {
+  return hookFlagDecision(concern, env, config, options).enabled;
+}
+
+// The single decision behind isHookEnabled, with the switch that made it, so a caller
+// can tell the operator which flag to change. `key` is the switch that decided, or null
+// when nothing did and the concern is on by default. `reason` says which rung of the
+// precedence answered: "master" (the master switch or an alias), "kill" (the concern's
+// kill switch or a legacy alias), "runtime" (the runtime's enable switch, which held a
+// value), "global" (the global enable switch, unset or set) or "default". Arguments are
+// those of isHookEnabled.
+function hookFlagDecision(concern, env, config, options) {
   const hasEnv = env !== undefined && env !== null;
   const source = hasEnv ? env : process.env;
   const cfg =
@@ -195,19 +217,37 @@ function isHookEnabled(concern, env, config) {
     const fromEnv = source[key];
     return fromEnv !== undefined ? fromEnv : cfg[key];
   };
-  if (isTruthy(resolve(MASTER_FLAG))) return false;
-  for (const alias of MASTER_ALIASES) {
-    if (isTruthy(resolve(alias))) return false;
+  for (const key of [MASTER_FLAG].concat(MASTER_ALIASES)) {
+    if (isTruthy(resolve(key))) return { enabled: false, key, reason: "master" };
   }
   const flag = concernFlag(concern);
   const keys = (flag ? [flag] : []).concat(LEGACY_ALIASES[concern] || []);
   for (const key of keys) {
-    if (isTruthy(resolve(key))) return false;
+    if (isTruthy(resolve(key))) return { enabled: false, key, reason: "kill" };
   }
   if (Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) {
-    return isTruthy(resolve(DEFAULT_OFF[concern]));
+    const runtimeFlag = runtimeEnableFlag(concern, options && options.runtime);
+    if (runtimeFlag) {
+      const value = resolve(runtimeFlag);
+      if (typeof value === "string" && value.trim() !== "") {
+        return { enabled: isTruthy(value), key: runtimeFlag, reason: "runtime" };
+      }
+    }
+    const globalFlag = DEFAULT_OFF[concern];
+    return { enabled: isTruthy(resolve(globalFlag)), key: globalFlag, reason: "global" };
   }
-  return true;
+  return { enabled: true, key: null, reason: "default" };
+}
+
+// The per-runtime enable switch for a default-off concern, such as
+// SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED, or null when the concern has no enable
+// switch or the runtime is not one of RUNTIMES.
+function runtimeEnableFlag(concern, runtime) {
+  if (!Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) return null;
+  if (typeof runtime !== "string") return null;
+  const name = runtime.trim().toLowerCase();
+  if (!RUNTIMES.includes(name)) return null;
+  return DEFAULT_OFF[concern].replace(/_ENABLED$/, "_" + name.toUpperCase() + "_ENABLED");
 }
 
 // True when one named switch resolves truthy, for a switch that is not a hook
@@ -245,8 +285,10 @@ function concernFlag(concern) {
 
 module.exports = {
   isHookEnabled,
+  hookFlagDecision,
   isFlagOn,
   concernFlag,
+  runtimeEnableFlag,
   isTruthy,
   loadConfigFile,
   MASTER_FLAG,
@@ -254,6 +296,7 @@ module.exports = {
   CONCERN_CANONICAL,
   LEGACY_ALIASES,
   DEFAULT_OFF,
+  RUNTIMES,
   configPath,
   _resetConfigCache,
 };

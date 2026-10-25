@@ -1,0 +1,75 @@
+=== README.md
+
+✅ VALID: README.md
+Document type: readme
+Total issues: 0
+exit=0
+=== .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+Document type: readme
+Total issues: 2
+
+⚠️ Warnings (2):
+  - [non_sequential_numbering] Non-sequential section number: expected 8, found 9
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0
+=== .skilled/hooks/session-relaunch/README.md
+
+✅ VALID: .skilled/hooks/session-relaunch/README.md
+Document type: readme
+Total issues: 0
+exit=0
+=== .skilled/hooks/shared/README.md
+
+✅ VALID: .skilled/hooks/shared/README.md
+Document type: readme
+Total issues: 0
+exit=0
+=== .skilled/hooks/README.md
+
+✅ VALID: .skilled/hooks/README.md
+Document type: readme
+Total issues: 0
+exit=0
+=== .skilled/commands/speckit/handoff.md
+
+✅ VALID: .skilled/commands/speckit/handoff.md
+Document type: command
+Total issues: 0
+exit=0
+=== .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+=== .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+=== .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+=== doctor-env.yaml parse
+yaml ok
+exit=0
+=== pytest test_validation_switch.py
+........                                                                 [100%]
+8 passed in 1.40s
+=== goal-doc-contract.test.cjs
+ℹ pass 5
+ℹ fail 0
+=== env-reference-drift.vitest.ts
+      Tests  5 passed (5)
+=== rerun .skilled/hooks/shared/README.md after signature edit
+
+✅ VALID: .skilled/hooks/shared/README.md
+Document type: readme
+Total issues: 0
+exit=0

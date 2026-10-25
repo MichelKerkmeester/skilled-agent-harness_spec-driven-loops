@@ -28,7 +28,14 @@ const OPENCODE_CAPTURE = require(
 const core = require(CORE_PATH);
 const hookFlags = require('../../hooks/shared/hook-flags.cjs');
 const nudge = require('../../hooks/session-relaunch/lib/nudge.cjs');
+const {
+  RUNTIME_SWITCH_KEYS,
+  clearRelaunchSwitches,
+} = require('../../hooks/session-relaunch/tests/fixtures/relaunch-env.cjs');
+// Every key the setup clears is saved here first, so the per-runtime switches it drops
+// come back after each case exactly as the shell exported them.
 const ENV_KEYS = [
+  ...RUNTIME_SWITCH_KEYS,
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
   'SYSTEM_SESSION_RELAUNCH_ENABLED',
   'SYSTEM_HOOKS_DISABLED',
@@ -48,6 +55,8 @@ const ENV_KEYS = [
 function setupEnv(t) {
   const previous = new Map(ENV_KEYS.map((key) => [key, process.env[key]]));
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-opencode-'));
+  // The plugin reads process.env itself, so an exported switch would decide the case.
+  clearRelaunchSwitches(process.env);
   process.env.XDG_RUNTIME_DIR = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
   process.env.SESSION_RELAUNCH_THRESHOLD = '0.8';

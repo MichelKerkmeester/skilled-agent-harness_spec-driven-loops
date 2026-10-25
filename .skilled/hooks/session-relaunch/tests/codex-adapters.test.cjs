@@ -18,6 +18,7 @@ const USER_PROMPT_SUBMIT = require('./fixtures/codex-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/codex-stop.json');
 const ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
 const SPAWN_RECORDER = path.resolve(__dirname, 'fixtures/codex-spawn-recorder.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 const ROOT_PATH = path.resolve(__dirname, '../../../..');
 const REGISTRY_PATH = path.join(
   ROOT_PATH,
@@ -58,7 +59,7 @@ function createSandbox(t) {
   ].join('\n'));
   fs.chmodSync(psPath, EXECUTABLE_FILE_MODE);
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,

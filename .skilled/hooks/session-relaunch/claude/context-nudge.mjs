@@ -88,7 +88,7 @@ async function main() {
   const config = loadConfigFile(configPath());
   let enabled = false;
   try {
-    enabled = isHookEnabled(CONCERN, process.env, config);
+    enabled = isHookEnabled(CONCERN, process.env, config, { runtime: 'claude' });
   } catch {}
   if (!enabled) return done();
 

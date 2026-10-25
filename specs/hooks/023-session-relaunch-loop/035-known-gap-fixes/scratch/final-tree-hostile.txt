@@ -1,0 +1,31 @@
+== gate hostile (2026-10-25T20:50:14Z) HEAD 2a57a5e5ac
+MK_GOAL_DISABLED=1
+SYSTEM_SESSION_RELAUNCH_CURSOR_ENABLED=0
+SYSTEM_SESSION_RELAUNCH_DISABLED=1
+SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0
+SYSTEM_HOOKS_DISABLED=1
+OPENCODE_GOAL_DISABLED=1
+SYSTEM_SESSION_RELAUNCH_PI_ENABLED=0
+MK_HOOKS_DISABLED=1
+SYSTEM_SESSION_RELAUNCH_CODEX_ENABLED=0
+SYSTEM_SESSION_RELAUNCH_HERMES_ENABLED=0
+SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=0
+SYSTEM_SESSION_RELAUNCH_DEVIN_ENABLED=0
+node exit=1
+ℹ tests 934
+ℹ pass 930
+ℹ fail 4
+hookflags exit=0
+ℹ tests 28
+ℹ pass 28
+ℹ fail 0
+pi-vitest exit=1
+⎯⎯⎯⎯⎯⎯ Failed Tests 38 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  38 failed | 21 passed (59)
+validator-vitest exit=0
+      Tests  13 passed | 1 skipped (14)
+envdrift exit=0
+      Tests  5 passed (5)
+bash-n skilled-loop exit=0
+bash-n hook-flags.sh exit=0
+shellcheck exit=0

@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.13.0
+version: 1.0.14.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -29,7 +29,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 - Objective: Verify threshold context, note validation, Stop arming, process shutdown, wrapper relaunch, note status changes, hop and age limits, the hop history and calling off a prepared hand-over with an operator prompt or `cancel`.
 - Real user request: Carry this task into a new Claude session before context compaction, then finish the remaining work.
 - Prompt: Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session.
-- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. The kill-switch check sets `SYSTEM_SESSION_RELAUNCH_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own environment.
+- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED`, the Claude Code value of `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps every Claude check silent. Unset it before a run. The kill-switch check sets `SYSTEM_SESSION_RELAUNCH_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own environment.
 - Expected execution process: Run Claude inside tmux with `SESSION_RELAUNCH_THRESHOLD=0.05`, prepare the note when the nudge appears, wait for Stop to arm the record when the transcript path is present and background tasks have drained, then confirm the wrapper relaunches with the claim seed.
 - Expected signals: The relaunch record moves from pending to armed and is consumed by the wrapper. The receiving session starts with a `[session-relaunch]` claim seed. The note moves from open to claimed to done. `history` shows `handed-over`, `claimed ... by <id>` and `done` for that note. A hand-over the operator calls off ends disarmed with reason `user-message` or `cancelled`, `should-relaunch` reports `withdrawn`, the session earns one more context nudge and the wrapper prints one warning and no manual claim command.
 - Pass/fail: PASS if the new session claims the same note and completes its remaining work after an armed handoff, and a called-off hand-over keeps its session running with the signals above. FAIL if Stop arms without a transcript path, the wrapper declines an eligible record, the receiving session cannot claim the note, an operator prompt leaves an armed or deferred record in place or a `<task-notification>` prompt withdraws a deferred one.

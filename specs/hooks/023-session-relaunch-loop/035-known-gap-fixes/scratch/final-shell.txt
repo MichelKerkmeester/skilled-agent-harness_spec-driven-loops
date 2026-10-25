@@ -1,0 +1,2 @@
+bash-n=0
+shellcheck=0

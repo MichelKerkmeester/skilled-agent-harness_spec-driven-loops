@@ -1,0 +1,27 @@
+env CLAUDE=1 over file CLAUDE=0
+  runtimes: claude codex pi opencode hermes cursor devin
+  cjs: on off off off off off off
+  mjs: on off off off off off off
+  sh:  on off off off off off off
+env CLAUDE=0 over file CLAUDE=1, file global 1
+  runtimes: claude codex pi opencode hermes cursor devin
+  cjs: off on on on on on on
+  mjs: off on on on on on on
+  sh:  off on on on on on on
+global 1 + CLAUDE 1 + DISABLED 1
+  runtimes: claude codex pi opencode hermes cursor devin
+  cjs: off off off off off off off
+  mjs: off off off off off off off
+  sh:  off off off off off off off
+global 1 + CLAUDE 1 + master 1
+  runtimes: claude codex pi opencode hermes cursor devin
+  cjs: off off off off off off off
+  mjs: off off off off off off off
+  sh:  off off off off off off off
+global 1 + HERMES 0 + DEVIN 0
+  runtimes: claude codex pi opencode hermes cursor devin
+  cjs: on on on on off on off
+  mjs: on on on on off on off
+  sh:  on on on on off on off
+reader mismatches: 0
+exit=0

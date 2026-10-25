@@ -17,12 +17,6 @@ const hookFlags = require('../../shared/hook-flags.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SEED_PREFIX = '[session-relaunch]';
-const SEED_COMMAND = SEED_PREFIX + ' claim and continue handoff ';
-const SPEC_FOLDER_MARKER = core.SPEC_FOLDER_MARKER;
-const SPEC_FOLDER_SUFFIX = core.SPEC_FOLDER_SUFFIX;
-const SPEC_FOLDER_SKIP_SUFFIX = core.SPEC_FOLDER_SKIP_SUFFIX;
-// Seeds printed by the first printers carry an unbalanced suffix; they still parse.
-const SPEC_FOLDER_SKIP_SUFFIX_LEGACY = ' (Gate 3 answered D) Skip in the sending session)';
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
 // Every adapter prints this command, so the model always runs the CLI from the repo root.
@@ -279,20 +273,12 @@ function isSeedPrompt(text) {
   return typeof text === 'string' && text.startsWith(SEED_PREFIX);
 }
 
+// The wrapper reads the same seed with the core parser, so both sides go through it and a
+// note path that holds the marker text cannot split one way here and another way there.
+/** Read the carried spec folder from a claim seed, or '' when it carries no usable answer. */
 function specFolderFromSeed(prompt) {
-  if (!isSeedPrompt(prompt)) return '';
-  const markerIndex = prompt.indexOf(SPEC_FOLDER_MARKER);
-  if (markerIndex < 0) return '';
-  const rawFolder = prompt.slice(markerIndex + SPEC_FOLDER_MARKER.length);
-  for (const suffix of [SPEC_FOLDER_SKIP_SUFFIX, SPEC_FOLDER_SKIP_SUFFIX_LEGACY]) {
-    if (rawFolder.endsWith(suffix)) {
-      return rawFolder.slice(0, -suffix.length) === 'none' ? 'none' : '';
-    }
-  }
-  if (!rawFolder.endsWith(SPEC_FOLDER_SUFFIX)) return '';
-  const specFolder = rawFolder.slice(0, -SPEC_FOLDER_SUFFIX.length);
-  if (!core.validSpecFolder(specFolder)) return '';
-  return specFolder;
+  const parsed = core.parseClaimSeed(prompt);
+  return parsed ? parsed.specFolder : '';
 }
 
 // The runtime receives the seed path raw: its shell already consumed any
@@ -300,14 +286,8 @@ function specFolderFromSeed(prompt) {
 // real backslash or edge whitespace.
 /** Extract the raw handoff note path from a claim seed, or null when malformed. */
 function notePathFromSeed(prompt) {
-  if (!isSeedPrompt(prompt) || !prompt.startsWith(SEED_COMMAND)) return null;
-  let notePath = prompt.slice(SEED_COMMAND.length);
-  const markerIndex = notePath.indexOf(SPEC_FOLDER_MARKER);
-  if (markerIndex >= 0) notePath = notePath.slice(0, markerIndex);
-  if (!notePath || notePath !== notePath.trim() || /[\r\n]/.test(notePath)) {
-    return null;
-  }
-  return path.isAbsolute(notePath) ? notePath : null;
+  const parsed = core.parseClaimSeed(prompt);
+  return parsed ? parsed.notePath : null;
 }
 
 // A seed whose note path cannot be read would hand the model a claim command with a

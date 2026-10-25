@@ -169,7 +169,7 @@ async function armPendingRecord(payload, dependencies = {}) {
 async function main() {
   let enabled = false;
   try {
-    enabled = isHookEnabled(CONCERN);
+    enabled = isHookEnabled(CONCERN, undefined, undefined, { runtime: 'claude' });
   } catch {}
   if (!enabled) return done();
 

@@ -47,6 +47,11 @@ const SKIPPED_DIRS = new Set(['prompts', 'node_modules']);
 /** Verdicts where the written path is no tracked file, so .gitignore may hide it. */
 const IGNORABLE_STATUSES = new Set(['unresolved', 'refused', 'basename_only', 'ambiguous']);
 
+// A file-system monitor daemon that never answers its IPC leaves git waiting
+// at 0% CPU, and the validator with it. Turning the monitor off for these
+// calls costs a plain index scan and returns the same output.
+const GIT_NO_FSMONITOR = ['-c', 'core.fsmonitor=false'];
+
 // ───────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────
@@ -105,7 +110,7 @@ export function createdDate(folder) {
  * @returns {string[]}
  */
 function untrackedFiles(repoRoot) {
-  const result = spawnSync('git', ['-C', repoRoot, 'ls-files', '--others', '--exclude-standard', '-z'], {
+  const result = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'ls-files', '--others', '--exclude-standard', '-z'], {
     encoding: 'utf8',
     maxBuffer: 256 * 1024 * 1024,
   });
@@ -198,7 +203,7 @@ function ignoredPaths(repoRoot, candidates) {
   const unique = [...new Set(candidates)];
   const judgeable = unique.filter((candidate) => !hasSymlinkedParent(repoRoot, candidate, symlinkCache));
   if (judgeable.length === 0) return new Set();
-  const result = spawnSync('git', ['-C', repoRoot, 'check-ignore', '-z', '--stdin'], {
+  const result = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'check-ignore', '-z', '--stdin'], {
     input: `${judgeable.join('\0')}\0`,
     encoding: 'utf8',
     maxBuffer: 256 * 1024 * 1024,
@@ -336,7 +341,7 @@ export function main(argv, deps = {}) {
     return 0;
   }
 
-  const top = spawnSync('git', ['-C', folder, 'rev-parse', '--show-toplevel'], { encoding: 'utf8' });
+  const top = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', folder, 'rev-parse', '--show-toplevel'], { encoding: 'utf8' });
   if (top.status !== 0) {
     err(`not inside a git repository: ${folder}`);
     return 2;

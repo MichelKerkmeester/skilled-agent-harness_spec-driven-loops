@@ -22,6 +22,7 @@ import relaunchCore, {
   readRelaunchFile,
   shouldRelaunch,
 } from '../lib/relaunch-core.cjs';
+import { HERMETIC_DROP_KEYS, clearRelaunchSwitches } from '../tests/fixtures/relaunch-env.cjs';
 import sessionRelaunch from './session-relaunch';
 
 const { spawnMock } = vi.hoisted(() => ({ spawnMock: vi.fn(() => ({ unref: vi.fn() })) }));
@@ -31,8 +32,7 @@ type ExtensionEvent = AgentEndEvent | BeforeAgentStartEvent | MessageEndEvent;
 type Handler = (event: ExtensionEvent, ctx: ExtensionContext) => unknown;
 
 const envKeys = [
-  'SYSTEM_SESSION_RELAUNCH_DISABLED',
-  'SYSTEM_SESSION_RELAUNCH_ENABLED',
+  ...HERMETIC_DROP_KEYS,
   'SESSION_RELAUNCH_THRESHOLD',
   'SESSION_RELAUNCH_WINDOW_TOKENS',
   'SKILLED_LOOP_ID',
@@ -41,7 +41,6 @@ const envKeys = [
   'SYSTEM_SPEC_FOLDER',
   'XDG_RUNTIME_DIR',
   'SESSION_RELAUNCH_REPO_ROOT',
-  'HOOK_FLAGS_CONFIG',
 ];
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';
 const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
@@ -63,6 +62,8 @@ function makeExtensionApi(): { api: ExtensionAPI; handlers: Map<string, Handler>
 function setupEnv() {
   const root = mkdtempSync(path.join(tmpdir(), 'session-relaunch-pi-'));
   roots.push(root);
+  // A switch exported in the developer's shell must not decide a case.
+  clearRelaunchSwitches(process.env);
   process.env.XDG_RUNTIME_DIR = root;
   process.env.SESSION_RELAUNCH_REPO_ROOT = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');

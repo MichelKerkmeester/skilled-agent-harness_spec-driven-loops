@@ -32,6 +32,11 @@ const COMPLETION_DOCS = [
   'handover.md',
 ] as const;
 
+// A file-system monitor daemon that never answers its IPC leaves git waiting
+// at 0% CPU, and the spec validator with it. Turning the monitor off costs a
+// plain index scan and returns the same output.
+const GIT_NO_FSMONITOR = ['-c', 'core.fsmonitor=false'];
+
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
@@ -309,7 +314,7 @@ export function hasAnyCompletionClaim(specFolderPath: string): boolean {
 
 function findGitRoot(folderPath: string): string | null {
   try {
-    return execFileSync('git', ['-C', folderPath, 'rev-parse', '--show-toplevel'], {
+    return execFileSync('git', [...GIT_NO_FSMONITOR, '-C', folderPath, 'rev-parse', '--show-toplevel'], {
       encoding: 'utf-8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim();
@@ -326,7 +331,7 @@ function listPacketDirtyPaths(specFolderPath: string): string[] {
 
   const relativeFolder = path.relative(gitRoot, specFolderPath).replace(/\\/g, '/');
   try {
-    const output = execFileSync('git', ['-C', gitRoot, 'status', '--porcelain', '--', relativeFolder], {
+    const output = execFileSync('git', [...GIT_NO_FSMONITOR, '-C', gitRoot, 'status', '--porcelain', '--', relativeFolder], {
       encoding: 'utf-8',
       stdio: ['ignore', 'pipe', 'ignore'],
     });

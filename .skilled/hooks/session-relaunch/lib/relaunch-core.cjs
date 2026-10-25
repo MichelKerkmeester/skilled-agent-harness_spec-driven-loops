@@ -45,6 +45,8 @@ const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
 const SPEC_FOLDER_MARKER = ' | Spec folder: ';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
 const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+// Seeds printed by the first printers carry an unbalanced suffix; they still parse.
+const SPEC_FOLDER_SKIP_SUFFIX_LEGACY = ' (Gate 3 answered D) Skip in the sending session)';
 const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
 const GOAL_FILENAME = 'goal.md';
 // Runtimes whose goal record names the packet the session is bound to; the lookup differs
@@ -110,8 +112,10 @@ function parseClaimSeed(prompt) {
   const markerIndex = notePath.lastIndexOf(SPEC_FOLDER_MARKER);
   if (markerIndex >= 0) {
     const answer = notePath.slice(markerIndex + SPEC_FOLDER_MARKER.length);
-    if (answer.endsWith(SPEC_FOLDER_SKIP_SUFFIX)) {
-      specFolder = answer.slice(0, -SPEC_FOLDER_SKIP_SUFFIX.length) === 'none' ? 'none' : '';
+    const skipSuffix = [SPEC_FOLDER_SKIP_SUFFIX, SPEC_FOLDER_SKIP_SUFFIX_LEGACY]
+      .find((suffix) => answer.endsWith(suffix));
+    if (skipSuffix) {
+      specFolder = answer.slice(0, -skipSuffix.length) === 'none' ? 'none' : '';
       notePath = notePath.slice(0, markerIndex);
     } else if (answer.endsWith(SPEC_FOLDER_SUFFIX)) {
       const candidate = answer.slice(0, -SPEC_FOLDER_SUFFIX.length);
