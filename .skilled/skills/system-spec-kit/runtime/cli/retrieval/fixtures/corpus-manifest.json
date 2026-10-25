@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f254ca36a1cb7db002a5ef2355a993e6653f4d83d1b04bd38225abf347d343d5",
+  "corpusHash": "e137cccc469da76e5b54f42f8332648055967a018e6a055918cf2f566ced388f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25740,
+  "includedPathCount": 25807,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10352,6 +10352,59 @@
     "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/plan.md",
     "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/spec.md",
     "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/plan.md",
+    "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/spec.md",
+    "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/decision-record.md",
+    "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/plan.md",
+    "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/spec.md",
+    "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/plan.md",
+    "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/spec.md",
+    "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/decision-record.md",
+    "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/plan.md",
+    "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/spec.md",
+    "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/decision-record.md",
+    "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/plan.md",
+    "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/spec.md",
+    "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/plan.md",
+    "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/spec.md",
+    "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/plan.md",
+    "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/spec.md",
+    "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/plan.md",
+    "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/spec.md",
+    "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/plan.md",
+    "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md",
+    "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -12835,6 +12888,20 @@
     "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/review-report.md",
     "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/spec.md",
     "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/013-claude-goal-copy-block/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/013-claude-goal-copy-block/plan.md",
+    "specs/sk-doc/060-create-goal-mode/013-claude-goal-copy-block/spec.md",
+    "specs/sk-doc/060-create-goal-mode/013-claude-goal-copy-block/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/plan.md",
+    "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/spec.md",
+    "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/plan.md",
+    "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/spec.md",
+    "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/tasks.md",
     "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
     "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-010-asset-templates-and-folder-readmes.md",
     "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-011-cross-surface-references.md",
@@ -25771,7 +25838,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d1962aea5092edfc84a687a3feb7375713524d0d7b192505802e7ed40a33cea9",
+  "manifestHash": "104ffcab6d6f30bd01f18494c1143201294ce41f420faffa792bea45d5d9285a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27806,6 +27873,46 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -29071,6 +29178,18 @@
     },
     {
       "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/013-claude-goal-copy-block/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/scratch",
       "reason": "excluded directory"
     },
     {

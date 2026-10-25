@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d1962aea5092edfc84a687a3feb7375713524d0d7b192505802e7ed40a33cea9",
+  "manifestHash": "104ffcab6d6f30bd01f18494c1143201294ce41f420faffa792bea45d5d9285a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13587,6 +13587,12 @@
     "bind every phase goal": [
       "bind every phase goal"
     ],
+    "bind goal after hand over": [
+      "bind goal after hand-over"
+    ],
+    "bind if unbound goal": [
+      "bind if unbound goal"
+    ],
     "bind or resend a session goal": [
       "bind or resend a session goal"
     ],
@@ -14291,6 +14297,9 @@
     ],
     "budget handoff acceptance": [
       "budget handoff acceptance"
+    ],
+    "budget limited goal status": [
+      "budget_limited goal status"
     ],
     "budget novelty coverage wall time stop": [
       "budget novelty coverage wall-time stop"
@@ -18456,6 +18465,21 @@
     "claude gemini codex devin hook adapter results": [
       "claude gemini codex devin hook adapter results"
     ],
+    "claude goal as start prompt": [
+      "claude goal as start prompt"
+    ],
+    "claude goal copy block": [
+      "claude goal copy block"
+    ],
+    "claude goal copy block implementation summary": [
+      "claude goal copy block implementation summary"
+    ],
+    "claude goal copy block plan": [
+      "claude goal copy block plan"
+    ],
+    "claude goal copy block tasks": [
+      "claude goal copy block tasks"
+    ],
     "claude hook": [
       "claude hook"
     ],
@@ -18554,6 +18578,9 @@
     ],
     "claude session relaunch": [
       "Claude session relaunch"
+    ],
+    "claude start hook goal": [
+      "claude start hook goal"
     ],
     "claude user prompt submit": [
       "claude user-prompt-submit"
@@ -23993,6 +24020,9 @@
     "codex goal nesting": [
       "codex goal nesting"
     ],
+    "codex goal seed deferred": [
+      "codex goal seed deferred"
+    ],
     "codex gpt 5 6 terra": [
       "codex gpt-5.6 terra"
     ],
@@ -24152,6 +24182,9 @@
     "codex search exec fanout": [
       "codex search exec fanout"
     ],
+    "codex seed goal": [
+      "codex seed goal"
+    ],
     "codex session relaunch": [
       "Codex session relaunch"
     ],
@@ -24205,6 +24238,9 @@
     ],
     "codex web search flag": [
       "codex web search flag"
+    ],
+    "codex withdraw reply evidence": [
+      "codex withdraw reply evidence"
     ],
     "codex write containment": [
       "codex write containment"
@@ -27267,6 +27303,9 @@
     ],
     "copy skill advisor dist data": [
       "copy-skill-advisor-dist-data"
+    ],
+    "copyable goal slice": [
+      "copyable goal slice"
     ],
     "core addendum": [
       "core addendum"
@@ -36090,6 +36129,9 @@
     ],
     "devin hooks migration": [
       "devin hooks migration"
+    ],
+    "devin hop waived": [
+      "devin hop waived"
     ],
     "devin long running task": [
       "devin long-running task"
@@ -48354,6 +48396,21 @@
     "goal binding gaps": [
       "goal binding gaps"
     ],
+    "goal binding record launcher": [
+      "goal binding record launcher"
+    ],
+    "goal binding record launcher acceptance criteria": [
+      "goal binding record launcher acceptance criteria"
+    ],
+    "goal binding record launcher implementation summary": [
+      "goal binding record launcher implementation summary"
+    ],
+    "goal binding record launcher plan": [
+      "goal binding record launcher plan"
+    ],
+    "goal binding record launcher tasks": [
+      "goal binding record launcher tasks"
+    ],
     "goal binding research": [
       "goal binding research"
     ],
@@ -48365,6 +48422,9 @@
     ],
     "goal budget handoff summary": [
       "goal budget handoff summary"
+    ],
+    "goal budget reading only notice": [
+      "goal budget reading only notice"
     ],
     "goal capability probes": [
       "goal capability probes"
@@ -48389,6 +48449,9 @@
     ],
     "goal chat slice": [
       "goal chat slice"
+    ],
+    "goal chat slice fenced block": [
+      "goal chat slice fenced block"
     ],
     "goal chat slice handoff": [
       "goal chat slice handoff"
@@ -48825,6 +48888,21 @@
     "goal legacy cutover": [
       "goal legacy cutover"
     ],
+    "goal legacy resume budget notice": [
+      "goal legacy resume budget notice"
+    ],
+    "goal legacy resume budget notice acceptance criteria": [
+      "goal legacy resume budget notice acceptance criteria"
+    ],
+    "goal legacy resume budget notice implementation summary": [
+      "goal legacy resume budget notice implementation summary"
+    ],
+    "goal legacy resume budget notice plan": [
+      "goal legacy resume budget notice plan"
+    ],
+    "goal legacy resume budget notice tasks": [
+      "goal legacy resume budget notice tasks"
+    ],
     "goal line length standard": [
       "goal line length standard"
     ],
@@ -48918,6 +48996,24 @@
     "goal nesting pointers": [
       "goal nesting pointers"
     ],
+    "goal never stops on a budget": [
+      "goal never stops on a budget"
+    ],
+    "goal no budget stop": [
+      "goal no budget stop"
+    ],
+    "goal no budget stop acceptance criteria": [
+      "goal no budget stop acceptance criteria"
+    ],
+    "goal no budget stop implementation summary": [
+      "goal no budget stop implementation summary"
+    ],
+    "goal no budget stop plan": [
+      "goal no budget stop plan"
+    ],
+    "goal no budget stop tasks": [
+      "goal no budget stop tasks"
+    ],
     "goal non utf8 refusal": [
       "goal non-utf8 refusal"
     ],
@@ -48969,8 +49065,20 @@
     "goal packet budget check": [
       "goal packet budget check"
     ],
+    "goal packet decision record": [
+      "goal_packet decision record"
+    ],
+    "goal packet field ownership": [
+      "goal packet field ownership"
+    ],
+    "goal packet handoff note field": [
+      "goal_packet handoff note field"
+    ],
     "goal packet tree check": [
       "goal packet tree check"
+    ],
+    "goal persistence playbook": [
+      "goal persistence playbook"
     ],
     "goal phase continuation": [
       "goal phase continuation"
@@ -49025,6 +49133,72 @@
     ],
     "goal re verification follow ups tasks": [
       "goal re-verification follow-ups tasks"
+    ],
+    "goal rebind claude codex": [
+      "goal rebind claude codex"
+    ],
+    "goal rebind claude codex acceptance criteria": [
+      "goal rebind claude codex acceptance criteria"
+    ],
+    "goal rebind claude codex implementation summary": [
+      "goal rebind claude codex implementation summary"
+    ],
+    "goal rebind claude codex plan": [
+      "goal rebind claude codex plan"
+    ],
+    "goal rebind claude codex tasks": [
+      "goal rebind claude codex tasks"
+    ],
+    "goal rebind claude start prompt decision": [
+      "goal rebind claude start prompt decision"
+    ],
+    "goal rebind live proof": [
+      "goal rebind live proof"
+    ],
+    "goal rebind live proof acceptance criteria": [
+      "goal rebind live proof acceptance criteria"
+    ],
+    "goal rebind live proof decision": [
+      "goal rebind live proof decision"
+    ],
+    "goal rebind live proof implementation summary": [
+      "goal rebind live proof implementation summary"
+    ],
+    "goal rebind live proof plan": [
+      "goal rebind live proof plan"
+    ],
+    "goal rebind live proof tasks": [
+      "goal rebind live proof tasks"
+    ],
+    "goal rebind probes": [
+      "goal rebind probes"
+    ],
+    "goal rebind probes acceptance criteria": [
+      "goal rebind probes acceptance criteria"
+    ],
+    "goal rebind probes implementation summary": [
+      "goal rebind probes implementation summary"
+    ],
+    "goal rebind probes plan": [
+      "goal rebind probes plan"
+    ],
+    "goal rebind probes tasks": [
+      "goal rebind probes tasks"
+    ],
+    "goal rebind shared core opencode": [
+      "goal rebind shared core opencode"
+    ],
+    "goal rebind shared core opencode acceptance criteria": [
+      "goal rebind shared core opencode acceptance criteria"
+    ],
+    "goal rebind shared core opencode implementation summary": [
+      "goal rebind shared core opencode implementation summary"
+    ],
+    "goal rebind shared core opencode plan": [
+      "goal rebind shared core opencode plan"
+    ],
+    "goal rebind shared core opencode tasks": [
+      "goal rebind shared core opencode tasks"
     ],
     "goal reminder cadence": [
       "goal reminder cadence"
@@ -49157,6 +49331,9 @@
     ],
     "goal surfaces inventory": [
       "goal surfaces inventory"
+    ],
+    "goal survives hand over live test": [
+      "goal survives hand-over live test"
     ],
     "goal system comparison": [
       "goal system comparison"
@@ -52188,6 +52365,9 @@
     ],
     "hop history tasks": [
       "hop history tasks"
+    ],
+    "hop keeps model": [
+      "hop keeps model"
     ],
     "hop notice": [
       "hop notice"
@@ -55344,6 +55524,9 @@
     ],
     "killer notice subtitle": [
       "killer notice subtitle"
+    ],
+    "killer target pid opencode": [
+      "killer target pid opencode"
     ],
     "killer test harness": [
       "killer test harness"
@@ -67927,6 +68110,9 @@
     "opencode 2 primary v1 fallback tasks": [
       "opencode 2 primary v1 fallback tasks"
     ],
+    "opencode 2 relaunch hop": [
+      "opencode 2 relaunch hop"
+    ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
     ],
@@ -68132,8 +68318,17 @@
     "opencode goal state migration": [
       "opencode goal state migration"
     ],
+    "opencode goal suppressed record resume": [
+      "opencode goal suppressed record resume"
+    ],
+    "opencode goal turn cap": [
+      "opencode goal turn cap"
+    ],
     "opencode goal verifier accuracy": [
       "opencode goal verifier accuracy"
+    ],
+    "opencode goal wall clock cap": [
+      "opencode goal wall clock cap"
     ],
     "opencode hook adapter": [
       "opencode hook adapter"
@@ -68564,6 +68759,21 @@
     "opencode1 launcher": [
       "opencode1 launcher"
     ],
+    "opencode2 killer target": [
+      "opencode2 killer target"
+    ],
+    "opencode2 killer target acceptance criteria": [
+      "opencode2 killer target acceptance criteria"
+    ],
+    "opencode2 killer target implementation summary": [
+      "opencode2 killer target implementation summary"
+    ],
+    "opencode2 killer target plan": [
+      "opencode2 killer target plan"
+    ],
+    "opencode2 killer target tasks": [
+      "opencode2 killer target tasks"
+    ],
     "opencode2 models provider check": [
       "opencode2 models provider check"
     ],
@@ -68578,6 +68788,21 @@
     ],
     "opencode2 models standalone": [
       "opencode2 models standalone"
+    ],
+    "opencode2 standalone replay": [
+      "opencode2 standalone replay"
+    ],
+    "opencode2 standalone replay acceptance criteria": [
+      "opencode2 standalone replay acceptance criteria"
+    ],
+    "opencode2 standalone replay implementation summary": [
+      "opencode2 standalone replay implementation summary"
+    ],
+    "opencode2 standalone replay plan": [
+      "opencode2 standalone replay plan"
+    ],
+    "opencode2 standalone replay tasks": [
+      "opencode2 standalone replay tasks"
     ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
@@ -71977,6 +72202,9 @@
     "phase 126 tasks": [
       "phase 126 tasks"
     ],
+    "phase 13 claude goal copy block": [
+      "phase 13 claude goal copy block"
+    ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
     ],
@@ -71997,6 +72225,9 @@
     ],
     "phase 14 gate index and deletions": [
       "phase 14 gate index and deletions"
+    ],
+    "phase 14 goal no budget stop": [
+      "phase 14 goal no budget stop"
     ],
     "phase 14 handover docs promotion": [
       "phase 14 handover docs promotion"
@@ -72021,6 +72252,9 @@
     ],
     "phase 15 freshness strict content": [
       "phase 15 freshness strict content"
+    ],
+    "phase 15 goal legacy resume and budget notice": [
+      "phase 15 goal legacy resume and budget notice"
     ],
     "phase 15 lane rules as heal modes": [
       "phase 15 lane rules as heal modes"
@@ -72301,6 +72535,12 @@
     "phase 23 readme freshness research": [
       "phase 23 readme freshness research"
     ],
+    "phase 23 relaunch cancel and test isolation": [
+      "phase 23 relaunch cancel and test isolation"
+    ],
+    "phase 24 goal rebind claude codex hermes probes": [
+      "phase 24 goal rebind claude codex hermes probes"
+    ],
     "phase 24 implementation summary": [
       "phase 24 implementation summary"
     ],
@@ -72322,17 +72562,32 @@
     "phase 25 external surface priority research": [
       "phase 25 external surface priority research"
     ],
+    "phase 25 goal binding record and launcher": [
+      "phase 25 goal binding record and launcher"
+    ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
+    "phase 26 goal rebind shared core and opencode": [
+      "phase 26 goal rebind shared core and opencode"
+    ],
+    "phase 27 goal rebind claude and codex": [
+      "phase 27 goal rebind claude and codex"
+    ],
     "phase 27 opencode2 models provider check": [
       "phase 27 opencode2 models provider check"
+    ],
+    "phase 28 goal rebind live proof and docs": [
+      "phase 28 goal rebind live proof and docs"
     ],
     "phase 28 plugin kill switch coverage": [
       "phase 28 plugin kill switch coverage"
     ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
+    ],
+    "phase 29 relaunch evidence gaps and playbook drift": [
+      "phase 29 relaunch evidence gaps and playbook drift"
     ],
     "phase 29 unrun tests ci coverage": [
       "phase 29 unrun tests ci coverage"
@@ -72433,14 +72688,23 @@
     "phase 30 nested worktree battery": [
       "phase 30 nested worktree battery"
     ],
+    "phase 30 opencode2 killer target": [
+      "phase 30 opencode2 killer target"
+    ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
     ],
     "phase 31 plugin scanner ast": [
       "phase 31 plugin scanner ast"
     ],
+    "phase 31 relaunch model and effort": [
+      "phase 31 relaunch model and effort"
+    ],
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
+    ],
+    "phase 32 opencode2 standalone replay": [
+      "phase 32 opencode2 standalone replay"
     ],
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
@@ -74880,6 +75144,9 @@
     ],
     "playbook implementation summary": [
       "playbook implementation summary"
+    ],
+    "playbook import smoke object function": [
+      "playbook import smoke object function"
     ],
     "playbook index stress test groups": [
       "playbook index stress-test groups"
@@ -80414,6 +80681,39 @@
     "relative import census": [
       "relative import census"
     ],
+    "relaunch cancel and test isolation": [
+      "relaunch cancel and test isolation"
+    ],
+    "relaunch cancel and test isolation acceptance criteria": [
+      "relaunch cancel and test isolation acceptance criteria"
+    ],
+    "relaunch cancel and test isolation implementation summary": [
+      "relaunch cancel and test isolation implementation summary"
+    ],
+    "relaunch cancel and test isolation plan": [
+      "relaunch cancel and test isolation plan"
+    ],
+    "relaunch cancel and test isolation tasks": [
+      "relaunch cancel and test isolation tasks"
+    ],
+    "relaunch effort flag": [
+      "relaunch effort flag"
+    ],
+    "relaunch evidence gaps": [
+      "relaunch evidence gaps"
+    ],
+    "relaunch evidence gaps acceptance criteria": [
+      "relaunch evidence gaps acceptance criteria"
+    ],
+    "relaunch evidence gaps implementation summary": [
+      "relaunch evidence gaps implementation summary"
+    ],
+    "relaunch evidence gaps plan": [
+      "relaunch evidence gaps plan"
+    ],
+    "relaunch evidence gaps tasks": [
+      "relaunch evidence gaps tasks"
+    ],
     "relaunch gap register": [
       "relaunch gap register"
     ],
@@ -80422,6 +80722,21 @@
     ],
     "relaunch loop test suite": [
       "relaunch loop test suite"
+    ],
+    "relaunch model and effort": [
+      "relaunch model and effort"
+    ],
+    "relaunch model and effort acceptance criteria": [
+      "relaunch model and effort acceptance criteria"
+    ],
+    "relaunch model and effort implementation summary": [
+      "relaunch model and effort implementation summary"
+    ],
+    "relaunch model and effort plan": [
+      "relaunch model and effort plan"
+    ],
+    "relaunch model and effort tasks": [
+      "relaunch model and effort tasks"
     ],
     "relaunch takeover lock identity": [
       "relaunch takeover lock identity"
@@ -90133,6 +90448,9 @@
     "session relaunch at 80 percent": [
       "session relaunch at 80 percent"
     ],
+    "session relaunch cancel command": [
+      "session relaunch cancel command"
+    ],
     "session relaunch claude": [
       "session-relaunch-claude"
     ],
@@ -90150,6 +90468,9 @@
     ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
+    ],
+    "session relaunch goal": [
+      "SESSION_RELAUNCH_GOAL"
     ],
     "session relaunch history command": [
       "session relaunch history command"
@@ -90226,6 +90547,9 @@
     ],
     "session start context": [
       "session start context"
+    ],
+    "session start hook goal command": [
+      "session start hook goal command"
     ],
     "session start orphan sweep flag": [
       "session-start orphan sweep flag"
@@ -112036,6 +112360,9 @@
     ],
     "with goal flag shipped": [
       "with goal flag shipped"
+    ],
+    "withdraw deferred hand over": [
+      "withdraw deferred hand-over"
     ],
     "withdrawn acceptance criterion": [
       "withdrawn acceptance criterion"

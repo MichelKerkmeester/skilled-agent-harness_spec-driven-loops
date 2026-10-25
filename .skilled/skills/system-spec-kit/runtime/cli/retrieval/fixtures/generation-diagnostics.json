@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7194,
-    "ok": 14998,
+    "ok": 15065,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25740,
+  "documentsScanned": 25807,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d1962aea5092edfc84a687a3feb7375713524d0d7b192505802e7ed40a33cea9",
+  "manifestHash": "104ffcab6d6f30bd01f18494c1143201294ce41f420faffa792bea45d5d9285a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37332,
+      "ok": 37441,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70080,6 +70080,46 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -71345,6 +71385,18 @@
     },
     {
       "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/013-claude-goal-copy-block/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice/scratch",
       "reason": "excluded directory"
     },
     {
