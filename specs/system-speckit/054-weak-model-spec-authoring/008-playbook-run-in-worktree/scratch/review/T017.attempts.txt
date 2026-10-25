@@ -1,0 +1,3 @@
+attempt=1 start=01:54:25
+attempt=1 devin_exit=0 end=01:57:53
+attempt=1 result_lines=3

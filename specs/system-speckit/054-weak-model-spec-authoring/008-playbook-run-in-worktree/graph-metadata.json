@@ -39,7 +39,7 @@
       "report"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,12 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      "scratch/scenarios.tsv",
+      "scratch/results.tsv",
+      "scratch/verdicts.md",
       ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".skilled/skills/sk-git/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
+      "scratch/worktree/create.out",
+      "scratch/fixes/fix.patch",
+      "scratch/fixes/status.txt",
+      "scratch/review/T017.txt",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      "scratch/worktree/provision.out",
+      "scratch/worktree/own-code.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
     ],
     "entities": [
       {
@@ -92,9 +100,21 @@
         "source": "derived"
       },
       {
-        "name": "worktree-naming.sh",
-        "kind": "script",
-        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "name": "scenarios.tsv",
+        "kind": "file",
+        "path": "scratch/scenarios.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "results.tsv",
+        "kind": "file",
+        "path": "scratch/results.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts.md",
+        "kind": "doc",
+        "path": "scratch/verdicts.md",
         "source": "derived"
       },
       {
@@ -104,15 +124,63 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "name": "create.out",
+        "kind": "file",
+        "path": "scratch/worktree/create.out",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "name": "fix.patch",
+        "kind": "file",
+        "path": "scratch/fixes/fix.patch",
+        "source": "derived"
+      },
+      {
+        "name": "status.txt",
+        "kind": "file",
+        "path": "scratch/fixes/status.txt",
+        "source": "derived"
+      },
+      {
+        "name": "T017.txt",
+        "kind": "file",
+        "path": "scratch/review/T017.txt",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "provision.out",
+        "kind": "file",
+        "path": "scratch/worktree/provision.out",
+        "source": "derived"
+      },
+      {
+        "name": "own-code.txt",
+        "kind": "file",
+        "path": "scratch/worktree/own-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -138,71 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "One Task",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 007 adds scenarios that claim the placeholder gate warns in Draft, fails at Complete, the drift guard catches a leaked description, the golden render holds, the router loads the card, the sync guard fails on drift and a DeepSeek worker can author a Level 1 packet from the card",
     "created_at": "2026-10-23T11:27:26Z",
-    "last_save_at": "2026-10-24T07:19:46.544Z",
+    "last_save_at": "2026-10-25T00:01:23.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33dbc23f34a646431e0956a169bc26ada168cf273640e150eb59791ef68892c3",
+    "source_fingerprint": "sha256:1cd03c5c2a0d8bcd2303afdaa27ea579d13168c67781b805c5708cc9790a56b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "738114290b096e244b77f143d4029a2aeddc7da76dc3e2199d5b5c21db02896e",
-      "plan.md": "c2be64877b216e5f3f56d24fb134cfe30cef180ac02dca7ad47d7c3f7b8353ca",
-      "tasks.md": "46033edcf702a9fabc6c7e700e42d74ae8952bea8b034a88756f0725c42b11e4",
-      "implementation-summary.md": "d300b2f6d3fee0f9c5dd561dfb8d914d45e29860ccea2d053c92c7027e539594"
+      "spec.md": "5c566a56050cb612442360bbe474c9fe2e350d9a07e7fbb3254fc3e778a841ba",
+      "plan.md": "e9bc40aadb236cae24b92cf9632061dc1dea7cae2a20d6f4084d395f8782202a",
+      "tasks.md": "a95b848b9057cc79ce24a6145a16a437f6fb5e28c7b2e49c2c1d5a29f51b77ad",
+      "implementation-summary.md": "1c2e3a0ff3bd42e9495a2923b41aff493c9d17e552472fa831f52a5ce763ad7b"
     },
     "last_active_at": null
   }

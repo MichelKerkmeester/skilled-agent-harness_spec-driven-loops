@@ -1,0 +1,8 @@
+packet=specs/zz-pb-gate-draft/001-gate-draft
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.3 -->
+| **Status** | Draft |
+warn
+true
+cleanup=ok
+truncated=no
+exit=0

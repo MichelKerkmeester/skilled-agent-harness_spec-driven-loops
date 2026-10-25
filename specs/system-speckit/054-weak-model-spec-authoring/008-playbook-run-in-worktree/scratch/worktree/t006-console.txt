@@ -1,0 +1,11 @@
+exit=0
+  provisioning .skilled/skills/sk-design/sk-design-md-generator/backend (npm ci)
+  building .skilled/skills/sk-design/sk-design-md-generator/backend
+provisioned: 11 installed, 5 built, 3 already present, 0 failed
+OWN runtime/dist
+OWN node_modules
+OWN node_modules/@spec-kit/runtime
+OWN node_modules/@spec-kit/cli
+OWN node_modules/@spec-kit/shared
+MISSING runtime/node_modules
+ORCH_OK

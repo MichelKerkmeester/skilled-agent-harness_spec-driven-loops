@@ -1,0 +1,134 @@
+######## placeholder-token-warning-while-draft
+### Expected
+
+Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line that ends with `v2.3 -->`, then a Status row that reads Draft. Step 2 prints `warn`, then `true`. Step 3 prints `cleanup=ok`.
+
+### Evidence
+
+- The packet path, the stamp line and the status line from step 1.
+- The `warn` line and the `true` line from step 2, and the `$OUT/gate.json` file.
+- The `cleanup=ok` line from step 3.
+
+### Pass / Fail
+
+- **Pass**: The gate entry is `warn`, `passed` is `true`, and the track is gone at the end.
+- **Fail**: The gate entry is `error` or `pass`, `passed` is `false`, or the track remains.
+
+######## placeholder-token-error-after-draft
+### Expected
+
+Step 1 prints `packet=specs/zz-pb-gate-complete/001-gate-complete`. Step 2 prints a Status row that reads Complete. Step 3 prints `error`, then `false`, then at least one detail line that names a document and a line number. Step 4 prints `cleanup=ok`.
+
+### Evidence
+
+- The packet path from step 1.
+- The Complete status line from step 2.
+- The `error` line, the `false` line and the first three detail lines from step 3.
+- The `cleanup=ok` line from step 4.
+
+### Pass / Fail
+
+- **Pass**: The gate entry is `error`, `passed` is `false`, and at least one detail line names a token.
+- **Fail**: The gate entry is `warn` or `pass`, `passed` is `true`, or no detail line names a token.
+
+######## placeholder-gate-legacy-stamp-unchanged
+### Expected
+
+Step 1 prints `packet=specs/zz-pb-gate-legacy/001-gate-legacy`. Step 2 prints five lines, each a document name followed by `1`, then a Status row that reads Draft. Step 3 prints `error`, then `false`. Step 4 prints `cleanup=ok`.
+
+### Evidence
+
+- The packet path from step 1.
+- The five stamp counts and the Draft status line from step 2.
+- The `error` line and the `false` line from step 3, and the `$OUT/gate.json` file.
+- The `cleanup=ok` line from step 4.
+
+### Pass / Fail
+
+- **Pass**: Every document reports one v2.2 stamp, the status stays Draft, the gate entry is `error`, and `passed` is `false`.
+- **Fail**: A document keeps a v2.3 stamp, the gate entry is `warn`, or `passed` is `true`.
+
+######## example-drift-guard-catches-leak
+### Expected
+
+Step 1 prints `clean_exit=0`, then `EXAMPLE_DRIFT_OK`. Step 2 prints a description line that ends with `leaked -->"`. Step 3 prints `broken_exit=1`, then `1`, then `0`. Step 4 prints `cleanup=ok`.
+
+### Evidence
+
+- The exit code and the last line from step 1.
+- The injected description line from step 2.
+- The exit code, the failure count and the `EXAMPLE_DRIFT_OK` count from step 3.
+- The `cleanup=ok` line from step 4.
+
+### Pass / Fail
+
+- **Pass**: The clean run exits 0 with `EXAMPLE_DRIFT_OK`, and the broken run exits 1 with exactly one description failure and no `EXAMPLE_DRIFT_OK`.
+- **Fail**: The clean run fails, the broken run passes, or the failure count is not 1.
+
+######## golden-render-all-levels
+### Expected
+
+Step 1 prints `golden_exit=0`, then the `Tests  12 passed (12)` line, then `0`. Step 2 prints `fill_exit=0`, then the `Tests  16 passed (16)` line, then `0`. Step 3 prints `cleanup=ok`.
+
+### Evidence
+
+- The exit code, the `Tests` line and the `failed` count from step 1.
+- The exit code, the `Tests` line and the `failed` count from step 2.
+- The `cleanup=ok` line from step 3.
+
+### Pass / Fail
+
+- **Pass**: Both runs exit 0, the golden run prints `12 passed`, the fill run prints `16 passed`, and neither output holds the word `failed`.
+- **Fail**: A run exits non-zero, a pass count differs, or a failure line appears.
+
+######## authoring-card-router-intents
+### Expected
+
+Step 1 prints `4`. Step 2 prints `0`. Step 3 prints `1`.
+
+### Evidence
+
+- The `4` from step 1.
+- The `0` from step 2.
+- The `1` from step 3.
+- The four intent block headers from `SKILL.md`, quoted in the report.
+
+### Pass / Fail
+
+- **Pass**: The three counts are `4`, `0` and `1`.
+- **Fail**: Any count differs.
+
+######## authoring-card-sync-guard
+### Expected
+
+Step 1 prints `clean_exit=0`, then `9`, then `CARD SYNC OK`. Step 2 prints `copy_exit=0`, then `CARD SYNC OK`. Step 3 prints `broken_exit=1`, then `1`, then `CARD SYNC FAILED`. Step 4 prints `cleanup=ok`.
+
+### Evidence
+
+- The exit code, the `PASS` count and the last line from step 1.
+- The exit code and the last line from step 2.
+- The exit code, the failure count and the last line from step 3.
+- The `cleanup=ok` line from step 4.
+
+### Pass / Fail
+
+- **Pass**: The tree run exits 0 with nine `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with one `FAIL card-exists` line and `CARD SYNC FAILED`.
+- **Fail**: A pass count differs, the broken run passes, or the failure line names a different check.
+
+######## level-1-packet-authored-from-card
+### Expected
+
+Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20. Step 2 prints `devin_exit=0`, then the worker's last `RESULT` line, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`. Step 4 prints `cleanup=ok`.
+
+### Evidence
+
+- The `out=` line, the `pointer=` line and the brief line count from step 1.
+- The reply file in the scratch path from step 2 and the worker's last `RESULT` line.
+- The packet path, the validation exit code, the `RESULT` line and the token count from step 3.
+- The `cleanup=ok` line from step 4.
+
+### Pass / Fail
+
+- **Pass**: The worker returns a reply, the packet exists, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone.
+- **Fail**: The worker returns no reply, the packet is missing, strict validation fails, the token count is above zero, or the track remains.
+

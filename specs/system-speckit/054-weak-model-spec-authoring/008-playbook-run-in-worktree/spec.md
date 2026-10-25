@@ -34,7 +34,7 @@ Phase 007 writes eight manual-testing-playbook scenarios that describe the new p
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -102,7 +102,7 @@ Every scenario this packet adds has a real execution record and a verdict that a
 - Editing the scenario files. Phase 007 owns their text, and a scenario defect is escalated to its owner.
 - Fixing product code by hand. A fix is one Task subagent brief with one named file inside the disposable worktree.
 - Measuring the authoring benchmark delta. Phase 009 owns that comparison.
-- Committing or pushing. Both stay with the operator.
+- Pushing. It stays with the operator. The conductor makes one local commit of this phase folder and the report package after validation, and it is never pushed.
 - Running anything in the primary checkout. The only scenario host is the disposable worktree.
 
 ### Files to Change

@@ -1,0 +1,36 @@
+{
+  "scenarioId": "481",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "The three awk counts printed 4 card lines and 0 guide lines across the four authoring intent blocks, and 1 guide line in the on-demand list.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "The three awk counts printed 4 card lines and 0 guide lines across the four authoring intent blocks, and 1 guide line in the on-demand list.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/481.txt",
+          "bytes": 26,
+          "sha256": "9c9f92ee69e03e385dcfa12693ef66a5e4229ff4971e9720dc2e8fab4a08d42e"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/481.txt",
+      "bytes": 26,
+      "sha256": "9c9f92ee69e03e385dcfa12693ef66a5e4229ff4971e9720dc2e8fab4a08d42e"
+    }
+  ]
+}

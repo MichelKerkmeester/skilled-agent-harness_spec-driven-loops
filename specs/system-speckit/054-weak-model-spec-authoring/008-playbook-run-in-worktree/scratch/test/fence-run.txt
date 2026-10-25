@@ -1,0 +1,4 @@
+BASH_RAN
+SH_RAN
+truncated=no
+exit=0

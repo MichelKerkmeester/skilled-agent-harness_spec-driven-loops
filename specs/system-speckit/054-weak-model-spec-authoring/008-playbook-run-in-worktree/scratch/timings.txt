@@ -1,0 +1,15 @@
+# File modification times (local time, 2026-10-25) of the run records. Elapsed values are differences of these times.
+01:28:25  scratch/worktree/create.out
+01:46:48  scratch/worktree/provision.out
+01:46:48  scratch/worktree/provision-exit.txt
+01:47:33  scratch/runs/476.txt
+01:47:35  scratch/runs/477.txt
+01:47:36  scratch/runs/478.txt
+01:47:37  scratch/runs/479.txt
+01:47:43  scratch/runs/480.txt
+01:47:44  scratch/runs/481.txt
+01:47:44  scratch/runs/482.txt
+01:50:38  scratch/runs/483.txt
+provisioning_seconds=1094  (start epoch recorded when the provision command was launched, end = provision-exit.txt time)
+s1_to_s7_seconds=11  (476.txt time to 482.txt time, so the first run's own duration is not counted)
+s8_seconds=174  (482.txt time to 483.txt time)

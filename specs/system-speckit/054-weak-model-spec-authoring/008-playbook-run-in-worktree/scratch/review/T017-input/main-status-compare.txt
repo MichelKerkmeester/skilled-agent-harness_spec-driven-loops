@@ -1,0 +1,7 @@
+== primary-status.txt
+PRIMARY_CLEAN
+== baseline lines: 341
+== now lines: 341
+== diff of baseline and now (empty means no difference)
+== end diff
+== allowed set: the phase folder, the report folder, the reports index row. A watched path is specs/zz-, .skilled/skills/system-spec-kit/, specs/system-speckit/054-weak-model-spec-authoring/ and .worktrees/

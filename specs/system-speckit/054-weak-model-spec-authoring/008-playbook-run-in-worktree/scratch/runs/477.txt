@@ -1,0 +1,10 @@
+packet=specs/zz-pb-gate-complete/001-gate-complete
+| **Status** | Complete |
+error
+false
+spec.md:3: description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain poin
+spec.md:23: | **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
+spec.md:36: [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+cleanup=ok
+truncated=no
+exit=0

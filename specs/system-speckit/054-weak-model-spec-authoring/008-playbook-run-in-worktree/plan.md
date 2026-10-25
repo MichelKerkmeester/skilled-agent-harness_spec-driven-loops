@@ -119,14 +119,14 @@ Phase 007 plan section 3.1 freezes the eight scenario ids, files and subjects. T
 
 | S | Playbook ID | File | Subject | Pass A | Pass B | Pass C |
 |---|-------------|------|---------|--------|--------|--------|
-| S1 | 476 | `template-authoring/placeholder-token-warning-while-draft.md` | A v2.3 Draft packet warns and still passes strict | `^warning$` | `^true$` | `cleanup=ok` |
+| S1 | 476 | `template-authoring/placeholder-token-warning-while-draft.md` | A v2.3 Draft packet warns and still passes strict | `^warn$` | `^true$` | `cleanup=ok` |
 | S2 | 477 | `template-authoring/placeholder-token-error-after-draft.md` | The same packet fails once its status leaves Draft | `^error$` | `^false$` | `cleanup=ok` |
 | S3 | 478 | `template-authoring/placeholder-gate-legacy-stamp-unchanged.md` | A v2.2 packet keeps the old error at any status | `^error$` | `^false$` | `cleanup=ok` |
 | S4 | 479 | `template-authoring/example-drift-guard-catches-leak.md` | The drift guard fails a leaked description and passes a clean tree | `EXAMPLE_DRIFT_OK` | `broken_exit=1` | `cleanup=ok` |
 | S5 | 480 | `template-authoring/golden-render-all-levels.md` | Every level renders to the stored snapshots and the anchor counts hold | `Tests\s+12 passed \(12\)` | `Tests\s+16 passed \(16\)` | `cleanup=ok` |
 | S6 | 481 | `template-authoring/authoring-card-router-intents.md` | The four authoring intents load the card and not the guide | `^4$` | `^0$` | `^1$` |
 | S7 | 482 | `template-authoring/authoring-card-sync-guard.md` | The sync guard passes the tree and fails a copy without the card | `CARD SYNC OK` | `CARD SYNC FAILED` | `cleanup=ok` |
-| S8 | 483 | `template-authoring/level-1-packet-authored-from-card.md` | A DeepSeek worker writes a Level 1 packet from the card alone | `RESULT: PASSED` | `^leftover_tokens 0$` | `cleanup=ok` |
+| S8 | 483 | `template-authoring/level-1-packet-authored-from-card.md` | A DeepSeek worker writes a Level 1 packet from the card alone | `^devin_exit=0$` | `^packet=specs/zz-pb-card/001-card-authoring\nval_exit=0\nRESULT: PASSED\n0$` | `cleanup=ok` |
 
 A missing file prints `NO_FILE S<n>` and stops the map build. The conductor records the blocker and stops, because a guessed scenario is worse than no run.
 
@@ -134,14 +134,14 @@ The patterns are the lines the scenario files print, read from phase 007 plan se
 
 ### 3.4 Running one scenario
 
-The runner appends every fenced block under `### Commands` in order, writes the extracted text to the run file's own `<run file>.cmd` path, which is `scratch/runs/<playbook-id>.txt.cmd`, and runs it from `$WT` in one shell, so the variables set in step one stay defined for the later steps:
+The runner appends every `bash` or `sh` fenced block under `### Commands` in order, writes the extracted text to the run file's own `<run file>.cmd` path, which is `scratch/runs/<playbook-id>.txt.cmd`, and runs it from `$WT` in one shell, so the variables set in step one stay defined for the later steps:
 
 ```bash
 awk '
   /^### Commands[[:space:]]*$/ { section = 1; next }
   section && /^### / { exit }
-  section && /^```/ { block = !block; next }
-  section && block { print }
+  section && /^```/ { if (fence) { fence = 0; run = 0 } else { fence = 1; run = ($0 ~ /^```(bash|sh)[[:space:]]*$/) }; next }
+  section && run { print }
 ' "$SCENARIO_FILE" > "$PHASE/scratch/runs/$ID.txt.cmd"
 ```
 

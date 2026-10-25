@@ -1,0 +1,5 @@
+result:PASS
+missing:none
+exit:0
+truncated:no
+last:FIXTURE_OK_SECOND

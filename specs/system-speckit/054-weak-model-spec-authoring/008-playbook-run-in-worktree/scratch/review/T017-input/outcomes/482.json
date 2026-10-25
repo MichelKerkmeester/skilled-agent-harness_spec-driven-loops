@@ -1,0 +1,36 @@
+{
+  "scenarioId": "482",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "The sync guard exited 0 on the tree with nine PASS lines and CARD SYNC OK. The rsync copy exited 0 with CARD SYNC OK. After the card was deleted from the copy the guard exited 1 with one FAIL card-exists line and CARD SYNC FAILED. The scratch folder was removed (cleanup=ok).",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "The sync guard exited 0 on the tree with nine PASS lines and CARD SYNC OK. The rsync copy exited 0 with CARD SYNC OK. After the card was deleted from the copy the guard exited 1 with one FAIL card-exists line and CARD SYNC FAILED. The scratch folder was removed (cleanup=ok).",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/482.txt",
+          "bytes": 117,
+          "sha256": "f0bb47e9298342449b2a043c5d4b9a1ff45b905c1971389ef4c02552ab7763bc"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/482.txt",
+      "bytes": 117,
+      "sha256": "f0bb47e9298342449b2a043c5d4b9a1ff45b905c1971389ef4c02552ab7763bc"
+    }
+  ]
+}

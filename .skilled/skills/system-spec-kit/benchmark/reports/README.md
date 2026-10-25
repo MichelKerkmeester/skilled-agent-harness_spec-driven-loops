@@ -24,6 +24,7 @@ Each row below is one immutable run folder. Rows are written by the benchmark ru
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](./2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/) | claude, pi, opencode, codex session-relaunch | 11 PASS, 2 FAIL | **PASS (after fixes)** | `manual-testing-playbook` |
