@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5c3144087d127dc3783c3e4ef8f7c9bf304a883757ddd868b173b615d34ab055",
+  "manifestHash": "1453802a24e47ee96d2ef205ca19a73ad40028786cec0be8f412842c247259f9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -42168,6 +42168,9 @@
     "expected 6a handoff": [
       "expected 6a handoff"
     ],
+    "expected 9 records got 8": [
+      "expected 9 records got 8"
+    ],
     "expected daemon classifier and process sweep": [
       "expected-daemon-classifier-and-process-sweep"
     ],
@@ -45210,6 +45213,9 @@
     ],
     "fix the gap detector over capping": [
       "fix the gap detector over-capping"
+    ],
+    "fix the stale lock reclaim race": [
+      "fix the stale lock reclaim race"
     ],
     "fix write recipe backfill flag": [
       "fix write recipe backfill flag"
@@ -54346,6 +54352,9 @@
     "isrespawnlockstale orphaned holder": [
       "isRespawnLockStale orphaned holder"
     ],
+    "iswriterlockstale enoent": [
+      "isWriterLockStale ENOENT"
+    ],
     "italic serif aside": [
       "italic serif aside"
     ],
@@ -55206,6 +55215,9 @@
     ],
     "jsonl repair corrupt trailing": [
       "jsonl repair corrupt trailing"
+    ],
+    "jsonl repair intermittent failure": [
+      "jsonl repair intermittent failure"
     ],
     "jsonl repair ts": [
       "jsonl-repair.ts"
@@ -79200,6 +79212,9 @@
     "reclaim deepseek direct ownership tasks": [
       "reclaim deepseek direct ownership tasks"
     ],
+    "reclaim removes only the file it judged stale": [
+      "reclaim removes only the file it judged stale"
+    ],
     "recommend level sh": [
       "recommend-level.sh"
     ],
@@ -82399,6 +82414,9 @@
     ],
     "repository root resolution": [
       "repository root resolution"
+    ],
+    "reproduce the writer lock race": [
+      "reproduce the writer lock race"
     ],
     "reproduce then repair": [
       "reproduce then repair"
@@ -108065,6 +108083,9 @@
     "two version proof and closeout tasks": [
       "two version proof and closeout tasks"
     ],
+    "two writers hold the lock": [
+      "two writers hold the lock"
+    ],
     "type annotation patterns": [
       "type annotation patterns"
     ],
@@ -112594,6 +112615,24 @@
     ],
     "writer freeze plan": [
       "writer freeze plan"
+    ],
+    "writer lock reproduction tasks": [
+      "writer lock reproduction tasks"
+    ],
+    "writer lock stale reclaim race": [
+      "writer lock stale reclaim race"
+    ],
+    "writer lock stale reclaim race acceptance criteria": [
+      "writer lock stale reclaim race acceptance criteria"
+    ],
+    "writer lock stale reclaim race implementation summary": [
+      "writer lock stale reclaim race implementation summary"
+    ],
+    "writer lock stale reclaim race plan": [
+      "writer lock stale reclaim race plan"
+    ],
+    "writer lock stale reclaim race tasks": [
+      "writer lock stale reclaim race tasks"
     ],
     "writer regex widen task": [
       "writer regex widen task"

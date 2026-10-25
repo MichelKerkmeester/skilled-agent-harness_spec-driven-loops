@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1573038cdde1ecfea0ad26974d58b520a0f5518879ca769a55631505869625fd",
+  "corpusHash": "2e8d18775e95931c1564002000e5eb41fefa8c354ee9fd06c37973eb0641a1c5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25721,
+  "includedPathCount": 25726,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -15262,6 +15262,11 @@
     "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/plan.md",
     "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/spec.md",
     "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/tasks.md",
+    "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/acceptance-criteria.md",
+    "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/implementation-summary.md",
+    "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/plan.md",
+    "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/spec.md",
+    "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -25752,7 +25757,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5c3144087d127dc3783c3e4ef8f7c9bf304a883757ddd868b173b615d34ab055",
+  "manifestHash": "1453802a24e47ee96d2ef205ca19a73ad40028786cec0be8f412842c247259f9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29932,6 +29937,10 @@
     },
     {
       "path": "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
       "reason": "excluded directory"
     },
     {

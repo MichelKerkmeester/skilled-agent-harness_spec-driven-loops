@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7194,
-    "ok": 14979,
+    "ok": 14984,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25721,
+  "documentsScanned": 25726,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5c3144087d127dc3783c3e4ef8f7c9bf304a883757ddd868b173b615d34ab055",
+  "manifestHash": "1453802a24e47ee96d2ef205ca19a73ad40028786cec0be8f412842c247259f9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37292,
+      "ok": 37305,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72225,6 +72225,10 @@
     },
     {
       "path": "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
       "reason": "excluded directory"
     },
     {
