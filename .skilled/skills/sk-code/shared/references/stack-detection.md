@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.5.0
+version: 2.2.6.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -99,7 +99,8 @@ These rules apply to an external block:
 - It must state `"role": "specific"`. Readers ignore a block that claims the fallback role or states no role, because the fallback is the hub's own code.
 - It needs a label and at least one marker, or it never matches.
 - The registry compiler reads only the hub's registry, so it never checks the inner fields. Pick markers that do not catch other repositories. A bare `manifest.json` file marker would.
-- The skill-root metadata check, `ci-skill-root-metadata.cjs`, accepts `surface_detection` as an optional top-level key and checks only that its value is a JSON object. Any other value fails with `GRAPH_METADATA_INVALID_SURFACE_DETECTION`.
+- The skill-root metadata check, `ci-skill-root-metadata.cjs`, accepts `surface_detection` as an optional top-level key and checks its fields. It fails with `GRAPH_METADATA_INVALID_SURFACE_DETECTION`, one finding per broken rule, when the value is not a JSON object, the `label` is missing or blank, the `role` is anything but `specific`, none of `pathMarkers`, `fileMarkers` and `contentMarkers` is a non-empty array, or one of those three is present but is not an array of strings. A marker must not be blank: one made only of spaces or tabs fails, because it would match nearly every path or request.
+- The check skips folders whose name starts with `local-`, so it does not validate a private skill such as `local-example`. Check that block by hand against the rules above.
 
 ### The Fallback and the Symlink Guard
 
