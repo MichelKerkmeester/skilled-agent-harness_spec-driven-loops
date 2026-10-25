@@ -1,0 +1,1 @@
+[session-relaunch] handoff prepared; stop now and end this turn. The loop ends this session when it goes idle and a fresh session continues from /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sb001m/.skilled/skills/.state/session-relaunch/handoffs/note-medium.md.

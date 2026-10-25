@@ -45,6 +45,7 @@ const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
 const SPEC_FOLDER_MARKER = ' | Spec folder: ';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
 const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
 const GOAL_FILENAME = 'goal.md';
 // Runtimes whose goal record names the packet the session is bound to; the lookup differs
 // only in how the record is keyed.
@@ -90,6 +91,36 @@ function specFolderSuffix(specFolder) {
   if (specFolder === 'none') return `${SPEC_FOLDER_MARKER}none${SPEC_FOLDER_SKIP_SUFFIX}`;
   if (!validSpecFolder(specFolder)) return '';
   return `${SPEC_FOLDER_MARKER}${specFolder}${SPEC_FOLDER_SUFFIX}`;
+}
+
+/**
+ * Read a claim seed back into the note path and spec folder it was built from. The suffix is
+ * taken from the last marker, because a spec folder can never hold the marker text while a
+ * note path can.
+ *
+ * @param {string} prompt - A start prompt that may be a claim seed.
+ * @returns {{notePath: string, specFolder: string}|null} The parts, with specFolder '' when
+ *   the seed carries no answer the builder would write; null when the prompt is no seed or
+ *   names no absolute path.
+ */
+function parseClaimSeed(prompt) {
+  if (typeof prompt !== 'string' || !prompt.startsWith(CLAIM_SEED_PREFIX)) return null;
+  let notePath = prompt.slice(CLAIM_SEED_PREFIX.length);
+  let specFolder = '';
+  const markerIndex = notePath.lastIndexOf(SPEC_FOLDER_MARKER);
+  if (markerIndex >= 0) {
+    const answer = notePath.slice(markerIndex + SPEC_FOLDER_MARKER.length);
+    if (answer.endsWith(SPEC_FOLDER_SKIP_SUFFIX)) {
+      specFolder = answer.slice(0, -SPEC_FOLDER_SKIP_SUFFIX.length) === 'none' ? 'none' : '';
+      notePath = notePath.slice(0, markerIndex);
+    } else if (answer.endsWith(SPEC_FOLDER_SUFFIX)) {
+      const candidate = answer.slice(0, -SPEC_FOLDER_SUFFIX.length);
+      specFolder = validSpecFolder(candidate) ? candidate : '';
+      notePath = notePath.slice(0, markerIndex);
+    }
+  }
+  if (!notePath || notePath !== notePath.trim() || /[\r\n]/.test(notePath)) return null;
+  return path.isAbsolute(notePath) ? { notePath, specFolder } : null;
 }
 
 /** Parse a `pid ppid` process table into a child-to-parent map. */
@@ -413,6 +444,36 @@ function goalPacketProblem(goalPacket, roots) {
 function goalSwitchOn(switches) {
   const value = String(switches?.SESSION_RELAUNCH_GOAL ?? '').trim().toLowerCase();
   return !GOAL_SWITCH_OFF_VALUES.includes(value);
+}
+
+/**
+ * List the checkouts a note's packet may live in: the repository, and the working directory
+ * the fresh session starts in, which a git worktree session does not share with the repository.
+ *
+ * @param {string} repoRoot - Absolute repository root.
+ * @param {string} noteCwd - The working directory the note records, used only when absolute.
+ * @returns {string[]} Roots for goalPacketProblem.
+ */
+function goalRoots(repoRoot, noteCwd) {
+  const roots = [repoRoot];
+  if (typeof noteCwd === 'string' && path.isAbsolute(noteCwd)) roots.push(noteCwd);
+  return roots;
+}
+
+/**
+ * Pick the packet a note carries that its receiver may be given: the switch is on and the
+ * packet still holds a goal.md, which it may have lost since the note was written.
+ *
+ * @param {Object} frontmatter - The note's parsed frontmatter.
+ * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
+ * @param {string} repoRoot - Absolute repository root.
+ * @returns {string} The packet, or '' when none may be handed on.
+ */
+function usableGoalPacket(frontmatter, switches, repoRoot) {
+  const packet = typeof frontmatter?.goal_packet === 'string' ? frontmatter.goal_packet : '';
+  if (packet === '' || !goalSwitchOn(switches)) return '';
+  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
+  return goalPacketProblem(packet, goalRoots(repoRoot, noteCwd)) === null ? packet : '';
 }
 
 // A spec folder and the packets above it, nearest first: a child packet rarely holds the
@@ -1810,8 +1871,11 @@ module.exports = {
   SPEC_FOLDER_SKIP_SUFFIX,
   validSpecFolder,
   specFolderSuffix,
+  parseClaimSeed,
   goalPacketProblem,
   goalSwitchOn,
+  goalRoots,
+  usableGoalPacket,
   resolveGoalPacket,
   resolveSessionSettings,
   recordGoalPacket,

@@ -10,6 +10,7 @@ const os = require('node:os');
 const path = require('node:path');
 const {
   readClaudeFill,
+  readClaudeSettings,
   resolveWindow,
   fillRatio,
   fillFromPiUsage,
@@ -373,4 +374,106 @@ test('resolveWindow stops at the repository boundary and walks nowhere outside a
     }),
     200000,
   );
+});
+
+// Claude writes a /model or /effort switch to the log the moment it is confirmed, as a local
+// command entry and its stdout, before any assistant turn runs on the new values. These rows
+// keep the shapes Claude Code 2.1.310 wrote.
+function claudeAssistant(model, effort) {
+  return { type: 'assistant', isSidechain: false, requestedModel: model, effort, message: { model } };
+}
+
+function claudeLocalCommand(name, args, stdout) {
+  return [
+    {
+      type: 'user',
+      isSidechain: false,
+      isMeta: true,
+      message: { role: 'user', content: '<local-command-caveat>The command below was run directly in Claude Code, not sent to you as a request.</local-command-caveat>' },
+    },
+    {
+      type: 'user',
+      isSidechain: false,
+      message: {
+        role: 'user',
+        content: `<command-name>/${name}</command-name>\n            <command-message>${name}</command-message>\n            <command-args>${args}</command-args>`,
+      },
+    },
+    {
+      type: 'user',
+      isSidechain: false,
+      message: { role: 'user', content: `<local-command-stdout>${stdout}</local-command-stdout>` },
+    },
+  ];
+}
+
+function writeClaudeLog(t, entries) {
+  const sandbox = createSandbox(t);
+  const logPath = path.join(sandbox.root, 'session.jsonl');
+  fs.writeFileSync(logPath, `${entries.map((entry) => JSON.stringify(entry)).join('\n')}\n`);
+  return logPath;
+}
+
+const MODEL_SET = 'Set model to `Opus 5.5` and saved as your default for new sessions';
+const EFFORT_SET = 'Set effort level to medium (saved as your default for new sessions): Balanced approach with standard implementation and testing';
+
+test('readClaudeSettings takes a later /model switch and drops the old turn effort', (t) => {
+  const logPath = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
+  ]);
+  assert.deepEqual(readClaudeSettings(logPath), { model: 'claude-opus-5-5', effort: '' });
+
+  const sameModel = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('model', 'claude-sonnet-5-5', 'Set model to `Sonnet 5.5` and saved as your default for new sessions'),
+  ]);
+  assert.deepEqual(readClaudeSettings(sameModel), { model: 'claude-sonnet-5-5', effort: 'low' });
+});
+
+test('readClaudeSettings pairs a later /model with a later /effort, in either order', (t) => {
+  const modelFirst = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
+    ...claudeLocalCommand('effort', '', EFFORT_SET),
+  ]);
+  assert.deepEqual(readClaudeSettings(modelFirst), { model: 'claude-opus-5-5', effort: 'medium' });
+
+  const effortFirst = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('effort', 'medium', 'Set effort level to medium (this session only): Balanced approach'),
+    ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
+  ]);
+  assert.deepEqual(readClaudeSettings(effortFirst), { model: 'claude-opus-5-5', effort: 'medium' });
+});
+
+test('readClaudeSettings lets a turn after the switch speak for itself', (t) => {
+  const logPath = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
+    claudeAssistant('claude-opus-5-5', 'high'),
+  ]);
+  assert.deepEqual(readClaudeSettings(logPath), { model: 'claude-opus-5-5', effort: 'high' });
+});
+
+test('readClaudeSettings ignores a cancelled switch and proves no model from a picker name', (t) => {
+  const cancelled = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('effort', '', 'Cancelled'),
+  ]);
+  assert.deepEqual(readClaudeSettings(cancelled), { model: 'claude-sonnet-5-5', effort: 'low' });
+
+  // The picker leaves the arguments empty and names the model for display only, so the
+  // switch is proven but the new id is not, and the old pair no longer describes the session.
+  const picker = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('model', '', MODEL_SET),
+  ]);
+  assert.deepEqual(readClaudeSettings(picker), { model: '', effort: '' });
+
+  const pickerId = writeClaudeLog(t, [
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    ...claudeLocalCommand('model', '', 'Set model to `claude-opus-5-5` and saved as your default for new sessions'),
+  ]);
+  assert.deepEqual(readClaudeSettings(pickerId), { model: 'claude-opus-5-5', effort: '' });
 });

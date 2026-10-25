@@ -1,0 +1,4 @@
+before: 9ffe4047f7516b5691164fd39a54e8e1688b129a
+backup: 9ffe4047f7516b5691164fd39a54e8e1688b129a
+16:  "model": "claude-opus-5-5",
+326:  "effortLevel": "xhigh",

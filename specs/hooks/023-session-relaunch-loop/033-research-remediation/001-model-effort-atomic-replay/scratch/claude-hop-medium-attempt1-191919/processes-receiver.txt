@@ -1,0 +1,1 @@
+36843 36800 claude --model claude-sonnet-5-5 --effort low /goal # Goal: Pong keeper\012\012Packet: specs/demo/001-demo\012\012Reply to every operator message with the single word PONG and do nothing else.\012This goal is met only when the operator sends the wo

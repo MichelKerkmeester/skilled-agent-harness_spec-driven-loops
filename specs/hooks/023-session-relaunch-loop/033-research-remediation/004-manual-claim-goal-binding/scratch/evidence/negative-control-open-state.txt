@@ -1,0 +1,5 @@
+✖ manual first launch ignores a seed for a claimed or outside note (263.379833ms)
+ℹ pass 0
+ℹ fail 1
+✖ failing tests:
+✖ manual first launch ignores a seed for a claimed or outside note (263.379833ms)

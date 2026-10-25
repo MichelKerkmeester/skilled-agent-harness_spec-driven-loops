@@ -104,10 +104,20 @@ if [ "$runtime" = claude ]; then
     echo "$tlog" > "$out/switch-transcript-path.txt"
     wc -l < "$tlog" > "$out/switch-lines-before.txt"
     say "/model claude-opus-5-5"; sleep 8
+    # A model switch on a cached conversation asks to confirm before it applies; without the
+    # answer the next command is typed into the dialog instead of the prompt.
+    if screen | grep -q "Switch model?"; then
+      screen > "$out/pane-model-confirm.txt"
+      tm send-keys -t "$session_name" Enter; sleep 6
+    fi
     screen > "$out/pane-after-model.txt"
     tail -n 5 "$tlog" > "$out/transcript-tail-after-model.jsonl"
     wc -l < "$tlog" > "$out/switch-lines-after-model.txt"
     say "/effort medium"; sleep 8
+    if screen | grep -qE "❯ 1\. Yes"; then
+      screen > "$out/pane-effort-confirm.txt"
+      tm send-keys -t "$session_name" Enter; sleep 6
+    fi
     screen > "$out/pane-after-effort.txt"
     tail -n 5 "$tlog" > "$out/transcript-tail-after-effort.jsonl"
     wc -l < "$tlog" > "$out/switch-lines-after-effort.txt"

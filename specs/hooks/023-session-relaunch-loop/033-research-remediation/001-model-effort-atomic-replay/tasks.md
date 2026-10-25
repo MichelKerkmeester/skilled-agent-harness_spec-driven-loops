@@ -45,7 +45,8 @@ contextType: "general"
 - [x] T005 Write the failing arm test "arm with a new model and no effort clears the recorded effort" and see it fail (`.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs`)
 - [x] T006 Add one wrapper function for the effort rule: unset the launch effort only when the launch model was non-empty before the live override, the accepted live model differs from it, no valid live effort came with it and the runtime is not Hermes (`.skilled/bin/skilled-loop`)
 - [x] T007 Remove the recorded effort on an arm with a new model and no effort (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`)
-- [B] T008 If T003 found a switch entry, extend `readClaudeSettings` with a test (`.skilled/hooks/session-relaunch/lib/context-usage.cjs`). T003 found a `/model` local command entry, but `context-usage.cjs` was outside this build's write scope, so the limit is documented instead
+- [x] T008 Extend `readClaudeSettings` so a `/model` or `/effort` local command confirmed after the last main-chain assistant entry wins for its field, and a new model drops the old turn's effort (`.skilled/hooks/session-relaunch/lib/context-usage.cjs`, tests in `.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:420-480`). Red before: 3 of 4 fail (`scratch/test/reader-red-before.txt`). Green after: 25 of 25 (`scratch/test/reader-green-after.txt`). The `/effort` shape comes from the operator's own transcripts (`scratch/claude-hop/effort-entries.txt`), because the live run could not authenticate
+- [x] T012 Treat a Pi launch `provider/model` and a recorded provider plus bare model as the same model in `live_model_voids_launch_effort` (`.skilled/bin/skilled-loop:226`), test at `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1460`. Red before: launch `--thinking low` dropped (`scratch/test/pi-prefix-red-before.txt`). Green after (`scratch/test/pi-prefix-green-after.txt`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,6 +56,7 @@ contextType: "general"
 
 - [x] T009 Rerun the full test commands and report the delta against T001
 - [x] T010 Run the live hops on Claude, Codex and Pi, plus a control hop whose record had its `effort` field removed and must relaunch with no effort flag; save receiver args and `relaunch.log` hop lines under `scratch/`. The Claude sender kept effort `low`, so the medium-effort part of AC-005 is still open
+- [x] T013 Rerun the Claude hop as Sonnet low switched to Opus medium. A throwaway `CLAUDE_CONFIG_DIR` could not authenticate, so on the operator's approval it ran under the real config with `~/.claude/settings.json` backed up and the switched lines put back afterwards; the file ended identical to the backup (shasum `9ffe4047f7516b5691164fd39a54e8e1688b129a`). The harness now answers the `/model` confirm dialog. Receiver `claude --model claude-opus-5-5 --effort medium` (`scratch/claude-hop-medium/processes-receiver.txt:1`)
 - [x] T011 Update the replay lines and any switch limit in `.skilled/hooks/session-relaunch/README.md`
 <!-- /ANCHOR:phase-3 -->
 
@@ -63,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: live hops under `scratch/`, the Opus medium hop in `scratch/claude-hop-medium/`
 <!-- /ANCHOR:completion -->
 
 ---

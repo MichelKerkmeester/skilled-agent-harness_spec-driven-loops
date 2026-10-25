@@ -363,21 +363,12 @@ function sessionIdFor(options, runtime) {
   return sessionId;
 }
 
-// The checkouts a note's packet may live in: this repository, and the working directory the
-// fresh session starts in, which a git worktree session does not share with the CLI's checkout.
 function goalRoots(noteCwd) {
-  const roots = [nudge.resolveRepoRoot(process.env)];
-  if (path.isAbsolute(noteCwd)) roots.push(noteCwd);
-  return roots;
+  return core.goalRoots(nudge.resolveRepoRoot(process.env), noteCwd);
 }
 
-// A packet the note carries and the receiver may be given: the switch is on and the packet
-// still holds a goal.md, which it may have lost since the note was written.
-function usableGoalPacket(frontmatter) {
-  const packet = typeof frontmatter.goal_packet === 'string' ? frontmatter.goal_packet : '';
-  if (packet === '' || !core.goalSwitchOn(resolvedSwitches())) return '';
-  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
-  return core.goalPacketProblem(packet, goalRoots(noteCwd)) === null ? packet : '';
+function noteGoalPacket(frontmatter) {
+  return core.usableGoalPacket(frontmatter, resolvedSwitches(), nudge.resolveRepoRoot(process.env));
 }
 
 // The field belongs to this command and not to whoever wrote the note. Every prepare and keep
@@ -636,7 +627,7 @@ function claim(args) {
   const claimed = core.claimHandoff(handoffPath, { sessionId });
   hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
-  const goalPacket = usableGoalPacket(claimed.frontmatter);
+  const goalPacket = noteGoalPacket(claimed.frontmatter);
   if (goalPacket !== '') {
     process.stdout.write(
       `\nGoal packet: ${goalPacket} (the goal the sending session worked under;`
@@ -690,7 +681,24 @@ function consume(args) {
   const { options } = parseArgs(args, { flags: ['--loop-id'] });
   const loopId = options['--loop-id'];
   if (!loopId) throw new Error('--loop-id is required');
-  const record = core.readRelaunchFile(loopId);
+  const statePath = core.relaunchFilePath(loopId);
+  // A withdraw rewrites the record under its lock, and the wrapper consumes in a call of its
+  // own after should-relaunch approved the hop. Reading, judging and removing the record
+  // under that same lock is what lets a withdraw that landed in between still stop the hop.
+  // The note is read after the lock, so a slow note never holds a withdraw up.
+  const { record, withdrawn } = core.withAppendLock(statePath, () => {
+    const locked = core.readRelaunchFile(loopId);
+    try {
+      fs.unlinkSync(statePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    return {
+      record: locked,
+      withdrawn: locked?.status === 'disarmed'
+        && core.WITHDRAWN_DISARM_REASONS.has(locked.disarmReason),
+    };
+  });
   const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
   let specFolder = '';
   let goalPacket = '';
@@ -705,7 +713,7 @@ function consume(args) {
         : '';
       if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
-      goalPacket = usableGoalPacket(note.frontmatter);
+      goalPacket = noteGoalPacket(note.frontmatter);
     } catch {
       ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }
@@ -713,15 +721,6 @@ function consume(args) {
   // The wrapper relaunches only an open note: a claim seed for any other state fails in
   // the fresh session and loses the hop, so it prints the manual command instead.
   const note = core.noteState(handoffPath);
-  const statePath = core.relaunchFilePath(loopId);
-  // A withdraw rewrites the record under its lock, so the unlink waits for the same lock.
-  core.withAppendLock(statePath, () => {
-    try {
-      fs.unlinkSync(statePath);
-    } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
-    }
-  });
   if (invalidSpecFolder) {
     try {
       core.appendLog('spec-folder-dropped', { loopId });
@@ -735,6 +734,8 @@ function consume(args) {
   for (const key of ['model', 'provider', 'effort']) {
     if (typeof record?.[key] === 'string' && record[key] !== '') consumed[key] = record[key];
   }
+  // Only a withdrawn record carries the key, so every other consume prints what it always did.
+  if (withdrawn) consumed.withdrawn = true;
   process.stdout.write(`${JSON.stringify(consumed)}\n`);
   return 0;
 }

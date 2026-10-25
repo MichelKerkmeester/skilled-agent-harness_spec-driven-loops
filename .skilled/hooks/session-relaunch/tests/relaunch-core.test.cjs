@@ -2347,3 +2347,69 @@ test('recordGoalPacket removes an empty field the note holds', (t) => {
   assert.equal(recordGoalPacket(handoffPath, ''), true);
   assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLAIM SEED PARSER AND GOAL PACKET HELPER
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
+
+test('claim seed parser inverts the seed suffix', () => {
+  const { parseClaimSeed, specFolderSuffix } = relaunchCore;
+  const markerPath = `/tmp/odd${relaunchCore.SPEC_FOLDER_MARKER}name/note.md`;
+  for (const notePath of ['/repo/handoffs/note.md', '/tmp/with space/note.md', markerPath]) {
+    for (const specFolder of [GOAL_PACKET, 'none', '']) {
+      const seed = `${CLAIM_SEED_PREFIX}${notePath}${specFolderSuffix(specFolder)}`;
+      assert.deepEqual(
+        parseClaimSeed(seed), { notePath, specFolder }, JSON.stringify(seed),
+      );
+    }
+  }
+
+  // A suffix whose folder the builder would never write keeps the path and carries no folder.
+  const badFolder = `${CLAIM_SEED_PREFIX}/repo/note.md${relaunchCore.SPEC_FOLDER_MARKER}`
+    + `specs/../outside${relaunchCore.SPEC_FOLDER_SUFFIX}`;
+  assert.deepEqual(parseClaimSeed(badFolder), { notePath: '/repo/note.md', specFolder: '' });
+  const skipNotNone = `${CLAIM_SEED_PREFIX}/repo/note.md${relaunchCore.SPEC_FOLDER_MARKER}`
+    + `${GOAL_PACKET}${relaunchCore.SPEC_FOLDER_SKIP_SUFFIX}`;
+  assert.deepEqual(parseClaimSeed(skipNotNone), { notePath: '/repo/note.md', specFolder: '' });
+
+  for (const prompt of [
+    '/repo/note.md',
+    `[session-relaunch] claim handoff /repo/note.md`,
+    `${CLAIM_SEED_PREFIX}relative/note.md`,
+    `${CLAIM_SEED_PREFIX} /repo/note.md`,
+    `${CLAIM_SEED_PREFIX}`,
+    `${CLAIM_SEED_PREFIX}/repo/note.md\n/other.md`,
+    undefined,
+    42,
+  ]) {
+    assert.equal(parseClaimSeed(prompt), null, JSON.stringify(prompt));
+  }
+});
+
+test('usableGoalPacket is exported by the core', (t) => {
+  const { usableGoalPacket } = relaunchCore;
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  const worktree = path.join(sandbox.root, 'worktree');
+  const worktreePacket = `${GOAL_PARENT}/026-worktree-only`;
+  writeGoalPacket(worktree, worktreePacket);
+  const on = {};
+  const off = { SESSION_RELAUNCH_GOAL: '0' };
+
+  assert.equal(usableGoalPacket({ goal_packet: GOAL_PACKET }, on, sandbox.repoRoot), GOAL_PACKET);
+  assert.equal(usableGoalPacket({ goal_packet: GOAL_PACKET }, off, sandbox.repoRoot), '');
+  assert.equal(usableGoalPacket({}, on, sandbox.repoRoot), '');
+  assert.equal(usableGoalPacket({ goal_packet: 7 }, on, sandbox.repoRoot), '');
+  assert.equal(usableGoalPacket({ goal_packet: GOAL_PARENT }, on, sandbox.repoRoot), '');
+  assert.equal(
+    usableGoalPacket({ goal_packet: worktreePacket, cwd: worktree }, on, sandbox.repoRoot),
+    worktreePacket,
+  );
+  assert.equal(
+    usableGoalPacket({ goal_packet: worktreePacket, cwd: 'worktree' }, on, sandbox.repoRoot),
+    '',
+    'a relative cwd names no checkout',
+  );
+});

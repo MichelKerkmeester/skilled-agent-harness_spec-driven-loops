@@ -43,14 +43,19 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
       ".skilled/hooks/session-relaunch/README.md",
       "scratch/test/red-before.txt",
       "scratch/test/green-after.txt",
       "scratch/harness/build-sandbox.sh",
-      "scratch/claude-hop/switch-entries.txt",
-      ".skilled/hooks/session-relaunch/lib/context-usage.cjs"
+      "scratch/test/full-node-after-t008.txt",
+      "scratch/test/vitest-after-t008.txt",
+      "scratch/test/reader-red-before.txt",
+      "scratch/test/reader-green-after.txt",
+      "scratch/test/pi-prefix-red-before.txt"
     ],
     "entities": [
       {
@@ -96,6 +101,12 @@
         "source": "derived"
       },
       {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
         "name": "skilled-loop.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
@@ -105,6 +116,12 @@
         "name": "relaunch-core.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
         "source": "derived"
       },
       {
@@ -132,25 +149,37 @@
         "source": "derived"
       },
       {
-        "name": "switch-entries.txt",
+        "name": "full-node-after-t008.txt",
         "kind": "file",
-        "path": "scratch/claude-hop/switch-entries.txt",
+        "path": "scratch/test/full-node-after-t008.txt",
         "source": "derived"
       },
       {
-        "name": "context-usage.cjs",
+        "name": "vitest-after-t008.txt",
         "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "path": "scratch/test/vitest-after-t008.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reader-red-before.txt",
+        "kind": "file",
+        "path": "scratch/test/reader-red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reader-green-after.txt",
+        "kind": "file",
+        "path": "scratch/test/reader-green-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-prefix-red-before.txt",
+        "kind": "file",
+        "path": "scratch/test/pi-prefix-red-before.txt",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -172,35 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Make",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
     "created_at": "2026-10-25T13:42:25Z",
-    "last_save_at": "2026-10-25T15:57:06.551Z",
+    "last_save_at": "2026-10-25T18:23:53.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0e4cdc87f76642a67646a90635e3ef72b3b2ee6d9a36b0343dd30dcaec12793",
+    "source_fingerprint": "sha256:66a3a6ff49f8f762efed706c72bff1a377252fe2a9ff93dbadbcd16ace8f9d5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e452bd0e30484a205d1a80b5a55b877f1de315154c14cc0bebbda8147e7de0d",
+      "spec.md": "415f8c37cbaf6a808b74fb1e9a3cf37156aef5c84286beff71f3ebdb3640612e",
       "plan.md": "e3e30e64d2922a97ed6d136f4f0bc29b24c8215ece340ea4c9c2b00de998fc06",
-      "tasks.md": "cc4458b08762d1f8ddf915311fbbfb08c5c9c975610dd8e7e35f1fdc76d0bf06",
-      "implementation-summary.md": "4f12f973d20f35e740dfb6421d29ad9668ef6127ef27dcc61612e685225b1367"
+      "tasks.md": "1f89bbaedc38d80300789f8731bbf5fc3f16d289f9d319d5a0d0fbb53f2e757a",
+      "implementation-summary.md": "d3148d91d683027795a1834ecf60c1e10594c2bec099ba380faeb1cdf64e45f0"
     },
     "last_active_at": null
   }

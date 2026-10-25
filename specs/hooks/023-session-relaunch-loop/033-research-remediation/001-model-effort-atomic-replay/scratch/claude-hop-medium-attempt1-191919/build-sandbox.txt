@@ -1,0 +1,4 @@
+durable chars written: 1500
+{'PreToolUse': 1, 'UserPromptSubmit': 1, 'SessionStart': 1, 'Stop': 1, 'PostToolUse': 1}
+sandbox built: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sb001m (claude)
+build-sandbox exit=0
