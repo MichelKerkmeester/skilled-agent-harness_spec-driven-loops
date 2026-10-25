@@ -24,9 +24,9 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
-| **Branch** | `worktrees/218-ci-efficiency-build` |
+| **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -195,8 +195,8 @@ Level choice: `recommend-level.sh --loc 250 --files 2` returns Level 1 (score 25
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which branch carries the fix? This packet was opened on `worktrees/218-ci-efficiency-build`, and the operator ruled the fix a separate change from the CI program. The operator names the branch before the first lock change.
-- Does the reproduction confirm the cause? The answer is the verdict in `plan.md` and decides whether the lock is changed at all.
+- Which branch carries the fix? Answered: `main`. The operator named no branch in the session that built the fix, so it follows the handoff's push recipe. The operator can still ask for a revert or a branch.
+- Does the reproduction confirm the cause? Answered: DEFECT-ONLY. The defect reproduces and is fixed. The link to the 8-of-9 failure in run 40107240026 is unproven, because the CI case passed 200 of 200 repeats on the unchanged code.
 <!-- /ANCHOR:questions -->
 
 ---

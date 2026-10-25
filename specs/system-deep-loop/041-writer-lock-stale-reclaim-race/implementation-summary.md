@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not started. Nothing in the deep-loop writer lock has changed. The packet will reproduce the lost-record failure of run 40107240026 first and fix the lock only if the reproduction confirms the inferred cause."
+description: "Complete. The writer lock reclaim now removes only the lock it judged stale and retries when the lock vanished. Two writers held the lock in 10 of 200 stress rounds before the change and in none after it. The link to run 40107240026 stays unproven."
 trigger_phrases:
   - "writer lock stale reclaim race implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/041-writer-lock-stale-reclaim-race"
-    last_updated_at: "2026-10-25T07:30:00Z"
+    last_updated_at: "2026-10-25T15:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Opened the packet and wrote its plan. No lock change has been made"
-    next_safe_action: "Run tasks T001 to T005: save the baselines and reproduce before any lock change"
+    recent_action: "Fixed the reclaim path and closed the packet"
+    next_safe_action: "None. The packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-041-writer-lock-stale-reclaim-race"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,9 +36,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 041-writer-lock-stale-reclaim-race |
-| **Completed** | Not completed. The packet was opened on 2026-10-25 |
+| **Completed** | 2026-10-25 |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -46,18 +46,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This packet is a plan to find out why `jsonl-repair.vitest.ts` lost a record on main (run 40107240026, expected 9, got 8) and, if the suspected cause holds, to fix the shared writer lock so two writers can never hold it at once. The suspected cause is INFERRED and has not been reproduced.
+A contender that failed the exclusive open and then found the lock file gone used to treat that as a stale lock and remove whatever sat at the path. A peer that had just created a fresh lock lost it, and two writers then held the lock together. The reclaim path now returns a `gone` verdict for a vanished file and retries the open with no removal. A stale verdict carries the body it was formed from, and `removeJudgedLock` removes the file only while it still holds that body. Finding class: class-of-bug, a removal that follows a verdict about a file that may have changed.
 
 ### Fix the stale-lock reclaim race in the shared deep-loop writer lock
 
-The packet reproduces the failure on the unchanged code first, with a deterministic test of the suspected interleaving and a 200-round loop of the CI case. Only a failing reproduction allows a change to `cli-guards.cjs`. If the reproduction confirms the cause, the reclaim path will remove only the lock file it judged stale. If it refutes the cause, the lock stays as it is and the operator decides what to look at next.
+`isWriterLockStale` became `judgeWriterLock`, which answers `gone`, `held` or `stale` and hands back the body judged. The caller retries a `gone` lock up to 64 times without spending the reclaim budget, and removes a `stale` lock through `removeJudgedLock`. The exported names, the lock body format, the environment knobs and the five callers are unchanged.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `specs/system-deep-loop/041-writer-lock-stale-reclaim-race/` | Created | This packet's docs. No code file has changed |
-| `specs/system-deep-loop/graph-metadata.json` | Modified | The packet scaffold script added this packet to the track's list of children |
+| `.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs` | Modified | The verdict function and the reclaim branch |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts` | Modified | Three new tests for the interleavings |
+| `specs/system-deep-loop/041-writer-lock-stale-reclaim-race/` | Modified | This packet's docs and the saved outputs in `scratch/` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +66,9 @@ The packet reproduces the failure on the unchanged code first, with a determinis
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-It has not been delivered. The only work so far is opening the packet. A read-only investigation (`specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`) read the lock code and named the suspected cause, and this packet re-checked the CI facts and the cited lines before writing the plan. The order of delivery is in `tasks.md`: save the baselines, reproduce, decide the cause status, fix, then verify against the baselines.
+The baselines came first, then two replay tests of the suspected interleavings, which failed on the unchanged code. A six-process driver (`scratch/lock-stress.cjs`) then measured mutual exclusion directly: two writers sat inside the critical section in 10 of 200 rounds. The fix went in as commit ef1543de45 on main, and the same tests and loops ran again on it.
+
+The widened loop deviates from the plan. The plan asked for the nine-record case run through a preload that delays the removal. The driver checks the invariant itself, with an exclusive marker file inside the critical section, so it sees an overlap whether or not a record is lost. The plain CI-shaped case was also run 200 times before and after, as planned.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -75,9 +78,10 @@ It has not been delivered. The only work so far is opening the packet. A read-on
 
 | Decision | Why |
 |----------|-----|
-| Open this as its own packet | The operator ruled that the lock fix is a separate change from the CI efficiency program |
-| Level 2 | The level script returned Level 1 for about 250 lines and Level 0 for fewer. The level matrix puts 100 to 499 lines at Level 2 and counts a multi-process reproduction as a testing need, so Level 2 won. It also gives the packet an `acceptance-criteria.md` |
-| Reproduce before any lock change | The cause is inferred. Without a failing reproduction there is no way to show a fix works, so `REQ-001` gates `REQ-002` |
+| Shapes A and B together | A gone lock has nothing to remove, and a stale lock is removed only while its body matches the verdict. Both keep the lock-file protocol and each has a deterministic test |
+| DEFECT-ONLY cause status | The defect reproduces and the fix cures it. The CI case did not fail in 200 repeats, so the link to run 40107240026 is unproven |
+| Vanished-lock retries have their own cap of 64 | Each one means a peer made progress, so it must not use up the 8 attempts that guard against a never-removable stale lock |
+| Branch main | The operator named no branch in the session that built it. The handoff's push recipe targets main |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -85,10 +89,19 @@ It has not been delivered. The only work so far is opening the packet. A read-on
 <!-- ANCHOR:verification -->
 ## Verification
 
+All outputs were produced against fix commit ef1543de45 and are saved in `scratch/`.
+
 | Check | Result |
 |-------|--------|
-| The two lock files on the unchanged code, `npx vitest run --no-coverage tests/unit/cli-guards-writer-lock.vitest.ts tests/unit/jsonl-repair.vitest.ts` | 2 files and 18 tests passed on 2026-10-25. This is a baseline read, not a result of the fix |
-| Any test of the fix | None. Nothing is built |
+| The two reproductions on the unchanged code | Both fail with the lost-writer symptom (`repro-before.txt`) |
+| The same tests on the fix | `Tests  9 passed (9)` in the lock file (`repro-after.txt`) |
+| The pair of lock files | 21 passed against 18 at baseline (`after-lock-files.txt`) |
+| Full runtime suite | 167 files and 2810 passed with 8 skipped, against 2807 at baseline, exit 0 |
+| Typecheck | Exit 0, as at baseline |
+| Direct stress driver, 200 rounds | 10 failing rounds before the fix, 0 after, with the window widened by 3 ms or not |
+| CI-shaped case, 200 repeats | 0 failures before and 0 after |
+| Packet validator | `validate.sh specs/system-deep-loop/041-writer-lock-stale-reclaim-race --strict --no-recursive` printed `RESULT: PASSED` with Errors 0 and Warnings 0 |
+| CI on the fix commit | On main, commit ef1543de45 ran 13 workflows and none failed, including Deep-Loop Runtime Tests (read 2026-10-25 with `gh run list --commit`). One green run does not show the old failure is gone, since it was seen once in 6 runs.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -96,9 +109,11 @@ It has not been delivered. The only work so far is opening the packet. A read-on
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The cause is inferred.** The ENOENT branch followed by the unconditional removal is the suspect, and no run has confirmed it. Task T005 decides.
-2. **The fix branch is not chosen.** The operator names it before the first lock change.
-3. **A narrow window may remain.** The candidate shape that compares before it removes narrows the stale-body window and does not close it. `plan.md` section 3 names what is left for each candidate.
+1. **The link to run 40107240026 is unproven.** The lock defect is real and fixed, but the CI case never failed in 200 repeats on the unchanged code, so no run shows this defect produced the lost record.
+2. **A narrow window remains.** `removeJudgedLock` re-reads the file and then removes it. A peer would have to create a lock in the microseconds between the two, right after an aged-out holder releases or a second reclaimer clears the stale file.
+3. **Two other removal sites keep their code.** The stamp-failure removal needs a failed stamp write and a peer's unstamped lock at the same instant. The release removal needs a hold longer than the 60,000 ms limit. Neither is reachable in the CI-shaped case.
+4. **The fix branch was not named by the operator.** It went to main on the handoff's push recipe. A revert of the fix commit undoes it.
+5. **The widened loop is a direct driver, not the nine-record case through a preload.** See How It Was Delivered.
 <!-- /ANCHOR:limitations -->
 
 ---

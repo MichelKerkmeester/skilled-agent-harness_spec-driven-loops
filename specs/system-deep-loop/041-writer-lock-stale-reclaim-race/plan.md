@@ -30,7 +30,7 @@ contextType: "general"
 ### Overview
 Run 40107240026 lost one of nine records in `jsonl-repair.vitest.ts` line 461. The suspected cause is a stale-lock reclaim race in `acquireWriterLock`, where the reclaim path deletes whatever file sits at the lock path after a staleness verdict about a file that may no longer be there. This plan reproduces the failure on the unchanged code first and decides whether the cause is confirmed. It changes the lock only after that, at the reclaim path in `cli-guards.cjs`.
 
-**Cause status: INFERRED** (not reproduced as of 2026-10-25). This line changes to CONFIRMED, DEFECT-ONLY or REFUTED when task T005 completes, using the rule in section 4.
+**Cause status: DEFECT-ONLY** (decided 2026-10-25). The deterministic reproductions of both interleavings fail on the unchanged code with the lost-writer symptom (`scratch/repro-before.txt`), and a six-process stress driver found two writers inside the critical section in 10 of 200 rounds, 11 overlaps in all, and 10 of 200 with the removal window widened by 3 ms (`scratch/stress-before-direct.txt`, `scratch/stress-before-widened.txt`). The CI-shaped case itself did not fail in 200 plain repeats (`scratch/stress-before.txt`), so nothing reproduced the 8-of-9 symptom of run 40107240026 and its link to that run stays unproven.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -39,17 +39,17 @@ Run 40107240026 lost one of nine records in `jsonl-repair.vitest.ts` line 461. T
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented in `spec.md`
-- [ ] Success criteria measurable
-- [ ] The operator has named the branch that carries the fix
-- [ ] Baselines for the lock files and the full runtime suite are saved (T001)
+- [x] Problem statement clear and scope documented in `spec.md`
+- [x] Success criteria measurable
+- [x] The branch that carries the fix is main. The operator did not name one in this session, so the choice follows the handoff's push recipe and is open to the operator
+- [x] Baselines for the lock files and the full runtime suite are saved (T001)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] The reproduction fails before the fix and passes after it, and both outputs are saved
-- [ ] The cause status is no longer INFERRED
-- [ ] Existing tests passing and unedited, full runtime suite at or above its baseline
-- [ ] Docs updated (spec, plan, tasks, implementation summary)
+- [x] All acceptance criteria met
+- [x] The reproduction fails before the fix and passes after it, and both outputs are saved
+- [x] The cause status is no longer INFERRED
+- [x] Existing tests passing and unedited, full runtime suite at or above its baseline
+- [x] Docs updated (spec, plan, tasks, implementation summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -90,7 +90,7 @@ These are candidates, not decisions. The reproduction and the widened-window loo
 
 Plan-level judgment, one lens, open to change by the evidence: take shape A together with shape B first, because they keep the lock-file protocol and each has a deterministic test. Take shape C only if the widened-window loop still shows an overlap after A and B.
 
-**Chosen shape:** not chosen yet. This line records the choice and the window it leaves when task T006 completes.
+**Chosen shape:** A and B together (decided 2026-10-25). A vanished lock now returns a `gone` verdict and the loop retries the open with no removal. A stale verdict carries the body it was formed from, and `removeJudgedLock` re-reads the file and removes it only on an exact match. The window left is the few microseconds between that re-read and the removal: a peer would have to create a lock in them, right after an aged-out holder releases or a second reclaimer clears the stale file. Shape C was not needed, because the 200-round loops show no overlap after A and B, plain or widened. The widened loop is a direct mutual-exclusion driver, not the nine-record case through a preload, a deviation recorded in `implementation-summary.md`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -215,9 +215,9 @@ These are estimates, not measurements.
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes): not needed, the change touches no stored data
-- [ ] Feature flag configured: not applicable, the lock has no flag
-- [ ] Monitoring alerts set: the next deep-loop-runtime runs on main are read with `gh run list --workflow deep-loop-runtime.yml`
+- [x] Backup created (if data changes): not needed, the change touches no stored data
+- [x] Feature flag configured: not applicable, the lock has no flag
+- [x] Monitoring alerts set: the next deep-loop-runtime runs on main are read with `gh run list --workflow deep-loop-runtime.yml`. On main, commit ef1543de45 ran 13 workflows and none failed, including Deep-Loop Runtime Tests (read 2026-10-25 with `gh run list --commit`). One green run does not show the old failure is gone, since it was seen once in 6 runs.
 
 ### Rollback Procedure
 1. Revert the fix commit with `git revert`.
