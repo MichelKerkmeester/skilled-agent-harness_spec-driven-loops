@@ -305,6 +305,20 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertEqual(1, result.returncode)
             self.assertIn("[SECTIONS-MISSING] [ERROR]", result.stdout)
 
+    def test_exact_header_exempts_sibling_test_files_by_name(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            shell_body = "#!/usr/bin/env bash\nset -euo pipefail\necho ok\n"
+            self.write_file(root / "scripts" / "check.sh", shell_body)
+            self.write_file(root / "scripts" / "check.test.sh", shell_body)
+            self.write_file(root / "scripts" / "check.vitest.ts", "export const x = 1;\n")
+
+            result = self.run_cli(root, ["--check-exact-headers"])
+            self.assertEqual(1, result.returncode, result.stdout)
+            self.assertIn("check.sh:1 [EXACT-HEADER]", result.stdout)
+            self.assertNotIn("check.test.sh:1 [EXACT-HEADER]", result.stdout)
+            self.assertNotIn("check.vitest.ts:1 [EXACT-HEADER]", result.stdout)
+
     def test_check_sections_passes_numbered_file_and_exempts_tests(self) -> None:
         rule = "// " + "─" * 67 + "\n"
         with tempfile.TemporaryDirectory() as temp_dir:

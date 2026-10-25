@@ -45,6 +45,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Edits stay inside this packet, `.skilled/skills/sk-code/sk-code-quality/` and `.skilled/skills/sk-code/sk-code-review/`. No hub routing file and no `sk-code-ci/` file changes. |
 | D2 | S-P2-13 and S-P2-14 are not applied. The review profile is not built, per the operator's ruling of 2026-10-25. |
+| D3 | Amends D1 for a second pass the orchestrator assigned on 2026-10-25: `hub-router.json`, the sk-code compiled activation manifest and its authored twin, the sk-code compiled-routing playbook, the admission corpus count and the `sk-code-skilled` alignment verifier may change. The advisor skill, the private surface packet and `sk-code/benchmark/` stay with their owner. |
 
 <!-- /ANCHOR:directive -->
 
@@ -58,6 +59,9 @@ Frozen choices. Changing one is an amendment.
 - [x] `bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh` exits 0.
 - [x] `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md` prints `VALID`.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/014-code-modes-research --recursive --strict` prints `RESULT: PASSED`.
+- [x] `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix this bug in foo.ts"` prints `"selectionKind":"single"` with `sk-code-skilled`.
+- [x] `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/sk-code/sk-code-quality/scripts --check-exact-headers` prints `Findings: 0`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/014-code-modes-research/003-review-remediation --strict` prints `RESULT: PASSED` with `Warnings: 0`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,6 +79,7 @@ and findings belong here.
 |------|-------|----------|
 | Findings applied | Done | S-P1-01, S-P1-02, S-P2-01 to S-P2-12, the Extension Floors item and the floor split |
 | Checks | Done | Canary exit 0, canary suite exit 0, quality playbook root `VALID`, recursive strict validation recorded in the parent goal log |
+| Second pass | Done | Routing gap closed, CB-CR-001 fixed, test files exempt from the exact-header check, folder at Level 2. Evidence in `acceptance-criteria.md` AC-007 to AC-010 |
 
 ### Deviations and findings
 

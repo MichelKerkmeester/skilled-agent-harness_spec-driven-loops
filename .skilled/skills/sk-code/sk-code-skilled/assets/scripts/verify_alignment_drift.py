@@ -388,10 +388,15 @@ def should_skip_ts_module_header(path: str) -> bool:
 
 
 EXACT_HEADER_EXEMPT_SEGMENTS = CONTEXT_ADVISORY_SEGMENTS | {"plugins", "tests"}
+# Tests often sit next to the script they cover instead of under tests/, so the
+# file name marks them too.
+EXACT_HEADER_EXEMPT_SUFFIXES = TS_TEST_SUFFIXES + (".test.sh",)
 
 
 def is_exact_header_exempt_path(path: str) -> bool:
     normalized = normalize_path(path)
+    if os.path.basename(normalized).endswith(EXACT_HEADER_EXEMPT_SUFFIXES):
+        return True
     segments = set(part for part in normalized.split("/") if part)
     return bool(segments & EXACT_HEADER_EXEMPT_SEGMENTS)
 

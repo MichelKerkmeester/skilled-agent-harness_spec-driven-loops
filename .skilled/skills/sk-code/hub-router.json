@@ -68,7 +68,7 @@
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
     "code-skilled-runtime": {
-      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "vitest", "argparse", "console.error", "tiny script"]
+      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "vitest", "argparse", "console.error", "tiny script", "bash", ".ts", "bug"]
     },
     "code-skilled-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
