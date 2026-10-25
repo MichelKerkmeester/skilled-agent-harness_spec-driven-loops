@@ -77,12 +77,22 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase documents written | Done | Created 2026-10-25, status Planned |
-| Iterations 1 to 10 | Pending | Not launched |
-| Synthesis | Pending | Not run |
+| Iterations 1 to 10 | Done | `research/iterations/iteration-001.md` to `iteration-010.md`, 10 iteration records in the state log, each verified by `verify-iteration.cjs` on the first dispatch |
+| Synthesis | Done | `research/research.md`, 14 ranked rows, `synthesis_complete` with `stopReason` maxIterationsReached and `totalIterations` 10 |
+| Second-model pass | Done | ADR-002: iterations 11 to 15 on cli-devin `deepseek-v4-1-flash-max`, 15 iteration records, a second `synthesis_complete` with `totalIterations` 15. Iteration 13 verified on the workflow's one redispatch, the rest on the first |
+| Refreshed synthesis | Done | `research/research.md` sections 6a and 6b: 12 rows confirmed, 2 refuted in part, refreshed top five led by naming the CI surface |
+| Closure | Done | AC-011 closed on the operator's ruling of 2026-10-25, recorded in ADR-001: the narrowed check may skip a line that only states the sibling folder was not read. The amended check prints nothing |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Nothing has run. |
+| Executor | All ten iterations ran on Luna. DeepSeek through llmgateway was refused three times with `402 daily pacing allowance`, so the even slots ran on Luna under the three-failure rule. |
+| Dispatch route | The orchestrating session interpreted `deep-research-auto.yaml` and picked its `if_cli_codex` branch per iteration, because the workflow fixes one executor per lineage. |
+| Staging step skipped | `step_stage_artifact_dir` runs `git add`, which the operator's brief forbids. |
+| Boundary check narrowed | Per the operator, AC-009 compares only `sk-code-quality/` and `sk-code-review/` with the baseline. Both are unchanged. |
+| Containment copies | The runtime's write-containment guard copied the concurrent sibling run's files into `research/containment/`. They were not read, and they were deleted with the operator's approval before the second-model pass. |
+| Completion criteria amended | ADR-002 raised the iteration count from 10 to 15, so the first two criteria read 15 records and `iteration-015.md`. The directive text is left as written. |
+| Reopen route | The workflow halts on a completed session and its `completed-continue` branch is not wired, so the config's `status` and `maxIterations` were edited to take the `resume` branch. ADR-002 records it. |
+| Stray dispatch files | Iteration 13's first dispatch left a ledger under `research/deltas/`, and iteration 14 left `research/.iter-014-event.json`. Kept for the operator to decide on. |
 <!-- /ANCHOR:log -->

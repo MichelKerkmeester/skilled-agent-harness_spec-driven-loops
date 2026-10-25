@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: quality-mode-research"
-description: "Ten iterations of deep research on how to make sk-code-quality more repo-agnostic, more useful and better integrated with its sibling modes and with modes a user adds to the hub. Findings only."
+description: "Fifteen iterations of deep research, ten on one model and five on a second, on how to make sk-code-quality more repo-agnostic, more useful and better integrated with its sibling modes and with modes a user adds to the hub. Findings only."
 trigger_phrases:
   - "quality mode research"
   - "phase 1 quality mode research"
@@ -23,14 +23,14 @@ contextType: "research"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 2 |
 | **Predecessor** | None |
 | **Successor** | 002-review-mode-research |
-| **Handoff Criteria** | Ten iteration records in `research/deep-research-state.jsonl`, a ranked `research/research.md` of at least eight rows and no changed file under `.skilled/` |
+| **Handoff Criteria** | Fifteen iteration records in `research/deep-research-state.jsonl` (ten first-pass, five second-model per ADR-002), a ranked `research/research.md` of at least eight rows and no changed file under `.skilled/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,8 +51,8 @@ This is **Phase 1** of the sk-code Quality and Review Modes Research specificati
 
 **Deliverables**:
 - `research/research.md` with the sections Repo-Agnostic Findings, Usefulness Findings, Integration Findings (with an External-User Modes subsection) and Ranked Recommendations
-- `research/iterations/iteration-001.md` through `iteration-010.md`
-- `research/deep-research-state.jsonl` with ten iteration records and one synthesis_complete record
+- `research/iterations/iteration-001.md` through `iteration-015.md`. Iterations 11 to 15 are the second-model pass that `decision-record.md` ADR-002 added
+- `research/deep-research-state.jsonl` with fifteen iteration records and a synthesis_complete record for each synthesis
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -120,7 +120,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | Run integrity: ten iteration files, ten iteration records in the state log, a recorded stop reason, source tags that resolve and no read of the sibling phase's `research/` folder. |
+| REQ-006 | Run integrity: fifteen iteration files and fifteen iteration records in the state log (ten before ADR-002 raised the count), a recorded stop reason, source tags that resolve and no read of the sibling phase's `research/` folder. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -131,7 +131,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `research/deep-research-state.jsonl` holds ten iteration records and a synthesis_complete record that names its stop reason.
+- **SC-001**: `research/deep-research-state.jsonl` holds fifteen iteration records and a synthesis_complete record that names its stop reason.
 - **SC-002**: `research/research.md` ranks at least eight recommendations and every row carries an evidence label.
 - **SC-003**: Three source tags opened by the orchestrator resolve to the quoted text.
 <!-- /ANCHOR:success-criteria -->
@@ -146,7 +146,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 | Dependency | `cli-codex` with Luna and `cli-pi` with the llmgateway credential | The run cannot start | Probe each executor with a one-line dispatch before the loop and read each skill's `SKILL.md` before composing a brief |
 | Risk | The model restates the brief instead of reading files | Findings without evidence | The brief carries the reading list and demands a source tag with a path and line |
 | Risk | Recommendations fit this framework only | The repo-agnostic goal is not met | Each recommendation names the non-framework repository case it serves |
-| Risk | Two executors read the same file differently | Conflicting findings | The state log records the executor per iteration and the synthesis names each conflict |
+| Risk | Two executors read the same file differently | Conflicting findings | The state log records the executor per iteration and the synthesis names each conflict. Iterations 1 to 10 ran on Luna and 11 to 15 on DeepSeek V4.1 Flash Max through cli-devin, and section 6a of `research/research.md` names each disagreement |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -171,7 +171,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 
 ### Data Boundaries
 - Empty input: an iteration that writes no record file is a failed iteration, not a converged one.
-- Maximum length: ten iterations, no more.
+- Maximum length: ten iterations in the first pass, plus the five second-model iterations ADR-002 added, so fifteen in all.
 - Invalid format: a source tag that does not resolve is dropped at synthesis or relabelled INFERRED.
 
 ### Error Scenarios
@@ -180,7 +180,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 - Concurrent access: the sibling phase may run at the same time, and each run writes only under its own `research/` folder.
 
 ### State Transitions
-- Partial completion: fewer than ten records means the phase is not closeable and the next relaunch resumes from state.
+- Partial completion: fewer than fifteen records means the phase is not closeable and the next relaunch resumes from state.
 - Session expiry: the state log and the strategy file carry everything a fresh session needs.
 <!-- /ANCHOR:edge-cases -->
 
@@ -204,6 +204,19 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 
 - Does the executor alternation run per iteration or per child? The parent spec holds the default and the question.
 - Are the surface checklists under `sk-code-skilled/assets/checklists/` read in depth, or only as the quality mode's dependency? The default is as a dependency, with depth only where the quality gate loads them.
+- Research topic: how to make sk-code-quality more repo-agnostic, more useful and better integrated with sibling and user-authored modes.
+
+**Research Context:** a deep-research run is active for this topic, and `research/research.md` remains the canonical findings document.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md`, which stays canonical. Fifteen iterations, ten on Luna and five second-model iterations on DeepSeek V4.1 Flash Max, stop reason maxIterationsReached. The second model confirmed 12 of 14 rows and refuted part of the reasoning behind 2. Refreshed top five:
+
+1. Name the CI surface in quality and route `.github/workflows/` targets to its rule references (first-pass rank 3).
+2. Report a checker that checked nothing as skipped, never as clean or N/A, landing with item 1 (rank 4).
+3. Probe each enforcement layer and the host hook wiring before naming them (rank 5).
+4. Split the always-loaded checklist, which is narrower and cheaper than first thought. Needs a decision on the P0 floor (rank 1).
+5. Add behavior fixtures and measure catch rate, miss rate and time (rank 7).
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

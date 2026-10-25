@@ -3,6 +3,7 @@
   "packet_id": "sk-code/014-code-modes-research/001-quality-mode-research",
   "spec_folder": "sk-code/014-code-modes-research/001-quality-mode-research",
   "parent_id": "sk-code/014-code-modes-research",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,7 +22,8 @@
       "quality mode research tasks",
       "quality mode research acceptance criteria",
       "quality mode research goal",
-      "quality mode research implementation summary"
+      "quality mode research decision record",
+      "ac-011 sibling path narrowing"
     ],
     "key_topics": [
       "quality",
@@ -38,14 +40,20 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/synthesis-v1.md",
+      "research/resource-map.md",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       ".skilled/skills/sk-code/SKILL.md",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
@@ -87,9 +95,39 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-v1.md",
+        "kind": "doc",
+        "path": "research/synthesis-v1.md",
         "source": "derived"
       },
       {
@@ -169,42 +207,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Agnostic Findings",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Usefulness Findings",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code-quality` is the author-side gate that runs after implementation and before a completion claim",
     "created_at": "2026-10-25T08:24:47Z",
-    "last_save_at": "2026-10-25T08:37:08.424Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-25T13:27:40.084Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,15 +220,19 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:a5697f4ecbdee0df1ade11f1f3723387d7dc00e799ae13d555e1420cebc0e8c5",
+    "source_fingerprint": "sha256:2fc8442f2002d9cb4d7d613a2ae9366b7e862d3d5bc739f767283a9de56fdae8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7430aac27c5435f0ec230c7ba51ca319fd3e764e92fec8e8bf3fec0404dca4fe",
+      "spec.md": "fc60f28a83005739835194a1fc7c59c6e9675cc003c0171e28789677999bcf91",
       "plan.md": "89b2a0cd3de33b94417dceea85a1fc93caad4fdc5a302ff01dab93b236835cf5",
-      "tasks.md": "90bce36ada33c93015159d96390860b70da5e18ab0b4c618c3bc49d06fceaf9e",
-      "implementation-summary.md": "f557f29a4712ff57b68ef38aea3a30d8efbad13cf595dd0eb8e9f072b3bf6395"
+      "tasks.md": "a2429d2e0ade5646688a4c67ecc5efe01c82cbe4555c0b2fb4eb4d3b29663aec",
+      "decision-record.md": "c280842dfdf5062b48e2cfc8362276463b1f8a5435053f08ee0a4da26a8813e9",
+      "implementation-summary.md": "15549f22357b1c0a5f5e67673eca99f4afaeaf475e4e9f6314256245ecfec19d",
+      "research/research.md": "d960d70fc1d895d2a6e9c6ba5eb5983d450f6bfe63b028ce01c8a8ab2e29c80b"
     },
     "last_active_at": null
   }
