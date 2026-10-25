@@ -16,7 +16,8 @@
     "sk-code/010-drift-guard-cleanup",
     "sk-code/011-sk-code-poinytail-based-refinement",
     "sk-code/012-sk-code-skilled-rename",
-    "sk-code/013-private-surface-skills"
+    "sk-code/013-private-surface-skills",
+    "sk-code/014-code-modes-research"
   ],
   "manual": {
     "depends_on": [],

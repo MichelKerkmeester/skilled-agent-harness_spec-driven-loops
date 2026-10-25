@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/014-code-modes-research/002-review-mode-research",
+  "spec_folder": "sk-code/014-code-modes-research/002-review-mode-research",
+  "parent_id": "sk-code/014-code-modes-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review mode research",
+      "phase 2 review mode research",
+      "sk-code-review research",
+      "repo-agnostic code review mode",
+      "user-authored mode integration",
+      "review mode research plan",
+      "sk-code-review research angles",
+      "review mode research tasks",
+      "review mode research acceptance criteria",
+      "review mode research goal",
+      "review mode research implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "mode",
+      "research",
+      "phase",
+      "sk-code-review",
+      "repo-agnostic",
+      "code",
+      "user-authored",
+      "integration",
+      "plan",
+      "angles",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/agents/review.md",
+      ".skilled/agents/deep-review.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      "scripts/README.md",
+      "specs/sk-code/013-private-surface-skills/spec.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Modes Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agnostic Findings",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-code-review` is the findings-first review baseline",
+    "created_at": "2026-10-25T08:24:48Z",
+    "last_save_at": "2026-10-25T08:37:08.423Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:77169d358d8ed3daf4423359391271b243611be6ba843968782cdfacffe8722d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b32a9247866e2aa505170343befb217b44d2bcbc32920212bf011d78841294b5",
+      "plan.md": "fa1566b435c0f78b468259b89818be8da0d7aa1acc03855a0c552b86690d8ff2",
+      "tasks.md": "daf7f1fa72d8b4d4e4febf206df2b5ca6cb59ddc586b3bd1d91b9aa43209c993",
+      "implementation-summary.md": "1007503c96c1c3d1f967dde5434d617055b2ef2e3022640298da36c66aa11189"
+    },
+    "last_active_at": null
+  }
+}
