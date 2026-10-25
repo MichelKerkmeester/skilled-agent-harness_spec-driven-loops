@@ -1,5 +1,5 @@
 {
-  "manifestHash": "18e86d98f73e3c8a2526b6b4626557abf76c14826ed748a289d4e5ecc400b37c",
+  "manifestHash": "de56bbe6e622f9b7d5bb42a6aa4a0668fab13fc9562dea2c41aa69bad1dc058e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18002,6 +18002,9 @@
     ],
     "citation retrofit coverage floor": [
       "citation retrofit coverage floor"
+    ],
+    "citation scan fsmonitor hang": [
+      "citation scan fsmonitor hang"
     ],
     "citation spot check research": [
       "citation spot check research"
@@ -50807,6 +50810,9 @@
     "handover freshness timestamp field": [
       "handover freshness timestamp field"
     ],
+    "handover goal and model carry over": [
+      "handover goal and model carry-over"
+    ],
     "handover outranking continuity fixed": [
       "handover outranking continuity fixed"
     ],
@@ -71637,6 +71643,9 @@
     ],
     "per runtime activation gate": [
       "per-runtime activation gate"
+    ],
+    "per runtime handover switch": [
+      "per-runtime handover switch"
     ],
     "per runtime hook validation": [
       "per-runtime hook validation"
@@ -95157,6 +95166,9 @@
     "sk doc 2 3 11 0": [
       "sk-doc 2.3.11.0"
     ],
+    "sk doc 2 3 12 0": [
+      "sk-doc 2.3.12.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -95492,6 +95504,9 @@
     ],
     "sk doc v2 3 11 0": [
       "sk-doc v2.3.11.0"
+    ],
+    "sk doc v2 3 12 0": [
+      "sk-doc v2.3.12.0"
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
@@ -98899,6 +98914,9 @@
     ],
     "skilled v4 0 0 13 release notes": [
       "skilled v4.0.0.13 release notes"
+    ],
+    "skilled v4 0 0 14": [
+      "skilled v4.0.0.14"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -105237,6 +105255,9 @@
     "system spec kit 2 9 0 0": [
       "system-spec-kit 2.9.0.0"
     ],
+    "system spec kit 2 9 1 0": [
+      "system-spec-kit 2.9.1.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -105674,6 +105695,9 @@
     ],
     "system spec kit v2 9 0 0": [
       "system-spec-kit v2.9.0.0"
+    ],
+    "system spec kit v2 9 1 0": [
+      "system-spec-kit v2.9.1.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -110329,6 +110353,9 @@
     "v4 0 0 13 reliability fixes tasks": [
       "v4 0 0 13 reliability fixes tasks"
     ],
+    "v4 0 0 14 release notes": [
+      "v4.0.0.14 release notes"
+    ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
@@ -110932,6 +110959,9 @@
     ],
     "validator first template dedup": [
       "validator-first template dedup"
+    ],
+    "validator fsmonitor hang": [
+      "validator fsmonitor hang"
     ],
     "validator help printer hidden rules": [
       "validator help printer hidden rules"

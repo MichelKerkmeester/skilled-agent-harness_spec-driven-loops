@@ -1,5 +1,5 @@
 {
-  "corpusHash": "922d23f1877f775512b691b7ea8be983f268a127068f2058df6d6fefe8c7a45b",
+  "corpusHash": "92ede98c1d179ee5a7ad4b34797bdd27175a89bc03b34dd1869567c1e073a2eb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26023,
+  "includedPathCount": 26026,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -78,6 +78,7 @@
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
     ".skilled/changelog/skilled/v4.0.0.13.md",
+    ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -5932,6 +5933,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.10.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.11.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
@@ -7893,6 +7895,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.9.1.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -26054,7 +26057,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "18e86d98f73e3c8a2526b6b4626557abf76c14826ed748a289d4e5ecc400b37c",
+  "manifestHash": "de56bbe6e622f9b7d5bb42a6aa4a0668fab13fc9562dea2c41aa69bad1dc058e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
