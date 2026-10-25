@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built and open: the 12 workflows that declared no permissions now declare contents: read, the Dependabot auto-merge workflow is split into a read-only and a write-scoped job, every job carries a timeout sized from its own job samples, and every job except Dependabot's two carries a vars.SKILLED_CI switch. T100 to T102 remain."
+description: "Built and closed: the 12 workflows that declared no permissions now declare contents: read, the Dependabot auto-merge workflow is split into a read-only and a write-scoped job, every job carries a timeout sized from its own job samples, and every job except Dependabot's two carries a vars.SKILLED_CI switch. No job hit its timeout in the 690 runs after the timeouts landed."
 trigger_phrases:
   - "workflow hygiene on off control implementation summary"
 importance_tier: "normal"
@@ -8,12 +8,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
-    last_updated_at: "2026-10-25T13:24:41Z"
-    last_updated_by: "generate-context"
-    recent_action: "T001 to T099 on main, T022 proven on Dependabot runs 40148156911 and 40200559794"
-    next_safe_action: "Run T100 after 2026-10-26T00:45Z"
-    blockers:
-      - "T100 waits for 24h of runs"
+    last_updated_at: "2026-10-25T21:40:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "T100 to T102 closed: 0 timeout kills in 690 runs, final gates passed"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "tasks.md"
       - "scratch/r24/timeouts.md"
@@ -22,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-007-workflow-hygiene-on-off-control"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-workflow-hygiene-on-off-control |
-| **Completed** | Built, closure open (T100 to T102) |
+| **Completed** | 2026-10-25 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The five concern commits are on `main`. Every workflow declares `permissions:` at the top, `dependabot-auto-merge.yml` holds a read-only `metadata` job and a write-scoped `auto-merge` job, all 44 jobs carry `timeout-minutes` sized from their own samples, 42 jobs carry a `vars.SKILLED_CI` switch (every job except Dependabot's two), and the workflows README documents the switches. What remains is T100 (the 24 h read of runs for a timeout kill), T101 (the final gates) and T102 (the closure record).
+The five concern commits are on `main`. Every workflow declares `permissions:` at the top, `dependabot-auto-merge.yml` holds a read-only `metadata` job and a write-scoped `auto-merge` job, all 44 jobs carry `timeout-minutes` sized from their own samples, 42 jobs carry a `vars.SKILLED_CI` switch (every job except Dependabot's two), and the workflows README documents the switches. T100 read the 690 runs created after the timeouts landed and found no timeout kill, T101 ran the final gates, and T102 committed the closure.
 
 ### Phase 7: workflow-hygiene-on-off-control
 
@@ -72,7 +71,7 @@ The phase closes three gaps that a maintainer meets in production: a hung job ho
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered by `tasks.md` T001 to T099 in the ADR-002 order R25, R24, R26, one commit per concern (ADR-010): `4b7d3d8941` (permissions), `b1315701ca` (Dependabot split), `8ff7da700d` (timeouts), `9480d99e6d` (switches) and `03abdb20d8` (README). `check-gate-inputs.sh` ran after the permissions pass (`scratch/gate-after-permissions.txt`, `RESULT: PASSED`) and after the timeouts (`scratch/r24/gate-after-timeouts.txt`). T100 to T102 are still open.
+Delivered by `tasks.md` T001 to T099 in the ADR-002 order R25, R24, R26, one commit per concern (ADR-010): `4b7d3d8941` (permissions), `b1315701ca` (Dependabot split), `8ff7da700d` (timeouts), `9480d99e6d` (switches) and `03abdb20d8` (README). `check-gate-inputs.sh` ran after the permissions pass (`scratch/gate-after-permissions.txt`, `RESULT: PASSED`) and after the timeouts (`scratch/r24/gate-after-timeouts.txt`). T100 read the runs for a timeout kill, T101 reran the gates on the final tree, and T102 committed the closure records with `scratch/phase-result.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -104,7 +103,8 @@ Delivered by `tasks.md` T001 to T099 in the ADR-002 order R25, R24, R26, one com
 | `grep -L 'permissions:' .github/workflows/*.yml \| wc -l` | `0` on 2026-10-25 (AC-001) |
 | `python3` job parse for `timeout-minutes` | `no-timeout []` over 44 jobs, and `size-timeouts.mjs --assert` prints `values match formula: ok` and `50% rule: ok` (AC-004) |
 | `grep -c "vars.SKILLED_CI != 'off'"` summed over the tree | `42`, and only Dependabot's two jobs lack the switch (AC-005) |
-| `bash .github/scripts/check-gate-inputs.sh` | `RESULT: PASSED` with `failures=0` after the permissions pass (`scratch/gate-after-permissions.txt`); the final run is T101 |
+| `bash .github/scripts/check-gate-inputs.sh` | `RESULT: PASSED` with `failures=0` after the permissions pass (`scratch/gate-after-permissions.txt`) and again in T101's final gates (`scratch/phase-result.md`) |
+| Timeout-kill read | `timeout kills: 0` over the 690 runs from 2026-10-25T00:43Z to 21:30Z: no failed or cancelled job's annotations or log holds `maximum execution time` (AC-003, `scratch/phase-result.md`) |
 | Switch probe | Runs `40150455358` (`off: skipped`) and `40150476111` (`unset: ran`) on a throwaway probe repository (`scratch/r26-probe.md`, AC-008) |
 | Dependabot split | Runs `40148156911` and `40200559794` ran the two-job shape, and the `auto-merge` job skipped on both (`scratch/r25-dependabot.md`, AC-002 `Met` on the operator's ruling of 2026-10-25) |
 <!-- /ANCHOR:verification -->
@@ -114,10 +114,11 @@ Delivered by `tasks.md` T001 to T099 in the ADR-002 order R25, R24, R26, one com
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The closure is open.** 9 of 13 acceptance rows are `Met`. AC-003 waits on T100, and AC-009, AC-011 and AC-012 wait on T101.
+1. **The timeout-kill read covers 20.8 hours, not 24.** The operator asked on 2026-10-25 not to wait for the full window. None of the repository's own schedules falls in the hours left out: the daily schedule ran inside the window, and both weekly schedules fire after it. Separately, the one scheduled run after 21:30Z, the one-shot plugin-test run 40236652343 the setup caching phase fired at 21:41Z, finished `success` in 251 s against its 10-minute timeout, with no kill message in its log.
 2. **D6 is answered, 10 minutes.** Every timeout value uses that floor.
 3. **A throwaway repository stood in for the fork in AC-008.** GitHub does not let an account fork its own repository, so `MichelKerkmeester/ci-switch-probe-throwaway` carried the same `.github/workflows` tree byte for byte (`scratch/r26-probe.md`).
 4. **The split ran on real Dependabot pull requests.** Runs 40148156911 (pull request 86) and 40200559794 (pull request 89) used the two-job shape: the metadata job succeeded and the merge job skipped, because neither is a security patch. The merge job's write path on a security patch is not yet observed. On the operator's ruling of 2026-10-25 these runs satisfy AC-002.
+5. **AC-011's path list is read over the phase's own commits.** Other work reached `main` after the phase start, so the whole-range list holds 5,488 paths. The nine phase commits stay inside `.github/workflows/` and this folder, except a consumer test and the parent's derived metadata (`scratch/phase-result.md`).
 <!-- /ANCHOR:limitations -->
 
 ---

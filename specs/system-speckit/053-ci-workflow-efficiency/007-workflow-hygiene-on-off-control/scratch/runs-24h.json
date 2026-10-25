@@ -1,0 +1,6212 @@
+[
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:19Z",
+  "databaseId": 40147795044,
+  "event": "dynamic",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796034,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795994,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795946,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "sk-git Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796032,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795880,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795952,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795945,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795992,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795978,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795997,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796003,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795941,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Chart Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796007,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796035,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796021,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Diagram Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795891,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795970,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796046,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Pi Extension Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795930,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "sk-doc Rename Harness",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796024,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796054,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795990,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147796044,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:43:20Z",
+  "databaseId": 40147795961,
+  "event": "push",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:44:43Z",
+  "databaseId": 40147883864,
+  "event": "dynamic",
+  "headSha": "8ff7da700d7601ce152e28248213643836fe7fd7",
+  "name": "github_actions in / for actions/setup-node, actions/setup-python, actions/upload-artifact - Update #1650663579",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:44:44Z",
+  "databaseId": 40147884561,
+  "event": "pull_request",
+  "headSha": "60e8ba82a9d899aef0636499e36d33dea941111f",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:45:52Z",
+  "databaseId": 40147961819,
+  "event": "dynamic",
+  "headSha": "d9b69eb2df98929238178a94de28e75db166e794",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "cancelled",
+  "createdAt": "2026-10-25T00:48:49Z",
+  "databaseId": 40148151428,
+  "event": "pull_request",
+  "headSha": "60e8ba82a9d899aef0636499e36d33dea941111f",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:51Z",
+  "databaseId": 40148153989,
+  "event": "push",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156955,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156952,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "cancelled",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156916,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156911,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Dependabot Auto-merge",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156986,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156989,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157006,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Prompt-Knowledge Card Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156968,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Agent Mirror Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157008,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "sk-git Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157010,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157033,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156945,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156944,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156912,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Chart Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157001,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156913,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157019,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156931,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Diagram Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156987,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Comment Hygiene Gate",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156997,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "sk-doc Rename Harness",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157029,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Naming Standard Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157034,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157011,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156985,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Pi Extension Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156948,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156996,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148157038,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:54Z",
+  "databaseId": 40148156988,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T00:48:55Z",
+  "databaseId": 40148158546,
+  "event": "pull_request",
+  "headSha": "e55d027206b7b97e88ef991afd71fd0b7e390ad5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635389,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635465,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635436,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635455,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635466,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635386,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635419,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635473,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Chart Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635441,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635363,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "sk-git Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635414,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635458,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635464,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635438,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Pi Extension Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635356,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635371,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635447,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635408,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Diagram Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635404,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "sk-doc Rename Harness",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635405,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635428,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635424,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635079,
+  "event": "dynamic",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635448,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:11:13Z",
+  "databaseId": 40149635429,
+  "event": "push",
+  "headSha": "03abdb20d88be0e93f3b0c6b09b9aaa1400c5676",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T01:13:33Z",
+  "databaseId": 40149789774,
+  "event": "dynamic",
+  "headSha": "045023ae846fbd772c46e22aa350a8ca4d6fc9da",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:41:34Z",
+  "databaseId": 40169993509,
+  "event": "schedule",
+  "headSha": "045023ae846fbd772c46e22aa350a8ca4d6fc9da",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:54:04Z",
+  "databaseId": 40170759170,
+  "event": "push",
+  "headSha": "0fca975f07719e924e8a15767999f5b521005bc0",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:28Z",
+  "databaseId": 40170908652,
+  "event": "dynamic",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908747,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908779,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908717,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908711,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908740,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908723,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908741,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908753,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908712,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908758,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908760,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908718,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:56:29Z",
+  "databaseId": 40170908787,
+  "event": "push",
+  "headSha": "1fd95b59cde57f83ed451c0322a7594347cbcbf5",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T06:58:26Z",
+  "databaseId": 40171026579,
+  "event": "dynamic",
+  "headSha": "eda5c42aca39b5d51b21ca162c87d3e3a8af1088",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175406078,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175406059,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175406077,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175406032,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175406057,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175405864,
+  "event": "dynamic",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:45Z",
+  "databaseId": 40175406058,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:46Z",
+  "databaseId": 40175406084,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:46Z",
+  "databaseId": 40175406106,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:07:46Z",
+  "databaseId": 40175406096,
+  "event": "push",
+  "headSha": "c7deb0efc6e8318c0a269b5f390ff162ad5e35f4",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:09:42Z",
+  "databaseId": 40175529126,
+  "event": "dynamic",
+  "headSha": "a08fb2c48de6dc33688f6a6fc31973cb0b1d8e78",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:57Z",
+  "databaseId": 40177786197,
+  "event": "dynamic",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786650,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786654,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786722,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786749,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786676,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786657,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786669,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786651,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:43:58Z",
+  "databaseId": 40177786667,
+  "event": "push",
+  "headSha": "251a60f3d6bbb97cccf151c48d329ffb41261ddf",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T08:46:21Z",
+  "databaseId": 40177950678,
+  "event": "dynamic",
+  "headSha": "cfd9285e32fb1cf61049f06e68caec7ff473fa05",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:06:31Z",
+  "databaseId": 40179285192,
+  "event": "push",
+  "headSha": "79da3394035f1f5c7b4f558733090fe5cbe0a86b",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:30Z",
+  "databaseId": 40180718726,
+  "event": "dynamic",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719301,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719241,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719302,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719265,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719263,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719242,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719225,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719236,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719268,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719275,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719266,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719243,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719318,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719224,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:27:31Z",
+  "databaseId": 40180719244,
+  "event": "push",
+  "headSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443912,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443893,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443856,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443850,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443941,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443841,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443873,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443899,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443891,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443840,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443888,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443927,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443908,
+  "event": "push",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:37:58Z",
+  "databaseId": 40181443838,
+  "event": "dynamic",
+  "headSha": "bce45aa297aac14f6b0e92f85126c57dc53c4ba2",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T09:39:46Z",
+  "databaseId": 40181566482,
+  "event": "dynamic",
+  "headSha": "cafaa0facd8bf41f335520e962a7b248297e49cf",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:00:50Z",
+  "databaseId": 40183005828,
+  "event": "push",
+  "headSha": "301185ee9f54c25e877df7e2b9133b1ba25cd570",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:28:37Z",
+  "databaseId": 40184926193,
+  "event": "push",
+  "headSha": "53464d2ee9da885fa8998c980c3e0e49b501ba15",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:55Z",
+  "databaseId": 40185228936,
+  "event": "dynamic",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230065,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230022,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230039,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230031,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230098,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230060,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230011,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230069,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230049,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T10:32:56Z",
+  "databaseId": 40185230015,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230191,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230120,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230137,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230147,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230282,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230194,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:32:57Z",
+  "databaseId": 40185230306,
+  "event": "push",
+  "headSha": "1ac7ed676ce37c00cd62ea2f0a0122762e9370a8",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:35:10Z",
+  "databaseId": 40185381851,
+  "event": "dynamic",
+  "headSha": "bf0102a4229424ceef3725d5d0902f60d068b915",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692632,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692581,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692602,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692622,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692583,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692589,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692599,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692612,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692601,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692650,
+  "event": "push",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:54:41Z",
+  "databaseId": 40186692561,
+  "event": "dynamic",
+  "headSha": "8fc0738d11b25925303746ffee25aa99eee01d52",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T10:57:00Z",
+  "databaseId": 40186844805,
+  "event": "dynamic",
+  "headSha": "017a413f24deb19f92a4f3343922814f3eeff737",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:18Z",
+  "databaseId": 40187742411,
+  "event": "dynamic",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743399,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743406,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743352,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743428,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743335,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743430,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743376,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743458,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743391,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743349,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743500,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743418,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743400,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743336,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743372,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743412,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743384,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:10:19Z",
+  "databaseId": 40187743360,
+  "event": "push",
+  "headSha": "8811c7e36df5a2265b05d0d3012ab4d9e1af3b00",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T11:12:55Z",
+  "databaseId": 40187920669,
+  "event": "dynamic",
+  "headSha": "96eaa42ce5ecf1c197d6b7782671eb2a30fae432",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033883,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033839,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033876,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033863,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033872,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033932,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033906,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033867,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:54Z",
+  "databaseId": 40194033821,
+  "event": "dynamic",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:38:55Z",
+  "databaseId": 40194033943,
+  "event": "push",
+  "headSha": "9e0e55cd8848acc6e65a310d31b4fc707b92d948",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T12:40:52Z",
+  "databaseId": 40194184559,
+  "event": "dynamic",
+  "headSha": "123124d9d1322d0370d52baf0c86ecda67138f94",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849288,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197848355,
+  "event": "dynamic",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849290,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849182,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849262,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849228,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849264,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849260,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849235,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:29:36Z",
+  "databaseId": 40197849259,
+  "event": "push",
+  "headSha": "ee8c7e6f248656dca31af83e3e786199ba3f3268",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:31:31Z",
+  "databaseId": 40198001972,
+  "event": "dynamic",
+  "headSha": "6f4ee9e620c3dd9b8933c84ad99289acfc3ed09d",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:46Z",
+  "databaseId": 40199018944,
+  "event": "dynamic",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019532,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019485,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019509,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019454,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019493,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019498,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019527,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019463,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:44:47Z",
+  "databaseId": 40199019511,
+  "event": "push",
+  "headSha": "062dd6b30d190f40f18fd70e7ab5a5bacfe8a466",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:46:41Z",
+  "databaseId": 40199168313,
+  "event": "dynamic",
+  "headSha": "02aa7ca2ff5d97ff80e4cced89945c793d384d01",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199818969,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819036,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819016,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819124,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819017,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819040,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199818985,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819014,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819082,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199818968,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199819012,
+  "event": "push",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:13Z",
+  "databaseId": 40199818497,
+  "event": "dynamic",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:37Z",
+  "databaseId": 40199846771,
+  "event": "dynamic",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "npm_and_yarn in /.pi/extensions/pi-fast-mode-w-subagent-support, /.pi/extensions/pi-cache-optimizer for undici, undici, undici, undici - Update #1651554151",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:55:37Z",
+  "databaseId": 40199847083,
+  "event": "dynamic",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "npm_and_yarn in /.opencode, /.skilled, /.skilled/skills/mcp-code-mode/mcp-server, /.skilled/skills/sk-design/sk-design-md-generator/backend, /.skilled/skills/system-deep-loop/runtime, /.skilled/skills/system-skill-advisor/runtime, /.skilled/skills/system-spec-kit for @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, body-parser, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, hono, ip-address, to...",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T13:56:35Z",
+  "databaseId": 40199916698,
+  "event": "dynamic",
+  "headSha": "4e55a8f107adaa3e3606804911a95c4e99f4a14b",
+  "name": "npm_and_yarn in /.opencode, /.skilled, /.skilled/skills/mcp-code-mode/mcp-server, /.skilled/skills/sk-design/sk-design-md-generator/backend, /.skilled/skills/system-deep-loop/runtime, /.skilled/skills/system-skill-advisor/runtime, /.skilled/skills/system-spec-kit for zod, zod, zod, ip-address, body-parser, follow-redirects, vite, zod, @vitest/mocker, vite, zod, vite, zod, ip-address, vite, body-parser, hono - Update #1651554814",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:49Z",
+  "databaseId": 40200554311,
+  "event": "push",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559801,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559887,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559918,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559927,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "sk-git Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559848,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Comment Hygiene Gate",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559852,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559839,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Naming Standard Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559899,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Prompt-Knowledge Card Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559824,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Agent Mirror Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559835,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559869,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559881,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559941,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559923,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559817,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559843,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559850,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559797,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559859,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559794,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Dependabot Auto-merge",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559802,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T14:04:54Z",
+  "databaseId": 40200559901,
+  "event": "pull_request",
+  "headSha": "a7245a72a652c1a23f386c0361bf82ed0033f0a5",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:49Z",
+  "databaseId": 40201176738,
+  "event": "dynamic",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177714,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177735,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177743,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177738,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177636,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177672,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177754,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177766,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177590,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177676,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177753,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177643,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177616,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:12:50Z",
+  "databaseId": 40201177656,
+  "event": "push",
+  "headSha": "5b33a8089b962a3990556fa06a8e6f34b65bc4c3",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T14:14:44Z",
+  "databaseId": 40201320779,
+  "event": "dynamic",
+  "headSha": "0237ca93e8973957fb3453858a2efca1d9d138de",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:05Z",
+  "databaseId": 40205175601,
+  "event": "dynamic",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175824,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175713,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175816,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175803,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175728,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175742,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175879,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205176109,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175774,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175757,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175759,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:04:06Z",
+  "databaseId": 40205175809,
+  "event": "push",
+  "headSha": "ef1543de45d5bea1a3aeddb98f8de568c06038c3",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331585,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331600,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331598,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331552,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331599,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331562,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331545,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331544,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331581,
+  "event": "push",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:18:45Z",
+  "databaseId": 40206331237,
+  "event": "dynamic",
+  "headSha": "8618042adf6c8c5016fb72e48c4e881d3313570e",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:20:59Z",
+  "databaseId": 40206509790,
+  "event": "dynamic",
+  "headSha": "6eb543080f44a1aafb538e64c2ff1262ab58bdcb",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:34Z",
+  "databaseId": 40207434513,
+  "event": "dynamic",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434831,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434780,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434822,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434826,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434852,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434829,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434857,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434773,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:32:35Z",
+  "databaseId": 40207434850,
+  "event": "push",
+  "headSha": "db4f67eb9e43377a259d7bb1bac0d7c5b638f477",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:34:28Z",
+  "databaseId": 40207585027,
+  "event": "dynamic",
+  "headSha": "933d71235ffc6e7c0ea1e3ee5b8e1b8b40150cd0",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730180,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730243,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730117,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730274,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730164,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730213,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730241,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730230,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730172,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730244,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730268,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730218,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730234,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730280,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208729990,
+  "event": "dynamic",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T15:49:06Z",
+  "databaseId": 40208730185,
+  "event": "push",
+  "headSha": "74b9b7233d05cd5a3e09844595800c086c0c829e",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T15:51:02Z",
+  "databaseId": 40208885080,
+  "event": "dynamic",
+  "headSha": "663926b9c1085d2548afb5e96eb0f3aad1a36187",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456879,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456874,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456849,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456805,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456887,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456929,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456980,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456862,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456847,
+  "event": "push",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:11:01Z",
+  "databaseId": 40210456387,
+  "event": "dynamic",
+  "headSha": "d31d9667b68c8885f3b4013abf53fb47ec262b2a",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:12:53Z",
+  "databaseId": 40210602254,
+  "event": "dynamic",
+  "headSha": "9a80256f0526d059e63ed1e7322695fd87346d03",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:41Z",
+  "databaseId": 40212023292,
+  "event": "dynamic",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025237,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025255,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025280,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025157,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025194,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025193,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025271,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025175,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025210,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025432,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025391,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025355,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025324,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025191,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025338,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025247,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025321,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T16:30:42Z",
+  "databaseId": 40212025206,
+  "event": "push",
+  "headSha": "10e8df7d25199307409441e7dd42c535c88a2643",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T16:33:24Z",
+  "databaseId": 40212245459,
+  "event": "dynamic",
+  "headSha": "da6a389c072fd39b38a39fcd087012558db79f6b",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:24Z",
+  "databaseId": 40218472134,
+  "event": "dynamic",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472492,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472527,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472599,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472635,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472549,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472612,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472506,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472591,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472609,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472532,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472749,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472644,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:51:25Z",
+  "databaseId": 40218472604,
+  "event": "push",
+  "headSha": "4f6e4db1e05d9c76334c3249e13bf10daf6af593",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T17:53:51Z",
+  "databaseId": 40218663623,
+  "event": "dynamic",
+  "headSha": "bd94b0bc629369dd7fef1ca8593fd6ea5c914e35",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:18Z",
+  "databaseId": 40219245589,
+  "event": "dynamic",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246830,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246867,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246865,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246841,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246815,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246869,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246783,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246884,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246861,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246775,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246778,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246889,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246819,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246805,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246817,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246825,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246883,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:01:19Z",
+  "databaseId": 40219246882,
+  "event": "push",
+  "headSha": "69afa1607f4d423b583ac7e83f142501a1cddbd4",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:03:05Z",
+  "databaseId": 40219389118,
+  "event": "dynamic",
+  "headSha": "e580e27ff0c74da6b959150fb312afff7f39c54b",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853343,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853375,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853503,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853385,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853478,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853499,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853469,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853423,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853433,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853437,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853435,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219853383,
+  "event": "push",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:08:56Z",
+  "databaseId": 40219852799,
+  "event": "dynamic",
+  "headSha": "ba87c96597b7234abe57ff108b8fec50367e1396",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156955,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156939,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156968,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156972,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220157010,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156929,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156937,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "sk-doc Rename Harness",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156918,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156959,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156923,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:43Z",
+  "databaseId": 40220156208,
+  "event": "dynamic",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:44Z",
+  "databaseId": 40220157037,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:12:44Z",
+  "databaseId": 40220157059,
+  "event": "push",
+  "headSha": "d6ab55d155eeb5b55186e6a84e0527003b8829fb",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314235,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314258,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314292,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314271,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314275,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314229,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314209,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314221,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314228,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314220,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314233,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314250,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314227,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314285,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221313874,
+  "event": "dynamic",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:27:14Z",
+  "databaseId": 40221314296,
+  "event": "push",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:36Z",
+  "databaseId": 40221342030,
+  "event": "dynamic",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "npm_and_yarn in /.opencode, /.skilled, /.skilled/skills/mcp-code-mode/mcp-server, /.skilled/skills/sk-design/sk-design-md-generator/backend, /.skilled/skills/system-deep-loop/runtime, /.skilled/skills/system-skill-advisor/runtime, /.skilled/skills/system-spec-kit for @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, body-parser, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, hono, ip-address, to...",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:37Z",
+  "databaseId": 40221342638,
+  "event": "dynamic",
+  "headSha": "09e0275d272ddc6f097983c4c209392eb74765f4",
+  "name": "npm_and_yarn in /.pi/extensions/pi-fast-mode-w-subagent-support, /.pi/extensions/pi-cache-optimizer for undici, undici, undici, undici - Update #1651822551",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346355,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346298,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "cancelled",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346378,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "cancelled",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346293,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346311,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346357,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346384,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346288,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346359,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:39Z",
+  "databaseId": 40221346203,
+  "event": "dynamic",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:40Z",
+  "databaseId": 40221346401,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:27:40Z",
+  "databaseId": 40221346451,
+  "event": "push",
+  "headSha": "cc6883e597162f6d305a33b29eac4be41c97b789",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492523,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492539,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492519,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492541,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Diagram Corpus",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492503,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492516,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492543,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492524,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492526,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492520,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492507,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492599,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492509,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492721,
+  "event": "dynamic",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492506,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:29:33Z",
+  "databaseId": 40221492542,
+  "event": "push",
+  "headSha": "60fb9fe2859cae4c04c10c5c5e7e0dbe0965b457",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:33:14Z",
+  "databaseId": 40221798204,
+  "event": "dynamic",
+  "headSha": "1c6bf51ac2ea49418f36d8402f07bdd3ec374d98",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:31Z",
+  "databaseId": 40221899153,
+  "event": "dynamic",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "cancelled",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900066,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900101,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900051,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900052,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900048,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900055,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900074,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900013,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900099,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900028,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900044,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900031,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900270,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900045,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:34:32Z",
+  "databaseId": 40221900076,
+  "event": "push",
+  "headSha": "80a3bf558f3248c53829b30b8b1ae49767b7e861",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:40Z",
+  "databaseId": 40221910988,
+  "event": "dynamic",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911366,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911315,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "sk-git Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911386,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911334,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911355,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911270,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911281,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911402,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911329,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911410,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911419,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:34:41Z",
+  "databaseId": 40221911319,
+  "event": "push",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:35:00Z",
+  "databaseId": 40221936536,
+  "event": "dynamic",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "npm_and_yarn in /.opencode, /.skilled, /.skilled/skills/mcp-code-mode/mcp-server, /.skilled/skills/sk-design/sk-design-md-generator/backend, /.skilled/skills/system-deep-loop/runtime, /.skilled/skills/system-skill-advisor/runtime, /.skilled/skills/system-spec-kit for @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, @vitest/mocker, body-parser, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, fast-uri, hono, ip-address, to...",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:35:01Z",
+  "databaseId": 40221937407,
+  "event": "dynamic",
+  "headSha": "1722864b461cc60d215b46ee6a9da72d800fba85",
+  "name": "npm_and_yarn in /.pi/extensions/pi-fast-mode-w-subagent-support, /.pi/extensions/pi-cache-optimizer for undici, undici, undici, undici - Update #1651831521",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:39:30Z",
+  "databaseId": 40222284673,
+  "event": "dynamic",
+  "headSha": "9316631283e4ddf35a82378459cd60e8809733b4",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:00Z",
+  "databaseId": 40222643458,
+  "event": "dynamic",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644228,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644332,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Deep-Loop Runtime Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644267,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644243,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644233,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644339,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644218,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644248,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644286,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644273,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644305,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644251,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644334,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644370,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644240,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644355,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644362,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644327,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:44:01Z",
+  "databaseId": 40222644264,
+  "event": "push",
+  "headSha": "5cb598cf3f3099ac9d02370b68566c8853a07012",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:46:17Z",
+  "databaseId": 40222825595,
+  "event": "dynamic",
+  "headSha": "ed94b0affa7d3afbabcfc42afda4e6f9b5adb4f8",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075123,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223074796,
+  "event": "dynamic",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075142,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075125,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075152,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075169,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075148,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075170,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:29Z",
+  "databaseId": 40223075135,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:30Z",
+  "databaseId": 40223075258,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:30Z",
+  "databaseId": 40223075301,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:49:30Z",
+  "databaseId": 40223075208,
+  "event": "push",
+  "headSha": "cbdd295c42639ef357bd7a0e7cdba4b0863171d8",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T18:51:25Z",
+  "databaseId": 40223229260,
+  "event": "dynamic",
+  "headSha": "776096e87a70302d709cdf027d0cc85bd7f8779f",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "failure",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757929,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757949,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757940,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757979,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758045,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758008,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758060,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757990,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757968,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758040,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757984,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758006,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758026,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758000,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Skill Advisor Stress Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758084,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757964,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757991,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227758067,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:16Z",
+  "databaseId": 40227757308,
+  "event": "dynamic",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:48:17Z",
+  "databaseId": 40227758193,
+  "event": "push",
+  "headSha": "c02124d0ffa68f9bb26dd6633b282d9164131939",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:50:13Z",
+  "databaseId": 40227910095,
+  "event": "dynamic",
+  "headSha": "fbfc4bfe224e1192e8e0426f954025bf987225f8",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294088,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228293769,
+  "event": "dynamic",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294116,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294049,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294108,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "sk-git Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294178,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294200,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294169,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294163,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294057,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294016,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294050,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:55:09Z",
+  "databaseId": 40228294079,
+  "event": "push",
+  "headSha": "c48cc8ed248d60227558c813748afa1acc51a2b5",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T19:57:05Z",
+  "databaseId": 40228444644,
+  "event": "dynamic",
+  "headSha": "fcd200f2eb27dc22b3d30eff81b51f17d0903497",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:21Z",
+  "databaseId": 40230057122,
+  "event": "dynamic",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057410,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057329,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057363,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057423,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057372,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057404,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057443,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057497,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057439,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057357,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057378,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057431,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:17:22Z",
+  "databaseId": 40230057440,
+  "event": "push",
+  "headSha": "1c317e13c5f54fae965125925b5fb1eea534449e",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:19:19Z",
+  "databaseId": 40230210239,
+  "event": "dynamic",
+  "headSha": "2a57a5e5ac49bb2de7b593fff5e6146c7c83eb67",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:08Z",
+  "databaseId": 40231382191,
+  "event": "dynamic",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231383033,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382970,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382989,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382991,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382956,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382942,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382946,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231383005,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382966,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231383012,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382958,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382990,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382945,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231383028,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382981,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:34:09Z",
+  "databaseId": 40231382939,
+  "event": "push",
+  "headSha": "7041b05478ed8da1f4b31b38bf457d0aa8149991",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:36:01Z",
+  "databaseId": 40231528210,
+  "event": "dynamic",
+  "headSha": "6dc5ddd20c235c3e3ee37c4e30d69c843aa5dc21",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729365,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729422,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729385,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729335,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729455,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729533,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729353,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729445,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729327,
+  "event": "push",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:38:40Z",
+  "databaseId": 40231729116,
+  "event": "dynamic",
+  "headSha": "5a60b67dc80828c45af908ba73c47bff1dc8729f",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:40:35Z",
+  "databaseId": 40231880543,
+  "event": "dynamic",
+  "headSha": "21c93c32e2c0011f48436b93f13262682b083edf",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276629,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276646,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276680,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "sk-code Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276644,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Skill Doc Frontmatter",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276602,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276692,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276685,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276648,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276690,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276625,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276657,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276613,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276609,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276638,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233276622,
+  "event": "push",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T20:58:44Z",
+  "databaseId": 40233275951,
+  "event": "dynamic",
+  "headSha": "271824413d7d7289faf22ee184c6b022a30cde0e",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:00:40Z",
+  "databaseId": 40233431327,
+  "event": "dynamic",
+  "headSha": "1f6047f2032a31b3b7af6bb1a7807c00683cf69c",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703961,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703934,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703921,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703924,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703973,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703928,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234704010,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703886,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703947,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:22Z",
+  "databaseId": 40234703958,
+  "event": "push",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:23Z",
+  "databaseId": 40234704067,
+  "event": "dynamic",
+  "headSha": "174ebbdc0e01be10aaa36d244cd68d8bc0e544ed",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:43Z",
+  "databaseId": 40234732454,
+  "event": "dynamic",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732859,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732838,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Markdown Link Integrity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732868,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732893,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732828,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732884,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Runtime No-Spec-Import Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732887,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Command Tree Parity",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732876,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732847,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "sk-doc Rename Harness",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732824,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732827,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Routing Registry Drift Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732941,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "OpenCode Dual-Version Battery",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234733017,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "cancelled",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732843,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732937,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732844,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "OpenCode Plugin Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:16:44Z",
+  "databaseId": 40234732812,
+  "event": "push",
+  "headSha": "6541f9284e02150da43ac98449acfe7010095326",
+  "name": "Spec-Kit Check",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:19:09Z",
+  "databaseId": 40234924141,
+  "event": "dynamic",
+  "headSha": "333592657b077fa5a3d65a5c10c9a7ae6829efd2",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022606,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Rule Canary Sync",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022541,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Advisory Checks",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022569,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Changed Packet Validation",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022529,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Gate Inputs",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022512,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Playbook Operator Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022518,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Dispatch Enforcement Guard",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022519,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Trigger Index Rebuild",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022556,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Message Contract",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022448,
+  "event": "dynamic",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "Push on main",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:20:22Z",
+  "databaseId": 40235022509,
+  "event": "push",
+  "headSha": "1c055e0b3019ebe2b2661f84b7bcf76f11730fcf",
+  "name": "sk-doc Script Tests",
+  "status": "completed"
+ },
+ {
+  "conclusion": "success",
+  "createdAt": "2026-10-25T21:22:09Z",
+  "databaseId": 40235164807,
+  "event": "dynamic",
+  "headSha": "46d94541f261aac467ab73d24bfdfca1b26851f8",
+  "name": "Push on main",
+  "status": "completed"
+ }
+]
