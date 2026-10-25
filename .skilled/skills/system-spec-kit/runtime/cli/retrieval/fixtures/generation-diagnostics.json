@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7283,
-    "ok": 15173,
+    "missing-frontmatter": 7284,
+    "ok": 15179,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26004,
+  "documentsScanned": 26011,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "353930bd2a7122feff78fb09a2aaa4b9e590497cc22e03fb717744e4e39a6565",
+  "manifestHash": "1e13e2fd644aa49ff21b2dd234065a914464964699d52fef28f67cef75c7817b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37585,
+      "ok": 37595,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10688,6 +10688,12 @@
       "line": 1,
       "path": ".skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/source.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-bug-fix-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -69054,10 +69060,6 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/benchmark/fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -72887,6 +72889,10 @@
     },
     {
       "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/042-fanout-review-focus/scratch",
       "reason": "excluded directory"
     },
     {

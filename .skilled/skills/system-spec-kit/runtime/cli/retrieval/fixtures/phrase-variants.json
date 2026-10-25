@@ -1,5 +1,5 @@
 {
-  "manifestHash": "353930bd2a7122feff78fb09a2aaa4b9e590497cc22e03fb717744e4e39a6565",
+  "manifestHash": "1e13e2fd644aa49ff21b2dd234065a914464964699d52fef28f67cef75c7817b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10320,6 +10320,9 @@
     ],
     "ai 006": [
       "ai-006"
+    ],
+    "ai 007": [
+      "ai-007"
     ],
     "ai assistant project context": [
       "ai assistant project context"
@@ -43468,6 +43471,9 @@
     "fan out review closes complete": [
       "fan-out review closes complete"
     ],
+    "fan out review focus input for deep review": [
+      "fan out review focus input for deep review"
+    ],
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
     ],
@@ -43752,6 +43758,18 @@
     ],
     "fanout resume salvage evidence": [
       "fanout resume salvage evidence"
+    ],
+    "fanout review focus": [
+      "fanout review focus"
+    ],
+    "fanout review focus implementation summary": [
+      "fanout review focus implementation summary"
+    ],
+    "fanout review focus plan": [
+      "fanout review focus plan"
+    ],
+    "fanout review focus tasks": [
+      "fanout review focus tasks"
     ],
     "fanout run cjs": [
       "fanout-run.cjs"
@@ -58386,6 +58404,9 @@
     ],
     "local skill link": [
       "local skill link"
+    ],
+    "local skill link discovery": [
+      "local skill link discovery"
     ],
     "local vision": [
       "local vision"
@@ -77047,6 +77068,9 @@
     "private skill restore decision": [
       "private skill restore decision"
     ],
+    "private skill roots": [
+      "private skill roots"
+    ],
     "private skill scan containment decision": [
       "private skill scan containment decision"
     ],
@@ -85526,6 +85550,9 @@
     "review first implement second": [
       "review first implement second"
     ],
+    "review focus flag": [
+      "review focus flag"
+    ],
     "review folder without config": [
       "review folder without config"
     ],
@@ -93563,6 +93590,9 @@
     ],
     "sk code routing benchmark tasks": [
       "sk-code routing benchmark tasks"
+    ],
+    "sk code routing gap closure": [
+      "sk-code routing gap closure"
     ],
     "sk code routing parity fixtures": [
       "sk-code routing parity fixtures"

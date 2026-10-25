@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fd944d0ad23f3d5add9cf5e3822e458ea999628f44e1fefefdce7780b6226cef",
+  "corpusHash": "fb2957e20abf69a62a94ecf8e9fd715a5f8f390aabfde7fbe2229ea06160ff64",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26004,
+  "includedPathCount": 26011,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2724,6 +2724,7 @@
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-bug-fix-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-ci-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
@@ -7500,6 +7501,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/corpus-df-idf.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/sanitizer-boundaries.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md",
@@ -12185,6 +12187,7 @@
     "specs/sk-code/014-code-modes-research/002-review-mode-research/research/synthesis-v1.md",
     "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
     "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/acceptance-criteria.md",
     "specs/sk-code/014-code-modes-research/003-review-remediation/decision-record.md",
     "specs/sk-code/014-code-modes-research/003-review-remediation/goal.md",
     "specs/sk-code/014-code-modes-research/003-review-remediation/implementation-summary.md",
@@ -15529,6 +15532,10 @@
     "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/plan.md",
     "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/spec.md",
     "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/tasks.md",
+    "specs/system-deep-loop/042-fanout-review-focus/implementation-summary.md",
+    "specs/system-deep-loop/042-fanout-review-focus/plan.md",
+    "specs/system-deep-loop/042-fanout-review-focus/spec.md",
+    "specs/system-deep-loop/042-fanout-review-focus/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -26035,7 +26042,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "353930bd2a7122feff78fb09a2aaa4b9e590497cc22e03fb717744e4e39a6565",
+  "manifestHash": "1e13e2fd644aa49ff21b2dd234065a914464964699d52fef28f67cef75c7817b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26508,10 +26515,6 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/benchmark/fixtures",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
@@ -30343,6 +30346,10 @@
     },
     {
       "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/042-fanout-review-focus/scratch",
       "reason": "excluded directory"
     },
     {
