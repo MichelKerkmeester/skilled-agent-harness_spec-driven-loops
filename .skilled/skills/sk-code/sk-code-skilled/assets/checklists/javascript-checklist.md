@@ -8,7 +8,7 @@ trigger_phrases:
   - "use strict checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.28
+version: 1.0.1.0
 ---
 
 # JavaScript Code Quality Checklist
@@ -72,25 +72,6 @@ either one keep it until they are next rewritten.
 
 **Exception**: `.mjs` files and OpenCode plugin ESM paths are strict by module
 semantics; the verifier intentionally skips `.mjs` strict-mode enforcement.
-
-### Function Naming
-
-```markdown
-[ ] All functions use camelCase naming
-```
-
-**Correct**:
-```javascript
-function validateInput(data) { }
-function processFile(path) { }
-const handleError = (err) => { };
-```
-
-**Wrong**:
-```javascript
-function validate_input(data) { }    // snake_case
-function ProcessFile(path) { }       // PascalCase
-```
 
 ### No Commented-Out Code
 
@@ -212,6 +193,25 @@ console.error('[COMPONENT] Error:', error.message);
 ```javascript
 console.log('Processing file: ' + filename);
 console.log(filename);  // No context
+```
+
+### Function Naming
+
+```markdown
+[ ] All functions use camelCase naming
+```
+
+**Correct**:
+```javascript
+function validateInput(data) { }
+function processFile(path) { }
+const handleError = (err) => { };
+```
+
+**Wrong**:
+```javascript
+function validate_input(data) { }    // snake_case
+function ProcessFile(path) { }       // PascalCase
 ```
 
 ### Constants
