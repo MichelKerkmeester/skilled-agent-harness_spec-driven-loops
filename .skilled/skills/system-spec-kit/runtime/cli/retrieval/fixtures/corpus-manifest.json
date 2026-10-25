@@ -1,5 +1,5 @@
 {
-  "corpusHash": "73a972b383acf55591c59ad67ed5f08712783fd4303042413c82f731eef50b0e",
+  "corpusHash": "036cc4c52a590ea5609df1962d804085249a30eb5ff8295190fe4f37e65cb5ef",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26016,
+  "includedPathCount": 26017,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2787,6 +2787,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
@@ -26047,7 +26048,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c87eed1b4ea435682442b45938217a5b08eec6d3b916c35d9c589cff662f2608",
+  "manifestHash": "14d6f956f2b834c5dffcde32ab9b9d4c98adb51da10bc6925bb47c393ae78247",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

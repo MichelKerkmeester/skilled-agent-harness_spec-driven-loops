@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c87eed1b4ea435682442b45938217a5b08eec6d3b916c35d9c589cff662f2608",
+  "manifestHash": "14d6f956f2b834c5dffcde32ab9b9d4c98adb51da10bc6925bb47c393ae78247",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -93375,6 +93375,9 @@
     "sk code quality 1 3 0 0": [
       "sk-code-quality 1.3.0.0"
     ],
+    "sk code quality 1 4 0 0": [
+      "sk-code-quality 1.4.0.0"
+    ],
     "sk code quality mode research": [
       "sk-code quality mode research"
     ],
@@ -93410,6 +93413,9 @@
     ],
     "sk code quality v1 3 0 0": [
       "sk-code-quality v1.3.0.0"
+    ],
+    "sk code quality v1 4 0 0": [
+      "sk-code-quality v1.4.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -103947,6 +103953,9 @@
     "surface implementation standards": [
       "surface implementation standards"
     ],
+    "surface neutral javascript css checks": [
+      "surface-neutral javascript css checks"
+    ],
     "surface packet plan": [
       "surface packet plan"
     ],
@@ -112338,6 +112347,9 @@
     ],
     "webflow checker fix tasks": [
       "webflow checker fix tasks"
+    ],
+    "webflow house style removed": [
+      "webflow house style removed"
     ],
     "webflow labels and playbook": [
       "webflow labels and playbook"
