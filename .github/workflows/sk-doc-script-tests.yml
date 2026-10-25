@@ -21,6 +21,7 @@ concurrency:
 jobs:
   sk-doc-scripts:
     name: sk-doc script tests
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -64,6 +65,7 @@ jobs:
   # validator's fixture test, which lives beside the validator, runs here.
   catalog-packages:
     name: Feature catalog packages validate
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -82,6 +84,7 @@ jobs:
 
   citation-drift:
     name: No new broken citations
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

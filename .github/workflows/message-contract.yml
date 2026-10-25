@@ -20,6 +20,7 @@ concurrency:
 jobs:
   message-contract:
     name: Commit messages, branch names and PR description follow the templates
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_MESSAGES != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

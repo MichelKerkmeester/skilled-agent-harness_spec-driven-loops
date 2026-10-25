@@ -43,6 +43,7 @@ concurrency:
 jobs:
   skill-advisor-stress:
     name: Skill advisor stress suite
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

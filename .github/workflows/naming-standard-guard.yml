@@ -16,6 +16,7 @@ concurrency:
 jobs:
   naming-standard:
     name: Enforce kebab-case filesystem names
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

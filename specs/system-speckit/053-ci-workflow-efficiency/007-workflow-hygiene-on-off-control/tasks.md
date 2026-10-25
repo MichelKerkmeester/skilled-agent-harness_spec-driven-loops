@@ -1611,7 +1611,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Implementation - R26 switches and the README
 
-### T062 Add the switch to `advisory-checks.yml` (AC-005)
+### T062 [x] Add the switch to `advisory-checks.yml` (AC-005)
 
 File: `.github/workflows/advisory-checks.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `advisory` at `:17`).
 
@@ -1630,9 +1630,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T063 Add the switch to `agent-mirror-sync.yml` (AC-005)
+### T063 [x] Add the switch to `agent-mirror-sync.yml` (AC-005)
 
 File: `.github/workflows/agent-mirror-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `agent-mirror-sync` at `:7`).
 
@@ -1651,9 +1653,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T064 Add the switch to `changed-packet-validation.yml` (AC-005)
+### T064 [x] Add the switch to `changed-packet-validation.yml` (AC-005)
 
 File: `.github/workflows/changed-packet-validation.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `changed-packets` at `:13`).
 
@@ -1672,9 +1676,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T065 Add the switch to both `command-tree-parity.yml` jobs (AC-005)
+### T065 [x] Add the switch to both `command-tree-parity.yml` jobs (AC-005)
 
 File: `.github/workflows/command-tree-parity.yml:16` and `:52`, anchors: `    runs-on: ubuntu-latest` twice, for `command-tree-parity` at `:14` and `hermes-mirror` at `:46`.
 
@@ -1693,9 +1699,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 switch lines directly above `runs-on:`, one per job, but with `SKILLED_CI_TESTS`; the parse printed `parse ok`. DEVIATION: the task names `SKILLED_CI_FRESHNESS`, and its literal grep printed `0` on this file. The README's push-versus-pull-request table lists `command-tree-parity.yml` in the path-filtered row (TESTS), `scratch/switch-groups.md` maps it to TESTS, and the requirement that sets the groups defines TESTS as that row, so the TESTS grep printed `2` and the workflow, the README section and the scratch record now agree. Flip both lines and the README row together if FRESHNESS is the intent (observed 2026-10-25).
+
 ---
 
-### T066 Add the switch to `comment-hygiene.yml` (AC-005)
+### T066 [x] Add the switch to `comment-hygiene.yml` (AC-005)
 
 File: `.github/workflows/comment-hygiene.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `comment-hygiene` at `:7`).
 
@@ -1714,9 +1722,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T067 Add the switch to `deep-loop-runtime.yml` (AC-005)
+### T067 [x] Add the switch to `deep-loop-runtime.yml` (AC-005)
 
 File: `.github/workflows/deep-loop-runtime.yml:35`, anchor: `    runs-on: ubuntu-latest` (the only job, id `deep-loop-runtime` at `:33`).
 
@@ -1735,9 +1745,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T068 Add the switch to `diagram-corpus.yml` (AC-005)
+### T068 [x] Add the switch to `diagram-corpus.yml` (AC-005)
 
 File: `.github/workflows/diagram-corpus.yml:28`, anchor: `    runs-on: ubuntu-latest` (the only job, id `corpus` at `:26`).
 
@@ -1756,9 +1768,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T069 Add the switch to both `dispatch-enforcement-guard.yml` jobs (AC-005)
+### T069 [x] Add the switch to both `dispatch-enforcement-guard.yml` jobs (AC-005)
 
 File: `.github/workflows/dispatch-enforcement-guard.yml:16` and `:54`, anchors: `    runs-on: ubuntu-latest` twice, for `dispatch-enforcement-guard` at `:14` and `hooks-vitest` at `:52`.
 
@@ -1777,9 +1791,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T070 Add the switch to `gate-inputs.yml` (AC-005)
+### T070 [x] Add the switch to `gate-inputs.yml` (AC-005)
 
 File: `.github/workflows/gate-inputs.yml:14`, anchor: `    runs-on: ubuntu-latest` (the only job, id `gate-inputs` at `:12`).
 
@@ -1798,9 +1814,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T071 Add the switch to `markdown-link-integrity.yml` (AC-005)
+### T071 [x] Add the switch to `markdown-link-integrity.yml` (AC-005)
 
 File: `.github/workflows/markdown-link-integrity.yml:34`, anchor: `    runs-on: ubuntu-latest` (the only job, id `markdown-link-integrity` at `:32`).
 
@@ -1819,9 +1837,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T072 Add the switch to `message-contract.yml` (AC-005)
+### T072 [x] Add the switch to `message-contract.yml` (AC-005)
 
 File: `.github/workflows/message-contract.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `message-contract` at `:17`).
 
@@ -1841,9 +1861,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or either count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_MESSAGES != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok`; `grep -c "if: github.event_name == 'push'"` printed `1`, so the step conditions are unchanged (observed 2026-10-25).
+
 ---
 
-### T073 Add the switch to `naming-standard-guard.yml` (AC-005)
+### T073 [x] Add the switch to `naming-standard-guard.yml` (AC-005)
 
 File: `.github/workflows/naming-standard-guard.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `naming-standard` at `:13`).
 
@@ -1862,9 +1884,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T074 Add the switch to both `opencode-dual-version.yml` jobs (AC-005)
+### T074 [x] Add the switch to both `opencode-dual-version.yml` jobs (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:73` and `:171`, anchors: `    runs-on: ubuntu-latest` twice, for `battery` at `:71` and `both` at `:169`.
 
@@ -1883,9 +1907,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T075 Add the switch to `opencode-plugin-tests.yml` (AC-005)
+### T075 [x] Add the switch to `opencode-plugin-tests.yml` (AC-005)
 
 File: `.github/workflows/opencode-plugin-tests.yml:53`, anchor: `    runs-on: ubuntu-latest` (the only job, whose id is `plugin-tests` at `:51` or `plugin-and-hook-tests` after `004`'s merge).
 
@@ -1904,9 +1930,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok`; the only job is `plugin-and-hook-tests` (observed 2026-10-25).
+
 ---
 
-### T076 Add the switch to both `pi-extension-tests.yml` jobs (AC-005)
+### T076 [x] Add the switch to both `pi-extension-tests.yml` jobs (AC-005)
 
 File: `.github/workflows/pi-extension-tests.yml:26` and `:51`, anchors: `    runs-on: ubuntu-latest` twice, for `discover` at `:24` and `pi-extension` at `:48`.
 
@@ -1925,9 +1953,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok`; `pi-extension` keeps `needs: discover` above the new line (observed 2026-10-25).
+
 ---
 
-### T077 Add the switch to `playbook-operator-contract.yml` (AC-005)
+### T077 [x] Add the switch to `playbook-operator-contract.yml` (AC-005)
 
 File: `.github/workflows/playbook-operator-contract.yml:16`, anchor: `    runs-on: ubuntu-latest` (the only job, id `operator-contract` at `:14`).
 
@@ -1946,9 +1976,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T078 Add the switch to `prompt-card-sync.yml` (AC-005)
+### T078 [x] Add the switch to `prompt-card-sync.yml` (AC-005)
 
 File: `.github/workflows/prompt-card-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `card-sync` at `:7`).
 
@@ -1967,9 +1999,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T079 Add the switch to `repo-rules-corpus.yml` (AC-005)
+### T079 [x] Add the switch to `repo-rules-corpus.yml` (AC-005)
 
 File: `.github/workflows/repo-rules-corpus.yml:29`, anchor: `    runs-on: ubuntu-latest` (the only job, id `repo-rules-corpus` at `:27`).
 
@@ -1988,9 +2022,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T080 Add the switch to both `routing-registry-drift.yml` jobs (AC-005)
+### T080 [x] Add the switch to both `routing-registry-drift.yml` jobs (AC-005)
 
 File: `.github/workflows/routing-registry-drift.yml:124` and `:238`, anchors: `    runs-on: ubuntu-latest` twice, for `routing-drift` at `:122` and `golden-prompt-gate` at `:230`.
 
@@ -2009,9 +2045,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok`; in `golden-prompt-gate` the line sits after the job's comment block and directly above `runs-on:` (observed 2026-10-25).
+
 ---
 
-### T081 Add the switch to `rule-canary-sync.yml` (AC-005)
+### T081 [x] Add the switch to `rule-canary-sync.yml` (AC-005)
 
 File: `.github/workflows/rule-canary-sync.yml:11`, anchor: `    runs-on: ubuntu-latest` (the only job, id `rule-canary` at `:9`).
 
@@ -2030,9 +2068,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T082 Add the switch to `runtime-no-spec-import.yml` (AC-005)
+### T082 [x] Add the switch to `runtime-no-spec-import.yml` (AC-005)
 
 File: `.github/workflows/runtime-no-spec-import.yml:25`, anchor: `    runs-on: ubuntu-latest` (the only job, id `no-spec-import` at `:23`).
 
@@ -2051,9 +2091,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T083 Add the switch to `sk-code-script-tests.yml` (AC-005)
+### T083 [x] Add the switch to `sk-code-script-tests.yml` (AC-005)
 
 File: `.github/workflows/sk-code-script-tests.yml:27`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-code-scripts` at `:25`).
 
@@ -2072,9 +2114,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T084 Add the switch to `sk-doc-rename-harness.yml` (AC-005)
+### T084 [x] Add the switch to `sk-doc-rename-harness.yml` (AC-005)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:30`, anchor: `    runs-on: ubuntu-latest` (the only job, id `rename-harness` at `:28`).
 
@@ -2093,9 +2137,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T085 Add the switch to all three `sk-doc-script-tests.yml` jobs (AC-005)
+### T085 [x] Add the switch to all three `sk-doc-script-tests.yml` jobs (AC-005)
 
 File: `.github/workflows/sk-doc-script-tests.yml:20`, `:60` and `:77`, anchors: `    runs-on: ubuntu-latest` three times, for `sk-doc-scripts` at `:18`, `catalog-packages` at `:58` and `citation-drift` at `:75`.
 
@@ -2114,9 +2160,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or the count is not `3`, or the parse fails.
 
+Evidence: 3 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` lines directly above `runs-on:`; `grep -c` printed `3`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T086 Add the switch to `sk-git-script-tests.yml` (AC-005)
+### T086 [x] Add the switch to `sk-git-script-tests.yml` (AC-005)
 
 File: `.github/workflows/sk-git-script-tests.yml:35`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-git-scripts` at `:33`).
 
@@ -2135,9 +2183,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T087 Add the switch to `skill-advisor-stress.yml` (AC-005)
+### T087 [x] Add the switch to `skill-advisor-stress.yml` (AC-005)
 
 File: `.github/workflows/skill-advisor-stress.yml:42`, anchor: `    runs-on: ubuntu-latest` (the only job, id `skill-advisor-stress` at `:40`).
 
@@ -2156,9 +2206,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T088 Add the switch to `skill-doc-frontmatter.yml`'s first job (AC-005)
+### T088 [x] Add the switch to `skill-doc-frontmatter.yml`'s first job (AC-005)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:28`, anchor: `    runs-on: ubuntu-latest` (the `frontmatter-coverage` job at `:26`).
 
@@ -2177,9 +2229,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok`; the `doc-version-raise` job is T094's edit and is not in this count (observed 2026-10-25).
+
 ---
 
-### T089 Add the switch to all three `spec-kit-check.yml` jobs (AC-005)
+### T089 [x] Add the switch to all three `spec-kit-check.yml` jobs (AC-005)
 
 File: `.github/workflows/spec-kit-check.yml:67`, `:148` and `:184`, anchors: `    runs-on: ubuntu-latest` three times, for `check` at `:65`, `mirrors` at `:146` and `doctor-scripts` at `:182`.
 
@@ -2198,9 +2252,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or the count is not `3`, or the parse fails.
 
+Evidence: 3 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `3`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T090 Add the switch to `strict-pass-freshness-report.yml` (AC-005)
+### T090 [x] Add the switch to `strict-pass-freshness-report.yml` (AC-005)
 
 File: `.github/workflows/strict-pass-freshness-report.yml:24`, anchor: `    runs-on: ubuntu-latest` (the only job, id `strict-pass-freshness` at `:23`).
 
@@ -2219,9 +2275,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REPORTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T091 Record that `trigger-index-rebuild.yml` takes no bare switch (AC-005)
+### T091 [x] Record that `trigger-index-rebuild.yml` takes no bare switch (AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md` (new file). Anchor: none.
 
@@ -2241,9 +2299,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: either job is missing from the parse, or a job's `if:` is absent.
 
+Evidence: `scratch/pass-switch.md` holds the line; `grep -c 'both jobs carry a condition'` printed `1`; the parse printed `['push', 'rebuild']`, and each job carried an `if:` before this pass (observed 2026-10-25).
+
 ---
 
-### T092 AND the switch onto `trigger-index-rebuild.yml`'s `push` condition (AC-005)
+### T092 [x] AND the switch onto `trigger-index-rebuild.yml`'s `push` condition (AC-005)
 
 File: `.github/workflows/trigger-index-rebuild.yml:186`, anchor: `    if: needs.rebuild.outputs.committed == 'true'` (job `push` at `:178`).
 
@@ -2261,9 +2321,11 @@ Rollback: replace the line with the quoted anchor.
 
 Stop and escalate if: the anchor is not on the file, or any of the three values is `False`.
 
+Evidence: the check printed `True True True`. The parsed `push` condition is `${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_REPORTS != 'off') && (needs.rebuild.outputs.committed == 'true') }}`, and `needs.rebuild.outputs.committed == 'true'` is a verbatim substring of it (observed 2026-10-25).
+
 ---
 
-### T093 AND the switch onto `trigger-index-rebuild.yml`'s `rebuild` condition (AC-005)
+### T093 [x] AND the switch onto `trigger-index-rebuild.yml`'s `rebuild` condition (AC-005)
 
 File: `.github/workflows/trigger-index-rebuild.yml:33`, anchor: `    if: "${{ !endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci') }}"` (job `rebuild` at `:26`).
 
@@ -2281,9 +2343,11 @@ Rollback: replace the line with the quoted anchor.
 
 Stop and escalate if: the anchor is not on the file, or any of the three values is `False`, or the file's double quotes are lost.
 
+Evidence: the check printed `True True True`. The parsed `rebuild` condition keeps its double quotes in the file and is `${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_REPORTS != 'off') && (!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')) }}`; the original `!endsWith(...)` expression is a verbatim substring (observed 2026-10-25).
+
 ---
 
-### T094 AND the switch onto `skill-doc-frontmatter.yml`'s `doc-version-raise` condition (AC-005)
+### T094 [x] AND the switch onto `skill-doc-frontmatter.yml`'s `doc-version-raise` condition (AC-005)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:52`, anchor: `    if: github.event_name == 'pull_request'` (job `doc-version-raise` at `:48`).
 
@@ -2301,9 +2365,11 @@ Rollback: replace the line with the quoted anchor.
 
 Stop and escalate if: the anchor is not on the file, or any of the three values is `False`.
 
+Evidence: the check printed `True True True`. The parsed `doc-version-raise` condition is `${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_TESTS != 'off') && (github.event_name == 'pull_request') }}`, and `github.event_name == 'pull_request'` is a verbatim substring of it (observed 2026-10-25).
+
 ---
 
-### T095 Write the README on/off section (AC-007)
+### T095 [x] Write the README on/off section (AC-007)
 
 File: `.github/workflows/README.md:75-79`. Anchor:
 
@@ -2333,9 +2399,11 @@ Rollback: delete the inserted section.
 
 Stop and escalate if: the anchor block is not on the file, or the loop prints a missing name, or the section lands after `## 3. GUARD ENTRYPOINTS`.
 
+Evidence: `grep -c '^### On/off switches$'` printed `1`; the six-name loop printed nothing; the `only token` count inside the section printed `1`; `grep -c 'SKILLED_CI_MESSAGES must stay unset'` printed `1`; `git diff --stat` printed `1 file changed, 21 insertions(+)` with no deletions; the heading is at line 76 and `## 3. GUARD ENTRYPOINTS` at line 99. The five group rows list the same workflow files as the tree and as `scratch/switch-groups.md` (checked by a script that parses all three), and `grep -oE 'SKILLED_CI_[A-Z]+'` prints the same five names for the README and the workflows. The added lines hold no semicolon, em dash or spec id (observed 2026-10-25).
+
 ---
 
-### T096 Prove the switch pass (AC-005, AC-006)
+### T096 [x] Prove the switch pass (AC-005, AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md`. Anchor: none; append a `## R26 proof` section.
 
@@ -2377,6 +2445,8 @@ Expected: `switches 42 expected 42` and `switch count: ok` when `hooks-node-test
 Rollback: delete the `## R26 proof` section and restore `scratch/pass-switch.md` with `git checkout`.
 
 Stop and escalate if: the switch count is not the expected value for the tree, the no-switch list names any job other than Dependabot's two, the mutant check does not exit `1`, or the mutant is accepted.
+
+Evidence: `switches 42 expected 42` and `switch count: ok` (`hooks-node-tests.yml` is absent); the no-switch list is exactly `dependabot-auto-merge.yml` `metadata` and `auto-merge`; the gate line is `RESULT: PASSED`; in the mutant copy the `rebuild` line reads `if: vars.SKILLED_CI != 'off'`; the assertion printed `True False True` and `mutant_check=1`; `mutant: rejected` count `1`, `mutant: accepted` count `0`; `rm` exited `0` and no mutant file remains. DEVIATIONS: (1) the task's perl pattern matches only the pre-AND text of the `rebuild` condition and was observed to be a no-op on the current line (the copy came out identical), which would have made the control meaningless, so the run used a pattern that matches the whole current `rebuild` line; the mutant's `push` line therefore shows the ANDed form, which contains the original expression, not the bare line the task describes. (2) 42 is reached only because `chart-corpus.yml` took a TESTS switch although no switch task names it. (3) `command-tree-parity.yml` took TESTS (see T065). Extra checks: all 32 workflows parse; `actionlint` exits `0` with no output on the tree and on `HEAD`, and exits `1` on an unbalanced `if:` expression, so the silent pass could have failed; per-group counts are FRESHNESS 11 jobs in 8 files, TESTS 24 in 17, REVIEW 3 in 3, REPORTS 3 in 2, MESSAGES 1 in 1 (observed 2026-10-25).
 
 ---
 

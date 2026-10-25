@@ -24,6 +24,7 @@ permissions:
 jobs:
   advisory:
     name: Advisory — test suites and doc-model references
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 28
     steps:

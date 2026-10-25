@@ -17,6 +17,7 @@ concurrency:
 jobs:
   dispatch-enforcement-guard:
     name: Every declared dispatch rule is reachable and discriminates
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -46,6 +47,7 @@ jobs:
 
   hooks-vitest:
     name: Every hook vitest suite passes
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

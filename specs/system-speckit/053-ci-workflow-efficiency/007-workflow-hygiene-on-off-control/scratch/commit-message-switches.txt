@@ -1,0 +1,13 @@
+ci(workflows): gate every job behind a repository switch
+
+Every job except the two in the Dependabot workflow now skips when the
+SKILLED_CI master variable or its group variable is set to off. Nothing
+changes while the variables are unset, because off is the only token that
+disables a job.
+
+The three jobs that already had a condition keep it as the last term of an
+AND, so the trigger index loop guard, the push job's needs gate and the
+pull-request-only check still decide when those jobs run. The five groups
+follow the push versus pull-request table in the workflows README.
+
+Spec: system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control

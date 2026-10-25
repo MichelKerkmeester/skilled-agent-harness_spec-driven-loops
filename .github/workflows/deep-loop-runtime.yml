@@ -36,6 +36,7 @@ concurrency:
 jobs:
   deep-loop-runtime:
     name: Deep-loop runtime vitest suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 34
     steps:

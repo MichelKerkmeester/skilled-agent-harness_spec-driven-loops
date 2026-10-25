@@ -28,6 +28,7 @@ concurrency:
 jobs:
   sk-code-scripts:
     name: sk-code script tests
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

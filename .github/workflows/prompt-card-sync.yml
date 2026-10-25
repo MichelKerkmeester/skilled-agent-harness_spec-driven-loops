@@ -13,6 +13,7 @@ permissions:
 jobs:
   card-sync:
     name: Prompt-knowledge drift guard
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

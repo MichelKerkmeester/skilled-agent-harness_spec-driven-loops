@@ -27,6 +27,7 @@ concurrency:
 jobs:
   discover:
     name: Discover extensions
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
@@ -53,6 +54,7 @@ jobs:
   pi-extension:
     name: ${{ matrix.extension }} tests
     needs: discover
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:

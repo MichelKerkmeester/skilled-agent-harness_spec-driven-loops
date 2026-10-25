@@ -65,6 +65,7 @@ concurrency:
 jobs:
   command-tree-parity:
     name: OpenCode and Claude command trees stay identical
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -102,6 +103,7 @@ jobs:
     # so an edit to any of them runs this job; a missed input is what lets a stale copy
     # land green, which is the failure this job exists to catch.
     name: Hermes skill and prompt copies match their sources
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

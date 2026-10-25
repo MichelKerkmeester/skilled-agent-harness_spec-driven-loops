@@ -15,6 +15,7 @@ permissions:
 jobs:
   rule-canary:
     name: Load-bearing rule wording stays in sync across copies
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

@@ -83,6 +83,7 @@ concurrency:
 jobs:
   battery:
     name: Battery on OpenCode ${{ matrix.family }}
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     # One family per prefix, and each entry reports on its own; a failure in one
@@ -176,6 +177,7 @@ jobs:
 
   both:
     name: Both versions installed at once
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

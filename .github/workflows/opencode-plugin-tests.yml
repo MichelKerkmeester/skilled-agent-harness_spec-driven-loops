@@ -74,6 +74,7 @@ concurrency:
 jobs:
   plugin-and-hook-tests:
     name: OpenCode plugin and hook node:test suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

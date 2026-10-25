@@ -20,6 +20,7 @@ permissions:
 jobs:
   operator-contract:
     name: Manual-testing-playbook operator-scenario contract
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

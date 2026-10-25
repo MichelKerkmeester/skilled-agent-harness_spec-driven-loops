@@ -32,6 +32,7 @@ permissions:
 jobs:
   corpus:
     name: Corpus contract, its mutation suite and both applicator gates
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

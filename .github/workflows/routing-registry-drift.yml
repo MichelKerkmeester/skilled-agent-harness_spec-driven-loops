@@ -127,6 +127,7 @@ concurrency:
 jobs:
   routing-drift:
     name: Registry == advisor maps; compiled-routing freshness; parent-skill structure
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -233,6 +234,7 @@ jobs:
     # It therefore needs a full advisor install (zod + a native sqlite dep) and
     # the @spec-kit/shared dist the scorer imports — which the lean job avoids on
     # purpose. Kept as its own job so the lean gate stays untouched and fast.
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 37
     steps:

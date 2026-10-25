@@ -38,6 +38,7 @@ permissions:
 jobs:
   markdown-link-integrity:
     name: No broken markdown links in skills/commands/agents
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

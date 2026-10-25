@@ -74,6 +74,7 @@ concurrency:
 jobs:
   check:
     name: Typecheck, import policy and test suites for the spec-kit packages
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 51
     steps:
@@ -168,6 +169,7 @@ jobs:
 
   mirrors:
     name: Runtime mirrors agree with their sources
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -205,6 +207,7 @@ jobs:
 
   doctor-scripts:
     name: Doctor script test suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

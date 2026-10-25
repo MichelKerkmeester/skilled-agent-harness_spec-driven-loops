@@ -33,6 +33,7 @@ permissions:
 jobs:
   repo-rules-corpus:
     name: Repo-rules corpus stays in sync
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
