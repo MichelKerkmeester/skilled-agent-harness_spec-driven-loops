@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-24T08:57:04.241Z",
+    "last_save_at": "2026-10-25T13:24:41.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
     "source_doc_hashes": {
       "spec.md": "f138d7fd72201a40c808199da50f7b96a9c7b1488c2e0200154e114dd7582222"
     },
-    "last_active_at": null
+    "last_active_at": "2026-10-25T13:24:41.420Z",
+    "last_active_child_id": "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
   }
 }

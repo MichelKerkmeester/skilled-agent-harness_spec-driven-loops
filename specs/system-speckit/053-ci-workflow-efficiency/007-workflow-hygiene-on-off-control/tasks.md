@@ -650,7 +650,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ---
 
-### T022 [B] Prove the split on a real Dependabot pull request (AC-002)
+### T022 [x] Prove the split on a real Dependabot pull request (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md` (new file). Anchor: none.
 
@@ -671,7 +671,7 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: a run exists and its `metadata` job is not green, or the run id cannot be read. Never create a pull request from a non-Dependabot account to force the path, because the job's `if:` would skip it.
 
-Evidence: pending. 4 open Dependabot pull requests (86, 73, 72, 69) and the newest run id 40126121487 (event `pull_request`, skipped, a non-Dependabot branch) all predate the split, which is uncommitted. `scratch/r25-dependabot.md` holds one `pending:` line. The task stays blocked until a Dependabot pull request triggers the two-job workflow on the default branch.
+Evidence: run id 40200559794 on pull request 89 and run id 40148156911 on pull request 86, both `pull_request` runs of the two-job workflow after the split landed. The metadata job concluded `success` and the auto-merge job concluded `skipped` in both, because neither is a security patch update. The write path of the merge job on a real security patch is not observed. `scratch/r25-dependabot.md` holds `run id: 40200559794`, and `grep -cE 'run id: [0-9]+|pending:'` over it prints 1.
 
 ---
 
