@@ -806,7 +806,9 @@ describe('trigger-index rebuild workflow', () => {
       const jobs = loadWorkflow().jobs ?? {};
 
       expect(jobs[PUSH_JOB]?.needs).toBe(REBUILD_JOB);
-      expect(jobs[PUSH_JOB]?.if).toBe(PUSH_IF);
+      // The repository switch is ANDed on, so the output gate is a conjunct rather than the whole condition.
+      expect(String(jobs[PUSH_JOB]?.if)).toContain(PUSH_IF);
+      expect(String(jobs[PUSH_JOB]?.if)).toContain("vars.SKILLED_CI != 'off'");
       expect(jobs[REBUILD_JOB]?.outputs).toEqual({
         committed: '${{ steps.commit.outputs.committed }}',
         rebuild_sha: '${{ steps.commit.outputs.rebuild_sha }}',
