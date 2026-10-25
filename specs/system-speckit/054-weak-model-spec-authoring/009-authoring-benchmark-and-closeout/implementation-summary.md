@@ -139,6 +139,7 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 3. **Three runs per side cannot support a significance claim.** One run produced the whole failure, so the sample cannot separate the template change from run-to-run variation.
 4. **The fixture is one small feature and four documents.** A different feature shape or a Level 1 packet is not measured.
 5. **Acceptance rows AC-010, AC-011 and AC-015 are Unmet.** They need nine Complete map rows, seven PASS lines and a Complete status, which criterion 5 prevents.
+6. **The validator does not enforce required anchors.** Strict validation checks the form of anchors and not that each required `tasks.md` anchor is present, so a packet without the required `fix-completeness` section passed. The template note was corrected to say to keep the section, and the validator rule is an open follow-up that is not fixed here.
 <!-- /ANCHOR:limitations -->
 
 ---

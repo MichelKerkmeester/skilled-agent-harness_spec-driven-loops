@@ -1,0 +1,116 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/scaffold-golden-snapshots.vitest.ts (12 tests | 3 failed) 6196ms
+     × renders required docs for Level 2 from manifest templates 4ms
+     × renders required docs for Level 3 from manifest templates 2ms
+     × renders required docs for Level 3+ from manifest templates 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 2 from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-tasks.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -138,11 +138,11 @@
+
+  ---
+
+  <!-- ANCHOR:fix-completeness -->
+  ## Fix Completeness
+- <!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
++ <!-- FILL: Keep this section, because every level requires it. Write one check per finding class this packet can produce. Delete only the rows that do not apply, never the section. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+
+  - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+  - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+  - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+  - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3 from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-tasks.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -138,11 +138,11 @@
+
+  ---
+
+  <!-- ANCHOR:fix-completeness -->
+  ## Fix Completeness
+- <!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
++ <!-- FILL: Keep this section, because every level requires it. Write one check per finding class this packet can produce. Delete only the rows that do not apply, never the section. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+
+  - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+  - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+  - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+  - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3+ from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-tasks.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -138,11 +138,11 @@
+
+  ---
+
+  <!-- ANCHOR:fix-completeness -->
+  ## Fix Completeness
+- <!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
++ <!-- FILL: Keep this section, because every level requires it. Write one check per finding class this packet can produce. Delete only the rows that do not apply, never the section. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+
+  - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+  - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+  - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+  - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+  Snapshots  3 failed
+             3 obsolete
+             ↳ runtime/cli/tests/scaffold-golden-snapshots.vitest.ts
+               · manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-implementation-summary.md 1
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 9 passed (12)
+   Start at  14:08:43
+   Duration  6.32s (transform 27ms, setup 14ms, import 24ms, tests 6.20s, environment 0ms)
+

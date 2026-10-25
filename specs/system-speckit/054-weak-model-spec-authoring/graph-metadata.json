@@ -162,14 +162,14 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `swe-2-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-25T12:56:31.420Z",
+    "last_save_at": "2026-10-25T13:50:03.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:cb84503ca9be53d952a99178948b69a072f314d650215451641cdc8403f8796e",
+    "source_fingerprint": "sha256:110937dfcca61dba4572476313fc9e64e744ac5d6a22aa98bf3ca7afdf503258",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c4e0140fb4552078996f5a74af2c1979ef41d3b66800949153a56018fe8a9dc"

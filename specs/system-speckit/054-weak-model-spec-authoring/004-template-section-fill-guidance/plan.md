@@ -188,7 +188,7 @@ Insert the constructed line immediately below the heading. When a section has tw
 | B31 | `core/tasks.md.tmpl` | `## Pre-Implementation` | Write one check per setup fact, each with a command. | CHK-001 [P0] The start commit is in `goal.md` section 4. | Setup is ready. |
 | B32 | `core/tasks.md.tmpl` | `## Code Quality` | Write one check per file rule. A command must answer it. | CHK-010 [P0] `bash -n recommend-level.sh` exits 0. | Code is clean. |
 | B33 | `core/tasks.md.tmpl` | `## Testing Checklist` | Write one check per acceptance criterion. | CHK-020 [P0] `--quiet` prints one line. | Tests pass. |
-| B34 | `core/tasks.md.tmpl` | `## Fix Completeness` | Write one check per finding class this packet can produce. Delete the rows that do not apply. | CHK-FIX-001 [P0] Every finding names one class. | All findings handled. |
+| B34 | `core/tasks.md.tmpl` | `## Fix Completeness` | Keep this section, because every level requires it. Write one check per finding class this packet can produce. Delete only the rows that do not apply, never the section. | CHK-FIX-001 [P0] Every finding names one class. | All findings handled. |
 | B35 | `core/tasks.md.tmpl` | `## Security` | Write one check per security surface. Write `N/A` with a reason when none applies. | CHK-030 [P0] The script reads no credential. | Security is fine. |
 | B36 | `core/tasks.md.tmpl` | `## Documentation` | Write one check per document that must agree. | CHK-040 [P1] `spec.md` and `tasks.md` name the same flag. | Docs are updated. |
 | B37 | `core/tasks.md.tmpl` | `## File Organization` | Write one check per file location rule. | CHK-050 [P1] Test copies live under `scratch/test/`. | Files are organized. |
