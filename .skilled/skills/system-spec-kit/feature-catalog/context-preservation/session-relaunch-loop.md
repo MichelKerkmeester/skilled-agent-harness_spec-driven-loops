@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.14.0
+version: 1.0.15.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -29,6 +29,8 @@ version: 1.0.14.0
 ## 1. OVERVIEW
 
 Shares a structured context handoff across seven runtimes through adapter nudges, a validated note and a wrapper relaunch. Claude Code, Pi, OpenCode, Codex and Hermes run automatically through their adapters. Cursor and Devin run on the `/speckit:handoff` command trigger only.
+
+The loop ships off. A runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on (`1`) or off (`0`) for that runtime when it holds a value, and `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. `SYSTEM_SESSION_RELAUNCH_DISABLED` and `SYSTEM_HOOKS_DISABLED` win over every enable flag. While the loop is off for a runtime, no adapter nudges and `/speckit:handoff` refuses.
 
 An automatic adapter asks for a note near its context threshold, validates and prepares it, then arms it at its host's turn-end event. The skilled-loop wrapper starts the selected runtime with a claim seed when the record is armed, fresh and below the hop cap. The nudge fires only inside the wrapper. A sourced shell shim starts every interactive runtime launch under the nearest wrapper, including in a repository that links `.skilled` from another checkout.
 

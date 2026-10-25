@@ -1,7 +1,7 @@
 ---
 title: "CO-046 -- session-relaunch live utilization on OpenCode 1 and 2"
 description: "This scenario validates the session-relaunch plugin for `CO-046`. It focuses on the handoff nudge injected into later requests once a skilled loop passes the configured context window."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # CO-046 -- session-relaunch live utilization on OpenCode 1 and 2
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CO-046` and confirm the
 ### Recommended Orchestration Process
 
 1. Setup: confirm the plugin and its hook directory exist, and export `EVIDENCE_DIR`.
-2. v1 run: run the runner with `AI_SESSION_CHILD=1`, `SKILLED_LOOP_ID=probe-loop` and `SESSION_RELAUNCH_WINDOW_TOKENS=2000`.
+2. v1 run: run the runner with `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=1`, `AI_SESSION_CHILD=1`, `SKILLED_LOOP_ID=probe-loop` and `SESSION_RELAUNCH_WINDOW_TOKENS=2000`. The plugin ships off, so without the enable flag it stays silent and the check fails.
 3. v1 check: read the captured system prompts, the tool call and the exit status.
 4. v2 run: repeat the same runner call with `v2`.
 5. v2 check: repeat the same checks against the v2 evidence files.
@@ -51,14 +51,14 @@ Operators run the exact prompt and command sequence for `CO-046` and confirm the
 
 ```bash
 export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
-AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 \
+SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=1 AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 \
   bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 session-relaunch "Run the shell command 'echo relaunch-probe' and then reply with the single word DONE."
 jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v1.capture.jsonl" | grep -E '\[session-relaunch\] Context is past the configured window'
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/session-relaunch.v1.events.jsonl"
 cat "$EVIDENCE_DIR/session-relaunch.v1.exit"
 
-AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 \
+SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=1 AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 \
   bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v2 session-relaunch "Run the shell command 'echo relaunch-probe' and then reply with the single word DONE."
 jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v2.capture.jsonl" | grep -E '\[session-relaunch\] Context is past the configured window'
@@ -68,7 +68,7 @@ cat "$EVIDENCE_DIR/session-relaunch.v2.exit"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-046 | session-relaunch | Confirm the handoff nudge reaches a later request inside a skilled loop | `Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.` | 1. `AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 session-relaunch "<prompt>"` -> 2. `jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v1.capture.jsonl" \| grep -E '\[session-relaunch\] Context is past the configured window'` -> 3. Repeat 1 and 2 with `v2` | A later request's system prompt holds `[session-relaunch] Context is past the configured window`; the `echo relaunch-probe` tool call completes | `session-relaunch.v1.capture.jsonl`, `session-relaunch.v1.events.jsonl`, `session-relaunch.v1.exit` and the v2 equivalents | PASS if a request after the first carries the marker; FAIL if no later request carries it | Inspect `message.updated` properties; on v2 the bridge adds a top-level `sessionID` and `info.time.completed`, taken from the step event's time, so a missing field means the bridge mapping regressed and usage was never recorded |
+| CO-046 | session-relaunch | Confirm the handoff nudge reaches a later request inside a skilled loop | `Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.` | 1. `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=1 AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 session-relaunch "<prompt>"` -> 2. `jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v1.capture.jsonl" \| grep -E '\[session-relaunch\] Context is past the configured window'` -> 3. Repeat 1 and 2 with `v2` | A later request's system prompt holds `[session-relaunch] Context is past the configured window`; the `echo relaunch-probe` tool call completes | `session-relaunch.v1.capture.jsonl`, `session-relaunch.v1.events.jsonl`, `session-relaunch.v1.exit` and the v2 equivalents | PASS if a request after the first carries the marker; FAIL if no later request carries it | Inspect `message.updated` properties; on v2 the bridge adds a top-level `sessionID` and `info.time.completed`, taken from the step event's time, so a missing field means the bridge mapping regressed and usage was never recorded |
 
 ### Supplemental Check: Withdraw On A New User Message And The Extra Nudge
 
@@ -85,7 +85,7 @@ state="$sandbox/run/skilled-relaunch"
 run() {  # run <name> <prompt> [extra opencode args]
   env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_MANUAL_TEMPLATE -u SKILLED_LOOP_RUNTIME \
     XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo" \
-    AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=100 \
+    SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=1 AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=100 \
     bash "$runner" "$v" "$@"
 }
 
