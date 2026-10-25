@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.7.1.0
+version: 1.8.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -364,7 +364,7 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]
 **Baseline used**: [sk-code (`sk-code-review`)]
-**Surface evidence used**: [detected surface labels in order, such as `WEBFLOW, SKILLED` or `SKILLED` | UNKNOWN]
+**Surface evidence used**: [detected surface labels in order, such as `<specific surface>, SKILLED` or `SKILLED` | UNKNOWN]
 
 ## Findings
 

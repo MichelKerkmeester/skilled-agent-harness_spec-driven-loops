@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # opencode
@@ -33,7 +33,7 @@ A task that touches `.skilled/` system code, be it a skill, agent, command, plug
 
 ### What It Does
 
-This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. The hub detects the `.skilled/` surface first, then slices to the set of languages the task actually touches. It is the hub's only surface packet. The hub picks one surface by detection. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
+This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. Detection tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence. Within it, the hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
 
 ### The Language Slice
 
@@ -69,7 +69,7 @@ A clean exit means all four guards pass: the alignment verifier, the stack-folde
 
 ### Detection and Slicing
 
-Detection is two-step. First, work under `.skilled/` selects this surface: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring. Second, file extensions and local markers select the language. `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript. `.py` plus argparse maps to Python. `.sh` and `.bash` map to shell. `.rs` maps to Rust. JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config. `.cjs`, `.mjs` and `.js` map to JavaScript. When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
+Detection is two-step. First, work under `.skilled/` makes this surface the leading one when no specific surface matched: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring. Second, file extensions and local markers select the language. `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript. `.py` plus argparse maps to Python. `.sh` and `.bash` map to shell. `.rs` maps to Rust. JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config. `.cjs`, `.mjs` and `.js` map to JavaScript. When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
 
 ### The Surface Standards
 

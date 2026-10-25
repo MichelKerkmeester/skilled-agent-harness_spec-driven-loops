@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.7.0
+version: 1.5.8.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §16 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing and derived counts.
 
-Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
+Coverage note (2026-05-04, with the CI and `/doctor:ci` bullets added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - SKILLED surface detection (CWD or target path under `.skilled/`).
 - UNKNOWN fallback (Go / Swift / React Native markers — disambiguation expected).
 - SKILLED language sub-detection (TypeScript, Python, Shell, JSON/JSONC) with correct sub-language reference loading.
@@ -46,6 +46,8 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Tooling and hooks: the two warn-only banner branches of the legacy `claude-posttooluse.sh` PostToolUse hook, kept for direct tests and registered in no runtime — dist-staleness wiring (`check-dist-staleness.sh`; TH-001, added 2026-07-02, v3.5.0.16) and comment-hygiene wiring (`check-comment-hygiene.sh`; TH-002, added 2026-07-07) — each a deterministic stdout/exit-code check independent of skill routing.
 - Plugins and hooks: the runtime-neutral `sk-code-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter (`tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform`) and the Claude Code `PostToolUse(Write|Edit)` hook (`post-edit-quality-router`, added 2026-07-11) — a live dual-runtime dispatch/checker check independent of skill routing.
 - Doctor commands: the `/doctor:sk-code setup` read-only battery, covering its eight legs (provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness and the route probe), its exit-code-to-status mapping (0 to `STATUS=OK`, 1 to `STATUS=FAIL` and 2 to `STATUS=ERROR`), its write-nothing guarantee and the pre-v4 checkout where the battery runs no leg and fails provisioning with the v4-layout repair.
+- Doctor commands, CI report: the read-only `/doctor:ci report` route (DOC-392), checked against the report's JSON contract and its bad-argument exit code.
+- CI surface bundling and detection precedence: the `ci-surface-ci-standards` scenario lives in `sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md`, because the router-sync guard replays packet-level playbooks only. Detection precedence, where a declared specific surface outranks the SKILLED fallback, is covered by `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the advisor plugin vitest suite, not by a scenario here.
 
 ### Realistic Test Model
 
@@ -81,7 +83,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 
 - The exact user prompt that was tested.
 - The skill advisor output (top-1 skill, confidence score, gap to second, advisorStatus).
-- The detected code surface (SKILLED / UNKNOWN) reported by sk-code.
+- The detected code surface (a declared specific surface, then the SKILLED fallback, then UNKNOWN) reported by sk-code.
 - The exact list of references/assets the AI loaded (verbatim relative paths under `.skilled/skills/sk-code/`).
 - The agent dispatched (if any) with name and runtime (e.g. `@code` via `.skilled/agents/code.md`).
 - The AI's user-visible response (the answer it produced or the action it took).
@@ -142,7 +144,7 @@ Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Criti
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (17 / 17).
+3. Coverage is 100% of playbook scenarios (18 / 18).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -259,13 +261,14 @@ Per-feature files: see `plugins-and-hooks/`.
 
 ---
 
-## 14. DOCTOR COMMANDS (`DOC-382..DOC-383`)
-This category validates the `/doctor:sk-code setup` battery, the read-only check that reports whether the sk-code surface can route end to end. The two scenarios here are deterministic checks against the battery's real stdout and exit-code contract, not routing decisions. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
+## 14. DOCTOR COMMANDS (`DOC-382..DOC-383`, `DOC-392`)
+This category validates the `/doctor:sk-code setup` battery, the read-only check that reports whether the sk-code surface can route end to end, and the read-only `/doctor:ci report` route for GitHub Actions workflows. The three scenarios here are deterministic checks against the real stdout and exit-code contracts of those commands, not routing decisions. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | `DOC-382` | Doctor sk-code setup | Verify the setup battery maps its exit codes to the documented statuses and writes nothing | `Run the doctor sk-code setup check and tell me whether the sk-code surface passes its setup battery.` | run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` in the current-code environment → repeat with `--prompt=<text>` → run with `--bogus` → add a nested graph-metadata.json and rerun → remove the probe file → run with `SPECKIT_COMPILED_ROUTING=0` | exit 0 prints eight PASS lines and `STATUS=OK legs=8`, the prompt flag reaches the probe line, `--bogus` prints the usage line and exits 2, and both failure runs exit 1 with `STATUS=FAIL failed=1 skipped=0` and a `repair:` line | `/tmp/skc-DOC382-clean.txt`, `/tmp/skc-DOC382-prompt.txt`, `/tmp/skc-DOC382-usage.txt`, `/tmp/skc-DOC382-probe-fail.txt`, `/tmp/skc-DOC382-kill-switch.txt` | PASS iff the clean run exits 0 with `STATUS=OK legs=8`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, both failure runs exit 1 with their named repair lines, and no file is written | If a leg fails on a clean tree, run the `repair:` line the battery printed under that leg. If the probe serves the legacy stub with the flag unset, run the manifest refresh and copy commands the repair line names |
 | `DOC-383` | Doctor sk-code on a pre-v4 checkout | Verify the battery on a checkout without the v4 tree runs no leg and fails provisioning with the v4-layout repair | `Run the doctor sk-code setup check in a checkout that predates the v4 layout and tell me what it reports.` | shallow-clone `v3.6.0.0` into a `mktemp -d` dir → confirm `.skilled` is absent → copy the command, assets and script into `.opencode/commands/doctor/` → commit the baseline with a throwaway identity → run `node .opencode/commands/doctor/scripts/sk-code-setup-check.cjs` → confirm `git status --porcelain` is empty → rerun with `SPECKIT_COMPILED_ROUTING=0` → confirm the tree is clean → `rm -rf` the temp dir | both runs exit 1 printing the provisioning FAIL with its v4-layout repair, seven SKIP lines reading `needs the v4 layout` and `STATUS=FAIL failed=1 skipped=7`, in well under a second | `/tmp/skc-DOC383-run.txt`, `/tmp/skc-DOC383-kill-switch.txt` | PASS iff both runs exit 1 with `STATUS=FAIL failed=1 skipped=7`, no leg runs and no file is written | If a leg runs, confirm the fixture lacks `.skilled/skills/sk-code/SKILL.md`. If the clone cannot reach GitHub, record `SKIP` |
+| `DOC-392` | Doctor CI report | Verify the read-only CI report reads every workflow file, returns an empty error list on a clean tree, reads every switch variable as unknown offline, rejects a bad argument with exit 2 and writes nothing | `Run the doctor CI report and tell me which GitHub Actions workflows have a switch off.` | count the `.yml` files under `.github/workflows/` → run `node .skilled/commands/doctor/scripts/ci-report.cjs --no-gh --json` → run `node .skilled/commands/doctor/scripts/ci-report.cjs --bogus` → run `/doctor:ci report --no-gh` in the runtime → confirm `git status --porcelain` is empty after each step | the JSON run exits 0 with the keys `repoRoot`, `workflowCount`, `variables`, `newestNonRebuildSha`, `newestNonRebuildReason`, `notChecked`, `errors` and `workflows`, `workflowCount` equals the file count, `errors` is empty, the six variables read `unknown`, `--bogus` exits 2 with the usage line and the route reports the same count | the captured JSON, the stderr and exit code of the bad-argument run, the route output and the `git status --porcelain` output after each step | PASS iff the JSON run exits 0 with an empty `errors` list and a `workflowCount` equal to the file count, the bad argument exits 2, the route reports the same count and no step writes a file | If `errors` is not empty, the named workflow failed to parse, so fix that file and rerun. If the count differs from the file count, compare the `workflows` file names with the directory listing |
 
 Per-feature files: see `doctor-commands/`.
 
@@ -311,7 +314,8 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | No |
 | Doctor Commands | DOC-382 | [doctor-commands/doctor-sk-code-setup.md](doctor-commands/doctor-sk-code-setup.md) | No |
 | Doctor Commands | DOC-383 | [doctor-commands/doctor-sk-code-pre-v4-checkout.md](doctor-commands/doctor-sk-code-pre-v4-checkout.md) | No |
+| Doctor Commands | DOC-392 | [doctor-commands/doctor-ci-report.md](doctor-commands/doctor-ci-report.md) | No |
 
-**Total scenarios**: 17
+**Total scenarios**: 18
 **Critical-path scenarios**: 4 (SD-002, SD-003, RD-002, SA-001)
 **Categories**: 8

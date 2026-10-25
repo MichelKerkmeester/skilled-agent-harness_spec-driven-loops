@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.19.0
+version: 2.2.20.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,11 +23,11 @@ Authoritative routing reference for sk-code. Consolidates intent classification 
 
 ### Purpose
 
-The smart router maps a detected surface (SKILLED / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
+The smart router maps a detected surface (a declared specific surface, then the SKILLED fallback, then UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
 
 ### When to Use
 
-- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines SKILLED / UNKNOWN
+- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines the surface: a declared specific surface, then the SKILLED fallback, then UNKNOWN
 - When classifying task wording into the dominant work intent
 - When mapping intent to concrete reference paths
 - When picking verification commands for the surface
@@ -38,7 +38,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ### Key Sources
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/UNKNOWN) and OpenCode language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) and SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and phase-specific resource expectations
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 
@@ -186,7 +186,7 @@ Do not load Go/NextJS/React Native resources from canonical sk-code; those surfa
 
 Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the user explicitly asks for stack-agnostic guidance:
 
-- Confirm the active runtime surface (SKILLED or UNKNOWN)
+- Confirm the detected surface (a declared specific surface, SKILLED or UNKNOWN)
 - Confirm the task intent (implementation / debugging / verification / etc.)
 - Provide one concrete input, error, or expected output
 - Confirm the verification command set before completion
@@ -211,7 +211,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 10. RELATED RESOURCES
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/UNKNOWN) + SKILLED language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)

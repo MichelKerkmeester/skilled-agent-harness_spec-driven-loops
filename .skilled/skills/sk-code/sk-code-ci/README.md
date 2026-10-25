@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-code-ci
@@ -40,7 +40,7 @@ Without one written source a reviewer cannot tell a deliberate trigger from drif
 
 The packet states each rule next to the file and line that prove it and says whether anything enforces it. It lists the workflows protected by function, so a change that would weaken one asks for a second confirmation first. It records message-contract's every-branch push trigger as an intentional exception, with the reason, so a report does not flag it. It also holds a whole-workflow template and a job template that start compliant.
 
-The packet never writes. The acting mode or a doctor command applies any change it recommends.
+The packet never writes. The acting mode or a doctor command applies any change it recommends. `/doctor:ci report` lists every workflow with its switch state. `/doctor:ci scaffold` writes a new workflow from these templates after a yes. `/doctor:ci toggle` turns one `SKILLED_CI*` switch off or back on after a yes.
 
 ---
 
@@ -79,4 +79,5 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | [../SKILL.md](../SKILL.md) | The `sk-code` hub that registers this surface and bundles it beside a workflow mode |
 | [../sk-code-review/README.md](../sk-code-review/README.md) | The review mode that applies these rules to a workflow diff |
 | [../sk-code-quality/README.md](../sk-code-quality/README.md) | The quality mode that applies these rules to a workflow being authored |
+| [../../../commands/doctor/ci.md](../../../commands/doctor/ci.md) | The `/doctor:ci` command that reports, scaffolds and toggles workflows against these rules |
 | [../../../../.github/workflows/README.md](../../../../.github/workflows/README.md) | The workflow README the rules cite for the contents table and the trigger table |
