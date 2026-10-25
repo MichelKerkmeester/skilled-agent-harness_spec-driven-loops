@@ -34,7 +34,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,7 +43,10 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
-      ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
+      ".hermes/skills/sk-code-quality/SKILL.md"
     ],
     "entities": [
       {
@@ -95,13 +98,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "comment-hygiene-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -126,6 +135,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -177,23 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An external sk-code family skill can declare a broken `surfacedetection` block today, and the metadata gate accepts it while every reader silently ignores it",
     "created_at": "2026-10-25T20:22:41Z",
-    "last_save_at": "2026-10-25T20:33:08.623Z",
+    "last_save_at": "2026-10-25T20:58:07.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca8df1a7289992ac719b0a290e11ef4db94f6ce54e24d01897bf3527a1801324",
+    "source_fingerprint": "sha256:b24217cea1c647463475091f048393b7d005ea26074a2d90684e2387ea9c6d2e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e31b002139e1d83681f0a4662a91507ce5a2ad9f9379ddc405974fbb6a411bda",
-      "plan.md": "ec9688acd1a3581c924ac7622140b3b0d970c8704326a6d294aae679195e64ad",
-      "tasks.md": "e55868337bf72a094cd198d49a4d6d344ba8ae966ada72c1601de55d9e916697",
-      "implementation-summary.md": "5c0cfbe7ef0d16902ef6ddd598b99bf8fcc3a0405aff2f666ce7361a619cdb8a"
+      "spec.md": "30615efecffb021d76c1e7d5122d9c5ee89d92cf6bfcf05338567be0d20f7755",
+      "plan.md": "bfd811ec1ed6b74cd53cf4f111eb9826e7d82201d8d84dfebd33362958887df8",
+      "tasks.md": "92ed9684b9b6573ab97b88f63ee780728b1f78ed3957a4412f06a7999879f34c",
+      "implementation-summary.md": "4b8597cfe349b2f242c0c9a90012ed8ed56bc6a9fa10903f5f75bcfff6c9c716"
     },
     "last_active_at": null
   }

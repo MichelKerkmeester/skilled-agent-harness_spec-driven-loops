@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills"
     last_updated_at: "2026-10-25T20:35:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Opened phase 008 for the four items phase 007 left out of scope"
-    next_safe_action: "Close phase 008"
+    recent_action: "Closed phase 008, the items phase 007 left out of scope"
+    next_safe_action: "None, all eight phases are Complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 88
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -141,7 +141,7 @@ Summary of the areas each phase touches; per-phase file detail lives in each chi
 | 5 | 005-leak-and-routing-verification/ | Prove from a fresh clone that no private path, byte or routing signal is tracked, and that six routing probes in two consumer checkouts still return both private skills | Done |
 | 6 | 006-review-remediation/ | Apply the confirmed deep-review findings: close the phase 002 and 003 records, widen the private-skill guard to type changes, give two more skills-root readers the `local-*` skip with an inventory test, and document the gate and the private-root variable. A second round closed the phase 003 P0 checklist rows, retired the two Webflow benchmark scenarios and gave the catalog mirror check the `local-*` skip. Phase 002 CHK-FIX-001 stays open, because two of its review findings were never recorded | Done |
 | 7 | 007-shared-references-and-detection-order/ | Trim `shared/references/` to hub and mode doctrine (four files deleted, the style guide moved to `sk-code-quality`), and make `sk-code-skilled` the one declared fallback surface that always ranks last, so a private or repo-added surface leads it | Done (c02124d0ff, fbfc4bfe22) |
-| 8 | 008-deferred-surface-items/ | Close the four items phase 007 left out of scope: field rules for an external `surface_detection` block, blocks in the two private skills, a public JavaScript and CSS overlay that matches the SKILLED naming rule, and the comment-hygiene allowlist decision | In Progress |
+| 8 | 008-deferred-surface-items/ | Close the four items phase 007 left out of scope: field rules for an external `surface_detection` block, blocks in the two private skills, a public JavaScript and CSS overlay that matches the SKILLED naming rule, and the comment-hygiene allowlist decision, plus naming at P1 in the SKILLED language checklists | Done |
 
 ### Phase Transition Rules
 

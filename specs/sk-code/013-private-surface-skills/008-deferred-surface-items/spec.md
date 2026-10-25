@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 8: deferred-surface-items"
-description: "Phase 007 left four surface items out of scope because each needed an owner or a decision. This phase closes them: the metadata gate validates an external surface_detection block, the two private surface skills declare theirs, the public quality overlay stops imposing the Webflow house style on SKILLED code, and the comment-hygiene allowlist keeps only entries something still uses."
+description: "Phase 007 left four surface items out of scope because each needed an owner or a decision. This phase closes them: the metadata gate validates an external surface_detection block, the two private surface skills declare theirs, the public quality overlay stops imposing the Webflow house style on SKILLED code, the comment-hygiene allowlist keeps only entries a verdict depends on, and the language checklists list naming at P1."
 trigger_phrases:
   - "deferred surface items"
   - "phase 8 deferred surface items"
@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
@@ -39,7 +39,7 @@ contextType: "general"
 
 This is **Phase 8** of the private surface skills packet. Phase 007 made detection order data and trimmed the shared references, and its Out of Scope list held four items that each belonged to another owner or needed a decision. On 2026-10-25 the operator approved two of them by name and delegated the other two: "decisions can wait untill end or you make best judgement and verifiy at end".
 
-**Scope Boundary**: the four items phase 007 listed as out of scope, and nothing else.
+**Scope Boundary**: the four items phase 007 listed as out of scope, plus one the overlay work found: the SKILLED language checklists still list naming under P0, against the operator's P1 decision.
 
 **Dependencies**:
 - Phase 007 on `main` (`1c317e13c5`)
@@ -76,7 +76,8 @@ The hub's gate, its private surfaces and its quality overlay agree with the dete
 - Validate an external `surface_detection` block in `ci-skill-root-metadata.cjs`: a non-empty label, the role `specific` and at least one marker, every marker a non-empty string, with a test per rule
 - Declare a block in the private `local-webflow` and `local-obsidian` skills, backed up first and checked against the detection readers
 - Remove from the public overlay the Webflow house-style checks `local-webflow` already carries, keep the surface-neutral checks at their strength, and set any naming rule that stays to P1
-- Keep each WEBFLOW, MOTION and LENIS allowlist entry in `check-comment-hygiene.sh` only if something still uses it
+- Keep each WEBFLOW, MOTION and LENIS allowlist entry in `check-comment-hygiene.sh` only if a verdict depends on it
+- Move the naming items of the SKILLED language checklists from P0 to P1, the tier the operator chose for naming
 
 ### Out of Scope
 - Changing how the detection readers match a workspace, for example walking up from a subfolder to the repository root - the readers follow `stack-detection.md` section 2, and a session normally starts at the repository root
@@ -91,7 +92,8 @@ The hub's gate, its private surfaces and its quality overlay agree with the dete
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs` | Modify | One case per rule, a valid block and the absent key |
 | `.skilled/skills/sk-code/shared/references/stack-detection.md` | Modify | Section 2 states the new rules |
 | `.skilled/skills/sk-code/sk-code-quality/` overlay checklists, `SKILL.md`, `README.md`, playbook and changelog | Modify | The overlay keeps only checks that hold on every public surface |
-| `check-comment-hygiene.sh` and its tests | Modify or keep | The allowlist decision |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` and its tests | Modify | The allowlist decision |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` language checklists | Modify | Naming items move from P0 to P1 |
 | `local-webflow/graph-metadata.json`, `local-obsidian/graph-metadata.json` | Modify (private, in two other repositories) | The two blocks |
 <!-- /ANCHOR:scope -->
 
@@ -112,8 +114,9 @@ The hub's gate, its private surfaces and its quality overlay agree with the dete
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | Both private skills declare a specific block that ranks them ahead of SKILLED | The detection scripts print WEBFLOW then SKILLED, and OBSIDIAN then SKILLED, for a mixed request, and a hub-only path still prints SKILLED alone |
-| REQ-004 | Each allowlist entry left in `check-comment-hygiene.sh` has a named consumer | The checker's tests pass, and this phase records the consumer or the removal |
+| REQ-004 | Each allowlist entry left in `check-comment-hygiene.sh` decides at least one verdict | The checker's tests pass, and this phase records the evidence for each entry kept or removed |
 | REQ-005 | Every doc that described the old behaviour states the new one | A search for the old sentences returns nothing, and `validate_document.py` prints VALID for each edited doc |
+| REQ-006 | No SKILLED language checklist lists a naming item under P0 | Each naming item sits in its checklist's P1 section, and `check-rule-copies.test.sh` passes |
 <!-- /ANCHOR:requirements -->
 
 ---

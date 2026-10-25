@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `node --test`, the shell test harnesses beside each script, `validate_document.py` |
 
 ### Overview
-The metadata gate gains four rules for an external block, each with a failing case. The two private skills get blocks with markers that only their own repositories carry. The public overlay drops the Webflow checks that the private skill already holds, and the comment-hygiene allowlist keeps only the entries something still uses.
+The metadata gate gains four rules for an external block, each with a failing case. The two private skills get blocks with markers that only their own repositories carry. The public overlay drops the Webflow checks that the private skill already holds, the comment-hygiene allowlist keeps only the entries a verdict depends on, and the SKILLED language checklists move naming to P1.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,9 +40,9 @@ The metadata gate gains four rules for an external block, each with a failing ca
 - [x] Dependencies identified: phase 007 on `main` and the operator's answers of 2026-10-25
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met: REQ-001 to REQ-006, with evidence in `tasks.md` T002 to T011
+- [x] Tests passing (if applicable): every suite in T010 exits 0
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
