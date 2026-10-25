@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_at: "2026-10-25T20:19:15Z"
     last_updated_by: "markdown"
-    recent_action: "Progress synced to the child Status lines"
-    next_safe_action: "007 T100-T102; 004 T072-T074; 008 after D8"
+    recent_action: "Criterion 3 amended to leave out GitHub's dynamic CodeQL runs"
+    next_safe_action: "Close 004 and 008, run 007 T100-T102 after 00:45Z, then the parent criteria"
     blockers: []
     key_files: []
     session_dedup:
@@ -87,7 +87,7 @@ string, not these files.
 
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all eleven folders
 - [ ] Every R1-R30 is closed in its owning phase, and `rg -c '\| Unmet \|' specs/system-speckit/053-ci-workflow-efficiency/00*/acceptance-criteria.md` prints nothing
-- [ ] `gh run list --commit <sha>` returns `[]` for each of three consecutive post-change rebuild commits
+- [ ] `gh run list --commit <sha> --json event --jq '[.[] | select(.event != "dynamic")]'` returns `[]` for each of three consecutive post-change rebuild commits; GitHub's CodeQL default setup runs as a `dynamic` event on every push
 - [ ] `rg -o --no-filename 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
 - [ ] `.skilled/skills/sk-code/sk-code-ci/SKILL.md` and `.skilled/commands/doctor/ci.md` exist
 - [ ] The final commit on `main` has no failed run: `gh run list --commit <sha> --json conclusion --jq '[.[] | select(.conclusion == "failure")] | length'` returns `0`
@@ -110,11 +110,11 @@ and findings belong here.
 | Phase 001 research | Done | `001-research/implementation-summary.md` |
 | Phase 002 rebuild fan-out | Done | `002-rebuild-fanout-removal/spec.md` Status `Complete`, closure `03baa89ac6` |
 | Phase 003 trigger and job hygiene | Done | `003-trigger-and-job-hygiene/spec.md` Status `Complete` |
-| Phase 004 setup caching provisioning | In progress | 16 of 17 acceptance rows `Met`; T072 phase delta, then T073 and T074 remain |
+| Phase 004 setup caching provisioning | Closeable | 17 of 17 acceptance rows `Met` and 24 of 26 checks ticked; CHK-022 and CHK-FIX-006 wait on the 2026-10-26T04:17Z scheduled cold run, then T074 |
 | Phase 005 slow and failing tests | Done | `005-slow-and-failing-tests/spec.md` Status `Complete` |
 | Phase 006 sk-code-ci surface | Done | `006-sk-code-ci-surface/spec.md` Status `Complete` |
 | Phase 007 hygiene and on/off control | In progress | The five concern commits are on `main`; T100 (after 2026-10-26T00:45Z), then T101 and T102 remain |
-| Phase 008 consolidation decision | Pending | Blocked on D8 by design (`T002 [B]`) |
+| Phase 008 consolidation decision | Done | D8 = no under the operator's 2026-10-25 delegation (`008-consolidation-decision/scratch/d8-answer.md`), pending the operator's check; no workflow file changed |
 | Phase 009 doctor ci and review wiring | Done | `009-doctor-ci-review-wiring/spec.md` Status `Complete`, closure `8811c7e36d` |
 | Phase 010 review remediation | Done | Applied the confirmed findings of `review/review-report.md` |
 
@@ -125,4 +125,6 @@ and findings belong here.
 | Amendment 2026-10-25, criterion 4 | The switch-count command gained `--no-filename`. Without it `rg` prefixes each match with its file name, so `sort -u` counted file and name pairs and printed `62` on a correct tree. With it the pipeline prints `6`. |
 | Amendment 2026-10-25, criterion 1 | The folder count moved from ten to eleven when `010-review-remediation` was added for the deep-review remediation. |
 | 010 has no child goal | `010-review-remediation` is a Level 1 remediation phase. Its `spec.md` scope is its directive, so the binding table keeps its nine rows. |
+| Amendment 2026-10-25, criterion 3 | GitHub's CodeQL default setup is not one of the repository's workflows. It runs as a `dynamic` event on every push, `[skip ci]` rebuild commits included, so the plain command could never print `[]`. The criterion now leaves dynamic events out. The twelve rebuild commits from `933d71235f` to `fcd200f2eb` each show one run and an empty filtered list. The session made this change under the operator's 2026-10-25 delegation to decide and verify at the end. |
+| Spec-Kit Check on main, 2026-10-25 | The runtime suite failed on every main commit from `74b9b7233d`, which removed the agent-router command while two resource-map extractor tests still cited it as a file on disk. The tests now cite `speckit/complete.md`, and criterion 6 depends on that fix. |
 <!-- /ANCHOR:log -->

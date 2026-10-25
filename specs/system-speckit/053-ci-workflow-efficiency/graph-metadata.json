@@ -59,6 +59,7 @@
       ".skilled/commands/doctor/ci.md",
       "001-research/acceptance-criteria.md",
       "002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
+      "008-consolidation-decision/scratch/consolidation-decision.md",
       "review/review-report.md",
       "009-doctor-ci-review-wiring/scratch/r28-probe.md",
       "005-slow-and-failing-tests/acceptance-criteria.md",
@@ -66,8 +67,7 @@
       "001-research/research/synthesis-reviews/final-review.md",
       "001-research/goal.md",
       "002-rebuild-fanout-removal/goal.md",
-      "003-trigger-and-job-hygiene/goal.md",
-      "004-setup-caching-provisioning/goal.md"
+      "003-trigger-and-job-hygiene/goal.md"
     ],
     "entities": [
       {
@@ -122,6 +122,12 @@
         "name": "summary.md",
         "kind": "doc",
         "path": "002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-decision.md",
+        "kind": "doc",
+        "path": "008-consolidation-decision/scratch/consolidation-decision.md",
         "source": "derived"
       },
       {
@@ -185,6 +191,12 @@
         "source": "derived"
       },
       {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "its",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -201,30 +213,18 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-25T17:38:24.632Z",
+    "last_save_at": "2026-10-25T20:38:11.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8f71a344adb32ae3a1e65ae2af5f700c4b301c3c46299483dd5ee28456981f1b",
+    "source_fingerprint": "sha256:8647394d9386f401d5accc480e288675bacc456326591187b6e7eadfb7912519",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e0972763219cd7de1d8b5dda84620e82eb24b9aec6716402a289c04140972c18"
