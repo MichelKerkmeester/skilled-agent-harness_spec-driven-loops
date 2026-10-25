@@ -3085,7 +3085,7 @@ Done 2026-10-25: AC-014 now names the T072 evidence and is `Met`, so all 17 rows
 
 ---
 
-### T074 [ ] Commit the closure (AC-013, AC-014, AC-015, AC-017)
+### T074 [x] Commit the closure (AC-013, AC-014, AC-015, AC-017)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -3113,7 +3113,7 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-closure.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, or the commit stages a path outside the packet folder.
 
-Waits for CHK-022 and CHK-FIX-006, which need the first scheduled cold run of opencode-plugin-tests.yml (cron 17 4 * * 1, due 2026-10-26T04:17Z).
+Evidence 2026-10-25: CHK-022 and CHK-FIX-006 closed on the scheduled cold run 40236652343, `validate-message.mjs` exited `0`, and this commit is the closure.
 
 Evidence recorded 2026-10-25 for the intermediate commit: the fixture suite printed `check-gate-inputs: 57 passed, 0 failed` (exit `0`), the gate printed `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` and `RESULT: PASSED` (exit `0`), and the YAML parse over 33 files exited `0`.
 
@@ -3126,7 +3126,7 @@ Evidence recorded 2026-10-25 for the intermediate commit: the fixture suite prin
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`. Open 2026-10-25: 81 of 82 task headings are `[x]`; T074 waits for CHK-022 and CHK-FIX-006
+- [x] All tasks marked `[x]`. Evidence: `grep -cE '^### T[0-9]+[A-Z]? \[ \]' tasks.md` prints `0`; all 82 task headings are `[x]` (run 2026-10-25)
 - [x] No `[B]` blocked tasks remaining. Evidence: `grep -n '\[B\]' tasks.md` matches only the legend row and T067's conditional instruction, no task heading; T067 found phase 003's R8 landed, so T068 to T070 ran (`scratch/checkout-probe.md`)
 - [x] Manual verification passed. Evidence: the cold, warm and `.hermes`-only probes are recorded in `scratch/cache-adoption-runs.md` (`### Cold path (T028)`, `## Cold dispatch`, `## Warm dispatch`) and `scratch/phase-result.md` (`## R14 cold run`, `## R14 warm run`, `## R15 merge`, run 40125544828 `success`); all 17 acceptance rows are `Met`
 <!-- /ANCHOR:completion -->
@@ -3200,7 +3200,7 @@ Evidence recorded 2026-10-25 for the intermediate commit: the fixture suite prin
 
 - [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-017. Verified 2026-10-25: all 17 rows are `Met` and `grep -c '| Unmet |'` prints `0` (T073)
 - [x] CHK-021 [P0] Manual testing complete - the warm, cold and trigger probes (T028, T029, T041) are recorded in `scratch/`. Evidence: T028 under `### Cold path (T028)` and `## Cold dispatch` in `scratch/cache-adoption-runs.md` (runs 40107101405, 40107567830, 40109540094, 40109542114); T029 under `## R14 warm run` in `scratch/phase-result.md`; T041 under `## R15 merge` (probe `666844f806`, run 40125544828 `success`)
-- [ ] CHK-022 [P1] Edge cases tested - a dispatch with `cold: true`, the scheduled cold run, and the first run after a lockfile change. Open 2026-10-25: the `cold: true` dispatches are green (AC-006), and the first run after a key change is observed as the miss round at `113d8b56d1` after `a4d92ea8e0` changed a hashed file (`scratch/cache-adoption-runs.md:117,131`), which stands in for a lockfile edit by inference. The scheduled cold run has not happened: the cron is `17 4 * * 1` (`opencode-plugin-tests.yml:65`), 2026-10-25 is a Sunday, and `gh run list --workflow opencode-plugin-tests.yml --event schedule` printed `[]`. Its first firing is 2026-10-26T04:17Z
+- [x] CHK-022 [P1] Edge cases tested - a dispatch with `cold: true`, the scheduled cold run, and the first run after a lockfile change. Evidence 2026-10-25: the `cold: true` dispatches are green (AC-006), and the first run after a key change is observed as the miss round at `113d8b56d1` after `a4d92ea8e0` changed a hashed file (`scratch/cache-adoption-runs.md:117,131`), which stands in for a lockfile edit by inference. The scheduled cold run is run 40236652343, event `schedule`, `success` on `bbb6c2b53e`: its log runs no `actions/cache/restore` step and holds no `Cache restored from key` line, prints 11 `provisioning` lines and `provisioned: 11 installed, 5 built, 3 already present, 0 failed`, and the suites print `# pass 1182` and `# fail 0` for the hook suites and `# pass 553` and `# fail 0` for the plugin suites (`scratch/cache-adoption-runs.md`, `## Scheduled cold run`). The schedule event came from a one-shot entry added in `174ebbdc0e` and removed in `0ab8f9f74e` after GitHub created the run, because the operator asked on 2026-10-25 not to wait for the weekly cron's first firing on 2026-10-26T04:17Z
 - [x] CHK-023 [P1] Error scenarios validated - a fixture action with an unresolved path fails the gate (T007), and a provision failure leaves no cache entry saved (T014's step condition). Evidence: the fixture suite's `an unresolved path in a composite action fails workflow-inputs` case passes within `57 passed, 0 failed` (AC-002, rerun 2026-10-25); the save step's condition is `.github/actions/setup/action.yml:63`, and a provision failure is covered by that condition by design, not by a run that failed on purpose
 <!-- /ANCHOR:testing -->
 
@@ -3214,7 +3214,7 @@ Evidence recorded 2026-10-25 for the intermediate commit: the fixture suite prin
 - [x] CHK-FIX-003 [P0] Consumer inventory completed - the four `provision_worktree` call sites, the eleven multi-install files and the four pip steps, each with its verification in plan.md. Evidence: `plan.md:73-100`, one table row per surface with its verification cell, and `plan.md:95` for the call sites and install counts; the outcome per file is `scratch/npm-dedupe.md` (10 rows) and AC-011 for the pip steps
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the cache matrix in plan.md covers a lockfile edited without its manifest, a provision-list addition, a Node major bump, a missing package in a hit, a stale stamp and a failed provision. Evidence: the six adversarial cases are listed at `plan.md:97`; the key hashes every lockfile, the provision list and the provisioner and derives the Node major (`.github/actions/setup/action.yml:23-24,51`); a hit with changed sources rebuilds (`N built`, `scratch/cache-adoption-runs.md:109`); the gate's path rules carry fixture tests (AC-002, `57 passed`)
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (4) x cache state (2) x workflow class (4) with 6 required rows, in plan.md. Evidence: `plan.md:96`
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the `cold: true` dispatch and the scheduled cold run are the hostile variants (T028, T037). Open 2026-10-25: the `cold: true` dispatches ran green (runs 40107101405, 40107567830, 40109540094, 40109542114). The scheduled cold run T037 added has not fired yet (`gh run list --event schedule` printed `[]`); its first firing is 2026-10-26T04:17Z
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the `cold: true` dispatch and the scheduled cold run are the hostile variants (T028, T037). Evidence 2026-10-25: the `cold: true` dispatches ran green (runs 40107101405, 40107567830, 40109540094, 40109542114), and the scheduled cold run is run 40236652343, event `schedule`, `success` on `bbb6c2b53e`, which took the `schedule` branch of the `cache:` expression (`opencode-plugin-tests.yml:94`) and provisioned from scratch. The schedule event came from a one-shot entry added in `174ebbdc0e` and removed in `0ab8f9f74e` after GitHub created the run, because the operator asked on 2026-10-25 not to wait for the weekly cron's first firing on 2026-10-26T04:17Z
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every probe records the head SHA and the run id in `scratch/`. Evidence: `scratch/cache-adoption-runs.md` names the head of each round (`0029a3ead5`, `113d8b56d1`, `75ef2608d0`) with its run ids; `scratch/phase-result.md:56` pins the miss round to `113d8b56d1` and runs 40108770493, 40108770392, 40108770355; the merge probe is `666844f806` with run 40125544828
 <!-- /ANCHOR:fix-completeness -->
 
@@ -3255,10 +3255,10 @@ Evidence recorded 2026-10-25 for the intermediate commit: the fixture suite prin
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 11/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-Open P1 items: CHK-022 and CHK-FIX-006, both waiting on the first scheduled cold run of `opencode-plugin-tests.yml` (2026-10-26T04:17Z).
+No open items. CHK-022 and CHK-FIX-006 closed on the scheduled cold run 40236652343.
 
 **Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->

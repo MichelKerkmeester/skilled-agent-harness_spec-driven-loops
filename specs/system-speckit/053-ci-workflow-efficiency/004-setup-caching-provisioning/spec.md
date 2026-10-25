@@ -32,7 +32,7 @@ Nothing in this repository's CI is cached. Zero of the 33 workflows use `actions
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Closeable, two P1 checks wait on the 2026-10-26T04:17Z scheduled cold run |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
