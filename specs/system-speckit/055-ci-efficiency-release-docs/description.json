@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-speckit/055-ci-efficiency-release-docs",
+  "description": "Changelogs for the skills the CI workflow efficiency and private surface work touched, the changelog hub symlink check, and the README, user guide and",
+  "keywords": [
+    "changelogs",
+    "skills",
+    "workflow",
+    "efficiency",
+    "private",
+    "surface",
+    "work",
+    "touched",
+    "changelog",
+    "hub",
+    "symlink",
+    "check",
+    "readme",
+    "user",
+    "guide",
+    "doctor",
+    "command",
+    "describe"
+  ],
+  "lastUpdated": "2026-10-25T21:51:38.144Z",
+  "specId": "055",
+  "folderSlug": "ci-efficiency-release-docs",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
