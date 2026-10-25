@@ -1,0 +1,202 @@
+# /doctor:ci Presentation Contract
+
+Presentation source of truth for `/doctor:ci <target>`. The router owns target resolution and asset loading. Workflow YAML owns execution. This file owns visible prompts, plan layouts, result displays, the troubleshooting table and next-step suggestions.
+
+## 1. ARGUMENT FAILURE
+
+Every argument failure happens before any workflow YAML loads, prints the wording below with the bracketed parts filled in, and ends with the status line. Nothing is read or changed.
+
+| Situation | Wording |
+|-----------|---------|
+| The first token is not a target | `Unknown target: [target]` then `Try: /doctor:ci menu` then `STATUS=FAIL ERROR="unknown_target"` |
+| A flag no target accepts | `Unknown flag: [flag]` then `Accepted for [target]: [flags]` then `STATUS=FAIL ERROR="unknown_flag"` |
+| A flag that belongs to another target | `Flag '[flag]' is not valid for target '[target]'. Did you mean /doctor:ci [suggested-target] [flag]?` then `STATUS=FAIL ERROR="cross_target_flag_injection"` |
+
+## 2. STARTUP PRESENTATION
+
+This command is always interactive and has no `:auto` mode. With no target, `report` runs because it only reads. The menu below appears for `menu`, `list` and `?`. Ask it once, then wait.
+
+```text
+What do you want to do with the CI workflows?
+
+1) report
+2) scaffold
+3) toggle
+X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| `1` | target = `report` | List every workflow with its switch state, triggers, filters and drift flags. Reads only |
+| `2` | target = `scaffold` | Create one new workflow from the workflow standards templates, after you approve the whole file |
+| `3` | target = `toggle` | Turn one documented CI switch off or back on, after you approve the exact command |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+Valid targets: report, scaffold, toggle
+
+## 3. DASHBOARD AND PLAN LAYOUT
+
+### Route Manifest Display
+
+Render this table for `menu`, `list` or `?`. Values should mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `report` | `doctor-ci-report.yaml` | read-only | List every workflow with its switch state, triggers, path filters, purpose and drift flags, and name the newest non-rebuild commit on main |
+| `scaffold` | `doctor-ci-scaffold.yaml` | mutates | Create one new `.github/workflows/` file from the standards templates, after an explicit yes |
+| `toggle` | `doctor-ci-toggle.yaml` | mutates | Set or clear one of the six documented switch variables, after an explicit yes |
+
+### Setup Dashboard
+
+Render this compact panel after target resolution and before YAML execution when the target or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: [target]
+Workflow: .skilled/commands/doctor/assets/[yaml]
+Mutation class: [the target's mutating value in _routes.yaml]
+Execution mode: INTERACTIVE
+Setup values: [key=value list]
+Presentation: .skilled/commands/doctor/assets/doctor-ci-presentation.txt
+Next: load workflow YAML
+```
+
+### Report Summary
+
+Render the script's table as returned, one row per workflow, under this header.
+
+```text
+CI WORKFLOW REPORT
+Workflows: [n]  Jobs: [n]
+Variables: [none | NAME=state for each variable that is set | unknown (reason)]
+Newest non-rebuild SHA: [40 hex | none] ([reason])
+
+[table: Workflow | Switch | Jobs | Events | Filters | Drift flags | Purpose]
+
+Not checked: path-parity, shell-strict-mode, matrix-guidance. The workflow standards packet owns these rules, so a clean row is not a pass for them.
+```
+
+Switch values: `on` (every job runs), `off` (every job is skipped by a variable set to off), `partial` (some jobs skip and some run), `missing` (no job carries a switch) and `unknown` (gh could not be read). A variable is shown as `off`, `unset`, `other` or `unknown`, never by its value.
+
+### Scaffold Plan And Approval
+
+```text
+WORKFLOW SCAFFOLD PLAN
+Target file: .github/workflows/[name].yml
+Templates: .skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml, .skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml
+Switch group: [TESTS|REPORTS|REVIEW|FRESHNESS|MESSAGES]
+Timeout: [n] minutes
+README row to add by hand: [the row for .github/workflows/README.md]
+
+--- proposed file ---
+[the whole file]
+--- end of file ---
+
+Write this file? [yes/no]
+```
+
+With `--dry-run`, follow the plan with `Dry run: nothing was written.` and stop without asking.
+
+A refused name prints one of these lines, `STATUS=FAIL ERROR="refused"` and exits without a plan:
+
+```text
+REFUSE: the target path already exists; scaffold creates new workflows only
+REFUSE: [name] is a protected workflow
+```
+
+### Toggle Plan And Approval
+
+```text
+SWITCH CHANGE PLAN
+Variable: [name]
+Now: [on|off|unknown] ([unset|set to off|set to another value|not readable])
+Change: [off|on]
+Command: [gh variable set [name] --body off | gh variable delete [name]]
+Run this command? [yes/no]
+```
+
+A refused change prints one of these lines, `STATUS=FAIL ERROR="refused"` and exits without a plan:
+
+```text
+REFUSE: [name] is not a documented switch
+REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context
+REFUSE: SKILLED_CI must stay unset while the ruleset requires that context
+```
+
+## 4. RESULTS DISPLAY
+
+### Report Result
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: report
+Switch states: [n] on, [n] off, [n] partial, [n] missing, [n] unknown
+Drift flags: [n] workflows carry at least one
+Changed: none
+STATUS=[OK|FAIL|ERROR]
+```
+
+### Mutating Result
+
+```text
+DOCTOR MUTATING RESULT
+Target: [scaffold|toggle]
+Workflow: [yaml]
+Approved change: [the file created, or the gh variable command run]
+Changed: [the new .github/workflows/ file | the repository variable]
+Verification: [first line of the file read back | the variable list read back]
+Undo: [delete the new file | gh variable delete [name] or gh variable set [name] --body [previous]]
+STATUS=OK
+```
+
+### Cancelled
+
+```text
+DOCTOR TARGET CANCELLED
+Target: [target]
+Changed: none
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [target]
+Step: [setup|workflow phase]
+Error: [message]
+Changed: [changes applied before the failure, or none]
+Next: [recommended command or manual action]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 5. TROUBLESHOOTING DISPLAY
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| Every switch reads `unknown` | `gh` is missing, not logged in, or `--no-gh` was passed. Run `gh auth status`, then rerun `/doctor:ci report` |
+| The newest non-rebuild SHA is `none` | The last 100 runs on main are all rebuild commits, or gh could not read them. Pass `--sha=<40 hex>` to name a commit yourself |
+| A workflow shows `missing` | No job in it carries the switch condition. Add the condition the job-shape rules show, or confirm the workflow is exempt |
+| A workflow shows `partial` | Some jobs sit in a switched group and some do not. Read the job conditions in that file |
+| `event-in-run` flags a workflow | A run block interpolates an event field. A hex SHA or a number is allowed, so read the line before changing it |
+| A workflow file fails to parse | Fix the YAML error the report names. The other rows still print |
+| The scaffold refuses a name | Pick a name that is not already a workflow and is not in the protected set, then rerun with `--name=<file>` |
+| The toggle refuses the message variable or the master switch | The branch ruleset requires the message contract, and a skipped job reports Success. Leave both unset |
+| `gh variable set` fails with a permission error | The login cannot write repository variables. Run the printed command with an account that can, or set the variable under Settings, Secrets and variables, Actions |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+## 6. NEXT-STEP SUGGESTIONS
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| The report shows a drift flag | `/doctor:ci report --json` | The JSON names the flag per workflow for a script or a review |
+| The report shows `off` for a group | `/doctor:ci toggle --variable=<name> --state=on` | Clears the variable so the group runs again |
+| A new workflow is needed | `/doctor:ci scaffold --name=<file>.yml` | Starts from the standards templates and prints the file first |
+| A scaffolded file was written | Add its row to `.github/workflows/README.md` | The scaffold prints the row but never edits the README |
+| You want to review a workflow change | Review the diff with the workflow standards packet loaded | The packet carries the rules the report cannot check |
+
+End interactive presentations with: `What would you like to do next?`

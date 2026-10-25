@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: CI WORKFLOW REPORT (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting which GitHub Actions workflows run in this tree, which a repository variable has switched off, and where each one drifts from the workflow standards
+purpose: List every workflow under .github/workflows/ with its switch state, trigger events, path filters, README purpose and drift flags, and name the newest commit on main that is not a trigger-index rebuild
+action: Run .skilled/commands/doctor/scripts/ci-report.cjs once -> render its table and status line through the presentation contract
+skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route prints and never writes. It reads the workflow files, the workflows README and the repository variables, and every gh call it makes is a read. It MUST NOT edit a workflow, set or delete a repository variable, or run a workflow. Changing a workflow is the scaffold route's work and changing a switch is the toggle route's, each behind its own explicit yes."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  report_script: ".skilled/commands/doctor/scripts/ci-report.cjs"
+  workflow_readme: ".github/workflows/README.md"
+  standards_packet: ".skilled/skills/sk-code/sk-code-ci/"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "report is the default target: /doctor:ci and /doctor:ci report both run it."
+  json: "--json prints the script's JSON and nothing else."
+  sha: "--sha=<40 hex> skips the commit search and reports that commit."
+  no_gh: "--no-gh makes no gh call: every switch reads unknown and no commit is searched. Use it offline or with no GitHub login."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run .skilled/commands/doctor/scripts/ci-report.cjs once, adding --json, --sha=<sha> or --no-gh only when the operator passed them."
+    - "Render one table row per workflow with the columns Workflow, Switch, Jobs, Events, Filters, Drift flags and Purpose. The line above the table names the workflow count, the job count, the variable summary and the newest non-rebuild commit. When every switch variable is unset the variable summary reads: variables: none."
+    - "Switch has five values. on: every job runs under the current variables, and an unset variable runs a job. off: every job is skipped because a variable is set to off. partial: some jobs are skipped and some run. missing: no job carries a switch. unknown: gh could not be read, so the variables are not known. dependabot-auto-merge.yml has no switch by design and reports on. The report prints one of these five words for a variable and never its value."
+    - "Resolve the newest non-rebuild commit from commit messages, not workflow names. A rebuild commit also starts downstream runs, so a workflow-name filter would leave its SHA in the list. The script reads the last 100 runs on main, takes each distinct commit newest first, and skips a commit whose last non-empty message line is Trigger-Index-Rebuild: ci. It names the first commit that remains and lists any skipped commit in the reason. When none remains it prints none and the reason, and it never guesses."
+    - "Drift flags are the checks a parser can make: timeout-missing, permissions-missing, concurrency-missing, switch-missing, uses-unpinned, readme-row-missing, pull-request-target and event-in-run. The event-in-run flag marks a run block that interpolates an event field. The standards allow a hex SHA or a number there, so read the line before acting on the flag. Print the not-checked list (path-parity, shell-strict-mode, matrix-guidance) after the table and say the workflow standards packet owns those rules, so a clean row is not read as a pass for them."
+    - "Map the script's exit code to the route status: 0 the report printed, 1 at least one workflow failed to parse (name each file with its parser message and still show the other rows), 2 a bad argument (show the script's usage line)."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the script exits 0; show the table, the not-checked list and the script's last line.
+  STATUS=FAIL when the script exits 1; show each unparsable file with its message, then the table for the files that parsed.
+  STATUS=ERROR when the script exits 2 or crashes; report the message and the accepted invocation (/doctor:ci report [--json] [--sha=<sha>] [--no-gh]).

@@ -43,7 +43,7 @@ Commands are organized into six groups plus root-level utilities:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
-| **doctor** | `commands/doctor/` | 10 | Setup overview, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, git hook and standards, MCP, release-update and environment-switch diagnostics |
+| **doctor** | `commands/doctor/` | 11 | Setup overview, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
@@ -157,7 +157,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Ten command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Eleven command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -167,6 +167,7 @@ Ten command files cover the diagnostic surface, one per owner. Backed by `_route
 | Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
 | sk-code Setup | `/doctor:sk-code [setup] [--prompt=<text>]` | Run the sk-code setup battery read-only and name the repair command for each failing leg |
+| CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List every GitHub Actions workflow with its switch state, scaffold a compliant new workflow, or turn one documented CI switch on or off |
 | Git | `/doctor:git <hooks\|standards\|setup> [--dry-run]` | Switch shipped git hook gates on or off in git config, change the commit, PR and branch rules in `.sk-git/` and check which sk-git settings are live |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
