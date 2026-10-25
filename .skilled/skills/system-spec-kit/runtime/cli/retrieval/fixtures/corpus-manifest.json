@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fef2cf675df57ccaed6363097a41e43af7f00a1c6022deec1fcee4baf3586998",
+  "corpusHash": "d105ad76f21dfe04d51c4455437b474a8a84954b3bba08515ff5c706620f92ff",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25993,
+  "includedPathCount": 25998,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1834,6 +1834,7 @@
     ".skilled/skills/mcp-code-mode/changelog/v1.0.1.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.11.0.md",
+    ".skilled/skills/mcp-code-mode/changelog/v1.0.12.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.3.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.4.0.md",
@@ -2025,6 +2026,7 @@
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.12.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.13.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.14.0.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.15.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
@@ -2106,6 +2108,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-attachments/download-file.md",
@@ -2280,6 +2283,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.4.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.5.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -3100,6 +3104,7 @@
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.1.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.2.0.md",
+    ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.3.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/design-diagram-command.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/hub-registration.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/diagram-generation/editorial-style-and-connectors.md",
@@ -26024,7 +26029,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0057be58ba3b29b94bb81ad095fc7fd0ff597a830b3998e9e33833c1b6008d02",
+  "manifestHash": "fa84918bb10814a6481197ebbe0918b437514e2542eb5d482f5a324df15aba2a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
