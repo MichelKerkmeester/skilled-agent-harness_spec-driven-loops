@@ -34,7 +34,7 @@
       "shouldrelaunch"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,7 +43,11 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs"
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      "scratch/red-before.txt",
+      "scratch/green-after.txt",
+      "scratch/baseline-node.txt",
+      "scratch/after-node.txt"
     ],
     "entities": [
       {
@@ -92,6 +96,30 @@
         "name": "relaunch-core.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red-before.txt",
+        "kind": "file",
+        "path": "scratch/red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after.txt",
+        "kind": "file",
+        "path": "scratch/green-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-node.txt",
+        "kind": "file",
+        "path": "scratch/baseline-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-node.txt",
+        "kind": "file",
+        "path": "scratch/after-node.txt",
         "source": "derived"
       },
       {
@@ -165,35 +193,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`shouldRelaunch` reads `const hops = Number(record.hops)` and declines only when the result is not finite or reaches the limit (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1044-1047`)",
     "created_at": "2026-10-25T13:42:30Z",
-    "last_save_at": "2026-10-25T14:09:40.032Z",
+    "last_save_at": "2026-10-25T15:48:58.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fa99e341f899720e4c429c3cef7b599252f982ddecc521809cb12bdb5aa18fe",
+    "source_fingerprint": "sha256:c64f66339e4fad5ecc24d1ab9398dc182ed65f44ebef52f4f2b154921b50ba67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8f6ece3fdc55234fcfdc8e48a050cc67d0e9ca45cf38dc35b9fc2528cbd5fe4",
+      "spec.md": "6c4fa15185f3fe7815e06dbb351dfd22d80580c009af471f0fcffebfe2401545",
       "plan.md": "5023839d63c7141fc746371add1b35c2f6eb3935d0f3c2f71f21320d735a35cc",
-      "tasks.md": "02a26318a19bffcad8590a9ada0a2fec1b956ee2c217b36a1446806569c1e442",
-      "implementation-summary.md": "e7a072156e5048904abb4d5d5ffa1283c49935515cbcb66e0b5481f42f0f1ec3"
+      "tasks.md": "8a419df3189e222b35a68ba803a0d756b6474289d54db3ae64e0042dcc749942",
+      "implementation-summary.md": "eb9872742f2407e7317663b54a5fa5a9a83509c481265f69c3dc64ab1ff545f6"
     },
     "last_active_at": null
   }

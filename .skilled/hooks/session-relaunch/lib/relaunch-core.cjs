@@ -809,8 +809,13 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
   for (const key of ['model', 'provider', 'effort']) {
     if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
   }
+  // An effort belongs to the model it was chosen for, so a new model that brings no effort
+  // leaves the record without one rather than beside the old model's effort.
+  const { effort: _recordedEffort, ...withoutEffort } = unsignalled;
+  const modelSwitched = liveSettings.model !== undefined && liveSettings.model !== record.model;
+  const base = modelSwitched && liveSettings.effort === undefined ? withoutEffort : unsignalled;
   const armed = {
-    ...unsignalled,
+    ...base,
     ...liveSettings,
     status: 'armed',
     armedAt: toIsoTimestamp(now),
@@ -1041,9 +1046,17 @@ function shouldRelaunch(
     return { relaunch: false, reason: 'stale' };
   }
 
-  const hops = Number(record.hops);
+  // Read the count as stored, never coerced: coercion turns null into 0 and "3" into 3,
+  // so a malformed or hand-edited record would slip under the cap.
+  const hops = record.hops;
   const hopLimit = Number(maxHops);
-  if (!Number.isFinite(hops) || !Number.isFinite(hopLimit) || hops >= hopLimit) {
+  if (
+    typeof hops !== 'number'
+    || !Number.isInteger(hops)
+    || hops < 0
+    || !Number.isFinite(hopLimit)
+    || hops >= hopLimit
+  ) {
     return { relaunch: false, reason: 'hop-cap' };
   }
   // A relaunch needs a note to claim and a directory to start in. Declining here keeps
@@ -1052,6 +1065,38 @@ function shouldRelaunch(
     return { relaunch: false, reason: 'incomplete-record' };
   }
   return { relaunch: true };
+}
+
+/**
+ * Build the refusal for a note that is not open.
+ *
+ * The bare status alone left a session guessing, so a refused claim says what the
+ * state means and a session never continues finished work or another session's claim.
+ * An unrecognized status keeps the bare prefix rather than a guessed meaning.
+ *
+ * @param {Object} frontmatter - Parsed frontmatter of the refused note.
+ * @returns {string} Refusal message, always starting `cannot claim handoff with status X`.
+ */
+function claimRefusalMessage(frontmatter) {
+  const status = frontmatter.status || 'missing';
+  const prefix = `cannot claim handoff with status ${status}`;
+  if (status === 'done') {
+    const superseded = nonEmptyString(frontmatter.superseded_by)
+      ? ` and superseded by ${frontmatter.superseded_by}`
+      : '';
+    return `${prefix}. The work in this note is finished${superseded}; do not continue it.`;
+  }
+  if (status === 'claimed') {
+    const owner = nonEmptyString(frontmatter.claimed_by)
+      ? `session ${frontmatter.claimed_by}`
+      : 'an unknown session';
+    const when = nonEmptyString(frontmatter.claimed_at) ? frontmatter.claimed_at : 'an unknown time';
+    return `${prefix}. It was claimed by ${owner} at ${when}; do not continue another session's claim.`;
+  }
+  if (status === 'missing') {
+    return `${prefix}. The file has no status, so it is not a handoff note.`;
+  }
+  return prefix;
 }
 
 /**
@@ -1070,9 +1115,7 @@ function claimHandoff(filePath, { sessionId, now } = {}) {
     const text = readHandoffText(filePath);
     const parsed = parseHandoff(text);
     if (parsed.frontmatter.status !== 'open') {
-      throw new Error(
-        `cannot claim handoff with status ${parsed.frontmatter.status || 'missing'}`,
-      );
+      throw new Error(claimRefusalMessage(parsed.frontmatter));
     }
 
     const updated = updateFrontmatter(text, {

@@ -1,0 +1,7 @@
+{"line":"file-history-snapshot"}
+{"line":"user","isMeta":true,"timestamp":"2026-10-25T15:46:47.935Z","content":"<local-command-caveat>The command below was run directly in Claude Code, not sent to you as a request, and its output goes straight to the user. It's recorded here as context for later messages.</local-command-caveat>"}
+{"line":"user","timestamp":"2026-10-25T15:46:47.935Z","content":"<command-name>/model</command-name>\n            <command-message>model</command-message>\n            <command-args>claude-opus-5-5</command-args>"}
+{"line":"user","timestamp":"2026-10-25T15:46:47.935Z","content":"<local-command-stdout>Set model to `Opus 5.5` and saved as your default for new sessions</local-command-stdout>"}
+line 39 2026-10-25T15:46:17.009Z requestedModel=claude-sonnet-5-5 effort=low
+line 73 2026-10-25T15:46:57.950Z requestedModel=claude-opus-5-5 effort=low
+line 86 2026-10-25T15:47:24.076Z requestedModel=claude-opus-5-5 effort=low

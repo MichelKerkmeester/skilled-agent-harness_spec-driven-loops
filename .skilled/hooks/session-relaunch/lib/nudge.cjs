@@ -207,12 +207,19 @@ function handoffText({
 }
 
 /** Build the claim, resume, and completion instructions for a seed prompt. */
-function seedText({ notePath, specFolder, sessionId, cliPath, afterCompaction = false } = {}) {
+function seedText({
+  notePath,
+  specFolder,
+  sessionId,
+  cliPath,
+  afterCompaction = false,
+  createdAt,
+} = {}) {
   const pathValue = String(notePath ?? '<handoff-path>');
   const claimCommand = claimCommandFor(pathValue, sessionId, cliPath);
   const completeCommand = completeCommandFor(pathValue, cliPath);
   const gateWasSkipped = specFolder === 'none';
-  const continueStep = gateWasSkipped ? 4 : 3;
+  let continueStep = gateWasSkipped ? 4 : 3;
   let readInstruction = '2. Read the note.';
   if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
     readInstruction = '2. Read the note. When its frontmatter spec_folder is set, run '
@@ -229,6 +236,19 @@ function seedText({ notePath, specFolder, sessionId, cliPath, afterCompaction = 
   ];
   if (gateWasSkipped) {
     lines.push('3. Gate 3 is already answered Skip for this session, carried from the handoff.');
+  }
+  // A session that kept working after it wrote the note may have committed some of its
+  // Remaining work since, so it checks git before trusting the list. The note date is the
+  // boundary for that check; without one the step still asks for the history.
+  if (afterCompaction) {
+    const dated = typeof createdAt === 'string' && createdAt.trim() !== '';
+    lines.push(dated
+      ? `${continueStep}. The note was written at ${createdAt}. Run `
+        + `\`git log --since=${shellQuote(createdAt)}\` and \`git status\`, and compare them `
+        + 'with Remaining work before you trust it.'
+      : `${continueStep}. Run \`git log\` and \`git status\`, and compare them with Remaining `
+        + 'work before you trust it; work committed after the note was written is already done.');
+    continueStep += 1;
   }
   lines.push(
     `${continueStep}. Continue the work under "Remaining work". Do not run prepare for this note; `

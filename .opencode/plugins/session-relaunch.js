@@ -112,13 +112,17 @@ function claimedReminder(seed) {
     + `When the remaining work is done, run \`${complete}\` to close the note.`;
 }
 
-// The note's own frontmatter names the spec folder a claim of it should resume into.
-function noteSpecFolder(notePath) {
+// The note's own frontmatter names the spec folder a claim of it should resume into, and
+// its date, so the session can check git for work done since.
+function noteFields(notePath) {
   try {
-    const folder = core.parseHandoff(fs.readFileSync(notePath, 'utf8')).frontmatter.spec_folder;
-    return typeof folder === 'string' ? folder : '';
+    const { frontmatter } = core.parseHandoff(fs.readFileSync(notePath, 'utf8'));
+    return {
+      specFolder: typeof frontmatter.spec_folder === 'string' ? frontmatter.spec_folder : '',
+      createdAt: typeof frontmatter.created_at === 'string' ? frontmatter.created_at : '',
+    };
   } catch {
-    return '';
+    return { specFolder: '', createdAt: '' };
   }
 }
 
@@ -274,15 +278,17 @@ function compactionSeed(sessionID, notePath) {
     return { notePath, withdrawn: true, text: nudge.staleNoteText({ notePath }) };
   }
   logEvent('compact-pointer', { sessionId: sessionID, note: notePath });
+  const { specFolder, createdAt } = noteFields(notePath);
   return {
     notePath,
     withdrawn: false,
     text: nudge.seedText({
       notePath,
-      specFolder: noteSpecFolder(notePath),
+      specFolder,
       sessionId: sessionID,
       cliPath: nudge.CLI_COMMAND,
       afterCompaction: true,
+      createdAt,
     }),
   };
 }

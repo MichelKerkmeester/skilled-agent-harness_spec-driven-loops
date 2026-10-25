@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,6 +46,10 @@
       ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
       ".skilled/hooks/session-relaunch/README.md",
+      "scratch/test/red-before.txt",
+      "scratch/test/green-after.txt",
+      "scratch/harness/build-sandbox.sh",
+      "scratch/claude-hop/switch-entries.txt",
       ".skilled/hooks/session-relaunch/lib/context-usage.cjs"
     ],
     "entities": [
@@ -110,6 +114,30 @@
         "source": "derived"
       },
       {
+        "name": "red-before.txt",
+        "kind": "file",
+        "path": "scratch/test/red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after.txt",
+        "kind": "file",
+        "path": "scratch/test/green-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "build-sandbox.sh",
+        "kind": "script",
+        "path": "scratch/harness/build-sandbox.sh",
+        "source": "derived"
+      },
+      {
+        "name": "switch-entries.txt",
+        "kind": "file",
+        "path": "scratch/claude-hop/switch-entries.txt",
+        "source": "derived"
+      },
+      {
         "name": "context-usage.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
@@ -117,6 +145,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -168,35 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "The Sonnet",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shell",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
     "created_at": "2026-10-25T13:42:25Z",
-    "last_save_at": "2026-10-25T14:10:22.665Z",
+    "last_save_at": "2026-10-25T15:57:06.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d37ad362ad87cc1a715dcaf9322bb8ff53b36c0d4685b0685ad5a51cca6a2338",
+    "source_fingerprint": "sha256:d0e4cdc87f76642a67646a90635e3ef72b3b2ee6d9a36b0343dd30dcaec12793",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5f53689aca4b04383fb8db8228543c54990e19f6a00abe9776ffe6013308338",
+      "spec.md": "2e452bd0e30484a205d1a80b5a55b877f1de315154c14cc0bebbda8147e7de0d",
       "plan.md": "e3e30e64d2922a97ed6d136f4f0bc29b24c8215ece340ea4c9c2b00de998fc06",
-      "tasks.md": "89e656885cea62138a1fa5b19914b54d5f424ccd6b4fcf7a1c9f795a6de945a8",
-      "implementation-summary.md": "33964e7174139fc6f2d4e6da1b4958aa68776b593495ac17793cf35a9fe21357"
+      "tasks.md": "cc4458b08762d1f8ddf915311fbbfb08c5c9c975610dd8e7e35f1fdc76d0bf06",
+      "implementation-summary.md": "4f12f973d20f35e740dfb6421d29ad9668ef6127ef27dcc61612e685225b1367"
     },
     "last_active_at": null
   }

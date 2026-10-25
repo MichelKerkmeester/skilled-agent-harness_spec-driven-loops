@@ -1348,6 +1348,112 @@ test('a Hermes sender live provider and model replace the launch values', (t) =>
   ]);
 });
 
+// An effort is chosen for one model, so a hop onto a different model carries the effort the
+// sender recorded beside that model, or none, and never the launch effort of the old one.
+const MODEL_SWITCH_EFFORT_CASES = [
+  {
+    runtime: 'claude',
+    first: ['--model', 'claude-sonnet-5-5', '--effort', 'low', 'p'],
+    liveModel: 'claude-opus-5-5',
+    relaunch: (seed, effort) => [
+      '--model', 'claude-opus-5-5', ...(effort ? ['--effort', effort] : []), seed,
+    ],
+  },
+  {
+    runtime: 'codex',
+    first: ['-m', 'gpt-5.6-luna', '-c', 'model_reasoning_effort="low"', 'p'],
+    liveModel: 'gpt-6-luna',
+    relaunch: (seed, effort) => [
+      '--no-daemon', '-m', 'gpt-6-luna',
+      ...(effort ? ['-c', `model_reasoning_effort="${effort}"`] : []), seed,
+    ],
+  },
+  {
+    runtime: 'pi',
+    first: ['--model', 'gpt-5.6-luna', '--thinking', 'low', 'p'],
+    liveModel: 'gpt-6-luna',
+    relaunch: (seed, effort) => [
+      '--model', 'gpt-6-luna', ...(effort ? ['--thinking', effort] : []), seed,
+    ],
+  },
+];
+
+for (const switchCase of MODEL_SWITCH_EFFORT_CASES) {
+  test(`a live model with no live effort drops the launch effort: ${switchCase.runtime}`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_MODEL: switchCase.liveModel,
+    });
+    const result = runWrapper(sandbox, [switchCase.runtime, ...switchCase.first]);
+
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.deepEqual(records[1].args, switchCase.relaunch(`${SEED} ${handoffPath}`, ''));
+    assert.equal(records[1].env.SKILLED_LOOP_EFFORT, '');
+  });
+
+  test(`a live model with its live effort renders that effort: ${switchCase.runtime}`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_MODEL: switchCase.liveModel,
+      RECORD_EFFORT: 'medium',
+    });
+    const result = runWrapper(sandbox, [switchCase.runtime, ...switchCase.first]);
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(
+      readRecords(recordPath)[1].args,
+      switchCase.relaunch(`${SEED} ${handoffPath}`, 'medium'),
+    );
+  });
+}
+
+test('a live model equal to the launch model keeps the launch effort', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'claude-sonnet-5-5',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'claude-sonnet-5-5', '--effort', 'low', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a launch with no model keeps its launch effort beside a live model', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'claude-opus-5-5',
+  });
+  const result = runWrapper(sandbox, ['claude', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'claude-opus-5-5', '--effort', 'low', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a Hermes live model with no live effort keeps the launch reasoning', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+  });
+  const result = runWrapper(sandbox, [
+    'hermes', 'chat', '-m', 'claude-sonnet-5-5', '--reasoning', 'high',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    'chat', '-m', 'gpt-6-luna', '--reasoning', 'high', '-q', `${SEED} ${handoffPath}`,
+  ]);
+});
+
 test('every launch carries the time it started, so a hop can tell its own changes apart', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });

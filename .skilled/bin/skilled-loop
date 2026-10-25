@@ -186,6 +186,19 @@ model_is_valid() {
   ((${#1} <= 128)) && [[ "$1" =~ $model_pattern ]]
 }
 
+# An effort belongs to the model it was chosen for, so a hop onto a different model without a
+# usable effort of its own must not replay the launch effort: some models reject an effort
+# chosen for another, and the runtime default is the safe fallback. An empty launch model proves
+# no switch. Hermes is exempt because its sender records a live model but never an effort.
+# Succeeds when the launch effort must be dropped.
+# Arguments: runtime, launch model, accepted live model (empty when none), live effort.
+live_model_voids_launch_effort() {
+  local runtime_name="$1" launch_model="$2" live_model="$3" live_effort="$4"
+  [[ "$runtime_name" != 'hermes' ]] || return 1
+  [[ -n "$launch_model" && -n "$live_model" && "$live_model" != "$launch_model" ]] || return 1
+  [[ -z "$live_effort" ]] || ! effort_is_valid "$runtime_name" "$live_effort"
+}
+
 # Appends the carried effort in the runtime's own flag syntax, when the level is one that
 # runtime accepts.
 append_effort_arguments() {
@@ -786,6 +799,8 @@ while true; do
       fi
       # The sender's own latest turn beats what the launch line said, and a value that does
       # not pass the runtime's check leaves the launch value in place.
+      launch_model="${SKILLED_LOOP_MODEL:-}"
+      accepted_live_model=''
       live_model=$(consumed_field model)
       live_model_accepted=0
       if [[ -n "$live_model" ]]; then
@@ -793,6 +808,7 @@ while true; do
           SKILLED_LOOP_MODEL="$live_model"
           export SKILLED_LOOP_MODEL
           live_model_accepted=1
+          accepted_live_model="$live_model"
         else
           printf 'warning: ignoring the sender model %s; relaunching on the launch model\n' \
             "$live_model" >&2
@@ -812,13 +828,19 @@ while true; do
         fi
       fi
       live_effort=$(consumed_field effort)
+      effort_fallback='the launch effort'
+      if live_model_voids_launch_effort "$runtime" "$launch_model" "$accepted_live_model" \
+        "$live_effort"; then
+        unset SKILLED_LOOP_EFFORT
+        effort_fallback='the runtime default effort'
+      fi
       if [[ -n "$live_effort" ]]; then
         if effort_is_valid "$runtime" "$live_effort"; then
           SKILLED_LOOP_EFFORT="$live_effort"
           export SKILLED_LOOP_EFFORT
         else
-          printf 'warning: ignoring the sender effort %s; relaunching on the launch effort\n' \
-            "$live_effort" >&2
+          printf 'warning: ignoring the sender effort %s; relaunching on %s\n' \
+            "$live_effort" "$effort_fallback" >&2
         fi
       fi
       if [[ -n "${SKILLED_LOOP_EFFORT:-}" ]] && ! effort_is_valid "$runtime" "$SKILLED_LOOP_EFFORT"; then

@@ -88,6 +88,7 @@ interface NudgeModule {
     sessionId: string;
     cliPath: string;
     afterCompaction?: boolean;
+    createdAt?: string;
   }): string;
   specFolderInput(options: { env?: NodeJS.ProcessEnv }): string | undefined;
   resolveRepoRoot(env?: NodeJS.ProcessEnv): string;
@@ -155,6 +156,14 @@ type AgentStartRegistrar = {
   on(
     event: 'agent_start',
     handler: (event: unknown, ctx: ExtensionContext) => unknown,
+  ): void;
+};
+
+// Nor the settle event, which a running Pi emits once a run has ended for good.
+type AgentSettledRegistrar = {
+  on(
+    event: 'agent_settled',
+    handler: (event: { aborted?: boolean }, ctx: ExtensionContext) => unknown,
   ): void;
 };
 
@@ -320,7 +329,7 @@ type KillerChild = {
 // Logging is best-effort: a state-dir failure must never break the extension host.
 function logSpawnError(core: CoreModule, loopId: string, error: unknown): void {
   try {
-    core.appendLog('agent-end-arm-error', {
+    core.appendLog('agent-settled-arm-error', {
       stage: 'spawn',
       loopId,
       message: error instanceof Error ? error.message : String(error),
@@ -350,17 +359,24 @@ function logArmCancelled(core: CoreModule, loopId: string, sessionId: string): v
 }
 
 // The ambient shim declares no `node:fs`, so the note is read through the dynamic import the
-// killer path already resolves. A note whose frontmatter will not parse costs only its packet:
-// the seed still names the work worth claiming.
-async function noteSpecFolder(core: CoreModule, notePath: string): Promise<string> {
+// killer path already resolves. A note whose frontmatter will not parse costs only its packet
+// and date: the seed still names the work worth claiming. The date lets the session check git
+// for work done since the note was written.
+async function noteFields(
+  core: CoreModule,
+  notePath: string,
+): Promise<{ specFolder: string; createdAt: string }> {
   try {
     const fs = asModule<{ readFileSync(filePath: string, encoding: 'utf8'): string }>(
       await import('node:fs' as string),
     );
-    const folder = core.parseHandoff(fs.readFileSync(notePath, 'utf8')).frontmatter.spec_folder;
-    return typeof folder === 'string' ? folder : '';
+    const { frontmatter } = core.parseHandoff(fs.readFileSync(notePath, 'utf8'));
+    return {
+      specFolder: typeof frontmatter.spec_folder === 'string' ? frontmatter.spec_folder : '',
+      createdAt: typeof frontmatter.created_at === 'string' ? frontmatter.created_at : '',
+    };
   } catch {
-    return '';
+    return { specFolder: '', createdAt: '' };
   }
 }
 
@@ -459,8 +475,8 @@ async function armRelaunch(
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Register the message_end, before_agent_start, agent_start, agent_end and session_compact
- * hooks on the Pi extension host.
+ * Register the message_end, before_agent_start, agent_start, agent_end, agent_settled and
+ * session_compact hooks on the Pi extension host.
  */
 export default function sessionRelaunch(pi: ExtensionAPI): void {
   // Keyed by session id, so two sessions in one host process never swap a nudge.
@@ -523,6 +539,9 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
     }
   });
 
+  // The held nudge leaves on agent_end rather than on the settle: a follow-up queued here runs
+  // as a continuation of the same run, so the run settles only after the prepare turn it asks
+  // for, and the settle then arms the record that turn wrote.
   pi.on('agent_end', async (_event, ctx) => {
     try {
       const config = loadConfigFile(configPath());
@@ -530,8 +549,6 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       const modules = await loadModules();
       const sessionId = sessionIdOf(ctx, modules.nudge);
       if (!sessionId) return;
-
-      await armRelaunch(modules, pi, ctx, sessionId);
 
       const held = heldNudges.get(sessionId);
       if (held === undefined) return;
@@ -549,6 +566,26 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
         // streaming loop, start a turn on an idle one.
         { deliverAs: 'followUp', triggerTurn: true },
       );
+    } catch {
+      return undefined;
+    }
+  });
+
+  // The arm waits for the settle because agent_end closes one agent loop, not the run: an
+  // auto-retry, a compaction or a queued follow-up starts another loop whose agent_start would
+  // withdraw an arm made a moment before. Pi emits agent_settled once per run, after all of
+  // those and also when the run fails, so nothing in the run can still undo the arm. An aborted
+  // run is the operator stopping it, which is no hand-over.
+  (pi as unknown as AgentSettledRegistrar).on('agent_settled', async (event, ctx) => {
+    try {
+      const config = loadConfigFile(configPath());
+      if (!isEnabled(config)) return;
+      if (event?.aborted === true) return;
+      const modules = await loadModules();
+      const sessionId = sessionIdOf(ctx, modules.nudge);
+      if (!sessionId) return;
+
+      await armRelaunch(modules, pi, ctx, sessionId);
     } catch {
       return undefined;
     }
@@ -626,7 +663,7 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       }
 
       logPointer(modules.core, sessionId, notePath);
-      const specFolder = await noteSpecFolder(modules.core, notePath);
+      const { specFolder, createdAt } = await noteFields(modules.core, notePath);
       // The pointer rides the turn the compaction already queued, so it asks for no extra one.
       pi.sendMessage({
         customType: CONCERN,
@@ -636,6 +673,7 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
           sessionId,
           cliPath: modules.nudge.CLI_COMMAND,
           afterCompaction: true,
+          createdAt,
         }),
         display: false,
       });

@@ -1,0 +1,28 @@
+✔ shouldRelaunch declines when there is no record (2.374833ms)
+✔ shouldRelaunch declines a pending record (0.761375ms)
+✔ shouldRelaunch accepts an armed record at exactly ten minutes old (0.848917ms)
+✔ shouldRelaunch declines a record armed in the future as stale (1.128334ms)
+✔ shouldRelaunch declines an armed record one millisecond beyond ten minutes (1.054834ms)
+✔ shouldRelaunch accepts hop nine below the default cap (0.83025ms)
+✔ shouldRelaunch declines hop ten at the default cap (0.794667ms)
+▶ shouldRelaunch declines malformed persisted hops
+  ✔ negative (0.076333ms)
+  ✔ fractional (0.044042ms)
+  ✔ null (0.046084ms)
+  ✔ numeric string (0.0615ms)
+  ✔ NaN (0.031916ms)
+  ✔ Infinity (0.021958ms)
+  ✔ missing (0.016583ms)
+✔ shouldRelaunch declines malformed persisted hops (1.431875ms)
+✔ shouldRelaunch accepts hop zero below the default cap (1.228334ms)
+✔ shouldRelaunch declines a fresh armed record that names no handoff or no cwd (0.914959ms)
+✔ shouldRelaunch reads a Date clock the way it reads epoch milliseconds (0.867792ms)
+✔ shouldRelaunch reports a hand-over the session called off as withdrawn (0.825167ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59.266958

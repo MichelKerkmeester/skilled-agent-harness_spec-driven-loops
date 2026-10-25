@@ -1,0 +1,122 @@
+✖ arm with a new model and no effort clears the recorded effort (18.827292ms)
+✖ a live model with no live effort drops the launch effort: claude (681.046208ms)
+✔ a live model with its live effort renders that effort: claude (690.493ms)
+✖ a live model with no live effort drops the launch effort: codex (697.106458ms)
+✔ a live model with its live effort renders that effort: codex (709.510875ms)
+✖ a live model with no live effort drops the launch effort: pi (662.034625ms)
+✔ a live model with its live effort renders that effort: pi (662.616125ms)
+✔ a live model equal to the launch model keeps the launch effort (668.80125ms)
+✔ a launch with no model keeps its launch effort beside a live model (663.216958ms)
+✔ a Hermes live model with no live effort keeps the launch reasoning (695.5345ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6188.674625
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:671:1
+✖ arm with a new model and no effort clears the recorded effort (18.827292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:697:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1382:3
+✖ a live model with no live effort drops the launch effort: claude (681.046208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '--model',
+      'claude-opus-5-5',
+  +   '--effort',
+  +   'low',
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-wLtuF2/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1392:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '--model', 'claude-opus-5-5', '--effort', 'low', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-wLtuF2/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    expected: [ '--model', 'claude-opus-5-5', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-wLtuF2/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1382:3
+✖ a live model with no live effort drops the launch effort: codex (697.106458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '--no-daemon',
+      '-m',
+      'gpt-6-luna',
+  +   '-c',
+  +   'model_reasoning_effort="low"',
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-OluD7L/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1392:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '--no-daemon', '-m', 'gpt-6-luna', '-c', 'model_reasoning_effort="low"', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-OluD7L/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    expected: [ '--no-daemon', '-m', 'gpt-6-luna', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-OluD7L/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1382:3
+✖ a live model with no live effort drops the launch effort: pi (662.034625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '--model',
+      'gpt-6-luna',
+  +   '--thinking',
+  +   'low',
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-uxsiiN/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1392:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '--model', 'gpt-6-luna', '--thinking', 'low', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-uxsiiN/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    expected: [ '--model', 'gpt-6-luna', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-uxsiiN/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

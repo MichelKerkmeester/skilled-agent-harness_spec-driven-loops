@@ -303,6 +303,73 @@ test('claimHandoff throws when the note has already been claimed', (t) => {
   );
 });
 
+// Writes a valid open note, then swaps its status line for the given frontmatter lines.
+function writeNoteWithStatusLines(sandbox, statusLines) {
+  const handoffPath = writeHandoff(sandbox);
+  const text = readNote(handoffPath).replace(/^status: open\n/m, statusLines.map((line) => `${line}\n`).join(''));
+  fs.writeFileSync(handoffPath, text);
+  return handoffPath;
+}
+
+function claimError(handoffPath) {
+  try {
+    claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW });
+  } catch (error) {
+    return error.message;
+  }
+  assert.fail('claimHandoff did not throw');
+}
+
+test('claim of a done note says the work is finished', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNoteWithStatusLines(sandbox, ['status: done']);
+  const before = readNote(handoffPath);
+  const message = claimError(handoffPath);
+  assert.match(message, /^cannot claim handoff with status done\b/);
+  assert.match(message, /finished/);
+  assert.match(message, /do not continue/);
+  assert.equal(readNote(handoffPath), before);
+});
+
+test('claim of a done note names the note that superseded it', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNoteWithStatusLines(sandbox, ['status: done', 'superseded_by: s-2']);
+  const message = claimError(handoffPath);
+  assert.match(message, /^cannot claim handoff with status done\b/);
+  assert.match(message, /superseded by s-2/);
+});
+
+test('claim of a claimed note names its owner', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNoteWithStatusLines(sandbox, [
+    'status: claimed',
+    'claimed_by: s-1',
+    'claimed_at: 2026-10-25T10:00:00Z',
+  ]);
+  const message = claimError(handoffPath);
+  assert.match(message, /^cannot claim handoff with status claimed\b/);
+  assert.match(message, /s-1/);
+  assert.match(message, /2026-10-25T10:00:00Z/);
+
+  const bareSandbox = createSandbox(t);
+  const bareMessage = claimError(writeNoteWithStatusLines(bareSandbox, ['status: claimed']));
+  assert.match(bareMessage, /an unknown session/);
+  assert.match(bareMessage, /an unknown time/);
+});
+
+test('claim of a note with no status says it is not a handoff note', (t) => {
+  const sandbox = createSandbox(t);
+  const message = claimError(writeNoteWithStatusLines(sandbox, []));
+  assert.match(message, /^cannot claim handoff with status missing\b/);
+  assert.match(message, /not a handoff note/);
+});
+
+test('claim of a note with an unknown status keeps the prefix only', (t) => {
+  const sandbox = createSandbox(t);
+  const message = claimError(writeNoteWithStatusLines(sandbox, ['status: withdrawn']));
+  assert.equal(message, 'cannot claim handoff with status withdrawn');
+});
+
 test('completeHandoff moves a claimed note to done with completion metadata', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox, { status: 'claimed' });
@@ -599,6 +666,40 @@ test('arm stamps a fresh armId on every arm even in the same millisecond', (t) =
   assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), second);
 });
 
+// An effort is chosen for one model, so an arm onto a new model that brings no effort must
+// not leave the old model's effort in the record for the wrapper to replay.
+test('arm with a new model and no effort clears the recorded effort', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'armed',
+    loopId: LOOP_ID,
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'codex',
+    name: null,
+    cwd: '/tmp/cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
+    armedAt: NOW.toISOString(),
+    model: 'model-a',
+    effort: 'high',
+  });
+  const sameModel = arm({
+    loopId: LOOP_ID, cwd: '/tmp/cwd', settings: { model: 'model-a' }, env: sandbox.env, now: NOW,
+  });
+  assert.equal(sameModel.effort, 'high');
+
+  const armed = arm({
+    loopId: LOOP_ID, cwd: '/tmp/cwd', settings: { model: 'model-b' }, env: sandbox.env, now: NOW,
+  });
+  assert.equal(armed.model, 'model-b');
+  assert.equal(Object.hasOwn(armed, 'effort'), false);
+  const written = readRelaunchFile(LOOP_ID, sandbox.env);
+  assert.equal(written.model, 'model-b');
+  assert.equal(Object.hasOwn(written, 'effort'), false);
+});
+
 test('a re-arm makes an armed record older than the age limit relaunchable again', (t) => {
   const sandbox = createSandbox(t);
   writeRelaunchRecord(sandbox, {
@@ -857,6 +958,41 @@ test('shouldRelaunch declines hop ten at the default cap', (t) => {
       { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
     ),
     { relaunch: false, reason: 'hop-cap' },
+  );
+});
+
+test('shouldRelaunch declines malformed persisted hops', async (t) => {
+  createSandbox(t);
+  const cases = [
+    ['negative', -1],
+    ['fractional', 1.5],
+    ['null', null],
+    ['numeric string', '3'],
+    ['NaN', Number.NaN],
+    ['Infinity', Number.POSITIVE_INFINITY],
+    ['missing', undefined],
+  ];
+  for (const [label, hops] of cases) {
+    await t.test(label, () => {
+      assert.deepEqual(
+        shouldRelaunch(
+          { status: 'armed', armedAt: NOW.getTime(), hops, handoff: '/repo/note.md', cwd: '/repo' },
+          { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
+        ),
+        { relaunch: false, reason: 'hop-cap' },
+      );
+    });
+  }
+});
+
+test('shouldRelaunch accepts hop zero below the default cap', (t) => {
+  createSandbox(t);
+  assert.deepEqual(
+    shouldRelaunch(
+      { status: 'armed', armedAt: NOW.getTime(), hops: 0, handoff: '/repo/note.md', cwd: '/repo' },
+      { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
+    ),
+    { relaunch: true },
   );
 });
 

@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-25 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
