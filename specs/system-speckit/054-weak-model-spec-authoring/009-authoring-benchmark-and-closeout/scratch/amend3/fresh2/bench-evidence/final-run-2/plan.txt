@@ -1,0 +1,281 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "One shell script gains a --quiet option, a shared level-line formatter and one output branch. The default and JSON paths stay byte-identical, proven by a captured baseline diff and the two existing Node test scripts."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash 3.2+ (macOS system bash), bash 5 compatible |
+| **Framework** | None - one shell script |
+| **Storage** | None |
+| **Testing** | `bash -n`, `wc -l`, `diff`, and the two existing Node test scripts |
+
+### Overview
+
+The change lives in one file. The parser learns one boolean, the level line moves into a shared formatter, and the output dispatch gains one branch between JSON and text. Proof is a line count for the quiet path, a byte diff for the report path, and the two existing Node test scripts that already invoke the script with `--json`.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Single-script branch (no application pattern applies)
+
+### Key Components
+- **`recommend-level.sh` argument loop**: parses `--quiet` into a `QUIET` boolean and leaves every existing case untouched.
+- **`format_level_line()`**: the single producer of `Recommended Level: <N> (<Name>)`.
+- **`output_quiet()`**: writes that line once, with no leading blank line.
+- **`output_text()`**: the existing report, unchanged except that its level line now comes from the formatter.
+
+### Data Flow
+
+`argv` -> the parser sets `QUIET` -> scoring, confidence and phase calculation run exactly as before -> dispatch chooses `output_json` when `--json` is set, `output_quiet` when `--quiet` is set, and `output_text` otherwise.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `recommend-level.sh` (`output_text`) | Owns the report and the level line | update | `diff` of the default output against the pre-change capture is empty |
+| `recommend-level.sh` (`show_help` and the header OPTIONS block) | Documents the option surface | update | `--help` names `--quiet` in the options table and in one example |
+| `.skilled/commands/speckit/assets/speckit-plan.yaml` and `speckit-complete.yaml` | The only in-repo callers; both pass `--json` and parse JSON | not a consumer of `--quiet` | `rg -n "recommend-level.sh" .skilled/commands` prints two `--json` invocations |
+| `runtime/cli/tests/test-phase-system.js` and `test-phase-validation.js` | Regression tests that invoke the script with `--json` | unchanged | Both scripts pass before and after the change |
+
+Required inventories:
+- Same-class producers: `rg -n "Recommended Level" .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` names one producer today; after the change both call sites go through `format_level_line()`.
+- Consumers of changed symbols: `rg -n "recommend-level.sh" --glob '!*.md' .` names two YAML call sites, both using `--json`.
+- Matrix axes: quiet on/off x json on/off x phases on/off, plus the error path.
+- Algorithm invariant: with `QUIET=true` and `JSON_OUTPUT=false`, stdout holds exactly one newline-terminated line. Adversarial cases: a copied leading blank line, a trailing blank line, both flags together, and an invalid-input run.
+<!-- /ANCHOR:affected-surfaces -->
+
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | None - the script has no unit harness | - |
+| Integration | Flag matrix on the real script: quiet on/off x json on/off x phases on/off | `bash`, `wc`, `diff` |
+| Regression | The two existing Node scripts that invoke `recommend-level.sh` with `--json` | `node cli/tests/test-phase-system.js`, `node cli/tests/test-phase-validation.js` |
+| Manual | `--help` output inspection | Terminal |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Bash 3.2+ | Internal | Green | The script cannot run; already required today |
+| `wc` and `diff` | External | Green | Line-count and byte-equality checks cannot run; manual inspection remains |
+| Node 22.12+ | Internal | Green | The two regression scripts cannot run; the flag matrix still covers output |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: The default text output or the JSON output differs from the captured baseline.
+- **Procedure**: `git revert <commit>` the single commit that touches `recommend-level.sh`, then re-run the baseline capture and the two regression scripts.
+<!-- /ANCHOR:rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────────┐
+                          ├──► Phase 2 (Implementation) ──► Phase 3 (Verification)
+                          │
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 10 minutes |
+| Core Implementation | Low | 30 minutes |
+| Verification | Low | 15 minutes |
+| **Total** | | **~55 minutes (assumption)** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [x] Backup created (if data changes) - no data changes
+- [ ] Feature flag configured - not applicable, the flag is opt-in at the call site
+- [ ] Monitoring alerts set - not applicable, no service
+
+### Rollback Procedure
+1. Revert the single commit that touches `recommend-level.sh`.
+2. Re-run the baseline capture for `--loc 500 --files 15` and the full-risk variant.
+3. Run the two regression scripts.
+4. No stakeholder notification is needed; the default output never changes.
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
+│   Setup     │     │    Core     │     │   Verify    │
+└─────────────┘     └─────────────┘     └─────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture (T002) | None | The pre-change output fixtures | T012, T013 |
+| `format_level_line()` (T005) | Baseline capture | One label for both output paths | T006, T012 |
+| `--quiet` parser (T007) | None | `QUIET` set from argv | T008, T011 |
+| Output dispatch (T008) | Formatter, parser | The one-line path | T011, T012 |
+| Verification matrix (T011-T014) | All implementation tasks | Evidence for every AC row | Closure |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **T005 add the shared formatter** - 10 minutes - CRITICAL
+2. **T007 parse `--quiet`** - 5 minutes - CRITICAL
+3. **T008 dispatch JSON -> quiet -> text** - 10 minutes - CRITICAL
+4. **T011-T012 line-count and byte-equality checks** - 10 minutes - CRITICAL
+
+**Total Critical Path**: ~35 minutes
+
+**Parallel Opportunities**:
+- T003 consumer inventory and T009 help text can run alongside T004-T008
+- T010 error-path check can run as soon as T008 lands
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Baseline captured | The 16-line, 17-line and 12-line captures exist and match the current script | End of Setup |
+| M2 | Flag works | `--quiet --loc 500 --files 15` prints one line and exits 0 | End of Implementation |
+| M3 | Contract proven | The flag matrix, the byte diff and both regression scripts pass | End of Verification |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: Share one level-line formatter instead of duplicating the label
+
+**Status**: Accepted
+
+**Context**: Two output paths must print a byte-identical `Recommended Level:` line. A duplicated `echo` in each path is the obvious implementation and the obvious source of drift: a later label or format change lands in one path only.
+
+**Decision**: Extract `format_level_line()` and call it from both `output_text()` and `output_quiet()`.
+
+**Consequences**:
+- The label has one definition, so byte equality holds by construction rather than by test alone.
+- The script gains one small function, consistent with the helper functions it already defines.
+- `output_text()` changes in source while its output stays identical.
+
+**Alternatives Rejected**:
+- Duplicate the `echo` in `output_quiet()`: rejected because two copies of a parser-visible label drift.
+- Pipe `output_text` through `sed -n '2p'`: rejected because it starts a subprocess, keeps the leading blank line in the pipeline, and breaks if the report's line order changes.
+
+---
+
+### ADR-002: `--json` keeps precedence over `--quiet`
+
+**Status**: Accepted
+
+**Context**: Both flags suppress the human report, so a caller can pass both. The pair needs one deterministic meaning.
+
+**Decision**: The output dispatch checks `JSON_OUTPUT` first, then `QUIET`, then falls back to text. `--quiet` is documented as a modifier of the text output only.
+
+**Consequences**:
+- `--json --quiet` prints the unchanged JSON document, so the structured contract never silently downgrades.
+- No new error path or exit code is introduced for a harmless pair.
+- A caller that wants one line must not pass `--json`; the help text and AC-004 make that explicit.
+
+**Alternatives Rejected**:
+- Error on the combination: rejected because it adds a failure mode and a new exit path for a pair with no ambiguity.
+- Let `--quiet` win: rejected because it would replace a structured document with plain text for a caller that asked for JSON.
+
+---
+

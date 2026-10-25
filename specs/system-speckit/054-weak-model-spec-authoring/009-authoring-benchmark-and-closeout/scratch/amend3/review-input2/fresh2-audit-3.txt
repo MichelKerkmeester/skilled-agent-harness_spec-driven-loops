@@ -1,0 +1,11 @@
+session aromatic-stem tool_calls 45
+baseline-swe call_json=0 update_json=54
+baseline-deepseek call_json=0 update_json=79
+bench-evidence call_json=0 update_json=36
+bench-packets call_json=0 update_json=0
+hints- call_json=0 update_json=2
+anchors- call_json=0 update_json=4
+009-authoring-benchmark-and-closeout call_json=0 update_json=533
+/private/tmp call_json=0 update_json=0
+authoring-baseline call_json=0 update_json=0
+model-eval call_json=0 update_json=0

@@ -1,0 +1,1 @@
+call_90abcaea34db4165b446bed0d5e24d3e | git status --porcelain | head -30; echo "=== spec folder files ==="; ls -la specs/zz-bench-authoring/001-recommend-level-quiet-flag/ | hits ['anchors-', 'baseline-swe', 'hints-']

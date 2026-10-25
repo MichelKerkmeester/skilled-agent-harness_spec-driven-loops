@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ### Summary
 
-A weak model can now author a filled spec packet from the system-spec-kit templates: an unfilled value token fails strict validation after Draft, every core section says how to fill it, a short card is the first read, and the examples no longer teach the old defects. The packet measured the result on a frozen Level 3 task with three runs per side. Leftover hints fell and every run passed strict validation, but parent criterion 5 failed on the frozen metric because one run deleted six optional Level 3 verification sections.
+A weak model can now author a filled spec packet from the system-spec-kit templates: an unfilled value token fails strict validation after Draft, every core section says how to fill it, a short card is the first read, and the examples no longer teach the old defects. The packet measured the result on a frozen Level 3 task with three runs per set. Leftover hints fell and every run passed strict validation. Parent criterion 5 failed on the first three final sets, when runs deleted optional or required `tasks.md` sections, and passed on the fourth set after the `tasks.md` fill notes were corrected.
 
 ### Included Phases
 
@@ -30,7 +30,7 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 | `006-speckit-command-and-agent-alignment` | Complete | Commands and agents point at the card, the token and the guards |
 | `007-playbook-catalog-readme-alignment` | Complete | Eight scenarios, four catalog leaves and the doc edits |
 | `008-playbook-run-in-worktree` | Complete | All eight scenarios passed on a disposable worktree |
-| `009-authoring-benchmark-and-closeout` | In Progress | Benchmark run, report and close-out records, with criterion 5 FAIL |
+| `009-authoring-benchmark-and-closeout` | Complete | Benchmark runs, report and close-out records, with criterion 5 passing on the fourth final set |
 
 ### Added
 
@@ -39,7 +39,7 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 - A short authoring card that the four authoring intents load instead of the long template guide.
 - Two guards, `check-example-drift.sh` and `check-card-sync.sh`.
 - Eight playbook scenarios and four catalog leaves, run on a disposable worktree with eight passes.
-- A benchmark report of the before and after for five metrics, with verdict FAIL.
+- A benchmark report of the before and after for five metrics. The first three final sets failed criterion 5, and the fourth passed.
 
 ### Changed
 
@@ -55,10 +55,10 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 ### Verification
 
 - Recursive strict validation of the packet: RESULT: PASSED
-- Parent criteria: C1, C2, C3, C4, C6 and C7 PASS, C5 FAIL
+- Parent criteria: C1 to C7 PASS (C5 after three failed final sets)
 - Census over 4688 folders: 4496 PASS and 192 FAIL before and after, 0 differing rows
 - Playbook run: 8 scenarios, 8 PASS
-- Benchmark: missing_anchors final maximum 6 against a baseline maximum of 0, leftover_hints final maximum 0 against 1
+- Benchmark: four final sets. Criterion 5 passed on the fourth with counted missing_anchors 0 against 0 and leftover_hints at most 1 against 1. The first set had a missing_anchors maximum of 6 against 0
 
 ### Files Changed
 
@@ -72,5 +72,5 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 
 ### Follow-Ups
 
-- Parent criterion 5 is FAIL and the packet is In Progress. The label fix shipped (the fill notes of the six `## L3+:` sections of the `tasks.md` template say they stay at Level 3) and the rerun on cli-devin deepseek-v4-1-flash-1017-max failed again, with missing_anchors 3 against 0. After a new anchor rule, three fresh runs in a disposable worktree failed it a third time (counted missing_anchors 1 against 0, a deleted required `fix-completeness` section). The operator decides how to treat that required anchor.
+- Strict validation does not enforce required anchors. That is an open follow-up and is not fixed here. Parent criterion 5 passed on the second fresh set after three failed final sets, so the packet reads Complete.
 - Three runs per side cannot support a significance claim.

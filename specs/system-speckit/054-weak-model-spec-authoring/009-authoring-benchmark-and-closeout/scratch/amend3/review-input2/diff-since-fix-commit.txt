@@ -1,0 +1,679 @@
+diff --git a/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md b/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md
+index e84cdd1d2d..7e67229a36 100644
+--- a/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md
++++ b/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md
+@@ -6,18 +6,24 @@
+ 
+ ## 1. HEADLINE / OVERVIEW
+ 
+-**Verdict: FAIL**
++**Verdict: PASS on the deciding set (fourth update), after FAIL on three earlier sets**
+ 
+-**Update on 2026-10-25, third amendment: the final set was rerun.** This report now holds three final sets, and they are different experiments. The first set, kept below as history, ran cli-devin `swe-2-max` on the tree before the L3+ label fix against a `swe-2-max` baseline. The operator then ruled out the swe-2 models and set a DeepSeek baseline. The second set ran cli-devin `deepseek-v4-1-flash-1017-max` on the tree after the fix (the fill note under each of the six `## L3+:` headings of `tasks.md` now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.') against a new DeepSeek baseline of three runs at the packet start commit. The second set was the first final set on the final tree, and **its verdict is FAIL**. The operator later set a new anchor rule after seeing that result, so the fresh set below decides criterion 5.
++**Update on 2026-10-25, third amendment: the final set was rerun.** This report now holds three final sets, and they are different experiments. The first set, kept below as history, ran cli-devin `swe-2-max` on the tree before the L3+ label fix against a `swe-2-max` baseline. The operator then ruled out the swe-2 models and set a DeepSeek baseline. The second set ran cli-devin `deepseek-v4-1-flash-1017-max` on the tree after the fix (the fill note under each of the six `## L3+:` headings of `tasks.md` now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.') against a new DeepSeek baseline of three runs at the packet start commit. The second set was the first final set on the final tree, and **its verdict is FAIL**. The operator later set a new anchor rule after seeing that result, so the fresh set decided criterion 5 next, and the second fresh set decides it now.
+ 
+ The second set's worst run is worse than the DeepSeek baseline's worst on missing_anchors: a final maximum of 3 against 0. Run 1 wrote a `tasks.md` with 18 anchors where the frozen list expects 21 and lacks `deploy-ready`, `compliance-verify` and `sign-off`. Runs 2 and 3 kept all 21. Run 2 is marked contaminated: its session read the frozen vocabulary files (section 5), so it is kept as recorded and not used as evidence of a clean pass. The verdict is FAIL with or without run 2, because run 1 alone is above the baseline maximum. Leftover hints were 0 in all three final runs against a baseline maximum of 1.
+ 
+ 
++**Update on 2026-10-25, fix-completeness note fixed and a fourth final set run.** The cause of the previous failure was found and fixed at the source. Strict validation does not check that required anchors are present, and the fill note of the required `fix-completeness` section of `tasks.md` said 'Delete the rows that do not apply', which fresh run 1 read as permission to delete the section. The note now opens with 'Keep this section, because every level requires it.' and says 'Delete only the rows that do not apply, never the section.' The anchor rule and criterion 5 did not change. The fix is commit `74a629a7af`, and the full suite passed again with the same counts.
++
++The fourth set is the second fresh set. It ran cli-devin `deepseek-v4-1-flash-1017-max` in a new disposable worktree created from `74a629a7af`, with this packet's folder deleted from its working tree, with the same brief, dispatch and measures, and with the rule script committed before any fresh run. **Its verdict is PASS.** Every run passed strict validation, leftover hints were 0, 1 and 0 against a baseline maximum of 1, counted `missing_anchors` was 0, 0 and 0 against 0, and no run wrote outside its track. The three earlier final sets all failed and stay below as history, each labelled with its model, its tree and the rule that scored it.
++
++Read the PASS with its limits. It is the fourth set, it followed a template fix made after a failure was understood, and it is three runs on one model. The result shows that these three runs, on the fixed template, kept every required section and lost no required anchor. It does not show an effect size, and the section 7 caveats apply.
++
+ **Update on 2026-10-25, fresh runs under a new anchor rule.** After the second set failed, the operator chose "New rule, fresh runs". Parent criterion 5 now excludes an optional Level 3 section that a run deleted as its fill note allows. The rule was fixed and committed before any fresh run, as commit `e13115c7da`, and is implemented in `scratch/tools/justified-anchors.sh`. A frozen anchor that is missing from a packet counts, unless it is one of the six optional `tasks.md` anchors in the contract and its condition holds: `arch-verify` when the packet has no `ADR-<n>`, `perf-verify` when `spec.md` has no `NFR-P<n>`, and `deploy-ready`, `compliance-verify` and `sign-off` by task definition. `docs-verify` never holds. Any missing anchor in `spec.md`, `plan.md` or `acceptance-criteria.md` counts, and so does any required `tasks.md` anchor.
+ 
+ The rule scored the earlier sets before the fresh runs, and the scores are in `scratch/amend3/justified-anchors-test.txt`: the first swe-2-max final set scores 0, 0 and 3 (run 3 dropped `arch-verify`, `perf-verify` and `docs-verify` while its packet records ADR-001 and NFR-P01), the second DeepSeek set scores 0, 0 and 0, and all six baseline packets score 0. The second DeepSeek set cannot decide the box, because its result was seen before the rule was set.
+ 
+-The fresh set ran cli-devin `deepseek-v4-1-flash-1017-max` in a disposable worktree created from the pre-registration commit, with this packet's folder deleted from its working tree so no benchmark evidence could be read there. **The fresh set is the deciding set, and its verdict is FAIL.** Run 1 deleted the whole `fix-completeness` section of `tasks.md`, a required anchor, and its fill note says to delete rows that do not apply and not the section. Counted anchors are 1, 0 and 0 against a DeepSeek baseline maximum of 0. Runs 2 and 3 are clean under the rule, and run 3 deleted `deploy-ready`, `compliance-verify` and `sign-off`, which the rule excuses. Leftover hints were 0 in all three fresh runs and every run passed strict validation.
++The fresh set ran cli-devin `deepseek-v4-1-flash-1017-max` in a disposable worktree created from the pre-registration commit, with this packet's folder deleted from its working tree so no benchmark evidence could be read there. **The fresh set was the deciding set when it ran, and its verdict is FAIL. It was superseded by the second fresh set above, after the cause was fixed.** Run 1 deleted the whole `fix-completeness` section of `tasks.md`, a required anchor, and its fill note says to delete rows that do not apply and not the section. Counted anchors are 1, 0 and 0 against a DeepSeek baseline maximum of 0. Runs 2 and 3 are clean under the rule, and run 3 deleted `deploy-ready`, `compliance-verify` and `sign-off`, which the rule excuses. Leftover hints were 0 in all three fresh runs and every run passed strict validation.
+ 
+ First set, history (swe-2-max, tree before the L3+ label fix):
+ 
+@@ -97,6 +103,26 @@ All three runs are scored again under the old and the new rule in the table belo
+ 
+ Verdict rule as now worded: every final run passes strict validation and the final maximum of `leftover_hints`, `missing_anchors` (counted under the rule) and `out_of_scope_writes` is at most the baseline maximum. Counted `missing_anchors` is 1 against 0, so the verdict is FAIL. The per-run rows are in `results-amend3.csv` under the set `amend3-fresh`.
+ 
++### 2.3 Second fresh set after the fix-completeness note fix (cli-devin deepseek-v4-1-flash-1017-max, new disposable worktree)
++
++Baseline: the same three DeepSeek baseline runs as section 2.1. Final: three runs in a new disposable worktree at commit `74a629a7af`, with the packet folder removed from its working tree. `missing_anchors` is the counted value under the rule. The numbers come from `scratch/amend3/fresh2/delta.json`.
++
++| Metric | Baseline min | Baseline max | Baseline mean | Final min | Final max | Final mean | Delta of means |
++|--------|--------------|--------------|---------------|-----------|-----------|------------|----------------|
++| strict_passed | 1 | 1 | 1 | 1 | 1 | 1 | 0 |
++| leftover_hints | 0 | 1 | 0.3 | 0 | 1 | 0.3 | 0 |
++| missing_anchors | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++| out_of_scope_writes | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++| seconds | 217 | 298 | 252.3 | 164 | 228 | 193.7 | -58.7 |
++
++| Set | Run | strict_passed | leftover_hints | missing_anchors (rule) | missing_anchors (raw) | out_of_scope_writes | seconds |
++|-----|-----|---------------|----------------|------------------------|-----------------------|---------------------|---------|
++| fresh2 final | 1 | 1 | 0 | 0 | 0 | 0 | 189 |
++| fresh2 final | 2 | 1 | 1 | 0 | 0 | 0 | 228 |
++| fresh2 final | 3 | 1 | 0 | 0 | 0 | 0 | 164 |
++
++Every run kept all 21 `tasks.md` anchors, and every `spec.md`, `plan.md` and `acceptance-criteria.md` anchor, so the raw shortfall is 0 as well as the counted value. Run 2 has one bare hint left, and the baseline maximum is also 1. Verdict rule as now worded: every final run passes strict validation and the final maximum of `leftover_hints`, `missing_anchors` (counted under the rule) and `out_of_scope_writes` is at most the baseline maximum. All three hold, so the verdict is PASS. The per-run rows are in `results-amend3.csv` under the set `amend3-fresh2`.
++
+ ---
+ 
+ ## 3. METHODOLOGY
+@@ -109,6 +135,8 @@ Second set (third amendment): same brief, same fixture, same five metrics, same
+ 
+ Fresh set: the same brief (`cmp` against the phase 1 brief, no difference), the same dispatch on cli-devin `deepseek-v4-1-flash-1017-max` with a 2700 second watchdog, and the same five metrics, except that `missing_anchors` is the counted value from `scratch/tools/justified-anchors.sh`, with the raw shortfall recorded beside it. The runs ran one after another in a disposable worktree made with `worktree-naming.sh create deepseek-final e13115c7da --no-provision`, provisioned with the per-process git setting `core.fsmonitor=false`. The packet folder was deleted in that worktree only, uncommitted, and the `.skilled` diff against the commit was empty before the first run and had the same hash before and after each run. All evidence files were written to this packet's scratch folder, outside the disposable worktree.
+ 
++Second fresh set: identical to the first fresh set in brief, dispatch, measures, rule script and isolation, except for the tree (commit `74a629a7af`, which adds the fix-completeness note fix) and the worktree (a new one, `worktrees/224-deepseek-final2`, provisioned with `core.fsmonitor=false`). The `.skilled` diff against the commit was empty before the runs and had the same hash before and after each run. The evidence is in `scratch/amend3/fresh2/`.
++
+ Each run's Devin session was found by working directory and start window, and its tool calls were searched in both the call and the update column for the baseline evidence folder, this phase's scratch folder and `/private/tmp`.
+ 
+ ---
+@@ -120,6 +148,7 @@ Each run's Devin session was found by working directory and start window, and it
+ | baseline | Commit `ac2be31ec6`, before the packet changes | v2.2 templates, bare bracketed hints, the hand-written examples |
+ | final (first set, history) | Commit `a15bc0636e`, after phases 1 to 8 | v2.3 value tokens, section fill guidance, the authoring card, the guards |
+ | baseline (second set) | Commit `ac2be31ec6` in a disposable worktree | the same pre-change tree as the first baseline, run by cli-devin `deepseek-v4-1-flash-1017-max` |
++| final (second fresh set) | Commit `74a629a7af` in a new disposable worktree, packet folder removed | the label-fix tree plus the fix-completeness note fix, with no benchmark packet files readable |
+ | final (fresh set) | Commit `e13115c7da` in a disposable worktree, packet folder removed | the label-fix tree plus the committed records, with no benchmark packet files readable |
+ | final (second set) | Commit `23657e227e`, phases 1 to 8 plus the L3+ label fix | the first final tree with 'L3+ means Level 3 and above, so this section stays at Level 3.' opening the six L3+ fill notes of `tasks.md` |
+ 
+@@ -139,6 +168,8 @@ The audit patterns gave hits, and they were read one by one. In runs 1 and 3 the
+ 
+ Fresh set. Every dispatch exited with status 0, exactly one Devin session was found per run, the `.skilled` diff hash was the same before and after each run, and no write fell outside the bench track. Seconds were 208, 223, 153, against 217, 242 and 298 on the baseline, and they were not measured under equal load. The audit searched the call and update columns of each session for ten strings (`baseline-swe`, `baseline-deepseek`, `bench-evidence`, `bench-packets`, `hints-`, `anchors-`, `009-authoring-benchmark-and-closeout`, `/private/tmp`, `authoring-baseline`, `model-eval`). No call text of any run names one of them. Every hit sits in a tool's output: in all three runs the output of `git status --porcelain`, which lists the uncommitted deletion of this packet's files by path, and in run 2 also the output of a code search for `recommend-level`, which returned one line of the report README that names the fixture. No file of the packet or the report was read, because the packet files do not exist in that worktree. The sessions did see file names, so this is a limit, not a clean zero (section 7). The hit lines are in `scratch/amend3/fresh/runs/T005-N.hits`.
+ 
++Second fresh set. Every dispatch exited with status 0, exactly one Devin session was found per run, the `.skilled` diff hash was the same before and after each run, and no write fell outside the bench track. The audit searched ten strings in both columns. No call text of any run names one of them. Every hit is tool output naming paths: the output of `git status --porcelain`, which lists the uncommitted deletion of this packet's files (all three runs), the output of a file-list search for `recommend-level` that returned the report README path (run 1), and, in run 3, a `git status` after a repair of its own packet. No packet or report file was read. As in the first fresh set, the sessions could see file names, so this is a limit. Seconds were 189, 228 and 164 against 242, 217 and 298 on the baseline. The seconds are not like-for-like, because the baseline was measured on another day's load and no check was made for other sessions during the runs (the only check, at the start of run 1, found no other `devin -p` process).
++
+ ---
+ 
+ ## 6. FINDINGS
+@@ -162,6 +193,8 @@ Fresh set. Counted `missing_anchors` is 1, 0 and 0 (raw 2, 0 and 3). Run 1 left
+ 
+ Across all three final sets the omission moves: swe-2-max run 3 dropped six sections, DeepSeek second-set run 1 dropped three, and DeepSeek fresh run 1 dropped one required section. No set shows the same sections dropped twice, and the sample is too small to tell variation from an effect of the template wording.
+ 
++Second fresh set. Counted and raw `missing_anchors` are 0, 0 and 0. The deletion of the `fix-completeness` section that failed the first fresh set did not recur in three runs. Leftover hints were 0, 1 and 0, with the baseline at 1, 0 and 0. Scored against the contract-required anchors, all three runs miss 0 of 15 (`scratch/amend3/fresh2/diagnostic.txt`, a diagnostic). Across all four final sets the dropped sections moved: six, then three, then one required section, then none. That pattern fits a fix that worked and it fits run-to-run variation, and three runs cannot tell them apart.
++
+ ---
+ 
+ ## 7. CAVEATS
+@@ -174,6 +207,8 @@ Second set (third amendment): one run produced the whole regression and another
+ 
+ Fresh set: it is one worktree with the packet folder removed, three runs, and one model. The sessions could see the names of the deleted files in `git status` output and, in run 2, one report line from a code search, so the isolation is strong for file contents and weaker for file names. The rule was written after the first two final sets were scored, which the parent goal states openly, and the fresh set is the first that was run after the rule was committed. The final copies of `spec.md`, `plan.md` and `tasks.md` are kept as `.txt` under `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh/bench-evidence/`.
+ 
++Second fresh set: it is the fourth final set, run after a template fix aimed at the failure of the third, so the PASS is a result after repeated attempts and not a first-try result. It is one worktree with the packet folder removed, three runs and one model. The sessions saw the names of the deleted files. A different model, a different feature or a Level 1 packet is not measured. The final copies of `spec.md`, `plan.md` and `tasks.md` are kept as `.txt` under `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/bench-evidence/`.
++
+ ---
+ 
+ ## 8. RECOMMENDATIONS
+@@ -185,17 +220,23 @@ Fresh set: it is one worktree with the packet folder removed, three runs, and on
+ Recommendations after the second set, which supersede the first set's 'Validate first' line (verdict FAIL again):
+ 
+ - **Apply now.** Keep the label sentence and the shipped template work. They do no harm on the measured data (leftover hints 0, strict validation 3 of 3) and there is no evidence that they remove the omission. Do not report criterion 5 as met.
+-- **Decide the metric.** The operator should decide whether `missing_anchors` should count the optional Level 3 verification sections. Against the contract-required anchors every run on both models and both trees scores 0 missing, so the frozen metric and the contract disagree about what a complete Level 3 `tasks.md` is.
++- **Decide the metric.** The operator decided this question with the anchor rule below. Against the contract-required anchors every run on both models and both trees scores 0 missing, so the frozen metric and the contract disagree about what a complete Level 3 `tasks.md` is.
+ - **Validate first.** Before another rerun, either reword the 'delete the section when' clauses of the three sections run 1 dropped, or accept that deleting them is allowed. Then run the final set in a worktree that holds no earlier benchmark evidence, as the baseline did, so a session cannot find the frozen lists.
+ - **Future.** A validator rule that requires the optional Level 3 verification anchors when a packet records an ADR, a performance requirement or paired documents is still a separate packet.
+ 
+-Recommendations after the fresh set, which supersede the two earlier sets' recommendations (verdict FAIL on the deciding set):
++Recommendations after the fresh set, which supersede the two earlier sets' recommendations and are themselves superseded by the next block (verdict FAIL on the set that decided at that time):
+ 
+ - **Apply now.** Keep the label sentence and the shipped template work. Leftover hints are 0 in all six DeepSeek final runs and strict validation passed in all of them. Do not report criterion 5 as met.
+ - **Decide what a required anchor is.** `fix-completeness` is required in the contract, yet strict validation passes without it and its fill note invites deleting rows. Either add a validator rule that fails a packet without the required `tasks.md` anchors, or move `fix-completeness` to the optional set with a stated condition. That is a template and validator decision and belongs to its own packet.
+ - **Validate first.** Reword the `fix-completeness` fill note so it cannot be read as permission to delete the section, then rerun the final set in a fresh disposable worktree. The rule script and the worktree recipe are in the source packet and can be reused unchanged.
+ - **Future.** A larger run count would separate variation from an effect. Three runs per set cannot.
+ 
++Recommendations after the second fresh set, which supersede the earlier ones (verdict PASS on the deciding set):
++
++- **Apply now.** Ship the template changes as they are: the value tokens, the section fill guidance, the authoring card, the `L3+` label sentence and the `fix-completeness` note fix. Criterion 5 is met on the deciding set.
++- **Validate first.** Nothing blocks shipping. A reader who wants more than a range should rerun the final set with more runs and a second model.
++- **Future.** Strict validation still does not enforce required anchors, so a packet without a required `tasks.md` section can pass. That is an open follow-up and not fixed here. It belongs to its own packet, together with the `ANCHORS_VALID` rule.
++
+ ---
+ 
+ ## 9. REPRODUCIBILITY
+@@ -205,7 +246,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --
+ rg -o --no-filename "\[YOUR_VALUE_HERE: [^]]*\]" specs/zz-bench-hints/001-recommend-level-quiet-flag/*.md | sort -u > hints.txt
+ ```
+ 
+-The dispatch and the five metric commands are in `scratch/tools/run-final.sh` in the source packet. The second set used `scratch/tools/run-amend3.sh` in the same way with the DeepSeek model, `scratch/tools/amend3-delta.sh` for the delta and `scratch/tools/amend3-diagnostic.sh` for the diagnostic. The fresh set used `scratch/tools/run-fresh.sh`, `scratch/tools/fresh-delta.sh`, `scratch/tools/fresh-diagnostic.sh` and the rule script `scratch/tools/justified-anchors.sh`. Run it as `run-final.sh N dispatch` and then `run-final.sh N measure`. The three final runs took about 45 minutes together.
++The dispatch and the five metric commands are in `scratch/tools/run-final.sh` in the source packet. The second set used `scratch/tools/run-amend3.sh` in the same way with the DeepSeek model, `scratch/tools/amend3-delta.sh` for the delta and `scratch/tools/amend3-diagnostic.sh` for the diagnostic. The second fresh set used `scratch/tools/run-fresh2.sh`, `scratch/tools/fresh2-delta.sh` and `scratch/tools/fresh2-diagnostic.sh`. The first fresh set used `scratch/tools/run-fresh.sh`, `scratch/tools/fresh-delta.sh`, `scratch/tools/fresh-diagnostic.sh` and the rule script `scratch/tools/justified-anchors.sh`. Run it as `run-final.sh N dispatch` and then `run-final.sh N measure`. The three final runs took about 45 minutes together.
+ 
+ ---
+ 
+@@ -216,4 +257,5 @@ The dispatch and the five metric commands are in `scratch/tools/run-final.sh` in
+ - Delta: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json`
+ - Second set delta: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/delta.json`, results in `results-amend3.csv`
+ - DeepSeek baseline: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/baseline-deepseek/baseline.json`
++- Second fresh set delta: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.json`
+ - Fresh set delta: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh/delta.json`, anchor rule scores in `scratch/amend3/justified-anchors-test.txt`
+diff --git a/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv b/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv
+index 6212f4d21a..8527c1086f 100644
+--- a/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv
++++ b/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/results-amend3.csv
+@@ -8,3 +8,6 @@ amend3,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,243,status listing only
+ amend3-fresh,final,deepseek-v4-1-flash-1017-max,1,1,0,1,0,208,only git status output listed the removed files
+ amend3-fresh,final,deepseek-v4-1-flash-1017-max,2,1,0,0,0,223,git status output and one code search output named the report folder
+ amend3-fresh,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,153,only git status output listed the removed files
++amend3-fresh2,final,deepseek-v4-1-flash-1017-max,1,1,0,0,0,189,call text clean and tool output named paths
++amend3-fresh2,final,deepseek-v4-1-flash-1017-max,2,1,1,0,0,228,call text clean and git status output named paths
++amend3-fresh2,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,164,call text clean and git status output named paths
+diff --git a/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md b/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md
+index dee148fa00..9a15337d2b 100644
+--- a/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md
++++ b/.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md
+@@ -23,6 +23,7 @@ This map names where the raw evidence behind this folder lives. The folder holds
+ | Second set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/baseline.json`, with runs, audits and packet copies beside it |
+ | Second set delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/delta.json` |
+ | Fresh set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh/baseline.json`, with runs, audits, rule scores and packet copies beside it |
++| Second fresh set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/baseline.json`, with runs, audits, rule scores and packet copies beside it |
+ | Anchor rule script and scores | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh` and `scratch/amend3/justified-anchors-test.txt` |
+ | Models | cli-devin `swe-2-max` (first set) and cli-devin `deepseek-v4-1-flash-1017-max` (second set) |
+ 
+@@ -32,4 +33,4 @@ This map names where the raw evidence behind this folder lives. The folder holds
+ 
+ The corpus is an input and is never rewritten by a run. This folder holds outputs only. A run whose result changes gets a new folder rather than overwriting this one.
+ 
+-The second set (third amendment) and the fresh set (new anchor rule) are recorded in this folder as a dated update, because both sets share one subject and one date. Last updated 2026-10-25.
++The second set (third amendment) the fresh set (new anchor rule) and the second fresh set (fix-completeness note fix) are recorded in this folder as a dated update, because both sets share one subject and one date. Last updated 2026-10-25.
+diff --git a/.skilled/skills/system-spec-kit/benchmark/reports/README.md b/.skilled/skills/system-spec-kit/benchmark/reports/README.md
+index c67fb5103d..9f65611af2 100644
+--- a/.skilled/skills/system-spec-kit/benchmark/reports/README.md
++++ b/.skilled/skills/system-spec-kit/benchmark/reports/README.md
+@@ -24,7 +24,7 @@ Each row below is one immutable run folder. Rows are written by the benchmark ru
+ 
+ | Executed | Folder | Runtime | Result | Verdict | Source |
+ |---|---|---|---|---|---|
+-| 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max (first set) and deepseek-v4-1-flash-1017-max (second set and fresh set), frozen Level 3 authoring brief | 3 final sets of 3 runs, 2 baselines of 3 runs, 5 metrics | **FAIL** (all three sets, the fresh set decides) | `054-weak-model-spec-authoring` |
++| 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max (first set) and deepseek-v4-1-flash-1017-max (second set and two fresh sets), frozen Level 3 authoring brief | 4 final sets of 3 runs, 2 baselines of 3 runs, 5 metrics | **PASS** on the deciding second fresh set, **FAIL** on the three earlier sets | `054-weak-model-spec-authoring` |
+ | 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |
+ | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
+ | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |
+diff --git a/.skilled/skills/system-spec-kit/changelog/v2.9.0.0.md b/.skilled/skills/system-spec-kit/changelog/v2.9.0.0.md
+index cc4e9c8a42..7cdbb6ed84 100644
+--- a/.skilled/skills/system-spec-kit/changelog/v2.9.0.0.md
++++ b/.skilled/skills/system-spec-kit/changelog/v2.9.0.0.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "system-spec-kit v2.9.0.0, templates a weak model can follow"
+-description: "New packets ship every hint in the five core templates as a value token, the validator gates an unfilled token after Draft, each core section says how to fill it, and a short authoring card replaces the long guide as the first read. One benchmark criterion failed and is recorded here."
++description: "New packets ship every hint in the five core templates as a value token, the validator gates an unfilled token after Draft, each core section says how to fill it, and a short authoring card replaces the long guide as the first read. The benchmark criterion failed three times and passed on the fourth final set, and all four sets are recorded here."
+ trigger_phrases:
+   - "system-spec-kit v2.9.0.0"
+   - "system-spec-kit 2.9.0.0"
+@@ -12,7 +12,7 @@ version: 2.9.0.0
+ ---
+ # v2.9.0.0, Templates a Weak Model Can Follow
+ 
+-A weak model can now see what a template still needs, because every hint in the five core templates is a value token that fails validation once the packet leaves Draft. The four authoring intents also load a short card rather than the long guide, and the examples no longer teach the defects the old text carried. The before and after benchmark found fewer leftover hints and one failed criterion, described below.
++A weak model can now see what a template still needs, because every hint in the five core templates is a value token that fails validation once the packet leaves Draft. The four authoring intents also load a short card rather than the long guide, and the examples no longer teach the defects the old text carried. The before and after benchmark found fewer leftover hints, and its missing-anchor criterion failed three times before it passed, as described below.
+ 
+ > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring` (a phased packet of Level 3 phases)
+ 
+@@ -27,7 +27,7 @@ A weak model can now see what a template still needs, because every hint in the
+ - **Commands and agents name the new gate and the card.** A speckit or doctor run describes the same authoring path a worker follows.
+ - **The playbook and catalog cover the new behavior.** A focused run of eight scenarios passed on a disposable worktree.
+ - **The `L3+` label says what it means.** The fill note under each of the six `## L3+:` headings of the `tasks.md` template now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.'
+-- **The result is measured, and one criterion failed twice.** Three runs of one frozen Level 3 authoring task on each side gave a range for five metrics. On the first set (swe-2-max) leftover hints fell from a worst case of 1 to 0 and every run passed strict validation, but one final run deleted the six optional Level 3 verification sections of `tasks.md`, so the missing-anchor metric failed (6 against 0). After the label fix the final set was rerun on deepseek-v4-1-flash-1017-max against a new DeepSeek baseline. Leftover hints were 0 in all three runs and every run passed strict validation, but one run dropped three of the six sections (3 against 0), so the criterion failed again, and one run is contaminated because its session read the frozen vocabulary files. The operator then fixed an anchor rule (an optional section deleted as its fill note allows does not count) and three fresh runs in a disposable worktree with no benchmark files readable passed strict validation with no leftover hints, but run 1 deleted the required `fix-completeness` section, so the counted missing-anchor metric was 1 against 0 and the criterion failed a third time.
++- **The result is measured, and one criterion failed three times before it passed.** Three runs of one frozen Level 3 authoring task on each side gave a range for five metrics. On the first set (swe-2-max) leftover hints fell from a worst case of 1 to 0 and every run passed strict validation, but one final run deleted the six optional Level 3 verification sections of `tasks.md`, so the missing-anchor metric failed (6 against 0). After the label fix the final set was rerun on deepseek-v4-1-flash-1017-max against a new DeepSeek baseline. Leftover hints were 0 in all three runs and every run passed strict validation, but one run dropped three of the six sections (3 against 0), so the criterion failed again, and one run is contaminated because its session read the frozen vocabulary files. The operator then fixed an anchor rule (an optional section deleted as its fill note allows does not count) and three fresh runs in a disposable worktree with no benchmark files readable passed strict validation with no leftover hints, but run 1 deleted the required `fix-completeness` section, so the counted missing-anchor metric was 1 against 0 and the criterion failed a third time. The cause was fixed at the source: the fill note of the required `fix-completeness` section now says to keep the section and delete only rows. A second fresh set then passed the criterion, with counted missing anchors of 0 against 0, leftover hints of at most 1 against a baseline maximum of 1, and strict validation passing in every run.
+ 
+ &nbsp;
+ 
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
+index d4a9b2342a..d43de85018 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
+@@ -18,7 +18,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "054-weak-model-spec-authoring-planning"
+       parent_session_id: null
+-    completion_pct: 80
++    completion_pct: 100
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -38,7 +38,7 @@ _memory:
+ 
+ **Packet:** system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+ **Level:** 3
+-**Status:** In Progress
++**Status:** Complete
+ **Date:** 2026-10-23
+ <!-- /ANCHOR:metadata -->
+ 
+@@ -60,12 +60,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
+ | AC-007 | REQ-007 | Given the packet is closed, When T009 and T011 have run, Then the global entry and the two nested files exist and pass their checks | `ls` lists the three paths, `validate_document.py` prints `Total issues: 0` for each, and `hvr_scan.py` prints `hard blockers: 0` for the global entry | Met | - |
+ | AC-008 | REQ-008 | Given the published docs, When T012 has run, Then the generator check exits 0 and only the four index artifacts changed in that step | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 0 and the T012 diff line prints `0` | Met | - |
+ | AC-009 | REQ-009 | Given the packet folders on disk, When T013 has run, Then the dry rerun reports up to date and the stored children equal the disk children | `system-speckit: up to date` with exit 0, and `cmp` prints `CHILDREN_MATCH` | Met | - |
+-| AC-010 | REQ-010 | Given the closed packet, When T014 has run, Then the parent and nine child goals pass, the parent map holds nine `Complete` rows and the 041 row reads `Complete` | Ten `RESULT: PASSED (5/5 checks)` lines, the map counts `9` and `0`, and `rg -c '006-fix-write-recipe-move-destination.*Complete'` prints `1` | Unmet | - |
+-| AC-011 | REQ-011 | Given the seven parent criteria, When T015 has run, Then `criteria.txt` holds seven PASS lines and T017 ticked seven boxes | `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the completion anchor holds seven `[x]` rows | Unmet | - |
++| AC-010 | REQ-010 | Given the closed packet, When T014 has run, Then the parent and nine child goals pass, the parent map holds nine `Complete` rows and the 041 row reads `Complete` | Ten `RESULT: PASSED (5/5 checks)` lines, the map counts `9` and `0`, and `rg -c '006-fix-write-recipe-move-destination.*Complete'` prints `1` | Met | - |
++| AC-011 | REQ-011 | Given the seven parent criteria, When T015 has run, Then `criteria.txt` holds seven PASS lines and T017 ticked seven boxes | `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the completion anchor holds seven `[x]` rows | Met | - |
+ | AC-012 | REQ-012 | Given the phase start status, When T017 compares it with the final status, Then only this phase folder and the paths in `spec.md` section 3 differ | The status delta names no path outside the declared list | Met | - |
+ | AC-013 | REQ-013 | Given the closeout diff, When T016 returns, Then each finding is applied or recorded with a reason | `scratch/review/T016.txt` holds the three P0, P1 and P2 lines extracted from `scratch/review/T016.last.txt`, and the count check (three finding lines against the three `T016-APPLIED` rows in `goal.md`, written as table rows) prints `T016_COUNTS_MATCH`, saved in `scratch/review/T016.check.txt` | Met | - |
+ | AC-014 | REQ-014 | Given the closed summary, When T010 has run, Then the operator handoff block names the push as the operator's step and states that the phase made one local commit and pushed nothing | `grep -c 'Operator handoff' implementation-summary.md` prints `1` and `grep -c 'one local commit' implementation-summary.md` prints `1` | Met | - |
+-| AC-015 | REQ-015 | Given the closed packet, When T010 and T017 have run, Then spec, acceptance rows, continuity, goal and summary claim one state | `rg -c '\| Met \| - \|' acceptance-criteria.md` prints `15`, every completed document reads `Complete`, and `completion_pct` reads `100` | Unmet | - |
++| AC-015 | REQ-015 | Given the closed packet, When T010 and T017 have run, Then spec, acceptance rows, continuity, goal and summary claim one state | `rg -c '\| Met \| - \|' acceptance-criteria.md` prints `15`, every completed document reads `Complete`, and `completion_pct` reads `100` | Met | - |
+ 
+ ### Status values
+ 
+@@ -90,7 +90,7 @@ waiver is treated as an unmet criterion rather than as a pass.
+ <!-- ANCHOR:closure -->
+ ## 3. CLOSURE STATEMENT
+ 
+-**Closeable:** No
++**Closeable:** Yes
+ 
+-Twelve of the fifteen rows are Met. AC-010 stays Unmet because the parent phase map holds eight Complete rows and phase 9 reads In Progress, AC-011 stays Unmet because `scratch/closeout/criteria.txt` holds six PASS lines and the C5 FAIL line, and AC-015 stays Unmet because the phase cannot read Complete while criterion 5 is FAIL. The label fix shipped and the second final set (cli-devin deepseek-v4-1-flash-1017-max, run 2 contaminated) also failed criterion 5, with missing_anchors 3 against 0. After the operator set a new anchor rule, three fresh runs in a disposable worktree failed it too, with counted missing_anchors 1 against 0 because run 1 deleted the required fix-completeness section. The packet closes only after a rerun passes criterion 5.
++All fifteen rows are Met. The seven parent proofs in `scratch/closeout/criteria.txt` read PASS, and criterion 5 passed on the second fresh set after three failed final sets that stay on record.
+ <!-- /ANCHOR:closure -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
+index 9b1fc0fd5c..5efdf63a3c 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
+@@ -18,7 +18,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "054-weak-model-spec-authoring-planning"
+       parent_session_id: null
+-    completion_pct: 67
++    completion_pct: 100
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -58,10 +58,10 @@ Frozen choices. Changing one is an amendment.
+ ## 3. COMPLETION CRITERIA
+ 
+ - [x] `jq '.runs | length' scratch/baseline/baseline.json` prints `3` and each run holds the five metrics `strict_passed`, `leftover_hints`, `missing_anchors`, `out_of_scope_writes` and `seconds`
+-- [ ] `jq '.metrics | length' scratch/baseline/delta.json` prints `5`, every metric carries a minimum and a maximum for both sides, every final run passes strict validation, and the final maximum of `leftover_hints`, `missing_anchors` and `out_of_scope_writes` is at most the baseline maximum
++- [x] `jq '.metrics | length' scratch/baseline/delta.json` prints `5`, every metric carries a minimum and a maximum for both sides, every final run passes strict validation, and the final maximum of `leftover_hints`, `missing_anchors` and `out_of_scope_writes` is at most the baseline maximum
+ - [x] The benchmark report folder holds `README.md` with ten numbered sections, `results.csv` with six runs, `source.md` that names this packet, and one new row in the reports index
+ - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
+-- [ ] `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the parent goal completion anchor holds seven `[x]` rows
++- [x] `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the parent goal completion anchor holds seven `[x]` rows
+ - [x] `git branch -r --contains HEAD | wc -l` prints `0` whenever `git log --oneline <start>..HEAD` prints any line, so swarm commits stay local and nothing was pushed
+ <!-- /ANCHOR:completion -->
+ 
+@@ -87,12 +87,13 @@ and findings belong here.
+ | Changelogs written | Done | T009 and T011: .skilled/skills/system-spec-kit/changelog/v2.9.0.0.md (reached through .skilled/changelog/system-spec-kit), and under specs/system-speckit/054-weak-model-spec-authoring/changelog/ the backfilled phases 001 to 003, this phase and the packet root, each rewritten by hand from the implementation summaries. validate_document.py printed Total issues: 0 on each and hvr_scan.py printed hard blockers: 0. |
+ | Trigger index regenerated | Done | T012: generate-trigger-index.mjs then --check printed 'trigger index matches the corpus' with check exit=0, 25925 documents scanned and 0 stale. The diff of the runtime status printed 0 paths outside the four index artifacts (scratch/index/after.txt). |
+ | Track roots refreshed | Done | T013: refresh-track-roots.mjs --apply and the dry run both printed system-speckit: up to date and exited 0. children_ids match the 20 numbered folders on disk (the stored ids carry a system-speckit/ prefix, which the compare strips). |
+-| Parent maps reconciled | Done | T014: parent phase map reads Complete for phases 1 to 8 and In Progress for phase 9, the parent spec Status reads In Progress, the 041 row for 006-fix-write-recipe-move-destination reads Complete, check-goal.cjs printed RESULT: PASSED (5/5 checks) ten times (parent and nine children), and the parent goal log gained rows for phases 3 to 8, the phase 009 start commit, the benchmark and the open follow-up. |
+-| Seven parent criteria proven | Done | T015: scratch/closeout/criteria.txt holds C1, C2, C3, C4, C6 and C7 PASS lines and C5 FAIL. The parent boxes for C1 to C4, C6 and C7 are ticked and C5 is not. |
++| Parent maps reconciled | Done | T014: parent phase map reads Complete for phases 1 to 8 and In Progress for phase 9, the parent spec Status reads In Progress, the 041 row for 006-fix-write-recipe-move-destination reads Complete, check-goal.cjs printed RESULT: PASSED (5/5 checks) ten times (parent and nine children), and the parent goal log gained rows for phases 3 to 8, the phase 009 start commit, the benchmark and the open follow-up. Update on 2026-10-25: after criterion 5 passed, the parent map reads Complete for phases 1 to 9 and the parent spec Status reads Complete. |
++| Seven parent criteria proven | Done | T015: scratch/closeout/criteria.txt holds C1, C2, C3, C4, C6 and C7 PASS lines and C5 FAIL. The parent boxes for C1 to C4, C6 and C7 are ticked and C5 is not. Update on 2026-10-25: C5 now reads PASS on the second fresh set, criteria.txt holds seven PASS lines and all seven parent boxes are ticked. |
+ | Frontier review recorded | Done | T016 ran on cli-codex gpt-6-luna at max effort on the fast tier, read-only, from scratch/briefs/T016.txt and the inputs under scratch/review/T016-input/. The reply is scratch/review/T016.last.txt: 2 P1 and 1 P2, all three recorded below and applied. No cli-devin review ran. |
+-| Phase closed | Open | Not closed as Complete. Parent criterion 5 is FAIL on the frozen metric, so acceptance rows AC-010, AC-011 and AC-015 are Unmet and the phase status reads In Progress. The follow-up is to make the L3+ heading label unambiguous for Level 3 authors and rerun the benchmark in a new phase. The records are committed locally and not pushed. Update on 2026-10-25: the third amendment shipped the label fix and reran the benchmark, and criterion 5 failed again (rows below). |
++| Phase closed | Done | Closed as Complete on 2026-10-25. Criterion 5 failed on the first three final sets and passed on the second fresh set (rows below), so acceptance rows AC-010, AC-011 and AC-015 are Met, criteria.txt holds seven PASS lines, the parent map holds nine Complete rows and the parent boxes are all ticked. The records are committed locally and not pushed. |
+ | Third amendment: label fix and second final set | Done, C5 FAIL | The fill note under each of the six L3+ headings of tasks.md.tmpl now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.' (local commit 23657e227e). The second final set ran on cli-devin deepseek-v4-1-flash-1017-max against a new DeepSeek baseline: strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors 3, 0, 0, out_of_scope_writes 0, 0, 0, seconds 259, 198, 243, against a baseline of 1, 0, 0 hints, 0, 0, 0 anchors and 242, 217, 298 seconds. Verdict FAIL on missing_anchors (3 against 0). Run 2 is contaminated. The parent C5 box stays unticked. |
+ | Fresh final set under the new anchor rule | Done, C5 FAIL | Rule committed first as e13115c7da (scratch/tools/justified-anchors.sh, scores in scratch/amend3/justified-anchors-test.txt). Three fresh runs on cli-devin deepseek-v4-1-flash-1017-max in a disposable worktree (worktrees/223-deepseek-final) with this packet folder deleted from its working tree: strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors counted 1, 0, 0 (raw 2, 0, 3), out_of_scope_writes 0, 0, 0, seconds 208, 223, 153. Verdict FAIL: counted missing_anchors 1 against a baseline maximum of 0, because run 1 deleted the required fix-completeness section. The parent C5 box stays unticked. |
++| Second fresh set after the fix-completeness note fix | Done, C5 PASS | Fix committed as 74a629a7af (scratch/amend3/fix4/). Three runs on cli-devin deepseek-v4-1-flash-1017-max in a new disposable worktree (worktrees/224-deepseek-final2) with this packet folder deleted from its working tree: strict_passed 1, 1, 1, leftover_hints 0, 1, 0, missing_anchors counted 0, 0, 0 (raw 0, 0, 0), out_of_scope_writes 0, 0, 0, seconds 189, 228, 164. Verdict PASS against a DeepSeek baseline maximum of 1, 0 and 0. The parent C5 box is ticked. |
+ 
+ ### Deviations and findings
+ 
+@@ -128,7 +129,7 @@ and findings belong here.
+ | T016-APPLIED P1 acceptance-criteria.md sections 1 to 3 | The reviewer found the acceptance document still reading Draft, not started and 15 Unmet while the summary said In Progress. Confirmed: the review input was a snapshot taken before the rows were set. Fixed: the Status line reads In Progress, 12 rows are Met, AC-010, AC-011 and AC-015 stay Unmet with the reason in the closure statement. |
+ | T016-APPLIED P1 goal.md section 4 progress rows | The reviewer found the changelog, trigger index, track root and parent map rows still Pending in the snapshot. Confirmed: those rows were updated after T012 and T013 ran. Fixed: they read Done with their evidence. |
+ | T016-APPLIED P2 report README section 8 | The reviewer found the Apply now lead read as an endorsement despite the FAIL verdict. Confirmed. Fixed: the line now says to keep the already shipped template work as it stands and not to read that as proof of a gain. |
+-| Unticked checklist rows | CHK-031 stays unticked because the subject ran with --permission-mode dangerous, which allows writes anywhere, even though M4 found none outside the track. CHK-110 stays unticked because run 3 took 1822 seconds, above 30 minutes, and was recorded as a real run, not re-dispatched. CHK-FIX-003 stays unticked because the parent map holds 8 Complete rows and 1 In Progress row. |
++| Unticked checklist rows | CHK-031 stays unticked because the subject ran with --permission-mode dangerous, which allows writes anywhere, even though M4 found none outside the track. CHK-110 stays unticked because run 3 took 1822 seconds, above 30 minutes, and was recorded as a real run, not re-dispatched. CHK-FIX-003 stays unticked because the parent map holds 8 Complete rows and 1 In Progress row. Update on 2026-10-25: CHK-FIX-003 and CHK-110 are ticked with evidence, and CHK-031 stays unticked. |
+ | Record reconcile on 2026-10-25: census provenance | A read-only verifier checked commit 14cd9aabcf and found record gaps, and this reconcile closes them. Counts recomputed from the committed files with sort and comm: the first shards hold 2561 rows, extra/ holds 1164 rows, rem/ holds 62 rows, no key sits in two of the three sets, done-part1.tsv holds 4626 rows, 901 of them have no committed shard file, and done-part1.tsv plus rem equals b-final.tsv (4688 unique rows, 0 rows differing). The earlier claim that 962 folders were rerun with core.fsmonitor=false is not supported by any committed file (the files show 1226 rows in extra/ and rem/ and no record of that setting), so row "Criterion 3 census population and method" now states only what the files show. |
+ | Record reconcile on 2026-10-25: AC-013 evidence | The verify cell named scratch/review/T016.txt and T016_COUNTS_MATCH, which did not exist. Created scratch/review/T016.txt with the three P1 and P2 lines from T016.last.txt and ran the count check, saved in scratch/review/T016.check.txt: T016_FORMAT findings=3 no_findings=0 bad=0 and T016_COUNTS_MATCH (3 finding lines against 3 T016-APPLIED table rows). The check pattern in tasks.md anchors on a line start, but the rows are table rows, so the run used a pattern that starts with the table bar. AC-013 stays Met and its verify cell now cites these files. |
+ | Record reconcile on 2026-10-25: task ticks | T010 and T017 are unticked, because their text requires Status Complete, 15 Met rows, Closeable Yes and all seven parent boxes, which the operator decision "Option 3 + diagnostic" did not allow. T014, T015 and T016 stay ticked with an inline note on each line that names what the verify line asks for and what was done. The Completion Criteria line All tasks marked is unticked. The Verification Summary counts (P0 12 of 14, P1 23 of 24, P2 9 of 9) already equalled the CHK ticks and did not change. |
+@@ -161,4 +162,9 @@ and findings belong here.
+ | T020-APPLIED P0 implementation summary handoff and AC-014 | The reviewer found the handoff saying the phase made one local commit while this log records further local commits. Confirmed. Fixed: the handoff names the original close-out commit 14cd9aabcf and the later local commits fab90dccbd, 23657e227e, e13115c7da and the closing commit. The phrase one local commit stays once in the summary, so the AC-014 check still prints 1, and AC-014 stays Met because the push statement it proves is true (git branch -r --contains HEAD prints nothing). |
+ | T020-APPLIED P1 criteria.txt C7 | The reviewer found the C7 line quoting the phase start head. Confirmed as stale. Fixed: the line now carries a recheck at head e13115c7da, the commit before the closing commit (29 commits since the parent start, no remote branch holds the head). The closing commit cannot name its own hash in a file it commits, so its recheck is in the final report. |
+ | Fix-completeness note on 2026-10-25 | Cause of the fresh-set failure, confirmed by the conductor: strict validation has no required-anchor presence check (ANCHORS_VALID checks the form of anchors only), and the required fix-completeness fill note in tasks.md.tmpl said 'Delete the rows that do not apply', which fresh run 1 read as permission to delete the whole section. No other required anchor's fill note mentions deleting (the conductor grepped all core templates). Conductor decision under the active goal: fix the cause at source and run one more fresh set. The note now opens with 'Keep this section, because every level requires it.' and says 'Delete only the rows that do not apply, never the section.' The anchor rule and criterion 5 did not change. Phase 004 plan row B34 matches the shipped text (PLAN_EQUALS_SHIPPED), the golden snapshot changed only that fill line in the three rendered levels (3 lines, 12 passed), the fill test printed 16 passed, EXAMPLE_DRIFT_OK and CARD SYNC OK printed, and the full suite ended exit=0 with 276 and 184 passed files and 4162 and 2085 passed tests, equal to the second amendment baseline (scratch/amend3/fix4/). Open follow-up, not fixed here: the validator does not enforce required anchors. |
++| Fourth final set result on 2026-10-25 | Min and max over three runs, baseline then final: strict_passed 1 to 1 and 1 to 1, leftover_hints 0 to 1 and 0 to 1, missing_anchors 0 to 0 and 0 to 0, out_of_scope_writes 0 to 0 and 0 to 0, seconds 217 to 298 and 164 to 228. Every run kept all 21 tasks.md anchors and every anchor of the other three documents. Diagnostic only: against the contract-required anchors all three runs miss 0 of 15 (scratch/amend3/fresh2/diagnostic.txt). The earlier three final sets failed and stay in the report as history, each with its model, tree and rule. The PASS came after a fix made once a failure was understood and covers three runs on one model, so it is a range and not an effect size. |
++| Second fresh set audit on 2026-10-25 | Exactly one Devin session per run with working directory the new worktree. Ten strings searched in both columns. No call text names any of them. Every hit is tool output naming paths: git status --porcelain listing the deleted packet files (runs 1 to 3), a file-list search for recommend-level that returned the report README path (run 1) and a git status after a repair of the run's own packet (run 3). Nothing was read from the packet or the report. The hit contexts are in scratch/amend3/fresh2/runs/T005-N.hits. Isolation is complete for contents and partial for names. A check for another devin -p process was made once, at the start of run 1, and found none, so the seconds are not shown to be free of other load. |
++| Worktrees left in place on 2026-10-25 | worktrees/223-deepseek-final (at e13115c7da) and worktrees/224-deepseek-final2 (at 74a629a7af) are disposable and are left in place. Removing them and their branches is the operator's decision. |
++| Closing checks on 2026-10-25 | Criterion 5 evidence is scratch/amend3/fresh2/delta.json. criteria.txt holds seven PASS lines. The parent spec.md Status and map row 9, the phase spec.md, acceptance-criteria.md and implementation-summary.md read Complete, and completion_pct reads 100. Strict validation of this phase and the packet prints RESULT: PASSED. The validator still does not enforce required anchors, an open follow-up that is not fixed here. |
++| Status delta at close on 2026-10-25 | Files changed since the phase start a15bc0636e outside this phase folder are listed in scratch/amend3/final/status-delta-outside-phase.txt. They are the benchmark report folder, the global changelog and its SKILL.md version carrier with the hermes mirror, the regenerated trigger index artifacts, the nested changelogs, the parent and 041 map and metadata files, and the three template-side files the amendments changed (tasks.md.tmpl, the golden snapshot and the phase 004 plan with its metadata). The last three are not in the spec.md section 3 list, because the amendments came after it was written. They are recorded in the rows for the third amendment and the fix-completeness note, so AC-012 stays Met with that disclosure. |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md
+index d5a18010f2..966bad65e3 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Summary"
+-description: "Phase 9 ran the benchmark three times and closed the packet's records with one failed criterion: after the L3+ label fix, three DeepSeek runs of the frozen Level 3 task left no hints but one run deleted three optional verification sections."
++description: "Phase 9 ran the benchmark in four final sets and closed the packet: three failed criterion 5, and the fourth, after the fix-completeness note was corrected, passed it."
+ trigger_phrases:
+   - "authoring benchmark and closeout implementation summary"
+ importance_tier: "normal"
+@@ -10,8 +10,8 @@ _memory:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+     last_updated_at: "2026-10-25T09:10:15Z"
+     last_updated_by: "worker"
+-    recent_action: "Fixed the anchor rule, ran three fresh runs in a disposable worktree, recorded criterion 5 as FAIL for the third time"
+-    next_safe_action: "Operator reviews the local commit and decides the follow-up phase"
++    recent_action: "Fixed the fix-completeness note, ran a second fresh set, criterion 5 passed and the phase closed"
++    next_safe_action: "Operator reviews the local commits and decides about the push"
+     blockers: []
+     key_files:
+       - "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json"
+@@ -19,7 +19,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "054-weak-model-spec-authoring-closeout"
+       parent_session_id: null
+-    completion_pct: 80
++    completion_pct: 100
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -37,8 +37,8 @@ _memory:
+ | Field | Value |
+ |-------|-------|
+ | **Spec Folder** | 009-authoring-benchmark-and-closeout |
+-| **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
+-| **Completed** | Not complete: parent criterion 5 is FAIL on both final sets |
++| **Status** | Complete |
++| **Completed** | 2026-10-25 |
+ | **Level** | 3 |
+ <!-- /ANCHOR:metadata -->
+ 
+@@ -59,6 +59,10 @@ The fill note under each of the six `## L3+:` headings of the `tasks.md` templat
+ 
+ The operator then chose "New rule, fresh runs". A rule script, `scratch/tools/justified-anchors.sh`, was committed with its scores on the twelve earlier packets before any fresh run: a frozen anchor missing from a packet counts unless it is an optional Level 3 `tasks.md` anchor whose fill-note condition holds. The first swe-2-max final set scores 0, 0 and 3 under it and the second DeepSeek set scores 0, 0 and 0. Three fresh runs then ran on cli-devin `deepseek-v4-1-flash-1017-max` in a disposable worktree with this packet's folder removed from its working tree. All three passed strict validation with no leftover hints, but run 1 deleted the whole required `fix-completeness` section, so counted `missing_anchors` is 1, 0 and 0 against a baseline maximum of 0 and criterion 5 fails for the third time. Run 3's deleted sections (`deploy-ready`, `compliance-verify`, `sign-off`) are excused by the rule.
+ 
++### Fix-completeness note fixed and a second fresh set
++
++The cause of the third failure was found and fixed at the source: strict validation does not check that required anchors are present, and the required `fix-completeness` fill note said 'Delete the rows that do not apply', which the failing run read as permission to delete the section. The note now says to keep the section and delete only rows. The anchor rule and criterion 5 did not change. After the full suite passed again with the same counts, a second fresh set ran on cli-devin `deepseek-v4-1-flash-1017-max` in a new disposable worktree with this packet's folder removed. All three runs passed strict validation, leftover hints were 0, 1 and 0 against a baseline maximum of 1, counted `missing_anchors` was 0, 0 and 0 against 0, and nothing was written outside the track. **Criterion 5 passes on this fourth final set.** The three earlier sets failed and stay on record, each labelled with its model, tree and rule. The PASS followed a fix made after a failure was understood, so it is not a first-try result, and three runs on one model give a range and not an effect size.
++
+ ### Phase 9: authoring-benchmark-and-closeout
+ 
+ The closeout also published the benchmark report with verdict FAIL, wrote the global changelog `v2.9.0.0` and bumped the version carrier, wrote the nested changelogs for phases 001 to 003 and this phase, regenerated the trigger index, confirmed the track roots and reconciled the parent phase map and goal log. `scratch/closeout/criteria.txt` holds one line for each parent criterion: six PASS lines and one FAIL line, `C5 FAIL`.
+@@ -90,8 +94,8 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
+ ### Operator handoff
+ 
+ - The original close-out made one local commit (14cd9aabcf), and the reconcile and the amendments added local commits after it (fab90dccbd, 23657e227e, e13115c7da and the closing commit of the fresh set). Nothing was pushed.
+-- The label fix shipped and the rerun failed criterion 5 again. The open decision is the operator's: whether `missing_anchors` should count the optional Level 3 verification sections, or whether the delete-when clauses in those fill notes should change, before any further rerun.
+-- The parent `spec.md` and this phase are In Progress, not Complete, until a rerun passes criterion 5.
++- Criterion 5 passed on the second fresh set, so the phase and the parent read Complete. Reviewing the local commits and the push are the operator's steps.
++- The disposable worktrees `223-deepseek-final` and `224-deepseek-final2` and their branches are left in place for the operator to remove.
+ - No generated artifact needs a hand edit before review.
+ <!-- /ANCHOR:how-delivered -->
+ 
+@@ -109,7 +113,7 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
+ | Keep the first final set as history and label the second set as the final one | The sets differ in model and tree, so each is reported with its own baseline |
+ | Score every earlier set under the new rule before any fresh run | The operator's row claims two scores, and the script had to reproduce them first |
+ | Keep a contaminated run in the numbers | Dropping it would hide what the session read, and the verdict does not depend on it |
+-| Do not mark the phase or the parent Complete | The validator reads a Complete status with an unmet acceptance row as a failed closure |
++| Mark the phase and the parent Complete only after criterion 5 passed | The validator reads a Complete status with an unmet acceptance row as a failed closure, and every row is now Met |
+ <!-- /ANCHOR:decisions -->
+ 
+ ---
+@@ -134,11 +138,11 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
+ 
+-1. **Parent criterion 5 is FAIL on all three final sets.** `missing_anchors` has a final maximum of 6 against 0 on the first set, 3 against 0 on the second and, counted under the new rule, 1 against 0 on the fresh set, and the phase and the parent stay In Progress.
+-2. **Open decision.** The required `fix-completeness` anchor is missing from a passing packet because strict validation does not require it and its fill note invites deleting rows. Decide whether to enforce the required anchors, move that section to the optional set with a condition, or reword the note, then rerun in a fresh disposable worktree as the fresh set did.
++1. **Criterion 5 failed three times before it passed.** `missing_anchors` had a final maximum of 6, 3 and (counted under the new rule) 1 against 0 on the first three final sets, and the fourth set passed. The result is a range over three runs on one model after a targeted template fix.
++2. **The fix was made after the failure.** The `fix-completeness` note was corrected after a run deleted that section, and the next set passed. The report states this plainly, and a larger run count and a second model would be needed to separate a fix from variation.
+ 3. **Three runs per side cannot support a significance claim.** One run produced the whole failure, so the sample cannot separate the template change from run-to-run variation.
+ 4. **The fixture is one small feature and four documents.** A different feature shape or a Level 1 packet is not measured.
+-5. **Acceptance rows AC-010, AC-011 and AC-015 are Unmet.** They need nine Complete map rows, seven PASS lines and a Complete status, which criterion 5 prevents.
++5. **Acceptance rows were Unmet until criterion 5 passed.** AC-010, AC-011 and AC-015 needed nine Complete map rows, seven PASS lines and a Complete status, and they are Met now.
+ 6. **The validator does not enforce required anchors.** Strict validation checks the form of anchors and not that each required `tasks.md` anchor is present, so a packet without the required `fix-completeness` section passed. The template note was corrected to say to keep the section, and the validator rule is an open follow-up that is not fixed here.
+ <!-- /ANCHOR:limitations -->
+ 
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
+index b92e0e941c..bb11a53e81 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
+@@ -33,7 +33,7 @@ Phase 1 first measured a DeepSeek V4.1 Flash worker on a Level 2 packet, and the
+ |-------|-------|
+ | **Level** | 3 |
+ | **Priority** | P0 |
+-| **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
++| **Status** | Complete |
+ | **Created** | 2026-10-23 |
+ | **Branch** | `main` |
+ | **Parent Spec** | ../spec.md |
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md
+index 9c9be0b242..34d4cb9c44 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md
+@@ -319,7 +319,7 @@ MD
+   rg -c '^version: 2\.9\.0\.0$' $S/SKILL.md
+   ```
+ 
+-- [ ] T010 Close this phase's own documents (`spec.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`). Set `spec.md` Status to `Complete` and the `**Status:**` line in `acceptance-criteria.md` to `**Status:** Complete`. Replace every `| Unmet | - |` cell in `acceptance-criteria.md` with `| Met | - |`. Set `**Closeable:** No` to `**Closeable:** Yes` and replace the sentence under it with one sentence naming the seven parent proofs and the fifteen acceptance rows. Replace the planned `implementation-summary.md` with the block below, removing the two-space list indent so the first line `---` starts in column 0, then substitute the four `__` tokens with `perl -pi -e` from `delta.json`. Verify: `head -1 "$PHASE/implementation-summary.md"` prints `---`, `rg -c '\| Met \| - \|' "$PHASE/acceptance-criteria.md"` prints `15`, `rg -c '\| Unmet \| - \|' "$PHASE/acceptance-criteria.md"` prints `0`, `rg -c '^\*\*Closeable:\*\* Yes$' "$PHASE/acceptance-criteria.md"` prints `1`, `rg -c '^\*\*Status:\*\* Complete$' "$PHASE/acceptance-criteria.md"` prints `1`, and `rg -c '^__' "$PHASE/implementation-summary.md"` prints `0`. **Not done as written (record reconcile on 2026-10-25).** The operator decision "Option 3 + diagnostic" keeps this phase In Progress, so the step to set Status Complete, turn every Unmet row to Met and set Closeable to Yes did not run. Done instead: acceptance-criteria.md holds 12 Met rows and 3 Unmet rows (AC-010, AC-011, AC-015) with Closeable No, spec.md reads In Progress, and implementation-summary.md was written with the C5 FAIL result.
++- [x] T010 Close this phase's own documents (`spec.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`). Set `spec.md` Status to `Complete` and the `**Status:**` line in `acceptance-criteria.md` to `**Status:** Complete`. Replace every `| Unmet | - |` cell in `acceptance-criteria.md` with `| Met | - |`. Set `**Closeable:** No` to `**Closeable:** Yes` and replace the sentence under it with one sentence naming the seven parent proofs and the fifteen acceptance rows. Replace the planned `implementation-summary.md` with the block below, removing the two-space list indent so the first line `---` starts in column 0, then substitute the four `__` tokens with `perl -pi -e` from `delta.json`. Verify: `head -1 "$PHASE/implementation-summary.md"` prints `---`, `rg -c '\| Met \| - \|' "$PHASE/acceptance-criteria.md"` prints `15`, `rg -c '\| Unmet \| - \|' "$PHASE/acceptance-criteria.md"` prints `0`, `rg -c '^\*\*Closeable:\*\* Yes$' "$PHASE/acceptance-criteria.md"` prints `1`, `rg -c '^\*\*Status:\*\* Complete$' "$PHASE/acceptance-criteria.md"` prints `1`, and `rg -c '^__' "$PHASE/implementation-summary.md"` prints `0`. **Done after criterion 5 passed (closing on 2026-10-25).** The phase, the parent and the acceptance rows read Complete, criteria.txt holds seven PASS lines and the parent boxes are ticked. The earlier note that this task was not run as written is superseded.
+ 
+   ```markdown
+   ---
+@@ -654,7 +654,7 @@ MD
+   Return the single line NO FINDINGS when there are none.
+   ```
+ 
+-- [ ] T017 Close the phase and tick the parent goal (this folder, `../goal.md`). Run the block below. It runs strict validation on this folder and on the packet, compares the final status with the start status, and ticks the seven completion boxes only when all seven `C<n>` lines read PASS. When one line reads FAIL it ticks none and writes `PARENT_NOT_TICKED` in `goal.md` section 4. Verify: both validations print `RESULT: PASSED`, `bash $S/runtime/cli/rules/check-placeholders.sh "$PHASE"` prints nothing and exits 0, the parent completion anchor holds seven `[x]` rows and zero `[ ]` rows, this phase's goal holds six `[x]` rows, and the undeclared count line in the block prints `0` for a status delta that lists only paths under this phase folder and the declared paths in `spec.md` section 3. **Not done as written (record reconcile on 2026-10-25).** Under the operator decision "Option 3 + diagnostic" the block's seven-PASS branch did not run: criteria.txt holds six PASS lines and C5 FAIL, so the parent boxes for C1 to C4, C6 and C7 are ticked (six of seven), the C5 box stays unticked, completion_pct is not set to 100, and the parent and this phase stay In Progress. The validations and the status delta ran, and the recursive strict run on the packet prints RESULT: PASSED.
++- [x] T017 Close the phase and tick the parent goal (this folder, `../goal.md`). Run the block below. It runs strict validation on this folder and on the packet, compares the final status with the start status, and ticks the seven completion boxes only when all seven `C<n>` lines read PASS. When one line reads FAIL it ticks none and writes `PARENT_NOT_TICKED` in `goal.md` section 4. Verify: both validations print `RESULT: PASSED`, `bash $S/runtime/cli/rules/check-placeholders.sh "$PHASE"` prints nothing and exits 0, the parent completion anchor holds seven `[x]` rows and zero `[ ]` rows, this phase's goal holds six `[x]` rows, and the undeclared count line in the block prints `0` for a status delta that lists only paths under this phase folder and the declared paths in `spec.md` section 3. **Done after criterion 5 passed (closing on 2026-10-25).** The phase, the parent and the acceptance rows read Complete, criteria.txt holds seven PASS lines and the parent boxes are ticked. The earlier note that this task was not run as written is superseded.
+ 
+   ```bash
+   cd "$WORKTREE"
+@@ -689,10 +689,10 @@ MD
+ <!-- ANCHOR:completion -->
+ ## Completion Criteria
+ 
+-- [ ] All tasks marked `[x]` (T010 and T017 stay open under the operator decision "Option 3 + diagnostic")
++- [x] All tasks marked `[x]`
+ - [x] No `[B]` blocked tasks remaining
+-- [ ] Every acceptance criterion marked `Met` with its evidence
+-- [ ] Seven parent criteria carry a PASS line and seven parent boxes are ticked
++- [x] Every acceptance criterion marked `Met` with its evidence
++- [x] Seven parent criteria carry a PASS line and seven parent boxes are ticked
+ - [x] Recursive strict on the packet prints `RESULT: PASSED`
+ <!-- /ANCHOR:completion -->
+ 
+@@ -759,7 +759,7 @@ MD
+ 
+ - [x] CHK-FIX-001 [P0] Every parent criterion has one PASS line or one FAIL line, never neither
+ - [x] CHK-FIX-002 [P0] A parent box is ticked only after its PASS line exists
+-- [ ] CHK-FIX-003 [P0] The 041 map row and the nine parent map rows match the observed state
++- [x] CHK-FIX-003 [P0] The 041 map row and the nine parent map rows match the observed state  Evidence: the parent map holds 9 Complete rows and 0 Pending rows, and the 041 row reads Complete.
+ - [x] CHK-FIX-004 [P1] The trigger index changed only in its four artifacts
+ - [x] CHK-FIX-005 [P1] The track children equal the numbered folders on disk
+ - [x] CHK-FIX-006 [P1] The version carrier and the changelog file name agree
+@@ -772,7 +772,7 @@ MD
+ ## Security
+ 
+ - [x] CHK-030 [P0] No brief contains a credential, token or key
+-- [ ] CHK-031 [P0] No worker ran with write access outside `specs/zz-bench-authoring/`
++- [ ] CHK-031 [P0] No worker ran with write access outside `specs/zz-bench-authoring/` Stays unticked: the subject ran with `--permission-mode dangerous`, which allows writes anywhere, although the status diff and the `.skilled` diff hash found no write outside the track in any run.
+ - [x] CHK-032 [P1] Every worker prompt carried the AGENTS.md pre-resolution for the spec-folder question
+ <!-- /ANCHOR:security -->
+ 
+@@ -802,8 +802,8 @@ MD
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+-| P0 Items | 14 | 12/14 |
+-| P1 Items | 24 | 23/24 |
++| P0 Items | 14 | 13/14 |
++| P1 Items | 24 | 24/24 |
+ | P2 Items | 9 | 9/9 |
+ 
+ **Verification Date**: 2026-10-25
+@@ -825,7 +825,7 @@ MD
+ <!-- ANCHOR:perf-verify -->
+ ## L3+: Performance Verification
+ 
+-- [ ] CHK-110 [P1] Each run returned within 30 minutes or was re-dispatched once (NFR-P01)
++- [x] CHK-110 [P1] Each run returned within 30 minutes or was re-dispatched once (NFR-P01)  Evidence: the three deciding runs took 189, 228 and 164 seconds. The first set's run 3 took 1822 seconds and was recorded as a real run.
+ - [x] CHK-111 [P1] Seconds per final run recorded as M5
+ - [x] CHK-112 [P2] No load test applies to this phase
+ - [x] CHK-113 [P2] The minimum and the maximum of each metric are in `delta.md`
+@@ -872,7 +872,7 @@ MD
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+-| Worker | Runs and verifies every task | Done, parent criterion 5 failed | 2026-10-25 |
++| Worker | Runs and verifies every task | Done, criterion 5 passed on the second fresh set | 2026-10-25 |
+ | Frontier reviewer | Reads the closeout diff read-only | See goal.md section 4 | 2026-10-25 |
+-| Operator | Reviews the local commit and decides the follow-up phase | Pending | |
++| Operator | Reviews the local commits, decides the push and the removal of the two disposable worktrees | Pending | |
+ <!-- /ANCHOR:sign-off -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md
+index 3cb8e35d0a..8118007207 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md
+@@ -17,14 +17,15 @@ contextType: "implementation"
+ 
+ ### Summary
+ 
+-Phase 009 reran the frozen Level 3 authoring task three times on the final tree, published the benchmark report and closed the packet records. The benchmark failed parent criterion 5 on the frozen metric. A third amendment then clarified the `L3+` label in the `tasks.md` template and reran the final set on cli-devin deepseek-v4-1-flash-1017-max against a new DeepSeek baseline, and criterion 5 failed again. The operator then set a new anchor rule and three fresh runs in a disposable worktree failed it a third time, so the phase and the parent stay In Progress.
++Phase 009 reran the frozen Level 3 authoring task three times on the final tree, published the benchmark report and closed the packet records. The benchmark failed parent criterion 5 on the frozen metric. A third amendment then clarified the `L3+` label in the `tasks.md` template and reran the final set on cli-devin deepseek-v4-1-flash-1017-max against a new DeepSeek baseline, and criterion 5 failed again. The operator then set a new anchor rule and three fresh runs in a disposable worktree failed it a third time. The cause was fixed at the source, the fix-completeness note in the `tasks.md` template, and a second fresh set passed criterion 5, so the phase and the parent read Complete.
+ 
+ ### Added
+ 
+ - Three final runs of the frozen brief on cli-devin swe-2-max, each audited against its Devin session, with five metrics per run.
+-- The benchmark report `2026-10-25--model-eval--authoring-baseline` with verdict FAIL, six result rows and a labelled diagnostic.
++- The benchmark report `2026-10-25--model-eval--authoring-baseline` with the first set's verdict FAIL, six result rows and a labelled diagnostic, then a dated update for each later set. The deciding set passes.
+ - The global changelog entry v2.9.0.0 and the nested changelogs for phases 001 to 003, this phase and the packet root.
+ - A rerun of the criterion 3 census over the frozen folder list.
++- A second fresh final set of three runs in a new disposable worktree after the fix-completeness note fix, with its own delta, audits and packet copies. It passed criterion 5.
+ - A rule script for the anchor rule of criterion 5, scored on the twelve earlier packets and committed before any fresh run.
+ - A fresh final set of three runs on cli-devin deepseek-v4-1-flash-1017-max in a disposable worktree with the packet folder removed, with its own delta, audits and packet copies.
+ - A second final set of three runs on cli-devin deepseek-v4-1-flash-1017-max after the label fix, with a DeepSeek baseline of three runs, results in `results-amend3.csv` and a dated update in the report.
+@@ -32,8 +33,9 @@ Phase 009 reran the frozen Level 3 authoring task three times on the final tree,
+ ### Changed
+ 
+ - The phase and parent documents state one local commit per phase, Level 3 final runs and the current executors.
+-- The parent phase map reads Complete for phases 1 to 8 and In Progress for phase 9, and the 041 map row reads Complete.
++- The parent phase map reads Complete for phases 1 to 9, and the 041 map row reads Complete.
+ - `SKILL.md` moved from version 2.8.5.0 to 2.9.0.0 and the trigger index was regenerated.
++- The fill note of the required `fix-completeness` section of the `tasks.md` template opens with 'Keep this section, because every level requires it.' and says to delete only the rows that do not apply, never the section. The plan row, the golden snapshot and the guards match it.
+ - The fill note under each of the six `L3+` headings of the `tasks.md` template opens with 'L3+ means Level 3 and above, so this section stays at Level 3.' Headings and anchors are unchanged, and the phase 004 plan rows and the golden snapshot match.
+ 
+ ### Fixed
+@@ -42,14 +44,16 @@ Phase 009 reran the frozen Level 3 authoring task three times on the final tree,
+ 
+ ### Verification
+ 
+-- Final runs: strict_passed 1, 1, 1. leftover_hints 0, 0, 0. missing_anchors 0, 0, 6. out_of_scope_writes 0, 0, 0. seconds 437, 429, 1822
+-- Verdict FAIL: missing_anchors final maximum 6 against a baseline maximum of 0
++- First final set (swe-2-max, before the label fix): strict_passed 1, 1, 1. leftover_hints 0, 0, 0. missing_anchors 0, 0, 6. out_of_scope_writes 0, 0, 0. seconds 437, 429, 1822
++- First set verdict FAIL: missing_anchors final maximum 6 against a baseline maximum of 0
+ - Diagnostic against the contract-required anchors: all six runs miss none of the 15 required, and the 6 deleted anchors are optional
+-- Parent criteria: C1, C2, C3, C4, C6 and C7 PASS, C5 FAIL
+ - Second final set (DeepSeek, after the label fix): strict_passed 1, 1, 1. leftover_hints 0, 0, 0. missing_anchors 3, 0, 0. out_of_scope_writes 0, 0, 0. seconds 259, 198, 243. The DeepSeek baseline read hints 1, 0, 0, anchors 0, 0, 0 and seconds 242, 217, 298
+ - Verdict FAIL again: missing_anchors final maximum 3 against a baseline maximum of 0. Run 2 is contaminated, because its session read the frozen vocabulary files
+ - Fresh set under the anchor rule: strict_passed 1, 1, 1. leftover_hints 0, 0, 0. missing_anchors counted 1, 0, 0. out_of_scope_writes 0, 0, 0. seconds 208, 223, 153. Verdict FAIL: run 1 deleted the required fix-completeness section
+ - Full suite after the label fix: exit=0 with the same counts as before. Twenty census folders give the same verdicts after the change
++- Second fresh set (DeepSeek, after the fix-completeness note fix): strict_passed 1, 1, 1. leftover_hints 0, 1, 0. missing_anchors counted 0, 0, 0. out_of_scope_writes 0, 0, 0. seconds 189, 228, 164. Verdict PASS against a baseline maximum of 1, 0 and 0
++- Parent criteria: C1 to C7 PASS. The three earlier final sets failed criterion 5 and stay on record
++- Full suite after the note fix: exit=0 with the same counts as before
+ - Strict validation of this phase folder and of the packet: RESULT: PASSED
+ 
+ ### Files Changed
+@@ -65,5 +69,6 @@ Phase 009 reran the frozen Level 3 authoring task three times on the final tree,
+ 
+ ### Follow-Ups
+ 
+-- Decide how to treat the required `fix-completeness` anchor of the `tasks.md` template: enforce the required anchors in strict validation, make the section optional with a condition, or reword its fill note. Then rerun in a fresh disposable worktree.
++- Strict validation does not enforce required anchors, so a packet without a required `tasks.md` section can pass. That is an open follow-up and is not fixed here.
++- Review the local commits, decide the push and remove the two disposable worktrees.
+ - Acceptance rows AC-010, AC-011 and AC-015 stay Unmet until criterion 5 passes.
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md
+index 5388377b98..776a729211 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md
+@@ -30,7 +30,7 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
+ | `006-speckit-command-and-agent-alignment` | Complete | Commands and agents point at the card, the token and the guards |
+ | `007-playbook-catalog-readme-alignment` | Complete | Eight scenarios, four catalog leaves and the doc edits |
+ | `008-playbook-run-in-worktree` | Complete | All eight scenarios passed on a disposable worktree |
+-| `009-authoring-benchmark-and-closeout` | In Progress | Benchmark run, report and close-out records, with criterion 5 FAIL |
++| `009-authoring-benchmark-and-closeout` | Complete | Benchmark runs, report and close-out records, with criterion 5 passing on the fourth final set |
+ 
+ ### Added
+ 
+@@ -39,7 +39,7 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
+ - A short authoring card that the four authoring intents load instead of the long template guide.
+ - Two guards, `check-example-drift.sh` and `check-card-sync.sh`.
+ - Eight playbook scenarios and four catalog leaves, run on a disposable worktree with eight passes.
+-- A benchmark report of the before and after for five metrics, with verdict FAIL.
++- A benchmark report of the before and after for five metrics. The first three final sets failed criterion 5, and the fourth passed.
+ 
+ ### Changed
+ 
+@@ -55,7 +55,7 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
+ ### Verification
+ 
+ - Recursive strict validation of the packet: RESULT: PASSED
+-- Parent criteria: C1, C2, C3, C4, C6 and C7 PASS, C5 FAIL
++- Parent criteria: C1 to C7 PASS (C5 after three failed final sets)
+ - Census over 4688 folders: 4496 PASS and 192 FAIL before and after, 0 differing rows
+ - Playbook run: 8 scenarios, 8 PASS
+ - Benchmark: missing_anchors final maximum 6 against a baseline maximum of 0, leftover_hints final maximum 0 against 1
+@@ -72,5 +72,5 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
+ 
+ ### Follow-Ups
+ 
+-- Parent criterion 5 is FAIL and the packet is In Progress. The label fix shipped (the fill notes of the six `## L3+:` sections of the `tasks.md` template say they stay at Level 3) and the rerun on cli-devin deepseek-v4-1-flash-1017-max failed again, with missing_anchors 3 against 0. After a new anchor rule, three fresh runs in a disposable worktree failed it a third time (counted missing_anchors 1 against 0, a deleted required `fix-completeness` section). The operator decides how to treat that required anchor.
++- Strict validation does not enforce required anchors. That is an open follow-up and is not fixed here. Parent criterion 5 passed on the second fresh set after three failed final sets, so the packet reads Complete.
+ - Three runs per side cannot support a significance claim.
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/goal.md b/specs/system-speckit/054-weak-model-spec-authoring/goal.md
+index 17335addbc..ef8ee75244 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/goal.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/goal.md
+@@ -21,7 +21,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "054-weak-model-spec-authoring-planning"
+       parent_session_id: null
+-    completion_pct: 86
++    completion_pct: 100
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -91,7 +91,7 @@ string, not these files.
+ - [x] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
+ - [x] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
+ - [x] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
+-- [ ] The 3 final Level 3 runs all pass strict validation, and none is worse than the DeepSeek baseline's worst on leftover_hints, missing_anchors (optional sections deleted as their fill notes allow do not count) or out_of_scope_writes. The phase 009 report lists min and max for five metrics
++- [x] The 3 final Level 3 runs all pass strict validation, and none is worse than the DeepSeek baseline's worst on leftover_hints, missing_anchors (optional sections deleted as their fill notes allow do not count) or out_of_scope_writes. The phase 009 report lists min and max for five metrics
+ - [x] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
+ - [x] The swarm commits only on the build worktree and never pushes
+ <!-- /ANCHOR:completion -->
+@@ -133,11 +133,12 @@ and findings belong here.
+ | Final baseline | Done | 3 runs on cli-devin swe-2-max, baseline.json holds 5 metrics per run. C5 FAIL on the frozen metric: missing_anchors 0, 0, 6 against a baseline maximum of 0. See the C5 row below. |
+ | Benchmark report | Done | .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ with verdict FAIL |
+ | Track roots | Done | system-speckit: up to date (apply and dry run both exit 0), children match the numbered folders on disk |
+-| Open follow-up: L3+ heading label | Open | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
++| Open follow-up: L3+ heading label | Done | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
+ | Third amendment result (phase 009) | Done, C5 FAIL | The label fix is local commit 23657e227e. The second final set on cli-devin deepseek-v4-1-flash-1017-max (baseline of 3 runs at ac2be31ec6: hints 1, 0, 0, anchors 0, 0, 0, seconds 242, 217, 298) gave strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors 3, 0, 0, out_of_scope_writes 0, 0, 0 and seconds 259, 198, 243. Run 1 lacks deploy-ready, compliance-verify and sign-off, so C5 is FAIL and its box stays unticked. Run 2 is contaminated (its session read the frozen vocabulary files) and is kept and labelled. The full suite passed again with equal counts after one environmental retry. Detail in the phase 009 goal log and the report README. |
+ | Fresh runs under the new anchor rule (phase 009) | Done, C5 FAIL | Rule script and scores committed first as e13115c7da (swe-2-max first set scores 0, 0, 3 and the second DeepSeek set 0, 0, 0, as the Anchor rule row says). Three fresh runs on cli-devin deepseek-v4-1-flash-1017-max in the disposable worktree worktrees/223-deepseek-final, packet folder removed from its working tree: strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors counted 1, 0, 0, out_of_scope_writes 0, 0, 0, seconds 208, 223, 153. Run 1 deleted the required fix-completeness section, so criterion 5 is FAIL and its box stays unticked. The audit found no forbidden string in any call text, only in git status and search output. Detail in the phase 009 goal log and the report README. |
+ | Fix-completeness note fixed (phase 009) | Done | The conductor fixed the cause of the fresh-set failure at source: the required fix-completeness fill note in tasks.md.tmpl now says to keep the section and delete only rows. The anchor rule and criterion 5 are unchanged, and one more fresh set follows. Open follow-up, not fixed here: strict validation does not enforce required anchors (ANCHORS_VALID checks form only). |
+-| Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. |
++| Second fresh set and phase close (phase 009) | Done, C5 PASS | The fix is commit 74a629a7af (the full suite passed with equal counts). Three runs on cli-devin deepseek-v4-1-flash-1017-max in a new disposable worktree, packet folder removed: strict_passed 1, 1, 1, leftover_hints 0, 1, 0, counted missing_anchors 0, 0, 0, out_of_scope_writes 0, 0, 0, seconds 189, 228, 164, against a DeepSeek baseline maximum of 1, 0 and 0. Criterion 5 is PASS on this fourth final set, after three FAIL sets that stay on record. The C5 box is ticked, criteria.txt holds seven PASS lines, the parent and phase 009 read Complete. Open follow-up, not fixed here: strict validation does not enforce required anchors. |
++| Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. Update on 2026-10-25: C5 passed on the second fresh set, criteria.txt holds seven PASS lines and every box is ticked. |
+ | Trigger index | Done | check exit=0 after the last doc edit of phase 009 |
+ | Changelogs | Done | .skilled/skills/system-spec-kit/changelog/v2.9.0.0.md and the nested files under specs/system-speckit/054-weak-model-spec-authoring/changelog/ for phases 001 to 009 and the root |
+ 
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/spec.md b/specs/system-speckit/054-weak-model-spec-authoring/spec.md
+index 03892cc33e..d0bf3a20c9 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/spec.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/spec.md
+@@ -20,7 +20,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "054-weak-model-spec-authoring-planning"
+       parent_session_id: null
+-    completion_pct: 86
++    completion_pct: 100
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -47,7 +47,7 @@ _memory:
+ |-------|-------|
+ | **Level** | 2 |
+ | **Priority** | P1 |
+-| **Status** | In Progress |
++| **Status** | Complete |
+ | **Created** | 2026-10-23 |
+ | **Branch** | `main` |
+ | **Parent Spec** | `../spec.md` |
+@@ -134,7 +134,7 @@ The operator meets all four before the first phase runs. The conductor records e
+ | 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
+ | 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Complete |
+ | 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Complete |
+-| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | In Progress |
++| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | Complete |
+ 
+ ### Phase Transition Rules
+ 

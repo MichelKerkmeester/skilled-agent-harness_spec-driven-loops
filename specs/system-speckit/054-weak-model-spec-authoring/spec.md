@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm"
-description: "Nine phases that repair the spec-kit templates, gate unfilled placeholders on new docs, add per-section fill guidance and an authoring card, then measure whether a weak-model worker, benchmarked on cli-devin swe-2-max, authors better packets."
+description: "Nine phases that repair the spec-kit templates, gate unfilled placeholders on new docs, add per-section fill guidance and an authoring card, then measure whether a weak-model worker, benchmarked on cli-devin deepseek-v4-1-flash-1017-max, authors better packets."
 trigger_phrases:
   - "weak model spec authoring phase parent spec"
   - "deepseek flash spec authoring"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 86
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -63,10 +63,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A weak-model worker (the benchmark subject is cli-devin `swe-2-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`. A fresh Level 2 scaffold holds 97 bracketed hint occurrences and validates clean. The hand-written examples the worker imitates carry leaked description text and stale lines. The authoring guidance is a 1,200-line template guide that a weak model cannot follow in one pass. Together these let a swarm produce packets that look finished and are not.
+A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`. A fresh Level 2 scaffold holds 97 bracketed hint occurrences and validates clean. The hand-written examples the worker imitates carry leaked description text and stale lines. The authoring guidance is a 1,200-line template guide that a weak model cannot follow in one pass. Together these let a swarm produce packets that look finished and are not.
 
 ### Purpose
-Make the templates, the examples, the validator and the authoring docs good enough that a weak-model swarm, measured on cli-devin `swe-2-max`, authors a valid, filled packet without a frontier model correcting it. Phase 001 measures the starting point and the last phase measures the result, so the claim rests on numbers.
+Make the templates, the examples, the validator and the authoring docs good enough that a weak-model swarm, measured on cli-devin `deepseek-v4-1-flash-1017-max`, authors a valid, filled packet without a frontier model correcting it. Phase 001 measures the starting point and the last phase measures the result, so the claim rests on numbers.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -89,7 +89,7 @@ Make the templates, the examples, the validator and the authoring docs good enou
 ### Out of Scope
 - Any change to `sk-prompt`. All logic lives in system-spec-kit.
 - Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
-- Measuring models other than cli-devin swe-2-max for the benchmark.
+- Measuring models other than cli-devin deepseek-v4-1-flash-1017-max for the deciding benchmark. The first final set ran on swe-2-max and is history.
 - Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
 
 ### Files to Change
@@ -134,7 +134,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
 | 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Complete |
 | 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Complete |
-| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | In Progress |
+| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | Complete |
 
 ### Phase Transition Rules
 
@@ -162,7 +162,7 @@ The operator meets all four before the first phase runs. The conductor records e
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Resolved 2026-10-24: LLM Gateway ran out of usage after phase 001, and the operator moved every remaining run to cli-codex `gpt-6-luna` and cli-devin `swe-2-max`. The benchmark subject is now `swe-2-max`, rebaselined at the start commit. Cli-opencode rule 15 no longer applies, because no OpenCode executor runs.
+- Resolved 2026-10-24: LLM Gateway ran out of usage after phase 001, and the operator moved every remaining run to cli-codex `gpt-6-luna` and cli-devin `swe-2-max`. The benchmark subject was then `swe-2-max`, rebaselined at the start commit. Superseded on 2026-10-25: the operator ruled out the swe-2 models and the subject is `deepseek-v4-1-flash-1017-max` (parent goal D8). Cli-opencode rule 15 no longer applies, because no OpenCode executor runs.
 - Whether phase 003 also fixes the post-edit scanner `spec/check-placeholders.sh`, which flags regex classes inside fenced code blocks, is decided in the phase 003 decision record.
 <!-- /ANCHOR:questions -->
 

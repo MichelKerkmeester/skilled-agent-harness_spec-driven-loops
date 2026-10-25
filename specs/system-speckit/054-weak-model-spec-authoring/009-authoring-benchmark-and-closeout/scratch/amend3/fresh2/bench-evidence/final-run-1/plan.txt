@@ -1,0 +1,316 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "Add a --quiet branch to the existing argument parser and a renderer that prints only the Recommended Level line. The default report, JSON output, scoring and exit codes stay unchanged, and a vitest case pins both outputs."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash 3.2 or newer, the version macOS ships |
+| **Framework** | None. A standalone script with `set -euo pipefail` |
+| **Storage** | None |
+| **Testing** | vitest in the `runtime/cli` workspace, plus direct shell runs |
+
+### Overview
+Change one script. The argument parser gets a `--quiet` branch that sets a global, and the output dispatch gets a third renderer that prints only `Recommended Level: N (Name)`. A new vitest case runs the script with and without the flag and asserts the line count and the exact bytes of the default report.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] `npx vitest run tests/recommend-level-quiet.vitest.ts` passes
+- [ ] `node tests/test-phase-system.js` and `node tests/test-phase-validation.js` still pass
+- [ ] `bash -n recommend-level.sh` exits 0
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Single-script flag branch.
+
+### Key Components
+- **Argument parser**: the `while [[ $# -gt 0 ]]; case "$1"` loop at lines 656-719 of `recommend-level.sh`. It already handles `--json|-j`, `--no-recommend-phases` and `--phase-threshold`.
+- **Renderers**: `output_text` at lines 508-558 and `output_json` at lines 562-649. Each reads the scored globals and writes to stdout.
+- **Output dispatch**: lines 770-774 choose a renderer from `JSON_OUTPUT`. The quiet branch joins this decision point.
+
+### Data Flow
+Arguments set globals, the scoring functions fill `TOTAL_SCORE`, `determine_level` sets `RECOMMENDED_LEVEL` and `LEVEL_NAME`, and one renderer prints. `--quiet` changes only the renderer choice. Scoring, confidence and phase calculation run exactly as they do today.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `recommend-level.sh` argument parser | Owns option handling | Update | `rg -n -- '--quiet' recommend-level.sh` shows the case branch |
+| `output_text` level line | Producer of `Recommended Level: N (Name)` | Unchanged | Test asserts the default report is byte-identical |
+| New quiet renderer | Producer of the one-line answer | Create | `--quiet \| wc -l` prints 1 |
+| `output_json` | Producer for machine callers | Unchanged | Test asserts `--json --quiet` parses as JSON |
+| `--help` text and header OPTIONS | Documentation surface | Update | `--help \| rg -c -- '--quiet'` prints 2 |
+| `tests/test-phase-system.js`, `tests/test-phase-validation.js` | Consumers that run the script | Not a consumer of the flag; regression only | Both still pass |
+| Other shell callers | None found | Not a consumer | `rg -n "recommend-level\.sh" --glob '*.sh'` returns only the script itself |
+
+Required inventories:
+- Same-class producers: `rg -n 'Recommended Level' .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` returns the header comment, the `output_text` line and the help text. Only `output_text` emits the line at runtime, so the quiet renderer reuses that string.
+- Consumers of changed symbols: `rg -n 'recommend-level\.sh' . --glob '*.sh' --glob '*.js' --glob '*.ts' --glob '!node_modules/**' --glob '!specs/**'` returns the script and two test files. No shell caller parses the report.
+- Matrix axes: flag combination (none, `--quiet`, `--json`, both) by phase mode (default, `--no-recommend-phases`) by input validity (valid, missing numbers, non-numeric, unknown option). Twelve rows, four of them covered by the new test and the rest by the verification tasks.
+- Algorithm invariant: the quiet line equals the first content line of the default report, with the leading blank line removed. The invariant breaks if either renderer builds its own label, so both read `RECOMMENDED_LEVEL` and `LEVEL_NAME` through one shared string.
+<!-- /ANCHOR:affected-surfaces -->
+
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. Setup captures the pre-change output. Implementation adds the parser branch, the renderer and the help text. Verification runs the new test, the two existing phase tests and the line counts.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | Quiet renderer output and the shared label string | vitest, `execFileSync('bash', ...)` |
+| Integration | Flag combinations: none, `--quiet`, `--json`, both, with and without `--no-recommend-phases` | vitest |
+| Regression | Default report bytes for the `--help` examples | vitest snapshot comparison against the captured baseline |
+| Manual | `--help`, missing input, non-numeric input, unknown option | shell |
+
+The new test lives at `.skilled/skills/system-spec-kit/runtime/cli/tests/recommend-level-quiet.vitest.ts`. The CLI vitest project includes `tests/**/*.vitest.ts`, so no config change is needed.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| `bash` 3.2+ | Internal | Green | The script cannot run |
+| `vitest` 4.x in the `runtime/cli` workspace | Internal | Green | Tests fall back to direct shell checks |
+| `node` 22.12+ | Internal | Green | The existing test suites cannot run |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: The default report changes for any `--help` example, or a phase test fails after the change.
+- **Procedure**: Revert the single commit that touches `recommend-level.sh` and the new test file. Confirm `recommend-level.sh --loc 50 --files 2 | wc -l` prints 16 again.
+<!-- /ANCHOR:rollback -->
+
+---
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+Before starting a task:
+
+1. Read `spec.md` and confirm the requested work stays inside section 3.
+2. Read this plan and identify the phase the task belongs to.
+3. Read `tasks.md` and pick the next incomplete task.
+4. Capture the current output of the command the task changes, so the comparison has a baseline.
+5. Confirm the write path is the script or the new test file, nothing else.
+
+### Execution Rules
+
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Capture the baseline before editing, then parser, then renderer, then test |
+| TASK-SCOPE | Touch only `recommend-level.sh` and the new test file |
+| TASK-VERIFY | Run each task's `Verify:` command and read its output before marking the task done |
+| TASK-DOC | Reconcile spec, plan and tasks only after the checks pass |
+
+### Status Reporting Format
+
+Report `Task`, `Status`, `Evidence`, `Blockers` and `Next` after each task.
+
+### Blocked Task Protocol
+
+If a task is blocked, stop dependent work, record the failing command and its output, keep the task open, and state the decision needed to continue.
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────┐
+                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
+Phase 1.5 (Test scaffold) ─┘
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Core, Test scaffold |
+| Test scaffold | Setup | Verify |
+| Core | Setup | Verify |
+| Verify | Core, Test scaffold | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 10 minutes |
+| Core Implementation | Low | 30 minutes |
+| Verification | Low | 20 minutes |
+| **Total** | | **About 1 hour** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [x] Backup created (not applicable; the change is one tracked file under version control)
+- [ ] Feature flag configured (not applicable; `--quiet` is the opt-in itself)
+- [ ] Monitoring alerts set (not applicable; the script is not a service)
+
+### Rollback Procedure
+1. Revert the commit that touches `recommend-level.sh` and the new test file.
+2. Run `bash recommend-level.sh --loc 50 --files 2 | wc -l` and confirm 16.
+3. Run the two phase test files and confirm both pass.
+4. Tell callers that used `--quiet` that the flag is gone.
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A. The script stores no state.
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
+│   Baseline  │     │    Core     │     │   Verify    │
+└─────────────┘     └──────┬──────┘     └─────────────┘
+                          │
+                    ┌─────▼─────┐
+                    │  Test     │
+                    │  scaffold │
+                    └───────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture | None | 16-line and 17-line reference output | Quiet renderer test |
+| Parser branch | None | `QUIET` global set from `--quiet` | Renderer dispatch |
+| Quiet renderer | Parser branch | One-line stdout | Test |
+| Help text | Parser branch | Documented flag | Docs verification |
+| Test case | Baseline, renderer, help | Regression proof | Close |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Baseline capture** - 5 minutes - CRITICAL
+2. **Parser branch and quiet renderer** - 20 minutes - CRITICAL
+3. **Test case and full run** - 15 minutes - CRITICAL
+
+**Total Critical Path**: About 40 minutes
+
+**Parallel Opportunities**:
+- The help text and the header OPTIONS block can be edited with the parser branch.
+- The test file can be scaffolded while the renderer lands, because the baseline capture already fixed the expected bytes.
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Flag parsed | `rg -n -- '--quiet' recommend-level.sh` shows the case branch | Phase 2 start |
+| M2 | One line printed | `recommend-level.sh --loc 50 --files 2 --quiet \| wc -l` prints 1 | Phase 2 end |
+| M3 | Proof in place | New vitest passes and both phase test files still pass | Phase 3 end |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: A flag rather than an environment variable or a new format
+
+**Status**: Proposed
+
+**Context**: A caller needs the level without the report. The script already takes options, and `--json` returns a whole object.
+
+**Decision**: Add `--quiet` to the existing parser. It sets a global and selects a renderer.
+
+**Consequences**:
+- The caller opts in per invocation, so no state leaks between runs.
+- One more option to document and test.
+
+**Alternatives Rejected**:
+- Environment variable `SPECKIT_QUIET`: hidden from `--help`, easy to inherit into unrelated runs.
+- `--json` piped to a JSON parser: adds a parser dependency and returns more than the caller asked for.
+- A new `--format level` option: new vocabulary for a single use.
+
+---
+
+### ADR-002: JSON wins when both `--json` and `--quiet` appear
+
+**Status**: Proposed
+
+**Context**: A shared argument builder can pass both machine-oriented flags.
+
+**Decision**: `--json` takes precedence. The quiet renderer only replaces the human report.
+
+**Consequences**:
+- One documented rule: `--quiet` affects text output.
+- A caller that asks for JSON still receives parseable JSON.
+
+**Alternatives Rejected**:
+- Quiet wins: a JSON request would return a text line, which is surprising and harder to detect.
+- Reject the pair with exit 1: breaks argument builders that always append `--quiet`; adds a failure path for no gain.
+
+---

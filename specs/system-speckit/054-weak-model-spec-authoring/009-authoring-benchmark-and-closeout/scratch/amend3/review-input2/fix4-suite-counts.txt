@@ -1,0 +1,10 @@
+1777: Test Files  276 passed | 3 skipped (279)
+1778:      Tests  4162 passed | 21 skipped (4183)
+2602: Test Files  184 passed | 3 skipped (187)
+2603:      Tests  2085 passed | 20 skipped (2105)
+4681:exit=0
+--- amend2 baseline
+1755: Test Files  276 passed | 3 skipped (279)
+1756:      Tests  4162 passed | 21 skipped (4183)
+2580: Test Files  184 passed | 3 skipped (187)
+2581:      Tests  2085 passed | 20 skipped (2105)

@@ -184,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,6 +191,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-25T13:50:01.813Z",
+    "last_save_at": "2026-10-25T14:16:45.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a77af2321bccc1ffc1be5705f4129cade79c707dbff2915e6015cabd2260d828",
+    "source_fingerprint": "sha256:436047143671abc389b20f93ad2e1338c12c3ba0b2ab3da56b8bdac67c637f63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "462523b55c6fe98ff7e924742630f3dbf6f581e9520d996958a82f8a6891fc9b",
+      "spec.md": "19e75d53b19c46fdb962cdcb4b92f8cf14f5e0dbfc39c5b88136f2b19fab8932",
       "plan.md": "1169d7ec60672e7bf8070beed6ffad3a0c01b777ea44b1c75666f6a1c1d9fbb5",
-      "tasks.md": "e612f4da32b9a6571af041d118e380ffb60c3189ea659208824dea2749991581",
-      "implementation-summary.md": "64ad01932990f9167eefc50c57a52981e9553e4ae0a5f1c070b2ccc50f7b8baa"
+      "tasks.md": "2f531df13a5e80fb0c265ded32c0511e5b220b502588c82e84f36e935aed7218",
+      "implementation-summary.md": "61af005af7244c5e2e62695f91ac727e636d77283e01ea17fff3e674eeba2dc7"
     },
     "last_active_at": null
   }

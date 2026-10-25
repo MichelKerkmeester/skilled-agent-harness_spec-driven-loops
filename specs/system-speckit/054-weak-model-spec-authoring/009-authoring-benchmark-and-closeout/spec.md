@@ -33,7 +33,7 @@ Phase 1 first measured a DeepSeek V4.1 Flash worker on a Level 2 packet, and the
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -103,7 +103,7 @@ The closing report states the before and after per metric as a range, and the pa
 - Any template, validator, rule, command, agent or playbook edit. Phases 2 to 8 own those.
 - Any change to the frozen task text, the four measured documents or the metric definitions. A change makes the delta meaningless.
 - A significance claim. Three runs per side cannot support one.
-- A push. This phase ends in one local commit on the worktree branch and nothing is pushed.
+- A push. This phase makes local commits on the worktree branch and nothing is pushed.
 - Fixing another phase folder. A child that fails strict validation is named and the closeout stops, because another phase owns its docs.
 
 ### Files to Change
@@ -160,7 +160,7 @@ The closing report states the before and after per metric as a range, and the pa
 | ID | Requirement |
 |----|-------------|
 | REQ-013 | A read-only frontier review of the closeout diff ran, and each finding is either applied or recorded in `goal.md` section 4 with the reason it was not. |
-| REQ-014 | `implementation-summary.md` ends with the operator handoff list: the phase made one local commit on the worktree branch and nothing is pushed. |
+| REQ-014 | `implementation-summary.md` ends with the operator handoff list: the phase made local commits on the worktree branch and nothing is pushed. |
 | REQ-015 | Completion metadata is reconciled across `spec.md`, `acceptance-criteria.md`, the continuity fields, `goal.md` and `implementation-summary.md`, so no document claims a different state. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,

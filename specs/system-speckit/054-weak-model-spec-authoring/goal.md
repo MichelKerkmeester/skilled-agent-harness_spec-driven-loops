@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 86
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -91,7 +91,7 @@ string, not these files.
 - [x] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
 - [x] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
 - [x] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
-- [ ] The 3 final Level 3 runs all pass strict validation, and none is worse than the DeepSeek baseline's worst on leftover_hints, missing_anchors (optional sections deleted as their fill notes allow do not count) or out_of_scope_writes. The phase 009 report lists min and max for five metrics
+- [x] The 3 final Level 3 runs all pass strict validation, and none is worse than the DeepSeek baseline's worst on leftover_hints, missing_anchors (optional sections deleted as their fill notes allow do not count) or out_of_scope_writes. The phase 009 report lists min and max for five metrics
 - [x] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
 - [x] The swarm commits only on the build worktree and never pushes
 <!-- /ANCHOR:completion -->
@@ -133,11 +133,12 @@ and findings belong here.
 | Final baseline | Done | 3 runs on cli-devin swe-2-max, baseline.json holds 5 metrics per run. C5 FAIL on the frozen metric: missing_anchors 0, 0, 6 against a baseline maximum of 0. See the C5 row below. |
 | Benchmark report | Done | .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ with verdict FAIL |
 | Track roots | Done | system-speckit: up to date (apply and dry run both exit 0), children match the numbered folders on disk |
-| Open follow-up: L3+ heading label | Open | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
+| Open follow-up: L3+ heading label | Done | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
 | Third amendment result (phase 009) | Done, C5 FAIL | The label fix is local commit 23657e227e. The second final set on cli-devin deepseek-v4-1-flash-1017-max (baseline of 3 runs at ac2be31ec6: hints 1, 0, 0, anchors 0, 0, 0, seconds 242, 217, 298) gave strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors 3, 0, 0, out_of_scope_writes 0, 0, 0 and seconds 259, 198, 243. Run 1 lacks deploy-ready, compliance-verify and sign-off, so C5 is FAIL and its box stays unticked. Run 2 is contaminated (its session read the frozen vocabulary files) and is kept and labelled. The full suite passed again with equal counts after one environmental retry. Detail in the phase 009 goal log and the report README. |
 | Fresh runs under the new anchor rule (phase 009) | Done, C5 FAIL | Rule script and scores committed first as e13115c7da (swe-2-max first set scores 0, 0, 3 and the second DeepSeek set 0, 0, 0, as the Anchor rule row says). Three fresh runs on cli-devin deepseek-v4-1-flash-1017-max in the disposable worktree worktrees/223-deepseek-final, packet folder removed from its working tree: strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors counted 1, 0, 0, out_of_scope_writes 0, 0, 0, seconds 208, 223, 153. Run 1 deleted the required fix-completeness section, so criterion 5 is FAIL and its box stays unticked. The audit found no forbidden string in any call text, only in git status and search output. Detail in the phase 009 goal log and the report README. |
 | Fix-completeness note fixed (phase 009) | Done | The conductor fixed the cause of the fresh-set failure at source: the required fix-completeness fill note in tasks.md.tmpl now says to keep the section and delete only rows. The anchor rule and criterion 5 are unchanged, and one more fresh set follows. Open follow-up, not fixed here: strict validation does not enforce required anchors (ANCHORS_VALID checks form only). |
-| Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. |
+| Second fresh set and phase close (phase 009) | Done, C5 PASS | The fix is commit 74a629a7af (the full suite passed with equal counts). Three runs on cli-devin deepseek-v4-1-flash-1017-max in a new disposable worktree, packet folder removed: strict_passed 1, 1, 1, leftover_hints 0, 1, 0, counted missing_anchors 0, 0, 0, out_of_scope_writes 0, 0, 0, seconds 189, 228, 164, against a DeepSeek baseline maximum of 1, 0 and 0. Criterion 5 is PASS on this fourth final set, after three FAIL sets that stay on record. The C5 box is ticked, criteria.txt holds seven PASS lines, the parent and phase 009 read Complete. Open follow-up, not fixed here: strict validation does not enforce required anchors. |
+| Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. Update on 2026-10-25: C5 passed on the second fresh set, criteria.txt holds seven PASS lines and every box is ticked. |
 | Trigger index | Done | check exit=0 after the last doc edit of phase 009 |
 | Changelogs | Done | .skilled/skills/system-spec-kit/changelog/v2.9.0.0.md and the nested files under specs/system-speckit/054-weak-model-spec-authoring/changelog/ for phases 001 to 009 and the root |
 

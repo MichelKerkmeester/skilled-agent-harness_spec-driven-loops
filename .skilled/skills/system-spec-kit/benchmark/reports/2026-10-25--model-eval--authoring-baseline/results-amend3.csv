@@ -8,3 +8,6 @@ amend3,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,243,status listing only
 amend3-fresh,final,deepseek-v4-1-flash-1017-max,1,1,0,1,0,208,only git status output listed the removed files
 amend3-fresh,final,deepseek-v4-1-flash-1017-max,2,1,0,0,0,223,git status output and one code search output named the report folder
 amend3-fresh,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,153,only git status output listed the removed files
+amend3-fresh2,final,deepseek-v4-1-flash-1017-max,1,1,0,0,0,189,call text clean and tool output named paths
+amend3-fresh2,final,deepseek-v4-1-flash-1017-max,2,1,1,0,0,228,call text clean and git status output named paths
+amend3-fresh2,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,164,call text clean and git status output named paths

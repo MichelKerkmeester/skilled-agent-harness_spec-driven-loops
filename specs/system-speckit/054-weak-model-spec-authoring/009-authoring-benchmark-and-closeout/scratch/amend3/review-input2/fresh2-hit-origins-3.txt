@@ -1,0 +1,1 @@
+call_35ccf25dc2c047b89e7fa0db1a93a12e | node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/zz-bench-authoring/001-recommend-level-quiet-flag --apply 2>&1 | tail -20; echo "---STATUS---"; git status --por | hits ['009-authoring-benchmark-and-closeout', 'anchors-', 'baseline-deepseek', 'baseline-swe', 'bench-evidence', 'hints-']
