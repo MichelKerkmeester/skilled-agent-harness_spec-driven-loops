@@ -18,6 +18,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 # The corpus check is the diagram packet's contract: one family per module over every shipped
 # template and example. It blocks because the corpus was made green before the checker existed,
 # so there is no backlog behind the gate and nobody has to triage it. The literal marker is what
