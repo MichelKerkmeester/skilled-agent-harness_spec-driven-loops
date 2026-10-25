@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2dd8c518f2a26c8742cab52e7234ee0813b9bedfce8898140a40cf11b48c142b",
+  "manifestHash": "a471ab994259363d791ab8eb3b17ae07bf287c9f6ef98b7380d91c493bc7d2f3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -34933,6 +34933,18 @@
     "deferred suite gating": [
       "deferred suite gating"
     ],
+    "deferred surface items": [
+      "deferred surface items"
+    ],
+    "deferred surface items implementation summary": [
+      "deferred surface items implementation summary"
+    ],
+    "deferred surface items plan": [
+      "deferred surface items plan"
+    ],
+    "deferred surface items tasks": [
+      "deferred surface items tasks"
+    ],
     "deferred usefulness cells rerun": [
       "deferred usefulness cells rerun"
     ],
@@ -42485,6 +42497,9 @@
     ],
     "external scanner reset bash": [
       "external_scanner_reset bash"
+    ],
+    "external surface detection validation": [
+      "external surface detection validation"
     ],
     "external surface priority build": [
       "external surface priority build"
@@ -54786,6 +54801,9 @@
     ],
     "javascript checklist module header": [
       "javascript checklist module header"
+    ],
+    "javascript css overlay naming": [
+      "javascript css overlay naming"
     ],
     "javascript css style compliance": [
       "javascript css style compliance"
@@ -73404,6 +73422,9 @@
     ],
     "phase 8 consolidation decision tasks": [
       "phase 8 consolidation decision tasks"
+    ],
+    "phase 8 deferred surface items": [
+      "phase 8 deferred surface items"
     ],
     "phase 8 docs and readmes": [
       "phase 8 docs and readmes"

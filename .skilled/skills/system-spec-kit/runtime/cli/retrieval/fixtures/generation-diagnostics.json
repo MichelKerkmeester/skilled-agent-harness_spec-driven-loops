@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7283,
-    "ok": 15181,
+    "ok": 15185,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26012,
+  "documentsScanned": 26016,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2dd8c518f2a26c8742cab52e7234ee0813b9bedfce8898140a40cf11b48c142b",
+  "manifestHash": "a471ab994259363d791ab8eb3b17ae07bf287c9f6ef98b7380d91c493bc7d2f3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37590,
+      "ok": 37597,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71335,6 +71335,10 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/scratch",
       "reason": "excluded directory"
     },
     {

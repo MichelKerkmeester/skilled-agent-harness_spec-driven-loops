@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8f1916bd68916a22695a6b3c12b6b675ddf8871a1e058adac934abdf279eefea",
+  "corpusHash": "bc5fb55e9053c9488f3e3d4d7ce6152c09a9f71fe9e822113dd1808d02b74ad5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26012,
+  "includedPathCount": 26016,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12086,6 +12086,10 @@
     "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/plan.md",
     "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/spec.md",
     "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/tasks.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/plan.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/spec.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/tasks.md",
     "specs/sk-code/013-private-surface-skills/goal.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-dashboard.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-strategy.md",
@@ -26043,7 +26047,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2dd8c518f2a26c8742cab52e7234ee0813b9bedfce8898140a40cf11b48c142b",
+  "manifestHash": "a471ab994259363d791ab8eb3b17ae07bf287c9f6ef98b7380d91c493bc7d2f3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28799,6 +28803,10 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/scratch",
       "reason": "excluded directory"
     },
     {
