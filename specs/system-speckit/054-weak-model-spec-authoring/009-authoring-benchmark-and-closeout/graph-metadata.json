@@ -51,6 +51,7 @@
       "scratch/bench-evidence/final-run-3/spec.txt",
       "scratch/baseline/runs.jsonl",
       "scratch/baseline/delta.json",
+      "scratch/tools/justified-anchors.sh",
       "scratch/closeout/criteria.txt",
       ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
       ".skilled/changelog/system-spec-kit/v2.9.0.0.md",
@@ -59,8 +60,7 @@
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
       "specs/system-speckit/041-write-recipe-fixes/spec.md",
-      "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
-      "specs/system-speckit/041-write-recipe-fixes/graph-metadata.json"
+      "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json"
     ],
     "entities": [
       {
@@ -121,6 +121,12 @@
         "name": "delta.json",
         "kind": "config",
         "path": "scratch/baseline/delta.json",
+        "source": "derived"
+      },
+      {
+        "name": "justified-anchors.sh",
+        "kind": "script",
+        "path": "scratch/tools/justified-anchors.sh",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-25T12:14:35.019Z",
+    "last_save_at": "2026-10-25T13:06:16.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04da47774cbc45c45cd4c50b0672d7751ae5a724c55f6c844c737dce499eafdb",
+    "source_fingerprint": "sha256:53a434979a0ef6534b8b9368dcabe1806bb67c836572567579f124465887748a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "462523b55c6fe98ff7e924742630f3dbf6f581e9520d996958a82f8a6891fc9b",
       "plan.md": "1169d7ec60672e7bf8070beed6ffad3a0c01b777ea44b1c75666f6a1c1d9fbb5",
       "tasks.md": "e612f4da32b9a6571af041d118e380ffb60c3189ea659208824dea2749991581",
-      "implementation-summary.md": "633bc68c77f01717a56e7b69af366ef5d0a1a4adc218eb0fc5508a90b5561acb"
+      "implementation-summary.md": "9cf35e29d7b71bf9ca910a8f5fcd35a7b4fd06e1a0dcae0014b931afffbe79b1"
     },
     "last_active_at": null
   }

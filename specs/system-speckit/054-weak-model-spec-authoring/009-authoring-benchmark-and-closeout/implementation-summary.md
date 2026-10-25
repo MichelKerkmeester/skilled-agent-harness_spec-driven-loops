@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 9 ran the benchmark twice and closed the packet's records with one failed criterion: after the L3+ label fix, three DeepSeek runs of the frozen Level 3 task left no hints but one run deleted three optional verification sections."
+description: "Phase 9 ran the benchmark three times and closed the packet's records with one failed criterion: after the L3+ label fix, three DeepSeek runs of the frozen Level 3 task left no hints but one run deleted three optional verification sections."
 trigger_phrases:
   - "authoring benchmark and closeout implementation summary"
 importance_tier: "normal"
@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
     last_updated_at: "2026-10-25T09:10:15Z"
     last_updated_by: "worker"
-    recent_action: "Shipped the L3+ label fix, reran the benchmark on DeepSeek, recorded criterion 5 as FAIL again"
+    recent_action: "Fixed the anchor rule, ran three fresh runs in a disposable worktree, recorded criterion 5 as FAIL for the third time"
     next_safe_action: "Operator reviews the local commit and decides the follow-up phase"
     blockers: []
     key_files:
@@ -55,6 +55,10 @@ The six anchors run 3 deleted are the optional Level 3 verification sections: `a
 
 The fill note under each of the six `## L3+:` headings of the `tasks.md` template now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.' The phase 004 plan rows, the golden snapshot and the guards match it, and the full suite passed again with the same counts. The operator ruled out the swe-2 models, so a new DeepSeek baseline of three runs at the packet start commit was taken by a separate agent, and three final runs ran on cli-devin `deepseek-v4-1-flash-1017-max` on the amended tree. Strict validation passed in all three and leftover hints were 0 in all three, but run 1 wrote a `tasks.md` without `deploy-ready`, `compliance-verify` and `sign-off`, so `missing_anchors` has a final maximum of 3 against a baseline maximum of 0 and criterion 5 fails again. Run 2 is contaminated, because its session read the frozen vocabulary files, and it is kept in the numbers and labelled. The first final set stays on record as history, measured on the earlier tree on swe-2-max.
 
+### New anchor rule and fresh runs
+
+The operator then chose "New rule, fresh runs". A rule script, `scratch/tools/justified-anchors.sh`, was committed with its scores on the twelve earlier packets before any fresh run: a frozen anchor missing from a packet counts unless it is an optional Level 3 `tasks.md` anchor whose fill-note condition holds. The first swe-2-max final set scores 0, 0 and 3 under it and the second DeepSeek set scores 0, 0 and 0. Three fresh runs then ran on cli-devin `deepseek-v4-1-flash-1017-max` in a disposable worktree with this packet's folder removed from its working tree. All three passed strict validation with no leftover hints, but run 1 deleted the whole required `fix-completeness` section, so counted `missing_anchors` is 1, 0 and 0 against a baseline maximum of 0 and criterion 5 fails for the third time. Run 3's deleted sections (`deploy-ready`, `compliance-verify`, `sign-off`) are excused by the rule.
+
 ### Phase 9: authoring-benchmark-and-closeout
 
 The closeout also published the benchmark report with verdict FAIL, wrote the global changelog `v2.9.0.0` and bumped the version carrier, wrote the nested changelogs for phases 001 to 003 and this phase, regenerated the trigger index, confirmed the track roots and reconciled the parent phase map and goal log. `scratch/closeout/criteria.txt` holds one line for each parent criterion: six PASS lines and one FAIL line, `C5 FAIL`.
@@ -85,7 +89,7 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 
 ### Operator handoff
 
-- This phase made one local commit on the worktree branch. Nothing was pushed.
+- The original close-out made one local commit (14cd9aabcf), and the reconcile and the amendments added local commits after it (fab90dccbd, 23657e227e, e13115c7da and the closing commit of the fresh set). Nothing was pushed.
 - The label fix shipped and the rerun failed criterion 5 again. The open decision is the operator's: whether `missing_anchors` should count the optional Level 3 verification sections, or whether the delete-when clauses in those fill notes should change, before any further rerun.
 - The parent `spec.md` and this phase are In Progress, not Complete, until a rerun passes criterion 5.
 - No generated artifact needs a hand edit before review.
@@ -103,6 +107,7 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 | Use Level 3 for the final runs | The SWE 2 Max baseline is Level 3 |
 | Prove parent criterion 3 on the frozen folder list | A live walk would compare different populations |
 | Keep the first final set as history and label the second set as the final one | The sets differ in model and tree, so each is reported with its own baseline |
+| Score every earlier set under the new rule before any fresh run | The operator's row claims two scores, and the script had to reproduce them first |
 | Keep a contaminated run in the numbers | Dropping it would hide what the session read, and the verdict does not depend on it |
 | Do not mark the phase or the parent Complete | The validator reads a Complete status with an unmet acceptance row as a failed closure |
 <!-- /ANCHOR:decisions -->
@@ -118,7 +123,7 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 | Strict validation on this phase folder | `RESULT: PASSED` |
 | Parent criteria | C1, C2, C3, C4, C6 and C7 PASS, C5 FAIL |
 | Census over 4688 folders | 4496 PASS and 192 FAIL before and after, 0 differing rows |
-| Report rows | 6 in `results.csv` (first set) and 6 in `results-amend3.csv` (second set) |
+| Report rows | 6 in `results.csv` (first set) and 9 final or baseline rows in `results-amend3.csv` (second set, its baseline and the fresh set) |
 | Full suite after the label fix | exit=0, 276 and 184 files passed, 4162 and 2085 tests passed |
 | Criterion 3 sample after the label fix | 20 of 20 rows equal the census rows |
 | Benchmark report markdown | `Total issues: 0` |
@@ -129,8 +134,8 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Parent criterion 5 is FAIL on both final sets.** `missing_anchors` has a final maximum of 6 against 0 on the first set and 3 against 0 on the second, and the phase and the parent stay In Progress.
-2. **Open decision.** The label sentence did not remove the omission. The three sections run 1 dropped each carry a delete-when clause in their fill note, and whether the run acted on it is UNKNOWN. A further rerun should use a worktree that holds no earlier benchmark evidence.
+1. **Parent criterion 5 is FAIL on all three final sets.** `missing_anchors` has a final maximum of 6 against 0 on the first set, 3 against 0 on the second and, counted under the new rule, 1 against 0 on the fresh set, and the phase and the parent stay In Progress.
+2. **Open decision.** The required `fix-completeness` anchor is missing from a passing packet because strict validation does not require it and its fill note invites deleting rows. Decide whether to enforce the required anchors, move that section to the optional set with a condition, or reword the note, then rerun in a fresh disposable worktree as the fresh set did.
 3. **Three runs per side cannot support a significance claim.** One run produced the whole failure, so the sample cannot separate the template change from run-to-run variation.
 4. **The fixture is one small feature and four documents.** A different feature shape or a Level 1 packet is not measured.
 5. **Acceptance rows AC-010, AC-011 and AC-015 are Unmet.** They need nine Complete map rows, seven PASS lines and a Complete status, which criterion 5 prevents.

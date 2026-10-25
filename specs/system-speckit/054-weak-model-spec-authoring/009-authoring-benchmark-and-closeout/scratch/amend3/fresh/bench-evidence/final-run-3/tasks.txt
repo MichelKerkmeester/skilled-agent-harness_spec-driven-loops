@@ -1,0 +1,224 @@
+---
+title: "Tasks: Add a quiet flag to recommend-level.sh"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "recommend level quiet flag tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
+# Tasks: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Two shell variables shorten the commands below:
+
+```bash
+S=.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh
+P=specs/zz-bench-authoring/001-recommend-level-quiet-flag
+```
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Read the parser and the `output_text()` emitter to confirm both insertion points (`$S`). Verify: `rg -n 'output_text\(\)|--json\|-j' $S` prints the function definition and the parser case.
+- [ ] T002 Capture the default output as the regression baseline (`$P/scratch/baseline-default.txt`). Verify: `bash $S --loc 50 --files 2 > $P/scratch/baseline-default.txt && wc -l < $P/scratch/baseline-default.txt` prints `16`.
+- [ ] T003 [P] Capture the JSON output as the second regression baseline (`$P/scratch/baseline-json.txt`). Verify: `bash $S --loc 100 --files 3 --json > $P/scratch/baseline-json.txt && wc -l < $P/scratch/baseline-json.txt` prints `36`.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T004 Add `QUIET=false` beside `JSON_OUTPUT=false` in the globals block (`$S`). Verify: `rg -n '^QUIET=false' $S` prints one line.
+- [ ] T005 Add the `--quiet)` case arm to the argument parser, matching the shape of the `--json|-j` arm (`$S`). Verify: `rg -n '^    --quiet\)' $S` prints one line.
+- [ ] T006 Add the conflict check between the parse loop and the numeric validation, rejecting `--quiet` with `--json` (`$S`). Verify: `bash $S --quiet --json --loc 50 --files 2 >/dev/null 2>&1; echo $?` prints `1`.
+- [ ] T007 Dispatch the one-line emitter in the output block so `QUIET` prints `Recommended Level: <N> (<Name>)` instead of calling `output_text()` (`$S`). Verify: `bash $S --quiet --loc 500 --files 15 --auth --api --db --architectural` prints `Recommended Level: 3 (Full)`.
+- [ ] T008 Document `--quiet` in `show_help()` with its one-line contract (`$S`). Verify: `bash $S --help | rg -c -- '--quiet'` prints `1`.
+- [ ] T009 Document `--quiet` in the header OPTIONS block beside `--json, -j` (`$S`). Verify: `rg -n '^#   --quiet' $S` prints one line.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T010 Diff the default output against the captured baseline (`$S`). Verify: `diff $P/scratch/baseline-default.txt <(bash $S --loc 50 --files 2)` prints nothing and exits 0.
+- [ ] T011 Diff the JSON output against the captured baseline (`$S`). Verify: `diff $P/scratch/baseline-json.txt <(bash $S --loc 100 --files 3 --json)` prints nothing and exits 0.
+- [ ] T012 Run the phase-system suite that drives the script through `--json` (`runtime/cli/tests/test-phase-system.js`). Verify: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.js` exits 0.
+- [ ] T013 Run the phase-validation suite that drives the script through `--json` fixtures (`runtime/cli/tests/test-phase-validation.js`). Verify: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-validation.js` exits 0.
+- [ ] T014 Exercise the error and edge paths: no arguments, invalid `--loc`, repeated `--quiet`, and `--quiet` with `--no-recommend-phases` (`$S`). Verify: `bash $S --quiet; echo $?` prints the missing-input error on stderr and `1`, and `bash $S --quiet --quiet --loc 50 --files 2 | wc -l` prints `1`.
+- [ ] T015 Run the strict validator on this packet (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+- [ ] `$P/scratch/baseline-default.txt` and `$P/scratch/baseline-json.txt` exist and both diffs print nothing
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`; ADR-001 there fixes the output label and the `--json` conflict rule
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+
+A P0 row is closed only by the command in its text. A P1 row may close on a recorded reason in this packet.
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Check: `rg -c '^\| REQ-' spec.md` prints `10`.
+- [ ] CHK-002 [P0] Technical approach defined in plan.md. Check: `rg -n '^### ADR-001' plan.md` prints one line.
+- [ ] CHK-003 [P1] Dependencies identified and available. Check: `bash --version | head -1` prints a 3.2 or newer version.
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] The edited script parses. Check: `bash -n $S` exits 0.
+- [ ] CHK-011 [P0] The edit adds no whitespace damage. Check: `git diff --check -- $S` prints nothing.
+- [ ] CHK-012 [P1] The contradictory invocation is handled, not ignored. Check: `bash $S --quiet --json --loc 50 --files 2; echo $?` prints a conflict message on stderr and `1`.
+- [ ] CHK-013 [P1] The new case arm follows the existing parser pattern. Check: `rg -n -A2 '^    --quiet\)' $S` shows `QUIET=true` followed by `shift`.
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] All acceptance criteria met. Check: every row in `acceptance-criteria.md` reads `Met`.
+- [ ] CHK-021 [P0] The quiet path prints exactly one line. Check: `bash $S --quiet --loc 50 --files 2 | wc -l` prints `1`.
+- [ ] CHK-022 [P1] Edge cases tested. Check: the T014 matrix ran and its four invocations printed the expected status.
+- [ ] CHK-023 [P1] Error scenarios validated. Check: `bash $S --quiet --loc abc >/dev/null 2>&1; echo $?` prints `1`.
+- [ ] CHK-024 [P0] The default output did not move. Check: `diff $P/scratch/baseline-default.txt <(bash $S --loc 50 --files 2)` prints nothing.
+- [ ] CHK-025 [P0] The JSON output did not move. Check: `diff $P/scratch/baseline-json.txt <(bash $S --loc 100 --files 3 --json)` prints nothing.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed. Check: `rg -n 'Recommended Level' .skilled/skills/system-spec-kit --glob '*.sh'` prints the single emitter.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the changed script. Check: `rg -l 'recommend-level\.sh' .skilled --glob '*.js' --glob '*.md'` lists every caller named in `plan.md`.
+- [ ] CHK-FIX-004 [P0] The parser change carries adversarial cases for flag order, repetition and conflict, not just the happy path. Check: the T014 matrix names all four cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Check: `plan.md` affected-surfaces names the three axes.
+- [ ] CHK-FIX-006 [P1] Evidence is pinned to the diff that made the change, not a moving branch range. Check: the completion note cites the commit that touches `$S`.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets. Check: `rg -n 'password|token|secret|api[_-]?key' $S` prints nothing.
+- [ ] CHK-031 [P0] Input validation still rejects non-integers. Check: `bash $S --loc abc >/dev/null 2>&1; echo $?` prints `1`.
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] Spec/plan/tasks name the same flag and the same output label. Check: `rg -c -- '--quiet' spec.md plan.md tasks.md` prints a non-zero count for each file.
+- [ ] CHK-041 [P1] Both documentation blocks describe the flag. Check: `bash $S --help | rg -c -- '--quiet'` prints `1` and `rg -n '^#   --quiet' $S` prints one line.
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Baselines and any temporary output live under `scratch/` only. Check: `ls $P/scratch` lists `baseline-default.txt` and `baseline-json.txt` and nothing outside the packet changed.
+- [ ] CHK-051 [P1] `scratch/` is cleaned before completion. Check: `ls $P/scratch` holds only `.gitkeep` and the two baselines the plan names.
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 15 | [ ]/15 |
+| P1 Items | 16 | [ ]/16 |
+| P2 Items | 0 | [ ]/0 |
+
+**Verification Date**: 2026-10-25
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: Architecture Verification
+
+- [ ] CHK-100 [P0] The architecture decision is recorded. Check: `rg -n '^### ADR-001' plan.md` prints one line.
+- [ ] CHK-101 [P1] The ADR carries a status. Check: `rg -n '^\*\*Status\*\*: Proposed' plan.md` prints one line.
+- [ ] CHK-102 [P1] Alternatives are documented with a rejection reason. Check: `rg -n '^\*\*Alternatives Rejected\*\*' plan.md` prints one line.
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: Performance Verification
+
+- [ ] CHK-110 [P1] The quiet path adds no measurable cost (NFR-P01). Check: a quiet run completes within the same second as the default run on the same input.
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: Documentation Verification
+
+- [ ] CHK-140 [P1] All spec documents are synchronized. Check: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
+- [ ] CHK-141 [P1] The help text and the header block agree on the flag's contract. Check: both name "only the recommended-level line" as the behavior.
+<!-- /ANCHOR:docs-verify -->
+
+---
+

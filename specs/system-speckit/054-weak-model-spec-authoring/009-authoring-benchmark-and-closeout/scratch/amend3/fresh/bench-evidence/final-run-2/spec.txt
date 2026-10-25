@@ -1,0 +1,221 @@
+---
+title: "Feature Specification: Add a quiet flag to recommend-level.sh"
+description: "recommend-level.sh answers one question in a 16- or 17-line report, so a caller that needs the level alone has to parse the report. This packet plans a --quiet flag that prints that one line and leaves every existing output path byte-identical."
+trigger_phrases:
+  - "recommend level quiet flag"
+  - "add a quiet flag to recommend level sh"
+  - "recommend-level quiet output"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
+# Feature Specification: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+
+---
+
+## EXECUTIVE SUMMARY
+
+The level recommender answers one question inside a 16- or 17-line report, so every caller that needs only the answer has to locate and parse a line within it. A `--quiet` flag prints that line and nothing else. The proof is a line count of one, a byte comparison against line 2 of the default report, and unchanged counts for the three shapes the script already produces.
+
+**Key Decisions**: `--quiet` is a third output mode rather than a filter over the text report. One shared function emits the level line, so its literal has a single producer. `--quiet` combined with `--json` is rejected instead of resolved by precedence.
+
+**Critical Dependencies**: the two `--json` callers in `speckit-plan.yaml` and `speckit-complete.yaml`, which must keep receiving their 36-line JSON object unchanged.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P2 |
+| **Status** | Draft |
+| **Created** | 2026-10-25 |
+| **Branch** | `worktrees/223-deepseek-final` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+`output_text()` prints a blank line, the level line, the score line, a blank line, a six-line breakdown and a phase block: 16 lines for a simple input and 17 for the full flag set, measured today. A caller that needs the level alone cannot take `head -1`, because line 1 is blank, and cannot take `head -2` without also taking the score line, so it falls back to `grep` or `sed` over a report whose shape changes when `--no-recommend-phases` is passed. The `--json` mode is not a substitute for a one-value read: it returns a 36-line object.
+
+### Purpose
+
+Add `--quiet`, which prints exactly the line `Recommended Level: <N> (<Name>)` and exits 0, and leave the text and JSON paths byte-identical to what they print today.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Parse `--quiet` and its `-q` alias alongside the existing flags in section 5's argument loop.
+- Emit the level line from one shared function that both the quiet path and the text report call.
+- Reject `--quiet` together with `--json` as a usage error rather than picking a winner.
+- List the flag in both help surfaces: the file header's OPTIONS block and `show_help()`.
+- Prove the three existing output shapes are unchanged.
+
+### Out of Scope
+- Changing the level line's text, the score line or the breakdown - callers parse the label, so a format change belongs in its own packet.
+- Suppressing stderr or changing exit codes - `--quiet` governs stdout only.
+- Adding `--quiet` to the two YAML command assets - they pass `--json`, and no caller asked for the flag.
+- Correcting the broken invocation examples in `references/workflows/execution-methods.md` line 165 and `README.md` line 514, which pass a positional argument the script rejects as an unknown option. That is a documentation defect with its own scope.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Modify | Add the flag, the shared level-line emitter, the quiet output mode, the conflict guard and both help entries |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | `--quiet` prints exactly one line on stdout, `Recommended Level: <N> (<Name>)`, and exits 0 for any valid input. |
+| REQ-002 | For the same arguments, the `--quiet` line is byte-identical to line 2 of the text report. |
+| REQ-003 | Without `--quiet`, stdout is byte-identical to the current output in all three existing shapes: default, `--no-recommend-phases` and `--json`. |
+| REQ-004 | `--quiet` with `--json` exits 1, writes nothing to stdout and names both flags on stderr. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-005 | `-q` behaves identically to `--quiet`. |
+| REQ-006 | `--help` and the file header's OPTIONS block both list `--quiet, -q`. |
+| REQ-007 | `--quiet` does not suppress validation errors: an invalid input still exits 1 with its message on stderr and an empty stdout. |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `bash recommend-level.sh --quiet --loc 500 --files 15 --auth --api --db --architectural | wc -l` prints `1`.
+- **SC-002**: that line matches `sed -n '2p'` of the same arguments without `--quiet`, and `diff` exits 0.
+- **SC-003**: the three existing shapes keep their measured counts: 17 default, 12 with `--no-recommend-phases`, 36 with `--json`.
+- **SC-004**: `--quiet --json` exits 1 and leaves stdout empty.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | The `--json` callers at `speckit-plan.yaml:86` and `speckit-complete.yaml:147` | An altered JSON path breaks `speckit:plan` and `speckit:complete` | Keep `--json` byte-identical and run both callers' exact commands in verification |
+| Risk | The level label drifts between the text report and the quiet path, and a caller's parser breaks silently | Medium | Emit both from one function and pin the equality with a byte comparison |
+| Risk | `--quiet` and `--json` are both passed and one silently wins | Low | Reject the combination with exit 1 |
+<!-- /ANCHOR:risks -->
+
+---
+
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The quiet path returns before the breakdown and phase echoes, so it cannot be slower than the default path on the same arguments. The flag adds no measurable runtime cost.
+
+### Security
+- **NFR-S01**: N/A. The script reads no credential, opens no network connection and writes no file, and the new flag changes none of that.
+
+### Reliability
+- **NFR-R01**: Exit codes stay as they are in every output mode: 0 on success and 1 on a usage or input error.
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+- Empty input: `--quiet` with neither `--loc` nor `--files` reaches the existing validation, exits 1 and writes the usage error to stderr, leaving stdout empty.
+- Maximum: `--loc 999999 --files 999999` caps each score at its weight and still prints one line.
+
+### Error Scenarios
+- Unknown option beside `--quiet`: exit 1, stderr names the option, stdout stays empty.
+- `--quiet` with `--json`: exit 1, stderr names both flags, stdout stays empty.
+
+### State Transitions
+- Flag order: `--json --quiet` and `--quiet --json` behave identically, because the conflict is checked after the parse loop rather than inside it.
+- `--help` with `--quiet`: help wins and exits 0, because `show_help` exits inside the parse loop before any output mode runs.
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 4/25 | Files: 1, LOC: about 20, Systems: 1 |
+| Risk | 5/25 | Auth: N, API: N, Breaking: N; one shared stdout surface |
+| Research | 2/20 | One read of the existing output block; no external investigation |
+| Multi-Agent | 0/15 | Workstreams: 1 |
+| Coordination | 2/15 | Dependencies: 2 `--json` callers to keep unchanged |
+| **Total** | **13/100** | **Level 3 (declared by dispatch, not by this score)** |
+
+The table reports the change, not the packet. Run against its own subject, `recommend-level.sh --loc 20 --files 1` returns Level 0 at 4/100. The packet carries Level 3 because the dispatch instruction set it, and the Level 3 documents are what the operator asked for; the score above is recorded so that no reader mistakes the level for a measurement of the change.
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | The level line's literal drifts between the text report and the quiet path | M | L | One shared emitter, pinned by a byte comparison in AC-002 |
+| R-002 | `--quiet` with `--json` resolves silently to one mode | L | L | Reject the combination with exit 1 |
+| R-003 | One help surface is updated and the other is missed | L | M | REQ-006 names both; a grep counts two entries |
+
+---
+
+## 11. USER STORIES
+
+### US-001: One line for a caller (Priority: P0)
+
+**As a** shell caller such as a plan or completion command, **I want** the recommended level as a single line, **so that** I can read it without parsing a report whose shape depends on other flags.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: A short answer at a terminal (Priority: P1)
+
+**As a** person running the script by hand, **I want** the short form, **so that** I do not read 17 lines to get one value.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+None. The three ambiguities this packet could have carried are settled rather than deferred: the output shape is a third mode (ADR-001 in `plan.md`), the conflict with `--json` is a usage error (ADR-002 in `plan.md`), and stderr and exit codes stay as they are (REQ-007).
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `tasks.md`
+- **Decision Records**: See `plan.md` section 8. This packet carries no `decision-record.md`, which is a lazy add-on at every level.
+
+---
+
+

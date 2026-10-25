@@ -1,0 +1,19 @@
+ .../README.md                                      | 117 ++++++++++++++++++++-
+ .../results-amend3.csv                             |  10 ++
+ .../source.md                                      |   9 +-
+ .../system-spec-kit/benchmark/reports/README.md    |   2 +-
+ .../skills/system-spec-kit/changelog/v2.9.0.0.md   |   3 +-
+ .../scaffold-golden-snapshots.vitest.ts.snap       |  24 ++---
+ .../system-spec-kit/templates/core/tasks.md.tmpl   |  12 +--
+ .../004-template-section-fill-guidance/plan.md     |  12 +--
+ .../acceptance-criteria.md                         |   2 +-
+ .../009-authoring-benchmark-and-closeout/goal.md   |  17 ++-
+ .../implementation-summary.md                      |  29 +++--
+ .../scratch/tools/amend3-delta.sh                  |  28 +++++
+ .../scratch/tools/amend3-diagnostic.sh             |   9 ++
+ .../scratch/tools/justified-anchors.sh             |  40 +++++++
+ .../scratch/tools/run-amend3.sh                    |  84 +++++++++++++++
+ ...log-054-009-authoring-benchmark-and-closeout.md |  12 ++-
+ .../changelog/changelog-054-root.md                |   2 +-
+ .../054-weak-model-spec-authoring/goal.md          |  20 ++--
+ 18 files changed, 380 insertions(+), 52 deletions(-)

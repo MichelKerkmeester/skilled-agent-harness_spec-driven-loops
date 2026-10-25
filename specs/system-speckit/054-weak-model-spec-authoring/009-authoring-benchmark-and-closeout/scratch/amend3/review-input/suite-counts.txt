@@ -1,0 +1,15 @@
+attempt1:
+1795: Test Files  276 passed | 3 skipped (279)
+1796:      Tests  4162 passed | 21 skipped (4183)
+2549: ❯ |cli| tests/retrieval-repo-root.vitest.ts (6 tests | 1 failed) 2443940ms
+2624: FAIL  |cli| tests/retrieval-repo-root.vitest.ts > walkCorpus over the real repository > yields documents under every corpus root
+2627: ❯ tests/retrieval-repo-root.vitest.ts:47:3
+2638: Test Files  1 failed | 183 passed | 3 skipped (187)
+2639:      Tests  1 failed | 2084 passed | 20 skipped (2105)
+2650:exit=1
+attempt2:
+1777: Test Files  276 passed | 3 skipped (279)
+1778:      Tests  4162 passed | 21 skipped (4183)
+2602: Test Files  184 passed | 3 skipped (187)
+2603:      Tests  2085 passed | 20 skipped (2105)
+4681:exit=0

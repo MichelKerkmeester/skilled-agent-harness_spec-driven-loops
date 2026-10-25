@@ -22,6 +22,8 @@ This map names where the raw evidence behind this folder lives. The folder holds
 | Second set baseline | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/baseline-deepseek/baseline.json` |
 | Second set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/baseline.json`, with runs, audits and packet copies beside it |
 | Second set delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/delta.json` |
+| Fresh set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh/baseline.json`, with runs, audits, rule scores and packet copies beside it |
+| Anchor rule script and scores | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh` and `scratch/amend3/justified-anchors-test.txt` |
 | Models | cli-devin `swe-2-max` (first set) and cli-devin `deepseek-v4-1-flash-1017-max` (second set) |
 
 ---
@@ -30,4 +32,4 @@ This map names where the raw evidence behind this folder lives. The folder holds
 
 The corpus is an input and is never rewritten by a run. This folder holds outputs only. A run whose result changes gets a new folder rather than overwriting this one.
 
-The second set (third amendment) is recorded in this folder as a dated update, because both sets share one subject and one date. Last updated 2026-10-25.
+The second set (third amendment) and the fresh set (new anchor rule) are recorded in this folder as a dated update, because both sets share one subject and one date. Last updated 2026-10-25.

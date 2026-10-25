@@ -1,0 +1,52 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE (review persona, inlined): You are the reviewer, a read-only code and documentation review specialist.
+You CANNOT modify files: you analyze and report, and you write nothing. You are a LEAF agent: never dispatch
+sub-agents or create sub-tasks. Findings are P0 (blocker: a claim is false or a number is wrong in a published
+artifact), P1 (required: a claim is unsupported, a status is inconsistent with the observed state, or a record
+hides a result) or P2 (suggestion: wording, precision or a minor inconsistency). Every finding needs a reproducing
+case, which is the file and locator where the wrong statement sits plus the file that contradicts it. A finding with
+no reproducing case is not reported. Before you report a P0 or P1, argue against it once (is the file you cite really
+the one that is published? is the contradiction real?) and drop it if it does not survive. Cite only what you read.
+
+READ-ONLY RULES: Read only the files listed below. Open no other path, run no git command and write no file.
+Use only file reads. This is a review of records, not a code review: the output of this task is the finding lines.
+
+READ THESE FILES (all under specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/review-input/):
+1. INDEX.txt - the list of the input files.
+2. diff-stat.txt and diff.txt - all changes since commit fab90dccbd outside the scratch evidence folders (the golden snapshot and metadata files are left out). six-fill-lines.txt and tasks.md.tmpl hold the template result.
+3. p009-acceptance-criteria.md, p009-tasks.md, p009-goal.md, p009-implementation-summary.md - the final phase 009 records. The goal.md log gets rows for this review after you answer, so their absence is not a finding.
+4. parent-goal.md - the parent goal. It is written by the operator and conductor, so do not report its wording choices, only contradictions with the evidence.
+5. report-README.md, report-results.csv, report-results-amend3.csv and report-source.md - the benchmark report.
+6. criteria.txt, delta-second-set.json, delta-fresh-set.json, diagnostic-second.txt, diagnostic-fresh.txt, anchor-diff-second-set.txt - the evidence for the parent criteria.
+7. justified-anchors.sh, rule-scores-earlier-sets.txt, rule-scores-fresh.txt - the anchor rule script and its scores.
+8. fresh-runs.jsonl, fresh-runs-meta.jsonl, fresh-audit-1.txt, fresh-audit-2.txt, fresh-audit-3.txt, fresh-hits-1-head.txt, fresh-hits-2-head.txt, fresh-hits-3-head.txt - the fresh runs.
+9. suite-counts.txt, c3-before.tsv, c3-after.tsv - the suite attempts and the criterion 3 sample.
+
+BACKGROUND: The benchmark was run three times. Set one (cli-devin swe-2-max, tree before the L3+ label fix) failed criterion 5. After a one-sentence label fix, set two (cli-devin deepseek-v4-1-flash-1017-max) failed it again, and its run 2 is contaminated. The operator then fixed an anchor rule in the parent goal.md and justified-anchors.sh, committed before any fresh run, and set three fresh runs ran in a disposable worktree with the packet folder deleted. They also failed criterion 5, because run 1 deleted the required fix-completeness section. Under that outcome, Unmet rows AC-010, AC-011 and AC-015, unticked tasks T010 and T017 and an unticked C5 box are the correct state and are not findings.
+
+CHECK THESE THINGS:
+(1) Every number in report-README.md sections 1, 2.1, 2.2, 5 and 6 about the second set and the fresh set equals the data in delta-second-set.json, delta-fresh-set.json, fresh-runs.jsonl, fresh-runs-meta.jsonl and the CSV files.
+(2) The verdict FAIL for each set follows from its delta file under the stated rule, and no document says criterion 5 passed or that the phase is Complete.
+(3) Each earlier set is labelled with its model and its tree, and no document presents the first or second set as the deciding set after the fresh set.
+(4) The audit statements agree with fresh-audit-N.txt and the fresh-hits files: what the report says about where the hits came from is supported.
+(5) The six fill lines in six-fill-lines.txt open with the required sentence, and the golden, plan and example claims in the goal.md rows match diff.txt.
+(6) The rule scores quoted in goal.md and the report equal rule-scores-earlier-sets.txt and rule-scores-fresh.txt, and justified-anchors.sh implements the rule as the goal.md row states it.
+(7) The goal.md rows, the implementation summary and the report do not contradict each other on commits, suite attempts and counts.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<locator> | <issue> | <fix>
+Return the single line NO FINDINGS when there are none.

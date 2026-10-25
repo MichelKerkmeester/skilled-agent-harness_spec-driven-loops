@@ -72,5 +72,5 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 
 ### Follow-Ups
 
-- Parent criterion 5 is FAIL and the packet is In Progress. The label fix shipped (the fill notes of the six `## L3+:` sections of the `tasks.md` template say they stay at Level 3) and the rerun on cli-devin deepseek-v4-1-flash-1017-max failed again, with missing_anchors 3 against 0. The operator decides whether the metric should count the optional sections or the fill notes should change.
+- Parent criterion 5 is FAIL and the packet is In Progress. The label fix shipped (the fill notes of the six `## L3+:` sections of the `tasks.md` template say they stay at Level 3) and the rerun on cli-devin deepseek-v4-1-flash-1017-max failed again, with missing_anchors 3 against 0. After a new anchor rule, three fresh runs in a disposable worktree failed it a third time (counted missing_anchors 1 against 0, a deleted required `fix-completeness` section). The operator decides how to treat that required anchor.
 - Three runs per side cannot support a significance claim.

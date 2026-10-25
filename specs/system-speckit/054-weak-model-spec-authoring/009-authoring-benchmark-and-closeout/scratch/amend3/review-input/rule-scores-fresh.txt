@@ -1,0 +1,3 @@
+fresh-1 counted=1 excused=[sign-off] counted_list=[fix-completeness]
+fresh-2 counted=0 excused=[] counted_list=[]
+fresh-3 counted=0 excused=[deploy-ready compliance-verify sign-off] counted_list=[]

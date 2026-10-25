@@ -1,0 +1,228 @@
+---
+title: "Feature Specification: Add a quiet flag to recommend-level.sh"
+description: "recommend-level.sh prints a sixteen-line human report for a two-argument call, so a caller that needs only the recommended level has to grep a label out of prose. This packet adds a --quiet flag that prints exactly that one line and leaves every other output path unchanged."
+trigger_phrases:
+  - "recommend level quiet flag"
+  - "add a quiet flag to recommend level sh"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
+# Feature Specification: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+
+---
+
+## EXECUTIVE SUMMARY
+
+`recommend-level.sh` answers one question — which documentation level a task earns — but it answers it inside a sixteen-line human report for its simplest input and seventeen lines for a scored feature. A caller that wants only the number has to grep a label out of that report and assume the line it wants stays where it is.
+
+This packet adds a `--quiet` flag that prints exactly one line, `Recommended Level: <N> (<Name>)`, and changes nothing else. Every invocation without the flag keeps its current bytes, and every invocation with `--json` keeps its current JSON document.
+
+**Key Decisions**: reuse the label `output_text()` already prints instead of inventing a second format, and reject `--quiet` combined with `--json` as a usage error rather than letting one silently win.
+
+**Critical Dependencies**: the argument parser and the `output_text()` emitter inside `recommend-level.sh`. No new package, and no other script reads this output.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-10-25 |
+| **Branch** | `worktrees/223-deepseek-final` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+The script's text output is built for a human reader: a blank line, the level line, a score line, a blank line, a six-row breakdown, a blank line, and a four-line phase block. A build script, a hook, or a person in a pipeline that needs only the level must pipe that report through `grep`, `sed`, or `awk`, and each of those callers hard-codes an assumption about which line carries the answer. When the report grows, as it did when the phase block was added, the assumption is still true by luck rather than by contract.
+
+### Purpose
+
+One invocation, one line, one value: a caller reads the recommended level without parsing a report.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Add a `--quiet` option to the argument parser in `recommend-level.sh`.
+- Print exactly the recommended-level line when `--quiet` is present, with no leading blank line and no trailing report sections.
+- Reject `--quiet` combined with `--json` as a usage error on stderr with exit code 1.
+- Document the flag in the `show_help()` usage text and in the script's header OPTIONS block.
+- Prove the default output is byte-identical to the pre-change baseline.
+
+### Out of Scope
+- Changing any scoring weight, threshold, or level mapping - the flag changes output only, and touching the algorithm would make the regression proof meaningless.
+- Adding a `-q` short alias - the request names `--quiet`, and a second spelling doubles the option surface for no caller.
+- Updating the documents that invoke the script without flags (`references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`) - they never pass `--quiet`, so their commands stay correct.
+- Refactoring `output_text()` into smaller helpers - a pure refactor would add review surface to a change whose proof is "the bytes did not move".
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Modify | Add the `--quiet` case, the `QUIET` global, the conflict check, the one-line emitter, and the two documentation blocks |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | `--quiet` is accepted at any position in the argument list and consumes no value. |
+| REQ-002 | With `--quiet`, stdout holds exactly one line, `Recommended Level: <N> (<Name>)`, terminated by a newline, with no leading blank line. |
+| REQ-003 | Without `--quiet`, stdout is byte-identical to the pre-change output for every input, including the leading blank line and the phase block. |
+| REQ-004 | `--quiet` combined with `--json` writes a conflict message to stderr, writes nothing to stdout, and exits 1. |
+| REQ-005 | `--quiet` preserves the existing exit codes: 0 for a successful recommendation, 1 for invalid input. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-006 | `show_help()` lists `--quiet` and states that it prints only the recommended-level line. |
+| REQ-007 | The script header OPTIONS block documents `--quiet` beside the existing flags. |
+| REQ-008 | `--quiet` composes with `--no-recommend-phases` and `--phase-threshold` without changing the one-line output. |
+| REQ-009 | The level line printed under `--quiet` matches the level line the same invocation prints without the flag: same number, same name. |
+| REQ-010 | `--quiet` suppresses stdout report lines only; every existing stderr diagnostic still prints unchanged. |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: **Given** the current script, **When** `bash recommend-level.sh --loc 50 --files 2` runs, **Then** stdout is 16 lines and its second line is `Recommended Level: 0 (Quick)`.
+- **SC-002**: **Given** the flag is implemented, **When** `bash recommend-level.sh --quiet --loc 50 --files 2` runs, **Then** stdout is exactly one line and `wc -l` prints 1.
+- **SC-003**: **Given** the flag is implemented, **When** `bash recommend-level.sh --quiet --loc 500 --files 15 --auth --api --db --architectural` runs, **Then** stdout is `Recommended Level: 3 (Full)` and exit status is 0.
+- **SC-004**: **Given** the captured baseline of the default output, **When** `diff scratch/baseline-default.txt <(bash recommend-level.sh --loc 50 --files 2)` runs, **Then** it prints nothing and exits 0.
+- **SC-005**: **Given** `--quiet` and `--json` are both present, **When** the script runs, **Then** stderr names the conflict, stdout is empty, and exit status is 1.
+- **SC-006**: **Given** `--quiet` is absent, **When** the two Node phase suites run, **Then** both exit 0 and their `--json` fixtures parse unchanged.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Bash 3.2 or newer on macOS | The script already requires it; `set -euo pipefail` and `[[ ]]` are used throughout | No new requirement; the flag adds no construct the script does not already use |
+| Risk | A future edit renames the `Recommended Level:` label and breaks callers that now depend on it | Medium | Pin the exact label in an acceptance criterion and a line-level check |
+| Risk | `--quiet` accidentally suppresses stderr, hiding a real input error | High | REQ-010 plus an edge-case check that an invalid `--loc` still prints its error |
+<!-- /ANCHOR:risks -->
+
+---
+
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The flag adds no measurable runtime cost; a quiet run stays within the script's current sub-second wall time because it skips work rather than adding it.
+
+### Security
+- **NFR-S01**: N/A - the script reads no credential, writes no file, and makes no network call; the flag changes only which `printf` runs.
+
+### Reliability
+- **NFR-R01**: Exit codes are unchanged for every input class, so a caller that branches on the status keeps its behavior.
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+- Empty input: `bash recommend-level.sh` with no arguments still prints `ERROR: At least --loc or --files must be provided` to stderr and exits 1, with or without `--quiet`.
+- Maximum length: `--loc 2000 --files 40` still prints one line under `--quiet`; the extreme-scale phase bonus is computed but never rendered.
+
+### Error Scenarios
+- External service failure: N/A - the script calls no service.
+- Network timeout: N/A - the script makes no network call.
+- Invalid argument value: `--loc abc` still exits 1 with `ERROR: --loc must be a positive integer`, and `--quiet` does not swallow it.
+
+### State Transitions
+- Partial completion: `--quiet` passed twice is idempotent; the second occurrence sets the same flag and the output stays one line.
+- Conflicting output modes: `--quiet --json` in either order reaches the same conflict check and exits 1.
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 4/25 | Files: 1, LOC: ~20, Systems: 1 |
+| Risk | 2/25 | Auth: N, API: N, Breaking: N |
+| Research | 2/20 | One read of the parser and the emitter |
+| Multi-Agent | 0/15 | Workstreams: 1 |
+| Coordination | 1/15 | Dependencies: 0 |
+| **Total** | **9/100** | **Level 3** |
+
+The score reads 9/100 because the change is one branch in one script. Level 3 was assigned by the directive that created this packet, not derived from this score; the score is recorded as measured rather than inflated to match the level.
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | The default report drifts while the flag is added | H | L | Capture the pre-change output, then diff it after the change |
+| R-002 | A JSON consumer receives a text line because `--quiet` silently outranks `--json` | M | M | Reject the combination with exit 1 instead of picking a winner |
+| R-003 | A caller parses a second line and breaks when the label moves | M | L | Keep the existing label and assert it in an acceptance criterion |
+| R-004 | `--quiet` hides an input error a caller needs to see | H | L | Leave stderr untouched and test the invalid-input path |
+
+---
+
+## 11. USER STORIES
+
+### US-001: One line for a pipeline (Priority: P0)
+
+**As a** build or hook script, **I want** `--quiet` to print only the recommended level, **so that** I can read the value without parsing a human report.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: Unchanged report for a person (Priority: P1)
+
+**As a** maintainer running the script by hand, **I want** the default output to stay exactly as it is, **so that** the report I read today does not change under me.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- None. The flag name, the printed label, and the `--quiet`/`--json` conflict rule are fixed in ADR-001 of `plan.md`; no caller-facing choice is left open.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `tasks.md`
+- **Decision Records**: See ADR-001 in `plan.md`; this packet keeps no separate `decision-record.md`
+
+---
+

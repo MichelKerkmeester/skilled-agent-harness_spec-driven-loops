@@ -1,0 +1,6 @@
+deepseek-baseline-1 required_missing=0 (of 15) optional_missing=0
+deepseek-baseline-2 required_missing=0 (of 15) optional_missing=0
+deepseek-baseline-3 required_missing=0 (of 15) optional_missing=0
+deepseek-final-1 required_missing=0 (of 15) optional_missing=3 deploy-ready compliance-verify sign-off
+deepseek-final-2 required_missing=0 (of 15) optional_missing=0
+deepseek-final-3 required_missing=0 (of 15) optional_missing=0

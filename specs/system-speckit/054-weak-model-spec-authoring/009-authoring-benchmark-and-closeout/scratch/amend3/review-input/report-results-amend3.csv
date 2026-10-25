@@ -1,0 +1,10 @@
+set,side,model,run,strict_passed,leftover_hints,missing_anchors,out_of_scope_writes,seconds,audit
+amend3,baseline,deepseek-v4-1-flash-1017-max,1,1,1,0,0,242,clean
+amend3,baseline,deepseek-v4-1-flash-1017-max,2,1,0,0,0,217,clean
+amend3,baseline,deepseek-v4-1-flash-1017-max,3,1,0,0,0,298,clean
+amend3,final,deepseek-v4-1-flash-1017-max,1,1,0,3,0,259,status listing and own /tmp file only
+amend3,final,deepseek-v4-1-flash-1017-max,2,1,0,0,0,198,contaminated: read frozen vocabulary files
+amend3,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,243,status listing only
+amend3-fresh,final,deepseek-v4-1-flash-1017-max,1,1,0,1,0,208,only git status output listed the removed files
+amend3-fresh,final,deepseek-v4-1-flash-1017-max,2,1,0,0,0,223,git status output and one code search output named the report folder
+amend3-fresh,final,deepseek-v4-1-flash-1017-max,3,1,0,0,0,153,only git status output listed the removed files
