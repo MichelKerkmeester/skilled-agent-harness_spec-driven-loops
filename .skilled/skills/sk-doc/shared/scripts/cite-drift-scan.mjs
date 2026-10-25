@@ -139,6 +139,11 @@ const REDIRECT_MAX_HOPS = 8;
 // A large tree's `git ls-files -z` output runs far past Node's 1 MB default.
 const GIT_MAX_BUFFER = 268435456;
 
+// A file-system monitor daemon that never answers its IPC leaves git waiting
+// at 0% CPU, and every caller with it, the spec validator included. Turning
+// the monitor off costs a plain index scan and returns the same output.
+const GIT_NO_FSMONITOR = ['-c', 'core.fsmonitor=false'];
+
 /** Live rows an operator labels; the rest of the draw is construction-labeled. */
 export const LIVE_ROWS = 20;
 
@@ -173,7 +178,7 @@ export const MARGIN_LINE = 'margin: 0.10';
  * @returns {string} 40 hex characters.
  */
 export function headCommit(repoRoot) {
-  const result = spawnSync('git', ['-C', repoRoot, 'rev-parse', 'HEAD'], {
+  const result = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'rev-parse', 'HEAD'], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
     maxBuffer: GIT_MAX_BUFFER,
@@ -192,7 +197,7 @@ export function headCommit(repoRoot) {
  * @returns {Set<string>}
  */
 export function listTrackedFiles(repoRoot) {
-  const result = spawnSync('git', ['-C', repoRoot, 'ls-files', '-z'], {
+  const result = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'ls-files', '-z'], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
     maxBuffer: GIT_MAX_BUFFER,
@@ -444,7 +449,7 @@ export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null,
 function readCommittedText(repoRoot, commit, filePath, readCache) {
   const cacheKey = `${commit}:${filePath}`;
   if (readCache?.has(cacheKey)) return readCache.get(cacheKey);
-  const shown = spawnSync('git', ['-C', repoRoot, 'show', `${commit}:${filePath}`], {
+  const shown = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'show', `${commit}:${filePath}`], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'ignore'],
     maxBuffer: GIT_MAX_BUFFER,
@@ -477,7 +482,7 @@ function prefetchCommitted(repoRoot, commit, filePaths, readCache) {
   const batchable = filePaths.filter((filePath) => !filePath.includes('\n'));
   for (let start = 0; start < batchable.length; start += PREFETCH_CHUNK_PATHS) {
     const chunk = batchable.slice(start, start + PREFETCH_CHUNK_PATHS);
-    const result = spawnSync('git', ['-C', repoRoot, 'cat-file', '--batch'], {
+    const result = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'cat-file', '--batch'], {
       input: `${chunk.map((filePath) => `${commit}:${filePath}`).join('\n')}\n`,
       stdio: ['pipe', 'pipe', 'pipe'],
       maxBuffer: GIT_MAX_BUFFER,
@@ -1301,7 +1306,7 @@ export async function main(argv, deps = {}) {
   // The rebuild writes the table from the rename record alone and returns
   // before any census input is read.
   if (values['rebuild-redirects'] !== undefined) {
-    const renameLog = spawnSync('git', ['-C', repoRoot, 'log', '-M', '--diff-filter=R', '--name-status', '--format=', 'HEAD'], {
+    const renameLog = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', repoRoot, 'log', '-M', '--diff-filter=R', '--name-status', '--format=', 'HEAD'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
       maxBuffer: GIT_MAX_BUFFER,
