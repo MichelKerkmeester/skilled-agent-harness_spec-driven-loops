@@ -59,8 +59,8 @@
       "scratch/checkout-probe.md",
       ".github/workflows/README.md",
       "scratch/cache-adoption-runs.md",
-      "scratch/phase-baseline.md",
-      ".skilled/skills/system-spec-kit/vitest.config.ts"
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".github/workflows/opencode-dual-version.yml"
     ],
     "entities": [
       {
@@ -172,15 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "phase-baseline.md",
-        "kind": "doc",
-        "path": "scratch/phase-baseline.md",
-        "source": "derived"
-      },
-      {
         "name": "vitest.config.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-25T17:46:51.052Z",
+    "last_save_at": "2026-10-25T20:33:24.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2116ecf182535b1e52af37ae800589c8964a7ecadba99e41d38268f660bbc6a2",
+    "source_fingerprint": "sha256:13225d8f0729681c325b0008f3f65654d00eb0ee1aab3598cb2a5f33a4ae1c7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "081178f4b4056131948161ddad7fe7c1020be03afe34b536cac5afa381718ad2",
-      "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "dbe73b5637b4745d671fd2926c93e27134f62f8c3ca689a7b579cecf0c3f9575",
-      "decision-record.md": "69f6b92070587abcfea391bfd99770f3f7fd20e4a9648880074142b9e59848e0",
-      "implementation-summary.md": "950060eb377f42e82cbffd3afa007381ca61ce76ef82c51f1d8da66fc946b9d0"
+      "spec.md": "c08cc08f1a594d92e4b36f705c62310caf095b5f810685075c56032fff2dc361",
+      "plan.md": "d05e0977a5587941fd4151152faaaac2a7d0f9d02ea59fe5a08aaf25f51cedf1",
+      "tasks.md": "5b741b08f2c3f2019d5dc935bbf5b5cfe0ca2c193d0fb08977587000cc90cecd",
+      "decision-record.md": "81b9d0d1d0610cb5275149edc43a68f008a61728ce59b366220d0699fed8c3f1",
+      "implementation-summary.md": "22046ffbfd57d02b5bee54f1f7ac5a780af0aa2c55cdda4e4cfc48910078f1cc"
     },
     "last_active_at": null
   }

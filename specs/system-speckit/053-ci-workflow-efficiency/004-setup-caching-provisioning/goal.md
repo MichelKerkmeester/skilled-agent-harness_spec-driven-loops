@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning"
-    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_at: "2026-10-25T20:28:31Z"
     last_updated_by: "markdown"
-    recent_action: "Continuity synced to the built tree"
-    next_safe_action: "T072 phase delta, then T073 and T074"
+    recent_action: "Evidence recorded: 17/17 criteria met, 24/26 checks ticked"
+    next_safe_action: "Tick CHK-022 and CHK-FIX-006 after the 2026-10-26T04:17Z cold run, then commit T074"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-004-setup-caching-provisioning"
       parent_session_id: null
-    completion_pct: 94
+    completion_pct: 99
     open_questions: []
     answered_questions: []
 ---
@@ -61,10 +61,10 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `grep -c 'github/actions' .github/scripts/check-gate-inputs.sh` returns `2` or more
 - [x] `bash .github/scripts/tests/check-gate-inputs.test.sh` prints `check-gate-inputs: 54 passed, 0 failed`
-- [ ] `bash .github/scripts/check-gate-inputs.sh` prints `files=46` and `RESULT: PASSED`
-- [ ] `test ! -f .github/workflows/hooks-node-tests.yml` exits `0`
-- [ ] `grep -cE '^(size_gb|restore_seconds|provision_seconds_cold|provision_seconds_warm|verdict)=' scratch/cache-probe/summary.md` returns `5`
-- [ ] `grep -c 'bun@1.3.9' .github/workflows/opencode-dual-version.yml` returns `0`
+- [x] `bash .github/scripts/check-gate-inputs.sh` prints `files=46` and `RESULT: PASSED` (amended by AC-013: `files=46` held once the action landed; the final tree prints `files=45` because the merge deleted `hooks-node-tests.yml`, with `failures=0` and `RESULT: PASSED`)
+- [x] `test ! -f .github/workflows/hooks-node-tests.yml` exits `0`
+- [x] `grep -cE '^(size_gb|restore_seconds|provision_seconds_cold|provision_seconds_warm|verdict)=' scratch/cache-probe/summary.md` returns `5`
+- [x] `grep -c 'bun@1.3.9' .github/workflows/opencode-dual-version.yml` returns `0`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,8 +82,11 @@ and findings belong here.
 |------|-------|----------|
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` 82 tasks: T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G, `acceptance-criteria.md` AC-001 to AC-017, `decision-record.md` ADR-001 to ADR-011 |
 | Operator decision D5 | Done | `scratch/decisions.md` records `D5=approve` |
-| Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet; T002 takes the 001-dataset fallback |
-| Implementation | Partially done | T001 recorded `D5=approve`; T004-T009 delivered the gate scan, the label branch and four fixtures, uncommitted — T010's comment, T011's result file and T011A's commit are still open |
+| Baseline rows | Done | T002 recorded `BASELINE_MISSING` for the 002 window and took the 001-dataset fallback; `scratch/phase-baseline.md` carries the fifteen rows |
+| Implementation | Done | T001 to T073 are `[x]`; the workflow commits run from `cd58109fc5` to `ea39cd7b2c` |
+| Closure (T074) | Waiting | CHK-022 and CHK-FIX-006 need the first scheduled cold run of `opencode-plugin-tests.yml`, due 2026-10-26T04:17Z |
+| Phase delta | Done | `## Phase delta` in `scratch/phase-result.md`, 14 rows, 3079 to 1212 billed min per 24 h (AC-014) |
+| Acceptance criteria | Done | 17 of 17 rows `Met`, `Closeable: Yes` |
 
 ### Deviations and findings
 

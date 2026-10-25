@@ -150,8 +150,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `002-rebuild-fanout-removal` baseline | Internal | Pending | Every saving is measured against the 001 dataset instead, and the "after R1" figures stay arithmetic |
-| `003-trigger-and-job-hygiene` R8 | Internal | Pending | R18 has no shallow checkout to build on; the phase closes without R18 and records it as blocked |
+| `002-rebuild-fanout-removal` baseline | Internal | Not available (T002 took the 001-dataset fallback) | Every saving is measured against the 001 dataset instead, and the "after R1" figures stay arithmetic |
+| `003-trigger-and-job-hygiene` R8 | Internal | Green (landed, T067 printed `0`) | R18 has no shallow checkout to build on; the phase closes without R18 and records it as blocked |
 | Operator decision D5 | Internal | Green | D5=approve (2026-10-23); T001 only verifies `scratch/decisions.md` |
 | `gh` with `repo` and `actions` scopes | External | Green | No cache sizes, no job timings, no dispatch runs |
 | `005-slow-and-failing-tests` | Internal | No dependency | It owns `.skilled/skills/system-spec-kit/vitest.config.ts`, which this phase does not touch |
@@ -321,7 +321,7 @@ The two probes bracket the action on purpose. R13 measures the entry before the 
 
 ### ADR-001: Merge the hook tests into the plugin workflow, and rename one check
 
-**Status**: Proposed
+**Status**: Accepted (D5=approve; shipped in `2759de1119`, which deleted `hooks-node-tests.yml` and renamed the merged check)
 
 **Context**: `hooks-node-tests.yml` and `opencode-plugin-tests.yml` each check out and provision the same tree set, so one commit that touches both pays for two provisions of 56-67 s each. The review measures the merge at 124 runner-min/day standalone, about 53 after R1 and about 27 after R1 and R14. The cost is one renamed check and two README rows.
 
