@@ -2367,10 +2367,10 @@ test('prepare records neither value when the sender log is missing or holds no t
 
 // Cursor keeps one model selection for every session in its CLI config, so a selection
 // counts as this session's only when the file changed after this hop's launch.
-function writeCursorConfig(sandbox, selectedModel) {
+function writeCursorConfig(sandbox, config) {
   const configPath = path.join(sandbox.env.HOME, '.cursor', 'cli-config.json');
   fs.mkdirSync(path.dirname(configPath), { recursive: true });
-  fs.writeFileSync(configPath, JSON.stringify({ version: 1, selectedModel }));
+  fs.writeFileSync(configPath, JSON.stringify({ version: 1, ...config }));
   return configPath;
 }
 
@@ -2378,8 +2378,11 @@ test('prepare records a Cursor model selected during this hop, with its paramete
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_LAUNCHED_AT = String(Date.now() - 60000);
   writeCursorConfig(sandbox, {
-    modelId: 'grok-4.7',
-    parameters: [{ id: 'context', value: '256k' }, { id: 'reasoning_effort', value: 'xhigh' }],
+    model: { modelId: 'grok-4.7', displayModelId: 'grok-4.7' },
+    selectedModel: {
+      modelId: 'grok-4.7',
+      parameters: [{ id: 'context', value: '256k' }, { id: 'reasoning_effort', value: 'xhigh' }],
+    },
   });
 
   const record = prepareUnderLoop(sandbox, 'cursor');
@@ -2387,9 +2390,25 @@ test('prepare records a Cursor model selected during this hop, with its paramete
   assert.equal(record.model, 'grok-4.7[context=256k,reasoning_effort=xhigh]');
 });
 
+test('prepare records the current Cursor model when the parameterized selection names another', (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_LAUNCHED_AT = String(Date.now() - 60000);
+  writeCursorConfig(sandbox, {
+    model: { modelId: 'gpt-5.6-luna', displayModelId: 'gpt-5.6-luna' },
+    selectedModel: { modelId: 'grok-4.7', parameters: [{ id: 'context', value: '256k' }] },
+  });
+
+  const record = prepareUnderLoop(sandbox, 'cursor');
+
+  assert.equal(record.model, 'gpt-5.6-luna');
+});
+
 test('prepare ignores a Cursor selection made before this hop launched', (t) => {
   const sandbox = createSandbox(t);
-  const configPath = writeCursorConfig(sandbox, { modelId: 'grok-4.7', parameters: [] });
+  const configPath = writeCursorConfig(sandbox, {
+    model: { modelId: 'grok-4.7', displayModelId: 'grok-4.7' },
+    selectedModel: { modelId: 'grok-4.7', parameters: [] },
+  });
   const old = new Date(Date.now() - 120000);
   fs.utimesSync(configPath, old, old);
   sandbox.env.SKILLED_LOOP_LAUNCHED_AT = String(Date.now() - 60000);

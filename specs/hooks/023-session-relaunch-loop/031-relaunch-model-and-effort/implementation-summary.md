@@ -94,7 +94,7 @@ During the Claude hop a human message reached the test receiver through a remote
 
 The Hermes hop ran later, on the Copilot provider, because `llmgateway` reported its credit for `gpt-6-luna` exhausted and the `openai-codex` provider has no Hermes login. The sender launched on `gpt-4.1` at `--reasoning low` and switched to `gpt-5.4-nano` with `/model`. The harness wrote the note and ran `prepare` itself, because a first attempt showed `gpt-5.4-nano` doing the receiver's task in the sender instead of handing over. The plugin still supplied the values: the armed record held `gpt-5.4-nano` and `copilot`, and the receiver started with `--provider copilot -m gpt-5.4-nano --reasoning low`, so the model came from the session, not the launch flag. `/model` saves its choice to `~/.hermes/config.yaml`, so the harness copies that file first and puts it back on exit. The first attempt's addition was removed by hand.
 
-Cursor had no live hop, because none can run there. Its reader is covered by tests instead: one for a selection made during the hop, one for a selection older than the launch, and one for the bracketed model on the relaunch line. A probe that started `cursor-agent --model gpt-5.6-luna` left the file's modification time unchanged, though it stopped at the workspace-trust prompt. That a launch flag never rewrites the file, and only an in-session switch does, is therefore inferred. A live in-session `/model` switch under the wrapper would confirm it.
+Cursor had no live hop: its stored credentials are expired, so the model list comes back empty and no model can be chosen. Its reader was checked against the installed Cursor Agent bundle (`2026.09.28-64d2043`) instead. Both `--model` at launch and a switch inside the session rewrite the `model` field, while `selectedModel`, which carries the parameters, is rewritten only for a parameterized choice. The first reader trusted `selectedModel` alone, so after a plain switch it would have sent the relaunch to the earlier model. It now takes `model.modelId` and adds `selectedModel`'s parameters only while both name the same model, and a new test pins that case. The same bundle shows that `--model` resolves a `modelId` through its alias map. A launch with `--model` also rewrites the file, which only means the reader returns the model that flag already chose. Four tests cover the reader and the relaunch line.
 
 Codex `none` and `minimal`, which no rollout had shown, were probed directly (`scratch/codex-effort-live/levels-probe.txt`). Codex accepted both. `gpt-6-luna` answered at `none` and rejected `minimal` with an HTTP 400 that lists its own levels. Both stay on the list, because the list is the runtime's and a model's own limits apply the same with or without the loop.
 <!-- /ANCHOR:how-delivered -->
@@ -121,7 +121,7 @@ Codex `none` and `minimal`, which no rollout had shown, were probed directly (`s
 
 | Check | Result |
 |-------|--------|
-| Relaunch gate | PASS, 867 of 867, from a baseline of 837. The 30 new tests are this phase's 25 and the OpenCode phase's 5; the Hermes and Cursor work added 6 to the 861 of the first commit. One earlier full run failed a killer timing test that passed 64 of 64 alone twice and in every rerun since, and the killer files are unchanged |
+| Relaunch gate | PASS, 868 of 868, from a baseline of 837. The 31 new tests are this phase's 26 and the OpenCode phase's 5; the Hermes and Cursor work added 7 to the 861 of the first commit. One earlier full run failed a killer timing test that passed 64 of 64 alone twice and in every rerun since, and the killer files are unchanged |
 | Plugin tests | PASS, 552 of 552, baseline 552 |
 | Pi tests and typecheck | PASS, 54 of 54 from a baseline of 52, and `tsc -p tsconfig.pi.json` exits 0 |
 | Hermes plugin tests | PASS, 64 of 64 from a baseline of 62, run without the session's inherited `SKILLED_LOOP_ID`, which one existing reaping test reads |
@@ -135,7 +135,7 @@ Codex `none` and `minimal`, which no rollout had shown, were probed directly (`s
 ## Known Limitations
 
 1. **Hermes effort carries from the launch flag only.** Hermes hands its hooks no reasoning level, so a level changed inside the session is lost at the hop. The model and provider carry.
-2. **Cursor carries a switch only when the config file changed during the hop.** Two Cursor sessions switching models at once can still race on the shared file, and Cursor had no live hop.
+2. **Cursor carries a switch only when the config file changed during the hop.** Two Cursor sessions switching models at once can still race on the shared file. That the bracketed parameter ids the config stores are the ones `--model` parses is inferred from the help text's example, because the parser could not be found in the minified bundle. A logged-in hop with a parameterized model would confirm it.
 3. **OpenCode 2 and Devin carry no effort.** Neither has an effort flag, and OpenCode 2 has no model flag either.
 4. **`keep` records nothing.** A note kept outside the loop is claimed by the same session, so there is no receiver to start.
 <!-- /ANCHOR:limitations -->

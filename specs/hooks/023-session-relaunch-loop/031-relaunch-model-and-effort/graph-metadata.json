@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`buildrelauncharguments` in `.skilled/bin/skilled-loop` rebuilds the relaunch command from the model, provider, name and Pi extension flags only",
     "created_at": "2026-10-25T07:25:52Z",
-    "last_save_at": "2026-10-25T10:23:12.129Z",
+    "last_save_at": "2026-10-25T10:50:25.374Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32f061120a8b995f87f8412c4af2ab1a8071bbee723a29c815caff6f9ab481dc",
+    "source_fingerprint": "sha256:5962221a761599117954bb3378db83e2661160d87aa85ded4706ac2da09d9bb9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1d0dec76661953a73a3ca1e356b849a2627ffc81e304ed3b3ff6c0485a1c6b2",
       "plan.md": "46c2e739614f681dd0b527513f4e1859b470241cdab79792d284a1180299a646",
       "tasks.md": "3b97c3654f2bca5a03f423b33fde918a348e957cfbf23ff793d07ffd05902b2a",
-      "implementation-summary.md": "f4541db15cd00a5b0bfaf9272cb6f040efcea48138058419bb0397a507186f68"
+      "implementation-summary.md": "95e4532100d497b55bdf129a3461a47e8aa327ccbe34acdc61a71cfef28fd4a3"
     },
     "last_active_at": null
   }

@@ -577,22 +577,27 @@ function codexRolloutPath(sessionId, env) {
   return latest === null ? null : latest.file;
 }
 
-// Cursor writes its CLI model selection, with the model's parameters, to one config file
-// for every session. A selection is this session's only when the file changed after the
-// wrapper launched this hop, and it is returned in the bracketed form `--model` accepts.
+// Cursor writes its current model to one config file for every session, so the file is this
+// session's only when it changed after the wrapper launched this hop. Every switch rewrites
+// `model`, while `selectedModel` holds parameters and is rewritten only for a parameterized
+// choice, so its parameters count only while it names the current model. The result is the
+// id or bracketed form `--model` accepts; the auto model has no such id and is left out.
 function cursorSelectedModel(env) {
   const launchedAt = Number(env?.SKILLED_LOOP_LAUNCHED_AT);
   if (!Number.isFinite(launchedAt) || launchedAt <= 0) return '';
   const configPath = path.join(env?.HOME || os.homedir(), '.cursor', 'cli-config.json');
   if (fs.statSync(configPath).mtimeMs <= launchedAt) return '';
-  const selected = JSON.parse(fs.readFileSync(configPath, 'utf8'))?.selectedModel;
-  if (!nonEmptyString(selected?.modelId)) return '';
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const modelId = config?.model?.modelId;
+  if (!nonEmptyString(modelId) || modelId === 'default' || config.model.displayModelId === 'auto') {
+    return '';
+  }
+  const selected = config.selectedModel;
+  if (selected?.modelId !== modelId) return modelId;
   const parameters = (Array.isArray(selected.parameters) ? selected.parameters : [])
     .filter((entry) => nonEmptyString(entry?.id) && nonEmptyString(entry?.value))
     .map((entry) => `${entry.id}=${entry.value}`);
-  return parameters.length === 0
-    ? selected.modelId
-    : `${selected.modelId}[${parameters.join(',')}]`;
+  return parameters.length === 0 ? modelId : `${modelId}[${parameters.join(',')}]`;
 }
 
 function safeDirectory(directory) {
