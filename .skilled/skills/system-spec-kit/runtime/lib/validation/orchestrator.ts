@@ -641,6 +641,65 @@ function authoredDocsForLevel(level: SpecKitLevel, folder: string): string[] {
     .filter((docName) => fs.existsSync(templatePathForName(templateNameForDoc(level, docName))));
 }
 
+// The template-structure contract (runtime/cli/utils/template-structure.js,
+// loadTemplateContract) marks a template section optional when its H2 header
+// carries one of these prefixes and required otherwise. This is its twin, and a
+// parity test pins the two required sets together.
+const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
+const TEMPLATE_ANCHOR_OPEN_LINE_RE = /<!--\s*ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/u;
+const TEMPLATE_ANCHOR_CLOSE_LINE_RE = /<!--\s*\/ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/u;
+
+function templateH2Headers(content: string): string[] {
+  return [...stripFences(content).matchAll(/^##\s+(.+)$/gmu)].map((match) => match[1].trim());
+}
+
+function normalizeTemplateHeader(header: string): string {
+  return header.replace(/\[[^\]]+\]/gu, '').replace(/^\d+\.\s*/u, '').replace(/\s+/gu, ' ').trim().toUpperCase();
+}
+
+// Each anchor the doc's rendered template requires, with the H2 heading of its
+// section so a missing one can be named and restored in one pass.
+function requiredTemplateSections(level: SpecKitLevel, docName: string): Array<{ id: string; heading: string }> {
+  // The decision record's sections are per ADR and named by the author, so its
+  // template fixes no required anchor.
+  if (path.basename(docName) === 'decision-record.md') return [];
+  const template = renderedTemplate(level, docName);
+  if (template === null) return [];
+  const headers = templateH2Headers(template);
+  const required = new Set(headers.filter((header) => !OPTIONAL_TEMPLATE_HEADER_RE.test(header)).map(normalizeTemplateHeader));
+  const optional = new Set(headers.filter((header) => OPTIONAL_TEMPLATE_HEADER_RE.test(header)).map(normalizeTemplateHeader));
+  const lines = template.split(/\r?\n/u);
+  const seen = new Set<string>();
+  const sections: Array<{ id: string; heading: string }> = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const open = lines[index].match(TEMPLATE_ANCHOR_OPEN_LINE_RE);
+    if (!open) continue;
+    const id = open[1];
+    let end = -1;
+    for (let inner = index + 1; inner < lines.length; inner += 1) {
+      const close = lines[inner].match(TEMPLATE_ANCHOR_CLOSE_LINE_RE);
+      if (close && close[1] === id) {
+        end = inner;
+        break;
+      }
+    }
+    if (end === -1) continue;
+    const sectionHeaders = templateH2Headers(lines.slice(index, end + 1).join('\n'));
+    const requiredHeading = sectionHeaders.find((header) => required.has(normalizeTemplateHeader(header)));
+    const hasOptional = sectionHeaders.some((header) => optional.has(normalizeTemplateHeader(header)));
+    if ((requiredHeading !== undefined || hasOptional) && !seen.has(id)) {
+      seen.add(id);
+      if (requiredHeading !== undefined) sections.push({ id, heading: requiredHeading });
+    }
+    index = end;
+  }
+  return sections;
+}
+
+function requiredTemplateAnchors(level: SpecKitLevel, docName: string): string[] {
+  return requiredTemplateSections(level, docName).map((section) => section.id);
+}
+
 function anchors(content: string): string[] {
   return [...stripFences(content).matchAll(/<!--\s*ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/gu)].map((match) => match[1]);
 }
@@ -688,28 +747,51 @@ function cleanStatusCell(cell: string): string {
   return cell.replace(/\*\*/gu, '').replace(/`/gu, '').trim();
 }
 
-// Reads the first Status row of spec.md's metadata table and reports whether its
-// value is exactly Draft. Mirrors the shell classifier: quotes, case, trailing
-// punctuation and repeated spaces do not change the answer, any other word does.
+function normalizeStatusValue(cell: string): string {
+  return cleanStatusCell(cell)
+    .replace(/^["']/u, '')
+    .replace(/["']$/u, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[\s.,;:!]+$/u, '')
+    .replace(/\s+/gu, ' ');
+}
+
+// The complete bucket of classify_status in status-classifier.sh, which keeps
+// the word list this must stay equal to.
+function statusIsComplete(normalized: string): boolean {
+  if (/(^|[^a-z0-9])(complete|completed|done|shipped|delivered|finished|closed)([^a-z0-9]|$)/u.test(normalized)) return true;
+  return /(^|[^a-z0-9])(implemented|implementing)([^a-z0-9]|$)/u.test(normalized)
+    && !/(^|[^a-z0-9])not\s+(yet\s+)?(implemented|implementing)([^a-z0-9]|$)/u.test(normalized);
+}
+
+// Reports whether spec.md's Status is exactly Draft. Mirrors the shell classifier:
+// quotes, case, trailing punctuation and repeated spaces do not change the
+// answer, any other word does. An older spec is read by its first Status row. A
+// v2.3 spec may carry more than one metadata table, and a Complete row in any of
+// them is a completion claim, so that row is the one read.
 function specStatusIsDraft(folder: string): boolean {
   const spec = readIfExists(path.join(folder, 'spec.md'));
   if (!spec) return false;
+  const values: string[] = [];
   for (const line of spec.split(/\r?\n/u)) {
     if (!/^\s*\|/u.test(line)) continue;
     const cells = line.split('|');
     if (cells.length < 3) continue;
     if (cleanStatusCell(cells[1]).toLowerCase() !== 'status') continue;
-    const value = cleanStatusCell(cells[2])
-      .replace(/^["']/u, '')
-      .replace(/["']$/u, '')
-      .toLowerCase()
-      .trim()
-      .replace(/[\s.,;:!]+$/u, '')
-      .replace(/\s+/gu, ' ');
-    return value === 'draft';
+    values.push(normalizeStatusValue(cells[2]));
   }
-  return false;
+  if (values.length === 0) return false;
+  const value = carriesTokenGateStamp(spec) ? (values.find(statusIsComplete) ?? values[0]) : values[0];
+  return value === 'draft';
 }
+
+// The orchestrator's reading of a v2.3 doc line: the markers outside inline code
+// spans, and whether a template's [template: provenance token survives in a
+// title. Both implementations of the rule read a v2.3 doc this way.
+const PLACEHOLDER_MARKERS_ALL_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLARIFICATION:|\[NEEDS CLARIFICATION:/gu;
+const TEMPLATE_TITLE_RE = /^\s*title:.*\[template:/u;
+const TOKEN_GATE_FENCE_RE = /^\s*(```|~~~)/u;
 
 function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
   const findings: string[] = [];
@@ -726,6 +808,26 @@ function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEn
     // itself skipped, matching check-placeholders.sh awk behavior.
     let inCode = false;
     lines.forEach((line, index) => {
+      if (tokenGated) {
+        // A v2.3 doc: a fence opens with ``` or ~~~ at any indent, a marker in
+        // inline code is an example, and every marker on the line counts.
+        if (TOKEN_GATE_FENCE_RE.test(line)) {
+          inCode = !inCode;
+          return;
+        }
+        if (inCode) return;
+        const visible = stripInlineCode(line);
+        const markers = [...visible.matchAll(PLACEHOLDER_MARKERS_ALL_RE)].map((found) => found[0]);
+        const title = TEMPLATE_TITLE_RE.test(visible);
+        if (markers.length === 0 && !title) return;
+        const finding = `${docName}:${index + 1}: ${line.trim().slice(0, 120)}`;
+        if (!title && draftPacket && markers.every((marker) => marker === '[YOUR_VALUE_HERE:')) {
+          draftTokens.push(finding);
+        } else {
+          findings.push(finding);
+        }
+        return;
+      }
       if (/^\s*```/u.test(line)) {
         inCode = !inCode;
         return;
@@ -882,6 +984,17 @@ function validateAnchorIntegrity(folder: string, level: SpecKitLevel): Validatio
       const openCount = openCounts.get(id) ?? 0;
       if (openCount > 0 && closeCount > openCount) {
         findings.push(`${docName}: anchor '${id}' is closed more times than it is opened`);
+      }
+    }
+
+    // A v2.3 doc must keep every section its template requires, or a packet
+    // with a whole section deleted still passes. Older docs keep the
+    // integrity-only check they always had.
+    if (carriesTokenGateStamp(actual)) {
+      for (const section of requiredTemplateSections(level, docName)) {
+        if (!opens.includes(section.id)) {
+          findings.push(`${docName}: required anchor '${section.id}' is missing. Restore the '## ${section.heading}' section from the template`);
+        }
       }
     }
 
@@ -1287,6 +1400,7 @@ export const __testables = {
   validateFileExists,
   applyRecordedFindings,
   stripLineNumbers,
+  requiredTemplateAnchors,
 };
 
 // ───────────────────────────────────────────────────────────────────

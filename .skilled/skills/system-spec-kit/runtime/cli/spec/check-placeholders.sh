@@ -2,16 +2,19 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: CHECK PLACEHOLDERS
 # ───────────────────────────────────────────────────────────────
-# Scan spec folder .md files for remaining bracket placeholder
-# Patterns after upgrade-level.sh + auto-populate.
+# Scan spec folder .md files for unfilled placeholder markers.
 # Bash 3.2+ compatible (macOS and Linux).
 #
-# This is the broad post-edit scan the quality hook runs: any bracket that
-# still looks like a template placeholder. The validator rule at
-# rules/check-placeholders.sh is narrower on purpose, flagging only the two
-# canonical markers, so the two are not the same check with two homes.
+# The post-edit quality hook runs this on the folder of every spec doc an
+# author edits. It reports what strict validation would flag: the four
+# markers PLACEHOLDER_FILLED reads, with that rule's fence, inline-code and
+# per-line rules for the template stamp each doc carries. A marker in a Draft
+# packet still counts, because it is still unfilled.
 
 set -euo pipefail
+
+# shellcheck source=../rules/check-placeholders.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")/../rules" && pwd)/check-placeholders.sh"
 
 VERSION="1.0.0"
 
@@ -27,7 +30,7 @@ usage() {
     cat <<EOF
 Usage: $(basename "$0") <spec-folder> [OPTIONS]
 
-Scan a spec folder for remaining bracket placeholder patterns.
+Scan a spec folder for the unfilled placeholder markers strict validation flags.
 
 Arguments:
   <spec-folder>    Path to spec folder (e.g., specs/042-feature/)
@@ -87,26 +90,11 @@ if [[ ! -d "$FOLDER_PATH" ]]; then
     exit 2
 fi
 
-# ─── Placeholder patterns ────────────────────────────────────
-# Match bracket patterns that look like template placeholders:
-#   [Response time target], [Low/Med/High], [Component A],
-#   [YOUR_VALUE_HERE], [PLACEHOLDER], etc.
-#
-# The templates write their stubs with the example inline, as in
-# [Response time target - e.g., <200ms p95], [Uptime target - e.g., 99.9%]
-# and [What problem we're solving], so the body admits < > + % and the
-# apostrophe too. Without them those stubs pass the scan unfilled.
-PLACEHOLDER_BODY="[A-Za-z0-9 /,._<>+%'-]"
-#
-# Exclude patterns that are NOT placeholders:
-#   [x] / [ ] (checkbox), [P0] / [P1] / [P2] (priority tags),
-#   [SPECKIT...] (markers), [ANCHOR...] (anchors),
-#   [EVIDENCE...] (checklist evidence), [W:...] (workstream),
-#   [NEEDS CLARIFICATION] (spec markers), [B] (blocked task)
-#
-# Also exclude lines where brackets appear inside code blocks
-# (backtick-wrapped) since those describe placeholder concepts
-# Rather than being actual unfilled placeholders.
+# ─── Placeholder markers ─────────────────────────────────────
+# placeholder_marker_lines, from rules/check-placeholders.sh, reads each doc
+# the way the orchestrator does: a doc stamped v2.3 or later with the fence,
+# inline-code and every-marker rules, an older doc with the first-marker rule.
+# Bracketed prose such as [Owner name] is not a marker and is not counted.
 
 TOTAL=0
 MATCHES=""
@@ -129,51 +117,20 @@ while IFS= read -r file; do
         */review/*) continue ;;
     esac
 
-    line_num=0
-    while IFS= read -r line; do
-        line_num=$((line_num + 1))
+    mode="legacy"
+    if speckit_carries_token_gate_stamp "$file"; then
+        mode="v23"
+    fi
 
-        # Skip lines inside code fences or with backtick-wrapped brackets
-        case "$line" in
-            '```'*) continue ;;
-            *'`['*) continue ;;
-        esac
-
-        # Skip HTML comments
-        case "$line" in
-            *'<!--'*'-->'*) continue ;;
-        esac
-
-        # Match bracket patterns that look like placeholders
-        # Use grep to find [Something here] patterns
-        if echo "$line" | grep -qE "\[[A-Z]${PLACEHOLDER_BODY}+\]" 2>/dev/null; then
-            # Exclude known non-placeholder patterns
-            cleaned="$line"
-            # Remove known safe patterns before re-checking
-            cleaned=$(echo "$cleaned" | sed -E \
-                -e 's/\[x\]//g' \
-                -e 's/\[ \]//g' \
-                -e 's/\[P[0-2]\]//g' \
-                -e 's/\[B\]//g' \
-                -e 's/\[SPECKIT[^]]*\]//g' \
-                -e 's/\[ANCHOR[^]]*\]//g' \
-                -e 's/\[EVIDENCE[^]]*\]//g' \
-                -e 's/\[NEEDS CLARIFICATION\]//g' \
-                -e 's/\[W:[^]]*\]//g' \
-                -e 's/`[^`]*`//g' \
-                -e 's/\[[^]]*\]\(//g' \
-            )
-
-            # Check if any placeholder-like patterns remain after cleanup
-            if echo "$cleaned" | grep -qE "\[[A-Z]${PLACEHOLDER_BODY}{2,}\]" 2>/dev/null; then
-                TOTAL=$((TOTAL + 1))
-                match_text=$(echo "$line" | grep -oE "\[[A-Z]${PLACEHOLDER_BODY}{2,}\]" 2>/dev/null | head -1)
-                if [[ "$VERBOSE" == "true" ]]; then
-                    MATCHES="${MATCHES}  ${file}:${line_num}: ${match_text}\n"
-                fi
-            fi
+    # A title row is the scaffold rule's finding, not one of the four markers.
+    while IFS=$'\t' read -r line_num kind; do
+        [[ -n "$line_num" && "$kind" != "title" ]] || continue
+        TOTAL=$((TOTAL + 1))
+        if [[ "$VERBOSE" == "true" ]]; then
+            match_text=$(sed -n "${line_num}p" "$file" | sed -E 's/^[[:space:]]+//' | cut -c1-120)
+            MATCHES="${MATCHES}  ${file}:${line_num}: ${match_text}\n"
         fi
-    done < "$file"
+    done < <(placeholder_marker_lines "$file" "$mode")
 done < <(find "$FOLDER_PATH" -name "*.md" -type f 2>/dev/null | sort)
 
 # ─── Output ──────────────────────────────────────────────────

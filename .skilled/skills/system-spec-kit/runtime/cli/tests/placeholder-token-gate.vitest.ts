@@ -31,15 +31,18 @@ interface RuleEntry {
 
 interface PacketShape {
   stamp: 'v2.2' | 'v2.3';
-  status: 'Draft' | 'Complete';
+  status: 'Draft' | 'Complete' | 'In Progress' | 'Implemented' | 'Implementing' | 'Not implemented';
   line: string;
+  title?: string;
 }
 
 const TOKEN_LINE = '[YOUR_VALUE_HERE: one-paragraph problem statement]';
 const QUESTION_LINE = '[NEEDS CLARIFICATION: which owner?]';
+const FIXTURE_TITLE = 'title: "Feature Specification: Template Compliant Level 2 Fixture"';
 
 // Builds a throwaway packet from the clean Level 2 fixture. Only spec.md is
-// changed: the stamp, the Status cell and one extra line in the problem section.
+// changed: the stamp, the Status cell, one extra block in the problem section
+// and, when a shape asks for it, the frontmatter title.
 function buildPacket(shape: PacketShape): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'placeholder-token-gate-'));
   createdRoots.add(root);
@@ -50,6 +53,7 @@ function buildPacket(shape: PacketShape): string {
     .readFileSync(spec, 'utf8')
     .replace('| v2.2 -->', `| ${shape.stamp} -->`)
     .replace('| **Status** | Complete |', `| **Status** | ${shape.status} |`)
+    .replace(FIXTURE_TITLE, shape.title ?? FIXTURE_TITLE)
     .replace('### Purpose', `${shape.line}\n\n### Purpose`);
   fs.writeFileSync(spec, text, 'utf8');
   return folder;
@@ -119,4 +123,103 @@ describe('PLACEHOLDER_FILLED token gate', () => {
     expect(entry.status).toBe('error');
     expect(runShellRule(folder)).toBe('error');
   });
+
+  it('fails an in-progress v2.3 line that quotes a token and then leaves one unfilled', { timeout: 30_000 }, () => {
+    const mixed = 'Example `[YOUR_VALUE_HERE: example]` then Owner: [YOUR_VALUE_HERE: owner name]';
+    const unfilled = runOrchestrator(buildPacket({ stamp: 'v2.3', status: 'In Progress', line: mixed }));
+    expect(unfilled.entry.status).toBe('error');
+    expect(unfilled.passed).toBe(false);
+
+    const filled = 'Example `[YOUR_VALUE_HERE: example]` then Owner: the platform team';
+    const done = runOrchestrator(buildPacket({ stamp: 'v2.3', status: 'In Progress', line: filled }));
+    expect(done.entry.status).toBe('pass');
+  });
+});
+
+// Every marker shape the two implementations read, at both stamps and both
+// lifecycle states. A v2.3 doc gets the code-span, fence, all-matches and
+// title rules in both implementations, so its verdicts must agree. A v2.2 doc
+// keeps the verdict each implementation always gave it, including the shapes
+// where the two disagree, so an older packet's result never moves.
+type Verdicts = { orchestrator: RuleStatus; shell: RuleStatus };
+type Shape = {
+  name: string;
+  line: string;
+  title?: string;
+  v23: { Draft: RuleStatus; Complete: RuleStatus };
+  v22: Verdicts;
+};
+
+const TOKEN = '[YOUR_VALUE_HERE: owner name]';
+const SHAPES: Shape[] = [
+  { name: 'a bare token', line: `Owner: ${TOKEN}`, v23: { Draft: 'warn', Complete: 'error' }, v22: { orchestrator: 'error', shell: 'error' } },
+  { name: 'a backticked token', line: `Example: \`${TOKEN}\``, v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'pass', shell: 'pass' } },
+  {
+    name: 'a backticked token then a bare one',
+    line: `Example \`[YOUR_VALUE_HERE: example]\` then Owner: ${TOKEN}`,
+    v23: { Draft: 'warn', Complete: 'error' },
+    v22: { orchestrator: 'pass', shell: 'pass' },
+  },
+  {
+    name: 'a token inside a longer code span',
+    line: `Run \`create.sh --owner ${TOKEN} --force\` first`,
+    v23: { Draft: 'pass', Complete: 'pass' },
+    v22: { orchestrator: 'error', shell: 'error' },
+  },
+  { name: 'a backtick fence', line: ['```text', `Owner: ${TOKEN}`, '```'].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'pass', shell: 'pass' } },
+  { name: 'a tilde fence', line: ['~~~text', `Owner: ${TOKEN}`, '~~~'].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'error', shell: 'error' } },
+  { name: 'an indented fence', line: ['   ```text', `   Owner: ${TOKEN}`, '   ```'].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'pass', shell: 'error' } },
+  { name: 'the angle-bracket form', line: 'Owner: <YOUR_VALUE_HERE: owner name>', v23: { Draft: 'error', Complete: 'error' }, v22: { orchestrator: 'error', shell: 'pass' } },
+  {
+    name: 'a [template: title',
+    line: 'The problem is stated below.',
+    title: 'title: "Feature Specification: Fixture [template:level_2/spec.md]"',
+    v23: { Draft: 'error', Complete: 'error' },
+    v22: { orchestrator: 'pass', shell: 'error' },
+  },
+];
+
+describe('PLACEHOLDER_FILLED parity matrix', () => {
+  for (const shape of SHAPES) {
+    for (const status of ['Draft', 'Complete'] as const) {
+      it(`v2.3 ${status}: ${shape.name} gives ${shape.v23[status]} in both`, { timeout: 30_000 }, () => {
+        const folder = buildPacket({ stamp: 'v2.3', status, line: shape.line, title: shape.title });
+        expect(runOrchestrator(folder).entry.status).toBe(shape.v23[status]);
+        expect(runShellRule(folder)).toBe(shape.v23[status]);
+      });
+
+      it(`v2.2 ${status}: ${shape.name} keeps its earlier verdicts`, { timeout: 30_000 }, () => {
+        const folder = buildPacket({ stamp: 'v2.2', status, line: shape.line, title: shape.title });
+        expect(runOrchestrator(folder).entry.status).toBe(shape.v22.orchestrator);
+        expect(runShellRule(folder)).toBe(shape.v22.shell);
+      });
+    }
+  }
+});
+
+// The implemented words sit in the complete bucket unless "not" comes first. As
+// the only Status row each is a value other than Draft. As a later table's row
+// under a Draft first row, a complete one wins over Draft and the negated one
+// does not, so both implementations must classify the word the same way.
+const IMPLEMENTED_STATUSES: { status: 'Implemented' | 'Implementing' | 'Not implemented'; laterRow: RuleStatus }[] = [
+  { status: 'Implemented', laterRow: 'error' },
+  { status: 'Implementing', laterRow: 'error' },
+  { status: 'Not implemented', laterRow: 'warn' },
+];
+
+describe('PLACEHOLDER_FILLED parity matrix, implemented statuses', () => {
+  for (const { status, laterRow } of IMPLEMENTED_STATUSES) {
+    it(`v2.3 ${status} as the only Status row gives error in both`, { timeout: 30_000 }, () => {
+      const folder = buildPacket({ stamp: 'v2.3', status, line: `Owner: ${TOKEN}` });
+      expect(runOrchestrator(folder).entry.status).toBe('error');
+      expect(runShellRule(folder)).toBe('error');
+    });
+
+    it(`v2.3 ${status} in a later table under a Draft row gives ${laterRow} in both`, { timeout: 30_000 }, () => {
+      const table = ['| Field | Value |', '| --- | --- |', `| **Status** | ${status} |`].join('\n');
+      const folder = buildPacket({ stamp: 'v2.3', status: 'Draft', line: `Owner: ${TOKEN}\n\n${table}` });
+      expect(runOrchestrator(folder).entry.status).toBe(laterRow);
+      expect(runShellRule(folder)).toBe(laterRow);
+    });
+  }
 });

@@ -1155,6 +1155,20 @@ is_path_within() {
     [[ "$candidate" == "$base" || "$candidate" == "$base"/* ]]
 }
 
+# A track names a folder under specs/, so it is checked as written and never
+# resolved: an existing track may be a deliberate symlink to another tree, and
+# resolving it would refuse that link. An empty value means no track.
+validate_track_value() {
+    local track="${1%/}"
+    [[ -z "$1" ]] && return 0
+    case "/$track/" in
+        //*|*"/../"*|*"/./"*|*"//"*)
+            echo "Error: --track '$1' must name a folder under specs/, such as 'demo' or 'demo/sub'. An absolute path, '.', '..' and an empty segment are refused." >&2
+            exit 1
+            ;;
+    esac
+}
+
 validate_spec_folder_basename() {
     local folder_name="$1"
     if [[ ! "$folder_name" =~ ^[0-9]{3}-[A-Za-z0-9._-]+$ ]]; then
@@ -1288,6 +1302,7 @@ cd "$REPO_ROOT"
 # New packets always go to the canonical specs/ root. The legacy .opencode/specs
 # link is gone, so writing there leaves a packet in a tree nothing reads.
 SPECS_DIR="$REPO_ROOT/specs"
+validate_track_value "$TRACK"
 if [[ -n "$TRACK" ]]; then
     SPECS_DIR="$SPECS_DIR/$TRACK"
 fi

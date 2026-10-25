@@ -157,6 +157,32 @@ describe('shared synopsis extractor (REQ-004, SC-003)', () => {
     expect(derivePacketSynopsis(content, 'description')).toBe(boundaryWord);
   });
 
+  // A cut that stops on a word such as "that" reads as a broken sentence in every
+  // listing that shows the description, so a long first sentence in a v2.3 spec
+  // ends at its last clause instead. An older spec keeps the cut it always had,
+  // so a description stored from it stays in sync.
+  const clauseSentence = 'The fan-out runner regenerates the packet description from spec.md after every run, '
+    + 'so a long problem statement loses its ending, and the old cut stopped after a word such as that';
+  const stamped = (stamp: string, overview: string) => specWithOverview(overview)
+    .replace('# Fixture Spec\n', `# Fixture Spec\n\n<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | ${stamp} -->\n`);
+
+  it('ends a long first sentence in a v2.3 spec at its last clause boundary within the limit', () => {
+    expect(derivePacketSynopsis(stamped('v2.3', clauseSentence), 'description')).toBe(
+      'The fan-out runner regenerates the packet description from spec.md after every run, so a long problem statement loses its ending',
+    );
+  });
+
+  it('keeps the word-boundary cut for a v2.2 spec', () => {
+    expect(derivePacketSynopsis(stamped('v2.2', clauseSentence), 'description')).toBe(
+      'The fan-out runner regenerates the packet description from spec.md after every run, so a long problem statement loses its ending, and the old cut',
+    );
+  });
+
+  it('falls back to a word boundary when the only clause boundary would leave a stub', () => {
+    const prefix = `Note, ${'word '.repeat(28)}`;
+    expect(derivePacketSynopsis(stamped('v2.3', `${prefix}resilience`), 'description')).toBe(prefix.trim());
+  });
+
   it('passes shorter synopsis strings through unchanged', () => {
     const overview = 'Short synopsis under the limit';
 

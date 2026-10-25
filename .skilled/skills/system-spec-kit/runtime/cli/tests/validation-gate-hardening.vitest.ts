@@ -50,6 +50,9 @@ function createPacket(workspace: string, packetId: string, options: {
   checklist?: string;
   tasks?: string;
   scaffoldMarker?: boolean;
+  specStamp?: 'v2.2' | 'v2.3';
+  specTitle?: string;
+  specExtraLines?: string[];
 } = {}): string {
   const folder = path.join(workspace, '.opencode', 'specs', packetId);
   const specStatus = options.specStatus ?? 'Planned';
@@ -59,16 +62,18 @@ function createPacket(workspace: string, packetId: string, options: {
   fs.mkdirSync(folder, { recursive: true });
   writeFile(path.join(folder, 'spec.md'), [
     '---',
-    'title: "Fixture Spec"',
+    `title: "${options.specTitle ?? 'Fixture Spec'}"`,
     '_memory:',
     '  continuity:',
     `    packet_pointer: "${metadataId}"`,
     '---',
     '# Fixture Spec',
     '<!-- SPECKIT_LEVEL: 2 -->',
+    ...(options.specStamp ? [`<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | ${options.specStamp} -->`] : []),
     '| Field | Value |',
     '|-------|-------|',
     `| **Status** | ${specStatus} |`,
+    ...(options.specExtraLines ?? []),
   ].join('\n'));
   writeFile(path.join(folder, 'plan.md'), '# Plan\n');
   writeFile(path.join(folder, 'tasks.md'), options.tasks ?? '- [ ] T001 Pending task\n');
@@ -223,6 +228,45 @@ describe('validation gate hardening', () => {
     });
     expect(runValidate(shipped, 'SCAFFOLD_NEVER_TOUCHED').code).toBe(2);
     expect(runValidate(planned, 'SCAFFOLD_NEVER_TOUCHED').code).toBe(0);
+  });
+
+  it('reads the spec.md title of a v2.3 packet for a template token, and leaves an older packet as it was', () => {
+    const workspace = makeWorkspace();
+    const titled = { specStatus: 'Complete', specTitle: 'Feature Specification: Fixture [template:level_2/spec.md]' };
+    const current = createPacket(workspace, 'system-speckit/995-titled-current', { ...titled, specStamp: 'v2.3' });
+    const older = createPacket(workspace, 'system-speckit/994-titled-older', { ...titled, specStamp: 'v2.2' });
+
+    const failing = runValidate(current, 'SCAFFOLD_NEVER_TOUCHED');
+    expect(failing.code).toBe(2);
+    expect(failing.stdout).toContain('spec.md:2: title contains [template:');
+    expect(runValidate(older, 'SCAFFOLD_NEVER_TOUCHED').code).toBe(0);
+  });
+
+  // A spec can carry more than one metadata table. In a v2.3 spec a later
+  // Complete row is a completion claim the gates must see; an older spec keeps
+  // the first-row reading it always had.
+  const draftThenComplete = ['', '| Field | Value |', '|-------|-------|', '| **Status** | Complete |'];
+
+  it('classifies a v2.3 spec with a Draft row and then a Complete row as complete', () => {
+    const workspace = makeWorkspace();
+    const current = createPacket(workspace, 'system-speckit/992-rows-current', { specStatus: 'Draft', specStamp: 'v2.3', specExtraLines: draftThenComplete });
+    const older = createPacket(workspace, 'system-speckit/990-rows-older', { specStatus: 'Draft', specStamp: 'v2.2', specExtraLines: draftThenComplete });
+    const classify = (folder: string) => spawnSync('bash', ['-c', `source "${statusClassifier}"; classify_status "$(extract_status_table_value "${path.join(folder, 'spec.md')}")"`], { encoding: 'utf8' }).stdout.trim();
+
+    expect(classify(current)).toBe('complete');
+    expect(classify(older)).toBe('planned');
+  });
+
+  it('does not defer a token as Draft work when a v2.3 spec also claims Complete', () => {
+    const workspace = makeWorkspace();
+    const folder = createPacket(workspace, 'system-speckit/989-rows-token', {
+      specStatus: 'Draft',
+      specStamp: 'v2.3',
+      specExtraLines: [...draftThenComplete, '', 'Owner: [YOUR_VALUE_HERE: owner name]'],
+    });
+    const result = runValidate(folder, 'PLACEHOLDER_FILLED');
+    expect(result.code).toBe(2);
+    expect(result.stdout).toContain('placeholder(s) found');
   });
 
   it('strict-pass freshness sweep is report-only and reports malformed validate output', () => {

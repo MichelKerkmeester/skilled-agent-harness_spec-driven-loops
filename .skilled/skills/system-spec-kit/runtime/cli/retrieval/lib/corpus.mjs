@@ -199,9 +199,10 @@ export function isExcludedDirectory(name, parentName, relativePath = '') {
  */
 export function gitIgnoredPaths(repoRoot, roots) {
   try {
+    // A configured fsmonitor daemon can hang this call, and with it the build.
     const output = execFileSync(
       'git',
-      ['ls-files', '--others', '--ignored', '--exclude-per-directory=.gitignore', '--directory', '-z', '--', ...roots],
+      ['-c', 'core.fsmonitor=false', 'ls-files', '--others', '--ignored', '--exclude-per-directory=.gitignore', '--directory', '-z', '--', ...roots],
       { cwd: repoRoot, encoding: 'utf8', maxBuffer: 1 << 28, stdio: ['ignore', 'pipe', 'ignore'] },
     );
     return new Set(output.split('\0').filter(Boolean));

@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { publishJson, stableStringify } from '../retrieval/lib/artifact.mjs';
-import { canonicalRelativePath, CORPUS_ROOTS, IGNORED_PATHS, walkCorpus } from '../retrieval/lib/corpus.mjs';
+import { canonicalRelativePath, CORPUS_ROOTS, gitIgnoredPaths, IGNORED_PATHS, walkCorpus } from '../retrieval/lib/corpus.mjs';
 import { CATEGORY, readTriggerPhrases } from '../retrieval/lib/frontmatter.mjs';
 import { packetFolderTokens } from '../retrieval/lib/grep-convention.mjs';
 import { judgeTriggerPhrase } from '../retrieval/lib/phrase-judge.mjs';
@@ -447,6 +447,27 @@ describe('walkCorpus', () => {
       'specs/track/002-contracts-and-fixtures/spec.md',
       'specs/track/003-scaffold/fixtures/routing-parity.md',
     ]);
+  });
+});
+
+// A repository with an fsmonitor daemon configured can hang a plain git call,
+// and with it the index build. The walker's one git call must turn
+// the monitor off itself rather than depend on the caller's config.
+describe('gitIgnoredPaths', () => {
+  it('runs git with core.fsmonitor turned off', () => {
+    const bin = fs.mkdtempSync(path.join(os.tmpdir(), 'trigger-index-fake-git-'));
+    const argvLog = path.join(bin, 'argv.txt');
+    fs.writeFileSync(path.join(bin, 'git'), `#!/bin/sh\nprintf '%s\\n' "$@" > "${argvLog}"\n`, { mode: 0o755 });
+    const savedPath = process.env.PATH;
+    process.env.PATH = `${bin}${path.delimiter}${savedPath ?? ''}`;
+    try {
+      gitIgnoredPaths(bin, ['specs']);
+    } finally {
+      process.env.PATH = savedPath;
+    }
+    const argv = fs.readFileSync(argvLog, 'utf8').trim().split('\n');
+    fs.rmSync(bin, { recursive: true, force: true });
+    expect(argv.slice(0, 3)).toEqual(['-c', 'core.fsmonitor=false', 'ls-files']);
   });
 });
 

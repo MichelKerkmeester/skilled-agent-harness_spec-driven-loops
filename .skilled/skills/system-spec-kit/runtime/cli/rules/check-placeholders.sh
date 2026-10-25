@@ -14,34 +14,83 @@ source "${_placeholder_rule_dir}/../lib/status-classifier.sh"
 # Severity: error
 # Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:],
 #   and a [template:...] provenance token left in a title line. Bracketed authoring hints such as [Decision Title]
-#   are soft by design and belong to spec/check-placeholders.sh, the standalone report.
+#   are soft by design, and neither this rule nor spec/check-placeholders.sh flags them.
 # Lifecycle: a doc whose SPECKIT_TEMPLATE_SOURCE stamp is v2.3 or later ships every authoring hint as a
 #   [YOUR_VALUE_HERE: ...] token. While spec.md has the Status Draft, an unfilled token in such a doc is a
 #   warning. At any other status it is an error. A doc with an older stamp, or none, keeps the error it
 #   always had. [NEEDS_CLARIFICATION:] is an error in every packet.
-# Parity: mirrors the runtime orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
-# (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
-# The post-edit hook runs the broader bracket scan at spec/check-placeholders.sh
-# instead; that one catches leftovers of upgrade-level, this one gates closure.
+# Parity: mirrors the runtime orchestrator validatePlaceholders for a doc stamped v2.3 or later.
+# An older doc keeps the scan this rule always ran, which differs from the orchestrator on an
+# indented fence, the <YOUR_VALUE_HERE: form and a [template: title; production runs
+# only the orchestrator. Mustache {{...}} is NOT flagged (not canonical spec-doc placeholder
+# syntax; legit spec-doc content uses it).
+# spec/check-placeholders.sh, the post-edit scan, reads its markers through
+# placeholder_marker_lines below so it reports what strict validation flags.
 
 # ───────────────────────────────────────────────────────────────
 # 1. HELPERS
 # ───────────────────────────────────────────────────────────────
 
-# Succeeds when the doc carries a SPECKIT_TEMPLATE_SOURCE stamp of v2.3 or later
-# within its first 70 lines. A doc with an older stamp, or none, fails.
-carries_token_gate_stamp() {
+# Prints one "line<TAB>kind" row for each line holding an unfilled marker, read
+# the way the runtime orchestrator reads it. kind is "token" when every marker
+# on the line is a [YOUR_VALUE_HERE: value token, "marker" when any other marker
+# is present, and "title" for a [template: token left in a title line.
+# Mode "v23", for a doc stamped v2.3 or later, skips fences opened by ``` or ~~~
+# at any indent and inline code spans, reads every marker on a line and checks
+# the title. Any other mode reads only the first marker on a line, skips it when
+# a backtick sits right before it, and knows only ``` fences.
+placeholder_marker_lines() {
     local filepath="$1"
-    local stamp_line major minor
-    stamp_line=$(head -n 70 "$filepath" 2>/dev/null | \
-        grep -m1 -E '^[[:space:]]*<!--[[:space:]]*SPECKIT_TEMPLATE_SOURCE:[^|>]*\|[[:space:]]*v[0-9]+\.[0-9]+[[:space:]]*-->' || true)
-    [[ -n "$stamp_line" ]] || return 1
-    major=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\1/')
-    minor=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\2/')
-    if (( major > 2 )) || { (( major == 2 )) && (( minor >= 3 )); }; then
-        return 0
-    fi
-    return 1
+    local mode="$2"
+    awk -v mode="$mode" '
+        function blank_code_spans(s,    out, i, n, j, run, k, m, close_at, end_at, pad) {
+            out = ""; i = 1; n = length(s)
+            while (i <= n) {
+                if (substr(s, i, 1) != "`") { out = out substr(s, i, 1); i++; continue }
+                j = i
+                while (j <= n && substr(s, j, 1) == "`") j++
+                run = j - i
+                close_at = 0
+                k = j
+                while (k <= n) {
+                    if (substr(s, k, 1) != "`") { k++; continue }
+                    m = k
+                    while (m <= n && substr(s, m, 1) == "`") m++
+                    if (m - k == run) { close_at = k; break }
+                    k = m
+                }
+                if (!close_at) { out = out substr(s, i, run); i = j; continue }
+                end_at = close_at + run
+                pad = ""
+                for (k = i; k < end_at; k++) pad = pad " "
+                out = out pad
+                i = end_at
+            }
+            return out
+        }
+        BEGIN { in_code = 0; marker = "<YOUR_VALUE_HERE:|\\[YOUR_VALUE_HERE:|\\[NEEDS[_ ]CLARIFICATION:" }
+        {
+            if (mode == "v23") {
+                if ($0 ~ /^[ \t]*(```|~~~)/) { in_code = !in_code; next }
+            } else if ($0 ~ /^[ \t]*```/) { in_code = !in_code; next }
+            if (in_code) next
+            if (mode == "v23") {
+                rest = blank_code_spans($0)
+                if (rest ~ /^[ \t]*title:.*\[template:/) print NR "\ttitle"
+                found = 0
+                hard = 0
+                while (match(rest, marker)) {
+                    found = 1
+                    if (substr(rest, RSTART, RLENGTH) != "[YOUR_VALUE_HERE:") hard = 1
+                    rest = substr(rest, RSTART + RLENGTH)
+                }
+                if (found) print NR "\t" (hard ? "marker" : "token")
+            } else if (match($0, marker)) {
+                if (RSTART > 1 && substr($0, RSTART - 1, 1) == "`") next
+                print NR "\tmarker"
+            }
+        }
+    ' "$filepath" 2>/dev/null || true
 }
 
 # Succeeds when the Status row of spec.md holds exactly the word Draft.
@@ -101,7 +150,7 @@ run_check() {
         fi
 
         local token_gated=false
-        if carries_token_gate_stamp "$filepath"; then
+        if speckit_carries_token_gate_stamp "$filepath"; then
             token_gated=true
         fi
         case "$file" in
@@ -109,7 +158,22 @@ run_check() {
                 [[ "$token_gated" == true ]] || continue
                 ;;
         esac
-        
+
+        # A v2.3 doc is read with the orchestrator's code-span, fence, every-marker
+        # and title rules. A token is deferred to a warning in a Draft packet.
+        if [[ "$token_gated" == true ]]; then
+            local linenum kind
+            while IFS=$'\t' read -r linenum kind; do
+                [[ -n "$linenum" ]] || continue
+                if [[ "$kind" == "token" && "$draft_packet" == true ]]; then
+                    draft_tokens+=("$file:$linenum")
+                else
+                    found_placeholders+=("$file:$linenum")
+                fi
+            done < <(placeholder_marker_lines "$filepath" v23)
+            continue
+        fi
+
         # Filter out fenced code blocks
         local filtered
         filtered=$(awk '

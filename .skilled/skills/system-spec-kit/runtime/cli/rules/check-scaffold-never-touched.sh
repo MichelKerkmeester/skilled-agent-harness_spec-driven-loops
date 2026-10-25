@@ -55,6 +55,12 @@ run_check() {
         return
     fi
 
+    # A v2.3 spec.md is scaffolded the same way as the docs above, so its own
+    # frontmatter is read too. An older spec.md keeps the verdict it always had.
+    if [[ -f "$spec_file" ]] && speckit_carries_token_gate_stamp "$spec_file"; then
+        files=("spec.md" "${files[@]}")
+    fi
+
     for file in "${files[@]}"; do
         local filepath="$folder/$file"
         [[ ! -f "$filepath" ]] && continue
