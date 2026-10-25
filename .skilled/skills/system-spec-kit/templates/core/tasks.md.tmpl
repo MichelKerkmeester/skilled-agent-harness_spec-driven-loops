@@ -12,7 +12,7 @@ title: "Tasks: [NAME] [template:level-3/tasks.md]"
 <!-- IF level:3+ -->
 title: "Tasks: [NAME] [template:level_3+/tasks.md]"
 <!-- /IF -->
-description: "Task Format: T### [P?] Description (file path)"
+description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -59,9 +59,9 @@ contextType: "general"
 ## Phase 1: Setup
 <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in `recommend-level.sh`. Verify: `rg -n 'Recommended Level'` prints one line. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
+- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
+- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -82,9 +82,9 @@ contextType: "general"
 ## Phase 3: Verification
 <!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `wc -l` prints 1 and 17. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
+- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
+- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -112,7 +112,7 @@ contextType: "general"
 
 <!-- IF level:2,3,3+ -->
 ## Verification Checklist
-<!-- FILL: Fill each checklist section below. -->
+<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

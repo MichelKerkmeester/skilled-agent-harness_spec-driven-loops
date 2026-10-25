@@ -9,7 +9,7 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Auto Mode Contract Reference
@@ -118,7 +118,7 @@ Resolution: provide via $ARGUMENTS flags, PRE-BOUND SETUP ANSWERS: block, or swi
 
 Rules:
 
-- Replace `<command>` with the canonical command name (e.g. `spec_kit:deep-review`).
+- Replace `<command>` with the canonical command name (e.g. `deep:review`).
 - One bulleted line per unresolved required field.
 - `<why-unresolved>` is one short phrase: "missing — no flag, no marker, no default" or "ambiguous — Tier 2 received no answer (stdin closed)".
 - Final line cites the three resolution paths verbatim.
@@ -188,7 +188,7 @@ Commands that have adopted this contract:
 - Commands without paired YAML workflows (`/prompt`, `/vision`, etc.) — they have no setup-phase surface where the contract applies.
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
-- Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
+- Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate contract concern.
 
 ## §9. PROVENANCE
 

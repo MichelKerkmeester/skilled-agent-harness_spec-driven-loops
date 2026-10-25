@@ -8,7 +8,7 @@ trigger_phrases:
   - "isolated continuity artifacts"
 importance_tier: normal
 contextType: general
-version: 1.6.0.27
+version: 1.6.1.0
 ---
 
 # Sub-Folder Versioning - Iterative Work Organization Pattern
@@ -148,7 +148,7 @@ Routine saves pass the target spec folder alongside structured JSON.
 
 ### Step-by-Step Walkthrough
 
-1. User runs `/spec_kit:complete` or similar
+1. User runs `/speckit:complete` or similar
 2. Gate 3 asks: "Spec folder?" → User selects **A) Existing**
 3. User selects `specs/007-auth-system/`
 4. AI suggests: "This folder has existing content. Would you like to organize work in a sub-folder?"

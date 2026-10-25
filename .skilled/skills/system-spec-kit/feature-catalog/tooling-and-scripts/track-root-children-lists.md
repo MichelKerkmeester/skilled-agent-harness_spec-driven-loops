@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.0.0
+version: 2.0.1.0
 ---
 
 # Track-root children lists
@@ -41,7 +41,10 @@ it reads that commit instead of the working tree, and leaves out a symlinked
 track, whose files live in another repository.
 
 `create.sh --track` runs the writer for its track after a normal or phase
-scaffold, so a new packet is listed from the start. The pre-push hook sweeps
+scaffold, so a new packet is listed from the start. It first refuses a track
+value that would land outside `specs/`: an absolute path, `.`, `..` or an empty
+segment. The check reads the value as written and never resolves it, so a track
+that is a deliberate symlink to another tree still works. The pre-push hook sweeps
 each pushed commit with `--rev` and blocks on drift. It reads the commit rather
 than the working tree, because a shared checkout holds other sessions'
 unfinished packets. `SPECKIT_SKIP_PREPUSH_TRACK_GATE=1` skips it for one push.

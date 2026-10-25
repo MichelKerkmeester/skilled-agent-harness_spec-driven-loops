@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -52,13 +52,13 @@ templates/
 ### Progressive Enhancement Model (Value-Based)
 
 ```
-Level 1 (Core):         Essential what/why/how (~455 LOC)
+Level 1 (Core):         Essential what/why/how
          ↓ +Verify
-Level 2 (Verification): +Quality gates, NFRs, edge cases (~875 LOC)
+Level 2 (Verification): +Quality gates, NFRs, edge cases
          ↓ +Arch
-Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~1090 LOC)
+Level 3 (Full):         +Architecture decisions, ADRs, risk matrix
          ↓ +Govern
-Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
+Level 3+ (Extended):    +Enterprise governance, AI protocols
 ```
 
 ### What Each Level ADDS (Value Scaling)
@@ -66,7 +66,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 | Level | Adds | New Content |
 |-------|------|-------------|
 | **L1 (Core)** | Essential what/why/how | Problem, scope, requirements, success criteria |
-| **L2 (+Verify)** | Quality gates | NFRs, edge cases, checklist, effort estimation |
+| **L2 (+Verify)** | Quality gates | NFRs, edge cases, acceptance criteria, effort estimation |
 | **L3 (+Arch)** | Architecture decisions | Executive summary, ADRs, risk matrix, milestones |
 | **L3+ (+Govern)** | Enterprise governance | Approval workflow, compliance, AI protocols |
 
@@ -180,7 +180,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - High risk areas (security, config cascades)
 - Requires validation checklists
 
-### Required Files (Level 1 + checklist)
+### Required Files (Level 1 + acceptance criteria)
 
 - `spec.md` (from Level 1) - Requirements and user stories
 - `plan.md` (from Level 1) - Technical implementation plan
@@ -820,7 +820,7 @@ See [phase-definitions.md](../structure/phase-definitions.md) for complete phase
 - [tasks.md.tmpl](../../templates/core/tasks.md.tmpl) - Task breakdown
 - [implementation-summary.md.tmpl](../../templates/core/implementation-summary.md.tmpl) - Outcomes
 
-**Composed Level 1 (Core only ~455 LOC):**
+**Composed Level 1 (core only):**
 - [spec template](../../templates/core/spec.md.tmpl) - Requirements and scope
 - [plan.md.tmpl](../../templates/core/plan.md.tmpl) - Technical plan
 - [tasks.md.tmpl](../../templates/core/tasks.md.tmpl) - Task breakdown
@@ -837,7 +837,7 @@ See [phase-definitions.md](../structure/phase-definitions.md) for complete phase
 
 **Level 3+ (governance):**
 - All Level 3 templates + approval workflow, compliance, stakeholders
-- Extended checklist with approval tracking
+- Approval tracking in the Verification Checklist inside `tasks.md` and in `acceptance-criteria.md`
 
 **Session Management Templates (Any Level):**
 - [handover.md.tmpl](../../templates/addons/handover.md.tmpl) - Session context transfer

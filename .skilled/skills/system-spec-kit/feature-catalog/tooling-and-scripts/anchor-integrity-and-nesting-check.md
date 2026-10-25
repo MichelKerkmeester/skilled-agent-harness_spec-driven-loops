@@ -1,12 +1,12 @@
 ---
 title: "Anchor integrity and nesting check"
-description: "Fails a spec document whose anchors nest, close before they open or close more times than they open, and ignores anchor markers quoted in inline code."
+description: "Fails a spec document whose anchors nest, close before they open or close more times than they open, or, in a v2.3 document, leave out an anchor its template requires, and ignores anchor markers quoted in inline code."
 trigger_phrases:
   - "Anchor integrity and nesting check"
   - "ANCHORS_VALID"
   - "nested anchor error"
   - "anchor opened inside"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Anchor integrity and nesting check (ANCHORS_VALID)
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ANCHORS_VALID checks the anchor markers in each spec document whose template defines anchors. Retrieval chunks a document by its anchors, so a nested anchor makes retrieval return the wrong region. The rule therefore treats nesting as an error, next to the duplicate, unclosed and unopened findings that the same rule already reports.
 
-The rule does not compare anchor order against the template. It checks that the markers form well-formed regions.
+The rule does not compare anchor order against the template. It checks that the markers form well-formed regions and, in a document stamped v2.3 or later, that every section its template requires is still there.
 
 ---
 
@@ -24,6 +24,10 @@ The rule does not compare anchor order against the template. It checks that the 
 ### Integrity Findings
 
 The rule ignores fenced code blocks. A document that carries no anchors, an anchor opened twice, an anchor that is never closed, a closer with no opener, or a closer that outnumbers its opener is an error. A phase parent keeps its lean document set exemption, and the research and review workflow documents are skipped as free-form.
+
+### Required Sections
+
+A document whose `SPECKIT_TEMPLATE_SOURCE` stamp reads v2.3 or later must carry each anchor its rendered template requires. Each missing one is an error that names the anchor and the `## <heading>` to restore, so a packet with a whole section deleted no longer passes. Sections under an `L2:`, `L3:`, `L3+:` or `FIX ADDENDUM:` heading are optional, and `decision-record.md` requires none. A document stamped v2.2 or earlier, or unstamped, keeps the integrity-only check.
 
 ### Nesting Findings
 

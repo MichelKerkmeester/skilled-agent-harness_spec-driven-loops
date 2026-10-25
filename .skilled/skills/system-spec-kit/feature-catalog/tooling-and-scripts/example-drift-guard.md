@@ -6,7 +6,7 @@ trigger_phrases:
   - "check-example-drift"
   - "example anchor drift"
   - "example description check"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Example drift guard
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 The example drift guard is a read-only script that compares the hand-written example packets with the templates they came from. A model copies an example, so a drifted example teaches the model a structure the validator no longer expects.
 
-The guard reports one line per problem and exits 1 on any drift. It exits 0 and prints `EXAMPLE_DRIFT_OK` when every example agrees with its template.
+The guard reports one `FAIL` line per problem and exits 1 on any drift. It exits 0 and prints `EXAMPLE_DRIFT_OK` when every example agrees with its template. It exits 2 before any check when `rg` is not on PATH, because the anchor checks read the compare report through `rg` and a failed search would otherwise read as a pass.
 
 ---
 
@@ -23,7 +23,11 @@ The guard reports one line per problem and exits 1 on any drift. It exits 0 and 
 
 ### Anchor Comparison
 
-The guard calls `runtime/cli/utils/template-structure.js compare <level> <doc> <example> anchors`. It fails on every `missing_anchor` line and every `extra_anchor` line. The compare step reads the level contract, so the guard inherits the required and optional anchor lists instead of hard-coding a copy.
+The guard calls `runtime/cli/utils/template-structure.js compare <level> <doc> <example> anchors`. It fails on every `missing_anchor`, `out_of_order_anchor` and `extra_anchor` line, so an example must keep the template's required anchors in the template's order and add none the template does not allow. The compare step reads the level contract, so the guard inherits the required and optional anchor lists instead of hard-coding a copy.
+
+### Level Coverage
+
+The guard checks Levels 1, 2, 3 and 3+ and fails when any of them has no example document, because a model reads the example at its own level.
 
 ### Description Check
 

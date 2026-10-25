@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.0.26
+version: 1.6.1.0
 ---
 
 # Folder Structure Reference
@@ -116,11 +116,13 @@ specs/NNN-name/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
-└── implementation-summary.md  # Created AFTER implementation completes
+├── implementation-summary.md  # Created AFTER implementation completes
+└── acceptance-criteria.md     # Closure gate, scaffolded at this level
 ```
 
+`acceptance-criteria.md` is required through the `AC_CLOSURE` rule, not through the level contract's core doc list: the contract files it as an add-on that `create.sh` scaffolds at this level, and `AC_CLOSURE` fails a packet created after 2026-08-30 that lacks it. For an older packet its absence is advisory.
+
 **Optional:**
-- `acceptance-criteria.md` - the closure gate; scaffolded at this level, and its absence fails validation for packets created after 2026-08-30
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 
@@ -132,11 +134,13 @@ specs/NNN-name/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
-└── implementation-summary.md  # Created AFTER implementation completes
+├── implementation-summary.md  # Created AFTER implementation completes
+└── acceptance-criteria.md     # Closure gate, scaffolded at this level
 ```
 
+`acceptance-criteria.md` is required through the `AC_CLOSURE` rule, not through the level contract's core doc list: the contract files it as an add-on that `create.sh` scaffolds at this level, and `AC_CLOSURE` fails a packet created after 2026-08-30 that lacks it. For an older packet its absence is advisory.
+
 **Optional:**
-- `acceptance-criteria.md` - the closure gate; scaffolded at this level, and its absence fails validation for packets created after 2026-08-30
 - `decision-record.md` - architecture decisions; created on request, skipped silently when absent
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes

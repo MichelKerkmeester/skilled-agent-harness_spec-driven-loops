@@ -6,7 +6,7 @@ trigger_phrases:
   - "authoring card"
   - "write a spec packet"
   - "fill a spec scaffold"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Spec authoring card
@@ -27,7 +27,7 @@ The card covers the bounds of a packet write, the level choice, the scaffold com
 
 ### Sync Guard
 
-`runtime/cli/spec/check-card-sync.sh` reads the card, the router, the generated leaf inventory files and the authoring checklist. It prints one `PASS` line per check and fails on the first disagreement. The checks cover the card length, the four intent rows, the guide level, the two inventory files and the checklist wording.
+`runtime/cli/spec/check-card-sync.sh` reads the card, the router, the generated leaf inventory files and the authoring checklist. It runs every check and prints one `PASS` or `FAIL` line for each. It fails when any of them disagrees. The checks cover the card length, the four intent rows, the guide level, the two inventory files, the checklist's route to an example folder that exists and the card's pointer to the checklist. It exits 2 without running a check when `rg` is not on `PATH`.
 
 ### Inventory Regeneration
 
@@ -47,7 +47,7 @@ A model reads the card, scaffolds with `create.sh`, fills every section, removes
 |------|-------|------|
 | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` | Reference | The short authoring path |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Router | Loads the card for the four authoring intents |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Script | Compares the four surfaces and fails on the first disagreement |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Script | Compares the four surfaces and fails when any check disagrees |
 
 ### Validation And Tests
 

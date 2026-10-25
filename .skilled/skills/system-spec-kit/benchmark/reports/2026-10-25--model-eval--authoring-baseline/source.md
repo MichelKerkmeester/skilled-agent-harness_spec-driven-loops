@@ -24,8 +24,9 @@ This map names where the raw evidence behind this folder lives. The folder holds
 | Second set delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/delta.json` |
 | Fresh set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh/baseline.json`, with runs, audits, rule scores and packet copies beside it |
 | Second fresh set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/baseline.json`, with runs, audits, rule scores and packet copies beside it |
+| Second fresh set delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.json`, the deciding delta: cli-devin `deepseek-v4-1-flash-1017-max` on a worktree at `74a629a7af`, scored with `justified-anchors.sh` against the second set baseline |
 | Anchor rule script and scores | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh` and `scratch/amend3/justified-anchors-test.txt` |
-| Models | cli-devin `swe-2-max` (first set) and cli-devin `deepseek-v4-1-flash-1017-max` (second set) |
+| Models | cli-devin `swe-2-max` (first set) and cli-devin `deepseek-v4-1-flash-1017-max` (second set, fresh set and second fresh set) |
 
 ---
 

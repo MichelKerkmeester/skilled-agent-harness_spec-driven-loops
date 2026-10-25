@@ -6,7 +6,7 @@ trigger_phrases:
   - "placeholder token warning"
   - "Draft placeholder rule"
   - "v2.3 template stamp"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Versioned placeholder gate
@@ -27,17 +27,19 @@ The rule reads the first 70 lines of each document for a `SPECKIT_TEMPLATE_SOURC
 
 ### Draft Lifecycle
 
-When the gate is open, the rule reads the first Status row of the packet's `spec.md`. The exact word Draft, ignoring case, bold marks, backticks, quotes and trailing punctuation, makes an unfilled token a warning. Every other value, and a missing Status row, makes it an error. An open question marker is an error in both cases.
+When the gate is open, the rule reads the first Status row of the packet's `spec.md`, unless a v2.3 `spec.md` has a later Complete row, which wins. The exact word Draft, ignoring case, bold marks, backticks, quotes and trailing punctuation, makes an unfilled token a warning. Every other value, and a missing Status row, makes it an error. An open question marker is an error in both cases.
 
 A warning does not fail `--strict`. The run passes when no other rule reports an error.
 
 ### Scope
 
-The orchestrator reads every authored document that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. Both implementations answer with the same verdict, and one test file compares them.
+The orchestrator reads every authored document that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. One parity test drives both across nine marker shapes, and for a v2.3 doc they give the same verdict on each. For an older doc each keeps its earlier verdict, so the two still differ there on an indented fence, the `<YOUR_VALUE_HERE:` form and a `[template:` title. Both still flag a token inside a tilde fence in an older doc.
+
+The standalone `spec/check-placeholders.sh`, which the post-edit hook runs on the folder of an edited spec doc, sources the shell mirror's marker scan. For a v2.3 doc it flags the same markers with the same fence and inline-code handling as both implementations. For an older doc it keeps a legacy scan that matches neither implementation exactly: it skips a backtick fence at any indent and flags the `<YOUR_VALUE_HERE:` form, as the orchestrator does, where the shell mirror flags a token in an indented fence and passes that form, and like both it still flags a token inside a tilde fence. It reads every `.md` file in the folder except `memory/`, `scratch/`, `research/` and `review/`, leaves a `[template:` title to the scaffold rule, and counts a marker in a Draft packet too, because the marker is still unfilled.
 
 ### Edge Cases
 
-A fenced code block is skipped, so a token shown in an example does not fail a document. A token inside an inline code span is skipped for the same reason. A status such as `Draft (phase 3)` is not the word Draft, so it counts as any other value.
+A fenced code block is skipped, so a token shown in an example does not fail a document. A token inside an inline code span is skipped for the same reason. In a v2.3 doc a fence may open with backticks or tildes at any indent, every marker on a line is read and a `[template:` title is an error. A status such as `Draft (phase 3)` is not the word Draft, so it counts as any other value.
 
 ---
 
@@ -49,6 +51,7 @@ A fenced code block is skipped, so a token shown in an example does not fail a d
 |------|-------|------|
 | `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Handler | Reads the stamp and the status and returns the rule entry |
 | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` | Script | Shell mirror used by the isolated rule harness |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh` | Script | Standalone folder scan the post-edit hook runs, built on the shell mirror's marker scan |
 
 ### Validation And Tests
 

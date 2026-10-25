@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-25"
-version: 2.1.8.0
+version: 2.1.9.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -43,11 +43,11 @@ Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session 
 
 #### Description
 
-Fails a spec document whose anchors nest, close before they open or close more times than they open, and ignores anchor markers quoted in inline code.
+Fails a spec document whose anchors nest, close before they open or close more times than they open, or, in a v2.3 document, leave out an anchor its template requires, and ignores anchor markers quoted in inline code.
 
 #### Current Reality
 
-The rule runs inside the native validation orchestrator with the other anchor checks. Nesting findings are errors, and an adr-NNN anchor may hold adr-NNN-* anchors.
+The rule runs inside the native validation orchestrator with the other anchor checks. Nesting findings are errors, an adr-NNN anchor may hold adr-NNN-* anchors, and a v2.3 document fails for each template-required anchor it lacks.
 
 #### Source Files
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "changelog evidence stack"
 importance_tier: normal
 contextType: implementation
-version: 2.1.0.15
+version: 2.1.1.0
 ---
 
 # Nested Changelog Workflow
@@ -27,7 +27,7 @@ Generate packet-local changelog files for spec roots and phase child folders.
 
 - A root spec folder needs a local changelog history beside `implementation-summary.md`
 - A phase child folder needs a packet-local changelog entry in the parent `changelog/` folder
-- `/spec_kit:complete` or `/spec_kit:implement` finishes work on a root packet or phase child
+- `/speckit:complete` or `/speckit:implement` finishes work on a root packet or phase child
 
 ---
 

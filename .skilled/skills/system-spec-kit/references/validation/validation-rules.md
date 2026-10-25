@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.2.0
+version: 2.7.3.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -55,7 +55,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `AC_COVERAGE`        | INFO     | acceptance-criteria.md | Advisory traceability scan over each criterion's Verification cell (on by default; `SPECKIT_AC_COVERAGE_ENFORCE=true` makes an under-floor result fail) |
 | `AC_CLOSURE`         | ERROR    | acceptance-criteria.md | Closure gate for Levels 2/3/3+: unmet criteria block a completion claim, waivers must cite a real ADR |
 | `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
-| `ANCHORS_VALID`      | ERROR    | spec docs with anchored templates | Anchors present, paired and not nested (adr-NNN may hold adr-NNN-*) |
+| `ANCHORS_VALID`      | ERROR    | spec docs with anchored templates | Anchors present, paired and not nested (adr-NNN may hold adr-NNN-*); a v2.3 doc also keeps each anchor its template requires |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
 | `FRONTMATTER_VALID`  | ERROR    | spec docs     | YAML frontmatter properly structured           |
 | `COMPLEXITY_MATCH`   | WARNING  | All levels    | Content metrics match declared level           |
@@ -114,7 +114,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 **Scope:** every `.md` file under the packet's `research/` and `review/` folders, lineages and iterations included. `prompts/` folders and fenced blocks are skipped. A tag holding a URL or prose, such as `[SOURCE: live run]`, names no line and is not checked.
 
-**Resolution:** the rule calls `resolveCitation` from sk-doc's `cite-drift-scan.mjs`, so a tag gets the same verdict as a bare citation in the drift census, through the same redirect table. Candidates are the citing file's folder, the repository root and the packet folder. Untracked files outside `.gitignore` count, so a packet can be checked before it is committed.
+**Resolution:** the rule calls `resolveCitation` from sk-doc's `cite-drift-scan.mjs`, so a tag gets the same verdict as a bare citation in the drift census, through the same redirect table. Candidates are the citing file's folder, the repository root and the packet folder. Untracked files outside `.gitignore` count, so a packet can be checked before it is committed. The git listings run with `core.fsmonitor` off, because a configured fsmonitor daemon can stall them for seconds; the verdicts are the same either way.
 
 **Rollout:** forward-only behind `SPECKIT_SOURCE_TAG_CUTOFF` (default `2026-10-04`), compared against the `Created` date in `spec.md`, the same pattern as `AC_CLOSURE`. A packet created on or before the cutoff, or whose date cannot be read, is skipped and says so. A malformed override falls back to the default.
 
@@ -287,7 +287,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 
 ### Lifecycle For Docs Stamped v2.3 Or Later
 
-A doc whose `SPECKIT_TEMPLATE_SOURCE` stamp names version v2.3 or later ships every authoring hint as a `[YOUR_VALUE_HERE: ...]` token. For such a doc the rule reads the Status row of `spec.md` and decides the severity of each unfilled token.
+A doc whose `SPECKIT_TEMPLATE_SOURCE` stamp names version v2.3 or later ships every authoring hint as a `[YOUR_VALUE_HERE: ...]` token. For such a doc the rule reads the Status of `spec.md` and decides the severity of each unfilled token. A v2.3 `spec.md` has every table row whose first cell is Status read, anywhere in the file and including one inside a fenced code block, and a row that reads as complete wins over the first row; an older `spec.md` is read by its first such row.
 
 | Status in `spec.md` | Unfilled `[YOUR_VALUE_HERE: ...]` token | `[NEEDS CLARIFICATION: ...]` |
 | ------------------- | --------------------------------------- | ---------------------------- |
@@ -404,7 +404,8 @@ Content goes here...
 4. **Error findings make the rule fail:** a checked document with no anchors (`no anchors found`), an anchor opened twice (`duplicate anchor '<name>'`), an anchor that is never closed (`is never closed`), a close with no matching open (`is closed but never opened`), and a close count that exceeds the open count (`is closed more times than it is opened`).
 5. **Nesting findings are errors:** an anchor opened inside another (`is opened inside '<outer>'`), a close that arrives before its open (`is closed before it is opened`), and a close while another anchor is still open (`is closed while '<outer>' is still open`). A document with nesting findings fails, and they are reported alongside any other error findings.
 6. **One nesting is allowed:** an `adr-NNN` anchor may hold `adr-NNN-*` anchors, so `adr-001` can contain `adr-001-context`.
-7. **Template order is not checked.** The rule never compares a document's anchor set against the template's set or order. A template that moves a section would regrade the whole corpus on every commit, which turns the template into a moving target rather than a contract.
+7. **A v2.3 document keeps its required sections.** A document whose `SPECKIT_TEMPLATE_SOURCE` stamp reads v2.3 or later fails with `required anchor '<id>' is missing` for each anchor its rendered template requires and the document lacks; the finding names the `## <heading>` to restore. Sections under an `L2:`, `L3:`, `L3+:` or `FIX ADDENDUM:` heading are optional, and `decision-record.md` requires none because its ADR sections are named by the author. A document stamped v2.2 or earlier, or unstamped, keeps the integrity-only check.
+8. **Template order is not checked.** The rule never compares a document's anchor order against the template's. A template that moves a section would regrade the whole corpus on every commit, which turns the template into a moving target rather than a contract.
 
 ### Examples
 
@@ -818,7 +819,7 @@ Cut in the order section 3 of `sk-create-goal`'s [budget-and-handoff.md](../../.
 | `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output  |
 | `SPECKIT_POST_VALIDATE` | unset | Set to `1` during scaffolding to run `validate.sh --quiet` after `create.sh` writes files |
 
-`validate.sh` delegates to the Node validation orchestrator by default. In a linked worktree whose `dist` directories are symlinks, run it with `NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\"`; `NODE_PRESERVE_SYMLINKS=1` alone does not cover the main module and the orchestrator then exits 0 with no output. The strict path is designed for fast packet checks; packet 004 measured a fresh Level 3 strict validation at about 108ms on the local harness.
+`validate.sh` delegates to the Node validation orchestrator by default. In a linked worktree whose `dist` directories are symlinks, run it with `NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\"`; `NODE_PRESERVE_SYMLINKS=1` alone does not cover the main module and the orchestrator then exits 0 with no output. The strict path is designed for fast packet checks: on 2026-10-25, `validate.sh specs/agents/001-terminal-proof-discipline --strict --no-recursive` took 1.35 to 1.38 s across three runs on the local harness, whole process included.
 
 ### Usage Examples
 

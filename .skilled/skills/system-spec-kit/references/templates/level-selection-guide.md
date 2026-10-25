@@ -8,7 +8,7 @@ trigger_phrases:
   - "level mapping thresholds"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.15
+version: 1.6.1.0
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm
@@ -104,7 +104,7 @@ Level 3+ includes everything from Level 3 plus:
 - AI Execution Protocol section
 - Dependency graph visualization (ASCII/DAG)
 - Effort estimation framework
-- Extended checklist items (100-150 items)
+- No separate checklist file: the Verification Checklist stays a section inside `tasks.md`, as at Level 3, and `acceptance-criteria.md` gates closure
 - Sign-off requirements
 
 ---

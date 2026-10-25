@@ -1,7 +1,7 @@
 ---
 title: "479 -- Example drift guard catches a leaked description"
 description: "This scenario validates that the example drift guard passes a clean tree and fails a copy whose description holds a leaked comment tail."
-version: 1.0.0.0
+version: 1.0.1.0
 id: template-authoring-example-drift-guard-catches-leak
 ---
 
@@ -25,9 +25,9 @@ Operators run the guard twice, once on the clean tree and once on a copy with on
 - Playbook ID: 479.
 - Real user request: `Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.`
 - Prompt: `Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.`
-- Preconditions: A checkout with Node, bash and perl on PATH, and phase 4 closed so `runtime/cli/spec/check-example-drift.sh` exists. The scenario needs no network.
+- Preconditions: A checkout with Node, bash, perl, `rg` and `awk` on PATH, and phase 4 closed so `runtime/cli/spec/check-example-drift.sh` exists. The scenario needs no network.
 - Expected execution process: Run the guard on the tree, copy one example into a scratch folder, inject a leaked comment tail into its description, run the guard on the scratch folder, then remove the scratch folder.
-- Expected signals: The clean run prints `EXAMPLE_DRIFT_OK` and exits 0. The broken run prints one line with `description holds an HTML comment tail` and exits 1. The broken run does not print `EXAMPLE_DRIFT_OK`.
+- Expected signals: The clean run prints `EXAMPLE_DRIFT_OK` and exits 0. The broken run exits 1 and prints five `FAIL` lines: one with `description holds an HTML comment tail`, one with `description does not end with a period`, because the injected tail now follows the period, and three with `no example docs`, because the scratch tree holds only a Level 2 example and the guard requires one at Levels 1, 2, 3 and 3+. The broken run does not print `EXAMPLE_DRIFT_OK`.
 - Desired user-visible outcome: The operator sees the guard accept the tree and reject the injected defect.
 - Pass/fail: PASS if the clean run exits 0 with `EXAMPLE_DRIFT_OK` and the broken run exits 1 with the description failure. FAIL if either run returns the other verdict.
 
@@ -70,6 +70,8 @@ grep -m1 '^description:' "$T/level-2/acceptance-criteria.md"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh "$T" > "$OUT/broken.txt" 2>&1
 echo "broken_exit=$?"
 grep -c 'description holds an HTML comment tail' "$OUT/broken.txt"
+grep -c '^FAIL' "$OUT/broken.txt"
+grep -c 'no example docs' "$OUT/broken.txt"
 grep -c 'EXAMPLE_DRIFT_OK' "$OUT/broken.txt"
 ```
 
@@ -82,7 +84,7 @@ test ! -d "$OUT" && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints `clean_exit=0`, then `EXAMPLE_DRIFT_OK`. Step 2 prints a description line that ends with `leaked -->"`. Step 3 prints `broken_exit=1`, then `1`, then `0`. Step 4 prints `cleanup=ok`.
+Step 1 prints `clean_exit=0`, then `EXAMPLE_DRIFT_OK`. Step 2 prints a description line that ends with `leaked -->"`. Step 3 prints `broken_exit=1`, then `1`, then `5`, then `3`, then `0`. The five `FAIL` lines are the comment-tail failure, a `description does not end with a period` failure on the same file, and `no example docs` for Level 1, Level 3 and Level 3+. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 
@@ -93,8 +95,8 @@ Step 1 prints `clean_exit=0`, then `EXAMPLE_DRIFT_OK`. Step 2 prints a descripti
 
 ### Pass / Fail
 
-- **Pass**: The clean run exits 0 with `EXAMPLE_DRIFT_OK`, and the broken run exits 1 with exactly one description failure and no `EXAMPLE_DRIFT_OK`.
-- **Fail**: The clean run fails, the broken run passes, or the failure count is not 1.
+- **Pass**: The clean run exits 0 with `EXAMPLE_DRIFT_OK`, and the broken run exits 1 with exactly one comment-tail failure, five `FAIL` lines in all, three of them `no example docs`, and no `EXAMPLE_DRIFT_OK`.
+- **Fail**: The clean run fails, the broken run passes, the comment-tail count is not 1, or the `FAIL` count is not 5.
 
 ### Failure Triage
 

@@ -1,19 +1,36 @@
 #!/usr/bin/env bash
-# Guard: every hand-written example keeps the template's required anchors, adds no
-# anchor the template does not allow, and carries a description a reader can use.
-# Read-only. Prints one line per failure and exits 1.
+# Guard: every hand-written example keeps the template's required anchors in the
+# template's order, adds no anchor the template does not allow, and carries a
+# description a reader can use. Every level has at least one example, because a
+# model reads the example at its own level.
+# Read-only. Prints one line per failure and exits 1. Exits 2 when rg is missing,
+# since the anchor checks read the compare report through rg.
 set -uo pipefail
+
+if ! command -v rg >/dev/null 2>&1; then
+  echo "check-example-drift.sh: rg (ripgrep) is required and was not found on PATH" >&2
+  exit 2
+fi
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 TEMPLATES="$ROOT/templates"
 UTIL="$ROOT/runtime/cli/utils/template-structure.js"
 EXAMPLES="${1:-$TEMPLATES/examples}"
+LEVELS=(1 2 3 3+)
+DRIFT='^(missing_anchor|out_of_order_anchor|extra_anchor)'
 status=0
 
 fail() {
   printf 'FAIL %s: %s\n' "$1" "$2"
   status=1
 }
+
+shopt -s nullglob
+
+for level in "${LEVELS[@]}"; do
+  docs=("$EXAMPLES/level-$level"/*.md)
+  [[ ${#docs[@]} -gt 0 ]] || fail "$EXAMPLES/level-$level" "no example docs for Level $level"
+done
 
 for dir in "$EXAMPLES"/level-*; do
   level="${dir##*/level-}"
@@ -32,11 +49,11 @@ for dir in "$EXAMPLES"/level-*; do
       fail "$example" "template-structure compare exited $rc"
       continue
     fi
-    printf '%s\n' "$report" | rg '^(missing_anchor|extra_anchor)' \
+    printf '%s\n' "$report" | rg "$DRIFT" \
       | while read -r kind anchor; do
           printf 'FAIL %s: %s %s\n' "$example" "$kind" "$anchor"
         done
-    printf '%s\n' "$report" | rg -q '^(missing_anchor|extra_anchor)' && status=1
+    printf '%s\n' "$report" | rg -q "$DRIFT" && status=1
   done
 done
 

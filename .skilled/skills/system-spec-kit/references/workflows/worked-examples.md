@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature implementation example"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Worked Examples Reference
@@ -110,7 +110,7 @@ Add a user notification system with toast messages, persistence, and dismissal f
 **Phase 1: Planning**
 
 ```bash
-User: /spec_kit:plan
+User: /speckit:plan
 AI: Spec folder? 
 User: B (New)
 AI: Feature name?
@@ -122,7 +122,7 @@ User: 2
 **Phase 2: Implementation**
 
 ```bash
-User: /spec_kit:implement specs/009-notification-system/
+User: /speckit:implement specs/009-notification-system/
 AI: Loading planning artifacts...
 AI: Found: spec.md, plan.md, acceptance-criteria.md
 AI: Ready to implement. Starting with Phase 1 tasks...
@@ -164,7 +164,7 @@ Migrate from REST API to GraphQL for improved data fetching efficiency. Estimate
 **Phase 1: Initiate Planning**
 
 ```bash
-User: /spec_kit:plan
+User: /speckit:plan
 AI: Spec folder?
 User: B (New)
 AI: Feature name?

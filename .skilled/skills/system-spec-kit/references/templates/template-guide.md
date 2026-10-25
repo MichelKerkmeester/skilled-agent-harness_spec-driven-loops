@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -244,10 +244,10 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --pat
 
 **Level 3+ expectations:**
 - AI execution protocol sections remain intact and project-specific
-- Extended checklist includes P0/P1/P2 gating and approval tracking sections
+- The Verification Checklist section inside `tasks.md` keeps its P0/P1/P2 protocol and sign-off section, and `acceptance-criteria.md` tracks closure; no level scaffolds a separate checklist file
 - Governance, approval, and stakeholder communication sections are populated
 
-**Enforcement:** Hard block if required Level 3 files are missing; quality gates rely on checklist completion and validation scripts
+**Enforcement:** Hard block if required Level 3 files are missing; quality gates rely on the `tasks.md` Verification Checklist, `acceptance-criteria.md` and validation scripts
 
 **If spec is a coordination-root packet**: Replace the executive summary with a coordination overview. Include point-in-time snapshot metadata, a direct-phase documentation map, and cross-reference the governing ADR. Skip dependency graphs in favor of phase navigation links.
 

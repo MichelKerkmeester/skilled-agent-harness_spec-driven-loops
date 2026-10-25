@@ -8,14 +8,14 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Spec Authoring Card
 
 This card is the short path. Follow the steps in order. Each step has one action, one acceptance line and one command. When the command prints what the acceptance line says, go to the next step.
 
-`references/templates/template-guide.md` is the long guide. Read it only when this card sends you there.
+`references/templates/template-guide.md` is the long guide. Read it only when a section's fill note leaves you unsure what to write.
 
 ## 1. BOUNDS
 
@@ -54,7 +54,7 @@ Create the packet with one command. Keep `--skip-branch` so no git state changes
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --with-goal --level <level> --track <track> --short-name <two-to-four-words> "<one sentence>"
 ```
 
-The command prints the folder it made. Use that path for every later command.
+The command prints the folder it made. Use that path for every later command. When `specs/<track>/graph-metadata.json` exists, `create.sh` also adds the packet to its `children_ids`. That write is the script's, not yours.
 
 Acceptance: the folder holds `spec.md`, `plan.md`, `tasks.md` and `scratch/`.
 Verify: `ls <packet folder>` lists those names.
@@ -63,7 +63,7 @@ Verify: `ls <packet folder>` lists those names.
 
 Open one rendered example at the same level under `.skilled/skills/system-spec-kit/templates/examples/level-<level>/`. Read `spec.md` and `tasks.md`.
 
-Do not copy from a `.tmpl` file. A `.tmpl` file carries tokens and gate markers. The examples are filled and safe to imitate for shape.
+Do not copy from a `.tmpl` file. A `.tmpl` file carries tokens and gate markers. The examples are filled and safe to imitate for section shape, not for content.
 
 Each section of your scaffold carries a fill note. The note says what that section needs. Read the note before you write the section. The note is the contract for that section.
 
@@ -86,7 +86,7 @@ Verify: `rg -n '^## ' <packet folder>/spec.md <packet folder>/plan.md` lists the
 
 ## 6. THE PLAN SHAPE
 
-A plan has 3 or 4 steps. More than 4 steps means the feature is too large for one packet. Split it or raise the level.
+A plan has 3 or 4 steps. More than 4 steps means the feature is too large for one packet. Stop and ask, as section 11 says.
 
 Each step carries three lines:
 1. What the step does.
@@ -118,8 +118,8 @@ Rules:
 - Put the tasks in the order you will run them.
 - Mark a task `[x]` only after its verify command printed the expected output.
 
-Acceptance: every task line ends with a `Verify:` clause.
-Verify: `rg -c 'Verify: ' <packet folder>/tasks.md` and `rg -c '^- \[ \] T[0-9]' <packet folder>/tasks.md` print the same number.
+Acceptance: every task line, open or done, ends with a `Verify:` clause.
+Verify: `rg -c '^- \[[ xB]\] T[0-9].*Verify: ' <packet folder>/tasks.md` and `rg -c '^- \[[ xB]\] T[0-9]' <packet folder>/tasks.md` print the same number.
 
 ## 8. FILL EVERY TOKEN
 
@@ -130,7 +130,7 @@ If you cannot answer a question the token asks, write `UNKNOWN` in its place and
 A token in a packet whose `spec.md` says `Status: Draft` is a warning, so strict validation can pass with tokens still in the file. A token in any other status is an error. Do not use the warning as permission. Count the tokens.
 
 Acceptance: the count is 0.
-Verify: `rg -o '\[YOUR_VALUE_HERE: ' <packet folder>/spec.md <packet folder>/plan.md <packet folder>/tasks.md | wc -l` prints 0.
+Verify: `rg -o '\[YOUR_VALUE_HERE:' <packet folder>/*.md | wc -l` prints 0.
 
 ## 9. VALIDATE
 
@@ -158,6 +158,8 @@ A packet is closeable when:
 
 Acceptance: all five are true.
 Verify: run the five commands in this card in order, then run the validator once more. The last line prints `RESULT: PASSED`.
+
+The continuity block and the `description.json` and `graph-metadata.json` refresh belong to `references/workflows/spec-folder-authoring-checklist.md`, not to this card.
 
 ## 11. WHEN TO STOP AND ASK
 

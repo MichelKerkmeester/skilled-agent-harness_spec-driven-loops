@@ -46,6 +46,19 @@ function sections(markdown: string): Array<{ heading: string; body: string }> {
   return out.map((section) => ({ heading: section.heading, body: section.body.join('\n') }));
 }
 
+// A model copies the GOOD example and avoids the WEAK one, so a note without both
+// leaves the section's target to guesswork.
+function fillNoteProblems(note: string): string[] {
+  const inner = note.slice('<!-- FILL: '.length, -' -->'.length);
+  const problems: string[] = [];
+  if (inner.includes('[YOUR_VALUE_HERE:')) problems.push('holds a token');
+  if (inner.includes('[NEEDS')) problems.push('holds a clarification marker');
+  if (inner.includes('-->')) problems.push('holds a comment end');
+  if (!inner.trim().endsWith('.')) problems.push('does not end with a period');
+  if (!/GOOD: .+ WEAK: .+/u.test(inner)) problems.push('lacks a GOOD and then a WEAK example');
+  return problems;
+}
+
 describe('template section fill guidance', () => {
   for (const level of LEVELS) {
     for (const doc of DOCS) {
@@ -59,13 +72,28 @@ describe('template section fill guidance', () => {
         for (const part of parts) {
           const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
           expect(fill, `${part.heading} needs one FILL line`).toHaveLength(1);
-          const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.length);
-          expect(inner).not.toContain('[YOUR_VALUE_HERE:');
-          expect(inner).not.toContain('[NEEDS');
-          expect(inner).not.toContain('-->');
-          expect(inner.trim().endsWith('.')).toBe(true);
+          expect(fillNoteProblems(fill[0]), part.heading).toEqual([]);
         }
       });
     }
   }
+
+  const addons = fs.readdirSync(path.join(TEMPLATE_ROOT, 'addons')).filter((name) => name.endsWith('.md.tmpl'));
+  for (const addon of addons) {
+    it(`keeps every fill note in the ${addon} add-on well formed`, () => {
+      const source = fs.readFileSync(path.join(TEMPLATE_ROOT, 'addons', addon), 'utf8');
+      const notes = source.match(/<!-- FILL: .* -->/gu) ?? [];
+      expect(notes.length, 'no fill note found').toBeGreaterThan(0);
+      expect(notes.length, 'a fill note spans more than one line').toBe((source.match(/<!-- FILL:/gu) ?? []).length);
+      for (const note of notes) {
+        expect(fillNoteProblems(note), note).toEqual([]);
+      }
+    });
+  }
+
+  it('rejects a fill note that has a GOOD example but no WEAK one', () => {
+    expect(fillNoteProblems('<!-- FILL: Name the owner. GOOD: Ana owns the script. -->')).toEqual([
+      'lacks a GOOD and then a WEAK example',
+    ]);
+  });
 });

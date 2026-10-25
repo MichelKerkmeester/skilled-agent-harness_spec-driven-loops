@@ -10,7 +10,7 @@ trigger_phrases:
   - "intake lock"
 importance_tier: important
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Intake Contract Reference
@@ -293,10 +293,10 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 
 ## 15. SUPERSEDES
 
-This module supersedes the deleted standalone intake command surface that packet `012-command-graph-consolidation` removed from `026-graph-and-context-optimization`. The former standalone intake surface duplicated the same logic that `/spec_kit:plan` and `/spec_kit:complete` carried inline, producing three parallel copies that drifted independently. Consolidation into this single reference eliminates drift risk and simplifies the command graph.
+This module supersedes the deleted standalone intake command surface that packet `012-command-graph-consolidation` removed from `026-graph-and-context-optimization`. The former standalone intake surface duplicated the same logic that `/speckit:plan` and `/speckit:complete` carried inline, producing three parallel copies that drifted independently. Consolidation into this single reference eliminates drift risk and simplifies the command graph.
 
 **Packet reference:** internal design notes
 
-**Delivery note:** The implementation delivered 15 milestones (M1-M9 on 2026-04-14, M10-M15 on 2026-04-15). `/spec_kit:plan` and `/spec_kit:complete` reference this module in place of inline intake blocks; `/spec_kit:plan --intake-only` provides the standalone invocation path with an explicit YAML gate. See the local decision record for the architectural rationale (ADR-002 through ADR-010).
+**Delivery note:** The implementation delivered 15 milestones (M1-M9 on 2026-04-14, M10-M15 on 2026-04-15). `/speckit:plan` and `/speckit:complete` reference this module in place of inline intake blocks; `/speckit:plan --intake-only` provides the standalone invocation path with an explicit YAML gate. See the local decision record for the architectural rationale (ADR-002 through ADR-010).
 
 ---

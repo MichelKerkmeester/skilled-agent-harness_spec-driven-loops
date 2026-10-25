@@ -1,6 +1,6 @@
 # 2026-10-25--model-eval--authoring-baseline
 
-> system-spec-kit · model-eval · authoring-baseline · cli-devin swe-2-max
+> system-spec-kit · model-eval · authoring-baseline · cli-devin deepseek-v4-1-flash-1017-max (first set: swe-2-max)
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Verdict: PASS on the deciding set (fourth update), after FAIL on three earlier sets**
 
-**Update on 2026-10-25, third amendment: the final set was rerun.** This report now holds three final sets, and they are different experiments. The first set, kept below as history, ran cli-devin `swe-2-max` on the tree before the L3+ label fix against a `swe-2-max` baseline. The operator then ruled out the swe-2 models and set a DeepSeek baseline. The second set ran cli-devin `deepseek-v4-1-flash-1017-max` on the tree after the fix (the fill note under each of the six `## L3+:` headings of `tasks.md` now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.') against a new DeepSeek baseline of three runs at the packet start commit. The second set was the first final set on the final tree, and **its verdict is FAIL**. The operator later set a new anchor rule after seeing that result, so the fresh set decided criterion 5 next, and the second fresh set decides it now.
+**Update on 2026-10-25, third amendment: the final set was rerun.** This report now holds four final sets, and they are different experiments. The first set, kept below as history, ran cli-devin `swe-2-max` on the tree before the L3+ label fix against a `swe-2-max` baseline. The operator then ruled out the swe-2 models and set a DeepSeek baseline. The second set ran cli-devin `deepseek-v4-1-flash-1017-max` on the tree after the fix (the fill note under each of the six `## L3+:` headings of `tasks.md` now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.') against a new DeepSeek baseline of three runs at the packet start commit. The second set was the first final set on the final tree, and **its verdict is FAIL**. The operator later set a new anchor rule after seeing that result, so the fresh set decided criterion 5 next, and the second fresh set decides it now.
 
 The second set's worst run is worse than the DeepSeek baseline's worst on missing_anchors: a final maximum of 3 against 0. Run 1 wrote a `tasks.md` with 18 anchors where the frozen list expects 21 and lacks `deploy-ready`, `compliance-verify` and `sign-off`. Runs 2 and 3 kept all 21. Run 2 is marked contaminated: its session read the frozen vocabulary files (section 5), so it is kept as recorded and not used as evidence of a clean pass. The verdict is FAIL with or without run 2, because run 1 alone is above the baseline maximum. Leftover hints were 0 in all three final runs against a baseline maximum of 1.
 

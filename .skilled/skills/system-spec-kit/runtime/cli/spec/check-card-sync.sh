@@ -6,12 +6,13 @@
 # the router that loads it, the leaf inventory that lists it, and the checklist
 # that sends a reader to a filled example. Each surface can be edited alone,
 # and a reader then follows a path the others do not describe. This guard
-# reads all four and fails on the first disagreement.
+# runs every check, prints one line each and fails if any of them disagrees.
 #
 # Read-only. It writes no file and prints one PASS or FAIL line per check.
 #
 # Usage: check-card-sync.sh [--skill-root <path>]
-# Exit codes: 0 every check passed, 1 one check failed, 2 bad invocation.
+# Exit codes: 0 every check passed, 1 at least one check failed,
+#             2 bad invocation or rg missing from PATH.
 # ───────────────────────────────────────────────────────────────
 
 set -euo pipefail
@@ -27,7 +28,7 @@ while [ "$#" -gt 0 ]; do
             shift 2
             ;;
         --help|-h)
-            sed -n '2,14p' "${BASH_SOURCE[0]}"
+            sed -n '2,15p' "${BASH_SOURCE[0]}"
             exit 0
             ;;
         *)
@@ -37,12 +38,20 @@ while [ "$#" -gt 0 ]; do
     esac
 done
 
+# Without rg the checklist check below would read a failed search as a pass.
+if ! command -v rg >/dev/null 2>&1; then
+    echo "check-card-sync.sh: rg (ripgrep) is required and was not found on PATH" >&2
+    exit 2
+fi
+
 CARD_REL="references/workflows/spec-authoring-card.md"
 CARD="$SKILL_ROOT/$CARD_REL"
 ROUTER="$SKILL_ROOT/SKILL.md"
 LEAVES="$SKILL_ROOT/leaf-manifest.json"
 ALIASES="$SKILL_ROOT/leaf-aliases.json"
-CHECKLIST="$SKILL_ROOT/references/workflows/spec-folder-authoring-checklist.md"
+CHECKLIST_REL="references/workflows/spec-folder-authoring-checklist.md"
+CHECKLIST="$SKILL_ROOT/$CHECKLIST_REL"
+EXAMPLES_REL="templates/examples"
 MAX_LINES=260
 STATUS=0
 
@@ -95,7 +104,7 @@ else
 fi
 
 # 4. The inventory lists the card and the identity projection agrees.
-if jq -e --arg p "$CARD_REL" '.modes[].leaves | index($p) != null' "$LEAVES" > /dev/null; then
+if jq -e --arg p "$CARD_REL" 'any(.modes[].leaves[]; . == $p)' "$LEAVES" > /dev/null; then
     pass leaf-manifest
 else
     fail_check leaf-manifest "does not list $CARD_REL"
@@ -106,11 +115,23 @@ else
     fail_check leaf-aliases "does not list $CARD_REL"
 fi
 
-# 5. The checklist sends a reader to a filled example, not the gated source root.
-if rg -q 'Read templates from `\.skilled/skills/system-spec-kit/templates/`' "$CHECKLIST"; then
+# 5. The checklist sends a reader to a filled example that exists, not the gated
+#    source root, and the card hands the steps it skips to that checklist.
+if [ ! -f "$CHECKLIST" ]; then
+    fail_check checklist "missing $CHECKLIST_REL"
+elif rg -q 'Read templates from `\.skilled/skills/system-spec-kit/templates/`' "$CHECKLIST"; then
     fail_check checklist "still sends a reader to the templates root"
+elif ! rg -q "$EXAMPLES_REL/" "$CHECKLIST"; then
+    fail_check checklist "does not send a reader to $EXAMPLES_REL/"
+elif [ ! -d "$SKILL_ROOT/$EXAMPLES_REL" ]; then
+    fail_check checklist "routes to $EXAMPLES_REL/, which does not exist"
 else
     pass checklist
+fi
+if [ -f "$CARD" ] && rg -q 'spec-folder-authoring-checklist\.md' "$CARD"; then
+    pass card-names-checklist
+else
+    fail_check card-names-checklist "the card does not name $CHECKLIST_REL"
 fi
 
 if [ "$STATUS" -ne 0 ]; then

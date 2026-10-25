@@ -8,7 +8,7 @@ trigger_phrases:
   - "required templates by level"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.39
+version: 1.6.1.0
 ---
 
 # Template Mapping - Level to File Assignments
@@ -52,7 +52,7 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + acceptance-criteria.md
                               ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
+Level 3 (Full):         Level 2 + optional decision-record.md + optional research/research.md
                               ↓
 Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder tracking
 ```
@@ -61,7 +61,7 @@ Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder t
 | ------------------- | ---------------------------------- | ----------------------- | -------------------------- |
 | **1: Baseline**     | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md` | (foundation)            | See Level 1 commands below |
 | **2: Verification** | Level 1 + `acceptance-criteria.md` | Closure criteria        | See Level 2 commands below |
-| **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
+| **3: Full**         | Level 2 files with Level 3 sections | ADRs in `plan.md`, or in `decision-record.md` on request, + optional research | See Level 3 commands below |
 | **3+: Extended**    | Level 3 + approval workflow + compliance + stakeholders | Review tracking + coordination | See Level 3+ commands below |
 | **Phase Parent**    | `spec.md` + `description.json` + `graph-metadata.json` (lean trio) | None (control file only) | `create.sh --phase --phases N --phase-names a,b,c <description>` |
 
@@ -116,8 +116,8 @@ These templates are OPTIONAL and can be added at any documentation level:
 
 **Notes:**
 - These are OPTIONAL - only render when the packet benefits from them
-- `decision-record.md` is REQUIRED at Level 3, not optional
-- Topic-specific ADR files can be added as supplemental artifacts, but the required canonical file is always `decision-record.md`
+- `decision-record.md` is created on request at Level 3 and above. Without it, the ADRs live in `plan.md`
+- Topic-specific ADR files are supplemental. A packet that keeps a separate decision file names it `decision-record.md`
 - `resource-map.md` is level-agnostic and pairs well with `implementation-summary.md` when reviewers need a scannable blast-radius view
 
 ---
@@ -139,7 +139,7 @@ specs/043-add-email-validation/
 - **plan.md**: Implementation approach, file changes, testing strategy
 - **tasks.md**: Task breakdown by user story, ordered by dependencies
 
-**Enforcement:** Hard block if any required file missing
+**Enforcement:** `FILE_EXISTS` fails strict validation when a required file is missing
 
 ---
 
@@ -151,8 +151,7 @@ specs/044-modal-component/
 ├── plan.md                      (REQUIRED - from Level 1)
 ├── tasks.md                     (REQUIRED - from Level 1)
 ├── implementation-summary.md    (REQUIRED - from Level 1)
-├── acceptance-criteria.md       (REQUIRED - gates packet closure)
-└── acceptance-criteria.md       (the closure gate, scaffolded at this level)
+└── acceptance-criteria.md       (REQUIRED - gates packet closure, scaffolded at this level)
 ```
 
 **Additional expectations:**
@@ -171,15 +170,15 @@ specs/045-user-dashboard/
 ├── tasks.md                     (REQUIRED - from Level 2)
 ├── implementation-summary.md    (REQUIRED - from Level 2)
 ├── acceptance-criteria.md       (from Level 2)
-├── decision-record.md           (REQUIRED - architecture decisions)
+├── decision-record.md           (OPTIONAL - on request, else ADRs live in plan.md)
 ├── research/research.md         (OPTIONAL - comprehensive research)
 └── resource-map.md              (OPTIONAL - lean path catalog)
 ```
 
 **Additional expectations:**
-- **decision-record.md**: Context, options considered, decision made, rationale, consequences
+- **decision-record.md**, when created: Context, options considered, decision made, rationale, consequences
 
-**Enforcement:** Hard block if `decision-record.md` missing
+**Enforcement:** `FILE_EXISTS` fails strict validation when a required file is missing. An absent `decision-record.md` is skipped
 
 ---
 
@@ -192,7 +191,7 @@ specs/046-enterprise-migration/
 ├── tasks.md                     (REQUIRED - from Level 3, +3-tier format, +AI protocol, +workstreams)
 ├── implementation-summary.md    (REQUIRED - from Level 3)
 ├── acceptance-criteria.md       (from Level 2; governance sections render inside spec.md)
-├── decision-record.md           (REQUIRED - from Level 3, +decision authority, +review requirements)
+├── decision-record.md           (OPTIONAL - on request, +decision authority, +review requirements)
 └── research/research.md         (OPTIONAL - comprehensive research)
 ```
 
@@ -201,7 +200,7 @@ specs/046-enterprise-migration/
 - **AI execution framework**: Pre-task checklists, execution rules, status tracking for multi-agent work
 - **Approval workflow**: Stakeholder tracking with reviewer checkpoints and compliance gates
 
-**Enforcement:** Hard block if any required file missing. All Level 3+ templates include `SPECKIT_LEVEL: 3+` frontmatter.
+**Enforcement:** `FILE_EXISTS` fails strict validation when a required file is missing. All Level 3+ templates include `SPECKIT_LEVEL: 3+` frontmatter.
 
 ---
 
@@ -209,16 +208,16 @@ specs/046-enterprise-migration/
 
 All templates follow consistent structure:
 
-### 1. Numbered H2 Sections
+### 1. H2 Sections
 
-**Format:** `## N. EMOJI TITLE`
+**Format:** `## N. TITLE`, numbered and in capitals, with no emoji. Level-gated sections carry a level prefix instead of a number, such as `## L2: EDGE CASES`.
 
-**Example:** `## 3. 🛠️ IMPLEMENTATION`
+**Example:** `## 3. SCOPE` in `spec.md`, `## 4. IMPLEMENTATION PHASES` in `plan.md`
 
 **Rules:**
 - Keep numbering sequential
-- Never remove emojis (visual scanning pattern)
-- Maintain consistent formatting
+- Keep the heading text the template ships; `tasks.md` and `implementation-summary.md` use unnumbered headings such as `## Phase 1: Setup` and `## What Was Built`
+- Add no emoji to a heading; the sk-doc header rule allows no decorative emoji in an H2
 
 ### 2. Metadata Block
 
@@ -230,7 +229,7 @@ First section sets expectations:
 
 ### 3. Placeholder Conventions
 
-- `[PLACEHOLDER]` - Must be replaced with actual content
+- `[YOUR_VALUE_HERE: ...]` - A v2.3 token. Replace the whole token, brackets included, before the status leaves Draft
 - `[NEEDS CLARIFICATION: ...]` - Unknown requirement (flag for user)
 - `<!-- SAMPLE CONTENT -->` - Remove before delivery
 
@@ -277,10 +276,10 @@ Content that will be indexed...
 **Non-negotiable rules:**
 
 1. **Always scaffold or render from `.skilled/skills/system-spec-kit/templates/`** - Never freehand documentation
-2. **Preserve numbering and emojis** - Maintain visual scanning pattern
-3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
+2. **Preserve numbering and headings** - Keep the template's section numbers and heading text
+3. **Fill every token** - Replace every `[YOUR_VALUE_HERE: ...]` token with actual content
 4. **Remove instructional comments** - Delete `<!-- SAMPLE -->` blocks
-5. **Use canonical required filenames** - `decision-record.md` is required; topic-specific ADR files are supplemental artifacts, not replacements
+5. **Use canonical filenames** - a separate decision file is named `decision-record.md`. Topic-specific ADR files are supplemental artifacts, not replacements
 6. **Keep sections relevant** - State "N/A" instead of deleting sections
 7. **Link sibling documents** - Cross-reference spec.md ↔ plan.md ↔ tasks.md
 8. **Document level changes** - Note upgrades/downgrades in changelog
@@ -341,7 +340,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
 ```
 
 ### Step 6: Fill Templates
-- Replace ALL `[PLACEHOLDER]` text
+- Replace every `[YOUR_VALUE_HERE: ...]` token
 - Remove sample/example sections
 - Adapt to specific feature
 - Remove instructional comments
