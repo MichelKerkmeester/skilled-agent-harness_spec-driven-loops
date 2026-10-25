@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # sk-code-quality
@@ -56,7 +56,7 @@ The mode's headline strength is routing by target path: every surface family lan
 
 **Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-skilled`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
 
-**Step 2: Load the right checklist.** The mode always loads the surface-neutral [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md). For a `.js` or `.css` target it also loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) and its naming and CSS companion. For `.skilled/` targets it also loads the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
+**Step 2: Load the right checklist.** The mode always loads the surface-neutral [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md). For a `.js` or `.css` target it also loads the surface-neutral additions in [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) and its formatting and CSS companion, on top of the surface's own language checklist. For `.skilled/` targets it also loads the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
 
 **Step 3: Run comment hygiene per modified file.**
 
@@ -125,7 +125,7 @@ Use it when a change is already written and needs standards enforcement before f
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
-| [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) | JavaScript and CSS overlay checklist, required for `.js` or `.css` targets |
+| [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) | Surface-neutral JavaScript and CSS additions, loaded for `.js` or `.css` targets with the surface's own language checklist |
 | [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
 | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Per-file comment-hygiene checker |

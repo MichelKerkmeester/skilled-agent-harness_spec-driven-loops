@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.3.0.0
+version: 1.4.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -89,7 +89,7 @@ Phase 1 Implementation writes or changes files
 
 ### Resource Domains
 
-- `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` are the JavaScript and CSS overlay of the author-side quality checklist, loaded for `.js` or `.css` targets. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the surface-neutral baseline every quality pass loads.
+- `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` hold the few surface-neutral JavaScript and CSS checks no surface checklist states, loaded for `.js` or `.css` targets on top of the surface's own language checklist. They carry no surface house style: naming, header form, section dividers and init patterns come from the surface checklist. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the surface-neutral baseline every quality pass loads.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
@@ -104,7 +104,7 @@ Phase 1 Implementation writes or changes files
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../ROUTER.md`, `../shared/references/phase-detection.md` |
 | ALWAYS | Before any implementation-done claim | `../sk-code-skilled/assets/checklists/universal-checklist.md`, `../shared/references/universal/code-quality-standards.md`, `references/code-style-guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
-| CONDITIONAL | `.js` or `.css` target | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
+| CONDITIONAL | `.js` or `.css` target, for the surface-neutral additions to the surface's own language checklist | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
 | CONDITIONAL | `.skilled/skills/` target | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
 | CONDITIONAL | `.skilled/agents/` target | `../sk-code-skilled/assets/checklists/agent-authoring.md` |
 | CONDITIONAL | `.skilled/commands/` target | `../sk-code-skilled/assets/checklists/command-authoring.md` |
@@ -184,7 +184,7 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 
 1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Load `../sk-code-skilled/assets/checklists/universal-checklist.md` before any completion claim, plus `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` when a target is a `.js` or `.css` file, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned.
+3. Load `../sk-code-skilled/assets/checklists/universal-checklist.md` before any completion claim, plus the surface-neutral JavaScript and CSS additions in `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` when a target is a `.js` or `.css` file, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned.
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
@@ -235,7 +235,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### ✅ ALWAYS
 
 1. Read target files before editing them.
-2. Load `../sk-code-skilled/assets/checklists/universal-checklist.md` before any implementation-done or quality-pass claim, plus the JavaScript and CSS overlay checklists for a `.js` or `.css` target.
+2. Load `../sk-code-skilled/assets/checklists/universal-checklist.md` before any implementation-done or quality-pass claim, plus the surface-neutral JavaScript and CSS additions for a `.js` or `.css` target.
 3. Resolve surface identity through `../shared/references/stack-detection.md`; do not re-author surface detection in this packet.
 4. Load the correct OpenCode authoring checklist by target path before checking `.skilled/` work.
 5. Run `scripts/check-comment-hygiene.sh <file>` on each modified comment-capable file.
@@ -268,7 +268,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - The quality gate ran after implementation and before verification.
 - Surface identity came from the shared router, not packet-local detection logic.
-- `../sk-code-skilled/assets/checklists/universal-checklist.md` was loaded before any quality-pass claim, and the JavaScript and CSS overlay checklists for each `.js` or `.css` target.
+- `../sk-code-skilled/assets/checklists/universal-checklist.md` was loaded before any quality-pass claim, and the surface-neutral JavaScript and CSS additions for each `.js` or `.css` target.
 - The correct `../sk-code-skilled/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
 - `scripts/check-comment-hygiene.sh` ran for each modified comment-capable file and reported zero violations or a documented escalation.
 - P0 issues are fixed in place or escalated with evidence; P1/P2 handling is explicit.
@@ -298,7 +298,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### Quality References And Assets
 
-- [`assets/code-quality-checklist/overview-header-and-comments.md`](../../../.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) - JavaScript and CSS overlay checklist, required for `.js` or `.css` targets.
+- [`assets/code-quality-checklist/overview-header-and-comments.md`](../../../.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) - Surface-neutral JavaScript and CSS additions, loaded for `.js` or `.css` targets with the surface's own language checklist.
 - [`assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md) - Universal OpenCode quality baseline.
 - [`assets/checklists/skill-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
 - [`assets/checklists/agent-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.

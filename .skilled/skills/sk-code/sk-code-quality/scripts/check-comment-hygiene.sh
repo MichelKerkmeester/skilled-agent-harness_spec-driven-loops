@@ -149,9 +149,6 @@ def check_file(filepath):
         re.compile(r'\bRFC\s*-?\d+\b'),                 # RFC references
         re.compile(r'\bPOSIX\b'),                        # POSIX standard
         re.compile(r'\bHTTP\s+\d{3}\b'),                 # HTTP status codes
-        re.compile(r'\bWEBFLOW\s*:'),                   # WEBFLOW: platform tag
-        re.compile(r'\bMOTION\s*:'),                    # MOTION: platform tag
-        re.compile(r'\bLENIS\s*:'),                     # LENIS: platform tag
         re.compile(r'\bV\d+\s*:'),                       # V16: schema tag
         re.compile(r'\bhttps?://\S+', re.IGNORECASE),    # URLs are durable link values
     ]

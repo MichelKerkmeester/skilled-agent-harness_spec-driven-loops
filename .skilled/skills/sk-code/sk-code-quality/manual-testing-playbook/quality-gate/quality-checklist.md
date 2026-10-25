@@ -8,7 +8,7 @@ expected_resources:
   - ../sk-code-skilled/assets/checklists/universal-checklist.md
   - assets/code-quality-checklist/naming-init-formatting-and-css.md
   - assets/code-quality-checklist/verification-quick-reference-and-related.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -95,7 +95,7 @@ excerpt.
    removed under `assets/code-quality-checklist/`.
 2. Diff this scenario's `expected_resources` against `SKILL.md`'s `RESOURCE_MAP["QUALITY"]` and
    `DEFAULT_RESOURCE` (§2b) to see whether the drift is a stale scenario file or a stale router map —
-   `RESOURCE_MAP["QUALITY"]` names only the JavaScript and CSS overlay's header checklist, while
+   `RESOURCE_MAP["QUALITY"]` names only the surface-neutral JavaScript header-and-comments checklist, while
    `DEFAULT_RESOURCE` names the universal baseline and two quality checklists. This scenario tracks
    the `DEFAULT_RESOURCE` set.
 

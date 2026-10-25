@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate resources"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Verification Summary, Quick Reference & Related
@@ -43,12 +43,10 @@ After completing validation, document the results using the appropriate template
 
 | Category | P0 | P1 | P2 | Status |
 |----------|----|----|----|----|
-| File Header | X/3 | X/2 | X/1 | ✅/❌ |
-| Section Organization | X/3 | X/4 | X/1 | ✅/❌ |
-| Comment Quality | X/1 | X/4 | X/1 | ✅/❌ |
-| Naming Conventions | X/3 | X/2 | X/0 | ✅/❌ |
-| Initialization Pattern | X/3 | X/4 | X/0 | ✅/❌ |
-| Formatting | X/0 | X/4 | X/2 | ✅/❌ |
+| File Header | X/0 | X/0 | X/1 | ✅/❌ |
+| Section Organization | X/0 | X/0 | X/1 | ✅/❌ |
+| Comment Quality | X/0 | X/1 | X/0 | ✅/❌ |
+| Formatting | X/0 | X/0 | X/1 | ✅/❌ |
 
 **P0 Status**: All passed? [YES/NO]
 **P1 Status**: All passed or deferred? [YES/NO]
@@ -70,11 +68,8 @@ After completing validation, document the results using the appropriate template
 
 | Category | P0 | P1 | P2 | Status |
 |----------|----|----|----|----|
-| Custom Property Naming | X/1 | X/1 | X/1 | ✅/❌ |
-| Attribute Selectors | X/1 | X/1 | X/0 | ✅/❌ |
-| BEM Naming | X/1 | X/2 | X/0 | ✅/❌ |
+| Attribute Selectors | X/0 | X/1 | X/0 | ✅/❌ |
 | Animation Properties | X/1 | X/2 | X/0 | ✅/❌ |
-| File Organization | X/0 | X/1 | X/1 | ✅/❌ |
 
 **P0 Status**: All passed? [YES/NO]
 **P1 Status**: All passed or deferred? [YES/NO]
@@ -90,24 +85,21 @@ After completing validation, document the results using the appropriate template
 
 ### JavaScript Pass Criteria
 
+These checks add no JavaScript P0. The P0 items that gate a `.js` file come from the surface's own JavaScript checklist.
+
 | Check Category | Minimum for PASS |
 |----------------|------------------|
-| File Header | All P0 items (CHK-HDR-01 to CHK-HDR-03) |
-| Section Organization | All P0 items (CHK-SEC-01 to CHK-SEC-03) |
-| Comment Quality | All P0 items (CHK-CMT-01) |
-| Naming Conventions | All P0 items (CHK-NAM-01, CHK-NAM-02, CHK-NAM-05) |
-| Initialization Pattern | All P0 items (CHK-INI-01 to CHK-INI-03) |
-| Formatting | All P1 items recommended |
+| File Header | CHK-HDR-06 recommended (P2) |
+| Section Organization | CHK-SEC-09 recommended (P2) |
+| Comment Quality | CHK-CMT-07 fixed or deferred with approval (P1) |
+| Formatting | CHK-FMT-05 recommended (P2) |
 
 ### CSS Pass Criteria
 
 | Check Category | Minimum for PASS |
 |----------------|------------------|
-| Custom Property Naming | All P0 items (CHK-CSS-01) |
-| Attribute Selectors | All P0 items (CHK-CSS-04) |
-| BEM Naming | All P0 items (CHK-CSS-06) |
+| Attribute Selectors | CHK-CSS-05 fixed or deferred with approval (P1) |
 | Animation Properties | All P0 items (CHK-CSS-09) |
-| File Organization | All P1 items recommended |
 
 ### Gate Rule
 
@@ -119,9 +111,12 @@ After completing validation, document the results using the appropriate template
 
 ### Per-language source standards
 
+- [javascript-checklist.md](../../../sk-code-skilled/assets/checklists/javascript-checklist.md) - SKILLED JavaScript checks, including the header form and naming
+- [style-guide.md](../../../sk-code-skilled/references/javascript/style-guide.md) - SKILLED JavaScript style guide
 
 ### Enforcement Reference
 
+- [check-comment-hygiene.sh](../../scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker
 
 ### Parent Skill
 
