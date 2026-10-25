@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dc7c401a39d635295871788ec2a89c7dd14f4289bc5f9536ff2ef64c1f6f9776",
+  "corpusHash": "02d346bdab60aae0ab67f363f9884dcb19dc60c6c3285f3dea7417cb33606366",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -2755,7 +2755,7 @@
     ".skilled/skills/sk-code/shared/references/workflow-verify.md",
     ".skilled/skills/sk-code/sk-code-ci/README.md",
     ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
-    ".skilled/skills/sk-code/sk-code-ci/changelog/v0.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
@@ -25838,7 +25838,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "876de0da420f10fde54f2184ed6fbe764889095097254634a4bccf6d3ab514de",
+  "manifestHash": "f4ab6a7800687e3cd4f5d8493319644ce7f2e87063a51c723aedd6cb34d4d9b0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

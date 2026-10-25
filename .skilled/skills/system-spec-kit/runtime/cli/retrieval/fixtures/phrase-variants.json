@@ -1,5 +1,5 @@
 {
-  "manifestHash": "876de0da420f10fde54f2184ed6fbe764889095097254634a4bccf6d3ab514de",
+  "manifestHash": "f4ab6a7800687e3cd4f5d8493319644ce7f2e87063a51c723aedd6cb34d4d9b0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -92484,8 +92484,8 @@
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
     ],
-    "sk code ci 0 1 0 0": [
-      "sk-code-ci 0.1.0.0"
+    "sk code ci 1 0 0 0": [
+      "sk-code-ci 1.0.0.0"
     ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
@@ -92518,8 +92518,8 @@
     "sk code ci surface tasks": [
       "sk code ci surface tasks"
     ],
-    "sk code ci v0 1 0 0": [
-      "sk-code-ci v0.1.0.0"
+    "sk code ci v1 0 0 0": [
+      "sk-code-ci v1.0.0.0"
     ],
     "sk code close out": [
       "sk-code close-out"
