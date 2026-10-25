@@ -54,11 +54,13 @@
       ".github/workflows/trigger-index-rebuild.yml",
       ".github/workflows/message-contract.yml",
       ".github/workflows/README.md",
-      ".github/workflows/hooks-node-tests.yml",
+      "scratch/switch-groups.md",
       "scratch/decisions.md",
       ".github/scripts/check-gate-inputs.sh",
+      "scratch/inventory.md",
+      "scratch/r25-dependabot.md",
       "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md",
-      "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md"
+      "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-baseline.md"
     ],
     "entities": [
       {
@@ -76,7 +78,7 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -140,9 +142,9 @@
         "source": "derived"
       },
       {
-        "name": "hooks-node-tests.yml",
-        "kind": "config",
-        "path": ".github/workflows/hooks-node-tests.yml",
+        "name": "switch-groups.md",
+        "kind": "doc",
+        "path": "scratch/switch-groups.md",
         "source": "derived"
       },
       {
@@ -155,6 +157,24 @@
         "name": "check-gate-inputs.sh",
         "kind": "script",
         "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "r25-dependabot.md",
+        "kind": "doc",
+        "path": "scratch/r25-dependabot.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-baseline.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-baseline.md",
         "source": "derived"
       },
       {
@@ -186,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A GitHub Actions job with no `timeout-minutes` inherits the 360-minute default, so a hung install or a stuck test holds a runner for six hours",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-23T16:28:22.617Z",
+    "last_save_at": "2026-10-25T00:20:08.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +222,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:070e8974d8e1d5f5e5c2be015358237bd1fb472d46e47d21dfb58f9a13b570f1",
+    "source_fingerprint": "sha256:fba2d3db2eb5032f37c2db010c963381375bd257bfbaa74056bb18bf2afc58f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "db3e18ac283ae62558d09cc09edd2eaef5a28e61b7c7ccbf6f73a3f147290e16",
       "plan.md": "34a379e8624f3fa0523a32de44099cf223aacdde9cd4f0788216a6984a466355",
-      "tasks.md": "d69e9ea272d992d0b56c4634e22c8eda6a39c9a290304d460de11cce274690a5",
+      "tasks.md": "c821b4ed81a58ac2e43c2cccf879bb07a93154195397ea1610127f58dd69bf51",
       "decision-record.md": "a4ddf1c6c93323052a698ab1bb5fa5254e80888090f6242913a7013d6d456901",
       "implementation-summary.md": "e7e028500e6a59f6ed0e38af05bd934e1ba9f48f4a6c3155bb9747c0521b17c8"
     },

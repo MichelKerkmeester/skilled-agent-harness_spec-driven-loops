@@ -52,7 +52,7 @@ Every task below names one file, quotes the anchor text it edits, gives that anc
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 DECISION D6 (operator yes required) - approve or change the timeout floor (AC-010)
+### T001 [x] DECISION D6 (operator yes required) - approve or change the timeout floor (AC-010)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the `D6=` line.
 
@@ -75,9 +75,11 @@ Rollback: delete the `D6=` line.
 
 Stop and escalate if: the `D6=` line is absent, or its value is neither `5` nor `10`.
 
+Evidence: `grep -cE '^D6=(5|10)$' scratch/decisions.md` printed `1`; the file holds `D6=10`, and it was not rewritten.
+
 ---
 
-### T002 Record the pre-phase baseline (AC-009)
+### T002 [x] Record the pre-phase baseline (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-baseline.md` (new file). Anchor: none.
 
@@ -103,9 +105,11 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hy
 
 Stop and escalate if: the file counts are neither the scaffold set nor the post-`004` set, or the `## Pre-phase tree` block is not written.
 
+Evidence: `BASELINE_PRESENT`; 32 files; 43 jobs; 5 files with a timeout line; 12 files without a permissions block; `SHA_PRESENT`; the `## Pre-phase tree` count is `1`. The tree is the post-004 set the task allows.
+
 ---
 
-### T003 [B] Confirm the dependency phases and record the final inventory (AC-003, AC-005)
+### T003 [x] Confirm the dependency phases and record the final inventory (AC-003, AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/inventory.md` (new file). Anchor: none.
 
@@ -140,9 +144,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: `job-shape-rules.md` is absent, or `grep -c 'max(<floor>'` is not `1`, or the parse prints fewer than `40` lines, or the inventory's row count differs from the parse count.
 
+Evidence: dependency state read from the tree. `hooks: merged`; `grep -c plugin-and-hook-tests` printed `1`; `grep -c 'max(<floor>'` printed `1`; the parse found 43 jobs in 32 files; `inventory.md` holds 44 `| ` rows (43 plus the header). The marker was cleared because phases 003, 004 and 005 report In progress for measurement only while the workflow files already hold their landed shape (concurrency blocks, no hook workflow, merged plugin job, composite setup action).
+
 ---
 
-### T004 Record the switch group assignment (AC-006)
+### T004 [x] Record the switch group assignment (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md` (new file). Anchor: none.
 
@@ -168,9 +174,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the group count is not `5`, or `extra` is not empty, or the file counts do not sum to the tree's file count.
 
+Evidence: 5 group rows; `missing [] extra []`. Counts read from the tree: FRESHNESS 8 files and 11 jobs, TESTS 17 and 24, REVIEW 3 and 3, REPORTS 2 and 3, MESSAGES 1 and 1; 31 switched files plus the exempt one is 32, and 42 switched jobs plus 1 is 43. These differ from the expected 9/13 and 16/22 only in the placement of `skill-doc-frontmatter.yml` (2 jobs), which the README table puts in the path-filtered (TESTS) row; the deviation is recorded in the file.
+
 ---
 
-### T005 Record the constraints the passes must respect (AC-005)
+### T005 [x] Record the constraints the passes must respect (AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md` (new file). Anchor: none.
 
@@ -189,6 +197,8 @@ Expected: four `if:` lines (`dependabot-auto-merge.yml:18`, `skill-doc-frontmatt
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md`.
 
 Stop and escalate if: the `if:` count is not four, or a quoted condition differs from the file.
+
+Evidence: 4 `CONSTRAINT ` lines. Before any edit the job-level `if:` grep returned four lines (`dependabot-auto-merge.yml:18`, `skill-doc-frontmatter.yml:62`, `trigger-index-rebuild.yml:33` and `:188`); the numbers differ from the plan because earlier phases moved them, and the quoted text matched.
 
 ---
 
@@ -217,7 +227,7 @@ Stop and escalate if: no answer arrives, or the value is not an `<owner>/<repo>`
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation - R25 permissions and the Dependabot split
 
-### T007 Add the workflow-level permission block to `advisory-checks.yml` (AC-001)
+### T007 [x] Add the workflow-level permission block to `advisory-checks.yml` (AC-001)
 
 File: `.github/workflows/advisory-checks.yml:16`, anchor: `jobs:`.
 
@@ -237,9 +247,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse prints anything other than `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T008 Add the workflow-level permission block to `agent-mirror-sync.yml` (AC-001)
+### T008 [x] Add the workflow-level permission block to `agent-mirror-sync.yml` (AC-001)
 
 File: `.github/workflows/agent-mirror-sync.yml:6`, anchor: `jobs:`.
 
@@ -258,9 +270,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T009 Add the workflow-level permission block to `chart-corpus.yml` (AC-001)
+### T009 [x] Add the workflow-level permission block to `chart-corpus.yml` (AC-001)
 
 File: `.github/workflows/chart-corpus.yml:25`, anchor: `jobs:`.
 
@@ -279,9 +293,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25). The block sits above the comment that introduces `jobs:`, so that comment stays attached.
+
 ---
 
-### T010 Add the workflow-level permission block to `comment-hygiene.yml` (AC-001)
+### T010 [x] Add the workflow-level permission block to `comment-hygiene.yml` (AC-001)
 
 File: `.github/workflows/comment-hygiene.yml:6`, anchor: `jobs:`.
 
@@ -300,9 +316,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T011 Add the workflow-level permission block to `diagram-corpus.yml` (AC-001)
+### T011 [x] Add the workflow-level permission block to `diagram-corpus.yml` (AC-001)
 
 File: `.github/workflows/diagram-corpus.yml:25`, anchor: `jobs:`.
 
@@ -321,9 +339,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25). The block sits above the comment that introduces `jobs:`, so that comment stays attached.
+
 ---
 
-### T012 Add the workflow-level permission block to `markdown-link-integrity.yml` (AC-001)
+### T012 [x] Add the workflow-level permission block to `markdown-link-integrity.yml` (AC-001)
 
 File: `.github/workflows/markdown-link-integrity.yml:31`, anchor: `jobs:`.
 
@@ -342,9 +362,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T013 Add the workflow-level permission block to `playbook-operator-contract.yml` (AC-001)
+### T013 [x] Add the workflow-level permission block to `playbook-operator-contract.yml` (AC-001)
 
 File: `.github/workflows/playbook-operator-contract.yml:13`, anchor: `jobs:`.
 
@@ -363,9 +385,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T014 Add the workflow-level permission block to `prompt-card-sync.yml` (AC-001)
+### T014 [x] Add the workflow-level permission block to `prompt-card-sync.yml` (AC-001)
 
 File: `.github/workflows/prompt-card-sync.yml:6`, anchor: `jobs:`.
 
@@ -384,9 +408,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T015 Add the workflow-level permission block to `repo-rules-corpus.yml` (AC-001)
+### T015 [x] Add the workflow-level permission block to `repo-rules-corpus.yml` (AC-001)
 
 File: `.github/workflows/repo-rules-corpus.yml:26`, anchor: `jobs:`.
 
@@ -405,9 +431,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T016 Add the workflow-level permission block to `rule-canary-sync.yml` (AC-001)
+### T016 [x] Add the workflow-level permission block to `rule-canary-sync.yml` (AC-001)
 
 File: `.github/workflows/rule-canary-sync.yml:8`, anchor: `jobs:`.
 
@@ -426,9 +454,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T017 Add the workflow-level permission block to `runtime-no-spec-import.yml` (AC-001)
+### T017 [x] Add the workflow-level permission block to `runtime-no-spec-import.yml` (AC-001)
 
 File: `.github/workflows/runtime-no-spec-import.yml:22`, anchor: `jobs:`.
 
@@ -447,9 +477,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T018 Add the workflow-level permission block to `skill-doc-frontmatter.yml` (AC-001)
+### T018 [x] Add the workflow-level permission block to `skill-doc-frontmatter.yml` (AC-001)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:25`, anchor: `jobs:`.
 
@@ -468,9 +500,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse does not print two jobs.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25). Two jobs parse (`doc-version-raise`, `frontmatter-coverage`) and the `if:` is unchanged.
+
 ---
 
-### T019 Split `dependabot-auto-merge.yml` into a read-only and a write-scoped job (AC-002)
+### T019 [x] Split `dependabot-auto-merge.yml` into a read-only and a write-scoped job (AC-002)
 
 File: `.github/workflows/dependabot-auto-merge.yml:10-40`. Anchor:
 
@@ -551,9 +585,11 @@ Rollback: restore lines 10-40 from the pre-edit file, which is the original sing
 
 Stop and escalate if: the anchor is not on the file, or the parse prints a job list other than `['auto-merge', 'metadata']`, or `contents: write` appears more than once.
 
+Evidence: parse printed `['auto-merge', 'metadata'] {'contents': 'read'} {'contents': 'read', 'pull-requests': 'read'} {'contents': 'write', 'pull-requests': 'write'}`; `grep -c 'contents: write'` `1`; `grep -c 'actions/checkout'` `0`; `grep -c 'dependabot/fetch-metadata'` `1`. The file header comment was kept, and the step-level `if:` became the job-level `if:` over `needs.metadata.outputs`. A short comment above `permissions:` on the merge job states why it holds the write scopes.
+
 ---
 
-### T020 Gate the permissions pass and record it (AC-001, AC-002)
+### T020 [x] Gate the permissions pass and record it (AC-001, AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md` (new file). Anchor: none.
 
@@ -575,6 +611,8 @@ Expected: `parse ok`; `1`; `0`; one summary line naming `13` files changed.
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/gate-after-permissions.txt`.
 
 Stop and escalate if: the gate does not print `RESULT: PASSED`, or the parse fails, or `grep -L` still names a file other than none.
+
+Evidence: gate tail `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` then `RESULT: PASSED`, `exit=0`; `parse ok`; `grep -c 'RESULT: PASSED'` `1`; `grep -L 'permissions:'` lists 0 files; `git diff --stat` summary `13 files changed, 60 insertions(+), 8 deletions(-)`. Recorded in `scratch/pass-permissions.md`.
 
 ---
 
@@ -610,7 +648,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ---
 
-### T022 Prove the split on a real Dependabot pull request (AC-002)
+### T022 [B] Prove the split on a real Dependabot pull request (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md` (new file). Anchor: none.
 
@@ -630,6 +668,8 @@ Expected: one open pull request or none; one run row or none; `1`.
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md`.
 
 Stop and escalate if: a run exists and its `metadata` job is not green, or the run id cannot be read. Never create a pull request from a non-Dependabot account to force the path, because the job's `if:` would skip it.
+
+Evidence: pending. 4 open Dependabot pull requests (86, 73, 72, 69) and the newest run id 40126121487 (event `pull_request`, skipped, a non-Dependabot branch) all predate the split, which is uncommitted. `scratch/r25-dependabot.md` holds one `pending:` line. The task stays blocked until a Dependabot pull request triggers the two-job workflow on the default branch.
 
 ---
 
