@@ -1,5 +1,5 @@
 {
-  "corpusHash": "155bed8451cf903018ba28c9b984c256cc680f8ccb05b8c0e138913b32bc2824",
+  "corpusHash": "16ef22e93a6bb4d1a70f100948d2439435a34e4143794f2ee458941796e391df",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26011,
+  "includedPathCount": 26012,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2751,12 +2751,7 @@
     ".skilled/skills/sk-code/shared/README.md",
     ".skilled/skills/sk-code/shared/references/phase-detection.md",
     ".skilled/skills/sk-code/shared/references/stack-detection.md",
-    ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
-    ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md",
     ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
-    ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
-    ".skilled/skills/sk-code/shared/references/universal/error-recovery.md",
-    ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md",
     ".skilled/skills/sk-code/shared/references/workflow-debug.md",
     ".skilled/skills/sk-code/shared/references/workflow-implement.md",
     ".skilled/skills/sk-code/shared/references/workflow-verify.md",
@@ -2794,6 +2789,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
+    ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
@@ -12085,6 +12081,11 @@
     "specs/sk-code/013-private-surface-skills/006-review-remediation/plan.md",
     "specs/sk-code/013-private-surface-skills/006-review-remediation/spec.md",
     "specs/sk-code/013-private-surface-skills/006-review-remediation/tasks.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/plan.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/spec.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/tasks.md",
     "specs/sk-code/013-private-surface-skills/goal.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-dashboard.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-strategy.md",
@@ -26042,7 +26043,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "97e6075c3dc79eec7835fbfbee6e77b2225fb47aae089f2a60cf0be80c4eeeb1",
+  "manifestHash": "ce46e4944544ddd64740a6abcce596207d943dfebb8f5bb923b61f99fd1e47a4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28794,6 +28795,10 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch",
       "reason": "excluded directory"
     },
     {

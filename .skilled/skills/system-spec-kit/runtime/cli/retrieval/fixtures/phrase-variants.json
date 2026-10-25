@@ -1,5 +1,5 @@
 {
-  "manifestHash": "97e6075c3dc79eec7835fbfbee6e77b2225fb47aae089f2a60cf0be80c4eeeb1",
+  "manifestHash": "ce46e4944544ddd64740a6abcce596207d943dfebb8f5bb923b61f99fd1e47a4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14327,9 +14327,6 @@
     ],
     "build doc dispatch shape": [
       "build doc dispatch shape"
-    ],
-    "build failure recovery steps": [
-      "build failure recovery steps"
     ],
     "build obsidian theme": [
       "build obsidian theme"
@@ -30626,6 +30623,9 @@
     "declaration module header alignment": [
       "declaration module header alignment"
     ],
+    "declare an sk code surface": [
+      "declare an sk-code surface"
+    ],
     "declare research shape": [
       "declare research shape"
     ],
@@ -39075,9 +39075,6 @@
     "done with audit comment": [
       "done with audit comment"
     ],
-    "done works complete claims": [
-      "done works complete claims"
-    ],
     "dot skilled migration": [
       "dot-skilled migration"
     ],
@@ -46315,9 +46312,6 @@
     "four part semantic version changelog": [
       "four part semantic version changelog"
     ],
-    "four phase debugging workflow": [
-      "four phase debugging workflow"
-    ],
     "four phases closed with items recorded rather": [
       "four phases closed with items recorded rather"
     ],
@@ -53058,9 +53052,6 @@
     ],
     "hypothesis challenge re rank": [
       "hypothesis challenge re-rank"
-    ],
-    "hypothesis testing debugging": [
-      "hypothesis testing debugging"
     ],
     "ibm granite r2 triage": [
       "ibm granite r2 triage"
@@ -65630,9 +65621,6 @@
     "multi actor workflow": [
       "multi actor workflow"
     ],
-    "multi agent research patterns": [
-      "multi agent research patterns"
-    ],
     "multi ai council frontmatter": [
       "multi-ai-council frontmatter"
     ],
@@ -70689,9 +70677,6 @@
     "parallel browser testing": [
       "parallel browser testing"
     ],
-    "parallel codebase analysis": [
-      "parallel codebase analysis"
-    ],
     "parallel deep review program": [
       "parallel deep-review program"
     ],
@@ -71670,9 +71655,6 @@
     ],
     "perf instrumentation batching tasks": [
       "perf instrumentation batching tasks"
-    ],
-    "performance audit agents": [
-      "performance audit agents"
     ],
     "performance baseline script": [
       "performance baseline script"
@@ -73374,6 +73356,9 @@
     ],
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
+    ],
+    "phase 7 shared references and detection order": [
+      "phase 7 shared references and detection order"
     ],
     "phase 7 sk code script kebab names": [
       "phase 7 sk code script kebab names"
@@ -76560,9 +76545,6 @@
     ],
     "pre bound setup answers": [
       "pre-bound setup answers"
-    ],
-    "pre claim gate": [
-      "pre claim gate"
     ],
     "pre commit auto remint": [
       "pre-commit auto remint"
@@ -79994,9 +79976,6 @@
     ],
     "recover iteration from stdout": [
       "recover iteration from stdout"
-    ],
-    "recovery decision tree": [
-      "recovery decision tree"
     ],
     "recovery manifest removed": [
       "recovery manifest removed"
@@ -85246,9 +85225,6 @@
     ],
     "retry utilities": [
       "retry utilities"
-    ],
-    "retry verbose escalate": [
-      "retry verbose escalate"
     ],
     "retune the token file": [
       "retune the token file"
@@ -91836,6 +91812,21 @@
     "shared reference counted maintenance marker module": [
       "shared reference-counted maintenance marker module"
     ],
+    "shared references and detection order": [
+      "shared references and detection order"
+    ],
+    "shared references and detection order acceptance criteria": [
+      "shared references and detection order acceptance criteria"
+    ],
+    "shared references and detection order implementation summary": [
+      "shared references and detection order implementation summary"
+    ],
+    "shared references and detection order plan": [
+      "shared references and detection order plan"
+    ],
+    "shared references and detection order tasks": [
+      "shared references and detection order tasks"
+    ],
     "shared removal criteria": [
       "shared removal criteria"
     ],
@@ -91913,6 +91904,9 @@
     ],
     "shared vs handler local readiness vocabulary": [
       "shared vs handler-local readiness vocabulary"
+    ],
+    "shared workflow doctrine": [
+      "shared workflow doctrine"
     ],
     "shell argument parsing": [
       "shell argument parsing"
@@ -93638,6 +93632,12 @@
     ],
     "sk code shared assets references research": [
       "sk-code shared assets references research"
+    ],
+    "sk code shared folder": [
+      "sk-code shared folder"
+    ],
+    "sk code shared references": [
+      "sk-code shared references"
     ],
     "sk code skilled 1 0 0 0": [
       "sk-code-skilled 1.0.0.0"
@@ -101932,7 +101932,6 @@
       "stable message identity opencode"
     ],
     "stack agnostic debugging": [
-      "stack agnostic debugging",
       "stack-agnostic debugging"
     ],
     "stack agnostic quality contract": [
@@ -104025,9 +104024,6 @@
     ],
     "surface verification adr": [
       "surface verification adr"
-    ],
-    "surface verification commands": [
-      "surface verification commands"
     ],
     "surgical fix vs runtime refactor": [
       "surgical fix vs runtime refactor"
@@ -106574,9 +106570,6 @@
     ],
     "ten adversarial review iterations by swe 2 max": [
       "ten adversarial review iterations by swe 2 max"
-    ],
-    "ten agent specialization": [
-      "ten agent specialization"
     ],
     "ten iteration deep research comparing how system spec": [
       "ten iteration deep research comparing how system spec"
@@ -109346,20 +109339,11 @@
     "universal code style guide": [
       "universal code style guide"
     ],
-    "universal debugging checklist": [
-      "universal debugging checklist"
-    ],
     "universal debugging methodology": [
       "universal debugging methodology"
     ],
-    "universal error recovery": [
-      "universal error recovery"
-    ],
     "universal formatting principles": [
       "universal formatting principles"
-    ],
-    "universal verification checklist": [
-      "universal verification checklist"
     ],
     "unknown access role veto": [
       "unknown access role veto"

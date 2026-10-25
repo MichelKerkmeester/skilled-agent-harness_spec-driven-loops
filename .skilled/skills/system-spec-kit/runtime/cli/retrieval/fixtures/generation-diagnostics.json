@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7284,
-    "ok": 15179,
+    "missing-frontmatter": 7283,
+    "ok": 15181,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26011,
+  "documentsScanned": 26012,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "97e6075c3dc79eec7835fbfbee6e77b2225fb47aae089f2a60cf0be80c4eeeb1",
+  "manifestHash": "ce46e4944544ddd64740a6abcce596207d943dfebb8f5bb923b61f99fd1e47a4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37595,
+      "ok": 37590,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10825,12 +10825,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/shared/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -71337,6 +71331,10 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch",
       "reason": "excluded directory"
     },
     {
