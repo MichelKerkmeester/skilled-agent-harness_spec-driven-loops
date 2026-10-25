@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c8be03a195123eb4cecd8edf9d4a58e18c893c2270dcd1460110456fefaddad0",
+  "corpusHash": "af48255793dd2ce81a1eec3a0425fdb32a87c85a9e80fced719993706b720511",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25879,
+  "includedPathCount": 25882,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10408,6 +10408,9 @@
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
+    "specs/hooks/023-session-relaunch-loop/research/resource-map.md",
+    "specs/hooks/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/research.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-001.md",
@@ -25910,7 +25913,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8d117e4089132b40e8d27ca2e02190d8995c9c7e915db6971d7b0e9068729c70",
+  "manifestHash": "e5f66c786bbb0c85e1db71d61e38680d6ea31ee893492ffa639dc3ba592a4096",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27986,6 +27989,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/lineages",
       "reason": "excluded directory"
     },
     {

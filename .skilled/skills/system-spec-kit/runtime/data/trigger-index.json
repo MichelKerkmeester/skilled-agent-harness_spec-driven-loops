@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8d117e4089132b40e8d27ca2e02190d8995c9c7e915db6971d7b0e9068729c70",
+  "manifestHash": "e5f66c786bbb0c85e1db71d61e38680d6ea31ee893492ffa639dc3ba592a4096",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -4360,7 +4360,7 @@
     "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md",
     "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
-    "specs/hooks/023-session-relaunch-loop/research/research.md",
+    "specs/hooks/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/research.md",
     "specs/hooks/023-session-relaunch-loop/spec.md",
     "specs/hooks/024-dispatch-adapter-test-repair/acceptance-criteria.md",
     "specs/hooks/024-dispatch-adapter-test-repair/implementation-summary.md",
