@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/007-shared-references-and-detection-order"
-    last_updated_at: "2026-10-25T20:00:00Z"
+    last_updated_at: "2026-10-25T22:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Regenerated the leaf manifest, re-minted compiled routing, synced Hermes and ran the gates"
-    next_safe_action: "Operator decides the naming severity tier and lets CI rebuild the trigger index after the push"
+    recent_action: "Closed the phase after CI rebuilt the trigger index in fbfc4bfe22"
+    next_safe_action: "None, the phase is closed"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,10 +20,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "007-shared-references-and-detection-order"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Naming severity: P0 in code-quality-standards.md, P1 in sk-code-skilled universal-checklist.md"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Naming severity: Operator ruled 2026-10-25: P1 in both"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 # Implementation Summary
@@ -39,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-shared-references-and-detection-order |
-| **Status** | In Progress |
-| **Completed** | Not yet, see Known Limitations |
+| **Status** | Complete |
+| **Completed** | 2026-10-25, change `c02124d0ff`, trigger index rebuild `fbfc4bfe22` |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -74,6 +74,7 @@ Four optimizers then rewrote the shared references to that doctrine. Their befor
 | `.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md`, `universal-verification-checklist.md`, `universal/error-recovery.md`, `universal/multi-agent-research.md` | Deleted | Repeated the workflow docs or served one web surface |
 | `.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md` | Moved | From `shared/references/universal/`, to the mode that owns style |
 | `.skilled/skills/sk-code/shared/` README and six references | Modified | Folded rules, scrubbed web wording, declared order |
+| `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` | Modified | Naming moved from P0 to P1 per the operator ruling, version `1.5.4.0` |
 | `.skilled/skills/sk-code/mode-registry.json`, `ROUTER.md`, `SKILL.md`, `graph-metadata.json`, `leaf-manifest.json` | Modified | Declared fallback, repointed maps, regenerated manifest |
 | `registry-compiler.cjs`, `canary-router.cjs` (served and authored twin), both activation `manifest.json` copies | Modified | Order validation and hint resolution, re-minted policy hash `acbe381f` |
 | `router-replay-lib.cjs`, `.skilled/plugins/system-skill-advisor.js` | Modified | Read the declared order |
@@ -121,7 +122,9 @@ Two workers built the cleanup and the declared order in parallel. Four optimizer
 | `ci-skill-root-metadata.cjs` and its contract test | PASS, `checked=14 passed=14 failed=0` |
 | `command-catalog-mirror-check.cjs`, `test_readme_manifest.py`, the six mirror sync checks | PASS, `STATUS=OK`, manifest reproducible, Hermes 67 copies in sync |
 | Advisor vitest, `advisor-surface-hint` and `system-skill-advisor-plugin` | PASS, 97 of 97 |
-| Stale path search with `rg` | Two generated files remain, waiting on the CI rebuild |
+| CI on `c02124d0ff` and `fbfc4bfe22` (`gh run list --commit`) | 19 of 20 runs pass on `c02124d0ff`. Spec-Kit Check fails on two `resource-map-extractor.vitest.ts` fixture tests that also fail on `5cb598cf3f`, before this phase. `fbfc4bfe22` Push on main passes |
+| Naming ruling gates: `check-rule-copies.js`, its test, drift guards, `generate-leaf-manifest.cjs --check` | PASS, each exit 0 |
+| Stale path search with `rg` on `origin/main` after the CI rebuild | PASS, no old path in `trigger-index.json` or `corpus-manifest.json`, the new style guide path once in each |
 
 The full outputs are in `scratch/evidence/phase-b-gates.log`.
 <!-- /ANCHOR:verification -->
@@ -131,6 +134,6 @@ The full outputs are in `scratch/evidence/phase-b-gates.log`.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Trigger index and retrieval fixtures.** They still list the old paths. The CI trigger-index job rebuilds them after the push, as it did in `9316631283`, so AC-002 stays Unmet until that run.
-2. **Open operator decision: naming severity.** Naming is P0 in `shared/references/universal/code-quality-standards.md` but P1 ("Consistent Naming") in `sk-code-skilled/assets/checklists/universal-checklist.md`. Neither file was changed. The operator picks the tier.
+1. **Trigger index and retrieval fixtures.** Closed. CI rebuilt both files in `fbfc4bfe22` and neither names an old path now. The archived anchor-repair fixture still quotes one old path and stays out of scope.
+2. **Naming severity.** Operator ruled 2026-10-25: P1 in both. `code-quality-standards.md` now lists naming under P1, matching the sk-code-skilled universal checklist. The JS/CSS overlay `naming-init-formatting-and-css.md` still marks CHK-NAM-01, 02 and 05 P0. It stays out of this phase's scope, as the spec records.
 <!-- /ANCHOR:limitations -->

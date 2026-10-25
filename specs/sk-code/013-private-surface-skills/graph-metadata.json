@@ -135,12 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,6 +148,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -215,7 +215,7 @@
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-25T19:45:18.201Z",
+    "last_save_at": "2026-10-25T20:02:35.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,10 +223,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f2cc7e534fbca2d30b980e35bedfbbeb6a93f72b40587b4e66061f4a0eca2bf8",
+    "source_fingerprint": "sha256:c69d18cb22876388e1570a3a9d3ebcee1ae551036177c3d6909f772ad2db5161",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc96b321df8e2ac255988e6db5b101e1ffe8deaaa66918b714aa7a0bcbb3b42e",
+      "spec.md": "2821e9083a055fa5a282cb8c69225f8cfb6bf1d9016edb5e338c8cf390555f84",
       "research/research.md": "271021e67ed463f16198332319ad5bba567eda43a94bb3115537a317956b5c4a"
     },
     "last_active_child_id": "sk-code/013-private-surface-skills/002-hub-surface-removal",

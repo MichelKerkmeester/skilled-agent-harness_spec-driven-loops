@@ -63,9 +63,10 @@ Phase B ran after the optimizer workers finished. Outputs are in `scratch/eviden
 - [x] T012 Regenerate the hub leaf manifest: `node $G/generate-leaf-manifest.cjs --write $H`. Verify: printed `leaf-manifest.json written (9452dc9c...)`, and router-sync check 3 passes
 - [x] T013 Refresh the sk-code activation manifest and copy it to the authored twin. Verify: `refresh` printed `fresh: true`, policy hash `acbe381f`. Front-door 1/1 and manifest 48/48 (`scratch/evidence/phase-b-gates.log` lines 90 and 92)
 - [x] T014 Run the Hermes skill sync. Verify: `Wrote 3 of 67 Hermes skill copies`, then `--check` prints `PASS: 67 Hermes skill copies in sync`
-- [B] T015 Regenerate the trigger index and retrieval fixtures that still name the old paths. Blocked: the CI trigger-index job rebuilds them after the push. Verify: the `rg` search prints nothing after that rebuild
+- [x] T015 Regenerate the trigger index and retrieval fixtures that still name the old paths. CI rebuilt them in `fbfc4bfe22`. Verify: the `rg` search over both files on `origin/main` prints nothing, exit 1 (`scratch/evidence/phase-b-gates.log` lines 130 to 136)
 - [x] T016 Run the full gates. Verify: every block in `scratch/evidence/phase-b-gates.log` reports exit 0
 - [x] T017 Recursive strict validation of the parent. Verify: `RESULT: PASSED` for all eight folders (`scratch/evidence/phase-b-gates.log` lines 111 to 127)
+- [x] T018 Apply the operator's naming ruling: move naming from P0 to P1 in `$H/shared/references/universal/code-quality-standards.md` and raise its version to `1.5.4.0`. Verify: `check-rule-copies.js` OK, its test passes, all 4 drift guards PASSED and `leaf-manifest.json OK`, each exit 0 (`scratch/evidence/phase-b-gates.log` lines 137 to 147)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,9 +74,9 @@ Phase B ran after the optimizer workers finished. Outputs are in `scratch/eviden
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Router-sync prints 5/5 and parent-skill-check prints OK from the final state
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Router-sync prints 5/5 and parent-skill-check prints OK from the final state
 <!-- /ANCHOR:completion -->
 
 ---
@@ -129,7 +130,7 @@ A task blocked on the optimizer workers stays `[ ]` with its reason, never `[x]`
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met (pending phase B)
+- [x] CHK-020 [P0] All acceptance criteria met, nine of nine in `acceptance-criteria.md`
 - [x] CHK-021 [P0] Replay parity checked over 77 hub playbook prompts
 - [x] CHK-022 [P1] Edge cases tested: generic Node file stays UNKNOWN, symlinked `local-*` file is not SKILLED, outside fallback claim ignored
 - [x] CHK-023 [P1] Compiled-route front-door and manifest suites pass after the re-mint
@@ -146,7 +147,7 @@ A task blocked on the optimizer workers stays `[ ]` with its reason, never `[x]`
 - [x] CHK-FIX-004 [P0] Path guard cases covered: outside-root TypeScript file, symlinked `local-*` file, fallback claim from an outside skill
 - [x] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`: surface kind by hint
 - [x] CHK-FIX-006 [P1] Hostile env variant: N/A, no changed test reads process-wide state beyond the plugin cases' temporary symlink, removed in finally
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the phase commit SHA (pending phase B)
+- [x] CHK-FIX-007 [P1] Evidence pinned to the phase commit SHA: `c02124d0ff` for the change and `fbfc4bfe22` for the CI rebuild
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -185,8 +186,8 @@ A task blocked on the optimizer workers stays `[ ]` with its reason, never `[x]`
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 13/14 |
-| P1 Items | 18 | 16/18 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 18 | 18/18 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-25
@@ -231,7 +232,7 @@ A task blocked on the optimizer workers stays `[ ]` with its reason, never `[x]`
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized with the final gate output (pending phase B)
+- [x] CHK-140 [P1] All spec documents synchronized with the final gate output
 <!-- /ANCHOR:docs-verify -->
 
 ---

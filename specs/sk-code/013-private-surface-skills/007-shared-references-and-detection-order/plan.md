@@ -40,9 +40,9 @@ Worker one deletes or moves the shared references that are not hub doctrine and 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -160,8 +160,8 @@ Setup (notes) ──► Implementation (workers + phase A) ──► Verificatio
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline gate numbers captured (both worker notes record them)
-- [ ] Authored twins match served copies (`compiled-route-sync.cjs --check`)
+- [x] Baseline gate numbers captured (both worker notes record them)
+- [x] Authored twins match served copies (`compiled-route-sync.cjs --check`)
 
 ### Rollback Procedure
 1. Revert the phase commit.

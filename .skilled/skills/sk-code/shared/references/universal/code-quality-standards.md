@@ -9,7 +9,7 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Universal Code Quality Standards
@@ -80,10 +80,9 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 2. **Input validation**: every external input (function parameters, API responses, file contents, env vars) is validated at the boundary.
 3. **No commented-out code**: delete it. Commented code rots and misleads readers.
 4. **No silent failures**: an exception either reaches the caller or is logged with enough context to debug it.
-5. **Naming convention adherence**: names follow the surface convention, such as camelCase in JavaScript and TypeScript or snake_case in Python and Shell.
-6. **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store.
-7. **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4.
-8. **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
+5. **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store.
+6. **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4.
+7. **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
 
 ---
 
@@ -96,6 +95,7 @@ P1 covers issues that degrade maintainability or reliability:
 3. **Error message quality**: every error carries enough context for the operator to act.
 4. **Resource cleanup**: file handles, network connections, subscriptions, observers and timers close or cancel deterministically.
 5. **Type-safety enforcement**: in the language's own terms. TypeScript runs in strict mode without `any`. Python public functions carry type hints without `Any`.
+6. **Naming convention adherence**: names follow the surface convention, such as camelCase in JavaScript and TypeScript or snake_case in Python and Shell.
 
 ---
 

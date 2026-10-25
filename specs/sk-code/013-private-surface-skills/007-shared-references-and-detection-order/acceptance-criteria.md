@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/007-shared-references-and-detection-order"
-    last_updated_at: "2026-10-25T19:30:00Z"
+    last_updated_at: "2026-10-25T22:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the acceptance criteria and marked the phase A rows"
-    next_safe_action: "Phase B fills the regeneration and final-gate rows"
+    recent_action: "Marked AC-002 Met from the CI rebuild in fbfc4bfe22"
+    next_safe_action: "None, every row is Met"
     blockers: []
     key_files:
       - "acceptance-criteria.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "007-shared-references-and-detection-order"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** sk-code/013-private-surface-skills/007-shared-references-and-detection-order
 **Level:** 3
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-25
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the hub, When `git status` lists `shared/references/`, Then the two checklists, `universal/error-recovery.md` and `universal/multi-agent-research.md` show `D` and the style guide shows `RM` to `sk-code-quality/references/` | `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:106` to `:110`, four `D` rows and one `RM` row | Met | - |
-| AC-002 | REQ-001, REQ-007 | Given the regenerated trigger index and retrieval fixtures, When `rg` searches them for the four deleted names and the old style guide path, Then it prints nothing | `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:101` and `:102` still list `trigger-index.json` and `corpus-manifest.json`. Line 103 is the archived fixture, out of scope. The CI trigger-index job rebuilds both generated files after the push | Unmet | - |
+| AC-002 | REQ-001, REQ-007 | Given the regenerated trigger index and retrieval fixtures, When `rg` searches them for the four deleted names and the old style guide path, Then it prints nothing | `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:130` to `:136`. CI rebuilt both files in `fbfc4bfe22`. On `origin/main`, `rg` over `trigger-index.json` and `corpus-manifest.json` prints nothing for the five old paths, exit 1, against 5 hits each at `c02124d0ff`. The new `sk-code-quality/references/code-style-guide.md` appears once in each. The archived fixture at line 103 stays out of scope | Met | - |
 | AC-003 | REQ-002, REQ-003 | Given the surface-hint suite, When it runs, Then a SKILLED hint leaves `[review, ci, skilled]` unchanged and a fixture specific surface leads SKILLED under every hint | `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:89`, surface-hint 12 pass, 0 fail, exit 0 | Met | - |
 | AC-004 | REQ-004 | Given the advisor plugin, When it detects a generic Node workspace and a symlinked `local-*` path, Then the first is UNKNOWN and the second is not SKILLED | `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:85`, plugin and hint vitest 97 passed, exit 0 | Met | - |
 | AC-005 | REQ-005 | Given a root whose `graph-metadata.json` has `surface_detection`, When the fleet gate checks it, Then an object passes and an array fails with `GRAPH_METADATA_INVALID_SURFACE_DETECTION` | `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:72`, the contract test with the accept and reject cases passes, exit 0. `specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch/evidence/phase-b-gates.log:70`, `checked=14 passed=14 failed=0` | Met | - |
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-002 is unmet until the CI trigger-index job rebuilds the two generated files after the push. AC-001 and AC-003 to AC-009 are Met.
+All nine rows are Met. AC-002 closed once CI rebuilt the trigger index and retrieval fixtures in `fbfc4bfe22`.
 <!-- /ANCHOR:closure -->

@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/007-shared-references-and-detection-order"
-    last_updated_at: "2026-10-25T19:30:00Z"
+    last_updated_at: "2026-10-25T22:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Phase B regenerated derived files and ran the gates"
-    next_safe_action: "Confirm the CI trigger-index rebuild, then close"
+    recent_action: "Closed the phase after CI rebuilt the trigger index in fbfc4bfe22"
+    next_safe_action: "None, the phase is closed"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "007-shared-references-and-detection-order"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ The sk-code `shared/references/` folder still carried web-era checklists and aud
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
@@ -271,7 +271,7 @@ Shared references hold only hub and mode material, and detection ranks declared 
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- Naming severity, an operator decision: naming is P0 in `shared/references/universal/code-quality-standards.md` but P1 in `sk-code-skilled/assets/checklists/universal-checklist.md`. Neither file changes until the operator picks the tier.
+- Naming severity: Operator ruled 2026-10-25: P1 in both. `shared/references/universal/code-quality-standards.md` now lists naming under P1, matching `sk-code-skilled/assets/checklists/universal-checklist.md`.
 - Whether to add the suggested `surface_detection` blocks to the two private skills is the operator's call.
 <!-- /ANCHOR:questions -->
 
