@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests",
   "spec_folder": "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests",
   "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "loop"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +211,7 @@
     ],
     "causal_summary": "`spec-kit-check`'s `check` job is the repository's most expensive job at 1,215 s, and 791 s of it, 65.1%, is one step: the `CLI vitest project` at `spec-kit-check.yml:124-128` runs 183 test files one after another because the `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-kit/vitest.config.ts:67` without a stated reason (`iteration-005.md:30-69`)",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-24T22:28:03.491Z",
+    "last_save_at": "2026-10-25T07:25:21.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5f54ed3b5d552891f47120f0e556ae7bd421523623cd02fbfdac8225c95180b",
+    "source_fingerprint": "sha256:6099980c660fc03160fc6bbc8aff5824d07e547ecc0fa3edaf795b4353444657",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7c2939ff000bd9ebaf16cb4d8f73a54d8a25d7e0a4c6a483b5b993cef2976d7",
-      "plan.md": "df83a5c1bd76c866c837a96e7aeb964afbc618c1060a447cc7d332826013371c",
-      "tasks.md": "d2cbdad97c1945554d3215e3680e07ce015fc5e021ada3a407d01ab35d8b574e",
-      "decision-record.md": "2effc800a7ce1cfb9d3235d302635c8f9e2ff864b4af32073d90b0147c91a9ed",
-      "implementation-summary.md": "e7c0b282d779495a2784519fa0bcfd695335d02d47712dfaa1ee8a01c69ac96d"
+      "spec.md": "f2eccc9c91799ab9696e27470459e74c7ae68d1bc1e1aadd5d2708a74d6007aa",
+      "plan.md": "b9b7bb23d924820668129e6cab1a602d7c0f47aa57025c3067b017988cea23df",
+      "tasks.md": "052809f01c5d9ab508704f34e770f20fbfd22e3a74e3fd6b51b2b131d000b9ae",
+      "decision-record.md": "ffd134c0c859d7af4948855116423ec8894b64c1fd4d0c5752112e8aadb6a3fe",
+      "implementation-summary.md": "ffed25faa01e456008aa557051006bd18e518d1c591aed438413215fbb0353af"
     },
     "last_active_at": null
   }

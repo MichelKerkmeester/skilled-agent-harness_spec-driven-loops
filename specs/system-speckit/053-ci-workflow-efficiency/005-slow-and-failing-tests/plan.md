@@ -307,7 +307,7 @@ The R19 block is strictly serial: the real config is not touched until the probe
 
 ### ADR-001: Probe the setting on a copy, then change the real config
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: The `cli` project sets `fileParallelism: false` at `vitest.config.ts:67` without a stated reason, and 183 files run one at a time. Turning it on in the real file before measuring would put the repository's slowest step behind an untested assumption.
 
@@ -322,7 +322,7 @@ The R19 block is strictly serial: the real config is not touched until the probe
 - Flip the real config and revert on failure: a red `main` between the two commits, and the slowest step is exactly where a red run is most expensive.
 - Run a subset of files: it would miss the fixture collision the probe exists to find.
 
-The formal records, including every design choice this plan freezes, are `decision-record.md` ADR-001 to ADR-010.
+The formal records, including every design choice this plan freezes, are `decision-record.md` ADR-001 to ADR-011.
 
 ---
 

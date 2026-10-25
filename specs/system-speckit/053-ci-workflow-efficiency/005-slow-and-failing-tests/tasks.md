@@ -1320,9 +1320,9 @@ Stop and escalate if: the message validator exits non-zero, or the ephemeral-id 
 
 ---
 
-### T034 [ ] Measure the CLI step on the post-change runs and judge its median (AC-003)
+### T034 [x] Measure the CLI step on the post-change runs and judge its median (AC-003)
 
-Partial, awaiting run 5 of 5. The operator ruled on 2026-10-24 (decision-record ADR-003 amendment) that AC-003 is judged on the median of the five green `Spec-Kit Check` runs on main that T035 collects, and not on the first run alone. The count-based split read 643 s (run 40090109005) and 482 s (run 40094302049), both over 400 s and superseded. Four runs have used the rebalanced split and all are green: 40102448836 at 75b27df21c read 459 s, 40107239895 at e00fef3e76 read 299 s, 40123498034 at 1c0c3534cf read 313 s and 40125544852 at 666844f806 read 451 s, against 791 s in run 39909844384. Every head contains 04d9b0c84f. Their running median is 382 s, which decides nothing with fewer than five runs. The four `| after |` rows are written in `scratch/r20-ci-step.md`; as of 2026-10-25 no fifth completed run exists on main.
+Done, with the bar not met and the row waived. The operator ruled on 2026-10-24 (decision-record ADR-003 amendment) that AC-003 is judged on the median of the five green `Spec-Kit Check` runs on main that T035 collects, and not on the first run alone. The count-based split read 643 s (run 40090109005) and 482 s (run 40094302049), both over 400 s and superseded. Five runs have used the rebalanced split and all are green: 40102448836 at 75b27df21c read 459 s, 40107239895 at e00fef3e76 read 299 s, 40123498034 at 1c0c3534cf read 313 s, 40125544852 at 666844f806 read 451 s and 40147796034 at 8ff7da700d read 467 s, against 791 s in run 39909844384. Every head contains 04d9b0c84f. The median is 451 s and the awk check below prints `NOT_MET` with exit `1`. The five `| after |` rows are written in `scratch/r20-ci-step.md`. The Stop-if below fired, and the operator ruled on 2026-10-25 to close AC-003 by waiver (ADR-011) instead of a further re-measure, so the Expected line below is the original bar and was not reached.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `post-change-runs:` line.
 
@@ -1353,9 +1353,9 @@ Stop and escalate if: the median of five reads `400` s or more, because the shar
 
 ---
 
-### T035 [ ] Confirm 5 consecutive green Spec-Kit Check runs (AC-003)
+### T035 [x] Confirm 5 consecutive green Spec-Kit Check runs (AC-003)
 
-Pending, waits on CI: four of the five runs exist (`post-change-runs: 4 of 5 needed` in `scratch/r20-ci-step.md`, runs 40102448836, 40107239895, 40123498034 and 40125544852, all green). A run whose head lacks 04d9b0c84f cannot count, so the `## Green streak` section and `all_green: true` are not written. Run the task's command once five natural runs have finished.
+Done: five runs exist (`post-change-runs: 5 of 5` in `scratch/r20-ci-step.md`, runs 40102448836, 40107239895, 40123498034, 40125544852 and 40147796034, all green, every head containing 04d9b0c84f). The `## Green streak` section and `all_green: true` were written from those five run ids with `gh run view`, not with the `gh run list --limit 5` command in the block below, because the five newest runs of the workflow now include a red run (40149635448) and a later green run (40170908787) that are not part of the five. The check returned `1` and `5`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `| after |` row.
 
@@ -1387,9 +1387,9 @@ Stop and escalate if: `all_green` is not `true`, or a run predates the R20 commi
 
 ---
 
-### T036 [ ] Confirm 10 consecutive green runs for the three workflows (AC-006)
+### T036 [x] Confirm 10 consecutive green runs for the three workflows (AC-006)
 
-Partial: diagram-corpus is done. It had 3 consecutive greens, so seven serial `workflow_dispatch` runs on main were dispatched and each waited on (40094359622, 40094481195, 40094626777, 40094771974, 40094888712, 40095003840, 40095154965, all `success`), giving `diagram-corpus: all_green=true count=10`; those seven are dispatched reruns of the workflow, not natural runs. `deep-loop-runtime: all_green=false count=10`: the window holds the Dependabot pull-request failure 40080059696 and the fixed-class failure 39843480132. `skill-advisor-stress: all_green=false count=10`: it has seven consecutive greens and three older fixed-class failures in the window, so it needs three more natural runs. Neither has `workflow_dispatch`, and no failed run was rerun. The check returned `1`, not `3`, so the task is not complete. Re-pulled 2026-10-25 (`scratch/r21-recheck.md`, section Window re-pull): skill-advisor-stress and diagram-corpus each read ten `success`; deep-loop-runtime still reads `all_green=false`, now because of a new failure on main, run 40107240026 (`tests/unit/jsonl-repair.vitest.ts:461`), beside the Dependabot failure.
+Done through the filed branch. diagram-corpus had 3 consecutive greens, so seven serial `workflow_dispatch` runs on main were dispatched and each waited on (40094359622, 40094481195, 40094626777, 40094771974, 40094888712, 40095003840, 40095154965, all `success`). Those seven are dispatched reruns of the workflow, not natural runs. Neither deep-loop-runtime nor skill-advisor-stress has `workflow_dispatch`, and no failed run was rerun. The closure read on 2026-10-25 (`scratch/r21-recheck.md`, section Window re-pull at closure) has diagram-corpus and skill-advisor-stress at ten `success` each, and deep-loop-runtime at nine `success` and one `failure` (run 40107240026, `tests/unit/jsonl-repair.vitest.ts:461`) with the four later main runs `success`. The literal check below returns `1`, not `3`, because deep-loop-runtime stays red and the 2026-10-24 readings are kept as written. AC-006 accepts a filed root cause for a workflow that stays red, which T037 holds.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the `retry-proof: clean` line.
 
@@ -1423,9 +1423,9 @@ Stop and escalate if: a workflow reports `count=0`, or a workflow has no way to 
 
 ---
 
-### T037 [ ] File a root cause for a workflow that stays red (AC-006)
+### T037 [x] File a root cause for a workflow that stays red (AC-006)
 
-Partial: `grep -E ': all_green=false'` printed the deep-loop-runtime and skill-advisor-stress lines. Only deep-loop-runtime is red: its Root causes row for `tests/unit/dependency-seams.vitest.ts`, `AssertionError: expected '4.6.6' to be '4.4.3'`, first failing SHA `e4af508`, carries the `filed:` action (open Dependabot pull request #72). skill-advisor-stress is not red (seven consecutive greens, newest run 40089725675), so the filed branch does not apply to it and its filed text is removed; AC-006 stays Unmet for it until three more natural runs leave its older failures behind the window. `grep -c '| filed:'` returns `1`. 2026-10-25: the new main failure in deep-loop-runtime (run 40107240026) has no `filed:` row, because nothing has been filed and its cause is not established; it is recorded open in the Window re-pull section, so this task stays open.
+Done: `grep -E ': all_green=false'` prints the deep-loop-runtime line and the 2026-10-24 skill-advisor-stress line. Only deep-loop-runtime is red at closure. Its Root causes row for `tests/unit/dependency-seams.vitest.ts`, `AssertionError: expected '4.6.6' to be '4.4.3'`, first failing SHA `e4af508`, carries the `filed:` action (Dependabot pull request 72, `OPEN` on 2026-10-25). Its row for `tests/unit/jsonl-repair.vitest.ts`, `AssertionError: expected 9 records, got 8 (line 461)`, first failing SHA `e00fef3`, carries a `filed:` action naming `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`, a separate change by the operator's ruling of 2026-10-25 (the folder exists as a scaffold). skill-advisor-stress is not red, so no filed row applies to it. `grep -c '[|] filed:'` returns `2`, and both rows are deep-loop-runtime's. The cause of the writer-lock failure stays INFERRED, not reproduced.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `## Green streaks` line.
 
@@ -1454,7 +1454,7 @@ Stop and escalate if: a workflow is red and its failing test cannot be named fro
 
 ### T038 [x] Close the acceptance rows with evidence (AC-001 to AC-011)
 
-Done, with three rows left Unmet by their own rule: `grep -c '| Unmet |'` read `11` before the edit; afterwards `grep -c '| Met |'` returns `8` and `grep -c '| Unmet |'` returns `3`. AC-003 stays Unmet, awaiting CI measurement after the rebalanced split is committed. AC-006 stays Unmet: skill-advisor-stress is not red and needs three more natural runs, and deep-loop-runtime is red on an open pull request. AC-010 stays Unmet until the commits are made. Update 2026-10-25: AC-010 is now Met (commits `04d9b0c84f` and `e094a852ed`); AC-003 has four of five runs (median 382 s); AC-006 is Unmet for deep-loop-runtime only, which gained a new main failure; `grep -c '| Unmet |'` returns `2`. The stored proof commands were rewritten to run as pasted: literal pipes are written `[\|]` (a bracket expression, with the backslash only escaping the table cell), alternations use repeated `-e` patterns, and the counts match the delivered files (AC-004 reads `4` root-cause rows, AC-002 counts the `--exclude` split). AC-005 carries the routing-registry-drift date of 2026-10-24 under the operator ruling.
+Done. History: three rows were first left Unmet by their own rule: `grep -c '| Unmet |'` read `11` before the edit; afterwards `grep -c '| Met |'` returns `8` and `grep -c '| Unmet |'` returns `3`. AC-003 stays Unmet, awaiting CI measurement after the rebalanced split is committed. AC-006 stays Unmet: skill-advisor-stress is not red and needs three more natural runs, and deep-loop-runtime is red on an open pull request. AC-010 stays Unmet until the commits are made. Update 2026-10-25: AC-010 is now Met (commits `04d9b0c84f` and `e094a852ed`). Final state 2026-10-25: `grep -c '| Met |'` returns `10`, `grep -c '| Waived |'` returns `1` and `grep -c '| Unmet |'` returns `0`. AC-003 is Waived by the operator's ruling (ADR-011) because the median of five green runs is 451 s against the 400 s bar. AC-006 is Met through its filed-root-cause branch (deep-loop-runtime, `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`). AC-004 now reads `5` root-cause rows. The stored proof commands were rewritten to run as pasted: literal pipes are written `[\|]` (a bracket expression, with the backslash only escaping the table cell), alternations use repeated `-e` patterns, and the counts match the delivered files (AC-004 reads `4` root-cause rows, AC-002 counts the `--exclude` split). AC-005 carries the routing-registry-drift date of 2026-10-24 under the operator ruling.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md`, anchor: the `| AC-001 |` row.
 
@@ -1470,10 +1470,11 @@ Check:
 
 ```bash
 grep -c '| Met |' specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
+grep -c '| Waived |' specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
 grep -c '| Unmet |' specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
 ```
 
-Expected: `11` and `0`.
+Expected: `10`, `1` and `0` (AC-003 is Waived under ADR-011).
 
 Rollback: restore `Unmet` in the rows whose evidence was not observed.
 
@@ -1512,30 +1513,22 @@ Stop and escalate if: the validator prints `RESULT: FAILED` for any reason other
 
 ### T040 [ ] Commit the closure (AC-010)
 
-Not done, by instruction: the orchestrator stages and commits after an independent review. Proposed subject: `docs(system-speckit): record the CLI split rebalance and the workflow re-check`. The phase is not closeable (see `acceptance-criteria.md` section 3), so the subject must not say the criteria are closed.
+Not done, by instruction: the orchestrator stages and commits after an independent review. The message is written in `scratch/commit-message-closure.txt` and validates with exit `0`. The phase is closeable (see `acceptance-criteria.md` section 3), so the subject may say the criteria are closed.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
-Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, write its message, validate it, and commit, so the closure edits T038 made and the validation output T039 wrote are not left uncommitted.
+Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, validate the message, and commit, so the closure edits T038 made and the validation output T039 wrote are not left uncommitted.
 
 ```bash
-cat > /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/commit-msg-closure.txt <<'EOF'
-docs(spec): close the slow and failing tests criteria
-
-Every acceptance row now carries the observed run id, step seconds or streak
-that proves it, so the packet records the measured state rather than a plan.
-
-Spec: system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests
-EOF
-node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/commit-msg-closure.txt
+node .skilled/skills/sk-git/scripts/validate-message.mjs --commit specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/commit-message-closure.txt
 git add specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests
-git commit -F /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/commit-msg-closure.txt
+git commit -F specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/commit-message-closure.txt
 git status --porcelain -- specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests
 ```
 
-Expected: `validate-message.mjs` exits `0`; `git log -1 --format=%s` prints `docs(spec): close the slow and failing tests criteria`; `git status --porcelain` prints nothing.
+Expected: `validate-message.mjs` exits `0`, `git log -1 --format=%s` prints `docs(spec): close the slow and failing test criteria` and `git status --porcelain` prints nothing.
 
-Rollback: `git reset --soft HEAD~1` and delete `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/commit-msg-closure.txt`.
+Rollback: `git reset --soft HEAD~1`.
 
 Stop and escalate if: the validator exits non-zero twice, or the commit stages a path outside the packet folder.
 
@@ -1549,8 +1542,8 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -1592,7 +1585,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 - [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-007, each naming R19, R20, R21 or the gates [EVIDENCE: spec.md rows REQ-001 to REQ-007 at lines 129-140, each naming R19, R20, R21 or the gates, read 2026-10-25]
 - [x] CHK-002 [P0] Technical approach defined in plan.md - the probe config, the config flip or the shard, and the re-check-first triage [EVIDENCE: plan.md sections 1 to 4 and the Affected Surfaces addendum (lines 74-93) hold the probe config, the shard and the re-check-first triage, read 2026-10-25]
-- [ ] CHK-003 [P1] Dependencies identified and available - `gh` with the `repo` scope, T002's install and build, the 002 baseline (T001)
+- [x] CHK-003 [P1] Dependencies identified and available - `gh` with the `repo` scope, T002's install and build, the 002 baseline (T001) [EVIDENCE: `gh run view` and `gh run list` ran with the existing token on 2026-10-25, T002 is marked done in this file and `ls specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` found the file on 2026-10-25, and `scratch/r20-ci-step.md` still reads `baseline-source: 001-dataset` for the 791 s reference, which the spec limits to the after-R1 figure]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1611,10 +1604,10 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-011 (T038)
-- [ ] CHK-021 [P0] Manual testing complete - three probe runs, the CI step measurement, the 5- and 10-run streaks, and the five stale confirmations (T004, T006 to T008, T034 to T036)
+- [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-011 (T038) [EVIDENCE: re-run 2026-10-25: `grep -c '| Met |'` returns `10`, `grep -c '| Waived |'` returns `1`, `grep -c '| Unmet |'` returns `0`. This item holds by waiver for AC-003, not because the bar was met: the median of 451 s misses the bar of under 400 s, and the operator waived the row on 2026-10-25 (ADR-011)]
+- [x] CHK-021 [P0] Manual testing complete - three probe runs, the CI step measurement, the 5- and 10-run streaks, and the five stale confirmations (T004, T006 to T008, T034 to T036) [EVIDENCE: re-run 2026-10-25: the probe greps return `1`, `3`, `4`, `1` with the probe config gone. `scratch/r20-ci-step.md` holds five `after` rows (median 451 s, waived under ADR-011), `all_green: true` count `1` and `5` streak rows. diagram-corpus and skill-advisor-stress read ten `success` each and deep-loop-runtime nine `success` with one failure filed to `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`, so the 10-run streak holds for two workflows and the filed branch holds for the third. The stale `closed` count is `5`]
 - [x] CHK-022 [P1] Edge cases tested - the probe's collision grep, the shard halves when the outcome is shard, and the stale-contract negative proof (T010, T014, T026) [EVIDENCE: read 2026-10-25: `scratch/r19-collisions.log` is empty (0 bytes), the local halves (313.90 s and 356.56 s, exit 0) are in `scratch/r20-ci-step.md`, and `scratch/r21-recheck.md:171` reads `negative-proof: exit 2 then exit 0`]
-- [ ] CHK-023 [P1] Error scenarios validated - a failed shard half fails the step, and a stale contract fails the fast-fail step with exit 2 (T013, T026)
+- [x] CHK-023 [P1] Error scenarios validated - a failed shard half fails the step, and a stale contract fails the fast-fail step with exit 2 (T013, T026) [EVIDENCE: a failed half failed the step on CI: `gh run view 40149635448 --json jobs` reads the `CLI vitest project` step conclusion `failure`, and its failed log shows `Test Files 1 failed | 178 passed | 3 skipped` in the `--exclude` process while the heavy-file process printed `Test Files 1 passed (1)`. The stale-contract case is `negative-proof: exit 2 then exit 0` in `scratch/r21-recheck.md` (count `1`) and the T026 note]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1622,7 +1615,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - test-isolation for R19 and R20, class-of-bug for the deep-loop stale contract, instance-only for the diagram and stress failures already fixed
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - test-isolation for R19 and R20, class-of-bug for the deep-loop stale contract, instance-only for the diagram and stress failures already fixed [EVIDENCE: read 2026-10-25: R19 and R20, the parallel-only 30 s timeouts that took the shard, are test-isolation (decision-record ADR-001 amendment). The deep-loop stale contract is class-of-bug and the Root causes row names the fast-fail step that catches it in seconds. The diagram-corpus and skill-advisor-stress rows read `none needed: closed on the newest green run` with no file changed, which is instance-only. The Dependabot pin drift is instance-only and filed to its bump pull request. The writer-lock race is a concurrency class-of-bug filed to `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`, INFERRED because it was not reproduced]
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed - `rg -n 'fileParallelism' .skilled/skills --glob 'vitest.config.ts'` finds 5 sites in 4 files, and only the cli site changes (plan.md, Affected Surfaces) [EVIDENCE: `rg -c fileParallelism .skilled/skills --glob 'vitest.config.ts'` run 2026-10-25 lists 4 files with 5 sites; `rg -c 'fileParallelism: false'` lists the same 5 and `fileParallelism: true` finds none (exit 1)]
 - [x] CHK-FIX-003 [P0] Consumer inventory completed - the check job, the CLI package's `test` script, the deep-loop suite, the diagram checker and the stress suite, each with its verification in plan.md [EVIDENCE: plan.md lines 82-91 list the check job step, the deep-loop workflow, the README and the consumers search, read 2026-10-25]
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - not applicable: no path, parser or redaction code changes; the fixture-collision matrix is in plan.md [EVIDENCE: n/a because the two commits change only `.github/workflows/spec-kit-check.yml` and `.github/workflows/deep-loop-runtime.yml`; no path, parser or redaction code changed]
@@ -1667,8 +1660,8 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 9/12 |
-| P1 Items | 13 | 11/13 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-25

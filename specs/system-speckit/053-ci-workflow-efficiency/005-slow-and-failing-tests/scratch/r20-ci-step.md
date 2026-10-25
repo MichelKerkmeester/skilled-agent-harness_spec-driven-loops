@@ -6,7 +6,7 @@
 
 baseline-source: 001-dataset
 
-after: the median of the five green post-change runs below (operator ruling of 2026-10-24, decision-record ADR-003 amendment), awaiting run 5 of 5 (4 of 5 read)
+after: the median of the five green post-change runs below (operator ruling of 2026-10-24, decision-record ADR-003 amendment), read at 5 of 5 on 2026-10-25 as 451 s. The 400 s bar is not met and the criterion is waived by the operator's ruling of 2026-10-25 (decision-record ADR-011)
 
 ceiling: 400 s, judged on that median. The `| after |` rows below are the runs on main since 75b27df21c, oldest first, and only runs whose head contains 04d9b0c84f count.
 
@@ -63,9 +63,46 @@ Every `Spec-Kit Check` run on main since 75b27df21c (inclusive), oldest first. E
 | after | 40107239895 | e00fef3e76 | success | 299 |
 | after | 40123498034 | 1c0c3534cf | success | 313 |
 | after | 40125544852 | 666844f806 | success | 451 |
+| after | 40147796034 | 8ff7da700d | success | 467 |
 
-post-change-runs: 4 of 5 needed
+post-change-runs: 5 of 5
 
-Running values, re-pulled 2026-10-25: the four samples are 459, 299, 313 and 451 s; their median is 382 s (the mean of 313 and 451). With four runs, not five, it is a running figure and decides nothing, so AC-003 stays Unmet, awaiting run 5 of 5. The two new rows were read the same way as the first two, from the `CLI vitest project` step of the `Typecheck` job: 19:17:07Z to 19:22:20Z is 313 s, and 19:32:01Z to 19:39:32Z is 451 s. Both heads contain 04d9b0c84f (`git merge-base --is-ancestor` exits 0 for each). The two new heads also changed other steps of the same workflow (the install steps now go through the setup action) but are separate steps from the CLI one. The spread across the four samples (299 to 459 s) is comparable to the reference's own spread (776 to 950 s), so the median of five, not any single run, is the judge. As of 2026-10-25 no further `Spec-Kit Check` run on main exists: the newest completed main run is 40125544852, and the later runs listed for the workflow are on the Dependabot branch, which is not main. The reference step read 791 s in run 39909844384.
+Reading at closure, 2026-10-25: the five samples are 459, 299, 313, 451 and 467 s. Every row was read the same way, from the `CLI vitest project` step of the `Typecheck` job with `gh run view <id> --json jobs`: for the fifth run 00:46:45Z to 00:54:32Z is 467 s, and the earlier four are 14:28:23Z to 14:36:02Z (459 s), 15:31:42Z to 15:36:41Z (299 s), 19:17:07Z to 19:22:20Z (313 s) and 19:32:01Z to 19:39:32Z (451 s). Every head contains 04d9b0c84f (`git merge-base --is-ancestor 04d9b0c84f <head>` exits 0 for each of the five). These are the first five consecutive green runs on main since 75b27df21c. The spread across the five samples (299 to 467 s) is comparable to the reference's own spread (776 to 950 s), so the median of five, not any single run, is the judge. The reference step read 791 s in run 39909844384.
 
-When one more natural run on main has finished with head shas that contain 04d9b0c84f, append one `| after |` row per run (stop at five rows), then the `## Green streak` section from those five runs and the `all_green: true` line, and judge AC-003 on the median of the five `step seconds` values.
+## Runs on main after the fifth
+
+Listed so that this file accounts for every `Spec-Kit Check` run on main since 75b27df21c. These two rows are not `| after |` rows and are not part of the five. Step seconds are read the same way as above.
+
+| when | run id | head sha | conclusion | step seconds |
+|---|---|---|---|---|
+| later | 40149635448 | 03abdb20d8 | failure | 310 |
+| later | 40170908787 | 1fd95b59cd | success | 324 |
+
+Run 40149635448 is red for a cause unrelated to this phase. Its failed log names one test, `tests/trigger-index-rebuild-workflow.vitest.ts:809` (`AssertionError: expected '${{ (vars.SKILLED_CI != \'off\') && (…' to be 'needs.rebuild.outputs.committed == \'…'`), and the other 178 test files in that process passed (OBSERVED in `gh run view 40149635448 --log-failed`). That test asserts a workflow condition that another phase changed: `git log -S"SKILLED_CI" -- .github/workflows/trigger-index-rebuild.yml` prints 9480d99e6d (`ci(workflows): gate every job behind a repository switch`) as the commit that added the switch term, and commit 1fd95b59cd (`test(system-spec-kit): accept the switch term in the rebuild push condition`) changes only that test file. The 310 s is the time to the failing step's end, not a completed-step sample, and it is not used. Run 40170908787 (head 1fd95b59cd) is green and read 324 s. It is a sixth run, outside the five, mentioned as an aside and not used in the median.
+
+## Median and waiver
+
+The check from `acceptance-criteria.md` AC-003, run on 2026-10-25 against the five `| after |` rows above:
+
+- `grep -c '^| after |'` returns `5`.
+- The five step seconds sorted: 299, 313, 451, 459, 467. The median is the third value, 451 s.
+- The awk check (sort the five, test the third value against 400) prints `NOT_MET` and exits `1`.
+- The 400 s bar is therefore not met: 451 s is 51 s over it.
+- Against the 791 s reference (run 39909844384): (791 - 451) / 791 = 340 / 791 = 0.4298, a cut of 43 percent.
+- The runner spread across the five samples is 299 to 467 s, 168 s wide. The reference moved between 776 and 950 s across four planning samples.
+
+The operator ruled on 2026-10-25 to close AC-003 by waiver: record the five runs as measured, keep the 400 s bar visible and note the 43 percent cut and the runner spread. The ruling is recorded as decision-record ADR-011, and the five runs above are left exactly as measured.
+
+## Green streak
+
+The five runs behind the median, read with `gh run view <id> --json databaseId,createdAt,headSha,conclusion` on 2026-10-25. All five are push runs on main whose head contains 04d9b0c84f.
+
+| run id | createdAt | headSha | conclusion |
+|---|---|---|---|
+| 40102448836 | 2026-10-24T14:25:45Z | 75b27df | success |
+| 40107239895 | 2026-10-24T15:30:01Z | e00fef3 | success |
+| 40123498034 | 2026-10-24T19:02:55Z | 1c0c353 | success |
+| 40125544852 | 2026-10-24T19:29:46Z | 666844f | success |
+| 40147796034 | 2026-10-25T00:43:20Z | 8ff7da7 | success |
+
+all_green: true
