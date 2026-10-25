@@ -133,7 +133,7 @@ describe('resource-map extractor', () => {
             iteration: 1,
             type: 'finding',
             source_paths: [
-              '.skilled/commands/agent-router.md',
+              '.skilled/commands/speckit/complete.md',
               '.skilled/skills/system-deep-loop/deep-research/references/convergence.md',
             ],
             citations: [
@@ -144,7 +144,7 @@ describe('resource-map extractor', () => {
           {
             iteration: 2,
             type: 'finding',
-            source_paths: ['.skilled/commands/agent-router.md'],
+            source_paths: ['.skilled/commands/speckit/complete.md'],
             citations: [
               { path: '.skilled/skills/system-deep-loop/deep-research/SKILL.md' },
               { path: '.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs' },
@@ -153,7 +153,7 @@ describe('resource-map extractor', () => {
           {
             iteration: 3,
             type: 'finding',
-            source_paths: ['.skilled/commands/agent-router.md'],
+            source_paths: ['.skilled/commands/speckit/complete.md'],
             citations: [
               { path: '.skilled/skills/system-deep-loop/deep-research/SKILL.md' },
               { path: 'notes/research-support.txt' },
@@ -176,7 +176,7 @@ describe('resource-map extractor', () => {
       ]
     `);
     expect(markdown).toContain(
-      '| .skilled/commands/agent-router.md | Cited | OK | Citations=3; Iterations=3 |',
+      '| .skilled/commands/speckit/complete.md | Cited | OK | Citations=3; Iterations=3 |',
     );
     expect(markdown).toContain(
       '| .skilled/skills/system-deep-loop/deep-research/SKILL.md | Cited | OK | Citations=3; Iterations=3 |',
@@ -208,7 +208,7 @@ describe('resource-map extractor', () => {
             event: 'new_finding',
             finding_id: 'F-RANGE',
             severity: 'P2',
-            file: '.skilled/commands/agent-router.md:10-20',
+            file: '.skilled/commands/speckit/complete.md:10-20',
           },
         ],
       ],
@@ -216,7 +216,7 @@ describe('resource-map extractor', () => {
 
     // Paths with :line suffixes resolve to real files on disk → status OK, not MISSING.
     expect(markdown).toContain('| .skilled/skills/system-deep-loop/deep-review/SKILL.md | Analyzed | OK |');
-    expect(markdown).toContain('| .skilled/commands/agent-router.md | Analyzed | OK |');
+    expect(markdown).toContain('| .skilled/commands/speckit/complete.md | Analyzed | OK |');
     // The suffix must be stripped — no leaked `:250` or `:10-20` anywhere.
     expect(markdown).not.toContain(':250');
     expect(markdown).not.toContain(':10-20');
