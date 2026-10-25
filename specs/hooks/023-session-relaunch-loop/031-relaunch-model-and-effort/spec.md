@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |
@@ -204,7 +204,12 @@ After an automatic hand-over, the receiver runs on the same model and effort as 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Where Claude Code records the session's current effort level, and whether Hermes, Cursor and Devin expose the current model and effort to their hooks or logs.
+None open. Answered during the build:
+
+- Claude Code records the effort as `effort` on each assistant entry of the session log, next to `requestedModel`.
+- Hermes passes the requested model and provider to `post_api_request`, but no reasoning level to any hook, so its effort carries from the launch flag only.
+- Cursor writes the selected model and its parameters to `~/.cursor/cli-config.json`, one file for every session, so it counts only when it changed after the hop launched.
+- Devin exposes neither to its hooks or logs, and carries the launch model only.
 <!-- /ANCHOR:questions -->
 
 ---

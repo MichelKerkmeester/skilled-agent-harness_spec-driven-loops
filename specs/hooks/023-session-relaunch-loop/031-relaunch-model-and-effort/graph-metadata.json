@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,6 +43,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".hermes/plugins/repo-guards/__init__.py",
+      ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+      ".skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs",
+      ".hermes/plugins/repo-guards/tests/test_session_relaunch.py",
       ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
@@ -52,10 +56,7 @@
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
-      "scratch/claude-effort-live/transcript-settings.txt",
-      "scratch/claude-effort-live/summary.txt",
-      "scratch/codex-effort-live/summary.txt",
-      "scratch/pi-effort-live/summary.txt"
+      "scratch/claude-effort-live/transcript-settings.txt"
     ],
     "entities": [
       {
@@ -92,6 +93,30 @@
         "name": "relaunch-core.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "__init__.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/__init__.py",
+        "source": "derived"
+      },
+      {
+        "name": "session-end-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hermes-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test_session_relaunch.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/tests/test_session_relaunch.py",
         "source": "derived"
       },
       {
@@ -155,19 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "summary.txt",
-        "kind": "file",
-        "path": "scratch/claude-effort-live/summary.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,23 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`buildrelauncharguments` in `.skilled/bin/skilled-loop` rebuilds the relaunch command from the model, provider, name and Pi extension flags only",
     "created_at": "2026-10-25T07:25:52Z",
-    "last_save_at": "2026-10-25T09:49:24.106Z",
+    "last_save_at": "2026-10-25T10:23:12.129Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3c0502dc85c4f6db0dc79cf0669dfc18abd48a1ccd4e678b224c8d1b71f9619",
+    "source_fingerprint": "sha256:32f061120a8b995f87f8412c4af2ab1a8071bbee723a29c815caff6f9ab481dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af0e33c41862b32d15e7a268bee70c2a4e049a566c1a605f1349299c2d81752e",
+      "spec.md": "e1d0dec76661953a73a3ca1e356b849a2627ffc81e304ed3b3ff6c0485a1c6b2",
       "plan.md": "46c2e739614f681dd0b527513f4e1859b470241cdab79792d284a1180299a646",
-      "tasks.md": "d92d44cae36e9d0da736a3ec97796012fd11918dfbc2cb6bb7fe970046a1dac1",
-      "implementation-summary.md": "dd947dc346bb860d303042a6149e64ba934b9583ad9e78f0cf60baa69f5168df"
+      "tasks.md": "3b97c3654f2bca5a03f423b33fde918a348e957cfbf23ff793d07ffd05902b2a",
+      "implementation-summary.md": "f4541db15cd00a5b0bfaf9272cb6f040efcea48138058419bb0397a507186f68"
     },
     "last_active_at": null
   }

@@ -1,0 +1,11 @@
+Codex levels the rollouts never showed, probed 2026-10-25 with
+codex exec --skip-git-repo-check -m gpt-6-luna -c 'model_reasoning_effort="<level>"' "Reply with the single word PONG." </dev/null
+
+none     exit 0, header "reasoning effort: none", reply PONG
+minimal  exit 1, header "reasoning effort: minimal", then HTTP 400 from the API:
+         "Unsupported value: 'minimal' is not supported with the 'gpt-6-luna' model.
+          Supported values are: 'none', 'low', 'medium', 'high', 'xhigh', and 'max'."
+
+Reading: the Codex CLI accepts both levels, so both stay on the wrapper's Codex list. Whether a
+level works is the model's matter: a sender that recorded minimal was already running at it on a
+model that supports it, and a launch flag naming it fails the same way with or without the loop.

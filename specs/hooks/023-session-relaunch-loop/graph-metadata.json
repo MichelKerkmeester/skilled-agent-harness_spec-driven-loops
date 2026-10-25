@@ -217,7 +217,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-25T09:51:32.774Z",
+    "last_save_at": "2026-10-25T10:23:10.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,10 +225,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:68661b51a1452a073a6c09f60187e5df82b17ee48f735e3d6675a6883d7a9582",
+    "source_fingerprint": "sha256:b04ba59fa0d43cc92a1056e693c00925649ef70fad857928c36addcf15dea215",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "74a13d90724a8378e18bc0d6205f4f7023a177afbaa15d3055a65d9e1b9d78da",
+      "spec.md": "1fafcd406ae40c5736ff075a23b045210d76caddb7b3753aeb81732f3bc51e33",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",

@@ -133,7 +133,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 28 | 028-goal-rebind-live-proof-and-docs/ | Live hops show the goal surviving a hand-over on Claude and Pi with switch-off and no-goal controls, a Codex no-goal control, and the receiver half on OpenCode 2 and Devin; the OpenCode 2 hop failed at first and passed after phase 30, Devin and Cursor have no hop path, Cursor and Hermes were skipped; playbook scenarios and doc updates landed | Complete |
 | 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Complete |
 | 30 | 030-opencode2-killer-target/ | An OpenCode 2 hop reaches its receiver: the killer signals the loop's child instead of the plugin's server, a signalled exit 130 counts as the hop, and the post-signal grace covers a slow TUI exit | Complete |
-| 31 | 031-relaunch-model-and-effort/ | A relaunched session starts on the sender's model and effort on every runtime that takes them at launch, from the launch flags or the sender's current state | Draft |
+| 31 | 031-relaunch-model-and-effort/ | A relaunched session starts on the sender's model and effort on every runtime that takes them at launch, from the launch flags or the sender's current state | Complete |
 | 32 | 032-opencode2-standalone-replay/ | The wrapper starts OpenCode 2 with `--standalone` on the first launch and every relaunch and drops the `-m` replay it rejects, so the loop hops more than once with no flag to remember | Complete |
 
 ### Phase Transition Rules
