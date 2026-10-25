@@ -2,9 +2,12 @@
 // MODULE: Writer Lock Guard Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
+// The default export is the same object cli-guards.cjs reads through require, so a
+// spy on it reaches the lock code.
+import fsModule from 'node:fs';
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -138,5 +141,101 @@ describe('acquireWriterLock stale-lock reclamation', () => {
     writeFileSync(lockPath, '{ partial');
     expect(() => release()).not.toThrow();
     expect(existsSync(lockPath)).toBe(true);
+  });
+});
+
+describe('acquireWriterLock reclaim removes only the lock it judged', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  function tryAcquire(lockPath: string): { error?: unknown } {
+    try {
+      acquireWriterLock(lockPath);
+      return {};
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  const livePeerBody = (nonce: string): string =>
+    JSON.stringify({ pid: process.pid, ts: Date.now(), nonce });
+
+  /**
+   * Intercepts the first read of the lock path, which is the staleness verdict's
+   * read, and runs `onFirstRead` around the real read so a test can change what
+   * sits at the path between the verdict and the removal.
+   */
+  function interceptFirstRead(
+    lockPath: string,
+    onFirstRead: (read: () => string) => string,
+  ): void {
+    const realRead = fsModule.readFileSync;
+    let intercepted = false;
+    vi.spyOn(fsModule, 'readFileSync').mockImplementation(((target: unknown, ...rest: unknown[]) => {
+      if (!intercepted && target === lockPath) {
+        intercepted = true;
+        return onFirstRead(() => (realRead as (...args: unknown[]) => string)(target, ...rest));
+      }
+      return (realRead as (...args: unknown[]) => unknown)(target, ...rest);
+    }) as typeof fsModule.readFileSync);
+  }
+
+  it('does not remove a peer lock created after the lock it tried to read had vanished', () => {
+    const lockPath = newLockPath();
+    writeFileSync(lockPath, livePeerBody('first-holder'));
+
+    // The holder releases between the failed open and the read, and a peer takes
+    // the path before this writer acts on the "gone" answer.
+    interceptFirstRead(lockPath, (read) => {
+      rmSync(lockPath, { force: true });
+      try {
+        return read();
+      } finally {
+        writeFileSync(lockPath, livePeerBody('peer-holder'));
+      }
+    });
+
+    process.env[MAX_WAIT_ENV] = '0';
+    const outcome = tryAcquire(lockPath);
+    // The peer's lock survives, so this writer must not hold the lock too.
+    expect(JSON.parse(readFileSync(lockPath, 'utf8')).nonce).toBe('peer-holder');
+    expect(outcome.error).toEqual(expect.objectContaining({ code: 'DB_ERROR' }));
+  });
+
+  it('does not remove a peer lock that replaced the stale lock it judged', () => {
+    const lockPath = newLockPath();
+    writeFileSync(lockPath, JSON.stringify({ pid: deadPid(), ts: Date.now(), nonce: 'dead-holder' }));
+
+    // The verdict reads the dead holder's body, then another reclaimer clears it
+    // and a peer takes the path before this writer removes what it judged.
+    interceptFirstRead(lockPath, (read) => {
+      const judged = read();
+      rmSync(lockPath, { force: true });
+      writeFileSync(lockPath, livePeerBody('peer-holder'));
+      return judged;
+    });
+
+    process.env[MAX_WAIT_ENV] = '0';
+    const outcome = tryAcquire(lockPath);
+    // The peer's lock survives, so this writer must not hold the lock too.
+    expect(JSON.parse(readFileSync(lockPath, 'utf8')).nonce).toBe('peer-holder');
+    expect(outcome.error).toEqual(expect.objectContaining({ code: 'DB_ERROR' }));
+  });
+
+  it('acquires when the lock vanishes after the failed open and nobody replaces it', () => {
+    const lockPath = newLockPath();
+    writeFileSync(lockPath, livePeerBody('first-holder'));
+
+    interceptFirstRead(lockPath, (read) => {
+      rmSync(lockPath, { force: true });
+      return read();
+    });
+
+    process.env[MAX_WAIT_ENV] = '0';
+    const release = acquireWriterLock(lockPath);
+    expect(Number(JSON.parse(readFileSync(lockPath, 'utf8')).pid)).toBe(process.pid);
+    release();
+    expect(existsSync(lockPath)).toBe(false);
   });
 });

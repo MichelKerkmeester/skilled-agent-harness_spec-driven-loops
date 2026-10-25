@@ -1,0 +1,37 @@
+$ rg -n "rmSync|unlinkSync|renameSync" .skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs
+416:  fs.rmSync(lockPath, { force: true });
+463: *    THIS acquisition's nonce (a peer rmSync'd ours and recreated theirs in the
+467: *    nonce. If we were reclaimed mid-write, release skips the rmSync (but still
+490:  // that rmSync's our file and recreates its own is detectable: the on-disk
+525:          if (readLockNonce(lockPath) === null) fs.rmSync(lockPath, { force: true });
+538:      // Re-read the file we just stamped. If a peer reclaimed (rmSync) our lock
+609:    // half-written, or foreign-nonce file all read as "not mine" → skip rmSync.
+612:        fs.rmSync(lockPath, { force: true });
+
+$ rg -n "acquireWriterLock|judgeWriterLock|isWriterLockStale" .skilled/skills/system-deep-loop/runtime --glob !node_modules
+.skilled/skills/system-deep-loop/runtime/database/README.md:28:- Graph writer locks are implemented by `scripts/lib/cli-guards.cjs` `acquireWriterLock` using `wx` lock-file acquisition, stale-lock reclamation and nonce ownership checks
+.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:18:  acquireWriterLock,
+.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:299:    releaseWriterLock = acquireWriterLock(path.join(storageDir, isCouncil ? '.council-graph-writer.lock' : '.deep-loop-graph-writer.lock'));
+.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:18:  acquireWriterLock,
+.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:858:      const releaseWriterLock = acquireWriterLock(path.join(db.COVERAGE_GRAPH_DATABASE_DIR, '.deep-loop-graph-writer.lock'));
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:350:function judgeWriterLock(lockPath, maxHoldMs) {
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:474:function acquireWriterLock(lockPath) {
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:569:      const judged = judgeWriterLock(lockPath, maxHoldMs);
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:625:  acquireWriterLock,
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts:28:const { acquireWriterLock } = require('../../scripts/lib/cli-guards.cjs') as {
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts:29:  acquireWriterLock: (lockPath: string) => () => void;
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts:264:  const releaseWriterLock = acquireWriterLock(`${path}.lock`);
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts:289:  const releaseWriterLock = acquireWriterLock(`${path}.lock`);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:16:import { acquireWriterLock } from '../../scripts/lib/cli-guards.cjs';
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:50:describe('acquireWriterLock stale-lock reclamation', () => {
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:63:    const release = acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:81:    expect(() => acquireWriterLock(lockPath)).toThrowError(
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:96:    const release = acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:104:    const release = acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:119:    const release = acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:137:    const release = acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:147:describe('acquireWriterLock reclaim removes only the lock it judged', () => {
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:154:      acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts:236:    const release = acquireWriterLock(lockPath);
+.skilled/skills/system-deep-loop/runtime/lib/council/convergence.cjs:12:const { acquireWriterLock } = require('../../scripts/lib/cli-guards.cjs');
+.skilled/skills/system-deep-loop/runtime/lib/council/convergence.cjs:204:    const releaseWriterLock = acquireWriterLock(path.join(db.COUNCIL_GRAPH_STORAGE_DIR, '.council-graph-writer.lock'));
