@@ -46,6 +46,11 @@ contextType: "general"
 - [x] T006 [P] Reconcile the parent and the child phase records
 - [x] T011 Fix the surface contract text in the hub `SKILL.md`, `hub-router.json` and `sk-code-ci/SKILL.md`, and add the three single-route replays (operator-delegated decision, 2026-10-25)
 - [x] T007 Regenerate the skill graph, the activation manifest and its authored copy, and the Hermes copy
+- [x] T012 Rewrite the stale routing-suite comment in `.github/workflows/routing-registry-drift.yml`, which still said the gate installs only vitest although the setup step now provisions the advisor runtime tree. The `33 of 33` counts in `sk-code-ci` were already `32 of 32`, fixed in `0781e81da2`, against 32 files in `.github/workflows/`. The stale comment in `system-skill-advisor/runtime/vitest.config.ts:18-24` now says the config avoids a vitest import because CI runs the suites under an npx-pinned vitest that can differ from the runtime's own range
+- [x] T013 Make the `/doctor:ci toggle` refusal of `SKILLED_CI=off` state its reason. The refusal is intended: the workflows README says the master switch must stay unset because it skips `message-contract.yml`, the only required check. The message, the presentation contract and `ci.md` now name that reason, and the contract test asserts the two copies match (`doctor-ci-toggle.yaml`, `doctor-ci-presentation.txt`, `ci.md`, `doctor-ci-contract.test.cjs`)
+- [x] T014 Align the 003 AC-005 and AC-006 criterion text with the verified proof, with a dated amendment marker and a decision-record amendment
+- [x] T015 Trace the part of the 002 baseline band left unexplained: 891 min of pull_request runs the push-only pre-change window never held, 564 from the 003 probe branches and 327 from Dependabot (`002/scratch/baseline-24h/pr-runs-by-branch.json`)
+- [x] T016 Report the old 1.12 GB provision cache entry without deleting it. It is gone from `gh cache list`, and the current key could not hit it (`004/scratch/cache-adoption-runs.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -125,7 +125,7 @@ A refused change prints one of these lines, `STATUS=FAIL ERROR="refused"` and ex
 ```text
 REFUSE: [name] is not a documented switch
 REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context
-REFUSE: SKILLED_CI must stay unset while the ruleset requires that context
+REFUSE: SKILLED_CI must stay unset because it also skips message-contract.yml, the only check the ruleset requires, and a skipped job reports Success
 ```
 
 ## 4. RESULTS DISPLAY

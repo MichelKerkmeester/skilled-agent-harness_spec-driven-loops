@@ -64,6 +64,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 **Amendment (2026-10-25, AC-006 band)**: the original row expected the total in `1,700-1,850` runner-min, about 1,739 predicted, and read `Unmet` at the measured 2,191. On the operator's ruling of 2026-10-25, "Amend the band to the measured value.", the band is now the measured 2,191 runner-min (ADR-006). The estimate left out the Trigger Index Rebuild workflow's own runs (90 min) and 15 manual `workflow_dispatch` runs (114 min); removing both still leaves 1,987. The measurement itself was not rescaled or adjusted.
 
+**Amendment (2026-10-25, the remainder above the old band)**: the 137 min left after those two items is pull_request traffic the push-only prediction never modelled. The pre-change window held no pull_request runs. The baseline window's 321 pull_request runs bill 891 min, 564 of them from the 15 phase 003 probe branches and 327 from Dependabot pull requests, while its push runs bill 1,184 min, under the 1,739 prediction (`implementation-summary.md`, Known Limitations item 3, and `scratch/baseline-24h/pr-runs-by-branch.json`). AC-006 stays `Met` and its band is unchanged.
+
 ### Status values
 
 | Value | Meaning |

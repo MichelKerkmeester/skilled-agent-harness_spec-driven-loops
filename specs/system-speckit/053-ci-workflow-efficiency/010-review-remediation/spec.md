@@ -74,7 +74,6 @@ Every confirmed finding the operator did not hold back is fixed, and each check 
 - Reconcile the parent and the 002, 003, 004, 005, 006, 007, 008 and 009 records with the tree.
 
 ### Out of Scope
-- The packet `changelog/` folder - it waits on an operator decision.
 - Phase 004 T072 to T074 and phase 007 T100 to T102 - they are time-gated and run later.
 - `sk-code-quality/` and `sk-code-review/` - another worker owns them in this round.
 
@@ -90,6 +89,10 @@ Every confirmed finding the operator did not hold back is fixed, and each check 
 | `.skilled/skills/sk-code/SKILL.md`, `hub-router.json`, `sk-code-ci/SKILL.md` | Modify | The surface contract text (operator-delegated decision, 2026-10-25) |
 | `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/` (three files), `.skilled/bin/tests/compiled-route-admission.test.cjs` | Create, Modify | Three single-route replays and the corpus pin |
 | `.skilled/commands/doctor/ci.md`, `scripts/ci-report.cjs`, `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | Command contract and comment fixes |
+| `.github/workflows/routing-registry-drift.yml` | Modify | The routing-suite comment states what the step does now |
+| `.skilled/skills/system-skill-advisor/runtime/vitest.config.ts` | Modify | The config comment gives the real reason it avoids a vitest import |
+| `.skilled/commands/doctor/assets/doctor-ci-toggle.yaml`, `doctor-ci-presentation.txt`, `ci.md`, `scripts/tests/doctor-ci-contract.test.cjs` | Modify | The master-switch refusal names its reason, and the test holds the two copies equal |
+| `specs/system-speckit/053-ci-workflow-efficiency/{002,003,004}-*/` records | Modify, Create | The 003 criterion text, the 002 band remainder with its evidence file, the 004 cache entry note |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -137,7 +140,7 @@ Every confirmed finding the operator did not hold back is fixed, and each check 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. The held-back changelog finding (R4-P2-001) waits on an operator decision recorded in `../review/review-report.md`.
+- None. The changelog finding (R4-P2-001) closed on the operator's call to remove the dead pointer from every phase spec.
 <!-- /ANCHOR:questions -->
 
 ---

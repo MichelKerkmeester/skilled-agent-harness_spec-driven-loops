@@ -51,7 +51,9 @@
       ".skilled/commands/doctor/ci.md",
       ".skilled/commands/doctor/scripts/ci-report.cjs",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/skills/sk-code/ROUTER.md"
+      ".github/workflows/routing-registry-drift.yml",
+      ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs"
     ],
     "entities": [
       {
@@ -145,9 +147,21 @@
         "source": "derived"
       },
       {
-        "name": "ROUTER.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-toggle.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep review found a routing regression: the bare keyword `concurrency group` sent a worker-pool prompt to the CI surface and failed the guard test written to prevent it",
     "created_at": "2026-10-25T17:19:17Z",
-    "last_save_at": "2026-10-25T17:47:07.093Z",
+    "last_save_at": "2026-10-25T18:25:08.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5e834b5de55a784ca5e122bbd05a88e179988ac0e5e721ecdc4ae1272e6baef",
+    "source_fingerprint": "sha256:4dff42716c20850384388eacde5a3d11dc9d41b2871285386fa00865728f4886",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "60f9f92d1033af54aaa2804e87b300117cf9c1cdc6da5d46c2417bff35407509",
+      "spec.md": "6f1c955058ef633833a85194b41c057f224cc7eb8a6ece4f91f679b35b351fa6",
       "plan.md": "372bb7b9bea11ce6f2d5e01be584265faf2254ad7247e6131faeadfb81edc67e",
-      "tasks.md": "daffd4f3bb8c284954dacda3715c2092693d94ec025d3f89aa6a2891443c6483",
-      "implementation-summary.md": "bc8b3cec532910b28c01019c22b4396b9b25a4a3cadf5e03c8d58b9b93b9d6a8"
+      "tasks.md": "249c12b5c4a67cb4e6f17e287485747baf3552242929b697f3bca9b8c8ed6422",
+      "implementation-summary.md": "907822a7b9d78edb4b273b35b53e4e9f7cab183d0292c2bc48c3dff5e4d80ccb"
     },
     "last_active_at": null
   }
