@@ -36,6 +36,9 @@ hook_flags="$script_directory/../hooks/shared/hook-flags.cjs"
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
 consumed_record_json=''
+consumed_live_model=''
+consumed_live_provider=''
+consumed_live_effort=''
 
 # Prints the manual claim command on stdout, as the CLI does: it is the result an
 # operator copies, and stderr stays for diagnostics. The core fills the template, so the
@@ -46,17 +49,28 @@ print_manual_command() {
   local spec_folder="${2:-}"
   local command_form=template
   local manual_command
+  local manual_template="${SKILLED_LOOP_MANUAL_TEMPLATE:-}"
+  local template_conflict="$manual_template_conflict"
+  local live_template
 
-  if [[ -n "$manual_template_conflict" ]]; then
+  # The command is printed after a consume, so the record's own live settings decide where
+  # a manual claim starts. Each rebuild runs in a subshell, because building a template
+  # resets the launch arguments the next relaunch would use.
+  read_consumed_live_settings
+  if live_template=$(apply_consumed_live_settings && build_manual_command_template); then
+    manual_template="$live_template"
+    template_conflict=$(apply_consumed_live_settings; find_manual_template_conflict)
+  fi
+  if [[ -n "$template_conflict" ]]; then
     printf '%s %s %s\n' \
-      "error: the carried option value $manual_template_conflict contains the" \
+      "error: the carried option value $template_conflict contains the" \
       "$manual_handoff_token placeholder, so the manual command cannot repeat your" \
       'launch options; the plain command follows and they must be added back by hand' \
       >&2
     command_form=plain
   fi
   if ! manual_command=$(
-    node -e '
+    SKILLED_LOOP_MANUAL_TEMPLATE="$manual_template" node -e '
       const [corePath, runtime, handoffPath, specFolder, commandForm] =
         process.argv.slice(1);
       if (commandForm === "plain") delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
@@ -235,6 +249,61 @@ live_model_voids_launch_effort() {
     return 1
   fi
   [[ -z "$live_effort" ]] || ! effort_is_valid "$runtime_name" "$live_effort"
+}
+
+# Reads the consumed record's live model, provider and effort in one process, so a print
+# costs a single extra read however many of them the record holds.
+read_consumed_live_settings() {
+  consumed_live_model=''
+  consumed_live_provider=''
+  consumed_live_effort=''
+  [[ -n "$consumed_record_json" ]] || return 0
+  {
+    IFS= read -r -d '' consumed_live_model \
+      && IFS= read -r -d '' consumed_live_provider \
+      && IFS= read -r -d '' consumed_live_effort
+  } < <(
+    node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      const text = (key) => (typeof record[key] === "string" ? record[key] : "");
+      process.stdout.write(text("model") + "\0" + text("provider") + "\0" + text("effort") + "\0");
+    ' <<< "$consumed_record_json" 2>/dev/null
+  ) || {
+    consumed_live_model=''
+    consumed_live_provider=''
+    consumed_live_effort=''
+  }
+}
+
+# Moves the carried settings onto the consumed live ones by the checks a relaunch applies,
+# without its warnings, since nothing is relaunched. Succeeds only when a live value was
+# accepted, so a record without one keeps the current template byte for byte. Run it only
+# in a subshell: it changes the settings the next relaunch reads.
+apply_consumed_live_settings() {
+  local launch_model="${SKILLED_LOOP_MODEL:-}"
+  local accepted_model=''
+  local changed=1
+
+  if [[ -n "$consumed_live_model" ]] && model_is_valid "$consumed_live_model"; then
+    accepted_model="$consumed_live_model"
+    SKILLED_LOOP_MODEL="$accepted_model"
+    changed=0
+  fi
+  if [[ "$runtime" == 'pi' || "$runtime" == 'hermes' ]] \
+    && [[ -n "$consumed_live_provider" && -n "$accepted_model" ]] \
+    && model_is_valid "$consumed_live_provider"; then
+    SKILLED_LOOP_PROVIDER="$consumed_live_provider"
+  fi
+  if live_model_voids_launch_effort "$runtime" "$launch_model" "$accepted_model" \
+    "$consumed_live_effort" "$consumed_live_provider"; then
+    unset SKILLED_LOOP_EFFORT
+  fi
+  if [[ -n "$consumed_live_effort" ]] && effort_is_valid "$runtime" "$consumed_live_effort"; then
+    SKILLED_LOOP_EFFORT="$consumed_live_effort"
+    changed=0
+  fi
+  return "$changed"
 }
 
 # Appends the carried effort in the runtime's own flag syntax, when the level is one that
@@ -971,6 +1040,13 @@ while true; do
           "$SKILLED_LOOP_EFFORT" "$runtime" >&2
         unset SKILLED_LOOP_EFFORT
       fi
+      # Every later manual command, the session's own hop-cap command among them, starts
+      # from the settings this hop launches on, so a model an earlier hop switched to is not
+      # lost to the first launch's. Building the template resets the launch arguments, so it
+      # runs in a subshell and before they are built for this hop.
+      SKILLED_LOOP_MANUAL_TEMPLATE=$(build_manual_command_template)
+      export SKILLED_LOOP_MANUAL_TEMPLATE
+      manual_template_conflict=$(find_manual_template_conflict)
       build_relaunch_arguments "$launch_prompt"
       if [[ "$runtime" == 'codex' ]]; then
         launch_arguments=(--no-daemon "${launch_arguments[@]}")

@@ -467,11 +467,16 @@ function goalRoots(repoRoot, noteCwd) {
  * @param {Object} frontmatter - The note's parsed frontmatter.
  * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
  * @param {string} repoRoot - Absolute repository root.
+ * @param {boolean} [recordedGoalSwitch] - The goal switch as prepare recorded it, when known.
  * @returns {string} The packet, or '' when none may be handed on.
  */
-function usableGoalPacket(frontmatter, switches, repoRoot) {
+function usableGoalPacket(frontmatter, switches, repoRoot, recordedGoalSwitch) {
   const packet = typeof frontmatter?.goal_packet === 'string' ? frontmatter.goal_packet : '';
   if (packet === '' || !goalSwitchOn(switches)) return '';
+  // A prepare with the switch off leaves the note's packet as an earlier prepare wrote it, so
+  // that packet is not this hand-over's goal. A record without the field predates the
+  // recording and keeps the switch as it reads now.
+  if (recordedGoalSwitch === false) return '';
   const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
   return goalPacketProblem(packet, goalRoots(repoRoot, noteCwd)) === null ? packet : '';
 }
@@ -788,6 +793,7 @@ function recordGoalPacket(filePath, goalPacket) {
  * @param {number} [options.hops=0] - Number of completed hops.
  * @param {string} [options.model=''] - Model the sending session is using, when proven.
  * @param {string} [options.effort=''] - Effort the sending session is using, when proven.
+ * @param {boolean} [options.goalSwitch] - The goal switch at prepare; omitted, no field is written.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object} The persisted pending record.
@@ -802,6 +808,7 @@ function preparePending({
   hops = 0,
   model = '',
   effort = '',
+  goalSwitch,
   env = process.env,
   now,
 }) {
@@ -818,6 +825,9 @@ function preparePending({
     preparedAt: toIsoTimestamp(now),
     ...(nonEmptyString(model) ? { model } : {}),
     ...(nonEmptyString(effort) ? { effort } : {}),
+    // Consume reads the switch from here, since the note cannot tell a packet this prepare
+    // wrote from one it left in place with the switch off.
+    ...(typeof goalSwitch === 'boolean' ? { goalSwitch } : {}),
   };
   ensureStateDir(env);
   // The write shares the lock every other record writer takes, so it cannot land between a

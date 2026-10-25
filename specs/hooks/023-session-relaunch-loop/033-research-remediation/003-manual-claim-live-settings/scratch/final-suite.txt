@@ -1,0 +1,14 @@
+✖ a reused note with the goal switch off hands on no packet (130.782959ms)
+ℹ tests 921
+ℹ suites 0
+ℹ pass 920
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130964.144583
+✖ failing tests:
+✖ a reused note with the goal switch off hands on no packet (130.782959ms)
+
+ Test Files  1 passed (1)
+      Tests  59 passed (59)

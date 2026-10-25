@@ -2619,6 +2619,41 @@ test('consume reports the goal packet only while the switch is on and the packet
   });
 });
 
+// With the switch off, prepare leaves the note's goal_packet as an earlier prepare wrote it,
+// so only the relaunch record can say that this hand-over was prepared without a goal.
+test('a reused note with the goal switch off hands on no packet', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeGoalFile(sandbox.repoRoot);
+  setNoteField(handoffPath, `goal_packet: ${GOAL_PACKET}`);
+  const loopEnv = {
+    ...sandbox.env,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+    SKILLED_LOOP_ID: LOOP_ID,
+    SKILLED_LOOP_RUNTIME: 'claude',
+    CLAUDE_PID: String(process.pid),
+  };
+
+  const prepared = runCli(
+    sandbox,
+    ['prepare', '--handoff', handoffPath, '--session', SESSION_ID],
+    { ...loopEnv, SESSION_RELAUNCH_GOAL: '0' },
+  );
+  assert.equal(prepared.status, 0, prepared.stderr);
+  assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
+  const recordText = fs.readFileSync(relaunchPath(sandbox), 'utf8');
+
+  const consume = (env) => {
+    fs.writeFileSync(relaunchPath(sandbox), recordText);
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID], env);
+    assert.equal(result.status, 0, result.stderr);
+    return JSON.parse(result.stdout);
+  };
+  const expected = { handoff: handoffPath, spec_folder: SPEC_FOLDER, note: 'open' };
+  assert.deepEqual(consume({ ...loopEnv, SESSION_RELAUNCH_GOAL: '0' }), expected);
+  assert.deepEqual(consume(loopEnv), expected);
+});
+
 test('the usage text names the goal packet on claim and consume', (t) => {
   const sandbox = createSandbox(t);
   const result = runCli(sandbox, ['--help']);

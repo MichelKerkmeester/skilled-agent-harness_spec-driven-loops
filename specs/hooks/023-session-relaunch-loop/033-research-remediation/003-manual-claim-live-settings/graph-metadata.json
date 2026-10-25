@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,7 +43,12 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
-      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs"
+      "scratch/red-before.txt",
+      "scratch/green-after.txt",
+      "scratch/baseline-suite.txt",
+      "scratch/final-suite.txt",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      "scratch/inventories.txt"
     ],
     "entities": [
       {
@@ -89,9 +94,39 @@
         "source": "derived"
       },
       {
+        "name": "red-before.txt",
+        "kind": "file",
+        "path": "scratch/red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after.txt",
+        "kind": "file",
+        "path": "scratch/green-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-suite.txt",
+        "kind": "file",
+        "path": "scratch/baseline-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
         "name": "session-relaunch-cli.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "inventories.txt",
+        "kind": "file",
+        "path": "scratch/inventories.txt",
         "source": "derived"
       },
       {
@@ -159,41 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The printed manual claim command replays a template built once, before the loop starts: `SKILLEDLOOPMANUALTEMPLATE=$(buildmanualcommandtemplate)` at `.skilled/bin/skilled-loop:637`, built from the first launch arguments (`buildmanualcommandtemplate` at `:402-420`, printed by `printmanualcommand` at `:42-70`)",
     "created_at": "2026-10-25T13:42:28Z",
-    "last_save_at": "2026-10-25T14:10:53.052Z",
+    "last_save_at": "2026-10-25T18:40:33.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f5ca7f8042e9f2298935b4c4c55191219db8bf7daf8e0c194844add27187ee3",
+    "source_fingerprint": "sha256:af0eee6041ce0ff1d6958aa7284765f068d0a3516338507edf42e4d9606f1f07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ea61fea704a6ae402dcd2ae64ca73b05eefd8deff38c1d71bc7139b3f78305a",
-      "plan.md": "acc9ebf97eaef48d5691b1c75944b599cbd1f7deef778e4b6de21f887c7e6ab0",
-      "tasks.md": "e1c21ad2c2f0bf542f6291e3f0eff68e484a5fc61e7f8b24030760b3beba409d",
-      "implementation-summary.md": "abe02319d387c1f7bfe29b745c7b538e98bf4e61ba49e857e8c9715639c64440"
+      "spec.md": "c51c7c682fe455b7668cff3786595d920350aff04e9f2c407f0f8d3e2125bbdc",
+      "plan.md": "b4fc25a4ddf25dbb52e2469f61f89446e5e62eb0a20f355edafce9f1b354609e",
+      "tasks.md": "818fdf50c8cc60d4ea6cf07f1706327c03aced7b92920c16d31aa83c2f8c6026",
+      "implementation-summary.md": "b42fc19a00712770b45b3ac6ac139f1b764a5e7d86ccba43cc044acec9b7562c"
     },
     "last_active_at": null
   }

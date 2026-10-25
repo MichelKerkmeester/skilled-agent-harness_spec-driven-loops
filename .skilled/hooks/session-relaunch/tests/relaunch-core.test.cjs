@@ -2083,6 +2083,71 @@ test('claimHandoff and completeHandoff each take the note lock and release it', 
   assert.match(readNote(handoffPath), new RegExp(`^claimed_by: ${SESSION_ID}$`, 'm'));
 });
 
+// Only separate processes contend on the file lock. Each claimant signals ready and waits for
+// one go file, so the claims start together rather than whenever each process loaded. The lock
+// runs its work unlocked once a 2000 ms wait expires, so a machine stalled that long could let
+// both claims through; each claim is one small read and write to keep well inside that.
+test('two concurrent claims have one winner', async (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
+  const barrier = path.join(sandbox.root, 'barrier');
+  fs.mkdirSync(barrier);
+  const goPath = path.join(barrier, 'go');
+  const sessions = ['session-test-00000011', 'session-test-00000012'];
+
+  const claimants = sessions.map((sessionId) => {
+    const script = [
+      "const fs = require('node:fs');",
+      `const core = require(${JSON.stringify(corePath)});`,
+      `fs.writeFileSync(${JSON.stringify(path.join(barrier, `ready-${sessionId}`))}, '');`,
+      'const deadline = Date.now() + 10000;',
+      `while (!fs.existsSync(${JSON.stringify(goPath)})) {`,
+      "  if (Date.now() > deadline) { process.stdout.write('{\"error\":\"barrier timeout\"}'); process.exit(2); }",
+      '}',
+      'let outcome;',
+      'try {',
+      `  const claimed = core.claimHandoff(${JSON.stringify(handoffPath)}, { sessionId: ${JSON.stringify(sessionId)} });`,
+      '  outcome = { won: true, claimedBy: claimed.frontmatter.claimed_by };',
+      '} catch (error) {',
+      '  outcome = { won: false, error: error.message };',
+      '}',
+      'process.stdout.write(JSON.stringify(outcome));',
+      '',
+    ].join('\n');
+    const child = spawn(process.execPath, ['-e', script], {
+      env: { ...sandbox.env, SYSTEM_SESSION_RELAUNCH_ENABLED: '1' },
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    let stdout = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    return new Promise((resolve) => {
+      child.once('error', () => resolve({ code: -1, stdout }));
+      child.once('close', (code) => resolve({ code, stdout }));
+    });
+  });
+
+  const readyDeadline = Date.now() + 10000;
+  while (fs.readdirSync(barrier).filter((name) => name.startsWith('ready-')).length < 2) {
+    assert.ok(Date.now() < readyDeadline, 'claimants never reached the barrier');
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  fs.writeFileSync(goPath, '');
+
+  const results = await Promise.all(claimants);
+  assert.deepEqual(results.map(({ code }) => code), [0, 0]);
+  const outcomes = results.map(({ stdout }) => JSON.parse(stdout));
+  const winners = outcomes.filter(({ won }) => won);
+  const losers = outcomes.filter(({ won }) => !won);
+  assert.equal(winners.length, 1, JSON.stringify(outcomes));
+  assert.equal(losers.length, 1, JSON.stringify(outcomes));
+  assert.match(losers[0].error, /^cannot claim handoff with status claimed\b/);
+  const winner = sessions[outcomes.indexOf(winners[0])];
+  assert.equal(winners[0].claimedBy, winner);
+  assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.claimed_by, winner);
+  assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // GOAL PACKET
 // ─────────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,37 @@
+✖ a reused note with the goal switch off hands on no packet (243.863083ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 291.912208
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2590:1
+✖ a reused note with the goal switch off hands on no packet (243.863083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   goal_packet: 'specs/hooks/023-session-relaunch-loop',
+      handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-kUeKNm/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+      note: 'open',
+      spec_folder: 'specs/hooks/023-session-relaunch-loop'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2620:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-kUeKNm/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open', goal_packet: 'specs/hooks/023-session-relaunch-loop' },
+    expected: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-kUeKNm/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1

@@ -1,0 +1,13 @@
+✔ preparePending writes the exact pending record shape (10.022125ms)
+✔ preparePending writes the record under the record lock (5.724125ms)
+✔ consume reports the goal packet only while the switch is on and the packet holds goal.md (122.218416ms)
+✔ a reused note with the goal switch off hands on no packet (139.973167ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 309.81425
+exit=0

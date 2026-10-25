@@ -367,8 +367,15 @@ function goalRoots(noteCwd) {
   return core.goalRoots(nudge.resolveRepoRoot(process.env), noteCwd);
 }
 
-function noteGoalPacket(frontmatter) {
-  return core.usableGoalPacket(frontmatter, resolvedSwitches(), nudge.resolveRepoRoot(process.env));
+// A manual claim has no relaunch record, so it passes no recorded switch and reads the switch
+// as it is at claim time.
+function noteGoalPacket(frontmatter, recordedGoalSwitch) {
+  return core.usableGoalPacket(
+    frontmatter,
+    resolvedSwitches(),
+    nudge.resolveRepoRoot(process.env),
+    recordedGoalSwitch,
+  );
 }
 
 // The field belongs to this command and not to whoever wrote the note. Every prepare and keep
@@ -523,6 +530,7 @@ function prepare(args) {
     hops,
     model: settings.model,
     effort: settings.effort,
+    goalSwitch: core.goalSwitchOn(resolvedSwitches()),
     env: process.env,
   });
   supersedeClaimedNotes(handoffPath, { loopId, sessionId });
@@ -713,7 +721,7 @@ function consume(args) {
         : '';
       if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
-      goalPacket = noteGoalPacket(note.frontmatter);
+      goalPacket = noteGoalPacket(note.frontmatter, record?.goalSwitch);
     } catch {
       ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }

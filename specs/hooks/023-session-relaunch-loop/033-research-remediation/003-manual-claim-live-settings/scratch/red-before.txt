@@ -1,0 +1,105 @@
+✖ manual command carries the live model and effort (232.012209ms)
+✖ Cursor manual command carries the live Cursor model (228.744667ms)
+✔ manual command keeps the launch model for an invalid live model (224.913083ms)
+✖ manual command reports a live model that holds the placeholder (225.828833ms)
+✖ manual command after a model-switching hop carries the current hop's model (594.679667ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1551.850542
+
+✖ failing tests:
+
+test at tests/skilled-loop.test.cjs:1585:1
+✖ manual command carries the live model and effort (232.012209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + `skilled-loop claude '--model' 'claude-sonnet-5-5' '--effort' 'low' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-BEU1fw/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`
+  - `skilled-loop claude '--model' 'claude-opus-5-5' '--effort' 'medium' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-BEU1fw/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`
+  
+      at TestContext.<anonymous> (<scratch copy of HEAD>/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1603:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `skilled-loop claude '--model' 'claude-sonnet-5-5' '--effort' 'low' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-BEU1fw/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`,
+    expected: `skilled-loop claude '--model' 'claude-opus-5-5' '--effort' 'medium' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-BEU1fw/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/skilled-loop.test.cjs:1607:1
+✖ Cursor manual command carries the live Cursor model (228.744667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + `skilled-loop cursor '--model' 'gpt-5.6-luna' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-F74dfy/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`
+  - `skilled-loop cursor '--model' 'grok-4.7[context=256k]' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-F74dfy/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`
+  
+      at TestContext.<anonymous> (<scratch copy of HEAD>/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1633:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `skilled-loop cursor '--model' 'gpt-5.6-luna' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-F74dfy/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`,
+    expected: `skilled-loop cursor '--model' 'grok-4.7[context=256k]' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-F74dfy/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/skilled-loop.test.cjs:1661:1
+✖ manual command reports a live model that holds the placeholder (225.828833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + `skilled-loop claude '--model' 'claude-sonnet-5-5' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Y3IJTX/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`
+  - 'skilled-loop claude "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Y3IJTX/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"'
+  
+      at TestContext.<anonymous> (<scratch copy of HEAD>/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1673:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `skilled-loop claude '--model' 'claude-sonnet-5-5' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Y3IJTX/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`,
+    expected: 'skilled-loop claude "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Y3IJTX/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/skilled-loop.test.cjs:1681:1
+✖ manual command after a model-switching hop carries the current hop's model (594.679667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + `skilled-loop claude '--model' 'claude-sonnet-5-5' '--effort' 'low' "[session-relaunch] claim and continue handoff @@HANDOFF@@"`
+  - `skilled-loop claude '--model' 'claude-opus-5-5' "[session-relaunch] claim and continue handoff @@HANDOFF@@"`
+  
+      at TestContext.<anonymous> (<scratch copy of HEAD>/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1696:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `skilled-loop claude '--model' 'claude-sonnet-5-5' '--effort' 'low' "[session-relaunch] claim and continue handoff @@HANDOFF@@"`,
+    expected: `skilled-loop claude '--model' 'claude-opus-5-5' "[session-relaunch] claim and continue handoff @@HANDOFF@@"`,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

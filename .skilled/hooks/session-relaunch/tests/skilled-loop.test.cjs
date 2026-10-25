@@ -9,7 +9,9 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { RUNTIMES, manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
+const {
+  RUNTIMES, manualClaimCommand, resolveSessionSettings, validSpecFolder,
+} = require('../lib/relaunch-core.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
 // and a manual template that carries options would change every printed claim command.
@@ -1080,6 +1082,41 @@ test('opencode 2 on --server leaves the launch alone and warns the loop cannot a
   assert.match(result.stderr, /warning: .*--server.*cannot arm/);
 });
 
+test('opencode 2 equals-form server warns and keeps the launch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, {
+    STUB_HELP: OPENCODE_2_HELP,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['opencode', '--server=http://localhost:4096']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[0].args, ['--server=http://localhost:4096']);
+  assert.match(result.stderr, /warning: .*--server.*cannot arm/);
+});
+
+// The harness puts its stubs in front of the real PATH, which holds every runtime on a
+// developer machine, so this case builds a PATH that has node and the system tools only.
+test('missing runtime binary exits 127', (t) => {
+  const sandbox = createSandbox(t);
+  const nodeOnly = path.join(sandbox.root, 'node-only');
+  fs.mkdirSync(nodeOnly);
+  fs.symlinkSync(process.execPath, path.join(nodeOnly, 'node'));
+  Object.assign(sandbox.env, {
+    PATH: `${nodeOnly}:/usr/bin:/bin`,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const lookup = spawnSync('/bin/bash', ['-c', 'command -v claude'], {
+    env: sandbox.env, encoding: 'utf8',
+  });
+  assert.notEqual(lookup.status, 0, `claude resolves on the test PATH: ${lookup.stdout}`);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 127, result.stderr);
+  assert.match(result.stderr, /claude: command not found/);
+});
+
 test('opencode without --standalone in its help keeps the launch and the -m replay', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
@@ -1569,6 +1606,132 @@ test('a live value is the next hop launch value when that hop records none', (t)
   const records = readRecords(recordPath);
   assert.equal(records.length, 3);
   assert.deepEqual(records[2].args, ['--model', 'live-model', `${SEED} ${handoffPath}`]);
+});
+
+// A manual claim must start the receiver where an automatic relaunch would have, so the
+// printed command carries the sender's live settings and the settings the current hop
+// launched on, never only the first launch's.
+const MANUAL_SEED_TEMPLATE = `"${SEED} @@HANDOFF@@"`;
+
+function printedManualCommand(result) {
+  return result.stdout.split('\n').find((line) => line.startsWith('skilled-loop '));
+}
+
+test('manual command carries the live model and effort', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: 'claude-opus-5-5',
+    RECORD_EFFORT: 'medium',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p',
+  ]);
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  const template = `skilled-loop claude '--model' 'claude-opus-5-5' '--effort' 'medium' ${MANUAL_SEED_TEMPLATE}`;
+  const command = printedManualCommand(result);
+  assert.equal(command, withManualTemplate(template, () => manualClaimCommand('claude', handoffPath)));
+  assert.equal(command.includes('claude-sonnet-5-5'), false, command);
+});
+
+test('Cursor manual command carries the live Cursor model', (t) => {
+  const sandbox = createSandbox(t);
+  const configPath = path.join(sandbox.home, '.cursor', 'cli-config.json');
+  fs.mkdirSync(path.dirname(configPath), { recursive: true });
+  fs.writeFileSync(configPath, JSON.stringify({
+    version: 1,
+    model: { modelId: 'grok-4.7', displayModelId: 'grok-4.7' },
+    selectedModel: { modelId: 'grok-4.7', parameters: [{ id: 'context', value: '256k' }] },
+  }));
+  const { model: liveModel } = resolveSessionSettings({
+    runtime: 'cursor',
+    sessionId: 'session-cursor-0001',
+    env: { HOME: sandbox.home, SKILLED_LOOP_LAUNCHED_AT: String(Date.now() - 60000) },
+  });
+  assert.equal(liveModel, 'grok-4.7[context=256k]');
+  const { handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: liveModel,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['cursor', '--model', 'gpt-5.6-luna', 'p']);
+
+  assert.equal(result.status, 7, result.stderr);
+  const template = `skilled-loop cursor '--model' '${liveModel}' ${MANUAL_SEED_TEMPLATE}`;
+  assert.equal(
+    printedManualCommand(result),
+    withManualTemplate(template, () => manualClaimCommand('cursor', handoffPath)),
+  );
+});
+
+test('manual command keeps the launch model for an invalid live model', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: '--evil',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p',
+  ]);
+
+  assert.equal(result.status, 7, result.stderr);
+  const startupTemplate = readRecords(recordPath)[0].env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  assert.ok(startupTemplate.includes("'claude-sonnet-5-5'"), startupTemplate);
+  assert.equal(
+    printedManualCommand(result),
+    withManualTemplate(startupTemplate, () => manualClaimCommand('claude', handoffPath)),
+  );
+});
+
+test('manual command reports a live model that holds the placeholder', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: 'model-@@HANDOFF@@',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'claude-sonnet-5-5', 'p']);
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.equal(
+    printedManualCommand(result),
+    withManualTemplate('', () => manualClaimCommand('claude', handoffPath)),
+  );
+  const errorLine = result.stderr.split('\n').find((line) => line.startsWith('error: '));
+  assert.ok(errorLine && errorLine.includes('model-@@HANDOFF@@'), result.stderr);
+});
+
+test("manual command after a model-switching hop carries the current hop's model", (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'claude-opus-5-5',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  const template = `skilled-loop claude '--model' 'claude-opus-5-5' ${MANUAL_SEED_TEMPLATE}`;
+  assert.equal(records[1].env.SKILLED_LOOP_MANUAL_TEMPLATE, template);
+  const command = printedManualCommand(result);
+  assert.equal(command, withManualTemplate(template, () => manualClaimCommand('claude', handoffPath)));
+  assert.equal(command.includes('claude-sonnet-5-5'), false, command);
 });
 
 test('multi-hop relaunches carry each runtime model and provider on every invocation', (t) => {
