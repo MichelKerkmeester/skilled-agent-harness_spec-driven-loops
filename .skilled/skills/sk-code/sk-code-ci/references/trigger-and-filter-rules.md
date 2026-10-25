@@ -8,7 +8,7 @@ trigger_phrases:
   - "intentional trigger exception"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Trigger and Filter Rules
@@ -50,7 +50,7 @@ The trigger-index rebuild workflow commits four generated files to the branch it
 Evidence:
 
 - `.github/workflows/trigger-index-rebuild.yml:78-84` holds the list of the four generated paths the commit stages.
-- `.github/workflows/trigger-index-rebuild.yml:151` holds the commit body line that ends in `[skip ci]`.
+- `.github/workflows/trigger-index-rebuild.yml:152` holds the commit body line that ends in `[skip ci]`.
 - `.github/workflows/trigger-index-rebuild.yml:33` guards the rebuild job itself with the `Trigger-Index-Rebuild: ci` trailer, so a run GitHub creates anyway does not rebuild a rebuild.
 
 **The alternative.** A push-only `paths-ignore` that lists the eight twin entries on each downstream workflow does the same job, at the price of 104 twin-matched entries across 13 files and an amended ordering rule. Use it only if the skip token proves unreliable.

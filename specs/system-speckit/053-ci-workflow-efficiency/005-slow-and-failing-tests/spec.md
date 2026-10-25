@@ -65,8 +65,6 @@ This is **Phase 5** of the CI efficiency implementation phases specification. It
 - `scratch/r21-recheck.md`: the latest-40-run table per workflow, the root cause of every failure still present, and the five stale failures recorded closed.
 - `.github/workflows/deep-loop-runtime.yml`: a `check-contract-drift.cjs` step before the full suite, because 13 of the latest 40 runs carry `STALE_SOURCE_DIGEST`.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

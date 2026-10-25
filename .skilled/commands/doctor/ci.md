@@ -1,6 +1,6 @@
 ---
 description: "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch."
-argument-hint: "[report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>]"
+argument-hint: "[report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Write
 ---
 <!-- skill_agent: sk-code -->

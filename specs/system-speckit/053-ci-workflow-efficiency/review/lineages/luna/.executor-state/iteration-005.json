@@ -1,0 +1,248 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-luna-1792944728998-0esx2f",
+  "status": "complete",
+  "focus": "cross-phase closure and acceptance integration",
+  "dimensions": [
+    "correctness",
+    "traceability"
+  ],
+  "filesReviewed": [
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:62",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:100",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:509",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:590",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:674",
+    ".github/workflows/dependabot-auto-merge.yml:10",
+    ".github/workflows/dependabot-auto-merge.yml:33",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:173",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:174",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1253",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1331",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:72",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:73",
+    "specs/system-speckit/053-ci-workflow-efficiency/review/lineages/luna/steer.md (checked; absent)"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingsNew": [],
+  "findingDetails": [
+    {
+      "id": "LUNA-P2-002",
+      "severity": "P2",
+      "title": "Phase 007 closure text says the permission split is absent after it landed",
+      "dimension": "correctness",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:100",
+      "evidence": "The closure says the phase is not built and the workflow still has one job with both write scopes. T019 and current YAML show the split; recorded real runs leave the security-patch path unobserved.",
+      "recommendation": "Update the closure statement to distinguish the implemented split from the unmet live security-patch proof.",
+      "disposition": "active",
+      "findingClass": "implementation_status_drift",
+      "case": "The closure text still describes the old one-job permission shape, while T019 and the current workflow show two jobs. AC-002 remains Unmet because no recorded run executed the security-patch merge path.",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:62",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:100",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:509",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:590",
+        ".github/workflows/dependabot-auto-merge.yml:10",
+        ".github/workflows/dependabot-auto-merge.yml:33",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:674"
+      ],
+      "scopeProof": "The stale statement is in phase 007 closure text; task and workflow files were read as evidence only.",
+      "affectedSurfaceHints": [
+        "phase 007 closure statement",
+        "Dependabot permission boundary",
+        "AC-002 live proof"
+      ],
+      "confidence": 0.99,
+      "repeated": true
+    },
+    {
+      "id": "LUNA-P2-003",
+      "severity": "P2",
+      "title": "Phase 009 cross-reference leaves REQ-010 and REQ-011 without acceptance criteria",
+      "dimension": "traceability",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:72",
+      "evidence": "The task crosswalk maps REQ-010 and REQ-011 to AC-014 and AC-015, whose requirement columns say REQ-007; no acceptance row names either requirement ID.",
+      "recommendation": "Add acceptance rows for REQ-010 and REQ-011 or map them to rows whose requirement columns name them, then update the crosswalk and synchronization evidence.",
+      "disposition": "active",
+      "findingClass": "requirement_acceptance_mapping",
+      "case": "The crosswalk maps REQ-010 and REQ-011 to AC-014 and AC-015, but those criteria are labeled REQ-007 and no acceptance row names REQ-010 or REQ-011.",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:173",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:174",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1253",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:72",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:73",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1331"
+      ],
+      "scopeProof": "The requirement, task crosswalk, and acceptance table are all within phase 009.",
+      "affectedSurfaceHints": [
+        "REQ-010 strict-validation criterion",
+        "REQ-011 phase-result record",
+        "phase 009 acceptance mapping"
+      ],
+      "confidence": 0.99,
+      "repeated": true
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 0,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "check": "Phase 007 closure agrees with implemented workflow structure while retaining the unmet live-proof status",
+        "status": "fail",
+        "evidenceRefs": [
+          "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:62",
+          "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:100",
+          "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:590",
+          ".github/workflows/dependabot-auto-merge.yml:10",
+          ".github/workflows/dependabot-auto-merge.yml:33"
+        ]
+      },
+      {
+        "check": "Phase 009 requirements map to acceptance rows with matching requirement IDs",
+        "status": "fail",
+        "evidenceRefs": [
+          "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:173",
+          "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:174",
+          "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1253",
+          "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:72",
+          "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:73"
+        ]
+      }
+    ]
+  },
+  "newFindingsRatio": 0,
+  "sessionId": "fanout-luna-1792944728998-0esx2f",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "timestamp": "2026-10-25T16:37:49Z",
+  "durationMs": 96000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "The spec parent links phase child packets, task evidence, acceptance tables, and workflow implementation claims.",
+    "evidenceRefs": [
+      "specs/system-speckit/053-ci-workflow-efficiency/spec.md:63",
+      "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:590",
+      "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1253"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+      "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md",
+      ".github/workflows/dependabot-auto-merge.yml",
+      "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
+      "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md",
+      "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md"
+    ],
+    "selectionReason": "Compared two cross-phase integration claims against task evidence, current workflow structure, and acceptance tables.",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "partial",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:100",
+      "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1253"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "implementation_status_drift",
+      "requirement_acceptance_mapping"
+    ],
+    "covered": [
+      "implementation_status_drift",
+      "requirement_acceptance_mapping"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md",
+        ".github/workflows/dependabot-auto-merge.yml"
+      ],
+      "bugClass": "implementation_status_drift",
+      "hypothesis": "The phase 007 closure narrative may still describe the pre-split workflow despite a completed split task and current YAML.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "Compare AC-002 and closure text with T019, T022 evidence, and current Dependabot job scopes.",
+          "result": "The closure claims one job has both write scopes; T019 and YAML show a read-only metadata job and separate write-scoped auto-merge job. T022 shows two skipped merge runs, leaving live security-patch behavior unobserved.",
+          "evidenceRefs": [
+            "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:62",
+            "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:100",
+            "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:590",
+            ".github/workflows/dependabot-auto-merge.yml:10",
+            ".github/workflows/dependabot-auto-merge.yml:33",
+            "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:674"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The closure text contradicts task evidence and current YAML, while AC-002 correctly remains open for missing live behavior proof.",
+      "linkedFindingId": "LUNA-P2-002"
+    },
+    {
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md"
+      ],
+      "bugClass": "requirement_acceptance_mapping",
+      "hypothesis": "The task crosswalk may assign requirement IDs to acceptance rows that do not name those IDs.",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "REQ-010|REQ-011 across phase 009 spec, task crosswalk, and acceptance criteria.",
+          "result": "The spec and crosswalk contain REQ-010 and REQ-011, but the acceptance table has no matching rows; AC-014 and AC-015 are labeled REQ-007.",
+          "evidenceRefs": [
+            "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:173",
+            "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:174",
+            "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md:1253",
+            "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:72",
+            "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md:73"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "Requirement-to-acceptance coverage remains a union-only mapping and not an ID-aligned mapping.",
+      "linkedFindingId": "LUNA-P2-003"
+    }
+  ],
+  "graphEvents": []
+}

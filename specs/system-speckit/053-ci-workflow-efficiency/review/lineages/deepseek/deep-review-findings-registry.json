@@ -1,0 +1,1065 @@
+{
+  "sessionId": "fanout-deepseek-1792944728998-0esx2f",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-10-25T16:22:43.880Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Phase 007 completion state inverted: four documents say not built, tree says built",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Parent phase map and continuity block stale for six of nine phases",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Packet standard says 32 workflows, parent and the 006-to-009 handoff criterion say 33",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "Phase 007 task list cannot express completion: 8 of 102 headings carry no status marker",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P2",
+      "title": "Phase 004 AC-014 Unmet on a premise the tree contradicts, pinning the phase at 10%",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Phase 002 closure statement contradicts its own T021 commit evidence",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Phase 002 AC-003 cites the guarding test case at :895, actual :897",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Phase 005 proves a concurrent two-process step by running the halves sequentially",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Phase 009 closure statement defers a closure commit its own task list records as landed",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "CI standard states no persist-credentials rule; the one write-scoped job relies on convention",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Packet documents one of its two skip semantics, which fail in opposite directions",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "All nine child packets point at a changelog folder that does not exist",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Nine amended acceptance rows carry two observed clauses with no supersession marker",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Parent OPEN QUESTIONS lists two questions its own children have answered",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "Phase 009 decision record still describes the report as parsing 33 YAML files",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-003",
+      "severity": "P2",
+      "title": "R1-P1-003 downgraded to P2: the phase 004 delta table is genuinely missing",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P2",
+      "title": "Phase 004 AC-014 Unmet on a premise the tree contradicts, pinning the phase at 10%",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P2",
+      "title": "Phase 004 AC-014 Unmet on a premise the tree contradicts, pinning the phase at 10%",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 12
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.81,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "cache_poisoning",
+      "credential_exposure",
+      "cross_reference_integrity",
+      "documentation_contradiction",
+      "evidence_integrity",
+      "evidence_supersession",
+      "missing_validation",
+      "off_by_one",
+      "open_question_staleness",
+      "privilege_escalation",
+      "severity_inflation",
+      "supply_chain_pinning",
+      "task_notation",
+      "template_drift",
+      "untrusted_input"
+    ],
+    "ruledOut": [
+      "cache_poisoning",
+      "credential_exposure",
+      "missing_validation",
+      "off_by_one",
+      "open_question_staleness",
+      "privilege_escalation",
+      "severity_inflation",
+      "state_transition",
+      "supply_chain_pinning",
+      "template_drift",
+      "untrusted_input"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "documentation_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          5
+        ]
+      },
+      "evidence_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          5
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "missing_validation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "off_by_one": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "live_run_verification": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "credential_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "privilege_escalation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "untrusted_input": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "supply_chain_pinning": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cache_poisoning": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "template_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cross_reference_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "task_notation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "evidence_supersession": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "open_question_staleness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "severity_inflation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Not every child is stale; 008 agrees with the parent",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/tasks.md:83"
+      ],
+      "reason": "Phase 008 is genuinely unstarted; its blocked task and zero Met rows agree with the parent map"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/scripts/check-gate-inputs.sh"
+      ],
+      "bugClass": "missing_validation",
+      "disposition": "ruled_out",
+      "rationale": "004's measurements are reproducible; only its AC-014 premise is stale",
+      "evidenceRefs": [
+        ".github/scripts/check-gate-inputs.sh:497"
+      ],
+      "reason": "The output matches the recorded evidence character for character"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "off_by_one",
+      "disposition": "ruled_out",
+      "rationale": "The split cannot silently drop a file",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:147"
+      ],
+      "reason": "Union of the two processes is the whole project, and a rename fails loudly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows"
+      ],
+      "bugClass": "supply_chain_pinning",
+      "disposition": "ruled_out",
+      "rationale": "Pinning rule holds tree-wide",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:37"
+      ],
+      "reason": "All 89 remote references are 40-hex commit SHAs"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "The write surface cannot be reached from untrusted code",
+      "evidenceRefs": [
+        ".github/workflows/dependabot-auto-merge.yml:41"
+      ],
+      "reason": "No privileged PR trigger exists, and the only PR-triggered write job runs gh pr merge with a Dependabot-only condition"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows"
+      ],
+      "bugClass": "untrusted_input",
+      "disposition": "ruled_out",
+      "rationale": "No script-injection surface found",
+      "evidenceRefs": [
+        ".github/workflows/trigger-index-rebuild.yml:278"
+      ],
+      "reason": "Secrets and event payloads reach steps only through env: blocks"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency"
+      ],
+      "bugClass": "template_drift",
+      "disposition": "ruled_out",
+      "rationale": "Structural integrity holds",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/spec.md:1"
+      ],
+      "reason": "Every anchor is paired and every document carries its template marker"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
+      ],
+      "bugClass": "open_question_staleness",
+      "disposition": "ruled_out",
+      "rationale": "Deferral is recorded, not silent",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/tasks.md:83"
+      ],
+      "reason": "D8 is explicitly deferred to phase 008 with measured numbers"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Not every child is stale; 008 agrees with the parent",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/tasks.md:83"
+      ],
+      "proof": "Phase 008 is genuinely unstarted; its blocked task and zero Met rows agree with the parent map"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/scripts/check-gate-inputs.sh"
+      ],
+      "bugClass": "missing_validation",
+      "disposition": "ruled_out",
+      "rationale": "004's measurements are reproducible; only its AC-014 premise is stale",
+      "evidenceRefs": [
+        ".github/scripts/check-gate-inputs.sh:497"
+      ],
+      "proof": "The output matches the recorded evidence character for character"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "off_by_one",
+      "disposition": "ruled_out",
+      "rationale": "The split cannot silently drop a file",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:147"
+      ],
+      "proof": "Union of the two processes is the whole project, and a rename fails loudly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows"
+      ],
+      "bugClass": "supply_chain_pinning",
+      "disposition": "ruled_out",
+      "rationale": "Pinning rule holds tree-wide",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:37"
+      ],
+      "proof": "All 89 remote references are 40-hex commit SHAs"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "The write surface cannot be reached from untrusted code",
+      "evidenceRefs": [
+        ".github/workflows/dependabot-auto-merge.yml:41"
+      ],
+      "proof": "No privileged PR trigger exists, and the only PR-triggered write job runs gh pr merge with a Dependabot-only condition"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows"
+      ],
+      "bugClass": "untrusted_input",
+      "disposition": "ruled_out",
+      "rationale": "No script-injection surface found",
+      "evidenceRefs": [
+        ".github/workflows/trigger-index-rebuild.yml:278"
+      ],
+      "proof": "Secrets and event payloads reach steps only through env: blocks"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency"
+      ],
+      "bugClass": "template_drift",
+      "disposition": "ruled_out",
+      "rationale": "Structural integrity holds",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/spec.md:1"
+      ],
+      "proof": "Every anchor is paired and every document carries its template marker"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
+      ],
+      "bugClass": "open_question_staleness",
+      "disposition": "ruled_out",
+      "rationale": "Deferral is recorded, not silent",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/tasks.md:83"
+      ],
+      "proof": "D8 is explicitly deferred to phase 008 with measured numbers"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "open_question_staleness",
+      "documentation_contradiction",
+      "evidence_integrity",
+      "severity_inflation"
+    ],
+    "covered": [
+      "open_question_staleness",
+      "documentation_contradiction",
+      "evidence_integrity",
+      "severity_inflation"
+    ],
+    "ruledOut": [
+      "severity_inflation"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

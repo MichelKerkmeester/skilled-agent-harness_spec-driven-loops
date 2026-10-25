@@ -1,0 +1,182 @@
+{
+  "topic": "Review: specs/system-speckit/053-ci-workflow-efficiency",
+  "sessionId": "fanout-luna-1792944728998-0esx2f",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-speckit/053-ci-workflow-efficiency",
+  "createdAt": "2026-10-25T16:21:33Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/053-ci-workflow-efficiency",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/decision-record.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/spec.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

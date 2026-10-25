@@ -14,9 +14,9 @@
 // come from `gh variable list` and are reduced to a state. A value is never printed.
 //
 // The newest non-rebuild commit is found by commit message, not by workflow name.
-// A rebuild commit also starts downstream runs, so dropping the rebuild workflow's
-// runs would leave the rebuild commit's SHA in the list, and that SHA carries no
-// statuses worth reading.
+// A rebuild commit carries `[skip ci]` and normally starts no run. If one ever starts
+// a run anyway, its SHA would lead the run list with no statuses worth reading, so
+// the search skips any commit whose message ends with the rebuild trailer.
 //
 // Only rules a parser can check are flagged. The prose rules are listed in
 // `notChecked`, so a clean row is never read as a pass for them.

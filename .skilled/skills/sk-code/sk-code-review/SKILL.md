@@ -435,6 +435,17 @@ Downstream automation parses this final line via exact string match — do not v
 - Large diff size prevents reliable severity assignment without narrowed scope.
 - Requested remediation exceeds review scope and becomes architecture redesign.
 
+### Extension Floors
+
+A repository, a surface packet or a mode a user adds to the hub may raise these floors or add checks beside them. None of them may lower, skip or reword one. `scripts/check-rule-copies.js` pins each line below, so a reword fails the canary.
+
+- Baseline security and correctness minimums apply to every review, and surface guidance never relaxes them.
+- No review is approved while a P0 finding is unaddressed.
+- P0 blocks merge, P1 must be fixed before merge, and P2 is advisory and never blocks.
+- The rendered review prompt starts with the `CODE-REVIEW` marker line.
+- Every review ends on exactly one of the three status lines in section 3.
+- The mode writes only its PR-state cache file in the reviewing user's cache directory, never into the reviewed repository.
+
 ---
 
 ## 5. REFERENCES
@@ -549,7 +560,7 @@ If sensitive paths ARE touched, the full review runs regardless of line count.
 
 ### 9.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
 
-`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > config > default) — exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
+`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default) — exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
 
 - `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing.
 - `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.

@@ -1,0 +1,657 @@
+{
+  "sessionId": "fanout-luna-1792944728998-0esx2f",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-10-25T16:45:44.689Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "LUNA-P2-001",
+      "severity": "P2",
+      "title": "Parent phase status and next action lag the child goals",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
+      "line": 105,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-P2-002",
+      "severity": "P2",
+      "title": "Phase 007 closure text says the permission split is absent after it landed",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-P2-003",
+      "severity": "P2",
+      "title": "Phase 009 cross-reference leaves REQ-010 and REQ-011 without acceptance criteria",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md",
+      "line": 74,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "LUNA-P2-001",
+      "severity": "P2",
+      "title": "Parent phase status and next action lag the child goals",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
+      "line": 105,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-P2-002",
+      "severity": "P2",
+      "title": "Phase 007 closure text says the permission split is absent after it landed",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-P2-003",
+      "severity": "P2",
+      "title": "Phase 009 cross-reference leaves REQ-010 and REQ-011 without acceptance criteria",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md",
+      "line": 74,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "LUNA-P2-001",
+      "severity": "P2",
+      "title": "Parent phase status and next action lag the child goals",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
+      "line": 105,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-P2-002",
+      "severity": "P2",
+      "title": "Phase 007 closure text says the permission split is absent after it landed",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-P2-003",
+      "severity": "P2",
+      "title": "Phase 009 cross-reference leaves REQ-010 and REQ-011 without acceptance criteria",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md",
+      "line": 74,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "cross_phase_status_drift",
+      "implementation_status_drift",
+      "parent_child_state_duplication",
+      "requirement_acceptance_mapping",
+      "stale_security_closure"
+    ],
+    "ruledOut": [
+      "credential_value_exposure",
+      "privileged_job_isolation",
+      "required_check_disable_bypass",
+      "shell_argument_injection",
+      "supersession_marker_drift"
+    ],
+    "deferred": [
+      "live_privileged_path"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "cross_phase_status_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_security_closure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "credential_value_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shell_argument_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "required_check_disable_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "privileged_job_isolation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "live_privileged_path": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "requirement_acceptance_mapping": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "parent_child_state_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "supersession_marker_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "implementation_status_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md"
+      ],
+      "bugClass": "live_privileged_path",
+      "disposition": "deferred",
+      "rationale": "This review is read-only and the live evidence is explicitly incomplete.",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:653",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md:674",
+        "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md:62"
+      ],
+      "reason": "The recorded Dependabot updates do not exercise the security-patch auto-merge branch; retain AC-002 as unmet until that proof is recorded."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs"
+      ],
+      "bugClass": "credential_value_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The read path retains only state labels and the report renders those labels.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs:147",
+        ".skilled/commands/doctor/scripts/ci-report.cjs:373"
+      ],
+      "reason": "No variable value reaches the returned report object or table."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs"
+      ],
+      "bugClass": "shell_argument_injection",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed process call does not invoke a shell and interpolated SHA input is validated.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs:85",
+        ".skilled/commands/doctor/scripts/ci-report.cjs:119",
+        ".skilled/commands/doctor/scripts/ci-report.cjs:202"
+      ],
+      "reason": "No command-shell interpolation path was found in this call flow."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+        ".github/workflows/README.md"
+      ],
+      "bugClass": "required_check_disable_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The protected group and master switch have explicit refusal rules tied to the README restriction.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml:27",
+        ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml:71",
+        ".github/workflows/README.md:95"
+      ],
+      "reason": "The reviewed toggle path contains explicit guardrails for the only required check."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/dependabot-auto-merge.yml"
+      ],
+      "bugClass": "privileged_job_isolation",
+      "disposition": "ruled_out",
+      "rationale": "The current workflow structurally separates the third-party action from write scopes.",
+      "evidenceRefs": [
+        ".github/workflows/dependabot-auto-merge.yml:19",
+        ".github/workflows/dependabot-auto-merge.yml:29",
+        ".github/workflows/dependabot-auto-merge.yml:38",
+        ".github/workflows/dependabot-auto-merge.yml:58"
+      ],
+      "reason": "No repository code or third-party action runs in the write-scoped job."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-010",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md"
+      ],
+      "bugClass": "supersession_marker_drift",
+      "disposition": "ruled_out",
+      "rationale": "The historical R30 scope is visibly and consistently marked as superseded.",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:164",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md:160"
+      ],
+      "reason": "ADR-013 references make active versus historical scope explicit."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs"
+      ],
+      "bugClass": "credential_value_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The read path retains only state labels and the report renders those labels.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs:147",
+        ".skilled/commands/doctor/scripts/ci-report.cjs:373"
+      ],
+      "proof": "No variable value reaches the returned report object or table."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs"
+      ],
+      "bugClass": "shell_argument_injection",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed process call does not invoke a shell and interpolated SHA input is validated.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/ci-report.cjs:85",
+        ".skilled/commands/doctor/scripts/ci-report.cjs:119",
+        ".skilled/commands/doctor/scripts/ci-report.cjs:202"
+      ],
+      "proof": "No command-shell interpolation path was found in this call flow."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+        ".github/workflows/README.md"
+      ],
+      "bugClass": "required_check_disable_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The protected group and master switch have explicit refusal rules tied to the README restriction.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml:27",
+        ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml:71",
+        ".github/workflows/README.md:95"
+      ],
+      "proof": "The reviewed toggle path contains explicit guardrails for the only required check."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/dependabot-auto-merge.yml"
+      ],
+      "bugClass": "privileged_job_isolation",
+      "disposition": "ruled_out",
+      "rationale": "The current workflow structurally separates the third-party action from write scopes.",
+      "evidenceRefs": [
+        ".github/workflows/dependabot-auto-merge.yml:19",
+        ".github/workflows/dependabot-auto-merge.yml:29",
+        ".github/workflows/dependabot-auto-merge.yml:38",
+        ".github/workflows/dependabot-auto-merge.yml:58"
+      ],
+      "proof": "No repository code or third-party action runs in the write-scoped job."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-010",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md"
+      ],
+      "bugClass": "supersession_marker_drift",
+      "disposition": "ruled_out",
+      "rationale": "The historical R30 scope is visibly and consistently marked as superseded.",
+      "evidenceRefs": [
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:164",
+        "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md:160"
+      ],
+      "proof": "ADR-013 references make active versus historical scope explicit."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "implementation_status_drift",
+      "requirement_acceptance_mapping"
+    ],
+    "covered": [
+      "implementation_status_drift",
+      "requirement_acceptance_mapping"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

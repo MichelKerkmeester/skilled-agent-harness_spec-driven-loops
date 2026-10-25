@@ -1,20 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/053-ci-workflow-efficiency",
-  "description": "CI workflow efficiency, speed and operator control",
+  "description": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
   "keywords": [
-    "workflow",
-    "efficiency",
-    "speed",
-    "operator",
-    "control"
+    "repository",
+    "workflows",
+    "spend",
+    "about",
+    "runner-minutes",
+    "day"
   ],
-  "lastUpdated": "2026-10-23T06:38:05.720Z",
+  "lastUpdated": "2026-10-24T08:57:00.437Z",
   "specId": "053",
   "folderSlug": "ci-workflow-efficiency",
   "parentChain": [
     "system-speckit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

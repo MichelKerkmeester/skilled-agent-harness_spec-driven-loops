@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`sk-code-review` is the findings-first review baseline",
     "created_at": "2026-10-25T08:24:48Z",
-    "last_save_at": "2026-10-25T13:27:46.208Z",
+    "last_save_at": "2026-10-25T17:58:42.874Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,15 +223,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0f1cc68fcd339a9864301869ff20b91874bc0ab7106d545cbb9b6a6e9c4d24c3",
+    "source_fingerprint": "sha256:afba5834e58744d5b1488a981efed6eb4dd01fb0ed94db9d4141c6a27f7be3cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "366dca0e31f6d44507244d25edde9e8ef2764f8c32b9d3210782347d0963e350",
+      "spec.md": "3a34176a3bb0eb1e64b693a61c5a2d0f4c545185b0d1cca82a8b9db06421c6ed",
       "plan.md": "fa1566b435c0f78b468259b89818be8da0d7aa1acc03855a0c552b86690d8ff2",
-      "tasks.md": "cda8a073780dcd5e76acd06ea6b0819ca03c47cb082ee75d9d0dd03417f18877",
-      "decision-record.md": "2dd869c9b897d0d67a8123fd6968401aa99ec665db849193f5dd4e4f82e6364a",
-      "implementation-summary.md": "a6c829ea1a0fbcb85d19b8063b6604a8f15a06520ed9f67af50c9117a3f34206",
-      "research/research.md": "69e88143bc6d297526cb85f89e8fc9fca3d72e202f48d8c389baa503a1f39c5f"
+      "tasks.md": "efaa890090584c79d971d152b4a34ef76b4ca159f005c4c6f97001a83b6709d5",
+      "decision-record.md": "212b10fd4c35cd21a604da76fdcd4eb32d7fdfc449581567e2dae75ee1f371a7",
+      "implementation-summary.md": "3db7d8bdd7cedb99e38931b9c2675d1f565957fa36e653598d289b62d9cdc623",
+      "research/research.md": "4ef98ba0006d3fb600fafec3f5437a5a1182d97f7267eb4ee90597304aeea3b1"
     },
     "last_active_at": null
   }

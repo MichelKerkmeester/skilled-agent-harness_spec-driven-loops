@@ -51,8 +51,6 @@ This is **Phase 1**, the research gate, of the CI workflow efficiency, speed and
 - `research/iterations/iteration-001.md` to `iteration-020.md`, deltas, the state ledger, dispatch receipts and `research/resource-map.md`.
 - `scratch/ci-run-data/`: the raw `gh` JSON and its `summary.md`.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

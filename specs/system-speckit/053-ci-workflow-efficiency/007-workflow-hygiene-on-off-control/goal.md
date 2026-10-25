@@ -11,13 +11,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
-    last_updated_at: "2026-10-23T13:55:00Z"
+    last_updated_at: "2026-10-25T12:00:00Z"
     last_updated_by: "markdown-planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers:
-      - "003, 004, 005 and 006 have not landed"
-      - "No fork is recorded for the switch probe"
+    recent_action: "Continuity synced to the built tree"
+    next_safe_action: "Run T100 after 2026-10-26T00:45Z, then T101 and T102"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -28,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-007-workflow-hygiene-on-off-control"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 69
     open_questions: []
     answered_questions: []
 ---

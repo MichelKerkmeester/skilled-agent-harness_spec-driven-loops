@@ -8,7 +8,7 @@ trigger_phrases:
   - "never switch off workflow"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Protected Workflow Set
@@ -43,7 +43,7 @@ A workflow is protected because of what it does, so a new workflow that does the
 
 ## 2. THE RULES
 
-1. **Never switch off `message-contract.yml` while its ruleset context is required.** A switched-off required workflow leaves the context pending on every pull request. The switch condition in `references/job-shape-rules.md` never applies to it while the ruleset requires the context.
+1. **Never switch off `message-contract.yml` while its ruleset context is required.** A switched-off job is skipped, and a skipped job reports Success, so the required context stops blocking merges. A workflow-level path filter is the opposite case and leaves the context Pending (`references/trigger-and-filter-rules.md`). The switch condition in `references/job-shape-rules.md` never applies to it while the ruleset requires the context.
 2. **A protected workflow is never edited without a second named confirmation that restates its role.** The first confirmation approves the change. The second names the workflow, says in one sentence what it protects and approves again. A scaffold or a review that would weaken a protected workflow stops and asks.
 
 ---

@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/014-code-modes-research/002-review-mode-research"
     last_updated_at: "2026-10-25T08:55:00Z"
     last_updated_by: "claude-sonnet-5-5"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Amended the criteria to fifteen iterations and the ADR-003 boundary"
+    next_safe_action: "None. The phase is closed"
     blockers: []
     key_files:
       - "spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-25-skcode-014"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,6 +46,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | The ten angles in `plan.md` run in order, one per iteration. The synthesis writes four sections: Repo-Agnostic Findings, Usefulness Findings, Integration Findings and Ranked Recommendations. |
 | D2 | A ranked row carries rank, gain, evidence label, source tag, effort, risk and whether it is ready now or needs a decision. |
 | D3 | The security and correctness minimums, the three-value final status line and the cache-only Write scope are fixed inputs. A recommendation that needs one changed says so. |
+| D4 | Parent D3 and D4 are superseded by ADR-002 in this phase: fifteen iterations, 1 to 10 on Luna via cli-codex, then a five-iteration second-model pass on DeepSeek V4.1 Flash Max via cli-devin. |
 
 <!-- /ANCHOR:directive -->
 
@@ -55,12 +56,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `research/deep-research-state.jsonl` holds 10 records of type iteration and one synthesis_complete record with a stopReason field.
-- [ ] `research/iterations/iteration-001.md` through `iteration-010.md` all exist.
-- [ ] `research/research.md` holds a Ranked Recommendations section of at least eight rows that each carry OBSERVED, DERIVED or INFERRED.
-- [ ] Three source tags opened by the orchestrator resolve to the quoted text.
-- [ ] `git diff --stat` from the sha logged as Baseline in the parent goal to HEAD prints no path under `.skilled/`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/014-code-modes-research/002-review-mode-research --strict` prints `RESULT: PASSED`.
+- [x] `research/deep-research-state.jsonl` holds 15 records of type iteration, and its latest synthesis_complete record carries a stopReason and totalIterations 15.
+- [x] `research/iterations/iteration-001.md` through `iteration-015.md` all exist.
+- [x] `research/research.md` holds a Ranked Recommendations section of at least eight rows that each carry OBSERVED, DERIVED or INFERRED.
+- [x] Three source tags opened by the orchestrator resolve to the quoted text.
+- [x] `git diff --stat f8671e07c2 ee8c7e6f24 -- .skilled/skills/sk-code/sk-code-quality .skilled/skills/sk-code/sk-code-review` prints nothing.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/014-code-modes-research/002-review-mode-research --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,6 +77,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
+| Criteria re-run | Done | 2026-10-25: `grep -c` printed 15 iteration records, the latest `synthesis_complete` reads `maxIterationsReached` and 15, 15 iteration files exist, every quoted source tag into the two mode folders resolves at `ee8c7e6f24`, the ADR-003 diff printed nothing, and strict validation printed `RESULT: PASSED` |
 | Phase documents written | Done | Created 2026-10-25, status Planned |
 | Iterations 1 to 10 | Done | Ten records, all on `gpt-6-luna` (cli-codex, effort max, tier fast). Each passed `verify-iteration.cjs` |
 | Synthesis | Done | `research/research.md`, twelve ranked rows, `synthesis_complete` with `stopReason` `maxIterationsReached` |
@@ -90,8 +92,8 @@ and findings belong here.
 | DeepSeek unavailable | `llmgateway/deepseek-v4.1-flash-1017` refused three times with HTTP 402 `billing_error` (DevPass daily pacing), so even iterations ran on Luna |
 | AC-011 | The runtime write-containment guard copied the sibling run's files into `research/containment/quarantine/`. The operator approved deleting them and ruled to narrow the check, recorded as ADR-001 |
 | I-6 replayed | After today's router change, a path-only workflow review still routes without `sk-code-ci`, so rank 12 is a confirmed defect |
-| Completion criteria amended | ADR-002 raised the iteration count from 10 to 15. The directive text is left as written |
+| Completion criteria amended | 2026-10-25, after the deep review: criterion 1 now reads 15 iteration records and a latest `synthesis_complete` with `totalIterations` 15, criterion 2 reads `iteration-001.md` through `iteration-015.md`, and criterion 5 names the ADR-003 diff over `f8671e07c2..ee8c7e6f24`. The objective and D1 to D3 are left as written, and a new D4 marks the parent's D3 and D4 superseded by ADR-002 |
 | Reopen route | The workflow halts on a completed session and its `completed-continue` branch is not wired, so the config's `status` and `maxIterations` were edited to take the `resume` branch. ADR-002 records it |
-| Stray dispatch file | Iteration 12 left `research/.tmp-iter-012-event.json`. Kept for the operator to decide on |
-| Boundary scope | Concurrent CI wiring edited hub files, so the boundary check covers only `sk-code-quality/` and `sk-code-review/`, both unchanged |
+| Stray dispatch file | Iteration 12 left `research/.tmp-iter-012-event.json`. It was deleted with the operator's approval |
+| Boundary scope | Concurrent CI wiring edited hub files, so the boundary check covers only `sk-code-quality/` and `sk-code-review/`, both unchanged over the research commits, recorded as ADR-003 |
 <!-- /ANCHOR:log -->

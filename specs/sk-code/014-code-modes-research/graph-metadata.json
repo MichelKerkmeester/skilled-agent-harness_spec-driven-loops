@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "sk-code/014-code-modes-research/001-quality-mode-research",
-    "sk-code/014-code-modes-research/002-review-mode-research"
+    "sk-code/014-code-modes-research/002-review-mode-research",
+    "sk-code/014-code-modes-research/003-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -49,7 +50,9 @@
       ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
       "specs/sk-code/graph-metadata.json",
       "001-quality-mode-research/goal.md",
-      "002-review-mode-research/goal.md"
+      "002-review-mode-research/goal.md",
+      "003-review-remediation/goal.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -74,6 +77,12 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "specs/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -135,27 +144,21 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "cli-codex",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code hub ships two workflow modes that code work passes through",
     "created_at": "2026-10-25T08:24:47Z",
-    "last_save_at": "2026-10-25T13:27:16.919Z",
+    "last_save_at": "2026-10-25T17:36:48.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:0e54c3b5afebff2572533ed466bc93bef907f323bbb6c0ba95ff8b532dde7d90",
+    "source_fingerprint": "sha256:3b7d738f4ebdd2dbf24fdbd9741f65b7e072c1a4861efe9c4d9303fe5da9b52e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f3acfbca2f3eec5d375e2db04ad935bf5765dd89d009fed8d31cf51acf8606ca"
+      "spec.md": "6f4e9e231f1af6ec2daa97efb3e098d7aa9788d229dce1d43fe96da0ada499c2"
     },
     "last_active_child_id": "sk-code/014-code-modes-research/002-review-mode-research",
     "last_active_at": "2026-10-25T13:10:25.410Z"

@@ -50,6 +50,7 @@
       "implementation-summary.md",
       ".github/workflows/README.md",
       ".github/workflows/advisory-checks.yml",
+      "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
       ".github/workflows/command-tree-parity.yml",
       ".skilled/skills/sk-doc/SKILL.md",
       "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md"
@@ -107,6 +108,12 @@
         "name": "advisory-checks.yml",
         "kind": "config",
         "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nine workflows run on every push with no path filter: eight on `main` or `skilled/`, and `message-contract.yml` on every branch",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-23T16:15:13.368Z",
+    "last_save_at": "2026-10-25T17:47:02.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +215,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:584fd6b729b68382273f98364b0069e357efd2203002a8f100fb471b5b412778",
+    "source_fingerprint": "sha256:2b6a05bddf0f3083cdb6345f76e6c8b648072892399b5be2a58901f5aa52232a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "11c2402bc3e8163688daf9728eda1dbcbadf0ee83c5f5b277fc197310d351b9c",
+      "spec.md": "a39be2cba7c9c2d556fe6dffb1d76e8d9f932fc4efa50d5cece0b0f7fbc93190",
       "plan.md": "fb07cab5524f9025e954f822aa34a5eac7707a495cb66dceb017a6bbe6e1794a",
-      "tasks.md": "8a01ab58f0842a14b37479d4281d6f74888685a55bcbb30755426461e2306e7a",
+      "tasks.md": "0ea9cee175fc3b4d4414670a7a098d3c5658380e7f8fa04741005d1e1bae5921",
       "decision-record.md": "2635ce91c241bf0ab45c62efa09957e341c3364974f1d0e7deb7b3e1dd5aef63",
       "implementation-summary.md": "cc4a17331ae139cd5e1ed46d18d749db9cfe8315f708c3726b915adc61e3ad79"
     },

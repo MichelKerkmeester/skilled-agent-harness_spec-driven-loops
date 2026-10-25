@@ -3039,7 +3039,7 @@ Done 2026-10-24: `57 passed, 0 failed`, `files=45 ... failures=0`, `RESULT: PASS
 
 ---
 
-### T072 Measure the phase delta (AC-014)
+### T072 [ ] Measure the phase delta (AC-014)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Final gates` section T071 wrote.
 
@@ -3060,7 +3060,7 @@ Stop and escalate if: fewer than 24 h have passed, or a touched workflow has no 
 
 ---
 
-### T073 Close the criteria (AC-013, AC-014, AC-015)
+### T073 [ ] Close the criteria (AC-013, AC-014, AC-015)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md:101`, anchor: the `## 3. CLOSURE STATEMENT` heading.
 
@@ -3081,7 +3081,7 @@ Stop and escalate if: a row cannot name observed evidence, or the validator prin
 
 ---
 
-### T074 Commit the closure (AC-013, AC-014, AC-015, AC-017)
+### T074 [ ] Commit the closure (AC-013, AC-014, AC-015, AC-017)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 

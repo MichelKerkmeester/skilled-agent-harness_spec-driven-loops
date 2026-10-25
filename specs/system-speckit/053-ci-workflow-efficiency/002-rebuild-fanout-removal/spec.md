@@ -64,8 +64,6 @@ This is **Phase 2** of the CI efficiency implementation phases specification. It
 - `.github/workflows/spec-kit-check.yml`: `.github/workflows/trigger-index-rebuild.yml` in both path lists.
 - `scratch/baseline-24h/`: raw `gh` JSON and `summary.md`, the new baseline for phases 003 to 009.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

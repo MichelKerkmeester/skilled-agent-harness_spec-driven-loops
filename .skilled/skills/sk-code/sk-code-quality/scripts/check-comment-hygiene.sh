@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: COMMENT HYGIENE CHECKER
+# ───────────────────────────────────────────────────────────────
 """
 Comment hygiene checker — detects ephemeral-artifact pointers in code comment lines.
 

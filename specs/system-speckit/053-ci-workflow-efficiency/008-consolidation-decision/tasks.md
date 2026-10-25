@@ -50,7 +50,7 @@ Every task below names one file, quotes the anchor text it edits or reads, gives
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup and measurement
 
-### T001 Record the phase start SHA (AC-006)
+### T001 [ ] Record the phase start SHA (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:149`, the line `| REQ-006 | **R26.** The group assignment follows the tiers of the push-versus-pull-request table at `.github/workflows/README.md:60-75`: FRESHNESS for the guards row at `:66`, `naming-standard-guard.yml` at `:67`, `gate-inputs.yml` at `:68` and `changed-packet-validation.yml` at `:70`; TESTS for the path-filtered row at `:69`; REVIEW for the review-time row at `:71`; REPORTS for `strict-pass-freshness-report.yml` and `trigger-index-rebuild.yml`; MESSAGES for `message-contract.yml`. The assignment is recorded in `scratch/switch-groups.md` with a workflow count and a job count per group |`.
 
@@ -119,7 +119,7 @@ Stop and escalate if: the parse prints anything other than `jobs 13`, or a membe
 
 ---
 
-### T003 Write the before table (AC-001)
+### T003 [ ] Write the before table (AC-001)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:56`, the line `- **advisory-checks.yml**: Advisory — test suites and doc-model references 60s`.
 
@@ -194,7 +194,7 @@ Stop and escalate if: the table-line count is not `26`, or `job seconds` is not 
 
 ---
 
-### T004 Take the post-007 run list (AC-002)
+### T004 [ ] Take the post-007 run list (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/runs-after.json` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:4`, the line `Recent window: 1000 runs over 23.5 h (2026-10-22T07:07:25Z to 2026-10-23T06:35:03Z).`
 
@@ -218,7 +218,7 @@ Stop and escalate if: `gh` exits non-zero, the count is below `900`, or the two 
 
 ---
 
-### T005 Take the per-workflow run index (AC-002)
+### T005 [ ] Take the per-workflow run index (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/index.json` (nine new files). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md`, its `tree: 9 workflows, 13 jobs` line written by T002.
 
@@ -244,7 +244,7 @@ Stop and escalate if: any directory holds fewer than `20` runs. Record that work
 
 ---
 
-### T006 Take the job-level samples (AC-002)
+### T006 [ ] Take the job-level samples (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/<run-id>.json` (new files). Anchor (read): the `index.json` each file is fetched from, written by T005.
 
@@ -271,7 +271,7 @@ Stop and escalate if: `jq -e '.jobs'` fails on any file, or the count differs fr
 
 ---
 
-### T007 Record the snapshot window (AC-002)
+### T007 [ ] Record the snapshot window (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/window.json` and `scratch/snapshot-window.md` (two new files). Anchor (read): `scratch/runs-after.json`, the `createdAt` values of its first and last entries.
 
@@ -309,7 +309,7 @@ Stop and escalate if: `perWorkflow` does not hold exactly the nine file names, o
 
 ---
 
-### T008 Write the cost script (AC-003)
+### T008 [ ] Write the cost script (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:5`, the line `Per-workflow medians come from the 40 latest runs (wall) and the 5 latest completed runs (jobs). Billed minutes = sum over non-skipped jobs of ceil(job seconds / 60), the GitHub rounding rule. Estimated total: 3812 billed min/day.`
 
@@ -342,7 +342,7 @@ Stop and escalate if: `node --check` fails twice on the same line, or the script
 
 ---
 
-### T009 Run the cost script (AC-003)
+### T009 [ ] Run the cost script (AC-003)
 
 File: `scratch/consolidation-cost.json` and `scratch/consolidation-cost.md` (two new files). Anchor (read): `scratch/window.json`, written by T007.
 
@@ -367,7 +367,7 @@ Stop and escalate if: the exit is not `0`, a count is not `9` or `13`, or the ta
 
 ---
 
-### T010 Verify the cost table reproduces (AC-003)
+### T010 [ ] Verify the cost table reproduces (AC-003)
 
 File: `scratch/consolidation-cost.json` (unchanged). Anchor (read): the `check: ok` string the script prints, written by T008.
 
@@ -393,7 +393,7 @@ Stop and escalate if: `--check` exits `1` twice with the same difference, becaus
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Decision and the conditional merge
 
-### T011 Write the decision record (AC-004)
+### T011 [ ] Write the decision record (AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` (new file). Anchor (read): `scratch/consolidation-cost.json`, the `bounds` object written by T009.
 
@@ -437,7 +437,7 @@ Stop and escalate if: the heading count is not `6`, or a number in `Measurements
 
 ---
 
-### T012 DECISION D8 (operator yes required) - merge the always-run FRESHNESS workflows or leave them separate (AC-005)
+### T012 [ ] DECISION D8 (operator yes required) - merge the always-run FRESHNESS workflows or leave them separate (AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` (new file). Anchor: none; the file does not exist yet.
 
@@ -463,7 +463,7 @@ Stop and escalate if: no answer arrives, or the answer is neither `no` nor `yes`
 
 ---
 
-### T013 Record D8's answer in the decision record (AC-004, AC-005)
+### T013 [ ] Record D8's answer in the decision record (AC-004, AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md`. Anchor: `scratch/consolidation-decision.md`, the line `D8: pending`, written by T011.
 
@@ -486,7 +486,7 @@ Stop and escalate if: `D8: pending` is not on the file, or the two answers diffe
 
 ---
 
-### T014 Record the no-merge proof (AC-006)
+### T014 [ ] Record the no-merge proof (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/no-merge.md` (new file). Runs only on `D8=no`; on `D8=yes` this task is cancelled and T015 to T020 run instead. Anchor (read): `scratch/phase-start-sha.txt`, the SHA written by T001.
 
@@ -510,7 +510,7 @@ Stop and escalate if: either command prints a path, because a workflow changed o
 
 ---
 
-### T015 Create the merged workflow (AC-007)
+### T015 [ ] Create the merged workflow (AC-007)
 
 File: `.github/workflows/always-run-guards.yml` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/changed-packet-validation.yml:17-19`, the lines `      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1`, `        with:` and `          fetch-depth: 0`.
 
@@ -575,7 +575,7 @@ Stop and escalate if: the file parses with more than one job, the guarded-step c
 
 ---
 
-### T016 Delete the eight member workflows (AC-007)
+### T016 [ ] Delete the eight member workflows (AC-007)
 
 File: the eight files named below (deleted). Runs only on `D8=yes`. Anchor: `.github/workflows/advisory-checks.yml:1`, the line `name: Advisory Checks`, and the first line of each of the other seven: `name: Changed Packet Validation` (`changed-packet-validation.yml:1`), `name: Command Tree Parity` (`command-tree-parity.yml:1`), `name: Dispatch Enforcement Guard` (`dispatch-enforcement-guard.yml:1`), `name: Gate Inputs` (`gate-inputs.yml:1`), `name: Playbook Operator Contract` (`playbook-operator-contract.yml:1`), `name: Rule Canary Sync` (`rule-canary-sync.yml:1`), `name: sk-doc Script Tests` (`sk-doc-script-tests.yml:1`).
 
@@ -599,7 +599,7 @@ Stop and escalate if: any of the eight is still present, or the surviving file c
 
 ---
 
-### T017 Update the README contents table (AC-009)
+### T017 [ ] Update the README contents table (AC-009)
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor: `.github/workflows/README.md:26`, the line `| `advisory-checks.yml` | Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`). Reports without gating. |`.
 
@@ -637,7 +637,7 @@ Stop and escalate if: the anchor line is not on the file, or a member's first ce
 
 ---
 
-### T018 Update the README push/PR table (AC-009)
+### T018 [ ] Update the README push/PR table (AC-009)
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor: `.github/workflows/README.md:66`, the line `| `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |`.
 
@@ -660,7 +660,7 @@ Stop and escalate if: the line-66 anchor is not on the file, or `message-contrac
 
 ---
 
-### T019 Update the README switch-group list (AC-009)
+### T019 [ ] Update the README switch-group list (AC-009)
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:150`, the line `| REQ-007 | **R26.** `.github/workflows/README.md` gains an `### On/off switches` section that names `SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`, states that `off` is the only disable token, that an unset variable runs the job, that `dependabot-auto-merge.yml` has no switch, and that `SKILLED_CI_MESSAGES` must stay unset while the ruleset requires that context |`. The row this task edits is the FRESHNESS row inside the `### On/off switches` section that line requires; its exact text is phase 007's, so read it and keep every other cell.
 
@@ -682,7 +682,7 @@ Stop and escalate if: `### On/off switches` is absent, or the `always-run-guards
 
 ---
 
-### T020 Prove the merged job's signal (AC-007)
+### T020 [ ] Prove the merged job's signal (AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/gate-inputs.yml:19`, the line `      - name: Check the inputs of every hook, workflow and dependabot entry`, which T015 copies into `.github/workflows/always-run-guards.yml`.
 
@@ -762,7 +762,7 @@ Stop and escalate if: the commit stat does not name the merged file, the probe, 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification and close
 
-### T021 Run the gates and record the phase result (AC-008)
+### T021 [ ] Run the gates and record the phase result (AC-008)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-result.md`. Anchor: the `## Cost check` heading written by T010.
 
@@ -787,7 +787,7 @@ Stop and escalate if: any command exits non-zero twice, or the validator reports
 
 ---
 
-### T022 Commit the decision record (AC-009)
+### T022 [ ] Commit the decision record (AC-009)
 
 File: the phase's `scratch/` artifacts and this packet's documents (committed). Anchor (read): `scratch/consolidation-decision.md`, its `D8: <answer>` line written by T013.
 
@@ -819,7 +819,7 @@ Stop and escalate if: the message validator fails, the id scan finds a match, or
 
 ---
 
-### T023 Commit the merge (AC-009)
+### T023 [ ] Commit the merge (AC-009)
 
 File: `.github/workflows/always-run-guards.yml`, the eight deletions and `.github/workflows/README.md` (committed). Runs only on `D8=yes`. Anchor (read): `.github/workflows/always-run-guards.yml`, its `name: Always-Run Freshness Guards` line written by T015.
 
@@ -851,7 +851,7 @@ Stop and escalate if: the stat names a path other than the merged file, the eigh
 
 ---
 
-### T024 Close the acceptance criteria rows (AC-001 to AC-009)
+### T024 [ ] Close the acceptance criteria rows (AC-001 to AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md`. Anchor: each row's Status cell, currently `Unmet`.
 
@@ -875,7 +875,7 @@ Stop and escalate if: a row would be `Met` without a command output in its Verif
 
 ---
 
-### T025 Commit the closure evidence (AC-009)
+### T025 [ ] Commit the closure evidence (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md` (committed), with this packet's other closure files. Anchor (read): `acceptance-criteria.md:71`, the Status cell `Unmet` on the AC-009 row, set to `Met` or left `Unmet` by T024.
 

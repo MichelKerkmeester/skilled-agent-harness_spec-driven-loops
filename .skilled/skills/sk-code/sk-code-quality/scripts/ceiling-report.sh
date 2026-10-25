@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CEILING MARKER REPORT
+# ───────────────────────────────────────────────────────────────
 """
 Ceiling-marker report: lists the shortcut markers in code comments and tags the ones whose trigger cannot fire.
 
