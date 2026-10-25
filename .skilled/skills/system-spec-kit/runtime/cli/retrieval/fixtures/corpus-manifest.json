@@ -1,5 +1,5 @@
 {
-  "corpusHash": "af48255793dd2ce81a1eec3a0425fdb32a87c85a9e80fced719993706b720511",
+  "corpusHash": "10398e58c70e407b3495a00054d21cea35e64a0e5160856729bcd092cbaf7a52",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25882,
+  "includedPathCount": 25881,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2741,7 +2741,6 @@
     ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md",
     ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
     ".skilled/skills/sk-code/shared/README.md",
-    ".skilled/skills/sk-code/shared/references/performance-loading-checklist.md",
     ".skilled/skills/sk-code/shared/references/phase-detection.md",
     ".skilled/skills/sk-code/shared/references/stack-detection.md",
     ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
@@ -25913,7 +25912,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e5f66c786bbb0c85e1db71d61e38680d6ea31ee893492ffa639dc3ba592a4096",
+  "manifestHash": "d89c87413b51df58864cb56a687771cb03bb9828b162b623e0e375e27381c184",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

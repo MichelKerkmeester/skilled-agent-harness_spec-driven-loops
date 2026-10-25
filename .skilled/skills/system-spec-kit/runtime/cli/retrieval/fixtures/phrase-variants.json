@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e5f66c786bbb0c85e1db71d61e38680d6ea31ee893492ffa639dc3ba592a4096",
+  "manifestHash": "d89c87413b51df58864cb56a687771cb03bb9828b162b623e0e375e27381c184",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -34816,9 +34816,6 @@
     "deferred followups decisions": [
       "deferred followups decisions"
     ],
-    "deferred loading verification": [
-      "deferred loading verification"
-    ],
     "deferred orca implementation": [
       "deferred Orca implementation"
     ],
@@ -54262,9 +54259,6 @@
     "interaction capture ts": [
       "interaction-capture.ts"
     ],
-    "interaction gated checklist": [
-      "interaction gated checklist"
-    ],
     "interactive auth": [
       "interactive auth"
     ],
@@ -71466,9 +71460,6 @@
     ],
     "performance baseline script": [
       "performance baseline script"
-    ],
-    "performance loading checklist": [
-      "performance loading checklist"
     ],
     "performance regression capture": [
       "performance regression capture"
@@ -102211,9 +102202,6 @@
     ],
     "startup scan yield": [
       "startup scan yield"
-    ],
-    "startup wins measurement": [
-      "startup wins measurement"
     ],
     "state change logging": [
       "state change logging"
