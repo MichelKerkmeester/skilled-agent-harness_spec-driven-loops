@@ -19,3 +19,9 @@ Totals: 8 + 17 + 3 + 2 + 1 = 31 switched files plus the exempt file = 32; 11 + 2
 ## Deviation from the plan's expected counts
 
 The plan expected FRESHNESS 9 files and 13 jobs and TESTS 16 and 22. The README table (and the requirement that follows it) puts `skill-doc-frontmatter.yml` (2 jobs) in the path-filtered row, which is TESTS, so the tree gives FRESHNESS 8 and 11, TESTS 17 and 24. The sums match the plan (25 files and 35 jobs across the two groups), so only the placement of that one file differs. The README table stays the authority.
+
+## Correction recorded in the switch pass
+
+The deviation note above names the wrong file. The plan's 9 and 13 for FRESHNESS and 16 and 22 for TESTS come from the task list, where `skill-doc-frontmatter.yml` already sits in TESTS (its two switch tasks both use `SKILLED_CI_TESTS`). The file that differs is `command-tree-parity.yml` (2 jobs): the task for it names `SKILLED_CI_FRESHNESS`, while the README table's path-filtered row lists it, so this mapping puts it in TESTS. The switch pass follows this mapping and the README. The other gap is `chart-corpus.yml` (1 job): it is in the TESTS row and in the path-filtered README row, and no switch task names it, so the pass added its TESTS switch without a task of its own.
+
+Observed in the tree after the switch pass: FRESHNESS 8 files and 11 jobs, TESTS 17 and 24, REVIEW 3 and 3, REPORTS 2 and 3, MESSAGES 1 and 1, which is 42 switched jobs.

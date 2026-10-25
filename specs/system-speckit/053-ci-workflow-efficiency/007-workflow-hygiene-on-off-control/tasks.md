@@ -202,7 +202,9 @@ Evidence: 4 `CONSTRAINT ` lines. Before any edit the job-level `if:` grep return
 
 ---
 
-### T006 Capture the probe fork (operator input required) (AC-008)
+### T006 [x] Capture the probe fork (operator input required) (AC-008)
+
+Evidence: `grep -cE '^PROBE_FORK=[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' scratch/decisions.md` printed `1`; the value is `MichelKerkmeester/ci-switch-probe-throwaway`, a private throwaway repository the operator approved. A same-account fork is not possible, see `scratch/r26-probe.md`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md:1`, anchor: the `D6=` line written by T001.
 
@@ -2519,7 +2521,9 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Verification
 
-### T099 Prove the switch behaviourally on a fork (AC-008)
+### T099 [x] Prove the switch behaviourally on a fork (AC-008)
+
+Evidence: `scratch/r26-probe.md` holds `off: skipped` (run 40150455358, run conclusion `skipped`, job `skipped`) and `unset: ran` (run 40150476111, job `failure` because the probe tree holds only `.github/`, which the task accepts as not skipped). Deviations: the probe repository holds one commit with the source commit's `.github/` tree (`git rev-parse HEAD:.github/workflows` equal to `1af96f305a2bda0903dbfb9bf3ef5280e1850eb6` on both sides) instead of the full history, and the off arm's run conclusion is `skipped` rather than the `success` the task expected. Variables were set and deleted only in the probe repository, with before and after values recorded. Deleting the probe repository needs the `delete_repo` scope and is left to the operator.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r26-probe.md` (new file). Anchor: none.
 
