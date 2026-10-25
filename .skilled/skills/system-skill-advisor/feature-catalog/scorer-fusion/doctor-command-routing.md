@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Doctor Command Routing
@@ -24,11 +24,11 @@ A passing skill keeps first place on a contested prompt and the doctor command s
 
 ### Bridge Generation
 
-`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. Each `mcp_subroutes` entry becomes one bridge `command-doctor-mcp-<sub_action>`. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash marker from the runnable string only. `/doctor:deep-loop`, `/doctor:mcp install` and `/doctor:mcp debug` are active.
+`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. Each `mcp_subroutes` entry becomes one bridge `command-doctor-mcp-<sub_action>`. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash marker from the runnable string only. `/doctor:deep-loop`, `/doctor:mcp install`, `/doctor:mcp debug`, `/doctor:ci report`, `/doctor:ci scaffold` and `/doctor:ci toggle` are active. A route whose manifest class is `read-only` also gets `readOnly: true` in its generated bridge.
 
 ### Ranking
 
-A doctor bridge passes only on its own wording, an explicit-author match on one of its manifest phrases or its runnable string. A `/doctor:` command counts as typed when the prompt starts with `/doctor:` or when it directly follows `run`, `execute`, `start`, `launch`, `use` or `kick off` outside quotes and backticks. A quoted command or a bare mid-sentence mention does not count. A typed command puts its own passing bridge first. For other prompts, a passing skill stays first and passing doctor bridges sit right after the second passing skill or the only passing skill. This keeps a doctor line within the CLI's three shown results. Doctor bridges never change skill scores. The scorer computes skill ambiguity and abstention as if no doctor bridge existed. The Python native wrapper keeps the same order.
+A doctor bridge passes only on its own wording, an explicit-author match on one of its manifest phrases or its runnable string. A `/doctor:` command counts as typed when the prompt starts with `/doctor:` or when it directly follows `run`, `execute`, `start`, `launch`, `use` or `kick off` outside quotes and backticks. A quoted command or a bare mid-sentence mention does not count. A typed command puts its own passing bridge first. For other prompts, a passing skill stays first and passing doctor bridges sit right after the second passing skill or the only passing skill. This keeps a doctor line within the CLI's three shown results. Doctor bridges never change skill scores. The scorer computes skill ambiguity and abstention as if no doctor bridge existed. The Python native wrapper keeps the same order. A read-only question, such as a list or show prompt, holds every candidate under the read-only confidence floor, unless the prompt names the skill, a command bridge marked `readOnly` matches one of its own phrases, or a skill-specific rule lifts it. A prompt with a no-write phrase, such as `no edits` or `just list`, gets none of these lifts. Mutating bridges stay gated.
 
 ### Brief Text
 

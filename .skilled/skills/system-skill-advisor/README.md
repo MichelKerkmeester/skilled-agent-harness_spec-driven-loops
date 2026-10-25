@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.4.0
+version: 0.12.5.0
 ---
 
 # system-skill-advisor
@@ -149,7 +149,7 @@ Flag unset (the default) changes nothing: no harvest, no watch targets, identica
 
 A skill whose folder name starts with `local-` belongs to one checkout. It is usually a gitignored symlink under `.skilled/skills/` that points at a folder in another repository. The local advisor scans include it, so it can route, and every tracked-output writer skips it by name before its first probe, so it never reaches the fallback graph, the Hermes mirror, a CI gate or a doctor finding.
 
-A scan follows a top-level `local-*` link only when the link's real path resolves to a directory inside the skills root or inside a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. That variable holds absolute paths joined by the platform path delimiter, which is `:` on macOS and Linux. A link to any other place is skipped. `runtime/lib/private-skill-target.ts` holds this containment rule and `runtime/scripts/skill_advisor_runtime.py` holds its Python mirror. The variable sits in `CHILD_ENV_ALLOWLIST`, so the launcher forwards it to the daemon child. Every advisor process needs it, and a daemon started without it indexes no private skill.
+A scan follows a top-level `local-*` link only when the link's real path resolves to a directory inside the skills root or inside a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. That variable holds absolute paths joined by the platform path delimiter, which is `:` on macOS and Linux. A link to any other place is skipped. `runtime/lib/private-skill-target.ts` holds this containment rule and `runtime/scripts/skill_advisor_runtime.py` holds its Python mirror. The variable sits in `CHILD_ENV_ALLOWLIST`, so the launcher forwards it to the daemon child. Every advisor process needs it for a link that points outside the skills root, and a daemon started without it skips every such private skill.
 
 ### The Embedder
 
