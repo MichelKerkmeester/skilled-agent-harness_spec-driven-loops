@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA UTCP SNIPPETS
+# ───────────────────────────────────────────────────────────────
 # Print the OPTIONAL Code Mode wiring for the Framelink figma MCP manual.
 # PRINTS ONLY, never edits .utcp_config.json or .env. The official Figma Dev Mode
 # MCP is out of scope for this skill release.

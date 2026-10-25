@@ -1,7 +1,7 @@
 ---
 title: "scripts: ClickUp MCP Setup and Diagnostics"
 description: "Install and read-only diagnostic scripts for the mcp-click-up transport, the ClickUp mode of the mcp-tooling hub."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # scripts: ClickUp MCP Setup and Diagnostics
@@ -25,11 +25,11 @@ version: 1.0.0.0
 
 ## 3. VALIDATION
 
-Run from the repository root.
+Run from the `mcp-click-up` packet root, wherever the packet is installed.
 
 ```bash
-bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/doctor.sh
-bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh --check-only
+bash scripts/doctor.sh
+bash scripts/install.sh --check-only
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh --check-only` reports the `cupt` install status without installing anything.

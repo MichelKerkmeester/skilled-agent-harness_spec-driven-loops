@@ -4,6 +4,11 @@
 # ───────────────────────────────────────────────────────────────
 # Update Code Mode MCP to latest version via npm.
 # Override install path: export CODE_MODE_DIR="/path/to/your/code-mode"
+#
+# Exit Codes:
+#   0 - Installed or updated
+#   1 - npm missing, or a fresh install was declined
+#   Any other non-zero status is the failing npm or node command's own
 
 set -euo pipefail
 

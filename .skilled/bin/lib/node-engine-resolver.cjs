@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ LIB: Node Engine Resolver                                                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Node Engine Resolver
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -38,20 +38,28 @@ const COMPARATOR_RANGE_PATTERN = new RegExp(
 const MAJOR_RANGE_PATTERN = /^(0|[1-9]\d*)$/;
 const VERSION_PATTERN = /^v?(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?)?$/;
 
+// Each manager keeps its versions under a home folder that one environment
+// variable may relocate, so the layout names both and the versions path below.
 const VERSION_MANAGER_LAYOUTS = Object.freeze([
   Object.freeze({
     name: 'nvm',
-    rootParts: ['.nvm', 'versions', 'node'],
+    homeVariable: 'NVM_DIR',
+    homeFolder: '.nvm',
+    versionsParts: ['versions', 'node'],
     binaryParts: ['bin', 'node'],
   }),
   Object.freeze({
     name: 'fnm',
-    rootParts: ['.fnm', 'node-versions'],
+    homeVariable: 'FNM_DIR',
+    homeFolder: '.fnm',
+    versionsParts: ['node-versions'],
     binaryParts: ['installation', 'bin', 'node'],
   }),
   Object.freeze({
     name: 'volta',
-    rootParts: ['.volta', 'tools', 'image', 'node'],
+    homeVariable: 'VOLTA_HOME',
+    homeFolder: '.volta',
+    versionsParts: ['tools', 'image', 'node'],
     binaryParts: ['bin', 'node'],
   }),
 ]);
@@ -225,14 +233,9 @@ function readDirectory(listDirectory, directoryPath) {
 }
 
 function managerRoot(homeDirectory, environment, layout) {
-  const variableNames = { nvm: 'NVM_DIR', fnm: 'FNM_DIR', volta: 'VOLTA_HOME' };
-  const override = environment[variableNames[layout.name]];
-  if (override) {
-    if (layout.name === 'nvm') return path.join(override, 'versions', 'node');
-    if (layout.name === 'fnm') return path.join(override, 'node-versions');
-    return path.join(override, 'tools', 'image', 'node');
-  }
-  return path.join(homeDirectory, ...layout.rootParts);
+  const managerHome = environment[layout.homeVariable]
+    || path.join(homeDirectory, layout.homeFolder);
+  return path.join(managerHome, ...layout.versionsParts);
 }
 
 function addCandidate(candidateMap, candidate) {

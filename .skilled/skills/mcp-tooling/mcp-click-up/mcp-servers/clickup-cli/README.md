@@ -6,7 +6,7 @@ trigger_phrases:
   - "cupt install"
   - "cupt cli"
   - "install cupt"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # clickup-cli (cupt)
@@ -30,7 +30,7 @@ version: 1.0.0.0
 
 ### Why This Package Exists
 
-mcp-click-up drives daily ClickUp task operations (listing, completing, time tracking, notes, attachments) through `cupt`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer and pinned version constraint that the parent skill's `SKILL.md` and `scripts/install.sh` read from.
+mcp-click-up drives daily ClickUp task operations (listing, completing, time tracking, notes, attachments) through `cupt`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer and the minimum version constraint that the parent skill's `SKILL.md` names. Neither `setup.sh` nor `scripts/install.sh` reads `requirements.txt`, both install the latest `cupt`.
 
 ### What It Does
 

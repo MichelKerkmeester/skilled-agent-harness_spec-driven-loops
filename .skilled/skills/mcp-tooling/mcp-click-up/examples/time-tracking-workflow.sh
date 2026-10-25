@@ -1,16 +1,26 @@
 #!/usr/bin/env bash
-# ─────────────────────────────────────────────────────────────────────────────
-# mcp-click-up :: Time Tracking Workflow
-# Manages cupt time tracking: start, stop, log, and verify timer state
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: TIME TRACKING WORKFLOW
+# ───────────────────────────────────────────────────────────────
+# Manages cupt time tracking: start, stop, log and verify timer state.
+#
+# Usage: time-tracking-workflow.sh {start <task_id>|stop|log <task_id> <dur>|status}
+#
+# Exit Codes:
+#   0 - Command succeeded, or usage was printed
+#   1 - cupt missing or not authenticated, invalid arguments, a timer already
+#       running or a cupt call that reported an error
+#   other - a cupt call failed and its own status is passed through
 set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # ── Cleanup ───────────────────────────────────────────────────────────────────
 cleanup() {
   local exit_code=$?
   if [[ $exit_code -ne 0 ]]; then
-    echo "[time-track] ⚠ Exited with error code: $exit_code"
-    echo "[time-track]   Check if a timer is still running: cupt time status"
+    echo "[time-track] ⚠ Exited with error code: $exit_code" >&2
+    echo "[time-track]   Check if a timer is still running: cupt time status" >&2
   fi
 }
 trap cleanup EXIT INT TERM
@@ -39,12 +49,23 @@ Examples:
 EOF
 }
 
+# cupt reports API failures such as an invalid token as "ERROR: ..." on
+# stderr and still exits 0, so its exit status alone cannot be trusted.
+cupt_checked() {
+  local err rc=0
+  { err="$(cupt "$@" 2>&1 >&3 3>&-)"; } 3>&1 || rc=$?
+  if [[ -n "$err" ]]; then printf '%s\n' "$err" >&2; fi
+  if [[ $rc -ne 0 ]]; then return "$rc"; fi
+  if [[ "$err" == *ERROR* ]]; then return 1; fi
+  return 0
+}
+
 require_cupt() {
   if ! command -v cupt &>/dev/null; then
-    error "cupt not found. Install: bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh"
+    error "cupt not found. Install: bash $SCRIPT_DIR/../scripts/install.sh"
     exit 1
   fi
-  if ! cupt status &>/dev/null; then
+  if ! cupt_checked status >/dev/null 2>&1; then
     error "cupt authentication failed. Run: cupt auth"
     exit 1
   fi
@@ -72,7 +93,10 @@ cmd_start() {
   info "Starting timer on task: $task_id"
   cupt show "$task_id" --json 2>/dev/null | jq -r '"Task: \(.name) [\(.status.status)]"' || true
 
-  cupt time start "$task_id"
+  if ! cupt_checked time start "$task_id"; then
+    error "Could not start the timer on: $task_id"
+    exit 1
+  fi
   success "Timer started on: $task_id"
   echo ""
   echo "  Stop when done: $(basename "$0") stop"
@@ -93,7 +117,10 @@ cmd_stop() {
   fi
 
   info "Stopping timer..."
-  cupt time stop
+  if ! cupt_checked time stop; then
+    error "Could not stop the timer"
+    exit 1
+  fi
   success "Timer stopped and logged"
 
   # Show final status
@@ -117,7 +144,10 @@ cmd_log() {
   info "Logging $duration on task: $task_id"
   cupt show "$task_id" --json 2>/dev/null | jq -r '"Task: \(.name) [\(.status.status)]"' || true
 
-  cupt time add "$task_id" "$duration"
+  if ! cupt_checked time add "$task_id" "$duration"; then
+    error "Could not log $duration to: $task_id"
+    exit 1
+  fi
   success "Logged $duration to task: $task_id"
 }
 

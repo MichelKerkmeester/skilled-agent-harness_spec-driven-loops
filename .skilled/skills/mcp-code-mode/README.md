@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.0.31
+version: 1.0.0.32
 ---
 
 # mcp-code-mode
@@ -37,9 +37,9 @@ Code Mode replaces that upfront load with progressive disclosure. The AI sees on
 
 ### What It Does
 
-Code Mode is the execution engine that all the other `mcp-*` skills build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks, keeping the context about 98% smaller than a full upfront schema load.
+Code Mode is the execution engine the `mcp-tooling` modes build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks, keeping the context about 98% smaller than a full upfront schema load.
 
-Code Mode does not reach native MCP servers registered in `opencode.json`. The Skill Advisor is called directly. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
+Code Mode does not reach MCP servers a runtime registers natively in `opencode.json`, where the `code_mode` entry is Code Mode itself. The skill advisor is a command (`.skilled/bin/skill-advisor.cjs`), not an MCP tool. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
 
 ### The Tool Surface
 
@@ -84,7 +84,7 @@ call_tool_chain({
     return task
   `
 })
-// Returns { result: { id: "...", name: "New Feature", ... }, logs: ["Task created: ..."] }
+// Returns { success: true, result: { id: "...", name: "New Feature", ... }, logs: ["Task created: ..."] }
 ```
 
 **Step 4: Chain multiple tools in one execution.** State persists across all calls in the same `code` block. Data from the first call is available to every subsequent call.
@@ -101,7 +101,7 @@ call_tool_chain({
   `,
   timeout: 60000
 })
-// Returns { result: { design: "Homepage Redesign", taskId: "..." }, logs: [...] }
+// Returns { success: true, result: { design: "Homepage Redesign", taskId: "..." }, logs: [...] }
 ```
 
 ---
@@ -110,9 +110,9 @@ call_tool_chain({
 
 ### The Four Core Tools
 
-`search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible. `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix. `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code. `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ result, logs }` where `logs` captures every `console.log` output from inside the block.
+`search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible. `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix. `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code. `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ success, result, logs }` where `logs` captures every `console.log` output from inside the block, or `{ success: false, error }` when the call itself fails.
 
-Two auxiliary tools support dynamic server management. `register_manual` adds an MCP server at runtime without a restart. `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
+Three auxiliary tools support dynamic server management. `register_manual` adds an MCP server at runtime without a restart and `deregister_manual` removes one. `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
 
 ### Progressive Disclosure
 
@@ -142,11 +142,11 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
 
 Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
 
-Skip Code Mode for native MCP tools in `opencode.json` (the Skill Advisor), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
+Skip Code Mode for native MCP tools a runtime registers directly, for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
 
 ### Related Skills
 
-All three MCP tool skills below nest under the `mcp-tooling` parent hub as workflow modes dispatched via `mcp-tooling/mode-registry.json`. Each one still consumes Code Mode as its transport.
+The three MCP tool skills below are among the nine modes the `mcp-tooling` parent hub dispatches via `mcp-tooling/mode-registry.json`. Each one consumes Code Mode as an MCP transport.
 
 | Skill | Relationship |
 |---|---|
@@ -176,9 +176,9 @@ All three MCP tool skills below nest under the `mcp-tooling` parent hub as workf
 
 A: Use `call_tool_chain` for every tool registered in `.utcp_config.json`. Call native MCP tools from `opencode.json` directly. File operations (Read, Write, Edit, Grep, Glob, Bash) always go direct. The boundary is simple: if the tool exists because of an entry in `.utcp_config.json`, it goes through Code Mode.
 
-**Q: Why does `list_tools()` not show the Skill Advisor?**
+**Q: Why does `list_tools()` not show a natively registered MCP server?**
 
-A: That is a native MCP server registered in `opencode.json`. Code Mode discovery tools only see what is registered in `.utcp_config.json`. Native MCP tools are called directly by their function name and never appear in Code Mode tool listings.
+A: Code Mode discovery tools only see what is registered in `.utcp_config.json`. Native MCP tools are called directly by their function name and never appear in Code Mode tool listings.
 
 **Q: How do I add a new MCP server without restarting?**
 
@@ -198,7 +198,7 @@ The skill ships a manual testing playbook covering the core tools, the naming co
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-code-mode/README.md --type readme` reports zero issues |
 | Config health | `python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json` passes with no errors |
-| Runtime health | `bash .skilled/skills/mcp-code-mode/scripts/doctor.sh` runs a read-only health check against the live config |
+| Runtime health | `bash .skilled/skills/mcp-code-mode/scripts/doctor.sh` runs a read-only check of the server's installed dependencies and `dist/index.js` (`--strict` turns failures into exit codes) |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/core-tools/` through `manual-testing-playbook/recovery-and-config/` in a live session |
 
 ---

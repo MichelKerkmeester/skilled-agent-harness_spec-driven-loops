@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA UNPATCH
+# ───────────────────────────────────────────────────────────────
 # Roll back the yolo patch: restore Figma Desktop's original app.asar.
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=_common.sh
+# shellcheck source=SCRIPTDIR/_common.sh
 . "$HERE/_common.sh"
 
 b="$(figma_bin)" || { err "No figma-ds-cli on PATH"; exit 1; }

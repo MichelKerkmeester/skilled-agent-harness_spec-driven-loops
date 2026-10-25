@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA DOCTOR
+# ───────────────────────────────────────────────────────────────
 # mcp-figma doctor: REPORT-ONLY diagnostics. Changes nothing, installs nothing,
 # never exposes the daemon token, never connects or patches.
+#
+# Exit Codes:
+#   0 - The report was printed. Findings live in the report, not the status
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=_common.sh
+# shellcheck source=SCRIPTDIR/_common.sh
 . "$HERE/_common.sh"
 
 log "== mcp-figma doctor (read-only) =="
@@ -12,9 +18,9 @@ log "== mcp-figma doctor (read-only) =="
 # Platform / runtime
 case "$(uname -s)" in Darwin) ok "Platform: macOS";; *) warn "Platform: $(uname -s) (unsupported/unverified)";; esac
 if command -v node >/dev/null 2>&1; then
-  nm="$(node_major)"; { [ -n "$nm" ] && [ "$nm" -ge 18 ] 2>/dev/null && ok "Node $(node -v)"; } || warn "Node $(node -v 2>/dev/null||echo none) (<18)"
+  nm="$(node_major)"; { [ -n "$nm" ] && [ "$nm" -ge "$NODE_MIN_MAJOR" ] 2>/dev/null && ok "Node $(node -v)"; } || warn "Node $(node -v 2>/dev/null||echo none) (<$NODE_MIN_MAJOR)"
 else warn "Node not found"; fi
-command -v npm >/dev/null 2>&1 && ok "npm $(npm -v)" || warn "npm not found"
+if command -v npm >/dev/null 2>&1; then ok "npm $(npm -v)"; else warn "npm not found"; fi
 
 # Binary identity (the collision check)
 log "-- figma binary --"

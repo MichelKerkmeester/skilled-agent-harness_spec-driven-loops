@@ -1,9 +1,12 @@
 #!/usr/bin/env node
-
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: MCP Code Mode Server Entry
-// ---------------------------------------------------------------
-// Entry point for the npx @utcp/mcp-bridge command.
+// ───────────────────────────────────────────────────────────────────
+// Entry point for the mcp-bridge bin of the @utcp/code-mode-mcp package.
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import path, { dirname } from 'path';
 import { promises as fs } from 'fs';
@@ -28,8 +31,38 @@ import {
 } from '@utcp/sdk';
 import { CodeModeUtcpClient } from '@utcp/code-mode';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS AND TYPES
+// ───────────────────────────────────────────────────────────────────
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Bounded so an unresponsive transport delays exit instead of preventing it.
+const TRANSPORT_CLOSE_TIMEOUT_MS = 5_000;
+const PARENT_WATCHDOG_INTERVAL_MS = 15_000;
+const DEFAULT_SEARCH_LIMIT = 10;
+const DEFAULT_CALL_TIMEOUT_MS = 30000;
+const DEFAULT_MAX_OUTPUT_SIZE = 200000;
+
+type ToolResponse = { content: Array<{ type: "text"; text: string }> };
+type CallTemplateInput = z.infer<typeof CallTemplateSchema>;
+
+type ToolRegistrar = {
+    registerTool: (
+        name: string,
+        config: {
+            title: string;
+            description: string;
+            inputSchema: unknown;
+        },
+        handler: (input: Record<string, unknown>) => Promise<ToolResponse>
+    ) => void;
+};
+
+// ───────────────────────────────────────────────────────────────────
+// 3. PROCESS SETUP
+// ───────────────────────────────────────────────────────────────────
 
 function redirectConsoleStdoutToStderr(): void {
     const writeToStderr = (...args: unknown[]): void => {
@@ -48,20 +81,9 @@ ensureCorePluginsInitialized();
 
 let utcpClient: CodeModeUtcpClient | null = null;
 
-type ToolResponse = { content: Array<{ type: "text"; text: string }> };
-type CallTemplateInput = z.infer<typeof CallTemplateSchema>;
-
-type ToolRegistrar = {
-    registerTool: (
-        name: string,
-        config: {
-            title: string;
-            description: string;
-            inputSchema: unknown;
-        },
-        handler: (input: Record<string, unknown>) => Promise<ToolResponse>
-    ) => void;
-};
+// ───────────────────────────────────────────────────────────────────
+// 4. RESPONSE AND ERROR HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function getErrorMessage(error: unknown): string {
     if (error instanceof Error) {
@@ -89,47 +111,62 @@ function getErrorCode(error: unknown): string | undefined {
     return undefined;
 }
 
+function textResponse(text: string): ToolResponse {
+    return { content: [{ type: "text", text }] };
+}
+
+function errorResponse(error: unknown, context: Record<string, unknown> = {}): ToolResponse {
+    return textResponse(JSON.stringify({ success: false, ...context, error: getErrorMessage(error) }));
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. TRANSPORT LIFECYCLE
+// ───────────────────────────────────────────────────────────────────
+
+async function closeWithinTimeout(
+    client: CodeModeUtcpClient,
+    timeoutMs: number,
+    failurePrefix: string
+): Promise<void> {
+    try {
+        await Promise.race([
+            client.close(),
+            new Promise<void>(resolve => setTimeout(resolve, timeoutMs).unref())
+        ]);
+    } catch (error) {
+        console.error(`${failurePrefix}: ${getErrorMessage(error)}`);
+    }
+}
+
 // Registration opens a transport per manual only to read its tool list, and
 // those transports then sit idle for the whole session. Most are never called,
 // yet each one holds a child process, and several sessions at once make those
 // children contend over shared credential state. Dropping them after discovery
 // keeps every tool searchable: the protocol reopens a transport on first real
 // use.
-async function releaseIdleTransports(client: CodeModeUtcpClient, timeoutMs = 5_000): Promise<void> {
-    try {
-        await Promise.race([
-            client.close(),
-            new Promise<void>(resolve => setTimeout(resolve, timeoutMs).unref())
-        ]);
-    } catch (error) {
-        console.error(`CodeMode-MCP idle transport release failed: ${getErrorMessage(error)}`);
-    }
+async function releaseIdleTransports(
+    client: CodeModeUtcpClient,
+    timeoutMs = TRANSPORT_CLOSE_TIMEOUT_MS
+): Promise<void> {
+    await closeWithinTimeout(client, timeoutMs, "CodeMode-MCP idle transport release failed");
 }
 
 // Closing the client cascades into each communication protocol, which ends the
-// child processes backing remote transports. Bounded so an unresponsive
-// transport delays exit instead of preventing it.
-async function releaseTransports(timeoutMs = 5_000): Promise<void> {
+// child processes backing remote transports.
+async function releaseTransports(timeoutMs = TRANSPORT_CLOSE_TIMEOUT_MS): Promise<void> {
     const client = utcpClient;
     if (!client) {
         return;
     }
     utcpClient = null;
 
-    try {
-        await Promise.race([
-            client.close(),
-            new Promise<void>(resolve => setTimeout(resolve, timeoutMs).unref())
-        ]);
-    } catch (error) {
-        console.error(`CodeMode-MCP transport cleanup failed: ${getErrorMessage(error)}`);
-    }
+    await closeWithinTimeout(client, timeoutMs, "CodeMode-MCP transport cleanup failed");
 }
 
 // A stdio MCP server's lifetime is its parent session. Without these exits the
 // process survives a hard session kill, reparents to PID 1, and orphans
 // accumulate until they exhaust shared infrastructure.
-function exitWhenSessionEnds(transport: StdioServerTransport) {
+function exitWhenSessionEnds(transport: StdioServerTransport): void {
     let shuttingDown = false;
 
     const shutdown = (reason: string) => {
@@ -156,28 +193,22 @@ function exitWhenSessionEnds(transport: StdioServerTransport) {
         if (process.ppid === 1) {
             shutdown("parent process exited");
         }
-    }, 15_000);
+    }, PARENT_WATCHDOG_INTERVAL_MS);
     watchdog.unref();
 }
 
-async function main() {
-    setupMcpTools();
-    utcpClient = await initializeUtcpClient();
-    await releaseIdleTransports(utcpClient);
-    const transport = new StdioServerTransport();
-    exitWhenSessionEnds(transport);
-    await mcp.connect(transport);
-}
+// ───────────────────────────────────────────────────────────────────
+// 6. MCP SERVER AND TOOLS
+// ───────────────────────────────────────────────────────────────────
 
 const mcp = new McpServer({
     name: "CodeMode-MCP",
     version: "1.0.0",
 });
 
-function setupMcpTools() {
+function setupMcpTools(): void {
     const mcpTools = mcp as unknown as ToolRegistrar;
 
-    // Register MCP prompt for using the code mode server
     mcp.registerPrompt("utcp_codemode_usage", {
         title: "UTCP Code Mode Usage Guide",
         description: "Comprehensive guide on how to use the UTCP Code Mode MCP server for executing TypeScript code with tool access."
@@ -220,9 +251,9 @@ Remember: The power of this system comes from combining multiple tools in sophis
         const manualCallTemplate = input.manual_call_template;
         try {
             const result = await client.registerManual(manualCallTemplate as CallTemplateInput);
-            return { content: [{ type: "text", text: JSON.stringify(result) }] };
+            return textResponse(JSON.stringify(result));
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, error: getErrorMessage(e) }) }] };
+            return errorResponse(e);
         }
     });
 
@@ -236,9 +267,9 @@ Remember: The power of this system comes from combining multiple tools in sophis
         try {
             const success = await client.deregisterManual(manualName);
             const message = success ? `Manual '${manualName}' deregistered.` : `Manual '${manualName}' not found.`;
-            return { content: [{ type: "text", text: JSON.stringify({ success, message }) }] };
+            return textResponse(JSON.stringify({ success, message }));
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, error: getErrorMessage(e) }) }] };
+            return errorResponse(e);
         }
     });
 
@@ -247,12 +278,12 @@ Remember: The power of this system comes from combining multiple tools in sophis
         description: "Searches for relevant tools based on a task description.",
         inputSchema: {
             task_description: z.string().describe("A natural language description of the task."),
-            limit: z.number().optional().default(10),
+            limit: z.number().optional().default(DEFAULT_SEARCH_LIMIT),
         },
     }, async (input: Record<string, unknown>) => {
         const client = await initializeUtcpClient();
         const taskDescription = typeof input.task_description === "string" ? input.task_description : "";
-        const limit = typeof input.limit === "number" ? input.limit : 10;
+        const limit = typeof input.limit === "number" ? input.limit : DEFAULT_SEARCH_LIMIT;
         try {
             const tools = await client.searchTools(taskDescription, limit);
             const toolsWithInterfaces = tools.map(t => ({
@@ -260,9 +291,9 @@ Remember: The power of this system comes from combining multiple tools in sophis
                 description: t.description,
                 typescript_interface: client.toolToTypeScriptInterface(t)
             }));
-            return { content: [{ type: "text", text: JSON.stringify({ tools: toolsWithInterfaces }) }] };
+            return textResponse(JSON.stringify({ tools: toolsWithInterfaces }));
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, error: getErrorMessage(e) }) }] };
+            return errorResponse(e);
         }
     });
 
@@ -275,9 +306,9 @@ Remember: The power of this system comes from combining multiple tools in sophis
         try {
             const tools = await client.config.tool_repository.getTools();
             const toolNames = tools.map(t => t.name);
-            return { content: [{ type: "text", text: JSON.stringify({ tools: toolNames }) }] };
+            return textResponse(JSON.stringify({ tools: toolNames }));
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, error: getErrorMessage(e) }) }] };
+            return errorResponse(e);
         }
     });
 
@@ -292,9 +323,9 @@ Remember: The power of this system comes from combining multiple tools in sophis
         const toolName = typeof input.tool_name === "string" ? input.tool_name : "";
         try {
             const variables = await client.getRequiredVariablesForRegisteredTool(toolName);
-            return { content: [{ type: "text", text: JSON.stringify({ success: true, tool_name: toolName, required_variables: variables }) }] };
+            return textResponse(JSON.stringify({ success: true, tool_name: toolName, required_variables: variables }));
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, tool_name: toolName, error: getErrorMessage(e) }) }] };
+            return errorResponse(e, { tool_name: toolName });
         }
     });
 
@@ -310,70 +341,69 @@ Remember: The power of this system comes from combining multiple tools in sophis
         try {
             const tool = await client.config.tool_repository.getTool(toolName);
             if (!tool) {
-                return { content: [{ type: "text", text: JSON.stringify({ success: false, error: `Tool '${toolName}' not found` }) }] };
+                return textResponse(JSON.stringify({ success: false, error: `Tool '${toolName}' not found` }));
             }
-            const typescript_interface = client.toolToTypeScriptInterface(tool);
-            return { content: [{ type: "text", text: typescript_interface }] };
+            return textResponse(client.toolToTypeScriptInterface(tool));
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, error: getErrorMessage(e) }) }] };
+            return errorResponse(e);
         }
     });
 
-    // Code Mode specific tools
     mcpTools.registerTool("call_tool_chain", {
         title: "Execute TypeScript Code with Tool Access",
         description: "Execute TypeScript code with direct access to all registered tools as hierarchical functions (e.g., manual.tool()).",
         inputSchema: {
             code: z.string().describe("TypeScript code to execute with access to all registered tools."),
-            timeout: z.number().optional().default(30000).describe("Optional timeout in milliseconds (default: 30000)."),
-            max_output_size: z.number().optional().default(200000).describe("Optional maximum output size in characters (default: 200000)."),
+            timeout: z.number().optional().default(DEFAULT_CALL_TIMEOUT_MS).describe(`Optional timeout in milliseconds (default: ${DEFAULT_CALL_TIMEOUT_MS}).`),
+            max_output_size: z.number().optional().default(DEFAULT_MAX_OUTPUT_SIZE).describe(`Optional maximum output size in characters (default: ${DEFAULT_MAX_OUTPUT_SIZE}).`),
         },
     }, async (input: Record<string, unknown>) => {
         const client = await initializeUtcpClient();
         const code = typeof input.code === "string" ? input.code : "";
-        const timeout = typeof input.timeout === "number" ? input.timeout : 30000;
-        const maxOutputSize = typeof input.max_output_size === "number" ? input.max_output_size : 200000;
+        const timeout = typeof input.timeout === "number" ? input.timeout : DEFAULT_CALL_TIMEOUT_MS;
+        const maxOutputSize = typeof input.max_output_size === "number" ? input.max_output_size : DEFAULT_MAX_OUTPUT_SIZE;
         try {
             const { result, logs } = await client.callToolChain(code, timeout);
-            const content = JSON.stringify({ success: true, result, logs })
+            const content = JSON.stringify({ success: true, result, logs });
             if (content.length > maxOutputSize) {
-                return { content: [{ type: "text", text: content.slice(0, maxOutputSize) + "...\nmax_output_size exceeded" }] };
+                return textResponse(content.slice(0, maxOutputSize) + "...\nmax_output_size exceeded");
             }
-            return { content: [{ type: "text", text: content }] };
+            return textResponse(content);
         } catch (e: unknown) {
-            return { content: [{ type: "text", text: JSON.stringify({ success: false, error: getErrorMessage(e) }) }] };
+            return errorResponse(e);
         }
     });
-
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. UTCP CLIENT
+// ───────────────────────────────────────────────────────────────────
 
 async function initializeUtcpClient(): Promise<CodeModeUtcpClient> {
     if (utcpClient) {
         return utcpClient;
     }
 
-    // Look for config file: 1) Environment variable, 2) Current working directory, 3) Package directory
+    // Config lookup order: UTCP_CONFIG_FILE, then the working directory, then the package directory.
     const cwd = process.cwd();
     const packageDir = __dirname;
-    
+
     let configPath: string;
     let scriptDir: string;
-    
-    // Check if UTCP_CONFIG_FILE environment variable is set
+
     if (process.env.UTCP_CONFIG_FILE) {
         configPath = path.resolve(process.env.UTCP_CONFIG_FILE);
         scriptDir = path.dirname(configPath);
-        
+
         try {
             await fs.access(configPath);
         } catch {
             console.warn(`UTCP config file specified in UTCP_CONFIG_FILE not found: ${configPath}`);
         }
     } else {
-        // Fall back to current working directory first, then package directory
         configPath = path.resolve(cwd, '.utcp_config.json');
         scriptDir = cwd;
-        
+
         try {
             await fs.access(configPath);
         } catch {
@@ -402,6 +432,19 @@ async function initializeUtcpClient(): Promise<CodeModeUtcpClient> {
 
     utcpClient = newClient;
     return utcpClient;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 8. ENTRYPOINT
+// ───────────────────────────────────────────────────────────────────
+
+async function main(): Promise<void> {
+    setupMcpTools();
+    utcpClient = await initializeUtcpClient();
+    await releaseIdleTransports(utcpClient);
+    const transport = new StdioServerTransport();
+    exitWhenSessionEnds(transport);
+    await mcp.connect(transport);
 }
 
 main().catch(err => {
