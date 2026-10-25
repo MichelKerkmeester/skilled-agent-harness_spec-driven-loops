@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.11.0
+version: 1.0.12.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -721,6 +721,80 @@ Evidence: exit code 0 and these cases pass.
 
 PASS when every named case passes. FAIL when a case is missing from the run or fails.
 
+### Goal Carry-Over Checks
+
+A hand-over note can carry the sender's goal as a `goal_packet` line, and a Claude receiver then starts on `/goal <slice>` with the claim delivered through `SessionStart` context. These checks follow that goal through a real hop and show that it stays out when it should. They run in a throwaway checkout that holds copies of the real hooks, wrapper and goal command, because a goal sent to a receiver in this repository would start real work. The harness is kept with the packet that recorded the runs: `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs `prepare`, against its own note and its own runtime directory.
+
+#### GR-1 A Claude hop carries the goal (Live)
+
+Run from the repository root with `tmux`, `node` and `claude`:
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+harness="$repo_root/specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
+sandbox="$(mktemp -d)/sandbox"; out="$(mktemp -d)"
+bash "$harness/build-sandbox.sh" claude "$sandbox" 3990 "$repo_root"
+bash "$harness/run-hop.sh" claude "$sandbox" "$out" goal
+bash "$harness/finish-run.sh" claude "$out"
+~~~
+
+`run-hop.sh` starts the sender on `/goal <slice>` under `skilled-loop`, writes a note, runs `prepare`, sends one prompt so Stop arms, and lets the wrapper relaunch. It drops the host session's `SKILLED_LOOP_*`, `CLAUDE*` and `SESSION_RELAUNCH_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the transcripts to an extract and deletes the raw files, which hold the operator's instruction files.
+
+Evidence, read from the receiver and not the sender:
+
+- `summary.txt` shows `note goal_packet line: goal_packet: specs/demo/001-demo`, so the sender's goal was proven from its session log.
+- The receiver extract shows a `goal_status` entry with `condition_chars=3990` before the first tool call, and a `SessionStart:startup` hook entry. `relaunch.log` holds a `goal-start-claim` line.
+- The note went `open -> claimed -> done`, and `GOALENV.marker` holds `specs/demo/001-demo`, the value the receiver's own `printenv SESSION_RELAUNCH_GOAL_PACKET` printed.
+
+PASS when all three hold. FAIL when the receiver has no `goal_status` entry, when the note never leaves `open` or when `GOALENV.marker` is empty.
+
+#### GR-2 The controls leave the receiver with no goal (Live)
+
+Build a fresh checkout for each run, then run both controls:
+
+~~~bash
+bash "$harness/build-sandbox.sh" claude "$sandbox-b" 3990 "$repo_root"
+bash "$harness/run-hop.sh" claude "$sandbox-b" "$out-b" switch-off SESSION_RELAUNCH_GOAL=0
+bash "$harness/build-sandbox.sh" claude "$sandbox-c" 3990 "$repo_root"
+NO_GOAL=1 bash "$harness/run-hop.sh" claude "$sandbox-c" "$out-c" no-goal
+~~~
+
+In the switch-off run the note still carries the `goal_packet` line, because only the launch environment is switched off, and the receiver starts on the claim seed: the extract has no `goal_status` entry and `GOALENV.marker` holds `EMPTY`. In the no-goal run the sender never had a goal, so the note has no `goal_packet` line and the receiver again has no `goal_status` entry. Both controls still claim and complete the note, so a missing goal does not break the hand-over.
+
+PASS when both controls show no `goal_status` entry in the receiver and `EMPTY` in `GOALENV.marker`. FAIL when either receiver holds a goal.
+
+A goal over the 4,000-character limit is the third control. The harness kept with `specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch/harness/run-hop.sh` grows `goal.md` after the note names it when `GOAL_AFTER_PREPARE=4100` is set: the wrapper prints one `warning: the goal was not set in the relaunched session` line and the receiver claims through the seed with no goal.
+
+#### GR-3 Goal carry-over suites (Automatable)
+
+~~~bash
+node --test \
+  .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs \
+  .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs \
+  .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs \
+  .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+~~~
+
+Evidence: exit code 0 and these cases pass.
+
+- `goal-handover.test.cjs`: `renders exactly the chat slice the goal command prints, without frontmatter or comments` and `sends a slice of exactly 4000 characters and refuses 4001`.
+- `claude-adapters.test.cjs`: `compact-pointer delivers the claim at the start of a goal-command receiver` and `compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook`.
+- `skilled-loop.test.cjs`: `a Claude hop with a goal starts on the goal command and carries the claim in the environment`, `a Claude hop keeps the claim seed as its start prompt when no goal can be sent` and `wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0`.
+
+PASS when every named case passes. FAIL when a case is missing from the run or fails.
+
+#### Recorded Results, 2026-10-25
+
+Claude Code 2.1.310 with `claude-sonnet-5-5`, live in tmux with a private runtime directory per run. The 3,990-character slice is the harness goal. Evidence lives in `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
+
+| Run | Result | Receiver | Evidence folder |
+|---|---|---|---|
+| Goal (GR-1) | Pass | `goal_status` with a 3,990-character condition, `goal-start-claim` logged, note `done`, `GOALENV.marker` is `specs/demo/001-demo` | `claude-a-goal/` |
+| Switch off (GR-2) | Pass | Note carried the packet, receiver had no `goal_status`, `GOALENV.marker` is `EMPTY`, note `done` | `claude-b-switch-off/` |
+| No goal (GR-2) | Pass | Note had no `goal_packet`, receiver had no `goal_status`, `GOALENV.marker` is `EMPTY`, note `done` | `claude-c-no-goal/` |
+| Over the limit (GR-2) | Pass, recorded earlier | Receiver had no goal and claimed through the seed | `specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch/claude-live-c-over-budget/` |
+
 ### Expected
 
 During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification. A transcript that stays unreadable for 1 s takes the same path. Every arm event restarts a killer for an armed record that has none. Each hop adds `handed-over`, `claimed` (with `by <id>`) and `done` lines to `.skilled/skills/.state/session-relaunch/hop-history.log`, a killer timeout adds `timed-out` and a called-off hand-over adds `withdrawn`. An operator prompt over a deferred or armed record, or `cancel` over a pending or armed one, disarms it with reason `user-message` or `cancelled`. `should-relaunch` then reports `withdrawn`, the killer stands down, the session gets one more nudge a step above its fill and the wrapper prints `warning: the prepared hand-over was withdrawn in the session; <note> stays open and out of date` with no manual claim command. A `<task-notification>` prompt withdraws nothing.
@@ -777,6 +851,9 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs | Automates wrapper and hop-cap behavior. |
 | .skilled/hooks/session-relaunch/tests/hop-history.test.cjs | Automates the hop history, the history command and the notice switch. |
 | .skilled/hooks/session-relaunch/tests/withdraw.test.cjs | Automates the shared withdraw helper and its follow-ups. |
+| .skilled/hooks/session-relaunch/lib/goal-handover.cjs | Renders the goal slice a Claude receiver starts on, with the packet, budget and size checks. |
+| .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs | Covers the slice helper against the real goal command. |
+| specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/ | The throwaway-checkout harness behind the goal carry-over checks and their recorded runs. |
 
 Provenance: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 

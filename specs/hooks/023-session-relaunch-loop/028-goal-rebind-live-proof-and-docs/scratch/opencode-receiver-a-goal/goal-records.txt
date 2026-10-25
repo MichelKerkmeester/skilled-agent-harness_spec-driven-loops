@@ -1,0 +1,2 @@
+goal records: 1
+record=40640897a066 goalId=goal-14f90962-e58a-4b91-ab61-45e30c388933 runtime=undefined status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T00:41:41.438Z

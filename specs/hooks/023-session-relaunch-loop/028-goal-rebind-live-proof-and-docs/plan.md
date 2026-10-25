@@ -35,16 +35,16 @@ Run one hop per runtime with a goal, then the two controls, read the receiver st
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Phases 025 to 027 are Complete
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Phases 025 to 027 are Complete
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] Recursive strict validation passes for both parents
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
+- [x] Recursive strict validation passes for both parents
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -157,8 +157,8 @@ Live hops ──► Controls ──► Playbooks and docs ──► Parent maps 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Credentials checked per runtime without printing a key
-- [ ] Low hop cap and short task prepared
+- [x] Credentials checked per runtime without printing a key
+- [x] Low hop cap and short task prepared
 
 ### Rollback Procedure
 1. Stop every tmux session the runs started.

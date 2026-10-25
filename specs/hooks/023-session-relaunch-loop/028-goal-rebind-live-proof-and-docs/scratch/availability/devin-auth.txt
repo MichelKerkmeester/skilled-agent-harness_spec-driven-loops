@@ -1,0 +1,10 @@
+## devin auth status
+Logged in (via Devin).
+
+Credentials:
+  File:              /Users/michelkerkmeester/.local/share/devin/credentials.toml
+  API server:        https://server.codeium.com
+  Devin webapp:      https://app.devin.ai
+  Devin API:         https://api.devin.ai
+
+exit=0

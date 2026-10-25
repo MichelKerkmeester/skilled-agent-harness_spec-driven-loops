@@ -1,0 +1,15 @@
+Process tree of an OpenCode 2.1.4 session started the way a hop starts it (skilled-loop opencode, with the shim that adds --standalone), read with ps -axo pid,ppid,command:
+
+  56380 56379  bash .skilled/bin/skilled-loop opencode
+  56393 56380  /Users/<operator>/.local/bin/opencode --standalone            (the TUI)
+  56394 56393  .../opencode.exe serve --stdio --port 0                        (the server that loads the plugins)
+
+OBSERVED: the plugin file passes --target-pid process.pid to the killer. INFERRED (not confirmed): the plugin runs in the
+server process, so that pid is the server's, not the TUI's. Confirming it needs the pid tree captured before the kill.
+(.opencode/plugins/session-relaunch.js, the spawn of killer.cjs)
+In the opencode-a-hop-attempt run the
+killer logged "killer-signal targetPid=<pid> signal=SIGTERM" and no "relaunch" line followed: the server
+died, the TUI stayed up showing "Connection lost... Reconnecting to the server automatically", the
+wrapper never regained control, and the note stayed open (summary.txt, relaunch.log, pane-receiver.txt).
+Without --standalone the plugin would run inside the operator's shared background service
+(opencode.exe serve --service), so the same pid would name that service. That route was not run.

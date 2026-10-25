@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.10.0
+version: 1.0.11.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -412,6 +412,72 @@ Evidence: exit code 0 and these cases pass.
 
 PASS when every named case passes. FAIL when a case is missing from the run or fails.
 
+### Goal Carry-Over Checks
+
+A hand-over note can carry the sender's goal as a `goal_packet` line, and `skilled-loop` exports it to the relaunched session. This table says which of these runtimes can show that, and what each check proves. The harness is kept with the packet that recorded the runs: `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs it.
+
+| Runtime | Sender writes `goal_packet` | A hop reaches the receiver | Receiver binds the packet | Check |
+|---|---|---|---|---|
+| Codex | No: its goal store holds the objective text and a status with no packet, so a Codex note carries none | Yes | Not applicable, no packet arrives | GR-C1, control only |
+| Devin | From its goal record, once a goal is bound | No: nothing arms the record, so the wrapper never relaunches it | Yes, from the variable | GR-C2, receiver half only |
+| Cursor | From its goal record | No, same reason | Yes, from the variable | GR-C3, SKIP |
+| Hermes | From its goal record | Yes, through the plugin adapter | Yes, `skilled-loop` exports the packet as `HERMES_SPEC_FOLDER` | GR-C3, SKIP |
+
+#### GR-C1 A Codex hop carries no goal packet (Live, control)
+
+Run from the repository root with `tmux`, `node` and `codex` signed in:
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+harness="$repo_root/specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
+out="$(mktemp -d)"
+bash "$harness/run-codex.sh" "$repo_root" "$out"
+~~~
+
+`run-codex.sh` starts `skilled-loop codex -m gpt-6-luna --sandbox danger-full-access` in this checkout with a private tmux socket and `XDG_RUNTIME_DIR`, the host's `SKILLED_LOOP_*` and `SESSION_RELAUNCH_GOAL*` variables dropped and the threshold overrides from CX-0. It asks the sender to write the note itself, with a remaining task that has the receiver run `printenv SESSION_RELAUNCH_GOAL_PACKET` and write the result to `$out/GOALENV.marker`. The prompt says the operator requires the hand-over and forbids doing the task in the sender, because a Codex session that judges the task short finishes it and skips the hand-over. The note it writes stays in the gitignored handoffs folder, and `note-path.txt` names it.
+
+Evidence: `history.txt` shows `handed-over`, `claimed ... by <id>` and `done` for the note, the note has no `goal_packet` line, and `GOALENV.marker` holds `EMPTY`. PASS when all three hold. FAIL when the sender never arms (`RESULT=NO_ARMED_RECORD`) or the marker holds a packet path.
+
+#### GR-C2 A Devin receiver binds a packet (Live, receiver half only)
+
+Devin ships on the command trigger, so a prepared record stays pending and no hop starts. This check is not a hop. It starts one headless Devin session in a throwaway checkout with the variable set by hand and reads the reply and the goal store:
+
+~~~bash
+bash "$harness/build-sandbox.sh" devin "$sandbox" 3990 "$repo_root"
+bash "$harness/run-devin.sh" "$sandbox" "$out" SESSION_RELAUNCH_GOAL_PACKET=specs/demo/001-demo
+~~~
+
+Evidence: the reply is an `[active_goal:<id>]` line and `goal-records.txt` holds one record with `runtime=devin` and that goal id. Repeat with `SESSION_RELAUNCH_GOAL=0` added and with no variable: both must reply `NONE` and leave the store empty. The run needs `devin auth status` to say it is logged in and passes `--respect-workspace-trust false`, because print mode cannot answer the trust prompt in a new directory.
+
+PASS when the three runs match. FAIL when a control binds a goal or the packet run binds none.
+
+#### GR-C3 Cursor and Hermes (Live, SKIP 2026-10-25)
+
+Cursor: `cursor-agent about` printed `User Email         Not logged in`, so no session could start. Hermes: `hermes chat -Q --oneshot -q "Reply with the single word OK" --provider llmgateway --model gpt-6-luna` exited 1 with `Billing or credits exhausted: HTTP 402: You've reached the daily pacing allowance on the pro plan.` The unit proof for both stands: the `a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes` and `a Hermes hop restores the operator folder once a hop carries no goal` cases in `skilled-loop.test.cjs`, and `goal-cursor.test.mjs`. Neither check is a live pass.
+
+#### GR-C4 Goal carry-over suites (Automatable)
+
+~~~bash
+node --test \
+  .skilled/hooks/goal/devin/goal-devin.test.mjs \
+  .skilled/hooks/goal/cursor/goal-cursor.test.mjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs \
+  .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+~~~
+
+Evidence: exit code 0. PASS when it exits 0 and the Hermes cases named under GR-C3 ran. FAIL when a case is missing or fails.
+
+#### Recorded Results, 2026-10-25
+
+Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
+
+| Run | Result | Receiver | Evidence folder |
+|---|---|---|---|
+| Codex hop (GR-C1) | Pass, control only | Note carried no packet, `GOALENV.marker` is `EMPTY`, note `done`. A first run was discarded because the sender judged the task short and finished it without a hand-over | `codex-c-no-goal/`, `codex-c-discarded-run1/` |
+| Devin goal (GR-C2) | Pass, receiver half only | Reply `[active_goal:...]`, one `runtime=devin` record | `devin-receiver-a-goal/` |
+| Devin switch off and no packet (GR-C2) | Pass, receiver half only | Reply `NONE`, no record | `devin-receiver-b-switch-off/`, `devin-receiver-c-no-goal/` |
+| Cursor and Hermes (GR-C3) | SKIP | Not logged in, and HTTP 402 | `availability/` |
+
 ---
 
 ## 4. SOURCE FILES
@@ -449,6 +515,8 @@ PASS when every named case passes. FAIL when a case is missing from the run or f
 | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Stub-runtime wrapper relaunch argument tests. |
 | `.skilled/hooks/session-relaunch/tests/withdraw.test.cjs` | Shared withdraw helper tests. |
 | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs` | Hop history, history command and withdrawn-note tests. |
+| `.skilled/hooks/goal/devin/goal-inject.mjs` | Devin hook that binds the hand-over packet before its usual goal read. |
+| `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The harness behind the goal carry-over checks and their recorded runs. |
 
 Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 

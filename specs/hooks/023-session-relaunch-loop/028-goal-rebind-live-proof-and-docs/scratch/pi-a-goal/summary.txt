@@ -1,0 +1,15 @@
+2026-10-25T00:23:31Z sender launched (pi, label a, env:none, no_goal=0)
+2026-10-25T00:23:33Z sender ready=yes
+2026-10-25T00:23:40Z sender goal records in /private/tmp/claude-501/ev028/sb-pi-a/.skilled/skills/.state/goal: 1
+2026-10-25T00:24:09Z sender session: 01a17070-efdb-7244-9b2e-84e0daca0962
+2026-10-25T00:24:09Z wrapper pid (loop id): 66480
+2026-10-25T00:24:09Z prepare exit=0 ; [session-relaunch] handoff prepared; stop now and end this turn. The loop ends this session when it goes idle and a fresh session continues from /private/tmp/claude-501/ev028/sb-pi-a/.skilled/skills/.state/session-relaunch/handoffs/note-a.md.
+2026-10-25T00:24:09Z note goal_packet line: goal_packet: specs/demo/001-demo
+2026-10-25T00:24:10Z sent the ending prompt; waiting for the receiver
+2026-10-25T00:25:11Z note status: status: done
+2026-10-25T00:25:11Z GOALENV.marker: specs/demo/001-demo
+2026-10-25T00:25:11Z GOALSEEN.marker: [active_goal:goal-31277a81-9b17-4079-b472-2c8e37692102]
+goal records: 2
+record=5ecbd2dce943 runtime=pi status=active packetPath=specs/demo/001-demo boundBy=pi createdAtMs=1792887858016
+record=86127d5ebf83 runtime=pi status=active packetPath=specs/demo/001-demo boundBy=pi createdAtMs=1792887818754
+2026-10-25T00:25:11Z done

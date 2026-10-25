@@ -1,0 +1,8 @@
+2026-10-25T00:40:05Z env: 
+  ┃  If your context holds an active goal block, which starts with [active_goal:, reply with that first line exactly. Otherwise reply with the single word █
+  ┃  NONE.                                                                                                                                                 █    Context
+     NONE                                                                                                                                                  █
+     Build · GPT-6 Luna · 3.8s · 9.0 tok/s                                                                                                                 █
+  ┃  Build · GPT-6 Luna OpenAI
+goal records: 0
+2026-10-25T00:41:26Z done

@@ -169,6 +169,18 @@ A Hermes receiver binds from its environment: while the switch is on and the not
 
 Codex gets neither. Its start prompt cannot be the goal command, and a seed that asks the model to call `create_goal` is only reachable when a Codex sender can name a packet. It cannot yet (see the Goal Packet table), and a hop always relaunches the runtime it left, so no Codex receiver is ever handed a packet. The seed instruction waits for a Codex goal reader.
 
+### Goal Carry-Over: What Was Shown Live
+
+Live hops on 2026-10-25, each in a throwaway checkout with a private tmux server and runtime directory, read the receiver and not the sender:
+
+- **Claude and Pi:** a sender with a goal handed it on, the receiver held it, and the two controls (`SESSION_RELAUNCH_GOAL=0`, and a sender with no goal) left the receiver with none. On Claude the receiver's log shows a goal of 3,990 characters and a start claim. On Pi it shows a goal block with a new goal id.
+- **Codex:** a hop carries no packet by design. The control shows a note with no `goal_packet` line and an empty `SESSION_RELAUNCH_GOAL_PACKET` in the receiver.
+- **OpenCode 2:** the receiver binds a packet it is given and stays empty under the switch and with no packet, but no hop reached it. The plugin passes its own pid to the killer, and under OpenCode 2 that process is probably the server child of the TUI. The killer signalled it, the TUI stayed up and the wrapper never relaunched. The wrapper also relaunches with `-m <model>`, which the OpenCode 2 root command rejects.
+- **Devin and Cursor:** both ship on the command trigger, so nothing arms a prepared record and the wrapper never relaunches them. A manual start by the printed command goes through the first-launch path, which drops `SESSION_RELAUNCH_GOAL_PACKET`. No hop ever hands them a packet. The Devin receiver half bound a packet in a headless session with the variable set by hand. Cursor could not run: it was not logged in.
+- **Hermes:** not run, the provider answered HTTP 402.
+
+The playbooks hold the repeatable form of each run: the Goal Carry-Over checks in the Claude, Pi and OpenCode, and command-runtime relaunch scenarios.
+
 ### Outside The Loop
 
 A session started without `skilled-loop`, such as one opened before the shell shim was sourced, cannot relaunch. Auto-compaction then shortens its context to a summary, and the summary drops detail: merge decisions, open conflicts and exact next steps. At the threshold the nudge therefore says the session cannot relaunch and asks it to write the same note, run `/speckit:save` when a packet is bound, and then run `keep`:

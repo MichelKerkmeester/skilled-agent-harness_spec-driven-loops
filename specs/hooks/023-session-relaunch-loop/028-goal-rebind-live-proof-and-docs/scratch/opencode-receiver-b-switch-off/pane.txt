@@ -1,0 +1,50 @@
+ • New session                   • Active goal block check       +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Active goal block check
+  ┃  If your context holds an active goal block, which starts with [active_goal:, reply with that first line exactly. Otherwise reply with the single word █
+  ┃  NONE.                                                                                                                                                 █    Context
+  ┃                                                                                                                                                        █    6,930 tokens
+                                                                                                                                                           █    2% used
+     ✓ execute                                                                                                                                             █
+     › opencode_goal_status                                                                                                                                █
+                                                                                                                                                           █
+     NONE                                                                                                                                                  █
+                                                                                                                                                           █
+     Build · GPT-6 Luna · 3.9s · 8.5 tok/s                                                                                                                 █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build · GPT-6 Luna OpenAI
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /private/tmp/claude-501/ev028/sb-ocr-b                                                                                          6.9K (2%)  ctrl+p commands    /private/tmp/claude-501/ev028/sb-ocr-b
+

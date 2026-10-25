@@ -1,0 +1,50 @@
+ • New session                   +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    New session - 2026-10-25T00:40:14.
+  ┃  If your context holds an active goal block, which starts with [active_goal:, reply with that first line exactly. Otherwise reply with the single word █    438Z
+  ┃  NONE.                                                                                                                                                 █
+  ┃                                                                                                                                                        █
+                                                                                                                                                           █
+     Error: Direct provider routing is not available on coding plans. Use the canonical model id (e.g. `mimo-v2.6-pro`) without a provider prefix and let  █
+     the gateway handle routing.                                                                                                                           █
+                                                                                                                                                           █
+     Build · MiMo V2.6 Pro (Xiaomi) · 584ms                                                                                                                █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build · MiMo V2.6 Pro (Xiaomi) LLM Gateway
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /private/tmp/claude-501/ev028/sb-ocr-b                                                                                   shift+tab agents  ctrl+p commands    /private/tmp/claude-501/ev028/sb-ocr-b
+

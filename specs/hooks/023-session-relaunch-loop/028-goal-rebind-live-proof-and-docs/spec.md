@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-24 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |
@@ -86,10 +86,12 @@ Each runtime with credentials shows, in a live hop, the sender goal in the recei
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md, session-relaunch-command-runtimes.md, session-relaunch-pi-opencode.md | Modify | Scenarios for the hop goal, the switch and the no-goal control |
-| .skilled/hooks/session-relaunch/README.md, .skilled/hooks/goal/goal-plugin.md, .skilled/commands/speckit/handoff.md | Modify | Describe the behavior and the switch |
-| .skilled/skills/system-spec-kit/feature-catalog entry for the relaunch loop | Modify | One line for the goal carry-over |
-| specs/hooks/023-session-relaunch-loop/spec.md | Modify | Map rows and handoff criteria for phases 24 to 29 |
-| scratch/ in this folder | Create | Live transcripts and receiver status per runtime |
+| .skilled/hooks/session-relaunch/README.md, .skilled/hooks/goal/goal-plugin.md, .skilled/commands/speckit/handoff.md | Modify | Describe the behavior, the switch and what the live runs showed |
+| .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md | Modify | One section for the goal carry-over |
+| specs/hooks/023-session-relaunch-loop/spec.md | Modify | Map row 28 |
+| scratch/ in this folder | Create | The harness, live transcripts extracts and receiver status per runtime |
+
+Follow-up, not edited here because the list above does not cover them: `.skilled/hooks/hook-flags.env.example`, `.skilled/hooks/README.md`, `.skilled/commands/doctor/assets/doctor-env.yaml` and `.skilled/hooks/session-relaunch/tests/README.md` still do not name `SESSION_RELAUNCH_GOAL`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -193,7 +195,8 @@ Each runtime with credentials shows, in a live hop, the sender goal in the recei
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which of Devin, Cursor and Hermes does the operator want live? The earlier relaunch runs skipped Cursor and Devin for credentials, so the default is a SKIP with the unit proof unless the operator says otherwise.
+- Answered by the runs: Devin ran headless on the receiver half only, because no hop reaches it. Cursor and Hermes were skipped, Cursor for no login and Hermes for an HTTP 402.
+- Open: the OpenCode 2 hop does not reach the receiver. Fix the killer's target in its owning phase and rerun, or waive the row under a new decision record.
 <!-- /ANCHOR:questions -->
 
 ---

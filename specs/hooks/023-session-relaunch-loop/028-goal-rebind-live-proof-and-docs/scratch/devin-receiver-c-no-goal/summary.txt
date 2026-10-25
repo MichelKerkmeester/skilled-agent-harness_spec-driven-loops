@@ -1,0 +1,5 @@
+2026-10-25T00:31:01Z env: 
+exit=0
+reply: NONE
+stderr: 
+goal records: 0

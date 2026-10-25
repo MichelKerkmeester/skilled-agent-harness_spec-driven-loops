@@ -18,6 +18,8 @@
       "goal rebind live proof plan",
       "goal rebind live proof tasks",
       "goal rebind live proof acceptance criteria",
+      "goal rebind live proof decision",
+      "devin hop waived",
       "goal rebind live proof implementation summary"
     ],
     "key_topics": [
@@ -35,13 +37,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/opencode-process-tree.txt",
+      "scratch/availability/hermes-probe.txt",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+      "specs/hooks/023-session-relaunch-loop/spec.md",
+      ".opencode/cli.json",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/hooks/README.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml"
     ],
     "entities": [
       {
@@ -69,13 +86,97 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "opencode-process-tree.txt",
+        "kind": "file",
+        "path": "scratch/opencode-process-tree.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hermes-probe.txt",
+        "kind": "file",
+        "path": "scratch/availability/hermes-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-pi-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-command-runtimes.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-loop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli.json",
+        "kind": "config",
+        "path": ".opencode/cli.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,95 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Run",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Observe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The goal-persistence work is only proven where a unit test can reach",
     "created_at": "2026-10-24T19:03:14Z",
-    "last_save_at": "2026-10-24T19:14:39.240Z",
+    "last_save_at": "2026-10-25T01:05:36.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,15 +216,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19babec7d92bb33a26d0c11e8cc8b4b27bd4e2e2e1fac26eea08eb88ec9762f3",
+    "source_fingerprint": "sha256:58ea93fbd0117496e4e1b995371d1e3c2e7fbe3697b1439c0a5c925e49420818",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc1a4cdbab1abdde45e5ba17ef2d243ca3a21e3d5facc8a4b9e7b0ce7c61f8df",
-      "plan.md": "401275e5cee31aef9c8586b41d499769e9e702f05a08b2421e2210dacc68c978",
-      "tasks.md": "efdc2e59b408a18dda33d83857b1adf7e735251742aee3b78e00659eb9308933",
-      "implementation-summary.md": "7c06fa88cd15733f4a786cbf267231239fbfae82c4325eff1a7819223a1f003a"
+      "spec.md": "51d61b012e31d584c92c20721bbb28389ce8773940962424fe094d70b359a1fd",
+      "plan.md": "92105af0fa418b5f296fe378b6e9d2a16bcbf40307880a6e58cceb5d1c8580db",
+      "tasks.md": "6337c4d433a511e8cc5e33a46ee8535932fd4271cc0328682e86ce2b3f37f281",
+      "decision-record.md": "d8fb2a92497b1570eadb488ab9ca5a0487a475bb3818cd9449f93f30202852f4",
+      "implementation-summary.md": "e9bef2b29b008165bcc41b02726ddbb265ba5df567fdc6fb41961e8353b8671a"
     },
     "last_active_at": null
   }

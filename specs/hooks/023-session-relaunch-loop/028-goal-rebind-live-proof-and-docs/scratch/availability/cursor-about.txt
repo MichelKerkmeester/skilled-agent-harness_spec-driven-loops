@@ -1,0 +1,11 @@
+## cursor-agent about
+About Cursor CLI
+
+CLI Version         2026.09.28-64d2043
+Latest              unavailable
+Model               Grok 4.7 256K Extra High Fast
+Subscription Tier   Unknown
+OS                  darwin (arm64)
+Terminal            orca
+Shell               zsh
+User Email          Not logged in

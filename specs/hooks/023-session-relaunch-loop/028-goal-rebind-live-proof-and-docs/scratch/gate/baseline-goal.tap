@@ -1,0 +1,1262 @@
+TAP version 13
+# Subtest: mutating without explicit runtime and session identity writes nothing
+ok 1 - mutating without explicit runtime and session identity writes nothing
+  ---
+  duration_ms: 31.945167
+  type: 'test'
+  ...
+# Subtest: session identity without a runtime namespace fails without writing
+ok 2 - session identity without a runtime namespace fails without writing
+  ---
+  duration_ms: 31.52725
+  type: 'test'
+  ...
+# Subtest: explicit session bindings keep CLI goals independent
+ok 3 - explicit session bindings keep CLI goals independent
+  ---
+  duration_ms: 148.605375
+  type: 'test'
+  ...
+# Subtest: aggregate diagnostics expose counts without raw session identities
+ok 4 - aggregate diagnostics expose counts without raw session identities
+  ---
+  duration_ms: 77.429708
+  type: 'test'
+  ...
+# Subtest: legacy inspect and migrate require an explicit target and are repeat-safe
+ok 5 - legacy inspect and migrate require an explicit target and are repeat-safe
+  ---
+  duration_ms: 168.04875
+  type: 'test'
+  ...
+# Subtest: legacy archive preserves malformed bytes without requiring session identity
+ok 6 - legacy archive preserves malformed bytes without requiring session identity
+  ---
+  duration_ms: 38.12
+  type: 'test'
+  ...
+# Subtest: same-scope concurrent writers leave one valid record and no temp files
+ok 7 - same-scope concurrent writers leave one valid record and no temp files
+  ---
+  duration_ms: 303.162208
+  type: 'test'
+  ...
+# Subtest: an unknown leading flag fails instead of becoming an objective
+ok 8 - an unknown leading flag fails instead of becoming an objective
+  ---
+  duration_ms: 166.16875
+  type: 'test'
+  ...
+# Subtest: session actions without a workspace fail with MISSING_WORKSPACE and write nothing
+ok 9 - session actions without a workspace fail with MISSING_WORKSPACE and write nothing
+  ---
+  duration_ms: 96.462
+  type: 'test'
+  ...
+# Subtest: packet reads still run without a workspace flag
+ok 10 - packet reads still run without a workspace flag
+  ---
+  duration_ms: 40.26825
+  type: 'test'
+  ...
+# [goal] hand-over packet not bound: packet-invalid
+# [goal] hand-over packet not bound: packet-invalid
+# Subtest: injects the active_goal brief as agent_message when a goal is active
+ok 11 - injects the active_goal brief as agent_message when a goal is active
+  ---
+  duration_ms: 59.663291
+  type: 'test'
+  ...
+# Subtest: records a turn touch when injecting an active goal
+ok 12 - records a turn touch when injecting an active goal
+  ---
+  duration_ms: 61.219041
+  type: 'test'
+  ...
+# Subtest: two Cursor sessions inject only their own active goal
+ok 13 - two Cursor sessions inject only their own active goal
+  ---
+  duration_ms: 114.442584
+  type: 'test'
+  ...
+# Subtest: conversation_id is the supported fallback when session_id is absent
+ok 14 - conversation_id is the supported fallback when session_id is absent
+  ---
+  duration_ms: 53.492166
+  type: 'test'
+  ...
+# Subtest: no-op when no goal is set
+ok 15 - no-op when no goal is set
+  ---
+  duration_ms: 28.693292
+  type: 'test'
+  ...
+# Subtest: legacy-only state never injects into a Cursor session
+ok 16 - legacy-only state never injects into a Cursor session
+  ---
+  duration_ms: 32.101083
+  type: 'test'
+  ...
+# Subtest: no-op when the active goal is paused
+ok 17 - no-op when the active goal is paused
+  ---
+  duration_ms: 48.00875
+  type: 'test'
+  ...
+# Subtest: no-op when the goal plugin is disabled, even with an active goal
+ok 18 - no-op when the goal plugin is disabled, even with an active goal
+  ---
+  duration_ms: 43.563208
+  type: 'test'
+  ...
+# Subtest: no-op when the goal is cleared
+ok 19 - no-op when the goal is cleared
+  ---
+  duration_ms: 58.16975
+  type: 'test'
+  ...
+# Subtest: fails open on malformed stdin (not JSON)
+ok 20 - fails open on malformed stdin (not JSON)
+  ---
+  duration_ms: 46.201291
+  type: 'test'
+  ...
+# Subtest: fails open on empty stdin
+ok 21 - fails open on empty stdin
+  ---
+  duration_ms: 69.7905
+  type: 'test'
+  ...
+# Subtest: missing Cursor identity fails open without selecting a goal
+ok 22 - missing Cursor identity fails open without selecting a goal
+  ---
+  duration_ms: 42.177125
+  type: 'test'
+  ...
+# Subtest: fails open (never throws) when the shared state file is corrupt JSON
+ok 23 - fails open (never throws) when the shared state file is corrupt JSON
+  ---
+  duration_ms: 45.995875
+  type: 'test'
+  ...
+# Subtest: the Cursor command is fail-closed for management and only ever invokes the session-free packet read
+ok 24 - the Cursor command is fail-closed for management and only ever invokes the session-free packet read
+  ---
+  duration_ms: 4.087583
+  type: 'test'
+  ...
+# Subtest: a bound packet injects the resend reminder until the slice is marked resent
+ok 25 - a bound packet injects the resend reminder until the slice is marked resent
+  ---
+  duration_ms: 105.249417
+  type: 'test'
+  ...
+# Subtest: a receiver with no goal is bound to the hand-over packet and injects from goal.md
+ok 26 - a receiver with no goal is bound to the hand-over packet and injects from goal.md
+  ---
+  duration_ms: 54.103666
+  type: 'test'
+  ...
+# Subtest: a goal of the session own, active or already cleared, is never replaced by the hand-over
+ok 27 - a goal of the session own, active or already cleared, is never replaced by the hand-over
+  ---
+  duration_ms: 100.849416
+  type: 'test'
+  ...
+# Subtest: a dispatched child session that inherited the packet binds nothing
+ok 28 - a dispatched child session that inherited the packet binds nothing
+  ---
+  duration_ms: 86.807166
+  type: 'test'
+  ...
+# Subtest: the switch, an empty variable and a missing or escaping packet bind nothing
+ok 29 - the switch, an empty variable and a missing or escaping packet bind nothing
+  ---
+  duration_ms: 188.660667
+  type: 'test'
+  ...
+# [goal] hand-over packet not bound: packet-invalid
+# [goal] hand-over packet not bound: packet-invalid
+# Subtest: emits the brief as additionalContext for an active goal and keeps the event name
+ok 30 - emits the brief as additionalContext for an active goal and keeps the event name
+  ---
+  duration_ms: 56.496333
+  type: 'test'
+  ...
+# Subtest: a bound packet renders from the file without frontmatter and carries the reminder while unresent
+ok 31 - a bound packet renders from the file without frontmatter and carries the reminder while unresent
+  ---
+  duration_ms: 120.371
+  type: 'test'
+  ...
+# Subtest: emits an empty object with no goal, with a paused goal, when disabled, and on malformed stdin
+ok 32 - emits an empty object with no goal, with a paused goal, when disabled, and on malformed stdin
+  ---
+  duration_ms: 170.381916
+  type: 'test'
+  ...
+# Subtest: a receiver with no goal is bound to the hand-over packet on its first turn and injects from goal.md
+ok 33 - a receiver with no goal is bound to the hand-over packet on its first turn and injects from goal.md
+  ---
+  duration_ms: 65.78425
+  type: 'test'
+  ...
+# Subtest: a later turn leaves the bound record as it is and a goal of the session own is never replaced
+ok 34 - a later turn leaves the bound record as it is and a goal of the session own is never replaced
+  ---
+  duration_ms: 173.122875
+  type: 'test'
+  ...
+# Subtest: a dispatched child session that inherited the packet binds nothing
+ok 35 - a dispatched child session that inherited the packet binds nothing
+  ---
+  duration_ms: 106.346625
+  type: 'test'
+  ...
+# Subtest: the switch, an empty variable and a missing or escaping packet bind nothing
+ok 36 - the switch, an empty variable and a missing or escaping packet bind nothing
+  ---
+  duration_ms: 143.043083
+  type: 'test'
+  ...
+# Subtest: missing session identity returns no goal and mutations write nothing
+ok 37 - missing session identity returns no goal and mutations write nothing
+  ---
+  duration_ms: 1.538541
+  type: 'test'
+  ...
+# Subtest: blank and oversized session identities fail without exposing their values
+ok 38 - blank and oversized session identities fail without exposing their values
+  ---
+  duration_ms: 5.667667
+  type: 'test'
+  ...
+# Subtest: invalid runtime namespaces fail before any state is written
+ok 39 - invalid runtime namespaces fail before any state is written
+  ---
+  duration_ms: 7.516875
+  type: 'test'
+  ...
+# Subtest: scope paths hash canonical workspace, runtime, and session identity
+ok 40 - scope paths hash canonical workspace, runtime, and session identity
+  ---
+  duration_ms: 0.858583
+  type: 'test'
+  ...
+# Subtest: two sessions keep independent goals through lifecycle mutations
+ok 41 - two sessions keep independent goals through lifecycle mutations
+  ---
+  duration_ms: 56.654292
+  type: 'test'
+  ...
+# Subtest: runtime and workspace namespaces cannot collide
+ok 42 - runtime and workspace namespaces cannot collide
+  ---
+  duration_ms: 4.574916
+  type: 'test'
+  ...
+# Subtest: nested workspace paths canonicalize to one repository scope
+ok 43 - nested workspace paths canonicalize to one repository scope
+  ---
+  duration_ms: 0.48225
+  type: 'test'
+  ...
+# Subtest: same explicit state root keeps different workspaces isolated
+ok 44 - same explicit state root keeps different workspaces isolated
+  ---
+  duration_ms: 19.272125
+  type: 'test'
+  ...
+# Subtest: legacy singleton state is diagnostic-only and never a scoped read fallback
+ok 45 - legacy singleton state is diagnostic-only and never a scoped read fallback
+  ---
+  duration_ms: 30.916833
+  type: 'test'
+  ...
+# Subtest: a malformed current record never falls through to the legacy scoped record
+ok 46 - a malformed current record never falls through to the legacy scoped record
+  ---
+  duration_ms: 16.43125
+  type: 'test'
+  ...
+# Subtest: a recorded token budget never ends or silences a goal that keeps running
+ok 47 - a recorded token budget never ends or silences a goal that keeps running
+  ---
+  duration_ms: 266.90775
+  type: 'test'
+  ...
+# Subtest: explicit legacy migration binds one validated scope and quarantines the source
+ok 48 - explicit legacy migration binds one validated scope and quarantines the source
+  ---
+  duration_ms: 6.910417
+  type: 'test'
+  ...
+# Subtest: legacy migration refuses an occupied target without changing either record
+ok 49 - legacy migration refuses an occupied target without changing either record
+  ---
+  duration_ms: 5.592416
+  type: 'test'
+  ...
+# Subtest: malformed legacy state cannot migrate but can be archived byte-for-byte
+ok 50 - malformed legacy state cannot migrate but can be archived byte-for-byte
+  ---
+  duration_ms: 4.826333
+  type: 'test'
+  ...
+# Subtest: malformed scoped state fails open and can be replaced with valid state
+ok 51 - malformed scoped state fails open and can be replaced with valid state
+  ---
+  duration_ms: 5.815834
+  type: 'test'
+  ...
+# Subtest: setGoal creates a record and showGoal reads it back
+ok 52 - setGoal creates a record and showGoal reads it back
+  ---
+  duration_ms: 4.972416
+  type: 'test'
+  ...
+# Subtest: setGoal with unchanged objective on an active goal refreshes rather than replaces
+ok 53 - setGoal with unchanged objective on an active goal refreshes rather than replaces
+  ---
+  duration_ms: 17.0005
+  type: 'test'
+  ...
+# Subtest: setGoal with a different objective on an active goal replaces it
+ok 54 - setGoal with a different objective on an active goal replaces it
+  ---
+  duration_ms: 19.866458
+  type: 'test'
+  ...
+# Subtest: hostile stored goal ids remain contained during replace, clear, and complete
+ok 55 - hostile stored goal ids remain contained during replace, clear, and complete
+  ---
+  duration_ms: 23.55425
+  type: 'test'
+  ...
+# Subtest: hostile legacy goal ids remain contained during migration quarantine
+ok 56 - hostile legacy goal ids remain contained during migration quarantine
+  ---
+  duration_ms: 10.206167
+  type: 'test'
+  ...
+# Subtest: archive namespaces that resolve outside the state root fail closed
+ok 57 - archive namespaces that resolve outside the state root fail closed
+  ---
+  duration_ms: 12.473041
+  type: 'test'
+  ...
+# Subtest: cross-process recordTurn mutations preserve every update
+ok 58 - cross-process recordTurn mutations preserve every update
+  ---
+  duration_ms: 899.765291
+  type: 'test'
+  ...
+# Subtest: cross-process clear and complete serialize to one terminal archive
+ok 59 - cross-process clear and complete serialize to one terminal archive
+  ---
+  duration_ms: 772.744791
+  type: 'test'
+  ...
+# Subtest: cross-process legacy migration preserves the successful target
+ok 60 - cross-process legacy migration preserves the successful target
+  ---
+  duration_ms: 830.536583
+  type: 'test'
+  ...
+# Subtest: Claude command discovery excludes the OpenCode-only goal router
+ok 61 - Claude command discovery excludes the OpenCode-only goal router
+  ---
+  duration_ms: 0.366084
+  type: 'test'
+  ...
+# Subtest: writeJsonAtomic never leaves a .tmp file behind on success
+ok 62 - writeJsonAtomic never leaves a .tmp file behind on success
+  ---
+  duration_ms: 5.010875
+  type: 'test'
+  ...
+# Subtest: scoped active state is written at mode 0600
+ok 63 - scoped active state is written at mode 0600
+  ---
+  duration_ms: 4.990333
+  type: 'test'
+  ...
+# Subtest: clearGoal archives the record before removing the active state file
+ok 64 - clearGoal archives the record before removing the active state file
+  ---
+  duration_ms: 9.407417
+  type: 'test'
+  ...
+# Subtest: completeGoal archives the record as completed and removes active state
+ok 65 - completeGoal archives the record as completed and removes active state
+  ---
+  duration_ms: 9.041
+  type: 'test'
+  ...
+# Subtest: clearGoal with no active goal is a no-op that does not throw
+ok 66 - clearGoal with no active goal is a no-op that does not throw
+  ---
+  duration_ms: 1.068041
+  type: 'test'
+  ...
+# Subtest: listArchivedGoals skips archive files whose JSON is not a plain object
+ok 67 - listArchivedGoals skips archive files whose JSON is not a plain object
+  ---
+  duration_ms: 9.899583
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief markers and field lines match the opencode-goal template shape
+ok 68 - renderGoalBrief markers and field lines match the opencode-goal template shape
+  ---
+  duration_ms: 0.414208
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief embeds the parameterized Role line for the given runtime label
+ok 69 - renderGoalBrief embeds the parameterized Role line for the given runtime label
+  ---
+  duration_ms: 0.279292
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief parameterizes a different runtime label
+ok 70 - renderGoalBrief parameterizes a different runtime label
+  ---
+  duration_ms: 0.303708
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief relabels the Role line to the reading runtime, not the set-time runtime
+ok 71 - renderGoalBrief relabels the Role line to the reading runtime, not the set-time runtime
+  ---
+  duration_ms: 0.397875
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief sanitizes a hostile runtime label so it cannot break the block
+ok 72 - renderGoalBrief sanitizes a hostile runtime label so it cannot break the block
+  ---
+  duration_ms: 0.478708
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief returns empty string for a non-active goal
+ok 73 - renderGoalBrief returns empty string for a non-active goal
+  ---
+  duration_ms: 0.254333
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief falls back to the compact block under a tight char budget
+ok 74 - renderGoalBrief falls back to the compact block under a tight char budget
+  ---
+  duration_ms: 0.427459
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText redacts a forged [/active_goal] marker in user text
+ok 75 - normalizeUserAuthoredText redacts a forged [/active_goal] marker in user text
+  ---
+  duration_ms: 0.2205
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText folds a homoglyph role token before the role guard
+ok 76 - normalizeUserAuthoredText folds a homoglyph role token before the role guard
+  ---
+  duration_ms: 2.792209
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText redacts instruction-override phrasing
+ok 77 - normalizeUserAuthoredText redacts instruction-override phrasing
+  ---
+  duration_ms: 0.197083
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText downgrades triple-backtick fences
+ok 78 - normalizeUserAuthoredText downgrades triple-backtick fences
+  ---
+  duration_ms: 0.189208
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns met for explicit, on-topic completion evidence
+ok 79 - verifyGoalHeuristic returns met for explicit, on-topic completion evidence
+  ---
+  duration_ms: 0.518833
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence contains blocking language
+ok 80 - verifyGoalHeuristic returns not-met when evidence contains blocking language
+  ---
+  duration_ms: 0.26175
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence carries a bare fail count
+ok 81 - verifyGoalHeuristic returns not-met when evidence carries a bare fail count
+  ---
+  duration_ms: 0.200625
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence carries a plural failures count
+ok 82 - verifyGoalHeuristic returns not-met when evidence carries a plural failures count
+  ---
+  duration_ms: 0.243208
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic does not treat a zero fail count as blocking
+ok 83 - verifyGoalHeuristic does not treat a zero fail count as blocking
+  ---
+  duration_ms: 0.328333
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence carries a bare fails verdict
+ok 84 - verifyGoalHeuristic returns not-met when evidence carries a bare fails verdict
+  ---
+  duration_ms: 0.187375
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns unclear for short or off-topic evidence
+ok 85 - verifyGoalHeuristic returns unclear for short or off-topic evidence
+  ---
+  duration_ms: 0.198292
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic reads the transcript tail, so a long transcript ending in completion evidence is met
+ok 86 - verifyGoalHeuristic reads the transcript tail, so a long transcript ending in completion evidence is met
+  ---
+  duration_ms: 0.238916
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when the tail of a long transcript carries blocking language
+ok 87 - verifyGoalHeuristic returns not-met when the tail of a long transcript carries blocking language
+  ---
+  duration_ms: 0.205541
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic does not return met when the assistant stated a blocker before a conclusive tail
+ok 88 - verifyGoalHeuristic does not return met when the assistant stated a blocker before a conclusive tail
+  ---
+  duration_ms: 0.652834
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic ignores blocking language that appears only outside the assistant text
+ok 89 - verifyGoalHeuristic ignores blocking language that appears only outside the assistant text
+  ---
+  duration_ms: 0.424834
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic keeps the truncated reason for a short transcript that itself ends in ellipsis
+ok 90 - verifyGoalHeuristic keeps the truncated reason for a short transcript that itself ends in ellipsis
+  ---
+  duration_ms: 0.171
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic never reports a long transcript as truncated unless its own tail says so
+ok 91 - verifyGoalHeuristic never reports a long transcript as truncated unless its own tail says so
+  ---
+  duration_ms: 0.323209
+  type: 'test'
+  ...
+# Subtest: CLI set/show/clear roundtrip produces matching envelopes
+ok 92 - CLI set/show/clear roundtrip produces matching envelopes
+  ---
+  duration_ms: 123.483042
+  type: 'test'
+  ...
+# Subtest: CLI complete/pause/resume/history/doctor all return STATUS=OK envelopes
+ok 93 - CLI complete/pause/resume/history/doctor all return STATUS=OK envelopes
+  ---
+  duration_ms: 182.732916
+  type: 'test'
+  ...
+# Subtest: CLI --budget validation rejects non-positive-integer values
+ok 94 - CLI --budget validation rejects non-positive-integer values
+  ---
+  duration_ms: 24.26875
+  type: 'test'
+  ...
+# Subtest: CLI --budget validation rejects zero and negative values
+ok 95 - CLI --budget validation rejects zero and negative values
+  ---
+  duration_ms: 52.80975
+  type: 'test'
+  ...
+# Subtest: CLI set with only a budget flag and empty objective fails with INVALID_OBJECTIVE
+ok 96 - CLI set with only a budget flag and empty objective fails with INVALID_OBJECTIVE
+  ---
+  duration_ms: 25.187083
+  type: 'test'
+  ...
+# Subtest: CLI honors OPENCODE_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED
+ok 97 - CLI honors OPENCODE_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED
+  ---
+  duration_ms: 25.063584
+  type: 'test'
+  ...
+# Subtest: CLI bare text falls through to set, mirroring the /goal-opencode router
+ok 98 - CLI bare text falls through to set, mirroring the /goal-opencode router
+  ---
+  duration_ms: 32.810084
+  type: 'test'
+  ...
+# Subtest: bindGoal derives the objective from the packet and renders without frontmatter
+ok 99 - bindGoal derives the objective from the packet and renders without frontmatter
+  ---
+  duration_ms: 6.514667
+  type: 'test'
+  ...
+# Subtest: a bound session renders the file as it is now, not the copy stored at bind time
+ok 100 - a bound session renders the file as it is now, not the copy stored at bind time
+  ---
+  duration_ms: 5.614792
+  type: 'test'
+  ...
+# Subtest: a bound record whose goal.md is gone injects nothing and does not fall back
+ok 101 - a bound record whose goal.md is gone injects nothing and does not fall back
+  ---
+  duration_ms: 4.965875
+  type: 'test'
+  ...
+# Subtest: bindGoal refuses paths outside the workspace and packets without a goal document
+ok 102 - bindGoal refuses paths outside the workspace and packets without a goal document
+  ---
+  duration_ms: 0.948208
+  type: 'test'
+  ...
+# Subtest: resend is pending after a durable change and settles after noteResent, never after a log append
+ok 103 - resend is pending after a durable change and settles after noteResent, never after a log append
+  ---
+  duration_ms: 14.225333
+  type: 'test'
+  ...
+# Subtest: appendGoalLog refuses to touch the durable slice and keeps the frontmatter intact
+ok 104 - appendGoalLog refuses to touch the durable slice and keeps the frontmatter intact
+  ---
+  duration_ms: 9.916667
+  type: 'test'
+  ...
+# Subtest: unbindGoal drops the pointer and the record renders from its stored copy again
+ok 105 - unbindGoal drops the pointer and the record renders from its stored copy again
+  ---
+  duration_ms: 9.7365
+  type: 'test'
+  ...
+# Subtest: two sessions bound to one packet keep separate records and resend state
+ok 106 - two sessions bound to one packet keep separate records and resend state
+  ---
+  duration_ms: 13.238958
+  type: 'test'
+  ...
+# Subtest: CLI bind, resent, log and unbind return STATUS=OK envelopes with packet fields
+ok 107 - CLI bind, resent, log and unbind return STATUS=OK envelopes with packet fields
+  ---
+  duration_ms: 137.742667
+  type: 'test'
+  ...
+# Subtest: CLI packet reads a packet goal without a bound session and without frontmatter
+ok 108 - CLI packet reads a packet goal without a bound session and without frontmatter
+  ---
+  duration_ms: 27.488375
+  type: 'test'
+  ...
+# Subtest: two writers through an alias and the real path serialize on one lock and both rows land
+ok 109 - two writers through an alias and the real path serialize on one lock and both rows land
+  ---
+  duration_ms: 216.04275
+  type: 'test'
+  ...
+# Subtest: a rebind to a different packet archives the prior record
+ok 110 - a rebind to a different packet archives the prior record
+  ---
+  duration_ms: 13.673167
+  type: 'test'
+  ...
+# Subtest: show reports packet_state=missing with a hint once the bound document is gone
+ok 111 - show reports packet_state=missing with a hint once the bound document is gone
+  ---
+  duration_ms: 34.043167
+  type: 'test'
+  ...
+# Subtest: a text objective past the cap is reported as truncated, not silently clamped
+ok 112 - a text objective past the cap is reported as truncated, not silently clamped
+  ---
+  duration_ms: 33.1185
+  type: 'test'
+  ...
+# Subtest: a CRLF goal document keeps CRLF after a log append
+ok 113 - a CRLF goal document keeps CRLF after a log append
+  ---
+  duration_ms: 9.710625
+  type: 'test'
+  ...
+# Subtest: appendPacketLog appends without a session record
+ok 114 - appendPacketLog appends without a session record
+  ---
+  duration_ms: 5.882333
+  type: 'test'
+  ...
+# Subtest: CLI packet-log appends without a session and neutralizes pipes and anchor markup in the row
+ok 115 - CLI packet-log appends without a session and neutralizes pipes and anchor markup in the row
+  ---
+  duration_ms: 37.295708
+  type: 'test'
+  ...
+# Subtest: the packet lock root follows the workspace, not the record store, so divergent state dirs still contend
+ok 116 - the packet lock root follows the workspace, not the record store, so divergent state dirs still contend
+  ---
+  duration_ms: 207.953917
+  type: 'test'
+  ...
+# Subtest: a bound brief renders criteria as their own field, one per line
+ok 117 - a bound brief renders criteria as their own field, one per line
+  ---
+  duration_ms: 5.789542
+  type: 'test'
+  ...
+# Subtest: a criteria list past the preview budget drops whole items and says how many
+ok 118 - a criteria list past the preview budget drops whole items and says how many
+  ---
+  duration_ms: 6.160792
+  type: 'test'
+  ...
+# Subtest: the compact block still carries the criteria field
+ok 119 - the compact block still carries the criteria field
+  ---
+  duration_ms: 5.788209
+  type: 'test'
+  ...
+# Subtest: a log append refuses a goal document that is not valid UTF-8 and leaves it byte-identical
+ok 120 - a log append refuses a goal document that is not valid UTF-8 and leaves it byte-identical
+  ---
+  duration_ms: 2.210083
+  type: 'test'
+  ...
+# Subtest: a text set with a new objective drops the packet pointer, and re-setting the same one keeps it
+ok 121 - a text set with a new objective drops the packet pointer, and re-setting the same one keeps it
+  ---
+  duration_ms: 17.924
+  type: 'test'
+  ...
+# Subtest: the kill switch freezes the session-free library paths too, not just the commands
+ok 122 - the kill switch freezes the session-free library paths too, not just the commands
+  ---
+  duration_ms: 0.926375
+  type: 'test'
+  ...
+# Subtest: a record written under the old status word is read back under the current one
+ok 123 - a record written under the old status word is read back under the current one
+  ---
+  duration_ms: 4.793166
+  type: 'test'
+  ...
+# Subtest: a session with no goal is bound to the hand-over packet and the brief renders from it
+ok 124 - a session with no goal is bound to the hand-over packet and the brief renders from it
+  ---
+  duration_ms: 6.042542
+  type: 'test'
+  ...
+# Subtest: a second call changes nothing and a second session binds its own record
+ok 125 - a second call changes nothing and a second session binds its own record
+  ---
+  duration_ms: 9.804625
+  type: 'test'
+  ...
+# Subtest: an active or paused goal of the session is kept byte for byte
+ok 126 - an active or paused goal of the session is kept byte for byte
+  ---
+  duration_ms: 13.81125
+  type: 'test'
+  ...
+# Subtest: a goal that was completed or cleared in this session is not replaced by the hand-over
+ok 127 - a goal that was completed or cleared in this session is not replaced by the hand-over
+  ---
+  duration_ms: 17.807291
+  type: 'test'
+  ...
+# Subtest: a record that cannot be parsed is treated as a goal and left alone
+ok 128 - a record that cannot be parsed is treated as a goal and left alone
+  ---
+  duration_ms: 1.596334
+  type: 'test'
+  ...
+# Subtest: nothing is bound without the packet variable, with it empty, or with the switch off
+ok 129 - nothing is bound without the packet variable, with it empty, or with the switch off
+  ---
+  duration_ms: 5.735
+  type: 'test'
+  ...
+# Subtest: a dispatched child session binds nothing, whatever packet its environment carries
+ok 130 - a dispatched child session binds nothing, whatever packet its environment carries
+  ---
+  duration_ms: 6.01875
+  type: 'test'
+  ...
+# Subtest: the live environment marks a child too, not only an environment passed in
+ok 131 - the live environment marks a child too, not only an environment passed in
+  ---
+  duration_ms: 1.024167
+  type: 'test'
+  ...
+# Subtest: the switch is also read from the operator flags file, and the environment wins over it
+ok 132 - the switch is also read from the operator flags file, and the environment wins over it
+  ---
+  duration_ms: 6.069125
+  type: 'test'
+  ...
+# Subtest: a packet that is missing, outside the repository or without a goal.md binds nothing
+ok 133 - a packet that is missing, outside the repository or without a goal.md binds nothing
+  ---
+  duration_ms: 3.550833
+  type: 'test'
+  ...
+# Subtest: the kill switch stops the hand-over bind and the plain bind keeps its own semantics
+ok 134 - the kill switch stops the hand-over bind and the plain bind keeps its own semantics
+  ---
+  duration_ms: 13.719875
+  type: 'test'
+  ...
+# Subtest: no projection carries the frontmatter
+ok 135 - no projection carries the frontmatter
+  ---
+  duration_ms: 3.196208
+  type: 'test'
+  ...
+# Subtest: the durable slice stops at the log anchor and the chat slice drops markup
+ok 136 - the durable slice stops at the log anchor and the chat slice drops markup
+  ---
+  duration_ms: 1.46
+  type: 'test'
+  ...
+# Subtest: the chat slice drops dividers and heading section numbers but keeps the title, tables and bullets
+ok 137 - the chat slice drops dividers and heading section numbers but keeps the title, tables and bullets
+  ---
+  duration_ms: 0.531083
+  type: 'test'
+  ...
+# Subtest: a nested packet gets the binding sentence and a singular one does not
+ok 138 - a nested packet gets the binding sentence and a singular one does not
+  ---
+  duration_ms: 15.152167
+  type: 'test'
+  ...
+# Subtest: the slice hash ignores log edits and reflow but not a criterion change
+ok 139 - the slice hash ignores log edits and reflow but not a criterion change
+  ---
+  duration_ms: 5.46175
+  type: 'test'
+  ...
+# Subtest: paths outside the workspace and missing documents read as unbound
+ok 140 - paths outside the workspace and missing documents read as unbound
+  ---
+  duration_ms: 11.624375
+  type: 'test'
+  ...
+# Subtest: a fence with trailing whitespace still hides the frontmatter, and an unclosed opener yields no slice
+ok 141 - a fence with trailing whitespace still hides the frontmatter, and an unclosed opener yields no slice
+  ---
+  duration_ms: 1.778541
+  type: 'test'
+  ...
+# Subtest: a symlinked packet that resolves outside the workspace reads as unbound
+ok 142 - a symlinked packet that resolves outside the workspace reads as unbound
+  ---
+  duration_ms: 9.971667
+  type: 'test'
+  ...
+# Subtest: a goal.md symlink that leaves the workspace reads as unbound, and one inside still reads
+ok 143 - a goal.md symlink that leaves the workspace reads as unbound, and one inside still reads
+  ---
+  duration_ms: 13.093084
+  type: 'test'
+  ...
+# Subtest: a missing packet under a symlinked parent that leaves the workspace reads as outside
+ok 144 - a missing packet under a symlinked parent that leaves the workspace reads as outside
+  ---
+  duration_ms: 9.321083
+  type: 'test'
+  ...
+# Subtest: a file that opens with many comments and no fence splits in linear time
+ok 145 - a file that opens with many comments and no fence splits in linear time
+  ---
+  duration_ms: 4.397917
+  type: 'test'
+  ...
+# Subtest: a CR-only document still hides its frontmatter
+ok 146 - a CR-only document still hides its frontmatter
+  ---
+  duration_ms: 0.869959
+  type: 'test'
+  ...
+# Subtest: the projection carries the packet real path and no file handle fields
+ok 147 - the projection carries the packet real path and no file handle fields
+  ---
+  duration_ms: 8.576333
+  type: 'test'
+  ...
+# Subtest: the reminder names the runtime command that records the resend
+ok 148 - the reminder names the runtime command that records the resend
+  ---
+  duration_ms: 0.738916
+  type: 'test'
+  ...
+# Subtest: the reminder stays one line when a path or command carries a line break
+ok 149 - the reminder stays one line when a path or command carries a line break
+  ---
+  duration_ms: 7.86625
+  type: 'test'
+  ...
+# Subtest: resolveWorkspaceRoot walks up from a subdirectory to the repository root
+ok 150 - resolveWorkspaceRoot walks up from a subdirectory to the repository root
+  ---
+  duration_ms: 4.22375
+  type: 'test'
+  ...
+# Subtest: an objective splits into the packet sentence and whole criteria
+ok 151 - an objective splits into the packet sentence and whole criteria
+  ---
+  duration_ms: 1.994792
+  type: 'test'
+  ...
+# Subtest: a plain objective with no criteria heading stays whole
+ok 152 - a plain objective with no criteria heading stays whole
+  ---
+  duration_ms: 3.263334
+  type: 'test'
+  ...
+# Subtest: a criteria budget drops whole items and counts what it left
+ok 153 - a criteria budget drops whole items and counts what it left
+  ---
+  duration_ms: 0.896375
+  type: 'test'
+  ...
+# Subtest: a phase child goal carries no budget, matching the validator
+ok 154 - a phase child goal carries no budget, matching the validator
+  ---
+  duration_ms: 42.546333
+  type: 'test'
+  ...
+# Subtest: a parent goal is ok up to the one 4000-character limit and over only past it
+ok 155 - a parent goal is ok up to the one 4000-character limit and over only past it
+  ---
+  duration_ms: 30.2635
+  type: 'test'
+  ...
+# Subtest: a phase parent nested inside another packet is budgeted, as the validator budgets it
+ok 156 - a phase parent nested inside another packet is budgeted, as the validator budgets it
+  ---
+  duration_ms: 26.173083
+  type: 'test'
+  ...
+# Subtest: a plain phase child stays unbudgeted and a top-level packet keeps its budget
+ok 157 - a plain phase child stays unbudgeted and a top-level packet keeps its budget
+  ---
+  duration_ms: 17.582875
+  type: 'test'
+  ...
+# Subtest: the generator-hardening switch decides which child folders make a phase parent
+ok 158 - the generator-hardening switch decides which child folders make a phase parent
+  ---
+  duration_ms: 19.989583
+  type: 'test'
+  ...
+# Subtest: a nested folder whose spec declares the phase level is budgeted before it has children
+ok 159 - a nested folder whose spec declares the phase level is budgeted before it has children
+  ---
+  duration_ms: 24.042291
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi
+ok 160 - renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi
+  ---
+  duration_ms: 20.283041
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief returns empty string when no goal is active
+ok 161 - renderGoalBrief returns empty string when no goal is active
+  ---
+  duration_ms: 0.489292
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief returns empty string for a paused goal
+ok 162 - renderGoalBrief returns empty string for a paused goal
+  ---
+  duration_ms: 17.943167
+  type: 'test'
+  ...
+# Subtest: isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state
+ok 163 - isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state
+  ---
+  duration_ms: 0.456625
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: short evidence is unclear
+ok 164 - verifyGoalHeuristic: short evidence is unclear
+  ---
+  duration_ms: 0.431084
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: blocking language is not-met even with completion words present
+ok 165 - verifyGoalHeuristic: blocking language is not-met even with completion words present
+  ---
+  duration_ms: 0.877083
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: explicit completion tied to the objective is met
+ok 166 - verifyGoalHeuristic: explicit completion tied to the objective is met
+  ---
+  duration_ms: 4.278875
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: completion language with no objective-specific evidence stays unclear
+ok 167 - verifyGoalHeuristic: completion language with no objective-specific evidence stays unclear
+  ---
+  duration_ms: 0.990416
+  type: 'test'
+  ...
+# Subtest: the module default-exports a single factory function
+ok 168 - the module default-exports a single factory function
+  ---
+  duration_ms: 26.654
+  type: 'test'
+  ...
+# Subtest: the factory registers lifecycle handlers and the native goal-pi command
+ok 169 - the factory registers lifecycle handlers and the native goal-pi command
+  ---
+  duration_ms: 4.102875
+  type: 'test'
+  ...
+# Subtest: two Pi input contexts inject only their own active goal
+ok 170 - two Pi input contexts inject only their own active goal
+  ---
+  duration_ms: 23.102334
+  type: 'test'
+  ...
+# Subtest: same Pi session resumes its goal while a new session starts unbound
+ok 171 - same Pi session resumes its goal while a new session starts unbound
+  ---
+  duration_ms: 6.0685
+  type: 'test'
+  ...
+# Subtest: turn_end in one Pi session leaves the other session byte-equivalent
+ok 172 - turn_end in one Pi session leaves the other session byte-equivalent
+  ---
+  duration_ms: 39.310792
+  type: 'test'
+  ...
+# Subtest: turn_end sends its verify nudge without continuing the running turn
+ok 173 - turn_end sends its verify nudge without continuing the running turn
+  ---
+  duration_ms: 15.744708
+  type: 'test'
+  ...
+# Subtest: turn_end judges a tool-heavy turn by its message, not its longer tool output
+ok 174 - turn_end judges a tool-heavy turn by its message, not its longer tool output
+  ---
+  duration_ms: 23.410875
+  type: 'test'
+  ...
+# Subtest: missing Pi identity fails open without selecting or writing a goal
+ok 175 - missing Pi identity fails open without selecting or writing a goal
+  ---
+  duration_ms: 16.495
+  type: 'test'
+  ...
+# Subtest: legacy-only state never injects into a Pi session
+ok 176 - legacy-only state never injects into a Pi session
+  ---
+  duration_ms: 4.453833
+  type: 'test'
+  ...
+# Subtest: native goal-pi management writes and shows the current Pi session only
+ok 177 - native goal-pi management writes and shows the current Pi session only
+  ---
+  duration_ms: 74.124291
+  type: 'test'
+  ...
+# Subtest: native goal-pi management binds pause, resume, complete, and history to one session
+ok 178 - native goal-pi management binds pause, resume, complete, and history to one session
+  ---
+  duration_ms: 188.82825
+  type: 'test'
+  ...
+# Subtest: native goal-pi management migrates legacy state only to the current session
+ok 179 - native goal-pi management migrates legacy state only to the current session
+  ---
+  duration_ms: 50.531083
+  type: 'test'
+  ...
+# Subtest: native binding overrides user-supplied scope flags
+ok 180 - native binding overrides user-supplied scope flags
+  ---
+  duration_ms: 96.696958
+  type: 'test'
+  ...
+# Subtest: native goal-pi management rejects missing identity without writing
+ok 181 - native goal-pi management rejects missing identity without writing
+  ---
+  duration_ms: 35.500583
+  type: 'test'
+  ...
+# Subtest: the Pi prompt fallback never invokes the unbound manage CLI
+ok 182 - the Pi prompt fallback never invokes the unbound manage CLI
+  ---
+  duration_ms: 0.72125
+  type: 'test'
+  ...
+# Subtest: a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md
+ok 183 - a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md
+  ---
+  duration_ms: 14.438542
+  type: 'test'
+  ...
+# Subtest: the first input binds when session start did not, and a later input leaves the record alone
+ok 184 - the first input binds when session start did not, and a later input leaves the record alone
+  ---
+  duration_ms: 15.999917
+  type: 'test'
+  ...
+# Subtest: a goal of the session own is never replaced, and a cleared one is not handed back
+ok 185 - a goal of the session own is never replaced, and a cleared one is not handed back
+  ---
+  duration_ms: 30.401875
+  type: 'test'
+  ...
+# Subtest: a dispatched child session that inherited the packet binds nothing in Pi
+ok 186 - a dispatched child session that inherited the packet binds nothing in Pi
+  ---
+  duration_ms: 9.68025
+  type: 'test'
+  ...
+# Subtest: the switch, an empty variable and a missing packet bind nothing in Pi
+ok 187 - the switch, an empty variable and a missing packet bind nothing in Pi
+  ---
+  duration_ms: 2.118875
+  type: 'test'
+  ...
+# Subtest: enabled by default when no flag is set
+ok 188 - enabled by default when no flag is set
+  ---
+  duration_ms: 0.482167
+  type: 'test'
+  ...
+# Subtest: master switch disables every concern
+ok 189 - master switch disables every concern
+  ---
+  duration_ms: 0.056292
+  type: 'test'
+  ...
+# Subtest: canonical per-concern switch disables only that concern
+ok 190 - canonical per-concern switch disables only that concern
+  ---
+  duration_ms: 0.043709
+  type: 'test'
+  ...
+# Subtest: concernFlag derives the canonical env name
+ok 191 - concernFlag derives the canonical env name
+  ---
+  duration_ms: 0.042542
+  type: 'test'
+  ...
+# Subtest: legacy aliases still disable their concern
+ok 192 - legacy aliases still disable their concern
+  ---
+  duration_ms: 0.082333
+  type: 'test'
+  ...
+# Subtest: the preflight guard has its own switch, so silencing the audit log leaves it on
+ok 193 - the preflight guard has its own switch, so silencing the audit log leaves it on
+  ---
+  duration_ms: 0.052375
+  type: 'test'
+  ...
+# Subtest: truthy parsing is case/space-insensitive and strict about falsey
+ok 194 - truthy parsing is case/space-insensitive and strict about falsey
+  ---
+  duration_ms: 0.054041
+  type: 'test'
+  ...
+# Subtest: .mjs and .ts facades re-export identical behavior
+ok 195 - .mjs and .ts facades re-export identical behavior
+  ---
+  duration_ms: 17.444333
+  type: 'test'
+  ...
+# Subtest: config file disables a concern (master, canonical, and aliases)
+ok 196 - config file disables a concern (master, canonical, and aliases)
+  ---
+  duration_ms: 0.083666
+  type: 'test'
+  ...
+# Subtest: environment overrides the config file both ways
+ok 197 - environment overrides the config file both ways
+  ---
+  duration_ms: 0.126916
+  type: 'test'
+  ...
+# Subtest: explicit env without a config arg ignores the config file (test isolation)
+ok 198 - explicit env without a config arg ignores the config file (test isolation)
+  ---
+  duration_ms: 0.611833
+  type: 'test'
+  ...
+# Subtest: loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed
+ok 199 - loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed
+  ---
+  duration_ms: 0.671916
+  type: 'test'
+  ...
+# Subtest: a missing config file is fail-open (empty object, no throw)
+ok 200 - a missing config file is fail-open (empty object, no throw)
+  ---
+  duration_ms: 0.292667
+  type: 'test'
+  ...
+# Subtest: live file path resolves via HOOK_FLAGS_CONFIG and env still wins
+ok 201 - live file path resolves via HOOK_FLAGS_CONFIG and env still wins
+  ---
+  duration_ms: 0.923208
+  type: 'test'
+  ...
+# Subtest: the shell mirror reads the config file of whichever source root the checkout carries
+ok 202 - the shell mirror reads the config file of whichever source root the checkout carries
+  ---
+  duration_ms: 73.603917
+  type: 'test'
+  ...
+# Subtest: isFlagOn reads a named switch with the kill-switch precedence
+ok 203 - isFlagOn reads a named switch with the kill-switch precedence
+  ---
+  duration_ms: 0.103208
+  type: 'test'
+  ...
+# Subtest: hook_flag_on reads a named switch from the environment first, then the config file
+ok 204 - hook_flag_on reads a named switch from the environment first, then the config file
+  ---
+  duration_ms: 49.170583
+  type: 'test'
+  ...
+# Subtest: a '\#' after a space or tab ends a value in every reader of the file
+ok 205 - a '\#' after a space or tab ends a value in every reader of the file
+  ---
+  duration_ms: 121.239583
+  type: 'test'
+  ...
+# Subtest: a byte order mark before the first line hides nothing from any reader
+ok 206 - a byte order mark before the first line hides nothing from any reader
+  ---
+  duration_ms: 82.908959
+  type: 'test'
+  ...
+# Subtest: every reader trims only a value's edges and lets any set environment value answer
+ok 207 - every reader trims only a value's edges and lets any set environment value answer
+  ---
+  duration_ms: 986.948833
+  type: 'test'
+  ...
+# Subtest: an example line uncommented as-is, trailing comment and all, disables its hook
+ok 208 - an example line uncommented as-is, trailing comment and all, disables its hook
+  ---
+  duration_ms: 26.874625
+  type: 'test'
+  ...
+1..208
+# tests 208
+# suites 0
+# pass 208
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4506.075

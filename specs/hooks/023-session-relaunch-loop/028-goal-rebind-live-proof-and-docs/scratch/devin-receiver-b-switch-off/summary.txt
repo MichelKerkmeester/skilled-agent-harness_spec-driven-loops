@@ -1,0 +1,5 @@
+2026-10-25T00:31:01Z env: SESSION_RELAUNCH_GOAL_PACKET=specs/demo/001-demo SESSION_RELAUNCH_GOAL=0
+exit=0
+reply: NONE
+stderr: 
+goal records: 0

@@ -1,0 +1,50 @@
+ Method:
+ - Restate the concrete completion condition from available evidence before acting.
+ - Clarify the concrete completion condition from available context, then execute until it is met or blocked.
+ - Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.
+   Success Criteria:
+ - The requested outcome is materially complete, not merely analyzed or partially prepared.
+ - Required verification has run, or any inability to run it is reported with the exact blocker.
+ - Status output distinguishes confirmed evidence from inference.
+   Stop Conditions:
+ - Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.
+ - If blocked, preserve state and name the next safe action.
+   last_check: not_evaluated ; reason: none
+   usage: tokens n/a/none; time 6s; iteration 0 (source: turn-count-estimate)
+   directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.
+   [/active_goal]
+   [goal_resend_pending] The bound packet goal.md (specs/demo/001-demo) changed above its log. Resend its chat slice in chat so the operator sees the change, then record it with: /goal-pi resent. The
+   goal command's packet action prints that slice as chat_slice, with no frontmatter, comments, anchors, dividers or section numbers. Send it only when that report shows packet_budget=ok, which keeps
+   it within 4000 characters, and cut the file first when it shows over. Keep working meanwhile.
+
+
+ Preparing file inspection
+
+ Preparing repository inspection
+
+
+ read specs/demo/001-demo/goal.md:1
+
+
+
+ $ pwd && ls -la specs/demo/001-demo && git status --short (timeout 10s)
+
+ ... (4 earlier lines, ctrl+o to expand)
+ -rw-r--r--@ 1 michelkerkmeester  wheel  4040 25 Oct 02:29 goal.md
+ fatal: not a git repository (or any of the parent directories): .git
+
+
+ Command exited with code 128
+
+ Took 0.0s
+
+
+ Preparing PONG reply
+
+ PONG
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/tmp/claude-501/ev028/sb-pi-b
+↑3.6k ↓881 R1.7k CH48.7% $0.001 (sub) 1.4%/272k                                                                                                                                (openai) gpt-6-luna • max

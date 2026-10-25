@@ -9,7 +9,7 @@ trigger_phrases:
   - "session goal"
 importance_tier: "important"
 contextType: "implementation"
-version: 3.8.1.0
+version: 3.8.2.0
 ---
 
 # OpenCode Goal Plugin Contract
@@ -49,7 +49,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
 - The injected block keeps a short raw `objective:` preview for auditability and uses `goal_prompt:` for model-facing steering.
 - A bound packet's completion criteria render as their own `criteria:` field, one per line, in both the full and the compact block. A budget drops whole criteria rather than cutting one, and adds an `- (N more in the goal file)` line when it does.
-- On `session.created`, the first top-level session of the process is bound to the packet named by `SESSION_RELAUNCH_GOAL_PACKET` when it has no goal of its own: no live record, no archived one and no unreadable one. A relaunch hop sets that variable for its receiver and `SESSION_RELAUNCH_GOAL=0` turns the bind off. A session running with `AI_SESSION_CHILD=1` (a dispatched child, which inherits the variable from its parent) never binds, and neither does an in-process child session that has a parent session. The check and the write happen under the session's mutation lock, so the bind never replaces a record, including one set a moment earlier, and it sends no chat text. The injection then renders from the packet like any bound session.
+- On `session.created`, the first top-level session of the process is bound to the packet named by `SESSION_RELAUNCH_GOAL_PACKET` when it has no goal of its own: no live record, no archived one and no unreadable one. A relaunch hop sets that variable for its receiver and `SESSION_RELAUNCH_GOAL=0` turns the bind off. A live check on OpenCode 2.1.4 showed this bind working for a session started with the variable set, but no hop reached OpenCode 2 yet (the killer does not end the TUI there), so the hop path is unproven on that version. A session running with `AI_SESSION_CHILD=1` (a dispatched child, which inherits the variable from its parent) never binds, and neither does an in-process child session that has a parent session. The check and the write happen under the session's mutation lock, so the bind never replaces a record, including one set a moment earlier, and it sends no chat text. The injection then renders from the packet like any bound session.
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
 - `/goal-opencode show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.

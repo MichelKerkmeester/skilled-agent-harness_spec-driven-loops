@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.11.0
+version: 1.0.12.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -423,6 +423,103 @@ tmux attach -t shim-pi
 
 Repeat with `opencode` in place of `pi` and a session name of `shim-opencode`. Evidence: the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`, so the shim started the runtime under the wrapper. The nudge arrives, the record arms, the killer ends the process and the wrapper restarts the runtime with the claim seed in the same pane. PASS when the note reaches done on each runtime. FAIL when `SKILLED_LOOP_ID` is empty, prepare exits 3 or the pane returns to the shell prompt without a relaunch.
 
+### Goal Carry-Over Checks
+
+A hand-over note can carry the sender's goal as a `goal_packet` line. `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session, and a Pi or OpenCode receiver with no goal of its own binds that packet on its first turn. `SESSION_RELAUNCH_GOAL=0` turns it off, and a dispatched child (`AI_SESSION_CHILD=1`) never binds. These checks run in a throwaway checkout that holds copies of the real hooks, wrapper and goal hooks, because a goal bound in this repository would start real work. The harness is kept with the packet that recorded the runs: `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs `prepare`, against its own note and runtime directory.
+
+#### GR-P1 A Pi hop carries the goal (Live)
+
+Run from the repository root with `tmux`, `node` and `pi` signed in to the `openai` provider:
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+harness="$repo_root/specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
+sandbox="$(mktemp -d)/sandbox"; out="$(mktemp -d)"
+bash "$harness/build-sandbox.sh" pi "$sandbox" 3990 "$repo_root"
+bash "$harness/run-hop.sh" pi "$sandbox" "$out" goal
+bash "$harness/finish-run.sh" pi "$out"
+~~~
+
+`run-hop.sh` starts the sender under `skilled-loop pi -ne -e <session-relaunch> -e <goal-context> --model openai/gpt-6-luna`, types `/goal-pi bind specs/demo/001-demo`, writes a note, runs `prepare`, sends one more prompt so `agent_end` arms, and lets the wrapper relaunch. It drops the host's `SKILLED_LOOP_*` and `SESSION_RELAUNCH_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the session logs to an extract and deletes the raw files.
+
+Evidence, read from the receiver and not the sender:
+
+- `summary.txt` shows `note goal_packet line: goal_packet: specs/demo/001-demo`, so `prepare` proved the sender's goal from its goal record.
+- The receiver's extract shows a `custom_message/goal-context-restore` entry that names an `[active_goal:<id>]` block, and its id differs from the sender's. `goal-records.txt` lists two records for the packet, the second created at the relaunch.
+- `GOALENV.marker` holds `specs/demo/001-demo`, the value the receiver's own `printenv SESSION_RELAUNCH_GOAL_PACKET` printed. `GOALSEEN.marker` is the model's own report and weaker than the extract.
+
+PASS when all three hold. FAIL when the receiver's session log has no goal block, when `goal-records.txt` shows no second record or when the note never leaves `open`.
+
+#### GR-P2 The controls leave the receiver with no goal (Live)
+
+~~~bash
+bash "$harness/build-sandbox.sh" pi "$sandbox-b" 3990 "$repo_root"
+bash "$harness/run-hop.sh" pi "$sandbox-b" "$out-b" switch-off SESSION_RELAUNCH_GOAL=0
+bash "$harness/build-sandbox.sh" pi "$sandbox-c" 3990 "$repo_root"
+NO_GOAL=1 bash "$harness/run-hop.sh" pi "$sandbox-c" "$out-c" no-goal
+~~~
+
+In the switch-off run the note keeps its `goal_packet` line, because only the launch environment is switched off. The receiver has no goal block in its log, `goal-records.txt` still lists only the sender's record and `GOALENV.marker` holds `EMPTY`. In the no-goal run the sender never bound a goal, so the note has no `goal_packet` line and the store holds no record. Both controls claim and complete the note.
+
+PASS when both receivers have no goal block and `GOALENV.marker` holds `EMPTY`. FAIL when either receiver binds a goal.
+
+#### GR-O1 An OpenCode hop (Live, FAIL 2026-10-25 on OpenCode 2.1.4)
+
+OpenCode 2 is a TUI that talks to a server, and the harness starts it with `--standalone` so the server is private. The sender's `prepare` wrote the `goal_packet` line from its goal record, the killer logged `killer-signal`, and no `relaunch` line followed: the TUI stayed up showing `Connection lost... Reconnecting to the server automatically` and the note stayed `open`. The plugin passes its own `process.pid` to the killer, and the likely cause is that this pid belongs to the server child and not to the TUI. That cause is inferred from the process tree and the plugin source, so confirm it by capturing the tree before the kill. `skilled-loop` also relaunches with `-m <model>`, which the OpenCode 2 root command rejects, so a hop that carries a model fails there as well. Run it again with the harness once a hop reaches OpenCode 2:
+
+~~~bash
+bash "$harness/build-sandbox.sh" opencode "$sandbox" 3990 "$repo_root"
+bash "$harness/run-hop.sh" opencode "$sandbox" "$out" goal
+~~~
+
+PASS needs the same three signals as GR-P1, with the `goal_packet` line, a second goal record and `GOALENV.marker` holding the packet. FAIL when the killer logs a signal and no `relaunch` line follows.
+
+#### GR-O2 An OpenCode receiver binds the packet (Live, receiver half only)
+
+This check is not a hop. It starts one OpenCode 2 session with the hand-over variable set by hand and reads what the session says and what the goal store holds:
+
+~~~bash
+bash "$harness/build-sandbox.sh" opencode "$sandbox" 3990 "$repo_root"
+bash "$harness/run-oc-receiver.sh" "$sandbox" "$out" SESSION_RELAUNCH_GOAL_PACKET=specs/demo/001-demo
+~~~
+
+Evidence: the model quotes an `[active_goal:<id>]` line whose id matches the one record in `goal-records.txt`, with `packetPath=specs/demo/001-demo`. Repeat with `SESSION_RELAUNCH_GOAL=0` added and with no packet: both must answer `NONE` and leave the store empty.
+
+PASS when the three runs match. FAIL when a control binds a goal or the packet run binds none.
+
+#### GR-P3 Goal carry-over suites (Automatable)
+
+~~~bash
+node --test \
+  .skilled/hooks/goal/lib/goal-core.test.cjs \
+  .skilled/hooks/goal/pi/goal-pi.test.mjs \
+  .opencode/plugins/tests/opencode-goal-handover.test.cjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+~~~
+
+Evidence: exit code 0 and these cases pass.
+
+- `goal-pi.test.mjs`: `a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md`, `a goal of the session own is never replaced, and a cleared one is not handed back` and `a dispatched child session that inherited the packet binds nothing in Pi`.
+- `opencode-goal-handover.test.cjs`: `a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md`, `no variable, an empty one or the switch off binds nothing` and `a dispatched child process binds nothing, even as the first top-level session it sees`.
+- `goal-core.test.cjs`: `a dispatched child session binds nothing, whatever packet its environment carries` and `the kill switch stops the hand-over bind and the plain bind keeps its own semantics`.
+- `skilled-loop.test.cjs`: `wrapper drops the previous hop goal packet when the next note carries none`.
+
+PASS when the command exits 0 and each named case ran. FAIL when a case is missing or fails.
+
+#### Recorded Results, 2026-10-25
+
+Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a private runtime directory per run. Evidence lives in `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
+
+| Run | Result | Receiver | Evidence folder |
+|---|---|---|---|
+| Pi goal (GR-P1) | Pass | `goal-context-restore` named a goal id different from the sender's, two records, `GOALENV.marker` is the packet, note `done` | `pi-a-goal/` |
+| Pi switch off (GR-P2) | Pass | Note carried the packet, no goal block in the receiver log, one record, `GOALENV.marker` is `EMPTY`, note `done` | `pi-b-switch-off/` |
+| Pi switch off at `prepare` too | Pass | Note carried no packet, no goal block in the receiver log | `pi-b2-switch-off-at-prepare/` |
+| Pi no goal (GR-P2) | Pass | No `goal_packet`, no records, no goal block, note `done` | `pi-c-no-goal/` |
+| OpenCode hop (GR-O1) | Fail | Killer signalled, no relaunch, note stayed `open` | `opencode-a-hop-attempt/`, `opencode-process-tree.txt` |
+| OpenCode receiver, goal (GR-O2) | Pass, receiver half only | Model quoted the goal id of the one record | `opencode-receiver-a-goal/` |
+| OpenCode receiver, switch off and no goal (GR-O2) | Pass, receiver half only | Model answered `NONE`, no record | `opencode-receiver-b-switch-off/`, `opencode-receiver-c-no-goal/` |
+
 ---
 
 ## 4. SOURCE FILES
@@ -458,6 +555,9 @@ Repeat with `opencode` in place of `pi` and a session name of `shim-opencode`. E
 | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` | Prepare runtime recording and cancel tests. |
 | `.skilled/hooks/session-relaunch/tests/withdraw.test.cjs` | Shared withdraw helper tests. |
 | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs` | Hop history, history command and withdrawn-note tests. |
+| `.skilled/hooks/goal/pi/goal-context.ts` | Pi goal extension: binds the hand-over packet at `session_start` and the first `input`. |
+| `.opencode/plugins/opencode-goal.js` | OpenCode goal plugin: binds the hand-over packet at `session.created`. |
+| `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The throwaway-checkout harness behind the goal carry-over checks and their recorded runs. |
 
 Provenance: .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
 

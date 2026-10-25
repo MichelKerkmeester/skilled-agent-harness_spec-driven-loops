@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -91,6 +91,10 @@ Hermes fires `on_session_end` after every message, so the plugin arms there and 
 ### Command-Only Runtimes
 
 Cursor ships on the command trigger because its evidence is source-only and `stop` is not wired in this repository's `.cursor/hooks.json`. Devin ships on the command trigger because its hook usage is unverified. On both, `/speckit:handoff` writes the note and runs prepare. Cursor names a project command after its file, so there the command is `/speckit-handoff`. Outside skilled-loop, prepare prints one runtime-specific manual claim command and exits 3. A prepared record stays pending because no arm event exists for these runtimes. When the runtime exits with a pending record, the wrapper also prints its manual claim command and preserves the runtime exit code. When a path contains `!`, the printed seed places the bang in single quotes outside the double quotes, as in `/tmp/han"'!'"doff.md`. Interactive Bash keeps the path intact when history expansion is on. If the wrapper cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record`, consumes the record and exits 1 without a manual claim command.
+
+### Goal Carry-Over
+
+`prepare` and `keep` write an optional `goal_packet` line into the note when the sender's goal can be proven: from the active goal record on Pi, OpenCode, Devin, Cursor and Hermes, and from the session log on Claude. Codex senders write none. `skilled-loop` exports the packet as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session (`HERMES_SPEC_FOLDER` on Hermes), a Pi, OpenCode, Devin or Cursor receiver with no goal binds it on its first turn, and a Claude receiver starts on `/goal <slice>`. `SESSION_RELAUNCH_GOAL=0` turns all of it off and a dispatched child never binds. Live runs on 2026-10-25 showed the carry-over on Claude and Pi with off and no-goal controls. OpenCode 2 and Devin showed the receiver half only, because no hop reaches them yet, and Codex showed a no-goal control. Cursor and Hermes were skipped for credentials and quota.
 
 ### Hop History
 
