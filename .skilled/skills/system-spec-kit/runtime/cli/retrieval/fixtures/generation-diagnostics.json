@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7194,
-    "ok": 15065,
+    "missing-frontmatter": 7258,
+    "ok": 15073,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25807,
+  "documentsScanned": 25879,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "810f7d37042fd27ff8feead222aa50df58c38f495b668a1cb0de04e907adaf7c",
+  "manifestHash": "8d117e4089132b40e8d27ca2e02190d8995c9c7e915db6971d7b0e9068729c70",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37441,
+      "ok": 37452,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -39774,6 +39774,390 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/sk-code/013-private-surface-skills/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-011.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-012.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-013.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-014.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-015.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-11.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-12.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-13.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-14.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-15.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-012.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-015.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-11.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-12.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-13.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-14.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-15.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
