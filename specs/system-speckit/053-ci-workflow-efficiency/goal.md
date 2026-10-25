@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-25T20:19:15Z"
-    last_updated_by: "markdown"
-    recent_action: "Criterion 3 amended to leave out GitHub's dynamic CodeQL runs"
-    next_safe_action: "Close 004 and 008, run 007 T100-T102 after 00:45Z, then the parent criteria"
+    last_updated_at: "2026-10-25T22:10:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "All ten phases closed; the six criteria rechecked on main"
+    next_safe_action: "None; the operator checks the calls made under the 2026-10-25 delegation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -110,10 +110,10 @@ and findings belong here.
 | Phase 001 research | Done | `001-research/implementation-summary.md` |
 | Phase 002 rebuild fan-out | Done | `002-rebuild-fanout-removal/spec.md` Status `Complete`, closure `03baa89ac6` |
 | Phase 003 trigger and job hygiene | Done | `003-trigger-and-job-hygiene/spec.md` Status `Complete` |
-| Phase 004 setup caching provisioning | Closeable | 17 of 17 acceptance rows `Met` and 24 of 26 checks ticked; CHK-022 and CHK-FIX-006 wait on the 2026-10-26T04:17Z scheduled cold run, then T074 |
+| Phase 004 setup caching provisioning | Done | `004-setup-caching-provisioning/spec.md` Status `Complete`, closure `6eb9086c2a`; CHK-022 and CHK-FIX-006 closed on scheduled cold run 40236652343 |
 | Phase 005 slow and failing tests | Done | `005-slow-and-failing-tests/spec.md` Status `Complete` |
 | Phase 006 sk-code-ci surface | Done | `006-sk-code-ci-surface/spec.md` Status `Complete` |
-| Phase 007 hygiene and on/off control | In progress | The five concern commits are on `main`; T100 (after 2026-10-26T00:45Z), then T101 and T102 remain |
+| Phase 007 hygiene and on/off control | Done | `007-workflow-hygiene-on-off-control/spec.md` Status `Complete`, closure `2b6eeaa8ba`; 13 of 13 acceptance rows `Met`, `timeout kills: 0` over 690 runs |
 | Phase 008 consolidation decision | Done | D8 = no under the operator's 2026-10-25 delegation (`008-consolidation-decision/scratch/d8-answer.md`), pending the operator's check; no workflow file changed |
 | Phase 009 doctor ci and review wiring | Done | `009-doctor-ci-review-wiring/spec.md` Status `Complete`, closure `8811c7e36d` |
 | Phase 010 review remediation | Done | Applied the confirmed findings of `review/review-report.md` |
@@ -127,4 +127,6 @@ and findings belong here.
 | 010 has no child goal | `010-review-remediation` is a Level 1 remediation phase. Its `spec.md` scope is its directive, so the binding table keeps its nine rows. |
 | Amendment 2026-10-25, criterion 3 | GitHub's CodeQL default setup is not one of the repository's workflows. It runs as a `dynamic` event on every push, `[skip ci]` rebuild commits included, so the plain command could never print `[]`. The criterion now leaves dynamic events out. The twelve rebuild commits from `933d71235f` to `fcd200f2eb` each show one run and an empty filtered list. The session made this change under the operator's 2026-10-25 delegation to decide and verify at the end. |
 | Spec-Kit Check on main, 2026-10-25 | The runtime suite failed on every main commit from `74b9b7233d`, which removed the agent-router command while two resource-map extractor tests still cited it as a file on disk. The tests now cite `speckit/complete.md`, and criterion 6 depends on that fix. |
+| Phase 007 kill-read window, 2026-10-25 | The operator asked not to wait for the full 24 h window, so 007 read the 690 runs from 2026-10-25T00:43Z to 21:30Z (20.8 h). None of the repository's own schedules falls in the hours left out. |
+| Phase 004 scheduled cold run, 2026-10-25 | So 004 could close without waiting for the weekly cron's first firing on 2026-10-26T04:17Z, a one-shot schedule entry (`174ebbdc0e`) fired the `schedule` event once. Run 40236652343 passed on the uncached path, and `0ab8f9f74e` removed the entry, leaving the weekly schedule as it was. |
 <!-- /ANCHOR:log -->

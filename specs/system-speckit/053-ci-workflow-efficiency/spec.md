@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-25T12:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Phase map synced to the child Status lines after the deep review"
-    next_safe_action: "007 T100-T102; 004 T072-T074; 008 after D8"
+    last_updated_at: "2026-10-25T22:10:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "All ten phases Complete; phase map synced"
+    next_safe_action: "None; the operator checks the calls made under the 2026-10-25 delegation"
     blockers: []
     key_files:
       - "001-research/research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -104,11 +104,11 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 1 | 001-research/ | Research: 20-iteration measured study and phase plan (`research/research.md`) | Complete |
 | 2 | 002-rebuild-fanout-removal/ | Implementation: stop the CI fan-out on trigger-index rebuild commits with a `[skip ci]` token (R1), assert that token in the rebuild workflow's vitest suite (R2), and record the post-change 24 h baseline every later phase measures against | Complete |
 | 3 | 003-trigger-and-job-hygiene/ | Implementation: PR-only cancel-in-progress concurrency (R3), a real path filter on command-tree-parity (R4), the changed-packet-validation and pre-commit duplication probes (R5, R11), the dispatch-enforcement-guard dedupe (R6), the double-suppression removal (R7), shallower checkouts (R8), PR-time path filters (R9) and the skill-doc-frontmatter filter gap (R10) | Complete |
-| 4 | 004-setup-caching-provisioning/ | Implementation: gate-inputs scanning `.github/actions/**` (R12), the cache probe (R13), the composite setup action (R14), the hooks/plugin workflow merge (R15), npm install dedupe (R16), pip cache (R17) and the sparse-checkout probe (R18) | In progress |
+| 4 | 004-setup-caching-provisioning/ | Implementation: gate-inputs scanning `.github/actions/**` (R12), the cache probe (R13), the composite setup action (R14), the hooks/plugin workflow merge (R15), npm install dedupe (R16), pip cache (R17) and the sparse-checkout probe (R18) | Complete |
 | 5 | 005-slow-and-failing-tests/ | Implementation: the `fileParallelism` probe (R19), the spec-kit CLI vitest project made parallel or sharded (R20), and the re-check and root-cause of the failing workflows (R21) | Complete |
 | 6 | 006-sk-code-ci-surface/ | Implementation: the read-only `sk-code-ci` surface packet and its hub registration (R22), plus message-contract's every-branch trigger recorded as an intentional exception (R23) | Complete |
-| 7 | 007-workflow-hygiene-on-off-control/ | Implementation: per-job timeouts sized on job samples (R24), least-privilege permissions and the dependabot job split (R25), and the `vars.SKILLED_CI*` on/off switches defaulting on (R26) | In progress |
-| 8 | 008-consolidation-decision/ | Implementation: re-measure the always-run workflows after phases 002 to 007 and merge them into one switch group only on an operator yes (R27) | Planned (blocked on D8) |
+| 7 | 007-workflow-hygiene-on-off-control/ | Implementation: per-job timeouts sized on job samples (R24), least-privilege permissions and the dependabot job split (R25), and the `vars.SKILLED_CI*` on/off switches defaulting on (R26) | Complete |
+| 8 | 008-consolidation-decision/ | Implementation: re-measure the always-run workflows after phases 002 to 007 and merge them into one switch group only on an operator yes (R27) | Complete |
 | 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30, superseded by 009 ADR-013) | Complete |
 | 10 | 010-review-remediation/ | Remediation: apply the confirmed deep-review findings to the CI routing vocabulary, the sk-code-ci references and templates, the `/doctor:ci` contract and the phase records | Complete |
 
