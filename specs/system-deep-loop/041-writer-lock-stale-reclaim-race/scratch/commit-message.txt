@@ -1,0 +1,13 @@
+docs(spec): open the writer lock stale reclaim packet
+
+Open the packet for the intermittent jsonl-repair failure on main in
+run 40107240026, where nine concurrent records came back as eight. The
+suspected cause is a stale-lock reclaim race in the shared writer lock
+in cli-guards.cjs. It is inferred from the code and not reproduced.
+
+The packet is Level 2 and Planned, with nothing built. It requires a
+failing reproduction before any lock change, then a fix at the reclaim
+path, and it keeps the existing lock and jsonl-repair tests unedited.
+The packet scaffold also lists the new packet in the track metadata.
+
+Spec: system-deep-loop/041-writer-lock-stale-reclaim-race
