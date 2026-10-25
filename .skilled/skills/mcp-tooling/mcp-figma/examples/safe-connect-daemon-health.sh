@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA SAFE CONNECT AND DAEMON HEALTH EXAMPLE
+# ───────────────────────────────────────────────────────────────
 # safe-connect-daemon-health.sh
 #
 # Worked example for the mcp-figma skill: verify the canonical binary, connect
@@ -20,14 +23,22 @@
 #
 # Usage:
 #   bash examples/safe-connect-daemon-health.sh
+#
+# Exit codes:
+#   0  safe connect ran and the daemon is healthy
+#   1  binary missing or daemon unhealthy
+#   Any other status comes from the failing figma-ds-cli version or connect call
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 log() { echo "[safe-connect] $*"; }
+fail() { echo "[safe-connect] $*" >&2; }
 
 # --- Step 1: Binary detection (DETECT-001) --------------------------------
-# Canonical binary is figma-ds-cli. A bare `figma-cli` is trusted only when
-# it resolves to the silships tool, verified via --version/--help.
+# Canonical binary is figma-ds-cli. A bare `figma-cli` may be the unrelated
+# unic tool, so its version is printed for the operator to confirm before use.
 BIN=""
 if command -v figma-ds-cli >/dev/null 2>&1; then
   BIN="figma-ds-cli"
@@ -38,9 +49,9 @@ elif command -v figma-cli >/dev/null 2>&1; then
 fi
 
 if [ -z "$BIN" ]; then
-  log "figma-ds-cli not found."
-  log "Install via the skill installer (do NOT 'npm i -g figma-cli'):"
-  log "  bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh"
+  fail "figma-ds-cli not found."
+  fail "Install via the skill installer (do NOT 'npm i -g figma-cli'):"
+  fail "  bash $SCRIPT_DIR/../scripts/install.sh"
   exit 1
 fi
 
@@ -62,10 +73,10 @@ log "checking daemon health..."
 if "$BIN" daemon status 2>&1; then
   log "daemon healthy on 127.0.0.1:3456"
 else
-  log "daemon unhealthy; running read-only diagnose..."
+  fail "daemon unhealthy; running read-only diagnose..."
   "$BIN" daemon diagnose 2>&1 || true
-  log "recovery path per SKILL.md: daemon diagnose, then daemon restart."
-  log "NEVER auto-delete ~/.figma-ds-cli/.daemon-token and NEVER print it."
+  fail "recovery path per SKILL.md: daemon diagnose, then daemon restart."
+  fail "NEVER auto-delete ~/.figma-ds-cli/.daemon-token and NEVER print it."
   exit 1
 fi
 

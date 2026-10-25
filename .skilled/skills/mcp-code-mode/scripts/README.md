@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/mcp-code-mode/scripts."
 trigger_phrases:
   - "mcp-code-mode scripts"
   - "code README"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # mcp code mode scripts
@@ -27,7 +27,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 4 |
+| Code files | 5 |
 | README scope | Direct files in this folder |
 | Review context | Current source alignment notes |
 
@@ -67,10 +67,11 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `doctor.sh` | Shell health-check script for the live Code Mode setup. |
+| `_utils.sh` | Shared logging, JSON and prompt helpers that `install.sh` sources. Kept byte-identical with the `mcp-tooling/mcp-chrome-devtools` copy, which a test enforces. |
+| `doctor.sh` | Read-only check of the MCP server's installed dependencies and `dist/index.js`. |
 | `install.sh` | Shell installer for Code Mode prerequisites and local wiring. |
 | `update.sh` | Shell updater for refreshing the local Code Mode installation. |
-| `validate_config.py` | PY source file in this folder. |
+| `validate_config.py` | Validates a `.utcp_config.json` file and, with `--check-env`, the prefixed variables it needs in `.env`. |
 
 ---
 
@@ -78,7 +79,7 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
+| sk-code surface | sk-code-skilled | Applies the sk-code-skilled TypeScript, JavaScript, Python, Shell and config conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 
 ---

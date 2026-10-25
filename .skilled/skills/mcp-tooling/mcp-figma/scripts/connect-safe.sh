@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA SAFE CONNECT
+# ───────────────────────────────────────────────────────────────
 # Guided SAFE connect (FigCli plugin bridge). Never patches Figma Desktop.
+#
+# Exit Codes:
+#   0 - Connected, or the operator declined at the prompt
+#   1 - No silships figma binary on PATH
+#   2 - Non-interactive shell, so the connect was not attempted
+#   Any other status comes from figma-ds-cli connect itself
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=_common.sh
+# shellcheck source=SCRIPTDIR/_common.sh
 . "$HERE/_common.sh"
 
 b="$(figma_bin)" || { err "No figma-ds-cli on PATH, run install.sh first (do NOT 'npm i -g figma-cli')"; exit 1; }

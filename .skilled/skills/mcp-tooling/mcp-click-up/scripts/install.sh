@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
-# ─────────────────────────────────────────────────────────────────────────────
-# mcp-click-up :: Embedded Install Script
-# Installs cupt CLI and prints the official ClickUp MCP configuration snippet.
-# Does NOT modify opencode.json or any config files — prints snippets only.
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-CLICK-UP INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Installs the cupt CLI and prints the official ClickUp MCP configuration
+# snippet. It never modifies opencode.json or any config file, it only prints.
+#
+# Usage: install.sh [--check-only | --mcp-only | --help]
+#
+# Exit Codes:
+#   0 - Success, including a check-only, mcp-only or help run
+#   1 - Unknown option, no Python 3.8+ or cupt not on PATH after install
+#   other - pipx or pip failed and its own status is passed through
 set -euo pipefail
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -49,7 +56,7 @@ while [[ $# -gt 0 ]]; do
     --check-only)  CHECK_ONLY=true ;;
     --mcp-only)    MCP_ONLY=true ;;
     --help|-h)     usage; exit 0 ;;
-    *) warn "Unknown option: $1"; usage; exit 1 ;;
+    *) warn "Unknown option: $1" >&2; usage; exit 1 ;;
   esac
   shift
 done
@@ -59,6 +66,7 @@ check_python() {
   header "Phase 1: Python Version"
 
   local python_cmd=""
+  local cmd
   for cmd in python3 python; do
     if command -v "$cmd" &>/dev/null; then
       local version
@@ -220,9 +228,9 @@ QUICK REFERENCE:
   cupt tag add|remove <id> <name>
   cupt context <id>
 
-SKILL REFERENCE:
-  .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md
-  .skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md
+SKILL REFERENCE (paths inside the mcp-click-up packet):
+  SKILL.md
+  references/cupt-commands.md
 
 EOF
 }

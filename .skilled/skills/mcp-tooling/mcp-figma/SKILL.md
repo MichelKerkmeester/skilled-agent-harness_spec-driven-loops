@@ -3,11 +3,11 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.4.0
+version: 1.1.5.0
 user-invocable: true
 ---
 
-<!-- Keywords: figma, figma-cli, figma-ds-cli, figma-desktop, design-tokens, variables, components, render-jsx, figma-export, design-system, figma-daemon, figma-mcp, figma-developer-mcp, code-mode -->
+<!-- Keywords: figma, figma cli, figma-cli, figma-ds-cli, figma desktop, render in figma, figma tokens, figma variables, figma components, render jsx in figma, export from figma, extract design.md, figma design system, connect to figma, figma daemon, figma mcp, figma-developer-mcp, figma code mode -->
 
 # Figma (mcp-figma)
 
@@ -293,29 +293,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ---
 
-## 5. REFERENCES
-
-### Core References
-
-- [figma-cli-reference.md](references/figma-cli-reference.md) - Binary identity + verification, Node/macOS baseline, Figma Desktop requirement, connect modes, daemon model, and command examples.
-- [tool-surface.md](references/tool-surface.md) - The read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
-- [mcp-wiring.md](references/mcp-wiring.md) - The optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
-- [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (binary collision, Desktop not running, daemon Unauthorized, port conflicts, Code Mode env-var prefix).
-
-### Templates and Assets
-
-- [utcp-figma-manual.md](assets/utcp-figma-manual.md) - Paste-ready Framelink `figma` `.utcp_config.json` manual entry, the `.env` note, and a `call_tool_chain` example for the optional Code Mode path.
-- [env-template.md](assets/env-template.md) - The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token.
-
-### Reference Loading Notes
-
-- References are the primary loaded resources. `figma-cli-reference.md` is the baseline (always). Load `tool-surface.md` for author/modify/token work, `mcp-wiring.md` only for MCP intent, `troubleshooting.md` for setup/errors.
-- Load the `assets/` snippets only for MCP_CONTEXT intent, alongside `mcp-wiring.md`.
-- Keep Section 2 (SMART ROUTING) as the single routing authority.
-
----
-
-## 6. SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 **Connect complete when:**
 - ✅ The binary was verified (`figma-ds-cli` or confirmed-silships `figma-cli`), Figma Desktop is open, the chosen connect mode ran, and `daemon status` is healthy.
@@ -334,7 +312,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ---
 
-## 7. INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Tool Usage Guidelines
 
@@ -359,7 +337,27 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 7. REFERENCES AND RELATED RESOURCES
+
+### Core References
+
+- [figma-cli-reference.md](references/figma-cli-reference.md) - Binary identity + verification, Node/macOS baseline, Figma Desktop requirement, connect modes, daemon model, and command examples.
+- [tool-surface.md](references/tool-surface.md) - The read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
+- [mcp-wiring.md](references/mcp-wiring.md) - The optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
+- [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (binary collision, Desktop not running, daemon Unauthorized, port conflicts, Code Mode env-var prefix).
+
+### Templates and Assets
+
+- [utcp-figma-manual.md](assets/utcp-figma-manual.md) - Paste-ready Framelink `figma` `.utcp_config.json` manual entry, the `.env` note, and a `call_tool_chain` example for the optional Code Mode path.
+- [env-template.md](assets/env-template.md) - The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token.
+
+### Reference Loading Notes
+
+- References are the primary loaded resources. `figma-cli-reference.md` is the baseline (always). Load `tool-surface.md` for author/modify/token work, `mcp-wiring.md` only for MCP intent, `troubleshooting.md` for setup/errors.
+- Load the `assets/` snippets only for MCP_CONTEXT intent, alongside `mcp-wiring.md`.
+- Keep Section 2 (SMART ROUTING) as the single routing authority.
+
+### Related Resources
 
 The router (Section 2) discovers reference and asset docs dynamically. Start from `references/figma-cli-reference.md` for the CLI/daemon/connect model, load `references/tool-surface.md` for the gating taxonomy, `references/mcp-wiring.md` for the optional Code Mode path, and `references/troubleshooting.md` for failures. References stay the primary loaded resources.
 

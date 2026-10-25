@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # mcp-click-up
@@ -68,7 +68,7 @@ cupt config --api-token pk_YOUR_TOKEN_HERE
 
 ```bash
 cupt --version
-# Expected: cupt X.Y.Z
+# Expected: cupt, version X.Y.Z
 
 cupt status
 # Expected: Workspace: Your Workspace Name  (ID: 1234567)
@@ -143,16 +143,16 @@ Start every ClickUp session with these two commands. They confirm the tool is in
 
 ```bash
 cupt --version && cupt status
-# Expected: cupt X.Y.Z followed by workspace name and authenticated user
+# Expected: cupt, version X.Y.Z followed by workspace name and authenticated user
 ```
 
 ### Example Workflows
 
-The skill ships two production scripts under `examples/`. Each doubles as an end-to-end workflow and a CI-ready verification gate.
+The skill ships two production scripts under `examples/`. Each doubles as an end-to-end workflow and a manual verification check against a live workspace.
 
-`task-queue-workflow.sh [--tag X] [--dry-run]` processes a tagged work queue end to end. It runs a preflight check, fetches tasks with `cupt list --tag X --all --json`, inspects each task with `cupt show --notes --json` and `cupt context`, discovers per-list status schemas with `cupt statuses`, dry-runs every completion, then completes and hands off by removing the processing tag and adding a `needs_review` tag with a note. An empty queue exits cleanly. It returns exit code 0 on success or empty queue and exit code 1 on preflight failure.
+`task-queue-workflow.sh [--tag X] [--dry-run]` processes a tagged work queue end to end. It runs a preflight check, fetches tasks with `cupt list --tag X --all --json`, inspects each task with `cupt show --notes` and `cupt context`, discovers per-list status schemas with `cupt statuses`, dry-runs every completion, then completes and hands off by removing the processing tag and adding a `needs_review` tag with a note. An empty queue exits cleanly. It returns exit code 0 on success, an empty queue or a finished dry-run, and exit code 1 on invalid arguments, a failed preflight or a task that failed to complete. cupt exits 0 even when the API rejects a call, so both scripts treat an `ERROR:` line on stderr as a failure.
 
-`time-tracking-workflow.sh {start <id>|stop|log <id> <dur>|status}` manages the full timer lifecycle. `start` begins tracking on a task and fails if a timer is already running. `stop` ends the current timer and logs the elapsed time. `log` accepts durations such as `1h30m`, `45m` or `2h` for retroactive entries. `status` reports the running timer or confirms none is active. The script detects orphaned timers on exit and warns you to clean them up.
+`time-tracking-workflow.sh {start <id>|stop|log <id> <dur>|status}` manages the full timer lifecycle. `start` begins tracking on a task and fails if a timer is already running. `stop` ends the current timer and logs the elapsed time. `log` accepts durations such as `1h30m`, `45m` or `2h` for retroactive entries. `status` reports the running timer or confirms none is active. On an error exit it reminds you to check for a timer that is still running.
 
 ---
 
@@ -234,7 +234,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path operation router and the full agent safety invariants |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install for cupt and the official MCP server with validation checkpoints |
 | [`references/cupt-commands.md`](./references/cupt-commands.md) | Complete cupt command reference with `--json` variants and agent patterns |
-| [`references/mcp-tools.md`](./references/mcp-tools.md) | Official ClickUp MCP tool catalog with priority tiers and `call_tool_chain()` invocation |
+| [`references/mcp-tools.md`](./references/mcp-tools.md) | The 61 live ClickUp MCP tools grouped by area, with `call_tool_chain()` invocation |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and recovery steps for auth, status and MCP issues |
 | [`feature-catalog/FEATURE-CATALOG.md`](./feature-catalog/FEATURE-CATALOG.md) | Current-state inventory of every CLI and MCP capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |

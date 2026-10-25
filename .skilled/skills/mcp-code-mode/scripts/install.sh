@@ -8,6 +8,10 @@
 #
 # Official repo: https://github.com/universal-tool-calling-protocol/code-mode
 # Package: @utcp/code-mode-mcp
+#
+# Exit Codes:
+#   0 - Installed, or dry run complete (a failed verification only warns)
+#   1 - Unknown option, unmet prerequisite, or a config file step failed
 
 set -euo pipefail
 
@@ -27,7 +31,8 @@ readonly MIN_NODE_VERSION="18"
 # ───────────────────────────────────────────────────────────────
 # 2. SETUP
 # ───────────────────────────────────────────────────────────────
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR
 source "${SCRIPT_DIR}/_utils.sh"
 
 # ───────────────────────────────────────────────────────────────
@@ -244,7 +249,6 @@ create_env_example() {
     project_root=$(find_project_root) || return 1
     local env_file="${project_root}/.env.example"
     
-    # Define the Code Mode section
     local code_mode_section="# ───────────────────────────────────────────────────────────────
 # CODE MODE MCP - Provider API Keys
 # ───────────────────────────────────────────────────────────────
@@ -314,7 +318,6 @@ add_to_opencode_json() {
         return 1
     fi
     
-    # Check if entry already exists
     if json_has_key "${config_file}" ".mcp.${MCP_NAME}"; then
         log_info "${MCP_DISPLAY_NAME} already configured in opencode.json"
         return 0
@@ -327,7 +330,6 @@ add_to_opencode_json() {
     
     log_info "Adding ${MCP_DISPLAY_NAME} to opencode.json..."
     
-    # Backup before modification
     backup_file "${config_file}"
     
     # MCP configuration for opencode.json
@@ -342,7 +344,6 @@ add_to_opencode_json() {
     }'
     
     if json_set_value "${config_file}" ".mcp.${MCP_NAME}" "${mcp_config}"; then
-        # Validate the result
         if json_validate "${config_file}"; then
             log_success "Added ${MCP_DISPLAY_NAME} to opencode.json"
             return 0
@@ -403,7 +404,7 @@ verify_installation() {
     if [[ ! -d "${mcp_server_dir}" ]]; then
         log_error "MCP server directory not found: ${mcp_server_dir}"
         log_info "This script requires the mcp-code-mode skill to be bundled in the project"
-        log_info "Alternative: Use 'npx @utcp/code-mode-mcp' directly in opencode.json"
+        log_info "Alternative: Use 'npx ${MCP_PACKAGE}' directly in opencode.json"
         return 1
     fi
 
@@ -444,7 +445,6 @@ verify_installation() {
         log_success "Embedded MCP server built"
     fi
 
-    # Check if dist/index.js exists
     if [[ ! -f "${entry_point}" ]]; then
         log_error "Entry point not found: ${entry_point}"
         log_info "The build did not produce the entry point"

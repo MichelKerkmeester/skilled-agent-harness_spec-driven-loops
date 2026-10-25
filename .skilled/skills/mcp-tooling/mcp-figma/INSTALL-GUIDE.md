@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma Installation Guide"
 description: "Installation and verification of the silships figma-ds-cli binary that drives Figma Desktop from the terminal, plus the safe MCP setup."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-figma Installation Guide
@@ -11,7 +11,7 @@ Complete installation and configuration guide for the `mcp-figma` skill, which d
 > **Naming trap, read first.** Install **`figma-ds-cli`**, the unambiguous npm package for the silships tool. The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, by Fredi Bach, which installs a bin named `figma`). **Never run `npm i -g figma-cli`.** A `figma-cli` command exists as a second name for the silships tool only when you build from the silships repo.
 > **Package:** `figma-ds-cli` (silships) | **Dependencies:** Node.js 18+, Figma Desktop, macOS baseline
 
-**Version:** 1.0.1.0 | **Updated:** 2026-10-21 | **Transport:** local daemon (HTTP 127.0.0.1:3456)
+**Version:** 1.0.2.0 | **Updated:** 2026-10-25 | **Transport:** local daemon (HTTP 127.0.0.1:3456)
 
 ---
 
@@ -295,12 +295,12 @@ OUT="design-$(date +%Y%m%d-%H%M%S).md"; [ -e "$OUT" ] || figma-ds-cli extract "$
 
 ```bash
 # Read-only: never changes the document
-figma-ds-cli get <target>            # inspect a node
-figma-ds-cli export <target> --out <path>   # export to an explicit path
+figma-ds-cli get <nodeId>            # inspect a node
+figma-ds-cli export node <nodeId> -o <path>   # export to an explicit path
 
 # Mutating: gated behind confirmation, changes the open file
-figma-ds-cli create <spec>           # author a frame or component
-figma-ds-cli render <spec>           # render into the file
+figma-ds-cli create frame <name>     # author a frame
+figma-ds-cli render '<jsx>'          # render JSX into the file
 
 # Daemon management
 ./daemon.sh restart                  # after "Unauthorized"
@@ -460,6 +460,7 @@ figma_FIGMA_API_KEY=figd_your_token_here
 
 | Version | Date       | Changes                                                                    |
 | ------- | ---------- | -------------------------------------------------------------------------- |
+| 1.0.2.0 | 2026-10-25 | The common operations name the real `get`, `export node`, `create frame` and `render` forms, and export takes `-o` rather than a `--out` flag the CLI lacks. |
 | 1.0.1.0 | 2026-10-21 | The read-only export writes to a new path with a positional argument, as `extract` takes it, and names its 11 sections. |
 | 1.0.0.0 | 2026-06-15 | First stable release. Live verification against figma-ds-cli 1.2.0, embedded `mcp-servers/figma-cli` install scaffold, install and doctor parity with the other mcp skills, house-voice pass. |
 | 0.1.0   | 2026-06-14 | Initial release. CLI-primary skill (figma-ds-cli), install and safety scripts, optional Framelink MCP via Code Mode. Pre-1.0 until live external verification is complete. |

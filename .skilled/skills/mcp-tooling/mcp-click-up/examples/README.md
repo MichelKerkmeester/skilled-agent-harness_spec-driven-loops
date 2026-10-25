@@ -6,7 +6,7 @@ trigger_phrases:
   - "cupt example scripts"
   - "task queue workflow"
   - "time tracking script"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-click-up - Example Scripts
@@ -35,12 +35,13 @@ This directory contains production-ready bash scripts demonstrating practical Cl
 **Time Tracking**
 - Full timer lifecycle: start, status check, stop
 - Manual time logging with duration validation (`1h30m`, `45m`, `2h`)
-- Orphaned timer detection and cleanup on exit
+- A reminder on any error exit to check for a timer that is still running
 
 **Agent Safety**
 - `set -euo pipefail`: exits immediately on any error
-- `trap cleanup EXIT INT TERM`: no orphaned timers or partial state
-- `--json` on all cupt reads: never parses human-readable output
+- `trap cleanup EXIT INT TERM`: reports a non-zero exit on stderr, it does not stop timers or roll back writes
+- `--json` on queue reads: the task list is never parsed from human-readable output
+- cupt errors are checked on stderr: cupt exits 0 on API failures, so a reported `ERROR:` fails the step
 - Empty queue treated as valid: never fabricates tasks
 
 ---
@@ -48,11 +49,11 @@ This directory contains production-ready bash scripts demonstrating practical Cl
 ## 2. PREREQUISITES
 
 ```bash
-# Install cupt CLI
-bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+# Install cupt CLI from the packet root
+bash scripts/install.sh
 
 # Verify installation and authentication
-cupt --version   # → cupt 0.7.1
+cupt --version   # → cupt, version X.Y.Z (0.7.1 or later)
 cupt status      # → workspace name + user
 
 # Required tools for JSON parsing
@@ -88,10 +89,10 @@ bash examples/task-queue-workflow.sh --tag urgent --dry-run
 ```
 
 **What it does:**
-1. Runs preflight: verifies `cupt` is installed and authenticated
+1. Runs preflight: verifies `cupt` is installed and authenticated. cupt exits 0 even when the API rejects the token, so the script also treats an `ERROR:` line on stderr as a failure
 2. Fetches tasks with the specified tag using `cupt list --tag X --all --json`
 3. Exits cleanly with a clear message if the queue is empty: never fabricates tasks
-4. For each task: inspects via `cupt show --notes --json` and `cupt context`
+4. For each task: inspects via `cupt show --notes` and `cupt context`
 5. Discovers the list's status schema via `cupt statuses <id>`
 6. Dry-runs completion for every task in the batch
 7. Prompts for confirmation before writing (skipped with `--dry-run`)
@@ -122,8 +123,8 @@ bash examples/task-queue-workflow.sh --tag urgent --dry-run
 ```
 
 **Exit codes:**
-- `0`: All tasks completed (or queue was empty)
-- `1`: Preflight failed (cupt not found or not authenticated)
+- `0`: All tasks completed, the queue was empty or a dry-run finished
+- `1`: Invalid arguments, preflight failed (cupt or jq not found, or not authenticated), the queue could not be fetched or a task failed to complete or hand off
 
 **Use cases:**
 - Automated AI agent work queues
@@ -162,7 +163,7 @@ bash examples/time-tracking-workflow.sh status
 
 **Exit codes:**
 - `0`: Command succeeded
-- `1`: cupt not installed, not authenticated, invalid args, or timer conflict
+- `1`: cupt not installed, not authenticated, invalid args, timer conflict or a cupt call that reported an error
 
 **Use cases:**
 - Automated time tracking in agent workflows
@@ -191,7 +192,7 @@ bash examples/task-queue-workflow.sh --tag ai_ready
 bash examples/time-tracking-workflow.sh stop
 
 # 4. Verify clean state
-bash examples/time-tracking-workflow.sh status  # → "No timer running"
+bash examples/time-tracking-workflow.sh status  # → "No timer is currently running"
 ```
 
 ### Dry-Run Before Production Run
@@ -226,7 +227,7 @@ bash examples/time-tracking-workflow.sh log TASK_ID 1h30m
 Edit `task-queue-workflow.sh` to change the default tag:
 
 ```bash
-# Line ~9 in task-queue-workflow.sh
+# Line ~17 in task-queue-workflow.sh
 PROCESSING_TAG="${1:-ai_ready}"   # Change "ai_ready" to your tag
 REVIEW_TAG="needs_review"         # Change "needs_review" to your handoff tag
 ```
@@ -234,7 +235,7 @@ REVIEW_TAG="needs_review"         # Change "needs_review" to your handoff tag
 ### Change the Completion Note
 
 ```bash
-# Line ~11 in task-queue-workflow.sh
+# Line ~19 in task-queue-workflow.sh
 AGENT_NOTE="Processed by AI agent"   # Customize the note text
 ```
 
@@ -265,11 +266,11 @@ done
 ### task-queue-workflow.sh: "cupt not installed"
 
 ```bash
-# Install cupt
-bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+# Install cupt from the packet root
+bash scripts/install.sh
 
 # Verify
-cupt --version   # → cupt 0.7.1
+cupt --version   # → cupt, version X.Y.Z (0.7.1 or later)
 ```
 
 ### task-queue-workflow.sh: "authentication failed"
@@ -324,9 +325,9 @@ sudo apt install jq
 ### Skill Documentation
 
 **mcp-click-up:**
-- `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`: Routing rules and agent invariants
-- `.skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md`: Install and authentication
-- `.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md`: Full cupt command reference
+- [`../SKILL.md`](../SKILL.md): Routing rules and agent invariants
+- [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md): Install and authentication
+- [`../references/cupt-commands.md`](../references/cupt-commands.md): Full cupt command reference
 
 ### Related References
 
@@ -354,6 +355,6 @@ To add new example scripts:
 
 ---
 
-**Directory Version**: 1.0.0
-**Last Updated**: 2026-05-31
+**Directory Version**: 1.0.1
+**Last Updated**: 2026-10-25
 **Maintained By**: AI Documentation

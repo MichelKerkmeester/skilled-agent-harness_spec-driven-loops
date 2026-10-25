@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA INSTALLER
+# ───────────────────────────────────────────────────────────────
 # mcp-figma installer: install + verify ONLY. Never connects, never patches Figma.
 # Canonical package = figma-ds-cli (silships). NEVER `npm i -g figma-cli` (that is
 # unic/figma-cli, an unrelated tool that installs a bin named "figma").
+#
+# Exit Codes:
+#   0 - Installed and verified, or a working binary was already present
+#   1 - A prerequisite, the install or the post-install verification failed
+#   2 - Unknown option or invalid --source value
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=_common.sh
+# shellcheck source=SCRIPTDIR/_common.sh
 . "$HERE/_common.sh"
 
 SOURCE="auto"           # auto | npm | repo
@@ -50,7 +58,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-npm_q() { [ "$VERBOSE" = 1 ] && npm "$@" || npm "$@" >/dev/null 2>&1; }
+npm_q() { if [ "$VERBOSE" = 1 ]; then npm "$@"; else npm "$@" >/dev/null 2>&1; fi; }
 
 # Full documented surface (safe connect, daemon, extract, most commands) needs >= this.
 MIN_FULL_VERSION="1.2.0"
@@ -66,7 +74,7 @@ check_prerequisites() {
   esac
   command -v node >/dev/null 2>&1 || { err "Node.js not found; install Node >=18"; exit 1; }
   local nm; nm="$(node_major)"
-  if [ -n "$nm" ] && [ "$nm" -ge 18 ] 2>/dev/null; then ok "Node $(node -v) (>=18)"; else err "Node >=18 required (found $(node -v 2>/dev/null||echo none))"; exit 1; fi
+  if [ -n "$nm" ] && [ "$nm" -ge "$NODE_MIN_MAJOR" ] 2>/dev/null; then ok "Node $(node -v) (>=$NODE_MIN_MAJOR)"; else err "Node >=$NODE_MIN_MAJOR required (found $(node -v 2>/dev/null||echo none))"; exit 1; fi
   command -v npm >/dev/null 2>&1 || { err "npm not found"; exit 1; }
   ok "npm $(npm -v)"
   if [ "$SOURCE" = "repo" ]; then command -v git >/dev/null 2>&1 || { err "git required for --source repo"; exit 1; }; fi
@@ -74,6 +82,7 @@ check_prerequisites() {
 
 detect_figma_desktop() {
   log "== Figma Desktop (not installed by this script) =="
+  local p
   if p="$(figma_desktop_path)"; then ok "Figma Desktop found: $p"; else warn "Figma Desktop not found, required at connect time, not for install"; fi
 }
 
@@ -99,8 +108,9 @@ install_repo() {
     info "Updating existing checkout to $REPO_REF: $INSTALL_ROOT"
   else
     info "Cloning $REPO_URL -> $INSTALL_ROOT (outside this repo; not vendored)"
-    git init -q "$INSTALL_ROOT" && git -C "$INSTALL_ROOT" remote add origin "$REPO_URL" \
-      || { err "Could not prepare $INSTALL_ROOT for the clone."; exit 1; }
+    if ! { git init -q "$INSTALL_ROOT" && git -C "$INSTALL_ROOT" remote add origin "$REPO_URL"; }; then
+      err "Could not prepare $INSTALL_ROOT for the clone."; exit 1
+    fi
   fi
   if [ "$VERBOSE" = 1 ]; then
     git -C "$INSTALL_ROOT" fetch --depth 1 origin "$REPO_REF" && git -C "$INSTALL_ROOT" checkout -q --detach FETCH_HEAD
@@ -121,7 +131,7 @@ verify_install() {
   fi
   ok "Binary: $b"
   "$b" --version 2>/dev/null | head -1 || warn "--version produced no output"
-  "$b" --help >/dev/null 2>&1 && ok "--help OK" || warn "--help failed"
+  if "$b" --help >/dev/null 2>&1; then ok "--help OK"; else warn "--help failed"; fi
   if [ "$b" = "figma-ds-cli" ]; then ok "Canonical binary present"; else warn "Using 'figma-cli' (silships repo build); 'figma-ds-cli' is the canonical name"; fi
   local v; v="$(installed_version)"
   if [ -n "$v" ] && version_lt "$v" "$MIN_FULL_VERSION"; then
@@ -159,6 +169,7 @@ main() {
         warn "npm install did not yield a usable binary; trying repo install"
         install_repo
       else
+        local v
         v="$(installed_version)"
         if [ -n "$v" ] && version_lt "$v" "$MIN_FULL_VERSION"; then
           warn "npm figma-ds-cli is $v, stale/minimal (lacks safe connect, daemon, and most commands)."

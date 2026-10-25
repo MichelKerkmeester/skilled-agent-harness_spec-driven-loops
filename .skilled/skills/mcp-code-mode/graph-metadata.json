@@ -18,7 +18,7 @@
       {
         "target": "mcp-tooling",
         "weight": 0.7,
-        "context": "MCP fallback via Code Mode for all three mcp-tooling modes: devtools MCP fallback (mcp-chrome-devtools), official ClickUp MCP for advanced operations (mcp-click-up), and the optional Figma MCP (Framelink) when MCP context is needed (mcp-figma). Repointed from the three former flat bridge identities to the mcp-tooling hub (ADR-004/ADR-005 carve-out) -- this is a metadata-only edit; the code_mode registration and server are unchanged."
+        "context": "MCP fallback via Code Mode for the mcp-tooling modes, among them devtools MCP fallback (mcp-chrome-devtools), official ClickUp MCP for advanced operations (mcp-click-up), and the optional Figma MCP (Framelink) when MCP context is needed (mcp-figma). Repointed from the three former flat bridge identities to the mcp-tooling hub (ADR-004/ADR-005 carve-out) -- this is a metadata-only edit; the code_mode registration and server are unchanged."
       }
     ]
   },
@@ -122,12 +122,11 @@
     "source_docs": [
       "SKILL.md",
       "README.md",
-      "mcp-server/README.md",
       "references/architecture.md",
       "references/tool-catalog.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
-    "last_updated_at": "2026-07-29T00:00:00Z",
+    "last_updated_at": "2026-10-25T00:00:00Z",
     "sanitizer_version": "sanitizeSkillLabel:v2"
   }
 }

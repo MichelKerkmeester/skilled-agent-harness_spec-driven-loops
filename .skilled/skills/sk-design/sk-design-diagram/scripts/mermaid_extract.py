@@ -35,6 +35,15 @@ from typing import Any, NoReturn
 MAX_SOURCE_BYTES = 4 * 1024 * 1024
 MAX_NODES = 2000
 MAX_EDGES = 5000
+# A drawn diagram past these counts stops reading at a glance, so the digest
+# flags it for simplification before any type is chosen.
+DRAWABLE_NODE_BUDGET = 9
+EDGE_BUDGET = 12
+# Preview caps keep the digest summary short. The full lists stay in the tables.
+HUB_PREVIEW_LIMIT = 5
+LIST_PREVIEW_LIMIT = 6
+GROUP_PREVIEW_LIMIT = 8
+DEFAULT_MAX_ROWS = 40
 SUPPORTED_KINDS = "flowchart, sequenceDiagram, stateDiagram-v2, erDiagram"
 UNSUPPORTED_KINDS = {
     "pie",
@@ -1112,7 +1121,7 @@ def analyze(diagram: Diagram) -> dict[str, Any]:
             leaves,
             key=lambda item: (item.in_degree + item.out_degree, item.id),
             reverse=True,
-        )[:5]
+        )[:HUB_PREVIEW_LIMIT]
         if node.in_degree + node.out_degree > 0
     ]
     entry_points = [name(node) for node in leaves if node.out_degree and not node.in_degree]
@@ -1134,7 +1143,7 @@ def analyze(diagram: Diagram) -> dict[str, Any]:
                 name(diagram.node_map[child])
                 for child in node.children
                 if child in diagram.node_map
-            ][:8],
+            ][:GROUP_PREVIEW_LIMIT],
         }
         for node in containers
         if node.children
@@ -1153,13 +1162,13 @@ def analyze(diagram: Diagram) -> dict[str, Any]:
         "shapes": dict(sorted(shapes.items(), key=lambda item: (-item[1], item[0]))),
         "has_cycle": _has_cycle(diagram.nodes, diagram.edges),
         "hubs": hubs,
-        "entry_points": entry_points[:6],
-        "terminals": terminals[:6],
-        "orphans": orphans[:6],
+        "entry_points": entry_points[:LIST_PREVIEW_LIMIT],
+        "terminals": terminals[:LIST_PREVIEW_LIMIT],
+        "orphans": orphans[:LIST_PREVIEW_LIMIT],
         "type_candidates": candidates,
-        "collapsible_groups": collapsible[:8],
-        "over_node_budget": drawable > 9,
-        "over_edge_budget": len(diagram.edges) > 12,
+        "collapsible_groups": collapsible[:GROUP_PREVIEW_LIMIT],
+        "over_node_budget": drawable > DRAWABLE_NODE_BUDGET,
+        "over_edge_budget": len(diagram.edges) > EDGE_BUDGET,
     }
 
 
@@ -1213,8 +1222,9 @@ def digest(
                 f"{info['edges_dangling']} dangling), cycle: {info['has_cycle']}",
                 f"- shapes: {info['shapes']}",
                 f"- type candidates: {', '.join(info['type_candidates'])}",
-                f"- budget: nodes {'OVER' if info['over_node_budget'] else 'ok'} (max 9), "
-                f"edges {'OVER' if info['over_edge_budget'] else 'ok'} (max 12)",
+                f"- budget: nodes {'OVER' if info['over_node_budget'] else 'ok'} "
+                f"(max {DRAWABLE_NODE_BUDGET}), "
+                f"edges {'OVER' if info['over_edge_budget'] else 'ok'} (max {EDGE_BUDGET})",
             ]
         )
         if diagram.discarded["style_directives"] or diagram.discarded["click_handlers"]:
@@ -1230,7 +1240,7 @@ def digest(
             output.append(f"- fragments: {fragments}")
         if diagram.notes:
             output.append(
-                f"- notes: {'; '.join(_escape_markdown(note) for note in diagram.notes[:6])}"
+                f"- notes: {'; '.join(_escape_markdown(note) for note in diagram.notes[:LIST_PREVIEW_LIMIT])}"
             )
         if info["hubs"]:
             output.append(
@@ -1389,8 +1399,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--max-rows",
         type=int,
-        default=40,
-        help="rows per table in the Markdown digest (default 40)",
+        default=DEFAULT_MAX_ROWS,
+        help=f"rows per table in the Markdown digest (default {DEFAULT_MAX_ROWS})",
     )
     parser.add_argument("--out", help="write to this path instead of stdout")
     args = parser.parse_args(argv)
