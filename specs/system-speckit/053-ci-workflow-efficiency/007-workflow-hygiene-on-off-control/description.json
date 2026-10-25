@@ -49,13 +49,15 @@
     "except",
     "two"
   ],
-  "lastUpdated": "2026-10-23T12:08:28.101Z",
+  "lastUpdated": "2026-10-25T13:24:41.381Z",
   "specId": "007",
   "folderSlug": "workflow-hygiene-on-off-control",
   "parentChain": [
     "system-speckit",
     "053-ci-workflow-efficiency"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-10-26_14-24__built-and-pushed-the-permissions-dependabot-split.md"
+  ]
 }

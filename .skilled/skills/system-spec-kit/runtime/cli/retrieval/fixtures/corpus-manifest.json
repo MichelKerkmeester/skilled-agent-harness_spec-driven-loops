@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d307dcffc060d0a9a8d8f2b469abe25be609245b8eb80c396f7cb4acae29b9c4",
+  "corpusHash": "39e3d7b2946fd45f394ee0766b850ecf70e456bb16c4847cc4035e9caf0aa6dc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -1117,7 +1117,7 @@
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/prompt-contract/prompt-card-and-improver-eligibility.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/runtime-surface/hermes-runtime-folder.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/runtime-surface/repo-guards-project-plugin.md",
-    ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/agent-routing/inlined-persona-via-agent-router-template.md",
+    ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/agent-routing/inlined-persona-via-command-template.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/agent-routing/persona-via-agent-skill-and-plugin.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/cli-invocation/off-roster-model-rejection.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/cli-invocation/provider-preflight-probe.md",
@@ -25998,7 +25998,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5b6967866f1ee28aa99ab94553ce789961d180250134b7da893cacd183cd3705",
+  "manifestHash": "c60069b54de597cfbc3befd8f57240dcd5597262084bbd6e8b0c23aa23f2605e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

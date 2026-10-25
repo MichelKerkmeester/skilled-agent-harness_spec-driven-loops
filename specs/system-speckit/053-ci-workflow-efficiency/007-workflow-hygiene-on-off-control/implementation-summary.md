@@ -8,22 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
-    last_updated_at: "2026-10-23T14:00:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded the plan state"
-    next_safe_action: "D6 is answered; run the phase's tasks from T001"
+    last_updated_at: "2026-10-25T13:24:41Z"
+    last_updated_by: "generate-context"
+    recent_action: "T001 to T099 on main, T022 proven on Dependabot runs 40148156911 and 40200559794"
+    next_safe_action: "Run T100 after 2026-10-26T00:45Z"
     blockers:
-      - "003, 004, 005 and 006 have not landed"
+      - "T100 waits for 24h of runs"
     key_files:
-      - "spec.md"
-      - "plan.md"
       - "tasks.md"
-      - "acceptance-criteria.md"
+      - "scratch/r24/timeouts.md"
+      - "scratch/r26-probe.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-007-workflow-hygiene-on-off-control"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -119,7 +118,7 @@ Not delivered. The delivery plan is `tasks.md`: five phases, 102 tasks, one comm
 1. **The phase is planned, not built.** No workflow file has changed, so every acceptance row in `acceptance-criteria.md` is `Unmet`.
 2. **D6 is answered, 10 minutes.** Every timeout value uses that floor.
 3. **A fork is required for AC-008.** Without one the switch's behavioural half stays `Unmet` rather than being waived.
-4. **A Dependabot pull request is required for AC-002.** Without one the split's live half stays `Unmet` until the next one arrives.
+4. **The split ran on real Dependabot pull requests.** Runs 40148156911 (pull request 86) and 40200559794 (pull request 89) used the two-job shape: the metadata job succeeded and the merge job skipped, because neither is a security patch. The merge job's write path on a security patch is not yet observed.
 <!-- /ANCHOR:limitations -->
 
 ---

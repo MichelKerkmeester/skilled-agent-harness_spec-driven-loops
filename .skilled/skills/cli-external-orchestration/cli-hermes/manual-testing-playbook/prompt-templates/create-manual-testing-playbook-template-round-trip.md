@@ -1,7 +1,7 @@
 ---
 title: "HERMES-009 -- Second template round trip"
 description: "Confirm a second generated prompt template, one whose canonical command file is large, also carries a Hermes session to its named contract and returns a non-empty answer for `HERMES-009`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-009 -- Second template round trip
@@ -84,7 +84,7 @@ grep -n 'Turn ended with pending tool result' ~/.hermes/logs/agent.log | tail -1
 
 | File | Role |
 |---|---|
-| [inlined-persona-via-agent-router-template.md](../agent-routing/inlined-persona-via-agent-router-template.md) | The passing template round trip this scenario is compared against |
+| [inlined-persona-via-command-template.md](../agent-routing/inlined-persona-via-command-template.md) | The passing template round trip this scenario is compared against |
 | [hermes-tools.md](../../references/hermes-tools.md) | Toolset table: which tools a `-t file,todo` session actually holds |
 
 ---
