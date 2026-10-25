@@ -73,6 +73,27 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate. It downloads the previous successful run's report as its baseline and records one when a first run finds none |
 | `trigger-index-rebuild.yml` | yes, `main` and `skilled/**` | no | Rebuilds the committed index after a push, and its commit carries `[skip ci]` so no other workflow runs on it. Also runs by hand |
 
+### On/off switches
+
+Every job except the two in `dependabot-auto-merge.yml` carries a job-level condition that reads two repository variables: the master switch `SKILLED_CI` and one group variable. Set either to `off` under Settings, Secrets and variables, Actions, Variables, and the job is skipped before a runner starts. A job runs only when both of its variables differ from `off`.
+
+| Variable | Turns off | Workflows |
+|---|---|---|
+| `SKILLED_CI` | Every switched job | All workflows except `dependabot-auto-merge.yml` |
+| `SKILLED_CI_FRESHNESS` | The whole-tree guards, the naming guard, the gate-input check and the changed-packet check | `advisory-checks.yml`, `changed-packet-validation.yml`, `dispatch-enforcement-guard.yml`, `gate-inputs.yml`, `naming-standard-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` |
+| `SKILLED_CI_TESTS` | The path-filtered suites | `chart-corpus.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` |
+| `SKILLED_CI_REVIEW` | The review-time checks | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` |
+| `SKILLED_CI_REPORTS` | The weekly report and the trigger index rebuild | `strict-pass-freshness-report.yml`, `trigger-index-rebuild.yml` |
+| `SKILLED_CI_MESSAGES` | The message contract | `message-contract.yml` |
+
+`off` is the only token that disables a job. An unset variable runs the job, and so does an empty value, `0`, `false`, `no` or a typo. A clone that sets nothing runs everything.
+
+To turn the weekly report off, set `SKILLED_CI_REPORTS` to `off`. The same variable covers `trigger-index-rebuild.yml`, so the committed trigger index also stops rebuilding while it is set. Delete the variable to turn both back on.
+
+`dependabot-auto-merge.yml` has no switch on either of its jobs, so no variable turns Dependabot's merge off.
+
+A job skipped by its condition reports Success, so a switched-off job that a ruleset requires stops blocking merges instead of failing. `message-contract.yml` holds the only context the ruleset requires. SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context, and so must `SKILLED_CI`, which switches the same job off.
+
 ---
 
 ## 3. GUARD ENTRYPOINTS
