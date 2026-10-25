@@ -11,18 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
-    last_updated_at: "2026-10-25T01:00:00Z"
+    last_updated_at: "2026-10-25T07:02:00Z"
     last_updated_by: "markdown"
-    recent_action: "Ran T006 and T036 on the 001 baseline; AC-016 Met, AC-009 stays Unmet"
-    next_safe_action: "Operator rules on AC-009, then T038 closure commit"
-    blockers:
-      - "AC-009 Unmet: rule-canary-sync checkout 52 s shorter against an about-20-s row"
+    recent_action: "Recorded ADR-012, which reads AC-009 as a floor, and marked all 17 rows Met"
+    next_safe_action: "Phase closed; no further work in this phase"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -63,7 +62,7 @@ The packet's operator decisions are D2, D3, D4, D7 and D10 in `plan.md`; the G-n
 ## 3. COMPLETION CRITERIA
 
 - [x] `grep -L '^concurrency:' .github/workflows/*.yml` lists exactly `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml`
-- [x] `grep -lF "cancel-in-progress: \${{ github.event_name == 'pull_request' }}" .github/workflows/*.yml | wc -l` returns `30`
+- [x] `grep -lF "cancel-in-progress: \${{ github.event_name == 'pull_request' }}" .github/workflows/*.yml | wc -l` returns `30` (`29` at the current head, after a sibling phase merged `hooks-node-tests.yml` away)
 - [x] `grep -c "^      - '" .github/workflows/command-tree-parity.yml` returns `46` and `grep -c "^      - '" .github/workflows/agent-mirror-sync.yml` returns `11`
 - [x] `grep -c 'dispatch-audit.test.mjs' .github/workflows/dispatch-enforcement-guard.yml` returns `0`
 - [x] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
@@ -89,8 +88,8 @@ and findings belong here.
 | Baseline rows | Done | Operator ruling 2026-10-25: the 001 research dataset is the baseline. `scratch/phase-baseline.md` holds the ten rows and states the source; the 002 24 h window is the after-state |
 | Implementation | Done | Six concern commits on `main`: concurrency on 30 workflows, both filters, the dedup, both suppression removals, the three depth changes, the README table and the 13-key inventory |
 | CI probes | Done | T027 to T035 ran on 2026-10-24 in `scratch/probe-results.md`: concurrency cancel (`40100004699` cancelled, `40100024617` success), both filter pairs, the D10 run, the deleted-suite failure (`40101163105`), the report-only steps (`40101235126`, `40101537374`), the three checkout depths and the 13/13/13 inventory re-check |
-| Acceptance rows | Partly done | 16 of 17 `Met`. AC-016 is `Met` (net of phase 002: `command-tree-parity` -136, `rule-canary-sync` -49, dispatch 0). AC-009 is `Unmet`: `rule-canary-sync` checkout is 52 s shorter against an about-20-s row (`repo-rules-corpus` 21 s, `deep-loop-runtime` 23 s) |
-| Delta and closure | Partly done | T036 delta done in `scratch/phase-result.md`; the AC-009 ruling and the T038 commit (the orchestrator's) remain |
+| Acceptance rows | Done | 17 of 17 `Met`. AC-016 is `Met` (net of phase 002: `command-tree-parity` -136, `rule-canary-sync` -49, dispatch 0). AC-009 is `Met` on the operator ruling of 2026-10-25 that reads "about 20 s shorter" as a floor: `repo-rules-corpus` 21 s, `deep-loop-runtime` 23 s and `rule-canary-sync` 52 s (`decision-record.md` ADR-012) |
+| Delta and closure | Done apart from the commit | T036 delta done in `scratch/phase-result.md` and the AC-009 ruling recorded as ADR-012. The T038 closure commit (the orchestrator's) follows |
 
 ### Deviations and findings
 
@@ -103,6 +102,6 @@ and findings belong here.
 | AC-007 proof | Operator ruling 2026-10-24: the REST API reports a `continue-on-error` step as `success`, so the proof is the step's `##[error]` line and failure annotations while the job stays `success`, plus the repair report text. Amendment in `decision-record.md` |
 | AC-005 and AC-006 wording | The AC-005 grep returns eight paths without a job filter, and AC-006 asserts on the printed `##[error]` line. Corrected in `decision-record.md`, awaiting operator confirmation |
 | Probe deviations | Pull requests were needed because push triggers list `main` and `skilled/**` only, probe commits after T029 shared one scratch worktree, hooks forced mirror regeneration, and new probe branches pushed with `SPECKIT_ALLOW_REMOTE_PUSH`. Detail in `implementation-summary.md`, Deviations |
-| Checkout shortening | Against the 001 baseline medians: `rule-canary-sync` 52 s (phase-only run), `repo-rules-corpus` 21 s, `deep-loop-runtime` 23 s; the earlier single-sample figures were 47 to 67 s, 11 s and 13 s (T032) |
+| Checkout shortening | Against the 001 baseline medians: `rule-canary-sync` 52 s (phase-only run), `repo-rules-corpus` 21 s, `deep-loop-runtime` 23 s; the earlier single-sample figures were 47 to 67 s, 11 s and 13 s (T032). The canary overshot the row's "about 20 s", and the operator ruled on 2026-10-25 that the row reads as a floor, "at least about 20 s shorter" (ADR-012) |
 | T013 local/CI version split | CI run `40026353792` is green with all seven suites. On 2026-10-24, the focused test printed `Tests 7 passed (7)` with `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`, but `Tests 2 failed \| 5 passed (7)` with local OpenCode v2.1.4 visible; the v1-only rule is skipped locally. The test is not hermetic, and pinning its resolved version belongs to dispatch-hooks, outside this packet |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,10 @@
+docs(spec): close the trigger and job hygiene criteria
+
+The operator ruled on 2026-10-25 that the checkout-shortening criterion
+reads as a floor of at least about 20 s. The three measured savings of
+21 s, 23 s and 52 s all clear it, so ADR-012 records the ruling and
+every acceptance row now reads Met. The spec, summary, goal and task
+documents move to Complete with their evidence rebuilt from re-run
+checks.
+
+Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene

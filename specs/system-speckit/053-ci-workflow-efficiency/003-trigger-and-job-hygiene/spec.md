@@ -33,7 +33,7 @@ Thirty of the repository's 33 workflows answer a pull request, and 32 of the 33 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -273,7 +273,7 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 ### Performance
 - **NFR-P01**: The phase removes about 162 runner-min/day after R1 from R4 and R8 alone, plus R6's re-measured 0-78, against the 002 baseline.
 - **NFR-P02**: A superseded pull-request run stops consuming a runner instead of finishing into a discarded verdict; the wall-clock gain is unmeasured because the 23.5 h window held no PR runs.
-- **NFR-P03**: Three checkouts drop by about 20 s each, and `rule-canary-sync`'s 78 s median job is inferred to drop under 60 s, which would bill one minute instead of two.
+- **NFR-P03**: Three checkouts drop by at least about 20 s each, and `rule-canary-sync`'s 78 s median job is inferred to drop under 60 s, which would bill one minute instead of two.
 
 ### Security
 - **NFR-S01**: No workflow gains a permission, a secret or a write scope. `permissions:` blocks are untouched; this phase adds no `permissions:` key and removes none.
