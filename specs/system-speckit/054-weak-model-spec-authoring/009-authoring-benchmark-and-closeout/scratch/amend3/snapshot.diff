@@ -1,0 +1,40 @@
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index 018afd9f14..a0576fac53 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -2359 +2359 @@ contextType: "general"
+-<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+@@ -2371 +2371 @@ contextType: "general"
+-<!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+@@ -2383 +2383 @@ contextType: "general"
+-<!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+@@ -2396 +2396 @@ contextType: "general"
+-<!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+@@ -2408 +2408 @@ contextType: "general"
+-<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+@@ -2420 +2420 @@ contextType: "general"
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+@@ -3380 +3380 @@ contextType: "general"
+-<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+@@ -3392 +3392 @@ contextType: "general"
+-<!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+@@ -3404 +3404 @@ contextType: "general"
+-<!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+@@ -3417 +3417 @@ contextType: "general"
+-<!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+@@ -3429 +3429 @@ contextType: "general"
+-<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+@@ -3441 +3441 @@ contextType: "general"
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->

@@ -1,0 +1,214 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/scaffold-golden-snapshots.vitest.ts (12 tests | 2 failed) 6618ms
+     × renders required docs for Level 3 from manifest templates 7ms
+     × renders required docs for Level 3+ from manifest templates 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3 from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-tasks.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -200,11 +200,11 @@
+
+  ---
+
+  <!-- ANCHOR:arch-verify -->
+  ## L3+: Architecture Verification
+- <!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+
+  - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+  - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+  - [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+  - [ ] CHK-103 [P2] Migration path documented (if applicable)
+@@ -212,11 +212,11 @@
+
+  ---
+
+  <!-- ANCHOR:perf-verify -->
+  ## L3+: Performance Verification
+- <!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+
+  - [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+  - [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+  - [ ] CHK-112 [P2] Load testing completed
+  - [ ] CHK-113 [P2] Performance benchmarks documented
+@@ -224,11 +224,11 @@
+
+  ---
+
+  <!-- ANCHOR:deploy-ready -->
+  ## L3+: Deployment Readiness
+- <!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+
+  - [ ] CHK-120 [P0] Rollback procedure documented and tested
+  - [ ] CHK-121 [P0] Feature flag configured (if applicable)
+  - [ ] CHK-122 [P1] Monitoring/alerting configured
+  - [ ] CHK-123 [P1] Runbook created
+@@ -237,11 +237,11 @@
+
+  ---
+
+  <!-- ANCHOR:compliance-verify -->
+  ## L3+: Compliance Verification
+- <!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+
+  - [ ] CHK-130 [P1] Security review completed
+  - [ ] CHK-131 [P1] Dependency licenses compatible
+  - [ ] CHK-132 [P2] OWASP Top 10 checklist completed
+  - [ ] CHK-133 [P2] Data handling compliant with requirements
+@@ -249,11 +249,11 @@
+
+  ---
+
+  <!-- ANCHOR:docs-verify -->
+  ## L3+: Documentation Verification
+- <!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
+
+  - [ ] CHK-140 [P1] All spec documents synchronized
+  - [ ] CHK-141 [P1] API documentation complete (if applicable)
+  - [ ] CHK-142 [P2] User-facing documentation updated
+  - [ ] CHK-143 [P2] Knowledge transfer documented
+@@ -261,11 +261,11 @@
+
+  ---
+
+  <!-- ANCHOR:sign-off -->
+  ## L3+: Sign-Off
+- <!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+
+  | Approver | Role | Status | Date |
+  |----------|------|--------|------|
+  | [YOUR_VALUE_HERE: Name] | Technical Lead | [ ] Approved | |
+  | [YOUR_VALUE_HERE: Name] | Product Owner | [ ] Approved | |
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3+ from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-tasks.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -200,11 +200,11 @@
+
+  ---
+
+  <!-- ANCHOR:arch-verify -->
+  ## L3+: Architecture Verification
+- <!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+
+  - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+  - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+  - [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+  - [ ] CHK-103 [P2] Migration path documented (if applicable)
+@@ -212,11 +212,11 @@
+
+  ---
+
+  <!-- ANCHOR:perf-verify -->
+  ## L3+: Performance Verification
+- <!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+
+  - [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+  - [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+  - [ ] CHK-112 [P2] Load testing completed
+  - [ ] CHK-113 [P2] Performance benchmarks documented
+@@ -224,11 +224,11 @@
+
+  ---
+
+  <!-- ANCHOR:deploy-ready -->
+  ## L3+: Deployment Readiness
+- <!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+
+  - [ ] CHK-120 [P0] Rollback procedure documented and tested
+  - [ ] CHK-121 [P0] Feature flag configured (if applicable)
+  - [ ] CHK-122 [P1] Monitoring/alerting configured
+  - [ ] CHK-123 [P1] Runbook created
+@@ -237,11 +237,11 @@
+
+  ---
+
+  <!-- ANCHOR:compliance-verify -->
+  ## L3+: Compliance Verification
+- <!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+
+  - [ ] CHK-130 [P1] Security review completed
+  - [ ] CHK-131 [P1] Dependency licenses compatible
+  - [ ] CHK-132 [P2] OWASP Top 10 checklist completed
+  - [ ] CHK-133 [P2] Data handling compliant with requirements
+@@ -249,11 +249,11 @@
+
+  ---
+
+  <!-- ANCHOR:docs-verify -->
+  ## L3+: Documentation Verification
+- <!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
+
+  - [ ] CHK-140 [P1] All spec documents synchronized
+  - [ ] CHK-141 [P1] API documentation complete (if applicable)
+  - [ ] CHK-142 [P2] User-facing documentation updated
+  - [ ] CHK-143 [P2] Knowledge transfer documented
+@@ -261,11 +261,11 @@
+
+  ---
+
+  <!-- ANCHOR:sign-off -->
+  ## L3+: Sign-Off
+- <!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++ <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+
+  | Approver | Role | Status | Date |
+  |----------|------|--------|------|
+  | [YOUR_VALUE_HERE: Name] | Technical Lead | [ ] Approved | |
+  | [YOUR_VALUE_HERE: Name] | Product Owner | [ ] Approved | |
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+  Snapshots  2 failed
+             2 obsolete
+             ↳ runtime/cli/tests/scaffold-golden-snapshots.vitest.ts
+               · manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-implementation-summary.md 1
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  10:51:31
+   Duration  6.74s (transform 34ms, setup 16ms, import 30ms, tests 6.62s, environment 0ms)
+
