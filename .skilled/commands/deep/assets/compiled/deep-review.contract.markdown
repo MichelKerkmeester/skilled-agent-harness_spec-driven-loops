@@ -17,27 +17,27 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "e1233094815c48c5882f5ba1a0166f2b5d5c5065b6be18fbcdb5afc336086f04",
+      "sha256": "720d91a8e57491f2e3f79a2372f734a4cd71815a96e5c308f182491dcf4311d3",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "757ee6b13820441cc09220c0eb9c22e4efda519f6d831a3cad08a6f752f871b0",
+      "sha256": "00b37f8d4810560a11e4dcaeb5d66c180b4eb301ee0691af62dafd5d1ee3f8b7",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "7772bc7ec97e39b954395bd24930c14a1c89816ffdd8eca7b3ab5935c7c1aac7",
+      "sha256": "256db852d9e94a874c57dc1e928168ad1e16827812db1a5b98b557e81b446326",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "f75f2eba6ca9a60d3ec747b47e47361bb0016121136c762953c594b18540aa10",
+      "sha256": "14c385b9531210d20c954622e42d0f2d3c979df57a751ef863023504bda6e3bb",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "21d8dcc2db39014a1974c597d24c23a613af10ac9ade0e90a5f5b5c21d0cd152",
+      "sha256": "42b09539f61db89ee40e5298474f6fe4185d1ad4a66844224cd0ceae3e8fe469",
       "section": "full"
     },
     {

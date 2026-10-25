@@ -1818,6 +1818,7 @@ workflow:
           Update finding_registry with adjudicated results.
 
       step_emit_resource_map:
+        skip_when: "config.fanout is present"
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map"
         read:
@@ -1826,6 +1827,7 @@ workflow:
         write:
           - "{state_paths.resource_map_output}"
         guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
+        note: "A fan-out root has no root state log before closeout, so the root reducer would fail on the missing file. Each lineage emits its own map, so the report names the ones that exist at {artifact_dir}/lineages/*/resource-map.md."
 
       step_resource_map_coverage_gate:
         action: "If resource_map_present, compute the Resource Map Coverage Gate synthesis inputs; otherwise preserve the skip note"

@@ -310,7 +310,7 @@ template_compliance:
   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
   guard_scripts_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
   prompt_contract:
-    rule: "When a workflow step writes spec docs, embed the matching inline scaffold below in the authoring prompt and preserve the required ANCHOR/H2 order from the canonical template."
+    rule: "When a workflow step writes spec docs, embed the matching inline scaffold below in the authoring prompt and preserve the required ANCHOR/H2 order from the canonical template. Follow .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md and fill every [YOUR_VALUE_HERE: ...] token before the status leaves Draft."
   inline_scaffolds:
     spec_md: |
       # Feature Specification: [NAME]

@@ -17,7 +17,7 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "e1233094815c48c5882f5ba1a0166f2b5d5c5065b6be18fbcdb5afc336086f04",
+      "sha256": "720d91a8e57491f2e3f79a2372f734a4cd71815a96e5c308f182491dcf4311d3",
       "section": "full"
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "f75f2eba6ca9a60d3ec747b47e47361bb0016121136c762953c594b18540aa10",
+      "sha256": "14c385b9531210d20c954622e42d0f2d3c979df57a751ef863023504bda6e3bb",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "21d8dcc2db39014a1974c597d24c23a613af10ac9ade0e90a5f5b5c21d0cd152",
+      "sha256": "42b09539f61db89ee40e5298474f6fe4185d1ad4a66844224cd0ceae3e8fe469",
       "section": "full"
     },
     {
