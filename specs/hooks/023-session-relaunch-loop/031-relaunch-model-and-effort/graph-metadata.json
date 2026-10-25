@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
+  "spec_folder": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relaunch model and effort",
+      "phase 31 relaunch model and effort",
+      "hop keeps model",
+      "relaunch effort flag",
+      "relaunch model and effort plan",
+      "relaunch model and effort tasks",
+      "relaunch model and effort acceptance criteria",
+      "relaunch model and effort implementation summary"
+    ],
+    "key_topics": [
+      "relaunch",
+      "model",
+      "effort",
+      "phase",
+      "hop",
+      "keeps",
+      "flag",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`buildrelauncharguments` in `.skilled/bin/skilled-loop` rebuilds the relaunch command from the model, provider, name and Pi extension flags only",
+    "created_at": "2026-10-25T07:25:52Z",
+    "last_save_at": "2026-10-25T07:38:44.397Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:091e7206c6ffc16b12183ee3dd1d965047c5530e3a7c8bda24b449e31b4fd8b3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eaa635967992f0948f8b80b91a7f7d89fd77f4bef541408460775782cfb40091",
+      "plan.md": "52664e95f963d1c0ae6640b1401cd177da6a604fc037311b4d7c4314812f1f43",
+      "tasks.md": "3541de9e63156438defc3b19f51eb9eb2640cc6163a91cc5118c2c4bac168868",
+      "implementation-summary.md": "04ffae830cc890444cf57d2dfc40512553f146e5f2a3740f572cf098eed72b9d"
+    },
+    "last_active_at": null
+  }
+}
