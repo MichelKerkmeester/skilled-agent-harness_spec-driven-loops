@@ -1,0 +1,109 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: CI WORKFLOW SCAFFOLD (INTERACTIVE, ONE NEW FILE)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator creating one new GitHub Actions workflow that already meets the workflow standards
+purpose: Build a new .github/workflows/ file from the workflow standards templates with a timeout, least-privilege permissions, a concurrency group and a switch condition, show the whole file, and create it only after an explicit yes
+action: Read the templates and the protected set -> resolve the file name -> refuse an existing or protected target -> collect the answers -> compose -> print the plan -> explicit yes -> create the file -> re-read -> report
+skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_then_confirmed_creation
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes_for_each_file_write
+  dry_run: complete_every_step_except_creating_the_file
+  tracking: single_file
+  validation: re_read_file_after_creation
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - ".github/workflows/<name>.yml, one new file named by the operator, created only when no file or directory exists at that path"
+  forbidden_targets:
+    - "any existing file under .github/workflows/"
+    - ".github/workflows/README.md"
+    - ".github/actions/**"
+    - ".github/scripts/**"
+    - ".skilled/skills/sk-code/sk-code-ci/**"
+    - "the git index, history and remotes"
+  invariant: "The route creates a workflow and never changes one. It refuses a path that already exists and a name in the protected set, so a template cannot replace a guard. It prints the whole proposed file and writes only after the operator answers yes. It never edits the workflows README (it prints the row the file needs), never runs git add or git commit, and never starts a workflow run."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  workflow_template: ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml"
+  job_block_template: ".skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml"
+  protected_set: ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md"
+  job_shape_rules: ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md"
+  report_script: ".skilled/commands/doctor/scripts/ci-report.cjs"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  dry_run: "--dry-run prints the plan and the whole file, then stops before creating anything (default false)."
+  name: "--name=<file> is the new file's name. Without it, ask for one. It is a bare lowercase hyphen-case name ending in .yml, with no directory part, because the repository naming standard checks file names."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Load what the new file must be built from before asking for anything"
+    activities:
+      - "Read .skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml, .skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml and .skilled/skills/sk-code/sk-code-ci/references/protected-set.md. If any of the three is missing, report the missing path and stop. A scaffold without its template would invent a shape."
+      - "Build the protected name list from protected-set.md: every file name ending in .yml that the file names in backticks."
+
+  phase_2_resolve_target:
+    purpose: "Fix the one path the route may create, and refuse before any plan is shown"
+    activities:
+      - "Take the name from --name=<file>, or ask for it once. Accept only a bare name that matches lowercase letters, digits and hyphens and ends in .yml. A name with a slash, a leading dot or an upper-case letter is refused with the reason."
+      - "If the name is on the protected list, print REFUSE: <name> is a protected workflow and stop with STATUS=FAIL. A new workflow that does the same job as a protected one joins the set, so tell the operator to record it in protected-set.md by hand."
+      - "If .github/workflows/<name> already exists as a file or a directory, print REFUSE: the target path already exists; scaffold creates new workflows only and stop with STATUS=FAIL. Do not offer to overwrite, merge or edit it."
+
+  phase_3_collect_and_compose:
+    purpose: "Turn the template into the operator's workflow and keep every standard it carries"
+    activities:
+      - "Ask once, in one prompt: the workflow title, the one-sentence responsibility for the README row, the job id and job title, the switch group (TESTS, REPORTS, REVIEW, FRESHNESS or MESSAGES), the triggers and any path filters, the timeout in minutes (default 10) and the command the job runs. Offer MESSAGES only with a warning that it is the group of the required message-contract check."
+      - "Start from workflow-template.yml. Replace the title, the triggers, the job id and title, the group variable in the switch condition, the timeout and the run command with the answers. Keep the permissions block, the concurrency block, the full-SHA checkout pin with its release comment and the set -euo pipefail line unless the operator gives a reason to change one."
+      - "Replace every placeholder comment with a comment that states the lasting reason for the line it sits above, or delete it. Leave no instruction-to-the-author comment in the file. Use job-block-template.yml for any further job and apply the composite setup action only when the operator names a job that imports built trees."
+      - "A path filter that names .skilled/ needs its .opencode/ twin in the same filter, and a filter on generated paths belongs to the push trigger only. Add both twins and keep generated paths push-only."
+      - "Compose the README rows the file needs: one contents-table row and one push versus pull-request row. They are printed for the operator to add and never written by this route."
+
+  phase_4_plan_and_approval:
+    purpose: "Show exactly what will be created, then ask once"
+    activities:
+      - "Render the presentation contract's scaffold plan: the target path, the templates, the switch group, the timeout, the README rows and the whole proposed file."
+      - "If dry_run is true, render the dry-run line and go to phase_6_report without creating anything."
+      - "Ask the approval prompt. Any answer other than yes counts as no: record the scaffold as cancelled and create nothing."
+
+  phase_5_create_and_verify:
+    purpose: "Create the one approved file and prove it reads back"
+    activities:
+      - "Check again that .github/workflows/<name> still does not exist, then create it with the approved content. If it now exists, print the existing-target refusal and stop."
+      - "Re-read the created file and print its first line. Run node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh and show the new file's row, so a parse error or a drift flag is visible before the operator commits. A readme-row-missing flag is expected until the operator adds the printed rows."
+      - "Record the undo step: delete the created file."
+
+  phase_6_report:
+    purpose: "Summarize the run"
+    activities:
+      - "When the file was created and read back, render the presentation contract's mutating result with the path, the first line, the report row and the undo step (STATUS=OK)."
+      - "When the operator said no, or the run was a dry run, render the cancelled result (STATUS=CANCELLED ACTION=cancelled)."
+      - "When a refusal, a missing template or a failed read-back stopped the run, render the failure result naming the step (STATUS=FAIL)."
+      - "End by saying the operator adds the printed README rows and commits the file themselves; this route stages and commits nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-ci-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

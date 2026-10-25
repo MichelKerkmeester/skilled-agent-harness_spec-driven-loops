@@ -1,0 +1,96 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: CI SWITCH TOGGLE (INTERACTIVE, ONE REPOSITORY VARIABLE)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator turning one documented CI switch off or back on in the repository's Actions variables
+purpose: Show the current state of one of the six documented switch variables and the workflows it covers, print the exact gh variable command, and run it only after an explicit yes
+action: Read the switch section of the workflows README and the variable list -> pick one variable and one state -> refuse an undocumented name or a protected switch -> print the plan -> explicit yes -> run the command -> read the state back -> report
+skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_then_confirmed_variable_change
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes_for_each_variable_change
+  tracking: single_variable
+  validation: re_read_variable_list_after_change
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "one repository Actions variable named by the operator, limited to SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS and SKILLED_CI_MESSAGES, set to off or deleted"
+  forbidden_targets:
+    - "any variable not listed above"
+    - "setting SKILLED_CI_MESSAGES or SKILLED_CI to off while the workflows README says they must stay unset for the message contract"
+    - "repository secrets, environment variables and organization variables"
+    - "any workflow file and the workflows README"
+    - "the git index, history and remotes"
+  invariant: "The route changes at most one variable per run, only to off or to unset, and only after the operator answers yes to the exact command it printed. A variable change reaches the whole repository and is not in git, so the plan names the workflows it covers and the opposite command that undoes it."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  switch_documentation: ".github/workflows/README.md (the On/off switches section)"
+  standards_packet: ".skilled/skills/sk-code/sk-code-ci/"
+  protected_set: ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  variable: "--variable=<name> is one of SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS or SKILLED_CI_MESSAGES. Without it, ask once and list the six."
+  state: "--state=<on|off>. off sets the variable to off, which skips every job that reads it. on deletes the variable, because an unset variable runs the job. Without it, ask once."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Show the current state before asking for anything"
+    activities:
+      - "Read the On/off switches section of .github/workflows/README.md: the table that maps each variable to the workflows it covers, and the sentence that says which variables must stay unset."
+      - "Run gh variable list --json name,value and keep, for each of the six names, only whether it is unset, set to off or set to another value. Never print a value. If gh cannot be read, say the state is unknown and continue to the plan, because the operator can still run the printed command themselves."
+
+  phase_2_select:
+    purpose: "Bind one variable and one state"
+    activities:
+      - "Take the variable and the state from the flags, or ask once for whichever is missing."
+      - "Accept only the six names SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS and SKILLED_CI_MESSAGES. For any other name print REFUSE: <name> is not a documented switch and stop with STATUS=FAIL."
+
+  phase_3_refuse_or_plan:
+    purpose: "Refuse a switch that would disable the required check, otherwise show the exact command"
+    activities:
+      - "A skipped job reports Success, so switching off the job that holds the only required status context would let a commit with a wrong message merge. If the variable is SKILLED_CI_MESSAGES and the state is off, print REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context and stop with STATUS=FAIL. Apply the refusal unless the On/off switches section is present and no longer contains the sentence SKILLED_CI_MESSAGES must stay unset. A missing section keeps the refusal, because the name is still the message-contract group."
+      - "The master switch SKILLED_CI switches the same job off, and the same README sentence says it must stay unset too. If the variable is SKILLED_CI and the state is off, print REFUSE: SKILLED_CI must stay unset while the ruleset requires that context under the same condition and stop with STATUS=FAIL."
+      - "Render the presentation contract's change plan: the variable, its current state, the requested state, the workflows the README table says it covers, and the exact command. For state off the command is gh variable set <name> --body off. For state on the command is gh variable delete <name>. If the variable is already in the requested state, say so and stop with STATUS=OK and no change."
+      - "Name the effect in the plan: it applies to workflow runs that start after the change, it reaches every clone of the repository's Actions settings, and git does not record it. SKILLED_CI_REPORTS also covers the trigger index rebuild, so say that when it is chosen."
+      - "Ask the approval prompt. Any answer other than yes counts as no: record the change as cancelled and run nothing."
+
+  phase_4_apply_and_verify:
+    purpose: "Run the one approved command and prove the state changed"
+    activities:
+      - "Run exactly the printed gh variable command, once."
+      - "Run gh variable list --json name,value and confirm the variable is now set to off, or now absent for state on. If it is not, report the state that was read and do not retry."
+      - "Record the undo command: gh variable delete <name> after a set, or gh variable set <name> --body off after a delete."
+
+  phase_5_report:
+    purpose: "Summarize the run"
+    activities:
+      - "When the change was approved and read back, render the presentation contract's mutating result with the command, the verification and the undo command (STATUS=OK)."
+      - "When the operator said no, render the cancelled result (STATUS=CANCELLED ACTION=cancelled)."
+      - "When gh failed or the read-back disagreed, render the failure result with gh's message and say the operator can set the variable under Settings, Secrets and variables, Actions (STATUS=FAIL)."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-ci-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

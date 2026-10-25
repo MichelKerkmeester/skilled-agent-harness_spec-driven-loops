@@ -226,6 +226,24 @@
       "order": 22,
       "id": "command-doctor-mcp-install",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-ci-report",
+      "order": 23,
+      "id": "command-doctor-ci-report",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-ci-scaffold",
+      "order": 24,
+      "id": "command-doctor-ci-scaffold",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-ci-toggle",
+      "order": 25,
+      "id": "command-doctor-ci-toggle",
+      "description": ""
     }
   ],
   "python": [
@@ -494,6 +512,24 @@
       "inventoryId": "command-doctor-mcp-install",
       "order": 33,
       "id": "command-doctor-mcp-install",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-ci-report",
+      "order": 34,
+      "id": "command-doctor-ci-report",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-ci-scaffold",
+      "order": 35,
+      "id": "command-doctor-ci-scaffold",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-ci-toggle",
+      "order": 36,
+      "id": "command-doctor-ci-toggle",
       "description": ""
     }
   ],

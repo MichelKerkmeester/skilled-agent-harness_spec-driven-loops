@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 18,
-    "generated": 45,
-    "typescriptActive": 23,
-    "pythonActive": 33
+    "doctorRoutes": 21,
+    "generated": 48,
+    "typescriptActive": 26,
+    "pythonActive": 36
   },
   "entries": [
     {
@@ -406,6 +406,124 @@
         },
         "python": {
           "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-doctor-ci-report",
+      "command": "/doctor:ci",
+      "skillId": "sk-code",
+      "ownerMode": "sk-code",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-ci-report",
+          "order": 23,
+          "id": "command-doctor-ci-report",
+          "description": "",
+          "name": "/doctor:ci report",
+          "keywords": [
+            "ci workflow status report",
+            "which ci workflow switches are off",
+            "github actions drift report",
+            "ci workflow inventory"
+          ],
+          "intentSignals": [
+            "/doctor:ci report"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-ci-report",
+          "order": 34,
+          "id": "command-doctor-ci-report",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:ci report"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-ci-scaffold",
+      "command": "/doctor:ci",
+      "skillId": "sk-code",
+      "ownerMode": "sk-code",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-ci-scaffold",
+          "order": 24,
+          "id": "command-doctor-ci-scaffold",
+          "description": "",
+          "name": "/doctor:ci scaffold",
+          "keywords": [
+            "scaffold a github actions workflow",
+            "create a workflow from the ci template",
+            "new workflow with timeout and switch"
+          ],
+          "intentSignals": [
+            "/doctor:ci scaffold"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-ci-scaffold",
+          "order": 35,
+          "id": "command-doctor-ci-scaffold",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:ci scaffold"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-ci-toggle",
+      "command": "/doctor:ci",
+      "skillId": "sk-code",
+      "ownerMode": "sk-code",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-ci-toggle",
+          "order": 25,
+          "id": "command-doctor-ci-toggle",
+          "description": "",
+          "name": "/doctor:ci toggle",
+          "keywords": [
+            "turn off a ci workflow",
+            "set a ci switch variable",
+            "disable a workflow group"
+          ],
+          "intentSignals": [
+            "/doctor:ci toggle"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-ci-toggle",
+          "order": 36,
+          "id": "command-doctor-ci-toggle",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:ci toggle"
+          ]
         }
       }
     },

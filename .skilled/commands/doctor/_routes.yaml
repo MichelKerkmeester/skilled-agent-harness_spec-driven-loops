@@ -9,6 +9,7 @@
 #   /doctor:runtime-mirrors .skilled/commands/doctor/runtime-mirrors.md
 #   /doctor:sk-code         .skilled/commands/doctor/sk-code.md
 #   /doctor:git             .skilled/commands/doctor/git.md
+#   /doctor:ci              .skilled/commands/doctor/ci.md
 #   /doctor:setup           .skilled/commands/doctor/setup.md
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
@@ -315,6 +316,48 @@ routes:
       - "is my skilled install healthy"
       - "skilled setup check"
       - "getting started with skilled"
+
+  - command: /doctor:ci
+    target: report
+    yaml: doctor-ci-report.yaml
+    setup_vars: [execution_mode, json_output, sha, use_gh]
+    allowed_flags: ["--json", "--sha=<sha>", "--no-gh"]
+    mutating: read-only
+    gate3_location: "n/a (read-only report; writes nothing)"
+    mcp_tools: []
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/ci-report.cjs'
+    trigger_phrases:
+      - "ci workflow status report"
+      - "which ci workflow switches are off"
+      - "github actions drift report"
+      - "ci workflow inventory"
+
+  - command: /doctor:ci
+    target: scaffold
+    yaml: doctor-ci-scaffold.yaml
+    setup_vars: [execution_mode, dry_run, workflow_name]
+    allowed_flags: ["--dry-run", "--name=<file>"]
+    mutating: mutates
+    gate3_location: "the new .github/workflows/ file named by --name, written only after an explicit yes"
+    mcp_tools: []
+    trigger_phrases:
+      - "scaffold a github actions workflow"
+      - "create a workflow from the ci template"
+      - "new workflow with timeout and switch"
+
+  - command: /doctor:ci
+    target: toggle
+    yaml: doctor-ci-toggle.yaml
+    setup_vars: [execution_mode, variable, state]
+    allowed_flags: ["--variable=<name>", "--state=<on|off>"]
+    mutating: mutates
+    gate3_location: "the repository variable named by --variable, set only after an explicit yes"
+    mcp_tools: []
+    trigger_phrases:
+      - "turn off a ci workflow"
+      - "set a ci switch variable"
+      - "disable a workflow group"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
