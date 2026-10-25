@@ -49,8 +49,8 @@ Frozen choices. Changing one is an amendment.
 | D3 | The handoff is a standalone note. With a bound packet, `/speckit:save` runs before the hop, the claim seed carries the packet as the Gate 3 answer and `/speckit:resume` runs after the claim. A Gate 3 Skip is carried in the seed as `none`. |
 | D4 | A runtime gets an automatic trigger only on a spike-verified event. Otherwise it enters through `/speckit:handoff`. |
 | D5 | Luna (cli-codex) builds, SWE (cli-devin) reviews and the orchestrator verifies. Without Luna quota, SWE builds and a fresh SWE session reviews. Code follows sk-code-opencode; docs go through sk-doc. |
-| D6 | Phase work runs in an sk-git worktree merged to main. Nothing is pushed without the operator. |
-| D7 | Live runs and probes needing a model provider use the OpenAI provider with `gpt-6-luna`. Devin's live run uses `swe-2-max`. A live OpenCode run proving the repo default model runs `llmgateway/deepseek-v4.1-flash` variant `max`. Nothing else is substituted. Hermes and Cursor have no live run. |
+| D6 | Phase work runs in an sk-git worktree merged to main, or on main with operator approval. Nothing is pushed without the operator. |
+| D7 | Live runs and provider probes use OpenAI with `gpt-6-luna`. Devin's live run uses `swe-2-max`. A live OpenCode run proving the repo default runs `llmgateway/deepseek-v4.1-flash` variant `max`. Nothing else is substituted. Hermes and Cursor have no live run. |
 
 <!-- /ANCHOR:directive -->
 
@@ -142,4 +142,6 @@ and findings belong here.
 | Phase 010 added | Operator, 2026-10-19: "do 5 extra ones with deepseek v4.1 flash max cli pi llmgateway" in a new child, keeping `research/`, run on main. Worktree 148 merged and removed, so D6 names main. Criteria 1 and 2 reopen until 010 closes |
 | Phase 011 added | Operator, 2026-10-19: "Fix all p1, p2, p3", "Plus bug", "And all open items". Runs in worktree 156, merged to main |
 | Binding rows 033 to 035 | 2026-10-25: the binding table stopped at 011. Rows added for the children that hold a `goal.md` (033, 034, 035); 012 to 032 have none. The rows took the slice to 4,171 characters, so decision and criterion prose was cut in the budget-and-handoff section 3 order (steps 5 and 6; steps 1 to 4 had nothing to cut) to 3,997. No decision or criterion was removed. The chat slice changed, so it is resent |
+| D6 amendment 2 | Operator, 2026-10-25: "Amend D6". Phases 033 to 035 ran on main with operator approval, so D6 now allows main when the operator approves. D7's wording was shortened to keep the slice within budget, with no change of meaning |
+| Binding exception | Operator, 2026-10-25: "Record as exception". Children 012 to 032 predate goal files and hold no `goal.md`, so `check-goal.cjs` keeps reporting missing binding rows for them. That finding is a recorded exception, not a defect, and because it stays open the chat slice is not resent |
 <!-- /ANCHOR:log -->

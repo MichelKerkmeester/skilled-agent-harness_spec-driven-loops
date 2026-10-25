@@ -190,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "operator",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -234,7 +234,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-25T21:18:31.174Z",
+    "last_save_at": "2026-10-25T21:30:32.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -242,7 +242,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8dc584e8840401bd3092a543ca25cc899bf2ad03cde72c094bb80cc22abe472f",
+    "source_fingerprint": "sha256:f063957538e3bea565f08a003e12022ff65b0f5ca94e99cb793aea400d45a124",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8cdbbbc0b2b555a460871e9ef252d58e87c1f064e1e7c649cd21721f9dc7b6bc",
