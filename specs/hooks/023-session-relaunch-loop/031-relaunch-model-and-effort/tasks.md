@@ -31,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Probe each runtime's model and effort flags and level lists from its `--help`
+- [x] T002 Find the live sources: Claude log `requestedModel` and `effort`, Codex rollout `turn_context`, Pi `ctx.model` and `getThinkingLevel`
+- [x] T003 Baseline the gates: relaunch 837, plugins 552, Pi 52
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +41,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Capture and replay the launch effort flag per runtime (`.skilled/bin/skilled-loop`)
+- [x] T005 Read the sender's live values at prepare and keep them on the record (`lib/relaunch-core.cjs`, `lib/context-usage.cjs`, `bin/session-relaunch.cjs`)
+- [x] T006 Pi extension hands its model, provider and thinking level to `arm` (`pi/session-relaunch.ts`)
+- [x] T007 Drop an unknown level or a malformed model with a warning, never fail the relaunch
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +52,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Live hops on Claude, Codex and Pi
+- [x] T009 Rerun the whole relaunch, plugin and Pi gates and the Pi typecheck
+- [x] T010 README section, handoff command line
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -1,0 +1,4 @@
+2026-10-25T09:36:49.669Z  handed-over  codex     220-relaunch-cancel-and-test-isolation (hop 1)  Run the requested probe, then hand off the remaining marker task for the relaunch session.  [20261025T093639Z-01a1726b-2cfc-7a23-80c9-7b0d44412003.md]
+2026-10-25T09:36:57.066Z  claimed      codex     220-relaunch-cancel-and-test-isolation by 01a1726b  Run the requested probe, then hand off the remaining marker task for the relaunch session.  [20261025T093639Z-01a1726b-2cfc-7a23-80c9-7b0d44412003.md]
+2026-10-25T09:37:16.102Z  done         codex     220-relaunch-cancel-and-test-isolation  Run the requested probe, then hand off the remaining marker task for the relaunch session.  [20261025T093639Z-01a1726b-2cfc-7a23-80c9-7b0d44412003.md]
+open notes: 23 withdrawn notes still with their sessions

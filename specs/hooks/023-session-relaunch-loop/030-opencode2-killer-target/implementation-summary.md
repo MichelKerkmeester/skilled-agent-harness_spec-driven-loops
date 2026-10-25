@@ -127,7 +127,7 @@ Cleanup: the probe and every run's tmux servers and processes were stopped, the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **OpenCode 2's default background service.** The loop does not arm there, because the plugin runs in a service no wrapper started and it holds no `SKILLED_LOOP_ID`. Start OpenCode 2 with `--standalone` for the loop. Making the wrapper add that flag is the operator's decision.
+1. **OpenCode 2's default background service.** The loop does not arm there, because the plugin runs in a service no wrapper started and it holds no `SKILLED_LOOP_ID`. The wrapper now adds `--standalone` itself, so the loop arms without it being passed (see the replay phase).
 2. **One machine, one version.** The hop was shown on OpenCode 2.1.4 on this machine. The TUI's exit took 4 to 6 seconds across three runs, so a slower machine could still pass 15 seconds.
 3. **A stamp without a signal.** If the target exits between the stamp and the signal, the record says signalled although no signal was sent, and an exit of 130 in that instant relaunches. The window is one locked write.
 <!-- /ANCHOR:limitations -->

@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |

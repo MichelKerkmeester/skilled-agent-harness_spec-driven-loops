@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The OpenCode relaunch plugin passes its own `process.pid` to the killer",
     "created_at": "2026-10-25T06:58:15Z",
-    "last_save_at": "2026-10-25T07:38:43.150Z",
+    "last_save_at": "2026-10-25T09:51:34.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a229ac9d38841a07c8f0fd5981031814d7e036cdb6b464444279c3465b6f90ae",
+    "source_fingerprint": "sha256:975e97f13bc8113719a56897f162b5b3009eb9417f805c5f91cd649e230c5111",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "806d749e9cccc505226961c90e7df887a4af17579652a6f72fbe6dbb8656782e",
       "plan.md": "e7f87d3f8c3d288955e62fe1e5685b4a850389f86005321a395f47ef05fa6a50",
       "tasks.md": "6821bf5eaa6e0cfd93cd8c5b6bdc84d23a85a73d91f9df58a3cf1eef911611c8",
-      "implementation-summary.md": "2dc2949153d0f6173a7367a552f0f0c2b40abc7c1172ec42aadbc670c5b00460"
+      "implementation-summary.md": "261e4037f7f3d40bbc59abf79246e8e18ce306bc1dc898dab05550e29c16f432"
     },
     "last_active_at": null
   }

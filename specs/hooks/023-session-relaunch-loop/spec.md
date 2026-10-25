@@ -134,6 +134,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Complete |
 | 30 | 030-opencode2-killer-target/ | An OpenCode 2 hop reaches its receiver: the killer signals the loop's child instead of the plugin's server, a signalled exit 130 counts as the hop, and the post-signal grace covers a slow TUI exit | Complete |
 | 31 | 031-relaunch-model-and-effort/ | A relaunched session starts on the sender's model and effort on every runtime that takes them at launch, from the launch flags or the sender's current state | Draft |
+| 32 | 032-opencode2-standalone-replay/ | The wrapper starts OpenCode 2 with `--standalone` on the first launch and every relaunch and drops the `-m` replay it rejects, so the loop hops more than once with no flag to remember | Complete |
 
 ### Phase Transition Rules
 
@@ -176,6 +177,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 023-relaunch-cancel-and-test-isolation | 029-relaunch-evidence-gaps-and-playbook-drift | Phase 23 is Complete and its live runs recorded the four evidence gaps and two playbook lines | The gaps are listed in the 023 implementation summary |
 | 028-goal-rebind-live-proof-and-docs | 030-opencode2-killer-target | Phase 28 recorded the OpenCode 2 hop as Unmet with its run evidence | `028` AC-009 names the failed run and the inferred cause |
 | 030-opencode2-killer-target | 031-relaunch-model-and-effort | Phase 30 is Complete and committed, because both change `skilled-loop` | `validate.sh 030-opencode2-killer-target --strict` RESULT: PASSED |
+| 030-opencode2-killer-target | 032-opencode2-standalone-replay | Phase 30 is pushed, and its live hop relied on a PATH shim that added `--standalone` | The 030 harness `run-hop.sh` holds the shim |
 <!-- /ANCHOR:phase-map -->
 
 ---

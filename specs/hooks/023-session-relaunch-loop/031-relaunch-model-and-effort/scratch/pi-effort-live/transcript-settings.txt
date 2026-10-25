@@ -1,0 +1,14 @@
+# 2026-10-25T09-40-42-913Z_01a1726f-0d20-765c-bcf9-e96a2706ad8b.jsonl
+2026-10-25T09:40:43.035Z model_change openai/gpt-6-luna
+2026-10-25T09:40:43.035Z thinking_level_change low
+2026-10-25T09:40:52.117Z assistant openai/gpt-6-luna
+2026-10-25T09:41:18.440Z assistant openai/gpt-6-luna
+# 2026-10-25T09-41-22-082Z_01a1726f-a622-772c-bad4-7582419f6e76.jsonl
+2026-10-25T09:41:22.121Z model_change openai/gpt-6-luna
+2026-10-25T09:41:22.122Z thinking_level_change low
+2026-10-25T09:41:27.049Z assistant openai/gpt-6-luna
+2026-10-25T09:41:31.891Z assistant openai/gpt-6-luna
+2026-10-25T09:41:35.199Z assistant openai/gpt-6-luna
+2026-10-25T09:41:40.073Z assistant openai/gpt-6-luna
+2026-10-25T09:41:42.526Z assistant openai/gpt-6-luna
+# Pi defaults in the settings files: provider llmgateway, model deepseek-v4.1-flash-1017, thinking max

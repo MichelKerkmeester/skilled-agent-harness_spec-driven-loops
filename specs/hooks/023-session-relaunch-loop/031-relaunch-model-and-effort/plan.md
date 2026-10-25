@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 31: relaunch-model-and-effort"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Replay each runtime's effort flag next to its model, and let the sender's own latest model and effort, read from its session log or handed in by its adapter, win for the next hop."
 trigger_phrases:
   - "relaunch model and effort plan"
 importance_tier: "normal"
@@ -20,13 +20,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Bash 3.2 compatible shell, CommonJS, TypeScript for the Pi extension |
+| **Framework** | None |
+| **Storage** | The relaunch record under the runtime directory |
+| **Testing** | `node --test`, vitest for Pi |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The wrapper captures the effort flag from the first launch, as it already captures the model, and replays it in the runtime's syntax. `prepare` reads the sender's latest model and effort from the Claude session log or the Codex rollout, and the Pi extension hands its model, provider and thinking level to `arm`. Both land on the relaunch record, `consume` reports them, and the wrapper uses each one that passes its check.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,14 +51,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Other: a shell wrapper fed by a CLI over a JSON record.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`resolveSessionSettings`**: reads the sender's latest model and effort, failing closed.
+- **Wrapper checks**: `effort_is_valid` holds each runtime's level list from its help, and `model_is_valid` holds the model id shape.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Session log or adapter, then the relaunch record, then `consume`, then the wrapper's checks, then the relaunch arguments and the exported `SKILLED_LOOP_MODEL`, `SKILLED_LOOP_PROVIDER` and `SKILLED_LOOP_EFFORT` that later hops fall back to.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -70,8 +70,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `build_relaunch_arguments` | Builds the relaunch and the manual template | Update | Wrapper tests |
+| `preparePending`, `arm` | Write the record | Update | CLI and Pi tests |
+| `consume` | Reports the record to the wrapper | Update | CLI test |
+| Claude, Codex, Hermes adapters | Arm the record | Unchanged, not a consumer | Their suites stay green |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -96,9 +98,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Wrapper arguments, CLI record and consume, Pi arm | `node --test`, vitest |
+| Integration | The whole relaunch gate | `node --test` |
+| Live | One hop each on Claude, Codex and Pi | tmux harnesses in `scratch/harness/` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -108,7 +110,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Runtime credentials | External | Yellow: Hermes and Cursor lack them | Their live hops cannot run |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -116,8 +118,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A relaunch fails to start because of a carried flag.
+- **Procedure**: Revert the commit. The record fields are optional, so older records still work.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -149,10 +151,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | Probe each runtime's flags |
+| Core Implementation | Med | Wrapper, CLI, core, Pi adapter |
+| Verification | Med | Three live hops |
+| **Total** | | **Medium** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -161,19 +163,15 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Gate baseline saved before the change
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert the commit.
+2. Rerun the relaunch gate.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
