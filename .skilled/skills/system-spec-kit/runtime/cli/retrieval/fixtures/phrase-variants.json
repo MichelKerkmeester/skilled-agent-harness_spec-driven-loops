@@ -1,5 +1,5 @@
 {
-  "manifestHash": "de56bbe6e622f9b7d5bb42a6aa4a0668fab13fc9562dea2c41aa69bad1dc058e",
+  "manifestHash": "78cccffc683bc1a0205280245222d1f40f40a25402ef0257dbf70170ff9eeb41",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17835,6 +17835,9 @@
     "ci workflow surface detection": [
       "ci workflow surface detection"
     ],
+    "ci workflow switches": [
+      "ci workflow switches"
+    ],
     "ci workflow tasks": [
       "ci workflow tasks"
     ],
@@ -17996,6 +17999,9 @@
     ],
     "citation past end of file lineage": [
       "citation past end of file lineage"
+    ],
+    "citation redirects for removed surfaces": [
+      "citation redirects for removed surfaces"
     ],
     "citation resolver reuse": [
       "citation resolver reuse"
@@ -23818,6 +23824,9 @@
     ],
     "code standards research outcome": [
       "code standards research outcome"
+    ],
+    "code style guide moved": [
+      "code style guide moved"
     ],
     "code tuned reranker investigation": [
       "code-tuned reranker investigation"
@@ -37721,11 +37730,20 @@
     "doctor ci and sk code ci packet": [
       "doctor ci and sk-code-ci packet"
     ],
+    "doctor ci command": [
+      "doctor ci command"
+    ],
+    "doctor ci command contract": [
+      "doctor ci command contract"
+    ],
     "doctor ci command design": [
       "doctor ci command design"
     ],
     "doctor ci design research": [
       "doctor ci design research"
+    ],
+    "doctor ci report routing": [
+      "doctor ci report routing"
     ],
     "doctor ci review wiring": [
       "doctor ci review wiring"
@@ -40332,6 +40350,9 @@
     ],
     "embedding cache profile key migration": [
       "embedding cache profile key migration"
+    ],
+    "embedding client fail fast": [
+      "embedding client fail fast"
     ],
     "embedding consolidation": [
       "embedding consolidation"
@@ -77074,6 +77095,9 @@
     "priority based checklist items": [
       "priority-based checklist items"
     ],
+    "private local skill roots": [
+      "private local skill roots"
+    ],
     "private local skills": [
       "private local skills"
     ],
@@ -77109,6 +77133,9 @@
     ],
     "private skill scan containment decision": [
       "private skill scan containment decision"
+    ],
+    "private surface skills": [
+      "private surface skills"
     ],
     "private surface skills phase parent spec": [
       "private surface skills phase parent spec"
@@ -78296,6 +78323,9 @@
     ],
     "quality gate ranked recommendations": [
       "quality gate ranked recommendations"
+    ],
+    "quality gate resolved surface": [
+      "quality gate resolved surface"
     ],
     "quality gate resources": [
       "quality gate resources"
@@ -85541,6 +85571,9 @@
     "review executor behavior scenarios": [
       "review executor behavior scenarios"
     ],
+    "review extension floors": [
+      "review extension floors"
+    ],
     "review finding case": [
       "review finding case"
     ],
@@ -86855,6 +86888,9 @@
     ],
     "router read recount": [
       "router read recount"
+    ],
+    "router replay detection order": [
+      "router replay detection order"
     ],
     "router replay rename plan": [
       "router-replay rename plan"
@@ -92754,6 +92790,9 @@
     "sk code 2 4 0 0": [
       "sk-code 2.4.0.0"
     ],
+    "sk code 3 0 0 0": [
+      "sk-code 3.0.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -92892,6 +92931,9 @@
     "sk code ci 1 0 0 0": [
       "sk-code-ci 1.0.0.0"
     ],
+    "sk code ci 1 1 0 0": [
+      "sk-code-ci 1.1.0.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -92925,6 +92967,9 @@
     ],
     "sk code ci v1 0 0 0": [
       "sk-code-ci v1.0.0.0"
+    ],
+    "sk code ci v1 1 0 0": [
+      "sk-code-ci v1.1.0.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -93414,6 +93459,9 @@
     "sk code quality 1 4 0 0": [
       "sk-code-quality 1.4.0.0"
     ],
+    "sk code quality 1 4 1 0": [
+      "sk-code-quality 1.4.1.0"
+    ],
     "sk code quality mode research": [
       "sk-code quality mode research"
     ],
@@ -93452,6 +93500,9 @@
     ],
     "sk code quality v1 4 0 0": [
       "sk-code-quality v1.4.0.0"
+    ],
+    "sk code quality v1 4 1 0": [
+      "sk-code-quality v1.4.1.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -93546,6 +93597,9 @@
     "sk code review 1 7 1 0": [
       "sk-code-review 1.7.1.0"
     ],
+    "sk code review 1 8 0 0": [
+      "sk-code-review 1.8.0.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -93623,6 +93677,9 @@
     ],
     "sk code review v1 7 1 0": [
       "sk-code-review v1.7.1.0"
+    ],
+    "sk code review v1 8 0 0": [
+      "sk-code-review v1.8.0.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -93744,6 +93801,9 @@
     "sk code skilled 2 0 0 0": [
       "sk-code-skilled 2.0.0.0"
     ],
+    "sk code skilled 2 0 1 0": [
+      "sk-code-skilled 2.0.1.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -93834,6 +93894,9 @@
     "sk code skilled v2 0 0 0": [
       "sk-code-skilled v2.0.0.0"
     ],
+    "sk code skilled v2 0 1 0": [
+      "sk-code-skilled v2.0.1.0"
+    ],
     "sk code smart routing": [
       "sk-code smart routing"
     ],
@@ -93845,6 +93908,9 @@
     ],
     "sk code surface detection": [
       "sk-code surface detection"
+    ],
+    "sk code surface detection order": [
+      "sk-code surface detection order"
     ],
     "sk code surface insertion rule build": [
       "sk-code surface insertion rule build"
@@ -93962,6 +94028,9 @@
     ],
     "sk code v2 4 0 0": [
       "sk-code v2.4.0.0"
+    ],
+    "sk code v3 0 0 0": [
+      "sk-code v3.0.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -94212,6 +94281,9 @@
     "sk create command 1 0 4 0": [
       "sk-create-command 1.0.4.0"
     ],
+    "sk create command 1 0 5 0": [
+      "sk-create-command 1.0.5.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -94232,6 +94304,9 @@
     ],
     "sk create command v1 0 4 0": [
       "sk-create-command v1.0.4.0"
+    ],
+    "sk create command v1 0 5 0": [
+      "sk-create-command v1.0.5.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -94623,6 +94698,9 @@
     "sk create skill 1 5 5 0": [
       "sk-create-skill 1.5.5.0"
     ],
+    "sk create skill 1 5 6 0": [
+      "sk-create-skill 1.5.6.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -94661,6 +94739,9 @@
     ],
     "sk create skill v1 5 5 0": [
       "sk-create-skill v1.5.5.0"
+    ],
+    "sk create skill v1 5 6 0": [
+      "sk-create-skill v1.5.6.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -95169,6 +95250,9 @@
     "sk doc 2 3 12 0": [
       "sk-doc 2.3.12.0"
     ],
+    "sk doc 2 3 13 0": [
+      "sk-doc 2.3.13.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -95508,6 +95592,9 @@
     "sk doc v2 3 12 0": [
       "sk-doc v2.3.12.0"
     ],
+    "sk doc v2 3 13 0": [
+      "sk-doc v2.3.13.0"
+    ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
     ],
@@ -95660,6 +95747,9 @@
     ],
     "sk git 1 9 4 0": [
       "sk-git 1.9.4.0"
+    ],
+    "sk git 1 9 5 0": [
+      "sk-git 1.9.5.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -95861,6 +95951,9 @@
     ],
     "sk git v1 9 4 0": [
       "sk-git v1.9.4.0"
+    ],
+    "sk git v1 9 5 0": [
+      "sk-git v1.9.5.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -103983,6 +104076,12 @@
     "surface design plan task breakdown": [
       "surface design plan task breakdown"
     ],
+    "surface detection block check": [
+      "surface detection block check"
+    ],
+    "surface evidence labels": [
+      "surface evidence labels"
+    ],
     "surface hint hub root": [
       "surface hint hub root"
     ],
@@ -104754,6 +104853,9 @@
     "system skill advisor 0 16 3 0": [
       "system-skill-advisor 0.16.3.0"
     ],
+    "system skill advisor 0 17 0 0": [
+      "system-skill-advisor 0.17.0.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -104930,6 +105032,9 @@
     ],
     "system skill advisor v0 16 3 0": [
       "system-skill-advisor v0.16.3.0"
+    ],
+    "system skill advisor v0 17 0 0": [
+      "system-skill-advisor v0.17.0.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -105257,6 +105362,9 @@
     ],
     "system spec kit 2 9 1 0": [
       "system-spec-kit 2.9.1.0"
+    ],
+    "system spec kit 2 9 2 0": [
+      "system-spec-kit 2.9.2.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -105698,6 +105806,9 @@
     ],
     "system spec kit v2 9 1 0": [
       "system-spec-kit v2.9.1.0"
+    ],
+    "system spec kit v2 9 2 0": [
+      "system-spec-kit v2.9.2.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -109422,6 +109533,9 @@
     ],
     "universal code style guide": [
       "universal code style guide"
+    ],
+    "universal code style guide moved": [
+      "universal code style guide moved"
     ],
     "universal debugging methodology": [
       "universal debugging methodology"
@@ -113286,6 +113400,9 @@
     ],
     "worktree provisioning skips sk doc": [
       "worktree provisioning skips sk-doc"
+    ],
+    "worktree provisioning stale builds": [
+      "worktree provisioning stale builds"
     ],
     "worktree provisioning tasks": [
       "worktree provisioning tasks"

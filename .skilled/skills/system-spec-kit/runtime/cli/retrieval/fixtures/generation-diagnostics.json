@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7283,
-    "ok": 15195,
+    "missing-frontmatter": 7284,
+    "ok": 15206,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26026,
+  "documentsScanned": 26038,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "de56bbe6e622f9b7d5bb42a6aa4a0668fab13fc9562dea2c41aa69bad1dc058e",
+  "manifestHash": "78cccffc683bc1a0205280245222d1f40f40a25402ef0257dbf70170ff9eeb41",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37621,
+      "ok": 37660,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10747,6 +10747,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
