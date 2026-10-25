@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2e8d18775e95931c1564002000e5eb41fefa8c354ee9fd06c37973eb0641a1c5",
+  "corpusHash": "ca2bdab7c11d3b5c7c5749e38220fbe2ae880e53aaa07a3da3d258bebe3a4d1d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25726,
+  "includedPathCount": 25740,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11947,6 +11947,20 @@
     "specs/sk-code/013-private-surface-skills/research/research.md",
     "specs/sk-code/013-private-surface-skills/research/resource-map.md",
     "specs/sk-code/013-private-surface-skills/spec.md",
+    "specs/sk-code/014-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
+    "specs/sk-code/014-code-modes-research/001-quality-mode-research/goal.md",
+    "specs/sk-code/014-code-modes-research/001-quality-mode-research/implementation-summary.md",
+    "specs/sk-code/014-code-modes-research/001-quality-mode-research/plan.md",
+    "specs/sk-code/014-code-modes-research/001-quality-mode-research/spec.md",
+    "specs/sk-code/014-code-modes-research/001-quality-mode-research/tasks.md",
+    "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+    "specs/sk-code/014-code-modes-research/002-review-mode-research/goal.md",
+    "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+    "specs/sk-code/014-code-modes-research/002-review-mode-research/plan.md",
+    "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
+    "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+    "specs/sk-code/014-code-modes-research/goal.md",
+    "specs/sk-code/014-code-modes-research/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -25757,7 +25771,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1453802a24e47ee96d2ef205ca19a73ad40028786cec0be8f412842c247259f9",
+  "manifestHash": "a466eef1e7ef5fab5f0ffac40c5669fee593c1eb4098f4e51e021e7dfd231f7b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28421,6 +28435,18 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/scratch",
       "reason": "excluded directory"
     },
     {

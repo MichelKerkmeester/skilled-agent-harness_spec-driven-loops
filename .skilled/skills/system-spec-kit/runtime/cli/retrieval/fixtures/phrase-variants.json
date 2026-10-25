@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1453802a24e47ee96d2ef205ca19a73ad40028786cec0be8f412842c247259f9",
+  "manifestHash": "a466eef1e7ef5fab5f0ffac40c5669fee593c1eb4098f4e51e021e7dfd231f7b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71827,6 +71827,9 @@
     "phase 1 ponytail deep research": [
       "phase 1 ponytail deep research"
     ],
+    "phase 1 quality mode research": [
+      "phase 1 quality mode research"
+    ],
     "phase 1 removal research": [
       "phase 1 removal research"
     ],
@@ -72207,6 +72210,9 @@
     ],
     "phase 2 review mode": [
       "phase 2 review mode"
+    ],
+    "phase 2 review mode research": [
+      "phase 2 review mode research"
     ],
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
@@ -77724,6 +77730,24 @@
     "quality mode plan": [
       "quality mode plan"
     ],
+    "quality mode research": [
+      "quality mode research"
+    ],
+    "quality mode research acceptance criteria": [
+      "quality mode research acceptance criteria"
+    ],
+    "quality mode research goal": [
+      "quality mode research goal"
+    ],
+    "quality mode research implementation summary": [
+      "quality mode research implementation summary"
+    ],
+    "quality mode research plan": [
+      "quality mode research plan"
+    ],
+    "quality mode research tasks": [
+      "quality mode research tasks"
+    ],
     "quality mode scripts list": [
       "quality mode scripts list"
     ],
@@ -82141,8 +82165,17 @@
     "repo agnostic": [
       "repo agnostic"
     ],
+    "repo agnostic code review mode": [
+      "repo-agnostic code review mode"
+    ],
     "repo agnostic commit message hook": [
       "repo-agnostic commit message hook"
+    ],
+    "repo agnostic quality gate": [
+      "repo-agnostic quality gate"
+    ],
+    "repo agnostic sk code modes": [
+      "repo-agnostic sk-code modes"
     ],
     "repo convention audit": [
       "repo convention audit"
@@ -84976,6 +85009,24 @@
     ],
     "review mode plan": [
       "review mode plan"
+    ],
+    "review mode research": [
+      "review mode research"
+    ],
+    "review mode research acceptance criteria": [
+      "review mode research acceptance criteria"
+    ],
+    "review mode research goal": [
+      "review mode research goal"
+    ],
+    "review mode research implementation summary": [
+      "review mode research implementation summary"
+    ],
+    "review mode research plan": [
+      "review mode research plan"
+    ],
+    "review mode research tasks": [
+      "review mode research tasks"
     ],
     "review mode tasks": [
       "review mode tasks"
@@ -92369,11 +92420,17 @@
     "sk code mobile cli mode": [
       "sk-code mobile-cli mode"
     ],
+    "sk code mode registry extension": [
+      "sk-code mode registry extension"
+    ],
     "sk code mode registry obsidian entry": [
       "sk-code mode-registry obsidian entry"
     ],
     "sk code mode skill contracts": [
       "sk-code mode SKILL contracts"
+    ],
+    "sk code modes research": [
+      "sk-code modes research"
     ],
     "sk code no ephemeral artifact pointers fix": [
       "sk-code no ephemeral-artifact pointers fix"
@@ -92619,6 +92676,15 @@
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
+    "sk code quality mode research": [
+      "sk-code quality mode research"
+    ],
+    "sk code quality research": [
+      "sk-code-quality research"
+    ],
+    "sk code quality research angles": [
+      "sk-code-quality research angles"
+    ],
     "sk code quality v1 0 0 0": [
       "sk-code-quality v1.0.0.0"
     ],
@@ -92757,11 +92823,20 @@
     "sk code review frontmatter tasks": [
       "sk-code-review frontmatter tasks"
     ],
+    "sk code review mode research": [
+      "sk-code review mode research"
+    ],
     "sk code review name ref map": [
       "sk-code-review NAME-ref map"
     ],
     "sk code review reference frontmatter": [
       "sk-code-review reference frontmatter"
+    ],
+    "sk code review research": [
+      "sk-code-review research"
+    ],
+    "sk code review research angles": [
+      "sk-code-review research angles"
     ],
     "sk code review v1 0 0 0": [
       "sk-code-review v1.0.0.0"
@@ -109015,6 +109090,12 @@
     ],
     "user authored dispatch override": [
       "user-authored dispatch override"
+    ],
+    "user authored mode integration": [
+      "user-authored mode integration"
+    ],
+    "user authored sk code mode": [
+      "user-authored sk-code mode"
     ],
     "user flow reference": [
       "user flow reference"

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7194,
-    "ok": 14984,
+    "ok": 14998,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25726,
+  "documentsScanned": 25740,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1453802a24e47ee96d2ef205ca19a73ad40028786cec0be8f412842c247259f9",
+  "manifestHash": "a466eef1e7ef5fab5f0ffac40c5669fee593c1eb4098f4e51e021e7dfd231f7b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37305,
+      "ok": 37332,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70709,6 +70709,18 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/scratch",
       "reason": "excluded directory"
     },
     {
