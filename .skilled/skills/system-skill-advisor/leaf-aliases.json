@@ -21,6 +21,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/auto-indexing/private-skill-containment.md",
+    "diskPath": "feature-catalog/auto-indexing/private-skill-containment.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/auto-indexing/provenance-and-trust-lanes.md",
     "diskPath": "feature-catalog/auto-indexing/provenance-and-trust-lanes.md"
   },
