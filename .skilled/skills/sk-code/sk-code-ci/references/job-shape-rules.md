@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Job Shape Rules
@@ -31,16 +31,17 @@ A job with no `timeout-minutes` runs until GitHub stops it at 360 minutes, so a 
 
 **Formula.** `max(<floor>, ceil(3 x job p50 minutes), ceil(2 x job p100 minutes))` with a floor of 10 minutes. Pull at least 40 recent runs of job-level timings (`gh run view --json jobs`), compute p50 and p100 per job and state the observed p100 next to the chosen value in the commit or the workflow comment. A successful job in the sample should never exceed half of its new timeout.
 
-**Today.** `6 of 33` workflows carry a timeout, on seven lines. The other **27 workflows** carry none.
+**Today.** `44 of 44` jobs in the 32 workflows carry a timeout, on one job-level line each. `37` of them sit at the 10 minute floor. The other **7 jobs** sit above it.
 
-| Workflow | Line | Value |
-|---|---|---|
-| `deep-loop-runtime.yml` | `:40` | 45 |
-| `opencode-plugin-tests.yml` | `:67` | 20 |
-| `hooks-node-tests.yml` | `:52` | 20 |
-| `sk-doc-rename-harness.yml` | `:35` | 30 |
-| `opencode-dual-version.yml` | `:87` and `:180` | 30 |
-| `skill-advisor-stress.yml` | `:47` | 20 |
+| Workflow | Job | Line | Value |
+|---|---|---|---|
+| `skill-doc-frontmatter.yml` | `doc-version-raise` | `:69` | 15 |
+| `message-contract.yml` | `message-contract` | `:25` | 20 |
+| `advisory-checks.yml` | `advisory` | `:29` | 28 |
+| `deep-loop-runtime.yml` | `deep-loop-runtime` | `:41` | 34 |
+| `routing-registry-drift.yml` | `golden-prompt-gate` | `:239` | 37 |
+| `spec-kit-check.yml` | `check` | `:79` | 51 |
+| `strict-pass-freshness-report.yml` | `strict-pass-freshness` | `:26` | 143 |
 
 Enforcement: honour-system. Re-run `grep -n 'timeout-minutes' .github/workflows/*.yml` to refresh the table.
 
@@ -51,10 +52,10 @@ Enforcement: honour-system. Re-run `grep -n 'timeout-minutes' .github/workflows/
 Least privilege is the default. A workflow declares `permissions: contents: read` at the top, and a job widens it only for what that job needs.
 
 - **Read-only workflow.** `permissions: contents: read` written as a block, as in `.github/workflows/message-contract.yml:13`.
-- **No scope at the workflow level.** `permissions: {}` at the top and a scope on each job, as in `.github/workflows/trigger-index-rebuild.yml:12`. The rebuild job then asks for `contents: read` at `:38` and the push job asks for `actions: read` and `contents: write` at `:190`.
+- **No scope at the workflow level.** `permissions: {}` at the top and a scope on each job, as in `.github/workflows/trigger-index-rebuild.yml:12`. The rebuild job then asks for `contents: read` at `:40` and the push job asks for `actions: read` and `contents: write` at `:195-196`.
 - **A write scope belongs only to a job that runs no repository code.** The rebuild job installs, builds and runs the repository's generator, so it holds no write scope and no secret. The push job runs `gh` and `git` only and is the one place the push token is visible. Splitting the two keeps repository code away from the token.
 
-Today 21 of 33 workflows declare `permissions:`. The twelve that do not are `chart-corpus.yml`, `agent-mirror-sync.yml`, `advisory-checks.yml`, `comment-hygiene.yml`, `playbook-operator-contract.yml`, `diagram-corpus.yml`, `prompt-card-sync.yml`, `rule-canary-sync.yml`, `markdown-link-integrity.yml`, `runtime-no-spec-import.yml`, `skill-doc-frontmatter.yml` and `repo-rules-corpus.yml`.
+Today all 32 workflows declare `permissions:` at the top. Thirty grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:20-21` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:41-42`.
 
 Enforcement: honour-system.
 
@@ -74,7 +75,7 @@ The recommended default cancels a superseded run on a pull request and never can
 
 A workflow whose runs must queue instead of cancel sets `cancel-in-progress: false` and says why. `.github/workflows/trigger-index-rebuild.yml:21-23` does, because a newer pending run replaces an older pending one and the run for the newest push is never dropped.
 
-Today 31 of 33 workflows carry a `concurrency:` block. Thirty use the pull-request-only value above and the rebuild workflow uses `false`. `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml` carry none.
+Today 30 of 32 workflows carry a `concurrency:` block. Twenty-nine use the pull-request-only value above and the rebuild workflow uses `false`. `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml` carry none.
 
 Enforcement: honour-system.
 
@@ -100,7 +101,7 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
 - **The scan reads it.** `.github/scripts/check-gate-inputs.sh:499-503` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-The callers at the time of writing are `hooks-node-tests.yml`, `opencode-dual-version.yml` and `opencode-plugin-tests.yml`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:113` and `:192`, `opencode-plugin-tests.yml` at `:92` and `routing-registry-drift.yml` at `:141` and `:248`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 
@@ -123,6 +124,6 @@ jobs:
 - `message-contract.yml` is never switched off while its ruleset context is required, and the other protected workflows follow `references/protected-set.md`.
 - `dependabot-auto-merge.yml` gets no switch.
 
-The shape is the rule. No workflow carries the condition yet, so a reader who finds none is reading the current tree and not a gap in this file.
+The shape is the rule. Today 42 of the 44 jobs carry it, and all 42 test `SKILLED_CI`. The group variables split as 24 on `SKILLED_CI_TESTS`, 11 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:67`, `trigger-index-rebuild.yml:33` and `trigger-index-rebuild.yml:189`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
 
 Enforcement: honour-system.
