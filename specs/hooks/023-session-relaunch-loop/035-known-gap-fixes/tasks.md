@@ -161,7 +161,7 @@ contextType: "implementation"
 - [x] CHK-FIX-004 [P0] The parser fix has table tests for a marker inside the note path, a marker twice and no marker.. Evidence: `nudge.test.cjs:747` (marker in the note path, so two in the seed) and the seed table before it (no marker)
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.. Evidence: axes in plan.md; the table has seven rows by five answers by four readers, and the probe five rows by seven runtimes by three readers
 - [x] CHK-FIX-006 [P1] Hostile env variant run: a stray per-runtime flag in the shell does not leak into the resolver tests.. Evidence: `hook-flags.test.cjs:522` strips every `SYSTEM_SESSION_RELAUNCH_` name, the master switch and `MK_HOOKS_DISABLED` from the shell env before the probe; `scratch/final-green-hostile.txt` shows hook-flags 28 pass and node 934 pass, each exit 0, with every relaunch, master and goal kill switch exported (T029, T034)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.. Open: nothing committed, so no fix SHA exists
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.. Evidence: fix commit `6541f9284e` on origin/main (`git show --stat 6541f9284e`, 170 files); the gate evidence in `scratch/final-green-*.txt` ran on the tree that commit holds
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -179,7 +179,7 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: status In Progress in spec.md, tasks.md, acceptance-criteria.md and implementation-summary.md, and each names the 2026-10-25 scope amendment (REQ-015 to REQ-019)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: status Complete in spec.md, tasks.md, acceptance-criteria.md and implementation-summary.md, and each names the 2026-10-25 scope amendment (REQ-015 to REQ-019)
 - [x] CHK-041 [P1] No code comment names a spec, phase or task id. Evidence: closeout grep of added lines for spec, phase and task ids found none
 - [x] CHK-042 [P1] Every doc surface in scope names the per-runtime flags. Evidence: AC-013 grep
 <!-- /ANCHOR:docs -->
@@ -201,7 +201,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 15 | 14/15 |
+| P1 Items | 15 | 15/15 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-10-25

@@ -137,7 +137,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 32 | 032-opencode2-standalone-replay/ | The wrapper starts OpenCode 2 with `--standalone` on the first launch and every relaunch and drops the `-m` replay it rejects, so the loop hops more than once with no flag to remember | Complete |
 | 33 | 033-research-remediation/ | Nine children fix what the research after phase 32 verified: model and effort replay as one set, a locked consume that honours a withdraw, live settings and the goal packet on manual claims, hop validation, four test gaps, a dated compaction pointer, per-state claim errors and Pi arming on `agent_settled` | Draft |
 | 34 | 034-default-off-opt-in/ | The session-relaunch hooks are off for a fresh clone and run only when `SYSTEM_SESSION_RELAUNCH_ENABLED` is set, the kill switch still wins and every other hook concern stays on by default | Draft |
-| 35 | 035-known-gap-fixes/ | Eight known gaps close: the claim-seed parsers agree, a Pi `--provider` switch drops the launch effort, `prepare` refuses whenever the concern is off, the Codex goal paragraph is corrected, the spec validator's git calls skip fsmonitor, the parent goal binds every child goal, the concern switches per runtime and the README stops featuring it | Draft |
+| 35 | 035-known-gap-fixes/ | Eight known gaps close: the claim-seed parsers agree, a Pi `--provider` switch drops the launch effort, `prepare` refuses whenever the concern is off, the Codex goal paragraph is corrected, the spec validator's git calls skip fsmonitor, the parent goal binds every child goal, the concern switches per runtime and the README stops featuring it | Complete |
 
 ### Phase Transition Rules
 

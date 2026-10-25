@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/023-session-relaunch-loop/035-known-gap-fixes"
-    last_updated_at: "2026-10-25T22:10:00Z"
-    last_updated_by: "evidence-worker"
-    recent_action: "Marked AC-017 Met from the final gate"
-    next_safe_action: "Commit, then pin the fix SHA in CHK-FIX-007 and mark the packet Complete"
+    last_updated_at: "2026-10-25T21:18:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Pinned fix commit 6541f9284e and closed the packet"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 98
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** hooks/023-session-relaunch-loop/035-known-gap-fixes
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-25
 <!-- /ANCHOR:metadata -->
 
@@ -94,7 +94,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No, not until the commit lands. All nineteen criteria are Met with observed evidence, AC-017 from the three final gate runs. The fix SHA is still to be pinned in CHK-FIX-007 when the change is committed, and the packet then moves to Complete.
+All nineteen criteria are Met with observed evidence, AC-017 from the three final gate runs. The fix landed on origin/main as commit `6541f9284e`, which CHK-FIX-007 pins.
 <!-- /ANCHOR:closure -->

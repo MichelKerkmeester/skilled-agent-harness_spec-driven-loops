@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks/023-session-relaunch-loop/035-known-gap-fixes"
-    last_updated_at: "2026-10-25T22:10:00Z"
-    last_updated_by: "evidence-worker"
-    recent_action: "Recorded the hermetic sandbox fix and the final gate in three environments"
-    next_safe_action: "Commit, then pin the fix SHA in CHK-FIX-007 and mark the packet Complete"
+    last_updated_at: "2026-10-25T21:18:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Pinned fix commit 6541f9284e and closed the packet"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files:
       - ".skilled/hooks/shared/hook-flags.cjs"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-035-known-gap-fixes"
       parent_session_id: null
-    completion_pct: 98
+    completion_pct: 100
     open_questions:
       - "Author goals for children 012 to 032 or split the parent goal, so check-goal stops reporting missing binding rows"
     answered_questions: []
@@ -44,8 +44,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 035-known-gap-fixes |
-| **Status** | In Progress |
-| **Completed** | Not yet: every acceptance criterion is Met, but nothing is committed, so CHK-FIX-007 has no SHA |
+| **Status** | Complete |
+| **Completed** | 2026-10-25, fix commit `6541f9284e` on origin/main |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

@@ -81,6 +81,7 @@ and findings belong here.
 | Phase opened | Done | spec docs in this folder |
 | Parent goal binding rows | Done | Rows 033 to 035 added; `packet_durable_chars=3997`, `packet_budget=ok` |
 | Goal revised for the review fixes and ship | Done | D3 amended for the review findings, D7 retired because its sequencing is done, D8 added; criteria reset for the review fixes, the full gate and the push |
+| Packet closed | Done | Fix commit `6541f9284e` on origin/main; gate green clean, with Claude off and hostile (`scratch/final-green-*.txt`) |
 
 ### Deviations and findings
 
