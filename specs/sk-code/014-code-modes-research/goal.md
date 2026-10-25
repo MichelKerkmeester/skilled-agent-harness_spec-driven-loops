@@ -101,13 +101,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded and documents written | Done | Created 2026-10-25 with `create.sh --phase --level 2 --with-goal`, strict validation result recorded in the first close-out |
-| Baseline | Pending | Write the HEAD sha here before the first iteration runs |
-| 001 quality run | Pending | Not launched |
-| 002 review run | Pending | Not launched |
+| Baseline | Done | `f8671e07c2a7ae00cda7ba2a2d30b192d5928606`, from `git rev-parse HEAD` on 2026-10-25 before the 002 run's first iteration |
+| 001 quality run | Done | Fifteen iterations: 1 to 10 on Luna after cli-pi DeepSeek was refused three times with 402, then 11 to 15 on cli-devin `deepseek-v4-1-flash-max` per ADR-002. Refreshed `research/research.md` of 14 rows, 12 confirmed by the second model and 2 refuted in part. AC-011 narrowed per ADR-001 still prints 1, an attestation line in `iteration-011.md`. Closed on the operator's ruling that the narrowed check may skip a line that only states the sibling folder was not read, recorded in ADR-001 |
+| 002 review run | Done | Fifteen iterations: 1 to 10 on Luna, then 11 to 15 on cli-devin `deepseek-v4-1-flash-max` per ADR-002, run after 001 finished. Refreshed `research/research.md` of 12 rows, 9 confirmed, 1 refuted in part, 2 untested in their decisive claim. AC-011 narrowed per ADR-001 still prints 1 each for attestation lines in `iteration-013.md` and `iteration-014.md`. Closed on the operator's ruling that the narrowed check may skip a line that only states the sibling folder was not read, recorded in ADR-001 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Executor alternation unit | D4 assumes per iteration. The brief said only "alternating", so the operator confirms the unit before launch. |
+| Second-model pass | The operator ruled on 2026-10-25 for five more iterations per child on DeepSeek flash through cli-devin. D3's ten and the completion criteria's 10 records now read fifteen, recorded as ADR-002 in each child. The directive text is left as written. |
+| AC-011 | The operator ruled on 2026-10-25 to delete the containment copies and narrow the check to the research content, recorded as ADR-001 in each child. |
 <!-- /ANCHOR:log -->
