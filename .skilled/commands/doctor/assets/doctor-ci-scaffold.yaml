@@ -51,7 +51,7 @@ upstream_assets:
 inputs:
   execution_mode: "INTERACTIVE"
   dry_run: "--dry-run prints the plan and the whole file, then stops before creating anything (default false)."
-  name: "--name=<file> is the new file's name. Without it, ask for one. It is a bare lowercase hyphen-case name ending in .yml, with no directory part, because the repository naming standard checks file names."
+  workflow_name: "--name=<file> is the new file's name. Without it, ask for one. It is a bare lowercase hyphen-case name ending in .yml, with no directory part, because the repository naming standard checks file names."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -66,7 +66,7 @@ workflow:
   phase_2_resolve_target:
     purpose: "Fix the one path the route may create, and refuse before any plan is shown"
     activities:
-      - "Take the name from --name=<file>, or ask for it once. Accept only a bare name that matches lowercase letters, digits and hyphens and ends in .yml. A name with a slash, a leading dot or an upper-case letter is refused with the reason."
+      - "Take the name from --name=<file>, or ask for it once. Accept only a bare name that matches lowercase letters, digits and hyphens and ends in .yml. A name with a slash, a leading dot or an upper-case letter prints REFUSE: <name> is not a bare lowercase hyphen-case name ending in .yml and stops with STATUS=FAIL."
       - "If the name is on the protected list, print REFUSE: <name> is a protected workflow and stop with STATUS=FAIL. A new workflow that does the same job as a protected one joins the set, so tell the operator to record it in protected-set.md by hand."
       - "If .github/workflows/<name> already exists as a file or a directory, print REFUSE: the target path already exists; scaffold creates new workflows only and stop with STATUS=FAIL. Do not offer to overwrite, merge or edit it."
 

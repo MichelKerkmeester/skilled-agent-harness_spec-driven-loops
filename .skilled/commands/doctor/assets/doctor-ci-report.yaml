@@ -40,9 +40,10 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 inputs:
   target: "report is the default target: /doctor:ci and /doctor:ci report both run it."
-  json: "--json prints the script's JSON and nothing else."
+  execution_mode: "INTERACTIVE"
+  json_output: "true when --json is passed: the route prints the script's JSON and nothing else (default false)."
   sha: "--sha=<40 hex> skips the commit search and reports that commit."
-  no_gh: "--no-gh makes no gh call: every switch reads unknown and no commit is searched. Use it offline or with no GitHub login."
+  use_gh: "false when --no-gh is passed: the route makes no gh call, every switch reads unknown and no commit is searched. Use it offline or with no GitHub login (default true)."
 
 # ─────────────────────────────────────────────────────────────────
 # EXECUTION

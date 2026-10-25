@@ -13,7 +13,7 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: sk-code, code, surface-aware, two-axis, opencode, animation, motion.dev, frontend, browser, typescript, python, shell, json, jsonc, sk-code-quality, sk-code-review, quality, review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet -->
+<!-- Keywords: sk-code, code, surface-aware, two-axis, opencode, typescript, python, shell, json, jsonc, github-actions, ci-workflow, sk-code-quality, sk-code-review, sk-code-ci, quality, code-review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet -->
 
 # Code Family Hub (sk-code)
 
@@ -140,7 +140,7 @@ def route(task):
 
 When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null`, so the hub does not force a stale default. An unclear code intent asks for disambiguation.
 
-Surface detection (`SKILLED`, `UNKNOWN`, at precedence SKILLED > UNKNOWN) lives once in the hub's `shared/` layer and is consumed by every mode and surface. `MOTION_DEV` is a resource intent loaded after the surface decision, not a surface. Modes own workflow contracts, not surface identity. `sk-code-ci` is the one surface that stack detection does not select: the hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
+Surface detection (`SKILLED`, `UNKNOWN`, at precedence SKILLED > UNKNOWN) lives once in the hub's `shared/` layer and is consumed by every mode and surface. Modes own workflow contracts, not surface identity. `sk-code-ci` is the one surface that stack detection does not select: the hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
 
 Per-mode behavior is **not flattened**: each packet keeps its own code-work contract, standards, evidence rules, and tool-permission guards.
 
@@ -173,7 +173,7 @@ sk-code/
 Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`. Only this hub carries one, so the advisor discovers exactly one code skill identity. The implement/debug/verify workflow doctrine is a single shared source under `shared/references/`, and each surface symlinks it in rather than duplicating it.
 
 ### Backend
-The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes SKILLED and UNKNOWN detection and their precedence (MOTION_DEV is a resource intent resolved after the surface, not a surface), and it carries the shared implement → debug → verify workflow doctrine that the surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
+The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes SKILLED and UNKNOWN detection and their precedence, and it carries the shared implement → debug → verify workflow doctrine that the surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
 
 ---
 

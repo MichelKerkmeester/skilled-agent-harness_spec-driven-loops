@@ -167,7 +167,7 @@ Eleven command files cover the diagnostic surface, one per owner. Backed by `_ro
 | Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
 | sk-code Setup | `/doctor:sk-code [setup] [--prompt=<text>]` | Run the sk-code setup battery read-only and name the repair command for each failing leg |
-| CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List every GitHub Actions workflow with its switch state, scaffold a compliant new workflow, or turn one documented CI switch on or off |
+| CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List GitHub Actions workflows with their switch state, scaffold a new workflow or toggle one CI switch |
 | Git | `/doctor:git <hooks\|standards\|setup> [--dry-run]` | Switch shipped git hook gates on or off in git config, change the commit, PR and branch rules in `.sk-git/` and check which sk-git settings are live |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |

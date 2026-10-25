@@ -106,6 +106,7 @@ A refused name prints one of these lines, `STATUS=FAIL ERROR="refused"` and exit
 ```text
 REFUSE: the target path already exists; scaffold creates new workflows only
 REFUSE: [name] is a protected workflow
+REFUSE: [name] is not a bare lowercase hyphen-case name ending in .yml
 ```
 
 ### Toggle Plan And Approval
@@ -150,6 +151,19 @@ Approved change: [the file created, or the gh variable command run]
 Changed: [the new .github/workflows/ file | the repository variable]
 Verification: [first line of the file read back | the variable list read back]
 Undo: [delete the new file | gh variable delete [name] or gh variable set [name] --body [previous]]
+STATUS=OK
+```
+
+### No Change
+
+Render this when the toggle finds the variable already in the requested state.
+
+```text
+DOCTOR TARGET UNCHANGED
+Target: toggle
+Variable: [name]
+State: [on|off], already as requested
+Changed: none
 STATUS=OK
 ```
 

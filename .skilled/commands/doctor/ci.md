@@ -1,5 +1,5 @@
 ---
-description: "List every GitHub Actions workflow with its switch state, scaffold a compliant new workflow, or turn one documented CI switch on or off."
+description: "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch."
 argument-hint: "[report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>]"
 allowed-tools: Read, Bash, Grep, Glob, Write
 ---
@@ -32,7 +32,6 @@ Load the presentation contract before showing the menu, a table, a plan, an appr
 - `_routes.yaml` is the canonical routing and mutation-class manifest; this command owns the routes whose `command` is `/doctor:ci`.
 - `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
 - The first positional token of `$ARGUMENTS` is the target. With no token the target is `report`, which is read-only. `list`, `?` and `menu` show the presentation contract's startup menu instead of binding a target.
-- `report` accepts `--json`, `--sha=<sha>` and `--no-gh`. `scaffold` accepts `--dry-run` and `--name=<file>`. `toggle` accepts `--variable=<name>` and `--state=<on|off>`.
 - An unknown target, an unknown flag or a flag that belongs to another target fails before YAML load with the presentation contract's wording.
 - `scaffold` and `toggle` change the tree or a repository variable only after the workflow prints its plan and the operator answers yes. A no, or any answer other than yes, changes nothing.
 - If any referenced asset is missing, stop and report the missing path.
@@ -47,6 +46,17 @@ Load the presentation contract before showing the menu, a table, a plan, an appr
 | `report` | `.skilled/commands/doctor/assets/doctor-ci-report.yaml` |
 | `scaffold` | `.skilled/commands/doctor/assets/doctor-ci-scaffold.yaml` |
 | `toggle` | `.skilled/commands/doctor/assets/doctor-ci-toggle.yaml` |
+
+| Argument | Applies to | Effect |
+|----------|------------|--------|
+| `--json` | `report` | Print the script's JSON and nothing else |
+| `--sha=<sha>` | `report` | Skip the commit search and report that 40-hex commit |
+| `--no-gh` | `report` | Make no gh call, so every switch reads unknown |
+| `--dry-run` | `scaffold` | Print the plan and the whole file, then stop before writing |
+| `--name=<file>` | `scaffold` | Name the new workflow file, a bare hyphen-case name ending in `.yml` |
+| `--variable=<name>` | `toggle` | Name one of the six documented switch variables |
+| `--state=<on\|off>` | `toggle` | `off` sets the variable to off and `on` deletes it |
+| `list`, `?`, `menu` | the command | Show the startup menu and the route manifest, and load no workflow |
 
 1. Read `.skilled/commands/doctor/assets/doctor-ci-presentation.txt`.
 2. Read `.skilled/commands/doctor/_routes.yaml` and keep the `/doctor:ci` routes.
