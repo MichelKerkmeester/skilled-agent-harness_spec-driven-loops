@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "621c996bdfc90c2b4d2eda4bc7d90dfea0df9ff5203115e9c4b2756ea2c3a432",
+  "manifestHash": "efe939acc33afefbf66b4a78efd850ca9094915fbfae16a5629caeb07bca3fc8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -4790,7 +4790,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/agent-routing/inlined-persona-via-agent-router-template.md",
+      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/agent-routing/inlined-persona-via-command-template.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
