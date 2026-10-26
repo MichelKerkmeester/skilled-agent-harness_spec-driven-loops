@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST SUITE: Spec 070 - Memory Ranking System - Part 1: Core Scoring
+// TEST SUITE: Spec 070 - Memory Ranking System - Part 1: Core Scoring hygiene-ok
 // ───────────────────────────────────────────────────────────────
 // Tests for recency, importance, activity, and folder scoring
 // Based on implementation in: .opencode/skills/system-spec-kit/mcp_server/lib/scoring/

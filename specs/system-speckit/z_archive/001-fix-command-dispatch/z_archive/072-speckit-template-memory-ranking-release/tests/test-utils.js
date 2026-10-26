@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST UTILITIES - Spec 072 Test Infrastructure
+// TEST UTILITIES - Spec 072 Test Infrastructure hygiene-ok
 // Provides Jest-like testing primitives for Node.js test files
 // ───────────────────────────────────────────────────────────────
 'use strict';

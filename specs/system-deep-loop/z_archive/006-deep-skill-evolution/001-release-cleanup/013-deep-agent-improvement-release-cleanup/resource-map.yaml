@@ -1,7 +1,7 @@
 # =============================================================================
 # Resource Map - deep-agent-improvement skill release cleanup
 # =============================================================================
-# Machine-readable artifact inventory (ADR-003: this YAML is the single source
+# Machine-readable artifact inventory (ADR-003: this YAML is the single source hygiene-ok
 # of truth for this packet; no resource-map.md companion).
 #
 # Each `artifacts[]` entry maps one deep-agent-improvement artifact to the
@@ -26,12 +26,12 @@ meta:
   phase2_audit:
     completed: true
     findings_total: 9
-    resolved: 9        # ALL findings resolved after the phase-4-gate operator override (fix deferred P2s before phase 5)
+    resolved: 9        # ALL findings resolved after the phase-4-gate operator override (fix deferred P2s before phase 5) hygiene-ok
     deferred: 0        # AF-0003/0004 closed by SKILL.md restructure; AF-0008 closed by evergreen rewording across 5 files
     p0_open: 0
     p1_open: 0         # both P1s (AF-0001, AF-0005) resolved
     operator_override: "phase-4 gate: fix deferred P2s before phase 5 (AF-0003/0004/0008)"
-    smart_router_touched: false   # SKILL.md §2 preserved (ADR-004 holds; no ADR-005 needed)
+    smart_router_touched: false   # SKILL.md §2 preserved (ADR-004 holds; no ADR-005 needed) hygiene-ok
     findings_ledger: "audit-findings.jsonl"
   notes: >
     Counts at phase-1 baseline: SKILL.md (1, ~545 LOC), README.md (1, ~410 LOC),

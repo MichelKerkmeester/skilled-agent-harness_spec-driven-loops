@@ -14,14 +14,14 @@ const path = require('path');
 const PLAN = require('./rename-plan.json');
 // Worktree repo root (two-arg: allow override)
 const REPO = process.env.REORG_REPO || '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public-026-reorg';
-const SPEC_ROOT_REL = '.opencode/specs/' + PLAN.spec_root; // .opencode/specs/system-spec-kit/026-...
+const SPEC_ROOT_REL = '.opencode/specs/' + PLAN.spec_root; // .opencode/specs/system-spec-kit/026-... hygiene-ok
 const mode = process.argv.includes('--run') ? 'run' : 'dry';
 
 // Dependency phase for a move
 function phaseOf(m) {
   if (m.kind === 'rename') return 1;                                   // wrapper-root renames (000, 005->004-code-graph)
   if (m.kind === 'sub-nest' && m.old.startsWith('004-code-graph/')) {  // 005-children regroup + kept-parent renumber
-    // renumber kept parents (011/019 -> 014/015) FIRST, then sub-wrapper nests
+    // renumber kept parents (011/019 -> 014/015) FIRST, then sub-wrapper nests hygiene-ok
     return /\/(011-real-world|019-system-code-graph-uplift)/.test(m.old) ? 2 : 3;
   }
   if (m.kind === 'nest') return 4;                                     // top-level -> wrappers

@@ -126,7 +126,7 @@ EOF
 
   if [ ! -f "${ITER_OUT}" ]; then
     log "WARN: ${ITER_OUT} missing — checking misplaced output"
-    # Check 012/013/014/015 + research/ for misplaced files (codex sometimes infers wrong destination)
+    # Check the sibling iteration dirs plus research/ for misplaced files (codex sometimes infers wrong destination)
     for SOURCE_DIR in \
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/012-copilot-target-authority-gate-helper/review/iterations" \
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/013-code-graph-degraded-stress-cell/review/iterations" \

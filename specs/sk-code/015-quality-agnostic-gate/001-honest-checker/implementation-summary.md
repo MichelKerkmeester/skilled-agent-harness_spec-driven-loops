@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/001-honest-checker"
-    last_updated_at: "2026-10-26T03:20:00Z"
+    last_updated_at: "2026-10-26T09:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Routed the two orphaned checklist assets and closed the phase"
+    recent_action: "Known Limitations items 1 to 4 closed by phase 007"
     next_safe_action: "Start phase 002-builtin-runner"
     blockers: []
     key_files:
@@ -168,10 +168,10 @@ The tasks ran in order from T001. Each Verify command ran, and its output and ex
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Packet artifacts carry accepted debt.** 19 comments in 13 files under `specs/` now fail the checker. Pre-commit and CI check whole files, so each fails when its file is touched. Workaround: rewrite it to its durable reason or mark it `hygiene-ok` then.
-2. **The ceiling report still reads YAML block scalar text as comments.** It takes extensions and comment tokens from the table but tracks no block scalar, multi-line string or docstring state, so a `# ceiling:` line inside a block scalar is listed. The report never gates, so the gap adds a report line and blocks nothing.
-3. **A string statement in the middle of a Python body is data.** Only a docstring in a place Python or its tools read one counts as comment text, so a triple-quoted string used as a block comment after other code is not checked.
-4. **The CI failure path has no live run.** The ADR-010 amendment accepts actionlint and a local run of the step's script in its place.
+1. **Packet artifacts carry accepted debt.** 19 comments in 13 files under `specs/` now fail the checker. Pre-commit and CI check whole files, so each fails when its file is touched. Workaround: rewrite it to its durable reason or mark it `hygiene-ok` then. Closed by phase `007-checker-debt-closeout`: the whole-tree run over every tracked file now reports zero findings, with live comments rewritten to their durable reason and frozen evidence marked `hygiene-ok`. Finding class: `instance-only`, one fix per comment.
+2. **The ceiling report still reads YAML block scalar text as comments.** It takes extensions and comment tokens from the table but tracks no block scalar, multi-line string or docstring state, so a `# ceiling:` line inside a block scalar is listed. The report never gates, so the gap adds a report line and blocks nothing. Closed by phase `007-checker-debt-closeout`: the report now reads comment text through the checker's own extraction, so a marker inside a block scalar, a string, a template literal or a heredoc body is not listed. Finding class: `cross-consumer`, because the report kept a second copy of the checker's rules.
+3. **A string statement in the middle of a Python body is data.** Only a docstring in a place Python or its tools read one counts as comment text, so a triple-quoted string used as a block comment after other code is not checked. Closed by phase `007-checker-debt-closeout`: a string literal that opens a logical line at bracket depth 0 is now comment text wherever it stands, and an `f` prefix keeps it data. Finding class: `class-of-bug`, shared with the template literal and heredoc rules.
+4. **The CI failure path has no live run.** The ADR-010 amendment accepts actionlint and a local run of the step's script in its place. Closed by phase `007-checker-debt-closeout`: run `40276844110` on a throwaway pull request failed the comment-hygiene step on a planted ADR reference, and the pull request and its branch were deleted afterwards. Finding class: `instance-only`.
 5. **The universal checklist keeps its old title until Phase 4.** Phase 1 changed only its spec-root rows, and the quality changelog says the retitle is pending.
 6. **The live pre-commit hook still calls the checker without `--` until this change reaches the main checkout.** The global `core.hooksPath` links `pre-commit` to the main checkout's `.skilled/scripts/git-hooks/pre-commit`, whose comment-hygiene call has no `--`, while the checker it runs comes from the committing repository's `SOURCE_ROOT`. A commit from a tree that holds the new checker therefore reaches the strict option parser through the old call. A staged file whose path starts with `--`, which can only be a top-level file, makes the checker print `ERROR: unknown option` and exit 3, and the old hook blocks on that exit, where the HEAD checker exited 0. The worktree hooks pass `--`, and the pre-commit suite covers it. Workaround until the hook lands in the main checkout: `SPECKIT_SKIP_COMMENT_HYGIENE=1` for that one commit, or rename the file.
 <!-- /ANCHOR:limitations -->

@@ -2,7 +2,7 @@
 """Generate Map A row tables from the frozen seed symlink inventory.
 
 Reads (relative to the repository root):
-  specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/scratch/seed-inventory/symlinks.tsv
+  specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/scratch/seed-inventory/symlinks.tsv hygiene-ok
 Writes (into this lineage working directory):
   map-a.tsv                 — every row, computed columns
   map-a-<section>.md        — one markdown table per Map A section

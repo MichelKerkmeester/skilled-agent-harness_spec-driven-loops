@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# Extended embedder bake-off harness — 016/006/004
-# Mirrors 018/003 ad-hoc approach as a reusable script.
+# Extended embedder bake-off harness.
+# Reusable form of the earlier ad-hoc approach.
 # ───────────────────────────────────────────────────────────────
 # Usage: ./run-extended-bake-off.sh <candidate1> [candidate2 ...]
 # Example: ./run-extended-bake-off.sh sbert/dunzhang/stella_en_400M_v5 sbert/nomic-ai/CodeRankEmbed
@@ -16,7 +16,7 @@ OUT_JSONL="${OUT_JSONL_OVERRIDE:-$SCRIPT_DIR/cocoindex-embedder-comparison-with-
 RUNLOG="${RUNLOG_OVERRIDE:-$SCRIPT_DIR/runlog-with-hybrid-rerank.txt}"
 
 # Canonical ccc binary — prefer the editable local venv install (production-truthful);
-# fall back to whatever's on PATH. After 016/005/005-cocoindex-install-hygiene both pipx
+# fall back to whatever's on PATH. Since the cocoindex install cleanup, both pipx
 # and local venv point at the same editable source so either should be safe; the local
 # venv is the explicit pick to avoid PATH ordering drift.
 CCC="${CCC:-$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc}"

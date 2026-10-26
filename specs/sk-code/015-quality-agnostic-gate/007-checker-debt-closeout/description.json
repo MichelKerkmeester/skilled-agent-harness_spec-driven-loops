@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/015-quality-agnostic-gate/007-checker-debt-closeout",
+  "description": "Phase 7: checker-debt-closeout",
+  "keywords": [
+    "phase",
+    "checker-debt-closeout"
+  ],
+  "lastUpdated": "2026-10-26T06:05:51.016Z",
+  "specId": "007",
+  "folderSlug": "checker-debt-closeout",
+  "parentChain": [
+    "sk-code",
+    "015-quality-agnostic-gate"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Spec 071 - Level-Based Template Alignment (Part 2)
+// TEST: Spec 071 - Level-Based Template Alignment (Part 2) hygiene-ok
 // Documentation & Templates Validation
 // ───────────────────────────────────────────────────────────────
 'use strict';
@@ -14,7 +14,7 @@ const fs = require('fs');
 const SPEC_KIT_PATH = path.join(__dirname, '..', '..', '..', '..', '.opencode', 'skill', 'system-spec-kit');
 const TEMPLATES_PATH = path.join(SPEC_KIT_PATH, 'templates');
 
-// Expected files per level (from Spec 071)
+// Expected files per level (from Spec 071) hygiene-ok
 const LEVEL_CONTENTS = {
   level_1: ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md'],
   level_2: ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md'],

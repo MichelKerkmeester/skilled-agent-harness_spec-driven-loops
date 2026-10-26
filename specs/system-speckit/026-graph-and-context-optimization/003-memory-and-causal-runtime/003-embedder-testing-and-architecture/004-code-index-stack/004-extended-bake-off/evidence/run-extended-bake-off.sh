@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# Extended embedder bake-off harness — 016/006/004
-# Mirrors 018/003 ad-hoc approach as a reusable script.
+# Extended embedder bake-off harness.
+# Reusable form of the earlier ad-hoc approach.
 # ───────────────────────────────────────────────────────────────
 # Usage: ./run-extended-bake-off.sh <candidate1> [candidate2 ...]
 # Example: ./run-extended-bake-off.sh sbert/dunzhang/stella_en_400M_v5 sbert/nomic-ai/CodeRankEmbed

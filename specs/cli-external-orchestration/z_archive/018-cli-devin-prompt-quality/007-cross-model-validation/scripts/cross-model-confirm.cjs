@@ -3,11 +3,11 @@
  * scripts/cross-model-confirm.cjs
  *
  * Cross-model validation harness. Dispatches the 5 council-seeded variants
- * from 113/003 × 7 fixtures from 113/002 × N models (default: 2). Scores
- * each dispatch via 113/003/score-variant.cjs (which auto-extracts files
- * via 113/005/extract-files-from-markdown.cjs when EVAL_LOOP_EXTRACT=true).
+ * from 113/003 × 7 fixtures from 113/002 × N models (default: 2). Scores hygiene-ok
+ * each dispatch via 113/003/score-variant.cjs (which auto-extracts files hygiene-ok
+ * via 113/005/extract-files-from-markdown.cjs when EVAL_LOOP_EXTRACT=true). hygiene-ok
  *
- * Per ADR-002 in decision-record.md: dispatcher pivoted from cli-opencode
+ * Per ADR-002 in decision-record.md: dispatcher pivoted from cli-opencode hygiene-ok
  * (1.15.1 InstanceRef bug) to cli-devin with --model deepseek-v4 and
  * --model kimi-k2.6 model presets.
  *
@@ -44,7 +44,7 @@ const DEVIN_BIN = process.env.DEVIN_BIN || 'devin';
 const OPENCODE_BIN = process.env.OPENCODE_BIN || 'opencode';
 const DEFAULT_TIMEOUT_MS = parseInt(process.env.DEVIN_TIMEOUT_MS || '1500000', 10);  // 25 min per dispatch
 
-// Per ADR-003: dispatch surface routed by model.
+// Per ADR-003: dispatch surface routed by model. hygiene-ok
 // deepseek-v4-pro via cli-opencode + DeepSeek direct API (user-intent surface).
 // kimi-k2.6 via cli-devin (opencode-go account insufficient balance).
 const DISPATCH_ROUTE = {
@@ -54,7 +54,7 @@ const DISPATCH_ROUTE = {
   'deepseek-v4': { surface: 'cli-devin', model: 'deepseek-v4' },
 };
 
-// Reference scores from prior runs on SWE-1.6 (113/003 + 113/005/v2)
+// Reference scores from prior runs on SWE-1.6 (113/003 + 113/005/v2) hygiene-ok
 const SWE16_BASELINE = {
   'v-001-baseline-star': 0.5235,
   'v-002-build-dense-preplan': 0.4468,

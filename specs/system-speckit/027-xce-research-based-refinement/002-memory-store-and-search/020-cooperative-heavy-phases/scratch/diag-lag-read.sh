@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Isolated scan event-loop-lag diagnostic for packet 027/002/021.
+# Isolated event-loop-lag diagnostic for the reindex scan path.
 #
 # WHY a clone: the live daemon + this editor's MCP both bridge to the same
 # /tmp/mk-spec-memory daemon over the live 719MB context-index.sqlite (which has

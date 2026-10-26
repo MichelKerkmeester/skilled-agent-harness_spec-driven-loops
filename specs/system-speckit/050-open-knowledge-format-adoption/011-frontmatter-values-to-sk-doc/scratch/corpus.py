@@ -1,4 +1,4 @@
-"""Phase 008 corpus sweep, rerun for the move. Usage: corpus.py <out.json>. Fails if the list cannot be loaded."""
+"""Frontmatter-value warning sweep over the spec and skill corpus, re-run to compare counts across the values change. Usage: corpus.py <out.json>. Fails if the list cannot be loaded."""
 import json, os, subprocess, sys, time
 OUT = sys.argv[1]
 files = [f for f in subprocess.run(['git', 'ls-files', '-z', '--', 'specs', '.skilled/skills'], capture_output=True, text=True).stdout.split('\0')

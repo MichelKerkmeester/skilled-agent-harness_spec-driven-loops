@@ -10,6 +10,7 @@
     "sk-code/015-quality-agnostic-gate/004-doctrine",
     "sk-code/015-quality-agnostic-gate/005-consumers-and-routing",
     "sk-code/015-quality-agnostic-gate/006-measurement",
+    "sk-code/015-quality-agnostic-gate/007-checker-debt-closeout",
     "sk-code/015-quality-agnostic-gate/008-runner-limit-closeout"
   ],
   "manual": {
@@ -64,7 +65,7 @@
       ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
       ".skilled/skills/sk-code/shared/references/workflow-verify.md",
       ".skilled/skills/sk-code/ROUTER.md",
-      "001-honest-checker/goal.md"
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh"
     ],
     "entities": [
       {
@@ -182,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,27 +211,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
     "created_at": "2026-10-25T23:21:45Z",
-    "last_save_at": "2026-10-26T08:29:38.498Z",
+    "last_save_at": "2026-10-26T09:41:55.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b66daf60b661cd934e2d8d0a9d661bee14046fedd1dbfaf93ba8aa5d319a1c18",
+    "source_fingerprint": "sha256:9cbe7c9711d8e43a07e72d2b02ac73be5089020c48be10039b32a1498a2d7be0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f4176e8139503f62c80545e9ba1926e6d1be31b1b99a03a740f202132920637"
+      "spec.md": "90034623246520b15d21b5443c0efc5c55925e28638a461200e25eb855dd6fed"
     },
     "last_active_at": null
   }

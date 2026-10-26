@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shared benchmark helpers for the 014/014 ONNX CoreML investigation."""
+"""Shared benchmark helpers for the ONNX CoreML backend investigation."""
 
 from __future__ import annotations
 

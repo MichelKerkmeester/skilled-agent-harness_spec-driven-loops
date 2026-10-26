@@ -67,7 +67,7 @@ SUMMARY=""
 
 # Scope is strict lowercase kebab-case: no dots, slashes, leading/trailing/
 # repeated hyphens. This deliberately rejects legacy packet-path scopes like
-# (028/005) or (sk-code/024) — the contract wants a stable subsystem name,
+# (028/005) or (sk-code/024) — the contract wants a stable subsystem name, hygiene-ok
 # not a spec-folder path.
 SUBJECT_RE='^(build|chore|ci|docs|feat|fix|merge|perf|refactor|release|revert|style|test)\(([a-z0-9]+(-[a-z0-9]+)*)\)(!)?: (.+)$'
 

@@ -8,7 +8,7 @@
  * corpora (49 intra-routing-recall scenarios) through the harness loader,
  * reads gold from each scenario's raw frontmatter, replays every prompt
  * through router-replay.cjs routeSkillResources, and writes fixture files in
- * the same row shape as the Phase 0 pre-fix capture.
+ * the same row shape as the Phase 0 pre-fix capture. hygiene-ok
  *
  * Comparator: intentMatch is exact-set equality between replayed intents and
  * the gold intent, where the rejection labels `none`/`defer` assert the EMPTY
