@@ -240,6 +240,24 @@ routes:
       - "sk-code battery fails"
       - "does my sk-code surface route"
 
+  - command: /doctor:sk-code
+    target: quality
+    yaml: doctor-sk-code-quality.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".sk-code/ at the repository root, where init --apply creates .sk-code/quality.json once and never overwrites it"
+    mcp_tools: []   # script-only, no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status --json'
+      - 'node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs init --json  # a dry run, with --apply only after approval'
+      - 'node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs check --json'
+    trigger_phrases:
+      - "sk-code quality config"
+      - "create the quality config file"
+      - "which checks does the quality gate run"
+      - "add my lint command to the quality gate"
+
   - command: /doctor:git
     target: hooks
     yaml: doctor-git-hooks.yaml

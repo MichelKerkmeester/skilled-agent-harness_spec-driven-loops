@@ -4,7 +4,7 @@
 // Part A: the confident fix-resolver proposals (unique+ranked), as ](old)->](new) link
 //   rewrites, skipping intentional template-example sources.
 // Part B: explicit regex-missed fixes (P0s + .cjs + stale-spec repoint + create_sk_skill slug),
-//   each a literal string replace across the active tree (excludes archives + the 133 packet).
+//   each a literal string replace across the active tree (excludes archives + the 133 packet). hygiene-ok
 const fs = require('fs');
 const path = require('path');
 

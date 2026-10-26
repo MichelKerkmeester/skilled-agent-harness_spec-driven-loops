@@ -8,7 +8,7 @@ trigger_phrases:
   - "css style checks"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Naming, Initialization, Formatting & CSS Style Checks
@@ -34,7 +34,7 @@ Load this file with [overview-header-and-comments.md](./overview-header-and-comm
 No checks here. Identifier naming follows the surface convention.
 
 - **SKILLED:** camelCase variables and functions, `PascalCase` classes, `UPPER_SNAKE_CASE` constants and `is`/`has`/`can` boolean prefixes, per `../../../sk-code-skilled/assets/checklists/javascript-checklist.md` and `../../../sk-code-skilled/references/javascript/style-guide.md` §5.
-- **Webflow:** the `snake_case` names, semantic prefixes and the CDN-safe `INIT_FLAG` guard belong to the private `local-webflow` skill, which carries them.
+- **Webflow:** the `snake_case` names, semantic prefixes and the CDN-safe `INIT_FLAG` guard belong to an operator-private Webflow surface skill, which carries them.
 
 A naming defect is P1 under [code-quality-standards.md](../../../shared/references/universal/code-quality-standards.md) §4: it gets fixed but does not block completion the way a security or correctness defect does.
 
@@ -54,7 +54,7 @@ Indentation, brace style, semicolons, quotes and line length come from the surfa
 
 **Applies to:** CSS (`.css`)
 
-Custom-property prefixes, class naming schemes and file naming are surface conventions. The Webflow ones, such as `--vw-*` prefixes, BEM classes and `snake_case` file names, belong to `local-webflow`.
+Custom-property prefixes, class naming schemes and file naming are surface conventions. The Webflow ones, such as `--vw-*` prefixes, BEM classes and `snake_case` file names, belong to an operator-private Webflow surface skill.
 
 ### Attribute Selectors
 
@@ -62,7 +62,7 @@ Custom-property prefixes, class naming schemes and file naming are surface conve
 
 ### Animation Properties
 
-- [ ] **[P0] CHK-CSS-09**: Animations use GPU-accelerated properties only (`transform`, `opacity`, `scale`)
+- [ ] **[P2] CHK-CSS-09**: Animations use GPU-accelerated properties only (`transform`, `opacity`, `scale`)
 - [ ] **[P1] CHK-CSS-10**: Layout properties NOT animated (`width`, `height`, `top`, `left`, `padding`, `margin`)
 - [ ] **[P1] CHK-CSS-11**: `will-change` managed dynamically (set before animation, reset to `auto` after)
 

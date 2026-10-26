@@ -27,7 +27,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-ADR-001 to ADR-003 take operator-owned decisions from design section 1.4 at the design's default, and their status line says so. ADR-004 to ADR-010 record this phase's design decisions and two findings. `Q` is `.skilled/skills/sk-code/sk-code-quality`. The requirements are in [spec.md](spec.md), and the work that implements them is in [tasks.md](tasks.md).
+ADR-001 to ADR-003 take operator-owned decisions from design section 1.4 at the design's default, and their status line says so. ADR-004 to ADR-010 record this phase's design decisions and two findings. ADR-011 records the help flags the coordinator added to this phase, and the records after it decide the open points the build met, each at its most conservative option. `Q` is `.skilled/skills/sk-code/sk-code-quality`. The requirements are in [spec.md](spec.md), and the work that implements them is in [tasks.md](tasks.md).
 
 ---
 
@@ -1019,3 +1019,521 @@ Design section 5.8 says the route has "its presentation text" without naming a f
 
 ---
 
+<!-- ANCHOR:adr-011 -->
+## ADR-011: Help flags print usage and exit 0
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Coordinator, added to this phase's scope because it extends the same CLI |
+
+---
+
+<!-- ANCHOR:adr-011-context -->
+### Context
+
+`quality-gate.cjs` had no help. `--help` fell through to the unknown-argument branch, so it printed a `USAGE` error envelope and exited 3, which reads as a broken run. The doctor config script is new in this phase and needs the same surface. An operator in a repository with no `.skilled/` tree has only the CLI to learn the flags from.
+
+### Constraints
+
+- A help request must not read a config, start a process or write a file, because help is the one call an operator makes before trusting the tool.
+- Exit 3 means the run could not finish honestly, so help cannot keep it.
+<!-- /ANCHOR:adr-011-context -->
+
+---
+
+<!-- ANCHOR:adr-011-decision -->
+### Decision
+
+**We chose**: `--help` and `-h` print a short plain-text usage to stdout and exit 0, in both scripts. The usage gives one line per flag, the exit codes and the config discovery order. The flag wins over every other argument before `--`.
+
+**How it works**: Each script checks for the flag before it parses anything else and returns the usage text. Nothing after that check runs.
+<!-- /ANCHOR:adr-011-decision -->
+
+---
+
+<!-- ANCHOR:adr-011-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Plain-text usage, exit 0** | Readable in a terminal, and the exit code says nothing went wrong | A second output shape beside the JSON verdict | 9/10 |
+| A JSON help document | One output shape | Hard to read in a terminal, and no caller parses it | 4/10 |
+| Keep the `USAGE` error | No change | Help looks like a failure and exits 3 | 1/10 |
+
+**Why this one**: Help is read by a person, and exit 0 keeps it apart from a usage error.
+
+**Reversal**: Remove the flag check in each script. The `USAGE` branch then answers `--help` as before.
+<!-- /ANCHOR:adr-011-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-011-consequences -->
+### Consequences
+
+**What improves**:
+- An operator learns every flag, the exit codes and where the config is found from one call.
+
+**What it costs**:
+- The usage text must change with the flags. Mitigation: a test asserts every flag the parser accepts appears in the usage.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A file named `-h` is passed after `--files` | L | The check stops at `--`, so a file named after the separator is never read as the flag |
+<!-- /ANCHOR:adr-011-consequences -->
+
+---
+
+<!-- ANCHOR:adr-011-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | `--help` exited 3 with a `USAGE` envelope before this phase |
+| 2 | **Beyond Local Maxima?** | PASS | Three shapes were scored |
+| 3 | **Sufficient?** | PASS | One flag check per script |
+| 4 | **Fits Goal?** | PASS | The config seam adds flags an operator must learn |
+| 5 | **Open Horizons?** | PASS | A later flag adds one usage line |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-011-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-011-impl -->
+### Implementation
+
+**What changes**:
+- `Q/scripts/quality-gate.cjs` and `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` each gain the flag check and a usage text.
+- `Q/references/runner-contract.md` section 1 documents the flags.
+
+**How to roll back**: Remove the flag check and the usage text from each script, and the rows from the contract.
+<!-- /ANCHOR:adr-011-impl -->
+<!-- /ANCHOR:adr-011 -->
+
+---
+
+<!-- ANCHOR:adr-012 -->
+## ADR-012: A committed config must resolve inside the repository
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Build agent, deciding an open point at its most conservative option |
+
+---
+
+<!-- ANCHOR:adr-012-context -->
+### Context
+
+`.sk-code/quality.json` is committed content, and the runner runs the commands it names. A committed `.sk-code` link, or a committed `quality.json` link, can make that path read a file outside the repository, such as one in the home folder. A reviewer who reads the diff sees only the link, never the commands. `--config` and the `skcode.qualityConfig` git config value are different: the operator sets them on their own machine. The design names the discovery order but says nothing about links.
+
+### Constraints
+
+- A committed file must not name commands that the diff does not show.
+- An operator must still be able to keep a private config outside the repository.
+<!-- /ANCHOR:adr-012-context -->
+
+---
+
+<!-- ANCHOR:adr-012-decision -->
+### Decision
+
+**We chose**: the repository source is valid only when the real path of `.sk-code/quality.json` sits inside the real path of the repository root. Otherwise the run records a `config.errors` entry and exits 3 with `CONFIG_INVALID`. A link that stays inside the repository is read. `--config` and the file-scoped git config value may name any path.
+
+**How it works**: `loadConfig()` resolves both real paths before it reads the file and compares them. The doctor's `init` applies the same rule to the `.sk-code` folder and refuses with `OUTSIDE_REPOSITORY` before it writes.
+<!-- /ANCHOR:adr-012-decision -->
+
+---
+
+<!-- ANCHOR:adr-012-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Repository file must resolve inside, the operator's sources may point anywhere** | A committed link cannot hide commands, and a private config still works | One more rule per source | 9/10 |
+| Refuse every link | Simplest rule | Breaks an in-repository link a monorepo may use | 5/10 |
+| Same rule for every source | One rule | An operator cannot keep a private config outside the repository | 4/10 |
+| No rule | No code | A committed link can run commands nobody reviewed | 1/10 |
+
+**Why this one**: Only the repository file reaches every clone, so only that file needs the boundary.
+
+**Reversal**: Remove the real-path comparison in `loadConfig()` and the folder check in `init`.
+<!-- /ANCHOR:adr-012-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-012-consequences -->
+### Consequences
+
+**What improves**:
+- The commands a clone runs are the ones its own tree shows.
+
+**What it costs**:
+- One real-path read per run. Mitigation: none needed, because it is one system call.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| An operator expects a committed link to a shared config to work | L | The error names the rule, and `--config` or the git config value reads that file instead |
+<!-- /ANCHOR:adr-012-consequences -->
+
+---
+
+<!-- ANCHOR:adr-012-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The runner runs what the file names |
+| 2 | **Beyond Local Maxima?** | PASS | Four rules were scored |
+| 3 | **Sufficient?** | PASS | One comparison per source |
+| 4 | **Fits Goal?** | PASS | The trust boundary is that only committed, reviewed content names commands |
+| 5 | **Open Horizons?** | PASS | A later source states its own rule |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-012-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-012-impl -->
+### Implementation
+
+**What changes**:
+- `Q/scripts/lib/quality-config.cjs` compares the real paths for the repository source.
+- `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` checks the `.sk-code` folder before `init --apply`.
+- `Q/scripts/tests/quality-config.test.cjs` covers a link that leads out, a link that stays inside and `--config` naming a file outside.
+
+**How to roll back**: Remove the comparison and the folder check, and the three test cases.
+<!-- /ANCHOR:adr-012-impl -->
+<!-- /ANCHOR:adr-012 -->
+
+---
+
+<!-- ANCHOR:adr-013 -->
+## ADR-013: One guard window per configured check, a process group kill and the reused snapshot
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Build agent, applying the coordinator's ruling that this phase reuses the phase 002 snapshot helper |
+
+---
+
+<!-- ANCHOR:adr-013-context -->
+### Context
+
+ADR-006 and REQ-006 describe the snapshot as `git diff --binary HEAD`, the untracked list and `git hash-object` without `-w`. Phase 002 already ships a snapshot helper, `takeSnapshot()` in `Q/scripts/lib/run-check.cjs`, and the coordinator ruled that this phase reuses it. ADR-005 says the runner kills the process group on timeout but not how. The design does not say whether one guard window covers every configured check or one per check, or what happens to the checks after a mutation.
+
+### Constraints
+
+- A mutation must name the command that made it.
+- A helper a check forks must not outlive the check.
+- The guard must write nothing, including git objects.
+<!-- /ANCHOR:adr-013-context -->
+
+---
+
+<!-- ANCHOR:adr-013-decision -->
+### Decision
+
+**We chose**:
+- The built-in checks share one guard window, as in phase 002. Each configured check then runs in its own window, chained from the last snapshot, so a run takes two snapshots plus one per configured check it runs.
+- The first mutation stops the run. Every later configured check reads `ERROR` with the repair `not run, because the workspace changed while <id> ran`.
+- `spawnGroup()` starts a small Node parent that spawns the command detached, so the command leads its own process group. The parent kills the whole group with `SIGKILL` at the deadline and again when the leader exits, and reports the outcome on a separate pipe. The outer call allows five more seconds before it kills the parent.
+- Outside git a configured check reads `ERROR` with `GUARD_UNAVAILABLE` and never starts.
+- The snapshot is the phase 002 helper. It records HEAD, or the empty tree `4b825dc642cb6eb9a060e54bf8d69288fbee4904` when no commit exists, lists the paths from `git diff --name-only -z --no-renames <base>` and `git ls-files --others --exclude-standard -z`, and hashes each file's content with sha256 in process. A file over 2 MB is compared by size and change time.
+
+**How it works**: `withGuard()` takes an optional earlier snapshot, so each configured check's window starts where the last one ended. A changed snapshot adds `CHECK_MUTATED_WORKSPACE` with the changed paths and reverts nothing.
+<!-- /ANCHOR:adr-013-decision -->
+
+---
+
+<!-- ANCHOR:adr-013-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Reused helper, one window per configured check, group kill** | One snapshot implementation, a mutation names its command, no helper survives | A run with many configured checks takes more snapshots | 9/10 |
+| The snapshot REQ-006 describes | Matches the requirement text | A second implementation beside phase 002's, and `git diff --binary` output grows with the diff | 5/10 |
+| One window for every configured check | Two snapshots per run | A mutation cannot name the command that made it | 4/10 |
+| Kill the leader only | Plain `spawnSync` timeout | A forked helper keeps running, which the test proved by failing when only the leader was killed | 2/10 |
+
+**Why this one**: Both snapshots hash content, so a second edit to an already modified file is caught either way, and the reused helper writes no object, as `git hash-object` without `-w` would not.
+
+**Reversal**: Pass every configured check to one `withGuard()` call, or replace `spawnGroup()` with `spawnArgv()`.
+<!-- /ANCHOR:adr-013-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-013-consequences -->
+### Consequences
+
+**What improves**:
+- `CHECK_MUTATED_WORKSPACE` names one command, and nothing runs on a tree the author did not write.
+- A timed-out check leaves no process behind on POSIX.
+
+**What it costs**:
+- One snapshot per configured check. Mitigation: a snapshot lists only changed and untracked paths, so its cost follows the change, not the repository.
+- The literal Verify of T010, a grep for `hash-object`, cannot pass. Mitigation: the deviation is recorded beside T010, and the F08 and no-git cases prove the behavior.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A file over 2 MB is rewritten with the same size and change time | L | A write updates the change time, and the limit is the phase 002 contract |
+| Windows has no process groups in this form | M | Windows behavior stays UNKNOWN, as the open questions record |
+<!-- /ANCHOR:adr-013-consequences -->
+
+---
+
+<!-- ANCHOR:adr-013-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | A configured command is repository code that can edit the tree or fork |
+| 2 | **Beyond Local Maxima?** | PASS | Four shapes were scored |
+| 3 | **Sufficient?** | PASS | One chained window per command and one group kill |
+| 4 | **Fits Goal?** | PASS | The gate reports what it ran without changing what it reports on |
+| 5 | **Open Horizons?** | PASS | A Windows spawner can replace `spawnGroup()` behind the same result shape |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-013-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-013-impl -->
+### Implementation
+
+**What changes**:
+- `Q/scripts/lib/run-check.cjs` gains `spawnGroup()`, and `withGuard()` keeps its optional earlier snapshot.
+- `Q/scripts/quality-gate.cjs` runs each configured check in its own window and stops after the first mutation.
+- `Q/scripts/tests/configured-checks.test.cjs` covers F08, the timeout with a forked helper and the no-git case.
+
+**How to roll back**: Restore one window for every configured check and the plain spawn, and drop the two test cases.
+<!-- /ANCHOR:adr-013-impl -->
+<!-- /ANCHOR:adr-013 -->
+
+---
+
+<!-- ANCHOR:adr-014 -->
+## ADR-014: How a configured check selects files and runs
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Build agent, deciding the schema points the design leaves open at their most conservative option |
+
+---
+
+<!-- ANCHOR:adr-014-context -->
+### Context
+
+REQ-005 names `languages`, `paths`, `{files}`, `cwd`, `required` and `timeoutSec`, but not how they combine, what a missing value means or how a file name reaches the command. Each gap either runs a command on files the author did not mean or hides a failure.
+
+### Constraints
+
+- A file name must never be read as a flag.
+- A check must say what it covered, and a failure must not print repository output into the verdict.
+<!-- /ANCHOR:adr-014-context -->
+
+---
+
+<!-- ANCHOR:adr-014-decision -->
+### Decision
+
+**We chose**:
+- `severity` is required on each `checks` entry. A `generated` row defaults to `P1` and to the id `generated-<n>`, and it must name `paths`.
+- `languages` and `paths` combine with AND. A check with neither matches every file in scope except excluded files and files that are not a readable regular file. An empty list is a config error, because it would match nothing.
+- A `generated` row also matches excluded files that are regular files, because generated output is often excluded from the built-in checks.
+- A file a configured check ran on counts as checked and leaves `unchecked`.
+- `{files}` must be a whole argv element. A file name that starts with `-` is passed as `./<name>`.
+- `cwd: "package"` groups the files by their nearest folder with `package.json`, `pyproject.toml`, `Cargo.toml` or `go.mod`, and runs once per group from that folder.
+- `requires` defaults to `argv[0]`. A value with a slash is resolved from the repository root.
+- The command reads no input. A `RAN_FAIL` row carries no command output and says to rerun the command in its cwd.
+
+**How it works**: `validateConfig()` enforces the required fields and the selector rule, and `planConfigured()` in the runner decides each check's state before anything starts.
+<!-- /ANCHOR:adr-014-decision -->
+
+---
+
+<!-- ANCHOR:adr-014-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Strict selectors, whole-element `{files}`, `./` prefix, no output in the verdict** | No file becomes a flag, no surprise match, no repository text in the verdict | The author reruns a failing command to read it | 9/10 |
+| `{files}` inside a string such as `--files={files}` | Fits more tools | Needs quoting rules, which is what a shell does | 3/10 |
+| OR of selectors | Broader matching | A check runs on files neither selector meant | 4/10 |
+| Copy command output into the verdict | One place to read | Repository output could carry secrets or forged verdict text | 3/10 |
+
+**Why this one**: Each choice keeps a configured command from doing more than its entry says.
+
+**Reversal**: Each rule is one branch in `validateConfig()` or `planConfigured()`.
+<!-- /ANCHOR:adr-014-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-014-consequences -->
+### Consequences
+
+**What improves**:
+- A config reads the same way to the author, the reviewer and the runner.
+
+**What it costs**:
+- A tool that needs `--files=<list>` needs a wrapper script. Mitigation: the reference names the rule.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A long file list passes the argument limit | M | The reference lists the argument length under its known limits |
+<!-- /ANCHOR:adr-014-consequences -->
+
+---
+
+<!-- ANCHOR:adr-014-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | REQ-005 leaves each point open |
+| 2 | **Beyond Local Maxima?** | PASS | Four shapes were scored |
+| 3 | **Sufficient?** | PASS | Eight rules, each one branch |
+| 4 | **Fits Goal?** | PASS | The gate runs only what the committed file says |
+| 5 | **Open Horizons?** | PASS | A later key can widen a rule without breaking a valid config |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-014-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-014-impl -->
+### Implementation
+
+**What changes**:
+- `Q/scripts/lib/quality-config.cjs` validates and normalizes each entry.
+- `Q/scripts/quality-gate.cjs` plans, expands and runs each check.
+- `Q/references/quality-config.md` sections 3 and 5 document the rules, and `configured-checks.test.cjs` covers the package cwd, the dash file name, the generated row and `NOT_APPLICABLE`.
+
+**How to roll back**: Revert the branches named above and their test cases.
+<!-- /ANCHOR:adr-014-impl -->
+<!-- /ANCHOR:adr-014 -->
+
+---
+
+<!-- ANCHOR:adr-015 -->
+## ADR-015: Suggestions come from root manifests and init writes them as not required
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Build agent, deciding an open point at its most conservative option |
+
+---
+
+<!-- ANCHOR:adr-015-context -->
+### Context
+
+REQ-007 says a command read from a manifest is a suggestion that never runs. It does not say which manifests count, whether a suggestion repeats a configured check or how `init` enters them in the file it creates.
+
+### Constraints
+
+- A suggestion must never start a process.
+- A new config must not block a repository the day it lands.
+<!-- /ANCHOR:adr-015-context -->
+
+---
+
+<!-- ANCHOR:adr-015-decision -->
+### Decision
+
+**We chose**: suggestions are read from the manifests at the repository root only, always, with or without a config. A suggestion whose id or argv is already configured is left out. `init` writes each suggestion as a check with `required: false`, so it reports a failure without blocking until the author makes it required.
+
+**How it works**: `readSuggestions()` reads `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, the workflow folder and a Makefile `lint:` target at the root, and `initialConfig()` copies each entry into the template with `required: false`.
+<!-- /ANCHOR:adr-015-decision -->
+
+---
+
+<!-- ANCHOR:adr-015-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Root manifests, skip configured, not required** | Predictable list, no repeats, nothing blocks on day one | A nested package's scripts are not suggested | 9/10 |
+| Every manifest in the tree | Covers monorepos | Slow on a large tree, and a vendored manifest reads as the repository's own | 4/10 |
+| `init` writes suggestions as required | Strict from the start | A failing lint blocks every change the day the file lands | 3/10 |
+
+**Why this one**: The author reviews the file before committing it, so the conservative default is to report and let them raise it.
+
+**Reversal**: Widen the manifest search in `readSuggestions()`, or drop the `required: false` override in `initialConfig()`.
+<!-- /ANCHOR:adr-015-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-015-consequences -->
+### Consequences
+
+**What improves**:
+- The suggestion list is short and names only what the root declares.
+
+**What it costs**:
+- A monorepo author adds nested package checks by hand. Mitigation: `cwd: "package"` runs one check per package from a single entry.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| An author never makes a suggested check required | L | The doctor's summary says to review each check before committing |
+<!-- /ANCHOR:adr-015-consequences -->
+
+---
+
+<!-- ANCHOR:adr-015-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | REQ-007 leaves the scope and the init entry open |
+| 2 | **Beyond Local Maxima?** | PASS | Three shapes were scored |
+| 3 | **Sufficient?** | PASS | One reader and one override |
+| 4 | **Fits Goal?** | PASS | Suggestions help the author name checks without running any |
+| 5 | **Open Horizons?** | PASS | A later reader can add a manifest kind |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-015-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-015-impl -->
+### Implementation
+
+**What changes**:
+- `Q/scripts/lib/quality-config.cjs` holds `readSuggestions()` and `initialConfig()`.
+- `Q/scripts/quality-gate.cjs` reports `suggested_checks` and skips configured ids and argv.
+- `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` shows the plan and writes it on `init --apply`.
+
+**How to roll back**: Change the reader scope or the override named above.
+<!-- /ANCHOR:adr-015-impl -->
+<!-- /ANCHOR:adr-015 -->
+
+---

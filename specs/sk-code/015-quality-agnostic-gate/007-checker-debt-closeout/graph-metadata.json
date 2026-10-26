@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/007-checker-debt-closeout",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/007-checker-debt-closeout",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "checker debt closeout",
+      "phase 7 checker debt closeout",
+      "ceiling report shared extraction",
+      "bare string statement hygiene",
+      "zero finding comment hygiene tree",
+      "checker debt closeout plan",
+      "ceiling report shared extraction plan",
+      "checker debt closeout tasks",
+      "checker debt closeout acceptance criteria",
+      "checker debt closeout goal",
+      "checker debt closeout decision record",
+      "frozen evidence hygiene-ok decision"
+    ],
+    "key_topics": [
+      "checker",
+      "debt",
+      "closeout",
+      "phase",
+      "ceiling",
+      "report",
+      "shared",
+      "extraction",
+      "bare",
+      "string",
+      "statement",
+      "hygiene"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/skills/sk-code/sk-code-quality/assets/comment-syntax.json",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code-quality/SKILL.md",
+      "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/implementation-summary.md",
+      "specs/sk-code/015-quality-agnostic-gate/spec.md",
+      "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-007-checker-debt-closeout.md",
+      ".github/workflows/comment-hygiene.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "comment-syntax.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/comment-syntax.json",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-015-007-checker-debt-closeout.md",
+        "kind": "doc",
+        "path": "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-007-checker-debt-closeout.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 closed with four checker limitations open",
+    "created_at": "2026-10-26T06:05:50Z",
+    "last_save_at": "2026-10-26T09:31:20.440Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6ffaed0eede444b768505e56a51e285ab8b8d8f4a8852a449fba63606f13ddd0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bc5798ff503a4a1179b5c1b3ce6b19290c51783b36af30a581a93c3defa7849d",
+      "plan.md": "8c32931376f546e3523ff8429adf6b78fc439693d18de0f6ba4f0d58190662d6",
+      "tasks.md": "78b49cec05d901cb599cb7a0c30e7d1c155194af5b9cfc3aaee78dbdfc6d6206",
+      "decision-record.md": "f02642ba19149601694050d464a14fd35ff48c0184137b3781d42f499757c918",
+      "implementation-summary.md": "039041d33055308c72e0674d9790158060cc01052619931719c693a04e012157"
+    },
+    "last_active_at": null
+  }
+}

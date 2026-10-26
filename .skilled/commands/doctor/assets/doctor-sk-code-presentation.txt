@@ -1,26 +1,61 @@
 # /doctor:sk-code Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:sk-code`: the argument failure, the per-leg result table, result templates, and next-step text. The command router owns asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/doctor:sk-code <target>`: the argument failure, the startup menu, the setup per-leg result table, the quality status table and plan, result templates and next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
 
 ## 1. Argument Failure
 
+Every argument failure happens before any workflow YAML loads and prints the wording below with the bracketed parts filled in, then ends with the status line. Nothing is read or changed.
+
+| Situation | Wording |
+|-----------|---------|
+| The first token is not a target | `Unknown target: [target]` then `/doctor:sk-code runs setup or quality. Try: /doctor:sk-code menu` then `STATUS=FAIL ERROR="unknown_target"` |
+| A flag no target accepts | `Unknown argument: [argument]` then `setup accepts --prompt=<text>, and quality accepts --dry-run.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| A flag that belongs to the other target | `Flag '[flag]' is not valid for target '[target]'. Did you mean /doctor:sk-code [suggested-target] [flag]?` then `STATUS=FAIL ERROR="cross_target_flag_injection"` |
+
+## 2. Startup Presentation
+
+This command is always interactive and has no `:auto` mode. With no target, `setup` runs because it only reads. The menu below appears for `menu`, `list` and `?`. Ask it once, then wait.
+
 ```text
-Unknown argument: [argument]
-/doctor:sk-code runs one target, setup, and accepts only --prompt=<text>.
-STATUS=FAIL ERROR="unknown_argument"
+What do you want to check?
+
+1) setup
+2) quality
+X) Cancel
 ```
 
-## 2. Per-Leg Result Table
+Accepted answers:
 
-Render one row per leg the workflow ran, in the workflow's order.
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| `1` | target = `setup` | Run the read-only setup battery and name the repair for each failing leg |
+| `2` | target = `quality` | Show the quality config the gate reads and check it, then create `.sk-code/quality.json` once after you approve |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+Valid targets: setup, quality
+
+### Route Manifest Display
+
+Render this table for `menu`, `list` or `?`. Values should mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `setup` | `doctor-sk-code-setup.yaml` | read-only | Run the sk-code setup battery in its check-only form and name the repair for each failing leg |
+| `quality` | `doctor-sk-code-quality.yaml` | mutates | Report and check the repository quality config, and create `.sk-code/quality.json` once after an explicit approve |
+
+## 3. Setup Results
+
+### Per-Leg Result Table
+
+Render one row per leg the workflow ran, in the workflow's order. A failing quality leg shows one detail per failing check, each with its repair.
 
 | Leg | Command | Result | Repair |
 |-----|---------|--------|--------|
 | [leg] | [check-only command] | [PASS|FAIL|SKIP] | [the repair command the leg printed, or none] |
 
-## 3. Result Templates
-
-### Summary
+### Setup Summary
 
 ```text
 DOCTOR DIAGNOSTIC RESULT
@@ -32,27 +67,92 @@ Recommendation: [the repair command for each failing leg, or none]
 STATUS=[status]
 ```
 
-### Failure Summary
+## 4. Quality Results
+
+### Quality Status Table
+
+Render the config source first, then one row per tool the status names.
+
+```text
+Config: [path and source, or none, the gate runs its built-in checks alone]
+Errors: [each config error, or none]
+Layers: pre-commit [state], ci [state], post-edit [state]
+```
+
+| Tool | Named by | State | Repair |
+|------|----------|-------|--------|
+| [tool] | [check ids, or the suggestion that names it] | [PASS|SKIP|DEGRADED] | [the repair line, or none] |
+
+`PASS` means the tool is on PATH. `DEGRADED` means a configured check names it and it is absent. `SKIP` means only a suggestion names it, so no check would look for it.
+
+### Quality Init Plan
+
+```text
+QUALITY CONFIG PLAN
+Target: .sk-code/quality.json
+Checks to enable, each not required:
+   [id] from [manifest]: [argv]
+Outranked by: [the git config skcode.qualityConfig path, or nothing]
+Nothing has been written yet.
+```
+
+### Quality Init Prompt
+
+```text
+Create .sk-code/quality.json with the checks above?
+   approve  write the file once, then check it
+   X        cancel, nothing changes
+```
+
+### Quality Dry-Run Line
+
+```text
+Dry run: nothing written. Rerun /doctor:sk-code quality without --dry-run to create the file.
+```
+
+### Quality Summary
+
+```text
+DOCTOR QUALITY RESULT
+Target: quality
+Status: [OK|CANCELLED|FAIL]
+Mutation class: mutates
+Config: [path and source, or none]
+Tools: [N] PASS, [N] SKIP, [N] DEGRADED
+Errors: [N]
+Written: [.sk-code/quality.json, or nothing]
+Undo: [delete .sk-code/quality.json, or none]
+Next: review each check the file enables, then commit it
+STATUS=[status]
+```
+
+## 5. Failure Summary
 
 ```text
 DOCTOR TARGET FAILED
-Target: setup
-Step: [leg]
+Target: [setup|quality]
+Step: [leg or phase]
 Error: [message]
 Next: [recommended command or manual action]
 STATUS=ERROR ERROR="[message]"
 ```
 
-## 4. Troubleshooting Display
+## 6. Troubleshooting Display
 
 | Situation | Suggested Action |
 |-----------|------------------|
-| A leg reports FAIL | Run the `repair:` command printed under that leg, then rerun `/doctor:sk-code setup` |
+| A setup leg reports FAIL | Run the `repair:` command printed under that leg, then rerun `/doctor:sk-code setup` |
 | The provisioning leg fails | Run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` |
 | The provisioning leg says the checkout predates the v4 layout | Install the `.skilled/` tree from a v4 release, run `/doctor:update compat`, then rerun `/doctor:sk-code setup` |
 | The guard leg fails after a routing edit | Run the refresh and copy commands the guard leg's `repair:` line names, or commit with the hooks installed so the pre-commit gate does both |
 | The probe leg fails on the legacy stub | The hub serves no compiled route; run the `repair:` command printed under the probe leg |
-| A leg reports SKIP | The skipped legs wait on the provision step or the v4 layout, so run the provisioning leg's `repair:` command and rerun |
+| The quality leg fails | Each detail names one check, tools, executables, tables, tests or route, and the `repair:` line under it fixes that check |
+| A setup leg reports SKIP | The skipped legs wait on the provision step or the v4 layout, so run the provisioning leg's `repair:` command and rerun |
+| The quality status reports a DEGRADED tool | Install the tool, or remove the checks that name it from the config, then rerun `/doctor:sk-code quality` |
+| The quality check reports CONFIG_INVALID | Fix each field the errors name, as `.skilled/skills/sk-code/sk-code-quality/references/quality-config.md` describes, then rerun |
+| The quality status reports CONFIG_PATH_MISSING | Create the named file, or fix the `--config` value or the `skcode.qualityConfig` git config value that names it |
+| Quality init reports CONFIG_EXISTS | The file is kept and never overwritten. Edit it by hand, or delete it and rerun `/doctor:sk-code quality` |
+| Quality init reports OUTSIDE_REPOSITORY | `.sk-code` is a link that leads out of the repository. Replace it with a real folder, then rerun |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

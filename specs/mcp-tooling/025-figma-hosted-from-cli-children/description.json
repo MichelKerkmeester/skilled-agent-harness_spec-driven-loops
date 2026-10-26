@@ -1,0 +1,26 @@
+{
+  "specFolder": "mcp-tooling/025-figma-hosted-from-cli-children",
+  "description": "`mcp-figma` documents the Code Mode path and calls the hosted server out of scope for it",
+  "keywords": [
+    "mcp-figma",
+    "documents",
+    "code",
+    "mode",
+    "path",
+    "calls",
+    "hosted",
+    "server",
+    "scope"
+  ],
+  "lastUpdated": "2026-10-26T09:17:20.655Z",
+  "specId": "025",
+  "folderSlug": "figma-hosted-from-cli-children",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-10-26_10-17__added-the-cli-child-subsection-to-mcp-figma-mcp.md"
+  ],
+  "level": "1"
+}

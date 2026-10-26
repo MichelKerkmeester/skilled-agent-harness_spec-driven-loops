@@ -1,5 +1,5 @@
 #!/bin/bash
-# 014/007 Voyage Egress Verification (24h capture)
+# Voyage egress verification (24h capture)
 # ---------------------------------------------------------------------------
 # Purpose: confirm zero outbound traffic to api.voyageai.com over a 24h window
 # under Setup A (hf-local memory + EmbeddingGemma cocoindex).

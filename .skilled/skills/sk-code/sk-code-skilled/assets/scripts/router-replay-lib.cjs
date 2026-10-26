@@ -489,7 +489,9 @@ function selectIntents(scores) {
 // hub entries in registry order and then outside skills by skill_id, and the one
 // fallback comes last, so the fallback never outranks a surface another repository
 // added. An outside block that claims the fallback role is ignored, because the
-// fallback is the hub's own code.
+// fallback is the hub's own code. An outside entry also carries its skill folder and
+// the quality block of the same file, so a reader that resolves that skill's checklists
+// finds them through this discovery instead of walking the skills folder again.
 const SURFACE_MARKER_KEYS = ['pathMarkers', 'fileMarkers', 'contentMarkers'];
 const declaredSurfaceCache = new Map();
 
@@ -520,7 +522,13 @@ function outsideSurfaces(skillsDir, family) {
   for (const name of names) {
     const meta = readJsonObject(path.join(skillsDir, name, 'graph-metadata.json'));
     if (!meta || meta.family !== family || meta.skill_id === family) continue;
-    const entry = surfaceEntry(meta.surface_detection, { skillId: String(meta.skill_id || name), packet: null });
+    const skillRoot = path.join(skillsDir, name);
+    // The block passes through as written, so a reader can tell a malformed block
+    // from no block at all. Only an absent key reads as no declaration.
+    const quality = Object.prototype.hasOwnProperty.call(meta, 'quality') ? meta.quality : undefined;
+    const entry = surfaceEntry(meta.surface_detection, {
+      skillId: String(meta.skill_id || name), packet: null, skillRoot, quality,
+    });
     if (entry && entry.role === 'specific') out.push(entry);
   }
   return out.sort((a, b) => (a.skillId < b.skillId ? -1 : a.skillId > b.skillId ? 1 : 0));

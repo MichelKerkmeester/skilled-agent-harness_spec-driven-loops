@@ -179,9 +179,23 @@ function packageRoot(workspaceRoot, pkg) {
 // makes the guard warn (or attempt a doomed rebuild) about work it is powerless
 // to do in this checkout. Distinguishing the two keeps the guard silent where
 // it cannot help and fully active where it can.
-function isPackageProvisioned(root) {
-  return fs.existsSync(path.join(root, 'package.json'))
-    && fs.existsSync(path.join(root, 'node_modules'));
+//
+// A workspace install hoists dependencies to an ancestor, so the package itself
+// often holds no node_modules while its imports resolve fine. The walk therefore
+// climbs to the workspace root and no further: a node_modules above that root
+// belongs to another checkout and could never satisfy this one's imports.
+function isPackageProvisioned(root, workspaceRoot) {
+  if (!fs.existsSync(path.join(root, 'package.json'))) return false;
+  const boundary = path.resolve(workspaceRoot);
+  const relative = path.relative(boundary, path.resolve(root));
+  const inside = relative && !relative.startsWith('..') && !path.isAbsolute(relative);
+  const depth = inside ? relative.split(path.sep).length : 0;
+  let current = path.resolve(root);
+  for (let step = 0; step <= depth; step += 1) {
+    if (fs.existsSync(path.join(current, 'node_modules'))) return true;
+    current = path.dirname(current);
+  }
+  return false;
 }
 
 function unprovisionedResult(pkg, root, distEntry, entry) {
@@ -194,7 +208,7 @@ function unprovisionedResult(pkg, root, distEntry, entry) {
     distEntry: distEntry || null,
     entry,
     rebuildCommand: pkg.rebuildCommand,
-    message: `${pkg.name} is not provisioned in this checkout (missing package.json or node_modules); dist freshness cannot be assessed or rebuilt here`,
+    message: `${pkg.name} is not provisioned in this checkout (no package.json, or no node_modules up to the workspace root); dist freshness cannot be assessed or rebuilt here`,
   };
 }
 
@@ -660,7 +674,7 @@ function checkPackageFreshness(packageId, options = {}) {
     return freshnessError(pkg, `Unknown dist entry "${entryName}" for ${pkg.id}`, { packageRoot: root });
   }
 
-  const provisioned = isPackageProvisioned(root);
+  const provisioned = isPackageProvisioned(root, workspaceRoot);
 
   const distEntry = distEntryFor(pkg, root, normalizedEntry);
   if (!distEntry || !fs.existsSync(distEntry)) {
@@ -803,12 +817,18 @@ function checkPackageFreshness(packageId, options = {}) {
       };
     }
 
-    writeStoredBuildRecord(cachePath, {
-      version: CACHE_VERSION,
-      origin: 'checker',
-      sourceHash,
-      distHash,
-    });
+    // A read-only caller asks for the verdict without this write, because a gate
+    // run promises to leave the tree untouched and the record sits beside the
+    // dist entry. The default stays writable: the session-start self-heal reads
+    // the record first and would pay a full source hash on every run without it.
+    if (!options.readOnly) {
+      writeStoredBuildRecord(cachePath, {
+        version: CACHE_VERSION,
+        origin: 'checker',
+        sourceHash,
+        distHash,
+      });
+    }
     return {
       packageId: pkg.id,
       packageName: pkg.name,
@@ -834,6 +854,8 @@ function checkPackageFreshness(packageId, options = {}) {
   }
 }
 
+// Options reach every package check unchanged, so a caller that asks for the
+// read-only path gets it across the whole registry rather than per package.
 function checkAllFreshness(options = {}) {
   return DIST_PACKAGES.map((pkg) => checkPackageFreshness(pkg.id, options));
 }
@@ -855,24 +877,60 @@ function sourceContainsFile(workspaceRoot, pkg, filePath) {
   });
 }
 
+// A built file is not source, so the source lookup cannot answer for it. A path
+// under a package's own dist folder belongs to the package that produced it, and
+// the longest matching root wins where one package root sits inside another's.
+function isUnderDistOutput(workspaceRoot, pkg, filePath) {
+  const root = packageRoot(workspaceRoot, pkg);
+  const relative = path.relative(root, filePath);
+  if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) return false;
+  const [first, ...rest] = relative.split(path.sep);
+  const distFolders = new Set(Object.values(pkg.distEntries).map((entry) => entry.split('/')[0]));
+  return rest.length > 0 && distFolders.has(first);
+}
+
+function distEntryNameFor(pkg, root, filePath) {
+  for (const [entryName, relativeEntry] of Object.entries(pkg.distEntries)) {
+    if (path.resolve(root, relativeEntry) === filePath) return entryName;
+  }
+  return 'default';
+}
+
+function packageForDistFile(filePath, options = {}) {
+  const workspaceRoot = workspaceRootFromOptions(options);
+  const absoluteFile = path.resolve(filePath);
+  let match = null;
+  for (const pkg of DIST_PACKAGES) {
+    if (!isUnderDistOutput(workspaceRoot, pkg, absoluteFile)) continue;
+    const root = packageRoot(workspaceRoot, pkg);
+    if (!match || root.length > match.root.length) match = { pkg, root };
+  }
+  if (!match) return null;
+  return { pkg: match.pkg, entry: distEntryNameFor(match.pkg, match.root, absoluteFile) };
+}
+
 function packageForSourceFile(filePath, options = {}) {
   const workspaceRoot = workspaceRootFromOptions(options);
   return DIST_PACKAGES.find((pkg) => sourceContainsFile(workspaceRoot, pkg, filePath)) || null;
 }
 
 function checkFileFreshness(filePath, options = {}) {
-  const pkg = packageForSourceFile(filePath, options);
-  if (!pkg) {
+  const absoluteFile = path.resolve(filePath);
+  const sourcePackage = packageForSourceFile(filePath, options);
+  if (sourcePackage) return { ...checkPackageFreshness(sourcePackage.id, options), filePath: absoluteFile };
+  const distMatch = packageForDistFile(filePath, options);
+  if (!distMatch) {
     return {
       packageId: null,
       packageName: null,
       status: 'unmatched',
       stale: false,
-      filePath: path.resolve(filePath),
+      filePath: absoluteFile,
       message: 'Edited file is not under a watched dist-producing source tree',
     };
   }
-  return { ...checkPackageFreshness(pkg.id, options), filePath: path.resolve(filePath) };
+  const entry = options.entry || distMatch.entry;
+  return { ...checkPackageFreshness(distMatch.pkg.id, { ...options, entry }), filePath: absoluteFile };
 }
 
 function formatWarning(result) {
@@ -902,7 +960,7 @@ function summarizeFreshness(results) {
 // 7. CLI ENTRY
 // ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
-  const parsed = { positional: [], json: false, workspaceRoot: null, packageId: null, entry: null, filePath: null };
+  const parsed = { positional: [], json: false, workspaceRoot: null, packageId: null, entry: null, filePath: null, readOnly: false };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--json') parsed.json = true;
@@ -910,6 +968,7 @@ function parseArgs(argv) {
     else if (arg === '--package') parsed.packageId = argv[++index];
     else if (arg === '--entry') parsed.entry = argv[++index];
     else if (arg === '--file') parsed.filePath = argv[++index];
+    else if (arg === '--no-write') parsed.readOnly = true;
     else if (arg.startsWith('--')) {
       // A misspelled option used to fall through to the positional list and run
       // the default command as if the flag had never been passed.
@@ -941,6 +1000,9 @@ function runCli() {
   const args = parseArgs(process.argv.slice(2));
   const command = args.positional[0] || 'check-all';
   const options = { workspaceRoot: args.workspaceRoot, entry: args.entry };
+  // Only a check command reaches the cache write, so the read-only switch is
+  // handed to those and never to the record commands, which exist to write one.
+  const checkOptions = { ...options, readOnly: args.readOnly };
   let result;
 
   if (command === 'check') {
@@ -948,7 +1010,7 @@ function runCli() {
       process.stderr.write('Usage: dist-freshness.cjs check --package <package-id> [--entry <entry>] [--json]\n');
       process.exit(64);
     }
-    result = checkPackageFreshness(args.packageId, options);
+    result = checkPackageFreshness(args.packageId, checkOptions);
   } else if (command === 'prepare-build' || command === 'record-build') {
     if (!args.packageId) {
       process.stderr.write(`Usage: dist-freshness.cjs ${command} --package <package-id> [--entry <entry>] [--json]\n`);
@@ -962,9 +1024,9 @@ function runCli() {
       process.stderr.write('Usage: dist-freshness.cjs check-file --file <path> [--json]\n');
       process.exit(64);
     }
-    result = checkFileFreshness(args.filePath, options);
+    result = checkFileFreshness(args.filePath, checkOptions);
   } else if (command === 'check-all') {
-    result = summarizeFreshness(checkAllFreshness(options));
+    result = summarizeFreshness(checkAllFreshness(checkOptions));
   } else if (command === 'list') {
     result = { status: 'ok', packages: DIST_PACKAGES };
   } else {
@@ -997,6 +1059,7 @@ module.exports = {
   formatWarning,
   hashFile,
   hashSourceFiles,
+  packageForDistFile,
   packageForSourceFile,
   preparePackageBuild,
   recordPackageBuild,

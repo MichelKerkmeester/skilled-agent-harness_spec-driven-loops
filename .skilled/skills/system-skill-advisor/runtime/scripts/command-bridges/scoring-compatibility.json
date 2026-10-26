@@ -162,9 +162,9 @@
       "description": ""
     },
     {
-      "inventoryId": "command-doctor-sk-code",
+      "inventoryId": "command-doctor-sk-code-setup",
       "order": 12,
-      "id": "command-doctor-sk-code",
+      "id": "command-doctor-sk-code-setup",
       "description": ""
     },
     {
@@ -243,6 +243,12 @@
       "inventoryId": "command-doctor-ci-toggle",
       "order": 25,
       "id": "command-doctor-ci-toggle",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-code-quality",
+      "order": 26,
+      "id": "command-doctor-sk-code-quality",
       "description": ""
     }
   ],
@@ -449,9 +455,9 @@
       "description": ""
     },
     {
-      "inventoryId": "command-doctor-sk-code",
+      "inventoryId": "command-doctor-sk-code-setup",
       "order": 23,
-      "id": "command-doctor-sk-code",
+      "id": "command-doctor-sk-code-setup",
       "description": ""
     },
     {
@@ -530,6 +536,12 @@
       "inventoryId": "command-doctor-ci-toggle",
       "order": 36,
       "id": "command-doctor-ci-toggle",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-code-quality",
+      "order": 37,
+      "id": "command-doctor-sk-code-quality",
       "description": ""
     }
   ],

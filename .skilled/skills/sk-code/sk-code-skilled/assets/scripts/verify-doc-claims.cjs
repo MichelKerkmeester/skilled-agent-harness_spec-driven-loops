@@ -55,7 +55,7 @@ const ALLOWED = [
     check: 'names',
     file: 'sk-code-quality/SKILL.md',
     line: 'schema_version: code-quality/v1',
-    reason: 'a versioned schema id that other tools consume',
+    reason: 'the envelope schema id read by workflow-verify.md step 2, and the run verdict schema code-quality-run/v1 that the @code Quality Gate field reads',
   },
   {
     check: 'names',

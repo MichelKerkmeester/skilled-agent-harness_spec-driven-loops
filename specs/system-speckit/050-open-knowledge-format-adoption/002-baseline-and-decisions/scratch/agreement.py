@@ -3,7 +3,7 @@
 
 Usage: python3 agreement.py sample-rows.jsonl labels-claude.jsonl labels-deepseek.jsonl
 
-D3 inputs, as fixed in decision-record.md ADR-003:
+The three go-or-no-go threshold inputs, fixed in the decision record before any label was read:
   1. rows labeled by both labelers (needs at least 30)
   2. relocatable misses: both say partial or contradicts AND both say relocated yes (needs at least 20%)
   3. share of relocatable-miss targets carrying <!-- ANCHOR: markers (needs at least half)

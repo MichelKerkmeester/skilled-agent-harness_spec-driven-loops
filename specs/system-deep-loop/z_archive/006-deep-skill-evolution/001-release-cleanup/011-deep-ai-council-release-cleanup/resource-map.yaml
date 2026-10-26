@@ -1,5 +1,5 @@
 # Resource Map: deep-ai-council skill release cleanup
-# Machine-readable artifact -> sk-doc-template map. Operator-directed YAML format (ADR-003;
+# Machine-readable artifact -> sk-doc-template map. Operator-directed YAML format (ADR-003; hygiene-ok
 # diverges from sibling 002 resource-map.md). Drives phase-2 audit dispatch (every `artifacts`
 # entry is a target), phase-4 validation scope, and phase-5 merge (phase_5_augmentation).
 #

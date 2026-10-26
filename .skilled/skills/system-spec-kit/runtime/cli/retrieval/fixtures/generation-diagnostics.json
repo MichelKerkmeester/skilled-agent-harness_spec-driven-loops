@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7284,
-    "ok": 15262,
+    "ok": 15304,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26094,
+  "documentsScanned": 26136,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
+  "manifestHash": "8636c6a059982d61522811c1644f45aea901eb0af68788de9e4a15c757099524",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37757,
+      "ok": 37855,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70764,6 +70764,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp-tooling/025-figma-hosted-from-cli-children/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
     },
@@ -71393,6 +71397,14 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/scratch",
       "reason": "excluded directory"
     },
     {

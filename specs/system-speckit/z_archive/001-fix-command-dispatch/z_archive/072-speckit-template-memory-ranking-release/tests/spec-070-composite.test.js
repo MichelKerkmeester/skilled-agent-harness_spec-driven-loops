@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Test Suite: Composite Scoring & Search (Spec 070 - Part 2)
+ * Test Suite: Composite Scoring & Search (Spec 070 - Part 2) hygiene-ok
  *
  * Tests:
  * 1. Composite Scoring - combined score calculation, weight normalization, bounds

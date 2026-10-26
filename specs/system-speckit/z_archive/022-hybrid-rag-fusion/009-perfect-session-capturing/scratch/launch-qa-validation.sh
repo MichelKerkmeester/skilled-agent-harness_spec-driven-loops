@@ -786,7 +786,7 @@ $FINDING_FORMAT
 $LEAF_CONSTRAINT"
   sleep 3
 
-  # QA-22: Spec 012 doc completeness
+  # QA-22: Spec 012 doc completeness hygiene-ok
   launch_copilot "QA-22" "gpt-5.3-codex" "$SCRATCH_DIR/qa-22-spec-completeness.md" \
     "You are verifying that all spec 012 documentation is complete and consistent. Read ALL docs:
 

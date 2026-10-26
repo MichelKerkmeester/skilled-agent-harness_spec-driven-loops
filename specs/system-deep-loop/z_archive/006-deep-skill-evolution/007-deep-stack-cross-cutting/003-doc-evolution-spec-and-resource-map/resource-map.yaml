@@ -181,7 +181,7 @@ delta_reconciliation:
   deep-ai-council: { shipped_by_000: "deep-mode docs and tests (bucket marked Complete)", remaining: "subfolder + conformance + catalog/playbook; confirm in audit", confidence: low }
   deep-agent-improvement: { shipped_by_000: "benchmark-threshold + deep-research-followon (bucket marked Complete)", remaining: "subfolder + conformance + catalog/playbook; confirm in audit", confidence: low }
 
-# Deferred backlog. Seeded from 000 deferrals; phase 009 (deep-research backstop) appends here.
+# Deferred backlog. Seeded from 000 deferrals; phase 009 (deep-research backstop) appends here. hygiene-ok
 # Items here are NOT implemented in 008; they are recorded for a follow-on.
 phase5_backlog:
   carried_forward_from_000:
@@ -223,7 +223,7 @@ phase5_backlog:
 # 002a findings (inbound-link inventory + verification baseline) — 2026-05-25
 # ============================================================================
 
-# Which inbound references phase 002 rewrites vs leaves alone.
+# Which inbound references phase 002 rewrites vs leaves alone. hygiene-ok
 # Inbound counts (live state): research 486, review 388, council 219, agent-improvement 54, loop-runtime 27.
 # The counts are dominated by specs/ (historical), which are LEFT ALONE.
 relink_scope:
@@ -238,7 +238,7 @@ relink_scope:
     - "changelog/** in every skill — present-tense discipline: changelogs record point-in-time state"
     - "skipped/inert contract-parity tests referencing stale sk-deep-* paths"
 
-# How phase 002/008 verify, given the environment cannot run vitest.
+# How phase 002/008 verify, given the environment cannot run vitest. hygiene-ok
 verification_gates:
   vitest:
     status: "UNAVAILABLE — root vitest segfaults (EXIT 139) on this machine regardless of pool (threads/forks); pre-existing documented limitation, not caused by 008"

@@ -33,7 +33,8 @@ Current state:
 | `agent-roster-mirror-check.test.cjs` | `agent-roster-mirror-check.cjs` |
 | `command-catalog-mirror-check.test.cjs` | `command-catalog-mirror-check.cjs` |
 | `doctor-phrase-reach.test.cjs` | `doctor-phrase-reach.cjs`: every admitted phrase reaching its bridge on the built advisor, and the stale-build refusal with exit 2 |
-| `sk-code-setup-check.test.cjs` | `sk-code-setup-check.cjs` against throwaway fixture roots: the passing battery, the probe verdicts, the repair line for each failing leg it drives, the provision-step skip and the usage error |
+| `sk-code-setup-check.test.cjs` | `sk-code-setup-check.cjs` against throwaway fixture roots: the passing battery, the probe verdicts, the quality leg's verdicts, the repair line for each failing leg it drives, the provision-step skip and the usage error |
+| `sk-code-quality-config.test.cjs` | `sk-code-quality-config.cjs` against throwaway repositories: the init dry run, an apply and a refused second apply, the folder that leads outside the repository, the tool states, the invalid and missing config, the help text and a source check that it starts no command |
 | `parent-skill-check-invariants.test.cjs` | `parent-skill-check.cjs`, one or more cases per invariant id |
 | `parent-skill-check-command-column.test.cjs` | `parent-skill-check.cjs` command-column checks |
 | `parent-skill-check-leaf-manifest.test.cjs` | `parent-skill-check.cjs` leaf-manifest checks |

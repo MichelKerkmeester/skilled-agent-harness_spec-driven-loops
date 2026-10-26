@@ -12,7 +12,7 @@ CELL_DIR="${OUT_DIR}/cli-copilot-${RUN_N}"
 mkdir -p "$CELL_DIR"
 cp "$PROMPT_FILE" "${CELL_DIR}/prompt.md"
 
-# Concurrency guard: max 3 concurrent copilot processes per Phase 018 convention
+# Concurrency guard: max 3 concurrent copilot processes
 WAITED=0
 while [ "$(pgrep -f 'copilot' | grep -v $$ | wc -l | tr -d ' ')" -ge 3 ]; do
   sleep 2

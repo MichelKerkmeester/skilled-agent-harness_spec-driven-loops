@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.21.0
+version: 2.3.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -118,7 +118,7 @@ IMPLEMENTATION loads the shared organization and naming baseline:
 
 | Intent | Resources |
 | --- | --- |
-| CODE_QUALITY | `sk-code-skilled/assets/checklists/universal-checklist.md` plus the language-matching checklist |
+| CODE_QUALITY | SKILLED only: `sk-code-skilled/assets/checklists/universal-checklist.md` plus the language-matching checklist, both when SKILLED is a resolved surface. A foreign surface loads the floor in `code-quality-standards.md` and its own declared rows |
 | VERIFICATION | `sk-code-skilled/references/shared/alignment-verification-automation.md`, `sk-code-skilled/assets/scripts/verify_alignment_drift.py` |
 | HOOKS | `sk-code-skilled/references/shared/hooks.md` |
 | CONFIG | `sk-code-skilled/references/config/*` |
@@ -239,7 +239,7 @@ DEFAULT_RESOURCE = [
 
 INTENT_SIGNALS = {
     "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
-    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
+    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell", "comment hygiene", "restraint", "yagni", "simplify", "over-engineering", "bloat"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
@@ -268,7 +268,8 @@ RESOURCE_MAP = {
     "CODE_QUALITY": [
         "shared/references/universal/code-quality-standards.md",
         "sk-code-quality/references/code-style-guide.md",
-        "sk-code-skilled/assets/checklists/universal-checklist.md",
+        "sk-code-quality/references/runner-contract.md",
+        "sk-code-skilled/assets/checklists/universal-checklist.md",  # SKILLED only: the house checklist loads when SKILLED resolves, never for a foreign surface
         "sk-code-skilled/assets/checklists/javascript-checklist.md",
         "sk-code-skilled/assets/checklists/typescript-checklist.md",
         "sk-code-skilled/assets/checklists/python-checklist.md",

@@ -8,7 +8,7 @@ trigger_phrases:
   - "scoped repair workflow"
 importance_tier: important
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Workflow Reference - Debugging
@@ -38,7 +38,7 @@ Fix the producer, not the place the symptom surfaced. A patch at the failure sit
 ### When Not to Use
 
 - The work is planned implementation or refactoring with no failing symptom. Use [implementation](./workflow-implement.md).
-- The work is an author-side quality gate with no concrete failing behavior. Use the `sk-code-quality` mode.
+- The work is an author-side quality gate with no concrete failing behavior. Use the `sk-code-quality` mode, which runs `quality-gate.cjs` first.
 - The work is final non-mutating evidence after a fix. Use [verification](./workflow-verify.md).
 - The user wants findings-first review output instead of a repair. Use the `sk-code-review` mode.
 - The task is documentation-only prose with no failing behavior.
@@ -144,7 +144,7 @@ Escalate in the five-part format of `.skilled/repo-rules/root-cause-and-debuggin
 ## 4. HANDOFF BOUNDARIES
 
 - [Implementation](./workflow-implement.md) receives the task when the root cause shows the requested behavior was never built or new files are required.
-- Quality (`sk-code-quality`) receives the changed code after a debug fix.
+- Quality (`sk-code-quality`) receives the changed code after a debug fix. The mode runs `quality-gate.cjs` first, on the files the fix changed.
 - [Verification](./workflow-verify.md) receives the original reproduction step, the before and after observations, the commands and the residual risks.
 - Review (`sk-code-review`) owns non-mutating critique when the user wants a diagnosis without a repair.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// TEST: Spec 071 - SpecKit Level-Based Template Alignment
+// TEST: Spec 071 - SpecKit Level-Based Template Alignment hygiene-ok
 // Tests for Shell Script Functions, JavaScript Template Selection,
 // and Preprocessor Updates
 // ───────────────────────────────────────────────────────────────

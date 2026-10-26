@@ -54,8 +54,9 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` §1 Law 2, SCOPE LOCK.
 3. **INVOKE sk-code** → Read `.skilled/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **FALLBACK**: if `sk-code` returns UNKNOWN or ambiguous routing, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json` and read the top pick at `.data.recommendations[0].skillId`; when it starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN's Summary line, and continue. Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
 4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
-5. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
-6. **RETURN** → Structured RETURN to orchestrator (see §8 format).
+5. **QUALITY** → Run the quality runner from the repository root (`node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`, or `--files <path>...` for the named files) before any completion claim, and read the gate before anything else. `BLOCKED` means fix in place or escalate. `UNVERIFIED` means a required check produced no evidence, so hand each id in `summary.unverified` to verification as an open claim. `NOTHING_CHECKED` is reported as such and never read as clean. `ERROR` stops the gate until its `errors[]` entry is repaired. Load every checklist `checklists[]` names with the `why` it gives, the universal floor among them. Read `gate`, `summary.p0_blocking` and `summary.unverified` into the RETURN `Quality Gate` field. This step reads the run verdict and never produces one, so it makes no passing claim of its own.
+6. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
+7. **RETURN** → Structured RETURN to orchestrator (see §8 format).
 
 ### Stack Delegation Contract
 
@@ -131,7 +132,7 @@ If any required handoff field is missing, empty, or unsupported by the native de
 
 | Mode | Trigger | Focus | Skips From Standard Workflow | RETURN Signals |
 | --- | --- | --- | --- | --- |
-| **1: Full Implementation** | "Implement/build/add feature...", multi-file behavior change, new workflow, or task with acceptance criteria spanning code and tests. | Complete requested behavior using `sk-code` Phase 0-3 as needed. | Skips nothing. Phase 0 may be brief if complexity is low; RECEIVE → READ PACKET → INVOKE `sk-code` → IMPLEMENT → VERIFY → RETURN all required. | `DONE` or `BLOCKED`; changed files; behavior implemented; acceptance criteria covered; quality-gate result; verification command/result; unresolved P1/P2 follow-ups. |
+| **1: Full Implementation** | "Implement/build/add feature...", multi-file behavior change, new workflow, or task with acceptance criteria spanning code and tests. | Complete requested behavior using `sk-code` Phase 0-3 as needed. | Skips nothing. Phase 0 may be brief if complexity is low; RECEIVE → READ PACKET → INVOKE `sk-code` → IMPLEMENT → QUALITY → VERIFY → RETURN all required. | `DONE` or `BLOCKED`; changed files; behavior implemented; acceptance criteria covered; `Quality Gate` result; verification command/result; unresolved P1/P2 follow-ups. |
 | **2: Surgical Fix** | "Fix this bug/error/failing check...", narrow failing path, named function/file, or orchestrator-provided diagnosis. | Minimal corrective edit with regression protection. | Skips broad Phase 0 and unrelated packet expansion when dispatch includes structured context. Does NOT skip targeted read, sk-code, implementation, verification, RETURN evidence. | `DONE` or `BLOCKED`; root cause in one sentence; files changed; regression test/check added or reason omitted; failing command before/after; verification evidence. |
 | **3: Refactor Only** | "Refactor/restructure/clean up this area without behavior change..." with explicit no-behavior-change constraint. | Preserve behavior while improving structure, readability, ownership boundaries, or duplication. | Skips new feature design and product acceptance expansion. Skips behavior changes unless required to preserve existing contracts. Does NOT skip caller/contract reads or verification. | `DONE` or `BLOCKED`; files changed; behavior-preservation statement; compatibility/caller notes; tests or equivalence checks run; intentionally unchanged rough edges. |
 | **4: Test Add** | "Add coverage/test for...", "write regression test...", "cover this case..." where production behavior is intended to stay stable. | Add or adjust tests, fixtures, and minimal test support only. | Skips production implementation unless the test exposes a verified bug or needs a tiny in-scope test seam. Skips broad refactor and feature work. | `DONE` or `BLOCKED`; tests added/changed; scenario covered; production files touched (if any) with reason; test command/result; failure explanation if test exposes existing bug. |
@@ -293,6 +294,7 @@ RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|UNKNOWN_STACK|SCOPE_CONFLICT|LOW_
 **Mode:** <one of the 7 dispatch modes>
 **Files:** <repo-relative paths modified, or (none)>
 **Verification:** <PASS|FAIL|N/A>
+**Quality Gate:** <GATE> | p0_blocking=<n> | unverified=<ids or none>
 **Command:** `<exact command, or N/A>`
 **Exit Code:** <integer, or N/A>
 **First Failing Assertion:** <text, or N/A>
@@ -316,7 +318,7 @@ reason: <one-line recommendation, or none>
 affected_spec_docs: <comma-separated docs, or none>
 ```
 
-**Required fields:** mode, files, verification, command, exit_code, rubric_score, escalation, confidence, not_checked.
+**Required fields:** mode, files, verification, quality_gate, command, exit_code, rubric_score, escalation, confidence, not_checked.
 
 **Conditional fields:** first_failing_assertion (when verification fails), adversarial_summary (when any P0/P1 disagreement occurred), out_of_scope (when P2 follow-ups were observed), spec_drift/update_recommended (when implementation reveals a non-blocking doc update recommendation).
 
@@ -346,7 +348,7 @@ Map `failure_type` from existing escalation classes only: `UNKNOWN_STACK -> unkn
 
 Return BLOCKED with the appropriate escalation classifier in any of:
 - sk-code returns UNKNOWN and the advisor's top pick is not a `local-*` skill → `UNKNOWN_STACK`
-- Verification fails (per §1 step 5 fail-closed contract) → `VERIFY_FAIL`
+- Verification fails (per §1 step 6 fail-closed contract) → `VERIFY_FAIL`
 - Scope conflict detected (file outside orchestrator-named scope) → `SCOPE_CONFLICT`
 - Diagnosis-based @debug handoff is missing required fields → `LOW_CONFIDENCE`
 - Confidence < 80% on a load-bearing decision (per `AGENTS.md` §2 Confidence Thresholds) → `LOW_CONFIDENCE`

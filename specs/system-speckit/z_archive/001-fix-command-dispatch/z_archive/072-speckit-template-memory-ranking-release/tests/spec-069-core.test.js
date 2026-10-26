@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Test Suite: Spec 069 - Template Complexity Detection (Core Features)
+ * Test Suite: Spec 069 - Template Complexity Detection (Core Features) hygiene-ok
  *
  * Part 1: Tests for core complexity detection features:
  * - 5-dimension scoring algorithm

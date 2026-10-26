@@ -1,4 +1,4 @@
-// 014/005 — Synthetic fp32 vs q4 vector comparison.
+// Synthetic fp32 vs q4 vector comparison.
 // Loads HfLocalProvider once under fp32 and once under q4, encodes the same N
 // documents under each, and reports cosine similarity per row + summary stats.
 // A high mean-similarity (e.g. >0.98) on the same corpus signals the two dtypes

@@ -9,7 +9,9 @@
     "sk-code/015-quality-agnostic-gate/003-config-and-doctor",
     "sk-code/015-quality-agnostic-gate/004-doctrine",
     "sk-code/015-quality-agnostic-gate/005-consumers-and-routing",
-    "sk-code/015-quality-agnostic-gate/006-measurement"
+    "sk-code/015-quality-agnostic-gate/006-measurement",
+    "sk-code/015-quality-agnostic-gate/008-runner-limit-closeout",
+    "sk-code/015-quality-agnostic-gate/007-checker-debt-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -56,14 +58,14 @@
       ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+      ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
       ".skilled/skills/sk-code/shared/references/phase-detection.md",
       ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
       ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
       ".skilled/skills/sk-code/shared/references/workflow-verify.md",
       ".skilled/skills/sk-code/ROUTER.md",
-      "001-honest-checker/goal.md",
-      "002-builtin-runner/goal.md",
-      "003-config-and-doctor/goal.md"
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh"
     ],
     "entities": [
       {
@@ -139,6 +141,18 @@
         "source": "derived"
       },
       {
+        "name": "quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+        "source": "derived"
+      },
+      {
         "name": "phase-detection.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
@@ -169,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -191,39 +211,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Iron Law",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
     "created_at": "2026-10-25T23:21:45Z",
-    "last_save_at": "2026-10-26T03:42:59.330Z",
+    "last_save_at": "2026-10-26T12:38:46.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:90686921d6d82413cb38503f24c1338d8e26241c1bb032ad2256c5e7ae108a53",
+    "source_fingerprint": "sha256:ac332066dbc2acf5af236ae76568ab8edd300b0351c74bc10ca4ac6857a262d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d6a0b60e24dc5392ed156f0bc3b14b18de0008a369ddeababf20c161323e5d4"
+      "spec.md": "609bc5dfd3c3c3d6fa6fb256fe32116a8af8e073078c0771f4ce0f9a6d99a859"
     },
     "last_active_at": null
   }

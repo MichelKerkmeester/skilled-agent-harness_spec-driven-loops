@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/025-figma-hosted-from-cli-children",
+  "spec_folder": "mcp-tooling/025-figma-hosted-from-cli-children",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "figma hosted from cli children",
+      "figma hosted server from cli children",
+      "figma hosted from cli children plan",
+      "figma hosted from cli children tasks",
+      "figma hosted from cli children implementation summary"
+    ],
+    "key_topics": [
+      "figma",
+      "hosted",
+      "cli",
+      "children",
+      "server",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "mcp-figma",
+      "documents",
+      "code"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.6.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-wiring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.6.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.6.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mcp-figma` documents the Code Mode path and calls the hosted server out of scope for it",
+    "created_at": "2026-10-26T09:14:04Z",
+    "last_save_at": "2026-10-26T13:35:14.741Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:17213b5e9e1e5567ef6076b5d6d0bc33bac3a3627c8d0654f851cc2507f95d6a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d27f10b1b7cb2b79b1ecd5d0cb4d69b8f59d75e408a81045c1f75b7e1f015e83",
+      "plan.md": "76c13763021382e17f2525141ccc7756ba2565692187a0cf00e82be24f297395",
+      "tasks.md": "336c215f04f9ae98f6bb135fc6a8bd6a87a1790baec9575c8bcd010d00a7bbe7",
+      "implementation-summary.md": "4bf86e4b5e3566fa7ce8fd3cce21c4d485f176f17f99acf03dba9eaa7dcbe0a0"
+    },
+    "last_active_at": null
+  }
+}

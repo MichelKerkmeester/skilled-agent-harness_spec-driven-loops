@@ -128,7 +128,8 @@
     "ci job",
     "sha-pinned action",
     "action to a sha",
-    ".github/workflows/"
+    ".github/workflows/",
+    "comment hygiene"
   ],
   "derived": {
     "trigger_phrases": [

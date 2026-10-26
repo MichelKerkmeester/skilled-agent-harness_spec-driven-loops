@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,19 +44,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/agents/code.md",
+      ".claude/agents/code.md",
+      ".codex/agents/code.toml",
+      ".pi/agents/code.md",
       ".skilled/skills/sk-code/sk-code-review/SKILL.md",
       ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
       ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
-      ".skilled/skills/sk-code/mode-registry.json",
-      ".skilled/skills/sk-code/hub-router.json",
-      ".skilled/skills/sk-code/ROUTER.md",
-      ".skilled/skills/sk-code/graph-metadata.json",
-      ".skilled/skills/sk-code/description.json",
-      ".skilled/skills/sk-code/SKILL.md",
-      ".skilled/skills/sk-code/leaf-manifest.json",
-      ".skilled/agents/code.md",
-      ".claude/agents/code.md"
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      ".skilled/skills/sk-code/mode-registry.json"
     ],
     "entities": [
       {
@@ -102,6 +102,18 @@
         "source": "derived"
       },
       {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
@@ -114,45 +126,27 @@
         "source": "derived"
       },
       {
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "ROUTER.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/ROUTER.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "code.md",
-        "kind": "doc",
-        "path": ".skilled/agents/code.md",
         "source": "derived"
       },
       {
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The @code agent has no quality step, and its RETURN has no field for a gate result, so a change can come back as done with no gate evidence",
     "created_at": "2026-10-25T23:21:52Z",
-    "last_save_at": "2026-10-26T00:00:59.559Z",
+    "last_save_at": "2026-10-26T12:49:33.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee0736ef446a69b8f572d27cba1f388b2bf204313c6703071075fe4f126a42bc",
+    "source_fingerprint": "sha256:f52f4db8bda937bb953636183da761e4ca7af3f6173d9b5c2ab97380378e709a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1a31e74a27aacd4f9da4bc55272a3bd9aaca0ad877ae655ab0f2ed7c6ec24f8c",
-      "plan.md": "b30152c0adfd4f4c4d43b460bff2170b7796f603573da3c2267f71fa97101162",
-      "tasks.md": "3258c23be85485122962d266e65d0831756a813e36bc3d03038b250822e84e1f",
-      "decision-record.md": "8094f9b40fe38b6e09e3f3aea6ffbd97bda8df7eb7b162b077df409447775882",
-      "implementation-summary.md": "d2ff723076400f9800ade8ef47da6445731a6363a78b74e780ceacd0a0ebb487"
+      "spec.md": "dbd42af6acba4c2000edd3e44cfb14332433755acea39e564d29380e61493412",
+      "plan.md": "83dc9009fb8f5456dcc28e0f6685bd774943e1a51ebd912a34f558837ac5b3b7",
+      "tasks.md": "6c9a40e8bc3601609c57a9ed235f33f857a68b2cf8c0bad26476764edf20da06",
+      "decision-record.md": "b7ba5064597569e6e0e7e2df7da5490cfd855f24826f0fc4227df296456ed17d",
+      "implementation-summary.md": "b0383a8030a9c04cce55369b601d24dda519c0871c60bf12b9c8bf948e882d32"
     },
     "last_active_at": null
   }

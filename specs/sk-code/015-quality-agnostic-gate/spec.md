@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
-    last_updated_at: "2026-10-26T03:40:47Z"
+    last_updated_at: "2026-10-26T09:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 002-builtin-runner"
-    next_safe_action: "Start phase 003-config-and-doctor from its own spec, plan and tasks"
+    recent_action: "Closed phase 004-doctrine"
+    next_safe_action: "Start phase 005-consumers-and-routing"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-26-skcode-015"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 50
     open_questions:
       - "Placement of this packet: top level here, or a child of 014 as the design recommends. The operator confirms at program end."
       - "Operator confirmation of the six decisions in section 5."
@@ -59,7 +59,7 @@ _memory:
 | **Parent Packet** | sk-code track |
 | **Predecessor** | `014-code-modes-research` |
 | **Successor** | None |
-| **Handoff Criteria** | Each of the six phases passes `validate.sh --strict` on its own folder, and the whole packet passes recursive strict validation with `RESULT: PASSED` |
+| **Handoff Criteria** | Each phase folder in the map passes `validate.sh --strict` on its own folder, and the whole packet passes recursive strict validation with `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -83,7 +83,7 @@ This packet builds on `specs/sk-code/014-code-modes-research`. Its quality-mode 
 
 ### Purpose
 
-When all six phases ship, the gate runs in any repository. It blocks on what it can prove, runs the checks that the repository names and reports the checks it cannot run. It hands one machine verdict to the agents that act on it. The verdict never claims a pass. It states what was checked, what blocked and what stayed unverified.
+When all seven phases ship, the gate runs in any repository. It blocks on what it can prove, runs the checks that the repository names and reports the checks it cannot run. It hands one machine verdict to the agents that act on it. The verdict never claims a pass. It states what was checked, what blocked and what stayed unverified.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level apart from `goal.md`. All detailed planning, task breakdowns, checklists and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -101,6 +101,7 @@ When all six phases ship, the gate runs in any repository. It blocks on what it 
 - Doctrine: Iron Law 3 is amended, the universal checklist becomes the SKILLED house checklist, and a mechanical floor applies to every surface.
 - Consumers: the verify workflow and the @code RETURN read the envelope. Surfaces declare their own checklists. Routing keywords and the advisor vocabulary change.
 - Measurement on real changes, and a live benchmark report in the existing report format.
+- Checker debt closeout: the ceiling report reads comment text through the checker, bare Python string statements are checked, the whole tree reaches zero findings and the live CI failure run is recorded.
 
 ### Out of Scope
 
@@ -156,6 +157,9 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | `.skilled/skills/sk-code/shared/references/workflow-verify.md` | Modify | 005-consumers-and-routing | Names the envelope fields it reads |
 | `.skilled/skills/sk-code/ROUTER.md` | Modify | 005-consumers-and-routing | CODE_QUALITY keywords and resource rows |
 | `.skilled/skills/sk-code/sk-code-quality/benchmark/reports/` | Create | 006-measurement | Live benchmark report folder and its index row |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh` | Modify | 007-checker-debt-closeout | Reads language, family and comment text through the checker instead of its own scanner |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`, `.skilled/skills/sk-code/sk-code-quality/assets/comment-syntax.json` | Modify | 007-checker-debt-closeout | Template literals and heredocs as strings, and every bare string statement as comment text |
+| The 41 flagged files under `specs/` | Modify | 007-checker-debt-closeout | Live comments rewritten, frozen evidence marked with a per-line `hygiene-ok` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -169,10 +173,12 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 |-------|--------|-------|--------|
 | 1 | 001-honest-checker/ | An honest, wider checker: comment families from one table, span stripping, docstrings, block state, `--json`, reasons and narrowed patterns. No doctrine change | Complete |
 | 2 | 002-builtin-runner/ | The runner with built-in checks only: scope, sensors, checklist resolution, layers, render formats, the envelope grammar, and the hub surface declarations with their reader row | Complete |
-| 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Planned |
-| 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Planned |
-| 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Planned |
+| 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Complete |
+| 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Complete |
+| 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Complete |
 | 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
+| 7 | 007-checker-debt-closeout/ | Closes the checker limitations phase 001 left: the ceiling report reads comment text through the checker, template literals, heredocs and bare string statements, a zero-finding tree and the live CI failure record. Depends on 001 only, and lands before 006 | Complete |
+| 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Complete |
 
 ### Phase Transition Rules
 
@@ -190,6 +196,11 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 003-config-and-doctor | 004-doctrine | The setup battery lists a passing `quality` leg | `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` lists a `quality` leg that reads PASS |
 | 004-doctrine | 005-consumers-and-routing | The drift guards pass on the amended doctrine | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 |
 | 005-consumers-and-routing | 006-measurement | The mirrors and the metadata gate pass | `node .skilled/bin/check-agent-mirror-sync.cjs --all` exits 0, and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0 |
+| 001-honest-checker | 007-checker-debt-closeout | Phase 001 is on main with its checker, family table, ceiling report and suites | `bash .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh` exits 0, and its last line reads `All ceiling report test cases passed` |
+| 007-checker-debt-closeout | 006-measurement | The final checker reports no finding over the whole tree, so phase 6 measures the checker this phase leaves | `git ls-files -z \| xargs -0 python3 -B .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh -- 2>&1 \| wc -l` prints `0` |
+| 008-runner-limit-closeout | 006-measurement | The six requirements pass and the budget command prints five runs under two seconds | `node --test --test-reporter=tap .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` prints `# fail 0`, and the five timed runs each read under `2.00` |
+
+Phase 7 depends on phase 1 only. It builds in parallel with phases 3 and 4, and it must land before phase 6, which measures the final checker. Phase 6 therefore depends on phases 3, 4, 5, 7 and 8.
 <!-- /ANCHOR:phase-map -->
 
 ---

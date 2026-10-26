@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Remove TABLE OF CONTENTS blocks and/or <!-- ANCHOR --> comment lines from markdown.
 
-Shared transform for spec packet 117-skill-anchor-toc-removal.
-  Phase 002 runs with --toc
-  Phase 003 runs with --anchors
+Shared transform for spec packet 117-skill-anchor-toc-removal. hygiene-ok
+  Phase 002 runs with --toc hygiene-ok
+  Phase 003 runs with --anchors hygiene-ok
 
 Design / safety:
 - TOC removal is FENCE-AWARE: a `## TABLE OF CONTENTS` heading inside a fenced code

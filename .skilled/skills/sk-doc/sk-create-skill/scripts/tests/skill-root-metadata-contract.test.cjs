@@ -465,6 +465,66 @@ function testGateRejectsSurfaceDetectionMarkerEntries() {
   }
 }
 
+function testGateAcceptsQualityBlock() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'quality-ok', {
+    'graph-metadata.json': {
+      skill_id: 'quality-ok',
+      quality: {
+        checklists: [
+          { paths: ['src/fixture/'], file: 'references/fixture-surface.md' },
+          { extensions: ['.fixture'], contentMarkers: ['fixture-runtime'], file: 'references/fixture-language.md' },
+        ],
+      },
+    },
+    'leaf-manifest.config.json': { workflowMode: 'quality-ok' },
+    'references/a.md': '# a\n',
+  });
+
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'pass');
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_INVALID_QUALITY'));
+}
+
+/** Check a synthetic root carrying the given quality block. */
+function qualityViolations(skillId, block) {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, skillId, {
+    'graph-metadata.json': { skill_id: skillId, quality: block },
+    'leaf-manifest.config.json': { workflowMode: skillId },
+    'references/a.md': '# a\n',
+  });
+  const result = gate.checkRoot(dir, { fix: true });
+  return result.violations.filter((v) => v.code === 'GRAPH_METADATA_INVALID_QUALITY');
+}
+
+function testGateRejectsMalformedQualityBlock() {
+  // A row scopes a checklist to files and names the checklist. A command would
+  // let a skill run one, and commands come only from the repository's quality
+  // config, so every command-shaped key is refused rather than ignored.
+  const row = { paths: ['src/fixture/'], file: 'references/a.md' };
+  const cases = [
+    ['row argv', { checklists: [{ ...row, argv: ['make', 'lint'] }] }, /unknown key argv/],
+    ['row command', { checklists: [{ ...row, command: 'make lint' }] }, /unknown key command/],
+    ['row run', { checklists: [{ ...row, run: 'make lint' }] }, /unknown key run/],
+    ['block command', { checklists: [row], command: 'make lint' }, /quality holds unknown key command/],
+    ['no selector', { checklists: [{ file: 'references/a.md' }] }, /names no selector/],
+    ['file outside', { checklists: [{ paths: ['src/fixture/'], file: '../a.md' }] }, /relative \.md path/],
+    ['blank selector', { checklists: [{ paths: [' '], file: 'references/a.md' }] }, /must be a non-empty array of non-blank strings/],
+  ];
+  for (const [name, block, pattern] of cases) {
+    const found = qualityViolations('quality-bad', block);
+    assert.equal(found.length, 1, `${name} must fail once`);
+    assert.match(found[0].message, pattern, name);
+  }
+  // A present value that is not a usable block fails even before any row.
+  for (const block of [['references/a.md'], { checklists: [] }]) {
+    const found = qualityViolations('quality-not-a-block', block);
+    assert.equal(found.length, 1, `block ${JSON.stringify(block)} must fail once`);
+  }
+}
+
 function testGateRejectsIntentSignalsBelowFloor() {
   const skillsDir = makeTmpSkillsDir();
   const dir = makeRoot(skillsDir, 'thin-intent-signals', {
@@ -721,6 +781,8 @@ try {
   testGateRejectsSurfaceDetectionWithoutSpecificRole();
   testGateRejectsSurfaceDetectionWithoutMarkers();
   testGateRejectsSurfaceDetectionMarkerEntries();
+  testGateAcceptsQualityBlock();
+  testGateRejectsMalformedQualityBlock();
   testGateRejectsIntentSignalsBelowFloor();
   testGateRejectsEmptyIntentSignalsAndTriggers();
   testGateAcceptsIntentSignalsAtFloor();

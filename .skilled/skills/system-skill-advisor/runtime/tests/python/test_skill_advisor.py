@@ -1106,7 +1106,7 @@ description: Fixture helper for routing tests
                         "uncertainty": 0.12,
                     },
                 ],
-                "/doctor:sk-code": [
+                "/doctor:sk-code setup": [
                     {
                         "skillId": "sk-code",
                         "score": 0.9,
@@ -1114,7 +1114,7 @@ description: Fixture helper for routing tests
                         "uncertainty": 0.12,
                     },
                     {
-                        "skillId": "command-doctor-sk-code",
+                        "skillId": "command-doctor-sk-code-setup",
                         "score": 0.8,
                         "confidence": 0.88,
                         "uncertainty": 0.12,
@@ -1156,8 +1156,8 @@ description: Fixture helper for routing tests
                 failures.append(f"run invocation={orders['please run /doctor:setup for me']}")
             if orders["show me the best order"].index("command-doctor-env") != 2:
                 failures.append(f"plain order={orders['show me the best order']}")
-            if orders["/doctor:sk-code"][0] != "command-doctor-sk-code":
-                failures.append(f"typed bridge={orders['/doctor:sk-code']}")
+            if orders["/doctor:sk-code setup"][0] != "command-doctor-sk-code-setup":
+                failures.append(f"typed bridge={orders['/doctor:sk-code setup']}")
             if orders["check environment and memory"][0] != "command-doctor-env":
                 failures.append(f"command-only order={orders['check environment and memory']}")
             if failures:

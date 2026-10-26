@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 21,
-    "generated": 48,
-    "typescriptActive": 26,
-    "pythonActive": 36
+    "doctorRoutes": 22,
+    "generated": 49,
+    "typescriptActive": 27,
+    "pythonActive": 37
   },
   "entries": [
     {
@@ -913,7 +913,7 @@
       }
     },
     {
-      "id": "command-doctor-sk-code",
+      "id": "command-doctor-sk-code-quality",
       "command": "/doctor:sk-code",
       "skillId": "sk-code",
       "ownerMode": "sk-code",
@@ -921,11 +921,51 @@
       "runtime": {
         "typescript": {
           "enabled": true,
-          "inventoryId": "command-doctor-sk-code",
-          "order": 12,
-          "id": "command-doctor-sk-code",
+          "inventoryId": "command-doctor-sk-code-quality",
+          "order": 26,
+          "id": "command-doctor-sk-code-quality",
           "description": "",
-          "name": "/doctor:sk-code",
+          "name": "/doctor:sk-code quality",
+          "keywords": [
+            "sk-code quality config",
+            "create the quality config file",
+            "which checks does the quality gate run",
+            "add my lint command to the quality gate"
+          ],
+          "intentSignals": [
+            "/doctor:sk-code quality"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-code-quality",
+          "order": 37,
+          "id": "command-doctor-sk-code-quality",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:sk-code quality"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-sk-code-setup",
+      "command": "/doctor:sk-code",
+      "skillId": "sk-code",
+      "ownerMode": "sk-code",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-code-setup",
+          "order": 12,
+          "id": "command-doctor-sk-code-setup",
+          "description": "",
+          "name": "/doctor:sk-code setup",
           "keywords": [
             "sk-code setup check",
             "verify my sk-code surface",
@@ -933,7 +973,7 @@
             "does my sk-code surface route"
           ],
           "intentSignals": [
-            "/doctor:sk-code"
+            "/doctor:sk-code setup"
           ],
           "readOnly": true,
           "domains": [
@@ -943,12 +983,12 @@
         },
         "python": {
           "enabled": true,
-          "inventoryId": "command-doctor-sk-code",
+          "inventoryId": "command-doctor-sk-code-setup",
           "order": 23,
-          "id": "command-doctor-sk-code",
+          "id": "command-doctor-sk-code-setup",
           "description": "",
           "slashMarkers": [
-            "/doctor:sk-code"
+            "/doctor:sk-code setup"
           ]
         }
       }

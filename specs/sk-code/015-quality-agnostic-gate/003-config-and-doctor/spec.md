@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
@@ -104,25 +104,33 @@ Success means a repository commits one reviewed config file that names its own c
 | `.skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json` | Create | The file `init` copies, with schema keys only |
 | `.skilled/skills/sk-code/sk-code-quality/references/quality-config.md` | Create | Schema, discovery, merge, error codes and trust boundary |
 | `.skilled/skills/sk-code/sk-code-quality/SKILL.md` | Modify | One reference line and the minor version bump |
+| `.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md` | Modify | The config flags, the help flags, configured check rows, `suggested_checks` and the new codes (created by phase 2) |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/README.md`, `scripts/lib/README.md` | Modify | Name `quality-config.cjs`, `spawnGroup()`, the new suites and the chained guard windows, and drop the claim that the runner runs no repository command |
 | `.skilled/skills/sk-code/sk-code-quality/changelog/` | Create | The minor-version changelog entry for the config seam |
 | `.skilled/skills/sk-code/changelog/` and the hub version lines | Create and Modify | Hub minor version and changelog, because this phase changes hub-owned playbook pins |
 | `.skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md` | Modify | Eight legs and `legs=8` become nine and `legs=9` |
-| `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md` | Modify | DOC-382 leg count |
+| `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md` | Modify | DOC-382 and DOC-383 leg counts and the battery overview |
+| `.skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md` | Modify | Seven SKIP lines and `skipped=7` become eight and `skipped=8` |
+| `.skilled/skills/sk-code/README.md` | Modify | The doctor paragraph names the quality leg and the quality target, and the newest changelog row moves to 3.3.0.0 |
+| `.skilled/skills/sk-code/leaf-manifest.json`, the sk-code activation manifest and its authored twin | Regenerate | Written by `generate-leaf-manifest.cjs` and `compiled-route-manifest.cjs refresh`, then the twin copied over |
 | `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` | Create | `status`, `init` (dry run until `--apply`) and `check` |
 | `.skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs` | Create | Dry run, apply, refusal and no-spawn cases |
 | `.skilled/commands/doctor/scripts/sk-code-setup-check.cjs` | Modify | Add the quality leg to the battery, after the probe leg in the LEGS array |
 | `.skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs` | Modify | Eight PASS lines and `legs=8` become nine |
+| `.skilled/commands/doctor/scripts/README.markdown`, `scripts/tests/README.markdown` | Modify | Rows for the new script and its suite |
 | `.skilled/commands/doctor/_routes.yaml` | Modify | Add the `/doctor:sk-code` `quality` target after the setup route |
 | `.skilled/commands/doctor/assets/doctor-sk-code-quality.yaml` | Create | Workflow for the quality target |
 | `.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt` | Modify | Argument wording, quality result table and templates |
 | `.skilled/commands/doctor/assets/doctor-sk-code-setup.yaml` | Modify | Eight legs become nine, and `legs=8` becomes `legs=9` |
 | `.skilled/commands/doctor/assets/doctor-setup-presentation.txt` | Modify | One target row for `/doctor:sk-code quality` |
 | `.skilled/commands/doctor/sk-code.md` | Modify | Argument hint, mode routing and the execution target table |
-| `.codex/prompts/doctor-sk-code.md`, `.pi/prompts/doctor-sk-code.md`, `.hermes/prompts/doctor-sk-code.md` | Regenerate | Runtime prompt mirrors, written by their sync scripts and never by hand |
+| `.codex/prompts/doctor-sk-code.md`, `.pi/prompts/doctor-sk-code.md`, `.hermes/prompts/doctor-sk-code.md` | Regenerate | Runtime prompt mirrors, written by their sync scripts and never by hand. Each is a pointer stub to the router, so the sync wrote no file |
+| `.hermes/skills/sk-code/SKILL.md`, `.hermes/skills/sk-code-quality/SKILL.md`, `.hermes/skills/system-skill-advisor/SKILL.md` | Regenerate | Hermes skill copies, written by `sync-skills-hermes.cjs` |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json` | Modify | Two bridge ids replace `command-doctor-sk-code` |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json` | Regenerate | Output of `derive-command-bridges.cjs` |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts`, `runtime/lib/render.ts`, `runtime/scripts/skill_advisor.py` | Modify | Hardcoded bridge id and label move to the new ids |
 | `.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts`, `runtime/tests/python/test_skill_advisor.py` | Modify | Assertions name the new ids |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl` | Modify | The rows that named the old id name the setup bridge |
 | `.skilled/skills/system-skill-advisor/changelog/` and `SKILL.md` | Create and Modify | Patch version and changelog for the bridge rename |
 | `specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md` | Create | Packet changelog, written when the phase closes |
 <!-- /ANCHOR:scope -->
@@ -161,6 +169,7 @@ Success means a repository commits one reviewed config file that names its own c
 | REQ-018 | Versions and changelogs: the sk-code-quality skill takes a minor bump with its changelog, the sk-code hub takes a minor bump with its changelog, system-skill-advisor takes a patch bump with its changelog, and the packet changelog is written when the phase closes. |
 | REQ-019 | The Codex, Pi and Hermes prompt mirrors of `/doctor:sk-code` are regenerated by their sync scripts, and each script's `--check` form exits 0. No mirror file is edited by hand. |
 | REQ-020 | The hub playbook entries and the battery test that name eight legs or `legs=8` name nine legs or `legs=9` after this phase. |
+| REQ-021 | `quality-gate.cjs` and `sk-code-quality-config.cjs` each accept `--help` and `-h`. Either flag prints a short plain-text usage to stdout and exits 0: one line per flag, the exit codes and the config discovery order. Neither flag reads a config, starts a process or writes a file. Before this phase, `quality-gate.cjs --help` returned a `USAGE` envelope with exit 3. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -254,8 +263,8 @@ Success means a repository commits one reviewed config file that names its own c
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Open question: which flag names does phase 1 publish for ticket prefixes, extension families and extra patterns? Task T002 answers it. The answer decides the argument names in task T012.
-- Open question: does the program need Windows support for configured commands? The design is silent. This phase targets POSIX shells, and Windows behavior stays UNKNOWN until an operator decides.
+- Answered: phase 1 publishes `--ticket-prefix PREFIX`, `--extension EXT=FAMILY` and `--extra-pattern REGEX`, each repeatable (task T002). Task T012 passes the config values through those flags.
+- Still open for the operator: does the program need Windows support for configured commands? The design is silent. This phase targets POSIX, where `spawnGroup()` kills the whole process group (ADR-013), and Windows behavior stays UNKNOWN until an operator decides.
 <!-- /ANCHOR:questions -->
 
 ---

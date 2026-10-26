@@ -20,9 +20,9 @@
 {"id":"doctor-b-git-06","prompt":"run /doctor:git setup","expected_top":"command-doctor-git-setup","expected_second":null,"wave":"B-git"}
 {"id":"doctor-b-git-07","prompt":"see the output of `/doctor:git setup`","expected_top":"sk-git","expected_second":"command-doctor-git-setup","wave":"B-git"}
 {"id":"doctor-b-git-08","prompt":"fix the git hook that /doctor:git setup lists","expected_top":"sk-git","expected_second":"command-doctor-git-setup","wave":"B-git"}
-{"id":"doctor-b-skcode-01","prompt":"sk-code setup check","expected_top":"sk-code","expected_second":"command-doctor-sk-code","wave":"B-sk-code"}
-{"id":"doctor-b-skcode-02","prompt":"does my sk-code surface route","expected_top":"sk-code","expected_second":"command-doctor-sk-code","wave":"B-sk-code"}
-{"id":"doctor-b-skcode-03","prompt":"/doctor:sk-code","expected_top":"command-doctor-sk-code","expected_second":null,"wave":"B-sk-code"}
+{"id":"doctor-b-skcode-01","prompt":"sk-code setup check","expected_top":"sk-code","expected_second":"command-doctor-sk-code-setup","wave":"B-sk-code"}
+{"id":"doctor-b-skcode-02","prompt":"does my sk-code surface route","expected_top":"sk-code","expected_second":"command-doctor-sk-code-setup","wave":"B-sk-code"}
+{"id":"doctor-b-skcode-03","prompt":"/doctor:sk-code setup","expected_top":"command-doctor-sk-code-setup","expected_second":null,"wave":"B-sk-code"}
 {"id":"doctor-b-advisor-01","prompt":"skill advisor rebuild","expected_top":"system-skill-advisor","expected_second":"command-doctor-skill-advisor-rebuild","wave":"B-skill-advisor"}
 {"id":"doctor-b-advisor-02","prompt":"skill advisor recommends the wrong skill","expected_top":"system-skill-advisor","expected_second":"command-doctor-skill-advisor-tune","wave":"B-skill-advisor"}
 {"id":"doctor-b-advisor-03","prompt":"skill graph freshness","expected_top":"system-skill-advisor","expected_second":"command-doctor-skill-advisor-skill-graph-freshness","wave":"B-skill-advisor"}

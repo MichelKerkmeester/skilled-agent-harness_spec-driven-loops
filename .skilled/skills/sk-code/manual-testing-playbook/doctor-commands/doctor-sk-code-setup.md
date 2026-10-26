@@ -1,7 +1,7 @@
 ---
 title: "DOC-382 -- Doctor sk-code setup"
-description: "Manual scenario validating that /doctor:sk-code setup runs the eight-leg read-only setup battery, maps its exit codes to STATUS=OK, STATUS=FAIL and STATUS=ERROR, and writes nothing."
-version: 1.1.1.0
+description: "Manual scenario validating that /doctor:sk-code setup runs the nine-leg read-only setup battery, maps its exit codes to STATUS=OK, STATUS=FAIL and STATUS=ERROR and writes nothing."
+version: 1.1.2.0
 id: doctor-commands-doctor-sk-code-setup
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates `/doctor:sk-code setup`, the read-only battery that reports whether the sk-code surface can route end to end. The battery runs eight legs in order: the shared frontmatter package resolves (provisioning), the parent hub passes its structural invariants (parent-skill), the root metadata manifests are fresh (root-metadata), the compiled-route guard finds no stale or drifted hub (guard), the served runtime copies match their authored closure (sync), the sk-code drift guards pass (drift-guards), the derived metadata is fresh (derived-freshness), and a probe prompt actually routes through the compiled router (probe).
+This scenario validates `/doctor:sk-code setup`, the read-only battery that reports whether the sk-code surface can route end to end. The battery runs nine legs in order: the shared frontmatter package resolves (provisioning), the parent hub passes its structural invariants (parent-skill), the root metadata manifests are fresh (root-metadata), the compiled-route guard finds no stale or drifted hub (guard), the served runtime copies match their authored closure (sync), the sk-code drift guards pass (drift-guards), the derived metadata is fresh (derived-freshness), a probe prompt actually routes through the compiled router (probe) and the quality runner is ready: `python3` is on PATH, its runner and checker are executable, its two tables parse, its tests pass and a fixed quality prompt routes to `sk-code-quality` (quality).
 
 Every leg runs in its check-only form, and each failing leg prints the command that repairs it instead of applying one, so the run writes nothing. The probe is the one leg whose exit code proves nothing on its own, because the legacy stub also exits 0, so it passes only on a parsed `action: "route"` decision.
 
@@ -19,15 +19,15 @@ Every leg runs in its check-only form, and each failing leg prints the command t
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Prove the clean battery maps exit 0 to `STATUS=OK legs=8`, the prompt flag reaches the probe line, a bad argument maps exit 2 to a usage error, a nested metadata file makes the parent-skill leg fail, the compiled-routing kill-switch makes the probe leg fail, and no run writes a file.
+- Objective: Prove the clean battery maps exit 0 to `STATUS=OK legs=9`, the prompt flag reaches the probe line, a bad argument maps exit 2 to a usage error, a nested metadata file makes the parent-skill leg fail, the compiled-routing kill-switch makes the probe and quality legs fail and no run writes a file.
 - Playbook ID: DOC-382.
 - Real user request: `Run the doctor sk-code setup check and tell me whether the sk-code surface passes its setup battery.`
 - Prompt: `Run the doctor sk-code setup check and tell me whether the sk-code surface passes its setup battery.`
-- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, and provisioned once so the built runtime and dependencies are present. The tree is clean, so all eight legs pass, and no probe file exists at the nested metadata path.
-- Expected execution process: Run the battery on the clean tree and capture its eight PASS lines, its last line and its exit code, repeat it with an operator prompt, pass an unknown argument, add a nested `graph-metadata.json` and rerun, remove the probe, run once with `SPECKIT_COMPILED_ROUTING=0`, and confirm the tree is unchanged after every step.
-- Expected signals: The clean run exits 0 with the header line `/doctor:sk-code setup (read-only; writes nothing)`, eight PASS lines in the order provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness and probe, and the last line `STATUS=OK legs=8`. With `--prompt=<text>` the probe line ends with `--prompt "<text>"` and the run still exits 0. Any other argument prints `Usage: node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs [--prompt=<text>]` and exits 2 with no battery output. Through the real slash command a bad argument is rejected by the router before the battery runs, printing the presentation's argument failure ending `STATUS=FAIL ERROR="unknown_argument"`, and the script's own exit 2 maps to `STATUS=ERROR` only when it is run directly. A nested `graph-metadata.json` makes the parent-skill leg report its failing invariants, print the `repair:` line `fix each FAIL line above, then rerun node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code`, and end `STATUS=FAIL failed=1 skipped=0` with exit 1. With `SPECKIT_COMPILED_ROUTING=0` the probe leg reports `served the legacy stub because SPECKIT_COMPILED_ROUTING="0" switches compiled routing off`, prints the `repair:` line `unset SPECKIT_COMPILED_ROUTING, then rerun node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`, and ends `STATUS=FAIL failed=1 skipped=0` with exit 1. Exit 0 maps to `STATUS=OK`, exit 1 to `STATUS=FAIL` and exit 2 to `STATUS=ERROR`. `git status --porcelain` prints nothing after every step, and each battery run takes about 35 seconds.
+- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain` and provisioned once so the built runtime and dependencies are present. The tree is clean, so all nine legs pass, and no probe file exists at the nested metadata path.
+- Expected execution process: Run the battery on the clean tree and capture its nine PASS lines, its last line and its exit code, repeat it with an operator prompt, pass an unknown argument, add a nested `graph-metadata.json` and rerun, remove the probe, run once with `SPECKIT_COMPILED_ROUTING=0` and confirm the tree is unchanged after every step.
+- Expected signals: The clean run exits 0 with the header line `/doctor:sk-code setup (read-only; writes nothing)`, nine PASS lines in the order provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness, probe and quality and the last line `STATUS=OK legs=9`. With `--prompt=<text>` the probe line ends with `--prompt "<text>"` and the run still exits 0. Any other argument prints `Usage: node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs [--prompt=<text>]` and exits 2 with no battery output. Through the real slash command a bad argument is rejected by the router before the battery runs, printing the presentation's argument failure ending `STATUS=FAIL ERROR="unknown_argument"`, and the script's own exit 2 maps to `STATUS=ERROR` only when it is run directly. A nested `graph-metadata.json` makes the parent-skill leg report its failing invariants, print the `repair:` line `fix each FAIL line above, then rerun node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` and end `STATUS=FAIL failed=1 skipped=0` with exit 1. With `SPECKIT_COMPILED_ROUTING=0` the probe leg reports `served the legacy stub because SPECKIT_COMPILED_ROUTING="0" switches compiled routing off`, prints the `repair:` line `unset SPECKIT_COMPILED_ROUTING, then rerun node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`, the quality leg reports `route: the quality prompt did not route to sk-code-quality` with its own `repair:` line and the run ends `STATUS=FAIL failed=2 skipped=0` with exit 1. Exit 0 maps to `STATUS=OK`, exit 1 to `STATUS=FAIL` and exit 2 to `STATUS=ERROR`. `git status --porcelain` prints nothing after every step, and each battery run takes about 35 seconds.
 - Desired user-visible outcome: One per-leg result table rendered through the presentation contract, a final status that matches the battery's exit code, and a named repair command for each failing leg.
-- Pass/fail: PASS if the clean run exits 0 with `STATUS=OK legs=8`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, both failure runs exit 1 with their named `repair:` lines, and no file is written.
+- Pass/fail: PASS if the clean run exits 0 with `STATUS=OK legs=9`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, both failure runs exit 1 with their named `repair:` lines and no file is written.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
@@ -44,35 +44,35 @@ Run the doctor sk-code setup check and tell me whether the sk-code surface passe
 
 1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing. Run every step below inside the environment.
 2. If the environment has no dependencies yet, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .`.
-3. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the header line, the eight PASS lines, the last line and the exit code.
+3. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the header line, the nine PASS lines, the last line and the exit code.
 4. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs --prompt="review my typescript module for jank"` and confirm the probe line carries the prompt.
 5. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs --bogus` and capture the usage line and the exit code.
 6. Add the probe: run `echo '{}' > .skilled/skills/sk-code/sk-code-skilled/graph-metadata.json`.
 7. Rerun `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the parent-skill failure, its `repair:` line and the exit code.
-8. Restore: run `rm .skilled/skills/sk-code/sk-code-skilled/graph-metadata.json` and confirm the battery returns to `STATUS=OK legs=8`.
-9. Run `SPECKIT_COMPILED_ROUTING=0 node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the probe failure, its `repair:` line and the exit code.
+8. Restore: run `rm .skilled/skills/sk-code/sk-code-skilled/graph-metadata.json` and confirm the battery returns to `STATUS=OK legs=9`.
+9. Run `SPECKIT_COMPILED_ROUTING=0 node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the probe and quality failures, their `repair:` lines and the exit code.
 10. Confirm `git status --porcelain` prints nothing after every step.
 
 ### Expected
 
-The battery runs its eight legs in order from the repository root and prints one verdict line per leg with the command it ran. The parent-skill leg prints `PASS: 3b: mode-registry.json declares 3 modes` and `PASS: 3g: all 1 surface packet(s) are read-only evidence-base and advisor-invisible` for `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. The clean tree passes every leg, so the run ends `STATUS=OK legs=8` and the route exits 0. The prompt flag is the only accepted argument, and the probe line shows the operator's own prompt.
+The battery runs its nine legs in order from the repository root and prints one verdict line per leg with the command it ran. The parent-skill leg prints `PASS: 3b: mode-registry.json declares 3 modes` and `PASS: 3g: all 1 surface packet(s) are read-only evidence-base and advisor-invisible` for `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. The clean tree passes every leg, so the run ends `STATUS=OK legs=9` and the route exits 0. The prompt flag is the only accepted argument, and the probe line shows the operator's own prompt.
 
-A bad argument fails before any leg runs, prints the usage line on standard error and exits 2, which the route maps to `STATUS=ERROR`. The nested metadata probe is reported rather than deleted, the repair command names the checker to rerun, and the restore step returns the tree to its passing state. The kill-switch run keeps the other seven legs passing and fails only the probe, because the flag deliberately serves the legacy stub. No step writes a file, so the working tree is identical after the run.
+A bad argument fails before any leg runs, prints the usage line on standard error and exits 2, which the route maps to `STATUS=ERROR`. The nested metadata probe is reported rather than deleted, the repair command names the checker to rerun and the restore step returns the tree to its passing state. The kill-switch run keeps the other seven legs passing and fails the probe and the quality leg, because the flag deliberately serves the legacy stub and both legs need a routed decision. No step writes a file, so the working tree is identical after the run.
 
 Through the slash command the router rejects a bad argument before the workflow loads and prints the presentation's argument failure ending `STATUS=FAIL ERROR="unknown_argument"`, while the script's own exit 2 maps to `STATUS=ERROR` only when it is run directly.
 
 ### Evidence
 
-- The clean run's header line, eight PASS lines, `STATUS=OK legs=8` line and exit code.
+- The clean run's header line, nine PASS lines, `STATUS=OK legs=9` line and exit code.
 - The probe line from the `--prompt` run and its exit code.
 - The usage line and exit code from the bad-argument run.
 - The parent-skill failure output with its FAIL detail lines and `repair:` line, and its exit code.
-- The kill-switch run's probe detail, `repair:` line and exit code.
+- The kill-switch run's probe and quality details, their `repair:` lines and the exit code.
 - The `git status --porcelain` output after every step.
 
 ### Pass / Fail
 
-- **Pass**: The clean run exits 0 with `STATUS=OK legs=8`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, the nested metadata probe and the kill-switch run each exit 1 with their named `repair:` lines, and no file is written.
+- **Pass**: The clean run exits 0 with `STATUS=OK legs=9`, the prompt flag reaches the probe line, the bad argument exits 2 with the usage line, the nested metadata probe and the kill-switch run each exit 1 with their named `repair:` lines and no file is written.
 - **Fail**: A leg fails on the clean tree, the prompt flag is ignored or rejected, the bad argument runs the battery or exits with any other code, a failure run omits its `repair:` line or ends with a different status line, or any step writes a file.
 
 ### Failure Triage

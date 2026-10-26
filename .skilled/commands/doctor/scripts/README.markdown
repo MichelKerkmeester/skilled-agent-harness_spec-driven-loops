@@ -44,6 +44,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- route-validate.py
 +-- route-validate.sh
 +-- release-update.cjs
++-- sk-code-quality-config.cjs
 +-- sk-code-setup-check.cjs
 +-- skill-graph-freshness.cjs
 +-- tests/            # one suite per script, plus run-all.sh
@@ -65,7 +66,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `parent-skill-check.cjs` | Audits parent skill hubs against structural and routing invariants. |
 | `release-update.cjs` | Plans, aligns, applies, rolls back and records framework release bases for the five `/doctor:update` workflows. |
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
-| `sk-code-setup-check.cjs` | Runs the sk-code setup battery from a repository root: one verdict per setup leg, one repair command per failing leg, and no writes. |
+| `sk-code-setup-check.cjs` | Runs the sk-code setup battery from a repository root: one verdict per setup leg, one repair command per failing leg and no writes. Its quality leg runs the quality runner's own tests, which build throwaway repositories under the OS temp folder and remove them. |
+| `sk-code-quality-config.cjs` | Reports which quality config the sk-code quality gate reads and whether each tool it names is on PATH, validates that config and creates `.sk-code/quality.json` once from the shipped template for `/doctor:sk-code quality`. It never runs a command the config names. It exits 0 on success, 1 on an invalid or missing config or a refused init and 2 on a usage error or outside a git repository. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
 | `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
 | `git-hook-gates.cjs` | Lists the shipped hook gates from `scripts/git-hooks/lib/gates.tsv` with their saved `speckit.hooks.<key>` values, and sets or unsets one in local or global git config for `/doctor:git hooks`. Refuses the per-push approvals. |
@@ -126,6 +128,7 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `node .skilled/commands/doctor/scripts/git-hook-gates.cjs list` | Show every hook gate and its saved setting. |
 | `node .skilled/commands/doctor/scripts/git-standards.cjs status` | Show which commit, PR and branch rules are enforced, and from where. |
 | `node .skilled/commands/doctor/scripts/git-setup-check.cjs` | Check which sk-git hooks, rules and settings are live in this repository. |
+| `node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status` | Show which quality config the gate reads and whether each tool it names is on PATH. |
 | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Check this repository's OpenCode plugins on OpenCode 1 and 2. |
 | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1\|v2\|both` | Choose the family to check. The default is `both`. |
 | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --json` | Print the JSON summary on stdout instead of the human lines. |
@@ -162,6 +165,7 @@ On this repository all legs pass on OpenCode 1.19.3 and 2.0.32. OpenCode 1.19.3 
 | `git-hook-gates.cjs` | `list` is read-only. `set` is a dry run until `--apply`, which writes only `speckit.hooks.<key>` in local or global git config. |
 | `git-standards.cjs` | `status` and `check` are read-only. `init`, `set` and `disable` are dry runs until `--apply`, which writes only `.sk-git/` or the `skgit.contractDir` directory, never the shipped sk-git templates. |
 | `git-setup-check.cjs` | Read-only. It writes no file and no git config value, and calls no allocator or `--apply` mode. |
+| `sk-code-quality-config.cjs` | `status` and `check` are read-only. `init` is a dry run until `--apply`, which creates only `.sk-code/quality.json` and refuses with `CONFIG_EXISTS` when that file exists. |
 | `opencode-version-battery.cjs` | The battery itself writes only the `--out` file and temporary folders it removes when each step ends. The private server's folder is also removed on `SIGINT` and `SIGTERM`, and the server is stopped. The import check runs each plugin's v1 factory in a child process rooted at the repository, so anything a plugin does when it loads happens during the check. It never touches the shared v2 service and never prints the private server's password. OpenCode 1 writes into a temporary data folder, not the user's. |
 
 Do not invoke a mutating path from a route classified as read-only.
@@ -183,7 +187,7 @@ Each script can be pointed at a fixture tree, which is how the tests run without
 | Script | Override |
 |---|---|
 | `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs`, `mcp-doctor.sh`, `release-update.cjs` | `--root <dir>` |
-| `git-hook-gates.cjs`, `git-standards.cjs`, `git-setup-check.cjs` | `--repo <dir>`. `git-hook-gates.cjs` also reads `GATE_REGISTRY`, and `git-setup-check.cjs` also takes `--tool <name>` |
+| `git-hook-gates.cjs`, `git-standards.cjs`, `git-setup-check.cjs`, `sk-code-quality-config.cjs` | `--repo <dir>`. `git-hook-gates.cjs` also reads `GATE_REGISTRY`, and `git-setup-check.cjs` also takes `--tool <name>` |
 | `audit_descriptions.py`, `route-validate.sh` | `--repo-root <dir>`. `route-validate.sh` also reads `REPO_ROOT`, `ROUTES_FILE`, `DOCTOR_DIR` and `ASSETS_DIR` |
 | `check-mcp-mutation-class.sh` | the repository root as its first argument |
 | `parent-skill-check.cjs` | `PARENT_HUB_CHECK_COMMANDS_DIR` for the commands tree. `PARENT_HUB_CHECK_STRICT=0` reports advisory findings as warnings, and hard invariants still fail |

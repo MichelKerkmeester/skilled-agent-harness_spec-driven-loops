@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// TEST RUNNER - Spec 072 Test Infrastructure
+// TEST RUNNER - Spec 072 Test Infrastructure hygiene-ok
 // Discovers and runs all *.test.js files in the tests directory
 // ───────────────────────────────────────────────────────────────
 'use strict';

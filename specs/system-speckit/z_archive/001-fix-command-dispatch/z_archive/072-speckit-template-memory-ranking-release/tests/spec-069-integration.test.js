@@ -2,14 +2,14 @@
 'use strict';
 
 /**
- * Spec 069 Integration Tests - Level-Based Template Architecture
+ * Spec 069 Integration Tests - Level-Based Template Architecture hygiene-ok
  *
  * Part 2: Integration Features
  * - Create-Spec-Folder Script Integration (get_level_templates_dir)
  * - Expand-Template Integration (getTemplatesDir)
  * - Level Folder Structure Validation
  *
- * Reference: specs/003-memory-and-spec-kit/069-speckit-template-complexity/
+ * Reference: specs/003-memory-and-spec-kit/069-speckit-template-complexity/ hygiene-ok
  *
  * Run: node tests/spec-069-integration.test.js
  */

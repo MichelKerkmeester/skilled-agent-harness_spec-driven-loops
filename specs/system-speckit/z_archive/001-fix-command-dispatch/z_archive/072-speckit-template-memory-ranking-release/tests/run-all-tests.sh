@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # ───────────────────────────────────────────────────────────────
-# TEST RUNNER - Spec 072 Test Infrastructure (Shell Wrapper)
+# TEST RUNNER - Spec 072 Test Infrastructure (Shell Wrapper) hygiene-ok
 # Runs Node.js tests and any shell-based tests with colored output
 # ───────────────────────────────────────────────────────────────
 

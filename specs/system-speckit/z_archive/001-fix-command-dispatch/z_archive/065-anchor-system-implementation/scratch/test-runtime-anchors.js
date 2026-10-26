@@ -9,7 +9,7 @@
  * 4. Edge cases (nested, broken) are handled gracefully
  *
  * @created 2026-01-15
- * @spec 065-anchor-system-implementation
+ * @spec 065-anchor-system-implementation hygiene-ok
  */
 
 'use strict';

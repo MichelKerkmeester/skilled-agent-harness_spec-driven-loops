@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill metadata drift gate"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Root Metadata Contract
@@ -128,6 +128,7 @@ Beyond presence and forbidden files, the gate enforces:
 - **Generated freshness.** Every class-required generated file is regenerated and byte-compared, including when the committed file is absent.
 - **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
 - **Optional surface detection block.** `graph-metadata.json` may carry a `surface_detection` object. When the key is present, the value must be an object. It needs a non-blank `label` and a `role` of `specific`. It also needs at least one non-empty marker array among `pathMarkers`, `fileMarkers` and `contentMarkers`. Each marker array that is present must hold only non-blank strings. Every broken rule reports one `GRAPH_METADATA_INVALID_SURFACE_DETECTION` finding, since the surface detectors would otherwise skip the block without a word.
+- **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row names its checklist file in `file`, a relative `.md` path inside the skill root, and scopes it with at least one selector: `paths`, `extensions` or `contentMarkers`. Every selector present must be a non-empty array of non-blank strings, and an `extensions` entry must start with a dot. A row carries checklists only, because commands come from the repository's quality config and never from a skill, so any other key at block or row level is refused, `argv`, `command` and `run` included. Every broken rule reports one finding under the quality code in the table below, since the quality runner reads these rows for the files that resolve to the skill's surface, and a block the gate let through would otherwise cover no file, or the wrong one, without a word. A block contributes nothing unless the same file also declares a `surface_detection`, because that surface is what resolves a file to these rows.
 
 ### Violation codes
 
@@ -145,6 +146,7 @@ Beyond presence and forbidden files, the gate enforces:
 | `GRAPH_METADATA_INVALID` | `graph-metadata.json` is not valid JSON or is not a JSON object |
 | `GRAPH_METADATA_UNKNOWN_KEY` | `graph-metadata.json` carries a top-level key the gate does not recognise |
 | `GRAPH_METADATA_INVALID_SURFACE_DETECTION` | A present `surface_detection` breaks one rule of the optional block described in the enforcement list |
+| `GRAPH_METADATA_INVALID_QUALITY` | A present `quality` breaks one rule of the optional block described in the enforcement list |
 | `INTENT_SIGNALS_BELOW_FLOOR` | `intent_signals` holds fewer than eight entries |
 | `INTENT_SIGNALS_AND_TRIGGERS_EMPTY` | `intent_signals` and `derived.trigger_phrases` are both empty |
 

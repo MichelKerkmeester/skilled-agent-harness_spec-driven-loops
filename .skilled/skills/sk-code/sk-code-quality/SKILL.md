@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.6.0.0
+version: 1.11.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -90,7 +90,7 @@ Phase 1 Implementation writes or changes files
 
 - `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` hold the few surface-neutral JavaScript and CSS checks no surface checklist states, loaded for `.js` or `.css` targets on top of the surface's own language checklist. They carry no surface house style: naming, header form, section dividers and init patterns come from the surface checklist. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
-- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file and runs no command a repository names. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids.
+- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file. The only commands it runs beyond its own are the ones a repository's committed `.sk-code/quality.json` names, each as an argv array under a deadline and the workspace guard, and a command a manifest implies is reported as a suggestion it never runs. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids, and `references/quality-config.md` holds the repository config: its schema, discovery order, merge rule and trust boundary.
 - `assets/quality-defaults.json` holds the runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns. It names no command.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate. The runner calls it once per run with `--json`.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
@@ -106,6 +106,7 @@ Phase 1 Implementation writes or changes files
 | ALWAYS | Before any implementation-done claim | `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md`, `references/code-style-guide.md` |
 | ALWAYS | Any quality-gate invocation on changed files | `scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file |
 | CONDITIONAL | The verdict lists a checklist | Every file in the runner's `checklists[]`, each with the `why` the verdict gives |
+| CONDITIONAL | The repository has or needs `.sk-code/quality.json`, or the verdict reports a configured check, a config error or a suggestion | `references/quality-config.md` |
 | CONDITIONAL | SKILLED is a resolved surface of the target | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
 | CONDITIONAL | A direct check on one file, outside a runner call | `scripts/check-comment-hygiene.sh` |
 | CONDITIONAL | `.js` or `.css` target, for the surface-neutral additions to the surface's own language checklist | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md`, `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
@@ -183,6 +184,7 @@ RESOURCE_MAP = {
         "assets/code-quality-checklist/overview-header-and-comments.md",
         "assets/code-quality-checklist/naming-init-formatting-and-css.md",
         "assets/code-quality-checklist/verification-quick-reference-and-related.md",
+        "references/quality-config.md",
     ],
 }
 ```
@@ -219,7 +221,7 @@ The declarations behind the target-path checklist map stay authoritative, and th
 
 ### P0/P1/P2 Author Checks
 
-The tiers are the ones section 3 of `../shared/references/universal/code-quality-standards.md` defines.
+The tier rules and the P0 categories live in [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md): the tiers in its section 2, and the P0 categories with the mechanical floor in its section 3.
 
 | Severity | Meaning | Gate Effect |
 | --- | --- | --- |
@@ -283,12 +285,12 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 6. Never broaden scope into cleanup or refactor work unrelated to the gate failure.
 7. Never allow ephemeral artifact labels in code comments; preserve durable WHY only.
 8. Never add a packet-local `graph-metadata.json`.
-9. Never run a command the repository layer does not name. The runner runs built-in checks only, and this mode adds no command of its own.
+9. Never run a command the repository layer does not name. The runner runs its built-in checks and the commands the repository's committed config names, and this mode adds no command of its own.
 10. Never read `NOTHING_CHECKED` or `UNVERIFIED` as clean. Each names evidence that does not exist yet.
 
 ### ⚠️ ESCALATE IF
 
-1. Surface detection is ambiguous after reading `../shared/references/stack-detection.md`.
+1. A required P0 check is UNVERIFIED and only the operator can name or install its tool.
 2. The correct checklist cannot be identified from the target path.
 3. A P0 issue requires new files, new behavior, or scope beyond an in-place quality fix.
 4. Comment-hygiene enforcement layers disagree on a blocking result.
@@ -333,6 +335,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - [`assets/code-quality-checklist/overview-header-and-comments.md`](assets/code-quality-checklist/overview-header-and-comments.md) - Surface-neutral JavaScript and CSS additions, loaded for `.js` or `.css` targets with the surface's own language checklist.
 - [`references/runner-contract.md`](references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
+- [`references/quality-config.md`](references/quality-config.md) - The repository config `.sk-code/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
 - [`assets/quality-defaults.json`](assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.
 - [`assets/checklists/universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
 - [`assets/checklists/skill-authoring.md`](../sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.

@@ -105,7 +105,7 @@ QUALIFIED_RELOCATIONS = [
     ("../../010-hook-parity/010-copilot-wrapper-schema-fix/",         "../../010-hook-parity/006-copilot-wrapper-schema-fix/"),
     ("../../010-hook-parity/011-copilot-writer-wiring/",              "../../010-hook-parity/007-copilot-writer-wiring/"),
     ("../../010-hook-parity/012-docs-impact-remediation/",            "../../010-hook-parity/008-docs-impact-remediation/"),
-    # 010-hook-parity slots that MOVED OUT to 008/007.
+    # Hook-parity slots that MOVED OUT to the advisor and code-graph wrappers.
     ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../006-skill-advisor/004-advisor-hook-surface-integration/"),
     ("../../010-hook-parity/002-skill-graph-daemon-native-advisor-tools/", "../../006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/"),
     ("../../010-hook-parity/006-skill-advisor-plugin-hardening/",     "../../006-skill-advisor/002-advisor-plugin-hardening/"),
@@ -131,7 +131,7 @@ QUALIFIED_RELOCATIONS = [
 
 # Per-source-tree CROSS-tree relocations: when a sibling moved to a different wrapper, the relative path
 # changes from `../<old>/` to `../../<new-wrapper>/<new>/`.
-# Already covered for 010-hook-parity in ADVISOR_RELOCATIONS. Add for 008/007 trees.
+# Hook-parity sources are already covered in ADVISOR_RELOCATIONS. The advisor and code-graph trees need their own maps.
 CROSS_TREE_FROM_008 = {
     # When the file is inside 006-skill-advisor and references something that USED TO live in 010 alongside it
     # but is now in 010-hook-parity (after rename + renumber):
@@ -206,7 +206,7 @@ def apply_to_text(text: str, tree: str) -> tuple[str, list[tuple[str, str, int]]
         for old, (new_wrapper, new_name) in CROSS_TREE_FROM_007.items():
             replace(f"../{old}/", f"../../{new_wrapper}/{new_name}/")
 
-    # 4. Cross-tree from 010-hook-parity to 008/007 (sibling form).
+    # 4. Cross-tree from the hook-parity packet to the advisor and code-graph packets (sibling form).
     if tree == "010-hook-parity":
         for old, (new_wrapper, new_name) in ADVISOR_RELOCATIONS.items():
             replace(f"../{old}/", f"../../{new_wrapper}/{new_name}/")

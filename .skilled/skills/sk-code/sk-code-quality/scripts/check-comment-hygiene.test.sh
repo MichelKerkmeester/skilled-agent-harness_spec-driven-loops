@@ -12,15 +12,18 @@ trap cleanup EXIT
 
 failures=0
 
+# Checks one fixture: its exit code, and every later argument as text the output must contain.
 run_case() {
   local expected_exit="$1"
   local name="$2"
   local extension="$3"
   local content="$4"
+  local expected_text
   local file_path="$TMP_DIR/${name}.${extension}"
   local output
   local actual_exit
 
+  shift 4
   printf '%s\n' "$content" > "$file_path"
 
   set +e
@@ -31,9 +34,16 @@ run_case() {
   if [[ "$actual_exit" -ne "$expected_exit" ]]; then
     printf 'FAIL %s: expected exit %s, got %s\n%s\n' "$name" "$expected_exit" "$actual_exit" "$output" >&2
     failures=$((failures + 1))
-  else
-    printf 'PASS %s\n' "$name"
+    return
   fi
+  for expected_text in "$@"; do
+    if [[ -n "$expected_text" && "$output" != *"$expected_text"* ]]; then
+      printf 'FAIL %s: output does not hold %s\n%s\n' "$name" "$expected_text" "$output" >&2
+      failures=$((failures + 1))
+      return
+    fi
+  done
+  printf 'PASS %s\n' "$name"
 }
 
 run_case 1 "rc_ref" "js" "// RC-2 x"
@@ -92,8 +102,8 @@ run_case 0 "sql_clean" "sql" "SELECT '-- ADR-12'; -- a normal comment"
 
 # A URL is removed from the comment before the patterns run, so the rest of the line is still checked.
 run_case 1 "url_beside_spec_path" "js" "// see https://example.test/a and specs/042-foo/x.md"
-# Docstring text and block-comment bodies are comment text. A triple-quoted string
-# that is assigned is data, and its closing quotes never open a docstring.
+# A string statement is comment text wherever it stands, because an expression statement's
+# value is discarded. A string that an assignment, a call or a list gathers is data.
 run_case 1 "py_docstring_body" "py" $'def f():\n    """\n    REQ-12 is covered here.\n    """\n    return 1'
 run_case 1 "py_docstring_one_line" "py" $'"""Module note, see ADR-12."""'
 run_case 0 "py_data_string" "py" $'TEXT = """\nREQ-12 is data here\n"""\nPATH = "specs/042-foo/x.md"'
@@ -101,8 +111,23 @@ run_case 0 "py_data_string" "py" $'TEXT = """\nREQ-12 is data here\n"""\nPATH = 
 # even when it starts its own line.
 run_case 0 "py_call_argument" "py" $'import textwrap\nUSAGE = textwrap.dedent(\n    """\n    see specs/foo/bar.md\n    """\n)'
 run_case 0 "py_list_fixture" "py" $'FIXTURES = [\n    """// ADR-12""",\n]'
-run_case 0 "py_string_after_code" "py" $'def f():\n    run()\n    """\n    ADR-12 is data\n    """'
+# A return value and a dict value are data, and an f-string is data in every position, its
+# first statement of a block included.
+run_case 0 "py_return_value" "py" $'def f():\n    return """\n    ADR-12 is data here\n    """'
+run_case 0 "py_dict_value" "py" $'MAPPING = {\n    "note": """\n    ADR-12 is data here\n    """,\n}'
+run_case 0 "py_fstring_statement" "py" $'f"""\nADR-12 is data here\n"""'
+run_case 0 "py_fstring_first_in_def" "py" $'def f():\n    f"""\n    ADR-12 is data here\n    """'
+run_case 1 "py_string_after_code" "py" $'def f():\n    run()\n    """\n    ADR-12 is checked here\n    """'
+# A bare single-line string statement is read once its logical line ends with nothing but
+# string literals.
+run_case 1 "py_single_quoted_statement" "py" $'x = 1\n\'see ADR-12\''
+# A string statement inside an if body is read like any other, because its value is discarded too.
+run_case 1 "py_bare_string_in_if" "py" $'if ready:\n    """\n    ADR-12 is checked here\n    """'
 run_case 1 "py_attribute_docstring" "py" $'class A:\n    LIMIT = 3\n    """Kept low, see ADR-12."""'
+# A logical line continues past a closed string only when a backslash follows the last
+# literal, so a concatenation leaves the next statement a bare string statement.
+run_case 1 "py_attribute_docstring_after_continuation" "py" $'CONST = "a" \\\n    "b"\n"""T001 attribute docstring"""\ndef f():\n    """T002 docstring"""' "py_attribute_docstring_after_continuation.py:3:"
+run_case 1 "py_bare_concat_continued" "py" $'"T008 first" \\\n"T009 continued bare"'
 # TOML multi-line strings hold text, so a # line inside one is never a comment.
 run_case 0 "toml_multiline_literal" "toml" $'text = \'\'\'\n# ADR-3 heading\n\'\'\'\nkey = 1 # a normal comment'
 run_case 0 "toml_multiline_basic" "toml" $'text = """\nUse it # see T1234\n"""'
@@ -118,6 +143,57 @@ run_case 0 "block_closed_then_code" "js" $'/* a note\n*/\nconst p = "specs/042-f
 run_case 0 "opener_inside_string" "js" $'const s = "/* not a comment";\nconst p = "specs/042-foo/x.md";'
 run_case 0 "opener_after_backslash" "js" $'const r = /a\\/*b/;\nconst p = "specs/042-foo/x.md";'
 run_case 0 "glob_in_template_text" "mjs" $'const notes = `\n  - plugin/** holds the hooks\n  - see ADR-12 for the format\n`;'
+# A template literal spans lines, so a line inside one is never comment text. A backslash
+# before the closing backtick leaves the literal open, and a comment after a closed one is
+# still checked.
+run_case 0 "js_template_literal_lines" "js" $'const notes = `first line\n// ADR-12 inside the literal\nlast line`;'
+run_case 0 "js_template_escaped_backtick" "js" $'const note = `a \\` b\n// ADR-12 inside the literal\n`;'
+run_case 1 "js_comment_after_template" "js" $'const notes = `plain\ntext`;\n// ADR-12 x'
+# A template literal inside an interpolation is a string of its own, so the outer literal closes
+# at its own backtick and the comment after it is checked. An interpolation's braces nest too,
+# and the text of a template literal is never comment text.
+run_case 1 "js_nested_template_closes" "js" $'function quoteArgument(value) {\n  return /^[A-Za-z0-9_./:@=-]+$/.test(value) ? value : `\'${value.replace(/\'/g, `\'\\\\\'\'`)}\'`;\n}\n// See ADR-12 for why'
+run_case 1 "js_interpolation_braces" "js" $'const s = `${ {a: 1}.a } ok`;\n// See ADR-12 for why'
+run_case 0 "js_template_text_not_comment" "js" $'const s = `// ADR-12 inside text`;'
+# A regex literal holds text too, so the backtick, the quote and the slash inside one open
+# nothing, and the comment on a later line is still checked. A slash after a name, a number
+# or a closer divides instead.
+run_case 1 "js_regex_backtick" "js" $'const RE = /`([^`\\n]+)`/g;\n// ADR-12 x'
+run_case 1 "js_regex_triple_backtick" "js" $'if (/^\\s*```/.test(l)) {}\n// ADR-12 x'
+run_case 1 "js_regex_class_slash" "js" $'const r = /[/`]/;\n// ADR-12 x'
+run_case 0 "js_division_not_regex" "js" "const half = total / 2; const t = \`ok\`;"
+# A slash after a block comment or after the ) that closes an if header stands where code
+# starts, so it opens a regex literal and the backtick inside one opens no template. A
+# slash after a postfix increment or a property name divides instead, so the template
+# literal beside it closes on its own line and the comment after it is still checked.
+run_case 1 "js_regex_after_block_comment" "js" $'/* c */ /`/.test(x);\nfoo();\n// see T201' "js_regex_after_block_comment.js:3:"
+run_case 1 "js_regex_after_if_header" "js" $'if (ok) /`/.test(x);\nfoo();\n// see T202' "js_regex_after_if_header.js:3:"
+run_case 1 "js_postfix_then_division" "js" $'x = i++ / 2; y = `z`; // T205' "js_postfix_then_division.js:1:"
+run_case 1 "js_property_keyword_division" "js" $'x = a.return / 2; z = `w`; // T206' "js_property_keyword_division.js:1:"
+# A block comment is no code, so the token in front of its opener decides the slash that
+# follows it, a regex literal that ends in a star still divides, and a header word after a
+# dot names a method rather than a header. Each case holds its comment after the code that
+# would otherwise swallow the rest of the line.
+run_case 1 "js_division_after_block_comment" "js" $'z = a /* n */ / b; s = "/"; // T411' "js_division_after_block_comment.js:1:"
+run_case 1 "js_regex_ending_star_then_division" "js" $'x = /a*/ / 2; s = "/"; // T504' "js_regex_ending_star_then_division.js:1:"
+run_case 1 "js_method_named_for_division" "js" $'x = q.for(a) / n; s = "/"; // T501' "js_method_named_for_division.js:1:"
+# A heredoc body is text too. An opener queues its word, and the body ends at the line that
+# holds only it, after leading tabs for <<-. A here-string and an arithmetic shift open none.
+run_case 0 "sh_heredoc_body" "sh" $'cat <<EOF\n# ADR-12 inside the body\nEOF'
+run_case 0 "sh_heredoc_dash_quoted" "sh" $'cat <<-\'EOF\'\n\t# ADR-12 inside the body\n\tEOF'
+run_case 1 "sh_comment_after_heredoc" "sh" $'cat <<EOF\n# ADR-12 inside the body\nEOF\n# ADR-12 x'
+run_case 1 "sh_here_string" "sh" $'read value <<< "text"\n# ADR-12 x'
+run_case 1 "sh_arith_shift" "sh" $'shifted=$((1<<2))\n# ADR-12 x'
+# An arithmetic command reads << as a shift too, so the rest of the file is still checked.
+run_case 1 "sh_arith_command_shift" "sh" $'(( n << shift ))\n# See ADR-12 here'
+# A nested pair inside an expansion closes at a )) of its own, so the shift beside one
+# opens no heredoc and the comments after it are still checked.
+run_case 1 "sh_arith_nested_paren_shift" "sh" $'x=$(( (a*(b+c)) << n ))\necho done\n# see T432' "sh_arith_nested_paren_shift.sh:3:"
+run_case 1 "sh_arith_double_inner_paren" "sh" $'x=$(( ((a)) + (b<<c) ))\n# see T433' "sh_arith_double_inner_paren.sh:2:"
+# Arithmetic that runs past the line end is still arithmetic, so the shift on a continuation
+# line opens no heredoc and the comments after the close are checked.
+run_case 1 "sh_arith_multiline_shift" "sh" $'x=$((\n  1 << shift\n))\necho # T301\nf() {\n  echo # T302\n}' "sh_arith_multiline_shift.sh:4: echo # T301 [task ID reference]" "sh_arith_multiline_shift.sh:6:   echo # T302 [task ID reference]"
+run_case 1 "sh_arith_command_multiline_shift" "sh" $'((\n  y = 1 << bits\n))\necho # T303' "sh_arith_command_multiline_shift.sh:4:"
 # A YAML block scalar holds text, so a # heading inside it is never a comment. The
 # block ends at the first line that is not deeper than its key, and comments resume there.
 run_case 0 "yaml_block_scalar_heading" "yaml" $'templates:\n  decision_record_md: |\n    # Decision Record\n    <!-- ANCHOR:adr-001 --> ## ADR-001: [Decision Title]\n\n    ## Context\n  plan_md: plain # a normal comment'

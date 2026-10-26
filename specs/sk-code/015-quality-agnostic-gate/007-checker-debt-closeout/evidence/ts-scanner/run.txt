@@ -1,0 +1,11 @@
+Comparison of the checker's comment lines against the TypeScript scanner, over every tracked
+JavaScript and TypeScript file. Run from the repository root.
+
+  git ls-files -z > /tmp/tracked.lst
+  node E/ts-comments.cjs .skilled/skills/system-spec-kit/node_modules/typescript /tmp/tracked.lst /tmp/ts.s
+  python3 -B E/checker-comments.py .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/tracked.lst /tmp/new.s
+  sort -u /tmp/ts.s > /tmp/ts.u; sort -u /tmp/new.s > /tmp/new.u
+  comm -23 /tmp/ts.u /tmp/new.u | wc -l    # missed: scanner comment lines the checker did not read
+  comm -13 /tmp/ts.u /tmp/new.u | wc -l    # extra: checker comment lines the scanner did not report
+
+E is this folder. Run the same commands with the checker from the base commit to get the base pair.

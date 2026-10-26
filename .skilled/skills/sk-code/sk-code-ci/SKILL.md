@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.1.1.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -106,5 +106,5 @@ The rules below hold for every workflow change, whoever applies it.
 
 - Input: requests the `sk-code` hub bundles beside a workflow mode when the task is about a GitHub Actions workflow.
 - Output: the rule evidence, the protected set, the exception record and the scaffold templates the paired mode applies.
-- `sk-code-review` applies the rules to a workflow diff and `sk-code-quality` applies them to a workflow being authored.
+- `sk-code-review` applies the rules to a workflow diff and `sk-code-quality` applies them to a workflow being authored. The quality mode selects this packet's checklist through the `quality.checklists` declaration in `../mode-registry.json`, one path-only row for `.github/workflows/**`.
 - The hub registration lives in `../mode-registry.json`, `../hub-router.json` and `../ROUTER.md`.

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
+  "manifestHash": "8636c6a059982d61522811c1644f45aea901eb0af68788de9e4a15c757099524",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12903,6 +12903,12 @@
     "bare integer reference hit rate": [
       "bare integer reference hit rate"
     ],
+    "bare string statement hygiene": [
+      "bare string statement hygiene"
+    ],
+    "bare string statement rule": [
+      "bare string statement rule"
+    ],
     "bare token collision": [
       "bare token collision"
     ],
@@ -15754,6 +15760,12 @@
     "ceiling report": [
       "ceiling report"
     ],
+    "ceiling report shared extraction": [
+      "ceiling report shared extraction"
+    ],
+    "ceiling report shared extraction plan": [
+      "ceiling report shared extraction plan"
+    ],
     "census 114 packets drift": [
       "census 114 packets drift"
     ],
@@ -17196,6 +17208,27 @@
     "check the vision runtime health": [
       "check the vision runtime health"
     ],
+    "checker debt closeout": [
+      "checker debt closeout"
+    ],
+    "checker debt closeout acceptance criteria": [
+      "checker debt closeout acceptance criteria"
+    ],
+    "checker debt closeout decision record": [
+      "checker debt closeout decision record"
+    ],
+    "checker debt closeout goal": [
+      "checker debt closeout goal"
+    ],
+    "checker debt closeout implementation summary": [
+      "checker debt closeout implementation summary"
+    ],
+    "checker debt closeout plan": [
+      "checker debt closeout plan"
+    ],
+    "checker debt closeout tasks": [
+      "checker debt closeout tasks"
+    ],
     "checker mutation ci": [
       "checker mutation ci"
     ],
@@ -17258,6 +17291,9 @@
     ],
     "checklist retirement": [
       "checklist retirement"
+    ],
+    "checklist row containment": [
+      "checklist row containment"
     ],
     "checkout not following live branch": [
       "checkout not following live branch"
@@ -17873,6 +17909,9 @@
     ],
     "ci workflow status report": [
       "ci workflow status report"
+    ],
+    "ci workflow surface bundle": [
+      "ci workflow surface bundle"
     ],
     "ci workflow surface detection": [
       "ci workflow surface detection"
@@ -24918,6 +24957,9 @@
     "comment hygiene plan": [
       "comment hygiene plan"
     ],
+    "comment hygiene routing": [
+      "comment hygiene routing"
+    ],
     "comment hygiene tasks": [
       "comment hygiene tasks"
     ],
@@ -24947,6 +24989,9 @@
     ],
     "comment syntax table": [
       "comment syntax table"
+    ],
+    "comment text extraction": [
+      "comment text extraction"
     ],
     "comment thread": [
       "comment thread"
@@ -26110,6 +26155,9 @@
     ],
     "configure fanout executors": [
       "configure fanout executors"
+    ],
+    "configured quality checks": [
+      "configured quality checks"
     ],
     "configured specs root membership": [
       "configured specs root membership"
@@ -37447,6 +37495,9 @@
     "doc claims hardening tasks": [
       "doc claims hardening tasks"
     ],
+    "doc claims reason": [
+      "doc claims reason"
+    ],
     "doc cleanup": [
       "doc cleanup"
     ],
@@ -38684,6 +38735,12 @@
     ],
     "doctor signals summary": [
       "doctor signals summary"
+    ],
+    "doctor sk code quality": [
+      "doctor sk-code quality"
+    ],
+    "doctor sk code quality bridge": [
+      "doctor sk-code quality bridge"
     ],
     "doctor sk code quality route": [
       "doctor sk-code quality route"
@@ -44641,6 +44698,24 @@
     "figma gradient extract": [
       "figma gradient extract"
     ],
+    "figma hosted from cli children": [
+      "figma hosted from cli children"
+    ],
+    "figma hosted from cli children implementation summary": [
+      "figma hosted from cli children implementation summary"
+    ],
+    "figma hosted from cli children plan": [
+      "figma hosted from cli children plan"
+    ],
+    "figma hosted from cli children tasks": [
+      "figma hosted from cli children tasks"
+    ],
+    "figma hosted server cli child": [
+      "figma hosted server cli child"
+    ],
+    "figma hosted server from cli children": [
+      "figma hosted server from cli children"
+    ],
     "figma import design system": [
       "figma import design system"
     ],
@@ -47077,6 +47152,9 @@
     ],
     "frozen corpus gate": [
       "frozen corpus gate"
+    ],
+    "frozen evidence hygiene ok decision": [
+      "frozen evidence hygiene-ok decision"
     ],
     "frozen sha gate": [
       "frozen sha gate"
@@ -56188,9 +56266,6 @@
     "langchain graphs": [
       "LangChain graphs"
     ],
-    "language agnostic checks": [
-      "language agnostic checks"
-    ],
     "language agnostic naming": [
       "language agnostic naming"
     ],
@@ -60499,6 +60574,9 @@
     "mcp figma 1 1 5 0": [
       "mcp-figma 1.1.5.0"
     ],
+    "mcp figma 1 1 6 0": [
+      "mcp-figma 1.1.6.0"
+    ],
     "mcp figma standards alignment": [
       "mcp-figma standards alignment"
     ],
@@ -60525,6 +60603,9 @@
     ],
     "mcp figma v1 1 5 0": [
       "mcp-figma v1.1.5.0"
+    ],
+    "mcp figma v1 1 6 0": [
+      "mcp-figma v1.1.6.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -70226,6 +70307,12 @@
     "outside loop handoff tasks": [
       "outside loop handoff tasks"
     ],
+    "outside quality checklists": [
+      "outside quality checklists"
+    ],
+    "outside skill checklist rows": [
+      "outside skill checklist rows"
+    ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
@@ -73585,6 +73672,9 @@
     "phase 7 advisor name mention scoring": [
       "phase 7 advisor name mention scoring"
     ],
+    "phase 7 checker debt closeout": [
+      "phase 7 checker debt closeout"
+    ],
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
     ],
@@ -73698,6 +73788,9 @@
     ],
     "phase 8 review 3 remediation": [
       "phase 8 review 3 remediation"
+    ],
+    "phase 8 runner limit closeout": [
+      "phase 8 runner limit closeout"
     ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
@@ -78486,11 +78579,26 @@
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
     ],
+    "quality agnostic gate checker debt closeout changelog": [
+      "quality agnostic gate checker debt closeout changelog"
+    ],
+    "quality agnostic gate config and doctor changelog": [
+      "quality agnostic gate config and doctor changelog"
+    ],
+    "quality agnostic gate consumers and routing changelog": [
+      "quality agnostic gate consumers and routing changelog"
+    ],
+    "quality agnostic gate doctrine changelog": [
+      "quality agnostic gate doctrine changelog"
+    ],
     "quality agnostic gate honest checker changelog": [
       "quality agnostic gate honest checker changelog"
     ],
     "quality agnostic gate phase parent spec": [
       "quality agnostic gate phase parent spec"
+    ],
+    "quality agnostic gate runner limit closeout changelog": [
+      "quality agnostic gate runner limit closeout changelog"
     ],
     "quality assessment framework": [
       "quality assessment framework"
@@ -78504,11 +78612,17 @@
     "quality bar": [
       "quality bar"
     ],
+    "quality block gate": [
+      "quality block gate"
+    ],
     "quality checklist": [
       "quality checklist"
     ],
     "quality checklist declarations": [
       "quality checklist declarations"
+    ],
+    "quality config seam": [
+      "quality config seam"
     ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
@@ -78543,6 +78657,9 @@
     "quality gate obsidian coverage": [
       "quality gate obsidian coverage"
     ],
+    "quality gate proves its layers": [
+      "quality gate proves its layers"
+    ],
     "quality gate ranked recommendations": [
       "quality gate ranked recommendations"
     ],
@@ -78551,6 +78668,9 @@
     ],
     "quality gate resources": [
       "quality gate resources"
+    ],
+    "quality gate result values": [
+      "quality gate result values"
     ],
     "quality gate runner": [
       "quality gate runner"
@@ -78648,8 +78768,20 @@
     "quality review before indexing": [
       "quality review before indexing"
     ],
+    "quality row declaration": [
+      "quality row declaration"
+    ],
     "quality runner adr": [
       "quality runner ADR"
+    ],
+    "quality runner budget": [
+      "quality runner budget"
+    ],
+    "quality runner budget goal": [
+      "quality runner budget goal"
+    ],
+    "quality runner budget plan": [
+      "quality runner budget plan"
     ],
     "quality runner contract": [
       "quality runner contract"
@@ -79217,6 +79349,9 @@
     ],
     "read only corpus backup retrieval class": [
       "read-only corpus backup retrieval class"
+    ],
+    "read only dist freshness": [
+      "read-only dist freshness"
     ],
     "read only figma inspect": [
       "read-only figma inspect"
@@ -84851,6 +84986,9 @@
     "restraint and routing gates acceptance criteria": [
       "restraint and routing gates acceptance criteria"
     ],
+    "restraint route test": [
+      "restraint route test"
+    ],
     "restraint routing": [
       "restraint routing"
     ],
@@ -84865,6 +85003,9 @@
     ],
     "restraint routing tasks": [
       "restraint routing tasks"
+    ],
+    "restraint vocabulary": [
+      "restraint vocabulary"
     ],
     "restrict to my tasks": [
       "restrict to my tasks"
@@ -86297,6 +86438,9 @@
     ],
     "review traceability checks": [
       "review traceability checks"
+    ],
+    "review trigger split": [
+      "review trigger split"
     ],
     "review verdict": [
       "review verdict"
@@ -87838,6 +87982,9 @@
     "run validation rules": [
       "run validation rules"
     ],
+    "run verdict evidence": [
+      "run verdict evidence"
+    ],
     "run versus iteration field": [
       "run versus iteration field"
     ],
@@ -87859,8 +88006,38 @@
     "runnable series parent recipe": [
       "runnable series parent recipe"
     ],
+    "runner guard boundary": [
+      "runner guard boundary"
+    ],
+    "runner limit closeout": [
+      "runner limit closeout"
+    ],
+    "runner limit closeout acceptance criteria": [
+      "runner limit closeout acceptance criteria"
+    ],
+    "runner limit closeout decision record": [
+      "runner limit closeout decision record"
+    ],
+    "runner limit closeout goal": [
+      "runner limit closeout goal"
+    ],
+    "runner limit closeout implementation summary": [
+      "runner limit closeout implementation summary"
+    ],
+    "runner limit closeout plan": [
+      "runner limit closeout plan"
+    ],
+    "runner limit closeout tasks": [
+      "runner limit closeout tasks"
+    ],
+    "runner limits closed": [
+      "runner limits closed"
+    ],
     "runner source embedded": [
       "runner source embedded"
+    ],
+    "runner two second budget": [
+      "runner two second budget"
     ],
     "running skilled safely": [
       "running skilled safely"
@@ -93039,6 +93216,21 @@
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
+    "sk code 3 3 0 0": [
+      "sk-code 3.3.0.0"
+    ],
+    "sk code 3 4 0 0": [
+      "sk-code 3.4.0.0"
+    ],
+    "sk code 3 5 0 0": [
+      "sk-code 3.5.0.0"
+    ],
+    "sk code 3 6 0 0": [
+      "sk-code 3.6.0.0"
+    ],
+    "sk code 3 7 0 0": [
+      "sk-code 3.7.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93180,6 +93372,9 @@
     "sk code ci 1 1 0 0": [
       "sk-code-ci 1.1.0.0"
     ],
+    "sk code ci 1 1 1 0": [
+      "sk-code-ci 1.1.1.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -93216,6 +93411,9 @@
     ],
     "sk code ci v1 1 0 0": [
       "sk-code-ci v1.1.0.0"
+    ],
+    "sk code ci v1 1 1 0": [
+      "sk-code-ci v1.1.1.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -93696,6 +93894,12 @@
     "sk code quality 1 1 1 0": [
       "sk-code-quality 1.1.1.0"
     ],
+    "sk code quality 1 10 0 0": [
+      "sk-code-quality 1.10.0.0"
+    ],
+    "sk code quality 1 11 0 0": [
+      "sk-code-quality 1.11.0.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -93714,11 +93918,23 @@
     "sk code quality 1 6 0 0": [
       "sk-code-quality 1.6.0.0"
     ],
+    "sk code quality 1 7 0 0": [
+      "sk-code-quality 1.7.0.0"
+    ],
+    "sk code quality 1 8 0 0": [
+      "sk-code-quality 1.8.0.0"
+    ],
+    "sk code quality 1 9 0 0": [
+      "sk-code-quality 1.9.0.0"
+    ],
     "sk code quality codebase agnostic": [
       "sk-code quality codebase agnostic"
     ],
     "sk code quality config": [
       "sk-code quality config"
+    ],
+    "sk code quality json": [
+      ".sk-code/quality.json"
     ],
     "sk code quality mode research": [
       "sk-code quality mode research"
@@ -93753,6 +93969,12 @@
     "sk code quality v1 1 1 0": [
       "sk-code-quality v1.1.1.0"
     ],
+    "sk code quality v1 10 0 0": [
+      "sk-code-quality v1.10.0.0"
+    ],
+    "sk code quality v1 11 0 0": [
+      "sk-code-quality v1.11.0.0"
+    ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
     ],
@@ -93770,6 +93992,15 @@
     ],
     "sk code quality v1 6 0 0": [
       "sk-code-quality v1.6.0.0"
+    ],
+    "sk code quality v1 7 0 0": [
+      "sk-code-quality v1.7.0.0"
+    ],
+    "sk code quality v1 8 0 0": [
+      "sk-code-quality v1.8.0.0"
+    ],
+    "sk code quality v1 9 0 0": [
+      "sk-code-quality v1.9.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -93867,6 +94098,9 @@
     "sk code review 1 8 0 0": [
       "sk-code-review 1.8.0.0"
     ],
+    "sk code review 1 9 0 0": [
+      "sk-code-review 1.9.0.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -93947,6 +94181,9 @@
     ],
     "sk code review v1 8 0 0": [
       "sk-code-review v1.8.0.0"
+    ],
+    "sk code review v1 9 0 0": [
+      "sk-code-review v1.9.0.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -94077,6 +94314,12 @@
     "sk code skilled 2 0 2 0": [
       "sk-code-skilled 2.0.2.0"
     ],
+    "sk code skilled 2 1 0 0": [
+      "sk-code-skilled 2.1.0.0"
+    ],
+    "sk code skilled 2 1 1 0": [
+      "sk-code-skilled 2.1.1.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94172,6 +94415,12 @@
     ],
     "sk code skilled v2 0 2 0": [
       "sk-code-skilled v2.0.2.0"
+    ],
+    "sk code skilled v2 1 0 0": [
+      "sk-code-skilled v2.1.0.0"
+    ],
+    "sk code skilled v2 1 1 0": [
+      "sk-code-skilled v2.1.1.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94313,6 +94562,21 @@
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
+    ],
+    "sk code v3 3 0 0": [
+      "sk-code v3.3.0.0"
+    ],
+    "sk code v3 4 0 0": [
+      "sk-code v3.4.0.0"
+    ],
+    "sk code v3 5 0 0": [
+      "sk-code v3.5.0.0"
+    ],
+    "sk code v3 6 0 0": [
+      "sk-code v3.6.0.0"
+    ],
+    "sk code v3 7 0 0": [
+      "sk-code v3.7.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -94983,6 +95247,9 @@
     "sk create skill 1 5 6 0": [
       "sk-create-skill 1.5.6.0"
     ],
+    "sk create skill 1 5 7 0": [
+      "sk-create-skill 1.5.7.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -95024,6 +95291,9 @@
     ],
     "sk create skill v1 5 6 0": [
       "sk-create-skill v1.5.6.0"
+    ],
+    "sk create skill v1 5 7 0": [
+      "sk-create-skill v1.5.7.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -97299,6 +97569,9 @@
     "sk vision zoom": [
       "sk_vision_zoom"
     ],
+    "skcode qualityconfig": [
+      "skcode.qualityConfig"
+    ],
     "skd036 019 implementation summary": [
       "skd036-019 implementation summary"
     ],
@@ -98947,6 +99220,12 @@
     ],
     "skilled house checklist": [
       "skilled house checklist"
+    ],
+    "skilled house checks": [
+      "skilled house checks"
+    ],
+    "skilled house code quality checklist": [
+      "skilled house code quality checklist"
     ],
     "skilled layout options": [
       "skilled layout options"
@@ -105144,6 +105423,9 @@
     "system skill advisor 0 17 0 0": [
       "system-skill-advisor 0.17.0.0"
     ],
+    "system skill advisor 0 17 1 0": [
+      "system-skill-advisor 0.17.1.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -105323,6 +105605,9 @@
     ],
     "system skill advisor v0 17 0 0": [
       "system-skill-advisor v0.17.0.0"
+    ],
+    "system skill advisor v0 17 1 0": [
+      "system-skill-advisor v0.17.1.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -105572,6 +105857,9 @@
     ],
     "system spec kit 2 1 5 0": [
       "system-spec-kit 2.1.5.0"
+    ],
+    "system spec kit 2 10 0 0": [
+      "system-spec-kit 2.10.0.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
@@ -106001,6 +106289,9 @@
     ],
     "system spec kit v2 1 5 0": [
       "system-spec-kit v2.1.5.0"
+    ],
+    "system spec kit v2 10 0 0": [
+      "system-spec-kit v2.10.0.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -109813,9 +110104,6 @@
     "universal checklist baseline": [
       "universal checklist baseline"
     ],
-    "universal code quality checklist": [
-      "universal code quality checklist"
-    ],
     "universal code quality standards": [
       "universal code quality standards"
     ],
@@ -109854,6 +110142,9 @@
     ],
     "unknown surface iron law": [
       "unknown surface iron law"
+    ],
+    "unknown surface universal floor": [
+      "unknown surface universal floor"
     ],
     "unknowns and baseline": [
       "unknowns and baseline"
@@ -114192,6 +114483,9 @@
     ],
     "zero feature loss": [
       "zero feature loss"
+    ],
+    "zero finding comment hygiene tree": [
+      "zero finding comment hygiene tree"
     ],
     "zero javascript diff report": [
       "zero javascript diff report",

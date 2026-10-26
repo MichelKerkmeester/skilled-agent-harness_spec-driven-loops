@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "exclude": [],
+  "checks": [],
+  "checklists": [],
+  "generated": [],
+  "commentHygiene": {
+    "ticketPrefixes": [],
+    "extraPatterns": [],
+    "extensions": {},
+    "exclude": []
+  },
+  "sensors": {
+    "conflictMarkers": { "exclude": [] },
+    "secrets": { "exclude": [] },
+    "debugLeftovers": { "enabled": true, "exclude": [] }
+  }
+}

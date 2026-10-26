@@ -85,11 +85,22 @@ const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
   // The sk-code detectors read the inner block and rank it ahead of the
   // fallback surface.
   'surface_detection',
+  // It also declares the checklists its surface applies. The quality runner
+  // reads those rows for the files that resolve to the surface, so the
+  // declaration has to reach it from this file rather than from a second
+  // registry.
+  'quality',
 ]);
 
 // The marker lists a surface_detection block may carry. The detectors read
 // all three and drop any entry that is not a non-empty string.
 const SURFACE_MARKER_KEYS = ['pathMarkers', 'fileMarkers', 'contentMarkers'];
+
+// The selector lists a quality row may carry, and the file it must name: a row
+// scopes a checklist to the files one of these selects, so a row with no
+// selector would cover nothing and load no checklist.
+const QUALITY_SELECTOR_KEYS = ['paths', 'extensions', 'contentMarkers'];
+const QUALITY_ROW_KEYS = ['file', ...QUALITY_SELECTOR_KEYS];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -215,6 +226,72 @@ function surfaceDetectionProblems(block) {
       problems.push(`surface_detection.${key} must be an array of non-blank strings`);
     }
   }
+  return problems;
+}
+
+/**
+ * List the field problems in an outside skill's quality block.
+ *
+ * The quality runner resolves each row of a detected outside surface against
+ * that skill's folder, so a row it cannot resolve loads nothing or the wrong
+ * file without an error of its own. A block carries checklists only: commands
+ * come from the repository's quality config, never from a skill, so a row or
+ * block carrying one is refused rather than ignored.
+ *
+ * @param {Object} block - The quality value, already known to be a plain object.
+ * @returns {string[]} One message per failed rule, naming the field.
+ */
+function qualityProblems(block) {
+  const problems = [];
+  const unknownBlockKeys = Object.keys(block).filter((key) => key !== 'checklists');
+  if (unknownBlockKeys.length > 0) {
+    problems.push(`quality holds unknown key ${unknownBlockKeys.join(', ')}. A skill names checklists only, never a command`);
+  }
+  const rows = block.checklists;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    problems.push('quality.checklists must be a non-empty array');
+    return problems;
+  }
+  rows.forEach((row, index) => {
+    const label = `quality.checklists[${index}]`;
+    if (!row || typeof row !== 'object' || Array.isArray(row)) {
+      problems.push(`${label} must be a JSON object`);
+      return;
+    }
+    const extra = Object.keys(row).filter((key) => !QUALITY_ROW_KEYS.includes(key));
+    if (extra.length > 0) {
+      problems.push(`${label} holds unknown key ${extra.join(', ')}`);
+    }
+    let selectorCount = 0;
+    for (const key of QUALITY_SELECTOR_KEYS) {
+      if (!Object.prototype.hasOwnProperty.call(row, key)) continue;
+      selectorCount += 1;
+      const value = row[key];
+      // A blank selector would match nearly every file and load the checklist
+      // everywhere. Spaces inside or around a real selector are kept.
+      const isStringList = Array.isArray(value)
+        && value.length > 0
+        && value.every((entry) => typeof entry === 'string' && entry.trim().length > 0);
+      if (!isStringList) {
+        problems.push(`${label}.${key} must be a non-empty array of non-blank strings`);
+      } else if (key === 'extensions') {
+        // An extension without its dot never compares equal to the extension of
+        // a changed file, so the row would silently cover no file at all.
+        for (const entry of value) {
+          if (!/^\.[^./\s]+$/.test(entry)) {
+            problems.push(`${label}.extensions entry ${JSON.stringify(entry)} must start with a dot`);
+          }
+        }
+      }
+    }
+    if (selectorCount === 0) {
+      problems.push(`${label} names no selector, one of ${QUALITY_SELECTOR_KEYS.join(', ')}`);
+    }
+    const file = row.file;
+    if (typeof file !== 'string' || !/\.md$/.test(file) || file.startsWith('/') || file.split('/').includes('..')) {
+      problems.push(`${label}.file must be a relative .md path inside the skill root`);
+    }
+  });
   return problems;
 }
 
@@ -481,6 +558,29 @@ function checkGraphMetadata(skillDir) {
       for (const problem of surfaceDetectionProblems(block)) {
         violations.push({
           code: 'GRAPH_METADATA_INVALID_SURFACE_DETECTION',
+          file: 'graph-metadata.json',
+          message: `${skillId}: graph-metadata.json ${problem}`,
+        });
+      }
+    }
+  }
+
+  // The key is optional, but a present block must name the checklists its
+  // surface applies: the runner lists each row for the files that resolve to the
+  // surface, so a malformed row would load nothing or the wrong file while the
+  // run still reported clean.
+  if (Object.prototype.hasOwnProperty.call(metadata, 'quality')) {
+    const block = metadata.quality;
+    if (!block || typeof block !== 'object' || Array.isArray(block)) {
+      violations.push({
+        code: 'GRAPH_METADATA_INVALID_QUALITY',
+        file: 'graph-metadata.json',
+        message: `${skillId}: graph-metadata.json quality must be a JSON object`,
+      });
+    } else {
+      for (const problem of qualityProblems(block)) {
+        violations.push({
+          code: 'GRAPH_METADATA_INVALID_QUALITY',
           file: 'graph-metadata.json',
           message: `${skillId}: graph-metadata.json ${problem}`,
         });

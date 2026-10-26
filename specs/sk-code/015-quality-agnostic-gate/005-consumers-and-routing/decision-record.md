@@ -268,7 +268,7 @@ The stage-two replay of "apply yagni to this change" returns an empty `surfaceIn
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: Add "comment hygiene", "restraint", "yagni", "simplify", "over-engineering" and "bloat" to the CODE_QUALITY intent keywords at `ROUTER.md` line 242. Add the runner-contract resource. Keep the SKILLED language checklists in the map. Stage one carries only "comment hygiene", "yagni" and "over-engineering".
+**We chose**: Add "comment hygiene", "restraint", "yagni", "simplify", "over-engineering" and "bloat" to the CODE_QUALITY intent keywords at `ROUTER.md` line 242. Add the runner-contract resource. Keep the SKILLED language checklists in the map. Stage one carries only "comment hygiene".
 
 **How it works**: The keyword line gains words. The resource map keeps its rows and gains one row.
 <!-- /ANCHOR:adr-003-decision -->
@@ -283,6 +283,7 @@ The stage-two replay of "apply yagni to this change" returns an empty `surfaceIn
 | **Add the words, keep the checklists (chosen)** | No measured regression risk. Phase 6 can measure the drop | Duplicate checklist loads when both paths apply | 7/10 |
 | Drop the checklists as the design asks | Less duplication | Unmeasurable now, since the replay harness is retired | 5/10 |
 | Put "simplify" in stage one too | Matches more phrasing | Pulls prose-editing requests to the hub | 2/10 |
+| Carry yagni and over-engineering at stage one | Matches the restraint phrasing before stage two runs | Measured cost, sk-code 0.8246 for "write a README paragraph about over-engineering a cake recipe" and 0.82 for "a blog post about yagni as a life philosophy", where main returns no sk-code row for either | 2/10 |
 
 **Why this one**: The duplicate load costs context, and it does not change a route. A drop that cannot be measured is a risk with no owner.
 <!-- /ANCHOR:adr-003-alternatives -->
@@ -303,6 +304,8 @@ The stage-two replay of "apply yagni to this change" returns an empty `surfaceIn
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Stage-two replay still misses a restraint phrase | M | The stage-two test in T039 asserts the phrase, and T053 replays it |
+
+**Amended 2026-10-26**: Stage one carried "comment hygiene", "yagni" and "over-engineering" at first. Two prose prompts measured the cost. "write a README paragraph about over-engineering a cake recipe" gave sk-code confidence 0.8246, and "a blog post about yagni as a life philosophy" gave sk-code 0.82. On main both prompts gave no sk-code row. Both words were taken out of `intent_signals`, so stage one now carries only "comment hygiene". After an advisor rebuild, the cake prompt gives no sk-code row, the yagni prompt gives `[]`, and "check comment hygiene on these files" gives sk-code 0.8419. Stage two keeps both words in the `ROUTER.md` `CODE_QUALITY` row, and the stage-two replay of "apply yagni to this change" still gives `["CODE_QUALITY"]`. The phrase "comment hygiene" has no sense outside code, so its prose replay, "write prose about comment hygiene for a newsletter" at sk-code 0.82 tied with sk-doc, is a request about code comments.
 <!-- /ANCHOR:adr-003-consequences -->
 
 ---
@@ -564,9 +567,11 @@ The design's second canary expects `sk-code-ci` as a surface bundle at stage one
 <!-- ANCHOR:adr-006-decision -->
 ### Decision
 
-**We chose**: The regression check is the successor gate's steps that cover this hub, plus the canaries in plan.md section 5. The stage-one CI canary is recorded as measured. AC-018 stays Unmet until the operator decides between a waiver and a compiled-routing change in a later phase.
+**We chose**: The regression check is the successor gate's steps that cover this hub, plus the canaries in plan.md section 5. The stage-one CI canary is recorded as measured. AC-018 closes as a waiver under this decision, and the operator confirms the waiver at program end.
 
 **How it works**: Each gate prints a fixed line, and each canary records its exact output in the implementation summary.
+
+**Amended 2026-10-26**: The CI vocabulary is unchanged from the base commit, and this phase adds no CI keyword. The `code-ci-runtime` class in `hub-router.json`, the `CI_WORKFLOW` row of `ROUTER.md` and the `INTENT_SIGNALS` `CI_WORKFLOW` row of `sk-code-ci/SKILL.md` each end `"sha-pinned action", ".github/workflows/"]`. Stage one for "run the quality gate on my edited .github/workflows/ci.yml" prints `"selectionKind":"single"` with the target `sk-code-quality`. Stage two through the router-replay `routeSkillResources` returns `surfaceIntents` `["CI_WORKFLOW"]` and loads four sk-code-ci references, so the CI standards still reach the quality run. "review the .github/workflows/test.yml diff for bugs" prints `surfaceBundle`, with review, ci and skilled, and "fix the gitlab pipeline stage in .gitlab-ci.yml" defers. The doc-claims guard prints fresh and the router sync matches 5 of 5. Two keyword fixes were tried and rejected. The bare file name `ci.yml` matches only a file named exactly that, and it pulled `.gitlab-ci.yml` and ci.yml prose into sk-code-ci. The keyword `github/workflows/` is a substring of `.github/workflows/`, so every workflow path scored twice, which broke the "code quality" phrasings and dropped review mode from the review-on-workflow bundle. AC-018 therefore closes as a waiver under this decision, and the operator confirms it at program end.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -578,8 +583,8 @@ The design's second canary expects `sk-code-ci` as a surface bundle at stage one
 |--------|------|------|-------|
 | **Successor gate and canaries (chosen)** | Uses gates that run today | No single benchmark score | 7/10 |
 | Revive the Lane C harness | Keeps the design's wording | The harness is retired, and no runner exists | 1/10 |
-| Change compiled routing to produce a surface bundle now | Meets canary 2 directly | Compiled-routing artifacts are outside this phase, and no bundle rule exists | 4/10 |
-| Waive AC-018 now | Closes the row | No evidence yet, so the waiver would be unbacked | 2/10 |
+| Change compiled routing to produce a surface bundle now | Meets canary 2 directly | Compiled-routing artifacts are outside this phase, and no bundle rule exists. Amended 2026-10-26: two keyword fixes were tried and rejected, see the decision | 4/10 |
+| Waive AC-018 now | Closes the row | Amended 2026-10-26: the stage-one `single` result and the stage-two `CI_WORKFLOW` replay back it, so the row closes this way | 6/10 |
 
 **Why this one**: The gates and canaries run on the current tree, and they report exact output. The stage-one bundle needs a decision the design does not make.
 <!-- /ANCHOR:adr-006-alternatives -->
@@ -600,7 +605,7 @@ The design's second canary expects `sk-code-ci` as a surface bundle at stage one
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | A route changes without a gate noticing | M | The canaries record exact output, and T049 to T053 replay them |
-| Canary 2 stays `single` and nobody decides | M | AC-018 stays Unmet, so the packet cannot close silently |
+| Canary 2 stays `single` and nobody decides | M | AC-018 closes only as a waiver that names this decision, and the operator confirms it at program end |
 <!-- /ANCHOR:adr-006-consequences -->
 
 ---
@@ -1021,9 +1026,11 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`phase-detection.md` line
 ### Implementation
 
 **What changes**:
-- Owned by Phase 4. Phase 5 keeps the CODE_QUALITY row at `ROUTER.md` line 271 and changes no checklist.
+- Owned by Phase 4, which retitles the checklist and sets the load condition in the SKILLED rows that declare it.
+- Phase 5 scopes the `universal-checklist.md` entry to a SKILLED-resolved target in both places the hub names it, which are the CODE_QUALITY intent overlay row in `ROUTER.md` section 6 and its entry in the section 11 CODE_QUALITY `RESOURCE_MAP`. The entry stays in the map rather than being dropped, because the orphan guard and the router replay both require every routable doc to be routed. The language checklists keep their CODE_QUALITY rows, as ADR-003 records.
+- A foreign surface reaches a checklist only through a row it declares itself, so it loads the floor in `code-quality-standards.md` plus its own rows and never this framework's house rules.
 
-**How to roll back**: Restore the checklist title and its load condition from the Phase 4 starting commit.
+**How to roll back**: Restore the checklist title and its load condition from the Phase 4 starting commit, and remove the SKILLED-only scope from the two `ROUTER.md` lines.
 <!-- /ANCHOR:adr-010-impl -->
 <!-- /ANCHOR:adr-010 -->
 
