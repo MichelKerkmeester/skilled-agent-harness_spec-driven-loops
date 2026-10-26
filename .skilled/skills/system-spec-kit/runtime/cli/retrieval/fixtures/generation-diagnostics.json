@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7284,
-    "ok": 15278,
+    "ok": 15283,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26110,
+  "documentsScanned": 26115,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "07f8036fb7f54f2dddec40c4ae09f4ae15ff9be0a394ce7a8a9aebe5b4aa1534",
+  "manifestHash": "85ee9a6dba5d2197f3d19f4050ba04ba9e60963b6d843e466602c73465e64ffd",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37792,
+      "ok": 37800,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70761,6 +70761,10 @@
     },
     {
       "path": "specs/mcp-tooling/022-clickup-hosted-route-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/025-figma-hosted-from-cli-children/scratch",
       "reason": "excluded directory"
     },
     {

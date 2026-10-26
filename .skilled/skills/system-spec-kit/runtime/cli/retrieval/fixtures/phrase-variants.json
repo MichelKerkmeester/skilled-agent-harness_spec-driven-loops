@@ -1,5 +1,5 @@
 {
-  "manifestHash": "07f8036fb7f54f2dddec40c4ae09f4ae15ff9be0a394ce7a8a9aebe5b4aa1534",
+  "manifestHash": "85ee9a6dba5d2197f3d19f4050ba04ba9e60963b6d843e466602c73465e64ffd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44650,6 +44650,24 @@
     "figma gradient extract": [
       "figma gradient extract"
     ],
+    "figma hosted from cli children": [
+      "figma hosted from cli children"
+    ],
+    "figma hosted from cli children implementation summary": [
+      "figma hosted from cli children implementation summary"
+    ],
+    "figma hosted from cli children plan": [
+      "figma hosted from cli children plan"
+    ],
+    "figma hosted from cli children tasks": [
+      "figma hosted from cli children tasks"
+    ],
+    "figma hosted server cli child": [
+      "figma hosted server cli child"
+    ],
+    "figma hosted server from cli children": [
+      "figma hosted server from cli children"
+    ],
     "figma import design system": [
       "figma import design system"
     ],
@@ -60505,6 +60523,9 @@
     "mcp figma 1 1 5 0": [
       "mcp-figma 1.1.5.0"
     ],
+    "mcp figma 1 1 6 0": [
+      "mcp-figma 1.1.6.0"
+    ],
     "mcp figma standards alignment": [
       "mcp-figma standards alignment"
     ],
@@ -60531,6 +60552,9 @@
     ],
     "mcp figma v1 1 5 0": [
       "mcp-figma v1.1.5.0"
+    ],
+    "mcp figma v1 1 6 0": [
+      "mcp-figma v1.1.6.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"

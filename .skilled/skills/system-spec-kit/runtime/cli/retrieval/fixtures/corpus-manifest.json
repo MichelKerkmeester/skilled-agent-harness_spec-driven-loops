@@ -1,5 +1,5 @@
 {
-  "corpusHash": "74396ffa5c93aa1cc5267c3a0ce64c68d309d6bcffa9d903a08b66f57a6f4fc5",
+  "corpusHash": "6d8aceeb69cf7945fd82117ff0fd82de134722ffd707829cc74259b1ab7a5c12",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26110,
+  "includedPathCount": 26115,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2285,6 +2285,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.5.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.6.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -10613,6 +10614,10 @@
     "specs/mcp-tooling/024-code-mode-js-yaml-override/plan.md",
     "specs/mcp-tooling/024-code-mode-js-yaml-override/spec.md",
     "specs/mcp-tooling/024-code-mode-js-yaml-override/tasks.md",
+    "specs/mcp-tooling/025-figma-hosted-from-cli-children/implementation-summary.md",
+    "specs/mcp-tooling/025-figma-hosted-from-cli-children/plan.md",
+    "specs/mcp-tooling/025-figma-hosted-from-cli-children/spec.md",
+    "specs/mcp-tooling/025-figma-hosted-from-cli-children/tasks.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-recommendation.md",
@@ -26141,7 +26146,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "07f8036fb7f54f2dddec40c4ae09f4ae15ff9be0a394ce7a8a9aebe5b4aa1534",
+  "manifestHash": "85ee9a6dba5d2197f3d19f4050ba04ba9e60963b6d843e466602c73465e64ffd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28317,6 +28322,10 @@
     },
     {
       "path": "specs/mcp-tooling/022-clickup-hosted-route-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/025-figma-hosted-from-cli-children/scratch",
       "reason": "excluded directory"
     },
     {
