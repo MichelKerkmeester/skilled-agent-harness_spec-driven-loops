@@ -712,9 +712,9 @@ Both saved 014 runs record an intent recall of 0 (`specs/sk-code/014-code-modes-
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed, awaiting the operator's decision (OQ-1) |
-| **Date** | 2026-10-25 |
-| **Deciders** | Operator. Drafted by the markdown agent |
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
 ---
 
@@ -725,9 +725,9 @@ Design 6.5 and the Phase 6 scope in design section 7 require a live D4 run that 
 
 ### Constraints
 
-- Phase 6 adds no code (REQ-015).
 - The playbook rule forbids hand-written report markdown.
 - A scenario is complete only after its outcome is recorded in a report folder (`manual-testing-playbook.md:21-22`), so the CQ runs also wait on the renderer.
+- The retired scoring harness stays retired. Nothing here re-runs it or re-scores a run.
 <!-- /ANCHOR:adr-008-context -->
 
 ---
@@ -735,9 +735,9 @@ Design 6.5 and the Phase 6 scope in design section 7 require a live D4 run that 
 <!-- ANCHOR:adr-008-decision -->
 ### Decision
 
-**We recommend**: option (c). The operator names a renderer owner, with sk-code as the owner of the gap (`.skilled/skills/sk-code/benchmark/README.md:16`). Until the operator answers, Phase 6 writes the machine record only, and tasks T023 to T025 stay blocked.
+**We chose**: option (a). The operator ruled that sk-code owns the gap and that every phase is implemented with nothing deferred, so this phase builds the report renderer. It lives at `.skilled/skills/sk-code/benchmark/scripts/render-report.cjs`, with its golden test beside it under `scripts/tests/`. Tasks T023 to T025 are unblocked.
 
-**How it works**: `measurement.json` holds every value. Once a renderer is named, it copies the values into the seven-file set (ADR-005).
+**How it works**: `node render-report.cjs <report.json> <out-folder>` writes the seven-file set from one machine record. `--check <report-folder>` re-renders that folder's record into a temporary folder, compares every file byte for byte, names each file that differs and exits 1. The record's `corpus` field fills the `Scenario corpus` row of `source.md`, and `targetSkill.root` is written as recorded, so a record that stores a repository-relative root renders a portable folder (ADR-005). Eight committed reports re-render byte for byte, and the four that do not are named with the reason in the phase evidence.
 <!-- /ANCHOR:adr-008-decision -->
 
 ---
@@ -747,11 +747,11 @@ Design 6.5 and the Phase 6 scope in design section 7 require a live D4 run that 
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **(c) The operator names a renderer owner (recommended)** | Keeps the scope and the playbook rule | Waits on the operator | 8/10 |
-| (a) Phase 6 builds a runner and a renderer | The full report is possible now | New code outside this packet, which breaks REQ-015 | 3/10 |
+| **(a) Phase 6 builds the renderer (chosen)** | The report folder is producible now, and the rule that renderer-owned markdown is never hand-authored holds | One module and one test outside the gate code, so the no-code requirement needs an explicit exception | 8/10 |
 | (b) Hand-write the seven files under an operator exception | The report exists now | Breaks the renderer-owned rule and the "do not hand-edit" note | 2/10 |
+| (c) Wait for the operator to name a renderer owner | Keeps the scope and the playbook rule | Nothing in this program is deferred, so the wait leaves the phase's deliverable unbuilt | 4/10 |
 
-**Why this one**: Option (c) keeps the scope and the rules, and it leaves the owner choice with the operator.
+**Why this one**: The operator named the owner and ruled that no phase is deferred, so a wait would leave the measurement phase without the report its own success criteria ask for.
 <!-- /ANCHOR:adr-008-alternatives -->
 
 ---
@@ -760,16 +760,17 @@ Design 6.5 and the Phase 6 scope in design section 7 require a live D4 run that 
 ### Consequences
 
 **What improves**:
-- No hand-written markdown and no new code in this phase.
+- The report folder is written from the measurement record, and any folder can be checked against the record it came from.
 
 **What it costs**:
-- The report folder and the CQ result rows wait. Mitigation: the measurement record and the transcripts exist without the report.
+- One module and one test under the benchmark tree, and one stated exception to the no-code requirement. Mitigation: the module runs offline on Node built-ins, reads and writes only the folder it is given, and touches no gate code.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The wait holds the phase open | H | OQ-1 is the first item the operator sees at program end |
+| A later template change silently rewrites an archived report | M | The golden test re-renders the committed reports of the current format and fails on any difference |
+| The renderer is read as a replacement for the retired scoring harness | L | It renders a record it is given and scores nothing |
 <!-- /ANCHOR:adr-008-consequences -->
 
 ---
@@ -781,9 +782,9 @@ Design 6.5 and the Phase 6 scope in design section 7 require a live D4 run that 
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | The report cannot be produced under current rules |
 | 2 | **Beyond Local Maxima?** | PASS | Three options were scored |
-| 3 | **Sufficient?** | PASS | Names one decision for the operator |
+| 3 | **Sufficient?** | PASS | One module and one test |
 | 4 | **Fits Goal?** | PASS | The report is the measurement's deliverable |
-| 5 | **Open Horizons?** | PASS | The gap has a named owner |
+| 5 | **Open Horizons?** | PASS | A scoring harness restored later can write the same record |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-008-five-checks -->
@@ -793,8 +794,11 @@ Design 6.5 and the Phase 6 scope in design section 7 require a live D4 run that 
 <!-- ANCHOR:adr-008-impl -->
 ### Implementation
 
-**What changes**: Nothing until the operator answers. After the answer, tasks T023 to T025 proceed with the named renderer.
+**What changes**:
+- `.skilled/skills/sk-code/benchmark/scripts/render-report.cjs` (the renderer).
+- `.skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs` (the golden test).
+- `.skilled/skills/sk-code/benchmark/README.md` section 7 (names the renderer and how to run it).
 
-**How to roll back**: Nothing to roll back, because nothing is written. If option (b) is chosen, the report README states that the files were hand-written under the exception.
+**How to roll back**: Delete the two script files and section 7, then restore the no-code requirement. No archived report is touched, because a render writes a new folder and `--check` writes nothing.
 <!-- /ANCHOR:adr-008-impl -->
 <!-- /ANCHOR:adr-008 -->

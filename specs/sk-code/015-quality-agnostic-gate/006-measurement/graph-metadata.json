@@ -50,6 +50,9 @@
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md",
+      ".skilled/skills/sk-code/benchmark/scripts/render-report.cjs",
+      ".skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs",
+      ".skilled/skills/sk-code/benchmark/README.md",
       ".skilled/bin/compiled-route.cjs",
       ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
@@ -108,6 +111,18 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-report.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/benchmark/scripts/render-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-report.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs",
         "source": "derived"
       },
       {
@@ -187,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The saved benchmark runs for `sk-code-quality` measure routing, not catching",
     "created_at": "2026-10-25T23:21:53Z",
-    "last_save_at": "2026-10-26T00:01:01.030Z",
+    "last_save_at": "2026-10-26T11:16:37.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +218,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b270943997a209cb801fc6ab30b79b047d8be12ca46682a248ed46f4eb4bc52",
+    "source_fingerprint": "sha256:24244be74672739b5e47634856e8e37f14523bc31c574a21acafab7a66a3ff71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bae734dc469270c535a1f72dc90b750be5d1f4b4ce6c4e6efb62d127f9b5275",
-      "plan.md": "ea21ce62a49ff4c0df7385c4518806df61c4fe86524626489c83138f7930a05a",
-      "tasks.md": "b3a46070ec3de8bdc8bdd548e7d5f614fb030e1f3bdfbe38f6d45e128bf19519",
-      "decision-record.md": "64f33336c5a48367965b48bf4a9551f9b02e7695dea24ee2f02d631d5dfd0b2a",
+      "spec.md": "1665ff4569c3e2966e167055c7fdfb315d2de806911fb7ecfd41fbbc50086261",
+      "plan.md": "4ebd3e477347942f27207e9b6516df6bc61cef167da86ab95fe06364681ff344",
+      "tasks.md": "cb416de7874ff1a8dbc864bcf33d2f63997b517feea0932f54f38d61bc00d384",
+      "decision-record.md": "6183daf4e90970e800d33a5140168bcda42819027dc1344044b6d0677472485d",
       "implementation-summary.md": "8832bcc415351f268d7770cd424617397d76c0e3ab7155aaabcffd44dbc52a12"
     },
     "last_active_at": null

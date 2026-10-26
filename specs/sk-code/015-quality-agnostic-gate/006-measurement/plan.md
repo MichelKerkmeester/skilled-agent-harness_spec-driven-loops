@@ -90,7 +90,7 @@ Verify: `rg -l '^id: CQ-00[2-8]$' .skilled/skills/sk-code/sk-code-quality/manual
 
 Write CB-CR-006 to CB-CR-008 under `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/`, following the shape of `surface-alone-ci-compiled-routing.md`. The canaries use the three prompts design 6.5 lists.
 
-Acceptance: CB-CR-006 and CB-CR-008 replay as a single route to `sk-code-quality`, and CB-CR-007 replays as a bundle with quality first and `sk-code-ci` as the surface.
+Acceptance: CB-CR-006 to CB-CR-008 each replay as a single route to `sk-code-quality`, and CB-CR-007 also replays at stage two with `CI_WORKFLOW` and the four `sk-code-ci` references.
 Verify: `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on the agent file I edited under .skilled/agents"` prints `"selectionKind":"single"` and `sk-code-quality`.
 
 ### Step 3: Record the measurements and write the report
