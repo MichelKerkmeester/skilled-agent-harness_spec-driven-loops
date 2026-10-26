@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/001-honest-checker",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/001-honest-checker",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "honest checker",
+      "phase 1 honest checker",
+      "comment hygiene checker languages",
+      "honest checker plan",
+      "honest checker tasks",
+      "honest checker acceptance criteria",
+      "honest checker goal",
+      "honest checker decision record",
+      "honest checker implementation summary"
+    ],
+    "key_topics": [
+      "honest",
+      "checker",
+      "phase",
+      "comment",
+      "hygiene",
+      "languages",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs",
+      ".skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs",
+      ".github/workflows/comment-hygiene.yml",
+      ".github/workflows/sk-code-script-tests.yml",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-code-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The comment-hygiene checker is the one engine that blocks ephemeral labels in comments, yet it reads nine extensions only",
+    "created_at": "2026-10-25T23:21:46Z",
+    "last_save_at": "2026-10-26T00:00:53.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e7ae17d63fda9fce550dfbe250fab63873157a21db174728f33ed6fa6d696d9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "451ed6d6a5eb301c17cc0ee5e9f7583b6d7b83382945df593502046f2a6372ac",
+      "plan.md": "6fe7584a6770ee873818eaa00c7f6119d32d91b3e324498c4793160b94ef309c",
+      "tasks.md": "b089bad33270859e4ac53129d6a1aaa9112878279da58520a5af6db7f83e0dc0",
+      "decision-record.md": "04843f5fcec3049da5eeaee4c6f38afb8a1996d0b25d553df71510526967860b",
+      "implementation-summary.md": "451a835a98759a444904971ada96ee4cd76643702112d638a140a3690e2e3601"
+    },
+    "last_active_at": null
+  }
+}

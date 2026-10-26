@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate",
+  "spec_folder": "sk-code/015-quality-agnostic-gate",
+  "parent_id": null,
+  "children_ids": [
+    "sk-code/015-quality-agnostic-gate/001-honest-checker",
+    "sk-code/015-quality-agnostic-gate/002-builtin-runner",
+    "sk-code/015-quality-agnostic-gate/003-config-and-doctor",
+    "sk-code/015-quality-agnostic-gate/004-doctrine",
+    "sk-code/015-quality-agnostic-gate/005-consumers-and-routing",
+    "sk-code/015-quality-agnostic-gate/006-measurement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality agnostic gate phase parent spec",
+      "sk-code quality codebase agnostic",
+      "executable author gate",
+      "sk-code quality runner",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "quality",
+      "agnostic",
+      "gate",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code",
+      "codebase",
+      "executable",
+      "author",
+      "runner",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/agents/code.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".github/workflows/comment-hygiene.yml",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/shared/references/phase-detection.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      "001-honest-checker/goal.md",
+      "002-builtin-runner/goal.md",
+      "003-config-and-doctor/goal.md",
+      "004-doctrine/goal.md",
+      "005-consumers-and-routing/goal.md",
+      "006-measurement/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "universal-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-verify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gate",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "six",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
+    "created_at": "2026-10-25T23:21:45Z",
+    "last_save_at": "2026-10-25T23:33:29.252Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:46b45251b24977b3ffb0af68a3ed383eda43429e2f23ed6f06f6c9e7142f6854",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a647e2a2b1ebecd0af0ac40420f48a77f137aa43924145e46bfdbc35ba2d96da"
+    },
+    "last_active_at": null
+  }
+}
