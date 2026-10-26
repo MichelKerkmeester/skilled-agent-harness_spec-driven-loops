@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7284,
-    "ok": 15304,
+    "missing-frontmatter": 7287,
+    "ok": 15342,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26136,
+  "documentsScanned": 26177,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8636c6a059982d61522811c1644f45aea901eb0af68788de9e4a15c757099524",
+  "manifestHash": "53946cb76a39506b559da1054be5bf73f5eef00fc8e63f5133e52530bdbc167f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37855,
+      "ok": 37915,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -33795,12 +33795,6 @@
       "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"heal spec docs lane modes\""
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/resource-map-template.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -68592,6 +68586,30 @@
       "line": 1,
       "path": "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -75793,6 +75811,34 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages",
       "reason": "excluded directory"
     },
     {

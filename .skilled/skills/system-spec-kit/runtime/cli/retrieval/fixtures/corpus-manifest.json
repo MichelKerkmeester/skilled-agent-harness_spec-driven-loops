@@ -1,5 +1,5 @@
 {
-  "corpusHash": "18668d3faeaea1aa1dd510cfdf4972e34fe7afa07d9f547f48a4718f0606fdd8",
+  "corpusHash": "1ebd7704d3744210368b3ef66e75c6ba1b3703f41de3dda80ce39f8a31feaae2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26136,
+  "includedPathCount": 26177,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6811,6 +6811,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.6.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.7.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -7901,6 +7902,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.1.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.1.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.10.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -7933,8 +7935,8 @@
     ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.9.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.9.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.9.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
@@ -7997,7 +7999,6 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-inspect.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-save-preference.md",
@@ -26148,6 +26149,39 @@
     "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/fanout-attribution.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/phase-012-proposal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/research.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/resource-map.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/decision-record.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26157,8 +26191,15 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-007-playbook-catalog-readme-alignment.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-008-playbook-run-in-worktree.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-010-deep-review-finding-fixes.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-011-authoring-speed-research.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-012-authoring-speed-fixes-and-alignment.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-013-addon-removal-and-speed-refinements.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-014-removed-template-reality-sweep.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/review/review-report.md",
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
     "specs/system-speckit/055-ci-efficiency-release-docs/acceptance-criteria.md",
     "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md",
@@ -26167,7 +26208,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8636c6a059982d61522811c1644f45aea901eb0af68788de9e4a15c757099524",
+  "manifestHash": "53946cb76a39506b559da1054be5bf73f5eef00fc8e63f5133e52530bdbc167f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33375,6 +33416,34 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages",
       "reason": "excluded directory"
     },
     {
