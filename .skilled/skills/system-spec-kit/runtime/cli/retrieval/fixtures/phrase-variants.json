@@ -1,5 +1,5 @@
 {
-  "manifestHash": "00bc46eb7ede2a04e27c01d0e211680691747b9b7288b94ce3c9a1a5a91f0eeb",
+  "manifestHash": "c2ebc5547242605b99503e690690295ccd097f3fdb07b41cc82249e697b880fc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -78576,6 +78576,9 @@
     "quality agnostic gate phase parent spec": [
       "quality agnostic gate phase parent spec"
     ],
+    "quality agnostic gate runner limit closeout changelog": [
+      "quality agnostic gate runner limit closeout changelog"
+    ],
     "quality assessment framework": [
       "quality assessment framework"
     ],
@@ -78629,6 +78632,9 @@
     ],
     "quality gate obsidian coverage": [
       "quality gate obsidian coverage"
+    ],
+    "quality gate proves its layers": [
+      "quality gate proves its layers"
     ],
     "quality gate ranked recommendations": [
       "quality gate ranked recommendations"
@@ -79316,6 +79322,9 @@
     ],
     "read only corpus backup retrieval class": [
       "read-only corpus backup retrieval class"
+    ],
+    "read only dist freshness": [
+      "read-only dist freshness"
     ],
     "read only figma inspect": [
       "read-only figma inspect"
@@ -87988,6 +87997,9 @@
     "runner source embedded": [
       "runner source embedded"
     ],
+    "runner two second budget": [
+      "runner two second budget"
+    ],
     "running skilled safely": [
       "running skilled safely"
     ],
@@ -93174,6 +93186,9 @@
     "sk code 3 5 0 0": [
       "sk-code 3.5.0.0"
     ],
+    "sk code 3 6 0 0": [
+      "sk-code 3.6.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93831,6 +93846,9 @@
     "sk code quality 1 1 1 0": [
       "sk-code-quality 1.1.1.0"
     ],
+    "sk code quality 1 10 0 0": [
+      "sk-code-quality 1.10.0.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -93899,6 +93917,9 @@
     ],
     "sk code quality v1 1 1 0": [
       "sk-code-quality v1.1.1.0"
+    ],
+    "sk code quality v1 10 0 0": [
+      "sk-code-quality v1.10.0.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -94484,6 +94505,9 @@
     ],
     "sk code v3 5 0 0": [
       "sk-code v3.5.0.0"
+    ],
+    "sk code v3 6 0 0": [
+      "sk-code v3.6.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -105759,6 +105783,9 @@
     "system spec kit 2 1 5 0": [
       "system-spec-kit 2.1.5.0"
     ],
+    "system spec kit 2 10 0 0": [
+      "system-spec-kit 2.10.0.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -106187,6 +106214,9 @@
     ],
     "system spec kit v2 1 5 0": [
       "system-spec-kit v2.1.5.0"
+    ],
+    "system spec kit v2 10 0 0": [
+      "system-spec-kit v2.10.0.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
