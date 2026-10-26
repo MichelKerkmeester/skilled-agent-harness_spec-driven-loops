@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Add User Authentication"
-description: "Level 2 plan for the user authentication example, adding phase dependencies, effort estimation and an enhanced rollback."
+description: "Level 2 plan for the user authentication example, adding a phase dependency section to the Level 1 sections."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -15,8 +15,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 2 plan demonstrating verification-focused
-planning. Note the addition of Phase Dependencies, Effort Estimation, and Enhanced
-Rollback sections compared to Level 1. -->
+planning. Note the addition of the Phase Dependencies section compared to Level 1. -->
 
 ---
 
@@ -154,7 +153,7 @@ MVC - Following existing Express.js application structure
 ```
 Phase 1 (Setup) ──────┐
                       ├──> Phase 2 (Core) ──> Phase 3 (Verify)
-Phase 1.5 (Schema) ───┘
+Schema (Prisma) ──────┘
 ```
 
 | Phase | Depends On | Blocks |
@@ -168,47 +167,8 @@ Phase 1.5 (Schema) ───┘
 <!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:effort -->
-## L2: EFFORT ESTIMATION
-
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | Low | 1 hour |
-| Schema (Prisma model) | Low | 30 minutes |
-| Core Implementation | Medium | 4-6 hours |
-| Testing & Verification | Medium | 2-3 hours |
-| **Total** | | **7.5-10.5 hours** |
-
-
-<!-- /ANCHOR:effort -->
----
-
-<!-- ANCHOR:enhanced-rollback -->
-## L2: ENHANCED ROLLBACK
-
-### Pre-deployment Checklist
-- [x] Backup created (database snapshot)
-- [ ] Feature flag configured (N/A - core auth feature)
-- [x] Monitoring alerts set (error rate spike)
-
-### Rollback Procedure
-1. **Immediate**: Disable auth routes in app.js (comment out)
-2. **Revert code**: `git revert HEAD~N` for auth commits
-3. **Database**: `DROP TABLE users;` (no existing data to preserve)
-4. **Verify**: Confirm app loads without auth routes
-5. **Notify**: Post in #engineering channel if user-facing impact
-
-### Data Reversal
-- **Has data migrations?** Yes (users table)
-- **Reversal procedure**: DROP TABLE users; (no data to preserve for new feature)
-
-<!-- /ANCHOR:enhanced-rollback -->
-
----
-
 <!--
 LEVEL 2 PLAN (~140 lines)
 - Core + Level 2 addendum
-- Phase dependencies and effort estimation
-- Enhanced rollback procedure
+- Phase dependencies between the four phases
 -->

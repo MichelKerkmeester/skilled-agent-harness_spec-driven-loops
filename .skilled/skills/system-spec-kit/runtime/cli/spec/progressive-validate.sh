@@ -34,6 +34,11 @@ VERSION="1.0.0"
 # Source shared library
 source "${SCRIPT_DIR}/../lib/shell-common.sh"
 
+# validate.sh repairs a Draft packet's derived metadata on its own unless this
+# switch is off. This pipeline logs every change it makes with a diff and
+# promises none under --dry-run, so the validator runs it starts stay read-only.
+export SPECKIT_DRAFT_AUTO_REPAIR=0
+
 # ───────────────────────────────────────────────────────────────
 # 1. STATE
 # Boolean flags are stored as "true"/"false" strings.

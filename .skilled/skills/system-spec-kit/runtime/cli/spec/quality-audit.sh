@@ -122,8 +122,10 @@ main() {
         local status
 
         # JSON in both modes: only the report says whether validation was
-        # switched off, and the exit code is the same either way.
-        output=$(bash "$validate_script" "$folder" --json --quiet 2>/dev/null) || exit_code=$?
+        # switched off, and the exit code is the same either way. An audit
+        # reports the tree as it stands, so the validator's Draft auto-repair
+        # is off here.
+        output=$(SPECKIT_DRAFT_AUTO_REPAIR=0 bash "$validate_script" "$folder" --json --quiet 2>/dev/null) || exit_code=$?
 
         # A switched-off run exits 0 without running a rule, so it is counted
         # apart from a pass. validate.sh writes the report with JSON.stringify,

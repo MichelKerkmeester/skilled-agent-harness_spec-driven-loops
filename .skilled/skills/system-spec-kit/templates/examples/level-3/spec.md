@@ -58,6 +58,32 @@ Implement a production-ready email/password authentication system that provides 
 
 
 <!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:measured-behavior -->
+### Measured Behavior
+
+This is what the application does today, before any auth code exists:
+
+```text
+$ curl -si -X POST localhost:3000/auth/login -d 'email=ada@example.com&password=secret123'
+HTTP/1.1 404 Not Found
+Content-Type: text/html; charset=utf-8
+Content-Length: 152
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /auth/login</pre>
+</body>
+</html>
+```
+
+The `404 Not Found` status line is the baseline this spec quotes: SC-001's 30-second flow cannot be timed until this same call answers `200`.
+<!-- /ANCHOR:measured-behavior -->
 ---
 
 <!-- ANCHOR:scope -->
@@ -177,21 +203,9 @@ Implement a production-ready email/password authentication system that provides 
 
 ## 8. EDGE CASES
 
-### Data Boundaries
-- **Empty input**: Form validation prevents submission, inline error shown
-- **Maximum length**: Email capped at 255 chars, password at 128 chars
-- **Special characters**: Email validated against RFC 5322, password allows all printable ASCII
-- **Unicode**: Email normalized (lowercase), password preserved as-is
-
-### Error Scenarios
-- **Database connection failure**: Generic "Service unavailable" error, retry guidance
-- **Duplicate email**: Clear message "An account with this email already exists"
-- **Invalid token format**: Redirect to login with "Session expired" message
-- **Expired token**: Same handling as invalid token
-
-### Concurrent Operations
-- **Multiple login attempts**: Allow all (rate limiting in Phase 2)
-- **Simultaneous registration**: Database unique constraint prevents duplicates
+- Empty input: form validation blocks an empty submission and shows an inline error.
+- Maximum input: email is capped at 255 characters and password at 128; longer input is rejected with a field error.
+- Failure path: a database connection failure returns "Service unavailable" with retry guidance, and a duplicate email returns "An account with this email already exists".
 
 
 ---

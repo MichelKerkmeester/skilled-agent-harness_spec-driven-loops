@@ -8,7 +8,7 @@ trigger_phrases:
   - "level contract headings"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.16
+version: 1.6.0.17
 ---
 
 # Template Compliance Contract
@@ -63,6 +63,8 @@ Level 1 covers 4 document types using the same core anchors as Level 2 but witho
 | success-criteria | ## 5. SUCCESS CRITERIA |
 | risks | ## 6. RISKS & DEPENDENCIES |
 | questions | ## 7. OPEN QUESTIONS |
+
+At every level the template also places a `measured-behavior` anchor (### Measured Behavior, no H2) right after `problem`. It has no H2, so it is not a required anchor; the `MEASURED_BEHAVIOR` rule warns when a `spec.md` stamped v2.4 or later leaves it missing or empty.
 
 ### plan.md — `# Implementation Plan: [Title]`
 
@@ -138,7 +140,7 @@ OPEN QUESTIONS numbering varies by level:
 | dependencies | ## 6. DEPENDENCIES |
 | rollback | ## 7. ROLLBACK PLAN |
 
-L2 addenda (after core): `phase-deps` (## L2: PHASE DEPENDENCIES), `effort` (## L2: EFFORT ESTIMATION), `enhanced-rollback` (## L2: ENHANCED ROLLBACK)
+L2 addenda (after core): `phase-deps` (## L2: PHASE DEPENDENCIES). The template carries no effort-estimation section and no second rollback section; deployment detail belongs in `rollback` (## 7. ROLLBACK PLAN). A packet written from an older template that still holds those two sections does not fail validation for keeping them.
 
 ### tasks.md — `# Tasks: [Title]`
 
@@ -151,7 +153,7 @@ L2 addenda (after core): `phase-deps` (## L2: PHASE DEPENDENCIES), `effort` (## 
 | completion | ## Completion Criteria |
 | cross-refs | ## Cross-References |
 
-### acceptance-criteria.md — `# Acceptance Criteria: [Title]`
+### tasks.md checklist (Level 2 and above)
 
 | Anchor | Required H2 |
 |--------|-------------|
@@ -159,11 +161,20 @@ L2 addenda (after core): `phase-deps` (## L2: PHASE DEPENDENCIES), `effort` (## 
 | pre-impl | ## Pre-Implementation |
 | code-quality | ## Code Quality |
 | testing | ## Testing |
-| fix-completeness | ## Fix Completeness |
 | security | ## Security |
 | docs | ## Documentation |
 | file-org | ## File Organization |
 | summary | ## Verification Summary |
+
+Optional addendum: `fix-completeness` (## FIX ADDENDUM: FIX COMPLETENESS), between `testing` and `security`. Its `FIX ADDENDUM:` prefix makes it optional at every level: write it when the packet fixes a reported finding, and delete the whole section otherwise.
+
+### acceptance-criteria.md (`# Acceptance Criteria: [Title]`)
+
+| Anchor | Required H2 |
+|--------|-------------|
+| metadata | ## 1. METADATA |
+| criteria | ## 2. CRITERIA |
+| closure | ## 3. CLOSURE STATEMENT |
 
 ### implementation-summary.md — `# Implementation Summary`
 
@@ -284,6 +295,7 @@ When templates in `templates/` change:
 |---------|------|--------|
 | 1.0.0 | 2026-03-22 | Initial creation from template-structure.js contract output |
 | 1.1.0 | 2026-03-25 | Aligned to skill reference template; relocated to references/validation/ |
+| 1.6.0.17 | 2026-10-26 | Templates at v2.4: dropped the effort-estimation and second rollback plan addenda, made `fix-completeness` an optional FIX ADDENDUM, noted the `measured-behavior` block |
 
 ---
 

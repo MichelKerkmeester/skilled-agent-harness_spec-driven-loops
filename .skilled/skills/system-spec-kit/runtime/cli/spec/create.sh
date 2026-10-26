@@ -308,7 +308,7 @@ while [[ $i -le $# ]]; do
             echo "    Lifecycle: implementation-summary.md after implementation starts"
             echo ""
             echo "  Level 2 (Core + Verify):     +Quality gates, verification"
-            echo "    Adds: verification/testing sections in tasks.md, NFRs, edge cases, effort estimation"
+            echo "    Adds: verification/testing sections in tasks.md, NFRs, edge cases, phase dependencies"
             echo ""
             echo "  Level 3 (Core + Verify + Arch): +Architecture guidance"
             echo "    Adds: executive summary, risk matrix, ADR guidance"
@@ -2232,7 +2232,7 @@ else
            echo "      (Essential what/why/how - ~270 LOC)" ;;
         2) echo "    ✓ Core: spec.md + plan.md + tasks.md"
            echo "    ✓ Lifecycle: implementation-summary.md (scaffolded; required after implementation starts)"
-           echo "    ✓ +Verify: merged verification/testing in tasks.md, NFRs, edge cases, effort estimation"
+           echo "    ✓ +Verify: merged verification/testing in tasks.md, NFRs, edge cases, phase dependencies"
            echo "      (Quality gates - adds ~120 LOC)" ;;
         3|"3+") echo "    ✓ Core: spec.md + plan.md + tasks.md"
            echo "    ✓ Lifecycle: implementation-summary.md (scaffolded; required after implementation starts)"

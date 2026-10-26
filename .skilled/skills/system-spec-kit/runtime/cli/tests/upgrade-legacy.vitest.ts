@@ -1475,7 +1475,12 @@ describe('upgrade-legacy', () => {
 
     // The source line and the architecture pair are removed so the modes have
     // to put them back; the removed lines are kept to compare the result to.
-    const planSourceLine = '<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->';
+    // The stamp comes from the manifest, so a template version bump keeps this
+    // line equal to the one the rendered template carries.
+    const planVersion = (JSON.parse(
+      fs.readFileSync(path.join(copy, 'templates/spec-kit-docs.json'), 'utf8'),
+    ) as { versions: Record<string, string> }).versions['plan.md.tmpl'];
+    const planSourceLine = `<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | ${planVersion} -->`;
     const architectureOpen = '<!-- ANCHOR:architecture -->';
     const architectureClose = '<!-- /ANCHOR:architecture -->';
     fs.writeFileSync(

@@ -1502,6 +1502,176 @@ export function writeRepairHint(report: ValidationReport): void {
   process.stdout.write('  Optional: run it without --apply first to preview the changes.\n');
 }
 
+// A Draft packet is still being written, and most of its failed validate rounds
+// are metadata the repository recomputes rather than anything the author got
+// wrong. Settling those here saves the author a round. The set is the repair
+// tool's own derivable list less SPEC_DOC_INTEGRITY, which it repairs only in
+// part, so a packet failing on it still goes back to its author.
+const DRAFT_AUTO_REPAIR_RULES = new Set([
+  'DESCRIPTION_SHAPE',
+  'GENERATED_METADATA_INTEGRITY',
+  'GENERATED_METADATA_DRIFT',
+  'GRAPH_METADATA_SHAPE',
+  'METADATA_DISK_PATH_CONSISTENCY',
+]);
+const DRAFT_AUTO_REPAIR_SWITCH = 'SPECKIT_DRAFT_AUTO_REPAIR';
+const DRAFT_AUTO_REPAIR_OFF_VALUES = new Set(['0', 'false', 'off']);
+const REPAIR_DERIVED_REL = path.join('.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'repair-derived.cjs');
+const VALIDATE_SH_REL = path.join('.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh');
+const SPEC_ROOT_RELS = ['specs', path.join('.opencode', 'specs')];
+// A packet repairs in about two seconds; five minutes is a hang.
+const DRAFT_AUTO_REPAIR_TIMEOUT_MS = 5 * 60 * 1000;
+
+/** Why the CLI will not auto-repair this report, or null when it will. */
+export type DraftAutoRepairRefusal =
+  | 'passed'
+  | 'switch-off'
+  | 'ci'
+  | 'rule-subset'
+  | 'not-strict'
+  | 'not-draft'
+  | 'authored-error'
+  | 'no-repository-root';
+
+// The repair tool resolves every path against its working directory and refuses
+// a target outside <root>/specs, so it has to start from the repository that
+// holds the packet. That is the nearest ancestor carrying the tool and a spec
+// root the packet sits in.
+function findRepairRoot(folder: string): string | null {
+  let current = path.dirname(folder);
+  for (;;) {
+    const hasTools = fs.existsSync(path.join(current, REPAIR_DERIVED_REL))
+      && fs.existsSync(path.join(current, VALIDATE_SH_REL));
+    if (hasTools) {
+      const inside = SPEC_ROOT_RELS.some((rel) => {
+        const relative = path.relative(path.join(current, rel), folder);
+        return relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative);
+      });
+      if (inside) return current;
+    }
+    const parent = path.dirname(current);
+    if (parent === current) return null;
+    current = parent;
+  }
+}
+
+/**
+ * Decide whether the validate CLI may auto-repair a failed report. Only the CLI
+ * entry acts on this; `validateFolder` never writes.
+ *
+ * @param report - The first validation report for one folder
+ * @param env - The environment holding the switch, `CI` and `SPECKIT_RULES`
+ * @param opts - The options the report was produced with
+ * @returns The reason it refuses, or null when the repair may run
+ */
+export function draftAutoRepairRefusal(
+  report: ValidationReport,
+  env: NodeJS.ProcessEnv = process.env,
+  opts: ValidateOpts = {},
+): DraftAutoRepairRefusal | null {
+  if (report.passed) return 'passed';
+  const switchValue = (env[DRAFT_AUTO_REPAIR_SWITCH] ?? '').trim().toLowerCase();
+  if (DRAFT_AUTO_REPAIR_OFF_VALUES.has(switchValue)) return 'switch-off';
+  // A CI run checks a committed tree, and a check that rewrites what it checks
+  // proves nothing about what was committed.
+  if ((env.CI ?? '') !== '') return 'ci';
+  // "Every error is derived" means something only over the full rule set. A
+  // narrowed run never ran the content rules it left out, and a run without
+  // --strict skips the strict-only rules and judges a phase parent at its
+  // detected level, so an authored error could sit unseen behind a list that
+  // holds only derived ones.
+  if ((env.SPECKIT_RULES ?? '').split(',').some((token) => token.trim() !== '')) return 'rule-subset';
+  if (opts.strict !== true) return 'not-strict';
+  if (!specStatusIsDraft(report.folder)) return 'not-draft';
+  const errors = report.entries.filter((item) => item.status === 'error');
+  if (errors.length === 0 || errors.some((item) => !DRAFT_AUTO_REPAIR_RULES.has(item.rule))) return 'authored-error';
+  if (!findRepairRoot(report.folder)) return 'no-repository-root';
+  return null;
+}
+
+// The packet's own top-level files, by content. The repair writes only these,
+// so comparing two snapshots names every file it rewrote, whatever it reports.
+function snapshotPacketFiles(folder: string): Map<string, Buffer> {
+  const snapshot = new Map<string, Buffer>();
+  for (const entryItem of fs.readdirSync(folder, { withFileTypes: true })) {
+    if (!entryItem.isFile()) continue;
+    try {
+      snapshot.set(entryItem.name, fs.readFileSync(path.join(folder, entryItem.name)));
+    } catch {
+      // A file that cannot be read cannot be compared; the repair skips it too.
+    }
+  }
+  return snapshot;
+}
+
+function changedPacketFiles(before: Map<string, Buffer>, after: Map<string, Buffer>): string[] {
+  const names = new Set([...before.keys(), ...after.keys()]);
+  return [...names].filter((name) => {
+    const old = before.get(name);
+    const current = after.get(name);
+    return !old || !current || !old.equals(current);
+  }).sort();
+}
+
+function repairFailureReason(child: ReturnType<typeof spawnSync>): string {
+  if (child.error) return child.error.message;
+  if (child.signal) return `killed (${child.signal})`;
+  const stdout = String(child.stdout ?? '');
+  const named = stdout.split('\n').find((line) => /^(FAILED|UNREADABLE) /u.test(line));
+  const stderrTail = String(child.stderr ?? '').trim().split('\n').filter(Boolean).pop();
+  const detail = named ?? stderrTail;
+  return detail ? `exit ${child.status}: ${detail.trim()}` : `exit ${child.status}`;
+}
+
+// Runs the repair once and returns the report to print: the second run when the
+// repair rewrote something and finished, the first one otherwise. Every write is
+// named, because a validate run that changes the tree must say so. The notice
+// goes to stderr in --json and --quiet, so stdout stays one report or one line.
+function runDraftAutoRepair(report: ValidationReport, opts: ValidateOpts): ValidationReport {
+  if (draftAutoRepairRefusal(report, process.env, opts) !== null) return report;
+  const root = findRepairRoot(report.folder);
+  if (!root) return report;
+  const out = opts.json || opts.quiet ? process.stderr : process.stdout;
+  const notice = (line: string): void => {
+    out.write(`${line}\n`);
+  };
+  const before = snapshotPacketFiles(report.folder);
+  // The repair runs validate.sh itself, so the switch is off in its
+  // environment, or each inner validate would start another repair.
+  const child = spawnSync(
+    process.execPath,
+    [path.join(root, REPAIR_DERIVED_REL), '--folder', path.relative(root, report.folder), '--apply'],
+    {
+      cwd: root,
+      encoding: 'utf8',
+      env: { ...process.env, [DRAFT_AUTO_REPAIR_SWITCH]: '0' },
+      maxBuffer: 64 * 1024 * 1024,
+      timeout: DRAFT_AUTO_REPAIR_TIMEOUT_MS,
+    },
+  );
+  const rewritten = changedPacketFiles(before, snapshotPacketFiles(report.folder));
+  notice('');
+  notice('Draft auto-repair: spec.md is Draft and every error is derived metadata, so repair-derived.cjs --apply ran once.');
+  for (const name of rewritten) {
+    const file = path.join(report.folder, name);
+    notice(`  rewrote ${path.relative(process.cwd(), file) || file}`);
+  }
+  const offHint = `  Set ${DRAFT_AUTO_REPAIR_SWITCH}=0 to turn this off.`;
+  if (child.error || child.signal || child.status !== 0) {
+    notice(`  The repair did not finish (${repairFailureReason(child)}). The report below is from before it.`);
+    notice(offHint);
+    return report;
+  }
+  if (rewritten.length === 0) {
+    notice('  It rewrote nothing. The report below is unchanged.');
+    notice(offHint);
+    return report;
+  }
+  notice('  Validated again. The report below is the second run.');
+  notice(offHint);
+  return validateFolder(report.folder, opts);
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 10. CLI ENTRY
 // ───────────────────────────────────────────────────────────────────
@@ -1512,7 +1682,9 @@ export function writeRepairHint(report: ValidationReport): void {
 if (isMainModule(import.meta.url)) {
   try {
     const { folder, opts } = parseCliArgs(process.argv.slice(2));
-    const report = validateFolder(folder, opts);
+    // The repair lives here, not in validateFolder, so a library caller such as
+    // a census never writes into the packets it reads.
+    const report = runDraftAutoRepair(validateFolder(folder, opts), opts);
     printReport(report, opts);
     process.exitCode = report.passed ? 0 : 2;
   } catch (error: unknown) {

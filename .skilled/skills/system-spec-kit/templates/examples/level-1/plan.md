@@ -49,7 +49,7 @@ This implementation adds email/password authentication using bcrypt for password
 
 ### Definition of Done
 - [x] All acceptance criteria met
-- [x] Tests passing (if applicable)
+- [x] `npm test -- auth` passes
 - [x] Docs updated (spec/plan/tasks)
 
 

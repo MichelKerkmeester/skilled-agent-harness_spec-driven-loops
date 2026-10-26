@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.3.0
+version: 2.7.4.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -64,6 +64,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `SPEC_DOC_SUFFICIENCY` | ERROR  | spec docs, goal.md | Anchor sufficiency; for `goal.md` also the durable budget (one limit: fail past 4000) and binding-row existence |
 | `FRONTMATTER_VALUES` | WARNING  | packet docs   | `contextType` or `importance_tier` outside sk-create-frontmatter's `frontmatter-values.json`; aliases are legal |
 | `SOURCE_TAGS`        | WARNING  | research/ + review/ | `[SOURCE: path:line]` tags that name a gone file, a moved file or a line past the end, in packets created after the cutoff |
+| `MEASURED_BEHAVIOR` | WARNING  | spec.md stamped v2.4+ | `measured-behavior` anchor present with the changed command's verbatim output, or an `N/A:` line with a reason |
 
 > **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set and their canonical severities live in [`runtime/cli/lib/validator-registry.json`](../../runtime/cli/lib/validator-registry.json).
 
@@ -127,6 +128,26 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `warn`, guessed | No file at the path; only files with the same name exist |
 
 **How to fix:** point the tag at the current path and a line inside the file. A moved tag's warning names the path to use.
+
+### MEASURED_BEHAVIOR
+
+`MEASURED_BEHAVIOR` checks that `spec.md` carries the measurement a later reader needs to judge a claim about current behavior. It is registered at WARNING severity, so it never fails a run, `--strict` included.
+
+**Rule ID:** `MEASURED_BEHAVIOR`
+
+**Scope:** a `spec.md` whose `SPECKIT_TEMPLATE_SOURCE` stamp names v2.4 or later. A doc with an older stamp, or none, is not checked.
+
+**The anchor:** `### Measured Behavior`, right after the problem section. The rule warns when that anchor is missing, and when its block holds neither a non-empty fenced command output nor an `N/A:` line with a reason.
+
+**Purpose:** the author pastes the command the feature changes and its verbatim output. Every number the spec states about current behavior quotes that block, so a reader reruns the command instead of trusting the prose.
+
+| Result | Meaning |
+|---|---|
+| `pass` | The anchor exists and its block holds a command output or an `N/A:` line with a reason |
+| `warn`, missing | No `measured-behavior` anchor in `spec.md` |
+| `warn`, empty | The block holds neither a command output nor a reasoned `N/A:` |
+
+**How to fix:** paste the command the feature changes with its output into the anchor, or write an `N/A:` line carrying the reason there is nothing to measure.
 
 `AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, malformed evidence citations, and unresolved evidence citations without adding strict warnings or errors. A citation is unresolved when its file is not found as an absolute path, in the packet folder or under the repository root, or when its line is outside that file, and it still counts toward the covered count. `SPECKIT_AC_COVERAGE_ENFORCE=true` turns an under-floor result into a failure. The floor is aspirational today: across the repository about one in five criteria marked Met cites a `file:line`, so enabling the switch fleet-wide would fail most closed packets until their Verification cells are retro-cited.
 
@@ -820,6 +841,12 @@ Cut in the order section 3 of `sk-create-goal`'s [budget-and-handoff.md](../../.
 | `SPECKIT_POST_VALIDATE` | unset | Set to `1` during scaffolding to run `validate.sh --quiet` after `create.sh` writes files |
 
 `validate.sh` delegates to the Node validation orchestrator by default. In a linked worktree whose `dist` directories are symlinks, run it with `NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\"`; `NODE_PRESERVE_SYMLINKS=1` alone does not cover the main module and the orchestrator then exits 0 with no output. The strict path is designed for fast packet checks: on 2026-10-25, `validate.sh specs/agents/001-terminal-proof-discipline --strict --no-recursive` took 1.35 to 1.38 s across three runs on the local harness, whole process included.
+
+### Draft Auto-Repair
+
+A Draft packet can repair its own generated metadata instead of failing on it. When a `validate.sh --strict` run finds that every error comes from a derived-metadata rule that `repair-derived.cjs` can fix, it runs `repair-derived.cjs --folder <packet> --apply` once, prints each file it rewrote, and validates again. The repair rewrites generated metadata (`description.json`, `graph-metadata.json`), frontmatter packet pointers and the Spec Folder row, and never any other body text.
+
+It runs only when `spec.md` Status is Draft and every error is a derived-metadata one. It never runs for any other status, when any content rule fails, without `--strict`, when `SPECKIT_RULES` names a subset of rules, or when `CI` is set: a check in CI reads a committed tree and must not rewrite it. The last three keep "every error is derived" honest, since a narrowed or non-strict run never ran some content rules. `SPECKIT_DRAFT_AUTO_REPAIR=0` turns it off, as do `false` and `off`. Tools that run `validate.sh` as a child to read or audit a packet set the switch to `0`, so only a person or model running the validator directly gets the repair. `validateFolder` called as a library never writes.
 
 ### Usage Examples
 

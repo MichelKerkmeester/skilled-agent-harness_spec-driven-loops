@@ -28,7 +28,7 @@ _memory:
 ---
 # Acceptance Criteria: [NAME]
 
-<!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > This document decides whether the packet may close. A packet is closeable when
@@ -39,7 +39,7 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-recommend-level-quiet`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
+<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
 **Packet:** [YOUR_VALUE_HERE: PACKET-ID]
 **Level:** [2/3/3+]
@@ -51,7 +51,7 @@ _memory:
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--quiet` runs, Then `wc -l` prints 1. WEAK: The feature works. -->
+<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 

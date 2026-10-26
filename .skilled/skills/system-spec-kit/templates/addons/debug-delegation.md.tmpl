@@ -41,7 +41,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:problem-summary -->
 ## 1. PROBLEM SUMMARY
-<!-- FILL: State the failure, the command and the first bad output. GOOD: `--quiet` prints 3 lines. Expected 1. WEAK: It is broken. -->
+<!-- FILL: State the failure, the command and the first bad output. GOOD: `--keep 3` leaves 6 archives. Expected 3. WEAK: It is broken. -->
 
 ### Error Category
 [YOUR_VALUE_HERE: syntax_error | type_error | runtime_error | test_failure | build_error | lint_error]
@@ -58,7 +58,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:attempted-fixes -->
 ## 2. ATTEMPTED FIXES
-<!-- FILL: List each attempt and its result. GOOD: Moved the exit after the print. Still 3 lines. WEAK: Tried some fixes. -->
+<!-- FILL: List each attempt and its result. GOOD: Moved the delete after the count. Still 6 archives. WEAK: Tried some fixes. -->
 
 ### Attempt 1
 - **Approach:** [YOUR_VALUE_HERE: description]
@@ -76,7 +76,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:context-for-specialist -->
 ## 3. CONTEXT FOR SPECIALIST
-<!-- FILL: Give the specialist the files, the command and the evidence. GOOD: File `recommend-level.sh` line 510. Command `--quiet`. Output 3 lines. WEAK: See the code. -->
+<!-- FILL: Give the specialist the files, the command and the evidence. GOOD: File `scripts/rotate-logs.sh`, the delete loop. Command `--keep 3`. Output 6 archives. WEAK: See the code. -->
 
 ### Relevant Code Section
 ```[YOUR_VALUE_HERE: language]
@@ -92,7 +92,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:recommended-next-steps -->
 ## 4. RECOMMENDED NEXT STEPS
-<!-- FILL: Name the next check and the expected result. GOOD: Run `bash -x` and confirm one `echo` on the quiet path. WEAK: Keep debugging. -->
+<!-- FILL: Name the next check and the expected result. GOOD: Run `bash -x` and confirm the run deletes exactly 7 of the 10 archives. WEAK: Keep debugging. -->
 
 1. [YOUR_VALUE_HERE: suggested_action_1]
 2. [YOUR_VALUE_HERE: suggested_action_2]

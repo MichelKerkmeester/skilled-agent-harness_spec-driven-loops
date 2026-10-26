@@ -79,7 +79,18 @@ const WORKERS = Math.max(4, Math.min(24, Math.ceil(os.cpus().length * 1.5)));
 
 // A wedged validator would otherwise hold a worker — and so the whole run —
 // open forever. A packet takes about two seconds; five minutes is a hang.
-const VALIDATE_CHILD = { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeout: 5 * 60 * 1000 };
+//
+// validate.sh repairs a Draft packet's derived metadata on its own unless the
+// switch is off. A dry run must write nothing, and an applied run records each
+// packet's before-image only after its first validation, so every validator
+// this tool starts stays read-only and the repair steps do the writing.
+const VALIDATE_CHILD = {
+  cwd: REPO,
+  encoding: 'utf8',
+  maxBuffer: 64 * 1024 * 1024,
+  timeout: 5 * 60 * 1000,
+  env: { ...process.env, SPECKIT_DRAFT_AUTO_REPAIR: '0' },
+};
 
 // A repair step can walk a whole tree and take minutes doing it, so it gets an
 // hour; a wedged step still cannot hold the sweep open forever.

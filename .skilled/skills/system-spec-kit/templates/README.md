@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Templates
@@ -22,7 +22,7 @@ Current state:
 - `spec-kit-docs.json` maps public Levels to required docs, add-on docs, lazy docs and section gates.
 - `core/`, `addons/` and `packet-types/` `*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.
 - Every content section carries one `<!-- FILL: ... -->` instruction below its heading, with a good and a weak answer where the section needs one.
-- The four core templates and `addons/acceptance-criteria.md.tmpl` are stamped v2.3 and ship `[YOUR_VALUE_HERE: ...]` tokens in place of bare hints.
+- The four core templates and `addons/acceptance-criteria.md.tmpl` are stamped v2.4 and ship `[YOUR_VALUE_HERE: ...]` tokens in place of bare hints. The v2.4 spec template adds a `### Measured Behavior` block that holds a command and its verbatim output.
 - `examples/` stores rendered reference packets for each supported Level.
 
 ---

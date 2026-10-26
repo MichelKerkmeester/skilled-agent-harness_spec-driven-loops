@@ -277,7 +277,7 @@ Options:
   --help, -h            Show this help message
 
 Upgrade Paths:
-  L1 → L2:   Adds acceptance-criteria.md, NFR/Edge/Complexity sections, effort estimation
+  L1 → L2:   Adds acceptance-criteria.md, NFR/Edge/Complexity sections, phase dependencies
   L2 → L3:   Promotes L2 sections, adds dependency graph and milestones (decision-record.md on request)
   L3 → L3+:  Adds governance sections, AI execution framework
   Skip-levels (e.g., L1→L3) chain through intermediate upgrades automatically.

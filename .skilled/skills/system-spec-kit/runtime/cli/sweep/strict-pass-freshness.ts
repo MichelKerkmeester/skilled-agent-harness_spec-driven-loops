@@ -279,7 +279,9 @@ function runValidate(folder: string, baseline: Baseline): SweepResult {
   const result = spawnSync('bash', [validateScript, folder, '--strict', '--json', '--no-recursive'], {
     cwd: repoRoot,
     encoding: 'utf8',
-    env: process.env,
+    // The sweep records the tree as it stands, so the validator's Draft
+    // auto-repair stays off and a stale packet is reported, not rewritten.
+    env: { ...process.env, SPECKIT_DRAFT_AUTO_REPAIR: '0' },
   });
   const exitCode = result.status ?? 1;
   const stdout = result.stdout ?? '';

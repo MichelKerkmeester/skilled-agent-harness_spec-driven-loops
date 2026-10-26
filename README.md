@@ -145,7 +145,7 @@ From request to documented result:
          ┌──────────────────────────────────────────┐
          │     SPEC KIT (documentation framework)   │
          │  specs/<track>/###-feature/ - scratch/   │
-         │  4 levels - template set - 41 rules      │
+         │  4 levels - template set - 42 rules      │
          │  trigger index │ ripgrep retrieval       │
          └──────────────────────────────────────────┘
 ```
@@ -370,12 +370,12 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Scripts and Validation
 
-`validate.sh` runs 41 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Seven of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
+`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Seven of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
 
 **Spec management scripts** in `.skilled/skills/system-spec-kit/runtime/cli/spec/`:
 
 - **`create.sh`** - create spec folders with level-appropriate templates. Use `--phase` for a parent with child phases
-- **`validate.sh`** - run 41 validation rules. Use `--recursive` for phase folders
+- **`validate.sh`** - run 42 validation rules. Use `--recursive` for phase folders
 - **`upgrade-level.sh`** - upgrade a spec folder to a higher level by injecting new sections
 - **`recommend-level.sh`** - analyze scope and risk to recommend the right documentation level
 - **`calculate-completeness.sh`** - calculate spec folder completeness as a percentage
@@ -735,7 +735,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
 - Owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes
-- Manages the manifest template source, 41 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
+- Manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **`system-skill-advisor`**
 

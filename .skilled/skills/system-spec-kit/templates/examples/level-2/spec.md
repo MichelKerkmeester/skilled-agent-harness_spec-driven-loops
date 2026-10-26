@@ -46,6 +46,17 @@ Implement a basic email/password authentication system that allows users to regi
 
 
 <!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:measured-behavior -->
+### Measured Behavior
+
+```text
+$ curl -si -X POST localhost:3000/auth/login -d 'email=ada@example.com&password=secret' | head -1
+HTTP/1.1 404 Not Found
+```
+
+This `HTTP/1.1 404 Not Found` line is the measured behavior the Problem Statement rests on: no login route exists yet, so REQ-002 is met only when this same call answers `200` for valid credentials.
+<!-- /ANCHOR:measured-behavior -->
 ---
 
 <!-- ANCHOR:scope -->
@@ -154,21 +165,9 @@ Implement a basic email/password authentication system that allows users to regi
 <!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
-### Data Boundaries
-- **Empty input**: Form validation prevents submission, inline error shown
-- **Maximum length**: Email capped at 255 chars, password at 128 chars
-- **Special characters**: Email validated against RFC 5322, password allows all printable ASCII
-- **Unicode**: Email normalized (lowercase), password preserved as-is
-
-### Error Scenarios
-- **Database connection failure**: Generic "Service unavailable" error, retry guidance
-- **Duplicate email**: Clear message "An account with this email already exists"
-- **Invalid token format**: Redirect to login with "Session expired" message
-- **Expired token**: Same handling as invalid token
-
-### Concurrent Operations
-- **Multiple login attempts**: Rate limiting in Phase 2, current: allow all
-- **Simultaneous registration**: Database unique constraint prevents duplicates
+- Empty input: form validation blocks an empty submission and shows an inline error.
+- Maximum input: email is capped at 255 characters and password at 128; longer input is rejected with a field error.
+- Failure path: a database connection failure returns "Service unavailable" with retry guidance, and a duplicate email returns "An account with this email already exists".
 
 
 <!-- /ANCHOR:edge-cases -->

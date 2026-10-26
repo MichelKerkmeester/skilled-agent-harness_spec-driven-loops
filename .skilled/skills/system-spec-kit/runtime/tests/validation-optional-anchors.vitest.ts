@@ -68,4 +68,30 @@ describe('Level 2 optional template anchors', () => {
     expect(result.stdout).toContain('ANCHORS_VALID: Anchors well formed');
     expect(result.stdout).toContain('RESULT: PASSED');
   });
+
+  // A doc stamped v2.3 or later must keep every section its template requires,
+  // so the fixture's tasks.md is restamped to put it under that check. Fix
+  // Completeness sits under a FIX ADDENDUM header, which makes it optional:
+  // a packet that fixes no reported finding deletes the whole section.
+  it('does not require the fix-completeness section in a current tasks.md', () => {
+    const folder = copyFixture('053-template-compliant-level2');
+    const tasksPath = path.join(folder, 'tasks.md');
+    const stamped = fs.readFileSync(tasksPath, 'utf8').replace(/\| v2\.2 -->/u, '| v2.4 -->');
+    if (!stamped.includes('| v2.4 -->')) throw new Error('tasks.md stamp not found');
+    fs.writeFileSync(tasksPath, stamped, 'utf8');
+    removeAnchorBlock(tasksPath, 'fix-completeness');
+
+    const result = spawnSync(VALIDATE_SCRIPT, [folder], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        SPECKIT_RULES: 'ANCHORS_VALID',
+      },
+    });
+
+    expect(result.stdout).not.toContain("required anchor 'fix-completeness' is missing");
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain('ANCHORS_VALID: Anchors well formed');
+    expect(result.stdout).toContain('RESULT: PASSED');
+  });
 });

@@ -9,32 +9,39 @@ const LEVELS: RenderLevel[] = ['1', '2', '3', '3+'];
 const DOCS = ['spec', 'plan', 'tasks', 'implementation-summary'] as const;
 
 const ANCHOR_COUNTS: Record<string, number> = {
-  '1/spec': 7,
+  '1/spec': 8,
   '1/plan': 7,
   '1/tasks': 6,
   '1/implementation-summary': 6,
-  '2/spec': 10,
-  '2/plan': 11,
+  '2/spec': 11,
+  '2/plan': 9,
   '2/tasks': 15,
   '2/implementation-summary': 6,
-  '3/spec': 7,
-  '3/plan': 14,
+  '3/spec': 8,
+  '3/plan': 12,
   '3/tasks': 21,
   '3/implementation-summary': 6,
-  '3+/spec': 11,
-  '3+/plan': 17,
+  '3+/spec': 12,
+  '3+/plan': 15,
   '3+/tasks': 21,
   '3+/implementation-summary': 6,
 };
 
+// An H3 that opens its own anchor is a section with its own fill note, so it splits from
+// the H2 above it; an unanchored H3 stays part of its H2.
 function sections(markdown: string): Array<{ heading: string; body: string }> {
   const out: Array<{ heading: string; body: string[] }> = [];
   let inFence = false;
+  let previous = '';
   for (const line of markdown.split(/\r?\n/u)) {
     if (/^\s*(`{3}|~~~)/u.test(line)) {
       inFence = !inFence;
     }
-    if (!inFence && /^## /u.test(line)) {
+    const anchoredSubsection = /^### /u.test(line) && /^<!-- ANCHOR:[\w-]+ -->$/u.test(previous.trim());
+    if (line.trim()) {
+      previous = line;
+    }
+    if (!inFence && (/^## /u.test(line) || anchoredSubsection)) {
       out.push({ heading: line, body: [] });
       continue;
     }

@@ -35,7 +35,7 @@ Session handover template for preserving context and enabling seamless continuat
 
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
-<!-- FILL: Write three sentences: what shipped, what is open and where to start. GOOD: The flag shipped. Docs are open. Start at `tasks.md` T004. WEAK: Work was handed over. -->
+<!-- FILL: Write three sentences: what shipped, what is open and where to start. GOOD: `--keep` shipped. Docs are open. Start at `tasks.md` T004. WEAK: Work was handed over. -->
 
 - **From Session:** [YOUR_VALUE_HERE: session_id or date]
 - **To Session:** [YOUR_VALUE_HERE: next_session]
@@ -48,7 +48,7 @@ Session handover template for preserving context and enabling seamless continuat
 
 <!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
-<!-- FILL: Name the files, the decisions and the state a successor needs. GOOD: Branch `feat/quiet`, start commit `abc123`. WEAK: Context is in the repo. -->
+<!-- FILL: Name the files, the decisions and the state a successor needs. GOOD: Branch `feat/keep`, start commit `abc123`. WEAK: Context is in the repo. -->
 
 ### 2.1 Key Decisions Made
 | Decision     | Rationale | Impact                 |
@@ -105,13 +105,13 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 
 <!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
-<!-- FILL: List the checks the successor must rerun. GOOD: `--quiet` line count, default line count and the suite. WEAK: Validate everything. -->
+<!-- FILL: List the checks the successor must rerun. GOOD: The `ls logs/archive | wc -l` count after `--keep 3` and after a plain run, then the suite. WEAK: Validate everything. -->
 
 Before handover, verify:
 - [ ] All in-progress work committed or stashed
 - [ ] Current context saved via `generate-context.js` or `_memory.continuity` in `implementation-summary.md`
 - [ ] No breaking changes left mid-implementation
-- [ ] Tests passing (if applicable)
+- [ ] Test suite passes for the affected code
 - [ ] This handover document is complete
 <!-- /ANCHOR:validation-checklist -->
 
@@ -119,7 +119,7 @@ Before handover, verify:
 
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
-<!-- FILL: Record what was tried and what was learned. GOOD: The quiet branch must return before the report block. WEAK: Notes below. -->
+<!-- FILL: Record what was tried and what was learned. GOOD: The `--keep` branch must validate its value before it deletes. WEAK: Notes below. -->
 
 [YOUR_VALUE_HERE: free-form notes for next session]
 <!-- /ANCHOR:session-notes -->

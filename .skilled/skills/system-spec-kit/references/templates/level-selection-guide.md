@@ -8,7 +8,7 @@ trigger_phrases:
   - "level mapping thresholds"
 importance_tier: normal
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm
@@ -103,7 +103,6 @@ A series parent is the one exception. It groups separate small packets that chan
 Level 3+ includes everything from Level 3 plus:
 - AI Execution Protocol section
 - Dependency graph visualization (ASCII/DAG)
-- Effort estimation framework
 - No separate checklist file: the Verification Checklist stays a section inside `tasks.md`, as at Level 3, and `acceptance-criteria.md` gates closure
 - Sign-off requirements
 

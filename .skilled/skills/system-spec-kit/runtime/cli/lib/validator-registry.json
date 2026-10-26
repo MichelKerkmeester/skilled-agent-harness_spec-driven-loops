@@ -236,6 +236,16 @@
     "description": "Warns when a path:line citation inside a [SOURCE: ...] tag in a packet's research or review artifacts names a gone file, a moved file or a line past the end, using sk-doc's citation resolver. Packets created on or before the cutoff are skipped. A pass means the path and line exist, not that they support the claim."
   },
   {
+    "rule_id": "MEASURED_BEHAVIOR",
+    "aliases": [
+      "MEASURED_BEHAVIOR_BLOCK"
+    ],
+    "script_path": "rules/check-measured-behavior.sh",
+    "severity": "warn",
+    "category": "authored_template",
+    "description": "Warns when a spec.md stamped from spec-core at v2.4 or later has no measured-behavior block, or a block with neither a non-empty fenced output line nor an N/A: line that gives a reason. Older stamps are not applicable. Never an error."
+  },
+  {
     "rule_id": "GREP_CONVENTION",
     "aliases": [
       "GREP",

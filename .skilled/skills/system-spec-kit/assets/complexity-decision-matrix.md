@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature decision matrix"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.18
+version: 1.6.1.0
 ---
 
 # Complexity Decision Matrix - Quick Reference for Level Selection
@@ -119,7 +119,6 @@ regardless of complexity score, as they require governance artifacts not covered
 | Dep graph (table)     | -       | ✓       | ✓        | ✓        |
 | Dep graph (ASCII)     | -       | -       | ✓        | ✓        |
 | Dep graph (DAG)       | -       | -       | -        | ✓        |
-| Effort estimation     | -       | -       | ✓        | ✓        |
 | AI execution protocol | -       | -       | Optional | Required |
 | Extended checklist    | -       | -       | -        | ✓        |
 | Approval tracking     | -       | -       | -        | ✓        |

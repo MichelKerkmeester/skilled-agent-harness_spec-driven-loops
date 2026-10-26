@@ -61,6 +61,20 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 
 
 <!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:measured-behavior -->
+### Measured Behavior
+
+```text
+$ curl -si -X POST localhost:3000/auth/login -d 'email=ada@example.com&password=correct-horse'
+HTTP/1.1 404 Not Found
+Content-Type: text/html; charset=utf-8
+Content-Length: 148
+```
+
+The `404` status line is the number the Problem Statement quotes when it says the application has no user authentication: no login route is registered, so every credential pair gets the same response.
+
+<!-- /ANCHOR:measured-behavior -->
 ---
 
 <!-- ANCHOR:scope -->
@@ -190,21 +204,9 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 <!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
-### Data Boundaries
-- **Empty input**: Form validation prevents submission, inline error shown
-- **Maximum length**: Email capped at 255 chars, password at 128 chars
-- **Special characters**: Email validated against RFC 5322, password allows all printable ASCII
-- **Unicode**: Email normalized (lowercase), password preserved as-is
-
-### Error Scenarios
-- **Database connection failure**: Generic "Service unavailable" error, retry guidance
-- **Duplicate email**: Clear message "An account with this email already exists"
-- **Invalid token format**: Redirect to login with "Session expired" message
-- **Expired token**: Same handling as invalid token
-
-### Concurrent Operations
-- **Multiple login attempts**: Allow all (rate limiting in Phase 2)
-- **Simultaneous registration**: Database unique constraint prevents duplicates
+- Empty input: form validation blocks an empty submission and shows an inline error.
+- Maximum input: email is capped at 255 characters and password at 128; longer input is rejected with a field error.
+- Failure path: a database connection failure returns "Service unavailable" with retry guidance, and a duplicate email returns "An account with this email already exists".
 
 
 <!-- /ANCHOR:edge-cases -->

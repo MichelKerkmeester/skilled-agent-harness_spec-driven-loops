@@ -224,46 +224,6 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 <!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:effort -->
-## L2: EFFORT ESTIMATION
-
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | Low | 2 hours |
-| Database | Low | 2 hours |
-| Services | Medium | 4 hours |
-| API Endpoints | Medium | 6 hours |
-| UI | Low | 3 hours |
-| Verification | Medium | 5 hours |
-| **Total** | | **22 hours (~3 days)** |
-
-
-<!-- /ANCHOR:effort -->
----
-
-<!-- ANCHOR:enhanced-rollback -->
-## L2: ENHANCED ROLLBACK
-
-### Pre-deployment Checklist
-- [x] Database backup created
-- [x] Git tag created (pre-auth)
-- [x] Monitoring alerts configured
-
-### Rollback Procedure
-1. **Immediate**: Disable auth routes in app.js
-2. **Revert code**: `git revert HEAD~N` for auth commits
-3. **Database**: Run down migration to drop users table
-4. **Verify**: Confirm app loads without auth routes
-5. **Notify**: Post in #engineering channel
-
-### Data Reversal
-- **Has data migrations?** Yes (users table)
-- **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
-
-
-<!-- /ANCHOR:enhanced-rollback -->
----
-
 <!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 

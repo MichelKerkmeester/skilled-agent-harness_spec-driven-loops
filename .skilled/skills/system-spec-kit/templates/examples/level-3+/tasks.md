@@ -348,7 +348,7 @@ LEVEL 3+ TASKS (~220 lines)
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX ADDENDUM: FIX COMPLETENESS
 
 - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class.
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed.

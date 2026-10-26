@@ -46,6 +46,19 @@ Implement a basic email/password authentication system that allows users to regi
 
 
 <!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:measured-behavior -->
+### Measured Behavior
+
+```text
+$ curl -si -X POST localhost:3000/auth/login
+HTTP/1.1 404 Not Found
+Content-Type: text/html; charset=utf-8
+```
+
+Section 2's Problem Statement quotes the `HTTP/1.1 404` line above as its evidence: no login route exists, so no request is checked for identity.
+
+<!-- /ANCHOR:measured-behavior -->
 ---
 
 <!-- ANCHOR:scope -->

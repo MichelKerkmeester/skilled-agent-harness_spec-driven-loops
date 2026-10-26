@@ -33,14 +33,14 @@ contextType: "general"
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- /IF -->
 <!-- IF level:1,2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.4 -->
 <!-- /IF -->
 <!-- IF level:3 -->
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.4 -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 <!-- IF level:3+ -->
@@ -56,7 +56,7 @@ contextType: "general"
 ---
 
 ## EXECUTIVE SUMMARY
-<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
+<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Nothing deletes old archives, so `logs/archive` grows without limit. The `--keep <n>` option keeps only the newest n. With 10 archives, `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: This document describes the feature. -->
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
 
@@ -71,7 +71,7 @@ contextType: "general"
 <!-- /IF -->
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/recommend-level-quiet`. WEAK: Priority TBD. Status maybe. -->
+<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
@@ -97,7 +97,7 @@ contextType: "general"
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
 [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
@@ -106,11 +106,19 @@ contextType: "general"
 [YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:measured-behavior -->
+### Measured Behavior
+<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
+```text
+[YOUR_VALUE_HERE: command and its verbatim output]
+```
+<!-- /ANCHOR:measured-behavior -->
+
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--quiet` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
 - [YOUR_VALUE_HERE: Deliverable 1]
@@ -132,7 +140,7 @@ contextType: "general"
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With `--quiet`, stdout holds exactly one line that starts with `Recommended Level:`. WEAK: The flag should work well. -->
+<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
@@ -169,7 +177,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: `recommend-level.sh --quiet --loc 500 --files 15` prints one line and exits 0. WEAK: The feature is successful. -->
+<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
 - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
 - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
@@ -179,7 +187,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -196,12 +204,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /ANCHOR:nfr -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /IF -->
 
 ### Performance
@@ -242,44 +250,32 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- IF level:2 -->
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
+
+- Empty input: [YOUR_VALUE_HERE: How system handles]
+- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
+- Failure path: [YOUR_VALUE_HERE: Exit code and message]
 <!-- /ANCHOR:edge-cases -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 8. EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
-<!-- /IF -->
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-### Data Boundaries
 - Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
-<!-- IF level:2 -->
-- Invalid format: [YOUR_VALUE_HERE: Validation response]
+- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
+- Failure path: [YOUR_VALUE_HERE: Exit code and message]
 <!-- /IF -->
-
-### Error Scenarios
-- External service failure: [YOUR_VALUE_HERE: Fallback behavior]
-<!-- IF level:2,3 -->
-- Network timeout: [YOUR_VALUE_HERE: Retry strategy]
-<!-- /IF -->
-<!-- IF level:2 -->
-- Concurrent access: [YOUR_VALUE_HERE: Conflict resolution]
-<!-- /IF -->
-
-### State Transitions
-- Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
-- Session expiry: [YOUR_VALUE_HERE: User experience]
 
 ---
 
 <!-- IF level:2 -->
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 9. COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 <!-- /IF -->
 
 <!-- IF level:2 -->
@@ -315,7 +311,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- IF level:2 -->
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
 - [YOUR_VALUE_HERE: Question 1 requiring clarification]
 - [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -325,7 +321,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- IF level:1 -->
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
 - [YOUR_VALUE_HERE: Question 1 requiring clarification]
 - [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -333,7 +329,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 10. RISK MATRIX
-<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
+<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a missing `--keep` value deletes every archive. Impact H, likelihood L. Mitigation: a test pins exit 2 before any delete. WEAK: Some risks exist. -->
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
@@ -342,7 +338,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ---
 
 ## 11. USER STORIES
-<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
+<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a backup host, I want `--keep 3` to leave 3 archives, so that `logs/archive` stays under its quota. WEAK: Users want the feature. -->
 
 ### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
 
@@ -381,7 +377,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- IF level:3+ -->
 <!-- ANCHOR:compliance-checkpoints -->
 ## 13. COMPLIANCE CHECKPOINTS
-<!-- FILL: Mark each box or write `N/A` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the script reads no user data and opens no socket. WEAK: Compliance checked. -->
+<!-- FILL: Mark each box or write `N/A` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the option reads no user data and opens no socket. WEAK: Compliance checked. -->
 
 ### Security Compliance
 - [ ] Security review completed
@@ -409,7 +405,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
-<!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added `--quiet`. WEAK: Initial version. -->
+<!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added `--keep <n>`. WEAK: Initial version. -->
 
 ### v1.0 ([YOUR_VALUE_HERE: Date])
 **Initial specification**
@@ -420,7 +416,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- IF level:3+ -->
 <!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
 - [YOUR_VALUE_HERE: Question 1 requiring clarification]
 - [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -430,7 +426,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- IF level:3 -->
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
 - [YOUR_VALUE_HERE: Question 1 requiring clarification]
 - [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -442,12 +438,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ---
 
 ## RELATED DOCUMENTS
-<!-- FILL: Leave the four links in place. GOOD: Plan: See `plan.md`. WEAK: See the other docs. -->
+<!-- FILL: Leave the three links in place. Add `decision-record.md` when the packet has one. GOOD: Plan: See `plan.md`. WEAK: See the other docs. -->
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `tasks.md`
-- **Decision Records**: See `decision-record.md`
 <!-- /IF -->
 
 ---

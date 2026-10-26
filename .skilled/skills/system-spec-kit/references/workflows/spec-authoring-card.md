@@ -8,7 +8,7 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Spec Authoring Card
@@ -79,6 +79,8 @@ Each section does one job. Write one idea per paragraph. Do not repeat the same 
 - `tasks.md` states the ordered actions.
 - `implementation-summary.md` states what changed and how it was checked. Write it last.
 
+`spec.md`'s `Measured Behavior` block holds one command and its verbatim output, and every number the packet states about current behavior quotes that block.
+
 Do not put a task list in `spec.md`. Do not put requirements in `plan.md`.
 
 Acceptance: every heading in the packet has content under it, and no heading holds content that belongs to another heading.
@@ -86,29 +88,25 @@ Verify: `rg -n '^## ' <packet folder>/spec.md <packet folder>/plan.md` lists the
 
 ## 6. THE PLAN SHAPE
 
-A plan has 3 or 4 steps. More than 4 steps means the feature is too large for one packet. Stop and ask, as section 11 says.
+A plan names its three phases, Setup, Implementation and Verification, one line each, under `## 4. IMPLEMENTATION PHASES`. That is the plan template's phases fill note. More than three phases means the feature needs more than one packet. Stop and ask, as section 11 says.
 
-Each step carries three lines:
-1. What the step does.
-2. The acceptance line: what is true when the step is done.
-3. The verify command: the command a reader runs, and the text it prints.
+The plan points at `tasks.md` for the ordered work. The acceptance line and the verify command for each task live on the task lines there, as section 7 says.
 
 ```markdown
-### Step 1: Add the flag parser
+## 4. IMPLEMENTATION PHASES
 
-Acceptance: `--quiet` is accepted and the default output is unchanged.
-Verify: `bash script.sh --quiet` prints one line.
+Setup reads the current archive count. Implementation adds `--keep <n>`. Verification checks that ten archives become three.
 ```
 
-Acceptance: `plan.md` holds 3 or 4 steps, and each step has an acceptance line and a verify command.
-Verify: `rg -c '^### Step ' <packet folder>/plan.md` prints 3 or 4.
+Acceptance: `plan.md` holds its three phases in one line each, and it points at `tasks.md` for the ordered work.
+Verify: `rg -n '^## 4' <packet folder>/plan.md` prints one line.
 
 ## 7. TASK LINES
 
 Every task line has one action, one file and one verify clause.
 
 ```markdown
-- [ ] T001 Add the quiet flag to the option parser (`runtime/cli/spec/script.sh`). Verify: `bash runtime/cli/spec/script.sh --quiet` prints one line.
+- [ ] T001 Add the `--keep <n>` option to the archive rotation (`scripts/rotate-logs.sh`). Verify: with ten archives, `ls logs/archive | wc -l` prints 3 after `--keep 3`, and `--keep` with no value exits 2.
 ```
 
 Rules:
@@ -146,6 +144,8 @@ When it prints `FAILED`, run the same command once without `--quiet` and read ev
 
 When the full output contains a `repair-derived.cjs ... --apply` command, run that command, then run the `--quiet` command again. It rewrites generated metadata, frontmatter packet pointers and the Spec Folder row, never your prose.
 
+When `spec.md` says `Status: Draft` and every error is a derived-metadata one, a `--strict` validate run repairs that metadata itself: it applies `repair-derived.cjs --apply` once, prints each file it rewrote and validates again. It does not run when `CI` is set or `SPECKIT_RULES` names a subset, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns it off.
+
 Acceptance: the `--quiet` command prints `RESULT: PASSED`.
 Verify: the last `--quiet` run printed `RESULT: PASSED`.
 
@@ -169,7 +169,7 @@ Stop and write the question in `goal.md` when:
 - two documents in the packet state opposite rules
 - a command in the plan would write outside the packet folder
 - the validator still fails after three rounds
-- the feature needs more than 4 plan steps
+- the feature needs more than one packet's three phases
 
 Acceptance: the question is written in `goal.md` as `Open question:` under the rule or command that raised it.
 Verify: `rg -n 'Open question:' <packet folder>/goal.md` prints at least one line.

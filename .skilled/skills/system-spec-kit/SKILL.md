@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.11.0.0
+version: 2.12.0.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -479,6 +479,8 @@ Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecatio
 ### Validation and Recovery
 
 Run `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook-system.md`, `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md`, `.skilled/hooks/goal/goal-plugin.md`, `runtime/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
+
+A Draft packet repairs itself during a `--strict` run: when every error is a derived-metadata one that `repair-derived.cjs` can fix, `validate.sh` applies it once, prints each file it rewrote and validates again, unless `CI` is set, `SPECKIT_RULES` names a subset or `SPECKIT_DRAFT_AUTO_REPAIR` is `0`, `false` or `off`. The read-only tools that run the validator as a child (`repair-derived.cjs`, `upgrade-legacy.mjs`, `quality-audit.sh`, `progressive-validate.sh` and the strict-pass freshness sweep) set it to `0`, so they stay read-only. A `spec.md` stamped v2.4 or later also warns under `MEASURED_BEHAVIOR` when its `measured-behavior` anchor is missing or holds neither command output nor a reasoned `N/A:`.
 
 ### OpenCode Goal Plugin
 

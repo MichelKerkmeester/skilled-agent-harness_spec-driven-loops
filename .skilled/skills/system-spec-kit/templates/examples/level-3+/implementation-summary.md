@@ -344,7 +344,7 @@ See `decision-record.md` for full ADR documentation.
 **For On-Call Team**:
 - Runbook: `ops/runbooks/auth.md`
 - Alerts: Error rate spike on `/auth/*` endpoints
-- Rollback: See plan.md L2: Enhanced Rollback section
+- Rollback: See plan.md section 7 ROLLBACK PLAN
 
 **For Future Development**:
 - OAuth should use same token service (src/utils/token.js)

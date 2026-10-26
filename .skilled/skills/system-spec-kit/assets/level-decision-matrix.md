@@ -8,7 +8,7 @@ trigger_phrases:
   - "secondary factors override"
 importance_tier: normal
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Level Decision Matrix - Complexity Scoring Guide
@@ -261,7 +261,7 @@ If scope grows during implementation, escalate by adding the required files:
 | ---------- | -------------------------- | ----------------------------------------------- | --------------------------------------------------------------- |
 | 1 → 2      | Add verification           | `acceptance-criteria.md` and the tasks.md checklist |                                                                 |
 | 2 → 3      | Add decision documentation | No new file (`decision-record.md` and `research/research.md` on request) |                                                                 |
-| 3 → 3+     | Add governance             | AI execution protocol + extended checklist      | Sign-off section in spec.md + multi-agent coordination patterns |
+| 3 → 3+     | Add governance             | AI execution protocol + extended checklist      | Approval workflow in spec.md, sign-off section in tasks.md + multi-agent coordination patterns |
 
 **Changelog example:**
 ```markdown

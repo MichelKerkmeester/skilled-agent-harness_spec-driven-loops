@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -65,7 +65,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols
 | Level | Adds | New Content |
 |-------|------|-------------|
 | **L1 (Core)** | Essential what/why/how | Problem, scope, requirements, success criteria |
-| **L2 (+Verify)** | Quality gates | NFRs, edge cases, acceptance criteria, effort estimation |
+| **L2 (+Verify)** | Quality gates | NFRs, edge cases, acceptance criteria, phase dependencies |
 | **L3 (+Arch)** | Architecture decisions | Executive summary, ADRs, risk matrix, milestones |
 | **L3+ (+Govern)** | Enterprise governance | Approval workflow, compliance, AI protocols |
 
@@ -384,7 +384,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 - `spec.md` (from Level 3) - With Complexity Assessment section
 - `plan.md` (from Level 3) - With AI Execution Framework, dependency graphs
 - `tasks.md` (from Level 3) - With 3-Tier Task Format, AI Execution Protocol
-- `acceptance-criteria.md` (from Level 3) - extended criteria with a sign-off section
+- `acceptance-criteria.md` (from Level 3) - the closure-gate criteria; the sign-off section lives in tasks.md
 - `implementation-summary.md` (from Level 3) - Required completion artifact for all levels
 
 ### Optional Files
@@ -398,9 +398,8 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 |---------|-------------|------------------|
 | AI Execution Protocol | Pre-task checklist, execution rules, status format | tasks.md, plan.md |
 | Dependency Graph | Full DAG visualization of task dependencies | plan.md |
-| Effort Estimation | Story points/hours per phase with totals | plan.md |
 | Extended verification | 100-150 items with P0/P1/P2 prioritization | tasks.md |
-| Sign-Off Section | Technical Lead, Product Owner, QA Lead sign-offs | tasks.md |
+| Sign-Off Section | One approver row the author fills with the real approver | tasks.md |
 | Workstream Organization | Parallel workstream tracking and coordination | tasks.md |
 
 ### AI Execution Protocol Components
@@ -445,7 +444,6 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 **plan.md additions:**
 - AI Execution Framework section
 - Full dependency graph (ASCII or DAG)
-- Effort estimation per phase
 - Phase execution flowcharts (complex phases)
 
 **tasks.md additions:**
@@ -456,7 +454,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 **tasks.md verification additions:**
 - Extended Verification section (Level 3+)
-- Sign-Off section with Technical Lead, Product Owner, QA Lead
+- Sign-Off section with one approver row, filled with the real approver
 - Verification Summary table
 
 ### Example Scenarios
@@ -502,11 +500,10 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Complex migrati
 2. Write Executive Summary for stakeholder communication
 3. Create AI Execution Protocol with project-specific rules
 4. Build dependency graph showing all task relationships
-5. Add effort estimates per phase
-6. Expand checklist to 100+ items covering all validation areas
-7. Add approval tracking section with reviewers
-8. Organize workstreams if parallel work streams exist
-9. Remove all sample content and placeholders
+5. Expand checklist to 100+ items covering all validation areas
+6. Add approval tracking section with reviewers
+7. Organize workstreams if parallel work streams exist
+8. Remove all sample content and placeholders
 
 ### Coordination-Root Profile
 

@@ -57,6 +57,11 @@ const WORKERS = Math.max(4, Math.min(24, Math.ceil(os.cpus().length * 1.5)));
 // open forever. A packet takes about two seconds; five minutes is a hang.
 const CHILD = { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeout: 5 * 60 * 1000 };
 
+// validate.sh repairs a Draft packet's derived metadata on its own unless this
+// switch is off. Here it would write during a dry run, and then report nothing
+// left to repair, so the validator this tool reads from stays read-only.
+const VALIDATE_CHILD = { ...CHILD, env: { ...process.env, SPECKIT_DRAFT_AUTO_REPAIR: '0' } };
+
 // Rules this tool can settle from repository state alone. Anything absent from
 // this list is reported and left alone, however mechanical it may look.
 //
@@ -168,7 +173,7 @@ function noReport(code, stderr) {
 async function validate(folder) {
   let child;
   try {
-    child = await run('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], CHILD);
+    child = await run('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], VALIDATE_CHILD);
   } catch (err) {
     // A non-zero exit is the normal path for a failing packet; the report still
     // arrives on stdout. A child that was *killed* — by the timeout, by a

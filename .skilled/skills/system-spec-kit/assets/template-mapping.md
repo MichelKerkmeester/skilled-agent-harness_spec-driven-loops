@@ -8,7 +8,7 @@ trigger_phrases:
   - "required templates by level"
 importance_tier: normal
 contextType: planning
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Template Mapping - Level to File Assignments
@@ -397,7 +397,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 - [plan.md](../templates/core/plan.md.tmpl) - Implementation plan with AI execution framework and workstream coordination
 - [tasks.md](../templates/core/tasks.md.tmpl) - Task breakdown with 3-tier format and AI execution protocol
 - [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
-- [acceptance-criteria.md](../templates/addons/acceptance-criteria.md.tmpl) - The closure-gate template; sign-offs and compliance render inside spec.md
+- [acceptance-criteria.md](../templates/addons/acceptance-criteria.md.tmpl) - The closure-gate template; the approval workflow renders in spec.md and the sign-off section in tasks.md
 - [decision-record.md](../templates/addons/decision-record.md.tmpl) - Decision records with authority and review requirements
 
 **Optional Templates:**

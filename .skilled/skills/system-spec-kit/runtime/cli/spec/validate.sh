@@ -74,6 +74,10 @@ ENVIRONMENT:
     SPECKIT_RULES              Comma-separated subset of rules to evaluate
     SPECKIT_SKIP_VALIDATION    1, true, yes or on skips validation (also read from hook-flags.env)
     SPECKIT_STRICT/_VERBOSE/_JSON/_QUIET   Equivalent to the flags above
+    SPECKIT_DRAFT_AUTO_REPAIR  0, false or off turns off the Draft auto-repair, as does a set CI or
+                               a SPECKIT_RULES subset. On a --strict run, a Draft packet whose only
+                               errors are derived-metadata rules gets one
+                               repair-derived.cjs --apply run, then one revalidation
 
 EXIT CODES: 0=pass, 1=user error, 2=validation error, 3=system error
 
