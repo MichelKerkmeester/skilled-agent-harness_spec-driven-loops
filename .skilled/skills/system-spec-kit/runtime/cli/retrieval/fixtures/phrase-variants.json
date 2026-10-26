@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cc187c987bd84dbd20b44db95b1093f111997d13e58b5055fe7e5b51e4c04845",
+  "manifestHash": "ef35a48e4cf9b21c43c7af6ab519264bed4dda570c80520e77268e54820d9809",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10479,8 +10479,20 @@
     "alignment and hook parity tasks": [
       "alignment and hook parity tasks"
     ],
+    "alignment audit": [
+      "alignment audit"
+    ],
+    "alignment audit acceptance criteria": [
+      "alignment audit acceptance criteria"
+    ],
     "alignment audit completion criteria": [
       "alignment audit completion criteria"
+    ],
+    "alignment audit decision record": [
+      "alignment audit decision record"
+    ],
+    "alignment audit finding ledger": [
+      "alignment audit finding ledger"
     ],
     "alignment audit fixes": [
       "alignment audit fixes"
@@ -10500,8 +10512,26 @@
     "alignment audit fixes tasks": [
       "alignment audit fixes tasks"
     ],
+    "alignment audit goal": [
+      "alignment audit goal"
+    ],
+    "alignment audit implementation summary": [
+      "alignment audit implementation summary"
+    ],
+    "alignment audit lanes": [
+      "alignment audit lanes"
+    ],
+    "alignment audit plan": [
+      "alignment audit plan"
+    ],
     "alignment audit summary": [
       "alignment audit summary"
+    ],
+    "alignment audit tasks": [
+      "alignment audit tasks"
+    ],
+    "alignment audit timeline": [
+      "alignment audit timeline"
     ],
     "alignment cli opencode": [
       "alignment cli opencode"
@@ -12986,6 +13016,9 @@
     ],
     "bar line composed twenty first form": [
       "bar-line-composed twenty-first form"
+    ],
+    "bare doctor command routing": [
+      "bare doctor command routing"
     ],
     "bare integer reference hit rate": [
       "bare integer reference hit rate"
@@ -16193,6 +16226,9 @@
     "changelog identity phrases": [
       "changelog identity phrases"
     ],
+    "changelog internal id warning": [
+      "changelog internal id warning"
+    ],
     "changelog judgment lanes": [
       "changelog judgment lanes"
     ],
@@ -16207,6 +16243,9 @@
     ],
     "changelog nbsp separators": [
       "changelog nbsp separators"
+    ],
+    "changelog omission check": [
+      "changelog omission check"
     ],
     "changelog omission rules": [
       "changelog omission rules"
@@ -17261,6 +17300,9 @@
     ],
     "check prompt quality card sync": [
       "check-prompt-quality-card-sync"
+    ],
+    "check repo rules counts": [
+      "check-repo-rules counts"
     ],
     "check repo rules tenth check": [
       "check repo rules tenth check"
@@ -19635,6 +19677,9 @@
     "cli cursor 1 5 2 0": [
       "cli-cursor 1.5.2.0"
     ],
+    "cli cursor 1 5 3 0": [
+      "cli-cursor 1.5.3.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -19694,6 +19739,9 @@
     ],
     "cli cursor v1 5 2 0": [
       "cli-cursor v1.5.2.0"
+    ],
+    "cli cursor v1 5 3 0": [
+      "cli-cursor v1.5.3.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -20070,6 +20118,9 @@
     "cli external orchestration 1 7 3 0": [
       "cli-external-orchestration 1.7.3.0"
     ],
+    "cli external orchestration 1 7 4 0": [
+      "cli-external-orchestration 1.7.4.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -20156,6 +20207,9 @@
     ],
     "cli external orchestration v1 7 3 0": [
       "cli-external-orchestration v1.7.3.0"
+    ],
+    "cli external orchestration v1 7 4 0": [
+      "cli-external-orchestration v1.7.4.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -20775,6 +20829,9 @@
     "cli opencode 1 5 0 0": [
       "cli-opencode 1.5.0.0"
     ],
+    "cli opencode 1 5 1 0": [
+      "cli-opencode 1.5.1.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -20978,6 +21035,9 @@
     ],
     "cli opencode v1 5 0 0": [
       "cli-opencode v1.5.0.0"
+    ],
+    "cli opencode v1 5 1 0": [
+      "cli-opencode v1.5.1.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -29741,6 +29801,9 @@
     "cursor plan ask template": [
       "cursor plan ask template"
     ],
+    "cursor playbook section numbering": [
+      "cursor playbook section numbering"
+    ],
     "cursor plugin marketplace": [
       "cursor plugin marketplace"
     ],
@@ -32819,6 +32882,9 @@
     ],
     "deep loop plan revalidation": [
       "deep-loop plan revalidation"
+    ],
+    "deep loop playbook scenarios": [
+      "deep loop playbook scenarios"
     ],
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
@@ -37486,6 +37552,9 @@
     "dist freshness provisioning tasks": [
       "dist freshness provisioning tasks"
     ],
+    "dist freshness test": [
+      "dist freshness test"
+    ],
     "dist freshness unprovisioned package": [
       "dist freshness unprovisioned package"
     ],
@@ -38290,6 +38359,9 @@
     ],
     "doctor deep loop yaml": [
       "doctor-deep-loop.yaml"
+    ],
+    "doctor default target": [
+      "doctor default target"
     ],
     "doctor degraded adapters route": [
       "doctor degraded adapters route"
@@ -44194,6 +44266,9 @@
     ],
     "fanout stall watchdog": [
       "fanout-stall-watchdog"
+    ],
+    "fanout stress scenarios": [
+      "fanout stress scenarios"
     ],
     "fanout synthesis implementation plan": [
       "fanout synthesis implementation plan"
@@ -56520,6 +56595,9 @@
     ],
     "launch wrapper session isolation": [
       "launch-wrapper session isolation"
+    ],
+    "launch wrapper session worktree": [
+      "launch wrapper session worktree"
     ],
     "launchagent mcp template": [
       "launchagent mcp template"
@@ -69116,6 +69194,9 @@
     "opencode model overrides": [
       "opencode model overrides"
     ],
+    "opencode model pin note": [
+      "opencode model pin note"
+    ],
     "opencode model selection": [
       "opencode model selection"
     ],
@@ -71229,6 +71310,9 @@
     "parallel seat execution": [
       "parallel seat execution"
     ],
+    "parallel syntax pool scenario": [
+      "parallel syntax pool scenario"
+    ],
     "parallel work streams": [
       "parallel work streams"
     ],
@@ -72855,6 +72939,9 @@
     ],
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
+    ],
+    "phase 10 alignment audit": [
+      "phase 10 alignment audit"
     ],
     "phase 10 config row projection refusal": [
       "phase 10 config row projection refusal"
@@ -76000,6 +76087,9 @@
     "playbook contract regression proof": [
       "playbook contract regression proof"
     ],
+    "playbook corpus manifest": [
+      "playbook corpus manifest"
+    ],
     "playbook coverage audit": [
       "playbook coverage audit"
     ],
@@ -76167,6 +76257,9 @@
     ],
     "playbook remediation plan": [
       "playbook remediation plan"
+    ],
+    "playbook result persistence": [
+      "playbook result persistence"
     ],
     "playbook reverification and closeout": [
       "playbook reverification and closeout"
@@ -78855,6 +78948,9 @@
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
     ],
+    "quality agnostic gate alignment audit changelog": [
+      "quality agnostic gate alignment audit changelog"
+    ],
     "quality agnostic gate checker debt closeout changelog": [
       "quality agnostic gate checker debt closeout changelog"
     ],
@@ -78902,6 +78998,9 @@
     ],
     "quality checklist declarations": [
       "quality checklist declarations"
+    ],
+    "quality config routing keywords": [
+      "quality config routing keywords"
     ],
     "quality config seam": [
       "quality config seam"
@@ -79835,6 +79934,9 @@
     ],
     "readme anchor tags": [
       "readme anchor tags"
+    ],
+    "readme and changelog currency": [
+      "readme and changelog currency"
     ],
     "readme and install guide authoring": [
       "README and Install-Guide Authoring"
@@ -83652,6 +83754,9 @@
     ],
     "repo rule references": [
       "repo rule references"
+    ],
+    "repo rule routed from link": [
+      "repo rule routed from link"
     ],
     "repo rule structure": [
       "repo rule structure"
@@ -87618,6 +87723,9 @@
     "router replay detection order": [
       "router replay detection order"
     ],
+    "router replay library": [
+      "router replay library"
+    ],
     "router replay rename plan": [
       "router-replay rename plan"
     ],
@@ -87632,6 +87740,9 @@
     ],
     "router scope boundary": [
       "router scope boundary"
+    ],
+    "router section numbering": [
+      "router section numbering"
     ],
     "router signals registry parity": [
       "router signals registry parity"
@@ -88051,6 +88162,9 @@
     "rule concision rewrites tasks": [
       "rule concision rewrites tasks"
     ],
+    "rule copies test": [
+      "rule copies test"
+    ],
     "rule corpus consumer census": [
       "rule corpus consumer census"
     ],
@@ -88104,6 +88218,9 @@
     ],
     "rule header split": [
       "rule header split"
+    ],
+    "rule invariant canary": [
+      "rule invariant canary"
     ],
     "rule lifecycle": [
       "rule lifecycle"
@@ -91838,6 +91955,9 @@
     "set default workspace": [
       "set default workspace"
     ],
+    "set euo pipefail workflows": [
+      "set -euo pipefail workflows"
+    ],
     "set overlap": [
       "set overlap"
     ],
@@ -93315,6 +93435,9 @@
     "single daemon scenario runner": [
       "single daemon scenario runner"
     ],
+    "single dispatch discipline": [
+      "single dispatch discipline"
+    ],
     "single exclusion manifest": [
       "single exclusion manifest"
     ],
@@ -93600,6 +93723,9 @@
     "sk code 3 9 0 0": [
       "sk-code 3.9.0.0"
     ],
+    "sk code 3 9 1 0": [
+      "sk-code 3.9.1.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93744,6 +93870,9 @@
     "sk code ci 1 1 1 0": [
       "sk-code-ci 1.1.1.0"
     ],
+    "sk code ci 1 1 2 0": [
+      "sk-code-ci 1.1.2.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -93783,6 +93912,9 @@
     ],
     "sk code ci v1 1 1 0": [
       "sk-code-ci v1.1.1.0"
+    ],
+    "sk code ci v1 1 2 0": [
+      "sk-code-ci v1.1.2.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -94275,6 +94407,9 @@
     "sk code quality 1 13 0 0": [
       "sk-code-quality 1.13.0.0"
     ],
+    "sk code quality 1 13 1 0": [
+      "sk-code-quality 1.13.1.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -94355,6 +94490,9 @@
     ],
     "sk code quality v1 13 0 0": [
       "sk-code-quality v1.13.0.0"
+    ],
+    "sk code quality v1 13 1 0": [
+      "sk-code-quality v1.13.1.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -94482,6 +94620,9 @@
     "sk code review 1 9 0 0": [
       "sk-code-review 1.9.0.0"
     ],
+    "sk code review 1 9 1 0": [
+      "sk-code-review 1.9.1.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -94565,6 +94706,9 @@
     ],
     "sk code review v1 9 0 0": [
       "sk-code-review v1.9.0.0"
+    ],
+    "sk code review v1 9 1 0": [
+      "sk-code-review v1.9.1.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -94704,6 +94848,12 @@
     "sk code skilled 2 1 2 0": [
       "sk-code-skilled 2.1.2.0"
     ],
+    "sk code skilled 2 1 3 0": [
+      "sk-code-skilled 2.1.3.0"
+    ],
+    "sk code skilled alignment": [
+      "sk-code-skilled alignment"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94808,6 +94958,9 @@
     ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
+    ],
+    "sk code skilled v2 1 3 0": [
+      "sk-code-skilled v2.1.3.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94970,6 +95123,9 @@
     ],
     "sk code v3 9 0 0": [
       "sk-code v3.9.0.0"
+    ],
+    "sk code v3 9 1 0": [
+      "sk-code v3.9.1.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -95490,6 +95646,9 @@
     "sk create manual testing playbook 1 0 3 0": [
       "sk-create-manual-testing-playbook 1.0.3.0"
     ],
+    "sk create manual testing playbook 1 0 4 0": [
+      "sk-create-manual-testing-playbook 1.0.4.0"
+    ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
     ],
@@ -95510,6 +95669,9 @@
     ],
     "sk create manual testing playbook v1 0 3 0": [
       "sk-create-manual-testing-playbook v1.0.3.0"
+    ],
+    "sk create manual testing playbook v1 0 4 0": [
+      "sk-create-manual-testing-playbook v1.0.4.0"
     ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
@@ -95595,6 +95757,9 @@
     "sk create repo rule 1 1 1 0": [
       "sk-create-repo-rule 1.1.1.0"
     ],
+    "sk create repo rule 1 1 2 0": [
+      "sk-create-repo-rule 1.1.2.0"
+    ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"
     ],
@@ -95606,6 +95771,9 @@
     ],
     "sk create repo rule v1 1 1 0": [
       "sk-create-repo-rule v1.1.1.0"
+    ],
+    "sk create repo rule v1 1 2 0": [
+      "sk-create-repo-rule v1.1.2.0"
     ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
@@ -96198,6 +96366,9 @@
     "sk doc 2 3 13 0": [
       "sk-doc 2.3.13.0"
     ],
+    "sk doc 2 3 14 0": [
+      "sk-doc 2.3.14.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -96540,6 +96711,9 @@
     "sk doc v2 3 13 0": [
       "sk-doc v2.3.13.0"
     ],
+    "sk doc v2 3 14 0": [
+      "sk-doc v2.3.14.0"
+    ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
     ],
@@ -96695,6 +96869,9 @@
     ],
     "sk git 1 9 5 0": [
       "sk-git 1.9.5.0"
+    ],
+    "sk git 1 9 6 0": [
+      "sk-git 1.9.6.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -96899,6 +97076,9 @@
     ],
     "sk git v1 9 5 0": [
       "sk-git v1.9.5.0"
+    ],
+    "sk git v1 9 6 0": [
+      "sk-git v1.9.6.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -105591,6 +105771,9 @@
     "system deep loop 1 6 7 0": [
       "system-deep-loop 1.6.7.0"
     ],
+    "system deep loop 1 6 8 0": [
+      "system-deep-loop 1.6.8.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -105738,6 +105921,9 @@
     "system deep loop v1 6 7 0": [
       "system-deep-loop v1.6.7.0"
     ],
+    "system deep loop v1 6 8 0": [
+      "system-deep-loop v1.6.8.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -105854,6 +106040,9 @@
     ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
+    ],
+    "system skill advisor 0 17 3 0": [
+      "system-skill-advisor 0.17.3.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -106040,6 +106229,9 @@
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"
+    ],
+    "system skill advisor v0 17 3 0": [
+      "system-skill-advisor v0.17.3.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -106304,6 +106496,9 @@
     ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
+    ],
+    "system spec kit 2 12 3 0": [
+      "system-spec-kit 2.12.3.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
@@ -106751,6 +106946,9 @@
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"
+    ],
+    "system spec kit v2 12 3 0": [
+      "system-spec-kit v2.12.3.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -110791,6 +110989,9 @@
     "untrusted clones cannot run hook code": [
       "untrusted clones cannot run hook code"
     ],
+    "untrusted config scenario": [
+      "untrusted config scenario"
+    ],
     "untrusted output boundary source kind render escaper": [
       "untrusted output boundary source_kind render escaper"
     ],
@@ -112814,6 +113015,9 @@
     "verify rollout tasks": [
       "verify rollout tasks"
     ],
+    "verify router sync": [
+      "verify router sync"
+    ],
     "verify router sync existence filter": [
       "verify router sync existence filter"
     ],
@@ -114247,6 +114451,9 @@
     "workflow save completion seam": [
       "workflow save completion seam"
     ],
+    "workflow strict shell mode": [
+      "workflow strict shell mode"
+    ],
     "workflow sub skill research close out tasks": [
       "workflow sub-skill research close-out tasks"
     ],
@@ -114594,6 +114801,9 @@
     ],
     "wrapper breakout probe": [
       "wrapper breakout probe"
+    ],
+    "wrapper session reads main checkout": [
+      "wrapper session reads main checkout"
     ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"

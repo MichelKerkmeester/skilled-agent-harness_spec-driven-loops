@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7311,
-    "ok": 15416,
+    "missing-frontmatter": 7316,
+    "ok": 15440,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26275,
+  "documentsScanned": 26304,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "cc187c987bd84dbd20b44db95b1093f111997d13e58b5055fe7e5b51e4c04845",
+  "manifestHash": "ef35a48e4cf9b21c43c7af6ab519264bed4dda570c80520e77268e54820d9809",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38031,
+      "ok": 38101,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10776,6 +10776,18 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-scaffold.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10998,6 +11010,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/parallel-syntax-pool.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/private-surface-change.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11016,7 +11034,19 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/scoped-checklist-faults.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/unknown-language-change.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/untrusted-config.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -71571,6 +71601,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/010-alignment-audit/scratch",
       "reason": "excluded directory"
     },
     {
