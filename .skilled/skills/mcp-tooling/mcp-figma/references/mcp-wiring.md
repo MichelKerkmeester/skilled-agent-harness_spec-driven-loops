@@ -9,7 +9,7 @@ trigger_phrases:
   - "figma get_design_context"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Figma MCP Wiring (optional, via Code Mode)
@@ -159,6 +159,25 @@ Figma also ships an **official** Dev Mode MCP server (a remote `https://mcp.figm
 - The remote server is **catalog/OAuth-gated**, so whether this project's Code Mode client is admitted is **unverified**. **[CONFIRMED: research digest IT2 unknowns]**
 
 Treat the official Dev Mode MCP as a **future option only** for this skill's Code Mode path. Do not wire or recommend it through Code Mode in this version. The registered Framelink `figma` manual (Sections 2–5) is the supported MCP path for now.
+
+### Reaching the hosted server natively from a CLI child
+
+These notes are for a skill or harness that drives a headless Claude Code or Codex child against the hosted server through the runtime's own MCP connection, not Code Mode. They were checked on 2026-10-26 with Claude Code 2.1.310 and codex-cli 0.164.0, while children drew FigJam boards with `use_figma`. **[CONFIRMED: live runs on a test FigJam file]**
+
+- **Claude Code reuses the operator's login.** The operator's user-scope `http` server for `https://mcp.figma.com/mcp` holds the OAuth login. A `claude -p` child given `--strict-mcp-config --mcp-config <file>`, where the file names the same server name and URL, reuses that login with no new prompt and loads no other server. `--bare` cannot reach it, because bare mode never reads OAuth or the keychain. `--setting-sources ""` keeps the operator's settings, hooks and `CLAUDE.md` out.
+- **Claude Code under a seatbelt needs its own temp root.** Claude Code makes `/tmp/claude-<uid>` at start. When a macOS seatbelt denies that folder, the child exits at once with `EEXIST: file already exists, mkdir '/tmp/claude-<uid>'`. Setting `CLAUDE_CODE_TMPDIR` to a writable folder inside the sandbox fixes it.
+- **Codex reaches Figma through the ChatGPT account's Figma app.** `codex exec` serves the app as the `codex_apps` server, with tool names such as `figma.use_figma`, `figma.get_figjam` and `figma.whoami`. No `[mcp_servers]` entry or `codex mcp login` is needed. A `[mcp_servers.figma]` entry with the hosted URL also works, but it needs `codex mcp login figma`, a browser approval that times out when nobody completes it.
+- **Codex refuses a mutating app call until the config approves it.** A read such as `figma.whoami` runs, but `figma.use_figma` returns `MCP tool call requires approval, but approval policy is never` under `codex exec`. A `config.toml` block pre-approves the app tools:
+
+```toml
+[apps._default]
+default_tools_approval_mode = "approve"
+destructive_enabled = true
+open_world_enabled = true
+```
+
+- **A separate home keeps the operator's rules out.** A `CODEX_HOME` that holds only a link to `auth.json` and the block above keeps the operator's hooks and global `AGENTS.md` out of the child, and the Figma app still answers.
+- **A file key in the prompt does not keep a child on that file.** Claude Opus 5.5 at low effort called `create_new_file` in a team plan on three of four runs whose prompt named the file to write into. When a child must stay on one file, withhold the tool: `--disallowedTools mcp__<server>__create_new_file` on Claude Code.
 
 ---
 
