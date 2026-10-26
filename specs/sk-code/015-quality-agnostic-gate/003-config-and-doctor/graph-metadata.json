@@ -48,7 +48,7 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -57,19 +57,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json",
+      ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-      ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
-      ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
-      ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
-      ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
-      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
-      ".skilled/commands/doctor/sk-code.md",
-      ".codex/prompts/doctor-sk-code.md",
-      ".pi/prompts/doctor-sk-code.md",
-      ".hermes/prompts/doctor-sk-code.md"
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.7.0.0.md",
+      ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs"
     ],
     "entities": [
       {
@@ -115,69 +115,81 @@
         "source": "derived"
       },
       {
+        "name": "quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "configured-checks.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.template.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "doctor-sk-code-setup.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "v1.7.0.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.7.0.0.md",
         "source": "derived"
       },
       {
-        "name": "sk-code-setup-check.cjs",
+        "name": "sk-code-quality-config.cjs",
         "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sk-code-setup-check.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-sk-code-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-sk-code-setup.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-setup-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "sk-code.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/sk-code.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-sk-code.md",
-        "kind": "doc",
-        "path": ".codex/prompts/doctor-sk-code.md",
+        "path": ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
         "source": "derived"
       },
       {
@@ -203,23 +215,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The quality gate reads only the rules this framework ships",
     "created_at": "2026-10-25T23:21:49Z",
-    "last_save_at": "2026-10-26T00:00:56.517Z",
+    "last_save_at": "2026-10-26T07:56:25.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,14 +231,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:beae1ea9a71ffa8ca4a6d7e3e77b8ad60fe84b99eb63f5a27e35b879c85415ec",
+    "source_fingerprint": "sha256:b76c3019edbc9f49a2f9017ca4b53b2a5668aa415409aa36d46b01eed01b1278",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4386022c532ec94b04ed97c23ed397abb00a4b0258fb555b7c570694da968e99",
+      "spec.md": "fe9d6c0ad48471441df9251c193b13b9f360fd80047161e9391026d13ba7d3a2",
       "plan.md": "d3c1ac8a15e188e6a50f6327ab7a762974ba7ae4c037c9fe39025f11c3fe0f60",
-      "tasks.md": "325a211e20cd5ad6fbda3ac479ccef1f129a0c8d3b274a1e419c695c097529f6",
-      "decision-record.md": "a37ded405ca531f95112a1dc39552dac616b25247cad0ae7a63895c967514bd5",
-      "implementation-summary.md": "f37a18e0aba506d09dd32cdbf6724895ad462eb84a5b02fa11d39c3e3722a917"
+      "tasks.md": "43ca89087b13cf355b922b56bd5cc5fd6562a59a9d442086e56a5f1e7120bae3",
+      "decision-record.md": "cdc9b58c9de600fb98af9059afc823d5c24f670287cd27f238ea870370e6e41b",
+      "implementation-summary.md": "72de50065d28cee7db3d9a464d582e5da2aa10d522ef82c5e43d0bbb2684c155"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Pre-implementation stub for the phase 3 config seam and doctor route. Implementation has not started, so no change or result is claimed here."
+description: "The repository quality config is built: the runner reads .sk-code/quality.json and runs its checks behind the workspace guard, the setup battery has a ninth quality leg, and /doctor:sk-code quality reports, checks and creates the file."
 trigger_phrases:
   - "config and doctor implementation summary"
 importance_tier: "normal"
@@ -8,19 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/003-config-and-doctor"
-    last_updated_at: "2026-10-26T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Recorded the pre-implementation state of this phase"
-    next_safe_action: "Start task T001 once phases 001 and 002 have landed"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-10-26T08:10:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed the phase; all criteria verified"
+    next_safe_action: "Commit the phase, then start phase 004"
+    blockers: ["ADR-001 to ADR-003 and ADR-011 to ADR-015 await operator confirmation at program end. They do not block this phase"]
+    key_files:
+      - ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs"
+      - ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
+      - ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs"
+      - ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs"
+      - ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
+      - ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-config-and-doctor"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions: ["Does the program need Windows support for configured commands?"]
+    answered_questions: ["Phase 1 publishes --ticket-prefix, --extension and --extra-pattern, each repeatable"]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 # Implementation Summary
@@ -36,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-config-and-doctor |
-| **Status** | Draft |
-| **Completed** | Not started |
+| **Status** | Complete |
+| **Completed** | 2026-10-26, on HEAD `f69e5cd2e8` with the changes uncommitted in the working tree |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,17 +52,61 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This phase adds the repository config seam and the approval-gated doctor route, and it waits for phases 001 and 002. The scope, the requirements and the planned file list are in `spec.md` sections 3 and 4.
+A repository can now commit `.sk-code/quality.json` to name its own checks, and the quality runner runs them. In a temporary repository with a `package.json` that holds `lint` and `test` scripts, `/doctor:sk-code quality` planned one check, `lint`, as not required, wrote the file on `--apply`, refused a second write with `CONFIG_EXISTS` and then checked the file clean.
 
 ### Phase 3: config-and-doctor
 
-This phase will let a repository commit `.sk-code/quality.json` to name its own checks. The gate will run only the checks the repository or the operator names, and it will report every other command as a suggestion. The setup battery gains a read-only quality leg, and `/doctor:sk-code quality` creates the file after approval.
+`lib/quality-config.cjs` finds one config per run (`--config`, then the file-scoped `skcode.qualityConfig` git config value, then `.sk-code/quality.json`), validates every field before any check starts and merges the file over the shipped defaults. A named path that does not exist exits 3 with `CONFIG_PATH_MISSING`, any field error exits 3 with `CONFIG_INVALID`, and a committed file whose real path leaves the repository is refused (ADR-012).
+
+The runner runs each configured check as an argv array with no shell, in its own process group under its own deadline, and kills the whole group at the deadline and when the leader exits. Each configured check gets its own guard window chained from the last, so `CHECK_MUTATED_WORKSPACE` names the command that changed the tree, and the first mutation stops the rest (ADR-013). Outside git a configured check reads `ERROR` with `GUARD_UNAVAILABLE` and never starts. The checks the root manifests imply are listed under `suggested_checks` and never run (ADR-015). The `commentHygiene` values reach the checker as `--ticket-prefix`, `--extension` and `--extra-pattern`. `--help` and `-h` print the usage and exit 0 in both scripts (ADR-011).
+
+`/doctor:sk-code` now has two targets. `setup` stays the default and its battery gained a ninth leg, quality, with five checks: `python3` on PATH, the runner and the checker executable, the two tables parse, the quality tests pass and a fixed quality prompt routes to `sk-code-quality`. `quality` runs `sk-code-quality-config.cjs`, whose `status`, `check` and `init` modes never start a configured command, and whose only write is `init --apply`, a temporary file hard-linked to the target so a file that already exists is never overwritten.
+
+The advisor bridge `command-doctor-sk-code` became `command-doctor-sk-code-setup` and `command-doctor-sk-code-quality`, regenerated by `derive-command-bridges.cjs`.
+
+A review fix round then settled three runner behaviors: config validation refuses a `commentHygiene.extensions` key the shipped comment-syntax table already owns, it refuses an `extraPatterns` construct Python `re` rejects and the runner ends with `CONFIG_INVALID` and exit 3 when the checker still refuses a value the repository config supplied, and a relative `argv[0]` that holds a slash resolves from the repository root whatever `cwd` says. A second round then made the refusal line the checker's own `ERROR:` line, so a warning printed first no longer hides it, and kept a bracketed character class out of the named-group check, so a construct a class spells literally no longer reads as a fault.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None | None | No file has changed. The planned files are listed in `spec.md` section 3. |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs` | Create | Discovery, validation, merge, suggestions and the init plan |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs` | Edit | `spawnGroup()`, the process group spawner for configured checks |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs` | Edit | `--config`, `--help`, configured and generated checks, chained guard windows, `suggested_checks` and the hygiene flags |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config.test.cjs` | Create | 16 cases: discovery, `CONFIG_PATH_MISSING`, F11, `CONFIG_INVALID`, merge, hygiene values, template and help |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs` | Create | 11 cases: F06 to F09, no git, argv, timeout with the group kill, `--no-run`, package cwd, `NOT_APPLICABLE` and generated rows |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` | Edit | The flags case reads a real `--config` file |
+| `.skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json` | Create | The empty config `init` fills |
+| `.skilled/skills/sk-code/sk-code-quality/references/quality-config.md` | Create | Schema, discovery, merge, run rules, suggestions, error codes, trust boundary, doctor and known limits |
+| `.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md` | Edit | Config and help flags, configured rows and the new codes, version 1.0.1.0 |
+| `.skilled/skills/sk-code/sk-code-quality/SKILL.md` | Edit | Runner fact, loading row, RESOURCE_MAP entry and reference line for the config, version 1.7.0.0 |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/README.md`, `scripts/lib/README.md` | Edit | The config reader, `spawnGroup()`, the new suites and the chained windows, versions 1.0.3.0 and 1.0.2.0 |
+| `.skilled/skills/sk-code/sk-code-quality/changelog/v1.7.0.0.md` | Create | Quality mode release notes |
+| `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` | Create | `status`, `check` and `init` for `/doctor:sk-code quality` |
+| `.skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs` | Create | 7 cases: dry run, apply and refusal, outside folder, no command starts, tool states, invalid config and help |
+| `.skilled/commands/doctor/scripts/sk-code-setup-check.cjs` | Edit | The quality leg |
+| `.skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs` | Edit | Nine legs, the v4-layout and legacy-stub counts, two quality cases |
+| `.skilled/commands/doctor/scripts/README.markdown`, `scripts/tests/README.markdown` | Edit | Rows for the new script and suite |
+| `.skilled/commands/doctor/_routes.yaml` | Edit | The `quality` route, `mutating: mutates` |
+| `.skilled/commands/doctor/assets/doctor-sk-code-quality.yaml` | Create | The five-phase quality workflow |
+| `.skilled/commands/doctor/assets/doctor-sk-code-setup.yaml` | Edit | Nine legs, `legs=9` |
+| `.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt` | Edit | Menu, targets, quality tables, plan, prompt and troubleshooting |
+| `.skilled/commands/doctor/assets/doctor-setup-presentation.txt` | Edit | The `/doctor:sk-code quality` row |
+| `.skilled/commands/doctor/sk-code.md` | Edit | Two targets, argument hint and workflow summary |
+| `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md`, `doctor-commands/doctor-sk-code-setup.md`, `doctor-commands/doctor-sk-code-pre-v4-checkout.md` | Edit | Nine legs, eight skipped legs, the kill-switch quality failure, versions 1.5.9.0, 1.1.2.0 and 1.0.1.0 |
+| `.skilled/skills/sk-code/README.md` | Edit | The quality leg and target, the newest changelog row, version 2.2.24.0 |
+| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` | Edit | Hub version 3.3.0.0 |
+| `.skilled/skills/sk-code/changelog/v3.3.0.0.md` | Create | Hub release notes |
+| `.skilled/skills/sk-code/leaf-manifest.json` | Regenerate | Lists the template and the reference |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` and its authored twin | Regenerate | Refreshed for the new registry version, then copied |
+| `.hermes/skills/sk-code/SKILL.md`, `.hermes/skills/sk-code-quality/SKILL.md`, `.hermes/skills/system-skill-advisor/SKILL.md` | Regenerate | Hermes copies |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json` | Edit | The two bridge ids |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`, `runtime/lib/scorer/projection.ts`, `runtime/lib/render.ts`, `runtime/scripts/skill_advisor.py` | Regenerate | By `derive-command-bridges.cjs` |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts`, `runtime/tests/python/test_skill_advisor.py`, `runtime/scripts/routing-accuracy/doctor-prompts.jsonl` | Edit | The setup bridge and the typed `setup` target |
+| `.skilled/skills/system-skill-advisor/SKILL.md`, `changelog/v0.17.1.0.md` | Edit and Create | Version 0.17.1.0 and its release notes |
+| `specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/` | Edit | `spec.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md` (ADR-011 to ADR-015) and this summary |
+| `specs/sk-code/015-quality-agnostic-gate/spec.md` | Edit | Phase 3 reads Complete in the phase map, and its continuity names phase 4 next |
+| `specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md` | Create | Packet changelog |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +114,66 @@ This phase will let a repository commit `.sk-code/quality.json` to name its own 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. No test, battery run, route validation or packet gate has run for this phase. The verification plan is in `tasks.md`, phase 3, tasks T040 to T048.
+The tasks ran in `tasks.md` order: the config module and its tests, then the configured checks and the guard, then the doctor script, the battery leg and the route, then the documents, the bridge rename, the mirrors and the versions. Every generated file came from its generator. The Codex, Pi and Hermes prompt mirrors are pointer stubs to the router, so their sync scripts wrote no file and their checks passed.
+
+Baselines came first. Each capture is recorded here in full because the scratch files behind them were deleted at close.
+
+| Baseline | Observed before the first edit |
+|----------|-------------------------------|
+| Quality suite | 27 tests, all passing |
+| Doctor suites | 459 tests, all passing |
+| Setup battery | Eight PASS lines, `STATUS=OK legs=8`, exit 0, 23 seconds |
+| Drift guards | All 4 guards PASSED, 10 non-blocking warnings, 15938 files scanned |
+| Whole-tree comment hygiene | 63 findings, all under `specs/` |
+
+### Review against the sk-git resolver and the git-standards dry run
+
+`discoverConfig()` reads `git config --show-scope --get-all`, drops `command` scope lines and keeps the last value, as `resolveContractDir()` in `.skilled/skills/sk-git/scripts/lib/message-contract.mjs` does, and both treat a named path that does not exist as a broken install rather than a fall back. The quality resolver adds `--config` ahead of git config and falls back to no config, where sk-git falls back to its shipped assets. `sk-code-quality-config.cjs` follows `git-standards.cjs`: `--apply` turns a dry run into a write, the last line is `STATUS=OK MODE=DRY_RUN` or `STATUS=OK MODE=APPLIED`, and the plan names a git config value that outranks the new file. It differs in one place on purpose: `init` creates its file once through a hard link and refuses an existing one, where `git-standards.cjs` reports drift on copies it already wrote.
+
+### Findings met during the build, with their class
+
+| Finding | Class | Resolution |
+|---------|-------|------------|
+| A nested `node --test` inside the battery inherited `NODE_TEST_CONTEXT` and reported a failing stub suite as passing | test-isolation | The battery drops the variable before it runs the quality tests, and a battery case with a failing stub now fails the leg |
+| `doctor-prompts.jsonl` named the old bridge id, outside the planned surfaces | cross-consumer | Rows 23 to 25 name the setup bridge |
+| The pre-v4 playbook pinned the leg count as well | class-of-bug | It expects eight SKIP lines and `skipped=8`, matching a real run |
+| The quality leg also fails under `SPECKIT_COMPILED_ROUTING=0`, because its route check needs a routed decision | matrix/evidence | DOC-382 expects `STATUS=FAIL failed=2 skipped=0` for the kill-switch run |
+| The checker refusal repair line printed its `Usage:` line | instance-only | The runner picks the first stderr line that is not usage |
+
+### Deviations from the task text
+
+Each deviation is recorded beside its own task. Four change what a literal Verify command prints, and these are the ones a reader will trip over.
+
+| Deviation | Why |
+|-----------|-----|
+| The `rg -n "hash-object"` Verify of T010 was rewritten | This phase reuses the phase 2 snapshot helper instead of `git hash-object`, so the original grep could not match, and the Verify now names `takeSnapshot()` while ADR-013 records the ruling |
+| The manifest readers of T011 and the file matching of T009 live in `quality-config.cjs` and `quality-gate.cjs` | `spec.md` section 3 already assigns those modules the work, and the doctor `init` fills its template from the same suggestion list |
+| CHK-001 counts 21 requirements | REQ-021, the help flag requirement, was added with ADR-011, and the Verify clause was rewritten to the count the command prints |
+| The literal `Unmet` and `[B]` greps print a count above zero | The template's own status-value table, waiver note and notation table hold those words, so the row-level greps in T048 and CHK-020 now carry the real answer |
+
+### Final gate set
+
+| Gate | Output | Exit |
+|------|--------|------|
+| `node --test --test-reporter=tap .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` | `# tests 60`, `# pass 60`, `# fail 0` | 0 |
+| The four quality bash suites | Each printed its all-passed line | 0 each |
+| `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/*.test.cjs` | `# tests 468`, `# pass 468`, `# fail 0` | 0 |
+| Advisor vitest, the six doctor suites | `Test Files  6 passed (6)`, `Tests  80 passed (80)` | 0 |
+| `pytest tests/python/test_skill_advisor.py` | `7 passed` | 0 |
+| `node --test --test-reporter=tap .skilled/bin/tests/compiled-route-*.test.cjs` | `# tests 94`, `# pass 94`, `# fail 0` | 0 |
+| `sk-code-setup-check.cjs` | Nine PASS lines, `STATUS=OK legs=9`, 33 seconds, `git status --porcelain` unchanged | 0 |
+| `route-validate.sh` and `--self-test` | 18 routes validated, 2 warnings on other commands, all self-tests passed | 0 |
+| `derive-command-bridges.cjs --check` | `"status": "fresh"` | 0 |
+| `doctor-phrase-reach.cjs` | `STATUS=OK phrases=118 bridges=22` | 0 |
+| The eight pre-commit mirror checks and the Pi prompt check | 194 runtime mirrors, 11 agents, 38 prompts, roster OK, catalog OK, 4 hook registration files, 67 Hermes skill copies, 38 Hermes prompts, 38 Pi prompts | 0 each |
+| `parent-skill-check.cjs .skilled/skills/sk-code` | All hard invariants passed, 0 warnings | 0 |
+| `compiled-route-guard.cjs` and `compiled-route-sync.cjs --check` | All hubs fresh or excused, 7 hubs resolve, 55 served copies match | 0 |
+| `ci-leaf-manifest-freshness.cjs`, `ci-skill-root-metadata.cjs`, `ci-skill-derived-freshness.cjs` | `fresh=14`, `passed=14`, `fresh=14 stale=0` | 0 each |
+| `run-all-drift-guards.sh` | All 4 guards PASSED, the same 10 warnings as the baseline, none in a touched file | 0 |
+| `validate_document.py` on every changed document | `VALID` for each | 0 each |
+| Comment hygiene over `git ls-files` plus the new files | 63 findings, all under `specs/`, as at the baseline, and none in a changed or new file | 1 |
+
+No workflow file changed, so actionlint had nothing to check.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,11 +188,14 @@ Not delivered. No test, battery run, route validation or packet gate has run for
 | Hygiene additions reach the author gate only | CI and pre-commit cannot read a working-tree config safely (ADR-003) |
 | Committed checks run, suggestions never do | The operator names every command that runs (ADR-004) |
 | Argv arrays with `shell: false` | A shell string is an injection surface (ADR-005) |
-| Content-hash guard, with its ownership split across phases 2 and 3 | A porcelain check misses a second edit to a modified file (ADR-006) |
 | Read-only battery leg and a separate approval-gated route | The battery keeps its contract, and the one write is approved first (ADR-007) |
 | Bridge rename to two target ids | The deriver names one bridge per target, so the old id cannot survive (ADR-008) |
 | One battery leg, count moves to nine | One row shows quality readiness in the battery's table (ADR-009) |
-| Extend the existing sk-code presentation file | One presentation file per command matches the git precedent (ADR-010) |
+| Help flags print usage and exit 0 | Help is read by a person and must not look like a failure (ADR-011) |
+| A committed config must resolve inside the repository | A committed link cannot hide the commands a clone runs (ADR-012) |
+| One guard window per configured check, a group kill and the reused phase 2 snapshot | A mutation names its command and no helper survives, with one snapshot implementation (ADR-013) |
+| Strict selectors, whole-argument `{files}` and no command output in the verdict | A configured command does no more than its entry says (ADR-014) |
+| Suggestions from root manifests, written by `init` as not required | A new config cannot block a repository the day it lands (ADR-015) |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -93,11 +205,16 @@ Not delivered. No test, battery run, route validation or packet gate has run for
 
 | Check | Result |
 |-------|--------|
-| Quality suite `node --test` | Not run. Implementation has not started. |
-| Setup battery `STATUS=OK legs=9` | Not run. Implementation has not started. |
-| Route validator `route-validate.sh` | Not run. Implementation has not started. |
-| Prompt mirror `--check` commands | Not run. Implementation has not started. |
-| Packet gates `RESULT: PASSED` | Not run. Packet authoring is in progress. |
+| Quality suite `node --test` | `# fail 0` over 60 tests, F06 to F09 and F11 among them |
+| Setup battery | `PASS  quality` and `STATUS=OK legs=9`, exit 0, and the tree unchanged |
+| Init in a temporary repository | `STATUS=OK MODE=DRY_RUN`, then `STATUS=OK MODE=APPLIED`, then `STATUS=FAIL MODE=REFUSED ERROR=CONFIG_EXISTS` with exit 1 and the file byte-identical |
+| Route validator `route-validate.sh` | Exit 0, and `rg -n "target: quality"` prints line 244 |
+| Prompt mirror `--check` commands | `PASS: 38 prompts are in sync.` for Codex, Pi and Hermes |
+| Acceptance criteria | AC-001 to AC-021 all `Met`, each with its command observed. `AC-018` closed last, after task T048 wrote the packet changelog |
+| Packet changelog | `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor --write` wrote `changelog-015-003-config-and-doctor.md` in the parent packet's `changelog/` folder, exit 0 |
+| Packet gates | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor --strict --no-recursive` printed `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, exit 0. The `AC_COVERAGE` row prints as an advisory pass, so the run carries no warning |
+| Parent packet gates | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate --strict --no-recursive` printed `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, exit 0 |
+| Evidence pin | HEAD `f69e5cd2e8b46b63b9e899a1fbf1a4fd8cc82c92`, with this phase uncommitted in the working tree. The phase started on `41a9351d9a`, and the two commits after it touch no file this phase changed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -105,9 +222,14 @@ Not delivered. No test, battery run, route validation or packet gate has run for
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Phase dependencies are open.** Phases 001 and 002 have not landed, so the checker flag names (task T002) and the runner files (task T001) are unknown until they do.
-2. **Windows is unspecified.** Configured commands target POSIX shells in this phase, and Windows behavior stays UNKNOWN until an operator decides.
+1. **Windows is unspecified.** Configured commands target POSIX, where `spawnGroup()` kills the whole process group. Windows behavior stays UNKNOWN until an operator decides.
+2. **The snapshot is the phase 2 helper, not the one REQ-006 describes.** It hashes the content of each changed and untracked file with sha256 in process, and a file over 2 MB is compared by size and change time. ADR-013 records why.
+3. **The requirement count is 21.** REQ-021 is the help flag requirement the coordinator added with ADR-011, and CHK-001 expects 21 rather than the 20 the plan named.
+4. **A bare `/doctor:sk-code` matches no bridge by slash command.** The command still runs setup, and the advisor matches a typed target, as it does for `/doctor:git`.
+5. **The battery is slower.** It took 33 seconds against 23 before the quality leg, most of it the quality suite. The design sets no budget, so the increase is reported and not gated.
+6. **A long file list can pass the argument limit.** `{files}` passes every matching file of a group in one argv, and such a run reads `ERROR`. The reference names it.
+7. **Two regex engines read extra patterns.** The runner compiles each pattern in JavaScript and the checker in Python, so a pattern only one engine accepts fails at the checker with its own message. The reference names it.
+8. **The affected-surfaces grep for `eight legs` still prints four lines.** Each is the pre-v4 scenario's correct count of skipped legs, "the other eight legs", and `legs=8` prints nothing.
 <!-- /ANCHOR:limitations -->
 
 ---
-

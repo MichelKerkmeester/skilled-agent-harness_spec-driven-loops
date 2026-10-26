@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
-    last_updated_at: "2026-10-26T03:40:47Z"
+    last_updated_at: "2026-10-26T08:05:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 002-builtin-runner"
-    next_safe_action: "Start phase 003-config-and-doctor from its own spec, plan and tasks"
+    recent_action: "Closed phase 003-config-and-doctor"
+    next_safe_action: "Start phase 004-doctrine from its own spec, plan and tasks"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-26-skcode-015"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 50
     open_questions:
       - "Placement of this packet: top level here, or a child of 014 as the design recommends. The operator confirms at program end."
       - "Operator confirmation of the six decisions in section 5."
@@ -169,7 +169,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 |-------|--------|-------|--------|
 | 1 | 001-honest-checker/ | An honest, wider checker: comment families from one table, span stripping, docstrings, block state, `--json`, reasons and narrowed patterns. No doctrine change | Complete |
 | 2 | 002-builtin-runner/ | The runner with built-in checks only: scope, sensors, checklist resolution, layers, render formats, the envelope grammar, and the hub surface declarations with their reader row | Complete |
-| 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Planned |
+| 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Complete |
 | 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Planned |
 | 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Planned |
 | 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
