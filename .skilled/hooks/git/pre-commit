@@ -42,6 +42,7 @@ fi
 
 # The staged blobs go to one checker run, with NUL-separated names, so a fix left
 # unstaged cannot hide a violation and a path with non-ASCII bytes is not skipped.
+# The -- ends the checker's options, so a staged path that starts with -- is a file.
 HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
 trap 'rm -rf "$HYGIENE_DIR"' EXIT
 HYGIENE_FILES=()
@@ -57,7 +58,7 @@ while IFS= read -r -d '' file; do
 done < <(git diff --cached --name-only -z --diff-filter=ACM)
 CHECKER_RC=0
 if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
-  (cd "$HYGIENE_DIR" && "$CHECKER_PATH" "${HYGIENE_FILES[@]}" 2>/dev/null) || CHECKER_RC=$?
+  (cd "$HYGIENE_DIR" && "$CHECKER_PATH" -- "${HYGIENE_FILES[@]}" 2>/dev/null) || CHECKER_RC=$?
 fi
 rm -rf "$HYGIENE_DIR"
 

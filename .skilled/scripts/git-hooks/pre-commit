@@ -138,7 +138,8 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   # The staged blobs are what gets committed, so they are what is checked: a fix left
   # unstaged must not hide the violation going in. Names are read NUL-separated, so a
   # path with spaces or non-ASCII bytes is checked rather than skipped, and every file
-  # goes to one checker run, which reports each finding as <path>:<line>.
+  # goes to one checker run, which reports each finding as <path>:<line>. The -- ends
+  # the checker's options, so a staged path that starts with -- is checked as a file.
   HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
   trap 'rm -rf "$HYGIENE_DIR"' EXIT
   HYGIENE_FILES=()
@@ -155,7 +156,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   CHECKER_OUTPUT=""
   CHECKER_RC=0
   if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
-    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
+    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" -- "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
   fi
   rm -rf "$HYGIENE_DIR"
   case "$CHECKER_RC" in

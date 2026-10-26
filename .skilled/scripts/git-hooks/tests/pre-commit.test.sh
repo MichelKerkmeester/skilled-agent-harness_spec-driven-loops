@@ -651,6 +651,17 @@ plant_real_comment_checker
 stage_new "café.js" "// see ADR-12"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a staged name with non-ASCII bytes is checked" 1 "$RC" "café.js:1:"
+# A staged name that starts with -- is a file, never a checker option.
+setup_gate_fixture
+plant_real_comment_checker
+stage_new "--notes.js" "// see ADR-12"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a staged name that starts with -- is checked" 1 "$RC" "notes.js:1: // see ADR-12"
+setup_gate_fixture
+plant_real_comment_checker
+stage_new "--notes.js" "// see ADR-12"
+run_legacy; RC=$?
+check "the helper checks a staged name that starts with --" 1 "$RC" "staged files contain ephemeral-artifact pointers"
 
 # ── 45. every staged file goes to one checker run ──
 setup_gate_fixture
