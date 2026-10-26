@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate resources"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Verification Summary, Quick Reference & Related
@@ -29,7 +29,7 @@ Use the matching language template after validation, apply the gate rule, and co
 
 ## 2. VERIFICATION SUMMARY TEMPLATE
 
-After completing validation, document the results using the appropriate template.
+After completing validation, document the results using the appropriate template. The result line copies the gate the quality runner printed, and no gate value means pass.
 
 ### JavaScript Files
 
@@ -50,7 +50,7 @@ After completing validation, document the results using the appropriate template
 
 **P0 Status**: All passed? [YES/NO]
 **P1 Status**: All passed or deferred? [YES/NO]
-**Gate Result**: [PASS/BLOCKED]
+**Gate Result**: [NO_BLOCKER_FOUND/BLOCKED/NOTHING_CHECKED/UNVERIFIED/ERROR]
 
 ### Deferred Items (if any)
 - [Item ID]: [Reason for deferral]
@@ -69,11 +69,11 @@ After completing validation, document the results using the appropriate template
 | Category | P0 | P1 | P2 | Status |
 |----------|----|----|----|----|
 | Attribute Selectors | X/0 | X/1 | X/0 | ✅/❌ |
-| Animation Properties | X/1 | X/2 | X/0 | ✅/❌ |
+| Animation Properties | X/0 | X/2 | X/1 | ✅/❌ |
 
 **P0 Status**: All passed? [YES/NO]
 **P1 Status**: All passed or deferred? [YES/NO]
-**Gate Result**: [PASS/BLOCKED]
+**Gate Result**: [NO_BLOCKER_FOUND/BLOCKED/NOTHING_CHECKED/UNVERIFIED/ERROR]
 
 ### Deferred Items (if any)
 - [Item ID]: [Reason for deferral]
@@ -99,7 +99,7 @@ These checks add no JavaScript P0. The P0 items that gate a `.js` file come from
 | Check Category | Minimum for PASS |
 |----------------|------------------|
 | Attribute Selectors | CHK-CSS-05 fixed or deferred with approval (P1) |
-| Animation Properties | All P0 items (CHK-CSS-09) |
+| Animation Properties | CHK-CSS-10 and CHK-CSS-11 fixed or deferred with approval (P1), CHK-CSS-09 recommended (P2) |
 
 ### Gate Rule
 

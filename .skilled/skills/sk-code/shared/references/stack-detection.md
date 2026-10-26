@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.7.0
+version: 2.2.8.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -29,7 +29,7 @@ Detect **where the work is happening** before deciding which standards apply. Th
 | --- | --- | --- |
 | Specific surfaces | The stack each one declares, such as an operator-private `local-*` skill or a surface packet another repository adds to the hub | Work that matches none of their markers |
 | SKILLED | The hub's own code under `.skilled/`: skills, agents, commands, MCP servers, plugins, scripts, tests and JSON or YAML config. It is the one fallback surface | A stack a specific surface declares |
-| UNKNOWN | The result when no declared surface matches | Any standard, until the operator names the surface and its verification commands |
+| UNKNOWN | The result when no declared surface matches | Any standard beyond the universal floor, the quality runner's built-in checks, the quality mode's surface-neutral checklists that the runner lists and the quality checks the repository's quality config names, until the operator names the surface and its commands. The spec-folder authoring checklist needs the SKILLED surface |
 
 `sk-code-ci` is a surface packet with no detection block. The hub bundles it from request vocabulary alone, so detection never returns it.
 
@@ -46,7 +46,7 @@ When a specific surface and SKILLED both match, the specific surface leads and S
 2. Specific surfaces that skills outside the hub declare, sorted by skill_id.
 3. SKILLED, the fallback. It leads only when no specific surface matched.
    Otherwise it follows them as second evidence and is never dropped.
-4. UNKNOWN when nothing matched. Ask which surface and verification commands apply.
+4. UNKNOWN when nothing matched. Apply the universal floor, the quality runner's built-in checks, the quality mode's surface-neutral checklists that the runner lists (the JavaScript and CSS style checklists under `sk-code-quality/assets/code-quality-checklist/`) and the quality checks the repository's quality config names. The spec-folder authoring checklist needs the SKILLED surface, no discovered command applies, and the operator is asked which surface and which commands apply.
 ```
 
 ### Why SKILLED Is Last

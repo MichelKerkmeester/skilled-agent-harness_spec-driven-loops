@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/004-doctrine"
-    last_updated_at: "2026-10-26T00:00:00Z"
-    last_updated_by: "spec-doc"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-26T09:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed the doctrine phase and recorded the landing log"
+    next_safe_action: "Land after phase 003, then hand over to phase 005"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-004-doctrine-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `rg -n "An UNKNOWN surface gets only the universal floor" .skilled/skills/sk-code/shared/references/phase-detection.md` prints one line starting `109:`.
+- [ ] `rg -n "An UNKNOWN surface gets the universal floor" .skilled/skills/sk-code/shared/references/phase-detection.md` prints one line starting `109:`.
 - [ ] `rg -n "built-in checks" .skilled/skills/sk-code/shared/references/stack-detection.md` prints two lines, starting `32:` and `49:`.
 - [ ] `rg -n "^# SKILLED House Code Quality Checklist" .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md` prints one line starting `14:`.
 - [ ] `rg -l "local-" .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` prints nothing.
@@ -82,9 +82,10 @@ and findings belong here.
 |------|-------|----------|
 | Packet authored from the design | Done | Spec, plan, tasks, acceptance criteria, decision record and this goal were written in this pass |
 | Design lines rechecked at the current tree | Done | Every Phase 4 citation matched its line. Commits `2d068d4b7f` and `c3ca0efaa9` changed only `sk-code/README.md`, `sk-code/ROUTER.md` and the advisor README, so no cited line moved |
-| Doctrine and checklist edits | Pending | Tasks T003 to T017 |
-| Changelogs and version bumps | Pending | Tasks T018 to T020 |
-| Review confirmation of the column | Pending | Task T021 |
+| Landing recheck at HEAD `f69e5cd2e8` (T001) | Done | Every cited line matched, except two in `sk-code-quality/SKILL.md` that phase 002 moved: the P0 table now opens at line 224 with its pointer sentence on line 222, in place of lines 190 to 196, and ESCALATE IF item 1 sits on line 291, in place of line 254 |
+| Doctrine and checklist edits | Done | Tasks T003 to T017, with three line anchors amended by ADR-005 |
+| Changelogs and version bumps | Done | Tasks T018 to T020. Hub 3.4.0.0, sk-code-quality 1.8.0.0 and sk-code-skilled 2.1.0.0, as the coordinator pre-assigned |
+| Review confirmation of the column | Done | Task T021. Twenty rows checked against the loaded `sk-code-review` contract, eighteen confirmed and two refined (ADR-003) |
 
 ### Deviations and findings
 
@@ -94,5 +95,8 @@ and findings belong here.
 | Design phase 4 scope moves CHK-CSS-09 to P2, while CHK-CSS-10 and CHK-CSS-11 stay at P1 | Applied as designed. The base rule now sits below the rules that depend on it. Recorded for review |
 | Design says a parse failure is P0 on every surface | A plain JavaScript parse finding stays heuristic, as the runner's rule table states in design section 3.4 |
 | Design section 5.2 bundles the P0 table link with two rows that become UNVERIFIED | The link stays here. The two rows move to phase 002, which owns the UNVERIFIED state |
-| Seven tracked files outside this phase name the operator-private id | Open question in spec.md. Not changed here |
+| Seven tracked files outside this phase name the operator-private id | Open question in spec.md. Not changed here. A recount at landing found seven tests or fixtures plus two released changelog entries under `.skilled/` |
+| Finding classes (CHK-FIX-001) | The operator-private id in three checklist lines is class-of-bug, with the seven tests and fixtures above as its same-class sites. Iron Law 3 is cross-consumer, read by `stack-detection.md`, `code-quality-standards.md`, `workflow-verify.md` and `sk-code-quality/SKILL.md`. The CHK-CSS-09 severity is instance-only, with its two template rows moved with it |
+| Phase 003 not on main in this worktree | Its names come from its `spec.md`, as the coordinator ruled. The config template is absent here (T002) |
+| Packet-relative path in workflow step 2 | The first drift-guard run failed doc-claims on it. The step now names the full path to `runner-contract.md` |
 <!-- /ANCHOR:log -->

@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface implementation standards"
 importance_tier: important
 contextType: general
-version: 2.1.3.0
+version: 2.1.4.0
 ---
 
 # Workflow Reference - Implementation
@@ -38,7 +38,7 @@ Read first, change the least and write the baseline down before the first edit. 
 ### When Not to Use
 
 - A concrete failing symptom dominates the task. Use [debugging](./workflow-debug.md).
-- The code is written and needs author-side P0/P1/P2 checks, comment hygiene or surface checklists. Use the `sk-code-quality` mode.
+- The code is written and needs author-side P0/P1/P2 checks, comment hygiene or surface checklists. Use the `sk-code-quality` mode, which runs `quality-gate.cjs` first.
 - The task is final non-mutating evidence. Use [verification](./workflow-verify.md).
 - The user wants findings-first review output instead of workspace edits. Use the `sk-code-review` mode.
 - The change is documentation-only prose with no executable behavior or routing change.
@@ -116,7 +116,7 @@ For system code under `.skilled/` (the `sk-code-skilled` surface), also apply th
 
 ## 4. HANDOFF BOUNDARIES
 
-- Quality (`sk-code-quality`) receives the change for author-side checks, comment hygiene and active-surface checklists.
+- Quality (`sk-code-quality`) receives the change for author-side checks, comment hygiene and active-surface checklists. The mode runs `quality-gate.cjs` first and loads every checklist its verdict lists.
 - [Debugging](./workflow-debug.md) receives failing checks or runtime symptoms and traces one root cause at a time.
 - [Verification](./workflow-verify.md) receives the final changed state, the baseline, the commands to run and the exact claim to prove.
 - Review (`sk-code-review`) owns findings-first critique when the user asks for severity-ranked risks instead of edits.

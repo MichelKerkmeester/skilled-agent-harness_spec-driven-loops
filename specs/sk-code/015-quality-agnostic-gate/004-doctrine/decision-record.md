@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/004-doctrine"
-    last_updated_at: "2026-10-26T00:00:00Z"
-    last_updated_by: "spec-doc"
-    recent_action: "Recorded four decisions for the doctrine phase"
-    next_safe_action: "Confirm ADR-003 with sk-code-review at landing"
+    last_updated_at: "2026-10-26T09:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Checked every ADR-003 row against the review contract and added ADR-005"
+    next_safe_action: "Operator confirms ADR-001 to ADR-005 at program end"
     blockers: []
     key_files: []
     session_dedup:
@@ -27,7 +27,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-The operator set a standing instruction to build autonomously and to verify open decisions at program end. ADR-001 and ADR-002 take the design's recommended default. ADR-004 follows the phase dispatch over the design's phase 5 scope. All three carry the status line the operator asked for. ADR-003 is a proposal that `sk-code-review` confirms. The alternative and the reversal are recorded in each one. Scores in the alternatives tables are the author's judgement, not measurements.
+The operator set a standing instruction to build autonomously and to verify open decisions at program end. ADR-001 and ADR-002 take the design's recommended default. ADR-004 follows the phase dispatch over the design's phase 5 scope. ADR-003 was checked row by row against the `sk-code-review` contract in this phase, and ADR-005 records why three line anchors moved. All five carry the status line the operator asked for. The alternative and the reversal are recorded in each one. Scores in the alternatives tables are the author's judgement, not measurements.
 
 ---
 
@@ -63,7 +63,7 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md` line
 
 **We chose**: Amend Iron Law 3 so an UNKNOWN surface gets the universal floor and the quality runner's built-in checks, until the operator names its surface and commands.
 
-**How it works**: The law names three sources: the universal floor in `code-quality-standards.md`, the runner's built-in checks, and the operator's committed `.sk-code/quality.json`. The UNKNOWN rows at `stack-detection.md` lines 32 and 49 and at `code-quality-standards.md` line 122 state the same rule. Verification commands still come from `workflow-verify.md`, which keeps asking for them.
+**How it works**: The law names four sources: the universal floor in `code-quality-standards.md`, the runner's built-in checks, the quality mode's surface-neutral checklists that the runner lists, and the quality checks the repository's quality config names, through `--config`, the git config key `skcode.qualityConfig` or `.sk-code/quality.json`. That config never supplies a verification command, and the spec-folder authoring checklist applies only where the SKILLED surface resolves. The UNKNOWN rows at `stack-detection.md` lines 32 and 49 and at `code-quality-standards.md` line 144 (the number ADR-005 records) state the same rule. Verification commands still come from `workflow-verify.md`, which keeps asking for them. The fix round broadened the law past the spec's two-sentence limit to state the rule exactly.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -99,7 +99,7 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md` line
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Iron Law 3 read as licence for surface standards on UNKNOWN | H | AC-001 checks the exact sentence. The text names the floor and the committed config only |
+| Iron Law 3 read as licence for surface standards on UNKNOWN | H | AC-001 checks the exact sentence. The text names the four sources, and the spec-folder checklist applies only where the SKILLED surface resolves |
 | The committed config names quality checks, and a reader takes them for verification | M | Line 55 of `workflow-verify.md` states that the config supplies no verification commands (T017) |
 <!-- /ANCHOR:adr-001-consequences -->
 
@@ -127,7 +127,7 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md` line
 **What changes**:
 - `phase-detection.md` line 109, Iron Law 3.
 - `stack-detection.md` lines 32 and 49.
-- `code-quality-standards.md` line 122.
+- `code-quality-standards.md` line 144, the number ADR-005 records.
 
 **How to roll back**: Run `git revert <landing sha>` on the one landing commit. Iron Law 3 then returns to the text it had before this phase, at line 109.
 <!-- /ANCHOR:adr-001-impl -->
@@ -243,9 +243,9 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md` line
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed, pending sk-code-review confirmation before this phase closes |
+| **Status** | Accepted, pending operator confirmation at program end |
 | **Date** | 2026-10-26 |
-| **Deciders** | Phase author. `sk-code-review` confirms each row |
+| **Deciders** | Phase author. Each row was checked against the `sk-code-review` contract, its `SKILL.md` and `references/review-core.md` section 2 |
 
 ---
 
@@ -274,6 +274,33 @@ Quality tiers and review severities are separate scales. Quality P0 blocks compl
 - The mechanical floor follows the same rule. Parse failure and merge-conflict markers map to review P1, and credential signatures map to review P0.
 
 **How it works**: The column maps a rule for authors and for review readers. It changes no review id. The design says the lists gain a column. A column needs a table, so each list becomes a table and keeps its wording.
+
+**Review confirmation**: The `sk-code-review` mode was loaded in this phase, its `SKILL.md` and `references/review-core.md`, and every row of the column was checked against the three definitions in `review-core.md` section 2. P0 there is an exploitable security issue, an auth bypass or destructive data loss. P1 is a correctness bug, a spec mismatch or a must-fix gate issue. P2 is a non-blocking improvement, documentation polish or a style or maintainability follow-up. The check reads an unresolved quality P0 as a failed mandatory gate, because Iron Law 2 makes the Phase 1.5 gate mandatory, and that is a must-fix gate issue in review's own words.
+
+| Table | Rule | Column value | Verdict | Reason against `review-core.md` section 2 |
+|-------|------|--------------|---------|------------------------------------------|
+| Mechanical floor | Parse failure | P1, once a heuristic finding is confirmed | Confirmed | A file that does not parse is a correctness bug. A plain JavaScript finding is heuristic, so it ranks only once the agent confirms it |
+| Mechanical floor | Merge-conflict markers | P1 | Confirmed | Conflict lines break the file, a correctness bug |
+| Mechanical floor | Credential signature | P0 | Confirmed | A committed credential is an exploitable security issue, and unsafe secrets handling is a security minimum in section 6 |
+| P0 | Initialization safety | P1. P0 when the gap is exploitable or causes data loss | Confirmed | A double initialization or a race is a correctness bug. It reaches P0 only through section 2's own P0 cases |
+| P0 | Input validation | P1. P0 when the gap is exploitable or causes data loss | Confirmed | Boundary handling is a correctness minimum. An injection path is exploitable, which is P0 |
+| P0 | No commented-out code | P1 | Confirmed | An unresolved quality P0 fails the mandatory gate, a must-fix gate issue. A reviewer who reads it as maintainability alone would rank it P2, so the operator may confirm this row at program end |
+| P0 | No silent failures | P1 | Confirmed | A swallowed exception hides a wrong result, a correctness bug |
+| P0 | No hardcoded secrets | P0 | Confirmed | Same reason as the credential signature row |
+| P0 | No ephemeral-artifact pointers in comments | P1 | Confirmed | The pre-commit and CI gates block it, a must-fix gate issue |
+| P0 | Accessibility | P1 | Confirmed | A control a keyboard cannot reach is a correctness bug for that user, and the gate requires the fix |
+| P1 | Documentation completeness | P2 | Confirmed | Documentation polish |
+| P1 | Test coverage at boundaries | P1 | Confirmed | Boundary handling and regression risk are correctness minimums in section 6, so an untested boundary leaves a correctness claim unproven |
+| P1 | Error message quality | P2 | Changed from the default | The default rule names two cases, correctness or a gate for P1 and style or documentation for P2. A thin error message is neither, and section 2 names a maintainability follow-up as P2 |
+| P1 | Resource cleanup | P1 | Confirmed | A leaked handle or timer is a correctness bug |
+| P1 | Type-safety enforcement | P1 when the type check fails, P2 otherwise | Changed from the default | A failing type check is a failed gate, which is P1. A loose type that still compiles is a maintainability follow-up, which is P2 |
+| P1 | Naming convention adherence | P2 | Confirmed | Style follow-up |
+| P2 | Idiomatic refinements | P2 | Confirmed | Style follow-up |
+| P2 | Performance polish | P2 | Confirmed | Non-blocking improvement |
+| P2 | Test coverage beyond boundaries | P2 | Confirmed | Non-blocking improvement |
+| P2 | Documentation completeness for internal helpers | P2 | Confirmed | Documentation polish |
+
+Twenty rows were checked. Eighteen match the default mapping, and two refine it where the default named no case. No review id or definition changed, and `review-core.md` was not edited.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -324,7 +351,7 @@ Quality tiers and review severities are separate scales. Quality P0 blocks compl
 | 4 | **Fits Goal?** | PASS | The goal's review reader needs one severity story |
 | 5 | **Open Horizons?** | PASS | Review can widen its ids later without changing the column's meaning |
 
-**Checks Summary**: 5/5 PASS, by the author's judgement. Review confirms the rows at T021.
+**Checks Summary**: 5/5 PASS, by the author's judgement. Every row was checked against review's contract at T021.
 <!-- /ANCHOR:adr-003-five-checks -->
 
 ---
@@ -435,5 +462,106 @@ The design lists `workflow-verify.md` line 56 under the shared doctrine (section
 **How to roll back**: Run `git revert <landing sha>` on the landing commit. Line 56 returns to its pre-phase text.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: Check three amended lines at the line they land on
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Phase author, under the coordinator's ruling that a task wrong for the tree is done to its intent with the deviation recorded |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+Three checks name a line number that the phase itself moves, or that an earlier phase moved before this one started.
+
+- AC-003 expects the UNKNOWN row of `code-quality-standards.md` on line 122, and AC-016 expects `quality-gate.cjs` on a line from 131 to 140. T006 to T008 must add the review-severity sentence, the floor definition, the mechanical floor and three tables above both lines, which adds 22 lines above both. Step 2 now spans lines 153 to 155, and its command sits on line 155, where it sat on line 133 before.
+- AC-014 expects the P0 table sentence in `sk-code-quality/SKILL.md` on line 192. Phase 002 rewrote that file before this phase started, and the P0 table now opens at line 224, with the sentence before it on line 222.
+
+### Constraints
+
+- AC ids stay stable, and a criterion is never renumbered.
+- A Met row must name evidence that was observed.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: Check each of the three lines at the line it lands on, and amend the line number in the Verification cell of AC-003, AC-014 and AC-016 and in tasks T005, T009 and T015.
+
+**How it works**: Each grep keeps its pattern and its one-line count. Only the expected line number changes, to 144 for the UNKNOWN row, 155 for step 2 and 222 for the P0 table sentence. T005 also printed line 122 before T006 to T008 ran, which the task records.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Amend the line number (chosen)** | Each check still proves its text, on one line, in the right section | The cell no longer matches the number the authoring pass wrote | 8/10 |
+| Squeeze the new content to keep line 122 and lines 131 to 140 | No amendment | Impossible without dropping content that T006 to T008 require | 1/10 |
+| Mark the three rows Unmet | No amendment | The text is in place, so the rows would read as failures they are not | 2/10 |
+
+**Why this one**: The line numbers were authored against the tree before these edits, and the patterns carry the claim.
+
+**Reversal**: Restore the authored numbers in the three cells and three tasks. The grep then fails, which says only that the line moved.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- Every check in `acceptance-criteria.md` runs as written against the final tree.
+
+**What it costs**:
+- A reader comparing the cell with the authoring pass sees a different number. Mitigation: this record and the task notes name the old and new numbers.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later phase edits the same file and moves the line again | L | The pattern stays, so a rerun names the new line at once |
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Without it, three criteria fail on text that is in place |
+| 2 | **Beyond Local Maxima?** | PASS | Two alternatives are weighed above |
+| 3 | **Sufficient?** | PASS | Three numbers change, and every pattern stays |
+| 4 | **Fits Goal?** | PASS | The criteria keep proving the amended doctrine |
+| 5 | **Open Horizons?** | PASS | A later move needs only a new number |
+
+**Checks Summary**: 5/5 PASS, by the author's judgement. The operator confirms it at program end.
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**:
+- The Verification cells of AC-003, AC-014 and AC-016, and the Verify clauses of T005, T009 and T015.
+
+**How to roll back**: Restore the three authored numbers in the cells and the tasks.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->
 
 ---

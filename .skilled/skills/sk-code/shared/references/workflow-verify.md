@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.2.1.0
+version: 2.2.2.0
 ---
 
 # Workflow Reference - Verification
@@ -52,8 +52,8 @@ A clean static read is not runtime evidence. A green unit test is not live proof
 
 ### Verification Loop
 
-1. Resolve the active surface through [stack-detection.md](../../shared/references/stack-detection.md). If it is unsupported or ambiguous, ask for the verification command set before claiming anything.
-2. Read the implementation, quality or debug handoff for the intended behavior, changed scope, baseline and accepted risks.
+1. Resolve the active surface through [stack-detection.md](../../shared/references/stack-detection.md). If it is unsupported or ambiguous, ask for the verification command set before claiming anything. The quality config, `.sk-code/quality.json`, names quality checks only, so it never supplies the verification command set.
+2. Read the implementation, quality or debug handoff for the intended behavior, changed scope, baseline and accepted risks. From the quality envelope, read the `checker_outputs` field with the `gate` and `unverified` values it carries, and any field that still reads `PENDING_AGENT_JUDGMENT`. Hand back to quality only on `BLOCKED`, `ERROR` or a field still reading `PENDING_AGENT_JUDGMENT`, which is the 3 to 1.5 transition in [phase-detection.md](../../shared/references/phase-detection.md). On `UNVERIFIED`, prove each id it lists with this phase's own command or report that id open. On `NOTHING_CHECKED`, prove the claim with this phase's own commands and never read the gate as clean, because no check read any file as code, which is where a Markdown-only change lands. The run verdict has three readers: this step, the @code RETURN `Quality Gate` field and `sk-code-review`, which reads it as input evidence only.
 3. Name the claim to prove and the command, action or observation that proves it.
 4. Select the surface-appropriate command set and targeted tests from the active-surface guidance.
 5. Run fresh commands and capture the command names, exit codes, test counts, important output and failures.

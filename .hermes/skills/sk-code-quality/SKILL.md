@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.7.0.0
+version: 1.8.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -226,7 +226,7 @@ The declarations behind the target-path checklist map stay authoritative, and th
 
 ### P0/P1/P2 Author Checks
 
-The tiers are the ones section 3 of `../shared/references/universal/code-quality-standards.md` defines.
+The tier rules and the P0 categories live in [`code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md): the tiers in its section 2, and the P0 categories with the mechanical floor in its section 3.
 
 | Severity | Meaning | Gate Effect |
 | --- | --- | --- |
@@ -295,7 +295,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### ⚠️ ESCALATE IF
 
-1. Surface detection is ambiguous after reading `../shared/references/stack-detection.md`.
+1. A required P0 check is UNVERIFIED and only the operator can name or install its tool.
 2. The correct checklist cannot be identified from the target path.
 3. A P0 issue requires new files, new behavior, or scope beyond an in-place quality fix.
 4. Comment-hygiene enforcement layers disagree on a blocking result.

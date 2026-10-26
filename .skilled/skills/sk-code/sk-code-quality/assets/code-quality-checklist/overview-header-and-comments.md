@@ -6,7 +6,7 @@ trigger_phrases:
   - "review baseline handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Code Quality Checklist
@@ -37,7 +37,7 @@ Hold the few JavaScript checks that apply on every surface and that the surface'
 
 ### What Is Not Here
 
-A site house style is not a surface-neutral rule. Webflow conventions, such as `snake_case` JavaScript names, the IIFE wrapper, `/* */` numbered section headers, the `CATEGORY: COMPONENT NAME` header and `WEBFLOW:`, `MOTION:` or `LENIS:` comment prefixes, are not checks here. The private `local-webflow` skill carries them. On SKILLED they contradict the camelCase and `MODULE:` header rules of the SKILLED JavaScript checklist.
+A site house style is not a surface-neutral rule. Webflow conventions, such as `snake_case` JavaScript names, the IIFE wrapper, `/* */` numbered section headers, the `CATEGORY: COMPONENT NAME` header and `WEBFLOW:`, `MOTION:` or `LENIS:` comment prefixes, are not checks here. An operator-private Webflow surface skill carries them. On SKILLED they contradict the camelCase and `MODULE:` header rules of the SKILLED JavaScript checklist.
 
 ### Review Baseline Handoff
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # Universal Code Quality Standards
@@ -54,7 +54,7 @@ Before writing NEW code for an implementation task, stop at the first rung that 
 
 Restraint never cuts a P0 item in §3 below, such as input validation, error handling, secrets handling and accessibility, or anything the user asked for.
 
-The ladder consumes the detected surface and does NOT change surface precedence. sk-code-skilled is the fallback surface, always last, and any other declared surface outranks it. Nor does the ladder change the Iron Law: Phase 3 verification is still required. For the over-engineering, gold-plating and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3 and `.skilled/repo-rules/prevent-overengineering.md`.
+The ladder consumes the detected surface and does NOT change surface precedence. sk-code-skilled is the fallback surface, always last, and any other declared surface outranks it. Nor does the ladder change the Iron Law: Phase 3 verification is still required. For the over-engineering, gold-plating and scope-creep detectors, see the Restraint Signals table in the repository's `AGENTS.md` and the restraint rules in its `.skilled/repo-rules/`, such as `prevent-overengineering.md`, when present.
 
 ---
 
@@ -70,19 +70,37 @@ The Code Quality Gate puts every quality rule in exactly one tier:
 
 **Gate rule**: if ANY P0 item fails, completion is BLOCKED until fixed. P1 violations need explicit deferral approval. P2 violations are tracked but do not block.
 
+Review ranks findings on its own scale, so the review-severity column in sections 3 to 5 maps each rule onto the ids in section 2 of [`review-core.md`](../../../sk-code-review/references/review-core.md). An author can then see how a finding reads in review before review runs. Review keeps its ids, their meanings and its judgement on each finding, so the column is a forecast and never overrides a reviewer.
+
 ---
 
 ## 3. P0 CATEGORIES (universal, apply across stacks)
 
+The universal floor is sections 3 to 5 of this file. Every surface gets it, UNKNOWN included, and a surface checklist adds rules to it without removing any.
+
+### Mechanical Floor (every surface)
+
+Three faults are P0 on every surface, because no other check can be trusted on a file that has one. The quality runner's built-in checks detect a parse failure in JSON, in JavaScript through both its CommonJS and ESM loaders, in Python, in shell, in YAML and in TOML. The YAML check parses through PyYAML and the TOML check through `tomllib`, and each runs only when the `python3` in use imports its parser. When one cannot, that check reads `SKIPPED_ABSENT` with a `repair` naming what to install, and the run stays verified because neither check is required. They also detect the conflict markers and the credential signature over every readable text file. A parse check for any language outside that list stays with the surface checklist or a configured `syntax-*` check, so no surface restates what the runner already covers.
+
+| Rule | Review severity |
+| --- | --- |
+| **Parse failure**: the file does not parse in its language, which a shebang decides before the extension. A finding in plain JavaScript is heuristic and does not block, because a `.js` file may hold JSX or Flow, and a finding in a `.json` file that parses only once its comments and trailing commas are stripped is heuristic too, because the tool that reads it may accept them. The agent confirms either finding first. | P1, once a heuristic finding is confirmed |
+| **Merge-conflict markers**: a text file holds the lines of an unresolved merge conflict. | P1 |
+| **Credential signature**: a file holds a private-key header or a token in a known credential format. | P0 |
+
+### Categories
+
 P0 covers issues that have caused production incidents or reviewer-author confusion:
 
-1. **Initialization safety**: code that sets up state guards against double initialization, race conditions and partial loads.
-2. **Input validation**: every external input (function parameters, API responses, file contents, env vars) is validated at the boundary.
-3. **No commented-out code**: delete it. Commented code rots and misleads readers.
-4. **No silent failures**: an exception either reaches the caller or is logged with enough context to debug it.
-5. **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store.
-6. **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4.
-7. **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
+| # | Rule | Review severity |
+| --- | --- | --- |
+| 1 | **Initialization safety**: code that sets up state guards against double initialization, race conditions and partial loads. | P1. P0 when the gap is exploitable or causes data loss |
+| 2 | **Input validation**: every external input (function parameters, API responses, file contents, env vars) is validated at the boundary. | P1. P0 when the gap is exploitable or causes data loss |
+| 3 | **No commented-out code**: delete it. Commented code rots and misleads readers. | P1 |
+| 4 | **No silent failures**: an exception either reaches the caller or is logged with enough context to debug it. | P1 |
+| 5 | **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store. | P0 |
+| 6 | **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4. | P1 |
+| 7 | **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state. | P1 |
 
 ---
 
@@ -90,12 +108,14 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 
 P1 covers issues that degrade maintainability or reliability:
 
-1. **Documentation completeness**: public APIs, exported types and complex algorithms carry docstrings or comments that explain WHY.
-2. **Test coverage at boundaries**: happy path plus at least one edge case per public surface.
-3. **Error message quality**: every error carries enough context for the operator to act.
-4. **Resource cleanup**: file handles, network connections, subscriptions, observers and timers close or cancel deterministically.
-5. **Type-safety enforcement**: in the language's own terms. TypeScript runs in strict mode without `any`. Python public functions carry type hints without `Any`.
-6. **Naming convention adherence**: names follow the surface convention, such as camelCase in JavaScript and TypeScript or snake_case in Python and Shell.
+| # | Rule | Review severity |
+| --- | --- | --- |
+| 1 | **Documentation completeness**: public APIs, exported types and complex algorithms carry docstrings or comments that explain WHY. | P2 |
+| 2 | **Test coverage at boundaries**: happy path plus at least one edge case per public surface. | P1 |
+| 3 | **Error message quality**: every error carries enough context for the operator to act. | P2 |
+| 4 | **Resource cleanup**: file handles, network connections, subscriptions, observers and timers close or cancel deterministically. | P1 |
+| 5 | **Type-safety enforcement**: in the language's own terms. TypeScript runs in strict mode without `any`. Python public functions carry type hints without `Any`. | P1 when the type check fails, P2 otherwise |
+| 6 | **Naming convention adherence**: names follow the surface convention, such as camelCase in JavaScript and TypeScript or snake_case in Python and Shell. | P2 |
 
 ---
 
@@ -103,10 +123,12 @@ P1 covers issues that degrade maintainability or reliability:
 
 P2 covers issues that improve quality but do not affect correctness or maintainability:
 
-1. **Idiomatic refinements**: code follows community style guides and project conventions.
-2. **Performance polish**: optimization beyond the NFR targets.
-3. **Test coverage beyond boundaries**: extra edge cases, fuzz tests and property tests.
-4. **Documentation completeness for internal helpers**: private functions get explained too.
+| # | Rule | Review severity |
+| --- | --- | --- |
+| 1 | **Idiomatic refinements**: code follows community style guides and project conventions. | P2 |
+| 2 | **Performance polish**: optimization beyond the NFR targets. | P2 |
+| 3 | **Test coverage beyond boundaries**: extra edge cases, fuzz tests and property tests. | P2 |
+| 4 | **Documentation completeness for internal helpers**: private functions get explained too. | P2 |
 
 ---
 
@@ -116,10 +138,10 @@ Each surface adds its own rules to these universal tiers and gives each rule a t
 
 | Surface | Phase 1.5 source | Notes |
 | ------- | ---------------- | ----- |
-| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | The fallback. `universal-checklist.md` plus one per touched language (JavaScript, TypeScript, Python, Shell, Rust, JSON/JSONC) and authoring checklists for agents, commands, skills and MCP servers |
+| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | The fallback. The SKILLED house checklist, `universal-checklist.md`, plus one per touched language (JavaScript, TypeScript, Python, Shell, Rust, JSON/JSONC) and authoring checklists for agents, commands, skills and MCP servers |
 | CI | `.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md` | Rule index for GitHub Actions workflows |
 | Declared specific surface | The standards its skill ships | Declared through `surface_detection` in that skill's `graph-metadata.json`. Outranks SKILLED |
-| UNKNOWN | n/a | sk-code does not own Go, React/Next.js, generic Node.js, React Native or Swift. Ask which surface applies |
+| UNKNOWN | The universal floor in sections 3 to 5, the quality runner's built-in checks, the quality mode's own surface-neutral checklists that the runner lists (the JavaScript and CSS style checklists under `sk-code-quality/assets/code-quality-checklist/`) and the quality checks the repository's quality config names | sk-code does not own Go, React/Next.js, generic Node.js, React Native or Swift. Apply those, then ask for the surface and its commands. The spec-folder authoring checklist applies only where the SKILLED surface resolves, and no discovered command applies |
 
 ---
 
@@ -128,13 +150,13 @@ Each surface adds its own rules to these universal tiers and gives each rule a t
 At the Phase 1.5 Code Quality Gate:
 
 1. Identify the file type and code surface. The smart router does this, and `../stack-detection.md` holds the detection order.
-2. Run the comment-hygiene checker on each modified file before committing:
+2. Run the quality runner on the changed files before committing:
    ```bash
-   .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
+   node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs
    ```
-   Zero violations are required. To suppress a known false positive, put `hygiene-ok` on that comment line.
+   It reads the working-tree change by default, or `--files <path>...`, and prints one verdict. Its built-in checks cover the mechanical floor in §3, and the comment-hygiene checker is one of its sensors, so one run checks both. Zero blocking findings are required. `BLOCKED` stops completion until the finding is fixed, and `UNVERIFIED` or `NOTHING_CHECKED` never reads as clean. To suppress a known comment-hygiene false positive, put `hygiene-ok` on that comment line. The gate values and the verdict fields are in `.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md`.
 
-   Three gates also enforce it, so the manual run is early feedback, not the only safety net:
+   Three gates also enforce comment hygiene, so the runner is early feedback, not the only safety net:
    - **Write-time**: the shared router in `.skilled/hooks/post-edit-quality/` runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn.
    - **Commit-time**: `.skilled/scripts/git-hooks/pre-commit`, installed by `.skilled/scripts/install-git-hooks.sh`, blocks any commit with violations. Bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`. The opt-in `.skilled/hooks/git/pre-commit` and the unregistered `sk-code-quality/scripts/hooks/claude-posttooluse.sh` are legacy, not default gates.
    - **CI**: `.github/workflows/comment-hygiene.yml` re-checks every PR to main, and `--no-verify` cannot skip it.

@@ -1,19 +1,19 @@
 ---
-title: Universal Code Quality Checklist
-description: Language-agnostic quality checks that apply to all code files in the OpenCode development environment.
+title: SKILLED House Code Quality Checklist
+description: SKILLED's house quality checks for the hub's own code, loaded only when SKILLED resolves for the target. Every other surface uses the universal floor.
 trigger_phrases:
-  - "universal code quality checklist"
-  - "language agnostic checks"
+  - "skilled house code quality checklist"
+  - "skilled house checks"
   - "file header checklist"
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
-# Universal Code Quality Checklist
+# SKILLED House Code Quality Checklist
 
-Language-agnostic quality checks that apply to all code files in the OpenCode development environment.
+SKILLED's house quality checks, loaded only when [stack-detection.md](../../../shared/references/stack-detection.md) resolves SKILLED for the target. Every other surface, UNKNOWN included, uses the universal floor in [code-quality-standards.md](../../../shared/references/universal/code-quality-standards.md) instead.
 
 ---
 
@@ -21,11 +21,11 @@ Language-agnostic quality checks that apply to all code files in the OpenCode de
 
 ### Purpose
 
-Provides baseline quality requirements that apply across all languages (JavaScript, TypeScript, Python, Shell, Config). Use this checklist alongside language-specific checklists.
+Provides SKILLED's baseline quality requirements across its languages (JavaScript, TypeScript, Python, Shell, Config). Use this checklist alongside language-specific checklists.
 
 ### Usage
 
-Run this checklist for every code change before applying the relevant language-specific checklist and validation commands.
+Run this checklist for every SKILLED code change before applying the relevant language-specific checklist and validation commands.
 
 ### Priority Levels
 
@@ -267,7 +267,7 @@ These improve quality but can be deferred.
    - Zero violations required
    - Escape: add `// hygiene-ok` to suppress a specific line
 
-3. Check this universal checklist
+3. Check this SKILLED house checklist
    - All P0 items must pass
    - P1 items addressed or approved
 
@@ -313,7 +313,7 @@ For formal findings-first review output, use `sk-code`'s code-review mode as the
 ```markdown
 ## Cross-Language Standards Surface Evidence
 
-- [ ] Universal standards validated in `universal-checklist.md`
+- [ ] SKILLED house standards validated in `universal-checklist.md`
 - [ ] Language checklist validated for changed files
 - [ ] Findings severity/order produced with `sk-code/sk-code-review/references/quick-reference.md`
 - [ ] Baseline risk checks sourced from `sk-code`'s code-review mode references

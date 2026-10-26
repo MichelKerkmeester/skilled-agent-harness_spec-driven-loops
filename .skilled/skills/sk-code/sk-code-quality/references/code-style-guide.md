@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.2.4.0
+version: 2.2.5.0
 ---
 
 # Universal Code Style Guide
@@ -37,7 +37,7 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 ### Key Sources
 
 - Surface style guides: the language folders under `.skilled/skills/sk-code/sk-code-skilled/references/`.
-- Project-level enforcement (banned phrases, voice rules): the project CLAUDE.md / AGENTS.md is authoritative for this user's projects.
+- Project-level enforcement (banned phrases, voice rules): the repository's `AGENTS.md` is authoritative, when present.
 
 ---
 
@@ -102,7 +102,7 @@ These two rules hold on every surface.
 
 ---
 
-## 4. COMMENTING (universal — see project CLAUDE.md for the strict version)
+## 4. COMMENTING (universal, with the strict version in the repository's AGENTS.md when present)
 
 ### Default to no comments
 
