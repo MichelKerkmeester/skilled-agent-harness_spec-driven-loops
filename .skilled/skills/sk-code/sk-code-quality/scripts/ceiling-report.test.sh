@@ -84,10 +84,33 @@ run_case "no_trigger" "sh" '# ceiling: global lock' "[no-trigger]" "markers=1 no
 run_case "no_signal" "js" '// ceiling: global lock; switch to per-account locks when the team agrees' "[no-signal]" "markers=1 no-trigger=0 no-signal=1"
 run_case "prefix" "sh" '# intentional-limit: single writer; add a queue if rows arrive faster than 100 per second' "[]" "markers=1 no-trigger=0 no-signal=0"
 run_case "prose" "js" '// the ceiling: a longer section' "none" "markers=0 no-trigger=0 no-signal=0"
+# Each family's comment tokens come from the table, so an SQL marker counts and a Go raw string does not.
+run_case "sql_marker" "sql" 'SELECT 1; -- ceiling: one scan; add an index past 10000 rows' "[]" "markers=1 no-trigger=0 no-signal=0"
+run_case "go_raw_string" "go" 'var s = `// ceiling: quoted; past 10 rows`' "none" "markers=0 no-trigger=0 no-signal=0"
 
 expect_exit 2 "missing_path" "$TMP_DIR/missing-probe.js"
 expect_exit 2 "unknown_option" --bogus
 expect_exit 2 "directory_path" "$TMP_DIR"
+
+# With no arguments the report reads the repository around the working directory, not the one
+# holding the script, so a run from a subfolder of another repository reports that repository's files.
+REPO_DIR="$TMP_DIR/foreign-repo"
+mkdir -p "$REPO_DIR/src/deep"
+printf '%s\n' '// ceiling: one writer; add a queue past 100 rows per second' > "$REPO_DIR/src/deep/a.go"
+git -C "$REPO_DIR" init -q
+git -C "$REPO_DIR" add src/deep/a.go
+set +e
+repo_output="$(cd "$REPO_DIR/src/deep" && python3 "$REPORT" 2>&1)"
+repo_exit=$?
+set -e
+if [[ "$repo_exit" -eq 0 ]] \
+  && grep -qxF -- "src/deep/a.go:1  // ceiling: one writer; add a queue past 100 rows per second  []" <<< "$repo_output" \
+  && grep -qxF -- "markers=1 no-trigger=0 no-signal=0" <<< "$repo_output"; then
+  printf 'PASS subfolder_of_foreign_repo\n'
+else
+  printf 'FAIL subfolder_of_foreign_repo: exit %s\n%s\n' "$repo_exit" "$repo_output" >&2
+  failures=$((failures + 1))
+fi
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s ceiling report test case(s) failed\n' "$failures" >&2

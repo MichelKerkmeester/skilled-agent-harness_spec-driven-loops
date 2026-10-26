@@ -8,7 +8,7 @@ expected_resources:
   - ../sk-code-skilled/assets/checklists/universal-checklist.md
   - assets/code-quality-checklist/naming-init-formatting-and-css.md
   - assets/code-quality-checklist/verification-quick-reference-and-related.md
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -70,7 +70,7 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
 
 1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`
 2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .skilled/skills/sk-code/sk-code-quality/SKILL.md`
-3. `for p in ../sk-code-skilled/assets/checklists/universal-checklist.md assets/code-quality-checklist/naming-init-formatting-and-css.md assets/code-quality-checklist/verification-quick-reference-and-related.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in ../sk-code-skilled/assets/checklists/universal-checklist.md ../shared/references/universal/code-quality-standards.md references/code-style-guide.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

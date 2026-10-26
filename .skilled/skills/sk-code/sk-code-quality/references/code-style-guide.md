@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.2.3.0
+version: 2.2.4.0
 ---
 
 # Universal Code Style Guide
@@ -144,11 +144,11 @@ An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or 
 | Task / checklist / requirement id (`T###`, `CHK-###`, `REQ-###`) | No | Points into a spec folder's tasks/checklist/spec that gets archived |
 | Feature-catalog entry, ADR id, ticket / issue id | No | Tracking artifacts with their own lifecycle |
 | The durable WHY — the constraint, invariant, or decision itself | Yes — required | Survives any artifact lifecycle change |
-| A path or glob the running code needs (`.opencode/specs/`, `specs/NNN-*`) | Yes | Structural — code the runtime reads, not a traceability comment |
+| A path or glob the running code needs (`specs/`, `specs/NNN-*`) | Yes | Structural — code the runtime reads, not a traceability comment |
 | A stable external standard (`CWE-79`, an RFC number, `POSIX`) | Yes | Externally versioned; does not get archived with a sprint |
 | A platform / library name (`NODE:`, `SQLITE:`, `POSTGRES:`) | Yes | Names a durable platform, not a tracking artifact |
 
-The line that matters is *instance vs. structural*: a string the program reads at runtime (a `.opencode/specs/` path constant) stays; a comment that merely cites an artifact for traceability is what this rule forbids.
+The line that matters is *instance vs. structural*: a string the program reads at runtime (a `specs/` path constant) stays; a comment that merely cites an artifact for traceability is what this rule forbids.
 
 ```javascript
 // BAD — points into tasks.md, which is archived per spec folder

@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -175,7 +175,7 @@ Desired user-visible outcome: the bundled workflow loads the `DEFAULT_RESOURCE` 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `scripts/check-comment-hygiene.test.sh` | Comment-hygiene checker violations, skips and exit codes | CQ-001 |
-| `scripts/hooks/claude-posttooluse.test.sh` | The edit-time hook entrypoint and its adapter | CQ-001 |
+| `scripts/hooks/claude-posttooluse.test.sh` | A `node --check` syntax check of the edit-time hook adapter, plus a broken copy that must fail it | CQ-001 |
 
 No test for target-path checklist routing was found in this package. CQ-001 checks the prompt-intent route only.
 

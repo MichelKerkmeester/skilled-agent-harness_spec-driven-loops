@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.4.1.0
+version: 1.5.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -17,7 +17,7 @@ metadata:
 
 # Code Quality (quality)
 
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the acting agent applying `workflow-implement.md` changes the code and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 
 ---
 
@@ -29,15 +29,15 @@ Use this mode when the request involves:
 - Running the post-implementation quality gate before a completion claim.
 - Applying P0/P1/P2 author-side checks to changed code, scripts, skills, agents, commands, MCP servers, or spec docs.
 - Checking comment hygiene on modified files and removing ephemeral artifact references from comments while preserving durable WHY.
-- Loading an OpenCode authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `.opencode/specs/`, MCP server source, or language-specific OpenCode files.
+- Loading a SKILLED authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `specs/`, MCP server source, or language-specific SKILLED files.
 - Fixing quality-gate failures in place with `Edit` when the fix belongs to the already-authored file.
 
-Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `P0`, `P1`, `P2`, `authoring checklist`, `OpenCode checklist`, `skill authoring`, `agent authoring`, `command authoring`, `MCP server authoring`, `spec folder authoring`, `check before done`.
+Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `P0`, `P1`, `P2`, `authoring checklist`, `SKILLED checklist`, `skill authoring`, `agent authoring`, `command authoring`, `MCP server authoring`, `spec folder authoring`, `check before done`.
 
 ### When NOT to Use
 
 Skip this mode when:
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-skilled`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Hand it to the acting agent applying `workflow-implement.md` for the detected surface.
 - A failure needs symptom-to-root-cause investigation or a single-cause bug fix. Use the surface's debugging workflow (`workflow-debug.md`).
 - The task is to collect final non-mutating verification evidence. Use the surface's verification workflow (`workflow-verify.md`).
 - The user asks for findings-first review output, severity-ranked findings, or PR review. Use `sk-code-review`.
@@ -104,11 +104,11 @@ Phase 1 Implementation writes or changes files
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../ROUTER.md`, `../shared/references/phase-detection.md` |
 | ALWAYS | Before any implementation-done claim | `../sk-code-skilled/assets/checklists/universal-checklist.md`, `../shared/references/universal/code-quality-standards.md`, `references/code-style-guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
-| CONDITIONAL | `.js` or `.css` target, for the surface-neutral additions to the surface's own language checklist | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
+| CONDITIONAL | `.js` or `.css` target, for the surface-neutral additions to the surface's own language checklist | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md`, `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
 | CONDITIONAL | `.skilled/skills/` target | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
 | CONDITIONAL | `.skilled/agents/` target | `../sk-code-skilled/assets/checklists/agent-authoring.md` |
 | CONDITIONAL | `.skilled/commands/` target | `../sk-code-skilled/assets/checklists/command-authoring.md` |
-| CONDITIONAL | `.opencode/specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
+| CONDITIONAL | `specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
 | CONDITIONAL | MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-skilled/assets/checklists/javascript-checklist.md`, `../sk-code-skilled/assets/checklists/typescript-checklist.md`, `../sk-code-skilled/assets/checklists/python-checklist.md`, `../sk-code-skilled/assets/checklists/shell-checklist.md`, `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-skilled/assets/checklists/config-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
@@ -122,7 +122,7 @@ Phase 1 Implementation writes or changes files
 | `.skilled/skills/` | `../sk-code-skilled/assets/checklists/skill-authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
 | `.skilled/agents/` | `../sk-code-skilled/assets/checklists/agent-authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
 | `.skilled/commands/` | `../sk-code-skilled/assets/checklists/command-authoring.md` | Check command metadata, arguments, routing, and execution contract. |
-| `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
+| `specs/` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
 | MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
 | OpenCode language/config files | language/config checklist in `../sk-code-skilled/assets/checklists/` | Check language-specific quality and style expectations. |
 
@@ -142,17 +142,17 @@ Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can con
 
 ### 2b. Machine-Readable Router (thin, Type-1 benchmark)
 
-sk-code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
+sk-code-quality routes primarily by TARGET PATH (the surface and checklist map above), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
 
 ```python
 # Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
-# real routing is target-path-keyed (the checklist map above, covered by a unit
-# test) and its parent discoverability is the hub quality signal — this block only
-# made the one asset scoreable by the retired deterministic router-replay.
+# real routing is target-path-keyed (the checklist map above), and its parent
+# discoverability is the hub quality signal. This block only made the one asset
+# scoreable by the retired deterministic router-replay.
 DEFAULT_RESOURCE = [
     "../sk-code-skilled/assets/checklists/universal-checklist.md",
-    "assets/code-quality-checklist/naming-init-formatting-and-css.md",
-    "assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    "../shared/references/universal/code-quality-standards.md",
+    "references/code-style-guide.md",
 ]
 
 INTENT_SIGNALS = {
@@ -160,7 +160,11 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "QUALITY": ["assets/code-quality-checklist/overview-header-and-comments.md"],
+    "QUALITY": [
+        "assets/code-quality-checklist/overview-header-and-comments.md",
+        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
+        "assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    ],
 }
 ```
 
@@ -188,7 +192,7 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-skilled`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the acting agent applying `workflow-implement.md`.
 8. If a gate failure is caused by an unclear runtime failure, hand to the surface's debugging workflow (`workflow-debug.md`) with the observed command, output, and failing target.
 9. When P0 items are clear, hand to the surface's verification workflow (`workflow-verify.md`) for non-mutating evidence before any done-claim.
 
@@ -280,7 +284,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ## 6. INTEGRATION POINTS
 
 - `sk-code` routes quality prompts here through `mode-registry.json` and keeps the hub routing-only.
-- `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- The acting agent applying `workflow-implement.md` changes files before this gate runs, then applies the surface's `workflow-debug.md` and `workflow-verify.md`, which `sk-code-skilled` bundles as read-only doctrine.
 - `sk-code-review` owns findings-first review output and PR-style severity reporting.
 - `system-spec-kit` owns spec-folder documentation, validation, and memory workflows when the broader task requires them.
 

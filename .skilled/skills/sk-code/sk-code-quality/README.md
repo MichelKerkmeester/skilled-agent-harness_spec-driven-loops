@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # sk-code-quality
@@ -113,7 +113,7 @@ Use it when a change is already written and needs standards enforcement before f
 | Check | How to run it |
 |---|---|
 | Comment hygiene | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0. Run it directly, not through `bash`, because it is a Python program |
-| Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all` prints a banner when a watched package is stale or cannot be checked and nothing when every one is current. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |
+| Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh <changed-file>` prints a banner when the package that holds the file is stale or cannot be checked, and nothing when it is current. This per-file form never rebuilds. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |
 | Ceiling markers | `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh` prints one line per `ceiling:` or `intentional-limit:` marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate |
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-quality/README.md --type readme` reports zero issues |
 | Final claim | Hand to the surface verification workflow (`workflow-verify.md`). This mode does not make done or works claims |
