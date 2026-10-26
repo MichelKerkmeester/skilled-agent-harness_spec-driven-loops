@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
-    last_updated_at: "2026-10-26T09:00:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 004-doctrine"
-    next_safe_action: "Start phase 005-consumers-and-routing"
+    last_updated_at: "2026-10-26T14:30:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Closed phase 006-measurement, so every phase row in the map reads Complete"
+    next_safe_action: "Wait for the operator confirmation at program end"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-26-skcode-015"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions:
       - "Placement of this packet: top level here, or a child of 014 as the design recommends. The operator confirms at program end."
       - "Operator confirmation of the six decisions in section 5."
@@ -52,7 +52,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | None. This is a top-level packet in the sk-code track |
@@ -176,7 +176,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Complete |
 | 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Complete |
 | 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Complete |
-| 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
+| 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Complete |
 | 7 | 007-checker-debt-closeout/ | Closes the checker limitations phase 001 left: the ceiling report reads comment text through the checker, template literals, heredocs and bare string statements, a zero-finding tree and the live CI failure record. Depends on 001 only, and lands before 006 | Complete |
 | 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Complete |
 

@@ -1,0 +1,474 @@
+{
+  "commit": "716a1a8ac4e37478835e14e91b804811e686875d",
+  "root": ".skilled/skills/sk-code/sk-code-quality",
+  "corpus": [
+    {
+      "axis": "F01",
+      "kind": "fixture",
+      "what": "Foreign polyglot change with seven seeded labels across go, rust, yaml, css, python, ts and mts",
+      "files": 7,
+      "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      "expected": "seven seeded exact labels block and the surface stays unknown",
+      "result": "7 of 7 seeded labels matched, 0 unseeded findings, gate BLOCKED at exit 1",
+      "met": true
+    },
+    {
+      "axis": "F02",
+      "kind": "fixture",
+      "what": "False-positive set: measurement ratios, encoding names, hash and RFC names, a status code and a CWE id",
+      "files": 2,
+      "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      "expected": "zero findings",
+      "result": "0 findings, gate NO_BLOCKER_FOUND at exit 0",
+      "met": true
+    },
+    {
+      "axis": "F05",
+      "kind": "fixture",
+      "what": "A language with no comment family and a binary file",
+      "files": 2,
+      "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      "expected": "NOTHING_CHECKED at exit 2, with both files listed as unchecked",
+      "result": "NOTHING_CHECKED at exit 2, blob.js unchecked as binary and main.zig unchecked as no comment family",
+      "met": true
+    },
+    {
+      "axis": "F06",
+      "kind": "fixture",
+      "what": "A committed quality config naming one required check whose tool is not installed",
+      "files": 1,
+      "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs",
+      "expected": "UNVERIFIED at exit 4 with the required check SKIPPED_ABSENT",
+      "result": "UNVERIFIED at exit 4, absent-tool SKIPPED_ABSENT, unverified [absent-tool]",
+      "met": true
+    },
+    {
+      "axis": "50-file timing set",
+      "kind": "generated",
+      "what": "Fifty changed .js files, each with one changed clean comment line, built at run time",
+      "files": 50,
+      "source": "built in a temporary repository, never committed",
+      "expected": "both built-in checks run and the whole run finishes under 2000 ms on each of five runs",
+      "result": "1561.0, 1576.3, 1608.3, 1581.0 and 1661.0 ms, largest 1661.0 ms, gate NO_BLOCKER_FOUND at exit 0 with comment-hygiene and syntax-node RAN_CLEAN on every run",
+      "met": true
+    },
+    {
+      "axis": "intent prompts",
+      "kind": "routing",
+      "what": "The CQ-001 prompt and the three canary prompts replayed through the compiled route front door",
+      "files": 4,
+      "source": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md and .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/",
+      "expected": "recorded as found, with no target",
+      "result": "4 of 4 routed single to sk-code-quality",
+      "met": null
+    }
+  ],
+  "catch": {
+    "seeded": 7,
+    "matched": 7,
+    "misses": []
+  },
+  "false_positives": {
+    "f02_findings": 0,
+    "f01_unseeded": 0
+  },
+  "method_notes": [
+    {
+      "subject": "catch rate and false positive count",
+      "note": "The 7 of 7 catch and the 0 false positives are read from fixtures F01 and F02 of scripts/tests/quality-gate.test.cjs, which CI already asserts. They prove those two scenario fixtures rather than an independent corpus, because one file supplies both the seeded change and the expectation, so they do not report the gate's precision over a wider set of repositories. What they do establish is that each fixture holds what the scenario claims about it, on every run of the suite."
+    }
+  ],
+  "timing": {
+    "files": 50,
+    "builtin_only": true,
+    "full_run": true,
+    "runs_ms": [
+      1561,
+      1576.3,
+      1608.3,
+      1581,
+      1661
+    ],
+    "median_ms": 1581,
+    "max_ms": 1661,
+    "target_ms": 2000,
+    "met": true,
+    "max_source": "largest of the five full runs in runs_ms, each one measured alone",
+    "command": "node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format json, run from the temporary repository that holds the change",
+    "set": "temporary git repository holding 50 changed .js files, each with one changed clean comment line, git diff --numstat 1 1 for all 50",
+    "gate": "NO_BLOCKER_FOUND at exit 0 on every run",
+    "checks": {
+      "comment-hygiene": "RAN_CLEAN",
+      "syntax-node": "RAN_CLEAN"
+    },
+    "unwritten": "the repository held only the 50 modified files after the five runs, so no run wrote a file",
+    "machine": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "cpu": "Apple M5 Max",
+      "cores": 18,
+      "node": "v26.8.2",
+      "loadavg_1m_first_run": 5.4,
+      "loadavg_1m_last_run": 5.69
+    }
+  },
+  "timing_no_run": {
+    "label": "setup only, neither built-in check started",
+    "files": 50,
+    "runs_ms": [
+      138.2,
+      144.5,
+      166.7
+    ],
+    "median_ms": 144.5,
+    "max_ms": 178.6,
+    "max_source": "largest of the six setup measurements in runs_ms and replay_runs_ms",
+    "replay_runs_ms": [
+      142.8,
+      178.6,
+      165.4
+    ],
+    "command": "node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --no-run --format json",
+    "set": "temporary git repository holding 50 changed .js files, each with one changed clean comment line, git diff --numstat 1 1 for all 50",
+    "gate": "UNVERIFIED at exit 4 on every run, because --no-run lists comment-hygiene and syntax-node and starts neither",
+    "note": "Setup only. These numbers cover file discovery, the changed-line set and the surface read, with both required built-in checks left listed rather than run. They are not a measurement of the gate's work and they do not carry the wall-time requirement on their own.",
+    "machine": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "cpu": "Apple M5 Max",
+      "cores": 18,
+      "node": "v26.8.2",
+      "loadavg_1m": 9.03
+    }
+  },
+  "intent": {
+    "prompts": 4,
+    "matched": 4,
+    "targeted": false,
+    "rows": [
+      {
+        "source": "CQ-001",
+        "prompt": "Run the comment hygiene quality gate and check P0/P1/P2 standards before marking this done.",
+        "exit_code": 0,
+        "selection_kind": "single",
+        "targets": [
+          "sk-code-quality"
+        ],
+        "matched": true
+      },
+      {
+        "source": "CB-CR-006",
+        "prompt": "run the quality gate on the agent file I edited under .skilled/agents",
+        "exit_code": 0,
+        "selection_kind": "single",
+        "targets": [
+          "sk-code-quality"
+        ],
+        "matched": true
+      },
+      {
+        "source": "CB-CR-007",
+        "prompt": "run the quality gate on my edited .github/workflows/ci.yml",
+        "exit_code": 0,
+        "selection_kind": "single",
+        "targets": [
+          "sk-code-quality"
+        ],
+        "matched": true
+      },
+      {
+        "source": "CB-CR-008",
+        "prompt": "quality gate for my rails app before I claim done",
+        "exit_code": 0,
+        "selection_kind": "single",
+        "targets": [
+          "sk-code-quality"
+        ],
+        "matched": true
+      }
+    ]
+  },
+  "readonly_invariant": true,
+  "runs": [
+    {
+      "id": "f01",
+      "axis": "F01",
+      "argv": "--format json",
+      "gate": "BLOCKED",
+      "exit_code": 1,
+      "findings": 7,
+      "files_checked": 7,
+      "files_total": 7,
+      "resolved_surface": [
+        "unknown"
+      ],
+      "unverified": [],
+      "readonly": true,
+      "duration_ms": 365,
+      "findings_by_rule": [
+        {
+          "file": "a.go",
+          "line": 3,
+          "rule": "hygiene.adr",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        },
+        {
+          "file": "b.rs",
+          "line": 2,
+          "rule": "hygiene.issue",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        },
+        {
+          "file": "c.yaml",
+          "line": 1,
+          "rule": "hygiene.packet-number",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        },
+        {
+          "file": "d.css",
+          "line": 1,
+          "rule": "hygiene.req",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        },
+        {
+          "file": "e.py",
+          "line": 2,
+          "rule": "hygiene.req",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        },
+        {
+          "file": "f.ts",
+          "line": 1,
+          "rule": "hygiene.spec-path",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        },
+        {
+          "file": "g.mts",
+          "line": 1,
+          "rule": "hygiene.task",
+          "severity": "P0",
+          "confidence": "exact",
+          "origin": "changed-line"
+        }
+      ]
+    },
+    {
+      "id": "f02",
+      "axis": "F02",
+      "argv": "--format json",
+      "gate": "NO_BLOCKER_FOUND",
+      "exit_code": 0,
+      "findings": 0,
+      "files_checked": 2,
+      "files_total": 2,
+      "resolved_surface": [
+        "unknown"
+      ],
+      "unverified": [],
+      "readonly": true,
+      "duration_ms": 387.6
+    },
+    {
+      "id": "f05",
+      "axis": "F05",
+      "argv": "--format json",
+      "gate": "NOTHING_CHECKED",
+      "exit_code": 2,
+      "findings": 0,
+      "files_checked": 0,
+      "files_total": 2,
+      "resolved_surface": [
+        "unknown"
+      ],
+      "unchecked": [
+        {
+          "file": "blob.js",
+          "reason": "binary"
+        },
+        {
+          "file": "main.zig",
+          "reason": "no comment family"
+        }
+      ],
+      "unverified": [],
+      "readonly": true,
+      "duration_ms": 145.5
+    },
+    {
+      "id": "f06",
+      "axis": "F06",
+      "argv": "--format json",
+      "gate": "UNVERIFIED",
+      "exit_code": 4,
+      "findings": 0,
+      "files_checked": 1,
+      "files_total": 1,
+      "resolved_surface": [
+        "unknown"
+      ],
+      "unverified": [
+        "absent-tool"
+      ],
+      "configured_check": {
+        "id": "absent-tool",
+        "origin": "configured",
+        "severity": "P0",
+        "required": true,
+        "state": "SKIPPED_ABSENT",
+        "requires": "sk-code-absent-tool"
+      },
+      "readonly": true,
+      "duration_ms": 273.4
+    },
+    {
+      "id": "timing-no-run-1",
+      "axis": "50-file timing set",
+      "label": "setup only",
+      "argv": "--no-run --format json",
+      "gate": "UNVERIFIED",
+      "exit_code": 4,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [
+        "comment-hygiene",
+        "syntax-node"
+      ],
+      "readonly": true,
+      "duration_ms": 138.2
+    },
+    {
+      "id": "timing-no-run-2",
+      "axis": "50-file timing set",
+      "label": "setup only",
+      "argv": "--no-run --format json",
+      "gate": "UNVERIFIED",
+      "exit_code": 4,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [
+        "comment-hygiene",
+        "syntax-node"
+      ],
+      "readonly": true,
+      "duration_ms": 144.5
+    },
+    {
+      "id": "timing-no-run-3",
+      "axis": "50-file timing set",
+      "label": "setup only",
+      "argv": "--no-run --format json",
+      "gate": "UNVERIFIED",
+      "exit_code": 4,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [
+        "comment-hygiene",
+        "syntax-node"
+      ],
+      "readonly": true,
+      "duration_ms": 166.7
+    },
+    {
+      "id": "timing-full-1",
+      "axis": "50-file timing set",
+      "argv": "--format json",
+      "gate": "NO_BLOCKER_FOUND",
+      "exit_code": 0,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [],
+      "checks": {
+        "comment-hygiene": "RAN_CLEAN",
+        "syntax-node": "RAN_CLEAN"
+      },
+      "readonly": true,
+      "duration_ms": 1561
+    },
+    {
+      "id": "timing-full-2",
+      "axis": "50-file timing set",
+      "argv": "--format json",
+      "gate": "NO_BLOCKER_FOUND",
+      "exit_code": 0,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [],
+      "checks": {
+        "comment-hygiene": "RAN_CLEAN",
+        "syntax-node": "RAN_CLEAN"
+      },
+      "readonly": true,
+      "duration_ms": 1576.3
+    },
+    {
+      "id": "timing-full-3",
+      "axis": "50-file timing set",
+      "argv": "--format json",
+      "gate": "NO_BLOCKER_FOUND",
+      "exit_code": 0,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [],
+      "checks": {
+        "comment-hygiene": "RAN_CLEAN",
+        "syntax-node": "RAN_CLEAN"
+      },
+      "readonly": true,
+      "duration_ms": 1608.3
+    },
+    {
+      "id": "timing-full-4",
+      "axis": "50-file timing set",
+      "argv": "--format json",
+      "gate": "NO_BLOCKER_FOUND",
+      "exit_code": 0,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [],
+      "checks": {
+        "comment-hygiene": "RAN_CLEAN",
+        "syntax-node": "RAN_CLEAN"
+      },
+      "readonly": true,
+      "duration_ms": 1581
+    },
+    {
+      "id": "timing-full-5",
+      "axis": "50-file timing set",
+      "argv": "--format json",
+      "gate": "NO_BLOCKER_FOUND",
+      "exit_code": 0,
+      "findings": 0,
+      "files_checked": 50,
+      "files_total": 50,
+      "unverified": [],
+      "checks": {
+        "comment-hygiene": "RAN_CLEAN",
+        "syntax-node": "RAN_CLEAN"
+      },
+      "readonly": true,
+      "duration_ms": 1661
+    }
+  ],
+  "same_class": "none",
+  "pass_claims": 0
+}

@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
@@ -151,7 +151,7 @@ Success is one measurement record and one report that state the catch rate, the 
 - **SC-001**: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').catch"` prints `{ seeded: 7, matched: 7, misses: [] }`.
 - **SC-002**: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').false_positives.f02_findings"` prints `0`.
 - **SC-003**: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').timing.max_ms"` prints a number below `2000`.
-- **SC-004**: `rg -l -i 'gate passed|all checks pass|\bPASS\b' specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts | wc -l` prints `0`, and every hit that remains is read by hand.
+- **SC-004**: `rg -n -i 'gate passed|all checks pass|\bPASS\b' specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts | rg -v '# pass [0-9]+$'` prints nothing, and every hit the unfiltered scan lists is read by hand and found to be a TAP summary line. Amended 2026-10-26: the criterion asked for a count of `0` from the unfiltered scan, and the `# pass N` line a replayed `node --test` prints matches its case-insensitive `\bPASS\b` pattern without being a gate claim.
 - **SC-005**: The report folder lists seven files, and `rg -l '/Users/|/private/|/home/'` over it prints nothing.
 <!-- /ANCHOR:success-criteria -->
 
@@ -162,12 +162,12 @@ Success is one measurement record and one report that state the catch rate, the 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 001 to 005 are all Draft today | Measurement cannot run on a gate that does not exist | Steps 1 and 2 can be drafted early. Step 3 runs only after 001 to 005 land |
-| Dependency | Live D4 runner and renderer (retired with the Lane C harness) | The report folder cannot be produced by the retired harness. High | ADR-008: this phase builds the report renderer, so the machine record renders into the seven-file set |
+| Dependency | Phases 001 to 005 are Complete | Measurement runs on the gate those phases build | Satisfied. Step 3 ran once 001 to 005 had landed |
+| Dependency | Live D4 runner and renderer (retired with the Lane C harness) | The report folder cannot be produced by the retired harness. High | Resolved 2026-10-26. ADR-008 option (a) is taken, so this phase built the report renderer and the machine record renders into the seven-file set |
 | Risk | Misses on F01 or false positives on F02 | Targets are not met. High | Record each result as found. Route each defect to the phase that owns the surface as a new change |
 | Risk | Intent recall stays at 0 | The routing claim stays weak. Medium | Record it with no target (ADR-007). Do not tune routing against four prompts in this phase |
 | Risk | The 50-file timing set runs slower on a real machine | The 2-second target is missed on that machine. Medium | Record the machine, run three times, and report the median and the maximum |
-| Risk | The MTP rule says renderer-owned markdown is never hand-authored | A hand-written report breaks the playbook rule. High | Do not hand-write the report markdown. Render it with `benchmark/scripts/render-report.cjs` (ADR-008) |
+| Risk | The MTP rule says renderer-owned markdown is never hand-authored | A hand-written report breaks the playbook rule. High | Held. Every file in the report folder comes from `benchmark/scripts/render-report.cjs`, and its `--check` re-renders the record and compares all seven files |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -180,7 +180,7 @@ Success is one measurement record and one report that state the catch rate, the 
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: Built-in checks finish in under 2000 ms for 50 changed `.js` files on each of three runs. The runs use `--no-run`, so no configured check runs (design 6.5).
+- **NFR-P01**: Built-in checks finish in under 2000 ms for 50 changed `.js` files on each of three runs. The timing repository holds no `.sk-code/quality.json`, so no configured check runs (design 6.5). The runs leave out `--no-run`, which would also stop both built-in checks and time setup alone.
 - **NFR-P02**: N/A for throughput. The phase runs no service and answers no request, so NFR-P01 is the only timed path.
 
 ### Security

@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
-    last_updated_at: "2026-10-25T23:28:48Z"
-    last_updated_by: "claude-haiku-5-5"
-    recent_action: "Authored the durable directive, the binding table and the completion criteria"
-    next_safe_action: "Start phase 001-honest-checker from its own spec, plan and tasks"
+    last_updated_at: "2026-10-26T14:10:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed phase 006 and widened the binding and count criteria to the eight phases"
+    next_safe_action: "Confirm the operator decisions in spec.md section 5 at program end"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-26-skcode-015"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -71,6 +71,8 @@ phase and binds as if written here.
 | 004-doctrine | `004-doctrine/goal.md` |
 | 005-consumers-and-routing | `005-consumers-and-routing/goal.md` |
 | 006-measurement | `006-measurement/goal.md` |
+| 007-checker-debt-closeout | `007-checker-debt-closeout/goal.md` |
+| 008-runner-limit-closeout | `008-runner-limit-closeout/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -85,8 +87,8 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [ ] Recursive strict validation of the packet prints the pass line: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate --recursive --strict | tail -1` prints `RESULT: PASSED`.
-- [ ] Every phase is Complete in the map: `grep -cE '^\| [1-6] \|.*\| Complete \|$' specs/sk-code/015-quality-agnostic-gate/spec.md` prints 6.
-- [ ] Every phase folder holds a goal file, one for each binding row: `ls specs/sk-code/015-quality-agnostic-gate/00[1-6]-*/goal.md | wc -l` prints 6.
+- [ ] Every phase is Complete in the map: `grep -cE '^\| [1-8] \|.*\| Complete \|$' specs/sk-code/015-quality-agnostic-gate/spec.md` prints 8.
+- [ ] Every phase folder holds a goal file, one for each binding row: `ls specs/sk-code/015-quality-agnostic-gate/00[1-8]-*/goal.md | wc -l` prints 8.
 - [ ] Both quality suites exit 0: `node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` and `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh`. The node suite includes the foreign fixture F01, a repository with no `.skilled/` tree, which must come out BLOCKED.
 - [ ] The runner resolves this repository to SKILLED: `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --files .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh --format json | grep -c '"SKILLED"'` prints 1 or more.
 - [ ] The consumers read the envelope: `grep -c checker_outputs .skilled/skills/sk-code/shared/references/workflow-verify.md` prints 1 or more, and `grep -c 'Quality Gate:' .skilled/agents/code.md` prints 1 or more.
@@ -106,8 +108,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded | Done | `create.sh` scaffold at Level 2, with six phase folders under `specs/sk-code/015-quality-agnostic-gate/` |
-| Parent spec and goal authored | Pending | Parent gates are recorded below once they pass |
-| Phases 001 to 006 | Pending | Planned in the spec phase map. Each phase is authored in its own folder |
+| Parent spec and goal authored | Done | The parent spec carries the eight-row phase map and this goal binds all eight phases |
+| Phases 001 to 008 | Done | Every row of the spec phase map reads Complete, and each phase passed `validate.sh --strict` on its own folder before landing |
 
 ### Deviations and findings
 
@@ -115,5 +117,6 @@ and findings belong here.
 |------|------|
 | Placement | The design recommends a child of 014 at `004`. This packet is top-level at `015`. The operator confirms the placement at program end (spec.md section 4). |
 | Design line cites | Re-checked against the tree after commits `2d068d4b7f` and `c3ca0efaa9`. Every cite this packet repeats still holds. |
+| Two closeout phases | Phases 007 and 008 were added to close the checker and runner limitations that phases 001 and 002 recorded. The binding table and the two count criteria were widened from six phases to eight to match, as an amendment to this goal. |
 | Operator decisions | Six decisions took the design defaults. They are recorded as ADRs in spec.md section 5, with status Accepted, pending operator confirmation at program end. |
 <!-- /ANCHOR:log -->

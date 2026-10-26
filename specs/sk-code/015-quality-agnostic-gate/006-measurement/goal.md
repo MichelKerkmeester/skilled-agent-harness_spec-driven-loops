@@ -9,18 +9,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/006-measurement"
-    last_updated_at: "2026-10-25T23:21:54Z"
+    last_updated_at: "2026-10-26T14:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the durable directive, the decisions and six completion criteria"
-    next_safe_action: "Answer OQ-1, then execute tasks T001 to T003"
-    blockers:
-      - "OQ-1: owner of the live D4 runner and renderer (ADR-008)"
-    key_files: []
+    recent_action: "Met all six completion criteria and closed the phase directive"
+    next_safe_action: "Wait for the operator confirmation at program end"
+    blockers: []
+    key_files:
+      - "evidence/measurement.json"
+      - "acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-measurement"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,12 +58,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The quality playbook holds the seven new scenarios: `rg -l '^id: CQ-00[2-8]$' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate` lists seven file paths.
-- [ ] The three canaries replay to their expected routes: `rg -l '^id: CB-CR-00[678]$' .skilled/skills/sk-code/manual-testing-playbook/compiled-routing` lists three file paths, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on the agent file I edited under .skilled/agents"` prints `"selectionKind":"single"` with `sk-code-quality`.
-- [ ] The catch and false-positive record matches: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').catch"` prints `{ seeded: 7, matched: 7, misses: [] }`, and `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').false_positives.f02_findings"` prints `0`.
-- [ ] The timing record meets its target: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').timing.max_ms"` prints a number below `2000`, and `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').readonly_invariant"` prints `true`.
-- [ ] No live transcript makes a pass claim: `rg -l -i -e 'gate passed' -e 'all checks pass' -e '\bPASS\b' specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts` lists no file, or every listed hit is read by hand and found to quote a schema word.
-- [ ] The report folder holds the seven-file set with no absolute path, after OQ-1 is answered: `ls .skilled/skills/sk-code/sk-code-quality/benchmark/reports/*--quality-gate-fixtures--live/` lists seven files, and `rg -l -e '/Users/' -e '/private/' -e '/home/' .skilled/skills/sk-code/sk-code-quality/benchmark/reports/*--quality-gate-fixtures--live` lists no file.
+- [x] The quality playbook holds the seven new scenarios: `rg -l '^id: CQ-00[2-8]$' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate` lists seven file paths. Evidence 2026-10-26: the listing printed seven paths, exit 0.
+- [x] The three canaries replay to their expected routes: `rg -l '^id: CB-CR-00[678]$' .skilled/skills/sk-code/manual-testing-playbook/compiled-routing` lists three file paths, and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on the agent file I edited under .skilled/agents"` prints `"selectionKind":"single"` with `sk-code-quality`. Evidence 2026-10-26: the listing printed three paths and the route printed one target, both exit 0. The rails prompt and the CI prompt reran the same way.
+- [x] The catch and false-positive record matches: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').catch"` prints `{ seeded: 7, matched: 7, misses: [] }`, and `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').false_positives.f02_findings"` prints `0`. Evidence 2026-10-26: both reads printed their expected value, exit 0.
+- [x] The timing record meets its target: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').timing.max_ms"` prints a number below `2000`, and `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').readonly_invariant"` prints `true`. Evidence 2026-10-26: the reads printed `1661` and `true`, exit 0, on five full runs with both built-in checks running.
+- [x] No live transcript makes a pass claim: `rg -l -i -e 'gate passed' -e 'all checks pass' -e '\bPASS\b' specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts` lists no real claim, and every listed hit is read by hand and found to quote a schema word. Evidence 2026-10-26: five files are listed and every hit is a TAP `# pass N` summary line, read by hand, so `pass_claims` reads `0`.
+- [x] The report folder holds the seven-file set with no absolute path, after OQ-1 is answered: `ls .skilled/skills/sk-code/sk-code-quality/benchmark/reports/*--quality-gate-fixtures--live/` lists seven files, and `rg -l -e '/Users/' -e '/private/' -e '/home/' .skilled/skills/sk-code/sk-code-quality/benchmark/reports/*--quality-gate-fixtures--live` lists no file. Evidence 2026-10-26: the listing printed seven names and the absolute-path scan listed no file, exit 0. `render-report.cjs --check` reproduced all seven files from the record.
 
 <!-- /ANCHOR:completion -->
 
@@ -79,21 +80,22 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Setup (T001 to T003) | Pending | Not run. Authoring only |
-| Scenarios CQ-002 to CQ-008 and their index (T004 to T011) | Pending | Not run. Authoring only |
-| Canaries CB-CR-006 to CB-CR-008 (T012 to T015) | Pending | Not run. Authoring only |
-| Measurement record (T016 to T022) | Pending | Not run. Authoring only |
-| Report folder, index row and source rows (T023 to T025) | Blocked | Blocked on OQ-1 (ADR-008) |
-| Verification (T026 to T030) | Pending | Not run. Authoring only |
+| Setup (T001 to T003) | Complete | The five earlier phases read Complete, the ROUTER citation printed `1` and `evidence/` holds the record and the transcripts |
+| Scenarios CQ-002 to CQ-008 and their index (T004 to T011) | Complete | Seven ids in the playbook folder, seven section 7 headings, and `Total issues: 0` from the document validator |
+| Canaries CB-CR-006 to CB-CR-008 (T012 to T015) | Complete | Each replays single to `sk-code-quality` and carries the live status evidence |
+| Measurement record (T016 to T022) | Complete | `evidence/measurement.json` holds the six corpus axes, seven runs and the four measures, pinned to `716a1a8ac4e37478835e14e91b804811e686875d` |
+| Report folder, index row and source rows (T023 to T025, T031) | Complete | Seven files rendered from the record, `--check` reproducing all seven, one index row, and the rendered README carrying AC-015's count of `5` |
+| Verification (T026 to T030, T032) | Complete | The document validator and both package validators pass, the quality suite prints `# pass 100` and `# fail 0`, and the strict phase validator prints `RESULT: PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| The live D4 report has no runner or renderer | Design 6.5 and section 7 require a report folder from a live D4 run. The Lane C harness and its renderer are retired, and no successor exists (`.skilled/skills/sk-code/benchmark/README.md:14,16`). ADR-008 proposes the owner. |
-| Open question: who owns the live D4 runner and the report renderer? | The operator picks option (a), (b) or (c) in ADR-008. The recommended answer is (c). The answer unblocks T023 to T025. |
+| The live D4 report has no runner or renderer | Design 6.5 and section 7 require a report folder from a live D4 run. The Lane C harness and its renderer are retired, and no successor exists (`.skilled/skills/sk-code/benchmark/README.md:14,16`). Answered 2026-10-26 as ADR-008 option (a), so this phase built the renderer. |
+| Open question: who owns the live D4 runner and the report renderer? | Answered 2026-10-26. The operator took option (a), sk-code owns the gap, and this phase built `benchmark/scripts/render-report.cjs`. T023 to T025 ran. |
 | Design 6.5 "live D4" wording | Read as the benchmark's D4 usefulness dimension (`research.md:122`), not design decision D4. |
 | The 50-file timing set | Not in the design fixture table (6.2). It is built at run time in a temporary repository and never committed. |
+| Timing method | The first timing used `--no-run`, which starts neither built-in check, and recorded 178.6 ms. Review caught it. The record now holds five full runs, slowest 1661 ms, and NFR-P01 in spec.md names the full run. |
 | "Real changes" in design 7 Phase 6 | Replaced by fixtures in temporary repositories, because the playbook rule says scenarios write nothing (`manual-testing-playbook.md`, section 2, rule 5). |
 | The advisor replays and the stage-two node test in design 6.5 | Phase 005 acceptance runs them. Phase 6 covers the three compiled-route canaries only. |
 
