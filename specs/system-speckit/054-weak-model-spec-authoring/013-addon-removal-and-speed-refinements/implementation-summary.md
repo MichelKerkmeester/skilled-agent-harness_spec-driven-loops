@@ -53,7 +53,7 @@ A model writing a spec packet now validates once with `--quiet`, fixes every fai
 
 The before-after, roadmap and resource-map add-on templates are gone, with every manifest entry, `create.sh` phrase and seed, phrase-tool map, name list, test pin and doc mention that offered them. Packets that already hold one of those files keep it; the validator no longer checks a file no template defines.
 
-The card's validate step asks for one `--quiet` run after the last edit, reads the full report only on `FAILED`, fixes every failing rule in one round and stops after three rounds. The validator's hint prints `repair-derived.cjs --apply` first, then what it rewrites. The spec and acceptance-criteria templates say a new id takes the highest plus one, and the closure note forbids counts and id ranges. The work ships as system-spec-kit v2.9.4.0.
+The card's validate step asks for one `--quiet` run after the last edit, reads the full report only on `FAILED`, fixes every failing rule in one round and stops after three rounds. The validator's hint prints `repair-derived.cjs --apply` first, then what it rewrites. The spec and acceptance-criteria templates say a new id takes the highest plus one, and the closure note forbids counts and id ranges. The work ships as system-spec-kit v2.11.0.0.
 
 ### Files Changed
 
@@ -68,7 +68,7 @@ The card's validate step asks for one `--quiet` run after the last edit, reads t
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/` (8 files) and the golden snapshot | Modified | Match the new template set and lines |
 | `.skilled/commands/speckit/assets/speckit-{plan,implement,complete}.yaml` | Modified | Drop the unused `shared.resource_map` path |
 | Spec-kit references, assets, catalog, playbook, skill README, `SKILL.md`, `.hermes` copy, root `README.md` | Modified, Deleted | List seven add-ons |
-| `.skilled/skills/system-spec-kit/changelog/v2.9.4.0.md`, `SKILL.md` version | Created, Modified | Release record |
+| `.skilled/skills/system-spec-kit/changelog/v2.11.0.0.md`, `SKILL.md` version | Created, Modified | Release record |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -47,11 +47,11 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--quiet` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
 
-No README, skill doc, agent or comment still offers the before-after, roadmap or resource-map add-on. Every doc that states the add-on set, the template total, the validate cadence or the decision-record rule now matches the code that ships in system-spec-kit 2.9.4.0.
+No README, skill doc, agent or comment still offers the before-after, roadmap or resource-map add-on. Every doc that states the add-on set, the template total, the validate cadence or the decision-record rule now matches the code that ships in system-spec-kit 2.11.0.0.
 
 ### Phase 14: removed-template-reality-sweep
 
-Two read-only audits came first. `scratch/audit-mentions.md` found 19 stale lines plus 3 nearby gaps. `scratch/audit-reality.md` found 12 contradictions: 9 caused by the 2.9.4.0 release and 3 older ones that called decision-record required at Level 3.
+Two read-only audits came first. `scratch/audit-mentions.md` found 19 stale lines plus 3 nearby gaps. `scratch/audit-reality.md` found 12 contradictions: 9 caused by the 2.11.0.0 release and 3 older ones that called decision-record required at Level 3.
 
 The fixes went out in five briefs. H1 fixed counts and lists: ten add-ons to seven, 16 passed to 24, 18 kinds to 15, the add-on table, the packet-types tree, the upgrade-legacy comment and the link-guard output. H2 made decision-record optional at Level 3 and fixed the templates tree. H3 fixed the validate cadence in `SKILL.md`, the orchestrate agent and its copies, and the card playbook. H4 fixed ten deep-loop "template" phrasings. H5 fixed the review findings.
 

@@ -36,7 +36,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 14** of packet 054. Phase 013 removed the before-after, roadmap and resource-map add-on templates and shipped the six speed refinements as system-spec-kit 2.9.4.0. The operator asked on 2026-10-26 for a separate phase that makes sure no README, skill doc or command still mentions the removed templates, and that those docs match the updated behavior.
+This is **Phase 14** of packet 054. Phase 013 removed the before-after, roadmap and resource-map add-on templates and shipped the six speed refinements as system-spec-kit 2.11.0.0. The operator asked on 2026-10-26 for a separate phase that makes sure no README, skill doc or command still mentions the removed templates, and that those docs match the updated behavior.
 
 **Scope Boundary**: docs, commands, agents and code comments outside `specs/`. Spec packets, changelogs and generated indexes are records and stay as written.
 

@@ -54,7 +54,7 @@
       ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
       ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
       "templates/addons/acceptance-criteria.md.tmpl",
-      ".skilled/skills/system-spec-kit/changelog/v2.9.4.0.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
       "templates/spec-kit-docs.json"
     ],
@@ -162,9 +162,9 @@
         "source": "derived"
       },
       {
-        "name": "v2.9.4.0.md",
+        "name": "v2.11.0.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/changelog/v2.9.4.0.md",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The before-after, roadmap and resource-map add-ons sit in 11 and 137 packets at most, yet every template change has to carry their manifest entries, phrase maps and snapshots",
     "created_at": "2026-10-26T07:16:18Z",
-    "last_save_at": "2026-10-26T12:13:51.266Z",
+    "last_save_at": "2026-10-26T13:34:31.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5ecc9a2d96f2395cf8aa639414fb8c6e1a22f969bc9bf999ecb0bf5e8c7d743",
+    "source_fingerprint": "sha256:5b964e3902344bbf8836c22d30157df98f05769d3090b57f5284824d85bbd0ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80c7abff3662f8c7a0961dec0db48bb780ddef369e987f54779d28fdaa530ced",
       "plan.md": "3671b0b609077cbf3714c93dec44f3dab2f50baa9af7d49f2632bc1c00f87f62",
       "tasks.md": "0c210b54c241765c07a090778cd6bbb5d00de1e4ea39b14102d52dc33527854c",
       "decision-record.md": "c9e9a8359a03ada0fb8eefb23992561d6a8fd662692bdc8cdb431c68feafda46",
-      "implementation-summary.md": "767332b834164adb6f0d012d2e2d51597cf4e75665d0edfb2fe878ac6fae2b78"
+      "implementation-summary.md": "44ca2077a30d645110f1c4989942dd115f8487d536f9d0f469eb0b2d1a03d4b2"
     },
     "last_active_at": null
   }
