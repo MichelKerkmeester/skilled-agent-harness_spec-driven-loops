@@ -141,7 +141,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 11 | 011-authoring-speed-research/ | Research where spec authoring and upkeep spend model time, then rank changes that make them faster without losing the quality this packet added | Complete |
 | 12 | 012-authoring-speed-fixes-and-alignment/ | Build the speed changes phase 011 ranks as safe, then align the skill, README, catalog and playbook docs with phases 010 and 012 | Complete |
 | 13 | 013-addon-removal-and-speed-refinements/ | Drop the before-after, roadmap and resource-map add-on templates, then build the six speed refinements the speed-loop analysis ranked | Complete |
-| 14 | 014-removed-template-reality-sweep/ | Sweep READMEs, skill docs, commands and agents for the removed add-on templates, and fix every doc that no longer matches the shipped behavior | In Progress |
+| 14 | 014-removed-template-reality-sweep/ | Sweep READMEs, skill docs, commands and agents for the removed add-on templates, and fix every doc that no longer matches the shipped behavior | Complete |
 
 ### Phase Transition Rules
 
