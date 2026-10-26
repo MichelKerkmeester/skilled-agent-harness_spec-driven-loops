@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Quality Runner Contract
@@ -117,7 +117,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | `FILE_NOT_FOUND`, `FILE_OUTSIDE_ROOT` | A named file that is missing, not regular or outside the root |
 | `BASE_NOT_FOUND`, `GIT_FAILED` | A ref with no merge base, or a git call that failed |
 | `HUB_ROOT_INVALID`, `TABLE_UNREADABLE`, `DEFAULTS_INVALID` | The override, `comment-syntax.json` or `quality-defaults.json` cannot be read |
-| `CHECKLIST_MISSING` | A matched declaration names a checklist file that does not exist. It is reported in `config.errors` |
+| `CHECKLIST_MISSING`, `CHECKLIST_OUTSIDE_SKILL`, `CHECKLIST_ROW_INVALID` | A matched declaration names a checklist file that is missing or not a regular file, one an outside skill declares resolves outside that skill's folder, or a row or a block is malformed. All three are reported in `config.errors` |
 | `CHECK_MUTATED_WORKSPACE`, `GUARD_FAILED` | The workspace changed while a spawned check ran, or the guard could not take its snapshot. The built-in spawned checks share one window, so `check` names every built-in check that ran in it. Each configured check runs in its own window after that, chained from the last, so `check` names the one configured check. The first mutation stops every configured check after it. Nothing is reverted |
 | `GUARD_UNAVAILABLE` | Not an `errors[]` row: the `code` of a configured check row outside git, which reads `ERROR` and never starts |
 | `INTERNAL_ERROR` | A fault in the runner. The message prints, and no stack trace does |
@@ -179,7 +179,7 @@ remaining_accepted_risk: PENDING_AGENT_JUDGMENT
 - `unverified` lists the required check ids from `summary.unverified`, joined by commas.
 - `unchecked` counts `coverage.unchecked`.
 - The three judgment fields read `PENDING_AGENT_JUDGMENT` until the agent replaces them. A field that still reads it is open work.
-- A path segment or word that starts with `local-` prints as `<LABEL>`, the label its private surface declares, or `<PRIVATE>` when no surface claims it. A public name that only holds the text, such as `nonlocal-config.js` or `.local-env.sh`, prints as it is. The envelope gets pasted into tracked handoffs, and no tracked file names a private skill. The JSON and text forms are not redacted.
+- A path segment or word that starts with `local-`, in any case, prints as `<LABEL>`, the label its private surface declares, or `<PRIVATE>` when no surface claims it. A public name that only holds the text, such as `nonlocal-config.js` or `.local-env.sh`, prints as it is. The envelope gets pasted into tracked handoffs, and no tracked file names a private skill. The JSON and text forms are not redacted.
 
 ---
 
@@ -207,9 +207,12 @@ A finding blocks when it is P0, exact and on a changed line. A parse fault count
 - **Language.** A shebang decides first, then an extension the repository config maps to a family, then the extension in `comment-syntax.json`, the checker's own order. A mapped extension names a family and no language. A file with neither a comment family nor a parser is unchecked.
 - **Surfaces.** Surfaces come from `declaredSurfaces` in `sk-code-skilled/assets/scripts/router-replay-lib.cjs`, in its detection order. A specific surface matches on any marker kind: a path marker on a path segment, a file marker on the extension or the exact name, a content marker on the text with word boundaries. The fallback, SKILLED, holds only when the file's real path lies inside the hub's own `.skilled/` folder and a path marker matches. No match reads `UNKNOWN` for the file and `unknown` for the run.
 - **Real path.** Path selectors and markers read the resolved path. A hub file reached through a link reads as `.skilled/<path>`. A file whose literal path holds `.skilled/` but whose real path lies elsewhere never reads as SKILLED.
-- **Checklist rows.** Rows come from the universal floor and the quality-owned rows in `assets/quality-defaults.json`, then from the repository config's `checklists`, then from each `quality.checklists` declaration in `mode-registry.json`. A row selects by `paths` globs, `extensions` or `contentMarkers`. Kinds combine with AND and values within a kind with OR. A glob is anchored, `**` crosses folders, `*` and `?` stay inside one and `**/` also matches no folder. A base-layer row may also carry `hubRepo`, which selects it only for a file in the repository that owns the hub, so a framework-specific standard never reaches a repository whose surface the runner cannot check.
-- **Owners.** A row from a mode with a detection block applies only to files that resolve to that surface. A row from a mode without one, such as `sk-code-ci`, applies by its selectors alone.
-- **Hub paths.** A checklist path is written `hub:<hub>/<path>` and resolves against the skills folder that holds the hub. One checklist lists once, with every file it serves.
+- **Checklist rows.** Rows come from the universal floor and the quality-owned rows in `assets/quality-defaults.json`, then from the repository config's `checklists`, then from each `quality.checklists` declaration in `mode-registry.json` and in the `graph-metadata.json` of a skill outside the hub that declares the hub's family. A row selects by `paths` globs, `extensions` or `contentMarkers`. Kinds combine with AND and values within a kind with OR. A glob is anchored, `**` crosses folders, `*` and `?` stay inside one and `**/` also matches no folder. A base-layer row may also carry `hubRepo`, which selects it only for a file in the repository that owns the hub, so a framework-specific standard never reaches a repository whose surface the runner cannot check.
+- **Owners.** A row from a mode with a detection block applies only to files that resolve to that surface. A row from a mode without one, such as `sk-code-ci`, applies by its selectors alone. An outside skill's rows apply only to files that skill itself detected, never to a file another skill detected under the same label, and they resolve against that skill's own folder.
+- **Hub paths.** A checklist path is written `hub:<hub>/<path>` and resolves against the skills folder that holds the hub. An outside skill's row is labelled with the folder its path resolves through, so `hub:<folder>/<path>` finds the file beside the declaring skill even when its `skill_id` differs from its folder name. One checklist lists once, with every file it serves.
+- **Outside rows.** A row an outside skill declares is checked before it is used, by the rules `ci-skill-root-metadata.cjs` applies: a quality block that names `checklists` and no other key, a non-empty `checklists` array, a JSON object per row, one selector at least, a non-blank string list per selector, a dotted extension, no other key, and a `file` that is a relative `.md` path holding no `..` segment. A row that names an absolute path, or whose path or real path resolves outside that skill's folder, is refused with `CHECKLIST_OUTSIDE_SKILL` and its path is never read. A row that fails any other rule, and a block that names no readable row, is refused with `CHECKLIST_ROW_INVALID`. Both name the skill's public label and, for a row, its index, and the rest of the run continues. A row that applies and whose path is not a regular file reads `CHECKLIST_MISSING`.
+
+One refused row makes the gate `ERROR` and exit 3, ahead of a `BLOCKED` another check found. A checklist the runner cannot read honestly leaves the verdict untrustworthy, so nothing below `ERROR` is reported.
 
 ---
 

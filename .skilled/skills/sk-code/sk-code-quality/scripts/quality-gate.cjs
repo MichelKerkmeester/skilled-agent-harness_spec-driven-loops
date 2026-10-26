@@ -192,6 +192,8 @@ const REPAIRS = Object.freeze({
   TABLE_UNREADABLE: 'restore sk-code-quality/assets/comment-syntax.json',
   DEFAULTS_INVALID: 'restore sk-code-quality/assets/quality-defaults.json',
   CHECKLIST_MISSING: 'restore the checklist file or fix the declaration that names it',
+  CHECKLIST_OUTSIDE_SKILL: 'point the row at a file inside the folder of the skill that declares it',
+  CHECKLIST_ROW_INVALID: 'fix the row as the skill root metadata contract describes',
   CONFIG_PATH_MISSING: 'create the named config file, or fix the --config value or the skcode.qualityConfig git config value that names it',
   CONFIG_INVALID: 'fix each field that config.errors lists, as references/quality-config.md describes',
   CHECK_MUTATED_WORKSPACE: 'review the listed paths, the runner reverts nothing',
@@ -255,17 +257,30 @@ function toPosix(p) {
   return p.split(path.sep).join('/');
 }
 
+// A path that is not there still reads through the deepest folder that is, so a link
+// above a missing name cannot pass an outside path off as one the skill shipped. The
+// native call returns the case a file has on disk, which is the case a filesystem that
+// ignores case resolves another spelling to.
 function realpathOrSelf(p) {
-  try {
-    return fs.realpathSync(p);
-  } catch {
-    return p;
+  let current = path.resolve(p);
+  const rest = [];
+  for (;;) {
+    try {
+      return path.join(fs.realpathSync.native(current), ...rest);
+    } catch {
+      const parent = path.dirname(current);
+      if (parent === current) return p;
+      rest.unshift(path.basename(current));
+      current = parent;
+    }
   }
 }
 
+// The relative path is read as segments, because a name may begin with dots (`..notes.md`)
+// and a prefix test would call such a file outside the folder that holds it.
 function isInside(child, parent) {
   const rel = path.relative(parent, child);
-  return rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel);
+  return rel !== '' && rel !== '..' && !rel.startsWith(`..${path.sep}`) && !path.isAbsolute(rel);
 }
 
 function readJson(file) {
@@ -894,7 +909,7 @@ function fileFacts(file, context) {
   const facts = {
     ...file, unchecked: null, text: null, language: null, languageSource: null,
     interpreter: null, family: null, syntax: null, real: null, insideHub: false, labels: [], generated: false,
-    excludedByRepo: false,
+    excludedByRepo: false, hubLabels: new Set(), skillRoots: new Set(),
   };
   facts.real = realpathOrSelf(file.abs);
   facts.insideHub = isInside(facts.real, context.skilledDir);
@@ -977,7 +992,11 @@ function declaredSurfaces(declHub) {
 
 // A specific surface matches on any of its markers. The fallback is the hub's own
 // code, so on a real file it holds only through a path marker and only when the
-// resolved path lies inside the hub's own .skilled/ folder.
+// resolved path lies inside the hub's own .skilled/ folder. An outside surface records
+// the folder of the skill that declared it, which stays unique where a skill id does
+// not, so a row belongs to the skill that shipped it rather than to a label or an id
+// it shares. A hub surface records its label, because a hub row is selected only by
+// the hub's own detection and never by an outside skill that reuses the label.
 function fileLabels(facts, surfaces) {
   const lowerPath = facts.matchPath.toLowerCase();
   const lowerBase = path.posix.basename(lowerPath);
@@ -986,16 +1005,29 @@ function fileLabels(facts, surfaces) {
   for (const surface of surfaces) {
     const paths = surface.pathMarkers || [];
     if (surface.role === 'fallback') {
-      if (facts.insideHub && paths.some((marker) => pathMarkerMatches(lowerPath, marker))) labels.push(surface.label);
+      if (facts.insideHub && paths.some((marker) => pathMarkerMatches(lowerPath, marker))) {
+        labels.push(surface.label);
+        facts.hubLabels.add(surface.label);
+      }
       continue;
     }
     const hit = paths.some((marker) => pathMarkerMatches(lowerPath, marker))
       || (surface.fileMarkers || []).some((marker) => fileMarkerMatches(lowerBase, marker))
       || (lowerText !== '' && (surface.contentMarkers || []).some((marker) => textMarkerMatches(lowerText, marker)));
-    if (hit) labels.push(surface.label);
+    if (hit) {
+      labels.push(surface.label);
+      if (surface.skillRoot) facts.skillRoots.add(path.resolve(surface.skillRoot));
+      else facts.hubLabels.add(surface.label);
+    }
   }
   return labels.length > 0 ? labels : ['UNKNOWN'];
 }
+
+const CHECKLIST_SELECTOR_KEYS = Object.freeze(['paths', 'extensions', 'contentMarkers']);
+const CHECKLIST_ROW_KEYS = Object.freeze(['file', ...CHECKLIST_SELECTOR_KEYS]);
+// An extension without its dot never compares equal to the extension of a file, so such
+// a row would silently cover no file at all.
+const CHECKLIST_EXTENSION = /^\.[^./\s]+$/;
 
 function describeSelectors(row) {
   return ['paths', 'extensions', 'contentMarkers']
@@ -1008,16 +1040,77 @@ function hubFile(file, skillsDir) {
   return path.join(skillsDir, file.slice('hub:'.length));
 }
 
+// The row rules the metadata gate applies to a declared quality block, read again here
+// because a private skill is never reached by that gate and this runner is the only
+// reader left. A row that fails one is reported with its reason and never read, so a
+// declaration nobody could follow cannot load a file its author did not ship.
+function outsideRowFault(row, skillRoot) {
+  const invalid = (reason) => ({ code: 'CHECKLIST_ROW_INVALID', reason });
+  const outside = (file) => ({ code: 'CHECKLIST_OUTSIDE_SKILL', reason: `names ${JSON.stringify(file)}, which lies outside the skill folder` });
+  if (!row || typeof row !== 'object' || Array.isArray(row)) return invalid('must be a JSON object');
+  if (typeof row.file !== 'string' || row.file.trim() === '') return invalid('file must name a .md path inside the skill folder');
+  const root = path.resolve(skillRoot);
+  const target = path.resolve(root, row.file);
+  const rel = path.relative(root, target);
+  if (path.isAbsolute(row.file) || rel === '..' || rel.startsWith(`..${path.sep}`) || path.isAbsolute(rel)) {
+    return outside(row.file);
+  }
+  // A `..` segment is refused however it resolves, because it reaches the same file as
+  // a plain inside path and a reader cannot tell which of the two the author meant. The
+  // test reads segments, so a name that merely begins with dots stays a legal name.
+  if (row.file.split('/').includes('..')) return invalid(`names ${JSON.stringify(row.file)}, which holds a .. segment`);
+  if (!/\.md$/.test(row.file)) return invalid('file must name a .md path inside the skill folder');
+  const unknown = Object.keys(row).filter((key) => !CHECKLIST_ROW_KEYS.includes(key));
+  if (unknown.length > 0) return invalid(`holds unknown key ${unknown.join(', ')}`);
+  let selectors = 0;
+  for (const key of CHECKLIST_SELECTOR_KEYS) {
+    if (!Object.prototype.hasOwnProperty.call(row, key)) continue;
+    selectors += 1;
+    const value = row[key];
+    const isList = Array.isArray(value) && value.length > 0
+      && value.every((entry) => typeof entry === 'string' && entry.trim() !== '');
+    if (!isList) return invalid(`${key} must be a non-empty array of non-blank strings`);
+    const undotted = key === 'extensions' ? value.find((entry) => !CHECKLIST_EXTENSION.test(entry)) : undefined;
+    if (undotted !== undefined) return invalid(`${key} entry ${JSON.stringify(undotted)} must start with a dot`);
+  }
+  if (selectors === 0) return invalid(`names no selector, one of ${CHECKLIST_SELECTOR_KEYS.join(', ')}`);
+  // A link reads as an inside path until it is resolved, so the containment test runs
+  // again on the real path of both ends, as the file scope already does. A name that is
+  // not there resolves through the folder that holds it, so a link above the missing
+  // name still answers the test, and a link that leaves the folder is refused before
+  // anything reads its path.
+  if (!isInside(realpathOrSelf(target), realpathOrSelf(root))) return outside(row.file);
+  return null;
+}
+
+// A present quality block must name at least one checklist row. A block a reader cannot
+// follow is reported rather than skipped, because a silent skip makes a declaration
+// nobody could load look exactly like no declaration at all.
+function outsideQualityFaults(quality) {
+  if (!quality || typeof quality !== 'object' || Array.isArray(quality)) return ['must be a JSON object'];
+  const faults = [];
+  const unknown = Object.keys(quality).filter((key) => key !== 'checklists');
+  if (unknown.length > 0) faults.push(`holds unknown key ${unknown.join(', ')}. A skill names checklists only, never a command`);
+  if (!Array.isArray(quality.checklists) || quality.checklists.length === 0) faults.push('checklists must be a non-empty array');
+  return faults;
+}
+
 // A base-layer row always names a hub file. A repository row names a file of its own,
-// relative to the root, or opts into a hub file with the hub: prefix.
+// relative to the root, or opts into a hub file with the hub: prefix. An outside skill
+// declares its quality rows beside its surface, so they arrive through the same surface
+// discovery the labels come from and resolve against that skill's own folder. Such a row
+// is named after the folder its path resolves through, which is the name the hub: label
+// looks for, whether or not the skill id matches it.
 function checklistRows(context) {
   const rows = context.merged.checklists.map((row) => ({
     owner: null,
+    skillRoot: null,
     file: row.file,
     path: row.file.startsWith('hub:') ? hubFile(row.file, path.dirname(HUB_ROOT)) : path.join(context.root, row.file),
     why: row.why || `${context.config.path}, ${describeSelectors(row)}`,
     selectors: row,
   }));
+  const errors = [];
   const registry = readJson(path.join(context.declHub, 'mode-registry.json'));
   const hubName = path.basename(context.declHub);
   for (const mode of Array.isArray(registry.modes) ? registry.modes : []) {
@@ -1028,6 +1121,7 @@ function checklistRows(context) {
     for (const row of declared) {
       rows.push({
         owner,
+        skillRoot: null,
         file: `hub:${hubName}/${row.file}`,
         path: path.join(context.declHub, row.file),
         why: `${owner ? `${owner} surface` : mode.workflowMode}, ${describeSelectors(row)}`,
@@ -1035,7 +1129,32 @@ function checklistRows(context) {
       });
     }
   }
-  return rows;
+  for (const surface of declaredSurfaces(context.declHub)) {
+    if (!surface.skillRoot || surface.quality === undefined) continue;
+    const blockFaults = outsideQualityFaults(surface.quality);
+    for (const reason of blockFaults) {
+      errors.push({ code: 'CHECKLIST_ROW_INVALID', repair: REPAIRS.CHECKLIST_ROW_INVALID, message: `${surface.label} quality ${reason}` });
+    }
+    if (blockFaults.length > 0) continue;
+    const root = path.resolve(surface.skillRoot);
+    const folder = path.basename(root);
+    surface.quality.checklists.forEach((row, index) => {
+      const fault = outsideRowFault(row, root);
+      if (fault) {
+        errors.push({ code: fault.code, repair: REPAIRS[fault.code], message: `${surface.label} quality.checklists[${index}] ${fault.reason}` });
+        return;
+      }
+      rows.push({
+        owner: surface.label,
+        skillRoot: root,
+        file: `hub:${folder}/${row.file}`,
+        path: path.resolve(root, row.file),
+        why: `${surface.label} surface, ${describeSelectors(row)}`,
+        selectors: row,
+      });
+    });
+  }
+  return { rows, errors };
 }
 
 function selectorsMatch(selectors, facts, context) {
@@ -1060,15 +1179,24 @@ function sameRepositoryAsHub(context) {
   return isInside(context.declHub, context.rootReal);
 }
 
+// A row the hub or the repository declares is gated on the surface label the hub itself
+// selected. A row an outside skill declares is gated on that skill's folder having
+// detected the file, because two skills may share a label or a skill id and an outside
+// skill may reuse a label the hub uses too.
+function rowApplies(row, facts) {
+  if (row.skillRoot !== null) return facts.skillRoots.has(row.skillRoot);
+  return row.owner === null || facts.hubLabels.has(row.owner);
+}
+
 function resolveChecklists(files, context) {
   const checklists = [];
-  const errors = [];
+  const declaredRows = checklistRows(context);
+  const errors = [...declaredRows.errors];
   const scoped = files.filter(authored);
   const sameRepository = sameRepositoryAsHub(context);
-  for (const row of checklistRows(context)) {
+  for (const row of declaredRows.rows) {
     if (row.selectors.hubRepo === true && !sameRepository) continue;
-    const matched = scoped.filter((facts) => (row.owner === null || facts.labels.includes(row.owner))
-      && selectorsMatch(row.selectors, facts, context));
+    const matched = scoped.filter((facts) => rowApplies(row, facts) && selectorsMatch(row.selectors, facts, context));
     if (matched.length === 0) continue;
     const existing = checklists.find((entry) => entry.file === row.file);
     if (existing) {
@@ -1076,8 +1204,8 @@ function resolveChecklists(files, context) {
       continue;
     }
     checklists.push({ file: row.file, path: row.path, why: row.why, files: matched.map((facts) => facts.rel) });
-    if (!fs.existsSync(row.path)) {
-      errors.push({ code: 'CHECKLIST_MISSING', message: `${row.file} is declared but ${row.path} does not exist`, repair: REPAIRS.CHECKLIST_MISSING });
+    if (!isRegularFile(row.path)) {
+      errors.push({ code: 'CHECKLIST_MISSING', message: `${row.file} is declared but ${row.path} is not a regular file`, repair: REPAIRS.CHECKLIST_MISSING });
     }
   }
   return { checklists, errors };
@@ -2191,8 +2319,7 @@ function runGate(context) {
     },
     summary: summarize(findings, decision.unverified),
     errors,
-    private_labels: surfaces.filter((surface) => surface.skillId && /^local-/.test(surface.skillId))
-      .map((surface) => [surface.skillId, surface.label]),
+    private_labels: privateLabels(surfaces),
   };
 }
 
@@ -2238,10 +2365,23 @@ function explain(context) {
 // A private surface prints by its label only, because an envelope gets pasted into
 // tracked handoffs and no tracked file may name a private skill. A private name starts
 // a path segment or a word, so a public name that only holds the text, such as
-// nonlocal-config.js or .local-env.sh, prints as it is.
-function redactPrivate(text, privateLabels) {
-  const labels = new Map(privateLabels || []);
-  return text.replace(/(^|[^A-Za-z0-9_.-])(local-[A-Za-z0-9._-]*)/gm, (match, lead, name) => `${lead}<${labels.get(name) || 'PRIVATE'}>`);
+// nonlocal-config.js or .local-env.sh, prints as it is. The name is matched without
+// regard to case, because a filesystem that ignores case lets one folder carry a
+// tracked spelling the ignore rule also covers. A checklist row is named after the
+// folder its path resolves through, so that name carries the label too, which keeps a
+// skill whose folder and skill id differ out of the envelope.
+function privateLabels(surfaces) {
+  const pairs = [];
+  for (const surface of surfaces) {
+    const names = [surface.skillId, surface.skillRoot ? path.basename(surface.skillRoot) : null];
+    for (const name of names) if (name && /^local-/i.test(name)) pairs.push([name, surface.label]);
+  }
+  return pairs;
+}
+
+function redactPrivate(text, labelled) {
+  const labels = new Map(labelled || []);
+  return text.replace(/(^|[^A-Za-z0-9_.-])(local-[A-Za-z0-9._-]*)/gim, (match, lead, name) => `${lead}<${labels.get(name) || 'PRIVATE'}>`);
 }
 
 function checkerOutputs(verdict) {

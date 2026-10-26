@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.10.0.0
+version: 1.11.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -122,7 +122,7 @@ Phase 1 Implementation writes or changes files
 
 ### Target-Path Checklist Map
 
-The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and the `unit: target map` case in `scripts/tests/quality-gate.test.cjs` fails when the two differ. A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. The spec-folder row applies only inside the repository that owns the hub, because a framework-specific standard handed to an unknown surface claims an authority the runner cannot check. Applies to lists path globs and extensions. A row with several values matches on any of them. The MCP server checklist, `../sk-code-skilled/assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
+The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and the `unit: target map` case in `scripts/tests/quality-gate.test.cjs` fails when the two differ. A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. Applies to lists path globs and extensions. A row with several values matches on any of them. The MCP server checklist, `../sk-code-skilled/assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
 
 | Owner | Applies to | Checklist |
 | --- | --- | --- |
@@ -130,7 +130,7 @@ The runner resolves checklists from two sources: the rows this mode owns in `ass
 | quality defaults | `.js`, `.css` | `assets/code-quality-checklist/overview-header-and-comments.md` |
 | quality defaults | `.js`, `.css` | `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
 | quality defaults | `.js`, `.css` | `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
-| quality defaults | `specs/**` in the hub's own repository | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
+| quality defaults | `specs/**` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
 | SKILLED | `.skilled/**` | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
 | SKILLED | `.skilled/skills/**` | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
 | SKILLED | `.skilled/agents/**` | `../sk-code-skilled/assets/checklists/agent-authoring.md` |

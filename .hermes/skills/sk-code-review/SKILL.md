@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.8.0.0
+version: 1.9.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -24,14 +24,14 @@ Universal findings-first review baseline paired with `sk-code` surface standards
 ### Activation Triggers
 
 Use the `sk-code-review` mode (of the sk-code family) when:
-- A user asks for code review, PR review, quality gate, or merge readiness.
+- A user asks for code review, PR review, or merge readiness.
 - A workflow dispatches `@review` for pre-commit or gate validation.
 - A user requests security/correctness risk analysis before merge.
 - A user wants severity-ranked findings with file:line evidence.
 
 ### Keyword Triggers
 
-`review`, `code review`, `pr review`, `audit`, `security review`, `quality gate`, `request changes`, `findings`, `blocking issues`, `merge readiness`
+`review`, `code review`, `pr review`, `audit`, `security review`, `request changes`, `findings`, `blocking issues`, `merge readiness`
 
 ### Use Cases
 
@@ -62,6 +62,7 @@ Review behavior follows a baseline+surface-evidence model:
 - Surface standards evidence (when available): `sk-code` detected surface resources.
 - Surface detection: the markers and the order come from the shared detection contract, [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) section 2. Every declared specific surface comes first, then the SKILLED fallback, then UNKNOWN, and a specific surface that matches beside SKILLED leads while SKILLED stays as second evidence. `detect_surface_evidence` below restates that contract and keeps no rules or markers of its own, so it changes only when the contract does.
 - Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
+- Run verdict evidence (when present): a run verdict from `sk-code-quality` is input evidence only, and review keeps its own `P0`/`P1`/`P2` finding ids, so no gate count renumbers or replaces a finding.
 
 ### Phase Detection
 
