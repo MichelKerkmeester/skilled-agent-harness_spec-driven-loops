@@ -85,7 +85,7 @@ and findings belong here.
 | Phase status | Complete | `spec.md`, `implementation-summary.md` and `acceptance-criteria.md` read `Complete`; eight rows `Met`, AC-007 `Superseded` by ADR-001 |
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T025, `acceptance-criteria.md` AC-001 to AC-009, `decision-record.md` ADR-001 to ADR-006 |
 | Measurement | Done | 360 job files under `scratch/jobs/`; `node scratch/consolidation-cost.mjs --check` printed `check: ok`, exit 0 |
-| Decision D8 | Done, pending the operator's verification | `scratch/d8-answer.md` holds `D8=no`, the session's judgment under the operator's delegation of 2026-10-25 |
+| Decision D8 | Done, confirmed by the operator on 2026-10-26 | `scratch/d8-answer.md` holds `D8=no`, the session's judgment under the operator's delegation of 2026-10-25 |
 | Merge | Not run | Superseded by D8 = no; `scratch/no-merge.md` shows an empty workflow diff and status |
 
 Criterion evidence, observed 2026-10-25: `check: ok` and exit 0; `26` table lines and `job seconds 1065`; `6` headings and one `D8: no`; one `D8=no` line; `check-gate-inputs.sh` printed `RESULT: PASSED`; the workflow diff from `1c317e13c5` printed nothing.

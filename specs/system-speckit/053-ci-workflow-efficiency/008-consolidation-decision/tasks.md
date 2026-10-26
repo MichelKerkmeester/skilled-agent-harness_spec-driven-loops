@@ -463,7 +463,7 @@ Stop and escalate if: the heading count is not `6`, or a number in `Measurements
 
 ### T012 [x] DECISION D8 (operator yes required) - merge the always-run FRESHNESS workflows or leave them separate (AC-005)
 
-Done 2026-10-25: `scratch/d8-answer.md` holds `D8=no`. The check printed `1`, then `11` for `wc -l`, not `1`, because the file also carries the date, the operator's verbatim delegation, the note that this is the session's judgment pending the operator's verification, and the numbers behind it. Every check that reads the answer matches `^D8=`.
+Done 2026-10-25: `scratch/d8-answer.md` holds `D8=no`. The check printed `1`, then `11` for `wc -l`, not `1`, because the file also carries the date, the operator's verbatim delegation, the note that this is the session's judgment, and the numbers behind it. The operator confirmed the answer on 2026-10-26. Every check that reads the answer matches `^D8=`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` (new file). Anchor: none; the file does not exist yet.
 
@@ -542,7 +542,7 @@ Stop and escalate if: either command prints a path, because a workflow changed o
 
 ### T015 [x] Superseded by D8 = no: Create the merged workflow (AC-007)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/always-run-guards.yml` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/changed-packet-validation.yml:17-19`, the lines `      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1`, `        with:` and `          fetch-depth: 0`.
 
@@ -609,7 +609,7 @@ Stop and escalate if: the file parses with more than one job, the guarded-step c
 
 ### T016 [x] Superseded by D8 = no: Delete the eight member workflows (AC-007)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: the eight files named below (deleted). Runs only on `D8=yes`. Anchor: `.github/workflows/advisory-checks.yml:1`, the line `name: Advisory Checks`, and the first line of each of the other seven: `name: Changed Packet Validation` (`changed-packet-validation.yml:1`), `name: Command Tree Parity` (`command-tree-parity.yml:1`), `name: Dispatch Enforcement Guard` (`dispatch-enforcement-guard.yml:1`), `name: Gate Inputs` (`gate-inputs.yml:1`), `name: Playbook Operator Contract` (`playbook-operator-contract.yml:1`), `name: Rule Canary Sync` (`rule-canary-sync.yml:1`), `name: sk-doc Script Tests` (`sk-doc-script-tests.yml:1`).
 
@@ -635,7 +635,7 @@ Stop and escalate if: any of the eight is still present, or the surviving file c
 
 ### T017 [x] Superseded by D8 = no: Update the README contents table (AC-009)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor: `.github/workflows/README.md:26`, the line `| `advisory-checks.yml` | Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`). Reports without gating. |`.
 
@@ -675,7 +675,7 @@ Stop and escalate if: the anchor line is not on the file, or a member's first ce
 
 ### T018 [x] Superseded by D8 = no: Update the README push/PR table (AC-009)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor: `.github/workflows/README.md:66`, the line `| `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |`.
 
@@ -700,7 +700,7 @@ Stop and escalate if: the line-66 anchor is not on the file, or `message-contrac
 
 ### T019 [x] Superseded by D8 = no: Update the README switch-group list (AC-009)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:150`, the line `| REQ-007 | **R26.** `.github/workflows/README.md` gains an `### On/off switches` section that names `SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`, states that `off` is the only disable token, that an unset variable runs the job, that `dependabot-auto-merge.yml` has no switch, and that `SKILLED_CI_MESSAGES` must stay unset while the ruleset requires that context |`. The row this task edits is the FRESHNESS row inside the `### On/off switches` section that line requires; its exact text is phase 007's, so read it and keep every other cell.
 
@@ -724,7 +724,7 @@ Stop and escalate if: `### On/off switches` is absent, or the `always-run-guards
 
 ### T020 [x] Superseded by D8 = no: Prove the merged job's signal (AC-007)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/gate-inputs.yml:19`, the line `      - name: Check the inputs of every hook, workflow and dependabot entry`, which T015 copies into `.github/workflows/always-run-guards.yml`.
 
@@ -867,7 +867,7 @@ Stop and escalate if: the message validator fails, the id scan finds a match, or
 
 ### T023 [x] Superseded by D8 = no: Commit the merge (AC-009)
 
-Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/always-run-guards.yml`, the eight deletions and `.github/workflows/README.md` (committed). Runs only on `D8=yes`. Anchor (read): `.github/workflows/always-run-guards.yml`, its `name: Always-Run Freshness Guards` line written by T015.
 

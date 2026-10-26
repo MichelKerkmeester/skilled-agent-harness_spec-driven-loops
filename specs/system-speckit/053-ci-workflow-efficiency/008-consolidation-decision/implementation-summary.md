@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Measured and decided: the nine always-run workflows' 13 jobs were re-measured after phases 002 to 007, the merge bound was recomputed from 360 runs of job data, and D8 is no, so the eight always-run FRESHNESS workflows stay separate and no workflow file changed. D8 is the session's judgment under the operator's delegation, pending the operator's verification at the end of the session."
+description: "Measured and decided: the nine always-run workflows' 13 jobs were re-measured after phases 002 to 007, the merge bound was recomputed from 360 runs of job data, and D8 is no, so the eight always-run FRESHNESS workflows stay separate and no workflow file changed. D8 is the session's judgment under the operator's delegation, confirmed by the operator on 2026-10-26."
 trigger_phrases:
   - "consolidation decision implementation summary"
 importance_tier: "normal"
@@ -59,7 +59,7 @@ A measurement and a decision, and no workflow change. The question was whether m
 - **The after numbers** come from a fresh snapshot: 1000 runs in `scratch/runs-after.json`, the newest 40 runs of each of the nine and 360 job files under `scratch/jobs/`, and the window in `scratch/window.json`. `scratch/consolidation-cost.mjs` computes the table and the bounds, and `--check` re-derives them.
 - **The result.** The plan's eight bill 944.8 runner-min/day today, 24 billed minutes per push. One merged job would bill 7, so the saving is 17 per push: 636.1 runner-min/day rate-aware, 749.7 by the plan's formula. The cost would be 12 check contexts collapsed into one, 382.5 s of serial work against a 190 s worst single job, and two protected-by-function workflows deleted. The one required status check, message-contract's, is outside the set.
 - **A finding the plan did not expect.** `command-tree-parity.yml` reads `SKILLED_CI_TESTS` in the tree, so the plan's eight span two switch groups. The script also reports the seven that read `SKILLED_CI_FRESHNESS`: 605.16 runner-min/day saved rate-aware.
-- **The decision** is `D8=no` (`scratch/d8-answer.md`, `scratch/consolidation-decision.md`, ADR-001). It is the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification at the end of the session.
+- **The decision** is `D8=no` (`scratch/d8-answer.md`, `scratch/consolidation-decision.md`, ADR-001). It is the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26.
 
 ### Files Changed
 
