@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ec846751a9ae8c0d45d84c87c86bec41adfa259e848fc8a7afdbdd8c1a9e59ec",
+  "manifestHash": "07f8036fb7f54f2dddec40c4ae09f4ae15ff9be0a394ce7a8a9aebe5b4aa1534",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -73705,6 +73705,9 @@
     "phase 8 review 3 remediation": [
       "phase 8 review 3 remediation"
     ],
+    "phase 8 runner limit closeout": [
+      "phase 8 runner limit closeout"
+    ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
     ],
@@ -78668,6 +78671,15 @@
     ],
     "quality runner adr": [
       "quality runner ADR"
+    ],
+    "quality runner budget": [
+      "quality runner budget"
+    ],
+    "quality runner budget goal": [
+      "quality runner budget goal"
+    ],
+    "quality runner budget plan": [
+      "quality runner budget plan"
     ],
     "quality runner contract": [
       "quality runner contract"
@@ -87876,6 +87888,33 @@
     ],
     "runnable series parent recipe": [
       "runnable series parent recipe"
+    ],
+    "runner guard boundary": [
+      "runner guard boundary"
+    ],
+    "runner limit closeout": [
+      "runner limit closeout"
+    ],
+    "runner limit closeout acceptance criteria": [
+      "runner limit closeout acceptance criteria"
+    ],
+    "runner limit closeout decision record": [
+      "runner limit closeout decision record"
+    ],
+    "runner limit closeout goal": [
+      "runner limit closeout goal"
+    ],
+    "runner limit closeout implementation summary": [
+      "runner limit closeout implementation summary"
+    ],
+    "runner limit closeout plan": [
+      "runner limit closeout plan"
+    ],
+    "runner limit closeout tasks": [
+      "runner limit closeout tasks"
+    ],
+    "runner limits closed": [
+      "runner limits closed"
     ],
     "runner source embedded": [
       "runner source embedded"

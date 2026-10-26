@@ -1,5 +1,5 @@
 {
-  "corpusHash": "17fc8cfc748449b7381988d1483fe03f40b4e4e6665c46d6316e67d4444baa62",
+  "corpusHash": "74396ffa5c93aa1cc5267c3a0ce64c68d309d6bcffa9d903a08b66f57a6f4fc5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26103,
+  "includedPathCount": 26110,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12280,6 +12280,13 @@
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/plan.md",
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/spec.md",
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/tasks.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-004-doctrine.md",
@@ -26134,7 +26141,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ec846751a9ae8c0d45d84c87c86bec41adfa259e848fc8a7afdbdd8c1a9e59ec",
+  "manifestHash": "07f8036fb7f54f2dddec40c4ae09f4ae15ff9be0a394ce7a8a9aebe5b4aa1534",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28942,6 +28949,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/scratch",
       "reason": "excluded directory"
     },
     {
