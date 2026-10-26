@@ -1,0 +1,117 @@
+I'll start by loading the spec-kit skill and running the scaffold command.
+
+
+
+Let me run the scaffold command and read the rest of the skill in parallel.
+
+Scaffold created. Now let me read the generated files and the target script.
+
+
+
+
+
+Now let me inspect the target script and the validation rules.
+
+
+
+Let me check how `recommend-level.sh` is consumed (to define the "recommended-level line") and read the validation rules.
+
+
+
+Baseline passes with 1 warning (`AI_PROTOCOLS`). Let me read the rules I need to satisfy for Level 3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write the four planning documents. Starting with `spec.md`:
+
+
+
+Now `plan.md`:
+
+Now `tasks.md`:
+
+
+
+
+
+Now `acceptance-criteria.md`:
+
+Documents written. Now resyncing the generated packet metadata (spec.md's description feeds `causal_summary`):
+
+
+
+
+
+
+
+
+
+
+
+Now running validation:
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag — RESULT: PASSED

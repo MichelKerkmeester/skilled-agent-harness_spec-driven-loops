@@ -1,0 +1,89 @@
+I'll start by running the level recommendation and reading the spec-kit skill guidance.
+
+Recommended level is 0, so I'll use level 1. Checking the target folder state before creating.
+
+Now creating the spec packet at level 1.
+
+Folder created. Reading the scaffolds and the level-1 template contract.
+
+Let me check what `--strict` validates so the docs pass on the first run.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write the three documents. Starting with `spec.md`.
+
+The post-edit hook flagged a placeholder warning. Let me see exactly what it caught.
+
+
+
+`spec.md` is clean — the 11 hits are the untouched template hints in `plan.md`, `tasks.md`, and the scaffold `implementation-summary.md`. Writing `plan.md` now with those replaced.
+
+
+
+Now `tasks.md`.
+
+
+
+Only the untouched scaffold `implementation-summary.md` remains flagged, which the task says to leave as created. Running strict validation (run 1).
+
+
+
+Two errors, both stale derived metadata (`graph-metadata.json`, `description.json`) that the validator says it can recompute. Previewing the sanctioned repair first.
+
+
+
+
+
+The repair also touched `implementation-summary.md`. Let me see exactly what it changed.
+
+
+
+Only the `packet_pointer` line was normalized (`scaffold/...` → `zz-bench-authoring/...`); the rest of the scaffold summary is untouched. Re-running strict validation (run 2).
+
+
+
+Validation passes. Final check that nothing outside the packet was modified.
+
+specs/zz-bench-authoring/001-completeness-min-percent | Level 1 | RESULT: PASSED

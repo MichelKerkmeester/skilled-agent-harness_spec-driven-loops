@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "spec_folder": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recommend level quiet flag",
+      "add a quiet flag to recommend level sh",
+      "recommend-level quiet output",
+      "scripted level recommendation",
+      "recommend level quiet flag plan",
+      "recommend-level quiet implementation",
+      "quiet output dispatch",
+      "recommend level quiet flag tasks",
+      "recommend-level quiet task breakdown",
+      "quiet flag verification checklist",
+      "recommend level quiet flag acceptance criteria",
+      "quiet flag closure gate"
+    ],
+    "key_topics": [
+      "recommend",
+      "level",
+      "quiet",
+      "flag",
+      "recommend-level",
+      "output",
+      "scripted",
+      "recommendation",
+      "plan",
+      "implementation",
+      "dispatch",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.js",
+      "cli/tests/test-phase-system.js",
+      "cli/tests/test-phase-validation.js",
+      "runtime/cli/spec/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommend-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-validation.js",
+        "kind": "code",
+        "path": "cli/tests/test-phase-validation.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Let",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "recommend-level.sh prints a nine-line report for every call, so a caller that only needs the level must parse or filter the output",
+    "created_at": "2026-10-26T14:18:27Z",
+    "last_save_at": "2026-10-26T14:26:39.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89ff0ddba68e25e26dfc194f08cc25cffb31a534bbcb198e6b6e6cc3ac50c79e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d00cb42599ec1903fd03fe20cdf719f23db599c770ec516084ea2e0046d8cca",
+      "plan.md": "2babadbf3142a8634ae8b0362014cb229f2cf2adf0a04666e5bb52f3ab76a41a",
+      "tasks.md": "cc472cd5ccbfe1c2a49fa3c3cd2ae887dc4530ee9d08086db78ccef83c9a1c93",
+      "implementation-summary.md": "3c533c979ea151cce95e011e76a87ce9318b5ef56f5fac5779253064e5bea955"
+    },
+    "last_active_at": null
+  }
+}

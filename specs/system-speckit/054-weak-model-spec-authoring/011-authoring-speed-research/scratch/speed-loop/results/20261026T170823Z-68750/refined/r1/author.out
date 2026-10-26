@@ -1,0 +1,57 @@
+I'll start by loading the system-spec-kit skill and running the level recommendation.
+
+Level 0 → using level 1 as instructed. Now creating the packet.
+
+
+
+Now let me inspect the target script to ground the measured behavior.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write `spec.md`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

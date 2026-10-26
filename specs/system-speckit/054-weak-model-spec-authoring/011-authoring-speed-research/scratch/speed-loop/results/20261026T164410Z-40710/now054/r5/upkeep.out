@@ -1,0 +1,19 @@
+I'll start by reading the packet files I need to modify.
+
+Next free REQ id is REQ-007 (P0 ends at REQ-004, P1 ends at REQ-006). Adding the row to the P1 table.
+
+Now the task line in Phase 2, next free id T013.
+
+Now running the validator.
+
+Validation fails on generated metadata drift caused by my spec.md edit. Let me preview the sanctioned repair before applying.
+
+The repair only re-derives graph metadata inside the packet. Applying it.
+
+
+
+
+
+
+
+REQ-007 RESULT: PASSED

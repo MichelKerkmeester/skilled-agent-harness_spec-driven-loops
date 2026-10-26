@@ -1,0 +1,40 @@
+I'll start by reading the packet files to understand the existing structure.
+
+Now let me check how the validator works so I add these rows in a way that passes `--strict`.
+
+
+
+Let me capture a baseline validation run before editing.
+
+
+
+
+
+
+
+The packet is clean at baseline. Let me load the owning skill for spec-document authoring before editing.
+
+
+
+Now the three edits.
+
+
+
+
+
+
+
+Validation flags derived-metadata drift caused by editing `spec.md`. Let me preview the repository's own repair path before applying it.
+
+
+
+
+
+
+
+
+
+
+
+REQ-009
+RESULT: PASSED

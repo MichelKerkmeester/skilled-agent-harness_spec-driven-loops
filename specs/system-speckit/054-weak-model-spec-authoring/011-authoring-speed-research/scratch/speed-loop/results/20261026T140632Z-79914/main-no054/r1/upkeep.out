@@ -1,0 +1,57 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+
+
+
+
+
+
+
+
+Baseline validates clean. Now I'll add the requirement (next free ID is REQ-011) and its task/AC rows.
+
+Now the acceptance row for REQ-011.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Metadata drifted because editing the source docs invalidated the stored fingerprint. I'll refresh only the generated metadata (backfill, not the pointer normalizer) to keep the diff minimal.
+
+
+
+Validation passes. Let me confirm the diff contains only the intended edits plus the regenerated metadata.
+
+
+
+
+
+
+
+
+
+REQ-011 RESULT: PASSED

@@ -1,8 +1,9 @@
 #!/bin/bash
-# usage: loop.sh [--variants pre054,main-no054,now054[,refined]] [--runs N] [--dry-run] [--no-upkeep]
-#                [--author-timeout S] [--upkeep-timeout S] [--reuse-refined] [--fresh] [--parallel-ok]
+# usage: loop.sh [--task quiet|minpct] [--variants pre054,main-no054,now054[,refined]] [--runs N] [--dry-run]
+#                [--no-upkeep] [--author-timeout S] [--upkeep-timeout S] [--reuse-refined] [--fresh] [--parallel-ok]
 # Measures how long cli-devin deepseek-v4-1-flash-1017-max takes to author, then maintain,
-# the same Level 3 packet on each variant tree. Each round starts every variant's step at
+# the same packet on each variant tree. --task picks the briefs, packet and scoring (lib.sh
+# set_task); quiet is the default. Each round starts every variant's step at
 # the same moment, in a shuffled order, so all variants share the machine load; the upkeep
 # step starts only after every author step returned. Results land in
 # results/<stamp>/results.tsv, round.tsv and summary.md.
@@ -10,6 +11,7 @@
 VARIANTS=pre054,main-no054,now054; RUNS=2; UPKEEP=1; TO_A=480; TO_U=240; REUSE_REFINED=0; FRESH=0; PAR_OK=0
 while [ $# -gt 0 ]; do
   case $1 in
+    --task) set_task "$2" || { echo "unknown task $2 (quiet or minpct)"; exit 2; }; shift;;
     --variants) VARIANTS=$2; shift;;
     --runs) RUNS=$2; shift;;
     --dry-run) DRY=1;;
@@ -22,6 +24,8 @@ while [ $# -gt 0 ]; do
     *) echo "unknown flag $1"; exit 2;;
   esac; shift
 done
+# prepare.sh and step.sh source lib.sh again; the exported task makes them pick the same one.
+export SPEED_TASK=$TASK
 IFS=, read -r -a VS <<< "$VARIANTS"
 for v in "${VS[@]}"; do variant_rev "$v" > /dev/null || { echo "unknown variant $v"; exit 2; }; done
 case $RUNS in ''|*[!0-9]*|0) echo "--runs needs a positive integer"; exit 2;; esac
@@ -35,10 +39,17 @@ if [ "$DRY" != 1 ] && [ "${#VS[@]}" -gt 1 ] && [ "$PAR_OK" != 1 ]; then
   echo "REFUSED: a real run launches ${#VS[@]} parallel cli-devin dispatches per round in --permission-mode dangerous."
   echo "Pass --parallel-ok to authorize that explicitly."; exit 2
 fi
+# Every input the task names must exist before anything is prepared. A dry run only warns,
+# so the commands can be read while the briefs are still being written.
+for f in "$AUTHOR_BRIEF" "$UPKEEP_BRIEF" $TERMS; do
+  [ -s "$f" ] && continue
+  [ "$DRY" = 1 ] && { echo "WARN: task $TASK input missing or empty: $f"; continue; }
+  echo "REFUSED: task $TASK input missing or empty: $f"; exit 2
+done
 DF=; [ "$DRY" = 1 ] && DF=--dry-run
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)-$$; OUT=$LOOP/results/$STAMP
 STEPS=author; [ "$UPKEEP" = 1 ] && STEPS="author upkeep"
-echo "== speed loop $STAMP variants=$VARIANTS runs=$RUNS steps=[$STEPS] model=$MODEL timeouts author=${TO_A}s upkeep=${TO_U}s round_budget=${ROUND_BUDGET}s dry_run=$DRY"
+echo "== speed loop $STAMP task=$TASK packet=$PK variants=$VARIANTS runs=$RUNS steps=[$STEPS] model=$MODEL timeouts author=${TO_A}s upkeep=${TO_U}s round_budget=${ROUND_BUDGET}s dry_run=$DRY"
 echo "== each round launches ${#VS[@]} parallel cli-devin dispatches (authorized by --parallel-ok=$PAR_OK)"
 
 # Interrupts: background steps ignore SIGINT and every dispatch runs in its own process
@@ -75,19 +86,37 @@ case ",$VARIANTS," in *,refined,*)
   fi;;
 esac
 
+# For a task with a terms file, a sandbox is reusable only when its leak scan read 0 and ran
+# after the terms file last changed; a sandbox prepared for another task is rescanned by a
+# new prepare.sh.
+scan_ok() { [ -z "$TERMS" ] || { $GREP -q ' task_term_refs=0 ' "$1/ready" && [ "$1/ready" -nt "$TERMS" ]; }; }
 for v in "${VS[@]}"; do
   d=$(sbx_dir "$v")
   # A sandbox is reused only when it is ready for this revision, not marked dirty,
   # holds no packet track and has a clean status. Refined is retaken every run unless
   # --reuse-refined, and --fresh re-prepares every variant.
   if [ "$FRESH" != 1 ] && { [ "$v" != refined ] || [ "$REUSE_REFINED" = 1 ]; } && [ -n "$d" ] && [ -f "$d/ready" ] &&
-     [ ! -e "$d/DIRTY" ] && [ ! -e "$d/tree/$TRACK" ] && $GREP -q "rev=$(variant_rev "$v") " "$d/ready" &&
+     [ ! -e "$d/DIRTY" ] && [ ! -e "$d/tree/$TRACK" ] && $GREP -q "rev=$(variant_rev "$v") " "$d/ready" && scan_ok "$d" &&
      [ -z "$(git_sbx "$d/tree" status --porcelain --untracked-files=all 2>/dev/null)" ]; then
     echo "+ reuse sandbox $v: $(cat "$d/ready")"; continue
   fi
   echo "+ bash prepare.sh $v $DF"
   bash "$LOOP/prepare.sh" "$v" $DF || exit 3
 done
+# Leak gate: no dispatch while any sandbox's templates or card name a term of the task.
+# A count that is not 0, NA included, refuses the whole run.
+if [ -n "$TERMS" ]; then
+  if [ "$DRY" = 1 ]; then
+    echo "+ refuse to dispatch unless every sandbox ready file reads task_term_refs=0 (terms: $TERMS)"
+  else
+    for v in "${VS[@]}"; do
+      d=$(sbx_dir "$v")
+      n=$(sed -n 's/.* task_term_refs=\([^ ]*\) .*/\1/p' "$d/ready" 2>/dev/null)
+      [ "$n" = 0 ] || { echo "REFUSED: sandbox $v reads task_term_refs=${n:-missing}; its templates or card name a term in $TERMS"; exit 4; }
+    done
+    echo "leak scan: task_term_refs=0 in every sandbox"
+  fi
+fi
 
 run "mkdir -p '$OUT' && header_row > '$OUT/results.tsv' && printf 'round\torder\tstart\tend\twall_seconds\tover_budget\n' > '$OUT/round.tsv'"
 STARTED=1

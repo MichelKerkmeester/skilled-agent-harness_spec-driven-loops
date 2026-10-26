@@ -1,0 +1,43 @@
+I'll start by invoking the required skill and running the level recommendation.
+
+Level 0 → use 1 as directed. Creating the spec folder.
+
+Folder created. Reading the scaffolded templates and Level 1 contract.
+
+Now reading the target script and the validation contract so the docs match reality.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Baseline understood: strict passes, and the one warning is the Draft placeholder token gate (which covers the untouched `implementation-summary.md`). Now filling the three planning docs.
+
+
+
+
+
+Two problems: my docs literally contain `[TBD]` (the script counts it as a placeholder), and strict reports 2 errors. Reading the full report.
+
+Fixing the literal placeholder tokens in my own docs, then re-deriving the generated metadata (the two enforced errors are stale `graph-metadata.json` fields).
+
+
+
+Packet now reports 100% with zero placeholders. Applying the derived-metadata repair.
+
+
+
+All writes are confined to the packet. Running the final strict validation.
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

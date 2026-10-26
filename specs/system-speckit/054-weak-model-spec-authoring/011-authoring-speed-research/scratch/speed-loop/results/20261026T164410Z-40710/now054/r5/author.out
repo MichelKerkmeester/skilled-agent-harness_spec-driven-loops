@@ -1,0 +1,55 @@
+I'll start by invoking the spec-kit skill and running the level recommendation.
+
+Level is 0 → using 1 per instructions. Now creating the spec folder.
+
+
+
+Now let me read the target script to ground the documents in its actual behavior.
+
+Let me check the validation baseline and the Level 1 requirements before writing.
+
+
+
+
+
+
+
+
+
+Now writing the three documents.
+
+
+
+
+
+Now running validation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me verify a factual claim in the tasks (that this packet is 100% complete), since the completeness counter greps for `[TBD]` literals.
+
+
+
+
+
+Found a self-referential issue: the docs quote the literal `[TBD]` fixture token, which the completeness tool counts as a placeholder. Fixing that and the T011 boundary claim.
+
+Verifying the documented fixture commands actually produce the claimed percentages.
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

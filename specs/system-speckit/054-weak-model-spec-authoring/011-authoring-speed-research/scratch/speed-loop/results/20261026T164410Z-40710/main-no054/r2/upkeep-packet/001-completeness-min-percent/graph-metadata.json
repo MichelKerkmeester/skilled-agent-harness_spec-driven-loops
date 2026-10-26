@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "zz-bench-authoring/001-completeness-min-percent",
+  "spec_folder": "zz-bench-authoring/001-completeness-min-percent",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completeness min percent",
+      "add a min percent option to calculate completeness",
+      "completeness min percent plan",
+      "completeness min percent tasks",
+      "completeness min percent implementation summary"
+    ],
+    "key_topics": [
+      "completeness",
+      "min",
+      "percent",
+      "option",
+      "calculate",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "calculate-completeness",
+      "already",
+      "knows"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/calculate-completeness-script.vitest.ts",
+      "tests/calculate-completeness-script.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "calculate-completeness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "calculate-completeness-script.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/calculate-completeness-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overall Completion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`calculate-completeness.sh` already knows the one number a caller wants: it prints `Overall Completion: <N>%` in text mode and `\"overallcompletion\": <N>` in JSON mode, then ends with an unconditional `exit 0`",
+    "created_at": "2026-10-26T16:52:46Z",
+    "last_save_at": "2026-10-26T16:55:17.536Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:118bfb4b9d0df6018c36070c5f78160b8678ff31a44d955034c8e70b1c273dd6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "901823d5a9754c34b0fa6e8a96a4b56e77d4cbc907ae3a28f7082a217fc8a10d",
+      "plan.md": "b1517bff14c4e2d61fd27d9b26be31435d29500dbb52e1ebd6886a0d062247aa",
+      "tasks.md": "263a46f21f4af09fbe9f40024a4e4db177636a446c9a35456c06d0e512124238",
+      "implementation-summary.md": "b70fcf48a38915ab00d3941557239828e00db307bbd03e207ec52e19e845adac"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+I'll start by reading the packet documents to understand the existing structure.
+
+
+
+
+
+
+
+Now I'll make the three edits.
+
+Edits applied. Now running the validator.
+
+
+
+
+
+
+
+The whole packet is untracked, so there's no pre-edit baseline. The two errors are stale generated metadata that the validator itself prescribes repairing. Applying the documented repair:
+
+
+
+
+
+REQ-006 — RESULT: PASSED

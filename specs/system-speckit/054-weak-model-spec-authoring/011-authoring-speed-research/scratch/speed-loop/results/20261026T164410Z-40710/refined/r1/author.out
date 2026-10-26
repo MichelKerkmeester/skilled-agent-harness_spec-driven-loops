@@ -1,0 +1,41 @@
+I'll start by loading the spec-kit skill contract and running the level recommendation.
+
+Level 0 → using level 1 per instructions. Now reading the skill contract and creating the packet.
+
+Packet created. Now reading the templates and the target script.
+
+Now let me measure the actual current behavior and read the authoring card.
+
+Let me read a filled Level 1 example and the validation rules.
+
+
+
+Now let me capture the current behavior of the flag that will change.
+
+
+
+
+
+
+
+
+
+Let me verify the fixture recipe I plan to put in `tasks.md` actually produces the number I'll claim.
+
+
+
+Now I'll write the three planning documents.
+
+
+
+No placeholder tokens remain — that warning was spurious. Now `plan.md`.
+
+
+
+All three docs written. Running the strict validator (round 1).
+
+
+
+`RESULT: PASSED` on round 1. Final state check.
+
+specs/zz-bench-authoring/001-completeness-min-percent level=1 RESULT: PASSED

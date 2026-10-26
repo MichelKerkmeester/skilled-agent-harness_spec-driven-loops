@@ -1,0 +1,41 @@
+I'll start by reading the existing packet files to understand their structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll make the three additive edits.
+
+
+
+
+
+Now run strict validation.
+
+The packet's derived metadata is stale after the source-doc edits. Let me preview the suggested repair.
+
+
+
+
+
+
+
+
+
+REQ-012 RESULT: PASSED

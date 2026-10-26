@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "description": "recommend-level.sh always prints its full scored report, so a caller that needs only the level has to parse the block",
+  "keywords": [
+    "recommend-level",
+    "always",
+    "prints",
+    "full",
+    "scored",
+    "report",
+    "caller",
+    "needs",
+    "only",
+    "level",
+    "parse",
+    "block"
+  ],
+  "lastUpdated": "2026-10-26T14:13:58.520Z",
+  "specId": "001",
+  "folderSlug": "recommend-level-quiet-flag",
+  "parentChain": [
+    "zz-bench-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

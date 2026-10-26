@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "spec_folder": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recommend level quiet flag",
+      "add a quiet flag to recommend level sh",
+      "recommend level quiet flag plan",
+      "recommend level quiet flag tasks",
+      "recommend level quiet flag acceptance criteria",
+      "recommend level quiet flag implementation summary"
+    ],
+    "key_topics": [
+      "recommend",
+      "level",
+      "quiet",
+      "flag",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "text-mode",
+      "run"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+      "runtime/cli/tests/test-phase-system.js",
+      "runtime/cli/tests/test-phase-validation.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommend-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-system.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-validation.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-validation.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Run",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blocked Task Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A text-mode run prints a leading blank line, the level line, a score line, a six-row breakdown and a phase section, about 20 lines for one decision",
+    "created_at": "2026-10-26T13:40:30Z",
+    "last_save_at": "2026-10-26T13:46:35.532Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:210f3260c78015ff3ea80d501d6f4463749a3d9b923ef9e0f86c1c9c73c6fe9e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fbc2c0038a81e93bce2f43ff5d6d1aeb8e4a0dc87dc765b2d70c944ea53c465b",
+      "plan.md": "8df57a89a1d7d1ff475434dbcf3d9d87a3a4e1fd8fd37b4807079c536f95aaf3",
+      "tasks.md": "0fea4d02b80330bba45883ea4eec7d2bb5d1d8cfccf2de19c139a39469c80a75",
+      "implementation-summary.md": "74b49690a6139b6b3bd9945244723ad6848799c764cef1078ac192dc94110708"
+    },
+    "last_active_at": null
+  }
+}

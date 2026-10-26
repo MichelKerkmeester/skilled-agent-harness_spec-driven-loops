@@ -1,0 +1,19 @@
+I'll start by reading the packet files to understand the current structure.
+
+
+
+
+
+
+
+
+
+Now running the validator.
+
+The validator reports stale derived metadata caused by my doc edits. Its own repair tool is the fix:
+
+
+
+
+
+REQ-008 — RESULT: PASSED

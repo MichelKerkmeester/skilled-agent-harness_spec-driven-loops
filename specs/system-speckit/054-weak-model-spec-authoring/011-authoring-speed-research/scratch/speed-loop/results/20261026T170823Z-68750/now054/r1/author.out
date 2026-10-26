@@ -1,0 +1,41 @@
+I'll start by running the required setup commands.
+
+Recommended level is 0, so per instructions I'll use level 1. Let me load the spec-kit skill guidance first.
+
+Folder created. Now let me read the scaffolded files and the relevant skill guidance.
+
+Now let me read the target script to ground the spec in its real behavior.
+
+Let me check the validator's expectations and an existing passing packet for format reference.
+
+
+
+
+
+
+
+
+
+
+
+I have the format reference and the validator's constraints. Now writing `spec.md`.
+
+Now `plan.md`.
+
+
+
+Now `tasks.md`.
+
+Now running the strict validator.
+
+
+
+
+
+The two errors are stale derived metadata from the scaffold. Applying the sanctioned repair (writes only inside the packet):
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

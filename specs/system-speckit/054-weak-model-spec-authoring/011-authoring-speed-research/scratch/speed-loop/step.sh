@@ -5,6 +5,8 @@
 # frozen quality guards, and write <results dir>/<variant>/r<round>/<step>.kv, which loop.sh
 # renders as one results.tsv row. Every exit, early ones included, leaves a .kv file.
 # --last removes the packet afterwards so the sandbox is clean for the next round.
+# The brief, packet, scored documents and upkeep check come from the task in SPEED_TASK,
+# which loop.sh exports (lib.sh set_task).
 . "$(dirname "$0")/lib.sh"
 V=$1; R=$2; STEP=$3; OUT=$4; TO=$5; ORD=$6; LAST=0
 for a in "$7" "$8"; do case $a in --dry-run) DRY=1;; --last) LAST=1;; esac; done
@@ -55,8 +57,11 @@ fi
 # killed once it returns or times out. Print mode cannot show Devin's workspace-trust prompt
 # and refuses an untrusted directory at exit 1, and every sandbox is a new directory, so
 # the trust check is skipped per dispatch rather than by trusting each sandbox in config.
+# Newer trees self-heal stale package builds at session start. A sandbox does not prebuild
+# every package, so that rebuild would land inside the timed step and write build output;
+# trees without the hook ignore the switch, so every variant runs under the same conditions.
 run "date +%s > '$P.t0'"
-run "AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 perl -e 'setpgrp(0,0); alarm shift; exec @ARGV' $TO devin -p --model $MODEL --permission-mode dangerous --respect-workspace-trust=false -- \"\$(cat '$P.brief')\" </dev/null > '$P.out' 2> '$P.err' & DPID=\$!; echo \$DPID > '$P.pgid'; wait \$DPID; echo \$? > '$P.rc'; date +%s > '$P.t1'; pkill -9 -g \$DPID 2>/dev/null; true"
+run "AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 SPECKIT_DIST_AUTO_REBUILD=0 perl -e 'setpgrp(0,0); alarm shift; exec @ARGV' $TO devin -p --model $MODEL --permission-mode dangerous --respect-workspace-trust=false -- \"\$(cat '$P.brief')\" </dev/null > '$P.out' 2> '$P.err' & DPID=\$!; echo \$DPID > '$P.pgid'; wait \$DPID; echo \$? > '$P.rc'; date +%s > '$P.t1'; pkill -9 -g \$DPID 2>/dev/null; true"
 
 # Leftovers: any process outside this loop's own process group whose working directory
 # or command line is inside the sandbox, such as a detached hook follower.
@@ -86,7 +91,8 @@ run "python3 '$LOOP/audit.py' '$DB' '$T' \$(cat '$P.t0') \$(cat '$P.t1') '$P' > 
 # Quality guards, scored as the earlier authoring benchmark scored them.
 run "bash $S/runtime/cli/spec/validate.sh $PK --strict > '$P.validate' 2>&1; true"
 run "rm -rf '$P-packet' && { [ -d '$T/$TRACK' ] && cp -R '$T/$TRACK' '$P-packet' || true; }"
-run "bash '$ANCHOR_RULE' '$P-packet/001-recommend-level-quiet-flag' '$BWT' > '$P.anchors'"
+# The anchor rule scores a Level 3 packet only; a task without it records NA.
+[ "$ANCHORS" = 1 ] && run "bash '$ANCHOR_RULE' '$P-packet/$PKN' '$BWT' > '$P.anchors'"
 [ "$STEP" = upkeep ] && run "$GREP -oE 'REQ-[0-9]+' '$T/$PK/spec.md' 2>/dev/null | sort -u > '$P.req-after'"
 if [ "$LAST" = 1 ]; then
   run "rm -rf '$T/$TRACK'"
@@ -99,13 +105,13 @@ SECS=$((S_T1 - S_T0))
 # is still a capped run.
 TIMED_OUT=0; { [ "$RC" = 142 ] || [ "$SECS" -ge "$TO" ]; } && TIMED_OUT=1
 if [ -d "$P-packet" ]; then
-  C=$P-packet/001-recommend-level-quiet-flag
-  DOCS="$C/spec.md $C/plan.md $C/tasks.md $C/acceptance-criteria.md"
+  C=$P-packet/$PKN
+  DOCS=; for doc in $DOC_LIST; do DOCS="$DOCS $C/$doc"; done
   STRICT=$($GREP -c 'RESULT: PASSED' "$P.validate")
   BARE=$($GREP -F -o -f "$HINTS" $DOCS 2>/dev/null | wc -l | tr -d ' ')
   TOKEN=$(rg -o --no-filename '\[YOUR_VALUE_HERE: [^]]*\]' $DOCS 2>/dev/null | wc -l | tr -d ' ')
   HINTS_LEFT=$((BARE + TOKEN))
-  MISSING=$(sed -E 's/^counted=([0-9]+).*/\1/' "$P.anchors")
+  MISSING=NA; [ "$ANCHORS" = 1 ] && MISSING=$(sed -E 's/^counted=([0-9]+).*/\1/' "$P.anchors")
 else
   STRICT=0; HINTS_LEFT=NA; MISSING=NA
 fi
@@ -120,10 +126,12 @@ PROCS=$(wc -l < "$P.procs" | tr -d ' ')
 if [ "$OOS" != 0 ] || $GREP -vE '/\.dist-freshness-[^/]*\.json$' "$P.side-writes" | $GREP -qE '/(dist|node_modules)/'; then touch "$D/DIRTY"; fi
 APPLIED=NA
 if [ "$STEP" = upkeep ]; then
+  # Applied: some new REQ id appears in every document the task's upkeep check names.
   APPLIED=0
   for id in $(comm -13 "$P.req-before" "$P.req-after"); do
-    $GREP -q "$id" "$P-packet/001-recommend-level-quiet-flag/tasks.md" 2>/dev/null &&
-      $GREP -q "$id" "$P-packet/001-recommend-level-quiet-flag/acceptance-criteria.md" 2>/dev/null && APPLIED=1
+    hit=1
+    for doc in $UPKEEP_DOCS; do $GREP -q "$id" "$P-packet/$PKN/$doc" 2>/dev/null || hit=0; done
+    [ "$hit" = 1 ] && APPLIED=1
   done
 fi
 kv rc "$RC"; kv timed_out "$TIMED_OUT"; kv seconds "$SECS"

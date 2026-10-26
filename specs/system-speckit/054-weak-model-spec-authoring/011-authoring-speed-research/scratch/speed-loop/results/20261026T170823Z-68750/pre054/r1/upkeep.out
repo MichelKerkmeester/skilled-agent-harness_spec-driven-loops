@@ -1,0 +1,19 @@
+I'll start by reading the existing packet files to understand the current structure.
+
+
+
+
+
+Now I'll make the two edits.
+
+Now running the strict validator.
+
+
+
+The validator flags stale generated metadata (graph-metadata.json fingerprint) after the spec.md edit. Applying its own repair path, which writes only inside the packet:
+
+
+
+
+
+REQ-007 — RESULT: PASSED

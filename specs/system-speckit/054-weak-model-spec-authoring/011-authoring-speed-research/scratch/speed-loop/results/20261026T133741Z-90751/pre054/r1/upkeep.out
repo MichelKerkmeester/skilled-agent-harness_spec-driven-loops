@@ -1,0 +1,33 @@
+I'll start by reading the packet files to understand the existing structure.
+
+Now let me check the validator's rules and get a baseline run before editing.
+
+Baseline is clean (0 errors). Now let me check how the validator counts tasks and what it checks in these three files.
+
+
+
+Baseline passes. Now I'll add the requirement, task, and acceptance row.
+
+Now the task entry in tasks.md.
+
+
+
+
+
+Validation now flags generated-metadata drift caused by the spec edit. Let me preview the repository's repair tool before applying it.
+
+
+
+
+
+The repair is the repository's own sanctioned re-derive for generated graph metadata, and it writes only inside the packet. Applying it.
+
+
+
+Validation passes. Let me confirm the diff is scoped to the packet and contains only the intended additions.
+
+
+
+
+
+REQ-011 RESULT: PASSED

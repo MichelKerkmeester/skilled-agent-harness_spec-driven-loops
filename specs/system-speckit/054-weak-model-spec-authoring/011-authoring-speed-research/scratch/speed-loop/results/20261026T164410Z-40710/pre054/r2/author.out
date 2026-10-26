@@ -1,0 +1,59 @@
+I'll start by invoking the required skill, then run the level recommendation and scaffolding steps.
+
+Level 0 → I'll use level 1 as instructed. Reading the skill contract and scaffolding the folder.
+
+Folder created. Now reading the scaffolded templates and validation contract.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me check the sufficiency rule's thresholds before writing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now writing the three documents. Starting with `spec.md`.
+
+
+
+
+
+
+
+All three documents written. Running the strict validation gate.
+
+Validation found two generated-metadata errors: `graph-metadata.json` is stale relative to my edited docs. Let me preview the repository's own repair, then apply it.
+
+
+
+
+
+
+
+
+
+The repair would also rewrite `implementation-summary.md`'s packet pointer, which my instructions say to leave untouched. I'll run the graph-metadata backfill directly instead, and verify the summary stays byte-identical.
+
+
+
+Validation passes. Final scope check:
+
+specs/zz-bench-authoring/001-completeness-min-percent level=1 RESULT: PASSED

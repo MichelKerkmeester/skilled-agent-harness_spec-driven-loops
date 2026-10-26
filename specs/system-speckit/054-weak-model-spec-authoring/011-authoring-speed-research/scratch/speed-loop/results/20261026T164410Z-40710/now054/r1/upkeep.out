@@ -1,0 +1,41 @@
+I'll start by reading the existing packet files to understand the structure.
+
+
+
+
+
+
+
+
+
+
+
+Now I'll add the requirement row (next free id is REQ-007) and the task line.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The two errors are derived-metadata staleness caused by my doc edits. Applying the sanctioned repair (writes only inside the packet):
+
+
+
+
+
+REQ-007 RESULT: PASSED

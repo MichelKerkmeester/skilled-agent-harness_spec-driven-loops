@@ -1,0 +1,29 @@
+I'll start by reading the existing packet files to understand the structure.
+
+
+
+
+
+Let me get a baseline validator run before editing.
+
+
+
+
+
+
+
+Baseline: `RESULT: PASSED` (0 errors, 1 pre-existing warning). Now adding the requirement to the P1 table.
+
+
+
+Now the validator run.
+
+The edit invalidated the packet's derived metadata (`graph-metadata.json`). Let me inspect the suggested repair tool before using it.
+
+Dry run names exactly one write — re-deriving `graph-metadata.json` inside the packet. Applying it.
+
+
+
+
+
+REQ-006 — RESULT: PASSED

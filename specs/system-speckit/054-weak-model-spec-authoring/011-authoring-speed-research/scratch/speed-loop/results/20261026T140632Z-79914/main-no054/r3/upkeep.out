@@ -1,0 +1,28 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+
+
+
+
+
+
+
+
+Baseline validates clean. Now making the three scoped additions.
+
+
+
+Validator flags stale derived metadata (expected after a doc edit). Previewing the repair before applying:
+
+
+
+
+
+
+
+
+
+REQ-008
+RESULT: PASSED

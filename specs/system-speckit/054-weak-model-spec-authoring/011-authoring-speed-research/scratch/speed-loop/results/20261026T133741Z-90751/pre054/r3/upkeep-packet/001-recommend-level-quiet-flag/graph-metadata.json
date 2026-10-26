@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "spec_folder": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recommend level quiet flag",
+      "add a quiet flag to recommend level sh",
+      "recommend level quiet flag plan",
+      "recommend level quiet flag tasks",
+      "recommend level quiet flag acceptance criteria",
+      "recommend level quiet flag implementation summary"
+    ],
+    "key_topics": [
+      "recommend",
+      "level",
+      "quiet",
+      "flag",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "every",
+      "invocation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+      "runtime/cli/spec/recommend-level.sh",
+      "specs/zz-bench-authoring/001-recommend-level-quiet-flag/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/zz-bench-authoring/001-recommend-level-quiet-flag/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommend-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every invocation of `recommend-level.sh` writes a fixed-shape report to stdout: a leading blank line, `Recommended Level: N (Name)`, a score and confidence line, a blank line, a six-row breakdown, and — by default — a four-line phase recommendation block",
+    "created_at": "2026-10-26T13:58:20Z",
+    "last_save_at": "2026-10-26T14:04:23.055Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:73676394e9dbcec90a409fb482af32907a3e6442cba7a999ddb2414c7c9fa601",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b845b4a58a8e218c34af5cd30723b8e193648bc46e3ad5984dcfd61b74a00ce0",
+      "plan.md": "46de84448918394d7b8c18939406768f220f9597b5b1e9a7b89ab4245105e6e7",
+      "tasks.md": "5f10a094ef5cac8551ac87594da5cbf71e033627ea5943f15b6019d5916a924b",
+      "implementation-summary.md": "54b4d0f473cf1ad63294f9691c8cb5dc848c02c0352251dac165c8b03481c4ef"
+    },
+    "last_active_at": null
+  }
+}

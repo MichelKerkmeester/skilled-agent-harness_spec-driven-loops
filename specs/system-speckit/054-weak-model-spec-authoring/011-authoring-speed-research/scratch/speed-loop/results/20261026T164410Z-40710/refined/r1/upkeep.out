@@ -1,0 +1,21 @@
+I'll start by reading the packet files I need to modify.
+
+
+
+Baseline validation first, so I can tell what my change affects:
+
+
+
+
+
+
+
+Now I'll add the requirement row (next free id is REQ-006) to the P1 table:
+
+
+
+
+
+
+
+REQ-006 RESULT: PASSED

@@ -1,0 +1,47 @@
+I'll start by reading the existing packet files to understand their structure.
+
+
+
+Baseline passes. Let me check the graph metadata, since drift detection could react to doc edits.
+
+
+
+
+
+Now I'll add the requirement, task, and acceptance row.
+
+
+
+
+
+
+
+Now running strict validation.
+
+Validation now flags stale derived metadata. The validator names its own repair path — let me preview it first.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The repair refreshed generated metadata (hashes, fingerprint, timestamp) and normalized a stale `scaffold/...` packet pointer. Re-running validation:
+
+
+
+
+
+REQ-010 RESULT: PASSED

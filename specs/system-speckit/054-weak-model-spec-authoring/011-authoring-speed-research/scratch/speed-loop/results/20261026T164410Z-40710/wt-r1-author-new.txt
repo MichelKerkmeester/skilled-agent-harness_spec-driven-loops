@@ -1,0 +1,1 @@
+> ?? specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-016-scaffold-filler-section-trim.md

@@ -13,7 +13,8 @@
 #      author, so the model sees a clean status and a history that names no variant;
 #   6. the same warm-up in every variant: one create and one strict validate on a
 #      throwaway packet, so no variant pays a cold cache inside a timed step.
-# Prints the preparation seconds and appends them to prep/prep-times.tsv.
+# Prints the preparation seconds and appends them to prep/prep-times.tsv, with the leak
+# scan for the task in SPEED_TASK (default quiet, which has no terms file).
 . "$(dirname "$0")/lib.sh"
 V=${1:?variant}; [ "$2" = --dry-run ] && DRY=1
 REV=$(variant_rev "$V") || { echo "unknown variant $V"; exit 2; }
@@ -62,8 +63,13 @@ ADV_OK=missing; [ -f "$T/$ADV/dist/hooks/claude/user-prompt-submit.js" ] && [ -f
 VIS_OK=missing; [ -f "$T/$VIS/dist/prompt-evidence.js" ] && VIS_OK=built
 # Proof the answer key is gone: files outside node_modules and .git naming the task's packet.
 REFS=$(rg -l -uu -g '!**/node_modules/**' -g '!.git' recommend-level-quiet-flag "$T" 2>/dev/null | wc -l | tr -d ' ')
+# Proof no template, example or card carries the current task's answer: files under the
+# templates folders and the card that name a term in the task's terms file (lib.sh
+# term_refs). The folder-name count above misses a template that uses the task as its
+# worked example. NA when the task has no terms file; loop.sh refuses anything but 0.
+TERM_REFS=$(term_refs "$T")
 HEAD_C=$(git_sbx "$T" rev-parse HEAD)
-NOTES="advisor_dist=$ADV_OK vision_dist=$VIS_OK quiet_flag_refs=$REFS base=$BASE"
+NOTES="advisor_dist=$ADV_OK vision_dist=$VIS_OK quiet_flag_refs=$REFS task=$TASK task_term_refs=$TERM_REFS base=$BASE"
 printf 'variant=%s rev=%s id=%s head=%s prepared_at=%s seconds=%s %s\n' "$V" "$REV" "$ID" "$HEAD_C" "$T1" "$SECS" "$NOTES" > "$D/ready"
 sbx_set "$V" "$ID"
 mkdir -p "$LOOP/prep"
@@ -71,4 +77,5 @@ mkdir -p "$LOOP/prep"
 printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$V" "$REV" "$HEAD_C" "$(date -u -r "$T1" +%Y-%m-%dT%H:%M:%SZ)" "$SECS" "$NOTES" >> "$LOOP/prep/prep-times.tsv"
 [ "$ADV_OK" = built ] && [ "$VIS_OK" = built ] || echo "WARN: $V hook builds incomplete ($NOTES); every variant should match"
 [ "$REFS" = 0 ] || echo "WARN: $V sandbox still names the task's packet in $REFS file(s)"
+[ -z "$TERMS" ] || [ "$TERM_REFS" = 0 ] || echo "WARN: $V templates or card name a term of task $TASK in $TERM_REFS file(s); loop.sh will refuse to dispatch"
 echo "prepared $V seconds=$SECS $NOTES"

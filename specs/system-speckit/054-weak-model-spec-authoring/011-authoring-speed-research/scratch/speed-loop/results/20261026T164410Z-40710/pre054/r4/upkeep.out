@@ -1,0 +1,47 @@
+I'll start by reading the existing packet files to understand the structure.
+
+Now let me check the packet's other files and the validator to understand what strict validation checks.
+
+
+
+
+
+Let me capture the baseline validation state before editing.
+
+Baseline is `RESULT: PASSED`. Now I'll add the requirement row (next free id is REQ-005, since REQ-001–004 are taken) and the implementing task (next free is T011).
+
+Both edits landed. Now running the strict validator.
+
+The validator now reports 2 errors. Let me see the full report.
+
+Two errors: a stale source fingerprint and a drifted derived description in `graph-metadata.json`. Let me understand how the derived metadata is computed before repairing.
+
+
+
+The packet is untracked in git, so no diff baseline. Let me see exactly what the sanctioned repair would change (dry run only).
+
+
+
+Let me read the rule implementation to know exactly what "stored" and "fresh" refer to.
+
+
+
+The drift check is skipped while source hashes match — my edits made the docs stale, exposing a pre-existing description mismatch. Let me see what the sanctioned re-derive actually writes.
+
+
+
+
+
+
+
+The `fresh` value is the shared synopsis extractor's problem-sentence fallback, so `description.json`'s stored description is the drifted field. I'll run the validator's recommended derived-metadata repair, then re-validate.
+
+
+
+
+
+
+
+Validation passes now. Let me verify final content and that no other packet files were touched.
+
+REQ-005 — RESULT: PASSED

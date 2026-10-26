@@ -1,0 +1,49 @@
+I'll start by reading the packet documents to understand the existing structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll add the requirement row to the P1 table (next free id is REQ-007).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The edit triggered the generated-metadata gate (spec.md's hash changed). I'll run the validator's prescribed repair, which re-derives the generated metadata inside the packet.
+
+
+
+
+
+
+
+REQ-007 RESULT: PASSED

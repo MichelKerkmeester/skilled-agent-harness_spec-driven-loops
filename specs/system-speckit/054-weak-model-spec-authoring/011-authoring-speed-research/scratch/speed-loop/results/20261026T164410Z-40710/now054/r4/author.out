@@ -1,0 +1,33 @@
+I'll start by running the level recommendation and reading the spec-kit skill guidance.
+
+Level 0 → using level 1. Now creating the folder and loading authoring contracts.
+
+
+
+
+
+
+
+
+
+
+
+Now writing the three documents.
+
+
+
+
+
+
+
+
+
+Now running strict validation.
+
+Validation flags derived metadata (description.json / graph-metadata.json) as stale after my spec edits. Regenerating those derived files inside the packet.
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

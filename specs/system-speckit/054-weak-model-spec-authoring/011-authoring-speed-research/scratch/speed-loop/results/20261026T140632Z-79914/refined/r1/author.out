@@ -1,0 +1,99 @@
+I'll start by invoking the spec-kit skill to follow the repository's spec-document conventions, then run the scaffolding command.
+
+Folder created. Now let me read the scaffolds and the skill's Level 3 requirements.
+
+Now let me read the target script to document its real behavior, plus the skill's Level 3 doc requirements.
+
+Let me see the remainder of the script and the spec-authoring card for doc requirements.
+
+Let me read a filled Level 3 example to match section shape and content depth.
+
+
+
+
+
+
+
+Let me get a baseline validation run and read the Level 3 task/AC examples.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me verify the real consumers and any existing tests for this script before writing claims about them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have the real behavior and evidence I need. Now I'll write `spec.md`.
+
+
+
+No real placeholder in that file — the hook flagged a regex bracket. Now `plan.md`.
+
+
+
+Now `tasks.md`, including the AI execution protocol the Level 3 gate expects.
+
+Now `acceptance-criteria.md`.
+
+All four docs written. Running the strict validator.
+
+
+
+Both errors are generated-metadata drift. Previewing the repair before applying it.
+
+
+
+
+
+Passed. Verifying the final state: no leftover tokens, and nothing written outside the packet.
+
+
+
+
+
+
+
+
+
+
+
+Applying four small accuracy/polish fixes found in review.
+
+Those hook warnings are its checkbox false positive — the validator is authoritative. Since I edited source docs, generated metadata needs re-deriving before the next validate run.
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag — RESULT: PASSED

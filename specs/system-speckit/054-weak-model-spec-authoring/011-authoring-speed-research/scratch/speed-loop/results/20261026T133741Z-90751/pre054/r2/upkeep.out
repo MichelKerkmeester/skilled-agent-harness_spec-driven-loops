@@ -1,0 +1,65 @@
+I'll start by reading the existing packet files to understand the current structure.
+
+Now let me understand the validator's constraints before editing.
+
+Let me capture the baseline validation state before editing.
+
+Baseline passes. Let me check the validator's rules for requirement/task traceability before I choose formats.
+
+
+
+
+
+Let me check what warnings `recommend-level.sh` actually emits, so the acceptance row names a real verification path.
+
+Now I'll make the three scoped edits.
+
+Let me check what those advisory warnings are flagging.
+
+
+
+
+
+
+
+
+
+
+
+All five placeholder hits are pre-existing (implementation-summary stubs and a session-id field), none from my edits. Now validating.
+
+
+
+The failure is derived-metadata staleness triggered by editing the source docs. Let me preview the mechanical repair.
+
+
+
+
+
+
+
+
+
+Let me snapshot the packet before any metadata repair, then check how the re-derive is invoked.
+
+
+
+
+
+
+
+Now I'll re-derive only the generated graph metadata (the minimal fix the validator asks for).
+
+
+
+
+
+
+
+
+
+Validation passes. Final-state verification of the diff and scope:
+
+
+
+REQ-011 RESULT: PASSED

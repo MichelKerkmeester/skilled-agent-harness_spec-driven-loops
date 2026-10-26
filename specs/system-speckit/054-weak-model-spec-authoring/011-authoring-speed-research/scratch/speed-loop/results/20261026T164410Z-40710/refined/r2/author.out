@@ -1,0 +1,53 @@
+I'll start by loading the spec-kit skill and running the level recommendation.
+
+Level 0 → using level 1 per instructions. Now creating the spec folder.
+
+Folder created. Let me read the scaffolded templates and the authoring card.
+
+
+
+Now let me read the actual script to ground the spec in real behavior.
+
+Let me capture real measured behavior from the script.
+
+
+
+
+
+Cleaning up the probe fixture, then writing the docs.
+
+
+
+
+
+spec.md is token-clean. Removing the leftover FILL instruction comment and writing plan.md.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Confirmed: the 10 warnings come only from `implementation-summary.md`, which I must leave as created. Now writing tasks.md.
+
+
+
+Now running the validator.
+
+Anchor nesting broke — I dropped the `problem` close marker. Let me inspect and fix.
+
+
+
+Now applying the derived-metadata repair the validator named.
+
+
+
+
+
+`specs/zz-bench-authoring/001-completeness-min-percent` | level 1 | `RESULT: PASSED`

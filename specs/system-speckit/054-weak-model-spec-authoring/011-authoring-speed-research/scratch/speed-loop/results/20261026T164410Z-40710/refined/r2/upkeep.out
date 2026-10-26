@@ -1,0 +1,13 @@
+I'll start by reading the packet files to understand the existing structure.
+
+Now let me check what the validator enforces before editing.
+
+Validator has no REQ/T-id sequencing checks. Making both edits.
+
+
+
+Both edits landed. Running the validator.
+
+
+
+REQ-006 RESULT: PASSED

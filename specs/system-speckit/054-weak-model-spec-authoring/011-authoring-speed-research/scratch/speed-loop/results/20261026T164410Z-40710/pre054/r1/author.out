@@ -1,0 +1,71 @@
+I'll start by invoking the spec-kit skill and running the level recommendation.
+
+Level 0 → I'll use level 1. Reading the skill contract and creating the packet.
+
+
+
+Now let me read the target script and the validation contract.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll author the three documents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Only the untouched `implementation-summary.md` scaffold remains. Now running validation.
+
+Two derived-metadata errors. Repairing them with the validator's own tool (writes stay inside the packet):
+
+
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

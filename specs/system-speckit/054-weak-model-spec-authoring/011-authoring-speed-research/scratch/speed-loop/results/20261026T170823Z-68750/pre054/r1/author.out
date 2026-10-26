@@ -1,0 +1,91 @@
+I'll start by loading the spec-kit skill contract and running the level recommendation.
+
+Level 0 → using level 1. Now creating the packet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now writing the three documents. Starting with `spec.md`:
+
+
+
+
+
+
+
+
+
+The post-edit hook flagged angle-bracket placeholders. Removing them:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`spec.md` is clean. Now `plan.md` and `tasks.md` (the `implementation-summary.md` hits are scaffold stubs I must leave untouched):
+
+
+
+
+
+
+
+All remaining placeholder hits are in the untouched `implementation-summary.md` scaffold, which the task says to leave as created. Running validation:
+
+Both errors are stale derived metadata in `graph-metadata.json`. The validator names the fix; let me preview it first:
+
+
+
+
+
+
+
+Validation passes. Final-state check — confirming scope and that `implementation-summary.md` is untouched:
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

@@ -1,0 +1,49 @@
+I'll start by reading the existing packet documents.
+
+
+
+Now let me check the validator's rules before editing.
+
+
+
+Let me establish a baseline by running the validator before any edits.
+
+
+
+
+
+Baseline passes. Now making the three edits.
+
+
+
+
+
+
+
+Two findings: the placeholder warning is pre-existing (Warnings: 1 in baseline too); the new error is a `SOURCE_FINGERPRINT_MISMATCH` in generated metadata caused by my doc edits. Let me preview the sanctioned repair.
+
+
+
+
+
+
+
+
+
+
+
+The repair tool would also rewrite packet pointers (pre-existing identity drift, not caused by my edits). I'll run only its graph-metadata re-derive step, then verify what changed.
+
+
+
+
+
+
+
+Only `graph-metadata.json` changed, as expected. Re-running validation.
+
+
+
+
+
+REQ-007 RESULT: PASSED

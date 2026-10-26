@@ -1,0 +1,47 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+Now let me check the baseline validation state and the validator's requirements.
+
+
+
+Baseline passes. Let me check what warnings the script emits so the acceptance row is grounded.
+
+
+
+Now I'll make the three edits. First, `spec.md` — adding REQ-008 to the P1 table:
+
+Now `tasks.md` — adding T012 to Phase 2:
+
+Now `acceptance-criteria.md` — adding AC-012:
+
+
+
+Now running the validator:
+
+Two errors — let me see what they are.
+
+
+
+The two errors are derived-metadata staleness from my source edits. Let me preview the sanctioned repair before applying:
+
+
+
+The errors are stale derived metadata in `graph-metadata.json`, which my source edits invalidated. Let me check what the repair touches before applying it:
+
+
+
+Repo tracking doesn't cover this folder, so I'll snapshot the packet first, then apply the repair and diff to keep changes minimal.
+
+
+
+
+
+The repair changed only derived metadata: `graph-metadata.json` fingerprints/hashes, plus a `packet_pointer` normalization in `implementation-summary.md` frontmatter (the fingerprint covers that file, so reverting it would re-break integrity). No prose changed. Validating:
+
+PASSED. Let me verify the three edits survived the repair and confirm nothing else in the packet changed:
+
+
+
+REQ-008 RESULT: PASSED

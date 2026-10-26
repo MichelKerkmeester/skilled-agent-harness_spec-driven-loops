@@ -1,0 +1,18 @@
+{
+  "specFolder": "zz-bench-authoring/001-completeness-min-percent",
+  "description": "Add a min-percent option to calculate-completeness.sh",
+  "keywords": [
+    "min-percent",
+    "option",
+    "calculate-completeness"
+  ],
+  "lastUpdated": "2026-10-26T17:14:58.375Z",
+  "specId": "001",
+  "folderSlug": "completeness-min-percent",
+  "parentChain": [
+    "zz-bench-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

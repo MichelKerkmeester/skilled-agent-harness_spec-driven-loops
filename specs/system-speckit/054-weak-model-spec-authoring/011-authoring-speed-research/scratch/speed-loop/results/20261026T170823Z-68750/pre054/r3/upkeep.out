@@ -1,0 +1,25 @@
+I'll start by reading the existing packet files to understand the structure.
+
+Now I'll add the requirement to the P1 table (next free id: REQ-008) and the implementing task.
+
+Both edits applied. Now running the strict validator.
+
+Validator reports 2 enforced metadata errors. Let me inspect the derived metadata and whether the drift predates my edit.
+
+
+
+The preview would only re-derive graph metadata, not `description.json`. Let me check how the drift check computes its "fresh" value before applying anything.
+
+
+
+The drift was masked pre-edit by the hash shortcut (line 253) — my doc edit forced a re-derive, exposing a pre-existing `description.json` mismatch. Let me check what the repair tool actually writes.
+
+
+
+Repair re-derives graph metadata only, which restamps `source_doc_hashes`/`source_fingerprint` — that is what the validator offers. Applying it.
+
+
+
+Validation passes. Final-state check on the two content edits and what repair touched:
+
+REQ-008 — RESULT: PASSED

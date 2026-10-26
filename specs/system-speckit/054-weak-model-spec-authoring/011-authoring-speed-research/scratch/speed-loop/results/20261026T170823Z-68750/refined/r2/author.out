@@ -1,0 +1,39 @@
+I'll start by loading the spec-kit skill and running the level recommendation.
+
+Level 0 → using level 1 per instructions.
+
+
+
+Now let me inspect the target script so the documents are grounded in real behavior.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now writing the three planning documents. Starting with `spec.md`.
+
+`spec.md` written. Now `plan.md`.
+
+
+
+Now `tasks.md`.
+
+
+
+All three documents written. Running strict validation.
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

@@ -1,0 +1,2 @@
+> ?? specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch/baseline/suite-after-cli.txt
+> ?? specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch/baseline/suite-after-runtime.txt

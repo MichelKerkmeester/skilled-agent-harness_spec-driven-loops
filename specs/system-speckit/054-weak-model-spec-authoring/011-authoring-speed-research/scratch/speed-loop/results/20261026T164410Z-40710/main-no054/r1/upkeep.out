@@ -1,0 +1,47 @@
+I'll start by reading the target packet files.
+
+
+
+Let me capture a baseline validation run before editing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll add the requirement row to `spec.md`.
+
+Now the task line in `tasks.md`.
+
+
+
+Now running validation.
+
+Validation now reports two generated-metadata errors. Let me preview the repair the validator recommends before applying it.
+
+
+
+
+
+
+
+The validator's own repair path re-derives `graph-metadata.json`, which resets the source hashes the drift check keys on. Let me snapshot the file, apply, and diff.
+
+
+
+Metadata-only diff. Re-running validation.
+
+Validation passes. Final check that only the intended document lines changed.
+
+
+
+REQ-007 RESULT: PASSED

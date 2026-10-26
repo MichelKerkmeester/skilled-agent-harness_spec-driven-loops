@@ -1,0 +1,45 @@
+I'll start by running the level recommendation, then create the spec folder.
+
+Level 0 recommended → using level 1 per instructions.
+
+
+
+Now let me read the target script to document it accurately.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I have the full picture of the script and the local doc conventions. Writing the three planning documents.
+
+
+
+spec.md is clean (0 placeholders). Now plan.md.
+
+
+
+Let me verify the baseline claims I recorded in plan.md, then run validation.
+
+Baselines confirmed. Running validation.
+
+Two generated-metadata errors. Previewing the repair first.
+
+
+
+
+
+PASSED. Verifying the final state — that only allowed paths changed and implementation-summary.md is untouched.
+
+
+
+
+
+`specs/zz-bench-authoring/001-completeness-min-percent` | level 1 | RESULT: PASSED

@@ -1,0 +1,99 @@
+I'll start by loading the spec-kit skill and running the scaffolding command.
+
+Folder created. Now let me read the scaffolds and the target script.
+
+
+
+Let me run the validator on the scaffold first to see the baseline error set.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me capture the current script's baseline behavior so the docs cite real numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I have what I need. Writing `spec.md`.
+
+Now `plan.md`.
+
+Now `tasks.md`, including the AI execution protocol section the Level 3 template expects.
+
+
+
+Now `acceptance-criteria.md`.
+
+
+
+All four documents are written. Running validation.
+
+Validation flagged stale derived metadata. Let me check what the repair tool writes before running it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Only `graph-metadata.json` changed; `implementation-summary.md` is untouched. Re-running validation.
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag RESULT: PASSED

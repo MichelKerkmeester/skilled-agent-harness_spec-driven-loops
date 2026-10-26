@@ -1,0 +1,21 @@
+I'll start by reading the existing packet files to understand the current structure.
+
+Both files read. Next free REQ id is REQ-011 (tables run REQ-001→REQ-010), and the next free task id is T013.
+
+Both edits landed. Running the strict validator now.
+
+Validator reports two generated-metadata errors. Let me inspect those derived files before deciding on a fix.
+
+
+
+The packet is untracked (fresh scaffold), so I can't diff against HEAD. Let me check what the suggested repair tool actually touches.
+
+Repair tool is dry-run by default and only rewrites derived metadata. Let me preview it.
+
+Only the graph metadata re-derive is planned — no authored doc changes. Applying it, then re-running validation.
+
+
+
+
+
+REQ-011 RESULT: PASSED

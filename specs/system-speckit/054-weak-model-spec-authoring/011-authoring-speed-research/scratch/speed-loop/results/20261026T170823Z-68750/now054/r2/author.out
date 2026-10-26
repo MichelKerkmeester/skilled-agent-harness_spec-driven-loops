@@ -1,0 +1,41 @@
+I'll start by running the recommend-level script to determine the level, then create the spec folder.
+
+Level 0 → using level 1. Now creating the spec folder and loading the spec-kit skill.
+
+
+
+Now let me read the actual script to ground the spec in its real behavior.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I have the full picture. Writing `spec.md`:
+
+Now `plan.md`:
+
+Now `tasks.md`:
+
+
+
+Now running validation:
+
+Two errors: stale generated metadata after my spec edits. The validator names its own repair tool — running it:
+
+
+
+`RESULT: PASSED`. Let me verify the final state and confirm the change is scoped to the packet:
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

@@ -1,0 +1,35 @@
+I'll start by reading the existing packet files to understand their structure.
+
+
+
+Baseline passes. Let me check what validate.sh enforces about task/REQ ids before I choose placement.
+
+
+
+
+
+
+
+
+
+Baseline is green. Now making the three additions.
+
+
+
+
+
+
+
+Derived metadata went stale from the edit. Let me preview the sanctioned repair before applying it.
+
+
+
+
+
+
+
+
+
+
+
+REQ-009 RESULT: PASSED

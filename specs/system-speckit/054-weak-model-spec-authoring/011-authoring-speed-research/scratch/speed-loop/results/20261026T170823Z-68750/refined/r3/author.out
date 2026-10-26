@@ -1,0 +1,67 @@
+I'll start by loading the system-spec-kit skill contract, then run the required scripts.
+
+Level 0 → using level 1. Now creating the spec folder and reading the skill contract.
+
+Folder created. Reading the authoring card, the templates, and the target script.
+
+
+
+
+
+Now capturing the measured behavior of the target script.
+
+
+
+Building a deterministic fixture to capture real current behavior (exit 0 at 70% completeness).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write `spec.md`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+The 19 matches are the untouched scaffolds in `plan.md`/`tasks.md`/`implementation-summary.md` — not my spec. Writing `plan.md` now.
+
+
+
+
+
+
+
+Now `tasks.md`.
+
+
+
+`ANCHORS_VALID` passed but I dropped the measured-behavior anchor opener. Restoring the scaffold's anchor topology.
+
+
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent level 1 RESULT: PASSED

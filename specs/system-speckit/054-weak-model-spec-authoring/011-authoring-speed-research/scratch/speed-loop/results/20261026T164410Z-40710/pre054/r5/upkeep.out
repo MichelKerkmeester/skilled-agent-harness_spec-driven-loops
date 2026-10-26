@@ -1,0 +1,21 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+
+
+No REQ-id validator checks exist, so the edits are self-contained. Making both edits now.
+
+
+
+Validation now fails on derived metadata in `graph-metadata.json`. Let me check what the repair tool touches before applying it.
+
+
+
+
+
+Validation passes. Verifying the final diff is scoped to the packet.
+
+
+
+REQ-009 — RESULT: PASSED

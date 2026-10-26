@@ -1,0 +1,53 @@
+I'll start by invoking the spec-kit skill and running the level recommendation.
+
+Level 0 → using level 1. Now creating the folder.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write the three planning documents, matching the house style of existing Level 1 packets.
+
+
+
+Now tasks.md.
+
+
+
+Two metadata-drift errors from editing spec.md. The validator points at a repair tool; running its preview first.
+
+
+
+
+
+
+
+
+
+All three documents are filled, `implementation-summary.md` body is untouched, and strict validation passes with 0 errors and 0 warnings.
+
+`specs/zz-bench-authoring/001-completeness-min-percent` | level 1 | `RESULT: PASSED`

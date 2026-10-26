@@ -1,0 +1,35 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+Baseline passes. Let me check what the validator inspects for tasks/requirements so my additions stay conformant.
+
+
+
+
+
+
+
+Now I'll add the three required items.
+
+
+
+Validation now flags derived-metadata staleness from my doc edits. Let me inspect the offered repair tool before running it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Validation passes. Let me confirm the change footprint is confined to the packet.
+
+REQ-006 RESULT: PASSED

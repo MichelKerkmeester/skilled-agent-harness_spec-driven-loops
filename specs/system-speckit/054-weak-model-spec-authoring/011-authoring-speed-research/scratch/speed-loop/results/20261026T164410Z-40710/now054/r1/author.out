@@ -1,0 +1,41 @@
+I'll start by loading the system-spec-kit skill and running the level recommendation.
+
+Level 0 → using level 1 as instructed. Creating the spec folder.
+
+Folder created. Reading the scaffolded templates and the authoring contract.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now writing the three planning documents.
+
+
+
+
+
+Now running strict validation.
+
+Two errors are stale derived metadata in `graph-metadata.json` after the spec rewrite. Previewing the repair.
+
+
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent — level 1 — RESULT: PASSED

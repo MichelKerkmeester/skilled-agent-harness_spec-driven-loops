@@ -1,0 +1,14 @@
+sessions=1
+tool_calls=27
+tool_calls_null=0
+validate_calls=6
+tok_in=36707
+tok_cache_read=908288
+tok_out=9283
+refs_054=0
+refs_054_updates=0
+contam_hits=0
+contam_hits_updates=0
+contam_weak=1
+refs_outside=0
+contaminated=0

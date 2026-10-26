@@ -1,0 +1,19 @@
+I'll start by loading the system-spec-kit skill and creating the spec folder.
+
+Folder created. Let me read the templates and the relevant skill guidance.
+
+Now let me read the target script to ground the spec in its real behavior.
+
+
+
+Now let me check consumers of the script and get a validation baseline.
+
+Baseline passes with one warning (missing AI Execution Protocol for Level 3). Let me check that template and the real script consumers.
+
+
+
+
+
+
+
+

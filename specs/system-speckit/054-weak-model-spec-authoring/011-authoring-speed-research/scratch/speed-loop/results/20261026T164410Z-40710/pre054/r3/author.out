@@ -1,0 +1,41 @@
+I'll start by loading the spec-kit skill contract, then run the level recommendation.
+
+Level 0 → using level 1 as instructed. Creating the packet now.
+
+Packet created. Now reading the scaffolded docs and the validation contract.
+
+Now let me read the validation contract and the target script so the docs are grounded in real behavior.
+
+Let me check the Level 1 content expectations before writing.
+
+Scaffold passes clean. Let me check the generated metadata (synopsis drift) and whether tests exist for this script.
+
+
+
+
+
+
+
+I have everything I need. Writing `spec.md` now.
+
+
+
+The `[TODO: ...]` literal in plan.md is tripping the placeholder scan. Fixing it and writing tasks.md.
+
+
+
+Validator's own repair path handles the derived-metadata drift. Previewing first.
+
+The repair would also rewrite `implementation-summary.md`, which I'm told to leave as created. I'll refresh only `graph-metadata.json` via the backfill tool instead.
+
+
+
+
+
+
+
+
+
+Validation passes clean. Final check that nothing outside the packet was touched.
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

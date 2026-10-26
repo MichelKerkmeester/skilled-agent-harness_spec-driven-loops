@@ -1,0 +1,23 @@
+I'll start by reading the packet's spec.md and tasks.md to find the current requirement IDs.
+
+Next free REQ id is REQ-009. Let me check the validator's constraints on task ordering before placing the new task line.
+
+
+
+Next free REQ id is REQ-009. Adding the P1 row now.
+
+
+
+Now running the strict validator.
+
+Validator reports stale generated metadata. Let me inspect the suggested repair tool before running it.
+
+
+
+
+
+
+
+Validation passed. Let me confirm the scope of what changed on disk.
+
+REQ-009 RESULT: PASSED

@@ -1,0 +1,97 @@
+I'll start by loading the spec-kit skill and running the level recommendation.
+
+Level 0 → using level 1 per instructions. Now reading the skill contract and creating the packet.
+
+
+
+Now let me read the validation contract and the target script so the docs match reality.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now writing the three documents. Starting with `spec.md`:
+
+
+
+
+
+Now `plan.md`:
+
+
+
+Now `tasks.md`:
+
+
+
+
+
+All three docs are filled. Running strict validation (run 1):
+
+
+
+Both errors are stale generated metadata (description/graph) after filling `spec.md`. Previewing the recommended repair:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Repaired the derived graph metadata only (implementation-summary.md unchanged, hash verified). Running strict validation again (fix cycle 2):
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | level 1 | RESULT: PASSED

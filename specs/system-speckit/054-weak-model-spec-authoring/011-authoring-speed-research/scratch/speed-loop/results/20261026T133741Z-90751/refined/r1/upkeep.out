@@ -1,0 +1,55 @@
+I'll start by reading the packet files and the relevant skill contract.
+
+Now let me load the spec-kit contract and run the Gate 1 lookup.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me capture a baseline validation run before editing.
+
+
+
+
+
+
+
+
+
+Now I'll make the three edits.
+
+
+
+
+
+
+
+
+
+
+
+Two errors, both generated-metadata drift triggered by the spec.md edit. Let me preview the prescribed repair before applying it.
+
+
+
+
+
+
+
+
+
+REQ-006 RESULT: PASSED

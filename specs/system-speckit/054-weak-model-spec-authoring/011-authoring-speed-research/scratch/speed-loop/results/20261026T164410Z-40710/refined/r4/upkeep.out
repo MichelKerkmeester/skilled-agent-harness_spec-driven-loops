@@ -1,0 +1,16 @@
+I'll start by loading the spec-kit skill and reading the target packet files.
+
+
+
+Baseline passes (0 errors, 1 pre-existing warning). Now checking task-numbering conventions before editing.
+
+Baseline is clean. Applying the two edits — REQ-007 in the P1 table and one implementation task.
+
+Edits applied. Running the strict validator.
+
+Validator passes. Confirming the scope of what changed on disk.
+
+
+
+REQ-007
+RESULT: PASSED

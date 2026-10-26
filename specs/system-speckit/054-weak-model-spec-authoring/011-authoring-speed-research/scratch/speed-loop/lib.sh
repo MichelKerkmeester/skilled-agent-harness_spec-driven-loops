@@ -14,15 +14,62 @@ MAP=$LOOP/prep/sandbox-map.tsv
 # so speed results stay comparable with its quality results. They are read from this
 # worktree; no sandbox holds them.
 BL=$BWT/$PKT/001-template-drift-census-and-baseline/scratch/baseline-swe-l3
-AUTHOR_BRIEF=$BL/brief-1.txt
+# The hint list is shared by every task: a bare template hint left in a packet is residue
+# whatever the task is.
 HINTS=$BL/hints-l3.txt
 ANCHOR_RULE=$BWT/$PKT/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh
-UPKEEP_BRIEF=$LOOP/upkeep-brief.txt
 
 MODEL=deepseek-v4-1-flash-1017-max
 TRACK=specs/zz-bench-authoring
-PK=$TRACK/001-recommend-level-quiet-flag
 S=.skilled/skills/system-spec-kit
+
+# The task under test. loop.sh exports SPEED_TASK, so prepare.sh and step.sh see the task
+# the loop was started with; a hand-run script defaults to quiet.
+#   quiet:  the earlier benchmark's Level 3 task, whose answer the later templates use as
+#           their worked example. Scored on four documents with the anchor rule; upkeep
+#           counts when the new REQ id reaches tasks.md and acceptance-criteria.md.
+#   minpct: a task no template, example or card names, at the level the helper picks.
+#           Scored on spec, plan and tasks; the anchor rule is Level 3 only, so
+#           missing_anchors is NA; upkeep counts when the new REQ id reaches spec.md and
+#           tasks.md. A sandbox whose templates or card name a term in TERMS is refused.
+# Per task: AUTHOR_BRIEF, UPKEEP_BRIEF, PKN (packet folder), DOC_LIST (scored documents),
+# UPKEEP_DOCS (where a new REQ id must appear), ANCHORS (1 runs the anchor rule) and
+# TERMS (the leak-scan terms file, empty for no scan).
+NEW_TASK_DIR=$BWT/$PKT/018-benchmark-redesign-and-remeasure/scratch/briefs
+set_task() {
+  case $1 in
+    quiet)
+      AUTHOR_BRIEF=$BL/brief-1.txt; UPKEEP_BRIEF=$LOOP/upkeep-brief.txt
+      PKN=001-recommend-level-quiet-flag
+      DOC_LIST="spec.md plan.md tasks.md acceptance-criteria.md"
+      UPKEEP_DOCS="tasks.md acceptance-criteria.md"; ANCHORS=1; TERMS=;;
+    minpct)
+      AUTHOR_BRIEF=$NEW_TASK_DIR/author-minpct.txt; UPKEEP_BRIEF=$NEW_TASK_DIR/upkeep-minpct.txt
+      PKN=001-completeness-min-percent
+      DOC_LIST="spec.md plan.md tasks.md"
+      UPKEEP_DOCS="spec.md tasks.md"; ANCHORS=0; TERMS=$NEW_TASK_DIR/task-terms.txt;;
+    *) return 1;;
+  esac
+  TASK=$1; PK=$TRACK/$PKN
+}
+set_task "${SPEED_TASK:-quiet}" || { echo "unknown task ${SPEED_TASK}" >&2; exit 2; }
+
+# Files in a sandbox tree under the templates folders and the authoring card that name a
+# term in TERMS: proof that no template, example or card carries the task's answer. Prints
+# NA when the task has no terms file, it is empty, or the tree holds none of the scanned
+# paths, so a scan that looked at nothing never reads as 0. A failed rg (missing, or exit 2)
+# also prints NA: rg exits 1 for no match, and only 0 or 1 is a completed scan.
+term_refs() {
+  local t=$1 p paths=() out rc=0
+  if [ -z "$TERMS" ] || [ ! -s "$TERMS" ]; then echo NA; return; fi
+  for p in "$S/templates" "$S/references/templates" "$S/references/workflows/spec-authoring-card.md"; do
+    [ -e "$t/$p" ] && paths+=("$t/$p")
+  done
+  [ ${#paths[@]} -gt 0 ] || { echo NA; return; }
+  out=$(rg -l -uu -F -f "$TERMS" "${paths[@]}" 2>/dev/null) || rc=$?
+  [ "$rc" -le 1 ] || { echo NA; return; }
+  if [ -z "$out" ]; then echo 0; else printf '%s\n' "$out" | wc -l | tr -d ' '; fi
+}
 ADV=.skilled/skills/system-skill-advisor/runtime
 VIS=.skilled/skills/sk-vision/vision-runtime
 DB=$HOME/.local/share/devin/cli/sessions.db

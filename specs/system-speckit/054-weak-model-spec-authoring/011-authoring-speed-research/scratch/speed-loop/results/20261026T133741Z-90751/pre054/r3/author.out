@@ -1,0 +1,93 @@
+I'll start by loading the spec-kit skill and creating the packet folder.
+
+I'll read the skill file and create the packet folder in parallel.
+
+Folder created. Now let me read the scaffolded files and the target script.
+
+Now let me read the target script to document it accurately.
+
+
+
+Baseline passes but has a warning about the AI Execution Protocol. Let me read the authoring checklist to get Level 3 right.
+
+Let me find an existing Level 3 packet to model the AI Execution Protocol section on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write the four documents. Starting with `spec.md`.
+
+The post-edit hook flagged bracket placeholders. Let me check what the broader scan catches.
+
+
+
+
+
+
+
+The checker's exclusions are inconsistent, but the hook flagged it — I'll remove those brackets anyway.
+
+
+
+Now `plan.md`:
+
+Now `tasks.md`:
+
+
+
+Now `acceptance-criteria.md`:
+
+
+
+
+
+Now let me run the placeholder scan to catch the remaining bracket leftovers.
+
+
+
+Two fixable leftovers — the sign-off names and the scaffold session id. (`implementation-summary.md` stays as created per the task.)
+
+Now running strict validation:
+
+Metadata drift from my rewritten `spec.md` description. The validator points at `repair-derived.cjs` — let me preview, then apply.
+
+
+
+
+
+
+
+Passed. Let me verify final state — confirm nothing outside the packet changed and check what the metadata repair touched.
+
+
+
+Metadata repair only normalized the `packet_pointer` frontmatter field; the summary body is untouched. Final verification run:
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag — RESULT: PASSED

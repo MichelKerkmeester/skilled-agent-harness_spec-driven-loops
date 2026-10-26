@@ -1,0 +1,39 @@
+I'll start by loading the spec-kit skill contract and running the level recommendation.
+
+Level 0 → per instructions I'll use level 1. Running the scaffold creator.
+
+Scaffold created. Now reading the templates and validation contract.
+
+Now I need ground truth on the script's current behavior, plus the strict validation rules.
+
+Scaffold passes with 2 warnings. Now capturing real measured behavior for the spec.
+
+Let me check the validation rules for the specific checks that apply to authored content.
+
+
+
+
+
+
+
+
+
+
+
+I have ground truth. Now writing the three planning documents.
+
+
+
+No placeholder tokens present — the warning carried no detail lines. Writing plan.md.
+
+Writing tasks.md.
+
+
+
+All three documents written. Running strict validation.
+
+
+
+Validation passes. Verifying write scope stayed inside the allowed path.
+
+`specs/zz-bench-authoring/001-completeness-min-percent` | level 1 | RESULT: PASSED

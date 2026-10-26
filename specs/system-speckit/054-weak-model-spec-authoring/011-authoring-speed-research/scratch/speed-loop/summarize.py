@@ -128,10 +128,12 @@ print("\n## Paired difference per round\n")
 print("For each round where both runs are valid: variant seconds minus baseline seconds from that same round. "
       "Positive means slower than the baseline. The verdict is SLOWER or FASTER only when every pair has that sign "
       "and there are at least two pairs; otherwise INCONCLUSIVE. Against pre054 the difference includes main's "
-      "drift; against main-no054 it is the authoring work alone; refined against now054 is the refinement effect.\n")
+      "drift; against main-no054 it is the authoring work alone; refined against now054 is the refinement effect. "
+      "The tok_out verdict is REAL only with at least 4 valid pairs that all share one sign; otherwise INCONCLUSIVE.\n")
 print("| Step | Variant | Baseline | Meaning | Pairs | Diff min | Diff max | Diff mean | Verdict | Delta of means | "
-      "tok_out delta | validate calls delta | Variant strict | Baseline strict | Variant worst hints |")
-print("|" + "---|" * 15)
+      "tok_out delta | validate calls delta | Variant strict | Baseline strict | Variant worst hints | "
+      "tok_out pairs | tok_out verdict |")
+print("|" + "---|" * 17)
 any_pair = False
 for s in steps:
     for bi, b in enumerate(variants):
@@ -143,12 +145,24 @@ for s in steps:
             bv = {r["round"]: r for r in valid.get((s, b), [])}
             vv = {r["round"]: r for r in valid.get((s, v), [])}
             diffs = [num(vv[rd], "seconds") - num(bv[rd], "seconds") for rd in rounds if rd in bv and rd in vv]
+            tdiffs = [num(vv[rd], "tok_out") - num(bv[rd], "tok_out") for rd in rounds
+                      if rd in bv and rd in vv and num(vv[rd], "tok_out") is not None
+                      and num(bv[rd], "tok_out") is not None]
             if diffs and len(diffs) >= 2 and min(diffs) > 0:
                 verdict = "SLOWER"
             elif diffs and len(diffs) >= 2 and max(diffs) < 0:
                 verdict = "FASTER"
             else:
                 verdict = "INCONCLUSIVE"
+            # A paired round whose token count is unknown cannot count for or against a sign,
+            # so it blocks a REAL verdict instead of silently dropping out.
+            tok_unknown = len(tdiffs) < len(diffs)
+            if not tok_unknown and len(tdiffs) >= 4 and min(tdiffs) > 0:
+                tok_verdict = "REAL (more)"
+            elif not tok_unknown and len(tdiffs) >= 4 and max(tdiffs) < 0:
+                tok_verdict = "REAL (fewer)"
+            else:
+                tok_verdict = "INCONCLUSIVE"
             mb, mv = means.get((s, b), {}), means.get((s, v), {})
 
             def d(k):
@@ -160,9 +174,9 @@ for s in steps:
                   f"{fmt(min(diffs)) if diffs else 'NA'} | {fmt(max(diffs)) if diffs else 'NA'} | {fmt(mean(diffs)) if diffs else 'NA'} | "
                   f"{verdict} | {fmt(d('seconds'))} | {fmt(d('tok_out'))} | {fmt(d('validate_calls'))} | "
                   f"{sum(r.get('strict_passed') == '1' for r in vs)}/{len(vs)} | {sum(r.get('strict_passed') == '1' for r in bs)}/{len(bs)} | "
-                  f"{worst(vs, 'leftover_hints')} |")
+                  f"{worst(vs, 'leftover_hints')} | {len(tdiffs)} | {tok_verdict} |")
 if not any_pair:
-    print("| NA | NA | NA | no baseline variant in this run | 0 | NA | NA | NA | INCONCLUSIVE | NA | NA | NA | NA | NA | NA |")
+    print("| NA | NA | NA | no baseline variant in this run | 0 | NA | NA | NA | INCONCLUSIVE | NA | NA | NA | NA | NA | NA | NA | INCONCLUSIVE |")
 
 print("\n## Rounds\n")
 rt = os.path.join(os.path.dirname(path), "round.tsv")

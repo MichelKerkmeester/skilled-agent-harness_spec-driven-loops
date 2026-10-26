@@ -1,0 +1,51 @@
+I'll start by loading the system-spec-kit skill contract, then run the level recommendation.
+
+Level 0 → using level 1 per instructions. Now reading the skill contract and creating the folder.
+
+Folder created at Level 1. Now reading the scaffolded templates and the validation contract.
+
+Now reading the target script (read-only) and the validation rules that will gate the docs.
+
+Now checking the validator internals that will gate these docs: sufficiency rules and the placeholder scanner.
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have everything I need. Writing the three planning documents now.
+
+The hook flagged something without naming it. Let me get the specific hits from the standalone scanner.
+
+
+
+
+
+spec.md is clean — all 11 hits are the still-scaffolded plan/tasks and the untouched implementation summary. Writing plan.md next.
+
+Now tasks.md with real, ordered work items.
+
+
+
+
+
+Only the untouched implementation-summary.md remains (that scanner is broader than the gate). Running strict validation.
+
+Two errors, both stale generated metadata that the validator itself knows how to recompute. Previewing the repair first.
+
+Repair is scoped to the packet's own metadata. Applying it, then re-running strict validation.
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-completeness-min-percent | Level 1 | RESULT: PASSED

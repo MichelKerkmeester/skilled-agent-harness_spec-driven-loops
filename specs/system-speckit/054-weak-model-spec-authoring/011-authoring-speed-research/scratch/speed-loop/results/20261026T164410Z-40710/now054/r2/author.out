@@ -1,0 +1,39 @@
+I'll start by loading the spec-kit skill and running the level recommendation.
+
+Level is 0, so I'll use level 1 as instructed. Now creating the spec folder.
+
+The folder is created. Now let me read the authoring contract, the templates, and the target script.
+
+Now let me check the level-1 example and validation contract so the packet passes strict validation on the first try.
+
+Key constraint noted: Level 1 needs ≥3 `REQ-*` and ≥2 `**Given**` scenarios. Let me read the example and validation rules.
+
+Let me query the contract engine directly for the exact Level 1 requirements rather than guessing.
+
+Now let me check the current branch and the scaffolded implementation-summary before writing.
+
+Contract confirmed. Now writing the three planning documents.
+
+Now the plan.
+
+Now the task list.
+
+Now verifying my own claims before running the validator.
+
+
+
+Two non-task lines contain the literal `Verify: `, which breaks the authoring card's count check. Fixing both.
+
+
+
+Two errors, both stale derived fields in `graph-metadata.json` after my source edits. Let me preview the repair the validator itself recommends.
+
+
+
+The repair only rewrites `graph-metadata.json` inside the packet. Applying it.
+
+
+
+`RESULT: PASSED`, Errors: 0. Final scope check to confirm nothing outside the packet changed.
+
+`specs/zz-bench-authoring/001-completeness-min-percent` | level 1 | `RESULT: PASSED`

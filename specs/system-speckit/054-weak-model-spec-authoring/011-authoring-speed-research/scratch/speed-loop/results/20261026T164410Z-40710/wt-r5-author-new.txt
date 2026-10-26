@@ -1,0 +1,6 @@
+>  M .skilled/skills/system-spec-kit/ARCHITECTURE.md
+>  M README.md
+> ?? specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch/briefs/brief-R1.txt
+> ?? specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch/runs/R1.err
+> ?? specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch/runs/R1.out
+> ?? specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/scratch/grading/rubric.md

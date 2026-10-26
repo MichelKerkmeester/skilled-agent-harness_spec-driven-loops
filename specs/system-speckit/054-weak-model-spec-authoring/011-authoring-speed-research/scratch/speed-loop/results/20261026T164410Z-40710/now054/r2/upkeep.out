@@ -1,0 +1,23 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+
+
+Now I'll add the new requirement row (next free id across both tables is REQ-006) and the implementing task (next free id is T012).
+
+
+
+Now running validation.
+
+Validation reports stale generated metadata because spec.md changed. Let me preview the repair tool before applying.
+
+
+
+
+
+
+
+
+
+REQ-006 | RESULT: PASSED

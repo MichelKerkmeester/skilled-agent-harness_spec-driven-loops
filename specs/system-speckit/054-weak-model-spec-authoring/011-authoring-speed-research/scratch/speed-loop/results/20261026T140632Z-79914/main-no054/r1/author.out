@@ -1,0 +1,95 @@
+I'll start by loading the system-spec-kit skill and creating the spec folder.
+
+Folder created. Now let me read the scaffolded files and the script I'm documenting.
+
+
+
+
+
+
+
+
+
+The fresh scaffold passes. Now let me pull the exact Level 3 contracts so I author to the validator, not by guesswork.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have the contracts and the script's output path. Now I'll author the four documents.
+
+A post-edit placeholder warning fired. Let me see exactly what it flagged.
+
+
+
+spec.md is clean. Now plan.md.
+
+
+
+plan.md is clean. Now tasks.md and acceptance-criteria.md.
+
+
+
+
+
+All four docs are written. Running strict validation.
+
+
+
+Two generated-metadata errors. The validator names the repair tool. Let me preview then apply it.
+
+
+
+
+
+
+
+
+
+
+
+The repair tool bundles an unrelated pointer rewrite into `implementation-summary.md`. I'll run only the metadata re-derive, which is what the two errors name.
+
+
+
+
+
+Validation passed with zero errors and zero warnings. Final state check: confirm only the packet files changed and `implementation-summary.md` is untouched.
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag RESULT: PASSED
