@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.9.0.0
+version: 1.10.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -94,7 +94,7 @@ Phase 1 Implementation writes or changes files
 - `assets/quality-defaults.json` holds the runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns. It names no command.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate. The runner calls it once per run with `--json`.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
-- `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, takes each file's language, family and comment text from `scripts/check-comment-hygiene.sh`, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate. Reading comment text through the checker means a marker inside a string, a template literal, a heredoc body or a YAML block scalar is never counted and a marker in a docstring is.
+- `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
 - `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.
 - `../shared/references/universal/code-quality-standards.md` is the cross-mode severity standard this packet consumes, and `references/code-style-guide.md` is this packet's own style and comment-hygiene guide.
 
@@ -122,7 +122,7 @@ Phase 1 Implementation writes or changes files
 
 ### Target-Path Checklist Map
 
-The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and the `unit: target map` case in `scripts/tests/quality-gate.test.cjs` fails when the two differ. A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. Applies to lists path globs and extensions. A row with several values matches on any of them. The MCP server checklist, `../sk-code-skilled/assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
+The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and the `unit: target map` case in `scripts/tests/quality-gate.test.cjs` fails when the two differ. A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. The spec-folder row applies only inside the repository that owns the hub, because a framework-specific standard handed to an unknown surface claims an authority the runner cannot check. Applies to lists path globs and extensions. A row with several values matches on any of them. The MCP server checklist, `../sk-code-skilled/assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
 
 | Owner | Applies to | Checklist |
 | --- | --- | --- |
@@ -130,7 +130,7 @@ The runner resolves checklists from two sources: the rows this mode owns in `ass
 | quality defaults | `.js`, `.css` | `assets/code-quality-checklist/overview-header-and-comments.md` |
 | quality defaults | `.js`, `.css` | `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
 | quality defaults | `.js`, `.css` | `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
-| quality defaults | `specs/**` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
+| quality defaults | `specs/**` in the hub's own repository | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
 | SKILLED | `.skilled/**` | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
 | SKILLED | `.skilled/skills/**` | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
 | SKILLED | `.skilled/agents/**` | `../sk-code-skilled/assets/checklists/agent-authoring.md` |

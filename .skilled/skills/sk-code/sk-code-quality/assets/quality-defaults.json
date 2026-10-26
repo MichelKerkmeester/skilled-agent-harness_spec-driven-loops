@@ -12,7 +12,16 @@
     {"file": "hub:sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md", "why": "surface-neutral JavaScript and CSS additions", "extensions": [".js", ".css"]},
     {"file": "hub:sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md", "why": "surface-neutral JavaScript and CSS additions", "extensions": [".js", ".css"]},
     {"file": "hub:sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md", "why": "surface-neutral JavaScript and CSS additions", "extensions": [".js", ".css"]},
-    {"file": "hub:system-spec-kit/references/workflows/spec-folder-authoring-checklist.md", "why": "spec-folder authoring", "paths": ["specs/**"]}
+    {"file": "hub:system-spec-kit/references/workflows/spec-folder-authoring-checklist.md", "why": "spec-folder authoring", "paths": ["specs/**"], "hubRepo": true}
   ],
-  "generated": []
+  "generated": [
+    {"paths": [".skilled/skills/system-spec-kit/shared/dist/tsconfig.tsbuildinfo"]},
+    {"paths": [".skilled/skills/system-spec-kit/runtime/cli/dist/tsconfig.tsbuildinfo"]},
+    {"paths": [".skilled/skills/system-spec-kit/runtime/cli/dist/spec/is-phase-parent.js"]},
+    {"paths": [".skilled/skills/system-spec-kit/runtime/dist/tsconfig.tsbuildinfo"]},
+    {"paths": [".skilled/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js"]},
+    {"paths": [".skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js"]},
+    {"paths": [".skilled/skills/system-skill-advisor/runtime/dist/runtime/skill-advisor-cli.js"]},
+    {"paths": [".skilled/skills/sk-design/sk-design-md-generator/backend/dist/cli.js"]}
+  ]
 }

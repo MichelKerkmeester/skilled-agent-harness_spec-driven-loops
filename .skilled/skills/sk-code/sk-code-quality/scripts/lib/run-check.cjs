@@ -211,10 +211,13 @@ function runGit(args, { cwd, env = process.env, input } = {}) {
   };
 }
 
-// The tracked changes against HEAD, every untracked file and the commit HEAD names, so
+// The tracked changes against HEAD, the untracked files and the commit HEAD names, so
 // a second edit to a file that was already modified changes the hash even though its
-// status code does not. Outside git the guard hashes the named files.
-function takeSnapshot({ root, git, files, env }) {
+// status code does not. A run lists the untracked files for its scope anyway, so the
+// snapshot hashes that list instead of walking the tree again, and it hashes the named
+// files only where that list does not already cover them. Outside git the guard hashes
+// the named files.
+function takeSnapshot({ root, git, files, env, folders, untracked }) {
   const entries = new Map();
   if (!git) {
     for (const rel of files) entries.set(rel, hashEntry(root, rel));
@@ -223,17 +226,31 @@ function takeSnapshot({ root, git, files, env }) {
   const head = runGit(['rev-parse', '--verify', '-q', 'HEAD^{commit}'], { cwd: root, env });
   const base = head.ok ? head.stdout.trim() : EMPTY_TREE;
   const tracked = runGit(['diff', '--name-only', '-z', '--no-renames', base], { cwd: root, env });
-  const untracked = runGit(['ls-files', '--others', '--exclude-standard', '-z'], { cwd: root, env });
-  if (!tracked.ok || !untracked.ok) {
-    const error = new Error('git could not list the workspace state for the guard');
-    error.code = 'GUARD_FAILED';
-    throw error;
-  }
+  if (!tracked.ok) throw guardFailed();
+  const listed = untracked === undefined ? listUntracked({ root, env, folders }) : untracked || [];
   entries.set('@HEAD', base);
-  for (const rel of [...splitNul(tracked.stdout), ...splitNul(untracked.stdout)]) {
-    entries.set(rel, hashEntry(root, rel));
-  }
+  for (const rel of [...splitNul(tracked.stdout), ...listed]) entries.set(rel, hashEntry(root, rel));
+  for (const rel of files) if (!entries.has(rel)) entries.set(rel, hashEntry(root, rel));
   return entries;
+}
+
+function guardFailed() {
+  const error = new Error('git could not list the workspace state for the guard');
+  error.code = 'GUARD_FAILED';
+  return error;
+}
+
+// The untracked paths a snapshot hashes when no caller listed them. The bound is the
+// folders the scope reaches, so a write where a check runs stays visible at the cost of
+// those folders rather than the whole tree. An empty bound is a scope that reaches no
+// folder, so there is nothing beyond its own files to look for.
+function listUntracked({ root, env, folders }) {
+  if (Array.isArray(folders) && folders.length === 0) return [];
+  const args = ['ls-files', '--others', '--exclude-standard', '-z'];
+  if (folders) args.push('--', ...folders);
+  const result = runGit(args, { cwd: root, env });
+  if (!result.ok) throw guardFailed();
+  return splitNul(result.stdout);
 }
 
 function changedPaths(before, after) {
@@ -245,9 +262,11 @@ function changedPaths(before, after) {
  * Run work under the workspace guard. Passing the snapshot an earlier guard returned
  * chains the guards, so a window starts where the last one ended. The runner passes
  * its built-in checks as one piece of work and each repository command as its own, so
- * a mutation names the one command that made it.
+ * a mutation names the one command that made it. The closing snapshot lists again inside
+ * the folders the scope reaches, because a check can create a path no earlier listing
+ * holds, and a guard handed no listing lists there at both snapshots.
  *
- * @param {Object} context - root, git, files and env, as takeSnapshot reads them.
+ * @param {Object} context - root, git, files, env, folders and untracked, as takeSnapshot reads them.
  * @param {Function} work - The check, called with no arguments.
  * @param {Map} [before] - The snapshot to compare against, taken now when absent.
  * @returns {{value:*, after:Map, mutated:string[]}}
@@ -255,7 +274,7 @@ function changedPaths(before, after) {
 function withGuard(context, work, before) {
   const start = before || takeSnapshot(context);
   const value = work();
-  const after = takeSnapshot(context);
+  const after = takeSnapshot(context.untracked === null ? context : { ...context, untracked: undefined });
   return { value, after, mutated: changedPaths(start, after) };
 }
 

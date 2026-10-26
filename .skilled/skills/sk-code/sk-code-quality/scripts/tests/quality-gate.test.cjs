@@ -30,7 +30,25 @@ const { findTool, spawnArgv, withGuard } = require('../lib/run-check.cjs');
 const QUALITY_ROOT = path.resolve(__dirname, '..', '..');
 const HUB_ROOT = path.dirname(QUALITY_ROOT);
 const REAL_CHECKER = path.join(QUALITY_ROOT, 'scripts', 'check-comment-hygiene.sh');
+const REAL_DIST_CHECKER = path.join(QUALITY_ROOT, 'scripts', 'check-dist-staleness.sh');
+// A declared generated path sits under a folder the base layer excludes, so it is a
+// stand-in for the built files a run must reach the dist adapter with.
+const DECLARED_PATH = '.skilled/skills/system-spec-kit/runtime/cli/dist/spec/is-phase-parent.js';
+const DECLARED_PACKAGE = DECLARED_PATH.split('/dist/')[0];
+// The repository this hub lives in, which is the one the spec-folder checklist is scoped to.
+const REPO_ROOT = path.resolve(HUB_ROOT, '..', '..', '..');
+const SPEC_FOLDER_CHECKLIST = 'hub:system-spec-kit/references/workflows/spec-folder-authoring-checklist.md';
+// The three surface-neutral rows: they hold no framework-specific house style, so they keep
+// matching a .js file by its extension in any repository.
+const STYLE_CHECKLISTS = Object.freeze([
+  'hub:sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md',
+  'hub:sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md',
+  'hub:sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md',
+]);
 const COMPILER = path.resolve(HUB_ROOT, '..', '..', 'bin', 'lib', 'compiled-routing', '009-parent-hub-rollout', '001-sk-code', 'lib', 'registry-compiler.cjs');
+// The freshness library the dist checker calls, read here so a case can ask for the
+// read-only verdict without a shell in between.
+const { checkFileFreshness, checkPackageFreshness } = require(path.join(HUB_ROOT, '..', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs'));
 
 const ADR_LABEL = ['ADR', '12'].join('-');
 const REQ_SHORT = ['REQ', '4'].join('-');
@@ -75,6 +93,57 @@ function check(verdict, id) {
   return verdict.checks.find((entry) => entry.id === id);
 }
 
+// The freshness library maps a declared dist entry back to the package that built
+// it, so a case seeds that package: its manifest, the entry's own sources and an
+// empty node_modules, which is all provisioning asks for.
+function declaredPackage() {
+  return {
+    [`${DECLARED_PACKAGE}/package.json`]: '{"name": "@spec-kit/cli"}\n',
+    [`${DECLARED_PACKAGE}/tsconfig.json`]: '{"compilerOptions": {}}\n',
+    [`${DECLARED_PACKAGE}/spec/is-phase-parent.ts`]: 'export const value = 1;\n',
+    [DECLARED_PATH]: 'module.exports = 1;\n',
+  };
+}
+
+// Explicit stamps, because a build that is fresh only by write order would make
+// the case depend on how fast the fixture created its files.
+function ageDeclaredPackage(repo, distNewer) {
+  const older = (Date.now() - 120000) / 1000;
+  const newer = (Date.now() - 60000) / 1000;
+  for (const name of ['package.json', 'tsconfig.json', 'spec/is-phase-parent.ts']) {
+    const stamp = distNewer ? older : newer;
+    fs.utimesSync(path.join(repo.root, DECLARED_PACKAGE, name), stamp, stamp);
+  }
+  const distStamp = distNewer ? newer : older;
+  fs.utimesSync(path.join(repo.root, DECLARED_PATH), distStamp, distStamp);
+}
+
+// The checker resolves its freshness library from the working directory, so a fixture
+// tree holding its own library is a complete stand-in for a checker that cannot answer.
+// The script under test is the shipped one, and the file it is handed is declared output.
+function withUnassessableDist(libraryBody, body) {
+  const temp = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skq-unassessable-')));
+  try {
+    const library = path.join(temp, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs');
+    fs.mkdirSync(path.dirname(library), { recursive: true });
+    fs.writeFileSync(library, `${libraryBody}\n`);
+    const file = { rel: 'dist/thing.js', abs: path.join(temp, 'dist', 'thing.js') };
+    fs.mkdirSync(path.dirname(file.abs), { recursive: true });
+    fs.writeFileSync(file.abs, 'module.exports = 1;\n');
+    const python = findTool('python3', process.env);
+    assert.ok(python, 'python3 is not on PATH, so this case cannot read the checker banner');
+    const adapter = runDistAdapter([file], { env: { PATH: process.env.PATH }, cwd: temp, timeoutMs: 20000, script: REAL_DIST_CHECKER });
+    const direct = spawnArgv([python, '-B', REAL_DIST_CHECKER, file.abs], {
+      cwd: temp,
+      env: { PATH: process.env.PATH, SPECKIT_DIST_AUTO_REBUILD: '0', SPECKIT_DIST_READ_ONLY: '1', SPECKIT_DIST_WORKSPACE_ROOT: temp },
+      timeoutMs: 20000,
+    });
+    return body({ adapter, direct });
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+}
+
 function hygieneFindings(verdict) {
   return verdict.findings.filter((entry) => entry.check === 'comment-hygiene');
 }
@@ -86,6 +155,22 @@ function checklistFiles(verdict) {
 function surfaceOf(verdict, file) {
   const entry = verdict.surfaces.find((item) => item.file === file);
   return entry ? entry.labels : null;
+}
+
+// A spec file this repository really keeps, found rather than named, so a case that proves the
+// checklist stays here survives a packet that is archived or renamed. Breadth first and sorted,
+// so the answer is the same on every machine.
+function firstSpecFile() {
+  const pending = [path.join(REPO_ROOT, 'specs')];
+  while (pending.length > 0) {
+    const dir = pending.shift();
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
+      .sort((left, right) => (left.name < right.name ? -1 : 1));
+    const named = entries.find((entry) => entry.isFile() && entry.name === 'spec.md');
+    if (named) return path.join(dir, named.name);
+    pending.push(...entries.filter((entry) => entry.isDirectory()).map((entry) => path.join(dir, entry.name)));
+  }
+  return null;
 }
 
 // A stand-in for python3 that runs node code, so a case can make the hygiene call
@@ -123,6 +208,34 @@ function leaksKey(output, key) {
 }
 
 const HYGIENE_REPORT = 'process.stdout.write(JSON.stringify({ schema: "comment-hygiene/v1", exit_code: 0, files: [] }));';
+
+// A git that records every call before running the real one, so a case can count the
+// workspace listings a run takes instead of trusting a claim about them.
+function loggingGit(dir) {
+  const bin = path.join(dir, 'git-bin');
+  fs.mkdirSync(bin, { recursive: true });
+  const log = path.join(dir, 'git-calls.log');
+  const real = findTool('git', process.env);
+  assert.ok(real, 'git is not on PATH, so this case cannot count the listings');
+  const file = path.join(bin, 'git');
+  fs.writeFileSync(file, `#!/bin/sh\nprintf '%s\\n' "$*" >> "$SKQ_FIXTURE_GIT_LOG"\nexec "${real}" "$@"\n`);
+  fs.chmodSync(file, 0o755);
+  return { bin, log };
+}
+
+function gitCalls(log) {
+  try {
+    return fs.readFileSync(log, 'utf8').split('\n').filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+// One line per untracked listing, the walk that costs more than every other git call a
+// run makes. A call that names the folders it was bounded to is still one listing.
+function listingCalls(log) {
+  return gitCalls(log).filter((line) => line.includes('ls-files --others'));
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. NAMED FIXTURES
@@ -319,6 +432,281 @@ test('F18 heuristic .js: JSX in a plain .js file is a heuristic finding that doe
   assert.equal(verdict.summary.p0_heuristic, 1);
 }));
 
+// The base layer excludes every dist folder, and it also declares the built files this
+// repository holds. A declared path reaches the dist adapter alone, and the fixture
+// package is fresh, so an empty banner is a real verdict rather than a silent skip.
+test('F20 declared generated path: the dist adapter reads it and no other check does', () => withRepo({
+  change: declaredPackage(),
+}, (repo) => {
+  fs.mkdirSync(path.join(repo.root, DECLARED_PACKAGE, 'node_modules'), { recursive: true });
+  ageDeclaredPackage(repo, true);
+  const { status, verdict, fresh } = assertSnapshotUnchanged(repo, () => {
+    // The direct verdict proves which package and entry the lookup chose, and the
+    // snapshot proves the read-only call wrote no cache record beside the build.
+    const direct = checkFileFreshness(path.join(repo.root, DECLARED_PATH), { workspaceRoot: repo.root, readOnly: true });
+    return { fresh: direct, ...repo.run(['--files', DECLARED_PATH]) };
+  });
+  assert.deepEqual([fresh.packageId, fresh.entry, fresh.status], ['system-spec-kit/runtime/cli', 'is-phase-parent', 'fresh']);
+  const dist = check(verdict, 'dist-staleness');
+  assert.deepEqual([dist.state, dist.files, dist.repair], ['RAN_CLEAN', 1, null]);
+  assert.deepEqual(verdict.findings, []);
+  assert.deepEqual(verdict.coverage.unchecked, []);
+  assert.equal(verdict.coverage.files_checked, 1);
+  assert.deepEqual(verdict.surfaces, []);
+  for (const entry of verdict.checks.filter((row) => row.id !== 'dist-staleness')) {
+    assert.equal(entry.state, 'NOT_APPLICABLE', `${entry.id} read the built file`);
+  }
+  assert.equal(status, 0);
+}));
+
+// The counter case: the same declared path with a source newer than its build must
+// report stale and name the file, which only a real check against the package can do.
+test('F20b declared generated path: a newer source reports stale and names the file', () => withRepo({
+  change: declaredPackage(),
+}, (repo) => {
+  fs.mkdirSync(path.join(repo.root, DECLARED_PACKAGE, 'node_modules'), { recursive: true });
+  ageDeclaredPackage(repo, false);
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', DECLARED_PATH]));
+  const dist = check(verdict, 'dist-staleness');
+  assert.deepEqual([dist.state, dist.files], ['RAN_FAIL', 1]);
+  assert.deepEqual(verdict.findings.map((entry) => [entry.file, entry.rule, entry.blocking]),
+    [[DECLARED_PATH, 'dist.stale', false]]);
+  assert.equal(status, 0);
+}));
+
+// The spec-folder checklist is a framework-specific standard, so it is scoped to the repository
+// that owns this hub. A foreign repository with a specs/ folder would otherwise be handed a
+// standard the runner cannot check, while the surface-neutral .js rows stay because they carry
+// no house style.
+test('F21 foreign repository: a specs/ folder lists no spec-folder checklist', () => withRepo({
+  hub: 'real',
+  change: {
+    'specs/demo/spec.md': '# Demo\n\nA fixture specification.\n',
+    'specs/demo/notes.js': 'module.exports = 1;\n',
+  },
+}, (repo) => {
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.deepEqual(surfaceOf(verdict, 'specs/demo/spec.md'), ['UNKNOWN']);
+  assert.deepEqual(surfaceOf(verdict, 'specs/demo/notes.js'), ['UNKNOWN']);
+  const files = checklistFiles(verdict);
+  assert.ok(!files.includes(SPEC_FOLDER_CHECKLIST), 'a foreign repository was handed the spec-folder checklist');
+  for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a foreign .js file`);
+}));
+
+// The same row still lists for this repository's own spec docs, which resolve to no surface, so
+// the scope is the repository boundary and not the file's label.
+test('F22 own repository: a spec file keeps the spec-folder checklist', () => withRepo({ hub: 'real' }, (repo) => {
+  const spec = firstSpecFile();
+  assert.ok(spec, 'this repository keeps no spec.md under specs/');
+  const rel = path.relative(REPO_ROOT, spec);
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', rel], { cwd: REPO_ROOT }));
+  assert.ok(checklistFiles(verdict).includes(SPEC_FOLDER_CHECKLIST), 'this repository lost its own spec-folder checklist');
+}));
+
+// A dist check that holds no verdict is not a clean build. Each shape below is a checker
+// that cannot answer, so the row has to read as an error and the banner has to name the
+// file and the reason rather than leaving the file looking verified.
+test('F30 a throwing checker: the dist check errors', () => withUnassessableDist(
+  'throw new Error("fixture checker exploded");', ({ adapter, direct }) => {
+    assert.equal(adapter.check.state, 'ERROR');
+    assert.deepEqual(adapter.findings, []);
+    assert.equal(direct.exit, 0);
+    assert.match(direct.stdout, /^DIST FRESHNESS CHECK ERROR: .*dist\/thing\.js -- the checker exited 1/);
+  }));
+
+test('F31 a checker that exits 64: the dist check errors', () => withUnassessableDist(
+  'process.stderr.write("fixture checker refused\\n");\nprocess.exit(64);', ({ adapter, direct }) => {
+    assert.equal(adapter.check.state, 'ERROR');
+    assert.deepEqual(adapter.findings, []);
+    assert.equal(direct.exit, 0);
+    assert.match(direct.stdout, /^DIST FRESHNESS CHECK ERROR: .*dist\/thing\.js -- the checker exited 64 without printing a verdict: fixture checker refused/);
+  }));
+
+test('F32 an unprovisioned checker: the dist check errors', () => withUnassessableDist(
+  'process.stdout.write(JSON.stringify({ status: "unprovisioned" }) + "\\n");', ({ adapter, direct }) => {
+    assert.equal(adapter.check.state, 'ERROR');
+    assert.deepEqual(adapter.findings, []);
+    assert.equal(direct.exit, 0);
+    assert.match(direct.stdout, /^DIST FRESHNESS CHECK ERROR: .*dist\/thing\.js -- the package is not provisioned/);
+  }));
+
+test('F33 a silent checker: the dist check errors', () => withUnassessableDist('', ({ adapter, direct }) => {
+  assert.equal(adapter.check.state, 'ERROR');
+  assert.deepEqual(adapter.findings, []);
+  assert.equal(direct.exit, 0);
+  assert.match(direct.stdout, /^DIST FRESHNESS CHECK ERROR: .*dist\/thing\.js -- the checker printed no verdict/);
+}));
+
+// A hook that names the checker outright is the plainest spelling there is, and a plain name is
+// not a broken one. Each line a case names below is a whole hook body, so the case states one
+// spelling and nothing else beside it.
+function hookLayer(repo, line) {
+  const hook = path.join(repo.root, '.git', 'hooks', 'pre-commit');
+  fs.writeFileSync(hook, `#!/bin/sh\n${line}\n`);
+  fs.chmodSync(hook, 0o755);
+  return repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene;
+}
+
+// The checker a hook names is proven by the file the path lands on, so a case seeds that file at
+// the folder shape a hook builds its path from and lets each spelling speak for itself.
+function runnableChecker(repo) {
+  const file = path.join(repo.root, 'tools', 'check-comment-hygiene.sh');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, '#!/bin/sh\nexit 0\n');
+  fs.chmodSync(file, 0o755);
+  return file;
+}
+
+test('F34 plain checker spellings: a hook naming the path outright reads present', () => withRepo({
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  runnableChecker(repo);
+  for (const line of [
+    'tools/check-comment-hygiene.sh',
+    './tools/check-comment-hygiene.sh',
+    'sh tools/check-comment-hygiene.sh',
+    'bash tools/check-comment-hygiene.sh',
+    'tools/check-comment-hygiene.sh || true',
+    'cd "$(dirname "$0")/../.." && tools/check-comment-hygiene.sh',
+  ]) assert.equal(hookLayer(repo, line), 'present', line);
+}));
+
+// A substitution nests, so a spelling that closes more than one of them before the path is
+// still one path. A parameter default puts a brace pair in the prefix, and a hook that climbs
+// out of the folder it runs in still lands on the same file.
+test('F35 substitution spellings: a hook that builds the path reads present', () => withRepo({
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  runnableChecker(repo);
+  for (const line of [
+    '${ROOT:-.}/tools/check-comment-hygiene.sh',
+    '"${ROOT:-.}/tools/check-comment-hygiene.sh"',
+    '"$(dirname "$0")/../../tools/check-comment-hygiene.sh"',
+    '$(cd "$(dirname "$0")" && pwd)/../../tools/check-comment-hygiene.sh',
+  ]) assert.equal(hookLayer(repo, line), 'present', line);
+}));
+
+// The spellings that already read present keep it, and a hook whose path lands on no file is
+// still installed and unable to run rather than installed and working.
+test('F36 variable spellings: the shapes that read present keep it and a missing checker stays broken', () => withRepo({
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  const root = path.join(repo.root, 'check-comment-hygiene.sh');
+  fs.writeFileSync(root, '#!/bin/sh\nexit 0\n');
+  fs.chmodSync(root, 0o755);
+  const tools = runnableChecker(repo);
+  for (const line of [
+    'bash "$ROOT/check-comment-hygiene.sh"',
+    '"$ROOT"/tools/check-comment-hygiene.sh',
+    '$(git rev-parse --show-toplevel)/tools/check-comment-hygiene.sh',
+    '"$(git rev-parse --show-toplevel)/tools/check-comment-hygiene.sh"',
+  ]) assert.equal(hookLayer(repo, line), 'present', line);
+
+  fs.rmSync(tools);
+  assert.equal(hookLayer(repo, 'tools/check-comment-hygiene.sh'), 'broken');
+  assert.equal(hookLayer(repo, '"$(dirname "$0")/../../tools/check-comment-hygiene.sh"'), 'broken');
+}));
+
+// A call inside a comment is a call nobody makes, so a hook whose only mention of the checker
+// is commented out names no checker at all. A # inside a quote is text, so the mention there
+// still counts as one.
+test('F37 a commented-out call names no checker and a quoted # stays text', () => withRepo({
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  assert.equal(hookLayer(repo, '# tools/check-comment-hygiene.sh is disabled'), 'absent');
+  assert.equal(hookLayer(repo, '# exec sh "$(dirname "$0")/../../tools/check-comment-hygiene.sh"'), 'absent');
+  runnableChecker(repo);
+  assert.equal(hookLayer(repo, 'echo "# tools/check-comment-hygiene.sh"'), 'present');
+}));
+
+// A generated row the repository declares carries its own command and its own paths, so the
+// path it names is that row's input even though the base layer marks the path as built output
+// and the exclude list hides it. A required P0 row that fails blocks the run.
+test('F38 a repository generated row runs on its declared path and blocks', () => withRepo({
+  change: { '.skilled/skills/sk-design/sk-design-md-generator/backend/dist/cli.js': 'module.exports = 7;\n' },
+}, (repo) => {
+  const declared = '.skilled/skills/sk-design/sk-design-md-generator/backend/dist/cli.js';
+  repo.write({
+    '.sk-code/quality.json': `${JSON.stringify({
+      schemaVersion: 1,
+      generated: [{
+        id: 'own-gen',
+        argv: [process.execPath, '-e', 'process.exit(7)', '{files}'],
+        paths: [declared],
+        severity: 'P0',
+        required: true,
+      }],
+    })}\n`,
+  });
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', declared]));
+  const row = check(verdict, 'own-gen');
+  assert.deepEqual([row.origin, row.state, row.files], ['generated', 'RAN_FAIL', 1]);
+  assert.equal(row.runs[0].exit, 7);
+  assert.equal(verdict.gate, 'BLOCKED');
+  assert.equal(status, 1);
+}));
+
+// A generated row the repository declares is a command with its own paths, so a source path
+// it names is that row's input wherever the file sits. A required P0 row that fails blocks.
+test('F39 a repository generated row runs on a path outside every declared folder', () => withRepo({
+  change: { 'gen/schema.js': 'module.exports = 7;\n' },
+}, (repo) => {
+  repo.write({
+    '.sk-code/quality.json': `${JSON.stringify({
+      schemaVersion: 1,
+      generated: [{
+        id: 'own-gen',
+        argv: [process.execPath, '-e', 'process.exit(7)', '{files}'],
+        paths: ['gen/schema.js'],
+        severity: 'P0',
+        required: true,
+      }],
+    })}\n`,
+  });
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', 'gen/schema.js']));
+  const row = check(verdict, 'own-gen');
+  assert.deepEqual([row.origin, row.state, row.files], ['generated', 'RAN_FAIL', 1]);
+  assert.equal(row.runs[0].exit, 7);
+  assert.equal(verdict.gate, 'BLOCKED');
+  assert.equal(status, 1);
+}));
+
+// A path no built-in check reads is still that row's input, so a file the sensors leave
+// unchecked does not hide a failing command.
+test('F40 a repository generated row runs on a path no built-in check reads', () => withRepo({
+  change: { 'gen/out.txt': 'built output\n' },
+}, (repo) => {
+  repo.write({
+    '.sk-code/quality.json': `${JSON.stringify({
+      schemaVersion: 1,
+      generated: [{
+        id: 'own-gen',
+        argv: [process.execPath, '-e', 'process.exit(7)', '{files}'],
+        paths: ['gen/out.txt'],
+        severity: 'P0',
+        required: true,
+      }],
+    })}\n`,
+  });
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', 'gen/out.txt']));
+  const row = check(verdict, 'own-gen');
+  assert.deepEqual([row.origin, row.state, row.files], ['generated', 'RAN_FAIL', 1]);
+  assert.equal(verdict.gate, 'BLOCKED');
+  assert.equal(status, 1);
+}));
+
+// An escaped quote outside quotes opens no quote, so the comment line after it is still a
+// comment and names no checker.
+test('F41 an escaped quote opens no quote and the comment below it stays a comment', () => withRepo({
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  runnableChecker(repo);
+  const hook = path.join(repo.root, '.git', 'hooks', 'pre-commit');
+  fs.writeFileSync(hook, "#!/bin/sh\necho don\\'t\n# tools/check-comment-hygiene.sh\n");
+  fs.chmodSync(hook, 0o755);
+  assert.equal(repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene, 'absent');
+}));
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. UNIT CASES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -352,18 +740,165 @@ test('unit: argv spawn and guard', () => {
     const second = withGuard(context, () => 'quiet', first.after);
     assert.deepEqual([second.value, second.mutated], ['quiet', []]);
 
-    const target = path.join(repo.root, 'notes.md');
-    const bin = fakePython(repo.parent, `require("fs").appendFileSync(process.env.SKQ_FIXTURE_TARGET, "changed\\n");\n${HYGIENE_REPORT}`);
+    const target = path.join(repo.root, 'fresh.md');
+    const bin = fakePython(repo.parent, `require("fs").writeFileSync(process.env.SKQ_FIXTURE_TARGET, "changed\\n");\n${HYGIENE_REPORT}`);
     const run = repo.run([], { env: { PATH: `${bin}${path.delimiter}${repo.env.PATH}`, SKQ_FIXTURE_TARGET: target } });
     assert.equal(run.status, 3);
     assert.equal(run.verdict.gate, 'ERROR');
     const [error] = run.verdict.errors;
     assert.equal(error.code, 'CHECK_MUTATED_WORKSPACE');
     assert.equal(error.check, 'comment-hygiene');
-    assert.deepEqual(error.paths, ['notes.md']);
-    assert.equal(fs.readFileSync(target, 'utf8'), 'base\nedit\nchanged\n');
+    // The file did not exist when the run listed the workspace, and the closing snapshot
+    // finds it anyway, so bounding the listing did not cost the guard a path it watched.
+    assert.deepEqual(error.paths, ['fresh.md']);
+    assert.equal(fs.readFileSync(target, 'utf8'), 'changed\n');
   });
 });
+
+// The guard hashes the folders the scope reaches, so a write inside one is seen and a write
+// outside one is not. The bound is what keeps a run from walking the whole tree, and the
+// cases hold both halves of it so a later change to the bound has to be deliberate.
+test('unit: guard boundary: a write inside the folders the scope reaches is caught', () => withRepo({
+  base: { 'app.js': 'module.exports = 1;\n' },
+  change: { 'nested/app.js': 'module.exports = 2;\n' },
+}, (repo) => {
+  const context = { root: repo.root, git: true, files: ['nested/app.js'], env: repo.env, folders: ['nested'] };
+  const created = path.join(repo.root, 'nested', 'created.js');
+  const outcome = withGuard(context, () => fs.writeFileSync(created, 'module.exports = 3;\n'));
+  assert.deepEqual(outcome.mutated, ['nested/created.js']);
+}));
+
+test('unit: guard boundary: a write outside the folders the scope reaches is not caught', () => withRepo({
+  base: { 'app.js': 'module.exports = 1;\n' },
+  change: { 'nested/app.js': 'module.exports = 2;\n' },
+}, (repo) => {
+  const context = { root: repo.root, git: true, files: ['nested/app.js'], env: repo.env, folders: ['nested'] };
+  const outcome = withGuard(context, () => fs.writeFileSync(path.join(repo.root, 'elsewhere.js'), 'module.exports = 4;\n'));
+  assert.deepEqual(outcome.mutated, [], 'a write outside the folders the scope reaches ended up inside the watch');
+}));
+
+// An ignored path is outside the watch because hashing the ones a folder holds costs more
+// than the run's budget allows, measured at the folder the runner itself lives in as well
+// as at the repository root. The case holds that boundary, so adding a watch means changing it.
+test('unit: guard boundary: an ignored record a check writes stays outside the watch', () => withRepo({
+  base: { '.gitignore': 'cache/\n', 'nested/app.js': 'module.exports = 1;\n' },
+  change: { 'nested/app.js': 'module.exports = 1;\n\nmodule.exports.b = 2;\n' },
+}, (repo) => {
+  const record = path.join(repo.root, 'nested', 'cache', 'record.json');
+  const body = `require("fs").mkdirSync(${JSON.stringify(path.dirname(record))}, { recursive: true });\n`
+    + `require("fs").writeFileSync(${JSON.stringify(record)}, ${JSON.stringify('{}\n')});\n${HYGIENE_REPORT}`;
+  const bin = fakePython(repo.parent, body);
+  const run = repo.run([], { env: { PATH: `${bin}${path.delimiter}${repo.env.PATH}` } });
+  assert.ok(run.verdict, run.stderr);
+  assert.equal(check(run.verdict, 'comment-hygiene').state, 'RAN_CLEAN');
+  assert.deepEqual(run.verdict.errors, [], 'a record written under an ignored folder ended up inside the watch');
+  assert.notEqual(run.status, 3);
+  assert.equal(fs.readFileSync(record, 'utf8'), '{}\n');
+}));
+
+// A named-file scope takes no listing of its own, so the guard has to bound its own to the
+// folders those files sit in. Without that, a check could create a file beside one and the
+// run would still read clean.
+test('unit: files scope guard', () => withRepo({
+  base: { 'src/a.go': 'package a\n' },
+  change: { 'src/a.go': 'package a\n\nfunc A() {}\n' },
+}, (repo) => {
+  const created = path.join(repo.root, 'src', 'new.txt');
+  const bin = fakePython(repo.parent, `require("fs").writeFileSync(${JSON.stringify(created)}, "x\\n");\n${HYGIENE_REPORT}`);
+  const run = repo.run(['--files', 'src/a.go'], { env: { PATH: `${bin}${path.delimiter}${repo.env.PATH}` } });
+  assert.equal(run.status, 3);
+  const [error] = run.verdict.errors;
+  assert.equal(error.code, 'CHECK_MUTATED_WORKSPACE');
+  assert.deepEqual(error.paths, ['src/new.txt']);
+  assert.equal(fs.readFileSync(created, 'utf8'), 'x\n');
+}));
+
+// The untracked side of a scope is the largest cost of a run, so a run reads it once and
+// hands it to the guard. A named-file scope reads none of it for the scope itself, and the
+// guard bounds its own listing to the folder each named file sits in.
+test('unit: scope listing', () => {
+  const temp = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skq-listing-')));
+  try {
+    const git = loggingGit(temp);
+    withRepo({ change: { 'app.js': 'module.exports = 1;\n', 'nested/peer.js': 'module.exports = 2;\n' } }, (repo) => {
+      const env = { PATH: `${git.bin}${path.delimiter}${repo.env.PATH}`, SKQ_FIXTURE_GIT_LOG: git.log };
+      const worktree = repo.run([], { env });
+      assert.ok(worktree.verdict, worktree.stderr);
+      const calls = listingCalls(git.log);
+      assert.equal(calls.length, 2, `a worktree run listed the untracked files ${calls.length} times, not once for the scope and once for the guard`);
+      assert.doesNotMatch(calls[0], / -- /, 'the scope listed its tree through a bound it does not have');
+      assert.match(calls[1], / -- \.$/, 'the guard listed the whole tree instead of the folders the scope reaches');
+
+      fs.rmSync(git.log, { force: true });
+      const named = repo.run(['--files', 'app.js'], { env });
+      assert.ok(named.verdict, named.stderr);
+      // The scope still lists nothing for a named-file run, because it hashes those paths by
+      // name, and the guard bounds its own listings to the folder the named file sits in.
+      const namedCalls = listingCalls(git.log);
+      assert.deepEqual(namedCalls.filter((call) => !call.includes(' -- ')), [],
+        'a named-file run listed its tree for the scope');
+      for (const call of namedCalls) assert.match(call, / -- \.$/, 'a named-file run listed outside the folder its file sits in');
+    });
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
+
+// A guard that is handed the listing hashes it and takes none of its own before the work
+// runs, and its closing snapshot lists again inside the folders the scope reaches, so a
+// path a check creates while it runs is still seen.
+test('unit: guard snapshot source', () => {
+  const temp = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skq-guard-source-')));
+  try {
+    const git = loggingGit(temp);
+    withRepo({ change: { 'app.js': 'module.exports = 1;\n' } }, (repo) => {
+      repo.write({ 'peer.js': 'module.exports = 2;\n' });
+      const env = { ...repo.env, PATH: `${git.bin}${path.delimiter}${repo.env.PATH}`, SKQ_FIXTURE_GIT_LOG: git.log };
+      const context = { root: repo.root, git: true, files: ['app.js'], env, untracked: ['peer.js'], folders: ['.'] };
+      const outcome = withGuard(context, () => fs.appendFileSync(path.join(repo.root, 'peer.js'), '// edit\n'));
+      assert.deepEqual(outcome.mutated, ['peer.js']);
+      assert.equal(listingCalls(git.log).length, 1, 'the opening snapshot listed instead of hashing the run listing');
+
+      fs.rmSync(git.log, { force: true });
+      const named = repo.run(['--files', 'app.js'], { env: { PATH: env.PATH, SKQ_FIXTURE_GIT_LOG: git.log } });
+      assert.ok(named.verdict, named.stderr);
+      // A named-file scope takes no listing of its own, and every guard listing under it is
+      // bounded to the folder the named file sits in.
+      const namedCalls = listingCalls(git.log);
+      assert.deepEqual(namedCalls.filter((call) => !call.includes(' -- ')), [],
+        'a named-file run listed its tree for the scope');
+      for (const call of namedCalls) assert.match(call, / -- \.$/, 'a named-file run listed outside the folder its file sits in');
+    });
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
+
+// A declared generated path is output, so only the dist adapter reads it. A configured
+// command that would match it by path stays NOT_APPLICABLE, and a repository exclude can
+// still take a declared path out of the run.
+test('unit: configured skips generated', () => withRepo({
+  change: declaredPackage(),
+}, (repo) => {
+  fs.mkdirSync(path.join(repo.root, DECLARED_PACKAGE, 'node_modules'), { recursive: true });
+  ageDeclaredPackage(repo, true);
+  const config = (extra) => `${JSON.stringify({
+    schemaVersion: 1,
+    checks: [{ id: 'js-lint', argv: [process.execPath, '-e', 'process.exit(9)', '{files}'], paths: ['**/*.js'], severity: 'P1' }],
+    ...extra,
+  })}\n`;
+  repo.write({ '.sk-code/quality.json': config({}) });
+  const declared = assertSnapshotUnchanged(repo, () => repo.run(['--files', DECLARED_PATH]));
+  assert.equal(declared.status, 0);
+  assert.deepEqual([check(declared.verdict, 'js-lint').state, check(declared.verdict, 'js-lint').files], ['NOT_APPLICABLE', 0]);
+  assert.deepEqual([check(declared.verdict, 'dist-staleness').state, check(declared.verdict, 'dist-staleness').files], ['RAN_CLEAN', 1]);
+
+  repo.write({ '.sk-code/quality.json': config({ exclude: [DECLARED_PATH] }) });
+  const excluded = assertSnapshotUnchanged(repo, () => repo.run(['--files', DECLARED_PATH]));
+  assert.equal(excluded.status, 2);
+  assert.deepEqual([check(excluded.verdict, 'dist-staleness').state, check(excluded.verdict, 'dist-staleness').files], ['NOT_APPLICABLE', 0]);
+  assert.deepEqual(excluded.verdict.coverage.unchecked, [{ file: DECLARED_PATH, reason: 'excluded' }]);
+}));
 
 test('unit: checker failure', () => withRepo({ change: { 'app.go': 'package a\n' } }, (repo) => {
   const garbage = fakePython(path.join(repo.parent, 'garbage'), 'process.stdout.write("not json"); process.exit(1);');
@@ -464,19 +999,47 @@ test('unit: exit precedence', () => {
 
 test('unit: layers', () => {
   const hookText = '#!/bin/sh\nexec python3 "$ROOT/check-comment-hygiene.sh" "$@"\n';
+  const checkerText = '#!/bin/sh\nexit 0\n';
   withRepo({
     change: {
       'app.go': 'package a\n',
+      'check-comment-hygiene.sh': checkerText,
       '.claude/settings.json': JSON.stringify({ hooks: { PostToolUse: [{ command: 'node .skilled/hooks/post-edit-quality/claude/adapter.cjs' }] } }),
     },
+    modes: { 'check-comment-hygiene.sh': 0o755 },
   }, (repo) => {
     const hook = path.join(repo.root, '.git', 'hooks', 'pre-commit');
+    const checker = path.join(repo.root, 'check-comment-hygiene.sh');
     fs.writeFileSync(hook, hookText);
     fs.chmodSync(hook, 0o755);
     fs.mkdirSync(path.join(repo.root, '.github'));
     fs.writeFileSync(path.join(repo.root, '.github', 'workflows'), 'a file where a folder belongs\n');
     const first = assertSnapshotUnchanged(repo, () => repo.run(['--files', 'app.go'])).verdict.layers;
     assert.deepEqual(first, { pre_commit_hygiene: 'present', ci_hygiene: 'unknown', post_edit: 'broken' });
+
+    // A hook that spells the checker from a quoted variable, or from a command
+    // substitution, puts a quote or a closing parenthesis between the variable and the
+    // path, so the token read alone looks absolute at the filesystem root. Both forms
+    // still resolve under the repository root.
+    const toolsChecker = path.join(repo.root, 'tools', 'check-comment-hygiene.sh');
+    fs.mkdirSync(path.dirname(toolsChecker), { recursive: true });
+    fs.writeFileSync(toolsChecker, checkerText);
+    fs.chmodSync(toolsChecker, 0o755);
+    for (const quoted of ['"$ROOT"/tools/check-comment-hygiene.sh', '"$(git rev-parse --show-toplevel)/tools/check-comment-hygiene.sh']) {
+      fs.writeFileSync(hook, `#!/bin/sh\nexec python3 ${quoted} "$@"\n`);
+      fs.chmodSync(hook, 0o755);
+      assert.equal(repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene, 'present', quoted);
+    }
+    fs.writeFileSync(hook, hookText);
+
+    // A hook naming a path no file sits at, and one naming a file git could not run,
+    // both read installed and unable to run rather than installed and working.
+    fs.rmSync(checker);
+    assert.equal(repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene, 'broken');
+    fs.writeFileSync(checker, checkerText);
+    fs.chmodSync(checker, 0o644);
+    assert.equal(repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene, 'broken');
+    fs.chmodSync(checker, 0o755);
 
     fs.chmodSync(hook, 0o644);
     fs.rmSync(path.join(repo.root, '.github', 'workflows'));
@@ -495,6 +1058,9 @@ test('unit: layers', () => {
     repo.git(['config', 'core.hooksPath', path.join(other, 'hooks')]);
     assert.equal(repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene, 'untrusted');
     repo.git(['config', '--local', 'skilled.trustRepoHooks', 'true']);
+    // The foreign hook names a checker that resolves in this repository, so the trust
+    // gate is the only thing that decided the earlier reading and the checker then
+    // proves runnable here.
     assert.equal(repo.run(['--files', 'app.go']).verdict.layers.pre_commit_hygiene, 'present');
   });
   withRepo({ change: { 'app.go': 'package a\n' } }, (repo) => {
@@ -701,6 +1267,8 @@ test('unit: dist adapter', () => {
       '    print("DIST FRESHNESS CHECK ERROR: fixture-package -- could not verify")',
       'elif name.startswith("noisy"):',
       '    print("something else entirely")',
+      'elif name.startswith("unmatched"):',
+      '    print("DIST FRESHNESS CHECK UNMATCHED: /tmp/unmatched.js -- no package owns this path")',
       '',
     ].join('\n'));
     const file = (name) => ({ rel: `dist/${name}`, abs: path.join(temp, name) });
@@ -713,6 +1281,17 @@ test('unit: dist adapter', () => {
     assert.deepEqual(stale.findings.map((entry) => [entry.rule, entry.severity, entry.blocking]), [['dist.stale', 'P1', false]]);
     assert.equal(runDistAdapter([file('fresh.js')], options).check.state, 'RAN_CLEAN');
     assert.equal(runDistAdapter([file('broken.js')], options).check.state, 'ERROR');
+    const unmapped = runDistAdapter([file('unmatched.js')], options).check;
+    assert.equal(unmapped.state, 'ERROR');
+    assert.match(unmapped.repair, /dist\/unmatched\.js/);
+    // The same verdict through the real checker, so the line the adapter parses is
+    // the one the shipped script prints rather than only the stand-in's.
+    const realChecker = path.join(QUALITY_ROOT, 'scripts', 'check-dist-staleness.sh');
+    fs.writeFileSync(path.join(temp, 'undeclared.js'), 'module.exports = 1;\n');
+    const realUnmapped = runDistAdapter([{ rel: 'dist/undeclared.js', abs: path.join(temp, 'undeclared.js') }],
+      { env: { PATH: process.env.PATH }, cwd: temp, timeoutMs: 20000, script: realChecker }).check;
+    assert.equal(realUnmapped.state, 'ERROR');
+    assert.match(realUnmapped.repair, /dist\/undeclared\.js/);
     assert.equal(runDistAdapter([file('noisy.js')], options).check.state, 'ERROR');
     assert.equal(runDistAdapter([file('stale.js')], { ...options, noRun: true }).check.state, 'LISTED');
     assert.equal(runDistAdapter([file('stale.js')], { ...options, env: { ...env, SYSTEM_DIST_FRESHNESS_DISABLED: '1' } }).check.state, 'SKIPPED_BY_FLAG');
@@ -721,6 +1300,36 @@ test('unit: dist adapter', () => {
     assert.equal(runDistAdapter([file('stale.js')], { ...options, env: { ...env, HOOK_FLAGS_CONFIG: flags } }).check.state, 'SKIPPED_BY_FLAG');
     assert.equal(runDistAdapter([file('stale.js')], { ...options, env: { PATH: temp } }).check.state, 'SKIPPED_ABSENT');
     assert.equal(runDistAdapter([], options).check.state, 'NOT_APPLICABLE');
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
+
+// A freshness check writes its cache record beside the dist entry it read, and a gate
+// run promises to write nothing. The read-only mode has to return the same verdict and
+// leave no record, while the writable default still records the build it checked.
+test('unit: dist read-only', () => {
+  const temp = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skq-fresh-')));
+  try {
+    const packageRoot = path.join(temp, '.skilled', 'skills', 'system-spec-kit', 'shared');
+    const distDir = path.join(packageRoot, 'dist');
+    fs.mkdirSync(distDir, { recursive: true });
+    fs.writeFileSync(path.join(packageRoot, 'tsconfig.json'), '{"compilerOptions": {}}\n');
+    fs.writeFileSync(path.join(packageRoot, 'index.ts'), 'export const value = 1;\n');
+    fs.writeFileSync(path.join(distDir, 'tsconfig.tsbuildinfo'), '{"build": "current"}\n');
+    const past = (Date.now() - 60000) / 1000;
+    for (const name of ['tsconfig.json', 'index.ts']) fs.utimesSync(path.join(packageRoot, name), past, past);
+    const records = () => fs.readdirSync(distDir).filter((name) => name.startsWith('.dist-freshness-'));
+
+    const readOnly = checkPackageFreshness('system-spec-kit/shared', { workspaceRoot: temp, readOnly: true });
+    assert.equal(readOnly.status, 'fresh');
+    assert.deepEqual([readOnly.stale, readOnly.origin], [false, 'checker']);
+    assert.deepEqual(records(), []);
+
+    const writable = checkPackageFreshness('system-spec-kit/shared', { workspaceRoot: temp });
+    assert.deepEqual([writable.status, writable.stale, writable.sourceHash, writable.distHash],
+      [readOnly.status, readOnly.stale, readOnly.sourceHash, readOnly.distHash]);
+    assert.equal(records().length, 1);
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
   }

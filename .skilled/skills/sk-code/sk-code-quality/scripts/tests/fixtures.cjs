@@ -24,14 +24,28 @@ const path = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SCRIPTS_DIR = path.resolve(__dirname, '..');
+const QUALITY_ROOT = path.resolve(SCRIPTS_DIR, '..');
 const RUNNER = path.join(SCRIPTS_DIR, 'quality-gate.cjs');
 const HUB_ROOT = path.resolve(SCRIPTS_DIR, '..', '..');
+const REPO_ROOT = path.resolve(HUB_ROOT, '..', '..', '..');
 const HUB_OVERRIDE_ENV = 'SK_CODE_QUALITY_HUB_ROOT';
 const IDENTITY = Object.freeze([
   '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
   '-c', 'commit.gpgsign=false', '-c', 'init.defaultBranch=main',
 ]);
 const STUB_CHECKLIST = '# Fixture checklist\n\nA stand-in for a declared checklist.\n';
+
+// A declared generated path sits in a build output folder no fixture owns, and a
+// freshness check writes its cache record beside the entry it verifies. Those folders
+// are snapshot roots too, so a write there is visible to a case. Only a folder that
+// holds a declared path is walked, and a nested one is dropped because its parent
+// already covers it.
+const GENERATED_ROOTS = Object.freeze([...new Set(JSON.parse(fs.readFileSync(
+  path.join(QUALITY_ROOT, 'assets', 'quality-defaults.json'), 'utf8',
+)).generated.flatMap((row) => row.paths || []).map((rel) => path.dirname(path.join(REPO_ROOT, rel))))]
+  .sort((left, right) => left.length - right.length)
+  .filter((dir, index, dirs) => fs.existsSync(dir)
+    && !dirs.slice(0, index).some((outer) => dir.startsWith(`${outer}${path.sep}`))));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -84,12 +98,14 @@ function writeHub(dir) {
   return dir;
 }
 
+// A rewrite that reproduces the bytes still moves the modification time, so the stamp
+// is part of every entry, and a folder whose entries were replaced is visible too.
 function describeEntry(file) {
   const stat = fs.lstatSync(file);
-  if (stat.isSymbolicLink()) return `link:${fs.readlinkSync(file)}`;
-  if (stat.isDirectory()) return `dir:${stat.mode}`;
-  if (!stat.isFile()) return `other:${stat.mode}`;
-  return `file:${stat.mode}:${crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}`;
+  if (stat.isSymbolicLink()) return `link:${stat.mtimeMs}:${fs.readlinkSync(file)}`;
+  if (stat.isDirectory()) return `dir:${stat.mode}:${stat.mtimeMs}`;
+  if (!stat.isFile()) return `other:${stat.mode}:${stat.mtimeMs}`;
+  return `file:${stat.mode}:${stat.mtimeMs}:${crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}`;
 }
 
 function snapshotTree(roots) {
@@ -175,15 +191,15 @@ function buildRepo({ base = {}, change = {}, links = {}, modes = {}, git = true,
 }
 
 /**
- * Run fn and fail when any file under the fixture folder or the runner's scripts
- * folder was created, changed or removed.
+ * Run fn and fail when any file under the fixture folder, the runner's scripts folder
+ * or a folder that holds a declared generated path was created, changed or removed.
  *
  * @param {Object} repo - A fixture from buildRepo.
  * @param {Function} fn - The work to observe.
  * @returns {*} What fn returned.
  */
 function assertSnapshotUnchanged(repo, fn) {
-  const roots = [repo.parent, SCRIPTS_DIR];
+  const roots = [repo.parent, SCRIPTS_DIR, ...GENERATED_ROOTS];
   const before = snapshotTree(roots);
   const value = fn();
   assert.deepEqual(changedEntries(before, snapshotTree(roots)), [], 'the run changed files on disk');

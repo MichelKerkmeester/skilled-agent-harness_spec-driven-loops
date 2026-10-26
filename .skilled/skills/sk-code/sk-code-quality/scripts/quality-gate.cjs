@@ -117,10 +117,19 @@ const SECRET_WINDOW = 8;
 const SHELL_PARSERS = new Set(['bash', 'sh']);
 const CJS_PARAMETERS = Object.freeze(['exports', 'require', 'module', '__filename', '__dirname']);
 const HYGIENE_REFERENCE = /check-comment-hygiene\.sh\b/;
+// A hook spells the checker path after a shell variable whose value a read cannot know, or
+// after a substitution, or after nothing at all. The path is therefore read back from the
+// checker name to the last boundary in front of it, and whatever stood in front of that
+// boundary is taken as a root the probe already knows, because the probe reads the hook as
+// text and never runs it. One pattern cannot do this: a substitution nests, a parameter
+// default puts a brace pair in the prefix, and a plain path carries no prefix at all.
+const PATH_CHARACTER = /[A-Za-z0-9_.\/-]/;
+const SOURCE_ROOTS = Object.freeze(['', '.skilled', '.opencode']);
 const POST_EDIT_CONFIGS = Object.freeze(['.claude/settings.json', '.codex/hooks.json', '.cursor/hooks.json', '.devin/hooks.v1.json']);
 const POST_EDIT_PATH = /[A-Za-z0-9_./-]*post-edit-quality[A-Za-z0-9_./-]*\.(?:cjs|mjs|js|sh)\b/g;
 const DIST_STALE = 'STALE DIST WARNING:';
 const DIST_ERROR = 'DIST FRESHNESS CHECK ERROR:';
+const DIST_UNMATCHED = 'DIST FRESHNESS CHECK UNMATCHED:';
 
 // One python3 process parses every Python, YAML and TOML file in scope. ast.parse
 // compiles nothing to disk, and compose_all reads YAML structure without building
@@ -769,7 +778,32 @@ function namedFiles(context, names) {
   return [...seen.entries()].map(([rel, abs]) => ({ rel, abs }));
 }
 
-function collectScope(context) {
+// The untracked side of a scope is one git tree walk and the largest cost of a run, so
+// a run takes it once, before any check starts, and hands the same list to the guard. A
+// named-file scope takes none of it here, because the files it was asked to check are
+// hashed by name, and each guard window lists the folders those files sit in instead.
+function untrackedListing(context) {
+  if (!context.git || context.options.scope === 'files') return null;
+  return nulList(gitOrThrow(context, ['ls-files', '--others', '--exclude-standard', '-z']));
+}
+
+// The folders a scope reaches, folded so one pathspec covers a subtree. The guard lists
+// again inside them, because a path a check creates while it runs is in no listing taken
+// before it, and a walk over these folders is what keeps that write visible without
+// paying for the whole tree. A write outside them stays outside the watch.
+function scopeFolders(files) {
+  const dirs = new Set();
+  for (const rel of files) dirs.add(path.posix.dirname(rel));
+  if (dirs.has('.')) return ['.'];
+  const kept = [];
+  for (const dir of [...dirs].sort()) {
+    if (kept.some((outer) => dir === outer || dir.startsWith(`${outer}/`))) continue;
+    kept.push(dir);
+  }
+  return kept;
+}
+
+function collectScope(context, listing) {
   const { options } = context;
   if (options.scope === 'files') {
     const named = namedFiles(context, options.files);
@@ -792,7 +826,7 @@ function collectScope(context) {
     base = mergeBase;
   }
   const names = nulList(gitOrThrow(context, ['diff', '--name-only', '-z', '-M', '--diff-filter=ACMR', '--no-ext-diff', base]));
-  const untracked = nulList(gitOrThrow(context, ['ls-files', '--others', '--exclude-standard', '-z']));
+  const untracked = listing || [];
   const hunks = diffHunks(context, base, null);
   const files = new Map();
   for (const rel of names) files.set(rel, hunks.get(rel) || new Set());
@@ -834,14 +868,46 @@ function matchPathFor(facts, context) {
   return facts.rel;
 }
 
+// A declared generated file is a build product, not source: the adapter reads whether
+// it is current and no authored-file path reads it, so it is marked rather than left to
+// the exclude list. Only a base-layer row names one, because a row the repository adds
+// carries its own command and runs as a configured check.
+function declaredGenerated(rel, context) {
+  return context.merged.generated.some((row) => row.layer === 'defaults' && matchesGlob(row.paths, rel));
+}
+
+// Only the repository's own exclude list is read here, because the base list holds the
+// build folders a declared path lives in. A repository exclude therefore wins over a
+// declaration, which is the one way it can keep a build output out of the run.
+function repositoryExclude(context) {
+  const raw = context.configLoaded && context.configLoaded.raw;
+  return raw && Array.isArray(raw.exclude) ? raw.exclude : [];
+}
+
+// The files an authored-file path may read: an excluded file was never read, and a
+// generated file is output rather than source.
+function authored(facts) {
+  return facts.unchecked !== 'excluded' && !facts.generated;
+}
+
 function fileFacts(file, context) {
   const facts = {
     ...file, unchecked: null, text: null, language: null, languageSource: null,
-    interpreter: null, family: null, syntax: null, real: null, insideHub: false, labels: [],
+    interpreter: null, family: null, syntax: null, real: null, insideHub: false, labels: [], generated: false,
+    excludedByRepo: false,
   };
   facts.real = realpathOrSelf(file.abs);
   facts.insideHub = isInside(facts.real, context.skilledDir);
   facts.matchPath = matchPathFor(facts, context);
+  if (matchesGlob(repositoryExclude(context), file.rel)) {
+    facts.unchecked = 'excluded';
+    facts.excludedByRepo = true;
+    return facts;
+  }
+  if (declaredGenerated(file.rel, context)) {
+    facts.generated = true;
+    return facts;
+  }
   if (matchesGlob(context.merged.exclude, file.rel)) {
     facts.unchecked = 'excluded';
     return facts;
@@ -986,11 +1052,21 @@ function selectorsMatch(selectors, facts, context) {
   });
 }
 
+// A base-layer row may be scoped to the repository that declares this hub, because a
+// framework-specific standard handed to a file in another repository claims an authority the
+// runner cannot check. The two roots the run already resolved answer that, so the row lists
+// nothing outside the repository the hub lives in.
+function sameRepositoryAsHub(context) {
+  return isInside(context.declHub, context.rootReal);
+}
+
 function resolveChecklists(files, context) {
   const checklists = [];
   const errors = [];
-  const scoped = files.filter((facts) => facts.unchecked !== 'excluded');
+  const scoped = files.filter(authored);
+  const sameRepository = sameRepositoryAsHub(context);
   for (const row of checklistRows(context)) {
+    if (row.selectors.hubRepo === true && !sameRepository) continue;
     const matched = scoped.filter((facts) => (row.owner === null || facts.labels.includes(row.owner))
       && selectorsMatch(row.selectors, facts, context));
     if (matched.length === 0) continue;
@@ -1019,14 +1095,11 @@ function sensorExcluded(context, sensor, facts) {
 // Which files each check applies to, and why. The run and --explain read the same
 // plan, so an explanation can never disagree with what a run does.
 function applicability(facts, context, { explain = false } = {}) {
-  const textual = !facts.unchecked;
+  const textual = !facts.unchecked && !facts.generated;
   // The conflict and secret sensors read raw text, so they also scan a file with no
   // comment family, such as a .env or a Markdown file, where a marker or a key matters
   // as much as in code. A debugger line in such a file is an example, not a leftover.
   const readable = facts.text !== null;
-  // Only the base layer's generated rows name paths for the dist checker. A row the
-  // repository adds carries its own command and runs as a configured check.
-  const generated = context.merged.generated.filter((row) => row.layer === 'defaults');
   const debugOn = (context.merged.sensors.debugLeftovers || {}).enabled !== false;
   const kind = facts.syntax;
   return {
@@ -1047,7 +1120,7 @@ function applicability(facts, context, { explain = false } = {}) {
     'syntax-shell': textual && kind === 'shell' ? 'bash -n' : null,
     'syntax-yaml': textual && kind === 'yaml' ? 'PyYAML compose, when python3 can import it' : null,
     'syntax-toml': textual && kind === 'toml' ? 'tomllib, when python3 can import it' : null,
-    'dist-staleness': textual && generated.some((row) => matchesGlob(row.paths, facts.rel)) ? 'a declared generated path' : null,
+    'dist-staleness': facts.generated ? 'a declared generated path' : null,
   };
 }
 
@@ -1328,17 +1401,27 @@ function distSwitchOn(script, env) {
   return !truthy(resolve('SYSTEM_HOOKS_DISABLED')) && !truthy(resolve('SYSTEM_DIST_FRESHNESS_DISABLED'));
 }
 
+// The checker prints the path it could not resolve before the separator, and the
+// row already carries the path the runner passed, so only the reason is kept.
+function distUnmatchedDetail(line) {
+  const text = line.slice(DIST_UNMATCHED.length).trim();
+  const separator = text.indexOf(' -- ');
+  return separator === -1 ? text : text.slice(separator + 4).trim();
+}
+
 /**
  * Check declared generated files with the dist checker's per-file mode, which never
- * rebuilds. It always exits 0, so the banner it prints is the only signal, and any line
- * it does not recognize reads as an error, never as fresh.
+ * rebuilds and writes no cache record. It always exits 0, so the banner it prints is the
+ * only signal, and any line it does not recognize reads as an error, never as fresh.
  *
  * @param {Array<{rel:string, abs:string}>} files - Declared generated files in scope.
- * @param {Object} [options] - env, timeoutMs, noRun, script and cwd.
+ * @param {Object} [options] - env, timeoutMs, noRun, script, cwd and workspaceRoot.
+ *   The workspace root defaults to the cwd, and the run passes the repository it
+ *   scanned so the checker maps a declared path in that repository.
  * @returns {{check:Object, findings:Object[]}}
  */
 function runDistAdapter(files, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_SEC * 1000, noRun = false,
-  script = DIST_CHECKER, cwd = path.resolve(HUB_ROOT, '..', '..', '..') } = {}) {
+  script = DIST_CHECKER, cwd = path.resolve(HUB_ROOT, '..', '..', '..'), workspaceRoot = cwd } = {}) {
   const check = checkEntry('dist-staleness', { argv: ['python3', '-B', script, '{file}'], cwd, files: files.length });
   if (files.length === 0) return { check, findings: [] };
   if (!distSwitchOn(script, env)) {
@@ -1349,13 +1432,23 @@ function runDistAdapter(files, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_
   if (noRun) return { check: { ...check, state: 'LISTED' }, findings: [] };
   const findings = [];
   const results = [];
+  const unmatched = [];
   for (const file of files) {
     const result = spawnArgv([python, '-B', script, file.abs], {
       cwd,
-      env: { ...env, SPECKIT_DIST_AUTO_REBUILD: '0' },
+      // The checker resolves packages against the repository the run scanned, not
+      // the checkout that happens to hold the script, so both halves of the run
+      // agree on which package owns a declared path.
+      env: { ...env, SPECKIT_DIST_AUTO_REBUILD: '0', SPECKIT_DIST_READ_ONLY: '1', SPECKIT_DIST_WORKSPACE_ROOT: workspaceRoot },
       timeoutMs,
     });
     const banner = result.stdout.split('\n').map((line) => line.trim()).filter(Boolean);
+    const unmatchedLine = banner.find((line) => line.startsWith(DIST_UNMATCHED));
+    if (unmatchedLine) {
+      unmatched.push({ rel: file.rel, detail: distUnmatchedDetail(unmatchedLine) });
+      results.push({ ...result, state: 'ERROR' });
+      continue;
+    }
     const unknown = banner.some((line) => !line.startsWith(DIST_STALE));
     const broken = result.state === 'RAN_FAIL' || result.stderr.trim() !== '' || unknown;
     results.push(broken && !['TIMEOUT', 'ERROR'].includes(result.state) ? { ...result, state: 'ERROR' } : result);
@@ -1366,7 +1459,14 @@ function runDistAdapter(files, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_
     }
   }
   const duration = results.reduce((sum, result) => sum + result.durationMs, 0);
-  return { check: { ...check, state: aggregateState(results, findings.length > 0), duration_ms: duration }, findings };
+  // A generated path the checker cannot map to a package was not checked at all.
+  // An empty banner would otherwise count the file as verified, so the row fails
+  // and names every path it could not resolve.
+  const state = unmatched.length > 0 ? 'ERROR' : aggregateState(results, findings.length > 0);
+  const repair = unmatched.length > 0
+    ? `the dist freshness check did not recognize ${unmatched.map(({ rel, detail }) => `${rel} (${detail})`).join(', ')}`
+    : null;
+  return { check: { ...check, state, duration_ms: duration, repair }, findings };
 }
 
 // The commands below come from the repository's committed config and from nowhere
@@ -1387,10 +1487,15 @@ function configuredEntries(context) {
   return [...context.merged.checks, ...context.merged.generated.filter((row) => row.layer === 'repo')];
 }
 
-// A generated row names output folders that the built-in excludes skip, such as dist,
-// so it matches by its own paths alone. A check matches what the runner reads.
+// A generated row names output and carries its own command, so every in-scope file its
+// own paths match is that row's input, wherever the file sits and whether the base layer
+// marked it as built output or the base exclude list hides it. A path the repository's own
+// exclude list removed is out of the run for every row. A check reads only what the runner
+// reads as source, so a declared generated path is never a check's input.
 function configuredMatches(entry, files) {
   return files.filter((facts) => {
+    const reachable = entry.kind === 'generated' ? !facts.excludedByRepo : authored(facts);
+    if (!reachable) return false;
     const passable = entry.kind === 'generated'
       ? (facts.unchecked === 'excluded' ? isRegularFile(facts.abs) : PASSABLE.has(facts.unchecked))
       : PASSABLE.has(facts.unchecked);
@@ -1554,8 +1659,46 @@ function gitValue(context, args, cwd) {
   return result.ok ? result.stdout.trim() : null;
 }
 
-// Present only when a pre-commit hook names the checker, git would run it, and the
-// hook's own trust gate lets it run in this repository.
+// A hook can name the checker in a comment as well as in a call, and a call inside a
+// comment is a call nobody makes. A # inside a quote is text rather than a comment start,
+// and so is the one in a parameter expansion, which has no space in front of it. A
+// backslash outside quotes takes the meaning from the character after it, so an escaped
+// quote opens no quote. Inside double quotes it escapes a quote, a backslash or a dollar
+// sign, and inside single quotes it is literal.
+const DOUBLE_QUOTE_ESCAPES = new Set(['"', '\\', '$']);
+
+function stripShellComments(text) {
+  let kept = '';
+  let quote = null;
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1];
+    if (quote === "'") {
+      kept += char;
+      if (char === "'") quote = null;
+    } else if (char === '\\' && (quote === null || DOUBLE_QUOTE_ESCAPES.has(next))) {
+      kept += char + (next === undefined ? '' : next);
+      index += 1;
+    } else if (quote) {
+      kept += char;
+      if (char === quote) quote = null;
+    } else if (char === '"' || char === "'") {
+      quote = char;
+      kept += char;
+    } else if (char === '#' && (index === 0 || /[\s;|&()]/.test(text[index - 1]))) {
+      while (index < text.length && text[index] !== '\n') index += 1;
+      kept += '\n';
+    } else {
+      kept += char;
+    }
+  }
+  return kept;
+}
+
+// Present only when a pre-commit hook names the checker, git would run it, the hook's
+// own trust gate lets it run in this repository, and the checker the hook names really
+// can run. A present layer lends whole-file authority to that checker, so a hook whose
+// path names nothing runnable is broken rather than present.
 function probePreCommit(context) {
   if (!context.git) return 'absent';
   const hooks = gitValue(context, ['rev-parse', '--path-format=absolute', '--git-path', 'hooks']);
@@ -1567,19 +1710,70 @@ function probePreCommit(context) {
   } catch (error) {
     return error.code === 'ENOENT' ? 'absent' : 'unknown';
   }
-  if (!HYGIENE_REFERENCE.test(text)) return 'absent';
+  const code = stripShellComments(text);
+  if (!HYGIENE_REFERENCE.test(code)) return 'absent';
   try {
     fs.accessSync(hook, fs.constants.X_OK);
   } catch {
     return 'broken';
   }
+  // The hook's own repository is read through the real path, because a hook installed
+  // machine-wide is a link into the checkout that ships it, and that checkout is where
+  // its checker lives rather than the repository under test.
+  const hookCommon = gitValue(context, ['rev-parse', '--path-format=absolute', '--git-common-dir'], path.dirname(realpathOrSelf(hook)));
   if (/skilled\.trustRepoHooks/.test(text)) {
-    const hookCommon = gitValue(context, ['rev-parse', '--path-format=absolute', '--git-common-dir'], path.dirname(realpathOrSelf(hook)));
     const repoCommon = gitValue(context, ['rev-parse', '--path-format=absolute', '--git-common-dir']);
     const trusted = gitValue(context, ['config', '--local', '--bool', 'skilled.trustRepoHooks']) === 'true';
     if ((!hookCommon || hookCommon !== repoCommon) && !trusted) return 'untrusted';
   }
-  return 'present';
+  return checkerCandidates(code, checkerRoots(context, hookCommon)).some(isRunnableFile) ? 'present' : 'broken';
+}
+
+function isRunnableFile(file) {
+  try {
+    if (!fs.statSync(file).isFile()) return false;
+    fs.accessSync(file, fs.constants.X_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Every spelling a hook carries is a candidate, and one runnable spelling settles the
+// layer. A hook builds the path from a variable, a substitution or the folder it runs in,
+// so each spelling is tried as a path under each root and, where it is absolute, as the
+// path it literally names.
+function checkerCandidates(text, roots) {
+  const candidates = [];
+  for (const found of text.matchAll(/check-comment-hygiene\.sh\b/g)) {
+    let start = found.index;
+    while (start > 0 && PATH_CHARACTER.test(text[start - 1])) start -= 1;
+    const word = text.slice(start, found.index + found[0].length);
+    const spelled = text[start - 1] === '$' ? word.replace(/^[A-Za-z0-9_]+/, '') : word;
+    if (path.isAbsolute(spelled)) candidates.push(spelled);
+    const rel = rootRelative(spelled);
+    if (!rel) continue;
+    for (const root of roots) candidates.push(path.join(root, rel));
+  }
+  return candidates;
+}
+
+// A hook builds the path from the folder it runs in, so the segments above the folder it
+// climbed from are folded away rather than allowed to leave the roots the caller tries.
+function rootRelative(spelled) {
+  const parts = [];
+  for (const part of spelled.split('/')) {
+    if (part === '' || part === '.') continue;
+    if (part === '..') parts.pop();
+    else parts.push(part);
+  }
+  return parts.join('/');
+}
+
+function checkerRoots(context, hookCommon) {
+  const roots = [context.root];
+  if (hookCommon) roots.push(path.dirname(hookCommon));
+  return roots.flatMap((root) => SOURCE_ROOTS.map((sub) => (sub ? path.join(root, sub) : root)));
 }
 
 function probeCi(context) {
@@ -1776,11 +1970,12 @@ function recordSpawnedCheck(id, files, context, run) {
 }
 
 function runGate(context) {
-  const scope = collectScope(context);
+  const listing = untrackedListing(context);
+  const scope = collectScope(context, listing);
   if (context.options.lines === 'file') for (const file of scope.files) file.changed = 'all';
   const surfaces = declaredSurfaces(context.declHub);
   const files = scope.files.map((file) => fileFacts(file, context));
-  for (const facts of files) if (facts.unchecked !== 'excluded') facts.labels = fileLabels(facts, surfaces);
+  for (const facts of files) if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
   const { checklists, errors: configErrors } = resolveChecklists(files, context);
   const layers = probeLayers(context);
   const plan = planChecks(files, context);
@@ -1870,7 +2065,7 @@ function runGate(context) {
   }
 
   const generated = plan.get('dist-staleness');
-  const distOptions = { env: context.env, timeoutMs: context.timeoutMs, noRun: context.options.noRun };
+  const distOptions = { env: context.env, timeoutMs: context.timeoutMs, noRun: context.options.noRun, workspaceRoot: context.root };
   const settleDist = (outcome) => {
     if (outcome.check) {
       findings.push(...outcome.findings);
@@ -1893,7 +2088,12 @@ function runGate(context) {
   const failRest = (repair) => {
     for (const step of steps) if (!finished.has(step)) step.finish({ state: 'ERROR', findings: [], repair });
   };
-  const guardContext = { root: context.root, git: context.git, files: files.map((facts) => facts.rel), env: context.env };
+  // The guard starts from the listing this run already took, and each window after it
+  // re-lists inside the folders the scope reaches, so one run reads the tree once for
+  // the scope instead of once per snapshot. A named-file scope took no listing of its
+  // own, so its guard lists those folders at every snapshot.
+  const guardContext = { root: context.root, git: context.git, files: files.map((facts) => facts.rel), env: context.env,
+    untracked: listing === null ? undefined : listing, folders: scopeFolders(scope.files.map((file) => file.rel)) };
   let snapshot = null;
   let halted = null;
   if (steps.length > 0) {
@@ -1976,7 +2176,7 @@ function runGate(context) {
       files: files.map((facts) => facts.rel) },
     config: { ...context.config, errors: [...context.config.errors, ...configErrors, ...configFaults] },
     resolved_surface: labels.length > 0 ? labels : ['unknown'],
-    surfaces: files.filter((facts) => facts.unchecked !== 'excluded').map((facts) => ({ file: facts.rel, labels: facts.labels })),
+    surfaces: files.filter(authored).map((facts) => ({ file: facts.rel, labels: facts.labels })),
     layers,
     checklists,
     checks: orderedChecks,
@@ -2000,7 +2200,7 @@ function explain(context) {
   const [named] = namedFiles(context, [context.options.explain]);
   const facts = fileFacts({ ...named, changed: new Set() }, context);
   const surfaces = declaredSurfaces(context.declHub);
-  if (facts.unchecked !== 'excluded') facts.labels = fileLabels(facts, surfaces);
+  if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
   const { checklists, errors } = resolveChecklists([facts], context);
   const reasons = applicability(facts, context, { explain: true });
   const repository = configuredEntries(context).map((entry) => {
