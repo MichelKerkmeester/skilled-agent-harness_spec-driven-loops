@@ -1,0 +1,29 @@
+I'll start by loading the spec-kit skill and reading the packet.
+
+
+
+
+
+
+
+
+
+Baseline captured: `RESULT: PASSED` with 0 errors. Now the three edits.
+
+
+
+
+
+
+
+Validator surfaced derived-metadata drift from the source edits. Previewing the sanctioned repair before applying it:
+
+
+
+
+
+Passing. Verifying the change is scoped to the packet and my three additions are intact:
+
+
+
+REQ-012 RESULT: PASSED

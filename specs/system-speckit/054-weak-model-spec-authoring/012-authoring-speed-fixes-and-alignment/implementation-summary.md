@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment"
-    last_updated_at: "2026-10-25T22:35:00Z"
+    last_updated_at: "2026-10-26T05:35:00Z"
     last_updated_by: "conductor"
-    recent_action: "Built lanes 1 to 3 and ran the alignment pass"
-    next_safe_action: "Time the three trees with the speed loop on 2026-10-26"
+    recent_action: "Timed the refined tree with the speed loop"
+    next_safe_action: "Run a longer benchmark only if the operator asks for one"
     blockers: []
     key_files: []
     session_dedup:
@@ -98,6 +98,7 @@ Lanes 1 and 3 ran in parallel; lane 2 waited for phase 010 lane A because both t
 | SOURCE_TAGS on the 054 parent | 1.60 to 2.07 s, 98 citations, `RESULT: PASSED` |
 | Guards | `check-card-sync.sh` exit 0, `CARD SYNC OK`; `check-example-drift.sh` exit 0, `EXAMPLE_DRIFT_OK` |
 | Snapshot and gate tests | 2 files, 54/54 passed |
+| Speed loop against 054 now | 3 rounds, all runs strict PASS; refined has 0 leftover hints and 0 missing anchors in all 6 runs; time difference INCONCLUSIVE (`../011-authoring-speed-research/scratch/speed-loop/results/20261026T050500Z-67716/summary.md`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,7 +107,7 @@ Lanes 1 and 3 ran in parallel; lane 2 waited for phase 010 lane A because both t
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--quiet` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
 
-1. **No timed authoring run backs the card and template edits yet.** They change wording only. The speed loop in `../011-authoring-speed-research/scratch/speed-loop/` times the pre-054, 054 and refined trees on 2026-10-26.
+1. **The card and template edits did not make authoring measurably faster.** The speed loop timed this tree against 054 before it on 2026-10-26: author +17 s, upkeep +1 s over 3 rounds, inside a 75 s run-to-run spread. The scanner saving is real and measured; the wording edits stand on clarity, not speed.
 <!-- /ANCHOR:limitations -->
 
 ---

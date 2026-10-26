@@ -1,0 +1,35 @@
+I'll start by reading the packet files to understand the existing structure.
+
+Now let me check the packet directory contents and run a baseline validation.
+
+
+
+
+
+
+
+
+
+Let me check the acceptance-criteria template and the script's stderr behavior.
+
+
+
+The packet is clear. Now I'll add the requirement, task, and acceptance row.
+
+
+
+
+
+
+
+All four placeholder hits are pre-existing in `implementation-summary.md`, not from my edits. Running validation:
+
+Metadata drift is a derived-file consequence of editing `spec.md`. The validator points to its own repair tool; let me preview it first.
+
+
+
+
+
+
+
+REQ-006 — RESULT: PASSED

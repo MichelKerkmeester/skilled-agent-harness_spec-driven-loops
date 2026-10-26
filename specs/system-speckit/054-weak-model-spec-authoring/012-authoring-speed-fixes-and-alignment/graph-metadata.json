@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The citation scanner behind `SOURCETAGS` spends 6.9 to 9.9 seconds on a git listing that takes 0.9 seconds without the file-system monitor, and once hung for 28 minutes",
     "created_at": "2026-10-25T21:55:27Z",
-    "last_save_at": "2026-10-25T22:58:46.844Z",
+    "last_save_at": "2026-10-26T05:34:09.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94eae59ffe1f0adeae46ba5adcbdebca4751eeb25c7e3f6e71be7112b96743d8",
+    "source_fingerprint": "sha256:b47cb60a41c6bc28a3024465f85d5690acd8e1f54e9c63c0e493060fe5873284",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6df66013c65a305ddb4ade3f06888f701dbf49d1860a52b21c4e13e17aa5790",
       "plan.md": "4e52108faef6cb1d6a6032359153ca724145839f089314145bf3d77dd780621f",
       "tasks.md": "e85c171c3a255f437b1eee1a194d8479d11d8c06cd67b54c8657e4b7fde47d3b",
-      "implementation-summary.md": "3312ae376e28dcd68584b68266d69e75f0eda93afd67b69935abc1542cae93e4"
+      "implementation-summary.md": "439a7ecb5bc3e1009731f6ef7a6a3fa3a49bb673996a80a32b23583ad407df65"
     },
     "last_active_at": null
   }

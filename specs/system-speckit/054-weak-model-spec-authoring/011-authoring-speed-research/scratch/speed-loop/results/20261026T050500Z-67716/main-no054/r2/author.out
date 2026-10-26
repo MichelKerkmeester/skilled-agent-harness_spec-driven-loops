@@ -1,0 +1,125 @@
+I'll start by running the scaffold command and reading the governing skill.
+
+Folder created. Now reading the scaffolded docs, the target script, and the validation/template contracts.
+
+Now reading the rest of the script plus the validation contract, and checking existing packet examples for style.
+
+
+
+Baseline passes (1 warning). Let me look at how a filled Level 3 packet writes the AI Execution Protocol and check the template guidance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me check for existing tests and doc references to `recommend-level.sh` so the plan covers real consumers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check whether sibling spec scripts already implement a `--quiet` flag, to match the established convention.
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have the full picture. Writing the four planning documents now, starting with `spec.md`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+`spec.md` is clean. Now `plan.md`.
+
+
+
+
+
+Now `tasks.md`, including the Level 3 AI execution protocol.
+
+
+
+
+
+Two generated-metadata drift errors caused by filling `spec.md`. Recomputing the derived metadata.
+
+
+
+
+
+Validation passes with 0 errors and 0 warnings. Now verifying my factual claims and checking the write footprint.
+
+
+
+
+
+
+
+
+
+Counts confirmed. Fixing the summary table to match the checked rows and tightening one command path.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bash 3.2.57 confirmed. Tightening the LOC estimate to match the actual diff size.
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag — RESULT: PASSED

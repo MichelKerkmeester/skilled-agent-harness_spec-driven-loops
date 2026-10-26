@@ -1,0 +1,33 @@
+I'll start by reading the existing packet documents.
+
+Now let me get a baseline validation run and inspect what the validator checks.
+
+Baseline is `RESULT: PASSED` with 1 warning. Let me check how the validator treats REQ IDs across docs before editing.
+
+Validator doesn't cross-check REQ IDs. Let me look at the script to write a concrete, real `Verify:` command for the new task.
+
+Now I'll make the three surgical additions.
+
+All three edits landed. Now the validation run.
+
+Two errors appeared. Let me see them in full.
+
+The two errors are derived-metadata drift caused by my `spec.md` edit. Let me preview what the repair would change before applying anything.
+
+Let me understand exactly what the drift check compares before I run the repair.
+
+The validator's engine is compiled elsewhere; `repair-derived.cjs --apply` is the sanctioned remedy it prints. Let me apply it and inspect exactly what it touches.
+
+
+
+The packet is untracked, so I'll hash the files before and after to prove the repair touches only derived metadata.
+
+
+
+
+
+Repair touched only `implementation-summary.md`'s frontmatter pointer and `graph-metadata.json` (derived); my three content edits are byte-intact. Re-validating:
+
+`RESULT: PASSED` (0 errors; the 1 warning is the pre-existing `implementation-summary.md` placeholder set, identical to baseline). Final confirmation of the three additions:
+
+REQ-011 — RESULT: PASSED

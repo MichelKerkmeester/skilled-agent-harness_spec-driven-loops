@@ -1,0 +1,45 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+
+
+
+
+
+
+
+
+Let me capture a baseline validation run before editing.
+
+
+
+
+
+
+
+
+
+
+
+Now I'll add the requirement, task, and acceptance row.
+
+
+
+
+
+Now running strict validation.
+
+Validation now flags stale derived metadata from the source edits. Let me preview the repair.
+
+
+
+
+
+
+
+
+
+
+
+REQ-007 — RESULT: PASSED

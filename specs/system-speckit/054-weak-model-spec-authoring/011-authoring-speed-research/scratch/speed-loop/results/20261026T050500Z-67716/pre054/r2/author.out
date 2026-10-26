@@ -1,0 +1,117 @@
+I'll start by loading the spec-kit skill and running the packet creation command.
+
+Folder created. Let me read the scaffolded docs and the target script.
+
+
+
+
+
+Baseline passes with 1 warning (AI_PROTOCOLS). Let me check what that rule requires and how the templates express it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I have the full picture. Writing `spec.md`:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now `plan.md`:
+
+Now `tasks.md`:
+
+
+
+Now `acceptance-criteria.md`:
+
+
+
+
+
+All four documents are written. Running strict validation:
+
+Validation flags stale derived metadata. The validator names its own repair command — previewing it first:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The failing rules are derived-metadata only. I'll re-derive graph metadata directly, which leaves `implementation-summary.md` untouched as instructed:
+
+
+
+Validation passes. Confirming final state and that nothing outside the packet changed:
+
+
+
+
+
+One scaffold placeholder remains in the acceptance-criteria frontmatter. Fixing it:
+
+
+
+The frontmatter edit invalidated the derived fingerprint again. Re-deriving, then re-validating:
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag RESULT: PASSED

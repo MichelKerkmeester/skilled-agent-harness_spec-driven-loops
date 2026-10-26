@@ -8,10 +8,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research"
-    last_updated_at: "2026-10-25T21:40:00Z"
+    last_updated_at: "2026-10-26T05:35:00Z"
     last_updated_by: "conductor"
-    recent_action: "Closed the phase"
-    next_safe_action: "Time the three trees with the speed loop on 2026-10-26"
+    recent_action: "Timed the refined tree with the speed loop"
+    next_safe_action: "Run a longer benchmark only if the operator asks for one"
     blockers: []
     key_files: []
     session_dedup:
@@ -73,11 +73,13 @@ and findings belong here.
 | Phase opened | Done | `create.sh --phase --phase-parent` scaffolded this folder on 2026-10-25 |
 | Research and synthesis | Done | 5 iterations; `rg -c '\*\*(build now|defer)\*\*' research/research.md` prints 12 |
 | Validation | Done | `validate.sh --strict --no-recursive` printed `RESULT: PASSED`, 0 errors, 82 citations resolve |
-| Speed loop | Built, smoke-run | `scratch/speed-loop/loop.sh`; one smoke round (`results/20261025T223407Z-30309/summary.md`): author pre-054 236 s vs 054 144 s, upkeep 103 s vs 40 s, both strict PASS, n=1 so INCONCLUSIVE; the refined tree runs on 2026-10-26 |
+| Speed loop | Built, smoke-run | `scratch/speed-loop/loop.sh`; one smoke round (`results/20261025T223407Z-30309/summary.md`): author pre-054 236 s vs 054 144 s, upkeep 103 s vs 40 s, both strict PASS, n=1 so INCONCLUSIVE |
+| Speed loop, refined tree | Done, INCONCLUSIVE | 2026-10-26, 3 rounds x 4 trees, 24 runs, all strict PASS (`results/20261026T050500Z-67716/summary.md`). Refined against 054 now: author +17 s mean (pairs -174 to +178), upkeep +1 s (-34 to +19). Refined against main without 054: author +0.7 s. Main without 054 against pre-054: author +27 to +176 s in all 3 pairs |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Level | The folder is Level 1, the lightest level that fits a research phase, per parent decision D6. |
+| What the loop can see | An authoring run takes 157 to 368 s, and its time follows its tool-call count (r=0.91 over the 12 author runs), not the tree. A wording change worth less than that 75 s spread needs far more rounds than a compact loop gives. What the loop does show: 054 adds no measurable authoring time over the same main without it, and the gap to pre-054 is main's drift. |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,31 @@
+I'll start by reading the existing packet documents.
+
+Now let me check the validator, plan, and load the governing skill.
+
+
+
+
+
+
+
+
+
+
+
+Verification command behaves as expected. Now the three insertions:
+
+
+
+Validation reports a stale derived fingerprint in `graph-metadata.json`. Let me check what the repair tool touches before running it.
+
+
+
+
+
+
+
+
+
+
+
+REQ-006 RESULT: PASSED

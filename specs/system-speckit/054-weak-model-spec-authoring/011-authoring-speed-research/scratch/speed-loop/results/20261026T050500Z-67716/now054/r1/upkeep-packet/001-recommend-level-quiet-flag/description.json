@@ -1,0 +1,18 @@
+{
+  "specFolder": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "description": "`recommend-level.sh` writes a report rather than a value",
+  "keywords": [
+    "quiet",
+    "flag",
+    "recommend-level"
+  ],
+  "lastUpdated": "2026-10-26T05:06:46.287Z",
+  "specId": "001",
+  "folderSlug": "recommend-level-quiet-flag",
+  "parentChain": [
+    "zz-bench-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

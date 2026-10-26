@@ -1,0 +1,59 @@
+I'll start by reading the existing packet files to understand their structure.
+
+
+
+
+
+
+
+Let me run the validator on the current packet to capture a baseline.
+
+
+
+
+
+
+
+
+
+No warnings exist in the script today, so the requirement is a contract on stream separation. Now making the three edits, starting with `spec.md` (next free id is REQ-007).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Validation passes. One consistency detail: the closure statement in the same file still says "eight criteria" and names `AC-001 to AC-008`, which my added row invalidates.
+
+
+
+
+
+
+
+
+
+REQ-007 RESULT: PASSED

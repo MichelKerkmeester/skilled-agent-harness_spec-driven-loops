@@ -1,0 +1,31 @@
+I'll start by reading the packet files to understand the existing structure.
+
+Now let me look at the validator and plan to understand constraints before editing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Baseline validation passes (0 errors, 1 pre-existing placeholder warning). Now I'll add the three required entries.
+
+Now running the validator.
+
+Validation surfaced one derived-metadata error caused by my doc edits. Let me inspect the repair tool before running it.
+
+The repair is a graph-metadata re-derive, inside the packet. Applying it, then re-validating.
+
+
+
+Passing. Let me confirm the diff scope is limited to the intended files.
+
+
+
+REQ-009 RESULT: PASSED

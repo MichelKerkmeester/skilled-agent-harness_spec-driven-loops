@@ -48,6 +48,7 @@
       "research/phase-012-proposal.md",
       "research/findings-registry.json",
       "research/resource-map.md",
+      "scratch/speed-loop/results/20261026T050500Z-67716/summary.md",
       "research/deep-research-config.json",
       "scratch/speed-loop/loop.sh",
       "runtime/cli/templates/inline-gate-renderer.sh",
@@ -57,8 +58,7 @@
       "runtime/lib/validation/orchestrator.ts",
       "references/templates/level-specifications.md",
       "templates/spec-kit-docs.json",
-      "runtime/cli/spec-folder/generate-description.ts",
-      "research/lineages/pi-deepseek/research.md"
+      "runtime/cli/spec-folder/generate-description.ts"
     ],
     "entities": [
       {
@@ -107,6 +107,12 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "scratch/speed-loop/results/20261026T050500Z-67716/summary.md",
         "source": "derived"
       },
       {
@@ -198,17 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Packet",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 054 grew the four core templates from 4,681 to 7,255 words and added a 1,246-word card, so a model reads more before it writes",
     "created_at": "2026-10-25T21:20:29Z",
-    "last_save_at": "2026-10-25T22:58:45.362Z",
+    "last_save_at": "2026-10-26T05:34:07.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d190a48d48840a619b073545215f5bc4d7d34dfbd7d4389042e551f917a17500",
+    "source_fingerprint": "sha256:95e71d00523c2de2370ecd43dc39083d6b3536887c6cd37edb494be54533dce4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ff36de40b592e4ae1b11fe97bf92f064ae329a867cc4e0506512f547f571005",
       "plan.md": "96593063077f11048e1ce075ab286e1d5ee20a6ad18fb07e2e9b700bfb8b4265",
       "tasks.md": "2de0cb7e9d60270e0f9c43bf79822df2e8c59f702332a1a6c7e55f3f9e4ddcc7",
-      "implementation-summary.md": "fe7e5870826aa60af22c4fa93a7bad18a50dc2d31df474f68751b143ec4a5d8c",
+      "implementation-summary.md": "916049968878cb0a2c1c3742c45f20c41190a452f6de87df88a67d00ae4d3343",
       "research/research.md": "611a5c3fcf727723992afa85c82ed58e640d21549f8c0eeb170b7633197e8ecb"
     },
     "last_active_at": null

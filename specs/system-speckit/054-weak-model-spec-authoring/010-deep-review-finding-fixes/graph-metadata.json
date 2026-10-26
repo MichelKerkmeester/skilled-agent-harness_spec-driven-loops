@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep review of packet 054 ran 40 iterations across four model lineages and confirmed nine required defects",
     "created_at": "2026-10-25T20:14:56Z",
-    "last_save_at": "2026-10-25T23:02:43.443Z",
+    "last_save_at": "2026-10-26T05:34:05.104Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7a15fb4f0c0d75d8d6d50e179c4e87911cb37ac59b81914bcee41c2882a402b",
+    "source_fingerprint": "sha256:5ade8bd8842cfbacfe6fe1a0b48766ee81d19fcc35618b11daf52bd5649dd34a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a21c746948e5f2b5fe6ae3fab8798f0aaf35fe17041029d236e046eee2f0eb22",
       "plan.md": "a97b910be74012214cda6b5bcd57dbc6eeb2480d2d62f649cac1c997816c0663",
       "tasks.md": "81a514373e33dbf0a7ccc8042f53cd3540463e48bd0d05d4bdc88ef395e3c222",
-      "implementation-summary.md": "fc58e413e90846ded1f2a139d1bc7907a3a64842559c4ec82f0fa950afcac45d"
+      "implementation-summary.md": "fbeb7b4113ec217fa9826ba04e298be4655a8d08938a292d39fb501328bd8706"
     },
     "last_active_at": null
   }

@@ -1,0 +1,145 @@
+I'll start by loading the spec-kit skill and running the scaffold command.
+
+Folder created. Now reading the scaffolds and the skill contract.
+
+Now let me read the actual script to ground the spec in reality, plus the validation rules.
+
+
+
+Baseline passes with one warning (AI_PROTOCOLS). Let me check that rule's exact requirements so I can clear it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me inventory callers of `recommend-level.sh` so the plan's affected-surfaces table is grounded.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now writing the four documents. Starting with `spec.md`.
+
+The post-edit hook flagged something in `spec.md`. Let me inspect the broader placeholder scanner to see what it catches.
+
+
+
+
+
+`spec.md` is clean (the broad scan only flagged the other scaffolded files). Now `plan.md`, including the Level 3 AI protocol section.
+
+
+
+`plan.md` is clean. Now `tasks.md` with the full verification checklist.
+
+
+
+Now `acceptance-criteria.md`, with one traceable row per requirement.
+
+All four documents are written. Running the strict validator now.
+
+Validation found two generated-metadata errors. The validator names its own repair command. Let me inspect it before running.
+
+The validator's repair tool only recomputes derivable metadata, which is exactly the failure. First I'll sharpen the Problem Statement's first sentence, since the synopsis extractor derives the description from it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The repair tool would also rewrite `implementation-summary.md`, which I was told to leave untouched. I'll run only its graph re-derive step directly.
+
+
+
+
+
+Validation passes with 0 errors and 0 warnings. Now verifying the change set stayed inside the packet and that `implementation-summary.md` is untouched.
+
+
+
+Content review caught a REQ mapping drift in the criteria table. Fixing the row references.
+
+The criteria edit does not touch a synopsis source, but the completion rule requires the gate to run from the final state. Running the authoritative validator once more.
+
+
+
+A new error appeared. Let me see which rule fired.
+
+The fingerprint covers the full docset, so the criteria edit invalidated it. Before the final re-derive, I'll review all four documents end to end so no further edit is needed.
+
+
+
+Documents are consistent. Running the final re-derive, then the authoritative gate from that final state.
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag RESULT: PASSED

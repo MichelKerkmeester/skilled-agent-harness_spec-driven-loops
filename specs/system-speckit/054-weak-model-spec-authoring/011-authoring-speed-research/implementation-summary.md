@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research"
-    last_updated_at: "2026-10-25T22:05:00Z"
+    last_updated_at: "2026-10-26T05:35:00Z"
     last_updated_by: "conductor"
-    recent_action: "Ranked twelve speed changes and handed three to phase 012"
-    next_safe_action: "Time the three trees with the speed loop on 2026-10-26"
+    recent_action: "Timed the refined tree with the speed loop"
+    next_safe_action: "Run a longer benchmark only if the operator asks for one"
     blockers: []
     key_files: []
     session_dedup:
@@ -96,6 +96,7 @@ The fan-out ran the five iterations, `fanout-merge.cjs` merged the registry and 
 | Lineage iterations | 5 of 5, stop reason `maxIterationsReached` |
 | Citation re-check | Every ranked row carries a `[SOURCE: path:line]` that the synthesis opened |
 | Scanner timing | 6.9 to 9.9 s with fsmonitor, 0.9 s without, identical output |
+| Speed loop, 3 rounds x 4 trees | 24 runs, all strict PASS; refined against 054 now: author +17 s, upkeep +1 s, INCONCLUSIVE (`scratch/speed-loop/results/20261026T050500Z-67716/summary.md`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,7 +105,7 @@ The fan-out ran the five iterations, `fanout-merge.cjs` merged the registry and 
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--quiet` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
 
-1. **No timed authoring run backs ranks 4 to 8.** Their savings are inferred from word counts. The speed loop in `scratch/speed-loop/` measures them on 2026-10-26.
+1. **No timed authoring run backs ranks 4 to 8.** Their savings are inferred from word counts, and they are not built. The speed loop timed the tree with ranks 1, 2, 3 and 9 on 2026-10-26 and found no difference it could measure: a single run varies by 75 s, more than any wording change here is worth.
 <!-- /ANCHOR:limitations -->
 
 ---

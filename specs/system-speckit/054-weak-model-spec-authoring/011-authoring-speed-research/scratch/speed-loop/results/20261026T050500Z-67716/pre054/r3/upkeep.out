@@ -1,0 +1,39 @@
+I'll start by reading the packet files to understand the existing structure.
+
+
+
+
+
+
+
+
+
+
+
+Let me establish the baseline validation state before editing.
+
+
+
+
+
+Baseline is clean. Now I'll add the requirement, task, and acceptance row.
+
+
+
+
+
+
+
+
+
+Validation now reports derived-metadata drift from my spec edit. Let me preview the suggested repair before applying it.
+
+
+
+
+
+
+
+
+
+REQ-009 RESULT: PASSED

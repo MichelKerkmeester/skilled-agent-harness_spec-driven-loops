@@ -1,0 +1,57 @@
+I'll start by loading the spec-kit skill and reading the packet files.
+
+
+
+
+
+
+
+
+
+
+
+Baseline validates clean. Now adding the three lines.
+
+
+
+Two derived-metadata errors surfaced (spec.md changed, so the fingerprint and derived description are stale). Let me preview the repair before applying.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The validator's own repair path is the sanctioned fix for stale derived metadata. Applying it, then re-validating.
+
+
+
+
+
+
+
+
+
+
+
+REQ-008 RESULT: PASSED
