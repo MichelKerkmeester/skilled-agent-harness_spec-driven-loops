@@ -72,6 +72,12 @@ bash specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-rese
 
 Sandboxes live under `SPEED_SANDBOX_ROOT`, which defaults to this session's scratchpad `speed-loop/` folder. A lock in that folder stops a second loop, or a hand-run `prepare.sh`, from touching the sandboxes while a loop runs. The loop reuses a sandbox only when it is clean, holds no packet and is not marked dirty; otherwise it runs `prepare.sh <variant>` itself. Refined is retaken on every run.
 
+### Re-prepare between rounds
+
+`step.sh` marks a sandbox `DIRTY` after an out-of-scope write or a write into a `dist` or `node_modules` folder, and an author step aborts on a dirty sandbox or one that still holds the packet track. Before every round after the first, outside every timed step and the round's wall time, the loop runs `prepare.sh <variant>` for each such sandbox, so one side write (such as a `node_modules/.vitest-cache` left by a model running vitest) costs that variant one round, not the rest of the run. Each re-prepare prints one line: `== round <r>: re-prepared <variant> (head unchanged)`, or the reason it was refused.
+
+**Head check:** the loop records each sandbox's `head=` from its `ready` file once, after the start-of-run prepare. The snapshot commit has a fixed identity, date and message and no parent, so the same tree always gives the same head. A re-prepare is kept only when its new `head=` matches the recorded one and, for a task with a terms file, its `ready` reads `task_term_refs=0` (the same condition as the leak gate; `quiet` records `NA` and is not checked). If either check fails, or `prepare.sh` exits non-zero, the new sandbox is marked `DIRTY` and that variant's steps abort for the rest of the run; the loop does not try it again, since the same tree or the same failure would only cost another full build each round. For `refined` this keeps a changed worktree out of a run: a re-prepare retakes the worktree snapshot, so a different head means the tree changed after the run started. A dry run prints the planned re-prepare and the check without preparing anything.
+
 Ctrl-C stops the loop cleanly: it kills every dispatch still running, marks the sandboxes dirty so the next run rebuilds them, and releases the lock.
 
 ## How long it takes

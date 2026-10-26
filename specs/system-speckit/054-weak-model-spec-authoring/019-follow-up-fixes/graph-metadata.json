@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "follow up fixes",
+      "phase 19 follow up fixes",
+      "manifest check fsmonitor",
+      "speed loop re-prepare dirty sandbox",
+      "follow up fixes plan",
+      "follow up fixes tasks",
+      "follow up fixes goal",
+      "follow up fixes implementation summary"
+    ],
+    "key_topics": [
+      "follow",
+      "phase",
+      "manifest",
+      "check",
+      "fsmonitor",
+      "speed",
+      "loop",
+      "re-prepare",
+      "dirty",
+      "sandbox",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh",
+      "scratch/review.md",
+      "scratch/test/reprepare-harness.sh",
+      "scratch/briefs/brief-A.txt",
+      "scratch/runs/A.out"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal-file-manifest.sh",
+        "kind": "script",
+        "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": "scratch/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "reprepare-harness.sh",
+        "kind": "script",
+        "path": "scratch/test/reprepare-harness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "brief-A.txt",
+        "kind": "file",
+        "path": "scratch/briefs/brief-A.txt",
+        "source": "derived"
+      },
+      {
+        "name": "A.out",
+        "kind": "file",
+        "path": "scratch/runs/A.out",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`recursive-child-manifest.vitest.ts` runs `check-goal-file-manifest.sh`, whose bare `git ls-files` hung on fsmonitor for 853305 ms in a full CLI suite run (block below); it had timed out batch runs twice earlier the same day and failed in phase 013's suite baseline",
+    "created_at": "2026-10-26T18:10:21Z",
+    "last_save_at": "2026-10-26T18:22:38.390Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a30b36cc04c63ad5e5dfdcd79737366e46389df2e8b72e69734ca03339297b9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9f50e1091640cb793ba1f159ada8d06bcdadb7f443fbf3841ccd02f3e9264f86",
+      "plan.md": "e8ed67e0ff973246484cbcc5f6cd79bb4a84116823a7129da595c3b5f829a958",
+      "tasks.md": "d0ea72734d02dcc8fe6816dd4fe8af79c7daa877669f4abddb511caaeb1e5c3d",
+      "implementation-summary.md": "caa2f2c6c42c752d7bbb752b3fc9edec56f4ace5a6a02125679e717d322bf49c"
+    },
+    "last_active_at": null
+  }
+}

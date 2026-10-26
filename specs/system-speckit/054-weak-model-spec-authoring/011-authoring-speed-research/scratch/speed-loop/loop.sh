@@ -90,6 +90,7 @@ esac
 # after the terms file last changed; a sandbox prepared for another task is rescanned by a
 # new prepare.sh.
 scan_ok() { [ -z "$TERMS" ] || { $GREP -q ' task_term_refs=0 ' "$1/ready" && [ "$1/ready" -nt "$TERMS" ]; }; }
+PREPPED=
 for v in "${VS[@]}"; do
   d=$(sbx_dir "$v")
   # A sandbox is reused only when it is ready for this revision, not marked dirty,
@@ -102,6 +103,7 @@ for v in "${VS[@]}"; do
   fi
   echo "+ bash prepare.sh $v $DF"
   bash "$LOOP/prepare.sh" "$v" $DF || exit 3
+  PREPPED="$PREPPED $v "
 done
 # Leak gate: no dispatch while any sandbox's templates or card name a term of the task.
 # A count that is not 0, NA included, refuses the whole run.
@@ -118,11 +120,60 @@ if [ -n "$TERMS" ]; then
   fi
 fi
 
+# Each variant's sandbox head as the run starts, indexed like VS (bash 3.2 has no
+# associative arrays). The snapshot commit has a fixed identity, date and message and no
+# parent, so re-preparing the same tree gives the same head; for refined a different head
+# means this worktree changed since the run started.
+ready_field() { sed -n "s/.* $2=\\([^ ]*\\) .*/\\1/p" "$1/ready" 2>/dev/null; }
+H0=(); for i in "${!VS[@]}"; do d=$(sbx_dir "${VS[$i]}"); H0[$i]=$([ -n "$d" ] && ready_field "$d" head); done
+# Between rounds, outside every timed step: a sandbox an earlier round left dirty or
+# holding a packet is rebuilt, so one side write no longer costs that variant every later
+# round. The rebuild is kept only when its head matches the run start and, for a task with
+# a terms file, its leak scan reads 0; otherwise the new sandbox is marked dirty and that
+# variant's steps abort for the rest of the run. A refusal is final: the same tree or the
+# same failure would only cost another full build every round.
+REFUSED=
+reprepare() {
+  local r=$1 i=$2 v=${VS[$2]} d h n why=
+  case "$REFUSED" in *" $v "*) return 0;; esac
+  d=$(sbx_dir "$v")
+  [ -n "$d" ] && { [ -e "$d/DIRTY" ] || [ -e "$d/tree/$TRACK" ]; } || return 0
+  # A dry run changes no sandbox, so one the run start already plans to rebuild still looks
+  # dirty here; a real run would have rebuilt it, so planning it again would overstate the work.
+  [ "$DRY" = 1 ] && case "$PREPPED" in *" $v "*) return 0;; esac
+  echo "+ bash prepare.sh $v $DF"
+  if [ "$DRY" = 1 ]; then
+    bash "$LOOP/prepare.sh" "$v" $DF
+    echo "== round $r: would re-prepare $v and keep it only if head=${H0[$i]:-<head at run start>}$([ -n "$TERMS" ] && echo " and task_term_refs=0"), else mark it DIRTY"
+    return 0
+  fi
+  if ! bash "$LOOP/prepare.sh" "$v"; then
+    why="prepare.sh failed"
+  else
+    d=$(sbx_dir "$v"); h=$(ready_field "$d" head); n=$(ready_field "$d" task_term_refs)
+    if [ -z "${H0[$i]}" ] || [ "$h" != "${H0[$i]}" ]; then
+      why="head ${h:-missing} differs from the run-start head ${H0[$i]:-missing}"
+    elif [ -n "$TERMS" ] && [ "$n" != 0 ]; then
+      why="task_term_refs=${n:-missing}"
+    fi
+  fi
+  if [ -n "$why" ]; then
+    # A failed prepare.sh can leave the map on a removed directory; the steps then abort on
+    # the missing tree, and the DIRTY file says why.
+    d=$(sbx_dir "$v"); [ -n "$d" ] && mkdir -p "$d" && touch "$d/DIRTY"
+    REFUSED="$REFUSED $v "
+    echo "== round $r: refused to re-prepare $v ($why); its sandbox stays DIRTY and its steps abort for the rest of the run"
+  else
+    echo "== round $r: re-prepared $v (head unchanged)"
+  fi
+}
+
 run "mkdir -p '$OUT' && header_row > '$OUT/results.tsv' && printf 'round\torder\tstart\tend\twall_seconds\tover_budget\n' > '$OUT/round.tsv'"
 STARTED=1
 L0=$(date +%s)
 NV=${#VS[@]}
 for r in $(seq 1 "$RUNS"); do
+  [ "$r" -gt 1 ] && for i in "${!VS[@]}"; do reprepare "$r" "$i"; done
   R0=$(date +%s)
   # A new launch order every round, so no variant always gets the first start.
   RVS=(); while IFS= read -r x; do RVS+=("$x"); done < <(printf '%s\n' "${VS[@]}" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>)')

@@ -146,6 +146,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 16 | 016-scaffold-filler-section-trim/ | Stop scaffolding the sections models fill with generic text, make fix completeness optional, and fix the card and plan-template step contradiction and the stale decision-record pointers | Complete |
 | 17 | 017-measured-behavior-and-draft-metadata/ | Add an optional measured-behavior block that quotes real command output, and repair derived metadata automatically while a packet is a Draft | Complete |
 | 18 | 018-benchmark-redesign-and-remeasure/ | Rescore the 24 existing packets with deterministic checks, then benchmark a task no template mentions at the level the helper picks, with saved per-packet grades | Complete |
+| 19 | 019-follow-up-fixes/ | Turn fsmonitor off in the goal-file manifest check, and rebuild a dirty speed-loop sandbox between rounds instead of dropping its variant | Complete |
 
 ### Phase Transition Rules
 
@@ -175,6 +176,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 015-template-example-neutralization | 016-scaffold-filler-section-trim | No core template, golden snapshot or rendered example names the benchmark task | The phase 015 sweep over `templates/` prints no benchmark-task term |
 | 016-scaffold-filler-section-trim | 017-measured-behavior-and-draft-metadata | The trimmed sections no longer scaffold and no existing packet changed verdict | The before and after strict census match |
 | 017-measured-behavior-and-draft-metadata | 018-benchmark-redesign-and-remeasure | The measured-behavior block and the Draft metadata repair ship with tests | Both new tests pass and the strict census is unchanged |
+| 018-benchmark-redesign-and-remeasure | 019-follow-up-fixes | The closeout named two follow-ups: the manifest test hung on fsmonitor, and one dirty sandbox dropped main-no054 for rounds 3 to 5 | `018-benchmark-redesign-and-remeasure/scratch/report.md` records the dropped rounds and the top-up |
 <!-- /ANCHOR:phase-map -->
 
 ---

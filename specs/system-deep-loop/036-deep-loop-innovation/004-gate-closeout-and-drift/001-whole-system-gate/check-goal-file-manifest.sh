@@ -15,13 +15,14 @@ command -v "$GIT_BIN" >/dev/null 2>&1 || fail_closed "git is unavailable"
 
 REPO_ROOT="${2:-}"
 if [[ -z "$REPO_ROOT" ]]; then
-    REPO_ROOT=$("$GIT_BIN" -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null) || fail_closed "repository root could not be resolved"
+    REPO_ROOT=$("$GIT_BIN" -c core.fsmonitor=false -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null) || fail_closed "repository root could not be resolved"
 fi
 
 tracked_files=$(mktemp "${TMPDIR:-/tmp}/goal-file-manifest.XXXXXX") || fail_closed "temporary file could not be created"
 trap 'rm -f "$tracked_files"' EXIT
 
-"$GIT_BIN" -C "$REPO_ROOT" ls-files >"$tracked_files" 2>/dev/null || fail_closed "git ls-files could not be read"
+# fsmonitor off: an index read can block for minutes on the fsmonitor hook.
+"$GIT_BIN" -c core.fsmonitor=false -C "$REPO_ROOT" ls-files >"$tracked_files" 2>/dev/null || fail_closed "git ls-files could not be read"
 
 checked=0
 missing=0

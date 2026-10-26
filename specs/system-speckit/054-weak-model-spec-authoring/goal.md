@@ -166,6 +166,7 @@ and findings belong here.
 | Benchmark minpct, 8 rounds | Done | now054 vs pre054 quality REAL better 8/8 (24.8 vs 22.9 of 30); refined 25.5, INCONCLUSIVE vs pre054 (7/8) and vs now054; speed: only upkeep tok_out refined < main-no054 REAL |
 | 017 measured behavior + Draft auto-repair | Done | MEASURED_BEHAVIOR warn-only on v2.4; Draft strict run repairs derived metadata; 9/9 AC; runtime suite 279/0 fail, CLI 189 pass, 1 known git-hang flake |
 | 018 benchmark redesign | Done | 9/9 AC; report review PASS; loop review PASS after fix check |
+| 019 follow-up fixes | Done | manifest test 2/2 with fsmonitor off; dirty sandbox re-prepared between rounds, refusal final; review P1 fixed |
 
 ### Deviations and findings
 

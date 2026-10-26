@@ -1,0 +1,30 @@
+
+TASK A: stop the manifest checker's git calls from hanging on fsmonitor.
+
+File (the only file you edit):
+  specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh
+
+In this checkout a git command that reads the index can hang for many minutes on the
+fsmonitor hook. The script runs git twice, and both calls must turn fsmonitor off.
+
+Edits, exactly these, nothing else:
+1. Line 18: change
+     REPO_ROOT=$("$GIT_BIN" -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)
+   to
+     REPO_ROOT=$("$GIT_BIN" -c core.fsmonitor=false -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)
+2. Line 24: change
+     "$GIT_BIN" -C "$REPO_ROOT" ls-files >"$tracked_files" 2>/dev/null
+   to
+     "$GIT_BIN" -c core.fsmonitor=false -C "$REPO_ROOT" ls-files >"$tracked_files" 2>/dev/null
+3. Directly above the line from edit 2, add one comment line:
+     # fsmonitor off: an index read can block for minutes on the fsmonitor hook.
+
+Keep everything else byte for byte, including the fail_closed messages.
+
+Verify, and print every output in your report:
+  bash -n specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh ; echo rc=$?
+  (expected rc=0)
+  rg -c 'core.fsmonitor=false' specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh
+  (expected 2)
+  cd .skilled/skills/system-spec-kit && npx vitest run --config vitest.config.ts --project cli tests/recursive-child-manifest.vitest.ts
+  (expected: Tests 2 passed (2))

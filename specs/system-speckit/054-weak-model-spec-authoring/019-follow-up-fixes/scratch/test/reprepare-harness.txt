@@ -1,0 +1,13 @@
++ bash prepare.sh a 
+== round 2: re-prepared a (head unchanged)
++ bash prepare.sh b 
+== round 2: refused to re-prepare b (head H2 differs from the run-start head H1); its sandbox stays DIRTY and its steps abort for the rest of the run
++ bash prepare.sh c 
+== round 2: refused to re-prepare c (prepare.sh failed); its sandbox stays DIRTY and its steps abort for the rest of the run
++ bash prepare.sh d 
+== round 2: refused to re-prepare d (task_term_refs=3); its sandbox stays DIRTY and its steps abort for the rest of the run
+-- after round 2: DIRTY a=n b=y c=y d=y
+-- round 3, every MODE same: refused b, c, d stay out and clean a is skipped
+-- round 4: a dirty again is re-prepared
++ bash prepare.sh a 
+== round 4: re-prepared a (head unchanged)
