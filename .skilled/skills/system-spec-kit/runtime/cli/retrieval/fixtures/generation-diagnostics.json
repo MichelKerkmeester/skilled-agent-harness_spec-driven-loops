@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7311,
-    "ok": 15408,
+    "ok": 15403,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26267,
+  "documentsScanned": 26262,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ad6c309f37dcef57179db5cc422244e104bf64f4772e7e45da6ca03f1c6a3d10",
+  "manifestHash": "cda70737d79ebcabba06d3dad3d75e09303e9f328435147832f5e45a75338a77",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38019,
+      "ok": 38013,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72287,10 +72287,6 @@
     },
     {
       "path": "specs/sk-doc/068-hub-repo-folder-exemption/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/069-local-skilled-alignment-command/scratch",
       "reason": "excluded directory"
     },
     {

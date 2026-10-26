@@ -1,5 +1,5 @@
 {
-  "corpusHash": "de330973bbd31723022e9f792d2cb0c41ed523a0369a0f51cf94f3b14805323e",
+  "corpusHash": "df55eadb47ff0dd991cfabc54afc9470ecaf8f0a54c1d38bd5857a269ae4ee57",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26267,
+  "includedPathCount": 26262,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13374,11 +13374,6 @@
     "specs/sk-doc/068-hub-repo-folder-exemption/plan.md",
     "specs/sk-doc/068-hub-repo-folder-exemption/spec.md",
     "specs/sk-doc/068-hub-repo-folder-exemption/tasks.md",
-    "specs/sk-doc/069-local-skilled-alignment-command/goal.md",
-    "specs/sk-doc/069-local-skilled-alignment-command/implementation-summary.md",
-    "specs/sk-doc/069-local-skilled-alignment-command/plan.md",
-    "specs/sk-doc/069-local-skilled-alignment-command/spec.md",
-    "specs/sk-doc/069-local-skilled-alignment-command/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -26298,7 +26293,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ad6c309f37dcef57179db5cc422244e104bf64f4772e7e45da6ca03f1c6a3d10",
+  "manifestHash": "cda70737d79ebcabba06d3dad3d75e09303e9f328435147832f5e45a75338a77",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29838,10 +29833,6 @@
     },
     {
       "path": "specs/sk-doc/068-hub-repo-folder-exemption/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/069-local-skilled-alignment-command/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ad6c309f37dcef57179db5cc422244e104bf64f4772e7e45da6ca03f1c6a3d10",
+  "manifestHash": "cda70737d79ebcabba06d3dad3d75e09303e9f328435147832f5e45a75338a77",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8011,9 +8011,6 @@
     ],
     "add a vault": [
       "Add a vault"
-    ],
-    "add an operator local local skilled alignment command": [
-      "add an operator local local skilled alignment command"
     ],
     "add apple health data file": [
       "add apple health data file"
@@ -58827,21 +58824,6 @@
     ],
     "local skill link discovery": [
       "local skill link discovery"
-    ],
-    "local skilled alignment command": [
-      "local skilled alignment command"
-    ],
-    "local skilled alignment command goal": [
-      "local skilled alignment command goal"
-    ],
-    "local skilled alignment command implementation summary": [
-      "local skilled alignment command implementation summary"
-    ],
-    "local skilled alignment command plan": [
-      "local skilled alignment command plan"
-    ],
-    "local skilled alignment command tasks": [
-      "local skilled alignment command tasks"
     ],
     "local vision": [
       "local vision"
