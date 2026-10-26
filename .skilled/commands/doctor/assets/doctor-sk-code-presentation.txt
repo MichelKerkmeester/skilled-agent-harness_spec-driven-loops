@@ -76,6 +76,7 @@ Render the config source first, then one row per tool the status names.
 ```text
 Config: [path and source, or none, the gate runs its built-in checks alone]
 Errors: [each config error, or none]
+Trust: [trusted or untrusted with the rule that decided it, the repair line when untrusted, or none]
 Layers: pre-commit [state], ci [state], post-edit [state]
 ```
 
@@ -118,6 +119,7 @@ Target: quality
 Status: [OK|CANCELLED|FAIL]
 Mutation class: mutates
 Config: [path and source, or none]
+Trust: [trusted, untrusted or none]
 Tools: [N] PASS, [N] SKIP, [N] DEGRADED
 Errors: [N]
 Written: [.sk-code/quality.json, or nothing]

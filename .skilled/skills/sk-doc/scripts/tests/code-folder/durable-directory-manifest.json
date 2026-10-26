@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 780,
+  "derived_count": 781,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -375,6 +375,7 @@
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--router-mode-a--router",
+    ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live",
     ".skilled/skills/sk-code/sk-code-quality/scripts",
     ".skilled/skills/sk-code/sk-code-quality/scripts/hooks",
     ".skilled/skills/sk-code/sk-code-quality/scripts/lib",

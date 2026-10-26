@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,12 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "evidence/measurement.json",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
       ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md",
+      ".skilled/skills/sk-code/benchmark/scripts/render-report.cjs",
+      ".skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs",
+      ".skilled/skills/sk-code/benchmark/README.md",
       ".skilled/bin/compiled-route.cjs",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
-      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-      ".skilled/plugins/system-skill-advisor.js"
+      "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-006-measurement.md",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code/SKILL.md"
     ],
     "entities": [
       {
@@ -99,6 +106,18 @@
         "source": "derived"
       },
       {
+        "name": "measurement.json",
+        "kind": "config",
+        "path": "evidence/measurement.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
@@ -111,27 +130,45 @@
         "source": "derived"
       },
       {
+        "name": "render-report.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/benchmark/scripts/render-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-report.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".skilled/bin/compiled-route.cjs",
         "source": "derived"
       },
       {
-        "name": "universal-checklist.md",
+        "name": "changelog-015-006-measurement.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        "path": "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-006-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor.js",
-        "kind": "code",
-        "path": ".skilled/plugins/system-skill-advisor.js",
+        "path": ".skilled/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -169,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The saved benchmark runs for `sk-code-quality` measure routing, not catching",
     "created_at": "2026-10-25T23:21:53Z",
-    "last_save_at": "2026-10-26T00:01:01.030Z",
+    "last_save_at": "2026-10-26T15:39:39.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b270943997a209cb801fc6ab30b79b047d8be12ca46682a248ed46f4eb4bc52",
+    "source_fingerprint": "sha256:fa91187d04f49ab0497525b0429ecfc75c39c8abf0a64a83955dfa8e7093ba54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bae734dc469270c535a1f72dc90b750be5d1f4b4ce6c4e6efb62d127f9b5275",
-      "plan.md": "ea21ce62a49ff4c0df7385c4518806df61c4fe86524626489c83138f7930a05a",
-      "tasks.md": "b3a46070ec3de8bdc8bdd548e7d5f614fb030e1f3bdfbe38f6d45e128bf19519",
-      "decision-record.md": "64f33336c5a48367965b48bf4a9551f9b02e7695dea24ee2f02d631d5dfd0b2a",
-      "implementation-summary.md": "8832bcc415351f268d7770cd424617397d76c0e3ab7155aaabcffd44dbc52a12"
+      "spec.md": "f1d3a49cf313f19855b51cbae111ee04e59a4447ca03614b78ce17800e21152e",
+      "plan.md": "e1917af12d03e15c19141c27bf0c73001266a3598f8b4c6f7612ce9478a7585a",
+      "tasks.md": "e6efb46a285e0a9ac282f415fa7ea676ed39960e8d9d95030d6fca7310598430",
+      "decision-record.md": "da2d9ec9592b78f1dfda24842d34a3d8acd01f4aeed0f66ee764a83ab9dcd375",
+      "implementation-summary.md": "a3fed66c66d7c7e8ef497603331f540e05017e39039eaec208078d30c55732ce"
     },
     "last_active_at": null
   }

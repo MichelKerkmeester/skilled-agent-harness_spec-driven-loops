@@ -135,7 +135,7 @@ test('status: PASS for a found tool, DEGRADED with a repair line for an absent o
 }, (repo) => {
   const result = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
   assert.equal(result.status, 0);
-  assert.equal(result.last, 'STATUS=DEGRADED SOURCE="repo"');
+  assert.equal(result.last, 'STATUS=DEGRADED SOURCE="repo" TRUST=untrusted');
   const states = Object.fromEntries(result.payload.tools.map((row) => [row.tool, row.state]));
   assert.deepEqual(states, { [process.execPath]: 'PASS', 'sk-code-absent-tool': 'DEGRADED', npm: 'SKIP' });
   const absent = result.payload.tools.find((row) => row.tool === 'sk-code-absent-tool');
@@ -143,22 +143,56 @@ test('status: PASS for a found tool, DEGRADED with a repair line for an absent o
   assert.deepEqual(Object.keys(result.payload.layers).sort(), ['ci_hygiene', 'post_edit', 'pre_commit_hygiene']);
 }));
 
+test('status: a committed config with no trust rule reports untrusted and the repair line', () => withRepo({
+  base: {
+    [TARGET]: config({ checks: [{ id: 'canary', argv: [process.execPath, '-e', 'process.exit(0)'], severity: 'P1' }] }),
+  },
+}, (repo) => {
+  const result = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  assert.equal(result.status, 0);
+  assert.deepEqual([result.payload.config.trust.checks, result.payload.config.trust.reason],
+    ['untrusted', 'the config names commands and no trust rule applies']);
+  assert.equal(result.payload.config.trust.repair, 'git config --local skilled.trustRepoChecks true');
+  const checked = assertSnapshotUnchanged(repo, () => doctor(repo, ['check', '--json']));
+  assert.deepEqual([checked.payload.config.trust.checks, checked.payload.config.trust.repair],
+    ['untrusted', 'git config --local skilled.trustRepoChecks true']);
+  const text = assertSnapshotUnchanged(repo, () => doctor(repo, ['status']));
+  assert.match(text.stdout, /^Trust: untrusted .*git config --local skilled\.trustRepoChecks true/m);
+}));
+
+test('status and check: a local trust key reports trusted with no repair, and an invalid config reports none', () => withRepo({
+  base: { [TARGET]: config({ checks: [{ id: 'trusted-run', argv: [process.execPath, '-e', 'process.exit(0)'], severity: 'P1' }] }) },
+}, (repo) => {
+  repo.git(['config', '--local', 'skilled.trustRepoChecks', 'true']);
+  const trusted = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  assert.deepEqual([trusted.payload.config.trust.checks, trusted.payload.config.trust.repair], ['trusted', null]);
+  assert.equal(trusted.last, 'STATUS=OK SOURCE="repo" TRUST=trusted');
+  const checked = assertSnapshotUnchanged(repo, () => doctor(repo, ['check', '--json']));
+  assert.deepEqual([checked.payload.config.trust.checks, checked.payload.config.trust.repair], ['trusted', null]);
+  assert.equal(checked.last, 'STATUS=OK SOURCE="repo" TRUST=trusted ERRORS=0');
+  // A config that did not validate names no check for this run, so no rule decides anything.
+  repo.write({ [TARGET]: config({ bogus: true }) });
+  const invalid = doctor(repo, ['status', '--json']);
+  assert.deepEqual([invalid.payload.config.trust.checks, invalid.payload.config.trust.repair], ['none', null]);
+  assert.match(invalid.last, /^STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID$/);
+}));
+
 test('status and check: an invalid config is CONFIG_INVALID with exit 1, and a missing --config path is CONFIG_PATH_MISSING', () => withRepo({
   base: { [TARGET]: config({ bogus: true, checks: [{ id: 'x', argv: 'npm run lint', severity: 'P1' }] }) },
 }, (repo) => {
   const status = doctor(repo, ['status']);
   assert.equal(status.status, 1);
-  assert.equal(status.last, 'STATUS=FAIL SOURCE="repo" ERROR=CONFIG_INVALID');
+  assert.equal(status.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID');
   const checked = doctor(repo, ['check', '--json']);
   assert.equal(checked.status, 1);
-  assert.equal(checked.last, 'STATUS=FAIL SOURCE="repo" ERRORS=2 ERROR=CONFIG_INVALID');
+  assert.equal(checked.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERRORS=2 ERROR=CONFIG_INVALID');
   assert.deepEqual(checked.payload.config.errors.map((entry) => entry.field).sort(), ['bogus', 'checks[0].argv']);
   const missing = doctor(repo, ['check', '--config', 'missing.json']);
   assert.equal(missing.status, 1);
-  assert.equal(missing.last, 'STATUS=FAIL SOURCE="cli" ERRORS=1 ERROR=CONFIG_PATH_MISSING');
+  assert.equal(missing.last, 'STATUS=FAIL SOURCE="cli" TRUST=none ERRORS=1 ERROR=CONFIG_PATH_MISSING');
   const valid = path.join(repo.parent, 'valid.json');
   fs.writeFileSync(valid, config({}));
-  assert.equal(doctor(repo, ['check', '--config', valid]).last, 'STATUS=OK SOURCE="cli" ERRORS=0');
+  assert.equal(doctor(repo, ['check', '--config', valid]).last, 'STATUS=OK SOURCE="cli" TRUST=none ERRORS=0');
 }));
 
 // ─────────────────────────────────────────────────────────────────────────────

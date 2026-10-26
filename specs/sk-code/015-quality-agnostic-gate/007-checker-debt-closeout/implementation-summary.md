@@ -108,12 +108,12 @@ Step 4 recorded the live CI run, closed phase 001's four limitations with the cl
 
 | Decision | Why | Status |
 |----------|-----|--------|
-| ADR-001: the report loads the checker file and reads comment text through it | One copy of the comment rules, and every caller of the checker keeps calling one file | Accepted, pending operator confirmation at program end |
-| ADR-002: template literals and heredoc bodies are strings | The checker's own rule says text inside a string is never a comment | Accepted, pending operator confirmation at program end |
-| ADR-003: a ceiling marker may start without a comment prefix | A docstring marker is comment text to the checker, so the report should find it | Accepted, pending operator confirmation at program end |
-| ADR-004: every bare string statement is comment text, and an f-string is data | It states the brief's rule once, and the measured tree impact in `.py` files is none | Accepted, pending operator confirmation at program end |
-| ADR-005: frozen evidence gains a per-line `hygiene-ok`, and live comments are rewritten | The record keeps its words, and no path-wide exclusion can hide live code | Accepted, pending operator confirmation at program end |
-| ADR-006: phase 001's halt limits apply outside `specs/`, with no debt left under it | A stop lands before CI inherits a large block | Accepted, pending operator confirmation at program end |
+| ADR-001: the report loads the checker file and reads comment text through it | One copy of the comment rules, and every caller of the checker keeps calling one file | Accepted, confirmed by the operator 2026-10-26 |
+| ADR-002: template literals and heredoc bodies are strings | The checker's own rule says text inside a string is never a comment | Accepted, confirmed by the operator 2026-10-26 |
+| ADR-003: a ceiling marker may start without a comment prefix | A docstring marker is comment text to the checker, so the report should find it | Accepted, confirmed by the operator 2026-10-26 |
+| ADR-004: every bare string statement is comment text, and an f-string is data | It states the brief's rule once, and the measured tree impact in `.py` files is none | Accepted, confirmed by the operator 2026-10-26 |
+| ADR-005: frozen evidence gains a per-line `hygiene-ok`, and live comments are rewritten | The record keeps its words, and no path-wide exclusion can hide live code | Accepted, confirmed by the operator 2026-10-26 |
+| ADR-006: phase 001's halt limits apply outside `specs/`, with no debt left under it | A stop lands before CI inherits a large block | Accepted, confirmed by the operator 2026-10-26 |
 <!-- /ANCHOR:decisions -->
 
 ---

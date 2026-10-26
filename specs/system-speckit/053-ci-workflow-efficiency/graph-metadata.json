@@ -217,14 +217,14 @@
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-25T21:48:32.710Z",
+    "last_save_at": "2026-10-26T15:41:19.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2a52de5aa0d7990ef903f824134b5287caeb7d17c996791d71c10fc398dec7f8",
+    "source_fingerprint": "sha256:3cd8d47ff0675ee26aef4f8e29f186c7ca45af3342a2be7e063331865bf08a76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15867a2ca68a919efc0c0e9fdce49d58af9b826a6fc825592a4618bbc47babb9"

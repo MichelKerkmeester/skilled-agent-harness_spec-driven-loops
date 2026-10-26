@@ -87,7 +87,7 @@ string, not these files.
 
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all eleven folders
 - [ ] Every R1-R30 is closed in its owning phase, and `rg -c '\| Unmet \|' specs/system-speckit/053-ci-workflow-efficiency/00*/acceptance-criteria.md` prints nothing
-- [ ] `gh run list --commit <sha> --json event --jq '[.[] | select(.event != "dynamic")]'` returns `[]` for each of three consecutive post-change rebuild commits; GitHub's CodeQL default setup runs as a `dynamic` event on every push
+- [ ] `gh run list --commit <sha> --json event,workflowName --jq '[.[] | select(.event != "dynamic" or .workflowName != "CodeQL")]'` returns `[]` for each of three consecutive post-change rebuild commits; GitHub's CodeQL default setup runs as a `dynamic` event on every push
 - [ ] `rg -o --no-filename 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
 - [ ] `.skilled/skills/sk-code/sk-code-ci/SKILL.md` and `.skilled/commands/doctor/ci.md` exist
 - [ ] The final commit on `main` has no failed run: `gh run list --commit <sha> --json conclusion --jq '[.[] | select(.conclusion == "failure")] | length'` returns `0`
@@ -114,7 +114,7 @@ and findings belong here.
 | Phase 005 slow and failing tests | Done | `005-slow-and-failing-tests/spec.md` Status `Complete` |
 | Phase 006 sk-code-ci surface | Done | `006-sk-code-ci-surface/spec.md` Status `Complete` |
 | Phase 007 hygiene and on/off control | Done | `007-workflow-hygiene-on-off-control/spec.md` Status `Complete`, closure `2b6eeaa8ba`; 13 of 13 acceptance rows `Met`, `timeout kills: 0` over 690 runs |
-| Phase 008 consolidation decision | Done | D8 = no under the operator's 2026-10-25 delegation (`008-consolidation-decision/scratch/d8-answer.md`), pending the operator's check; no workflow file changed |
+| Phase 008 consolidation decision | Done | D8 = no under the operator's 2026-10-25 delegation (`008-consolidation-decision/scratch/d8-answer.md`), confirmed by the operator on 2026-10-26; no workflow file changed |
 | Phase 009 doctor ci and review wiring | Done | `009-doctor-ci-review-wiring/spec.md` Status `Complete`, closure `8811c7e36d` |
 | Phase 010 review remediation | Done | Applied the confirmed findings of `review/review-report.md` |
 
@@ -126,6 +126,7 @@ and findings belong here.
 | Amendment 2026-10-25, criterion 1 | The folder count moved from ten to eleven when `010-review-remediation` was added for the deep-review remediation. |
 | 010 has no child goal | `010-review-remediation` is a Level 1 remediation phase. Its `spec.md` scope is its directive, so the binding table keeps its nine rows. |
 | Amendment 2026-10-25, criterion 3 | GitHub's CodeQL default setup is not one of the repository's workflows. It runs as a `dynamic` event on every push, `[skip ci]` rebuild commits included, so the plain command could never print `[]`. The criterion now leaves dynamic events out. The twelve rebuild commits from `933d71235f` to `fcd200f2eb` each show one run and an empty filtered list. The session made this change under the operator's 2026-10-25 delegation to decide and verify at the end. |
+| Amendment 2026-10-26, criterion 3 | A review found the filter left out every `dynamic` run, while the reason above covers CodeQL only, so another `dynamic` workflow could hide behind it. The filter now leaves out a `dynamic` run only when its workflow is `CodeQL`. Over the last 40 `dynamic` runs CodeQL was the only workflow, and the three rebuild commits `1defd26756`, `600a63d037` and `b817e7e8b9` each still return `[]`. The operator accepted the change on 2026-10-26. |
 | Spec-Kit Check on main, 2026-10-25 | The runtime suite failed on every main commit from `74b9b7233d`, which removed the agent-router command while two resource-map extractor tests still cited it as a file on disk. The tests now cite `speckit/complete.md`, and criterion 6 depends on that fix. |
 | Phase 007 kill-read window, 2026-10-25 | The operator asked not to wait for the full 24 h window, so 007 read the 690 runs from 2026-10-25T00:43Z to 21:30Z (20.8 h). None of the repository's own schedules falls in the hours left out. |
 | Phase 004 scheduled cold run, 2026-10-25 | So 004 could close without waiting for the weekly cron's first firing on 2026-10-26T04:17Z, a one-shot schedule entry (`174ebbdc0e`) fired the `schedule` event once. Run 40236652343 passed on the uncached path, and `0ab8f9f74e` removed the entry, leaving the weekly schedule as it was. |

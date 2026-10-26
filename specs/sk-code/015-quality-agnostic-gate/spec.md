@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
-    last_updated_at: "2026-10-26T09:00:00Z"
+    last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 004-doctrine"
-    next_safe_action: "Start phase 005-consumers-and-routing"
+    recent_action: "Closed phase 009 on the final tree, so all nine phases read Complete"
+    next_safe_action: "Commit, then pin the 009 fix SHA and settle the placement question"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,11 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-26-skcode-015"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions:
       - "Placement of this packet: top level here, or a child of 014 as the design recommends. The operator confirms at program end."
-      - "Operator confirmation of the six decisions in section 5."
-    answered_questions: []
+    answered_questions:
+      - "Operator confirmation of the six decisions in section 5: confirmed 2026-10-26, none reversed."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
 
@@ -52,7 +52,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | None. This is a top-level packet in the sk-code track |
@@ -83,7 +83,7 @@ This packet builds on `specs/sk-code/014-code-modes-research`. Its quality-mode 
 
 ### Purpose
 
-When all seven phases ship, the gate runs in any repository. It blocks on what it can prove, runs the checks that the repository names and reports the checks it cannot run. It hands one machine verdict to the agents that act on it. The verdict never claims a pass. It states what was checked, what blocked and what stayed unverified.
+When the nine phases in the map ship, the gate runs in any repository. It blocks on what it can prove, runs the checks that the repository names and reports the checks it cannot run. It hands one machine verdict to the agents that act on it. The verdict never claims a pass. It states what was checked, what blocked and what stayed unverified.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level apart from `goal.md`. All detailed planning, task breakdowns, checklists and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -176,9 +176,10 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Complete |
 | 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Complete |
 | 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Complete |
-| 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
+| 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Complete |
 | 7 | 007-checker-debt-closeout/ | Closes the checker limitations phase 001 left: the ceiling report reads comment text through the checker, template literals, heredocs and bare string statements, a zero-finding tree and the live CI failure record. Depends on 001 only, and lands before 006 | Complete |
 | 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Complete |
+| 9 | 009-review-closeout/ | The operator-accepted review items: outside-skill faults error only where they apply, a `skilled.trustRepoChecks` grant for configured checks, a bounded `node --check` pool with a five-run timing record, a `declaredSurfaces` parity test, the @code runner path and the record fixes | Complete |
 
 ### Phase Transition Rules
 
@@ -199,6 +200,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 001-honest-checker | 007-checker-debt-closeout | Phase 001 is on main with its checker, family table, ceiling report and suites | `bash .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh` exits 0, and its last line reads `All ceiling report test cases passed` |
 | 007-checker-debt-closeout | 006-measurement | The final checker reports no finding over the whole tree, so phase 6 measures the checker this phase leaves | `git ls-files -z \| xargs -0 python3 -B .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh -- 2>&1 \| wc -l` prints `0` |
 | 008-runner-limit-closeout | 006-measurement | The six requirements pass and the budget command prints five runs under two seconds | `node --test --test-reporter=tap .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` prints `# fail 0`, and the five timed runs each read under `2.00` |
+| 008-runner-limit-closeout | 009-review-closeout | Phases 001 to 008 are Complete and the operator accepted the review recommendations on 2026-10-26 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate/009-review-closeout --strict \| tail -1` prints `RESULT: PASSED` |
 
 Phase 7 depends on phase 1 only. It builds in parallel with phases 3 and 4, and it must land before phase 6, which measures the final checker. Phase 6 therefore depends on phases 3, 4, 5, 7 and 8.
 <!-- /ANCHOR:phase-map -->
@@ -209,7 +211,7 @@ Phase 7 depends on phase 1 only. It builds in parallel with phases 3 and 4, and 
 ## 4. OPEN QUESTIONS
 
 - **Placement.** The design recommends a phased child of `014-code-modes-research`, at `004`. This packet is a top-level phase parent at `015`, the folder the scaffold created. `AGENTS.md` section 6 asks for the check that it is not a child of an existing packet before a top-level packet is created. The operator confirms the placement at program end.
-- **Operator confirmation.** The six decisions in section 5 are taken with their defaults. The operator confirms them at program end.
+- **Operator confirmation.** Answered 2026-10-26. The operator confirmed the six decisions in section 5 with their defaults, and phase 009 implements the review recommendations accepted in the same reply.
 - **Intent recall.** Intent recall for the compiled router is UNKNOWN in both saved runs. Phase 6 measures it again.
 <!-- /ANCHOR:questions -->
 
@@ -218,46 +220,46 @@ Phase 7 depends on phase 1 only. It builds in parallel with phases 3 and 4, and 
 <!-- ANCHOR:decisions -->
 ## 5. DECISIONS TAKEN WITH DEFAULTS
 
-The operator asked for an autonomous build. Each open decision takes the design's recommended default, and the operator verifies the defaults at program end. Each record below is an ADR with the status line `Accepted, pending operator confirmation at program end`.
+The operator asked for an autonomous build. Each open decision took the design's recommended default, and the operator confirmed all six on 2026-10-26 ("Go, all is accepted as recommended"). None was reversed. Each record below is an ADR with the status line `Accepted, confirmed by the operator 2026-10-26`.
 
 ### ADR-001: Amend Iron Law 3 for UNKNOWN surfaces
 
-- **Status:** Accepted, pending operator confirmation at program end
-- **Decision:** An UNKNOWN surface gets only the universal floor in `code-quality-standards.md` and the runner's built-in checks. It stays UNKNOWN until the operator names its surface and commands, in a declared surface or in `.sk-code/quality.json`. No other standard or verification command applies to it.
+- **Status:** Accepted, confirmed by the operator 2026-10-26
+- **Decision:** An UNKNOWN surface gets four rule sources and no others, as Iron Law 3 in `phase-detection.md` lists them: the universal floor in `code-quality-standards.md`, the runner's built-in checks, the quality mode's own surface-neutral checklists that the runner lists (the JavaScript and CSS style checklists), and the quality checks the repository's quality config names. It stays UNKNOWN until the operator names its surface and commands, in a declared surface or in `.sk-code/quality.json`. No other standard or verification command applies to it.
 - **Alternative:** Keep Iron Law 3 as written. Every repository with no surface packet then stays blocked.
 - **Reversal:** Restore the earlier Iron Law 3 text in `phase-detection.md`, and the UNKNOWN rows at `stack-detection.md:32` and `code-quality-standards.md:122`. Phase 4 makes these edits, so reversing them touches that phase only. If the operator declines, phases 1 to 3 still ship, and the mode keeps asking on UNKNOWN.
 
 ### ADR-002: Scope the universal checklist to SKILLED
 
-- **Status:** Accepted, pending operator confirmation at program end
+- **Status:** Accepted, confirmed by the operator 2026-10-26
 - **Decision:** `universal-checklist.md` becomes the SKILLED house checklist. It loads only when SKILLED is a resolved surface of the target. The floor for every surface is `code-quality-standards.md`. This narrows the baseline. The 014 review remediation split the quality P0 floor into a baseline and a web overlay (`specs/sk-code/014-code-modes-research/003-review-remediation/implementation-summary.md:26`), and its ADR-001 records that split (`:103`).
 - **Alternative:** Keep the checklist as the baseline for every surface. Its P0 rows then force this framework's header form and spec roots on any repository.
 - **Reversal:** Restore the universal title and description at `universal-checklist.md:2-3` and `:14-16`, and the always-load row in `SKILL.md`. Phase 4 makes the edit.
 
 ### ADR-003: Config file and merge rule
 
-- **Status:** Accepted, pending operator confirmation at program end
+- **Status:** Accepted, confirmed by the operator 2026-10-26
 - **Decision:** The per-repository config is `.sk-code/quality.json`, committed at the repository root. Discovery takes `--config` first, then the git config `skcode.qualityConfig` at file scope, then `.sk-code/quality.json`, then the shipped defaults. Checks come only from the repository layer. Checklists and generated rows append across layers. The core comment patterns cannot be removed. Sensors merge per sensor. An unknown key is a config error.
 - **Alternative:** A different committed name in the same place. The merge rule does not depend on the name.
 - **Reversal:** Change the path in the runner contract, the config reference, the doctor route and the template. The runner reads the file from phase 3, so a change before then touches documents only.
 
 ### ADR-004: Whole-file scope for CI and pre-commit
 
-- **Status:** Accepted, pending operator confirmation at program end
+- **Status:** Accepted, confirmed by the operator 2026-10-26
 - **Decision:** The CI job in `.github/workflows/comment-hygiene.yml` and the pre-commit gate keep their whole-file scope. The author gate scopes findings to changed lines. A finding on an untouched line blocks only when one of those two layers is present (`pre-commit:145-158`, `comment-hygiene.yml:36-48`).
 - **Alternative:** Move both layers to changed-line scope. That changes two blocking layers, so it needs its own decision.
 - **Reversal:** Nothing in this program changes those two layers, so no reversal is needed. A later change to them is a separate packet.
 
 ### ADR-005: Benchmark report format
 
-- **Status:** Accepted, pending operator confirmation at program end
+- **Status:** Accepted, confirmed by the operator 2026-10-26
 - **Decision:** The live benchmark in phase 6 writes its report in the format of the existing reports under `.skilled/skills/sk-code/sk-code-quality/benchmark/reports/`, and it adds one row to that folder's README index. The 014 synthesis left the format to the harness owner, as rank 13.
 - **Alternative:** A new format owned by the harness owner.
 - **Reversal:** Rewrite the phase 6 report in the other format. Phase 6 writes the only new report, so the cost is one file.
 
 ### ADR-006: The advisor plugin keeps its own declaredSurfaces copy
 
-- **Status:** Accepted, pending operator confirmation at program end
+- **Status:** Accepted, confirmed by the operator 2026-10-26
 - **Decision:** `.skilled/plugins/system-skill-advisor.js:747-772` keeps its own copy of `declaredSurfaces`. This program leaves that copy unchanged. The runner reads the hub's reader in `router-replay-lib.cjs`.
 - **Alternative:** Fold the plugin's copy into that one reader.
 - **Reversal:** Not needed here. A later packet can fold the copy. Risk 7 names the drift that the copy leaves open.
@@ -276,7 +278,7 @@ The operator asked for an autonomous build. Each open decision takes the design'
 | 4 | Iron Law 3 is read as a license for surface standards on UNKNOWN | The amended text names the floor and the config, and nothing else |
 | 5 | python3 is absent | Hygiene reports UNVERIFIED with a repair line and is never reported clean (fixture F17) |
 | 6 | Hygiene additions apply in the author gate only, because pre-commit runs from a temporary copy of staged blobs (`pre-commit:142-158`) | Additions only tighten, so CI and pre-commit never block on them. Teaching those layers to read the staged config stays open |
-| 7 | The advisor plugin's second `declaredSurfaces` copy drifts | Recorded as ADR-006 in section 5 |
+| 7 | The advisor plugin's second `declaredSurfaces` copy drifts | Recorded as ADR-006 in section 5. Phase 009 adds a parity test that fails when the two readers disagree |
 | 8 | An envelope pasted into a tracked document names a private skill | Label-only rendering, and the fixture assertion that the envelope never names a private skill |
 | 9 | Secret fixtures trip a scanner | Keys are joined from fragments at run time |
 | 10 | Routing changes shift the hub benchmark | Replay and benchmark gate phase 5, with a recorded fallback for the resource list |

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 6: measurement"
-description: "Measures the quality gate that phases 001 to 005 build on seeded changes, a 50-file timing set and three routing canaries, and records each result against its design target. The live report folder waits on an operator decision about who renders it."
+description: "Measures the quality gate that phases 001 to 005 build on seeded changes, a 50-file timing set and three routing canaries, and records each result against its design target. The live report folder is rendered from the measurement record by the benchmark report renderer this phase adds."
 trigger_phrases:
   - "phase 6 measurement"
   - "quality gate measurement"
@@ -22,14 +22,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 6 |
 | **Predecessor** | 005-consumers-and-routing (phases 001 to 004 are also required, see Dependencies) |
 | **Successor** | None |
-| **Handoff Criteria** | Seven CQ scenarios and three canaries are written and replay to their expected routes. The measurement record holds every design 6.5 target with its result. The report folder is written, or its blocker (ADR-008) stays open and recorded. |
+| **Handoff Criteria** | Seven CQ scenarios and three canaries are written and replay to their expected routes. The measurement record holds every design 6.5 target with its result. The report folder is rendered from the measurement record by the benchmark report renderer. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,7 +52,7 @@ This is **Phase 6** of the Make sk-code-quality a codebase-agnostic, executable 
 - Seven playbook scenarios, CQ-002 to CQ-008, under the quality playbook.
 - Three compiled-routing canaries, CB-CR-006 to CB-CR-008.
 - A measurement record and the raw live transcripts, both under `evidence/`.
-- A report folder under the quality benchmark reports. Blocked until OQ-1 is answered.
+- A report folder under the quality benchmark reports, rendered from the measurement record.
 - Changelog entries at packet and quality-mode level, written at landing.
 
 **Changelog**: When this phase lands, write its changelog entries at the parent packet and at the quality mode (design D21). The version number is chosen at landing (design risk 11).
@@ -80,10 +80,10 @@ Success is one measurement record and one report that state the catch rate, the 
 - Add three compiled-routing canaries, CB-CR-006 to CB-CR-008, under the sk-code playbook.
 - Measure the catch rate, the misses and the false positives on the seeded fixtures, and the wall time on a 50-file set.
 - Record intent recall on four quality prompts, with no target (ADR-007).
-- Write the report folder once OQ-1 is answered, in the existing seven-file set (ADR-005).
+- Write the report folder in the existing seven-file set (ADR-005), rendered from the measurement record (ADR-008).
 
 ### Out of Scope
-- Building a benchmark runner or renderer. None survives the retirement of the Lane C harness (ADR-008), so building one is new scope.
+- Building a benchmark runner, and any renderer beyond the single report renderer this phase adds (ADR-008). Nothing of the Lane C harness survives its retirement.
 - Fixing a gate defect that measurement finds. A defect becomes a new change under the phase that owns the surface.
 - The advisor replays and the stage-two node test in design 6.5. Phase 005 acceptance runs them.
 - Scoring benchmark dimensions D1, D2, D3 and D5 or D4 usefulness. The retired harness owned them (`.skilled/skills/sk-code/benchmark/README.md:16,23`).
@@ -97,8 +97,11 @@ Success is one measurement record and one report that state the catch rate, the 
 | `.skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md` | Modify | Add CQ-002 to CQ-008 to the section 7 and section 9 indexes |
 | `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/` (three files, listed in tasks.md Step 2) | Create | Canaries CB-CR-006 to CB-CR-008 |
 | `specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/` | Create | Measurement record and raw live transcripts |
-| `.skilled/skills/sk-code/sk-code-quality/benchmark/reports/*--quality-gate-fixtures--live/` (the execution date leads the folder name) | Create (blocked on OQ-1) | Seven-file report folder |
-| `.skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md` | Modify (blocked on OQ-1) | One index row for the new folder |
+| `.skilled/skills/sk-code/sk-code-quality/benchmark/reports/*--quality-gate-fixtures--live/` (the execution date leads the folder name) | Create | Seven-file report folder, rendered from the measurement record |
+| `.skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md` | Modify | One index row for the new folder |
+| `.skilled/skills/sk-code/benchmark/scripts/render-report.cjs` | Create | Deterministic report renderer: one machine record in, the seven-file set out, with `--check` |
+| `.skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs` | Create | Golden test that re-renders committed reports byte for byte |
+| `.skilled/skills/sk-code/benchmark/README.md` | Modify | Section 7 names the renderer and how to run it |
 | `.skilled/skills/sk-code/sk-code-quality/changelog/` (one new file, named for the landing version) | Create | Quality-mode changelog entry, version chosen at landing |
 | `specs/sk-code/015-quality-agnostic-gate/changelog/` | Create | Packet changelog entry, written at landing |
 <!-- /ANCHOR:scope -->
@@ -119,7 +122,7 @@ Success is one measurement record and one report that state the catch rate, the 
 | REQ-005 | The F02 false-positive set produces 0 findings. |
 | REQ-006 | Built-in checks on the 50-file set finish in under 2000 ms on each of three runs. |
 | REQ-007 | No live transcript contains a passing claim. |
-| REQ-010 | The report folder holds the existing seven-file set. Blocked on OQ-1. |
+| REQ-010 | The report folder holds the existing seven-file set. |
 | REQ-012 | Every design 6.5 target appears in the report with its result and a met or not-met state. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -130,8 +133,8 @@ Success is one measurement record and one report that state the catch rate, the 
 | REQ-009 | Misses and false positives are named in the measurement record, not counted only. |
 | REQ-011 | `source.md` in the report records a repository-relative root and the scenario corpus, with no absolute path (synthesis rank 13 at `specs/sk-code/014-code-modes-research/001-quality-mode-research/research/synthesis-v1.md:207`). |
 | REQ-013 | This spec and `plan.md` name each dependency on phases 001 to 005. |
-| REQ-014 | ADR-001 to ADR-006 each state the alternative and the reversal, and each carries the status line "Accepted, pending operator confirmation at program end". |
-| REQ-015 | Phase 6 changes no file under the quality scripts, the quality hooks or the gate code. |
+| REQ-014 | ADR-001 to ADR-006 each state the alternative and the reversal, and each carries the status line "Accepted, confirmed by the operator 2026-10-26". |
+| REQ-015 | Phase 6 changes no file under the quality scripts, the quality hooks or the gate code. The one exception is the benchmark report renderer and its golden test, which this phase adds under the sk-code benchmark tree (ADR-008, option a). |
 | REQ-016 | Changelog entries at packet and quality-mode level are written at landing, with the version chosen then. |
 | REQ-017 | Raw transcripts stay in `evidence/`, and `scratch/` is empty at close. |
 | REQ-018 | The playbook scenarios write nothing into the repository working tree. Their fixtures live in temporary repositories (`sk-code-quality/manual-testing-playbook/manual-testing-playbook.md`, section 2, rule 5). |
@@ -148,7 +151,7 @@ Success is one measurement record and one report that state the catch rate, the 
 - **SC-001**: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').catch"` prints `{ seeded: 7, matched: 7, misses: [] }`.
 - **SC-002**: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').false_positives.f02_findings"` prints `0`.
 - **SC-003**: `node -p "require('specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/measurement.json').timing.max_ms"` prints a number below `2000`.
-- **SC-004**: `rg -l -i 'gate passed|all checks pass|\bPASS\b' specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts | wc -l` prints `0`, and every hit that remains is read by hand.
+- **SC-004**: `rg -n -i 'gate passed|all checks pass|\bPASS\b' specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts | rg -v '# pass [0-9]+$'` prints nothing, and every hit the unfiltered scan lists is read by hand and found to be a TAP summary line. Amended 2026-10-26: the criterion asked for a count of `0` from the unfiltered scan, and the `# pass N` line a replayed `node --test` prints matches its case-insensitive `\bPASS\b` pattern without being a gate claim.
 - **SC-005**: The report folder lists seven files, and `rg -l '/Users/|/private/|/home/'` over it prints nothing.
 <!-- /ANCHOR:success-criteria -->
 
@@ -159,12 +162,12 @@ Success is one measurement record and one report that state the catch rate, the 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 001 to 005 are all Draft today | Measurement cannot run on a gate that does not exist | Steps 1 and 2 can be drafted early. Step 3 runs only after 001 to 005 land |
-| Dependency | Live D4 runner and renderer (retired with the Lane C harness) | The report folder cannot be produced under the existing rules. High | OQ-1 and ADR-008. The machine record still captures every value, and the report rows stay blocked |
+| Dependency | Phases 001 to 005 are Complete | Measurement runs on the gate those phases build | Satisfied. Step 3 ran once 001 to 005 had landed |
+| Dependency | Live D4 runner and renderer (retired with the Lane C harness) | The report folder cannot be produced by the retired harness. High | Resolved 2026-10-26. ADR-008 option (a) is taken, so this phase built the report renderer and the machine record renders into the seven-file set |
 | Risk | Misses on F01 or false positives on F02 | Targets are not met. High | Record each result as found. Route each defect to the phase that owns the surface as a new change |
 | Risk | Intent recall stays at 0 | The routing claim stays weak. Medium | Record it with no target (ADR-007). Do not tune routing against four prompts in this phase |
 | Risk | The 50-file timing set runs slower on a real machine | The 2-second target is missed on that machine. Medium | Record the machine, run three times, and report the median and the maximum |
-| Risk | The MTP rule says renderer-owned markdown is never hand-authored | A hand-written report breaks the playbook rule. High | Do not hand-write the report markdown. Wait for the ADR-008 decision |
+| Risk | The MTP rule says renderer-owned markdown is never hand-authored | A hand-written report breaks the playbook rule. High | Held. Every file in the report folder comes from `benchmark/scripts/render-report.cjs`, and its `--check` re-renders the record and compares all seven files |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -177,7 +180,7 @@ Success is one measurement record and one report that state the catch rate, the 
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: Built-in checks finish in under 2000 ms for 50 changed `.js` files on each of three runs. The runs use `--no-run`, so no configured check runs (design 6.5).
+- **NFR-P01**: Built-in checks finish in under 2000 ms for 50 changed `.js` files on each of five full runs. The 2000 ms target is a reference-machine figure, measured on an Apple M5 Max with 18 cores (`evidence/measurement.json` `timing.machine`), and a slower machine may not meet it. The timing repository holds no `.sk-code/quality.json`, so no configured check runs (design 6.5). The runs leave out `--no-run`, which would also stop both built-in checks and time setup alone.
 - **NFR-P02**: N/A for throughput. The phase runs no service and answers no request, so NFR-P01 is the only timed path.
 
 ### Security
@@ -226,5 +229,5 @@ Success is one measurement record and one report that state the catch rate, the 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- **OQ-1 (blocks the report folder, the report index row and the source.md rows)**: Who owns the live D4 runner and the report renderer? The Lane C harness, its runner and its renderer are retired, and D4 usefulness has no successor (`.skilled/skills/sk-code/benchmark/README.md:14,16`). ADR-008 proposes sk-code as owner, recommends that the operator name a renderer, and records two alternatives. Until the operator answers, tasks T023 to T025 stay blocked.
+- **OQ-1 (answered)**: Who owns the live D4 runner and the report renderer? The Lane C harness, its runner and its renderer are retired, and D4 usefulness has no successor (`.skilled/skills/sk-code/benchmark/README.md:14,16`). The operator ruled that sk-code owns the gap and that this phase builds the renderer, which is ADR-008 option (a). Tasks T023 to T025 are unblocked.
 <!-- /ANCHOR:questions -->

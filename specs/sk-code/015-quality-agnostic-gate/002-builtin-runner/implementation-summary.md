@@ -12,7 +12,7 @@ _memory:
     last_updated_by: "markdown-agent"
     recent_action: "Corrected the limitation list so each corrected item says what closed it"
     next_safe_action: "Run the closeout packet's acceptance commands, then let phase 6 measure the runner"
-    blockers: ["ADR-011 to ADR-018 await operator confirmation at program end. They do not block this phase"]
+    blockers: []
     key_files:
       - ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
       - ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs"

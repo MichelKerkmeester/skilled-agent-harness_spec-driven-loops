@@ -36,14 +36,14 @@ This phase writes the scenarios and canaries that prove the gate on real routing
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 001 to 005 are Complete. `rg -l 'Complete' specs/sk-code/015-quality-agnostic-gate/00[1-5]-*/spec.md | wc -l` prints `5`.
-- [ ] Each design 6.5 target has a measurement field in `measurement.json` (see Step 3).
-- [ ] OQ-1 is answered, or tasks T023 to T025 stay marked `[B]` in `tasks.md`.
+- [x] Phases 001 to 005 are Complete. `rg -l 'Complete' specs/sk-code/015-quality-agnostic-gate/00[1-5]-*/spec.md | wc -l` prints `5`.
+- [x] Each design 6.5 target has a measurement field in `measurement.json` (see Step 3).
+- [x] OQ-1 is answered as ADR-008 option (a), so tasks T023 to T025 ran.
 
 ### Definition of Done
-- [ ] Seven scenarios and three canaries exist, and every AC row in `acceptance-criteria.md` is Met.
-- [ ] `measurement.json` holds every target value, with misses and false positives named.
-- [ ] The report folder holds seven files, or its blocked state is recorded against OQ-1.
+- [x] Seven scenarios and three canaries exist, and every AC row in `acceptance-criteria.md` is Met.
+- [x] `measurement.json` holds every target value, with misses and false positives named. There were none, so `misses` reads `[]` and both false-positive keys read `0`.
+- [x] The report folder holds seven files, rendered from the record with no operator blocker left.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -58,7 +58,7 @@ Other: a measurement package. It has no runtime component. It records numbers fr
 - **Playbook scenarios (CQ-002 to CQ-008)**: Each one names a fixture or a prompt, the expected output and the pass and fail rule.
 - **Routing canaries (CB-CR-006 to CB-CR-008)**: Each one names a prompt and the route the design expects.
 - **Measurement record (`evidence/measurement.json`)**: The one machine record every number reads from.
-- **Report folder (blocked)**: The existing seven-file set under the quality benchmark reports (ADR-005).
+- **Report folder**: The existing seven-file set under the quality benchmark reports (ADR-005), rendered from the measurement record by `benchmark/scripts/render-report.cjs`.
 
 ### Data Flow
 Fixture builder (phase 002) to `quality-gate.cjs --format json` to the measurement record. The record feeds the report's `source.md` and `README.md`. The compiled route front door answers the canary prompts and the four intent prompts. Live runs save their transcripts to `evidence/transcripts/`, and the transcript scan writes its count into the record.
@@ -90,7 +90,7 @@ Verify: `rg -l '^id: CQ-00[2-8]$' .skilled/skills/sk-code/sk-code-quality/manual
 
 Write CB-CR-006 to CB-CR-008 under `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/`, following the shape of `surface-alone-ci-compiled-routing.md`. The canaries use the three prompts design 6.5 lists.
 
-Acceptance: CB-CR-006 and CB-CR-008 replay as a single route to `sk-code-quality`, and CB-CR-007 replays as a bundle with quality first and `sk-code-ci` as the surface.
+Acceptance: CB-CR-006 to CB-CR-008 each replay as a single route to `sk-code-quality`, and CB-CR-007 also replays at stage two with `CI_WORKFLOW` and the four `sk-code-ci` references.
 Verify: `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on the agent file I edited under .skilled/agents"` prints `"selectionKind":"single"` and `sk-code-quality`.
 
 ### Step 3: Record the measurements and write the report
@@ -117,13 +117,13 @@ The record holds these fields. Each field is set by one task in `tasks.md`.
 #### Judgement calls in this step
 
 - The 50-file timing set is not in design 6.2. It is built at run time in a temporary repository, as fixture F01 is, and it is never committed. The reversal is to add it as F19 in the fixture table.
-- Built-in checks means the runner's own checks with `--no-run`. The timing set declares no `generated` row, so the dist checker does not run.
+- Built-in checks means the runner's own checks on a full run. The timing repository holds no `.sk-code/quality.json`, so no configured check runs, and it declares no `generated` row, so the dist checker does not run. `--no-run` is left out because it also stops both built-in checks.
 - The four intent prompts are the CQ-001 prompt and the three canary prompts. A match means the compiled route target equals the expected intent in the prompt's scenario or canary.
 - "Real changes" in design 7 Phase 6 becomes fixtures in temporary repositories, because the playbook rule says scenarios write nothing (REQ-018).
 
 #### Blocker for Step 3
 
-The report folder cannot be rendered under the existing rules until ADR-008 is decided. Steps 1 and 2 and the measurement record do not depend on it.
+The report folder could not be rendered under the existing rules until ADR-008 was decided. Resolved 2026-10-26 as ADR-008 option (a), which gives the phase its own renderer, so Step 3 closed with the measurement record and the seven-file folder both written.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -145,13 +145,13 @@ The report folder cannot be rendered under the existing rules until ADR-008 is d
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `001-honest-checker` (narrowed patterns, URL spans, issue rule, docstrings) | Internal, earlier phase | Yellow (Draft) | F01 recall and F02 zero findings cannot be measured |
-| `002-builtin-runner` (`quality-gate.cjs`, sensors, envelope, fixture builder) | Internal, earlier phase | Yellow (Draft) | No measurement can run |
-| `003-config-and-doctor` (configured required check, `SKIPPED_ABSENT`) | Internal, earlier phase | Yellow (Draft) | CQ-006 and F06 cannot run |
-| `004-doctrine` (Iron Law 3, SKILLED-only checklist) | Internal, earlier phase | Yellow (Draft) | CQ-003 to CQ-005 test the wrong text |
-| `005-consumers-and-routing` (verify reader, restraint keywords, F15, canary routes) | Internal, earlier phase | Yellow (Draft) | CQ-007, CQ-008 and the canaries cannot pass their route checks |
+| `001-honest-checker` (narrowed patterns, URL spans, issue rule, docstrings) | Internal, earlier phase | Green (Complete) | F01 recall and F02 zero findings cannot be measured |
+| `002-builtin-runner` (`quality-gate.cjs`, sensors, envelope, fixture builder) | Internal, earlier phase | Green (Complete) | No measurement can run |
+| `003-config-and-doctor` (configured required check, `SKIPPED_ABSENT`) | Internal, earlier phase | Green (Complete) | CQ-006 and F06 cannot run |
+| `004-doctrine` (Iron Law 3, SKILLED-only checklist) | Internal, earlier phase | Green (Complete) | CQ-003 to CQ-005 test the wrong text |
+| `005-consumers-and-routing` (verify reader, restraint keywords, F15, canary routes) | Internal, earlier phase | Green (Complete) | CQ-007, CQ-008 and the canaries cannot pass their route checks |
 | Compiled route front door (`.skilled/bin/compiled-route.cjs`, `compiled-route-status.cjs`) | Internal, existing | Green | Canary replays cannot run |
-| Live D4 runner and renderer (retired, `.skilled/skills/sk-code/benchmark/README.md:14,16`) | External to this packet | Red | Report folder blocked (OQ-1, ADR-008) |
+| Live D4 runner and renderer (retired, `.skilled/skills/sk-code/benchmark/README.md:14,16`) | External to this packet | Green (ADR-008 option a) | Report folder blocked (OQ-1, ADR-008) |
 <!-- /ANCHOR:dependencies -->
 
 ---

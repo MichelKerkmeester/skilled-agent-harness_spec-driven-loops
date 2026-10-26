@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T03:20:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Rechecked six rows after the review fixes"
-    next_safe_action: "Operator confirms the ADR-010 amendment at program end"
+    next_safe_action: "None. The operator confirmed the ADR-010 amendment on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -105,5 +105,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes, by its rows
 
-All 28 criteria are Met, each with the output observed on 2026-10-26, and no row carries a waiver. AC-013 and AC-028 were amended by the ADR-010 amendment, which is pending operator confirmation at program end. AC-028 now counts only the delta outside `specs/`, which is 0 lines. The 19 added lines under `specs/` stay as accepted debt; the other 2 delta lines are findings the checker no longer reports. One gate outside these rows fails: the sk-code drift-guard wrapper reports two quality checklist assets that no router names since the `DEFAULT_RESOURCE` change. `implementation-summary.md` records it under Known Limitations. A second gate outside the rows, `compiled-route-guard.cjs`, failed with `sk-code stale-manifest` because this phase changed the hub's routing inputs and nobody re-minted. T051 re-minted it, and it now exits 0. CHK-FIX-007 in `tasks.md` also stays open until the phase has a commit, so the phase stays In Progress although every row here is Met.
+All 28 criteria are Met, each with the output observed on 2026-10-26, and no row carries a waiver. AC-013 and AC-028 were amended by the ADR-010 amendment, which the operator confirmed on 2026-10-26. AC-028 now counts only the delta outside `specs/`, which is 0 lines. The 19 added lines under `specs/` stay as accepted debt; the other 2 delta lines are findings the checker no longer reports. One gate outside these rows fails: the sk-code drift-guard wrapper reports two quality checklist assets that no router names since the `DEFAULT_RESOURCE` change. `implementation-summary.md` records it under Known Limitations. A second gate outside the rows, `compiled-route-guard.cjs`, failed with `sk-code stale-manifest` because this phase changed the hub's routing inputs and nobody re-minted. T051 re-minted it, and it now exits 0. CHK-FIX-007 in `tasks.md` also stays open until the phase has a commit, so the phase stays In Progress although every row here is Met.
 <!-- /ANCHOR:closure -->

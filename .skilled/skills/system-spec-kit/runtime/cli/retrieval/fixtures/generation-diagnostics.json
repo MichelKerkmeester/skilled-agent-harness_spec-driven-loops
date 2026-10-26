@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7284,
-    "ok": 15304,
+    "missing-frontmatter": 7309,
+    "ok": 15358,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26136,
+  "documentsScanned": 26215,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8636c6a059982d61522811c1644f45aea901eb0af68788de9e4a15c757099524",
+  "manifestHash": "7e2c7fc9747444014abce9266b8a8efdaf68d8cb881590ec204b7a90560afed1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37855,
+      "ok": 37954,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10692,6 +10692,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/quality-ci-surface-evidence-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-bug-fix-compiled-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10711,6 +10717,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/workflow-alone-quality-agent-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/workflow-alone-quality-rails-compiled-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10919,6 +10937,36 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -10926,7 +10974,49 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/absent-required-tool.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/ci-target-change.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/envelope-round-trip.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/foreign-polyglot-change.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/private-surface-change.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/restraint-prompt.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/unknown-language-change.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -33799,12 +33889,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/resource-map-template.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -40302,6 +40386,48 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-code/014-code-modes-research/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -68592,6 +68718,30 @@
       "line": 1,
       "path": "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -71405,6 +71555,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -75793,6 +75947,34 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages",
       "reason": "excluded directory"
     },
     {

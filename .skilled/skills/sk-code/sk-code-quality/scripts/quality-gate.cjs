@@ -19,6 +19,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const vm = require('node:vm');
 
@@ -35,6 +36,7 @@ const { findTool, runGit, spawnArgv, spawnGroup, withGuard } = require('./lib/ru
 const HUB_ROOT = path.resolve(path.dirname(fs.realpathSync(__filename)), '..', '..');
 const QUALITY_ROOT = path.join(HUB_ROOT, 'sk-code-quality');
 const HYGIENE_CHECKER = path.join(QUALITY_ROOT, 'scripts', 'check-comment-hygiene.sh');
+const NODE_CHECK_HELPER = path.join(QUALITY_ROOT, 'scripts', 'lib', 'parallel-node-check.cjs');
 const DIST_CHECKER = path.join(QUALITY_ROOT, 'scripts', 'check-dist-staleness.sh');
 const COMMENT_SYNTAX_PATH = path.join(QUALITY_ROOT, 'assets', 'comment-syntax.json');
 const DEFAULTS_PATH = path.join(QUALITY_ROOT, 'assets', 'quality-defaults.json');
@@ -51,13 +53,24 @@ const PENDING = 'PENDING_AGENT_JUDGMENT';
 const GATE_EXIT = Object.freeze({ NO_BLOCKER_FOUND: 0, BLOCKED: 1, NOTHING_CHECKED: 2, ERROR: 3, UNVERIFIED: 4 });
 // A required check in one of these states produced no evidence, so the run cannot
 // say that nothing blocks.
-const UNVERIFIED_STATES = new Set(['SKIPPED_ABSENT', 'SKIPPED_BY_FLAG', 'TIMEOUT', 'ERROR', 'LISTED']);
+const UNVERIFIED_STATES = new Set(['SKIPPED_ABSENT', 'SKIPPED_BY_FLAG', 'SKIPPED_UNTRUSTED', 'TIMEOUT', 'ERROR', 'LISTED']);
 const RAN_STATES = new Set(['RAN_CLEAN', 'RAN_FAIL']);
 // A repository command reports through its exit code alone, so a required P0 one that
 // fails blocks by itself. A generated row is a command too.
 const REPOSITORY_ORIGINS = new Set(['configured', 'generated']);
+// A committed config may name any command, and the gate runs in whatever repository it was
+// opened in, so a configured command starts only from a config an operator or the repository
+// itself vouched for. The key is local, so a commit cannot carry the trust with it.
+const TRUST_KEY = 'skilled.trustRepoChecks';
+const TRUST_REPAIR = `git config --local ${TRUST_KEY} true`;
 const FORMATS = Object.freeze(['json', 'text', 'envelope']);
 const DEFAULT_TIMEOUT_SEC = 120;
+// A syntax check on a fifty-file change is fifty interpreters, and a sequential loop
+// spent most of the check's time starting them. The pool is bounded well below the core
+// count so the rest of the run, and the machine, keep room, and a single-file change
+// still starts one child.
+const NODE_CHECK_MAX_PARALLEL = 8;
+const NODE_CHECK_GRACE_MS = 5000;
 const MAX_FILE_BYTES = 2 * 1024 * 1024;
 const BINARY_SNIFF_BYTES = 8192;
 const MAX_EXCERPT_CHARS = 200;
@@ -672,13 +685,61 @@ function resolveDeclarationHub(env) {
   return realpathOrSelf(hub);
 }
 
-function configSummary(loaded) {
+function noTrust(reason) {
+  return { checks: 'none', reason };
+}
+
+function configuredCount(merged) {
+  return merged.checks.length + merged.generated.filter((row) => row.layer === 'repo').length;
+}
+
+// A value read through an include is stored in the file that include names, and that file
+// is often tracked, so the scope git reports for it says `local` while nothing about it
+// belongs to the operator. The local read without includes answers what this repository's
+// own .git/config holds, and the value must be the one discovery used, because an include
+// may still be what supplied the file the run reads.
+function storedInOwnGitConfig(at, value) {
+  if (typeof value !== 'string' || value === '') return false;
+  const stored = gitValue(at, ['config', '--local', '--no-includes', '--get-all', qualityConfig.GIT_CONFIG_KEY]);
+  if (stored === null) return false;
+  const values = stored.split('\n').filter((line) => line !== '');
+  return values.length > 0 && values[values.length - 1] === value;
+}
+
+// A committed config may name commands, so it runs only when an operator or this repository
+// vouched for it. The explicit flag, the value in the repository's own .git/config, the
+// repository's own trust key and the hub's own checkout are the four ways that happens. A
+// value a repository committed is never one of them, which is what keeps a third-party
+// checkout from running its own checks.
+function checkTrust({ git, root, env, source, scope, value, configured }) {
+  if (configured === 0) return noTrust('no configured check is declared');
+  if (source === 'cli') return { checks: 'trusted', reason: 'the operator named the config with --config' };
+  if (git) {
+    const at = { root, env };
+    if (source === 'git-config' && scope === 'local' && storedInOwnGitConfig(at, value)) {
+      return { checks: 'trusted', reason: `git config ${qualityConfig.GIT_CONFIG_KEY} is stored in this repository's own .git/config` };
+    }
+    if (gitValue(at, ['config', '--local', '--bool', TRUST_KEY]) === 'true') {
+      return { checks: 'trusted', reason: `${TRUST_KEY} is true in this repository` };
+    }
+    const repository = gitValue(at, ['rev-parse', '--path-format=absolute', '--git-common-dir']);
+    const runner = gitValue(at, ['rev-parse', '--path-format=absolute', '--git-common-dir'], HUB_ROOT);
+    if (repository && runner && repository === runner) {
+      return { checks: 'trusted', reason: 'the repository shares its git common dir with the runner checkout' };
+    }
+  }
+  return { checks: 'untrusted', reason: 'the config names commands and no trust rule applies' };
+}
+
+function configSummary(loaded, trust) {
   return {
     source: loaded.source,
     path: loaded.display,
     bytes: loaded.bytes,
     defaults: DEFAULTS_FILE,
+    trust,
     errors: loaded.errors.map((entry) => ({ ...entry, repair: REPAIRS.CONFIG_INVALID })),
+    warnings: [],
   };
 }
 
@@ -693,13 +754,14 @@ function readRepositoryConfig(options, realCwd, root, git, env, defaults) {
   } catch (error) {
     if (!(error instanceof qualityConfig.ConfigError)) throw error;
     const failure = new GateError(error.code === 'CONFIG_PATH_MISSING' ? 'CONFIG_PATH_MISSING' : 'GIT_FAILED', error.message);
-    failure.config = { source: error.source || null, path: error.path || null, bytes: null, defaults: DEFAULTS_FILE, errors: [] };
+    failure.config = { source: error.source || null, path: error.path || null, bytes: null, defaults: DEFAULTS_FILE,
+      trust: noTrust('the config could not be read, so no configured check runs'), errors: [], warnings: [] };
     throw failure;
   }
   if (loaded.errors.length > 0) {
     const where = loaded.display || 'the repository config';
     const failure = new GateError('CONFIG_INVALID', `${where} has ${loaded.errors.length} config error(s), listed in config.errors`);
-    failure.config = configSummary(loaded);
+    failure.config = configSummary(loaded, noTrust('the config did not validate, so no configured check runs'));
     throw failure;
   }
   return loaded;
@@ -717,12 +779,13 @@ function buildContext(options, cwd, env) {
   }
   const root = git ? top.stdout.trim() : realCwd;
   const loaded = readRepositoryConfig(options, realCwd, root, git, env, defaults);
+  const trust = checkTrust({ git, root, env, source: loaded.source, scope: loaded.scope, value: loaded.value, configured: configuredCount(loaded.merged) });
   const known = [...CHECK_IDS, ...loaded.merged.checks.map((entry) => entry.id),
     ...loaded.merged.generated.filter((row) => row.layer === 'repo').map((row) => row.id)];
   return {
     options, env, table, defaults, declHub, git, root, cwd: realCwd,
     merged: loaded.merged,
-    config: configSummary(loaded),
+    config: configSummary(loaded, trust),
     configLoaded: loaded,
     only: checkIdSet(options.only, known),
     skip: checkIdSet(options.skip, known) || new Set(),
@@ -1110,7 +1173,7 @@ function checklistRows(context) {
     why: row.why || `${context.config.path}, ${describeSelectors(row)}`,
     selectors: row,
   }));
-  const errors = [];
+  const faults = [];
   const registry = readJson(path.join(context.declHub, 'mode-registry.json'));
   const hubName = path.basename(context.declHub);
   for (const mode of Array.isArray(registry.modes) ? registry.modes : []) {
@@ -1131,17 +1194,20 @@ function checklistRows(context) {
   }
   for (const surface of declaredSurfaces(context.declHub)) {
     if (!surface.skillRoot || surface.quality === undefined) continue;
-    const blockFaults = outsideQualityFaults(surface.quality);
-    for (const reason of blockFaults) {
-      errors.push({ code: 'CHECKLIST_ROW_INVALID', repair: REPAIRS.CHECKLIST_ROW_INVALID, message: `${surface.label} quality ${reason}` });
-    }
-    if (blockFaults.length > 0) continue;
     const root = path.resolve(surface.skillRoot);
     const folder = path.basename(root);
+    // A fault keeps the skill folder that declared it, so its reader can tell whether that
+    // declaration reaches the change and gate it only where it does.
+    const report = (code, message) => faults.push({
+      code, repair: REPAIRS[code], message, skillRoot: root,
+    });
+    const blockFaults = outsideQualityFaults(surface.quality);
+    for (const reason of blockFaults) report('CHECKLIST_ROW_INVALID', `${surface.label} quality ${reason}`);
+    if (blockFaults.length > 0) continue;
     surface.quality.checklists.forEach((row, index) => {
       const fault = outsideRowFault(row, root);
       if (fault) {
-        errors.push({ code: fault.code, repair: REPAIRS[fault.code], message: `${surface.label} quality.checklists[${index}] ${fault.reason}` });
+        report(fault.code, `${surface.label} quality.checklists[${index}] ${fault.reason}`);
         return;
       }
       rows.push({
@@ -1154,7 +1220,7 @@ function checklistRows(context) {
       });
     });
   }
-  return { rows, errors };
+  return { rows, faults };
 }
 
 function selectorsMatch(selectors, facts, context) {
@@ -1188,11 +1254,27 @@ function rowApplies(row, facts) {
   return row.owner === null || facts.hubLabels.has(row.owner);
 }
 
+// A fault on an outside declaration gates only where that declaration applies, because a
+// malformed skill that no in-scope file reached cannot make this verdict untrustworthy. The
+// skill folder is the same test a readable row uses, and it stays unique where a label a
+// skill reuses from the hub does not.
+function faultApplies(fault, facts) {
+  return facts.skillRoots.has(fault.skillRoot);
+}
+
 function resolveChecklists(files, context) {
   const checklists = [];
   const declaredRows = checklistRows(context);
-  const errors = [...declaredRows.errors];
   const scoped = files.filter(authored);
+  // A declaration that applies to no scoped file is reported beside the gate rather than
+  // through it, so one broken skill in a shared hub cannot stop every repository.
+  const errors = [];
+  const warnings = [];
+  for (const fault of declaredRows.faults) {
+    const entry = { code: fault.code, repair: fault.repair, message: fault.message };
+    if (scoped.some((facts) => faultApplies(fault, facts))) errors.push(entry);
+    else warnings.push(entry);
+  }
   const sameRepository = sameRepositoryAsHub(context);
   for (const row of declaredRows.rows) {
     if (row.selectors.hubRepo === true && !sameRepository) continue;
@@ -1208,7 +1290,7 @@ function resolveChecklists(files, context) {
       errors.push({ code: 'CHECKLIST_MISSING', message: `${row.file} is declared but ${row.path} is not a regular file`, repair: REPAIRS.CHECKLIST_MISSING });
     }
   }
-  return { checklists, errors };
+  return { checklists, errors, warnings };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1418,21 +1500,77 @@ function runHygiene(files, context) {
   return { ...base, state: failed ? 'ERROR' : findings.length ? 'RAN_FAIL' : 'RAN_CLEAN', findings };
 }
 
+// How many syntax checks may run at once. One is the floor, because a pool of none would
+// never finish, and one core is left for the parent so the pool cannot starve the process
+// that reads its result. The ceiling keeps a large change from taking every core the rest
+// of the run needs.
+function nodeCheckPoolLimit() {
+  const cores = typeof os.availableParallelism === 'function' ? os.availableParallelism() : os.cpus().length;
+  return Math.max(1, Math.min(NODE_CHECK_MAX_PARALLEL, cores - 1));
+}
+
+// The helper prints one record per file, in the order it was given. Anything else, a
+// partial write from a killed helper included, is a result the parent cannot trust, so it
+// reports the check the way a sequential run reported a check that never returned.
+function nodeCheckRecords(stdout, expected) {
+  let records;
+  try {
+    records = JSON.parse(stdout);
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(records) || records.length !== expected) return null;
+  return records.every((record) => record && typeof record.file === 'string' && typeof record.stderr === 'string') ? records : null;
+}
+
+// One record reads back as the result a sequential `node --check` returned: the same
+// stderr and the same verdict, so the finding built from it is built from the same
+// evidence.
+function nodeCheckResult(record) {
+  if (record.timedOut) return { state: 'TIMEOUT', stderr: record.stderr };
+  if (record.error) return { state: 'ERROR', stderr: record.stderr };
+  return { state: record.status === 0 ? 'RAN_CLEAN' : 'RAN_FAIL', stderr: record.stderr };
+}
+
+// Every file still gets its own `node --check`, because that command is the authority the
+// check reports on and an in-process compiler would answer a different question. Only the
+// waiting overlaps: one helper starts the children, bounded by the core count, inside the
+// single window the runner already holds for its built-in checks, and returns them in
+// input order so a finding is built from the same record and reported in the same place.
 function runNodeCheck(files, context) {
-  const results = [];
+  if (files.length === 0) return { state: 'RAN_CLEAN', findings: [], duration_ms: 0 };
+  const parallel = nodeCheckPoolLimit();
+  // The helper gives each child the full per-check deadline, so its own deadline covers
+  // every wave it may run plus a margin for the helper and the parent to start and stop.
+  const waves = Math.ceil(files.length / parallel);
+  // The helper starts every child in its own process group and stops them all when it is
+  // asked to, so the deadline sends SIGTERM rather than SIGKILL: a helper starved past its
+  // own children's deadlines can then take its children with it, and it leaves on that
+  // signal without waiting, so the parent's wait still ends.
+  const result = spawnArgv([process.execPath, NODE_CHECK_HELPER, process.execPath, String(parallel), String(context.timeoutMs)], {
+    cwd: context.root,
+    env: context.env,
+    timeoutMs: context.timeoutMs * waves + NODE_CHECK_GRACE_MS,
+    killSignal: 'SIGTERM',
+    input: JSON.stringify(files.map((facts) => facts.abs)),
+  });
+  const records = nodeCheckRecords(result.stdout, files.length);
+  if (records === null) {
+    return { state: result.state === 'TIMEOUT' ? 'TIMEOUT' : 'ERROR', findings: [], duration_ms: result.durationMs };
+  }
+  const results = records.map(nodeCheckResult);
   const findings = [];
-  for (const facts of files) {
-    const result = spawnArgv([process.execPath, '--check', facts.abs], { cwd: context.root, env: context.env, timeoutMs: context.timeoutMs });
-    results.push(result);
-    if (result.state !== 'RAN_FAIL') continue;
-    const where = /:(\d+)\s*$/.exec(result.stderr.split('\n')[0]);
-    const message = /^(?:SyntaxError|Error): (.*)$/m.exec(result.stderr);
+  results.forEach((outcome, index) => {
+    if (outcome.state !== 'RAN_FAIL') return;
+    const facts = files[index];
+    const where = /:(\d+)\s*$/.exec(outcome.stderr.split('\n')[0]);
+    const message = /^(?:SyntaxError|Error): (.*)$/m.exec(outcome.stderr);
     const exact = facts.syntax === 'mjs';
     findings.push(finding({ rule: exact ? 'syntax.mjs' : 'syntax.js', severity: 'P0', confidence: exact ? 'exact' : 'heuristic',
       file: facts.rel, line: where ? Number(where[1]) : null, origin: fileOrigin(facts),
-      reason: `node --check: ${message ? message[1] : result.stderr.trim().split('\n').pop()}`, check: 'syntax-node' }));
-  }
-  return { state: aggregateState(results, findings.length > 0), findings, duration_ms: results.reduce((sum, r) => sum + r.durationMs, 0) };
+      reason: `node --check: ${message ? message[1] : outcome.stderr.trim().split('\n').pop()}`, check: 'syntax-node' }));
+  });
+  return { state: aggregateState(results, findings.length > 0), findings, duration_ms: result.durationMs };
 }
 
 function runShellCheck(files, context) {
@@ -1714,9 +1852,9 @@ function requiredTool(entry, context) {
 
 /**
  * Decide what each configured check does in this run. The order is the built-in one:
- * no matching file, then the flags, then an absent tool, then --no-run. A check that
- * would start a command outside git stops there, because nothing could show whether
- * it changed the workspace.
+ * no matching file, then the flags, then an absent tool, then --no-run, then an untrusted
+ * config, then a run outside git. A check that would start a command outside git stops
+ * there, because nothing could show whether it changed the workspace.
  *
  * @param {Object[]} files - File facts for the scope.
  * @param {Object} context - The run context.
@@ -1736,6 +1874,9 @@ function planConfigured(files, context) {
     const runs = configuredRuns(entry, matched, context, cache);
     if (context.options.noRun) {
       return { ...item, row: { ...row, state: 'LISTED', runs: runs.map((run) => ({ cwd: run.cwd, argv: run.argv, files: run.files.length, state: 'LISTED' })) } };
+    }
+    if (context.config.trust.checks === 'untrusted') {
+      return { ...item, row: { ...row, state: 'SKIPPED_UNTRUSTED', repair: TRUST_REPAIR } };
     }
     if (!context.git) return { ...item, row: { ...row, state: 'ERROR', code: 'GUARD_UNAVAILABLE', repair: REPAIRS.GUARD_UNAVAILABLE } };
     return { ...item, runs, pending: true };
@@ -2057,7 +2198,7 @@ function emptyVerdict(options) {
     exit_code: GATE_EXIT.ERROR,
     scope: { mode: options ? options.scope : null, base: options ? options.base : null, merge_base: null,
       lines: options ? options.lines : 'changed', files: [] },
-    config: { source: null, path: null, bytes: null, defaults: DEFAULTS_FILE, errors: [] },
+    config: { source: null, path: null, bytes: null, defaults: DEFAULTS_FILE, trust: noTrust('the run stopped before it read a config'), errors: [], warnings: [] },
     resolved_surface: ['unknown'],
     surfaces: [],
     layers: { pre_commit_hygiene: 'unknown', ci_hygiene: 'unknown', post_edit: 'unknown' },
@@ -2104,7 +2245,7 @@ function runGate(context) {
   const surfaces = declaredSurfaces(context.declHub);
   const files = scope.files.map((file) => fileFacts(file, context));
   for (const facts of files) if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
-  const { checklists, errors: configErrors } = resolveChecklists(files, context);
+  const { checklists, errors: configErrors, warnings: configWarnings } = resolveChecklists(files, context);
   const layers = probeLayers(context);
   const plan = planChecks(files, context);
   const checks = new Map();
@@ -2302,7 +2443,8 @@ function runGate(context) {
     exit_code: decision.exit_code,
     scope: { mode: context.options.scope, base: scope.base, merge_base: scope.mergeBase, lines: context.options.lines,
       files: files.map((facts) => facts.rel) },
-    config: { ...context.config, errors: [...context.config.errors, ...configErrors, ...configFaults] },
+    config: { ...context.config, errors: [...context.config.errors, ...configErrors, ...configFaults],
+      warnings: [...context.config.warnings, ...configWarnings] },
     resolved_surface: labels.length > 0 ? labels : ['unknown'],
     surfaces: files.filter(authored).map((facts) => ({ file: facts.rel, labels: facts.labels })),
     layers,
@@ -2328,14 +2470,17 @@ function explain(context) {
   const facts = fileFacts({ ...named, changed: new Set() }, context);
   const surfaces = declaredSurfaces(context.declHub);
   if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
-  const { checklists, errors } = resolveChecklists([facts], context);
+  const { checklists, errors, warnings } = resolveChecklists([facts], context);
   const reasons = applicability(facts, context, { explain: true });
+  // A configured check an explanation lists as applying still starts nothing when no trust
+  // rule vouched for the config, so the row says that beside the match it reports.
+  const untrusted = context.config.trust.checks === 'untrusted' ? `, but it will not run until trusted: ${TRUST_REPAIR}` : '';
   const repository = configuredEntries(context).map((entry) => {
     const applies = configuredMatches(entry, [facts]).length > 0;
     const selectors = [entry.languages ? `languages ${entry.languages.join(' ')}` : null, entry.paths ? `paths ${entry.paths.join(' ')}` : null]
       .filter(Boolean).join(', ') || 'every file the runner reads';
     return { id: entry.id, origin: entry.kind === 'generated' ? 'generated' : 'configured', applies,
-      why: applies ? `matches ${selectors} in ${context.config.path}` : `does not match ${selectors}` };
+      why: applies ? `matches ${selectors} in ${context.config.path}${untrusted}` : `does not match ${selectors}` };
   });
   return {
     schema: EXPLAIN_SCHEMA,
@@ -2346,7 +2491,7 @@ function explain(context) {
     language_source: facts.languageSource,
     unchecked: facts.unchecked,
     surfaces: facts.labels,
-    config: context.config,
+    config: { ...context.config, warnings: [...context.config.warnings, ...warnings] },
     checklists: checklists.map(({ file, path: where, why }) => ({ file, path: where, why })),
     checks: [...CHECKS.map((check) => ({
       id: check.id,
@@ -2415,7 +2560,9 @@ function renderText(verdict) {
   out.push(`surfaces: ${verdict.resolved_surface.join(', ')}`);
   out.push(`layers: pre-commit ${verdict.layers.pre_commit_hygiene}, ci ${verdict.layers.ci_hygiene}, post-edit ${verdict.layers.post_edit}`);
   out.push(`config: ${verdict.config.source || 'not read'}${verdict.config.path ? ` ${verdict.config.path}` : ''}`);
+  out.push(`trust: ${verdict.config.trust.checks} (${verdict.config.trust.reason})`);
   for (const error of verdict.errors.concat(verdict.config.errors)) out.push(`error ${error.code}: ${error.message} (repair: ${error.repair})`);
+  for (const warning of verdict.config.warnings) out.push(`warning ${warning.code}: ${warning.message} (repair: ${warning.repair})`);
   out.push('checks:');
   for (const check of verdict.checks) {
     const origin = check.origin === 'builtin' ? '' : ` ${check.origin}`;
@@ -2478,4 +2625,6 @@ if (require.main === module) {
 // 14. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { CHECK_IDS, USAGE_TEXT, decideGate, probeLayers, runDistAdapter };
+module.exports = {
+  CHECK_IDS, TRUST_REPAIR, USAGE_TEXT, checkTrust, decideGate, nodeCheckRecords, nodeCheckResult, probeLayers, runDistAdapter,
+};

@@ -87,7 +87,7 @@ Each workflow that acts on a quality result names the verdict it reads, and each
 - The config seam and the `/doctor:sk-code quality` route - Phase 3 (`003-config-and-doctor`) owns them.
 - The Iron Law 3 text, the UNKNOWN rows and the SKILLED universal checklist retitle - Phase 4 (`004-doctrine`) owns them.
 - Playbook scenarios, the live benchmark and a fix for the stage-one CI canary - Phase 6 (`006-measurement`) owns measurement, and ADR-006 records the canary gap.
-- The advisor plugin's copy of `declaredSurfaces` - kept where it is by ADR-014, pending operator confirmation.
+- The advisor plugin's copy of `declaredSurfaces` - kept where it is by ADR-014, confirmed by the operator 2026-10-26.
 
 ### Files to Change
 
@@ -119,7 +119,7 @@ Each workflow that acts on a quality result names the verdict it reads, and each
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Modify | QUALITY_DECLARATION_INVALID beside SURFACE_DETECTION_INVALID, if Phase 2 left it out |
 | `.skilled/bin/tests/quality-declaration.test.cjs` | Create | Negative test for a malformed hub quality row |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` | Modify | Adds fixture F15 to the Phase 2 test file, as a real outside sibling skill with a negative case, then F42 to F45 and F46 to F52, one case per outside-row defect |
-| `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs` | Modify | `checklistRows` reads an outside skill's `quality` rows from the surface entry and resolves each row against that skill's folder, with the row rules and containment the run enforces: a row that leaves the folder by text or by real path is refused as `CHECKLIST_OUTSIDE_SKILL`, one of the wrong shape or holding a `..` segment as `CHECKLIST_ROW_INVALID`, a block that is not a JSON object or names no readable row is reported against the skill's public label, a path that is not a regular file reads `CHECKLIST_MISSING`, and one refused row makes the gate `ERROR`, exit 3 |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs` | Modify | `checklistRows` reads an outside skill's `quality` rows from the surface entry and resolves each row against that skill's folder, with the row rules and containment the run enforces: a row that leaves the folder by text or by real path is refused as `CHECKLIST_OUTSIDE_SKILL`, one of the wrong shape or holding a `..` segment as `CHECKLIST_ROW_INVALID`, a block that is not a JSON object or names no readable row is reported against the skill's public label, a path that is not a regular file reads `CHECKLIST_MISSING`, and one refused row makes the gate `ERROR`, exit 3. Phase 009-review-closeout amended this, so the fault gates only for a skill that applies to a file in scope and is otherwise reported in `config.warnings` |
 | `.skilled/skills/sk-code/sk-code-quality/SKILL.md` | Modify | Version 1.11.0.0, because the runner and its contract changed |
 | `.skilled/skills/sk-code/sk-code-quality/changelog/` | Create | Real changelog file, `v1.11.0.0.md`, for the minor release |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Modify | The outside-skill surface entry carries its skill folder and its `quality` block as written, so a reader can tell a malformed block from no block |
@@ -188,7 +188,7 @@ Each workflow that acts on a quality result names the verdict it reads, and each
 |------|------|--------|------------|
 | Dependency | 002-builtin-runner verdict, envelope grammar and hub declarations | Without them the readers have nothing to read and F14 and F16 cannot pass | Hold the phase until Phase 2 lands. This phase does not stub the verdict |
 | Dependency | 004-doctrine amended Iron Law 3 text | The unknown-surface lines quote the wrong rule if Phase 4 lands later | Check the wording with `rg -n 'universal floor'` before editing lines 47 and 55 |
-| Risk | Stage-one CI canary stays `single`, so `sk-code-ci` is not bundled at stage one | Med. The design expects a surface bundle, and no bundle rule exists in `hub-router.json` | ADR-006 records the measured result: stage one stays `single`, stage two carries `CI_WORKFLOW` with the four CI references, and AC-018 closes as a waiver that the operator confirms at program end |
+| Risk | Stage-one CI canary stays `single`, so `sk-code-ci` is not bundled at stage one | Med. The design expects a surface bundle, and no bundle rule exists in `hub-router.json` | ADR-006 records the measured result: stage one stays `single`, stage two carries `CI_WORKFLOW` with the four CI references, and AC-018 closes as a waiver that the operator confirmed on 2026-10-26 |
 | Risk | Alias and vocabulary moves change stage-one matching for SKILLED phrases | Med. A request that matched SKILLED may stop matching | Replay each moved phrase before and after the move, as plan.md section 5 lists |
 | Risk | Hand-synced `.claude` mirror drifts from `.skilled` | Low. `check-agent-mirror-sync.cjs` fails the drift | Run `--all` after the edit and fix any drift before the phase closes |
 | Risk | Hub, ROUTER and packet versions disagree | Low. Doctor and changelog readers assume one release value | Compare all four hub version carriers before closing |
@@ -251,7 +251,7 @@ Each workflow that acts on a quality result names the verdict it reads, and each
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does stage one of compiled routing return a `surfaceBundle` with sk-code-ci for the CI canary? Answered on 2026-10-26. Stage one stays `single` with the target `sk-code-quality`, and stage two returns `CI_WORKFLOW` with the four CI references, so the CI standards still reach the quality run. AC-018 closes as a waiver under ADR-006, and the operator confirms it at program end.
+- Does stage one of compiled routing return a `surfaceBundle` with sk-code-ci for the CI canary? Answered on 2026-10-26. Stage one stays `single` with the target `sk-code-quality`, and stage two returns `CI_WORKFLOW` with the four CI references, so the CI standards still reach the quality run. AC-018 closes as a waiver under ADR-006, and the operator confirmed it on 2026-10-26.
 - The design recommended placing this packet under `specs/sk-code/014-code-modes-research/`. It sits under `015-quality-agnostic-gate/` instead. The operator decides placement under Gate 3, and this phase does not move it.
 <!-- /ANCHOR:questions -->
 

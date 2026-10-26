@@ -129,10 +129,10 @@ function findTool(name, env = process.env) {
  * Run one argv array under a deadline, with no shell.
  *
  * @param {string[]} argv - Program and arguments.
- * @param {Object} [options] - cwd, env, timeoutMs and input.
+ * @param {Object} [options] - cwd, env, timeoutMs, input and the signal a deadline sends.
  * @returns {{state:string, exit:number|null, stdout:string, stderr:string, durationMs:number, error:string|null}}
  */
-function spawnArgv(argv, { cwd, env = process.env, timeoutMs, input } = {}) {
+function spawnArgv(argv, { cwd, env = process.env, timeoutMs, input, killSignal = 'SIGKILL' } = {}) {
   const started = Date.now();
   const result = spawnSync(argv[0], argv.slice(1), {
     cwd,
@@ -140,7 +140,7 @@ function spawnArgv(argv, { cwd, env = process.env, timeoutMs, input } = {}) {
     input,
     encoding: 'utf8',
     timeout: timeoutMs,
-    killSignal: 'SIGKILL',
+    killSignal,
     maxBuffer: MAX_BUFFER,
     shell: false,
   });

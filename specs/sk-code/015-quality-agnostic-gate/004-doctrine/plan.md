@@ -90,7 +90,7 @@ Follow the ordered tasks in `tasks.md`. Setup is T001 and T002. Implementation i
 |-----------|-------|-------|
 | Unit | None. The phase adds no code | None |
 | Integration | The grep set in acceptance-criteria.md, `validate.sh --strict --no-recursive`, `validate_document.py` on each changed Markdown file, and `run-all-drift-guards.sh` | `rg`, `bash`, `python3` |
-| Manual | `sk-code-review` reads each row of the review-severity column (T021). The operator reads ADR-001 and ADR-002 at program end | `sk-code-review`, reading |
+| Manual | `sk-code-review` reads each row of the review-severity column (T021). The operator read ADR-001 and ADR-002 and confirmed them on 2026-10-26 | `sk-code-review`, reading |
 <!-- /ANCHOR:testing -->
 
 ---

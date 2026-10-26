@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted 2026-10-25: D8 = no, the session's judgment under the operator's delegation, pending the operator's verification at the end of the session (`scratch/d8-answer.md`) |
+| **Status** | Accepted 2026-10-25: D8 = no, the session's judgment under the operator's delegation, confirmed by the operator on 2026-10-26 (`scratch/d8-answer.md`) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Operator (D8); plan author for the default |
 
@@ -76,7 +76,7 @@ R27 asks for a re-measurement and then a decision, and it names the decision as 
 
 **Options**: `no`, keep the eight always-run FRESHNESS workflows as separate files and jobs; `yes`, merge all eight into `.github/workflows/always-run-guards.yml` as one job (ADR-002, ADR-004). A subset was not offered, because the plan prices only the full set.
 
-**Decision**: `D8=no`. The operator wrote on 2026-10-25, verbatim: "Approve plan implement all autonomously till all is perfected tested and verified decisions can wait untill end or you make best judgement and verifiy at end". Under that delegation the session judged `no`. The answer is the session's judgment, pending the operator's verification at the end of the session, and it is recorded in `scratch/d8-answer.md` and copied into `scratch/consolidation-decision.md`. A `no` runs no gated task.
+**Decision**: `D8=no`. The operator wrote on 2026-10-25, verbatim: "Approve plan implement all autonomously till all is perfected tested and verified decisions can wait untill end or you make best judgement and verifiy at end". Under that delegation the session judged `no`. The answer is the session's judgment, confirmed by the operator on 2026-10-26, and it is recorded in `scratch/d8-answer.md` and copied into `scratch/consolidation-decision.md`. A `no` runs no gated task.
 
 **Evidence**, all from `scratch/consolidation-cost.json`, re-derived by `node scratch/consolidation-cost.mjs --check` (`check: ok`, exit 0):
 - The eight bill 944.8 runner-min/day today, 24 billed minutes per push over 12 jobs and 943.5 job-seconds, from 40 runs each between 2026-10-24T22:10Z and 2026-10-25T20:17Z (`command-tree-parity.yml` from 2026-10-23T16:37Z).

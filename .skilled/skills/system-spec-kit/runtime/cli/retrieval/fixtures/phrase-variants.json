@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8636c6a059982d61522811c1644f45aea901eb0af68788de9e4a15c757099524",
+  "manifestHash": "7e2c7fc9747444014abce9266b8a8efdaf68d8cb881590ec204b7a90560afed1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7055,6 +7055,15 @@
     "054 plan": [
       "054 plan"
     ],
+    "054 review remediation": [
+      "054 review remediation"
+    ],
+    "054 review remediation plan": [
+      "054 review remediation plan"
+    ],
+    "054 review remediation tasks": [
+      "054 review remediation tasks"
+    ],
     "054 review verdict": [
       "054 review verdict"
     ],
@@ -8024,6 +8033,9 @@
     "add manual testing scenarios checkpoint enrichment frontproxy worktree": [
       "add manual testing scenarios checkpoint enrichment frontproxy worktree"
     ],
+    "add on removal": [
+      "add-on removal"
+    ],
     "add or change a column on a notion data source": [
       "add or change a column on a Notion data source"
     ],
@@ -8089,6 +8101,27 @@
     ],
     "additive validator change proof": [
       "additive validator change proof"
+    ],
+    "addon removal and speed refinements": [
+      "addon removal and speed refinements"
+    ],
+    "addon removal and speed refinements acceptance criteria": [
+      "addon removal and speed refinements acceptance criteria"
+    ],
+    "addon removal and speed refinements decision record": [
+      "addon removal and speed refinements decision record"
+    ],
+    "addon removal and speed refinements goal": [
+      "addon removal and speed refinements goal"
+    ],
+    "addon removal and speed refinements implementation summary": [
+      "addon removal and speed refinements implementation summary"
+    ],
+    "addon removal and speed refinements plan": [
+      "addon removal and speed refinements plan"
+    ],
+    "addon removal and speed refinements tasks": [
+      "addon removal and speed refinements tasks"
     ],
     "adherence iteration ledger": [
       "adherence iteration ledger"
@@ -10756,9 +10789,6 @@
     "analytics and learning remediation tasks": [
       "analytics and learning remediation tasks"
     ],
-    "analyzed created updated removed paths": [
-      "analyzed created updated removed paths"
-    ],
     "anchor citation threshold": [
       "anchor citation threshold"
     ],
@@ -12405,11 +12435,17 @@
     "authoring card": [
       "authoring card"
     ],
+    "authoring card corrections": [
+      "authoring card corrections"
+    ],
     "authoring card documentation": [
       "authoring card documentation"
     ],
     "authoring card documentation alignment": [
       "authoring card documentation alignment"
+    ],
+    "authoring card raise the level contradiction": [
+      "authoring card raise the level contradiction"
     ],
     "authoring checklist": [
       "authoring checklist"
@@ -12422,6 +12458,39 @@
     ],
     "authoring not scoring boundary": [
       "authoring-not-scoring boundary"
+    ],
+    "authoring speed fixes and alignment": [
+      "authoring speed fixes and alignment"
+    ],
+    "authoring speed fixes and alignment goal": [
+      "authoring speed fixes and alignment goal"
+    ],
+    "authoring speed fixes and alignment implementation summary": [
+      "authoring speed fixes and alignment implementation summary"
+    ],
+    "authoring speed fixes and alignment plan": [
+      "authoring speed fixes and alignment plan"
+    ],
+    "authoring speed fixes and alignment tasks": [
+      "authoring speed fixes and alignment tasks"
+    ],
+    "authoring speed ranked changes": [
+      "authoring speed ranked changes"
+    ],
+    "authoring speed research": [
+      "authoring speed research"
+    ],
+    "authoring speed research goal": [
+      "authoring speed research goal"
+    ],
+    "authoring speed research implementation summary": [
+      "authoring speed research implementation summary"
+    ],
+    "authoring speed research plan": [
+      "authoring speed research plan"
+    ],
+    "authoring speed research tasks": [
+      "authoring speed research tasks"
     ],
     "authoring surfaces acceptance criteria": [
       "authoring surfaces acceptance criteria"
@@ -22525,6 +22594,9 @@
     "code": [
       "code"
     ],
+    "code agent quality step": [
+      "code agent quality step"
+    ],
     "code aware chunker stage b": [
       "code-aware chunker stage b"
     ],
@@ -26156,6 +26228,9 @@
     "configure fanout executors": [
       "configure fanout executors"
     ],
+    "configured check trust": [
+      "configured check trust"
+    ],
     "configured quality checks": [
       "configured quality checks"
     ],
@@ -28690,6 +28765,9 @@
     "create sh sibling listing plan": [
       "create.sh sibling listing plan"
     ],
+    "create sh track traversal fix": [
+      "create.sh track traversal fix"
+    ],
     "create sh unknown option": [
       "create.sh unknown option"
     ],
@@ -30805,6 +30883,12 @@
     ],
     "declared signal closure": [
       "declared signal closure"
+    ],
+    "declared surfaces parity": [
+      "declared surfaces parity"
+    ],
+    "declared surfaces plugin": [
+      "declared surfaces plugin"
     ],
     "declared trigger scores zero": [
       "declared trigger scores zero"
@@ -34277,6 +34361,24 @@
     ],
     "deep review file coverage": [
       "deep review file coverage"
+    ],
+    "deep review finding fixes": [
+      "deep review finding fixes"
+    ],
+    "deep review finding fixes acceptance criteria": [
+      "deep review finding fixes acceptance criteria"
+    ],
+    "deep review finding fixes goal": [
+      "deep review finding fixes goal"
+    ],
+    "deep review finding fixes implementation summary": [
+      "deep review finding fixes implementation summary"
+    ],
+    "deep review finding fixes plan": [
+      "deep review finding fixes plan"
+    ],
+    "deep review finding fixes tasks": [
+      "deep review finding fixes tasks"
     ],
     "deep review finding reproducing case": [
       "deep-review finding reproducing case"
@@ -43681,6 +43783,9 @@
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
     ],
+    "fan out root resource map": [
+      "fan-out root resource map"
+    ],
     "fan out route deepseek": [
       "fan-out route deepseek"
     ],
@@ -44790,9 +44895,6 @@
     ],
     "file extractor": [
       "file-extractor"
-    ],
-    "file footprint catalog": [
-      "file footprint catalog"
     ],
     "file header checklist": [
       "file header checklist"
@@ -61526,6 +61628,9 @@
     "measure the track claim": [
       "measure the track claim"
     ],
+    "measured catch rate": [
+      "measured catch rate"
+    ],
     "measured convention state": [
       "measured convention state"
     ],
@@ -68437,6 +68542,9 @@
     "one to one script path proof": [
       "one to one script path proof"
     ],
+    "one validate run": [
+      "one validate run"
+    ],
     "one validation verdict": [
       "one validation verdict"
     ],
@@ -70911,9 +71019,6 @@
     "packet resolution rule tested": [
       "packet-resolution rule tested"
     ],
-    "packet resource map": [
-      "packet resource map"
-    ],
     "packet scaffold acceptance criteria": [
       "packet scaffold acceptance criteria"
     ],
@@ -72415,6 +72520,9 @@
     "phase 012 007 changelog": [
       "phase 012/007 changelog"
     ],
+    "phase 012 authoring speed build": [
+      "phase 012 authoring speed build"
+    ],
     "phase 012 changelog": [
       "phase 012 changelog"
     ],
@@ -72628,6 +72736,9 @@
     "phase 10 config row projection refusal": [
       "phase 10 config row projection refusal"
     ],
+    "phase 10 deep review finding fixes": [
+      "phase 10 deep review finding fixes"
+    ],
     "phase 10 documentation sweep": [
       "phase 10 documentation sweep"
     ],
@@ -72670,6 +72781,9 @@
     "phase 11 anchor repair mode": [
       "phase 11 anchor repair mode"
     ],
+    "phase 11 authoring speed research": [
+      "phase 11 authoring speed research"
+    ],
     "phase 11 gateway enforcement": [
       "phase 11 gateway enforcement"
     ],
@@ -72696,6 +72810,9 @@
     ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
+    ],
+    "phase 12 authoring speed fixes and alignment": [
+      "phase 12 authoring speed fixes and alignment"
     ],
     "phase 12 legacy row migration": [
       "phase 12 legacy row migration"
@@ -72733,6 +72850,9 @@
     "phase 126 tasks": [
       "phase 126 tasks"
     ],
+    "phase 13 addon removal and speed refinements": [
+      "phase 13 addon removal and speed refinements"
+    ],
     "phase 13 claude goal copy block": [
       "phase 13 claude goal copy block"
     ],
@@ -72762,6 +72882,9 @@
     ],
     "phase 14 handover docs promotion": [
       "phase 14 handover docs promotion"
+    ],
+    "phase 14 removed template reality sweep": [
+      "phase 14 removed template reality sweep"
     ],
     "phase 14 results": [
       "phase 14 results"
@@ -73845,6 +73968,9 @@
     ],
     "phase 9 research fixes": [
       "phase 9 research fixes"
+    ],
+    "phase 9 review closeout": [
+      "phase 9 review closeout"
     ],
     "phase 9 review remediation": [
       "phase 9 review remediation"
@@ -75504,6 +75630,9 @@
     ],
     "placeholder rule third class": [
       "placeholder rule third class"
+    ],
+    "placeholder scanner parity fix": [
+      "placeholder scanner parity fix"
     ],
     "placeholder syntax types": [
       "placeholder syntax types"
@@ -78594,8 +78723,14 @@
     "quality agnostic gate honest checker changelog": [
       "quality agnostic gate honest checker changelog"
     ],
+    "quality agnostic gate measurement changelog": [
+      "quality agnostic gate measurement changelog"
+    ],
     "quality agnostic gate phase parent spec": [
       "quality agnostic gate phase parent spec"
+    ],
+    "quality agnostic gate review closeout changelog": [
+      "quality agnostic gate review closeout changelog"
     ],
     "quality agnostic gate runner limit closeout changelog": [
       "quality agnostic gate runner limit closeout changelog"
@@ -78663,6 +78798,9 @@
     "quality gate ranked recommendations": [
       "quality gate ranked recommendations"
     ],
+    "quality gate report": [
+      "quality gate report"
+    ],
     "quality gate resolved surface": [
       "quality gate resolved surface"
     ],
@@ -78680,6 +78818,12 @@
     ],
     "quality gate runner plan": [
       "quality gate runner plan"
+    ],
+    "quality gate trust opt in": [
+      "quality gate trust opt-in"
+    ],
+    "quality gate trust plan": [
+      "quality gate trust plan"
     ],
     "quality gates": [
       "quality gates"
@@ -82872,6 +83016,24 @@
     "removed process derived root source": [
       "removed process-derived root source"
     ],
+    "removed template reality sweep": [
+      "removed template reality sweep"
+    ],
+    "removed template reality sweep acceptance criteria": [
+      "removed template reality sweep acceptance criteria"
+    ],
+    "removed template reality sweep goal": [
+      "removed template reality sweep goal"
+    ],
+    "removed template reality sweep implementation summary": [
+      "removed template reality sweep implementation summary"
+    ],
+    "removed template reality sweep plan": [
+      "removed template reality sweep plan"
+    ],
+    "removed template reality sweep tasks": [
+      "removed template reality sweep tasks"
+    ],
     "rename a vault note": [
       "rename a vault note"
     ],
@@ -83507,6 +83669,9 @@
     "report only ticket": [
       "report only ticket"
     ],
+    "report results section": [
+      "report results section"
+    ],
     "report safety validation": [
       "Report safety validation"
     ],
@@ -83515,6 +83680,9 @@
     ],
     "reported changelog descriptions": [
       "reported changelog descriptions"
+    ],
+    "repository checks trust": [
+      "repository checks trust"
     ],
     "repository database path": [
       "repository database path"
@@ -83629,6 +83797,9 @@
     ],
     "required status check": [
       "required status check"
+    ],
+    "required template anchors v2 3": [
+      "required template anchors v2.3"
     ],
     "required templates by level": [
       "required templates by level"
@@ -85852,6 +86023,30 @@
     ],
     "review checklists move to assets": [
       "review checklists move to assets"
+    ],
+    "review closeout": [
+      "review closeout"
+    ],
+    "review closeout acceptance criteria": [
+      "review closeout acceptance criteria"
+    ],
+    "review closeout decision record": [
+      "review closeout decision record"
+    ],
+    "review closeout goal": [
+      "review closeout goal"
+    ],
+    "review closeout implementation summary": [
+      "review closeout implementation summary"
+    ],
+    "review closeout plan": [
+      "review closeout plan"
+    ],
+    "review closeout tasks": [
+      "review closeout tasks"
+    ],
+    "review closeout timeline": [
+      "review closeout timeline"
     ],
     "review confirmed findings": [
       "review confirmed findings"
@@ -89520,6 +89715,9 @@
     ],
     "scoped backfill boundary": [
       "scoped backfill boundary"
+    ],
+    "scoped checklist errors": [
+      "scoped checklist errors"
     ],
     "scoped fill limit regression decision": [
       "scoped fill limit regression decision"
@@ -93231,6 +93429,12 @@
     "sk code 3 7 0 0": [
       "sk-code 3.7.0.0"
     ],
+    "sk code 3 8 0 0": [
+      "sk-code 3.8.0.0"
+    ],
+    "sk code 3 9 0 0": [
+      "sk-code 3.9.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93900,6 +94104,12 @@
     "sk code quality 1 11 0 0": [
       "sk-code-quality 1.11.0.0"
     ],
+    "sk code quality 1 12 0 0": [
+      "sk-code-quality 1.12.0.0"
+    ],
+    "sk code quality 1 13 0 0": [
+      "sk-code-quality 1.13.0.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -93974,6 +94184,12 @@
     ],
     "sk code quality v1 11 0 0": [
       "sk-code-quality v1.11.0.0"
+    ],
+    "sk code quality v1 12 0 0": [
+      "sk-code-quality v1.12.0.0"
+    ],
+    "sk code quality v1 13 0 0": [
+      "sk-code-quality v1.13.0.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -94320,6 +94536,9 @@
     "sk code skilled 2 1 1 0": [
       "sk-code-skilled 2.1.1.0"
     ],
+    "sk code skilled 2 1 2 0": [
+      "sk-code-skilled 2.1.2.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94421,6 +94640,9 @@
     ],
     "sk code skilled v2 1 1 0": [
       "sk-code-skilled v2.1.1.0"
+    ],
+    "sk code skilled v2 1 2 0": [
+      "sk-code-skilled v2.1.2.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94577,6 +94799,12 @@
     ],
     "sk code v3 7 0 0": [
       "sk-code v3.7.0.0"
+    ],
+    "sk code v3 8 0 0": [
+      "sk-code v3.8.0.0"
+    ],
+    "sk code v3 9 0 0": [
+      "sk-code v3.9.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -100168,6 +100396,12 @@
     "source tags checked": [
       "source tags checked"
     ],
+    "source tags fsmonitor fix": [
+      "source tags fsmonitor fix"
+    ],
+    "source tags fsmonitor slow validation": [
+      "source tags fsmonitor slow validation"
+    ],
     "source tags rule": [
       "SOURCE_TAGS rule",
       "source tags rule"
@@ -100259,6 +100493,9 @@
     ],
     "spec authoring card text": [
       "spec authoring card text"
+    ],
+    "spec authoring speed research": [
+      "spec authoring speed research"
     ],
     "spec auto healing recommendations": [
       "spec auto healing recommendations"
@@ -101516,6 +101753,9 @@
     ],
     "spec kit unknown option": [
       "spec-kit unknown option"
+    ],
+    "spec kit upkeep cost": [
+      "spec kit upkeep cost"
     ],
     "spec kit utilities": [
       "spec kit utilities"
@@ -104988,6 +105228,12 @@
     "synonym cycling significance inflation false ranges": [
       "synonym cycling significance inflation false ranges"
     ],
+    "syntax node pool decision": [
+      "syntax node pool decision"
+    ],
+    "syntax node pool plan": [
+      "syntax node pool plan"
+    ],
     "synthesis": [
       "synthesis"
     ],
@@ -105168,6 +105414,9 @@
     "system deep loop 1 6 6 0": [
       "system-deep-loop 1.6.6.0"
     ],
+    "system deep loop 1 6 7 0": [
+      "system-deep-loop 1.6.7.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -105312,6 +105561,9 @@
     "system deep loop v1 6 6 0": [
       "system-deep-loop v1.6.6.0"
     ],
+    "system deep loop v1 6 7 0": [
+      "system-deep-loop v1.6.7.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -105425,6 +105677,9 @@
     ],
     "system skill advisor 0 17 1 0": [
       "system-skill-advisor 0.17.1.0"
+    ],
+    "system skill advisor 0 17 2 0": [
+      "system-skill-advisor 0.17.2.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -105608,6 +105863,9 @@
     ],
     "system skill advisor v0 17 1 0": [
       "system-skill-advisor v0.17.1.0"
+    ],
+    "system skill advisor v0 17 2 0": [
+      "system-skill-advisor v0.17.2.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -105861,6 +106119,9 @@
     "system spec kit 2 10 0 0": [
       "system-spec-kit 2.10.0.0"
     ],
+    "system spec kit 2 11 0 0": [
+      "system-spec-kit 2.11.0.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -105941,6 +106202,9 @@
     ],
     "system spec kit 2 9 2 0": [
       "system-spec-kit 2.9.2.0"
+    ],
+    "system spec kit 2 9 3 0": [
+      "system-spec-kit 2.9.3.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -106293,6 +106557,9 @@
     "system spec kit v2 10 0 0": [
       "system-spec-kit v2.10.0.0"
     ],
+    "system spec kit v2 11 0 0": [
+      "system-spec-kit v2.11.0.0"
+    ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
     ],
@@ -106388,6 +106655,9 @@
     ],
     "system spec kit v2 9 2 0": [
       "system-spec-kit v2.9.2.0"
+    ],
+    "system spec kit v2 9 3 0": [
+      "system-spec-kit v2.9.3.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -109363,6 +109633,12 @@
     "trust lanes derived": [
       "trust lanes derived"
     ],
+    "trust repo checks": [
+      "trust repo checks"
+    ],
+    "trust repo checks grant": [
+      "trust repo checks grant"
+    ],
     "trust state": [
       "trust state"
     ],
@@ -109395,6 +109671,9 @@
     ],
     "trusted private skill roots": [
       "trusted private skill roots"
+    ],
+    "trustrepochecks decision": [
+      "trustRepoChecks decision"
     ],
     "truthful stop without consensus": [
       "truthful stop without consensus"
@@ -110823,6 +111102,9 @@
     ],
     "v2 2 1 0 release notes": [
       "v2.2.1.0 release notes"
+    ],
+    "v2 3 gate hardening": [
+      "v2.3 gate hardening"
     ],
     "v2 3 template stamp": [
       "v2.3 template stamp"
@@ -113023,11 +113305,17 @@
     "weak model loop adherence tasks": [
       "weak model loop adherence tasks"
     ],
+    "weak model spec authoring addon removal and speed refinements changelog": [
+      "weak model spec authoring addon removal and speed refinements changelog"
+    ],
     "weak model spec authoring benchmark and closeout changelog": [
       "weak model spec authoring benchmark and closeout changelog"
     ],
     "weak model spec authoring changelog": [
       "weak model spec authoring changelog"
+    ],
+    "weak model spec authoring deep review finding fixes changelog": [
+      "weak model spec authoring deep review finding fixes changelog"
     ],
     "weak model spec authoring phase parent spec": [
       "weak model spec authoring phase parent spec"
@@ -113038,8 +113326,17 @@
     "weak model spec authoring playbook run in worktree changelog": [
       "weak model spec authoring playbook run in worktree changelog"
     ],
+    "weak model spec authoring removed template reality sweep changelog": [
+      "weak model spec authoring removed template reality sweep changelog"
+    ],
     "weak model spec authoring speckit command and agent alignment changelog": [
       "weak model spec authoring speckit command and agent alignment changelog"
+    ],
+    "weak model spec authoring speed fixes and alignment changelog": [
+      "weak model spec authoring speed fixes and alignment changelog"
+    ],
+    "weak model spec authoring speed research changelog": [
+      "weak model spec authoring speed research changelog"
     ],
     "weak model spec authoring template and example defect repair changelog": [
       "weak model spec authoring template and example defect repair changelog"

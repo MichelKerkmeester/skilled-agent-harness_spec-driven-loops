@@ -91,7 +91,7 @@ and findings belong here.
 |------|------|
 | Benchmark replay in the design | The Lane C harness is retired. The successor gate and the canaries replace it (ADR-006) |
 | Metadata gate and `quality` | The design says the gate allows `quality`. It allows `surface_detection` only. Phase 5 adds the key |
-| Stage-one CI canary | Amended 2026-10-26. Stage one stays `single` with the target `sk-code-quality`, and stage two returns `CI_WORKFLOW` with the four CI references, so the CI standards still reach the quality run. Both keyword fixes were tried and rejected, so the CI vocabulary is unchanged from the base commit and AC-018 closes as a waiver under ADR-006 that the operator confirms at program end |
+| Stage-one CI canary | Amended 2026-10-26. Stage one stays `single` with the target `sk-code-quality`, and stage two returns `CI_WORKFLOW` with the four CI references, so the CI standards still reach the quality run. Both keyword fixes were tried and rejected, so the CI vocabulary is unchanged from the base commit and AC-018 closes as a waiver under ADR-006 that the operator confirmed on 2026-10-26 |
 | Packet location | Under `015-quality-agnostic-gate`, not the `014` child the design recommended. Gate 3 is the operator's |
 | Cross-consumer class | The phase is classed `cross-consumer`. Each reader, declaration and vocabulary move crosses a file boundary, so every consumer in spec.md section 3 was checked against it. The fix inventories the plan calls N/A stay N/A, because the phase fixes no defect of its own |
 | Hub changelog sentence | `.skilled/skills/sk-code/changelog/v3.7.0.0.md` names a `ci.yml` keyword this phase rejected. That file is outside this phase's write scope and needs one fix at landing |

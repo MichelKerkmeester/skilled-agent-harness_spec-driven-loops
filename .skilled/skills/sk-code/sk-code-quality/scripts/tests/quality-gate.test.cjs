@@ -19,8 +19,8 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 
-const { assertSnapshotUnchanged, buildRepo } = require('./fixtures.cjs');
-const { decideGate, runDistAdapter } = require('../quality-gate.cjs');
+const { assertSnapshotUnchanged, buildRepo, trustRepoChecks } = require('./fixtures.cjs');
+const { decideGate, nodeCheckRecords, nodeCheckResult, runDistAdapter } = require('../quality-gate.cjs');
 const { findTool, spawnArgv, withGuard } = require('../lib/run-check.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -689,17 +689,20 @@ test('F50 outside skill block shape: a quality block a reader cannot follow is r
   change: { 'xsrc/run.js': 'module.exports = 1;\n' },
 }, (repo) => {
   // One block carries an unknown key beside a string where the list belongs, the other
-  // carries an empty list. Neither can name a row, and neither may read as no block.
+  // carries an empty list. Neither can name a row, and neither may read as no block. The
+  // peer's surface reaches no scoped file, so only the block the change reaches gates.
   writeOutsideSkill(repo, OUTSIDE_SKILL, OUTSIDE_SURFACE, [], { quality: { checklists: 'nope', command: 'x' } });
   writeOutsideSkill(repo, PEER_SKILL, PEER_SURFACE, [], { quality: { checklists: [] } });
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 3);
   assert.equal(verdict.gate, 'ERROR');
-  assert.deepEqual(verdict.config.errors.map((entry) => entry.code), ['CHECKLIST_ROW_INVALID', 'CHECKLIST_ROW_INVALID', 'CHECKLIST_ROW_INVALID']);
+  assert.deepEqual(verdict.config.errors.map((entry) => entry.code), ['CHECKLIST_ROW_INVALID', 'CHECKLIST_ROW_INVALID']);
+  assert.deepEqual(verdict.config.warnings.map((entry) => entry.code), ['CHECKLIST_ROW_INVALID']);
   const messages = verdict.config.errors.map((entry) => entry.message);
   assert.match(messages[0], /^EXAMPLE quality holds unknown key command\. A skill names checklists only, never a command$/);
   assert.match(messages[1], /^EXAMPLE quality checklists must be a non-empty array$/);
-  assert.match(messages[2], /^SHARED quality checklists must be a non-empty array$/);
+  assert.match(verdict.config.warnings[0].message, /^SHARED quality checklists must be a non-empty array$/);
+  assert.equal(typeof verdict.config.warnings[0].repair, 'string');
   assert.deepEqual(verdict.checklists.filter((entry) => /^(?:EXAMPLE|SHARED) surface/.test(entry.why)), []);
   assert.deepEqual(surfaceOf(verdict, 'xsrc/run.js'), ['EXAMPLE']);
 }));
@@ -709,16 +712,83 @@ test('F52 outside skill block type: a quality value that is not an object is ref
   change: { 'xsrc/run.js': 'module.exports = 1;\n' },
 }, (repo) => {
   // A string or a null where the block belongs names no row, and neither may read as
-  // a skill that declared nothing.
+  // a skill that declared nothing. Only the peer's block reaches no scoped file.
   writeOutsideSkill(repo, OUTSIDE_SKILL, OUTSIDE_SURFACE, [], { quality: 'nope' });
   writeOutsideSkill(repo, PEER_SKILL, PEER_SURFACE, [], { quality: null });
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 3);
   assert.equal(verdict.gate, 'ERROR');
-  assert.deepEqual(verdict.config.errors.map((entry) => entry.message), [
-    'EXAMPLE quality must be a JSON object',
-    'SHARED quality must be a JSON object',
-  ]);
+  assert.deepEqual(verdict.config.errors.map((entry) => entry.message), ['EXAMPLE quality must be a JSON object']);
+  assert.deepEqual(verdict.config.warnings.map((entry) => entry.message), ['SHARED quality must be a JSON object']);
+}));
+
+// A malformed declaration is reported whether or not the change reaches it. The two cases
+// below hold one row and differ only in the scoped file, so surface detection is the whole
+// difference between a warning and a gate.
+test('outside skill fault: a malformed row whose surface reaches no scoped file never gates', () => withRepo({
+  hub: 'sibling',
+  change: { 'ysrc/run.js': 'module.exports = 1;\n' },
+}, (repo) => {
+  writeOutsideSkill(repo, OUTSIDE_SKILL, OUTSIDE_SURFACE, [Object.freeze({ file: 'no-selector.md' })]);
+  const runs = assertSnapshotUnchanged(repo, () => ({ json: repo.run([]), text: repo.run(['--format', 'text']) }));
+  assert.equal(runs.json.status, 0);
+  assert.equal(runs.json.verdict.gate, 'NO_BLOCKER_FOUND');
+  assert.deepEqual(runs.json.verdict.config.errors, []);
+  assert.deepEqual(runs.json.verdict.config.warnings.map((entry) => entry.code), ['CHECKLIST_ROW_INVALID']);
+  assert.match(runs.json.verdict.config.warnings[0].message, /^EXAMPLE quality\.checklists\[0\] names no selector/);
+  assert.equal(typeof runs.json.verdict.config.warnings[0].repair, 'string');
+  assert.deepEqual(surfaceOf(runs.json.verdict, 'ysrc/run.js'), ['UNKNOWN']);
+  assert.match(runs.text.stdout, /^warning CHECKLIST_ROW_INVALID: EXAMPLE quality\.checklists\[0\] names no selector/m);
+}));
+
+test('outside skill fault: the same malformed row with a scoped file its surface reaches gates', () => withRepo({
+  hub: 'sibling',
+  change: { 'xsrc/run.js': 'module.exports = 1;\n' },
+}, (repo) => {
+  writeOutsideSkill(repo, OUTSIDE_SKILL, OUTSIDE_SURFACE, [Object.freeze({ file: 'no-selector.md' })]);
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 3);
+  assert.equal(verdict.gate, 'ERROR');
+  assert.deepEqual(verdict.config.errors.map((entry) => entry.code), ['CHECKLIST_ROW_INVALID']);
+  assert.match(verdict.config.errors[0].message, /^EXAMPLE quality\.checklists\[0\] names no selector/);
+  assert.deepEqual(verdict.config.warnings, []);
+  assert.deepEqual(surfaceOf(verdict, 'xsrc/run.js'), ['EXAMPLE']);
+}));
+
+test('outside skill fault: one scoped file the surface reaches among several it does not still gates', () => withRepo({
+  hub: 'sibling',
+  change: {
+    'xsrc/run.js': 'module.exports = 1;\n',
+    'ysrc/a.js': 'module.exports = 2;\n',
+    'ysrc/b.js': 'module.exports = 3;\n',
+    'ysrc/c.js': 'module.exports = 4;\n',
+  },
+}, (repo) => {
+  writeOutsideSkill(repo, OUTSIDE_SKILL, OUTSIDE_SURFACE, [Object.freeze({ file: 'no-selector.md' })]);
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 3);
+  assert.equal(verdict.gate, 'ERROR');
+  assert.deepEqual(verdict.config.errors.map((entry) => entry.code), ['CHECKLIST_ROW_INVALID']);
+  assert.match(verdict.config.errors[0].message, /^EXAMPLE quality\.checklists\[0\] names no selector/);
+  assert.deepEqual(verdict.config.warnings, []);
+  assert.deepEqual(surfaceOf(verdict, 'xsrc/run.js'), ['EXAMPLE']);
+  assert.deepEqual(surfaceOf(verdict, 'ysrc/a.js'), ['UNKNOWN']);
+}));
+
+test('outside skill fault: --explain reports a fault whose surface reaches no file as a warning', () => withRepo({
+  hub: 'inside',
+  base: { '.skilled/tools/x.js': 'module.exports = 1;\n' },
+}, (repo) => {
+  // The skill reuses the hub's own label, so the label this file resolves to is the one the
+  // fault carries while the folder that declared it detected nothing.
+  writeOutsideSkill(repo, OUTSIDE_SKILL, Object.freeze({ label: 'skilled', role: 'specific', pathMarkers: ['xsrc/'] }), [],
+    { quality: { checklists: 'nope' } });
+  const explained = assertSnapshotUnchanged(repo, () => repo.run(['--explain', '.skilled/tools/x.js']));
+  assert.equal(explained.status, 2);
+  assert.deepEqual(explained.verdict.surfaces, ['SKILLED']);
+  assert.deepEqual(explained.verdict.errors, []);
+  assert.deepEqual(explained.verdict.config.warnings.map((entry) => entry.message),
+    ['SKILLED quality checklists must be a non-empty array']);
 }));
 
 test('F51 outside skill folder row: a row that names a folder is reported missing', () => withRepo({
@@ -1043,6 +1113,7 @@ test('F38 a repository generated row runs on its declared path and blocks', () =
   change: { '.skilled/skills/sk-design/sk-design-md-generator/backend/dist/cli.js': 'module.exports = 7;\n' },
 }, (repo) => {
   const declared = '.skilled/skills/sk-design/sk-design-md-generator/backend/dist/cli.js';
+  trustRepoChecks(repo);
   repo.write({
     '.sk-code/quality.json': `${JSON.stringify({
       schemaVersion: 1,
@@ -1068,6 +1139,7 @@ test('F38 a repository generated row runs on its declared path and blocks', () =
 test('F39 a repository generated row runs on a path outside every declared folder', () => withRepo({
   change: { 'gen/schema.js': 'module.exports = 7;\n' },
 }, (repo) => {
+  trustRepoChecks(repo);
   repo.write({
     '.sk-code/quality.json': `${JSON.stringify({
       schemaVersion: 1,
@@ -1093,6 +1165,7 @@ test('F39 a repository generated row runs on a path outside every declared folde
 test('F40 a repository generated row runs on a path no built-in check reads', () => withRepo({
   change: { 'gen/out.txt': 'built output\n' },
 }, (repo) => {
+  trustRepoChecks(repo);
   repo.write({
     '.sk-code/quality.json': `${JSON.stringify({
       schemaVersion: 1,
@@ -1841,4 +1914,104 @@ test('unit: changed lines: a tracked file whose name holds a space keeps its cha
   assert.equal(status, 1);
   assert.deepEqual(hygieneFindings(verdict).map((entry) => [entry.file, entry.line, entry.origin, entry.blocking]),
     [['a b.js', 2, 'changed-line', true], ['é f.py', 2, 'changed-line', true]]);
+}));
+
+// Twelve files put the list past the pool bound on any machine, so the two faults are
+// found by different children and have to come back at their own input index. Each
+// expected reason is read from the same `node --check` the sequential loop started, so
+// this case pins the record-to-finding mapping rather than a node version's wording.
+const POOL_CHANGE = Object.freeze({
+  'src/bad-end.js': 'function oops(\n',
+  'src/bad-token.js': 'const a = ;\n',
+  ...Object.fromEntries(Array.from({ length: 10 }, (_, index) => [`src/clean-${index + 1}.js`, `module.exports = ${index + 1};\n`])),
+});
+
+test('unit: node pool: twelve changed files keep both syntax errors and the reasons a sequential check produced', () => withRepo({
+  change: POOL_CHANGE,
+}, (repo) => {
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  const expected = ['src/bad-end.js', 'src/bad-token.js'].map((rel) => {
+    const direct = spawnArgv([process.execPath, '--check', path.join(repo.root, rel)], { cwd: repo.root });
+    assert.equal(direct.state, 'RAN_FAIL', `${rel} did not fail node --check`);
+    const where = /:(\d+)\s*$/.exec(direct.stderr.split('\n')[0]);
+    return [rel, Number(where[1]), `node --check: ${/^(?:SyntaxError|Error): (.*)$/m.exec(direct.stderr)[1]}`];
+  });
+  assert.deepEqual(verdict.findings.map((entry) => [entry.file, entry.line, entry.reason]), expected);
+  assert.deepEqual(verdict.findings.map((entry) => [entry.rule, entry.confidence, entry.blocking]),
+    [['syntax.js', 'heuristic', false], ['syntax.js', 'heuristic', false]]);
+  assert.deepEqual([check(verdict, 'syntax-node').state, check(verdict, 'syntax-node').files], ['RAN_FAIL', 12]);
+}));
+
+// A fault at the head of the list is claimed by the first child whatever the pool does, so
+// this change puts its one fault in the middle of eleven files, where only a record that
+// came back at its own index lands in the right place. The reference runs one `node
+// --check` after another in the order the runner lists the files.
+const MID_POOL_CHANGE = Object.freeze(Object.fromEntries(Array.from({ length: 11 }, (_, index) => {
+  const name = `src/part-${String(index + 1).padStart(2, '0')}.js`;
+  return [name, index === 5 ? 'const a = ;\n' : `module.exports = ${index + 1};\n`];
+})));
+
+test('unit: node pool: a syntax error in the middle of a long list matches a sequential check file by file', () => withRepo({
+  change: MID_POOL_CHANGE,
+}, (repo) => {
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  const order = Object.keys(MID_POOL_CHANGE).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  assert.equal(order[5], 'src/part-06.js', 'the fault does not sort into the middle of the list');
+  const expected = [];
+  for (const rel of order) {
+    const direct = spawnArgv([process.execPath, '--check', path.join(repo.root, rel)], { cwd: repo.root });
+    if (direct.state !== 'RAN_FAIL') continue;
+    const where = /:(\d+)\s*$/.exec(direct.stderr.split('\n')[0]);
+    const message = /^(?:SyntaxError|Error): (.*)$/m.exec(direct.stderr);
+    expected.push([rel, where ? Number(where[1]) : null, `node --check: ${message ? message[1] : direct.stderr.trim().split('\n').pop()}`,
+      'syntax.js', 'heuristic']);
+  }
+  assert.deepEqual(expected.map((entry) => entry[0]), ['src/part-06.js'], 'the sequential reference found a different fault');
+  const found = verdict.findings.filter((entry) => entry.check === 'syntax-node');
+  assert.deepEqual(found.map((entry) => [entry.file, entry.line, entry.reason, entry.rule, entry.confidence]), expected);
+  assert.deepEqual([check(verdict, 'syntax-node').state, check(verdict, 'syntax-node').files], ['RAN_FAIL', 11]);
+}));
+
+// A child killed by a signal leaves no exit status and no message, so its record has to read
+// as a check that never returned, never as a clean file or a syntax error with no text. A
+// helper that died part way prints a short list, which the parent must refuse whole.
+test('unit: node pool: a killed child reads ERROR and a short record list is refused', () => {
+  assert.deepEqual(nodeCheckResult({ file: 'a.js', status: null, stderr: '', timedOut: false, error: 'killed by SIGKILL' }),
+    { state: 'ERROR', stderr: '' });
+  assert.deepEqual(nodeCheckResult({ file: 'a.js', status: null, stderr: '', timedOut: true, error: null }),
+    { state: 'TIMEOUT', stderr: '' });
+  assert.equal(nodeCheckResult({ file: 'a.js', status: 1, stderr: 'x', timedOut: false, error: null }).state, 'RAN_FAIL');
+  assert.equal(nodeCheckResult({ file: 'a.js', status: 0, stderr: '', timedOut: false, error: null }).state, 'RAN_CLEAN');
+
+  const one = { file: 'a.js', status: 0, stderr: '', timedOut: false, error: null };
+  assert.deepEqual(nodeCheckRecords(JSON.stringify([one, { ...one, file: 'b.js' }]), 2).map((record) => record.file), ['a.js', 'b.js']);
+  assert.equal(nodeCheckRecords(JSON.stringify([one]), 2), null);
+  assert.equal(nodeCheckRecords('[{"file":"a.js","status":0,"stderr":""', 1), null);
+  assert.equal(nodeCheckRecords(JSON.stringify([{ file: 'a.js', status: 0 }]), 1), null);
+});
+
+// No file the check reads means no helper to start, so the row keeps the state it was
+// built with and no time was spent on it.
+test('unit: node pool: a change with no .js or .mjs file never starts the helper and reads NOT_APPLICABLE', () => withRepo({
+  change: { 'data.json': '{"a": 1}\n', 'lib/run.cjs': 'module.exports = 1;\n' },
+}, (repo) => {
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 0);
+  const row = check(verdict, 'syntax-node');
+  assert.deepEqual([row.state, row.files, row.duration_ms], ['NOT_APPLICABLE', 0, 0]);
+  assert.deepEqual(verdict.findings.filter((entry) => entry.check === 'syntax-node'), []);
+}));
+
+// The pool hands each child the check's own deadline, so a deadline this short stops every
+// child before node can start. The result has to read the way the sequential loop reported a
+// check that never returned: TIMEOUT, no finding, and a required check left without evidence.
+test('unit: node pool: a deadline no child can meet reports TIMEOUT and leaves the run UNVERIFIED', () => withRepo({
+  change: Object.fromEntries(Array.from({ length: 4 }, (_, index) => [`src/any-${index + 1}.js`, `module.exports = ${index + 1};\n`])),
+}, (repo) => {
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--timeout', '0.0004']));
+  assert.equal(status, 4);
+  assert.equal(verdict.gate, 'UNVERIFIED');
+  assert.equal(check(verdict, 'syntax-node').state, 'TIMEOUT');
+  assert.deepEqual(verdict.findings.filter((entry) => entry.check === 'syntax-node'), []);
+  assert.ok(verdict.summary.unverified.includes('syntax-node'));
 }));

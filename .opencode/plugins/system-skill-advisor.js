@@ -736,11 +736,14 @@ function readJsonFile(file) {
   }
 }
 
+// A block with no marker of any kind declares no surface, as the hub reader drops it too, so the
+// two readers list the same surfaces. Only path and file markers are kept for matching here.
 function surfaceEntry(block) {
   if (!block || typeof block !== 'object' || typeof block.label !== 'string' || !block.label.trim()) return null;
-  const markers = [block.pathMarkers, block.fileMarkers]
-    .flatMap((list) => (Array.isArray(list) ? list : []))
+  const markerList = (list) => (Array.isArray(list) ? list : [])
     .filter((marker) => typeof marker === 'string' && marker.length > 0);
+  const markers = [block.pathMarkers, block.fileMarkers].flatMap(markerList);
+  if (markers.length === 0 && markerList(block.contentMarkers).length === 0) return null;
   return { label: block.label.toUpperCase(), role: block.role, markers };
 }
 

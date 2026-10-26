@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/009-review-closeout",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/009-review-closeout",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review closeout",
+      "phase 9 review closeout",
+      "quality gate trust opt-in",
+      "trust repo checks grant",
+      "scoped checklist errors",
+      "review closeout plan",
+      "quality gate trust plan",
+      "syntax node pool plan",
+      "review closeout tasks",
+      "review closeout acceptance criteria",
+      "review closeout goal",
+      "review closeout decision record"
+    ],
+    "key_topics": [
+      "review",
+      "closeout",
+      "phase",
+      "quality",
+      "gate",
+      "trust",
+      "opt-in",
+      "repo",
+      "checks",
+      "grant",
+      "scoped",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/agents/code.md",
+      "evidence/timing.json",
+      "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+      ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+      "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/evidence/timing.json",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/declared-surfaces-parity.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "timing.json",
+        "kind": "config",
+        "path": "evidence/timing.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "configured-checks.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "declared-surfaces-parity.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/declared-surfaces-parity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review found that the gate still trusts too much and claims too much in a few places",
+    "created_at": "2026-10-26T15:21:47Z",
+    "last_save_at": "2026-10-26T17:32:51.563Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4ee57bd8a55c7cc9ba148e61dadd0c6c6e1ba12bfedb667f7a750bd6baa909f6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d480792c6e2dc1d3f2792d56d99593dafe8dc4e6488b0a3019241c870570e92e",
+      "plan.md": "d55f28f74eab16e8b8bf4dc30caab5172171fc987520a84bd16d2f3745bafbb3",
+      "tasks.md": "69799cf5c815aa29d4c2de278c894628e58d2fe085a3ea570cc527effd6295c5",
+      "decision-record.md": "029f7a200b48be97eccb45412da915784cec658b2cdf302f9d9d77c80374a5d4",
+      "implementation-summary.md": "7dfc3b371133b17b81995fca5aa45d49ce3260a5a9c40b11bc0198d7854f3fa3"
+    },
+    "last_active_at": null
+  }
+}

@@ -259,7 +259,7 @@ The citations this phase relies on were read at HEAD `f69e5cd2e8`, before phase 
 | `fixtures.cjs:87-93` for `describeEntry` and `:185-191` for `assertSnapshotUnchanged` | Holds: the entry hashes the content and the mode, and not the modification time, and the roots are the fixture folder and the scripts folder | REQ-002 |
 | `runner-contract.md:20`, `:56` and `:223` for sections 1, 2 and 8 | Holds: section 8's last bullet names the cache write as the reason no generated path is declared | REQ-001 to REQ-004 |
 | The phase 002 `implementation-summary.md` items 1, 3, 4, 5 and 8 at lines 164, 166, 167, 168 and 171 | Holds | REQ-005 |
-| The phase 002 `decision-record.md` ADR-018 | Holds: its status line is `Accepted, pending operator confirmation at program end`, which every ADR in this packet repeats | REQ-002, REQ-004 |
+| The phase 002 `decision-record.md` ADR-018 | Holds: its status line is `Accepted, confirmed by the operator 2026-10-26`, which every ADR in this packet repeats | REQ-002, REQ-004 |
 | The phase 003 `decision-record.md` ADR-006 | Holds: it owns the guard's ownership split, which this phase keeps | REQ-003, REQ-004 |
 <!-- /ANCHOR:citations -->
 ---
