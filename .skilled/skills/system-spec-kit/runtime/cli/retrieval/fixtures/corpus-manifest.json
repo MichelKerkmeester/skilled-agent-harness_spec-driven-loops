@@ -1,5 +1,5 @@
 {
-  "corpusHash": "622c381d962a30c38c5efe719ad5675fb378c913899d7b0d0bf61fcd304ec7f0",
+  "corpusHash": "0446886a68db54acb808f355925d736de636b6768c3e8fd1dd41fca53442185b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26215,
+  "includedPathCount": 26250,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7924,6 +7924,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.1.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.10.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -26220,6 +26221,35 @@
     "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26234,6 +26264,11 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-012-authoring-speed-fixes-and-alignment.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-013-addon-removal-and-speed-refinements.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-014-removed-template-reality-sweep.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-015-template-example-neutralization.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-016-scaffold-filler-section-trim.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-017-measured-behavior-and-draft-metadata.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-018-benchmark-redesign-and-remeasure.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-019-follow-up-fixes.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
@@ -26246,7 +26281,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7e2c7fc9747444014abce9266b8a8efdaf68d8cb881590ec204b7a90560afed1",
+  "manifestHash": "f88628f66e79472c177e6491c0b99f898a719b01f9b448ba86cc6c46f95616b9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33482,6 +33517,26 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/scratch",
       "reason": "excluded directory"
     },
     {
