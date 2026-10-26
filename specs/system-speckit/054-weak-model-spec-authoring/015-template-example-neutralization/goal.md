@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T15:30:00Z"
     last_updated_by: "planner"
     recent_action: "Recorded the sweep and planned the rewrite"
-    next_safe_action: "Take the census and guard baselines, then write the replacement table"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:

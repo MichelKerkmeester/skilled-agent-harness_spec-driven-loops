@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The speed loop tested every variant on \"add a quiet flag to recommend-level.sh\", which the 054 templates use as their own worked example, so the now054 and refined sandboxes held the answer while pre054 and main-no054 did not; the leak guard `quietflagrefs` (`prepare.sh:64`) only counted files naming the packet folder and missed it",
     "created_at": "2026-10-26T15:03:33Z",
-    "last_save_at": "2026-10-26T17:39:50.420Z",
+    "last_save_at": "2026-10-26T17:48:20.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bf1e3c260561d8ed6268951a4bd480adbaf001c249f14d0080c9cb4449c0f04",
+    "source_fingerprint": "sha256:f21ab64fddedd45d1a79a86ade99159a2a92b716140f67c1e188c086f21ec794",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3816866b93268e96c9ace9ea30443d7c0d82b851a275be4e89c65ee4920f5c0b",
       "plan.md": "3100cd82da70d2d0e80ddf6b90d1e801ff5b10a052f7cfedad4f19bedbe58ceb",
-      "tasks.md": "e3c80666daaeddfee3fd4d2b853f09d94c82795bd0dd765fcd6f8c305ec76949",
-      "implementation-summary.md": "2c7bfe56087f78c1964b0ab5c8526f99b62006459ec66f0e74b4125a05519214"
+      "tasks.md": "1d88ab5f38081aef9a1ff66e94a8695b76341317f755e2b5383330112877d44e",
+      "implementation-summary.md": "2e1c4d0061b9bd10b97eb32e63cf11d6bca348392f93472eb86484dee907ad6b"
     },
     "last_active_at": null
   }

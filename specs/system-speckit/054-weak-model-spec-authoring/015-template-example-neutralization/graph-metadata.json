@@ -34,7 +34,7 @@
       "speed"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The speed benchmark asks a model to plan a `--quiet` flag for `recommend-level.sh`, and the fill notes the model reads tell that same story: `templates/core/spec.md.tmpl:100` states the 17-line report, `templates/core/tasks.md.tmpl:83` gives the expected counts \"prints 1 and 17\", and `spec.md.tmpl:318`, `:423` and `:433` answer the benchmark's later upkeep question (\"Does `--quiet` suppress warnings? No, stderr is unchanged\")",
     "created_at": "2026-10-26T15:03:30Z",
-    "last_save_at": "2026-10-26T17:21:42.338Z",
+    "last_save_at": "2026-10-26T17:48:16.585Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cadbd2123bdbb6d256e0f377e8b4ca1b4cafeb74f2e6e177c2474a7351c4acd",
+    "source_fingerprint": "sha256:7eed48d94502a6597c61d6ffc21d80c529e2c33eb796ed77e8dbfd10144ddbc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c0ed9bc8df026bd63f4d8263bc2a694e25cc089b20f8e554108e78c6f0c299d",
       "plan.md": "1cb4e96596374ebeaa19407589abfd81fd8b9070625613f5d917940a4b06b12c",
-      "tasks.md": "3ee338f8dc38885b7261be30f4ffc0cd411862bcb83bac2359d550667c0f90ad",
-      "implementation-summary.md": "6db6a47ce9a0c3ad2d39f5f7a76485a37599d36f1ecb2dd0e506c35a3acda0d0"
+      "tasks.md": "3345d8b6e24ac1a003aa400941987d25e51b88a579fdc72e9d691234a1c66845",
+      "implementation-summary.md": "1ca4c769387d1db2df2073657dbeb610127effade0921fef40e756063c82c066"
     },
     "last_active_at": null
   }

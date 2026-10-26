@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T15:03:32Z"
     last_updated_by: "planner"
     recent_action: "Authored the durable directive"
-    next_safe_action: "Wait for phase 015 to close, then take the baselines"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:

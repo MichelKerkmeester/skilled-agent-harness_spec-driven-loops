@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:45:00Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Recorded both full suites and the closeout deviations; every criterion Met"
-    next_safe_action: "Commit the tree, then pin the commit SHA in implementation-summary.md (CHK-FIX-007)"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 017-measured-behavior-and-draft-metadata |
-| **Completed** | 2026-10-26 |
+| **Completed** | 2026-10-26; code `62e4661e01`, docs `ef939bf0ac` on `worktrees/217-weak-model-spec-authoring`, not pushed |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -146,7 +146,7 @@ CLI tests run as `cd .skilled/skills/system-spec-kit && npx vitest run --config 
 - No tree-status snapshot was taken before the census. The write check ran afterwards: `git status --porcelain specs/` outside 054 prints 0 lines, and inside 054 every change outside phases 015 to 018 and the changelog is a conductor edit or a speed-loop file. The census path calls `validateFolder` in-process and cannot reach the CLI-only repair (T025).
 - No separate build was logged before the census; the census ran on a build `validate.sh` accepted as fresh, and the final build is T019 (T003).
 - Phases 015, 016 and 017 were built in parallel in one uncommitted tree and are committed together after this closeout, so 015 and 016 were not committed before the template edits; the stamp v2.4 was set once for all five templates (T002, CHK-003).
-- The commit SHA is not pinned here yet; the conductor pins it after the commit (CHK-FIX-007).
+- The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs), on `worktrees/217-weak-model-spec-authoring`, not pushed.
 <!-- /ANCHOR:deviations -->
 
 ---

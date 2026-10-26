@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "closeout"
     recent_action: "Closed AC-003 on the review fix check's VERDICT: PASS; the phase is Complete"
-    next_safe_action: "Pin the phase commit SHA here once the work is committed (CHK-FIX-007)"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 015-template-example-neutralization |
-| **Completed** | 2026-10-26 (every acceptance row Met; the commit SHA is pinned after the commit) |
+| **Completed** | 2026-10-26; code `62e4661e01`, docs `ef939bf0ac` on `worktrees/217-weak-model-spec-authoring`, not pushed |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -119,7 +119,7 @@ Phases 015, 016 and 017 then shared one strict census, begun on the post-014 tre
 
 1. **Three checks were reworded after the fact, each a recorded deviation.** The term gate excludes the one instruction line that `goal.md` D3 keeps word for word, because "flag" in "List each flag and its effect" names no benchmark task (AC-001, T018). Phases 015 to 017 shared one uncommitted tree, so the per-file `git diff --numstat` counts and the 13-path scope count cannot isolate this phase; the evidence is the `G` check per file, the named extra lines and list membership (AC-008, T005 to T016, T023).
 2. **Planned artifacts were skipped or moved.** `scratch/replacements.md` and `scratch/baseline/` were never written. The 87-line table in `scratch/example-sweep.md` lists every swept line by file and line number, and the diff holds the new text. The edit briefs were not written per file here; they were combined with phase 016 and 017 edits under `../016-scaffold-filler-section-trim/scratch/briefs/`.
-3. **The evidence is not pinned to a commit yet.** Nothing is committed, so CHK-FIX-007 stays open until the phase commit SHA is added here.
+3. **The evidence is pinned to its commits.** The shipped work is `62e4661e01` and these docs are `ef939bf0ac`, on `worktrees/217-weak-model-spec-authoring`, not pushed.
 4. **The `research.md.tmpl:777` GOOD example was rewritten at closeout.** It gave a design reason ("No option: an environment variable instead would add a hidden input"), which a weak model could copy as an option entry. It now says what `--keep` does and how a missing value fails.
 <!-- /ANCHOR:limitations -->
 

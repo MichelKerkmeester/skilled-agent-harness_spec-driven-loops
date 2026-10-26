@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The core templates scaffold sample rows that read as finished content: in 12 graded packets the sign-off role table survived 9 times, the enhanced-rollback pre-deployment rows 8 times, the \"Phase 1.5 (Config)\" diagram 6 times, the \"External service failure / Network timeout\" rows 6 times and \"Tests passing (if applicable)\" 4 times",
     "created_at": "2026-10-26T15:03:31Z",
-    "last_save_at": "2026-10-26T17:21:53.873Z",
+    "last_save_at": "2026-10-26T17:48:18.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e7b4b2db136ff8c9cbe3eb4b84c0b44e5ee205c99b64681f256e7ea6b25c811",
+    "source_fingerprint": "sha256:1884bae43cb9c577cbba1469d4af1a1de8cc76c772a11dc2d1d63bf6b097bfa3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "66611f78fbb703798473db9585cf47745ab568753b9fcd82dd2b64a8d1f4ff6f",
       "plan.md": "6b9f5b28f428e540a7d122d7ee4ed00a0a9155e5d194a72c1d751ca90f7d6569",
-      "tasks.md": "2cf2451a58dd7efdf0c97be38ddc593291b3220cec075aaf3283bc8a4d41c39b",
-      "implementation-summary.md": "35df6e69b01aa04b970abd4d38705b30b90e0e9f83fdbdf14234d7b0e9dcbb39"
+      "tasks.md": "8a2ccf50f5f5ade609e5502bc2b7e650c606fd5a6e0ac0977d8cf437254d9f47",
+      "implementation-summary.md": "d571ff1fc4329885ff2b3fa54014b8d26742f75b7526afc5afb489216ac2b9ea"
     },
     "last_active_at": null
   }

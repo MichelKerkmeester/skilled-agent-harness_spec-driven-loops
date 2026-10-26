@@ -166,7 +166,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 - [x] CHK-FIX-004 [P0] The write path has adversarial tests: switch off, `CI` set, non-Draft, mixed errors, library call and recursion each leave the packet unchanged or repair once. Done: every one is a passing case in `draft-auto-repair.vitest.ts` (T013).
 - [x] CHK-FIX-005 [P1] Matrix axes are listed in `draft-auto-repair.vitest.ts`: status (Draft, In Progress), error set (derived only, mixed), switch (on, off), `CI` (unset, set), caller (CLI, library), output mode (text, `--json`, `--quiet`). Done: each axis value has its own named case; they are listed by case name, not in a separate comment.
 - [x] CHK-FIX-006 [P1] The tests set and restore `SPECKIT_DRAFT_AUTO_REPAIR` and `CI` per case, so a value in the runner's environment cannot change a result. Done: `cleanEnv()` deletes both from a copy of the environment for every spawn, and each case passes its own overrides; the test never changes `process.env`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Open: the work is not committed yet, so there is no SHA; the conductor pins the SHA after the commit.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Done: `implementation-summary.md` Metadata pins code commit `62e4661e01` and docs commit `ef939bf0ac`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -210,10 +210,10 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 13 | 13/13 |
-| P1 Items | 11 | 10/11 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-26. No P0 is open. Open P1: CHK-FIX-007, which the conductor closes by pinning the commit SHA after the commit.
+**Verification Date**: 2026-10-26. No P0 is open. No P1 is open: CHK-FIX-007 pins `62e4661e01` and `ef939bf0ac`.
 <!-- /ANCHOR:summary -->
 
 ---

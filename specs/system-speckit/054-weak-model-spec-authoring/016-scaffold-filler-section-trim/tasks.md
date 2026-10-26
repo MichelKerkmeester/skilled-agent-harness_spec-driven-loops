@@ -166,7 +166,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 - [x] CHK-FIX-002 [P0] Same-class inventory: `rg -n 'Phase 1.5|Feature flag configured|External service failure|Tests passing \(if applicable\)|Technical Lead' S/templates` prints nothing after the edits. Done: no output, exit 1.
 - [x] CHK-FIX-003 [P0] Consumer inventory: the examples, the compliance contract, the golden snapshot, `validation-optional-anchors.vitest.ts` and the Hermes copies are updated or proven unaffected. Done: `EXAMPLE_DRIFT_OK`, the contract's `rg` prints nothing, the snapshot test and the optional-anchor test pass, Hermes `PASS: 67`.
 - [x] CHK-FIX-005 [P1] Matrix axes: six sections and two pointers across Levels 2, 3 and 3+, plus every existing packet through the census. Done: the snapshot covers Levels 2, 3 and 3+; the census covers 4,757 folders.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Open: the work is uncommitted, so there is no SHA yet.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Done: `implementation-summary.md` Metadata pins code commit `62e4661e01` and docs commit `ef939bf0ac`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -206,10 +206,10 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 10 | 10/10 |
-| P1 Items | 7 | 6/7 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-10-26. Open: CHK-FIX-007 (P1); its line says why. CHK-001 and CHK-002 are ticked as recorded deviations.
+**Verification Date**: 2026-10-26. No item is open. CHK-001 and CHK-002 are ticked as recorded deviations.
 <!-- /ANCHOR:summary -->
 
 ---

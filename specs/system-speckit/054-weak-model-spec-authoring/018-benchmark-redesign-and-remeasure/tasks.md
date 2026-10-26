@@ -71,7 +71,7 @@ contextType: "general"
 - [x] T018 Unblind the grades and run the rescore on the new packets (`P/scratch/grading/unblinded.tsv`, `P/scratch/rescore/rescore-minpct.tsv`). Verify: `awk -F'\t' 'NR>1' P/scratch/grading/unblinded.tsv | wc -l` equals the line count of T016. Done: `29`; `rescore-minpct.tsv` also holds 29 rows, and `unparsed-minpct.log` lists 1 UNPARSED claim (now054 r3 `tasks.md:37`, which names no `--loc` and `--files` input).
 - [x] T019 Write the operator summary: one REAL or INCONCLUSIVE line per comparison for `tok_out` and for the blind total, each with its pairs, seconds beside it, and the old and new rescore figures (`P/scratch/report.md`). Verify: `rg -c 'REAL|INCONCLUSIVE' P/scratch/report.md` prints at least 6. Done: `21` lines: 6 quality rows, 12 speed rows (author and upkeep), the rule and two prose lines.
 - [x] T020 Have a fresh Opus medium agent check every verdict in the report against `results.tsv`, `unblinded.tsv` and the REQ-006 rule (`P/scratch/review-report.md`). Verify: `rg -n '^Verdict:' P/scratch/review-report.md` prints one line. Done: one line, `104:Verdict: PASS`. The first pass read CHANGES NEEDED (F1 to F8); the conductor fixed `report.md`, and a fresh checker recomputed all 12 speed rows from `combined-results.tsv` and found every P1 fixed and no number wrong.
-- [x] T021 With the operator's go-ahead, commit the loop edits, `step.sh` included (`L/`). Verify: `git status --porcelain -- L/step.sh` prints nothing. Done by the conductor's closeout commit on the worktree branch, under the operator's standing approval for this program, with no push. At the time of this edit `git status --porcelain -- L/step.sh` still printed ` M` because that commit follows this closeout; its SHA is pinned in a follow-up.
+- [x] T021 With the operator's go-ahead, commit the loop edits, `step.sh` included (`L/`). Verify: `git status --porcelain -- L/step.sh` prints nothing. Done by the conductor's closeout commit on the worktree branch, under the operator's standing approval for this program, with no push. That is commit `eace51ce7c`; after it `git status --porcelain -- L/step.sh` prints nothing.
 - [x] T022 Validate this folder (`P`). Verify: `bash S/runtime/cli/spec/validate.sh P --strict` prints `RESULT: PASSED`. Done: see the result recorded in `implementation-summary.md`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -159,7 +159,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 - [x] CHK-FIX-001 [P0] The leak finding is `class-of-bug`: the old guard counted packet-folder names only (`prepare.sh:64`), so the new scan covers every template, example and card file, not one string. Observed: `term_refs` scans the sandbox `templates/`, `references/templates/` and the card for every line of the terms file, and `loop.sh:114-115` refuses any count other than `0`, `NA` included.
 - [x] CHK-FIX-002 [P0] Same-class inventory: `rg -n 'recommend-level-quiet-flag|hints-l3|acceptance-criteria' L/` lists every task-specific line, and each one either moves behind the task switch or is recorded as shared. Observed (results and prep excluded): `lib.sh:43-45` sit inside the `quiet` case; `upkeep-brief.txt` is the quiet task's brief; `prepare.sh:65` keeps the old `quiet_flag_refs` count beside the new one; `hints-l3.txt` is recorded as shared in `README.md:16`.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in `report.md`: 4 variants, 5 rounds, 2 steps, 2 metrics, 6 comparisons. Observed: 4 variants (`report.md:9-14`), 8 rounds with the top-up (`:16`), author and upkeep steps and `tok_out` plus the blind total (`:37-52`), 6 comparisons per table. Recorded deviation: 8 rounds, not 5.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the loop commit SHA and the run stamp in `report.md`. Open: the run stamps are in `report.md:16`, but the loop commit is the conductor's closeout commit, which follows this edit; its SHA is pinned in a follow-up.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the loop commit SHA and the run stamp in `report.md`. Done: `report.md` names the run stamps and the loop commit `eace51ce7c`; the docs are `ef939bf0ac`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -201,10 +201,10 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 11 | 11/11 |
-| P1 Items | 9 | 6/9 |
+| P1 Items | 9 | 7/9 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-10-26. Open: CHK-FIX-007, CHK-031 and CHK-051 (P1); each line says why. CHK-002 and CHK-FIX-005 are ticked as recorded deviations.
+**Verification Date**: 2026-10-26. Open: CHK-031 and CHK-051 (P1); each line says why. CHK-002 and CHK-FIX-005 are ticked as recorded deviations.
 <!-- /ANCHOR:summary -->
 
 ---

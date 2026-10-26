@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed out: every acceptance criterion Met"
-    next_safe_action: "Commit the phase on the worktree branch, then pin the commit SHA"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 018-benchmark-redesign-and-remeasure |
-| **Completed** | 2026-10-26 |
+| **Completed** | 2026-10-26; loop and results `eace51ce7c`, docs `ef939bf0ac` on `worktrees/217-weak-model-spec-authoring`, not pushed |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -102,7 +102,7 @@ The closeout reran each acceptance check from the final tree, then ran `repair-d
 - **Refined snapshot predates closeout example edits.** Snapshot `553ab62` was taken before the Level 2 to 3+ example edge cases and one research add-on example were edited at closeout. The core templates the author step reads did not change; the examples could matter.
 - **Loop edits came from an Opus lane**, not DeepSeek V4.1 Flash max through cli-pi as `goal.md` D4 names (recorded under T008).
 - **Command paths corrected.** Several verify commands named `scratch/remeasure/results.tsv`; with two runs the files live in `run-*/` and the merge in `combined-results.tsv`. `tasks.md` and `acceptance-criteria.md` record the corrected commands.
-- **Commit after closeout.** T021 and the git half of AC-008 are met by the conductor's closeout commit on the worktree branch, with no push; its SHA is pinned in a follow-up, and CHK-FIX-007 stays open until then.
+- **Commit after closeout.** T021 and the git half of AC-008 are met by commit `eace51ce7c` (loop edits and results) on `worktrees/217-weak-model-spec-authoring`, not pushed; the phase docs are `ef939bf0ac`.
 <!-- /ANCHOR:decisions -->
 
 ---

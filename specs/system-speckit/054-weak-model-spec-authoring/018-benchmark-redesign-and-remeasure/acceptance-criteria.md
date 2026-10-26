@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Verified every criterion at closeout, all Met"
-    next_safe_action: "Commit the phase on the worktree branch, then pin the commit SHA"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -60,7 +60,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-005 | Given the hardened loop, When `loop.sh --task minpct --variants pre054,main-no054,now054,refined --runs 5 --parallel-ok` runs, Then the run has 20 author rows and `summary.md` shows `tok_out` first with seconds beside it | `awk -F'\t' 'NR>1 && $3=="author"' scratch/remeasure/run-20261026T164410Z-40710/results.tsv \| wc -l` prints 20; `rg -c 'tok_out verdict'` on each `summary.md` prints at least 1. Observed: `20` author rows, of which 17 are valid; main-no054 rounds 3 to 5 read `ABORT` because its round 2 author wrote `node_modules/.vitest-cache` in the sandbox and `step.sh` marked it dirty, so the loop refused them as designed. Deviation: a 3-round top-up, `run-20261026T170823Z-68750`, added 12 author rows, all valid, so the merged `combined-results.tsv` holds 32 author rows and 29 valid over 8 rounds. `tok_out verdict` prints `2` in both run summaries and in `combined-summary.md`. The command path is corrected from `scratch/remeasure/results.tsv`, since each run has its own folder | Met | - |
 | AC-006 | REQ-006 | Given the run, the grades and the rescore, When the report is written, Then each comparison is REAL only with at least 4 same-sign valid pairs, plus a matching rescore move for a quality claim, and INCONCLUSIVE otherwise | `rg -c 'REAL\|INCONCLUSIVE' scratch/report.md` prints at least 6; the Opus check in `scratch/review-report.md` records `Verdict:` with no rule violation. Observed: `21`; `review-report.md:104` reads `Verdict: PASS`, after a fresh checker recomputed all 12 speed rows and found every P1 fixed. The rule is applied over 8 rounds as at least 4 valid pairs, all of one sign, and `report.md:22` says so | Met | - |
 | AC-007 | REQ-007 | Given the valid packets of the new run, When grading ends, Then each has one blind grade file and no contaminated run has one | `ls scratch/grading/*.json \| wc -l` equals the valid author count in `scratch/remeasure/combined-results.tsv`. Observed: `29` grade files, 29 valid author rows, 29 label-map rows, 29 unblinded rows, 0 contaminated rows. The path is corrected from `scratch/remeasure/results.tsv`, which does not exist | Met | - |
-| AC-008 | REQ-008 | Given the loop edits, When the phase commits, Then `step.sh` carries the rebuild switch in the commit | `rg -c 'SPECKIT_DIST_AUTO_REBUILD=0' ../011-authoring-speed-research/scratch/speed-loop/step.sh` prints 1, and `git status --porcelain` on that file prints nothing. Observed: `1`. The git half is met by the conductor's closeout commit of the whole worktree on the worktree branch, under the operator's standing approval, with no push; that commit follows this edit, so at writing `git status --porcelain` printed ` M` for `step.sh`. Its SHA is pinned in a follow-up | Met | - |
+| AC-008 | REQ-008 | Given the loop edits, When the phase commits, Then `step.sh` carries the rebuild switch in the commit | `rg -c 'SPECKIT_DIST_AUTO_REBUILD=0' ../011-authoring-speed-research/scratch/speed-loop/step.sh` prints 1, and `git status --porcelain` on that file prints nothing. Observed: `1`. The git half is met by the conductor's closeout commit of the whole worktree on the worktree branch, under the operator's standing approval, with no push; that is commit `eace51ce7c`, after which `git status --porcelain` on `step.sh` prints nothing | Met | - |
 | AC-009 | REQ-009 | Given the run, When it ends, Then its files are copied here and the operator has a summary | `ls scratch/remeasure/run-*/` lists `results.tsv`, `round.tsv` and `summary.md`; `scratch/report.md` exists. Observed: both run folders list all three, `combined-results.tsv` and `combined-summary.md` sit beside them, and `report.md` exists with one verdict line per comparison | Met | - |
 
 ### Status values
@@ -89,5 +89,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Yes. Every criterion was checked from the final tree; the run deviations and the follow-up commit SHA are recorded in their rows.
+Yes. Every criterion was checked from the final tree; the run deviations and the commit SHAs are recorded in their rows.
 <!-- /ANCHOR:closure -->

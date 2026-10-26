@@ -166,7 +166,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix; the phase edits comment text only. Done: N/A holds.
 - [x] CHK-FIX-005 [P1] Matrix axes: 12 files by line, listed in the sweep table with direct and story counts. Done: the sweep table lists the 12 files with direct and story counts.
 - [x] CHK-FIX-006 [P1] N/A: no test or code reads process-wide state; no code line changes. Done: N/A holds.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Open: nothing is committed yet, so there is no phase SHA; the SHA is pinned in a follow-up after the commit.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Done: `implementation-summary.md` Metadata pins code commit `62e4661e01` and docs commit `ef939bf0ac`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -208,7 +208,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 13 | 13/13 |
-| P1 Items | 9 | 8/9 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-10-26

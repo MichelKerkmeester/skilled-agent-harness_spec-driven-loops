@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed out: every acceptance criterion Met"
-    next_safe_action: "Commit the phase on the worktree branch, then pin the commit SHA"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -83,7 +83,7 @@ and findings belong here.
 | Rescore and loop hardening | Done | `rescore.tsv` 23 rows; loop review `Verdict: PASS` after its fix check |
 | 5-round run | Done, with a top-up | Main run `20261026T164410Z-40710` (17 valid author runs) plus top-up `20261026T170823Z-68750` (12 valid), 8 rounds in all |
 | Grading and report | Done | 29 blind grades; `report.md` verdicts; report review `Verdict: PASS` after its fix check |
-| Closeout | Done | Every acceptance criterion Met; the commit SHA is pinned in a follow-up |
+| Closeout | Done | Every acceptance criterion Met; loop and results `eace51ce7c`, docs `ef939bf0ac` |
 
 ### Deviations and findings
 
