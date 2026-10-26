@@ -29,9 +29,12 @@ const RUNNER = path.join(SCRIPTS_DIR, 'quality-gate.cjs');
 const HUB_ROOT = path.resolve(SCRIPTS_DIR, '..', '..');
 const REPO_ROOT = path.resolve(HUB_ROOT, '..', '..', '..');
 const HUB_OVERRIDE_ENV = 'SK_CODE_QUALITY_HUB_ROOT';
+// A fixture commit may start a detached auto-maintenance that writes a lock under
+// .git/objects while a case is snapshotting, so the fixture's own git never runs it.
 const IDENTITY = Object.freeze([
   '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
   '-c', 'commit.gpgsign=false', '-c', 'init.defaultBranch=main',
+  '-c', 'maintenance.auto=false', '-c', 'gc.auto=0',
 ]);
 const STUB_CHECKLIST = '# Fixture checklist\n\nA stand-in for a declared checklist.\n';
 
