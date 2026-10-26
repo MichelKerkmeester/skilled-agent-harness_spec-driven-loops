@@ -22,7 +22,8 @@
     "sk-doc/065-changelog-section-spacing",
     "sk-doc/066-feature-catalog-template-anchor-deprecation",
     "sk-doc/067-root-readme-section-spacing",
-    "sk-doc/068-hub-repo-folder-exemption"
+    "sk-doc/068-hub-repo-folder-exemption",
+    "sk-doc/069-local-command-support"
   ],
   "manual": {
     "depends_on": [],
