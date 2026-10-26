@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d521fc76a3a479ca383ea4a865f3f9689ea0a3e66885d22cc5ff7e1858c33a0e",
+  "corpusHash": "73360f9161cc50dc46d0356c370a4aecd8d30ae37ada4b5edba356fac2baa1fa",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26087,
+  "includedPathCount": 26090,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2723,6 +2723,7 @@
     ".skilled/skills/sk-code/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v2.4.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2793,6 +2794,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.1.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
@@ -12267,6 +12269,7 @@
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/plan.md",
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/spec.md",
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
     "specs/sk-code/015-quality-agnostic-gate/goal.md",
     "specs/sk-code/015-quality-agnostic-gate/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -26118,7 +26121,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bf5b2360698f81f0b8195f37bae13683b12cbe77c724e54971ee3bfe269726b7",
+  "manifestHash": "3863124f04b28c6bbf726dbcb134aef436cd910cbcffb89dbc382e142ffff555",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bf5b2360698f81f0b8195f37bae13683b12cbe77c724e54971ee3bfe269726b7",
+  "manifestHash": "3863124f04b28c6bbf726dbcb134aef436cd910cbcffb89dbc382e142ffff555",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24888,6 +24888,9 @@
     "comment hygiene checker tasks": [
       "comment hygiene checker tasks"
     ],
+    "comment hygiene coverage": [
+      "comment hygiene coverage"
+    ],
     "comment hygiene doc": [
       "comment hygiene doc"
     ],
@@ -24905,6 +24908,9 @@
     ],
     "comment hygiene implementation summary": [
       "comment hygiene implementation summary"
+    ],
+    "comment hygiene languages": [
+      "comment hygiene languages"
     ],
     "comment hygiene plan": [
       "comment hygiene plan"
@@ -24935,6 +24941,9 @@
     ],
     "comment sweep compliance": [
       "comment sweep compliance"
+    ],
+    "comment syntax table": [
+      "comment syntax table"
     ],
     "comment thread": [
       "comment thread"
@@ -78474,6 +78483,9 @@
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
     ],
+    "quality agnostic gate honest checker changelog": [
+      "quality agnostic gate honest checker changelog"
+    ],
     "quality agnostic gate phase parent spec": [
       "quality agnostic gate phase parent spec"
     ],
@@ -93000,6 +93012,9 @@
     "sk code 3 0 0 0": [
       "sk-code 3.0.0.0"
     ],
+    "sk code 3 1 0 0": [
+      "sk-code 3.1.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93669,6 +93684,9 @@
     "sk code quality 1 4 1 0": [
       "sk-code-quality 1.4.1.0"
     ],
+    "sk code quality 1 5 0 0": [
+      "sk-code-quality 1.5.0.0"
+    ],
     "sk code quality codebase agnostic": [
       "sk-code quality codebase agnostic"
     ],
@@ -93719,6 +93737,9 @@
     ],
     "sk code quality v1 4 1 0": [
       "sk-code-quality v1.4.1.0"
+    ],
+    "sk code quality v1 5 0 0": [
+      "sk-code-quality v1.5.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -94250,6 +94271,9 @@
     ],
     "sk code v3 0 0 0": [
       "sk-code v3.0.0.0"
+    ],
+    "sk code v3 1 0 0": [
+      "sk-code v3.1.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
