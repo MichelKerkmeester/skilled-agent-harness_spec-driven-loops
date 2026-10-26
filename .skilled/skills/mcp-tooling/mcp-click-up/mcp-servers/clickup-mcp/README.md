@@ -6,7 +6,7 @@ trigger_phrases:
   - "clickup official mcp"
   - "clickup_official manual"
   - "official clickup mcp install"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # clickup-mcp
@@ -30,7 +30,7 @@ version: 1.0.0.0
 
 ### Why This Package Exists
 
-mcp-click-up routes document, time-tracking, chat and reminder operations, the surfaces `cupt` cannot reach, to the official ClickUp MCP server. That server is launched on demand by Code Mode and is not vendored as source in this repository, so `npm install` in this folder does nothing useful. `package.json` is a placeholder that documents that fact for anyone who runs `npm install` here by habit.
+mcp-click-up routes task creation, documents, workspace search, lists and folders, task relations, chat and reminders, the surfaces `cupt` cannot reach, to the official ClickUp MCP server. That server is launched on demand by Code Mode and is not vendored as source in this repository, so `npm install` in this folder does nothing useful. `package.json` is a placeholder that documents that fact for anyone who runs `npm install` here by habit.
 
 ### What It Does
 
@@ -48,7 +48,7 @@ The `clickup_official` manual registered in `.utcp_config.json` launches the hos
 list_tools()
 ```
 
-Expected: entries prefixed `clickup_official.clickup_official_*`. As of 2026-07-10 this returns none in this environment, see Section 4.
+Expected: entries prefixed `clickup_official.clickup_official_*`. On 2026-10-08 the hosted server registered 61 tools, see Section 4.
 
 **Step 3: Confirm a callable name before using it.**
 

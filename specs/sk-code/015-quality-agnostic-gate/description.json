@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-code/015-quality-agnostic-gate",
+  "description": "Make sk-code-quality a codebase-agnostic, executable author gate",
+  "keywords": [
+    "sk-code-quality",
+    "codebase-agnostic",
+    "executable",
+    "author",
+    "gate"
+  ],
+  "lastUpdated": "2026-10-25T23:21:45.946Z",
+  "specId": "015",
+  "folderSlug": "quality-agnostic-gate",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

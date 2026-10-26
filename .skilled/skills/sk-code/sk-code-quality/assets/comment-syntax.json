@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "description": "Comment syntax shared by the comment-hygiene checker, the ceiling report and the post-edit router. A file's language comes from a shebang that names an interpreter listed here, and from its extension otherwise.",
+  "families": {
+    "c": {
+      "lineComment": ["//"],
+      "blockComment": ["/*", "*/"],
+      "quotes": ["'", "\"", "`"],
+      "singleQuoteEscapes": true,
+      "leadingStarComment": true
+    },
+    "go": {
+      "lineComment": ["//"],
+      "blockComment": ["/*", "*/"],
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": true,
+      "multilineStrings": ["`"]
+    },
+    "rust": {
+      "lineComment": ["//"],
+      "blockComment": ["/*", "*/"],
+      "quotes": ["\""],
+      "singleQuoteEscapes": true,
+      "charLiterals": true
+    },
+    "css": {
+      "lineComment": [],
+      "blockComment": ["/*", "*/"],
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": true
+    },
+    "sql": {
+      "lineComment": ["--"],
+      "blockComment": ["/*", "*/"],
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": false
+    },
+    "hash": {
+      "lineComment": ["#"],
+      "lineCommentAfterSpace": true,
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": false
+    },
+    "yaml": {
+      "lineComment": ["#"],
+      "lineCommentAfterSpace": true,
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": false,
+      "blockScalars": true
+    },
+    "toml": {
+      "lineComment": ["#"],
+      "lineCommentAfterSpace": true,
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": false,
+      "multilineStrings": ["\"\"\"", "'''"]
+    },
+    "python": {
+      "lineComment": ["#"],
+      "lineCommentAfterSpace": true,
+      "quotes": ["'", "\""],
+      "singleQuoteEscapes": true,
+      "multilineStrings": ["\"\"\"", "'''"],
+      "docstrings": true
+    }
+  },
+  "languages": {
+    "javascript": {"family": "c", "extensions": [".js", ".mjs", ".cjs"], "shebangs": ["node", "nodejs", "deno", "bun"]},
+    "typescript": {"family": "c", "extensions": [".ts", ".tsx", ".mts", ".cts"]},
+    "jsonc": {"family": "c", "extensions": [".jsonc"]},
+    "go": {"family": "go", "extensions": [".go"]},
+    "rust": {"family": "rust", "extensions": [".rs"]},
+    "css": {"family": "css", "extensions": [".css"]},
+    "sql": {"family": "sql", "extensions": [".sql"]},
+    "shell": {"family": "hash", "extensions": [".sh", ".bash"], "shebangs": ["sh", "bash", "zsh", "dash", "ksh"]},
+    "yaml": {"family": "yaml", "extensions": [".yaml", ".yml"]},
+    "toml": {"family": "toml", "extensions": [".toml"]},
+    "python": {"family": "python", "extensions": [".py"], "shebangs": ["python"]}
+  }
+}

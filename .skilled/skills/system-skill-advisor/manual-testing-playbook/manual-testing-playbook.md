@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -33,7 +33,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 ## 1. OVERVIEW
 
-This playbook provides 61 deterministic scenario files across 10 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility, and `DOC` for the `/doctor:skill-advisor` command and doctor command routing, whose numbers are shared with the doctor scenarios in other playbooks.
+This playbook provides 62 deterministic scenario files across 10 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility, and `DOC` for the `/doctor:skill-advisor` command and doctor command routing, whose numbers are shared with the doctor scenarios in other playbooks.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -130,7 +130,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 61 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 62 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -156,7 +156,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
-- **Wave 6**: `AI-001..AI-006` auto-indexing behavior.
+- **Wave 6**: `AI-001..AI-007` auto-indexing behavior.
 - **Wave 7**: `LC-001..LC-005` lifecycle routing.
 - **Wave 8**: `SC-001..SC-005` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
@@ -238,7 +238,7 @@ This category validates auto update daemon scenarios `AU-001..AU-005`.
 
 ## 12. AUTO INDEXING
 
-This category validates auto indexing scenarios `AI-001..AI-006`.
+This category validates auto indexing scenarios `AI-001..AI-007`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -248,6 +248,7 @@ This category validates auto indexing scenarios `AI-001..AI-006`.
 | AI-004 | DF/IDF Corpus Stats Active-Only | [004-corpus-df-idf.md](auto-indexing/corpus-df-idf.md) |
 | AI-005 | Anti-Stuffing and Cardinality Caps | [005-anti-stuffing.md](auto-indexing/anti-stuffing.md) |
 | AI-006 | Doc-Frontmatter Trigger Harvest | [006-doc-frontmatter-harvest.md](auto-indexing/doc-frontmatter-harvest.md) |
+| AI-007 | Private Skill Roots Variable | [private-skill-roots.md](auto-indexing/private-skill-roots.md) |
 
 ---
 

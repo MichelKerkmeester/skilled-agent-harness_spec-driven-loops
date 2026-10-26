@@ -34,7 +34,7 @@
       "reads"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,6 +45,9 @@
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      "scratch/red-before-full-suite.txt",
+      "scratch/green-after-full-suite.txt",
+      "scratch/green-after-vitest.txt",
       ".skilled/hooks/session-relaunch/tests/withdraw.test.cjs"
     ],
     "entities": [
@@ -100,6 +103,24 @@
         "name": "skilled-loop.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red-before-full-suite.txt",
+        "kind": "file",
+        "path": "scratch/red-before-full-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after-full-suite.txt",
+        "kind": "file",
+        "path": "scratch/green-after-full-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after-vitest.txt",
+        "kind": "file",
+        "path": "scratch/green-after-vitest.txt",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`consume` reads the relaunch record outside its lock (`.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:692`, `core.readRelaunchFile(loopId)`) and unlinks it later under `core.withAppendLock` (`:715-722`) without rechecking its status",
     "created_at": "2026-10-25T13:42:26Z",
-    "last_save_at": "2026-10-25T14:09:01.301Z",
+    "last_save_at": "2026-10-25T18:02:32.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef3534b8d92036f77aa81845c55edb1f1fba5b6c4cd23d62728534a2a38503b8",
+    "source_fingerprint": "sha256:16b15679fcb04c6c3ed977a7de2d37e641c7a55b64331d5ff782f64eda692c72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ac1107f1b84521ad1c4ecbe9437fdd6c55a335fd8949a4471e0e9639e7a1c0e",
+      "spec.md": "00dc3d21fb34a1718f2bd494e765a8955d3e094cb1829ab42d87f9870cbab8d2",
       "plan.md": "c0cc40c9b030a0a34b730c7f07f22c248b2f664f367e58548b42cab2d79dc5ff",
-      "tasks.md": "07dc001dafc704be89f44c8e4767338a0a01d3140414c80520ab8250d5e3ffc3",
-      "implementation-summary.md": "bead3d6e7828452a09e5426b9881907fe9a5856feeda24405ad7f7282ac71c47"
+      "tasks.md": "13772ad81ef277f542b6a80b4ad98f7702655c481515c5a72d78390cbf7437fd",
+      "implementation-summary.md": "ea9b0b690d332cce50e9c05b22992043deeceefd1434978d9da29020fe88893e"
     },
     "last_active_at": null
   }

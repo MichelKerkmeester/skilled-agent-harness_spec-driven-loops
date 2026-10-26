@@ -36,7 +36,9 @@
     "hooks/023-session-relaunch-loop/030-opencode2-killer-target",
     "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
     "hooks/023-session-relaunch-loop/032-opencode2-standalone-replay",
-    "hooks/023-session-relaunch-loop/033-research-remediation"
+    "hooks/023-session-relaunch-loop/033-research-remediation",
+    "hooks/023-session-relaunch-loop/034-default-off-opt-in",
+    "hooks/023-session-relaunch-loop/035-known-gap-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -85,6 +87,9 @@
       "009-research-fixes-and-core-consolidation/goal.md",
       "010-post-fix-research/goal.md",
       "011-post-fix-remediation/goal.md",
+      "033-research-remediation/goal.md",
+      "034-default-off-opt-in/goal.md",
+      "035-known-gap-fixes/goal.md",
       ".skilled/hooks/session-relaunch/pi/session-relaunch.ts"
     ],
     "entities": [
@@ -167,7 +172,7 @@
         "source": "derived"
       },
       {
-        "name": "While Luna",
+        "name": "Without Luna",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -179,13 +184,13 @@
         "source": "derived"
       },
       {
-        "name": "auto-compaction",
+        "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "usage",
+        "name": "operator",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -229,7 +234,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-25T14:13:48.517Z",
+    "last_save_at": "2026-10-25T21:30:32.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,10 +242,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b74a7786592003831a62229884d6b1fa3f82883f52125314f976826c9546dc77",
+    "source_fingerprint": "sha256:f063957538e3bea565f08a003e12022ff65b0f5ca94e99cb793aea400d45a124",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87e68a27e9ef20876c0f327ef4caa151aab718e3f1f8d03553583f6ed985ac37",
+      "spec.md": "8cdbbbc0b2b555a460871e9ef252d58e87c1f064e1e7c649cd21721f9dc7b6bc",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",

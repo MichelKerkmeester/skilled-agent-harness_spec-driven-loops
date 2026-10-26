@@ -18,7 +18,7 @@ action: Resolve html-svg (default) versus ascii-markdown before selecting a type
 #   - draw.io / Mermaid extraction for redraw requests
 #   - ASCII/markdown flowchart patterns and validator for ascii-markdown
 #
-# PHASE 0 in the presentation contract verifies the packet resources
+# The presentation contract verifies the packet resources
 # BEFORE this YAML workflow loads. If you're executing this workflow,
 # create-diagram verification has already passed.
 #

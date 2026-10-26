@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # sk-code-review mode
@@ -151,6 +151,7 @@ Reach for the `sk-code-review` mode when you want severity-ranked findings with 
 | Skill | Relationship |
 |---|---|
 | `sk-code-skilled` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |
+| `sk-code-ci` | CI surface the hub bundles beside review when a request names GitHub Actions workflow terms or a `.github/workflows/` path |
 | `sk-code-quality` | Runs author-side quality gates before review |
 | `deep-review` | The multi-iteration review loop with JSONL state, deltas and convergence, built on the same severity taxonomy and evidence rules from `references/review-core.md` |
 

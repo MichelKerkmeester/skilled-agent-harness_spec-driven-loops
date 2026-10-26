@@ -1,0 +1,3 @@
+cut53.jsonl {"model":"claude-opus-5-5","effort":""}
+transcript-c9dc66b7-2829-457f-9f55-a5dea48d9c50.jsonl {"model":"claude-opus-5-5","effort":"low"}
+old reader cut53 {"model":"claude-sonnet-5-5","effort":"low"}

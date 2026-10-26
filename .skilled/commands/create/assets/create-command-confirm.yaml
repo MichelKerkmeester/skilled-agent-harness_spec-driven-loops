@@ -19,7 +19,7 @@ action: Guide command creation from invocation contract through validation with 
 #   • Router/presentation separation
 #   • Canonical command and presentation templates
 #
-# PHASE 0 in the presentation contract verifies packet resources BEFORE
+# The presentation contract verifies packet resources BEFORE
 # this YAML workflow loads. If you're executing this workflow,
 # create-command verification has already passed.
 #

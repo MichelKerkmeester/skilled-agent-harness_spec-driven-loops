@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA YOLO CONNECT
+# ───────────────────────────────────────────────────────────────
 # YOLO connect: PATCHES Figma Desktop (app.asar) and restarts it with CDP on 9222.
 # Gated behind an explicit consent flag. Rollback: unpatch.sh (figma-ds-cli unpatch).
+#
+# Exit Codes:
+#   0 - Connected after consent
+#   1 - No silships figma binary on PATH, or Figma Desktop not found
+#   2 - Refused because the consent flag was absent
+#   Any other status comes from figma-ds-cli connect itself
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=_common.sh
+# shellcheck source=SCRIPTDIR/_common.sh
 . "$HERE/_common.sh"
 
 CONSENT=0

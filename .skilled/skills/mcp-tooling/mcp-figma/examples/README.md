@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma-ds-cli example scripts"
   - "figma safe connect example"
   - "figma export walkthrough"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-figma - Example Walkthroughs
@@ -44,8 +44,8 @@ This directory contains worked examples of the three everyday mcp-figma flows. E
 ## 2. PREREQUISITES
 
 ```bash
-# Install the silships CLI (never 'npm i -g figma-cli')
-bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh
+# Install the silships CLI from the packet root (never 'npm i -g figma-cli')
+bash scripts/install.sh
 
 # Verify
 figma-ds-cli --version   # expect >= 1.2.0
@@ -71,13 +71,13 @@ bash examples/safe-connect-daemon-health.sh
 ```
 
 **What it does:**
-1. Detects `figma-ds-cli` (verifies any bare `figma-cli` against the silships tool)
+1. Detects `figma-ds-cli` (falls back to a bare `figma-cli` and prints its version for you to confirm it is the silships tool)
 2. Prints the version (full surface needs >= 1.2.0)
 3. Runs `figma-ds-cli connect --safe` (no `app.asar` patch, no CDP 9222 change)
 4. Runs read-only `daemon status`, and `daemon diagnose` only when unhealthy
 5. Never prints or deletes the daemon token
 
-**Exit codes:** `0` connected and healthy, `1` binary missing or daemon unhealthy.
+**Exit codes:** `0` connected and healthy, `1` binary missing or daemon unhealthy. A failing `--version` or `connect --safe` call exits with the CLI's own status.
 
 ---
 
@@ -100,7 +100,7 @@ bash examples/inspect-export-readonly.sh /tmp/hero.svg
 3. Refuses to run if the output path already exists (no silent overwrite)
 4. Exports via `export screenshot -f svg -o <path>` and confirms the file landed
 
-**Exit codes:** `0` inspect + export succeeded, `1` preflight failed or output path existed.
+**Exit codes:** `0` inspect + export succeeded, `1` preflight failed or output path existed. A failing inspect or export call exits with the CLI's own status.
 
 ---
 
@@ -118,7 +118,7 @@ This one is a document rather than a shell script because the flow runs inside C
 
 | What you see | Why | Fix |
 |---|---|---|
-| `figma-ds-cli not found` | CLI not installed | `bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh` |
+| `figma-ds-cli not found` | CLI not installed | `bash scripts/install.sh` |
 | Safe connect fails | Figma Desktop closed, or FigCli plugin not running | Open Figma with a file, keep Plugins -> Development -> FigCli open |
 | `daemon status` unreachable | Daemon idle-stopped (~60 min) or never started | `figma-ds-cli daemon diagnose`, then `daemon restart` |
 | "Unauthorized" from daemon | Token mismatch | Diagnose then restart; NEVER auto-delete the token |
@@ -144,6 +144,6 @@ To add a new example: keep it inside the default-safe boundary (no destructive v
 
 ---
 
-**Directory Version**: 1.0.0
-**Last Updated**: 2026-07-16
+**Directory Version**: 1.0.1
+**Last Updated**: 2026-10-25
 **Maintained By**: AI Documentation

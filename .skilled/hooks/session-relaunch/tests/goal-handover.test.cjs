@@ -10,6 +10,11 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { renderGoalSlice, GOAL_SLICE_LIMIT } = require('../lib/goal-handover.cjs');
+const { clearRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
+
+// The goal command runs under this process's environment, and an exported master kill
+// switch or goal kill switch would refuse every packet before a slice is read.
+clearRelaunchSwitches(process.env);
 
 const GOAL_CLI = path.resolve(__dirname, '../../goal/bin/goal.cjs');
 const PACKET = 'specs/demo/001-demo';

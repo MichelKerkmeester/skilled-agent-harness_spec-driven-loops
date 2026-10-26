@@ -164,7 +164,7 @@ The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-
 | `git-preflight` | `SK_GIT_PREFLIGHT_DISABLED` |
 | `post-edit-quality` | `SK_CODE_POST_EDIT_QUALITY_DISABLED` |
 
-`sk-git-message-gate.js` is the one plugin with no switch. `system-speckit-completion.js` uses the `completion` concern (`.opencode/plugins/system-speckit-completion.js:56`) and sk-vision the `sk-vision` concern (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:156`).
+`sk-git-message-gate.js` is the one plugin with no switch. `system-speckit-completion.js` uses the `completion` concern (`.opencode/plugins/system-speckit-completion.js:56`) and sk-vision the `sk-vision` concern (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:156`). `session-relaunch.js` is the one plugin that ships off: its concern sits in `DEFAULT_OFF` (`.skilled/hooks/shared/hook-flags.cjs` (`DEFAULT_OFF`)), so it runs only when a non-empty `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED` is truthy or, with that flag empty, `SYSTEM_SESSION_RELAUNCH_ENABLED` is (`.skilled/hooks/shared/hook-flags.cjs` (`runtimeEnableFlag`)). The kill switches above still win.
 
 ---
 

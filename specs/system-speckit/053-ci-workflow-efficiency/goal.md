@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-24T09:00:00Z"
-    last_updated_by: "markdown"
-    recent_action: "Reconciled phase 002 after three qualifying zero-run rebuild SHAs and a fourth additional zero-run SHA landed"
-    next_safe_action: "Remaining 002: T019 24 h baseline, then T020/T021; 003 T027-T034; 004 T002/T003"
+    last_updated_at: "2026-10-25T22:10:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "All ten phases closed; the six criteria rechecked on main"
+    next_safe_action: "None; the operator checks the calls made under the 2026-10-25 delegation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 28
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -85,10 +85,10 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all ten folders
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all eleven folders
 - [ ] Every R1-R30 is closed in its owning phase, and `rg -c '\| Unmet \|' specs/system-speckit/053-ci-workflow-efficiency/00*/acceptance-criteria.md` prints nothing
-- [ ] `gh run list --commit <sha>` returns `[]` for each of three consecutive post-change rebuild commits
-- [ ] `rg -o 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
+- [ ] `gh run list --commit <sha> --json event --jq '[.[] | select(.event != "dynamic")]'` returns `[]` for each of three consecutive post-change rebuild commits; GitHub's CodeQL default setup runs as a `dynamic` event on every push
+- [ ] `rg -o --no-filename 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
 - [ ] `.skilled/skills/sk-code/sk-code-ci/SKILL.md` and `.skilled/commands/doctor/ci.md` exist
 - [ ] The final commit on `main` has no failed run: `gh run list --commit <sha> --json conclusion --jq '[.[] | select(.conclusion == "failure")] | length'` returns `0`
 <!-- /ANCHOR:completion -->
@@ -108,14 +108,25 @@ and findings belong here.
 |------|-------|----------|
 | Goal authored | Done | Nine binding rows match the nine direct phase folders |
 | Phase 001 research | Done | `001-research/implementation-summary.md` |
-| Phase 002 rebuild fan-out | In progress | `[skip ci]` landed in `8e62a3d096` and probe PR #71 ran green; three of three qualifying zero-run rebuild SHAs plus a fourth additional SHA each returned `[]`; T019's 24 h baseline remains |
-| Phase 003 trigger and job hygiene | In progress | Six concern commits are on `main` (concurrency, filters, dedupe, suppression, depths, README, inventory); the T027-T034 CI probes, T036 delta and T037/T038 closure remain |
-| Phase 004 setup caching provisioning | In progress | `D5=approve` recorded; T004-T009 delivered the gate scan, label branch and four fixtures, uncommitted — T002/T003 baseline, T010/T011/T011A and the rest remain |
-| Phases 005-009 | Pending | Plans exist; no phase has run |
+| Phase 002 rebuild fan-out | Done | `002-rebuild-fanout-removal/spec.md` Status `Complete`, closure `03baa89ac6` |
+| Phase 003 trigger and job hygiene | Done | `003-trigger-and-job-hygiene/spec.md` Status `Complete` |
+| Phase 004 setup caching provisioning | Done | `004-setup-caching-provisioning/spec.md` Status `Complete`, closure `6eb9086c2a`; CHK-022 and CHK-FIX-006 closed on scheduled cold run 40236652343 |
+| Phase 005 slow and failing tests | Done | `005-slow-and-failing-tests/spec.md` Status `Complete` |
+| Phase 006 sk-code-ci surface | Done | `006-sk-code-ci-surface/spec.md` Status `Complete` |
+| Phase 007 hygiene and on/off control | Done | `007-workflow-hygiene-on-off-control/spec.md` Status `Complete`, closure `2b6eeaa8ba`; 13 of 13 acceptance rows `Met`, `timeout kills: 0` over 690 runs |
+| Phase 008 consolidation decision | Done | D8 = no under the operator's 2026-10-25 delegation (`008-consolidation-decision/scratch/d8-answer.md`), pending the operator's check; no workflow file changed |
+| Phase 009 doctor ci and review wiring | Done | `009-doctor-ci-review-wiring/spec.md` Status `Complete`, closure `8811c7e36d` |
+| Phase 010 review remediation | Done | Applied the confirmed findings of `review/review-report.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | The directive was authored from `spec.md`, whose phase map and direct folders agree |
+| Amendment 2026-10-25, criterion 4 | The switch-count command gained `--no-filename`. Without it `rg` prefixes each match with its file name, so `sort -u` counted file and name pairs and printed `62` on a correct tree. With it the pipeline prints `6`. |
+| Amendment 2026-10-25, criterion 1 | The folder count moved from ten to eleven when `010-review-remediation` was added for the deep-review remediation. |
+| 010 has no child goal | `010-review-remediation` is a Level 1 remediation phase. Its `spec.md` scope is its directive, so the binding table keeps its nine rows. |
+| Amendment 2026-10-25, criterion 3 | GitHub's CodeQL default setup is not one of the repository's workflows. It runs as a `dynamic` event on every push, `[skip ci]` rebuild commits included, so the plain command could never print `[]`. The criterion now leaves dynamic events out. The twelve rebuild commits from `933d71235f` to `fcd200f2eb` each show one run and an empty filtered list. The session made this change under the operator's 2026-10-25 delegation to decide and verify at the end. |
+| Spec-Kit Check on main, 2026-10-25 | The runtime suite failed on every main commit from `74b9b7233d`, which removed the agent-router command while two resource-map extractor tests still cited it as a file on disk. The tests now cite `speckit/complete.md`, and criterion 6 depends on that fix. |
+| Phase 007 kill-read window, 2026-10-25 | The operator asked not to wait for the full 24 h window, so 007 read the 690 runs from 2026-10-25T00:43Z to 21:30Z (20.8 h). None of the repository's own schedules falls in the hours left out. |
+| Phase 004 scheduled cold run, 2026-10-25 | So 004 could close without waiting for the weekly cron's first firing on 2026-10-26T04:17Z, a one-shot schedule entry (`174ebbdc0e`) fired the `schedule` event once. Run 40236652343 passed on the uncached path, and `0ab8f9f74e` removed the entry, leaving the weekly schedule as it was. |
 <!-- /ANCHOR:log -->

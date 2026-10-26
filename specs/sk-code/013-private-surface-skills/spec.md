@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills"
-    last_updated_at: "2026-10-23T14:10:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Phase 001 landed on main as 7648ae8b56; phase 002 in progress uncommitted"
-    next_safe_action: "Finish phase 002 T039, then continue at T040"
+    last_updated_at: "2026-10-25T20:35:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed phase 008, the items phase 007 left out of scope"
+    next_safe_action: "None, all eight phases are Complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 27
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -66,7 +66,7 @@ _memory:
 The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together. Because they live in the hub, they ship in the public repo, feed the committed trigger index and the advisor's tracked graph data, get mirrored into `.hermes/skills/`, and widen the hub's routing vocabulary for every consumer of the skill — including users who never touch Webflow or Obsidian.
 
 ### Purpose
-The hub keeps only `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. The two surfaces come back as two standalone skills, `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, that this checkout holds as gitignored symlinks to `local-skills/` folders tracked in two external repositories: `local-webflow` in a private repository and `local-obsidian` in a public one by operator choice. Only the operator's local skill advisor routes them; nothing about them reaches the public repo, the committed trigger index, the Hermes copies or any tracked file. The decomposition is ordered so that the safety net exists before the private bytes do: ignore rules and a blocking commit guard first, then the hub sheds the surfaces and every tracked consumer of them, then the advisor's tracked vocabulary and generated data lose the surface signals while its disk scans learn to follow a `local-*` symlink, then the two symlinks are stood up inside ignored paths, and finally a fresh clone plus local routing probes prove no leak.
+The hub keeps `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. The two surfaces come back as two standalone skills, `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, that this checkout holds as gitignored symlinks to `local-skills/` folders tracked in two external repositories: `local-webflow` in a private repository and `local-obsidian` in a public one by operator choice. Only the operator's local skill advisor routes them; nothing about them reaches the public repo, the committed trigger index, the Hermes copies or any tracked file. The decomposition is ordered so that the safety net exists before the private bytes do: ignore rules and a blocking commit guard first, then the hub sheds the surfaces and every tracked consumer of them, then the advisor's tracked vocabulary and generated data lose the surface signals while its disk scans learn to follow a `local-*` symlink, then the two symlinks are stood up inside ignored paths, and finally a fresh clone plus local routing probes prove no leak.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -99,11 +99,13 @@ Every phase honors these. Changing one is an amendment to this spec.
 |----|----------|
 | D1 | The hub keeps `sk-code-quality`, `sk-code-review` and `sk-code-skilled`; the two surfaces return only as gitignored `local-*` symlinks in this checkout to two external `local-skills/` folders (Obsidian public by operator choice, Webflow private), and only the operator's local advisor routes them. |
 | D2 | Four slash-less root ignore rules cover `local-*` under `.skilled`, `.hermes`, `.codex` and `.cursor`, and a blocking pre-commit guard refuses a staged `local-*` path under all eight skill roots: `.skilled`, `.opencode`, `.claude`, `.pi`, `.devin`, `.hermes`, `.codex` and `.cursor`. |
-| D3 | The limits are recorded rather than claimed away: `git commit --no-verify` bypasses the guard, removed content stays in git history, a renamed copy passes a name-based guard, and no standing pre-push surface-token guard exists. |
+| D3 | The limits are recorded rather than claimed away: `git commit --no-verify` bypasses the guard, removed content stays in git history, a renamed copy passes a name-based guard, no standing pre-push surface-token guard exists, and the guard runs only where the repo hooks are installed (`core.hooksPath`) and trusted. Elsewhere only the ignore rules apply, and `git add -f` overrides them. |
 | D4 | A followed top-level `local-*` symlink must resolve through `realpathSync` to a directory inside the skills root or one of the two roots named in `SPECKIT_PRIVATE_SKILL_ROOTS`; no other link is followed. |
 | D5 | Every tracked-output writer skips a `local-*` name before its first filesystem probe, so no private skill reaches the fallback graph, the Hermes mirror, a CI gate or a doctor finding. |
 | D6 | The boundary is the hub tree, the tracked consumers that name the two surfaces, and the advisor's sk-code surface vocabulary; generic words in other skills, dated records and git history stay unchanged. |
 | D7 | No history rewrite runs in this packet; scrubbing is an optional operator decision after phase 5's read-only inventory. |
+
+Amendment 2026-10-25: `sk-code-ci` joined the hub later in `028bd0f5cd`, and D1 governs only the two removed surfaces.
 
 ### Files to Change
 Summary of the areas each phase touches; per-phase file detail lives in each child's plan.md.
@@ -133,14 +135,17 @@ Summary of the areas each phase touches; per-phase file detail lives in each chi
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-ignore-and-commit-guard/ | Land four slash-less `local-*` ignore rules and a blocking pre-commit guard over eight skill roots, with seven harness cases, before any private file exists | Done (7648ae8b56) |
-| 2 | 002-hub-surface-removal/ | Delete both surface folders (226 tracked files) and strip every tracked consumer, regenerating generated artifacts and hand-editing `ROUTER.md` and `graph-metadata.json`; the hub keeps three packets | In progress |
-| 3 | 003-advisor-vocabulary-cleanup/ | Remove the surface vocabulary from the advisor scorer, plugin, schemas and tests, and give seven skill-tree scans an explicit `local-*` rule with realpath containment; regenerate the tracked fallback graph | Pending |
-| 4 | 004-private-local-skills/ | Link `.skilled/skills/local-*` to `local-skills/` folders in two external repositories and restore both surfaces there from `42b41dd286`, each standalone with one skill-root `graph-metadata.json` | Pending |
+| 2 | 002-hub-surface-removal/ | Delete both surface folders (226 tracked files) and strip every tracked consumer, regenerating generated artifacts and hand-editing `ROUTER.md` and `graph-metadata.json`; the hub keeps three packets | Done (e3beac65f4, 1218b94938) |
+| 3 | 003-advisor-vocabulary-cleanup/ | Remove the surface vocabulary from the advisor scorer, plugin, schemas and tests, and give seven skill-tree scans an explicit `local-*` rule with realpath containment; regenerate the tracked fallback graph | Done (e00fef3e76) |
+| 4 | 004-private-local-skills/ | Link `.skilled/skills/local-*` to `local-skills/` folders in two external repositories and restore both surfaces there from `42b41dd286`, each standalone with one skill-root `graph-metadata.json` | Done (e8256b8044, ff993936c7) |
 | 5 | 005-leak-and-routing-verification/ | Prove from a fresh clone that no private path, byte or routing signal is tracked, and that six routing probes in two consumer checkouts still return both private skills | Done |
+| 6 | 006-review-remediation/ | Apply the confirmed deep-review findings: close the phase 002 and 003 records, widen the private-skill guard to type changes, give two more skills-root readers the `local-*` skip with an inventory test, and document the gate and the private-root variable. A second round closed the phase 003 P0 checklist rows, retired the two Webflow benchmark scenarios and gave the catalog mirror check the `local-*` skip. Phase 002 CHK-FIX-001 stays open, because two of its review findings were never recorded | Done |
+| 7 | 007-shared-references-and-detection-order/ | Trim `shared/references/` to hub and mode doctrine (four files deleted, the style guide moved to `sk-code-quality`), and make `sk-code-skilled` the one declared fallback surface that always ranks last, so a private or repo-added surface leads it | Done (c02124d0ff, fbfc4bfe22) |
+| 8 | 008-deferred-surface-items/ | Close the four items phase 007 left out of scope: field rules for an external `surface_detection` block, blocks in the two private skills, a public JavaScript and CSS overlay that matches the SKILLED naming rule, and the comment-hygiene allowlist decision, plus naming at P1 in the SKILLED language checklists | Done |
 
 ### Phase Transition Rules
 
-- **The order is fixed: `001 -> 002 -> 003 -> 004 -> 005`.** No phase starts before its predecessor is on `main`, and no phase runs in parallel with its neighbour.
+- **The order is fixed: `001 -> 002 -> 003 -> 004 -> 005 -> 006 -> 007 -> 008`.** Phase 006 applies the deep review's confirmed findings after phase 005, phase 007 follows it, and phase 008 closes what phase 007 left out of scope. No phase starts before its predecessor is on `main`, and no phase runs in parallel with its neighbour.
 - **Phase 004 must not start before phase 003 is on `main`.** Until phase 003 lands, the advisor's compiler follows a `local-*` symlink and would export a private skill into the tracked fallback graph.
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - **Planning commit.** The parent's `spec.md`, `goal.md`, `description.json` and `graph-metadata.json` and all five children's planning documents (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `goal.md`, `implementation-summary.md` and their metadata) land on `main` in the single planning commit that ships this packet, before any phase runs. Each phase then commits only its own updates inside its own child folder
@@ -158,6 +163,9 @@ Run each block from the repository root of the worktree, except block 4, which r
 | 002-hub-surface-removal | 003-advisor-vocabulary-cleanup | The hub ships only `sk-code-quality`, `sk-code-review` and `sk-code-skilled`, and no tracked consumer outside the dated records names either removed surface | Block 2 |
 | 003-advisor-vocabulary-cleanup | 004-private-local-skills | The advisor's tracked vocabulary, tests and fallback graph are surface-free, and its scans accept a trusted `local-*` symlink while every tracked writer skips it | Block 3 |
 | 004-private-local-skills | 005-leak-and-routing-verification | Both private skills load and route locally through their symlinks, each sits in an ignored path with nothing staged, and the two external roots are recorded | Block 4 |
+| 005-leak-and-routing-verification | 006-review-remediation | The review report lists every confirmed finding with its fix, and the recursive strict validation passes before the remediation starts | `review/review-report.md` |
+| 006-review-remediation | 007-shared-references-and-detection-order | Phase 006 is closed and its recursive strict validation passes before the shared references change | `validate.sh --recursive --strict` on this folder |
+| 007-shared-references-and-detection-order | 008-deferred-surface-items | Phase 007 is on `main`, and its Out of Scope list names the four items phase 008 takes | `validate.sh --recursive --strict` on this folder |
 
 #### Block 1 - 001 to 002
 
@@ -166,7 +174,7 @@ bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh
 git check-ignore -v .skilled/skills/local-webflow .hermes/skills/local-webflow
 ```
 
-Expected: the harness exits 0 and its last line reads `pre-commit gates: 131 passed, 0 failed`; `git check-ignore` exits 0 and prints one line per path naming `/.skilled/skills/local-*` and `/.hermes/skills/local-*`.
+Expected: the harness exits 0 and its last line reads `pre-commit gates: 132 passed, 0 failed`; `git check-ignore` exits 0 and prints one line per path naming `/.skilled/skills/local-*` and `/.hermes/skills/local-*`.
 
 #### Block 2 - 002 to 003
 
@@ -185,7 +193,7 @@ node -e "const g=require('./.skilled/skills/system-skill-advisor/runtime/scripts
 cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/private-skill-target.vitest.ts tests/skill-graph-db.vitest.ts
 ```
 
-Expected: `[]` from the graph check, then `Tests  16 passed (16)` and exit 0 from the vitest run (five containment cases plus eleven graph cases).
+Expected: `[]` from the graph check, then `Tests  19 passed (19)` and exit 0 from the vitest run (eight containment cases plus eleven graph cases).
 
 #### Block 4 - 004 to 005
 

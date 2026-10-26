@@ -30,7 +30,7 @@ Phase 2 removes the Webflow and Obsidian surfaces from the shipped sk-code hub, 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
@@ -161,7 +161,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 
 ### Scanner Inventory
 
-Sixteen scans read the top level of `.skilled/skills/`. Eight include a `local-*` entry for the local advisor and follow a symlink only by the containment rule. Eight exclude it by name before their first probe. Fifteen files hold them, because `skill_advisor.py` holds two. The containment helper `private-skill-target.ts` is the sixteenth file and is not a scan.
+Eighteen scans read the top level of `.skilled/skills/`. Eight include a `local-*` entry for the local advisor and follow a symlink only by the containment rule. Ten exclude it by name before their first probe. Seventeen files hold them, because `skill_advisor.py` holds two. The containment helper `private-skill-target.ts` is not a scan. Rows 17 and 18 were added on 2026-10-25 after the deep review found them. Before that the inventory counted sixteen scans in fifteen files.
 
 | # | Scan | File | Rule |
 |---|------|------|------|
@@ -181,12 +181,16 @@ Sixteen scans read the top level of `.skilled/skills/`. Eight include a `local-*
 | 14 | Skill-metadata regenerator | `sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs` | Exclude |
 | 15 | Router-signal generator | `sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs` | Exclude |
 | 16 | Cross-skill edge loader | `runtime/lib/cross-skill-edges/metadata-loader.ts` | Exclude |
+| 17 | Derived-freshness CI gate | `sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs` | Exclude, through the regenerator's `listSkillRoots` |
+| 18 | Doctor description-budget audit | `.skilled/commands/doctor/scripts/audit_descriptions.py` | Exclude |
+
+Six more readers list the skills root and were screened rather than given a rule. `system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs`, `sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`, `sk-doc/shared/scripts/frontmatter-version.mjs`, `sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs` and `.opencode/plugins/system-skill-advisor.js` read through `Dirent.isDirectory()`, which is false for a link, and write no tracked file. `.skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` lists names with no type check, so a `local-*` link holding `command-metadata.json` would reach a doctor finding. It is recorded as open. `sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` holds this inventory and fails when a new skills-root reader has no rule.
 
 Paths that start with `runtime/` sit under `.skilled/skills/system-skill-advisor/`, and paths that start with `sk-doc/` or `system-spec-kit/` sit under `.skilled/skills/`. Scans 15 and 16 were found by the second independent review and the investigation that followed it.
 
 Scans 11, 12, 14, 15 and 16 read through `Dirent.isDirectory()`, which is false for a symlink, so for them the skip removes a real `local-*` folder and a link was never followed. The compiler (9) and the deriver (13) did follow a non-private link before round 2, and now refuse it.
 
-AC-039 prints the fifteen scan files and the helper with one `rg -l` command, so the count can be checked.
+AC-039 prints the scan files that name the prefix or the helper, plus the helper, with one `rg -l` command, so the count can be checked.
 <!-- /ANCHOR:scope -->
 
 ---

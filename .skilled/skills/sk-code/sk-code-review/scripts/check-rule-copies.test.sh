@@ -258,6 +258,14 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
 run_case 1 "review_floor_label_drift" node "$CHECKER" --root "$CASE_REVIEW_FLOOR"
 expect_output 'AGENTS.md: missing exact invariant string: "**Finding = hypothesis**"' "review_floor_label_drift_output" node "$CHECKER" --root "$CASE_REVIEW_FLOOR"
 
+# FAIL: one extension floor is reworded inside its section.
+CASE_EXTENSION_FLOOR="$TMP_DIR/extension_floor"
+seed_tree "$CASE_EXTENSION_FLOOR"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("No review is approved while a P0 finding is unaddressed.","A review may be approved with a P0 finding open."));' \
+  "$CASE_EXTENSION_FLOOR/.skilled/skills/sk-code/sk-code-review/SKILL.md"
+run_case 1 "extension_floor_reworded" node "$CHECKER" --root "$CASE_EXTENSION_FLOOR"
+expect_output 'extension floor missing from "### Extension Floors"' "extension_floor_reworded_output" node "$CHECKER" --root "$CASE_EXTENSION_FLOOR"
+
 # Seeded examples ensure the canary rejects content after status and missing context.
 CASE_EXAMPLE_TEXT_AFTER="$TMP_DIR/example_text_after_status"
 seed_tree "$CASE_EXAMPLE_TEXT_AFTER"

@@ -23,7 +23,8 @@
     "system-speckit/051-symlinked-runtime-root",
     "system-speckit/052-research-folder-continuity",
     "system-speckit/053-ci-workflow-efficiency",
-    "system-speckit/054-weak-model-spec-authoring"
+    "system-speckit/054-weak-model-spec-authoring",
+    "system-speckit/055-ci-efficiency-release-docs"
   ],
   "manual": {
     "depends_on": [],

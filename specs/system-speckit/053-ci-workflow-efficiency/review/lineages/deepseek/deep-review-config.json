@@ -1,0 +1,118 @@
+{
+  "topic": "Deep review of the 053 CI workflow efficiency phased packet: spec-folder traceability, workflow implementation correctness, security posture and documentation maintainability",
+  "sessionId": "fanout-deepseek-1792944728998-0esx2f",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-speckit/053-ci-workflow-efficiency",
+  "createdAt": "2026-10-25T16:14:18Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/053-ci-workflow-efficiency",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
+    ".github/workflows/trigger-index-rebuild.yml",
+    ".github/workflows/spec-kit-check.yml",
+    ".github/workflows/dependabot-auto-merge.yml",
+    ".github/workflows/README.md",
+    ".github/actions/setup/action.yml",
+    ".github/scripts/check-gate-inputs.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+    ".skilled/commands/doctor/ci.md",
+    ".skilled/skills/sk-code/sk-code-ci"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "resource_map.emit": true,
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -17,7 +17,7 @@ action: Normalize the family, load its authoring standards, generate the package
 #   - sk-doc standards enforcement
 #   - Benchmark folder validation
 #
-# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# The command markdown verifies the @markdown agent BEFORE
 # this YAML workflow loads. If you are executing this workflow,
 # @markdown verification has already passed.
 # ─────────────────────────────────────────────────────────────────

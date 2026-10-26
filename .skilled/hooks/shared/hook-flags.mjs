@@ -12,10 +12,14 @@ const require = createRequire(import.meta.url);
 const flags = require("./hook-flags.cjs");
 
 export const isHookEnabled = flags.isHookEnabled;
+export const hookFlagDecision = flags.hookFlagDecision;
 export const concernFlag = flags.concernFlag;
+export const runtimeEnableFlag = flags.runtimeEnableFlag;
 export const isTruthy = flags.isTruthy;
 export const MASTER_FLAG = flags.MASTER_FLAG;
 export const LEGACY_ALIASES = flags.LEGACY_ALIASES;
+export const DEFAULT_OFF = flags.DEFAULT_OFF;
+export const RUNTIMES = flags.RUNTIMES;
 export const loadConfigFile = flags.loadConfigFile;
 export const configPath = flags.configPath;
 export default flags;

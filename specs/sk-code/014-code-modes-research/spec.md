@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "sk-code/014-code-modes-research"
     last_updated_at: "2026-10-25T13:20:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed AC-011 in both children"
+    recent_action: "Added phase 3, which applies the deep-review findings"
     next_safe_action: "None. The packet is closed"
     blockers: []
     key_files:
@@ -27,11 +27,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-25-skcode-014"
       parent_session_id: null
-    completion_pct: 95
-    open_questions:
-      - "Does the executor alternation run per iteration or per child?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Packet shape: a phased parent with two children, chosen as Gate 3 option B on 2026-10-25."
+      - "Executor alternation unit: moot. cli-pi was refused, so iterations 1 to 10 ran on Luna and the second model ran as iterations 11 to 15 per ADR-002."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
 
@@ -63,7 +63,7 @@ _memory:
 | **Parent Packet** | sk-code track |
 | **Predecessor** | 013-private-surface-skills |
 | **Successor** | None |
-| **Handoff Criteria** | Both children validate `--strict`, each child holds a ranked `research/research.md` built from fifteen iterations, ten plus the five-iteration second-model pass, and no file under `.skilled/` changed |
+| **Handoff Criteria** | Both children validate `--strict`, each child holds a ranked `research/research.md` built from fifteen iterations, ten plus the five-iteration second-model pass, and neither subject mode folder changed over the research commits, per ADR-003 in each child |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -79,7 +79,7 @@ In a repository without that layout both modes fall back to a generic baseline. 
 
 ### Purpose
 
-When both runs are done, each mode has a ranked list of evidence-labelled recommendations that make it more repo-agnostic, more useful and better integrated with its sibling modes and with user-authored modes. A later packet can implement the top recommendations. This packet changes nothing in the hub.
+When both runs are done, each mode has a ranked list of evidence-labelled recommendations that make it more repo-agnostic, more useful and better integrated with its sibling modes and with user-authored modes. A later packet can implement the top recommendations. The research phases change nothing in the hub. Phase 3 applies only the deep review's confirmed fixes, inside the two mode folders.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level apart from `goal.md`. All detailed planning, task breakdowns, checklists and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -98,7 +98,7 @@ When both runs are done, each mode has a ranked list of evidence-labelled recomm
 
 ### Out of Scope
 
-- Any edit to `.skilled/skills/sk-code/` or to any other skill, router, registry, advisor or hook. Recommendations are ranked here and applied by a later packet.
+- Any edit to `.skilled/skills/sk-code/` or to any other skill, router, registry, advisor or hook during the research phases. Recommendations are ranked here and applied by a later packet. Phase 3 edits only `sk-code-quality/` and `sk-code-review/`, to apply the deep review's findings.
 - `sk-code-skilled` and `sk-code-ci` as subjects. Both are read as siblings only.
 - Implementing a recommendation, adding tests or running a benchmark.
 - A combined hub-level redesign. A later packet may reconcile the two lists.
@@ -109,7 +109,7 @@ Both children cite these rows. Changing one is an amendment to this parent first
 
 | ID | Decision |
 |----|----------|
-| D1 | Findings only. No file under `.skilled/` changes. Each run writes under its own `research/` folder and makes only the bounded `spec.md` edits the deep-research protocol allows. |
+| D1 | Findings only. No file under `.skilled/` changes. Each run writes under its own `research/` folder and makes only the bounded `spec.md` edits the deep-research protocol allows. Amended on 2026-10-25 with the review remediation: D1 binds the two research phases, and ADR-003 in each child scopes its check to the two mode folders over the research commits. Phase 3 applies the deep review's skill-side fixes to those folders afterwards. |
 | D2 | The subjects are `sk-code-quality` (phase 1) and `sk-code-review` (phase 2). Each run answers the same three questions: how to make the mode repo-agnostic, more useful and better integrated. |
 | D3 | Each run holds exactly ten iterations, one angle each. Early convergence cannot stop a run before iteration ten. The stop reason is recorded. Amended by the operator on 2026-10-25: each run adds five second-model iterations, 11 to 15, recorded as ADR-002 in each child. |
 | D4 | Luna max fast via cli-codex and DeepSeek flash max 1017 via cli-pi through llmgateway alternate by iteration, odd on Luna and even on DeepSeek. Nothing in this packet runs either. Open question 1 asks the operator to confirm the unit. In practice cli-pi was refused, and the second model ran as iterations 11 to 15 on cli-devin per ADR-002. |
@@ -122,6 +122,8 @@ Both children cite these rows. Changing one is an amendment to this parent first
 |-----------|-------------|-------|-------------|
 | `001-quality-mode-research/research/` | Create | quality-mode-research | Fifteen iteration records, loop state and the ranked `research.md` |
 | `002-review-mode-research/research/` | Create | review-mode-research | Fifteen iteration records, loop state and the ranked `research.md` |
+| `003-review-remediation/` | Create | review-remediation | The record of the deep review's fixes |
+| `.skilled/skills/sk-code/sk-code-quality/`, `.skilled/skills/sk-code/sk-code-review/` | Modify | review-remediation | The playbook, script header, extension-floors and pinned-copy fixes the deep review confirmed |
 | `specs/sk-code/graph-metadata.json` | Modify | both | The track root lists this packet. The creation script wrote that row. |
 <!-- /ANCHOR:scope -->
 
@@ -136,6 +138,7 @@ Both children cite these rows. Changing one is an amendment to this parent first
 |-------|--------|-------|--------|
 | 1 | 001-quality-mode-research/ | Fifteen-iteration research on sk-code-quality, ten plus a second-model pass: repo-bound assumptions, usefulness and its contract with review, the surface packets and user-authored modes | Complete |
 | 2 | 002-review-mode-research/ | Fifteen-iteration research on sk-code-review, ten plus a second-model pass: repo-bound assumptions, usefulness and its contract with quality, the surface packets and user-authored modes | Complete |
+| 3 | 003-review-remediation/ | Apply the deep review's confirmed findings: the closure-document repairs in phases 1 and 2, and the skill-side fixes to the `sk-code-quality` playbook and scripts and to `sk-code-review`'s playbook census, extension floors and pinned-copy check | Complete |
 
 ### Phase Transition Rules
 
@@ -148,8 +151,9 @@ Both children cite these rows. Changing one is an amendment to this parent first
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-quality-mode-research | 002-review-mode-research | None. The runs read nothing from each other, so either may go first | `grep -rc "001-quality-mode-research/research" 002-review-mode-research/research` prints 0 for every file. Narrowed to the research content by ADR-001 in each child |
+| 001-quality-mode-research | 002-review-mode-research | None. The runs read nothing from each other, so either may go first | Run from `002-review-mode-research/`, `grep -rn "001-quality-mode-research/research" research/research.md research/iterations research/deep-research-state.jsonl research/deltas \| grep -vE '(was not read\|Nothing under .* was read)'` prints nothing. This is the amended check in ADR-001 of that child |
 | 002-review-mode-research | Parent close | Both `research/research.md` files hold a Ranked Recommendations section of at least eight rows | `grep -c "Ranked Recommendations"` on each file prints 1 or more |
+| 002-review-mode-research | 003-review-remediation | Both research phases are closed and the deep review report exists | `test -s review/review-report.md` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -157,7 +161,7 @@ Both children cite these rows. Changing one is an amendment to this parent first
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Does the executor alternation run per iteration or per child? The default here is per iteration, which needs one relaunch from saved state per iteration. If the operator wants one executor per child, change D4 and the matching rows in both children.
+- Answered: does the executor alternation run per iteration or per child? The question is moot. cli-pi was refused, so iterations 1 to 10 ran on Luna, and the second model ran as iterations 11 to 15 per ADR-002 in each child.
 - Is a user-authored mode judged against the registry route only, or also against the private `local-*` skill route packet 013 introduced? The default here is the registry route, with the `local-*` route noted where it differs.
 - Does a later packet reconcile the two ranked lists into one hub-level plan? This packet does not decide that.
 <!-- /ANCHOR:questions -->

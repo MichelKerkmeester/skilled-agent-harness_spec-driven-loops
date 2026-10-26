@@ -7,7 +7,7 @@ trigger_phrases:
   - "post edit quality router"
   - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Post-Edit Quality Router
@@ -279,7 +279,7 @@ COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
 Violations in .skilled/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
   .skilled/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
-See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 
 EXIT_CODE=0

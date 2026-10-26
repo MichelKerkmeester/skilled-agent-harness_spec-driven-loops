@@ -1,0 +1,330 @@
+{
+  "window": {
+    "start": "2026-10-24T14:27:40Z",
+    "end": "2026-10-25T20:19:19Z",
+    "hours": 29.86
+  },
+  "workflows": [
+    {
+      "workflow": "advisory-checks.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 22.11,
+      "medianBilled": 2,
+      "runsPerDay": 43.42,
+      "billedPerDay": 86.84
+    },
+    {
+      "workflow": "changed-packet-validation.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 22.11,
+      "medianBilled": 2,
+      "runsPerDay": 43.42,
+      "billedPerDay": 86.84
+    },
+    {
+      "workflow": "command-tree-parity.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 51.18,
+      "medianBilled": 4,
+      "runsPerDay": 18.76,
+      "billedPerDay": 75.04
+    },
+    {
+      "workflow": "dispatch-enforcement-guard.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 22.11,
+      "medianBilled": 4,
+      "runsPerDay": 43.42,
+      "billedPerDay": 173.68
+    },
+    {
+      "workflow": "gate-inputs.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 22.11,
+      "medianBilled": 2,
+      "runsPerDay": 43.42,
+      "billedPerDay": 86.84
+    },
+    {
+      "workflow": "message-contract.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 19.1,
+      "medianBilled": 2,
+      "runsPerDay": 50.26,
+      "billedPerDay": 100.52
+    },
+    {
+      "workflow": "playbook-operator-contract.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 21.77,
+      "medianBilled": 2,
+      "runsPerDay": 44.1,
+      "billedPerDay": 88.2
+    },
+    {
+      "workflow": "rule-canary-sync.yml",
+      "runs": 40,
+      "sampledRuns": 40,
+      "hours": 22.11,
+      "medianBilled": 1,
+      "runsPerDay": 43.42,
+      "billedPerDay": 43.42
+    },
+    {
+      "workflow": "sk-doc-script-tests.yml",
+      "runs": 40,
+      "sampledRuns": 39,
+      "hours": 22.11,
+      "medianBilled": 7,
+      "runsPerDay": 43.42,
+      "billedPerDay": 303.94
+    }
+  ],
+  "jobs": [
+    {
+      "workflow": "advisory-checks.yml",
+      "job": "Advisory \u2014 test suites and doc-model references",
+      "samples": 40,
+      "medianSeconds": 61,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40230057378,
+      "flags": []
+    },
+    {
+      "workflow": "changed-packet-validation.yml",
+      "job": "Spec packets touched by this PR validate clean",
+      "samples": 40,
+      "medianSeconds": 96,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 72.5,
+      "newestRunId": 40230057404,
+      "flags": []
+    },
+    {
+      "workflow": "command-tree-parity.yml",
+      "job": "OpenCode and Claude command trees stay identical",
+      "samples": 40,
+      "medianSeconds": 69,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40227757984,
+      "flags": []
+    },
+    {
+      "workflow": "command-tree-parity.yml",
+      "job": "Hermes skill and prompt copies match their sources",
+      "samples": 40,
+      "medianSeconds": 71,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 50.5,
+      "newestRunId": 40227757984,
+      "flags": []
+    },
+    {
+      "workflow": "dispatch-enforcement-guard.yml",
+      "job": "Every declared dispatch rule is reachable and discriminates",
+      "samples": 40,
+      "medianSeconds": 63,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40230057363,
+      "flags": []
+    },
+    {
+      "workflow": "dispatch-enforcement-guard.yml",
+      "job": "Every hook vitest suite passes",
+      "samples": 40,
+      "medianSeconds": 71,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40230057363,
+      "flags": []
+    },
+    {
+      "workflow": "gate-inputs.yml",
+      "job": "Every gate input resolves under both source roots",
+      "samples": 40,
+      "medianSeconds": 102,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40230057423,
+      "flags": []
+    },
+    {
+      "workflow": "message-contract.yml",
+      "job": "Commit messages, branch names and PR description follow the templates",
+      "samples": 40,
+      "medianSeconds": 79,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 73,
+      "newestRunId": 40230057372,
+      "flags": []
+    },
+    {
+      "workflow": "playbook-operator-contract.yml",
+      "job": "Manual-testing-playbook operator-scenario contract",
+      "samples": 40,
+      "medianSeconds": 76,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40230057329,
+      "flags": []
+    },
+    {
+      "workflow": "rule-canary-sync.yml",
+      "job": "Load-bearing rule wording stays in sync across copies",
+      "samples": 40,
+      "medianSeconds": 6.5,
+      "medianBilled": 1,
+      "checkoutMedianSeconds": 2,
+      "newestRunId": 40230057357,
+      "flags": []
+    },
+    {
+      "workflow": "sk-doc-script-tests.yml",
+      "job": "sk-doc script tests",
+      "samples": 39,
+      "medianSeconds": 190,
+      "medianBilled": 4,
+      "checkoutMedianSeconds": 50,
+      "newestRunId": 40230057497,
+      "flags": []
+    },
+    {
+      "workflow": "sk-doc-script-tests.yml",
+      "job": "Feature catalog packages validate",
+      "samples": 39,
+      "medianSeconds": 58,
+      "medianBilled": 1,
+      "checkoutMedianSeconds": 51,
+      "newestRunId": 40230057497,
+      "flags": []
+    },
+    {
+      "workflow": "sk-doc-script-tests.yml",
+      "job": "No new broken citations",
+      "samples": 39,
+      "medianSeconds": 80,
+      "medianBilled": 2,
+      "checkoutMedianSeconds": 73,
+      "newestRunId": 40230057497,
+      "flags": []
+    }
+  ],
+  "checkout": {
+    "seconds": 51,
+    "samples": 517,
+    "min": 1,
+    "max": 114
+  },
+  "bounds": {
+    "review": {
+      "workflows": 9,
+      "jobs": 13,
+      "sumSeconds": 1022.5,
+      "removedCheckouts": 12,
+      "mergedSeconds": 410.5,
+      "mergedBilled": 7,
+      "currentBilled": 26,
+      "savingPerPush": 19,
+      "maxRunsPerDay": 50.26,
+      "savingPerDay": 954.94,
+      "currentPerDay": 1045.32,
+      "mergedPerDay": 351.82,
+      "savingPerDayRateAware": 693.5,
+      "longestJobSeconds": 190
+    },
+    "freshness": {
+      "workflows": 8,
+      "jobs": 12,
+      "sumSeconds": 943.5,
+      "removedCheckouts": 11,
+      "mergedSeconds": 382.5,
+      "mergedBilled": 7,
+      "currentBilled": 24,
+      "savingPerPush": 17,
+      "maxRunsPerDay": 44.1,
+      "savingPerDay": 749.7,
+      "currentPerDay": 944.8,
+      "mergedPerDay": 308.7,
+      "savingPerDayRateAware": 636.1,
+      "longestJobSeconds": 190
+    },
+    "freshnessSwitched": {
+      "workflows": 7,
+      "jobs": 10,
+      "sumSeconds": 803.5,
+      "removedCheckouts": 9,
+      "mergedSeconds": 344.5,
+      "mergedBilled": 6,
+      "currentBilled": 20,
+      "savingPerPush": 14,
+      "maxRunsPerDay": 44.1,
+      "savingPerDay": 617.4,
+      "currentPerDay": 869.76,
+      "mergedPerDay": 264.6,
+      "savingPerDayRateAware": 605.16,
+      "longestJobSeconds": 190
+    }
+  },
+  "excluded": {
+    "skippedJobs": 0,
+    "noTimestampJobs": 0,
+    "emptyRuns": 1,
+    "perWorkflow": {
+      "advisory-checks.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "changed-packet-validation.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "command-tree-parity.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "dispatch-enforcement-guard.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "gate-inputs.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "message-contract.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "playbook-operator-contract.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "rule-canary-sync.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 0
+      },
+      "sk-doc-script-tests.yml": {
+        "skippedJobs": 0,
+        "noTimestampJobs": 0,
+        "emptyRuns": 1
+      }
+    }
+  }
+}

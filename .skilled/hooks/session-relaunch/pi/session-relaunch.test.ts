@@ -22,6 +22,7 @@ import relaunchCore, {
   readRelaunchFile,
   shouldRelaunch,
 } from '../lib/relaunch-core.cjs';
+import { HERMETIC_DROP_KEYS, clearRelaunchSwitches } from '../tests/fixtures/relaunch-env.cjs';
 import sessionRelaunch from './session-relaunch';
 
 const { spawnMock } = vi.hoisted(() => ({ spawnMock: vi.fn(() => ({ unref: vi.fn() })) }));
@@ -31,7 +32,7 @@ type ExtensionEvent = AgentEndEvent | BeforeAgentStartEvent | MessageEndEvent;
 type Handler = (event: ExtensionEvent, ctx: ExtensionContext) => unknown;
 
 const envKeys = [
-  'SYSTEM_SESSION_RELAUNCH_DISABLED',
+  ...HERMETIC_DROP_KEYS,
   'SESSION_RELAUNCH_THRESHOLD',
   'SESSION_RELAUNCH_WINDOW_TOKENS',
   'SKILLED_LOOP_ID',
@@ -40,7 +41,6 @@ const envKeys = [
   'SYSTEM_SPEC_FOLDER',
   'XDG_RUNTIME_DIR',
   'SESSION_RELAUNCH_REPO_ROOT',
-  'HOOK_FLAGS_CONFIG',
 ];
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';
 const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
@@ -62,10 +62,14 @@ function makeExtensionApi(): { api: ExtensionAPI; handlers: Map<string, Handler>
 function setupEnv() {
   const root = mkdtempSync(path.join(tmpdir(), 'session-relaunch-pi-'));
   roots.push(root);
+  // A switch exported in the developer's shell must not decide a case.
+  clearRelaunchSwitches(process.env);
   process.env.XDG_RUNTIME_DIR = root;
   process.env.SESSION_RELAUNCH_REPO_ROOT = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
   process.env.SESSION_RELAUNCH_THRESHOLD = '0.8';
+  // The relaunch hooks are off until opted in; these cases exercise them on.
+  process.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
   delete process.env.SYSTEM_SESSION_RELAUNCH_DISABLED;
   delete process.env.SESSION_RELAUNCH_WINDOW_TOKENS;
   delete process.env.SKILLED_LOOP_ID;
@@ -361,7 +365,7 @@ describe('session-relaunch Pi extension', () => {
   });
 
   it(
-    'agent_end arms the matching session and spawns a killer for this process',
+    'agent_settled arms the matching session and spawns a killer for this process',
     async () => {
       setupEnv();
       const loopId = 'pi-loop-0001';
@@ -376,7 +380,7 @@ describe('session-relaunch Pi extension', () => {
       });
       const { api, handlers } = makeExtensionApi();
       sessionRelaunch(api);
-      await emit(handlers, 'agent_end', {}, makeContext());
+      await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
 
       expect(readRelaunchFile(loopId, process.env)).toMatchObject({
         status: 'armed',
@@ -403,7 +407,7 @@ describe('session-relaunch Pi extension', () => {
     },
   );
 
-  it('agent_end hands the session model, provider and thinking level to the armed record', async () => {
+  it('agent_settled hands the session model, provider and thinking level to the armed record', async () => {
     setupEnv();
     const loopId = 'pi-loop-0002';
     process.env.SKILLED_LOOP_ID = loopId;
@@ -418,7 +422,7 @@ describe('session-relaunch Pi extension', () => {
     const { api, handlers } = makeExtensionApi();
     Object.assign(api, { getThinkingLevel: () => 'high' });
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, {
+    await emit(handlers, 'agent_settled', { aborted: false }, {
       ...makeContext(),
       model: { id: 'gpt-6-luna', provider: 'openai' },
     });
@@ -431,7 +435,7 @@ describe('session-relaunch Pi extension', () => {
     });
   });
 
-  it('agent_end arms without live values when the host exposes none', async () => {
+  it('agent_settled arms without live values when the host exposes none', async () => {
     setupEnv();
     const loopId = 'pi-loop-0003';
     process.env.SKILLED_LOOP_ID = loopId;
@@ -446,7 +450,7 @@ describe('session-relaunch Pi extension', () => {
     const { api, handlers } = makeExtensionApi();
     Object.assign(api, { getThinkingLevel: () => { throw new Error('no session'); } });
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext());
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
 
     const record = readRelaunchFile(loopId, process.env);
     expect(record).toMatchObject({ status: 'armed' });
@@ -455,7 +459,7 @@ describe('session-relaunch Pi extension', () => {
   });
 
   it(
-    'agent_end respawns one killer for an armed record whose killer is gone',
+    'agent_settled respawns one killer for an armed record whose killer is gone',
     async () => {
       setupEnv();
       const loopId = 'pi-loop-respawn-0001';
@@ -472,7 +476,7 @@ describe('session-relaunch Pi extension', () => {
       const { api, handlers } = makeExtensionApi();
       sessionRelaunch(api);
 
-      await emit(handlers, 'agent_end', {}, makeContext());
+      await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
       expect(spawnMock).toHaveBeenCalledTimes(1);
 
       // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
@@ -482,7 +486,7 @@ describe('session-relaunch Pi extension', () => {
         path.join(stateDir, `killer-${loopId}.lock`),
         `${process.pid} ${new Date().toISOString()}\n`,
       );
-      await emit(handlers, 'agent_end', {}, makeContext());
+      await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
       expect(spawnMock).toHaveBeenCalledTimes(1);
       expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
     },
@@ -505,7 +509,7 @@ describe('session-relaunch Pi extension', () => {
     });
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext('pi-session-0001', subdir));
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext('pi-session-0001', subdir));
 
     expect(spawnMock).toHaveBeenCalledTimes(1);
     const [, args] = spawnMock.mock.calls[0];
@@ -521,7 +525,7 @@ describe('session-relaunch Pi extension', () => {
     expect(existsSync(args[0])).toBe(true);
   });
 
-  it('agent_end logs a killer spawn error and leaves the record armed', async () => {
+  it('agent_settled logs a killer spawn error and leaves the record armed', async () => {
     setupEnv();
     const loopId = 'pi-loop-spawn-error';
     process.env.SKILLED_LOOP_ID = loopId;
@@ -537,7 +541,7 @@ describe('session-relaunch Pi extension', () => {
     spawnMock.mockReturnValueOnce(child);
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext());
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
 
     child.emit('error', new Error('spawn denied'));
 
@@ -550,13 +554,13 @@ describe('session-relaunch Pi extension', () => {
     );
     const spawnErrors = readFileSync(logPath, 'utf8')
       .split(/\r?\n/)
-      .filter((line) => line.includes('agent-end-arm-error stage=spawn'));
+      .filter((line) => line.includes('agent-settled-arm-error stage=spawn'));
     expect(spawnErrors).toHaveLength(1);
     expect(spawnErrors[0]).toMatch(/message=spawn_denied/);
   });
 
   it(
-    'agent_end logs a synchronous killer spawn throw and leaves the record armed',
+    'agent_settled logs a synchronous killer spawn throw and leaves the record armed',
     async () => {
       setupEnv();
       const loopId = 'pi-loop-spawn-sync-error';
@@ -576,7 +580,7 @@ describe('session-relaunch Pi extension', () => {
       sessionRelaunch(api);
 
       await expect(
-        emit(handlers, 'agent_end', {}, makeContext()),
+        emit(handlers, 'agent_settled', { aborted: false }, makeContext()),
       ).resolves.toBeUndefined();
 
       expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
@@ -588,7 +592,7 @@ describe('session-relaunch Pi extension', () => {
       );
       const spawnErrors = readFileSync(logPath, 'utf8')
         .split(/\r?\n/)
-        .filter((line) => line.includes('agent-end-arm-error stage=spawn'));
+        .filter((line) => line.includes('agent-settled-arm-error stage=spawn'));
       expect(spawnErrors).toHaveLength(1);
       expect(spawnErrors[0]).toMatch(/message=sync_spawn_denied/);
     },
@@ -660,11 +664,11 @@ describe('session-relaunch Pi extension', () => {
     }
   });
 
-  it('agent_end does nothing without a loop id or when the pending session differs', async () => {
+  it('agent_settled does nothing without a loop id or when the pending session differs', async () => {
     setupEnv();
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext());
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
 
     const loopId = 'pi-loop-different';
     process.env.SKILLED_LOOP_ID = loopId;
@@ -676,7 +680,7 @@ describe('session-relaunch Pi extension', () => {
       cwd: '/workspace/pi',
       env: process.env,
     });
-    await emit(handlers, 'agent_end', {}, makeContext());
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
 
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
     expect(spawnMock).not.toHaveBeenCalled();
@@ -863,7 +867,7 @@ describe('session-relaunch Pi extension', () => {
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
     const ctx = makeContext();
-    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_settled', { aborted: false }, ctx);
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
 
     // Pi writes the assistant message only once a turn completes, so the session file
@@ -891,7 +895,7 @@ describe('session-relaunch Pi extension', () => {
     });
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext());
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext());
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
 
     await emit(handlers, 'agent_start', {}, makeContext('pi-session-0002'));
@@ -940,7 +944,7 @@ describe('session-relaunch Pi extension', () => {
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
     const ctx = makeContext();
-    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_settled', { aborted: false }, ctx);
     await emit(handlers, 'agent_start', {}, ctx);
 
     const historyFile = path.join(
@@ -974,7 +978,7 @@ describe('session-relaunch Pi extension', () => {
     }, ctx);
     const delivered = () => api.sendMessage.mock.calls.filter(([message]) =>
       /full/.test(String((message as { content: string }).content))).length;
-    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_settled', { aborted: false }, ctx);
     await emit(handlers, 'agent_start', {}, ctx);
 
     await fillAt(80);
@@ -986,12 +990,102 @@ describe('session-relaunch Pi extension', () => {
     await emit(handlers, 'agent_end', {}, ctx);
     expect(delivered()).toBe(1);
   });
+
+  // Pi emits agent_end once per agent loop and agent_settled once per run, after every retry,
+  // compaction or queued continuation, so only the settle proves no turn is still coming.
+  function preparePiRecord(loopId: string): void {
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+  }
+
+  it('arms on agent_settled and not on agent_end', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-settled-0001';
+    preparePiRecord(loopId);
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
+    expect(spawnMock).not.toHaveBeenCalled();
+
+    await emit(handlers, 'agent_settled', { aborted: false }, ctx);
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
+    expect(spawnMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('a continuation before agent_settled leaves the record armed', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-settled-0002';
+    preparePiRecord(loopId);
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    // An auto-retry, a compaction or a queued follow-up starts a fresh agent loop inside the
+    // same run, so its agent_start lands between the first agent_end and the settle.
+    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_start', {}, ctx);
+    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_settled', { aborted: false }, ctx);
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
+    expect(spawnMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('agent_settled with aborted: true leaves the record pending', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-settled-0003';
+    preparePiRecord(loopId);
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'agent_settled', { aborted: true }, makeContext());
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
+    expect(spawnMock).not.toHaveBeenCalled();
+  });
+
+  it('agent_end alone sends the held nudge as a follow-up and leaves the record pending', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-settled-0004';
+    process.env.SKILLED_LOOP_ID = loopId;
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const [, options] = api.sendMessage.mock.calls[0];
+    expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true });
+
+    // The follow-up runs as a continuation of the same run, and its prepare call writes the
+    // pending record before that continuation's agent_end, which must not arm it.
+    preparePiRecord(loopId);
+    await emit(handlers, 'agent_end', {}, ctx);
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    expect(spawnMock).not.toHaveBeenCalled();
+  });
 });
 
 // A compacted session keeps its id but loses the detail its open note holds, so the
 // extension points the same session back at that note and spends its nudge level again.
 describe('session_compact pointer', () => {
   const SESSION_ID = 'pi-session-0001';
+  const NOTE_CREATED_AT = '2026-10-25T10:00:00Z';
 
   function writeOpenNote(): string {
     const directory = path.join(
@@ -1006,6 +1100,7 @@ describe('session_compact pointer', () => {
       'status: open',
       `session_id: ${SESSION_ID}`,
       'spec_folder: ',
+      `created_at: ${NOTE_CREATED_AT}`,
       '---',
       '## Goal', 'finish the handoff',
       '## Done', 'wrote the note',
@@ -1031,6 +1126,20 @@ describe('session_compact pointer', () => {
     expect(message.content).toContain(notePath);
     expect(message.content).toContain('claim');
     expect(readState(SESSION_ID, process.env)).toBe(0);
+  });
+
+  it('compaction pointer carries the note date', async () => {
+    setupEnv();
+    writeOpenNote();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const message = api.sendMessage.mock.calls[0][0] as { content: string };
+    expect(message.content).toContain(`git log --since='${NOTE_CREATED_AT}'`);
+    expect(message.content).toContain('git status');
   });
 
   it('adds nothing without an open note but resets the level', async () => {
@@ -1079,7 +1188,7 @@ describe('session_compact pointer', () => {
     });
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID));
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext(SESSION_ID));
     await emit(handlers, 'agent_start', {}, makeContext(SESSION_ID));
 
     await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
@@ -1269,7 +1378,7 @@ describe('session-relaunch Pi extension conformance', () => {
   async function stopEvent(): Promise<void> {
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
-    await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID, LIVE_CWD));
+    await emit(handlers, 'agent_settled', { aborted: false }, makeContext(SESSION_ID, LIVE_CWD));
   }
 
   it('an arm turns this session\'s pending record armed from the live cwd'

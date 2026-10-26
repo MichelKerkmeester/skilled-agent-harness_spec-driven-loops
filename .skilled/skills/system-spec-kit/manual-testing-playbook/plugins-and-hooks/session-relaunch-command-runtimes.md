@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.11.0
+version: 1.0.13.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -36,6 +36,7 @@ This scenario defines four automatable checks and one live check per runtime. Th
 - Objective: Verify Codex and Hermes adapter loading, event handling, seed injection and matching record arming, verify the Cursor and Devin wrapper arms plus the `/speckit:handoff` command-trigger hop, and verify that a Codex operator prompt or `cancel` calls off a prepared hand-over and that the hop history records the hop.
 - Real user request: Carry a short task through a context handoff in Codex or Hermes, or through the handoff command in Cursor or Devin, then finish it in the new session.
 - Prompt: `Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready.`
+- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` for the runtime under test (`CODEX`, `HERMES`, `CURSOR` or `DEVIN`) overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps that runtime silent. Unset it before a run. Another runtime's flag does not reach these checks, so `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0`, which keeps Claude Code off, leaves these four runtimes on. That includes the `/speckit:handoff` hops on Cursor and Devin, because `prepare` refuses inside the loop while the concern is off. The goal carry-over runs need it in the environment their scripts start from. The `node --test` suites set their own environment.
 - Expected execution process: Run the Codex and Hermes adapter suites, the shared nudge suite and the stub-runtime wrapper suite. Then start each runtime in its own tmux session with a low hop cap and follow the generated handoff. The nudge's prepare command includes `--runtime <name>`. On Cursor and Devin, run `/speckit:handoff` and start the hop with the selected runtime's claim command printed by the CLI.
 - Expected signals: Automatable commands exit 0. The stub-runtime suite records `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>`, `hermes chat --provider <p> -m <model> -q <seed>` and `devin --model <model> -- <seed>` on relaunch, with valid model and provider values carried on every hop and no resume-family flag passed. Model, name, Pi extension and Pi or Hermes provider scans leave values equal to `--` or starting with `-` in the first launch's arguments and leave them out of relaunch arguments. Each live automatic run arms its matching record and restarts with the claim seed. Each command-trigger run produces a note, a pending record and a runtime-specific manual claim command. If a runtime exits with a record still pending, the wrapper prints its runtime-specific manual command, consumes the record and preserves the runtime exit code. If it cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record` and consumes the record. On an approved hop the wrapper relaunches the runtime with the seed. It exits 1 for an unreadable or empty record, which prints no manual claim command. It also exits 1 for an empty cwd, a line break in the cwd or handoff path, or a failed `cd`, and prints the manual claim command in those cases. A runtime exit of 130 prints the manual claim command and exits 130. On a decline the wrapper exits with the runtime's own exit code and prints the manual claim command only for the `not-armed`, `stale` and `hop-cap` reasons. A `withdrawn` decline, where the session called its hand-over off, prints one warning line and no manual claim command. On Codex an operator prompt withdraws an armed record, `should-relaunch` reports `withdrawn`, the session earns one more nudge a step above its fill and `history` shows a `withdrawn` line. A hop shows `handed-over (hop 1)`, `claimed ... by <id>` and `done`. Keep `SESSION_RELAUNCH_THRESHOLD` well above a fresh session's startup fill plus its remaining work. Codex live runs chained at `0.12` because each fresh session reached about 10% on startup alone. `SESSION_RELAUNCH_MAX_HOPS` caps completed relaunches.
 - Desired user-visible outcome: The receiving session claims the same handoff and continues the unfinished task.
@@ -116,7 +117,7 @@ Run from the repository root:
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-codex-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SESSION_RELAUNCH_THRESHOLD=0.25 SESSION_RELAUNCH_MAX_HOPS=4 skilled-loop codex -m gpt-6-luna"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.25 SESSION_RELAUNCH_MAX_HOPS=4 skilled-loop codex -m gpt-6-luna"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -131,7 +132,7 @@ Operator decision: this live check was not run. For a future run, start from the
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-hermes-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH HERMES_ENABLE_PROJECT_PLUGINS=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop hermes chat --provider llmgateway -m gpt-6-luna"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH HERMES_ENABLE_PROJECT_PLUGINS=1 SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop hermes chat --provider llmgateway -m gpt-6-luna"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -146,7 +147,7 @@ Operator decision: this live check was not run. Cursor is command-only: its spik
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-cursor-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop cursor"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop cursor"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -161,7 +162,7 @@ Devin is command-only: its hook usage is unverified. There is no command surface
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-devin-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop devin --model swe-2-max"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop devin --model swe-2-max"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -177,7 +178,7 @@ repo_root="$(git rev-parse --show-toplevel)"
 linked_repo="$(mktemp -d)/linked-repo"
 mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
 for folder in .skilled .codex .hermes .cursor .devin; do ln -s "$repo_root/$folder" "$linked_repo/$folder"; done
-tmux new-session -d -s shim-codex "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SESSION_RELAUNCH_THRESHOLD=0.25 SESSION_RELAUNCH_MAX_HOPS=1 && codex -m gpt-6-luna'"
+tmux new-session -d -s shim-codex "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.25 SESSION_RELAUNCH_MAX_HOPS=1 && codex -m gpt-6-luna'"
 tmux attach -t shim-codex
 ~~~
 
@@ -206,7 +207,7 @@ cli() { node "$repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cj
 session_name="relaunch-codex-$$"
 
 start_codex() {
-  tmux new-session -d -s "$session_name" "cd '$repo_root' && env -u SKILLED_LOOP_HOPS SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop codex -m gpt-6-luna"
+  tmux new-session -d -s "$session_name" "cd '$repo_root' && env -u SKILLED_LOOP_HOPS SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop codex -m gpt-6-luna"
   tmux set-option -w -t "$session_name" remain-on-exit on
 }
 say() { tmux send-keys -t "$session_name" -l "$1"; sleep 0.5; tmux send-keys -t "$session_name" Enter; }
@@ -340,7 +341,7 @@ repo_root="$(git rev-parse --show-toplevel)"
 sandbox="$(mktemp -d)"
 trap 'rm -rf "$sandbox"' EXIT
 unset SKILLED_LOOP_HOPS SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER
-export XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo" SKILLED_LOOP_ID=$$ SKILLED_LOOP_RUNTIME=codex
+export SYSTEM_SESSION_RELAUNCH_ENABLED=1 XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo" SKILLED_LOOP_ID=$$ SKILLED_LOOP_RUNTIME=codex
 mkdir -p "$XDG_RUNTIME_DIR" "$SESSION_RELAUNCH_REPO_ROOT/.skilled/skills/.state/session-relaunch/handoffs"
 hooks="$repo_root/.skilled/hooks/session-relaunch"
 cli() { node "$hooks/bin/session-relaunch.cjs" "$@"; }

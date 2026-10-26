@@ -12,7 +12,8 @@
     "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface",
     "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control",
     "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision",
-    "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring"
+    "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring",
+    "system-speckit/053-ci-workflow-efficiency/010-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -45,27 +46,28 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
       "001-research/research/research.md",
       ".github/workflows/README.md",
       ".github/scripts/check-gate-inputs.sh",
+      ".github/actions/setup/action.yml",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/commands/doctor/ci.md",
       "001-research/acceptance-criteria.md",
+      "002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
+      "008-consolidation-decision/scratch/consolidation-decision.md",
+      "review/review-report.md",
+      "009-doctor-ci-review-wiring/scratch/r28-probe.md",
+      "005-slow-and-failing-tests/acceptance-criteria.md",
+      "009-doctor-ci-review-wiring/acceptance-criteria.md",
       "001-research/research/synthesis-reviews/final-review.md",
       "001-research/goal.md",
       "002-rebuild-fanout-removal/goal.md",
-      "003-trigger-and-job-hygiene/goal.md",
-      "004-setup-caching-provisioning/goal.md",
-      "005-slow-and-failing-tests/goal.md",
-      "006-sk-code-ci-surface/goal.md",
-      "007-workflow-hygiene-on-off-control/goal.md",
-      "008-consolidation-decision/goal.md",
-      "009-doctor-ci-review-wiring/goal.md",
-      "001-research/implementation-summary.md"
+      "003-trigger-and-job-hygiene/goal.md"
     ],
     "entities": [
       {
@@ -93,6 +95,12 @@
         "source": "derived"
       },
       {
+        "name": "action.yml",
+        "kind": "config",
+        "path": ".github/actions/setup/action.yml",
+        "source": "derived"
+      },
+      {
         "name": "trigger-index-rebuild-workflow.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
@@ -105,6 +113,36 @@
         "source": "derived"
       },
       {
+        "name": "ci.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/ci.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "002-rebuild-fanout-removal/scratch/baseline-24h/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-decision.md",
+        "kind": "doc",
+        "path": "008-consolidation-decision/scratch/consolidation-decision.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "r28-probe.md",
+        "kind": "doc",
+        "path": "009-doctor-ci-review-wiring/scratch/r28-probe.md",
+        "source": "derived"
+      },
+      {
         "name": "final-review.md",
         "kind": "doc",
         "path": "001-research/research/synthesis-reviews/final-review.md",
@@ -112,12 +150,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -147,8 +179,32 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Cut",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
@@ -157,47 +213,23 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. COMPLETION CRITERIA",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "4. LOG",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-25T13:24:41.420Z",
+    "last_save_at": "2026-10-25T21:48:32.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a4a992c1a49ca72a0bcd3c564d95ff23078ef996ca0bc06cebda2e81dc5dafc2",
+    "source_fingerprint": "sha256:2a52de5aa0d7990ef903f824134b5287caeb7d17c996791d71c10fc398dec7f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f138d7fd72201a40c808199da50f7b96a9c7b1488c2e0200154e114dd7582222"
+      "spec.md": "15867a2ca68a919efc0c0e9fdce49d58af9b826a6fc825592a4618bbc47babb9"
     },
-    "last_active_at": "2026-10-25T13:24:41.420Z",
-    "last_active_child_id": "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
+    "last_active_child_id": "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control",
+    "last_active_at": "2026-10-25T13:24:41.420Z"
   }
 }

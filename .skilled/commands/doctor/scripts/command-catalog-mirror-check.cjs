@@ -296,6 +296,8 @@ function findMetadataFiles(repo) {
   if (!fs.existsSync(skillsDir)) return [];
   const found = [];
   for (const skill of fs.readdirSync(skillsDir).sort()) {
+    // A local-* skill is private to one checkout, so its metadata never feeds a tracked catalog.
+    if (skill.startsWith('local-')) continue;
     const abs = path.join(skillsDir, skill, 'command-metadata.json');
     if (fs.existsSync(abs)) found.push({ label: `${skill}/command-metadata.json`, abs, skill });
   }

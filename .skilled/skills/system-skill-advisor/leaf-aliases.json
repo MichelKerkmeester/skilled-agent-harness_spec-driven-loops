@@ -21,6 +21,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/auto-indexing/private-skill-containment.md",
+    "diskPath": "feature-catalog/auto-indexing/private-skill-containment.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/auto-indexing/provenance-and-trust-lanes.md",
     "diskPath": "feature-catalog/auto-indexing/provenance-and-trust-lanes.md"
   },
@@ -233,6 +238,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
     "diskPath": "manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/auto-indexing/private-skill-roots.md",
+    "diskPath": "manual-testing-playbook/auto-indexing/private-skill-roots.md"
   },
   {
     "workflowMode": "system-skill-advisor",

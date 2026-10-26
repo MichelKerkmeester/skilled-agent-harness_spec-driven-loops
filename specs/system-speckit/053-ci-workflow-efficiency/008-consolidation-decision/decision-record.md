@@ -11,13 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
-    last_updated_at: "2026-10-23T14:10:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded six proposed ADRs for the planned phase"
-    next_safe_action: "Answer D8 after the measurement, then run the phase's tasks from T001"
-    blockers:
-      - "D8 is unanswered; the default is no merge"
-      - "002 to 007 have not landed, so every job count and line number is provisional"
+    last_updated_at: "2026-10-25T20:45:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Recorded the D8 answer no in ADR-001 and set the six ADR statuses"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-008-consolidation-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: D8 = no, the session's judgment under the operator's delegation, pending the operator's verification at the end of the session (`scratch/d8-answer.md`) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Operator (D8); plan author for the default |
 
@@ -73,6 +71,21 @@ R27 asks for a re-measurement and then a decision, and it names the decision as 
 **We chose**: no merge unless the operator answers D8 yes, with `no` as the default, recorded as one line in `scratch/d8-answer.md` before any merge task runs.
 
 **How it works**: T011 writes the decision record with `D8: pending`. T012 puts the question to the operator with the `Measurements` and `Signal cost` sections in hand and writes `D8=no` or `D8=yes` to `scratch/d8-answer.md`. T013 copies the answer into the decision record. On `no`, T014 proves the workflow tree is unchanged and the phase closes. On `yes`, T015 to T020 run and T023 commits the merge separately.
+
+#### D8 answer, 2026-10-25
+
+**Options**: `no`, keep the eight always-run FRESHNESS workflows as separate files and jobs; `yes`, merge all eight into `.github/workflows/always-run-guards.yml` as one job (ADR-002, ADR-004). A subset was not offered, because the plan prices only the full set.
+
+**Decision**: `D8=no`. The operator wrote on 2026-10-25, verbatim: "Approve plan implement all autonomously till all is perfected tested and verified decisions can wait untill end or you make best judgement and verifiy at end". Under that delegation the session judged `no`. The answer is the session's judgment, pending the operator's verification at the end of the session, and it is recorded in `scratch/d8-answer.md` and copied into `scratch/consolidation-decision.md`. A `no` runs no gated task.
+
+**Evidence**, all from `scratch/consolidation-cost.json`, re-derived by `node scratch/consolidation-cost.mjs --check` (`check: ok`, exit 0):
+- The eight bill 944.8 runner-min/day today, 24 billed minutes per push over 12 jobs and 943.5 job-seconds, from 40 runs each between 2026-10-24T22:10Z and 2026-10-25T20:17Z (`command-tree-parity.yml` from 2026-10-23T16:37Z).
+- A merge would bill 7 minutes per push instead of 24, a saving of 17: 636.1 runner-min/day rate-aware, or 749.7 by the plan's `savingPerPush x max(runsPerDay)`. The research's bound was 1,241..1,606 for all nine at the 001 volume (`scratch/consolidation-baseline.md`).
+- It would collapse 12 check contexts into one and serialize 382.5 s of work against a 190 s worst single job.
+- It would delete `gate-inputs.yml` and `dispatch-enforcement-guard.yml`, both protected by function (`001-research/research/research.md:184-187`). Neither is a required check: ruleset 24326453 requires only `Commit messages, branch names and PR description follow the templates`, and message-contract stays outside the set.
+- `command-tree-parity.yml` reads `SKILLED_CI_TESTS` in the tree (`.github/workflows/README.md:84`), so the plan's eight would cross a switch group, which ADR-002 rules out.
+
+**Consequence**: no workflow file changes. `git diff --stat 1c317e13c5..HEAD -- .github/workflows` and `git status --porcelain -- .github/workflows` both print nothing (`scratch/no-merge.md`). T015 to T020 and T023 are superseded and AC-007 is `Superseded` against this ADR. The measured bound and the merge shape stay in `scratch/consolidation-decision.md`, so an operator yes later reopens T015 to T020 without a new measurement, after a re-plan that settles the `command-tree-parity.yml` group question.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -150,7 +163,7 @@ R27 asks for a re-measurement and then a decision, and it names the decision as 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: the measurement and the decision use this set; the tree places `command-tree-parity.yml` in `SKILLED_CI_TESTS`, recorded in `scratch/consolidation-decision.md` (Candidates) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -253,7 +266,7 @@ The nine always-run workflows are not all in the same switch group. Phase 007 as
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: `scratch/consolidation-cost.mjs` implements this basis and `--check` printed `check: ok` |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -356,7 +369,7 @@ The before number and the after number have to be comparable, or the decision co
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: D8 = no, so no merged workflow was written |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -462,7 +475,7 @@ The saving comes from paying one checkout instead of twelve, and from collapsing
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: `scratch/consolidation-decision.md` carries the measured record and this file the design choices |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -563,7 +576,7 @@ R27's acceptance is "a decision record with the before and after numbers" (`fina
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: D8 = no, so neither protected workflow was edited |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; operator for the confirmation itself |
 

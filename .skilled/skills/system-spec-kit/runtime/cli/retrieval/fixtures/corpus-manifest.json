@@ -1,5 +1,5 @@
 {
-  "corpusHash": "39e3d7b2946fd45f394ee0766b850ecf70e456bb16c4847cc4035e9caf0aa6dc",
+  "corpusHash": "29eb8892d5acc8ba0e7ce906a6f6ea946213e39e912d3d57efcaaed039ca0b7b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25967,
+  "includedPathCount": 26094,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -78,6 +78,7 @@
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
     ".skilled/changelog/skilled/v4.0.0.13.md",
+    ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -1834,6 +1835,7 @@
     ".skilled/skills/mcp-code-mode/changelog/v1.0.1.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.11.0.md",
+    ".skilled/skills/mcp-code-mode/changelog/v1.0.12.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.3.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.4.0.md",
@@ -2025,6 +2027,7 @@
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.12.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.13.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.14.0.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.15.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
@@ -2106,6 +2109,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-attachments/download-file.md",
@@ -2280,6 +2284,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.4.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.5.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -2717,15 +2722,23 @@
     ".skilled/skills/sk-code/changelog/v2.2.9.0.md",
     ".skilled/skills/sk-code/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v2.4.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-bug-fix-compiled-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-ci-compiled-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/workflow-alone-review-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/ceiling-comment-convention.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/implementer-anti-stall.md",
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md",
     ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
     ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md",
     ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-config.md",
@@ -2743,18 +2756,14 @@
     ".skilled/skills/sk-code/shared/README.md",
     ".skilled/skills/sk-code/shared/references/phase-detection.md",
     ".skilled/skills/sk-code/shared/references/stack-detection.md",
-    ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
-    ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md",
     ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
-    ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
-    ".skilled/skills/sk-code/shared/references/universal/error-recovery.md",
-    ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md",
     ".skilled/skills/sk-code/shared/references/workflow-debug.md",
     ".skilled/skills/sk-code/shared/references/workflow-implement.md",
     ".skilled/skills/sk-code/shared/references/workflow-verify.md",
     ".skilled/skills/sk-code/sk-code-ci/README.md",
     ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.0.0.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
@@ -2783,8 +2792,15 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.1.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.5.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
+    ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
+    ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
@@ -2816,6 +2832,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2898,6 +2915,8 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.6.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.7.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.0.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.1.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -3096,6 +3115,7 @@
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.1.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.2.0.md",
+    ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.3.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/design-diagram-command.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/hub-registration.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/diagram-generation/editorial-style-and-connectors.md",
@@ -5925,6 +5945,8 @@
     ".skilled/skills/sk-doc/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.10.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.11.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.12.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.13.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
@@ -6113,6 +6135,7 @@
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.4.0.md",
+    ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.5.0.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/component-and-path/reference-guidance-stays-a-skill.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/component-and-path/repeatable-slash-command.md",
     ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/complete-auto-and-confirm-modes.md",
@@ -6353,6 +6376,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.5.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.6.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -6452,6 +6476,7 @@
     ".skilled/skills/sk-git/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.4.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.5.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -7429,6 +7454,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.16.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.16.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.16.3.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -7441,6 +7467,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/df-idf-corpus.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/doc-frontmatter-harvest.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/private-skill-containment.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/provenance-and-trust-lanes.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/sanitizer.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/sync.md",
@@ -7490,6 +7517,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/corpus-df-idf.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/sanitizer-boundaries.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md",
@@ -7884,6 +7912,8 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.9.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.9.2.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -8022,6 +8052,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-detection-scoring.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-system-knowledge-node.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/private-skill-commit-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md",
@@ -10480,6 +10511,18 @@
     "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/tasks.md",
     "specs/hooks/023-session-relaunch-loop/033-research-remediation/goal.md",
     "specs/hooks/023-session-relaunch-loop/033-research-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/goal.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/plan.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/spec.md",
+    "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/goal.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/plan.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/spec.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -12062,6 +12105,19 @@
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/plan.md",
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md",
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/plan.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/spec.md",
+    "specs/sk-code/013-private-surface-skills/006-review-remediation/tasks.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/plan.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/spec.md",
+    "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/tasks.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/plan.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/spec.md",
+    "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/tasks.md",
     "specs/sk-code/013-private-surface-skills/goal.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-dashboard.md",
     "specs/sk-code/013-private-surface-skills/research/deep-research-strategy.md",
@@ -12077,6 +12133,8 @@
     "specs/sk-code/013-private-surface-skills/research/prompts/iteration-5.md",
     "specs/sk-code/013-private-surface-skills/research/research.md",
     "specs/sk-code/013-private-surface-skills/research/resource-map.md",
+    "specs/sk-code/013-private-surface-skills/review/fanout-attribution.md",
+    "specs/sk-code/013-private-surface-skills/review/review-report.md",
     "specs/sk-code/013-private-surface-skills/spec.md",
     "specs/sk-code/014-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
     "specs/sk-code/014-code-modes-research/001-quality-mode-research/decision-record.md",
@@ -12162,8 +12220,62 @@
     "specs/sk-code/014-code-modes-research/002-review-mode-research/research/synthesis-v1.md",
     "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
     "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/acceptance-criteria.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/decision-record.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/goal.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/implementation-summary.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/plan.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/spec.md",
+    "specs/sk-code/014-code-modes-research/003-review-remediation/tasks.md",
     "specs/sk-code/014-code-modes-research/goal.md",
+    "specs/sk-code/014-code-modes-research/review/fanout-attribution.md",
+    "specs/sk-code/014-code-modes-research/review/review-report.md",
     "specs/sk-code/014-code-modes-research/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
+    "specs/sk-code/015-quality-agnostic-gate/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -15498,6 +15610,10 @@
     "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/plan.md",
     "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/spec.md",
     "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/tasks.md",
+    "specs/system-deep-loop/042-fanout-review-focus/implementation-summary.md",
+    "specs/system-deep-loop/042-fanout-review-focus/plan.md",
+    "specs/system-deep-loop/042-fanout-review-focus/spec.md",
+    "specs/system-deep-loop/042-fanout-review-focus/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -25928,7 +26044,13 @@
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
     "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/acceptance-criteria.md",
     "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/goal.md",
@@ -25995,10 +26117,15 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
-    "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/acceptance-criteria.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/plan.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/spec.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c60069b54de597cfbc3befd8f57240dcd5597262084bbd6e8b0c23aa23f2605e",
+  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26471,10 +26598,6 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/benchmark/fixtures",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
@@ -28113,6 +28236,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -28749,6 +28880,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/013-private-surface-skills/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/scratch",
       "reason": "excluded directory"
     },
@@ -28757,7 +28904,35 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/014-code-modes-research/scratch",
+      "path": "specs/sk-code/014-code-modes-research/003-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/004-doctrine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30290,6 +30465,10 @@
     },
     {
       "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/042-fanout-review-focus/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33101,6 +33280,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch",
       "reason": "excluded directory"
     },
@@ -33134,6 +33321,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/055-ci-efficiency-release-docs/scratch",
       "reason": "excluded directory"
     },
     {

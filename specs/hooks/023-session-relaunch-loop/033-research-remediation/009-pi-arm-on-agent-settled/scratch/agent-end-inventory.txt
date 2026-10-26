@@ -1,0 +1,46 @@
+Inventory: rg -n "'agent_end'" .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+Taken before the change, 36 hits. Line numbers are the pre-change file.
+
+arm: add agent_settled  (the test expects an arm, a killer spawn, or an arm refusal)
+379   agent_end arms the matching session and spawns a killer for this process
+421   agent_end hands the session model, provider and thinking level to the armed record
+449   agent_end arms without live values when the host exposes none
+475   agent_end respawns one killer for an armed record whose killer is gone (first stop)
+485   same test (second stop, live killer lock)
+508   spawns the killer from the repo lib when cwd is a repo subdirectory
+540   agent_end logs a killer spawn error and leaves the record armed
+579   agent_end logs a synchronous killer spawn throw and leaves the record armed
+667   agent_end does nothing without a loop id or when the pending session differs (no loop id)
+679   same test (other session's pending record)
+866   agent_start disarms the armed record this session owns (the arm before the withdraw)
+894   agent_start leaves another session's armed record alone (the arm)
+943   agent_start lists the withdrawn note in the hop history (the arm)
+977   agent_start grants one more nudge a step above the fill it next sees (the arm)
+1082  tells a session whose arm a new turn withdrew not to claim the stale note (the arm)
+1272  conformance stopEvent() helper, used by the four arm conformance cases
+= 16
+
+nudge: leave  (the test checks the held nudge sent, retired or dropped at agent_end)
+188   keeps the agent quiet at the hop limit
+205   retires a held nudge once the hop count reaches the cap before delivery
+222   agent_end delivers the nudge held from message_end exactly once
+227   same test (second stop sends nothing)
+250   agent_end stays quiet when the prepare call left a pending handoff
+266   sends threshold nudges once, including the 0.05 reminder
+270   same test
+274   same test
+296   delivers the nudge without waiting for an operator turn
+311   includes the save step when SYSTEM_SPEC_FOLDER is unset
+625   retries module loading after a dynamic import failure
+654   refuses to load a relaunch core that lacks a function it calls (nudge path)
+693   plans the handoff note under the resolved repo root
+719   resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+776   reads the hook flags file once per message_end event
+981   agent_start grants one more nudge (nudge delivery after the withdraw)
+983   same test
+986   same test
+1060  drops a nudge held before the compaction
+1163  conformance nudgeAtNinety() helper
+= 20
+
+16 + 20 = 36

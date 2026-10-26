@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 1: quality-mode-research"
-description: "Two operator rulings of 2026-10-25: narrow the sibling-path check to the research content, and add a five-iteration second-model pass on DeepSeek through cli-devin."
+description: "Three operator rulings of 2026-10-25: narrow the sibling-path check to the research content, add a five-iteration second-model pass on DeepSeek through cli-devin, and scope the .skilled boundary check to the two subject mode folders."
 trigger_phrases:
   - "quality mode research decision record"
   - "ac-011 sibling path narrowing"
@@ -229,3 +229,103 @@ The plan put the even iterations on DeepSeek V4.1 Flash 1017 through cli-pi. Pi 
 **How to roll back**: restore `research/synthesis-v1.md` as `research/research.md`, set `maxIterations` back to 10 and remove iterations 11 to 15, their deltas, prompts and receipts.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
+
+---
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Scope the .skilled boundary check to the two subject mode folders
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-25 |
+| **Deciders** | The operator, by the run brief, recorded by the orchestrating session after the packet's deep review |
+
+---
+
+<!-- ANCHOR:adr-003-context -->
+### Context
+
+AC-009 and CHK-032 test parent decision D1, which says no file under `.skilled/` changes. The literal check, `git diff --stat $BASE_SHA -- ':/.skilled'`, compares the whole folder with the baseline. Concurrent CI wiring and doctor work edited other `.skilled/` paths in this worktree while the runs were active. The literal command printed 120 changed files when this phase closed and 131 at a later HEAD. No iteration log records a write to any of them. The operator directed the check to the two subject mode folders, and until this record the only trace of that direction was a Key Decisions row in the phase 2 implementation summary.
+
+### Constraints
+
+- Other sessions write to `.skilled/` in the same worktree, so a whole-folder diff cannot isolate this packet's writes.
+- Phase 3 of this packet edits the two mode folders on purpose to apply the review findings. A diff that ends at HEAD would then test that phase, not the research runs.
+<!-- /ANCHOR:adr-003-context -->
+
+---
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+**We chose**: to scope the boundary check to `.skilled/skills/sk-code/sk-code-quality` and `.skilled/skills/sk-code/sk-code-review`, over the commit range the research runs covered.
+
+**How it works**: the check is `git diff --stat f8671e07c2 ee8c7e6f24 -- .skilled/skills/sk-code/sk-code-quality .skilled/skills/sk-code/sk-code-review`, run from the repository root. It passes when it prints nothing. `f8671e07c2` is the Baseline in the parent goal log. `ee8c7e6f24` is the commit that recorded the second-model pass and closed the research. At the close, `git status --short --untracked-files=all` on the same two paths also printed 0 lines.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Scope to the two folders over the research range** | Tests the runs' own subjects and stays true after later phases | Other `.skilled/` paths are covered only by the iteration logs | 8/10 |
+| Keep the whole-folder diff | Matches D1 word for word | Cannot pass while other sessions share the worktree | 2/10 |
+| Scope to the two folders but end at HEAD | One command, no fixed end commit | Fails as soon as phase 3 lands its fixes | 4/10 |
+| Waive AC-009 | Closes at once | Drops the only boundary check on D1 | 1/10 |
+
+**Why this one**: it keeps a command that could fail if a run had written to its subject, and it stays reproducible after the remediation phase.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+**What improves**:
+- AC-009, CHK-032 and goal criterion 3 name one command with an observable result.
+
+**What it costs**:
+- A run write to a `.skilled/` path outside the two folders is no longer caught by a diff. Mitigation: each iteration log records the run's writes, and none names such a path.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A run wrote to a hub file that another session also edited | L | The iteration logs record every run write, and none touches `.skilled/` |
+<!-- /ANCHOR:adr-003-consequences -->
+
+---
+
+<!-- ANCHOR:adr-003-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The literal check printed changed files no run wrote |
+| 2 | **Beyond Local Maxima?** | PASS | Three alternatives were weighed above |
+| 3 | **Sufficient?** | PASS | One command over two folders and a fixed range |
+| 4 | **Fits Goal?** | PASS | D1 exists to keep the runs off the skills they study |
+| 5 | **Open Horizons?** | PASS | The fixed range stays valid after any later phase |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-003-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-003-impl -->
+### Implementation
+
+**What changes**:
+- AC-009 is set to `Superseded` with this record in its Waiver cell, and its verification names the scoped command.
+- CHK-032 in `tasks.md` and goal criterion 3 point at the same command.
+
+**Observed result, 2026-10-25**: the scoped command printed nothing. The whole-folder form, `git diff --stat f8671e07c2 HEAD -- .skilled`, printed 131 files changed, all outside the two folders.
+
+**How to roll back**: restore the whole-folder command in AC-009 and set its Status back to `Unmet`.
+<!-- /ANCHOR:adr-003-impl -->
+<!-- /ANCHOR:adr-003 -->

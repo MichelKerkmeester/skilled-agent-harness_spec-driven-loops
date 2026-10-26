@@ -1,0 +1,6 @@
+$ hermes arm, opt-in only in file, production call shape (no env seam)
+file="SYSTEM_SESSION_RELAUNCH_ENABLED=1\n" env enable unset; result=armed; record.status=armed; killer spawns=1
+exit 0
+$ hermes arm, negative control: empty file
+file="" env enable unset; result=null; record.status=pending; killer spawns=0
+exit 0

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/055-ci-efficiency-release-docs",
+  "spec_folder": "system-speckit/055-ci-efficiency-release-docs",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci efficiency release docs",
+      "ci workflow efficiency changelogs",
+      "ci efficiency release docs plan",
+      "ci efficiency release docs tasks",
+      "ci efficiency release docs acceptance criteria",
+      "ci efficiency release docs implementation summary"
+    ],
+    "key_topics": [
+      "efficiency",
+      "release",
+      "docs",
+      "workflow",
+      "changelogs",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "workflow-efficiency"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/sk-code-ci/README.md",
+      ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-report.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CI workflow-efficiency program (`specs/system-speckit/053-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes",
+    "created_at": "2026-10-25T21:51:38Z",
+    "last_save_at": "2026-10-25T23:19:28.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:95bc0c9e6a00f012bec673b2859e0b0099900a0c795e8592af9176200e38ba4c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "af01d1a2cbd9300b0610878f0af651049dfc2cfcf59c07a640ac0b4dca594e32",
+      "plan.md": "d38870f5863e58b033598cdfa70fc4d0592ffb736288bcf8a297a1e6582f9432",
+      "tasks.md": "8695760100bed0e6f67d0f8d8709065fe51a140fc666e82a54f66b70de7f6928",
+      "implementation-summary.md": "5f10ba8b28bf23616e741973192d9d96bbb06e975dcdab3f786f37cd75ee9cb7"
+    },
+    "last_active_at": null
+  }
+}

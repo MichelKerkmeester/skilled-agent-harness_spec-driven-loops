@@ -27,6 +27,8 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path)`
 
+A task closed by D8's answer is `[x] Superseded by D8 = no:` with a `Superseded:` line that names ADR-001. Nothing in it was built.
+
 Every task below names one file, quotes the anchor text it edits or reads, gives that anchor's line number, puts every command in a fenced block, states the expected result, names the acceptance criterion it satisfies, gives a rollback, and gives one concrete stop condition.
 
 **Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision`. Write the full path in a command unless the task sets `PHASE` in the same block.
@@ -50,7 +52,9 @@ Every task below names one file, quotes the anchor text it edits or reads, gives
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup and measurement
 
-### T001 Record the phase start SHA (AC-006)
+### T001 [x] Record the phase start SHA (AC-006)
+
+Done 2026-10-25: `scratch/phase-start-sha.txt` holds `1c317e13c5f54fae965125925b5fb1eea534449e`. The check printed `1`, `1`, `switch-in-sha` (switch commit `9480d99e6d`), `baseline-ok`, `1`, `1` and `hooks-merged`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:149`, the line `| REQ-006 | **R26.** The group assignment follows the tiers of the push-versus-pull-request table at `.github/workflows/README.md:60-75`: FRESHNESS for the guards row at `:66`, `naming-standard-guard.yml` at `:67`, `gate-inputs.yml` at `:68` and `changed-packet-validation.yml` at `:70`; TESTS for the path-filtered row at `:69`; REVIEW for the review-time row at `:71`; REPORTS for `strict-pass-freshness-report.yml` and `trigger-index-rebuild.yml`; MESSAGES for `message-contract.yml`. The assignment is recorded in `scratch/switch-groups.md` with a workflow count and a job count per group |`.
 
@@ -80,7 +84,9 @@ Stop and escalate if: `switch-in-sha` is missing, or any of `baseline-ok`, `hook
 
 ---
 
-### T002 [B] Record the post-007 job inventory (AC-001, AC-004)
+### T002 [x] Record the post-007 job inventory (AC-001, AC-004)
+
+Done 2026-10-25: the parse printed `jobs 13`, then `13` and `1`. Finding: `command-tree-parity.yml`'s two jobs read `SKILLED_CI_TESTS` and its push trigger is path-filtered; the other eight jobs of the plan's set read `SKILLED_CI_FRESHNESS`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt`, its single line, written by T001.
 
@@ -119,7 +125,9 @@ Stop and escalate if: the parse prints anything other than `jobs 13`, or a membe
 
 ---
 
-### T003 Write the before table (AC-001)
+### T003 [x] Write the before table (AC-001)
+
+Done 2026-10-25: `26`; `1`; `2`; `1`; `data rows 22`; `job seconds 1065`. A bullet section quotes the 002 rows for the nine (1,145) and the eight (993) without adding a table.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:56`, the line `- **advisory-checks.yml**: Advisory — test suites and doc-model references 60s`.
 
@@ -194,7 +202,9 @@ Stop and escalate if: the table-line count is not `26`, or `job seconds` is not 
 
 ---
 
-### T004 Take the post-007 run list (AC-002)
+### T004 [x] Take the post-007 run list (AC-002)
+
+Done 2026-10-25: `gh` exited 0; `json-ok`; `1000`; `2026-10-24T14:27:40Z` and `2026-10-25T20:19:19Z`, 29.86 h apart. Deviation: taken about 19 h after `9480d99e6d`, the last edit to the nine, not 24 h (`scratch/snapshot-window.md`).
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/runs-after.json` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:4`, the line `Recent window: 1000 runs over 23.5 h (2026-10-22T07:07:25Z to 2026-10-23T06:35:03Z).`
 
@@ -218,7 +228,9 @@ Stop and escalate if: `gh` exits non-zero, the count is below `900`, or the two 
 
 ---
 
-### T005 Take the per-workflow run index (AC-002)
+### T005 [x] Take the per-workflow run index (AC-002)
+
+Done 2026-10-25: `9` directories, each index with `40` runs.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/index.json` (nine new files). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md`, its `tree: 9 workflows, 13 jobs` line written by T002.
 
@@ -244,7 +256,9 @@ Stop and escalate if: any directory holds fewer than `20` runs. Record that work
 
 ---
 
-### T006 Take the job-level samples (AC-002)
+### T006 [x] Take the job-level samples (AC-002)
+
+Done 2026-10-25: `360` files and `jobs-key-ok`. The loop ran eight `gh run view` calls at a time with `xargs -P 8`. Run 40221346293 (cancelled) has an empty `jobs` array and is excluded and counted.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/<run-id>.json` (new files). Anchor (read): the `index.json` each file is fetched from, written by T005.
 
@@ -271,7 +285,9 @@ Stop and escalate if: `jq -e '.jobs'` fails on any file, or the count differs fr
 
 ---
 
-### T007 Record the snapshot window (AC-002)
+### T007 [x] Record the snapshot window (AC-002)
+
+Done 2026-10-25: `json-ok`; `9`; `29.86`; nine lines at `40` runs with hours from `19.1` to `51.18`; `9`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/window.json` and `scratch/snapshot-window.md` (two new files). Anchor (read): `scratch/runs-after.json`, the `createdAt` values of its first and last entries.
 
@@ -309,7 +325,9 @@ Stop and escalate if: `perWorkflow` does not hold exactly the nine file names, o
 
 ---
 
-### T008 Write the cost script (AC-003)
+### T008 [x] Write the cost script (AC-003)
+
+Done 2026-10-25: `syntax-ok`; `3`; `1`. Beyond the listed steps the script skips the `Post ` checkout step when it locates checkout, adds `bounds.freshnessSwitched` (the seven that read `SKILLED_CI_FRESHNESS`) and a rate-aware saving, and prints sample counts and a run id per job.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:5`, the line `Per-workflow medians come from the 40 latest runs (wall) and the 5 latest completed runs (jobs). Billed minutes = sum over non-skipped jobs of ceil(job seconds / 60), the GitHub rounding rule. Estimated total: 3812 billed min/day.`
 
@@ -342,7 +360,9 @@ Stop and escalate if: `node --check` fails twice on the same line, or the script
 
 ---
 
-### T009 Run the cost script (AC-003)
+### T009 [x] Run the cost script (AC-003)
+
+Done 2026-10-25: `exit=0`; `9`; `13`; `7`; `26`.
 
 File: `scratch/consolidation-cost.json` and `scratch/consolidation-cost.md` (two new files). Anchor (read): `scratch/window.json`, written by T007.
 
@@ -367,7 +387,9 @@ Stop and escalate if: the exit is not `0`, a count is not `9` or `13`, or the ta
 
 ---
 
-### T010 Verify the cost table reproduces (AC-003)
+### T010 [x] Verify the cost table reproduces (AC-003)
+
+Done 2026-10-25: `check: ok`, `exit=0`; `1`.
 
 File: `scratch/consolidation-cost.json` (unchanged). Anchor (read): the `check: ok` string the script prints, written by T008.
 
@@ -393,7 +415,9 @@ Stop and escalate if: `--check` exits `1` twice with the same difference, becaus
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Decision and the conditional merge
 
-### T011 Write the decision record (AC-004)
+### T011 [x] Write the decision record (AC-004)
+
+Done 2026-10-25, written with `D8: pending`: `6`; `1` for the pending line; `5`; `3`; `2`; `1`; `1`; `2`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` (new file). Anchor (read): `scratch/consolidation-cost.json`, the `bounds` object written by T009.
 
@@ -437,7 +461,9 @@ Stop and escalate if: the heading count is not `6`, or a number in `Measurements
 
 ---
 
-### T012 DECISION D8 (operator yes required) - merge the always-run FRESHNESS workflows or leave them separate (AC-005)
+### T012 [x] DECISION D8 (operator yes required) - merge the always-run FRESHNESS workflows or leave them separate (AC-005)
+
+Done 2026-10-25: `scratch/d8-answer.md` holds `D8=no`. The check printed `1`, then `11` for `wc -l`, not `1`, because the file also carries the date, the operator's verbatim delegation, the note that this is the session's judgment pending the operator's verification, and the numbers behind it. Every check that reads the answer matches `^D8=`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` (new file). Anchor: none; the file does not exist yet.
 
@@ -463,7 +489,9 @@ Stop and escalate if: no answer arrives, or the answer is neither `no` nor `yes`
 
 ---
 
-### T013 Record D8's answer in the decision record (AC-004, AC-005)
+### T013 [x] Record D8's answer in the decision record (AC-004, AC-005)
+
+Done 2026-10-25: `0`; `1`; `answer-matches`. One sentence naming the answer file was added below the line.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md`. Anchor: `scratch/consolidation-decision.md`, the line `D8: pending`, written by T011.
 
@@ -486,7 +514,9 @@ Stop and escalate if: `D8: pending` is not on the file, or the two answers diffe
 
 ---
 
-### T014 Record the no-merge proof (AC-006)
+### T014 [x] Record the no-merge proof (AC-006)
+
+Done 2026-10-25: both commands printed nothing and exited 0; `1`; `1`. Rerun at `HEAD` `7041b05478`, four commits past the start SHA, the diff still printed nothing.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/no-merge.md` (new file). Runs only on `D8=no`; on `D8=yes` this task is cancelled and T015 to T020 run instead. Anchor (read): `scratch/phase-start-sha.txt`, the SHA written by T001.
 
@@ -510,7 +540,9 @@ Stop and escalate if: either command prints a path, because a workflow changed o
 
 ---
 
-### T015 Create the merged workflow (AC-007)
+### T015 [x] Superseded by D8 = no: Create the merged workflow (AC-007)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/always-run-guards.yml` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/changed-packet-validation.yml:17-19`, the lines `      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1`, `        with:` and `          fetch-depth: 0`.
 
@@ -575,7 +607,9 @@ Stop and escalate if: the file parses with more than one job, the guarded-step c
 
 ---
 
-### T016 Delete the eight member workflows (AC-007)
+### T016 [x] Superseded by D8 = no: Delete the eight member workflows (AC-007)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: the eight files named below (deleted). Runs only on `D8=yes`. Anchor: `.github/workflows/advisory-checks.yml:1`, the line `name: Advisory Checks`, and the first line of each of the other seven: `name: Changed Packet Validation` (`changed-packet-validation.yml:1`), `name: Command Tree Parity` (`command-tree-parity.yml:1`), `name: Dispatch Enforcement Guard` (`dispatch-enforcement-guard.yml:1`), `name: Gate Inputs` (`gate-inputs.yml:1`), `name: Playbook Operator Contract` (`playbook-operator-contract.yml:1`), `name: Rule Canary Sync` (`rule-canary-sync.yml:1`), `name: sk-doc Script Tests` (`sk-doc-script-tests.yml:1`).
 
@@ -599,7 +633,9 @@ Stop and escalate if: any of the eight is still present, or the surviving file c
 
 ---
 
-### T017 Update the README contents table (AC-009)
+### T017 [x] Superseded by D8 = no: Update the README contents table (AC-009)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor: `.github/workflows/README.md:26`, the line `| `advisory-checks.yml` | Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`). Reports without gating. |`.
 
@@ -637,7 +673,9 @@ Stop and escalate if: the anchor line is not on the file, or a member's first ce
 
 ---
 
-### T018 Update the README push/PR table (AC-009)
+### T018 [x] Superseded by D8 = no: Update the README push/PR table (AC-009)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor: `.github/workflows/README.md:66`, the line `| `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |`.
 
@@ -660,7 +698,9 @@ Stop and escalate if: the line-66 anchor is not on the file, or `message-contrac
 
 ---
 
-### T019 Update the README switch-group list (AC-009)
+### T019 [x] Superseded by D8 = no: Update the README switch-group list (AC-009)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:150`, the line `| REQ-007 | **R26.** `.github/workflows/README.md` gains an `### On/off switches` section that names `SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`, states that `off` is the only disable token, that an unset variable runs the job, that `dependabot-auto-merge.yml` has no switch, and that `SKILLED_CI_MESSAGES` must stay unset while the ruleset requires that context |`. The row this task edits is the FRESHNESS row inside the `### On/off switches` section that line requires; its exact text is phase 007's, so read it and keep every other cell.
 
@@ -682,7 +722,9 @@ Stop and escalate if: `### On/off switches` is absent, or the `always-run-guards
 
 ---
 
-### T020 Prove the merged job's signal (AC-007)
+### T020 [x] Superseded by D8 = no: Prove the merged job's signal (AC-007)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/gate-inputs.yml:19`, the line `      - name: Check the inputs of every hook, workflow and dependabot entry`, which T015 copies into `.github/workflows/always-run-guards.yml`.
 
@@ -762,7 +804,9 @@ Stop and escalate if: the commit stat does not name the merged file, the probe, 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification and close
 
-### T021 Run the gates and record the phase result (AC-008)
+### T021 [x] Run the gates and record the phase result (AC-008)
+
+Done 2026-10-25: `check: ok` and `cost=0`; `RESULT: PASSED` and `gate=0`; `parse=0`; `1` for the `## Gates` heading. The strict validation result is in AC-008 and `implementation-summary.md`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-result.md`. Anchor: the `## Cost check` heading written by T010.
 
@@ -787,7 +831,9 @@ Stop and escalate if: any command exits non-zero twice, or the validator reports
 
 ---
 
-### T022 Commit the decision record (AC-009)
+### T022 [x] Commit the decision record (AC-009)
+
+Done 2026-10-25 in the commit that carries this line, together with T025. The decision record and the closure evidence were ready at the same time, so one commit carries both, under T025's message.
 
 File: the phase's `scratch/` artifacts and this packet's documents (committed). Anchor (read): `scratch/consolidation-decision.md`, its `D8: <answer>` line written by T013.
 
@@ -819,7 +865,9 @@ Stop and escalate if: the message validator fails, the id scan finds a match, or
 
 ---
 
-### T023 Commit the merge (AC-009)
+### T023 [x] Superseded by D8 = no: Commit the merge (AC-009)
+
+Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, pending the operator's verification). Nothing in this task was built and its check was not run.
 
 File: `.github/workflows/always-run-guards.yml`, the eight deletions and `.github/workflows/README.md` (committed). Runs only on `D8=yes`. Anchor (read): `.github/workflows/always-run-guards.yml`, its `name: Always-Run Freshness Guards` line written by T015.
 
@@ -851,7 +899,9 @@ Stop and escalate if: the stat names a path other than the merged file, the eigh
 
 ---
 
-### T024 Close the acceptance criteria rows (AC-001 to AC-009)
+### T024 [x] Close the acceptance criteria rows (AC-001 to AC-009)
+
+Done 2026-10-25: `9`; `8`; `0`; AC-007 is `Superseded` with `ADR-001` in its Waiver cell.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md`. Anchor: each row's Status cell, currently `Unmet`.
 
@@ -875,7 +925,9 @@ Stop and escalate if: a row would be `Met` without a command output in its Verif
 
 ---
 
-### T025 Commit the closure evidence (AC-009)
+### T025 [x] Commit the closure evidence (AC-009)
+
+Done 2026-10-25 in the commit that carries this line. The message validator printed `msg=0` and the id scan over the phase's non-Markdown files found no match.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md` (committed), with this packet's other closure files. Anchor (read): `acceptance-criteria.md:71`, the Status cell `Unmet` on the AC-009 row, set to `Met` or left `Unmet` by T024.
 
@@ -912,9 +964,9 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, or cancelled by D8's answer
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`, or cancelled by D8's answer
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -954,9 +1006,9 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-008, each naming R27, D8 or a gate
-- [ ] CHK-002 [P0] Technical approach defined in plan.md - the before and after measurement, the cost script's arithmetic, the FRESHNESS merge boundary and the conditional merge shape
-- [ ] CHK-003 [P1] Dependencies identified and available - the 002 baseline, phases 003 to 007, D8 (T012), `gh` with `repo` and `actions`, and a test branch
+- [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-008, each naming R27, D8 or a gate [EVIDENCE: `spec.md` §4 carries REQ-001 to REQ-008, each naming R27, D8 or a gate; read 2026-10-25]
+- [x] CHK-002 [P0] Technical approach defined in plan.md - the before and after measurement, the cost script's arithmetic, the FRESHNESS merge boundary and the conditional merge shape [EVIDENCE: `plan.md` §3 and §4 carry the before and after measurement, the arithmetic, the FRESHNESS boundary and the merge shape; read 2026-10-25]
+- [x] CHK-003 [P1] Dependencies identified and available - the 002 baseline, phases 003 to 007, D8 (T012), `gh` with `repo` and `actions`, and a test branch [EVIDENCE: T001 printed `baseline-ok`, `switch-in-sha` and `hooks-merged`; `gh auth status` shows scopes `repo` and `workflow`, and every `gh run list` and `gh run view` call exited 0; D8 recorded in `scratch/d8-answer.md`; the test branch was not needed under D8 = no]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -964,10 +1016,10 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks - `node --check scratch/consolidation-cost.mjs`, `bash .github/scripts/check-gate-inputs.sh` and the YAML parse (T021)
-- [ ] CHK-011 [P0] No console errors or warnings - the cost script exits 0, the gate prints `failures=0`, and the parse prints nothing
-- [ ] CHK-012 [P1] Error handling implemented - `--check` exits 1 on a mismatch, a missing sample is marked `thin` or `no-sample`, and a job with no checkout is marked `no-checkout`
-- [ ] CHK-013 [P1] Code follows project patterns - the merged workflow copies phase 003's concurrency block and phase 007's switch and timeout shapes, and no comment carries a packet id (T023)
+- [x] CHK-010 [P0] Code passes lint/format checks - `node --check scratch/consolidation-cost.mjs`, `bash .github/scripts/check-gate-inputs.sh` and the YAML parse (T021) [EVIDENCE: `node --check scratch/consolidation-cost.mjs` printed `syntax-ok`; `check-gate-inputs.sh` printed `RESULT: PASSED`; the YAML parse exited 0 with no output (T021)]
+- [x] CHK-011 [P0] No console errors or warnings - the cost script exits 0, the gate prints `failures=0`, and the parse prints nothing [EVIDENCE: the cost script exited 0; the gate printed `failures=0`; the parse printed nothing (`scratch/phase-result.md`, Gates)]
+- [x] CHK-012 [P1] Error handling implemented - `--check` exits 1 on a mismatch, a missing sample is marked `thin` or `no-sample`, and a job with no checkout is marked `no-checkout` [EVIDENCE: a tampered stored number made `--check` print `check: mismatch` and exit 1; a missing `jobs` array or a short `window.json` throws; `thin`, `no-sample`, `failed-only` and `no-checkout` flags are set in the script, and `no-sample` and `no-checkout` were observed on the hostile copy (`scratch/phase-result.md`, Hostile variants)]
+- [x] CHK-013 [P1] Code follows project patterns - the merged workflow copies phase 003's concurrency block and phase 007's switch and timeout shapes, and no comment carries a packet id (T023) [EVIDENCE: under D8 = no no workflow was written, so the concurrency, switch and timeout shapes were not copied; the workflow diff and status are empty (`scratch/no-merge.md`), so no comment carrying a packet id entered a workflow]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -975,10 +1027,10 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-009
-- [ ] CHK-021 [P0] Manual testing complete - the before and after measurements (T003, T004 to T007), the cost check (T009, T010) and, under D8 = yes, the merge probe (T020)
-- [ ] CHK-022 [P1] Edge cases tested - a thin sample, a job with no checkout, a skipped run and a run with no jobs are each counted or marked in the cost table
-- [ ] CHK-023 [P1] Error scenarios validated - a missing 002 baseline blocks T001, and a forced failure shows the later merged steps still ran (T020)
+- [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-009 [EVIDENCE: `acceptance-criteria.md`: eight rows `Met`, AC-007 `Superseded` by ADR-001, `| Unmet |` count `0`]
+- [x] CHK-021 [P0] Manual testing complete - the before and after measurements (T003, T004 to T007), the cost check (T009, T010) and, under D8 = yes, the merge probe (T020) [EVIDENCE: T003 `job seconds 1065`; T004 to T007 snapshot of 1000 runs and 360 job files; T009 `exit=0` and T010 `check: ok`; T020 superseded by D8 = no]
+- [x] CHK-022 [P1] Edge cases tested - a thin sample, a job with no checkout, a skipped run and a run with no jobs are each counted or marked in the cost table [EVIDENCE: on the hostile copy a skipped job and a job with no timestamps were excluded and counted, a run with no jobs was counted in `emptyRuns`, and a job with its checkout steps removed was marked `no-checkout`; no thin sample occurred in the real data (every job has 39 or 40 samples)]
+- [x] CHK-023 [P1] Error scenarios validated - a missing 002 baseline blocks T001, and a forced failure shows the later merged steps still ran (T020) [EVIDENCE: T001 checks the 002 baseline with `test -f` and stops without it (it printed `baseline-ok`); the forced-failure probe (T020) is superseded by D8 = no]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -986,13 +1038,13 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - `matrix/evidence` for the decision record and the measurement, `instance-only` for the conditional merge
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed - the nine workflow files and their 13 jobs are parsed in T002, and a Python parse of each file's `on.push` block proves no `paths:` and no `paths-ignore:`
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed - `.github/workflows/README.md:64-75`, phase 007's `scratch/switch-groups.md` and phase 009's report are each named in plan.md, Affected Surfaces
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the matrix in plan.md covers a no-checkout job, a zero-sample job, a skipped run, a renamed workflow, a step that must not run after a failure, and message-contract in the candidate set
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - D8 answer (2) x candidate set (3) x measurement source (3), with six required rows, in plan.md
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the forced-failure branch and the no-checkout job are the hostile variants (T020, T008)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every number names a run id, and the phase start SHA is recorded in `scratch/phase-start-sha.txt` (T001)
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - `matrix/evidence` for the decision record and the measurement, `instance-only` for the conditional merge [EVIDENCE: `matrix/evidence` for the measurement and the record (`scratch/consolidation-decision.md`); the conditional merge, `instance-only`, was not built under D8 = no]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed - the nine workflow files and their 13 jobs are parsed in T002, and a Python parse of each file's `on.push` block proves no `paths:` and no `paths-ignore:` [EVIDENCE: T002 parsed the nine files into 13 jobs (`scratch/pre-merge-inventory.md`); the `on.push` parse showed no `paths:` or `paths-ignore:` on eight and a push path filter on `command-tree-parity.yml` (`scratch/phase-result.md`, Setup checks)]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - `.github/workflows/README.md:64-75`, phase 007's `scratch/switch-groups.md` and phase 009's report are each named in plan.md, Affected Surfaces [EVIDENCE: `plan.md` Affected Surfaces names `.github/workflows/README.md:64-75`, phase 007's `scratch/switch-groups.md` and phase 009's report; none changes under D8 = no]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the matrix in plan.md covers a no-checkout job, a zero-sample job, a skipped run, a renamed workflow, a step that must not run after a failure, and message-contract in the candidate set [EVIDENCE: `plan.md` Affected Surfaces lists the six adversarial cases; the no-checkout job, the zero-sample job, the skipped job and the empty run were exercised on the hostile copy; the message-contract case is the `freshness` bound, which excludes it]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - D8 answer (2) x candidate set (3) x measurement source (3), with six required rows, in plan.md [EVIDENCE: `plan.md` Affected Surfaces lists D8 answer (2) x candidate set (3) x measurement source (3) and six required rows; the decision used no merge, the eight plus the seven, and the post-change snapshot]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the forced-failure branch and the no-checkout job are the hostile variants (T020, T008) [EVIDENCE: the hostile copy changed the saved JSON the script reads and every variant failed or flagged (`scratch/phase-result.md`, Hostile variants); the forced-failure branch is superseded by D8 = no]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every number names a run id, and the phase start SHA is recorded in `scratch/phase-start-sha.txt` (T001) [EVIDENCE: `scratch/phase-start-sha.txt` holds `1c317e13c5f54fae965125925b5fb1eea534449e`; every job row in `scratch/consolidation-cost.md` names a run id]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1000,9 +1052,9 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets - every `gh` call is read-only and no token, key or PR body text appears in `scratch/`
-- [ ] CHK-031 [P0] Input validation implemented - the cost script validates every JSON file before it reads it, and a missing field is reported, not defaulted
-- [ ] CHK-032 [P1] Auth/authz working correctly - the phase writes no repository variable and adds no permission; a merge keeps `permissions: contents: read`
+- [x] CHK-030 [P0] No hardcoded secrets - every `gh` call is read-only and no token, key or PR body text appears in `scratch/` [EVIDENCE: every `gh` call was `gh run list`, `gh run view` or a read-only `gh api` GET; `rg -l 'gho_|ghp_|github_pat_' scratch/` matched nothing (run 2026-10-25)]
+- [x] CHK-031 [P0] Input validation implemented - the cost script validates every JSON file before it reads it, and a missing field is reported, not defaulted [EVIDENCE: `consolidation-cost.mjs` parses every JSON file inside a try that names the file, requires `window.json` to name exactly the nine workflows with positive hours, and requires a `jobs` array and a job name in every run file]
+- [x] CHK-032 [P1] Auth/authz working correctly - the phase writes no repository variable and adds no permission; a merge keeps `permissions: contents: read` [EVIDENCE: no repository variable was written and no permission added; the workflow diff and status are empty (`scratch/no-merge.md`)]
 <!-- /ANCHOR:security -->
 
 ---
@@ -1010,9 +1062,9 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-008, tasks.md T001 to T025, acceptance-criteria.md AC-001 to AC-009
-- [ ] CHK-041 [P1] Code comments adequate - the decision record explains why the bound shrank and why message-contract is excluded; the merged workflow's comments carry the durable reason, not an id
-- [ ] CHK-042 [P2] README updated (if applicable) - only under D8 = yes: `.github/workflows/README.md` contents, push/PR table and switch list (T017 to T019)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-008, tasks.md T001 to T025, acceptance-criteria.md AC-001 to AC-009 [EVIDENCE: `spec.md` REQ-001 to REQ-008, `tasks.md` T001 to T025 and `acceptance-criteria.md` AC-001 to AC-009 read `Complete` with matching evidence; `spec.md` Status `Complete`]
+- [x] CHK-041 [P1] Code comments adequate - the decision record explains why the bound shrank and why message-contract is excluded; the merged workflow's comments carry the durable reason, not an id [EVIDENCE: `scratch/consolidation-decision.md` Context and Candidates explain why the bound shrank and why message-contract is excluded; no workflow comment was written]
+- [x] CHK-042 [P2] README updated (if applicable) - only under D8 = yes: `.github/workflows/README.md` contents, push/PR table and switch list (T017 to T019) [EVIDENCE: not applicable under D8 = no: `git diff --stat 1c317e13c5..HEAD -- .github/workflows/README.md` printed nothing]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1020,8 +1072,8 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only - the inventory, baseline, snapshot, cost artifacts, decision record and probe all live in `scratch/`
-- [ ] CHK-051 [P1] scratch/ cleaned before completion - the artifacts are kept on purpose: they are the before and after numbers a later packet measures against, and the decision record is the phase's deliverable
+- [x] CHK-050 [P1] Temp files in scratch/ only - the inventory, baseline, snapshot, cost artifacts, decision record and probe all live in `scratch/` [EVIDENCE: every artifact the phase created is under `scratch/`; `git status --porcelain` lists no other new path for this phase]
+- [x] CHK-051 [P1] scratch/ cleaned before completion - the artifacts are kept on purpose: they are the before and after numbers a later packet measures against, and the decision record is the phase's deliverable [EVIDENCE: the artifacts are kept on purpose as the before and after numbers; the hostile-test copy in the session scratchpad was removed]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1031,11 +1083,11 @@ Stop and escalate if: the message validator fails, the id scan finds a match, th
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---

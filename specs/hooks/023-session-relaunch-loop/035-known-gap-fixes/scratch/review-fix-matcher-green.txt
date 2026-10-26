@@ -1,0 +1,32 @@
+regex: /(?:^|[;&|(`!]|\b(?:if|elif|then|do|else|while|until|command|exec)\b)\s*(?:[A-Za-z_][A-Za-z0-9_]*=(?:"[^"]*"|'[^']*'|[^\s"';&|])*\s+)*git\s/u
+CAUGHT  (want caught)  if git rev-parse --show-toplevel >/dev/null; then
+CAUGHT  (want caught)  elif git diff --quiet; then
+CAUGHT  (want caught)  while git status --porcelain | read -r x; do
+CAUGHT  (want caught)  until git fetch; do
+CAUGHT  (want caught)  GIT_DIR=x git status
+CAUGHT  (want caught)  if GIT_DIR="a b" GIT_WORK_TREE=y git log -1; then
+CAUGHT  (want caught)  root=$(git rev-parse --show-toplevel)
+ok  (want not flagged)  if git -c core.fsmonitor=false rev-parse --show-toplevel >/dev/null; then
+ok  (want not flagged)  GIT_DIR=x git -c core.fsmonitor=false status
+ok  (want not flagged)  # if git status in a comment
+ok  (want not flagged)  echo "diff git output"
+ok  (want not flagged)  gitignore_check=1
+ok  (want not flagged)  notif git status
+wrong=0
+probe exit=0
+--- regex timing on long lines ---
+10001 1 ms
+20002 0 ms
+12004 0 ms
+20003 0 ms
+--- vitest ---
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  21:10:54
+   Duration  108ms (transform 15ms, setup 13ms, import 17ms, tests 7ms, environment 0ms)
+
+vitest exit=0

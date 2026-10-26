@@ -11,6 +11,7 @@ const os = require('node:os');
 const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const hopHistory = require('../lib/hop-history.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SESSION_ID = 'session-history-0001';
@@ -34,7 +35,7 @@ function createSandbox(t) {
   const flagsFile = path.join(root, 'hook-flags.env');
   fs.writeFileSync(flagsFile, '');
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: root,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,

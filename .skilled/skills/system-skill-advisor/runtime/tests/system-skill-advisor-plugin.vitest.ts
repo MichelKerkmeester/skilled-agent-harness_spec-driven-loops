@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { EventEmitter } from 'node:events';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -714,6 +714,38 @@ describe('system-skill-advisor OpenCode plugin', () => {
       const request = JSON.parse(child.stdin.end.mock.calls[0][0] as string) as { options: { surfaceHint?: string } };
       expect(request.options.surfaceHint).toBe(expected);
     } finally {
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  // An outside skill in the sk-code family declares its surface in graph-metadata.json,
+  // and it sits in the hub's skills folder as a symlink, the shape an operator's private
+  // local skill takes. Its markers lead the hub's own SKILLED fallback when both match.
+  it.each([
+    ['a workspace holding the outside surface marker', ['src/2_javascript/'], 'marker', 'FIXTURE'],
+    ['a hub folder that also holds the outside surface marker', ['sk-code-skilled/'], 'hub', 'FIXTURE'],
+    ['the symlinked outside skill folder itself', ['src/2_javascript/'], 'link', undefined],
+  ])('passes the declared surface hint for %s', async (_name, pathMarkers, where, expected) => {
+    const outside = mkdtempSync(join(tmpdir(), 'advisor-outside-surface-'));
+    const link = join(HUB_SKILLS_DIR, `local-surface-fixture-${process.pid}-${where}`);
+    const workspace = mkdtempSync(join(tmpdir(), 'advisor-surface-marker-'));
+    try {
+      writeFileSync(join(outside, 'graph-metadata.json'), JSON.stringify({
+        skill_id: `local-surface-fixture-${where}`,
+        family: 'sk-code',
+        surface_detection: { label: 'Fixture', role: 'specific', pathMarkers },
+      }));
+      symlinkSync(outside, link);
+      mkdirSync(join(workspace, 'src', '2_javascript'), { recursive: true });
+      const directory = where === 'marker' ? workspace : where === 'hub' ? join(HUB_SKILLS_DIR, 'sk-code') : link;
+      const hooks = await makePlugin({ cacheTTLMs: 5000 }, directory);
+      await runPrompt(hooks, { sessionID: `s-surface-${where}`, prompt: 'implement feature Y' });
+      const child = mockedBridge.spawn.mock.results[0]?.value as { stdin: { end: ReturnType<typeof vi.fn> } };
+      const request = JSON.parse(child.stdin.end.mock.calls[0][0] as string) as { options: { surfaceHint?: string } };
+      expect(request.options.surfaceHint).toBe(expected);
+    } finally {
+      rmSync(link, { force: true });
+      rmSync(outside, { recursive: true, force: true });
       rmSync(workspace, { recursive: true, force: true });
     }
   });

@@ -175,7 +175,10 @@ test('the toggle workflow allows the six documented names and refuses the messag
   for (const name of SWITCH_VARIABLES) assert.ok(TOGGLE_YAML.includes(name), name);
   assert.ok(TOGGLE_YAML.includes('REFUSE: <name> is not a documented switch'));
   assert.ok(TOGGLE_YAML.includes(`REFUSE: ${PROHIBITION} while the ruleset requires that context`));
-  assert.ok(TOGGLE_YAML.includes('REFUSE: SKILLED_CI must stay unset while the ruleset requires that context'));
+  const masterRefusal = 'REFUSE: SKILLED_CI must stay unset because it also skips message-contract.yml, the only check the ruleset requires, and a skipped job reports Success';
+  assert.ok(TOGGLE_YAML.includes(masterRefusal));
+  // The operator reads the refusal from the presentation contract, so it must carry the same reason.
+  assert.ok(PRESENTATION.includes(masterRefusal));
   assert.ok(TOGGLE_YAML.includes('gh variable set <name> --body off'));
   assert.ok(TOGGLE_YAML.includes('gh variable delete <name>'));
 });

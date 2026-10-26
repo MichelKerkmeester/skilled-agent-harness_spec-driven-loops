@@ -1,0 +1,4 @@
+node --check hook-flags.cjs exit 0
+node --check hook-flags.mjs exit 0
+sh -n hook-flags.sh exit 0
+node --check session-end-arm.mjs exit 0

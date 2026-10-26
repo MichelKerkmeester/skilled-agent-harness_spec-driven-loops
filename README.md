@@ -20,7 +20,6 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
 - **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
-- **Endless Sessions** - near the context limit a session hands its work to a fresh session in the same terminal, with no copy-paste and no restart
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
 - **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
@@ -62,15 +61,6 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 - A live skill graph tracks what each skill depends on, enhances and conflicts with
 - Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live
 
-### ♾️ Endless Sessions
-
-A long task keeps going when the context window fills. The session writes a handoff note and ends, then a fresh session starts in the same terminal and picks the note up. No copy-paste, no restart.
-
-- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
-- When a spec packet is bound, the old session saves its continuity first and the new session resumes that packet
-- One line in your shell profile turns it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
-- Without that line no session is nudged, so nothing stalls and auto-compaction stays the fallback
-
 ### 🤖 Agent Library
 
 Eleven specialized agents own focused roles, and seven CLI bridges let a runtime dispatch other AI CLIs as sub-tools.
@@ -84,7 +74,7 @@ Eleven specialized agents own focused roles, and seven CLI bridges let a runtime
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects a pointer to it plus its completion criteria on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
-- **In-Session Handover:** hooks on five runtimes watch the context window and hand the work to a fresh session in the same terminal near its limit, see [In-Session Handover](#in-session-handover)
+- **In-Session Handover:** off by default. Once turned on, a session near its context limit hands its work to a fresh session in the same terminal, see [In-Session Handover](#in-session-handover)
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -218,25 +208,9 @@ Only `sk-code` carries stack-specific patterns, so start there when you fork. Th
 
 Every setting has a working default. To change one, see [Environment Settings](#environment-settings), or run `/doctor:env`, which lists them all and saves a change after your yes.
 
-### Turn On Endless Sessions
-
-Add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path, then open a new terminal:
-
-```bash
-source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
-```
-
-Interactive `claude`, `codex`, `pi`, `opencode`, `hermes`, `cursor-agent` and `devin` launches now run under the loop. At 80% of the context window the session writes a handoff note and ends, and a fresh session in the same terminal picks it up. Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff`, which Cursor names `/speckit-handoff`.
-
-- **Hermes** also needs `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml`
-- **Another repository** that links this checkout's `.skilled` hops too when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`
-- **To switch it off**, set `SYSTEM_SESSION_RELAUNCH_DISABLED=1` or leave the line out. `/doctor:env` shows and saves switches like this one, and auto-compaction stays the fallback
-
-`/doctor:setup` shows the last hop and any note nobody claimed, so you can confirm it works without watching the terminal. The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
-
 ### Keep It Healthy
 
-The doctor commands check and repair one area each, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/` and `/doctor:skill-advisor` rebuilds or tunes skill routing. The [Doctor](#doctor) commands section describes each one.
+The doctor commands check and repair one area each. `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
 
 &nbsp;
 
@@ -793,7 +767,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- One native surface. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills
+- Two surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
 - Reviews before you ship (`code-review` mode): security, correctness and design checklists always run first, then the surface evidence above, and findings come ranked P0, P1 or P2
 
@@ -1000,22 +974,27 @@ OpenCode, Pi and Devin inject the slice on every turn, and Cursor injects it at 
 &nbsp;
 #### In-Session Handover
 
-Keeps a long task going when the context window fills, without you closing the terminal or pasting anything into a new session.
+In-session handover ships off, and nothing about your sessions changes until you turn it on.
 
-Each runtime's hook reads how full its context window is. Near 80% it asks the session to write a handoff note, save its spec packet if one is bound and prepare a relaunch. When the session goes idle, a small watcher ends it. The `skilled-loop` wrapper then starts the same runtime in the same terminal with the same model, and the new session claims the note and carries on.
+When it is on, a session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Hermes hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`.
 
-- **Claude Code:** reads usage from the transcript after each tool call and prompt, and arms the relaunch at `Stop`
-- **Codex:** reads the rollout's latest `token_count` and arms at `Stop`. Approve the repository's hooks in `/hooks` once
-- **Pi:** reads usage at `message_end` and arms at `agent_end` through its extension
-- **OpenCode:** reads each message's token counts and arms at `session.idle` through its plugin, on OpenCode 2 (recommended) and OpenCode 1 (fallback)
-- **Hermes:** reads usage after each model call and arms at session end through the `repo-guards` plugin
-- **Cursor and Devin:** have no event the loop can trust, so they hand over when you run `/speckit:handoff`
-- **Sessions outside the loop:** one started before the shell line was added cannot relaunch. At 80% it writes the same note and runs `keep`, then carries on. After auto-compaction, Claude Code, Pi and OpenCode point the session back at the note, so decisions the summary dropped are not lost
-- **Safe by design:** only a session inside `skilled-loop` is asked to hop, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, the watcher only ever signals a process the loop started, a new turn on Pi or OpenCode cancels a pending hop, and sub-agents and runtimes started from inside a session never hand over the session that started them
-- **Hop history:** every hand-over, kept note, claim, completion and timeout is logged in `.skilled/skills/.state/session-relaunch/hop-history.log`. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` to read it, along with any note nobody claimed, and set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice on each hand-over
-- **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, and auto-compaction stays the fallback
+To turn it on for every runtime, set the flag in `.skilled/hooks/hook-flags.env`, which git ignores, or export it from your shell profile:
 
-[Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup, and the [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, the per-runtime adapters and troubleshooting.
+```bash
+echo 'SYSTEM_SESSION_RELAUNCH_ENABLED=1' >> .skilled/hooks/hook-flags.env
+```
+
+Then add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path and open a new terminal, so plain runtime launches start under the wrapper:
+
+```bash
+source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
+```
+
+- **Per runtime:** `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `HERMES`, `CURSOR` or `DEVIN`, overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off, so `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` hands over everywhere except Claude Code
+- **Off:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While it is off, `/speckit:handoff` refuses and the runtime's own auto-compaction handles a full context window
+- **Hermes** also needs `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml`
+
+The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
 
 &nbsp;
 #### OpenCode Plugins
@@ -1025,7 +1004,7 @@ Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds the
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
 - **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit and a screen for instructions hidden in fetched web pages
-- **Sessions:** the goal plugin, session cleanup, the endless-session relaunch and on-device image reads
+- **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and on-device image reads
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 
@@ -1047,7 +1026,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 Other entries in `.pi/extensions/`:
 
 - **`pi-fast-mode-w-subagent-support`** - fast mode with subagent support
-- **Guard bridges:** symlinked entries that run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the endless-session relaunch
+- **Guard bridges:** symlinked entries that run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch
 - **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`
 
 &nbsp;
@@ -1059,7 +1038,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 - **After a tool call, as advice on its result:** post-edit quality, the spec-folder notice, the git advisory, the MCP route advisory, on-device image reads and the web-page injection screen on `web_extract` results
 - **Each turn and at session start:** the skill advisor brief, the spec-folder gate, the session context, the named persona, the bound packet goal and the worktree, dist-freshness, git-hook and live-sync guards
 - **Before the final answer:** the completion-evidence nudge
-- **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. A `hermes` launch that the shell shim wraps gets the variable set for it, see [Turn On Endless Sessions](#turn-on-endless-sessions). See [`.hermes/SYNC.md`](.hermes/SYNC.md)
+- **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. A `hermes` launch that the shell shim wraps gets the variable set for it, see [In-Session Handover](#in-session-handover). See [`.hermes/SYNC.md`](.hermes/SYNC.md)
 
 &nbsp;
 #### Shared Hook Cores
@@ -1135,7 +1114,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 **`/speckit:handoff`** - hand the work to a fresh session now
 
 - Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note
-- The only trigger on Cursor and Devin. Claude Code, Codex, Pi, OpenCode and Hermes reach the same steps on their own near the context limit, see [Turn On Endless Sessions](#turn-on-endless-sessions)
+- The only trigger on Cursor and Devin. Claude Code, Codex, Pi, OpenCode and Hermes reach the same steps on their own near the context limit. It refuses while in-session handover is off, see [In-Session Handover](#in-session-handover)
 - Outside the wrapper it prints the command that continues the work in a new session
 
 **`/speckit:search`**
@@ -1257,7 +1236,7 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Ten commands check and repair the setup, one per area.
+Eleven commands check and repair the setup, one per area.
 
 **`/doctor:setup`** - read-only onboarding and health check
 
@@ -1285,6 +1264,12 @@ Ten commands check and repair the setup, one per area.
 **`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
 
 **`/doctor:sk-code [setup] [--prompt=<text>]`** - read-only sk-code setup battery: runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
+
+**`/doctor:ci [report|scaffold|toggle]`** - GitHub Actions workflows and their on/off switches
+
+- `report` (the default, read-only) lists every workflow with its switch state, triggers, path filters and drift flags
+- `scaffold` writes one new workflow under `.github/workflows/` from the CI surface's templates, after your yes. It refuses an existing file and a protected workflow name
+- `toggle` switches one of the six `SKILLED_CI*` repository variables off (it sets the variable to `off`) or back on (it deletes the variable), after your yes. It refuses to switch `SKILLED_CI` or `SKILLED_CI_MESSAGES` off while the [workflows README](.github/workflows/README.md#onoff-switches) says they must stay unset for the message-contract check
 
 **`/doctor:git <hooks|standards|setup>`** - your own settings for the shipped git hooks and sk-git rules, and a check of which ones are live
 
@@ -1471,10 +1456,11 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-`sk-code` ships one native surface. The Skilled surface holds the standards for this framework's own code, so keep it. Add a surface of your own when you want the hub to carry another stack.
+`sk-code` ships two surfaces. The Skilled surface holds the standards for this framework's own code, so keep it. The CI surface holds the GitHub Actions workflow standards. Add a surface of your own when you want the hub to carry another stack.
 
-- **Remove an example surface** by deleting its folder and its entries in the hub's registry, router and generated files
+- **Remove a surface you do not use** by following [Remove A Surface](.skilled/skills/sk-code/README.md#remove-a-surface) in the sk-code README
 - **Add your own surface** with `/create:skill-parent update --surfaces <name>`, which scaffolds and registers it ahead of the Skilled surface
+- **Keep a surface private** in a `local-<name>` skill beside the hub. The skill names `"family": "sk-code"` and declares a `surface_detection` block with `"role": "specific"` in its own `graph-metadata.json`. Git ignores `local-*` skills, so the surface stays out of the repository. Stack detection tries the hub's own specific surfaces first, then the surfaces that skills outside the hub declare, sorted by skill id, then SKILLED last as the fallback. See [Declaring an External Surface](.skilled/skills/sk-code/shared/references/stack-detection.md#declaring-an-external-surface)
 - **Check the result** with `/doctor:sk-code setup`, which runs every check read-only and names one repair command for each failure
 
 The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces at review time.
@@ -1522,15 +1508,16 @@ Git ignores all four, so your values stay on your machine. `/doctor:env list` sh
 &nbsp;
 ### Off Switches
 
-The AI hooks, the validators and the git hooks all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
+The AI hooks, the validators, the git hooks and the CI workflows all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
 
 ```bash
 cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 # then uncomment the switches you want on
 ```
 
-- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
+- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-relaunch hooks are the one exception to on-by-default: they stay off until you turn them on globally or per runtime, see [In-Session Handover](#in-session-handover)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
+- **CI workflows.** These switches are repository variables, not environment variables, so set them under Settings, Secrets and variables, Actions, Variables. Every workflow except `dependabot-auto-merge.yml` reads the master switch `SKILLED_CI` and one group variable (`SKILLED_CI_FRESHNESS`, `SKILLED_CI_TESTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_REPORTS` or `SKILLED_CI_MESSAGES`). Only `off`, in any letter case, skips a job. An unset variable runs it. An empty value, `0`, `false`, `no` or a typo runs it too. Leave `SKILLED_CI` and `SKILLED_CI_MESSAGES` unset while the ruleset requires the message-contract check. A switched-off job reports success, so a required check that is switched off stops blocking a merge. `/doctor:ci report` shows each state. The [workflows README](.github/workflows/README.md#onoff-switches) maps each variable to its workflows
 - **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
 - **Git hooks, for good.** `/doctor:git hooks` lists the optional gates and switches one off in git config as `speckit.hooks.<key>`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once
 - **Commit, PR and branch rules.** These have no bypass. `/doctor:git standards` changes a rule in the repository's own `.sk-git/` copy of the templates, and every gate follows the change
@@ -1602,11 +1589,7 @@ Gate 3 blocks file modifications until a spec folder answer is provided.
 
 **Q: What happens when a session runs out of context?**
 
-With the shell shim sourced, the session hands off before it runs out. It writes a handoff note, saves its spec packet if one is bound and ends, and a fresh session starts in the same terminal and picks up the remaining work.
-
-- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
-- Without the shim or a hand-started `skilled-loop`, the runtime's own auto-compaction takes over, as it always did
-- [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup
+By default the runtime's own auto-compaction takes over, as it always did. In-session handover, which ships off, can hand the work to a fresh session instead, see [In-Session Handover](#in-session-handover).
 
 &nbsp;
 
@@ -1666,7 +1649,7 @@ Everything is a file in your own repository.
 - **[→ AGENTS.md](AGENTS.md)** - agent routing, gate definitions, behavior rules
 - **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - validation, generated metadata and runtime hook adapters
-- **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - endless sessions: the handoff note, the `skilled-loop` wrapper and the shell shim
+- **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - in-session handover, off by default: the handoff note, the `skilled-loop` wrapper and the shell shim
 - **[→ Hooks README](.skilled/hooks/README.md)** - every runtime hook and plugin, which runtimes run each one and its off switch
 - **[→ Git Hooks README](.skilled/scripts/git-hooks/README.md)** - each git hook gate, what it blocks and how to bypass it
 - **[→ sk-code README](.skilled/skills/sk-code/README.md)** - the code skill and the step-by-step guide to adapting it to your stack

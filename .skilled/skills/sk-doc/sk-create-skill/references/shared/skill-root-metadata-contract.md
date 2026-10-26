@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill metadata drift gate"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Skill Root Metadata Contract
@@ -120,13 +120,14 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -
 
 Exit `0` when every root conforms, `1` on violations, `2` when the gate cannot run.
 
-The gate discovers roots from `SKILL.md` — the one marker that exists before any tooling has run. This ordering is the point. The freshness scanner it fronts (`ci-leaf-manifest-freshness.cjs`) discovers work by walking *committed* manifests, so a root that never committed one is invisible to it; a scanner that begins at outputs can never report a missing output. Starting from the authored marker turns an unadopted root into a finding instead of a silence.
+The gate discovers roots from `SKILL.md`, the one marker that exists before any tooling has run. This ordering is the point. The freshness scanner it fronts (`ci-leaf-manifest-freshness.cjs`) discovers work by walking *committed* manifests, so a root that never committed one is invisible to it. A scanner that begins at outputs can never report a missing output. Starting from the authored marker turns an unadopted root into a finding instead of a silence. A `local-*` directory is the one exception. It is a private skill that belongs to one checkout, so the gate never scans it. The derived-block regenerator and the derived-freshness gate skip it too. `regenerate-skill-derived.cjs --root` refuses one.
 
 Beyond presence and forbidden files, the gate enforces:
 
 - **One advisor identity per root.** A nested `graph-metadata.json` or `description.json` below the root is rejected. Identity is discriminated by content (`skill_id` / `family` / `edges`), so a same-named continuity file is correctly ignored as a neighbour rather than a rival.
 - **Generated freshness.** Every class-required generated file is regenerated and byte-compared, including when the committed file is absent.
 - **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
+- **Optional surface detection block.** `graph-metadata.json` may carry a `surface_detection` object. When the key is present, the value must be an object. It needs a non-blank `label` and a `role` of `specific`. It also needs at least one non-empty marker array among `pathMarkers`, `fileMarkers` and `contentMarkers`. Each marker array that is present must hold only non-blank strings. Every broken rule reports one `GRAPH_METADATA_INVALID_SURFACE_DETECTION` finding, since the surface detectors would otherwise skip the block without a word.
 
 ### Violation codes
 
@@ -141,6 +142,13 @@ Beyond presence and forbidden files, the gate enforces:
 | `STALE_GENERATED_FILE` | Committed bytes differ from a regeneration |
 | `MANIFEST_REGENERATION_FAILED` | The generator could not run, usually a missing or malformed input |
 | `COMMAND_METADATA_*` | A hub's command entry fails the core schema: unknown owner mode, unresolvable choreography resource, missing command definition file, duplicate command or owned signal, malformed entry |
+| `GRAPH_METADATA_INVALID` | `graph-metadata.json` is not valid JSON or is not a JSON object |
+| `GRAPH_METADATA_UNKNOWN_KEY` | `graph-metadata.json` carries a top-level key the gate does not recognise |
+| `GRAPH_METADATA_INVALID_SURFACE_DETECTION` | A present `surface_detection` breaks one rule of the optional block described in the enforcement list |
+| `INTENT_SIGNALS_BELOW_FLOOR` | `intent_signals` holds fewer than eight entries |
+| `INTENT_SIGNALS_AND_TRIGGERS_EMPTY` | `intent_signals` and `derived.trigger_phrases` are both empty |
+
+The gate also prints one non-failing note, `INTENT_SIGNALS_TRIGGER_RECONCILIATION`, when `intent_signals` and `derived.trigger_phrases` barely overlap. The note asks for review and does not change the exit code.
 
 ---
 

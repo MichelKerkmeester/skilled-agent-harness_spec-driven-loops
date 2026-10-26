@@ -195,3 +195,13 @@ Whole-job seconds on the warm rerun: hooks 165 (baseline 194, 29 s shorter), plu
 2. A fixed 8 to 15 s sits between the restore action's start and its first log line on every run, hit or miss. It is the action's own start-up, so a hit pays it on top of the download, and no trim to the cached paths removes it.
 3. The cold path is unchanged by the trim: both cold dispatches printed eleven `provisioning` lines and went green.
 4. The old 1.12 GB entry is orphaned. It ages out after seven days without use, or can be removed with `gh cache delete`, which was not run.
+
+Rechecked 2026-10-25 with `gh cache list --limit 50` and `gh cache list --limit 1000 --sort size_in_bytes`, both exit `0`. The entry, key `provision-Linux-node22-bun1.3.9-a003991fcfe3e97427e24ee9df924fed8a8f85c4d25e8e0e231c099e23840cd9`, 1121994943 bytes, last used 2026-10-24T15:38:40Z, is no longer listed: no key contains `a003991f`, and none of the 57 entries is over 1 GB. Nothing here deleted it, and what removed it was not observed. The 57 listed entries total 10.84 GB, so eviction for the repository's cache size limit is the likely cause, which is inference. No current key could have hit it. The restore step in `.github/actions/setup/action.yml` matches the exact key and sets no `restore-keys`, and its hash covers `action.yml` itself, which changed when `~/.npm` left the cached paths. The current entries are `provision-Linux-node22-bun1.3.9-c9bd0bd6...` and `provision-Linux-node20-bun1.3.9-c9bd0bd6...` on `refs/heads/main`, about 0.81 GiB each.
+
+## Scheduled cold run (`schedule`, main at `bbb6c2b53e`)
+
+| Run id | Job | Restore | Provision summary | Provision step s | Job s | Save |
+|---|---|---|---|---|---|---|
+| 40236652343 | OpenCode plugin and hook node:test suites | skipped | 11 installed, 5 built, 3 already present, 0 failed | 53 | 251 | skipped |
+
+Created 2026-10-25T21:41:16Z. The run is green, its log holds 11 `provisioning` lines and no `Cache restored from key` line, so the `schedule` event takes the uncached path exactly as the `cold: true` dispatches do. The event came from a one-shot schedule entry added in `174ebbdc0e` and removed in `0ab8f9f74e`; the weekly `17 4 * * 1` entry is unchanged.

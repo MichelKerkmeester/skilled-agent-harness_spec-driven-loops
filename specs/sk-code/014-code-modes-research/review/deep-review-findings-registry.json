@@ -1,0 +1,800 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "A known limitation names a stray file that is not in the tree",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+      "line": 128,
+      "description": "limitation 4 says a stray .tmp-iter-012-event.json is kept for the operator; no tmp file exists in either research folder",
+      "findingClass": "stale-record",
+      "deltaStatus": null,
+      "scopeProof": "inventory of both research folders including dotfiles",
+      "affectedSurfaceHints": [
+        "implementation-summary.md Known Limitations"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R5-P2-003",
+      "severity": "P2",
+      "title": "A rule duplicated from a child was updated in the child and not in the parent",
+      "file": "specs/sk-code/014-code-modes-research/spec.md",
+      "line": 151,
+      "description": "the parent phase-handoff table publishes the whole-folder sibling grep that ADR-001 narrowed and that now prints 2 non-zero files",
+      "findingClass": "duplicated-rule-drift",
+      "deltaStatus": null,
+      "scopeProof": "parent handoff table, child ADR-001 and AC-011",
+      "affectedSurfaceHints": [
+        "spec.md Phase Handoff Criteria"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P1",
+      "title": "AC-011 was closed against a weaker command than its own ADR records",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+      "line": 67,
+      "description": "ADR-001 requires every research-content count to be 0; the row excludes two matching lines via grep -vE and records Met, with the skip recorded only in prose",
+      "findingClass": "gate-command-drift",
+      "deltaStatus": null,
+      "scopeProof": "ADR-001 text and AC row read in place; published command executed read-only",
+      "affectedSurfaceHints": [
+        "AC-011",
+        "ADR-001"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--ec4b4ae43464",
+      "severity": "P2",
+      "title": "Acceptance metadata says In Progress while the same phase packets declare closure",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+      "line": 42,
+      "description": "Align each acceptance status field with the completed status used by the summaries and parent map.",
+      "findingClass": "lifecycle-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "The mismatch is inside both child acceptance files and their parent packet.",
+      "affectedSurfaceHints": [
+        "acceptance metadata",
+        "phase status map",
+        "implementation summaries"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--ec4b4ae43464",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--a52cd8cd991c",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Acceptance-criteria metadata still reads In Progress on a closed packet",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+      "line": 42,
+      "description": "acceptance-criteria metadata says In Progress while the packet is Complete and the closure statement says Closeable: Yes",
+      "findingClass": "documentation-state-drift",
+      "deltaStatus": null,
+      "scopeProof": "both children of the declared review target",
+      "affectedSurfaceHints": [
+        "acceptance-criteria.md metadata block"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R5-P2-004",
+      "severity": "P2",
+      "title": "Four commit-message drafts sit untracked in the packet and none is in its change list",
+      "file": "specs/sk-code/014-code-modes-research/scratch/commit-message-001.txt",
+      "line": 1,
+      "description": "three of four scratch commit drafts are untracked and scratch/ appears in no change list",
+      "findingClass": "workspace-hygiene",
+      "deltaStatus": null,
+      "scopeProof": "git status over the packet scratch directory",
+      "affectedSurfaceHints": [
+        "scratch/"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Goal completion gates still require ten iterations after both phases were amended to fifteen",
+      "file": "specs/sk-code/014-code-modes-research/goal.md",
+      "line": 52,
+      "description": "Update the parent and child goal completion gates to fifteen and reference the superseding ADR.",
+      "findingClass": "spec-contract-drift",
+      "deltaStatus": null,
+      "scopeProof": "Every cited goal, spec, and task file is inside the reviewed parent or child packet.",
+      "affectedSurfaceHints": [
+        "parent goal D3",
+        "both child goal completion gates",
+        "phase closure reporting"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Ten source citations no longer land on their quoted text",
+      "file": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/research.md",
+      "line": 213,
+      "description": "8 of 221 tags in child 001 and 2 of 80 in child 002 point at ROUTER.md lines whose text no longer matches the quote; commit 5b33a8089b moved them after the runs closed",
+      "findingClass": "citation-drift",
+      "deltaStatus": null,
+      "scopeProof": "301 SOURCE tags machine-matched against the working tree",
+      "affectedSurfaceHints": [
+        "research/research.md References",
+        "rank 12 evidence"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "The .skilled boundary gate was narrowed in the acceptance criteria and left unmet in the goal, with no decision record",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+      "line": 65,
+      "description": "goal criterion 3 prints no path under .skilled is false at HEAD (131 files) and unchecked; AC-009 substitutes two scoped commands and no ADR names AC-009",
+      "findingClass": "closure-gate-integrity",
+      "deltaStatus": null,
+      "scopeProof": "criterion, row and both decision records inside the review target",
+      "affectedSurfaceHints": [
+        "goal.md completion criteria",
+        "AC-009",
+        "parent handoff criterion"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--efe8819101c2",
+      "severity": "P2",
+      "title": "The durable directive still states the contract the packet did not execute, and the deviation lives only in the volatile log",
+      "file": "specs/sk-code/014-code-modes-research/goal.md",
+      "line": 52,
+      "description": "goal.md D3 still says ten iterations and D4 still says odd/even alternation; the deviation is recorded only in the VOLATILE log which says the directive text is left as written",
+      "findingClass": "authority-drift",
+      "deltaStatus": null,
+      "scopeProof": "directive and log sections of the packet goal file",
+      "affectedSurfaceHints": [
+        "goal.md D3/D4"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--efe8819101c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--e01db99342ae",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The only artifact of the containment failure was deleted, leaving the write-authority claim verifiable only by prose",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+      "line": 69,
+      "description": "research/containment was deleted with no manifest or hash, so NFR-S01 cannot be re-tested against the observed case",
+      "findingClass": "evidence-retention",
+      "deltaStatus": null,
+      "scopeProof": "Files Changed row and Known Limitations row in the reviewed child",
+      "affectedSurfaceHints": [
+        "implementation-summary.md Files Changed",
+        "NFR-S01"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R2-P1-001--67d8ee93686c",
+      "severity": "P1",
+      "title": "The P0 write-boundary checklist is marked met while its evidence records spec.md writes",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+      "line": 166,
+      "description": "Rewrite the criterion to distinguish authorized bounded spec.md edits from prohibited writes and attach path-level evidence.",
+      "findingClass": "checklist-evidence-integrity",
+      "deltaStatus": null,
+      "scopeProof": "The contradiction is in reviewed task, scope, and summary files; this review made no target changes.",
+      "affectedSurfaceHints": [
+        "security checklist",
+        "write-boundary evidence",
+        "phase closeout"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R2-P1-001",
+      "_conflict_id": "R2-P1-001--67d8ee93686c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P1-001",
+          "peerId": "R2-P1-001--bcc376fa90ce",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The parent change list does not describe the change",
+      "file": "specs/sk-code/014-code-modes-research/spec.md",
+      "line": 119,
+      "description": "Files to Change names two research folders and the track graph-metadata.json only, while both children list seven further documents as modified",
+      "findingClass": "stale-change-list",
+      "deltaStatus": null,
+      "scopeProof": "parent scope table and both child change tables",
+      "affectedSurfaceHints": [
+        "spec.md Files to Change"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--e01db99342ae",
+      "severity": "P2",
+      "title": "The parent goal still requires executor alternation after the recorded decision changed the second pass",
+      "file": "specs/sk-code/014-code-modes-research/goal.md",
+      "line": 53,
+      "description": "Amend D4 to identify ADR-002 as the superseding execution decision or mark the old route historical.",
+      "findingClass": "execution-decision-drift",
+      "deltaStatus": null,
+      "scopeProof": "The cited goal, spec, ADR, and summary are within the reviewed parent and phase packets.",
+      "affectedSurfaceHints": [
+        "parent executor decision",
+        "child ADR-002",
+        "resume instructions"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--e01db99342ae",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--efe8819101c2",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P1-001--bcc376fa90ce",
+      "severity": "P1",
+      "title": "The review spec asserts an absence that the hub playbook contradicts",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
+      "line": 71,
+      "description": "the spec says no other file under .skilled/skills/sk-code/ mentions the quality gate advisory envelope, but the hub playbook documents both the envelope and its deep-review consumer",
+      "findingClass": "spec-mismatch",
+      "deltaStatus": null,
+      "scopeProof": "contradicted sentence and contradicting file both inside .skilled/skills/sk-code/",
+      "affectedSurfaceHints": [
+        "002/spec.md problem statement",
+        "rank 6 premise"
+      ],
+      "contentHash": "c1a4f2b7e3d9018a5f6b2c4d8e0a1b3c5d7f9a2b4c6d8e0f1a3b5c7d9e1f2a4b",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R2-P1-001",
+      "_conflict_id": "R2-P1-001--bcc376fa90ce",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P1-001",
+          "peerId": "R2-P1-001--67d8ee93686c",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--61fee9165df5",
+      "severity": "P2",
+      "title": "The second pass ran an executor with sandboxing disabled while the control that bounded it had already failed",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+      "line": 86,
+      "description": "iterations 11-15 used --permission-mode dangerous while the containment guard is recorded as defective in the sibling-folder case it had just mishandled",
+      "findingClass": "control-gap",
+      "deltaStatus": null,
+      "scopeProof": "executor and containment rows in the reviewed implementation summaries",
+      "affectedSurfaceHints": [
+        "implementation-summary.md How It Was Delivered",
+        "if_cli_devin branch"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--61fee9165df5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--e824d7a7de91",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--e824d7a7de91",
+      "severity": "P2",
+      "title": "The summary says a dispatch temp file remains even though the completion evidence says it was deleted",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+      "line": 128,
+      "description": "Remove the stale limitation or replace it with the cleanup disposition and evidence.",
+      "findingClass": "stale-artifact-reference",
+      "deltaStatus": null,
+      "scopeProof": "The current existence check was read-only and targeted the exact path from the summary.",
+      "affectedSurfaceHints": [
+        "implementation summary",
+        "cleanup evidence",
+        "operator handoff"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--e824d7a7de91",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--61fee9165df5",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--a52cd8cd991c",
+      "severity": "P2",
+      "title": "Three acceptance rows still assert ten iterations after the count became fifteen",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+      "line": 59,
+      "description": "AC-003, AC-004 and AC-005 criteria still say ten while ADR-002 raised the count to fifteen and their evidence documents fifteen",
+      "findingClass": "criterion-staleness",
+      "deltaStatus": null,
+      "scopeProof": "three rows and one goal criterion inside the review target",
+      "affectedSurfaceHints": [
+        "AC-003 to AC-005",
+        "goal criterion 2"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--a52cd8cd991c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--ec4b4ae43464",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Three documents report three different completion percentages for one closed packet",
+      "file": "specs/sk-code/014-code-modes-research/spec.md",
+      "line": 30,
+      "description": "completion_pct reads 95 in spec.md, 0 in goal.md and 100 in the child implementation summary for one closed packet",
+      "findingClass": "metadata-inconsistency",
+      "deltaStatus": null,
+      "scopeProof": "three named files inside the declared review target",
+      "affectedSurfaceHints": [
+        "_memory.continuity completion_pct"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 14
+  },
+  "openFindingsCount": 19,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 5,
+  "activeP2": 14
+}

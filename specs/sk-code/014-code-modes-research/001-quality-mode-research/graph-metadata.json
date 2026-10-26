@@ -3,7 +3,6 @@
   "packet_id": "sk-code/014-code-modes-research/001-quality-mode-research",
   "spec_folder": "sk-code/014-code-modes-research/001-quality-mode-research",
   "parent_id": "sk-code/014-code-modes-research",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -54,14 +53,14 @@
       "research/deep-research-state.jsonl",
       "research/synthesis-v1.md",
       "research/resource-map.md",
+      "research/deltas/.legacy-projection-watermarks/research-state.json",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       ".skilled/skills/sk-code/SKILL.md",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
       ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
       ".skilled/repo-rules/skill-hub-routing.md",
       "specs/sk-code/013-private-surface-skills/spec.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md"
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
     ],
     "entities": [
       {
@@ -128,6 +127,12 @@
         "name": "synthesis-v1.md",
         "kind": "doc",
         "path": "research/synthesis-v1.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-state.json",
+        "kind": "config",
+        "path": "research/deltas/.legacy-projection-watermarks/research-state.json",
         "source": "derived"
       },
       {
@@ -201,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code-quality` is the author-side gate that runs after implementation and before a completion claim",
     "created_at": "2026-10-25T08:24:47Z",
-    "last_save_at": "2026-10-25T13:27:40.084Z",
+    "last_save_at": "2026-10-25T17:37:05.101Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,15 +223,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2fc8442f2002d9cb4d7d613a2ae9366b7e862d3d5bc739f767283a9de56fdae8",
+    "source_fingerprint": "sha256:b40b8378d3c92300dd248e1150566be202cb9816229cff27eba73f48e8356bad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc60f28a83005739835194a1fc7c59c6e9675cc003c0171e28789677999bcf91",
       "plan.md": "89b2a0cd3de33b94417dceea85a1fc93caad4fdc5a302ff01dab93b236835cf5",
-      "tasks.md": "a2429d2e0ade5646688a4c67ecc5efe01c82cbe4555c0b2fb4eb4d3b29663aec",
-      "decision-record.md": "c280842dfdf5062b48e2cfc8362276463b1f8a5435053f08ee0a4da26a8813e9",
-      "implementation-summary.md": "15549f22357b1c0a5f5e67673eca99f4afaeaf475e4e9f6314256245ecfec19d",
-      "research/research.md": "d960d70fc1d895d2a6e9c6ba5eb5983d450f6bfe63b028ce01c8a8ab2e29c80b"
+      "tasks.md": "fc6bc80b7385d776f1978127d5c74ed81c5e637090434107b2876567e95b5d7e",
+      "decision-record.md": "4b5822ae39d4e45ab80896c3d3075a0c5834689c2febc83d095c8ebb2aef82b5",
+      "implementation-summary.md": "24edc9a9fc1a16b38710dd9b75e8eb228526bec4079fb75030c85fa95d02a3e2",
+      "research/research.md": "70e3b288d63ae68aaac07930c9f569c4cde2703956b4961e53ce0cd32f678f67"
     },
     "last_active_at": null
   }

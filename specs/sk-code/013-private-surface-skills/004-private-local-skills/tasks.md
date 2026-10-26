@@ -4317,7 +4317,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 - [x] Both target-repository commits exist, each holds only `local-skills/<name>`, and both roots are set in `SPECKIT_PRIVATE_SKILL_ROOTS`
 - [x] The reviewer report holds seven `PASS` rows
 - [x] `validate.sh --strict` prints `RESULT: PASSED`
-- [ ] The phase commit is on `main` and both working trees are clean
+- [x] The phase commit is on `main` and both working trees are clean. Evidence: e8256b8044 and ff993936c7 ancestors of origin/main. External commits 4434c1b and c6cd64b7
 <!-- /ANCHOR:completion -->
 
 ---

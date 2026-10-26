@@ -1,0 +1,38 @@
+$ env SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0 SYSTEM_SESSION_RELAUNCH_CODEX_ENABLED=0 SYSTEM_SESSION_RELAUNCH_PI_ENABLED=0 SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED=0 SYSTEM_SESSION_RELAUNCH_HERMES_ENABLED=0 SYSTEM_SESSION_RELAUNCH_CURSOR_ENABLED=0 SYSTEM_SESSION_RELAUNCH_DEVIN_ENABLED=0 SYSTEM_SESSION_RELAUNCH_DISABLED=1 SYSTEM_HOOKS_DISABLED=1 MK_HOOKS_DISABLED=1 MK_GOAL_DISABLED=1 node --test .skilled/hooks/shared/hook-flags.test.cjs
+✔ enabled by default when no flag is set (0.619875ms)
+✔ master switch disables every concern (0.076792ms)
+✔ canonical per-concern switch disables only that concern (0.050167ms)
+✔ concernFlag derives the canonical env name (0.061208ms)
+✔ legacy aliases still disable their concern (0.086292ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.089833ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.04825ms)
+✔ .mjs and .ts facades re-export identical behavior (19.88375ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.14375ms)
+✔ environment overrides the config file both ways (0.101666ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.770625ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.541417ms)
+✔ session-relaunch is off by default while every other concern stays on (0.081584ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.055084ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.5175ms)
+✔ a kill switch beats the session-relaunch enable flag (0.046833ms)
+✔ the facades carry the session-relaunch default (0.114583ms)
+✔ the node and shell resolvers give the same session-relaunch answers (373.564291ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.169875ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.641459ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (76.211334ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.119333ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (53.215917ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (137.094375ms)
+✔ a byte order mark before the first line hides nothing from any reader (94.918958ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (554.7925ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (38.291333ms)
+✔ a per-runtime enable flag answers before the global one in every reader (1759.061959ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3158.806542
+exit=0

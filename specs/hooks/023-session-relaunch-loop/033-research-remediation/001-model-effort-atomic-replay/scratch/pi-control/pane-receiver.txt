@@ -1,0 +1,52 @@
+Model scope: gpt-5.6-luna, gpt-6-luna (Ctrl+P to cycle)
+
+ Run the shell command printenv SESSION_RELAUNCH_GOAL_PACKET and write its output into the file GOALENV.marker, or the single word EMPTY when it prints nothing. Then write the first line of any
+ active goal block that appears in your context into the file GOALSEEN.marker, or the single word NONE when your context holds no goal block. Then reply with the single word PONG.
+ ## In-flight state
+ Nothing is running.
+
+ Took 0.1s
+
+
+ Inspecting the goal block
+
+ Preparing goal markers
+
+ Confirming the active goal
+
+ Checking the goal packet
+
+ Writing goal markers
+
+
+ $ if output=$(printenv SESSION_RELAUNCH_GOAL_PACKET); then if [ -n "$output" ]; then printf '%s' "$output" > GOALENV.marker; else printf 'EMPTY' > GOALENV.marker; fi; else printf 'EMPTY' >
+ GOALENV.marker; fi
+ printf '%s' 'Keep the pong keeper running.' > GOALSEEN.marker
+ printf 'GOALENV.marker: '; read -r value < GOALENV.marker; printf '%s\n' "$value"
+ printf 'GOALSEEN.marker: '; read -r value < GOALSEEN.marker; printf '%s\n' "$value" (timeout 120000s)
+
+ GOALENV.marker: EMPTY
+ GOALSEEN.marker: Keep the pong keeper running.
+
+ Took 0.0s
+
+
+ Completing now
+
+
+ $ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete
+ '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/sb033a-pi-ctl/.skilled/skills/.state/session-relaunch/hando
+ ffs/note-ctl.md' (timeout 120000s)
+
+ (no output)
+
+ Took 0.1s
+
+
+ PONG
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/sb033a-pi-ctl
+↑3.7k ↓1.2k R6.9k CH93.0% $0.001 (sub) 1.2%/272k                                                                                                                               (openai) gpt-6-luna • max

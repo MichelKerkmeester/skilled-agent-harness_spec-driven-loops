@@ -1,0 +1,684 @@
+{
+  "sessionId": "fanout-luna-1792944728998-jpqv4b",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Goal completion gates still require ten iterations after both phases were amended to fifteen",
+      "file": "specs/sk-code/014-code-modes-research/goal.md",
+      "line": 52,
+      "description": "Update the parent and child goal completion gates to fifteen and reference the superseding ADR.",
+      "findingClass": "spec-contract-drift",
+      "deltaStatus": null,
+      "scopeProof": "Every cited goal, spec, and task file is inside the reviewed parent or child packet.",
+      "affectedSurfaceHints": [
+        "parent goal D3",
+        "both child goal completion gates",
+        "phase closure reporting"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The P0 write-boundary checklist is marked met while its evidence records spec.md writes",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+      "line": 166,
+      "description": "Rewrite the criterion to distinguish authorized bounded spec.md edits from prohibited writes and attach path-level evidence.",
+      "findingClass": "checklist-evidence-integrity",
+      "deltaStatus": null,
+      "scopeProof": "The contradiction is in reviewed task, scope, and summary files; this review made no target changes.",
+      "affectedSurfaceHints": [
+        "security checklist",
+        "write-boundary evidence",
+        "phase closeout"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Acceptance metadata says In Progress while the same phase packets declare closure",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md",
+      "line": 42,
+      "description": "Align each acceptance status field with the completed status used by the summaries and parent map.",
+      "findingClass": "lifecycle-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "The mismatch is inside both child acceptance files and their parent packet.",
+      "affectedSurfaceHints": [
+        "acceptance metadata",
+        "phase status map",
+        "implementation summaries"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The summary says a dispatch temp file remains even though the completion evidence says it was deleted",
+      "file": "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+      "line": 128,
+      "description": "Remove the stale limitation or replace it with the cleanup disposition and evidence.",
+      "findingClass": "stale-artifact-reference",
+      "deltaStatus": null,
+      "scopeProof": "The current existence check was read-only and targeted the exact path from the summary.",
+      "affectedSurfaceHints": [
+        "implementation summary",
+        "cleanup evidence",
+        "operator handoff"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The parent goal still requires executor alternation after the recorded decision changed the second pass",
+      "file": "specs/sk-code/014-code-modes-research/goal.md",
+      "line": 53,
+      "description": "Amend D4 to identify ADR-002 as the superseding execution decision or mark the old route historical.",
+      "findingClass": "execution-decision-drift",
+      "deltaStatus": null,
+      "scopeProof": "The cited goal, spec, ADR, and summary are within the reviewed parent and phase packets.",
+      "affectedSurfaceHints": [
+        "parent executor decision",
+        "child ADR-002",
+        "resume instructions"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 3
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.923,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_metadata_status",
+      "executor_route_contract",
+      "goal_spec_alignment",
+      "security_claim_integrity",
+      "stale_artifact_reference"
+    ],
+    "ruledOut": [
+      "cleanup_state_conflict",
+      "closure_status_consistency",
+      "unapproved_external_write"
+    ],
+    "deferred": [
+      "acceptance_row_provenance",
+      "acceptance_status_coherence",
+      "credential_exposure",
+      "recommendation_source_traceability"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "goal_spec_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "security_claim_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "acceptance_status_coherence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_artifact_reference": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "unapproved_external_write": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "credential_exposure": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "acceptance_metadata_status": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "closure_status_consistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "acceptance_row_provenance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cleanup_state_conflict": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "executor_route_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "recommendation_source_traceability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_status_coherence",
+      "disposition": "deferred",
+      "rationale": "Both documents require a direct metadata-to-closure comparison.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md:42",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md:92"
+      ],
+      "reason": "Focused acceptance-state reconciliation is scheduled in iteration 3."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md"
+      ],
+      "bugClass": "credential_exposure",
+      "disposition": "deferred",
+      "rationale": "The task reports a prior scan, but this review did not reproduce it.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md:165"
+      ],
+      "reason": "A new credential scan is outside the evidence gathered in this pass."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_row_provenance",
+      "disposition": "deferred",
+      "rationale": "Only the metadata and closure summaries were compared in this pass.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/acceptance-criteria.md:94",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md:94"
+      ],
+      "reason": "The review does not rerun acceptance commands or validators."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/research.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md"
+      ],
+      "bugClass": "recommendation_source_traceability",
+      "disposition": "deferred",
+      "rationale": "Iteration summaries and scope docs were cross-checked, but full source-tag verification remains out of scope for the final angle.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/implementation-summary.md:58",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:58"
+      ],
+      "reason": "This pass did not reopen every recommendation source tag across both long research syntheses."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl"
+      ],
+      "bugClass": "unapproved_external_write",
+      "disposition": "ruled_out",
+      "rationale": "The criterion remains unreliable, but reviewed records do not demonstrate a harmful or unauthorized write.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl:3",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl:15",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl:23",
+        "specs/sk-code/014-code-modes-research/spec.md:112"
+      ],
+      "reason": "The opened evidence identifies bounded spec.md edits authorized by parent D1; it does not establish another unapproved path."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+        "specs/sk-code/014-code-modes-research/spec.md"
+      ],
+      "bugClass": "closure_status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "No second status conflict appears in the opened closure records.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:3",
+        "specs/sk-code/014-code-modes-research/spec.md:137",
+        "specs/sk-code/014-code-modes-research/spec.md:138"
+      ],
+      "reason": "Both phase summaries and the parent map say Complete; the only contradiction is the acceptance metadata."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/.tmp-iter-012-event.json"
+      ],
+      "bugClass": "cleanup_state_conflict",
+      "disposition": "ruled_out",
+      "rationale": "No second conflict exists between the cleanup checklist and the filesystem state.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md:185",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:128"
+      ],
+      "reason": "The task and current path state both support deletion; only the summary is stale."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/spec.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl"
+      ],
+      "bugClass": "unapproved_external_write",
+      "disposition": "ruled_out",
+      "rationale": "The criterion remains unreliable, but reviewed records do not demonstrate a harmful or unauthorized write.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl:3",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl:15",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-state.jsonl:23",
+        "specs/sk-code/014-code-modes-research/spec.md:112"
+      ],
+      "proof": "The opened evidence identifies bounded spec.md edits authorized by parent D1; it does not establish another unapproved path."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md",
+        "specs/sk-code/014-code-modes-research/spec.md"
+      ],
+      "bugClass": "closure_status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "No second status conflict appears in the opened closure records.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:3",
+        "specs/sk-code/014-code-modes-research/spec.md:137",
+        "specs/sk-code/014-code-modes-research/spec.md:138"
+      ],
+      "proof": "Both phase summaries and the parent map say Complete; the only contradiction is the acceptance metadata."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/.tmp-iter-012-event.json"
+      ],
+      "bugClass": "cleanup_state_conflict",
+      "disposition": "ruled_out",
+      "rationale": "No second conflict exists between the cleanup checklist and the filesystem state.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md:185",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:128"
+      ],
+      "proof": "The task and current path state both support deletion; only the summary is stale."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/research/resource-map.md"
+      ],
+      "bugClass": "resource_map_reference",
+      "disposition": "not_applicable",
+      "rationale": "The pass was limited to a temp-file reference and completion cleanup evidence.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:128"
+      ],
+      "proof": "Resource-map completeness is outside the specific cleanup-path hypothesis and root resource map is absent."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/decision-record.md",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/decision-record.md"
+      ],
+      "bugClass": "agent_runtime_parity",
+      "disposition": "not_applicable",
+      "rationale": "The phase ADRs describe research executor choice, not an implementation change to runtime behavior.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/spec.md:112",
+        "specs/sk-code/014-code-modes-research/002-review-mode-research/decision-record.md:166"
+      ],
+      "proof": "This is a findings-only research packet and no agent/runtime implementation changes are in scope."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/014-code-modes-research/graph-metadata.json"
+      ],
+      "bugClass": "feature_catalog_alignment",
+      "disposition": "not_applicable",
+      "rationale": "The reviewed packet scope is research artifacts and bounded spec context only.",
+      "evidenceRefs": [
+        "specs/sk-code/014-code-modes-research/spec.md:101",
+        "specs/sk-code/014-code-modes-research/spec.md:103"
+      ],
+      "proof": "No feature catalog code or implementation files are part of the target."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "executor_route_contract",
+      "agent_runtime_parity",
+      "feature_catalog_alignment",
+      "recommendation_source_traceability"
+    ],
+    "covered": [
+      "executor_route_contract"
+    ],
+    "ruledOut": [],
+    "deferred": [
+      "recommendation_source_traceability"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "counts": {
+          "goalDecisionDrifts": 2,
+          "phaseDecisionRecords": 2
+        },
+        "evidence": [
+          "specs/sk-code/014-code-modes-research/goal.md:53",
+          "specs/sk-code/014-code-modes-research/spec.md:115",
+          "specs/sk-code/014-code-modes-research/002-review-mode-research/decision-record.md:166"
+        ],
+        "findingRefs": [
+          "R1-P1-001",
+          "R5-P2-001"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Parent goal requirements for iteration count and executor route do not fully reflect the amended phase execution."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "acceptanceMetadataDrifts": 1,
+          "staleSummaryClaims": 1,
+          "unresolvedChecklistEvidenceFindings": 1
+        },
+        "evidence": [
+          "specs/sk-code/014-code-modes-research/002-review-mode-research/tasks.md:166",
+          "specs/sk-code/014-code-modes-research/002-review-mode-research/acceptance-criteria.md:42",
+          "specs/sk-code/014-code-modes-research/002-review-mode-research/implementation-summary.md:128"
+        ],
+        "findingRefs": [
+          "R2-P1-001",
+          "R3-P2-001",
+          "R4-P2-001"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "Checklist and completion docs retain three unresolved status/evidence inconsistencies."
+      },
+      {
+        "applicable": false,
+        "counts": {},
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "No agent or skill implementation changed in this research packet."
+      },
+      {
+        "applicable": false,
+        "counts": {},
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent/runtime implementation change is part of the target."
+      },
+      {
+        "applicable": false,
+        "counts": {},
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "No feature catalog code was changed."
+      },
+      {
+        "applicable": false,
+        "counts": {},
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "No playbook implementation or capability code was changed."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -68,8 +68,6 @@ This is **Phase 9** of the CI hygiene, consolidation and doctor specification. I
 - Superseded by ADR-013: the CI surface value in `stack-detection.md` and `sk-code-review`'s `detect_surface_evidence`, with a regression test that keeps the three existing surfaces unchanged.
 - `scratch/`: the R28 probe record, the pre-phase inventory, the command contract results, the live report and the phase result.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

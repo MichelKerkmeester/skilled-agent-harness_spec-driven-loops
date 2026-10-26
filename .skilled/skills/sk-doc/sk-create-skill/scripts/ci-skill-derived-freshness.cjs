@@ -48,10 +48,9 @@ function run(argv = process.argv.slice(2)) {
     return 2;
   }
 
-  const roots = fs.readdirSync(skillsDir, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules')
-    .map((e) => path.join(skillsDir, e.name))
-    .filter((dir) => fs.existsSync(path.join(dir, 'graph-metadata.json')));
+  // The regenerator's listing owns the private-skill rule, so a local-* root that
+  // belongs to one checkout never reaches this CI gate.
+  const roots = regen.listSkillRoots(skillsDir);
 
   const stale = [];
   const errored = [];

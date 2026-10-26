@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-figma
@@ -194,7 +194,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and references |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS and references |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning and the connect-mode setup |
 | [`references/figma-cli-reference.md`](./references/figma-cli-reference.md) | Binary identity, the Node and macOS baseline, the Figma Desktop requirement, connect modes, the daemon model and command examples |
 | [`references/tool-surface.md`](./references/tool-surface.md) | The read-only, mutating and destructive command taxonomy, the destructive set, the `eval/raw/run` rule and the export no-overwrite rule |

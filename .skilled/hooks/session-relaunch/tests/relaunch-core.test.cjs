@@ -10,6 +10,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const relaunchCore = require('../lib/relaunch-core.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 const {
   stateDir,
   ensureStateDir,
@@ -79,7 +80,7 @@ function createSandbox(t) {
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: path.join(root, 'home'),
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
@@ -301,6 +302,73 @@ test('claimHandoff throws when the note has already been claimed', (t) => {
     () => claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW }),
     /cannot claim handoff with status claimed/,
   );
+});
+
+// Writes a valid open note, then swaps its status line for the given frontmatter lines.
+function writeNoteWithStatusLines(sandbox, statusLines) {
+  const handoffPath = writeHandoff(sandbox);
+  const text = readNote(handoffPath).replace(/^status: open\n/m, statusLines.map((line) => `${line}\n`).join(''));
+  fs.writeFileSync(handoffPath, text);
+  return handoffPath;
+}
+
+function claimError(handoffPath) {
+  try {
+    claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW });
+  } catch (error) {
+    return error.message;
+  }
+  assert.fail('claimHandoff did not throw');
+}
+
+test('claim of a done note says the work is finished', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNoteWithStatusLines(sandbox, ['status: done']);
+  const before = readNote(handoffPath);
+  const message = claimError(handoffPath);
+  assert.match(message, /^cannot claim handoff with status done\b/);
+  assert.match(message, /finished/);
+  assert.match(message, /do not continue/);
+  assert.equal(readNote(handoffPath), before);
+});
+
+test('claim of a done note names the note that superseded it', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNoteWithStatusLines(sandbox, ['status: done', 'superseded_by: s-2']);
+  const message = claimError(handoffPath);
+  assert.match(message, /^cannot claim handoff with status done\b/);
+  assert.match(message, /superseded by s-2/);
+});
+
+test('claim of a claimed note names its owner', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNoteWithStatusLines(sandbox, [
+    'status: claimed',
+    'claimed_by: s-1',
+    'claimed_at: 2026-10-25T10:00:00Z',
+  ]);
+  const message = claimError(handoffPath);
+  assert.match(message, /^cannot claim handoff with status claimed\b/);
+  assert.match(message, /s-1/);
+  assert.match(message, /2026-10-25T10:00:00Z/);
+
+  const bareSandbox = createSandbox(t);
+  const bareMessage = claimError(writeNoteWithStatusLines(bareSandbox, ['status: claimed']));
+  assert.match(bareMessage, /an unknown session/);
+  assert.match(bareMessage, /an unknown time/);
+});
+
+test('claim of a note with no status says it is not a handoff note', (t) => {
+  const sandbox = createSandbox(t);
+  const message = claimError(writeNoteWithStatusLines(sandbox, []));
+  assert.match(message, /^cannot claim handoff with status missing\b/);
+  assert.match(message, /not a handoff note/);
+});
+
+test('claim of a note with an unknown status keeps the prefix only', (t) => {
+  const sandbox = createSandbox(t);
+  const message = claimError(writeNoteWithStatusLines(sandbox, ['status: withdrawn']));
+  assert.equal(message, 'cannot claim handoff with status withdrawn');
 });
 
 test('completeHandoff moves a claimed note to done with completion metadata', (t) => {
@@ -599,6 +667,40 @@ test('arm stamps a fresh armId on every arm even in the same millisecond', (t) =
   assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), second);
 });
 
+// An effort is chosen for one model, so an arm onto a new model that brings no effort must
+// not leave the old model's effort in the record for the wrapper to replay.
+test('arm with a new model and no effort clears the recorded effort', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'armed',
+    loopId: LOOP_ID,
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'codex',
+    name: null,
+    cwd: '/tmp/cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
+    armedAt: NOW.toISOString(),
+    model: 'model-a',
+    effort: 'high',
+  });
+  const sameModel = arm({
+    loopId: LOOP_ID, cwd: '/tmp/cwd', settings: { model: 'model-a' }, env: sandbox.env, now: NOW,
+  });
+  assert.equal(sameModel.effort, 'high');
+
+  const armed = arm({
+    loopId: LOOP_ID, cwd: '/tmp/cwd', settings: { model: 'model-b' }, env: sandbox.env, now: NOW,
+  });
+  assert.equal(armed.model, 'model-b');
+  assert.equal(Object.hasOwn(armed, 'effort'), false);
+  const written = readRelaunchFile(LOOP_ID, sandbox.env);
+  assert.equal(written.model, 'model-b');
+  assert.equal(Object.hasOwn(written, 'effort'), false);
+});
+
 test('a re-arm makes an armed record older than the age limit relaunchable again', (t) => {
   const sandbox = createSandbox(t);
   writeRelaunchRecord(sandbox, {
@@ -857,6 +959,41 @@ test('shouldRelaunch declines hop ten at the default cap', (t) => {
       { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
     ),
     { relaunch: false, reason: 'hop-cap' },
+  );
+});
+
+test('shouldRelaunch declines malformed persisted hops', async (t) => {
+  createSandbox(t);
+  const cases = [
+    ['negative', -1],
+    ['fractional', 1.5],
+    ['null', null],
+    ['numeric string', '3'],
+    ['NaN', Number.NaN],
+    ['Infinity', Number.POSITIVE_INFINITY],
+    ['missing', undefined],
+  ];
+  for (const [label, hops] of cases) {
+    await t.test(label, () => {
+      assert.deepEqual(
+        shouldRelaunch(
+          { status: 'armed', armedAt: NOW.getTime(), hops, handoff: '/repo/note.md', cwd: '/repo' },
+          { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
+        ),
+        { relaunch: false, reason: 'hop-cap' },
+      );
+    });
+  }
+});
+
+test('shouldRelaunch accepts hop zero below the default cap', (t) => {
+  createSandbox(t);
+  assert.deepEqual(
+    shouldRelaunch(
+      { status: 'armed', armedAt: NOW.getTime(), hops: 0, handoff: '/repo/note.md', cwd: '/repo' },
+      { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
+    ),
+    { relaunch: true },
   );
 });
 
@@ -1947,6 +2084,71 @@ test('claimHandoff and completeHandoff each take the note lock and release it', 
   assert.match(readNote(handoffPath), new RegExp(`^claimed_by: ${SESSION_ID}$`, 'm'));
 });
 
+// Only separate processes contend on the file lock. Each claimant signals ready and waits for
+// one go file, so the claims start together rather than whenever each process loaded. The lock
+// runs its work unlocked once a 2000 ms wait expires, so a machine stalled that long could let
+// both claims through; each claim is one small read and write to keep well inside that.
+test('two concurrent claims have one winner', async (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
+  const barrier = path.join(sandbox.root, 'barrier');
+  fs.mkdirSync(barrier);
+  const goPath = path.join(barrier, 'go');
+  const sessions = ['session-test-00000011', 'session-test-00000012'];
+
+  const claimants = sessions.map((sessionId) => {
+    const script = [
+      "const fs = require('node:fs');",
+      `const core = require(${JSON.stringify(corePath)});`,
+      `fs.writeFileSync(${JSON.stringify(path.join(barrier, `ready-${sessionId}`))}, '');`,
+      'const deadline = Date.now() + 10000;',
+      `while (!fs.existsSync(${JSON.stringify(goPath)})) {`,
+      "  if (Date.now() > deadline) { process.stdout.write('{\"error\":\"barrier timeout\"}'); process.exit(2); }",
+      '}',
+      'let outcome;',
+      'try {',
+      `  const claimed = core.claimHandoff(${JSON.stringify(handoffPath)}, { sessionId: ${JSON.stringify(sessionId)} });`,
+      '  outcome = { won: true, claimedBy: claimed.frontmatter.claimed_by };',
+      '} catch (error) {',
+      '  outcome = { won: false, error: error.message };',
+      '}',
+      'process.stdout.write(JSON.stringify(outcome));',
+      '',
+    ].join('\n');
+    const child = spawn(process.execPath, ['-e', script], {
+      env: { ...sandbox.env, SYSTEM_SESSION_RELAUNCH_ENABLED: '1' },
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    let stdout = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    return new Promise((resolve) => {
+      child.once('error', () => resolve({ code: -1, stdout }));
+      child.once('close', (code) => resolve({ code, stdout }));
+    });
+  });
+
+  const readyDeadline = Date.now() + 10000;
+  while (fs.readdirSync(barrier).filter((name) => name.startsWith('ready-')).length < 2) {
+    assert.ok(Date.now() < readyDeadline, 'claimants never reached the barrier');
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  fs.writeFileSync(goPath, '');
+
+  const results = await Promise.all(claimants);
+  assert.deepEqual(results.map(({ code }) => code), [0, 0]);
+  const outcomes = results.map(({ stdout }) => JSON.parse(stdout));
+  const winners = outcomes.filter(({ won }) => won);
+  const losers = outcomes.filter(({ won }) => !won);
+  assert.equal(winners.length, 1, JSON.stringify(outcomes));
+  assert.equal(losers.length, 1, JSON.stringify(outcomes));
+  assert.match(losers[0].error, /^cannot claim handoff with status claimed\b/);
+  const winner = sessions[outcomes.indexOf(winners[0])];
+  assert.equal(winners[0].claimedBy, winner);
+  assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.claimed_by, winner);
+  assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // GOAL PACKET
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2210,4 +2412,70 @@ test('recordGoalPacket removes an empty field the note holds', (t) => {
 
   assert.equal(recordGoalPacket(handoffPath, ''), true);
   assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLAIM SEED PARSER AND GOAL PACKET HELPER
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
+
+test('claim seed parser inverts the seed suffix', () => {
+  const { parseClaimSeed, specFolderSuffix } = relaunchCore;
+  const markerPath = `/tmp/odd${relaunchCore.SPEC_FOLDER_MARKER}name/note.md`;
+  for (const notePath of ['/repo/handoffs/note.md', '/tmp/with space/note.md', markerPath]) {
+    for (const specFolder of [GOAL_PACKET, 'none', '']) {
+      const seed = `${CLAIM_SEED_PREFIX}${notePath}${specFolderSuffix(specFolder)}`;
+      assert.deepEqual(
+        parseClaimSeed(seed), { notePath, specFolder }, JSON.stringify(seed),
+      );
+    }
+  }
+
+  // A suffix whose folder the builder would never write keeps the path and carries no folder.
+  const badFolder = `${CLAIM_SEED_PREFIX}/repo/note.md${relaunchCore.SPEC_FOLDER_MARKER}`
+    + `specs/../outside${relaunchCore.SPEC_FOLDER_SUFFIX}`;
+  assert.deepEqual(parseClaimSeed(badFolder), { notePath: '/repo/note.md', specFolder: '' });
+  const skipNotNone = `${CLAIM_SEED_PREFIX}/repo/note.md${relaunchCore.SPEC_FOLDER_MARKER}`
+    + `${GOAL_PACKET}${relaunchCore.SPEC_FOLDER_SKIP_SUFFIX}`;
+  assert.deepEqual(parseClaimSeed(skipNotNone), { notePath: '/repo/note.md', specFolder: '' });
+
+  for (const prompt of [
+    '/repo/note.md',
+    `[session-relaunch] claim handoff /repo/note.md`,
+    `${CLAIM_SEED_PREFIX}relative/note.md`,
+    `${CLAIM_SEED_PREFIX} /repo/note.md`,
+    `${CLAIM_SEED_PREFIX}`,
+    `${CLAIM_SEED_PREFIX}/repo/note.md\n/other.md`,
+    undefined,
+    42,
+  ]) {
+    assert.equal(parseClaimSeed(prompt), null, JSON.stringify(prompt));
+  }
+});
+
+test('usableGoalPacket is exported by the core', (t) => {
+  const { usableGoalPacket } = relaunchCore;
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  const worktree = path.join(sandbox.root, 'worktree');
+  const worktreePacket = `${GOAL_PARENT}/026-worktree-only`;
+  writeGoalPacket(worktree, worktreePacket);
+  const on = {};
+  const off = { SESSION_RELAUNCH_GOAL: '0' };
+
+  assert.equal(usableGoalPacket({ goal_packet: GOAL_PACKET }, on, sandbox.repoRoot), GOAL_PACKET);
+  assert.equal(usableGoalPacket({ goal_packet: GOAL_PACKET }, off, sandbox.repoRoot), '');
+  assert.equal(usableGoalPacket({}, on, sandbox.repoRoot), '');
+  assert.equal(usableGoalPacket({ goal_packet: 7 }, on, sandbox.repoRoot), '');
+  assert.equal(usableGoalPacket({ goal_packet: GOAL_PARENT }, on, sandbox.repoRoot), '');
+  assert.equal(
+    usableGoalPacket({ goal_packet: worktreePacket, cwd: worktree }, on, sandbox.repoRoot),
+    worktreePacket,
+  );
+  assert.equal(
+    usableGoalPacket({ goal_packet: worktreePacket, cwd: 'worktree' }, on, sandbox.repoRoot),
+    '',
+    'a relative cwd names no checkout',
+  );
 });

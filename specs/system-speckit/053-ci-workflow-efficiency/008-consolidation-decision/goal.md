@@ -11,13 +11,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
-    last_updated_at: "2026-10-23T14:25:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers:
-      - "D8 is unanswered; the default is no merge"
-      - "002 to 007 have not landed"
+    last_updated_at: "2026-10-25T20:45:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Closed the phase under D8 = no with every completion criterion observed"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-008-consolidation-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -63,12 +61,12 @@ The operator decision these choices defer to is D8 in `plan.md`; the G-numbers a
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs --check` exits `0` and prints `check: ok`
-- [ ] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` holds `26` lines that start with `| ` and its 13 job-second cells sum to `1065`
-- [ ] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` holds `6` lines matching `^## (Context|Candidates|Measurements|Signal cost|Recommendation|D8 answer)$` and one line matching `^D8: (no|yes)$`
-- [ ] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` holds exactly `1` line matching `^D8=(no|yes)$`
-- [ ] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
-- [ ] `git diff --stat "$(cat specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt)"..HEAD -- .github/workflows` prints nothing under `D8: no`, or `.github/workflows/always-run-guards.yml` parses with exactly `1` job under `D8: yes`
+- [x] `node specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs --check` exits `0` and prints `check: ok`
+- [x] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` holds `26` lines that start with `| ` and its 13 job-second cells sum to `1065`
+- [x] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` holds `6` lines matching `^## (Context|Candidates|Measurements|Signal cost|Recommendation|D8 answer)$` and one line matching `^D8: (no|yes)$`
+- [x] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` holds exactly `1` line matching `^D8=(no|yes)$`
+- [x] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
+- [x] `git diff --stat "$(cat specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt)"..HEAD -- .github/workflows` prints nothing under `D8: no`, or `.github/workflows/always-run-guards.yml` parses with exactly `1` job under `D8: yes`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,14 +82,19 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
+| Phase status | Complete | `spec.md`, `implementation-summary.md` and `acceptance-criteria.md` read `Complete`; eight rows `Met`, AC-007 `Superseded` by ADR-001 |
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T025, `acceptance-criteria.md` AC-001 to AC-009, `decision-record.md` ADR-001 to ADR-006 |
-| Measurement | Pending | No file under `scratch/` exists yet |
-| Decision D8 | Pending | `scratch/d8-answer.md` is not written |
-| Merge | Pending | Runs only on `D8=yes` |
+| Measurement | Done | 360 job files under `scratch/jobs/`; `node scratch/consolidation-cost.mjs --check` printed `check: ok`, exit 0 |
+| Decision D8 | Done, pending the operator's verification | `scratch/d8-answer.md` holds `D8=no`, the session's judgment under the operator's delegation of 2026-10-25 |
+| Merge | Not run | Superseded by D8 = no; `scratch/no-merge.md` shows an empty workflow diff and status |
+
+Criterion evidence, observed 2026-10-25: `check: ok` and exit 0; `26` table lines and `job seconds 1065`; `6` headings and one `D8: no`; one `D8=no` line; `check-gate-inputs.sh` printed `RESULT: PASSED`; the workflow diff from `1c317e13c5` printed nothing.
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | The phase has not started, so no work has diverged from the directive |
+| Snapshot timing | Taken about 19 h after `9480d99e6d`, the last edit to the nine, not 24 h. That edit adds a job-level `if:` and changes no step (`scratch/snapshot-window.md`) |
+| Candidate set against the tree | `command-tree-parity.yml` reads `SKILLED_CI_TESTS`, so G1's eight span two switch groups. The cost script adds `bounds.freshnessSwitched`, the seven that read `SKILLED_CI_FRESHNESS` |
+| Answer file shape | `scratch/d8-answer.md` holds one `D8=` line plus the date, the delegation and the numbers, so `wc -l` is 11, not the 1 T012 expected. Every check that reads the answer matches `^D8=` |
 <!-- /ANCHOR:log -->

@@ -19,7 +19,11 @@
       "leaves": [
         "assets/code-quality-checklist/naming-init-formatting-and-css.md",
         "assets/code-quality-checklist/overview-header-and-comments.md",
-        "assets/code-quality-checklist/verification-quick-reference-and-related.md"
+        "assets/code-quality-checklist/verification-quick-reference-and-related.md",
+        "assets/comment-syntax.json",
+        "assets/quality-defaults.json",
+        "references/code-style-guide.md",
+        "references/runner-contract.md"
       ],
       "packet": "sk-code-quality",
       "workflowMode": "sk-code-quality"

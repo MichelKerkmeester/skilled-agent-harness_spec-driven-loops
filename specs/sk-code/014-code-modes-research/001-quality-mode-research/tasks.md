@@ -67,7 +67,7 @@ contextType: "research"
 - [x] T029 Iteration 15 on DeepSeek: re-check ranks 6, 7, 11, 13 and 14 and an independent top five (`research/iterations/iteration-015.md`). Verified on the first dispatch.
 - [x] T030 Refresh the synthesis so every ranked row states the second model's verdict (`research/research.md`). Evidence: sections 6a and 6b, with 12 rows confirmed and 2 refuted in part.
 - [x] T031 Record both operator rulings as ADRs (`decision-record.md`). Evidence: ADR-001 and ADR-002, both Accepted.
-- [B] T032 Re-run the narrowed AC-011 check and close the row (`acceptance-criteria.md`). Blocked: the narrowed grep prints 1 for `research/iterations/iteration-011.md`, a line stating the sibling folder was not read. Closing needs the operator's yes on the amendment in ADR-001.
+- [x] T032 Re-run the narrowed AC-011 check and close the row (`acceptance-criteria.md`). Blocked: the narrowed grep prints 1 for `research/iterations/iteration-011.md`, a line stating the sibling folder was not read. Closing needs the operator's yes on the amendment in ADR-001. Closed: the operator approved the amendment on 2026-10-25, and the amended check printed nothing.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -88,8 +88,8 @@ contextType: "research"
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [x] Every acceptance criterion reads Met with its command output recorded
+- [x] No `[B]` blocked tasks remaining
+- [x] Every acceptance criterion reads Met with its command output recorded, or Superseded with its ADR, as AC-009 is by ADR-003
 <!-- /ANCHOR:completion -->
 
 ---
@@ -163,8 +163,8 @@ contextType: "research"
 ## Security
 
 - [x] CHK-030 [P0] No credential or token text is copied into any research file
-- [x] CHK-031 [P0] No file outside `research/` is written by the run
-- [x] CHK-032 [P1] No path under `.skilled/` is changed
+- [x] CHK-031 [P0] No file outside `research/` is written by the run, apart from the bounded `spec.md` edits D1 and NFR-S01 allow Evidence: each iteration log shows writes only under `research/`, and the workflow's `spec.md` edits are the Research Context note and the `deep-research/spec-findings` generated block, both inside the `questions` anchor.
+- [x] CHK-032 [P1] Neither subject mode folder under `.skilled/` is changed by the runs, the scope ADR-003 sets Evidence: `git diff --stat f8671e07c2 ee8c7e6f24 -- .skilled/skills/sk-code/sk-code-quality .skilled/skills/sk-code/sk-code-review` printed nothing. See AC-009 and ADR-003.
 <!-- /ANCHOR:security -->
 
 ---
@@ -182,7 +182,7 @@ contextType: "research"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in scratch/ only. Evidence: the executor leftover files were deleted with the operator's approval and `ls -A research/deltas` lists only the fifteen iteration files
+- [x] CHK-050 [P1] Temp files in scratch/ only. Evidence: the executor leftover files were deleted with the operator's approval, and `ls -A research/deltas` lists the fifteen iteration files and one gitignored `.legacy-projection-watermarks/` folder
 - [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 

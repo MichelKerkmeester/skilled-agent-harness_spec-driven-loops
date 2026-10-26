@@ -62,6 +62,29 @@ function checkerFixturePath(tmpDir, relKey) {
   return path.join(tmpDir, router.CHECKER_RELATIVE_PATHS[relKey]);
 }
 
+// The router resolves the comment-hygiene checker beside its own real path
+// before the project folder, so an edit in a fixture project runs the hub's real
+// checker. A fixture file therefore carries this comment, which that checker
+// flags, wherever a case needs a finding to surface.
+const FLAGGED_SOURCE = '// see ADR-12\nexport const ok = 1;\n';
+
+// A stub comment-hygiene checker is reached only through a copy of the hook tree
+// whose hub path holds the stub. This copies the Claude adapter, the router and
+// the shared libraries they load into the fixture root and returns the copy.
+function isolatedClaudeHook(tmpDir) {
+  const hooksRoot = path.join(__dirname, '..', '..', 'hooks');
+  for (const rel of [
+    'post-edit-quality/claude/claude-posttooluse.cjs',
+    'post-edit-quality/lib/post-edit-router.cjs',
+    'shared/hook-flags.cjs',
+    'shared/env-aliases.cjs',
+    'shared/hook-adapter-shared.cjs',
+  ]) {
+    writeFile(path.join(tmpDir, '.skilled', 'hooks', rel), fs.readFileSync(path.join(hooksRoot, rel)));
+  }
+  return path.join(tmpDir, '.skilled', 'hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs');
+}
+
 async function loadPlugin() {
   const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'sk-code-post-edit-quality.js')).href;
   return import(pluginUrl);
@@ -283,11 +306,13 @@ test('resolveDispatch: dist/node_modules/.git segments are excluded from comment
 // 2. CORE -- runChecks fail-open + surface rules + deadline exhaustion
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('runChecks: a missing checker path yields no finding (fail-open)', () => {
+test('runChecks: a missing checker path yields one quality-notice and never throws (fail-open)', () => {
   const findings = router.runChecks([{
     label: 'ghost', checkerPath: '/does/not/exist.sh', args: [], surfaceRule: 'exit1',
   }], 5000);
-  assert.deepEqual(findings, []);
+  assert.equal(findings.length, 1, 'an unchecked edit must not read as a clean one');
+  assert.equal(findings[0].label, 'quality-notice');
+  assert.match(findings[0].stdout, /ghost checker not found at \/does\/not\/exist\.sh/);
 });
 
 test('runChecks: an exit-2 (unavailable) checker yields no finding, only exit 0/1 are meaningful', (t) => {
@@ -527,11 +552,7 @@ test('OpenCode plugin correlation map: stash -> retrieve+evict, unmatched take i
 
 test('OpenCode plugin: before/after correlation runs the dispatch table and surfaces via chat.system.transform, with zero terminal writes', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-e2e-');
-  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const ok = 1;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    `#!/usr/bin/env bash\necho "${editedFile}:1: fake violation"\nexit 1\n`,
-  );
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
 
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.server({ directory: tmpDir });
@@ -543,7 +564,7 @@ test('OpenCode plugin: before/after correlation runs the dispatch table and surf
     await hooks['experimental.chat.system.transform']({}, output);
     assert.equal(output.system.length, 1);
     assert.match(output.system[0], /comment-hygiene/);
-    assert.match(output.system[0], /fake violation/);
+    assert.match(output.system[0], /\[ADR reference\]/);
 
     // Draining is one-shot: a second transform call with nothing pending must not re-surface.
     const drained = { system: [] };
@@ -559,11 +580,7 @@ test('OpenCode plugin: before/after correlation runs the dispatch table and surf
 
 test('OpenCode plugin: logs under .opencode when that is the only source root', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-legacy-root-', '.opencode');
-  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const ok = 1;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    `#!/usr/bin/env bash\necho "${editedFile}:1: fake violation"\nexit 1\n`,
-  );
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
 
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.server({ directory: tmpDir });
@@ -579,11 +596,7 @@ test('OpenCode plugin: logs under .opencode when that is the only source root', 
 test('OpenCode plugin: tool.execute.after resolves a relative stashed filePath against projectDir before existsSync/resolveDispatch', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-relpath-');
   const relativeEditedFile = path.join('nested', 'edited.ts');
-  writeFile(path.join(tmpDir, relativeEditedFile), 'export const ok = 1;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    '#!/usr/bin/env bash\necho "relative-path violation"\nexit 1\n',
-  );
+  writeFile(path.join(tmpDir, relativeEditedFile), FLAGGED_SOURCE);
 
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.server({ directory: tmpDir });
@@ -598,19 +611,29 @@ test('OpenCode plugin: tool.execute.after resolves a relative stashed filePath a
     const output = { system: [] };
     await hooks['experimental.chat.system.transform']({}, output);
     assert.equal(output.system.length, 1, 'a relative filePath must resolve against projectDir, not the host cwd');
-    assert.match(output.system[0], /relative-path violation/);
+    assert.match(output.system[0], /nested\/edited\.ts.*\[ADR reference\]/);
   });
   assert.deepEqual(consoleCalls, []);
 });
 
 test('OpenCode plugin: tool.execute.after threads cwd:projectDir through to runChecks/spawnSync for cwd-sensitive checkers', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-cwd-');
-  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const ok = 1;\n');
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
   writeFile(path.join(tmpDir, 'sentinel.txt'), 'present\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
+  const cwdProbe = writeExecutable(
+    path.join(tmpDir, 'cwd-probe.sh'),
     '#!/usr/bin/env bash\nif [ -f "./sentinel.txt" ]; then\n  echo "cwd-correct"\nelse\n  echo "cwd-wrong: $(pwd)"\nfi\nexit 1\n',
   );
+
+  // The plugin and this test share one router module, so wrapping runChecks
+  // records the cwd the plugin hands over, while the real checker still runs.
+  const originalRunChecks = router.runChecks;
+  const seenCwds = [];
+  router.runChecks = (entries, deadlineMs, opts) => {
+    seenCwds.push(opts && opts.cwd);
+    return originalRunChecks(entries, deadlineMs, opts);
+  };
+  t.after(() => { router.runChecks = originalRunChecks; });
 
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.server({ directory: tmpDir });
@@ -621,9 +644,14 @@ test('OpenCode plugin: tool.execute.after threads cwd:projectDir through to runC
     const output = { system: [] };
     await hooks['experimental.chat.system.transform']({}, output);
     assert.equal(output.system.length, 1);
-    assert.match(output.system[0], /cwd-correct/, 'spawnSync must run the checker with cwd:projectDir, not the plugin host cwd');
   });
   assert.deepEqual(consoleCalls, []);
+  assert.deepEqual(seenCwds, [tmpDir], 'the plugin must hand cwd:projectDir to runChecks, not the plugin host cwd');
+
+  // runChecks in turn spawns the checker in that cwd.
+  const probed = originalRunChecks([{ label: 'cwd-probe', checkerPath: cwdProbe, args: [], surfaceRule: 'exit1' }], 5000, { cwd: tmpDir });
+  assert.equal(probed.length, 1);
+  assert.match(probed[0].stdout, /cwd-correct/, 'spawnSync must run the checker with the cwd it was given');
 });
 
 test('OpenCode plugin: an after-hook with no matching callID is a no-op', async (t) => {
@@ -654,11 +682,7 @@ test('OpenCode plugin: non-mutating tools are ignored by tool.execute.before', a
 
 test('OpenCode plugin: kill-switch env makes every hook a full no-op', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-killswitch-');
-  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const ok = 1;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    `#!/usr/bin/env bash\necho "${editedFile}:1: fake violation"\nexit 1\n`,
-  );
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.server({ directory: tmpDir });
 
@@ -701,11 +725,7 @@ test('Claude hook rejects malformed envelopes without a traceback and always exi
 
 test('Claude hook prints a bounded comment-hygiene advisory and preserves dist-staleness coverage', (t) => {
   const tmpDir = temporaryDirectory(t, 'claude-post-edit-hook-');
-  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const edited = true;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    `#!/usr/bin/env bash\necho "${editedFile}:1: fake violation"\nexit 1\n`,
-  );
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
   writeExecutable(
     checkerFixturePath(tmpDir, 'distStaleness'),
     '#!/usr/bin/env bash\necho "STALE DIST WARNING: @fixture/pkg"\nexit 0\n',
@@ -718,17 +738,13 @@ test('Claude hook prints a bounded comment-hygiene advisory and preserves dist-s
   });
   assert.equal(result.status, 0);
   assert.match(result.stdout, /COMMENT HYGIENE WARNING/);
-  assert.match(result.stdout, /fake violation/);
+  assert.match(result.stdout, /\[ADR reference\]/);
   assert.match(result.stdout, /STALE DIST WARNING: @fixture\/pkg/);
 });
 
 test('Claude hook is a full no-op under its kill-switch env', (t) => {
   const tmpDir = temporaryDirectory(t, 'claude-post-edit-hook-killswitch-');
-  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const edited = true;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    `#!/usr/bin/env bash\necho "${editedFile}:1: fake violation"\nexit 1\n`,
-  );
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
 
   const result = spawnSync(CLAUDE_HOOK_PATH, [], {
     input: JSON.stringify({ tool_name: 'Write', tool_input: { file_path: editedFile }, cwd: tmpDir }),
@@ -747,12 +763,8 @@ test('Claude hook is a full no-op under its kill-switch env', (t) => {
 
 test('Codex hook checks every file named in a multi-file apply_patch, not only the first', (t) => {
   const tmpDir = temporaryDirectory(t, 'codex-post-edit-hook-multi-');
-  const fileA = writeFile(path.join(tmpDir, 'a.ts'), 'export const a = true;\n');
-  const fileB = writeFile(path.join(tmpDir, 'b.ts'), 'export const b = true;\n');
-  writeExecutable(
-    checkerFixturePath(tmpDir, 'commentHygiene'),
-    '#!/usr/bin/env bash\necho "$1:1: fake violation in $1"\nexit 1\n',
-  );
+  const fileA = writeFile(path.join(tmpDir, 'a.ts'), FLAGGED_SOURCE);
+  const fileB = writeFile(path.join(tmpDir, 'b.ts'), FLAGGED_SOURCE);
 
   const patch = [
     '*** Begin Patch',
@@ -774,8 +786,8 @@ test('Codex hook checks every file named in a multi-file apply_patch, not only t
     timeout: 11_000,
   });
   assert.equal(result.status, 0);
-  assert.match(result.stdout, new RegExp(`fake violation in ${fileA.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), 'the first patched file must be checked');
-  assert.match(result.stdout, new RegExp(`fake violation in ${fileB.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), 'the second patched file must ALSO be checked -- this is the regression this test pins');
+  assert.ok(result.stdout.includes(`${fileA}:1: // see ADR-12 [ADR reference]`), 'the first patched file must be checked');
+  assert.ok(result.stdout.includes(`${fileB}:1: // see ADR-12 [ADR reference]`), 'the second patched file must ALSO be checked -- this is the regression this test pins');
 });
 
 test('Claude hook is a no-op for a missing file (never crashes on a stale path)', (t) => {
@@ -791,6 +803,8 @@ test('Claude hook is a no-op for a missing file (never crashes on a stale path)'
 test('Claude hook honors its shared budget across sequential checks', (t) => {
   const tmpDir = temporaryDirectory(t, 'claude-post-edit-hook-budget-');
   const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const edited = true;\n');
+  // The slow stub must sit where the router looks first, so the hook runs from a copy of the hook tree.
+  const isolatedHook = isolatedClaudeHook(tmpDir);
   writeExecutable(
     checkerFixturePath(tmpDir, 'commentHygiene'),
     '#!/usr/bin/env python3\nimport time\ntime.sleep(8.2)\n',
@@ -801,7 +815,7 @@ test('Claude hook honors its shared budget across sequential checks', (t) => {
   );
 
   const startedAt = Date.now();
-  const result = spawnSync(CLAUDE_HOOK_PATH, [], {
+  const result = spawnSync(process.execPath, [isolatedHook], {
     input: JSON.stringify({ tool_name: 'Write', tool_input: { file_path: editedFile }, cwd: tmpDir }),
     encoding: 'utf8',
     timeout: 11_000,

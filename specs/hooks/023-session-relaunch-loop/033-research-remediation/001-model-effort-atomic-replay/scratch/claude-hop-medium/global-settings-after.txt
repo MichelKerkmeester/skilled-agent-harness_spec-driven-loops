@@ -1,0 +1,7 @@
+after-run: d9d47a42e801818caadc6b5129347922f2f1a393
+after-run 16:  "model": "claude-opus-5-5",
+after-run 326:  "effortLevel": "xhigh",
+restored: d9d47a42e801818caadc6b5129347922f2f1a393
+16:  "model": "claude-opus-5-5",
+326:  "effortLevel": "xhigh",
+restore: differs from the backup only where other sessions wrote meanwhile:

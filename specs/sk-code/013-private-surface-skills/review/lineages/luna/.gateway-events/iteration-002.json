@@ -1,0 +1,294 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-luna-1792944728998-cwb2cp",
+  "status": "complete",
+  "focus": "security",
+  "dimensions": [
+    "security"
+  ],
+  "filesReviewed": [
+    ".skilled/scripts/git-hooks/pre-commit:100",
+    ".skilled/scripts/git-hooks/pre-commit:105",
+    ".skilled/scripts/git-hooks/pre-commit:111",
+    ".gitignore:230",
+    ".gitignore:236",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:136",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:147",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:148",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:202",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:207",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:209",
+    ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+    ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:40",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:727",
+    ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts:143",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:181",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py:200",
+    ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:55"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingDetails": [
+    {
+      "id": "LUNA-R1-P1-001",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "title": "Packet completion status contradicts active phase records",
+      "dimension": "correctness",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md:50",
+      "evidence": [
+        "specs/sk-code/013-private-surface-skills/spec.md:50",
+        "specs/sk-code/013-private-surface-skills/spec.md:136",
+        "specs/sk-code/013-private-surface-skills/spec.md:137",
+        "specs/sk-code/013-private-surface-skills/goal.md:89",
+        "specs/sk-code/013-private-surface-skills/goal.md:111",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34",
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33"
+      ],
+      "recommendation": "Reconcile the parent status, phase map, goal checklist, and child phase metadata against current task state.",
+      "disposition": "active",
+      "findingClass": "phase_status_drift",
+      "scopeProof": {
+        "reviewTarget": "specs/sk-code/013-private-surface-skills",
+        "inScope": true
+      },
+      "affectedSurfaceHints": [
+        "packet-status",
+        "phase-transition",
+        "completion-gate"
+      ],
+      "claim": "The packet's progress records disagree and can misstate the phase completion state.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/spec.md:50",
+        "specs/sk-code/013-private-surface-skills/spec.md:136",
+        "specs/sk-code/013-private-surface-skills/spec.md:137",
+        "specs/sk-code/013-private-surface-skills/goal.md:111",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34"
+      ],
+      "counterevidenceSought": "The goal and later phase records claim completion, but phase 2 still lists open tasks.",
+      "alternativeExplanation": "The fields may have been authored at different times or mean different types of completion, but the packet does not distinguish them.",
+      "confidence": 0.88,
+      "downgradeTrigger": "Downgrade if root Status is documentation-only and phase 2 open-task metadata is proven stale."
+    },
+    {
+      "id": "LUNA-R2-P2-001",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "title": "Staged type-change paths bypass the local-skill guard",
+      "dimension": "security",
+      "file": ".skilled/scripts/git-hooks/pre-commit:111",
+      "evidence": [
+        ".skilled/scripts/git-hooks/pre-commit:100",
+        ".skilled/scripts/git-hooks/pre-commit:105",
+        ".skilled/scripts/git-hooks/pre-commit:111",
+        "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:136",
+        "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:148"
+      ],
+      "recommendation": "Make the staged-path scan include type changes, or otherwise inspect all changed index paths, and cover a tracked local-* path changing file type.",
+      "disposition": "active",
+      "findingClass": "commit_guard_diff_filter_gap",
+      "scopeProof": {
+        "reviewTarget": "specs/sk-code/013-private-surface-skills",
+        "inScope": true,
+        "evidenceRefs": [
+          ".skilled/scripts/git-hooks/pre-commit:111",
+          "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:136"
+        ]
+      },
+      "affectedSurfaceHints": [
+        "pre-commit-guard",
+        "private-skill-path",
+        "publication-boundary"
+      ],
+      "claim": "The blocking hook filters staged paths to ACMR, which omits Git type-change status T; a local-* path changed from one file type to another is therefore not matched by the private-path guard.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:105",
+        ".skilled/scripts/git-hooks/pre-commit:111",
+        "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:136"
+      ],
+      "confidence": 0.76,
+      "alternativeExplanation": "The guard catches newly added, modified, copied, and renamed local-* paths, and current ignored roots are not normally tracked; the gap is limited to a type change at an already tracked local-* path.",
+      "downgradeTrigger": "This remains P2 unless a reachable tracked local-* path is shown to carry private payload through the omitted T status, which would raise severity."
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": {
+      "status": "partial",
+      "notes": "The status mismatch from iteration 1 remains open; phase 1 guard requirement and hook implementation also leave a type-change edge."
+    },
+    "checklist_evidence": {
+      "status": "partial",
+      "notes": "Phase 1 acceptance criteria show the intended staged-path refusal, but this static pass did not execute the harness."
+    },
+    "skill_agent": {
+      "status": "partial",
+      "notes": "TypeScript and Python trusted-root checks use canonical paths and path-relative containment."
+    },
+    "agent_cross_runtime": {
+      "status": "partial",
+      "notes": "TypeScript and Python containment helpers use equivalent relative-path checks."
+    },
+    "feature_catalog_code": {
+      "status": "pending",
+      "notes": "Not covered in this security pass."
+    },
+    "playbook_capability": {
+      "status": "pending",
+      "notes": "Not covered in this security pass."
+    },
+    "scope_boundary": {
+      "status": "conflict",
+      "notes": "Packet-root graph seed/upsert remains skipped because it is outside the lineage write boundary."
+    }
+  },
+  "newFindingsRatio": 0.166667,
+  "noveltyJustification": "One new P2 was identified in the staged-path type-change edge; the existing P1 remains active, so severity-weighted new information is 1/(5+1).",
+  "ruledOut": [
+    {
+      "direction": "static private-root path-prefix escape",
+      "reason": "Both TypeScript and Python helpers resolve real paths and use relative-path boundary checks that reject parent traversal."
+    }
+  ],
+  "sessionId": "fanout-luna-1792944728998-cwb2cp",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-25T16:29:10Z",
+  "durationMs": 150000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "The security boundary spans the pre-commit gate, ignore rules, private symlink readers, and tracked-output generators.",
+    "evidenceRefs": [
+      ".skilled/scripts/git-hooks/pre-commit:105",
+      ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+      "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:207"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/scripts/git-hooks/pre-commit",
+      ".gitignore",
+      ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+      "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md",
+      "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md"
+    ],
+    "selectionReason": "Followed the private-skill boundary from stage guard and ignore rules through the advisor link readers and tracked graph/Hermes generators.",
+    "discoveryMethods": [
+      "exact_grep",
+      "direct_read",
+      "producer_consumer_trace"
+    ],
+    "omittedHighRiskTargets": [
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".github/workflows/routing-registry-drift.yml"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      ".skilled/scripts/git-hooks/pre-commit:111",
+      ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "staged_type_change_guard_bypass",
+      "trusted_root_escape"
+    ],
+    "covered": [
+      "staged_type_change_guard_bypass",
+      "trusted_root_escape"
+    ],
+    "ruledOut": [
+      "trusted_root_escape"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md"
+      ],
+      "bugClass": "staged_type_change_guard_bypass",
+      "hypothesis": "A staged local-* path with status T may be omitted from the path-name guard.",
+      "invariant": "Every staged local-* skill path is rejected before commit regardless of Git change type.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": ".skilled/scripts/git-hooks/pre-commit:100-111",
+          "result": "The hook scans --diff-filter=ACMR and applies the eight-root local-* regex to returned paths.",
+          "evidenceRefs": [
+            ".skilled/scripts/git-hooks/pre-commit:105",
+            ".skilled/scripts/git-hooks/pre-commit:111"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "phase 1 requirement and success criteria for staged local-* path refusal",
+          "result": "The spec requires a staged local skill path to be refused and the exact root symlink name to match.",
+          "evidenceRefs": [
+            "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:136",
+            "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md:148"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The path regex covers the exact local-* name, but the upstream staged-path filter excludes type-change entries before regex evaluation.",
+      "linkedFindingId": "LUNA-R2-P2-001"
+    },
+    {
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "trusted_root_escape",
+      "hypothesis": "A prefix-similar or parent-traversing symlink target could pass trusted-root containment.",
+      "invariant": "A followed local-* symlink resolves inside a canonical trusted root.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "TypeScript and Python realpath containment helpers",
+          "result": "Both implementations compute a relative path from the canonical root and reject parent traversal and absolute relatives.",
+          "evidenceRefs": [
+            ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+            ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:40",
+            ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155",
+            ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:191"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "The path-boundary calculation does not use unsafe string-prefix matching.",
+      "ruledOutReason": "Direct read shows canonical realpath plus path-relative containment in both runtimes."
+    }
+  ]
+}

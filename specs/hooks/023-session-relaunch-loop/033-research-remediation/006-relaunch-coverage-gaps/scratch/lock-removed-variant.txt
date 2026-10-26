@@ -1,0 +1,60 @@
+# lock removed + 50ms window, run 1
+✖ two concurrent claims have one winner (99.171916ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.526541
+
+✖ failing tests:
+
+test at ../../../../../../private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/nolock/session-relaunch/tests/relaunch-core.test.cjs:2090:1
+✖ two concurrent claims have one winner (99.171916ms)
+  AssertionError [ERR_ASSERTION]: [{"won":true,"claimedBy":"session-test-00000011"},{"won":true,"claimedBy":"session-test-00000012"}]
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/nolock/session-relaunch/tests/relaunch-core.test.cjs:2142:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+# pure lock removal, 10 runs: 10 failed
+✖ two concurrent claims have one winner (51.132208ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.21675
+
+✖ failing tests:
+
+test at ../../../../../../private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/nolock/session-relaunch/tests/relaunch-core.test.cjs:2090:1
+✖ two concurrent claims have one winner (51.132208ms)
+  AssertionError [ERR_ASSERTION]: [{"won":true,"claimedBy":"session-test-00000011"},{"won":true,"claimedBy":"session-test-00000012"}]
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/nolock/session-relaunch/tests/relaunch-core.test.cjs:2142:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

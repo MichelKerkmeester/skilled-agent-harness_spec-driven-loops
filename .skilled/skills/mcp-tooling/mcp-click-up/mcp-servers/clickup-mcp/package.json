@@ -1,0 +1,11 @@
+{
+  "name": "clickup-mcp",
+  "version": "2.0.0",
+  "description": "Placeholder. The official ClickUp MCP server (clickup_official) launches on demand via npx -y mcp-remote https://mcp.clickup.com/mcp. There is nothing to vendor here, see README.md.",
+  "private": true,
+  "scripts": {
+    "start": "echo 'Nothing to run locally. The clickup_official manual in .utcp_config.json launches the hosted server through mcp-remote, see README.md.'"
+  },
+  "keywords": ["clickup", "mcp", "task-management"],
+  "license": "ISC"
+}

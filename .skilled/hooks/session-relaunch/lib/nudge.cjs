@@ -17,12 +17,6 @@ const hookFlags = require('../../shared/hook-flags.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SEED_PREFIX = '[session-relaunch]';
-const SEED_COMMAND = SEED_PREFIX + ' claim and continue handoff ';
-const SPEC_FOLDER_MARKER = core.SPEC_FOLDER_MARKER;
-const SPEC_FOLDER_SUFFIX = core.SPEC_FOLDER_SUFFIX;
-const SPEC_FOLDER_SKIP_SUFFIX = core.SPEC_FOLDER_SKIP_SUFFIX;
-// Seeds printed by the first printers carry an unbalanced suffix; they still parse.
-const SPEC_FOLDER_SKIP_SUFFIX_LEGACY = ' (Gate 3 answered D) Skip in the sending session)';
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
 // Every adapter prints this command, so the model always runs the CLI from the repo root.
@@ -207,12 +201,19 @@ function handoffText({
 }
 
 /** Build the claim, resume, and completion instructions for a seed prompt. */
-function seedText({ notePath, specFolder, sessionId, cliPath, afterCompaction = false } = {}) {
+function seedText({
+  notePath,
+  specFolder,
+  sessionId,
+  cliPath,
+  afterCompaction = false,
+  createdAt,
+} = {}) {
   const pathValue = String(notePath ?? '<handoff-path>');
   const claimCommand = claimCommandFor(pathValue, sessionId, cliPath);
   const completeCommand = completeCommandFor(pathValue, cliPath);
   const gateWasSkipped = specFolder === 'none';
-  const continueStep = gateWasSkipped ? 4 : 3;
+  let continueStep = gateWasSkipped ? 4 : 3;
   let readInstruction = '2. Read the note.';
   if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
     readInstruction = '2. Read the note. When its frontmatter spec_folder is set, run '
@@ -229,6 +230,19 @@ function seedText({ notePath, specFolder, sessionId, cliPath, afterCompaction = 
   ];
   if (gateWasSkipped) {
     lines.push('3. Gate 3 is already answered Skip for this session, carried from the handoff.');
+  }
+  // A session that kept working after it wrote the note may have committed some of its
+  // Remaining work since, so it checks git before trusting the list. The note date is the
+  // boundary for that check; without one the step still asks for the history.
+  if (afterCompaction) {
+    const dated = typeof createdAt === 'string' && createdAt.trim() !== '';
+    lines.push(dated
+      ? `${continueStep}. The note was written at ${createdAt}. Run `
+        + `\`git log --since=${shellQuote(createdAt)}\` and \`git status\`, and compare them `
+        + 'with Remaining work before you trust it.'
+      : `${continueStep}. Run \`git log\` and \`git status\`, and compare them with Remaining `
+        + 'work before you trust it; work committed after the note was written is already done.');
+    continueStep += 1;
   }
   lines.push(
     `${continueStep}. Continue the work under "Remaining work". Do not run prepare for this note; `
@@ -259,20 +273,12 @@ function isSeedPrompt(text) {
   return typeof text === 'string' && text.startsWith(SEED_PREFIX);
 }
 
+// The wrapper reads the same seed with the core parser, so both sides go through it and a
+// note path that holds the marker text cannot split one way here and another way there.
+/** Read the carried spec folder from a claim seed, or '' when it carries no usable answer. */
 function specFolderFromSeed(prompt) {
-  if (!isSeedPrompt(prompt)) return '';
-  const markerIndex = prompt.indexOf(SPEC_FOLDER_MARKER);
-  if (markerIndex < 0) return '';
-  const rawFolder = prompt.slice(markerIndex + SPEC_FOLDER_MARKER.length);
-  for (const suffix of [SPEC_FOLDER_SKIP_SUFFIX, SPEC_FOLDER_SKIP_SUFFIX_LEGACY]) {
-    if (rawFolder.endsWith(suffix)) {
-      return rawFolder.slice(0, -suffix.length) === 'none' ? 'none' : '';
-    }
-  }
-  if (!rawFolder.endsWith(SPEC_FOLDER_SUFFIX)) return '';
-  const specFolder = rawFolder.slice(0, -SPEC_FOLDER_SUFFIX.length);
-  if (!core.validSpecFolder(specFolder)) return '';
-  return specFolder;
+  const parsed = core.parseClaimSeed(prompt);
+  return parsed ? parsed.specFolder : '';
 }
 
 // The runtime receives the seed path raw: its shell already consumed any
@@ -280,14 +286,8 @@ function specFolderFromSeed(prompt) {
 // real backslash or edge whitespace.
 /** Extract the raw handoff note path from a claim seed, or null when malformed. */
 function notePathFromSeed(prompt) {
-  if (!isSeedPrompt(prompt) || !prompt.startsWith(SEED_COMMAND)) return null;
-  let notePath = prompt.slice(SEED_COMMAND.length);
-  const markerIndex = notePath.indexOf(SPEC_FOLDER_MARKER);
-  if (markerIndex >= 0) notePath = notePath.slice(0, markerIndex);
-  if (!notePath || notePath !== notePath.trim() || /[\r\n]/.test(notePath)) {
-    return null;
-  }
-  return path.isAbsolute(notePath) ? notePath : null;
+  const parsed = core.parseClaimSeed(prompt);
+  return parsed ? parsed.notePath : null;
 }
 
 // A seed whose note path cannot be read would hand the model a claim command with a

@@ -16,12 +16,17 @@ const { spawnSync } = require('node:child_process');
 const { after, test } = require('node:test');
 
 const ENGINE_DIR = path.join(__dirname, '..', 'lib', 'compiled-routing', '014-runtime-engine', 'lib');
+const SK_CODE_LIB = path.join(__dirname, '..', 'lib', 'compiled-routing', '009-parent-hub-rollout', '001-sk-code', 'lib');
+const SK_CODE_ROOT = path.join(__dirname, '..', '..', 'skills', 'sk-code');
 const FRONT_DOOR = path.join(__dirname, '..', 'compiled-route.cjs');
 const { compiledRoute } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
+const { compileRegistry } = require(path.join(SK_CODE_LIB, 'registry-compiler.cjs'));
+const { applySurfaceHint, evaluateCanary } = require(path.join(SK_CODE_LIB, 'canary-router.cjs'));
 
 const SKILLED_TESTING = 'Add an integration test and unit test coverage plan for a TypeScript advisor module, including vitest checks.';
 const SKILLED_LANGUAGE = 'Check a TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.';
 const REVIEW_SKILLED = 'pr review opencode typescript';
+const REVIEW_CI_SKILLED = 'review the github actions workflow yaml for the typescript bundle';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURES
@@ -47,6 +52,54 @@ after(() => fs.rmSync(ACTIVATION_ROOT, { recursive: true, force: true }));
 
 function modes(route) {
   return route.targets.map((target) => target.workflowMode);
+}
+
+function targetModes(targets) {
+  return targets.map((target) => target.destinationId.workflowMode);
+}
+
+// The live sk-code registry and router, with a surface packet another repository
+// adds to the hub. It declares a specific surfaceDetection block and takes its
+// tie-break slot ahead of the fallback, as the compiler requires.
+function hubWithAddedSurface() {
+  const registry = JSON.parse(fs.readFileSync(path.join(SK_CODE_ROOT, 'mode-registry.json'), 'utf8'));
+  const hubRouter = JSON.parse(fs.readFileSync(path.join(SK_CODE_ROOT, 'hub-router.json'), 'utf8'));
+  registry.modes.push({
+    workflowMode: 'sk-code-webflow',
+    packetKind: 'surface',
+    backendKind: 'evidence-base',
+    packet: 'sk-code-webflow',
+    packetSkillName: 'sk-code-webflow',
+    aliases: [],
+    advisorRouting: { routingClass: 'metadata' },
+    surfaceDetection: { label: 'WEBFLOW', role: 'specific', pathMarkers: ['src/2_javascript/'], contentMarkers: ['--vw-'] },
+  });
+  hubRouter.routerSignals['sk-code-webflow'] = { weight: 4, classes: ['code-webflow-runtime'], resources: ['sk-code-webflow/SKILL.md'] };
+  hubRouter.vocabularyClasses['code-webflow-runtime'] = { keywords: ['webflow'] };
+  const tieBreak = hubRouter.routerPolicy.tieBreak;
+  tieBreak.splice(tieBreak.length - 1, 0, 'sk-code-webflow');
+  return { registry, hubRouter };
+}
+
+function compileHub({ registry, hubRouter }) {
+  const skillMarkdown = fs.readFileSync(path.join(SK_CODE_ROOT, 'SKILL.md'), 'utf8');
+  return compileRegistry({
+    activationGeneration: 1,
+    hubRouter,
+    registry,
+    skillMarkdown,
+    sourceBytes: {
+      'SKILL.md': Buffer.from(skillMarkdown, 'utf8'),
+      'hub-router.json': Buffer.from(JSON.stringify(hubRouter), 'utf8'),
+      'mode-registry.json': Buffer.from(JSON.stringify(registry), 'utf8'),
+    },
+  });
+}
+
+function routedTargets(snapshot, prompt, surfaceHint) {
+  const { decision } = evaluateCanary(snapshot, { prompt });
+  assert.equal(decision.action, 'route', prompt);
+  return targetModes(applySurfaceHint(snapshot, decision.route.targets, surfaceHint));
 }
 
 function runFrontDoor(args) {
@@ -83,6 +136,54 @@ test('a workflow mode stays first with the shipped surface', () => {
   const route = resolveRoute('sk-code', REVIEW_SKILLED, { surfaceHint: 'SKILLED' });
   assert.equal(route.selectionKind, 'surfaceBundle');
   assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-skilled']);
+});
+
+// SKILLED is the fallback surface, so it ranks after every other surface. A
+// session hint naming it confirms that order and never moves it forward.
+test('a SKILLED hint never moves the fallback ahead of another surface', () => {
+  const plain = resolveRoute('sk-code', REVIEW_CI_SKILLED);
+  assert.equal(plain.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(plain), ['sk-code-review', 'sk-code-ci', 'sk-code-skilled']);
+  for (const surfaceHint of ['SKILLED', 'sk-code-skilled']) {
+    assert.deepEqual(modes(resolveRoute('sk-code', REVIEW_CI_SKILLED, { surfaceHint })), modes(plain));
+  }
+});
+
+test('a surface another repository adds to the hub outranks SKILLED when both match', () => {
+  const snapshot = compileHub(hubWithAddedSurface());
+  assert.equal(snapshot.routingModel.surfaceDetection.fallback, 'sk-code-skilled');
+  assert.deepEqual(snapshot.routingModel.surfaceDetection.specific, ['sk-code-webflow']);
+  const prompt = 'fix the webflow slider typescript';
+  for (const surfaceHint of [undefined, 'SKILLED', 'WEBFLOW']) {
+    assert.deepEqual(routedTargets(snapshot, prompt, surfaceHint), ['sk-code-webflow', 'sk-code-skilled'], String(surfaceHint));
+  }
+  assert.deepEqual(
+    routedTargets(snapshot, `review the ${prompt}`, 'WEBFLOW'),
+    ['sk-code-review', 'sk-code-webflow', 'sk-code-skilled'],
+  );
+});
+
+test('SKILLED alone still routes when a hub also declares another surface', () => {
+  const snapshot = compileHub(hubWithAddedSurface());
+  for (const surfaceHint of [undefined, 'SKILLED', 'WEBFLOW']) {
+    assert.deepEqual(routedTargets(snapshot, 'fix the typescript helper', surfaceHint), ['sk-code-skilled'], String(surfaceHint));
+  }
+});
+
+test('the compiler rejects a hub whose fallback surface is not exactly one or not last', () => {
+  const notLast = hubWithAddedSurface();
+  const tieBreak = notLast.hubRouter.routerPolicy.tieBreak;
+  tieBreak.splice(tieBreak.indexOf('sk-code-skilled'), 1);
+  tieBreak.splice(tieBreak.indexOf('sk-code-webflow'), 0, 'sk-code-skilled');
+  assert.throws(() => compileHub(notLast), { code: 'SURFACE_FALLBACK_INVALID', message: /must be last/ });
+
+  const twoFallbacks = hubWithAddedSurface();
+  twoFallbacks.registry.modes.find((mode) => mode.workflowMode === 'sk-code-webflow').surfaceDetection.role = 'fallback';
+  assert.throws(() => compileHub(twoFallbacks), { code: 'SURFACE_FALLBACK_INVALID', message: /exactly one fallback/ });
+
+  const noFallback = hubWithAddedSurface();
+  delete noFallback.registry.modes.find((mode) => mode.workflowMode === 'sk-code-skilled').surfaceDetection;
+  assert.throws(() => compileHub(noFallback), { code: 'SURFACE_FALLBACK_INVALID', message: /found 0/ });
 });
 
 test('a CI workflow prompt bundles the CI surface', () => {

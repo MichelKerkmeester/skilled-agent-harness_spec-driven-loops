@@ -34,7 +34,7 @@
       "four"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,11 +42,18 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
-      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
-      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      "scratch/red-before-reused-note.txt",
+      "scratch/green-after-reused-note.txt",
+      "scratch/lock-removed-variant.txt",
+      "scratch/final-node.txt",
+      "scratch/final-vitest.txt",
+      "scratch/baseline-node.txt",
+      "scratch/baseline-vitest.txt"
     ],
     "entities": [
       {
@@ -86,24 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "skilled-loop.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "relaunch-core.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "session-relaunch-cli.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "relaunch-core.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
@@ -113,6 +102,66 @@
         "name": "session-relaunch.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red-before-reused-note.txt",
+        "kind": "file",
+        "path": "scratch/red-before-reused-note.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after-reused-note.txt",
+        "kind": "file",
+        "path": "scratch/green-after-reused-note.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lock-removed-variant.txt",
+        "kind": "file",
+        "path": "scratch/lock-removed-variant.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-node.txt",
+        "kind": "file",
+        "path": "scratch/final-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-vitest.txt",
+        "kind": "file",
+        "path": "scratch/final-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-node.txt",
+        "kind": "file",
+        "path": "scratch/baseline-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-vitest.txt",
+        "kind": "file",
+        "path": "scratch/baseline-vitest.txt",
         "source": "derived"
       },
       {
@@ -150,53 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Test",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Test",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four relaunch paths have no test (research section 9, findings 6 to 9, and section 15)",
     "created_at": "2026-10-25T13:42:32Z",
-    "last_save_at": "2026-10-25T14:12:02.398Z",
+    "last_save_at": "2026-10-25T18:41:42.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8d5801b4cf6efecf9036319ab41c4da7c8835190854be5d487f3cbe627d54f9",
+    "source_fingerprint": "sha256:75f21333af6d545663ed6dead4f767f05134839002e819c79f078e082fe2ae73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "10327cafea46a04afffadd681ce74db23f59459eb0ffbfe1e8dee520cbbca85c",
+      "spec.md": "98b876f1055e9bb8b69cd9a57205a3650e749d5475f4ed05cfd833b6cd6da7bb",
       "plan.md": "7e482d5a06ae9533a605a79f83ed2dd04a6cc1531d47406be2fa9a1ab259f2db",
-      "tasks.md": "efe273a43cff620090200688b0501fa0bb2b9c2d2308b0f6477304be1e9a4e76",
-      "implementation-summary.md": "a71a45defdd8326747423fc413f3de24bb4651b8452c37386f19c2c4637e15a1"
+      "tasks.md": "78626ca6dd53e7c36730d7ec29a02386d6847bb30507ece68f77488f6bd41ae5",
+      "implementation-summary.md": "5abd0a3597e505d6752efbd607ec9835f0a896f32a28cccb3ea3950113dfbcfb"
     },
     "last_active_at": null
   }

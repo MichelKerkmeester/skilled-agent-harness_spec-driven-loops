@@ -1,0 +1,13 @@
+✔ manual command carries the live model and effort (364.605084ms)
+✔ Cursor manual command carries the live Cursor model (250.812792ms)
+✔ manual command keeps the launch model for an invalid live model (254.999958ms)
+✔ manual command reports a live model that holds the placeholder (253.926542ms)
+✔ manual command after a model-switching hop carries the current hop's model (615.138375ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1784.70225

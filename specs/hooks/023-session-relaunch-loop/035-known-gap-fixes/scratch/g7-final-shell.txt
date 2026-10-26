@@ -1,0 +1,4 @@
+bash-n .skilled/bin/skilled-loop=0
+shellcheck .skilled/bin/skilled-loop=0
+bash-n .skilled/hooks/shared/hook-flags.sh=0
+shellcheck .skilled/hooks/shared/hook-flags.sh=0

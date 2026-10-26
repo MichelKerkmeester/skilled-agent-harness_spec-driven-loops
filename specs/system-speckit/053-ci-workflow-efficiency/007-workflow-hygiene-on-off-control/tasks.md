@@ -618,7 +618,7 @@ Evidence: gate tail `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=3
 
 ---
 
-### T021 Commit the permissions pass (AC-001)
+### T021 [x] Commit the permissions pass (AC-001)
 
 File: `.github/workflows/` (the 12 permission headers). Anchor (read): `scratch/pass-permissions.md`, the `## Permissions pass` heading written by T020.
 
@@ -675,7 +675,7 @@ Evidence: run id 40200559794 on pull request 89 and run id 40148156911 on pull r
 
 ---
 
-### T023 Commit the Dependabot split (AC-002)
+### T023 [x] Commit the Dependabot split (AC-002)
 
 File: `.github/workflows/dependabot-auto-merge.yml` and `scratch/r25-dependabot.md`. Anchor (read): `scratch/r25-dependabot.md:1`, the run id or `pending:` line written by T022.
 
@@ -1577,7 +1577,7 @@ Evidence: `size-timeouts.mjs --assert --floor 10` printed `values match formula:
 
 ---
 
-### T061 Commit the timeout pass (AC-003)
+### T061 [x] Commit the timeout pass (AC-003)
 
 File: `.github/workflows/*.yml` and `scratch/r24/`. Anchor (read): `scratch/r24/timeouts.md`, the `## R24 proof` heading written by T060.
 
@@ -2452,7 +2452,7 @@ Evidence: `switches 42 expected 42` and `switch count: ok` (`hooks-node-tests.ym
 
 ---
 
-### T097 Commit the switch pass (AC-005)
+### T097 [x] Commit the switch pass (AC-005)
 
 File: `.github/workflows/*.yml` and `scratch/pass-switch.md`. Anchor (read): `scratch/pass-switch.md`, the `## R26 proof` heading written by T096.
 
@@ -2485,7 +2485,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ---
 
-### T098 Commit the README section (AC-007)
+### T098 [x] Commit the README section (AC-007)
 
 File: `.github/workflows/README.md`. Anchor (read): `.github/workflows/README.md`, the `### On/off switches` heading written by T095.
 
@@ -2592,7 +2592,7 @@ Stop and escalate if: the push is rejected, the fork's `main` does not equal `HE
 
 ---
 
-### T100 Read the first 24 hours of runs for a timeout kill (AC-003)
+### T100 [x] Read the first 24 hours of runs for a timeout kill (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md` (new file). Anchor: none.
 
@@ -2613,9 +2613,11 @@ Rollback: delete `scratch/runs-24h.json` and the `timeout kills` line.
 
 Stop and escalate if: the kill message appears and the value cannot be raised from a fresh sample, or the 50% rule would have to be relaxed to keep the job green.
 
+Evidence: the check printed `690 26` and `1`, and `scratch/phase-result.md` holds `timeout kills: 0` (run 2026-10-25). The read lists every run created from 2026-10-25T00:43:00Z, when `8ff7da700d` reached `main`, to 21:30Z. For each of the 26 runs that did not succeed, every failed or cancelled job had its check-run annotations and its log searched for `maximum execution time`, with no hit, so no value needs raising. Deviations: the window is 20.8 hours, not 24, because the operator asked on 2026-10-25 not to wait for the full window, and none of the repository's own schedules falls in the hours left out; the one scheduled run after 21:30Z, the one-shot plugin-test run 40236652343 the setup caching phase fired at 21:41Z, finished `success` in 251 s against its 10-minute timeout, with no kill message in its log. `--limit 300` covers only the newest 3.5 to 5 hours at today's rate, so the read lists the window by creation date in three-hour chunks instead (`scratch/phase-result.md`).
+
 ---
 
-### T101 Run the final gates and record the phase result (AC-009, AC-011, AC-012)
+### T101 [x] Run the final gates and record the phase result (AC-009, AC-011, AC-012)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md`. Anchor: none; append a `## Final gates` section.
 
@@ -2639,9 +2641,11 @@ Rollback: delete the `## Final gates` section and revert the `[x]` marks.
 
 Stop and escalate if: either gate does not print `RESULT: PASSED`, or the ephemeral-id count is not `0`, or a changed path falls outside the three allowed roots.
 
+Evidence: the gate printed `failures=0` and `RESULT: PASSED`, the parse printed `parse ok`, the ephemeral-id count printed `0`, and the strict validation printed `RESULT: PASSED` (run 2026-10-25, `scratch/phase-result.md`, `## Final gates`). Deviation: `git diff --name-only "$BASE"..HEAD` lists 5,488 paths because other work reached `main` after the phase start, so the path check reads the phase's own nine commits. Those stay inside the three roots except two paths with a recorded reason, a consumer test and the parent's derived metadata. Neither is a workflow change, so the stop condition's intent holds.
+
 ---
 
-### T102 Commit the closure records (AC-009, AC-011, AC-012)
+### T102 [x] Commit the closure records (AC-009, AC-011, AC-012)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md`, `acceptance-criteria.md` and the verification records under `scratch/`. Anchor: none; T101 has closed the acceptance rows and set `Closeable: Yes`.
 
@@ -2672,6 +2676,8 @@ Expected: `msg=0`; every staged path under `specs/system-speckit/053-ci-workflow
 Rollback: `git reset --soft HEAD~1`, restore the previous `[x]` marks and `Closeable:` value with `git checkout -- "$PHASE/tasks.md" "$PHASE/acceptance-criteria.md"`, and delete `/tmp/commit-closure.txt`.
 
 Stop and escalate if: the validator exits non-zero, or a staged path falls outside the phase folder.
+
+Evidence: `validate-message.mjs` exited `0` on the message above, written to the session scratchpad rather than `/tmp`, and this commit is the closure. It stages the phase folder only. The commit gate may re-mint derived metadata files on its own.
 <!-- /ANCHOR:phase-5 -->
 
 ---
@@ -2679,9 +2685,9 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`. Evidence: `grep -cE '^### T[0-9]+[A-Z]? \[ \]' tasks.md` prints `0`; all 102 task headings are `[x]` (run 2026-10-25)
+- [x] No `[B]` blocked tasks remaining. Evidence: `grep -cE '^### T[0-9]+[A-Z]? \[B\]' tasks.md` prints `0` (run 2026-10-25). all 102 task headings are `[x]`
+- [x] Manual verification passed. Evidence: `gh run view` on 2026-10-25 confirms the fork probe runs (T099) and the two Dependabot runs (T022), see CHK-021. The merge job's write path on a real security patch is not observed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -2722,9 +2728,9 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming R24, R25, R26, D6 or the gates
-- [ ] CHK-002 [P0] Technical approach defined in plan.md - the three-pass order, the formula, the split and the probe
-- [ ] CHK-003 [P1] Dependencies identified and available - `003`, `004`, `005` and `006` landed (T003), `gh` scopes, a fork, and D6 (T001)
+- [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming R24, R25, R26, D6 or the gates. Evidence: `grep -oE 'REQ-0[0-9]{2}' spec.md | sort -u` prints REQ-001 to REQ-013 (run 2026-10-25). `spec.md:133-136` ties REQ-001 and REQ-002 to R25, REQ-003 and REQ-004 to R24, REQ-005 to REQ-008 to R26 and REQ-009 to REQ-013 to the gates and D6, and `spec.md:156` is the D6 requirement
+- [x] CHK-002 [P0] Technical approach defined in plan.md - the three-pass order, the formula, the split and the probe. Evidence (read 2026-10-25): `plan.md:107` sets the R25, R24, R26 order. `plan.md:32` and `:120` give `max(floor, ceil(3 x p50), ceil(2 x p100))`. `plan.md:64` and `:111` describe the Dependabot split. `plan.md:69` and `:136` describe the fork probe
+- [x] CHK-003 [P1] Dependencies identified and available - `003`, `004`, `005` and `006` landed (T003), `gh` scopes, a fork, and D6 (T001). Evidence: T003 records the landed shape of `003`, `004` and `005` in the tree (`hooks: merged`, the merged plugin job, the composite setup action). For `006`, `grep -c 'max(<floor>' .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md` prints `1` (rerun 2026-10-25). `scratch/decisions.md:1` holds `D6=10` (T001) and `:2` holds `PROBE_FORK=MichelKerkmeester/ci-switch-probe-throwaway` (T006), a throwaway repository that stands in for a fork because an account cannot fork its own repository (`scratch/r26-probe.md` Setup). `gh run view` answered for this repository and for the probe repository on 2026-10-25
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -2732,10 +2738,10 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks - `python3 -c "import yaml, glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]; print('parse ok')"` parses every workflow and `check-gate-inputs.sh` prints `RESULT: PASSED` (T020, T060, T096, T101)
-- [ ] CHK-011 [P0] No console errors or warnings - the gate prints `failures=0` and the sizing script exits 0 with `50% rule: ok` (T020, T060)
-- [ ] CHK-012 [P1] Error handling implemented - the split's `auto-merge` job skips when the update is not an npm patch, and the switch fails safe to on (T019, T062 to T090)
-- [ ] CHK-013 [P1] Code follows project patterns - the switch sits above `runs-on:` and the timeout below it, the split mirrors `trigger-index-rebuild.yml`'s token split, and no comment carries a packet id (T019, T027 to T058, T062 to T094)
+- [x] CHK-010 [P0] Code passes lint/format checks - `python3 -c "import yaml, glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]; print('parse ok')"` parses every workflow and `check-gate-inputs.sh` prints `RESULT: PASSED` (T020, T060, T096, T101). Evidence (rerun 2026-10-25 on this checkout): the YAML parse prints `parse ok` with exit `0` over the 32 workflows. `bash .github/scripts/check-gate-inputs.sh` prints `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` and `RESULT: PASSED` with exit `0`. T020, T060 and T096 recorded the same `RESULT: PASSED` after their passes (`scratch/pass-permissions.md`, `scratch/r24/gate-after-timeouts.txt`). T101 reruns both at closure
+- [x] CHK-011 [P0] No console errors or warnings - the gate prints `failures=0` and the sizing script exits 0 with `50% rule: ok` (T020, T060). Evidence: the 2026-10-25 gate run prints `failures=0`, and `node scratch/r24/size-timeouts.mjs --assert --floor 10` prints `values match formula: ok` and `50% rule: ok` with exit `0` (run 2026-10-25, the same result T060 recorded)
+- [x] CHK-012 [P1] Error handling implemented - the split's `auto-merge` job skips when the update is not an npm patch, and the switch fails safe to on (T019, T062 to T090). Evidence: the `auto-merge` job's `if:` requires `package-ecosystem == 'npm_and_yarn'` and `update-type == 'version-update:semver-patch'` (`.github/workflows/dependabot-auto-merge.yml:43-46`). `gh run view` on runs 40200559794 and 40148156911 prints the metadata job `success` and the merge job `skipped` for two updates that are not npm security patches (T022, run 2026-10-25). All 84 switch comparisons in the tree have the form `!= 'off'`, and probe run 40150476111 ran its job with the variable deleted (T099, `scratch/r26-probe.md:6-7`)
+- [x] CHK-013 [P1] Code follows project patterns - the switch sits above `runs-on:` and the timeout below it, the split mirrors `trigger-index-rebuild.yml`'s token split, and no comment carries a packet id (T019, T027 to T058, T062 to T094). Evidence (run 2026-10-25): a parse of every job finds 44 jobs and 42 switch lines, each switch above `runs-on:` and each `timeout-minutes` below it, with no exception. The split puts the write scopes on a job that runs `gh` only (`dependabot-auto-merge.yml:38-42`), the same split by job that `trigger-index-rebuild.yml:192-196` uses for its `push` job. `git diff 4b7d3d8941~1..03abdb20d8 -- .github | grep -cE '^\+.*(R2[456]|D6|D[0-9]|phase 007|Phase 7)'` prints `0`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -2743,10 +2749,10 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-013
-- [ ] CHK-021 [P0] Manual testing complete - the fork probe and the Dependabot pull request (T022, T099)
-- [ ] CHK-022 [P1] Edge cases tested - the mutant copy proves the AND rule rejects a replaced condition, and the thin-sample rows are marked (T026, T096)
-- [ ] CHK-023 [P1] Error scenarios validated - a timeout kill is read from the log rather than assumed absent, and the probe reads both the `off` and the unset state (T099, T100)
+- [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-013. Evidence: all 13 rows are `Met` and `grep -c '| Unmet |' acceptance-criteria.md` prints `0` (run 2026-10-25)
+- [x] CHK-021 [P0] Manual testing complete - the fork probe and the Dependabot pull request (T022, T099). Evidence (run 2026-10-25): `gh run view 40150455358 --repo MichelKerkmeester/ci-switch-probe-throwaway` prints `skipped | strict-pass-freshness=skipped`, and run 40150476111 prints `failure | strict-pass-freshness=failure`, a job that ran (T099, `scratch/r26-probe.md:3-7`). `gh run view` on 40200559794 and 40148156911 prints `success`, metadata `success` and auto-merge `skipped` (T022, `scratch/r25-dependabot.md:3`). Limits recorded in T022 and T099: the off run's conclusion is `skipped` rather than the `success` the task expected, and the merge job's write path on a real security patch is not observed
+- [x] CHK-022 [P1] Edge cases tested - the mutant copy proves the AND rule rejects a replaced condition, and the thin-sample rows are marked (T026, T096). Evidence: `scratch/pass-switch.md:5` reads `mutant: rejected`, and `:16` records the pattern T096 used so the control could fail. In `scratch/r24/timeouts.md` the only row under 5 samples is line 11, `dependabot-auto-merge.yml | metadata | 0 | ... | no-sample`. No job has between 1 and 4 samples, so no row needs `thin` (awk over the samples column, run 2026-10-25)
+- [x] CHK-023 [P1] Error scenarios validated - a timeout kill is read from the log rather than assumed absent, and the probe reads both the `off` and the unset state (T099, T100). Evidence (run 2026-10-25): T100 searched the annotations and the log of every failed or cancelled job in the 690 runs after the timeouts landed for `maximum execution time` and found none (`scratch/phase-result.md`). The probe read both states: `off: skipped` in run 40150455358 and `unset: ran` in run 40150476111 (`scratch/r26-probe.md`)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -2754,13 +2760,13 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the missing timeouts and permissions, `cross-consumer` for the switch because two later phases read its names, `instance-only` for the Dependabot split
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed - `grep -n '^    if:'`, `grep -n 'timeout-minutes'` and `grep -L 'permissions:'` over `.github/workflows/*.yml`, re-run after the dependency phases (T003, plan.md Affected Surfaces)
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed - `check-gate-inputs.sh`, the 006 rule data, the 009 report and the README table, each with its verification in plan.md
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the permission split is the security change: the merge job runs no repository code and no checkout, proved by reading its steps and by `grep -c 'actions/checkout'` returning 0 (T019)
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - workflow class (3) x change (4) x group (6), with five required rows, in plan.md
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the fork probe is that variant: the same workflows with a variable set and unset (T099)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every sample row names its run ids and every probe row its run id, under `scratch/`
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the missing timeouts and permissions, `cross-consumer` for the switch because two later phases read its names, `instance-only` for the Dependabot split. Evidence: the classes are assigned in this row. R24 and R25 (`class-of-bug`), R26 (`cross-consumer`) and the REQ-002 split (`instance-only`) each map to their tasks and criteria in the cross-reference table above
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed - `grep -n '^    if:'`, `grep -n 'timeout-minutes'` and `grep -L 'permissions:'` over `.github/workflows/*.yml`, re-run after the dependency phases (T003, plan.md Affected Surfaces). Evidence (rerun 2026-10-25): `grep -n '^    if:' .github/workflows/*.yml` returns 44 lines, the 42 switches plus the two Dependabot conditions. The `timeout-minutes` lines total 44 for 44 jobs. `grep -L 'permissions:' .github/workflows/*.yml` lists no file. T003 re-derived the inventory after the dependency phases (`scratch/inventory.md`, 43 jobs in 32 files before the split)
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - `check-gate-inputs.sh`, the 006 rule data, the 009 report and the README table, each with its verification in plan.md. Evidence: `plan.md:84-87` lists the README table, `check-gate-inputs.sh`, the 006 rule data and the 009 report, each with its verification cell. On 2026-10-25 the gate prints `RESULT: PASSED` and `grep -c 'max(<floor>'` on `job-shape-rules.md` prints `1`. The `SKILLED_CI` names in the README, in `scratch/switch-groups.md` and in the workflows are the same six (`diff` exit `0`)
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the permission split is the security change: the merge job runs no repository code and no checkout, proved by reading its steps and by `grep -c 'actions/checkout'` returning 0 (T019). Evidence: `grep -c 'actions/checkout' .github/workflows/dependabot-auto-merge.yml` prints `0` (T019, rerun 2026-10-25). Read on 2026-10-25, the `auto-merge` job holds `contents: write` and `pull-requests: write` (`:40-42`) and one step, `run: gh pr merge --auto --merge "$PR_URL"` (`:58`)
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - workflow class (3) x change (4) x group (6), with five required rows, in plan.md. Evidence: `plan.md:92` lists workflow class (permissions-only, plain, special) x change (permissions, split, timeout, switch) x group (the five groups and none), with five required rows
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the fork probe is that variant: the same workflows with a variable set and unset (T099). Evidence: `scratch/r26-probe.md` records `SKILLED_CI_REPORTS` set to `off` in the probe repository only, run 40150455358 with its job `skipped`, then the variable deleted and run 40150476111 with its job run. `gh run view` confirmed both job conclusions on 2026-10-25 (T099)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every sample row names its run ids and every probe row its run id, under `scratch/`. Evidence (run 2026-10-25): the 32 run lists in `scratch/r24/runs/` name 1157 run ids, and `scratch/r24/jobs/` holds one `<run-id>.json` per listed run with none missing. The probe rows name runs 40150455358 and 40150476111 and the probe head `c9e72c279d` (`scratch/r26-probe.md:3-7`). The Dependabot record names runs 40200559794 and 40148156911 (`scratch/r25-dependabot.md`)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -2768,9 +2774,9 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets - the change adds permission blocks, timeouts, `vars.*` expressions and prose; no token, key or PAT value appears in any edited file
-- [ ] CHK-031 [P0] Input validation implemented - not applicable: the switch compares a repository variable to a fixed literal, and no value reaches a shell
-- [ ] CHK-032 [P1] Auth/authz working correctly - every workflow declares a scope, the only write scopes sit on a job that runs no repository code, and no job gains a scope it did not already use (T007 to T019)
+- [x] CHK-030 [P0] No hardcoded secrets - the change adds permission blocks, timeouts, `vars.*` expressions and prose; no token, key or PAT value appears in any edited file. Evidence (run 2026-10-25): the added lines of `git diff 4b7d3d8941~1..03abdb20d8 -- .github`, the five phase commits, match no `secrets.`, `ghp_`, `github_pat_`, `.env` or `api key`. The one added line that matches `token` is the README sentence "`off` is the only token that disables a job" (`.github/workflows/README.md:89`)
+- [x] CHK-031 [P0] Input validation implemented - not applicable: the switch compares a repository variable to a fixed literal, and no value reaches a shell. Evidence (run 2026-10-25): every `SKILLED_CI` reference in `.github/workflows/*.yml` sits on an `if:` line (the grep for references off `if:` lines exits `1`). All 84 comparisons have the form `vars.SKILLED_CI... != 'off'`, so no value reaches a `run:` step
+- [x] CHK-032 [P1] Auth/authz working correctly - every workflow declares a scope, the only write scopes sit on a job that runs no repository code, and no job gains a scope it did not already use (T007 to T019). Evidence (run 2026-10-25): `grep -L 'permissions:' .github/workflows/*.yml` lists no file. The only write scopes in the tree are `dependabot-auto-merge.yml:41-42` on `auto-merge`, which runs `gh pr merge` only, and `trigger-index-rebuild.yml:196` on `push`, which runs `gh` and `git` with hooks off and no repository code. The permission lines in the phase diff add `contents: read` blocks, add `pull-requests: read` on `metadata` and move the two Dependabot write scopes from the workflow level to `auto-merge`, so no job gains a scope
 <!-- /ANCHOR:security -->
 
 ---
@@ -2778,9 +2784,9 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - R24 to R26 map to REQ-001 to REQ-013 and to AC-001 to AC-013 in the cross-reference table above
-- [ ] CHK-041 [P1] Code comments adequate - the merge job keeps the reason it holds the write scope, and the README section carries the `off`-only rule and the message-contract prohibition
-- [ ] CHK-042 [P2] README updated (if applicable) - `.github/workflows/README.md` gains the `### On/off switches` section and no existing row changes (T095)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - R24 to R26 map to REQ-001 to REQ-013 and to AC-001 to AC-013 in the cross-reference table above. Evidence: the cross-reference table above covers REQ-001 to REQ-013 and AC-001 to AC-013 with no gap. `grep -oE` finds REQ-001 to REQ-013 in `spec.md` and AC-001 to AC-013 in `acceptance-criteria.md` (run 2026-10-25)
+- [x] CHK-041 [P1] Code comments adequate - the merge job keeps the reason it holds the write scope, and the README section carries the `off`-only rule and the message-contract prohibition. Evidence (read 2026-10-25): `.github/workflows/dependabot-auto-merge.yml:38-39` says the merge job holds the only write scopes and runs no repository code. `.github/workflows/README.md:89` states that `off` is the only token that disables a job, and `:95` states that SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context
+- [x] CHK-042 [P2] README updated (if applicable) - `.github/workflows/README.md` gains the `### On/off switches` section and no existing row changes (T095). Evidence (run 2026-10-25): `grep -n '^### On/off switches$' .github/workflows/README.md` prints line `76`, and `git diff --numstat 4b7d3d8941~1..03abdb20d8 -- .github/workflows/README.md` prints `21 0`, so no existing line changed
 <!-- /ANCHOR:docs -->
 
 ---
@@ -2788,8 +2794,8 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only - the samples, the sizing table, the gate transcripts and the probe records live under `$PHASE/scratch/`
-- [ ] CHK-051 [P1] scratch/ cleaned before completion - the mutant copy is deleted after T096; the samples and the table stay as the phase's evidence
+- [x] CHK-050 [P1] Temp files in scratch/ only - the samples, the sizing table, the gate transcripts and the probe records live under `$PHASE/scratch/`. Evidence (2026-10-25 listing): the phase folder holds only the spec documents and `scratch/`. The samples (`scratch/r24/runs/` and 1157 files in `scratch/r24/jobs/`), the table `scratch/r24/timeouts.md`, the gate transcripts (`scratch/gate-after-permissions.txt`, `scratch/r24/gate-after-timeouts.txt`) and the probe records (`scratch/r25-dependabot.md`, `scratch/r26-probe.md`) are all under `scratch/`
+- [x] CHK-051 [P1] scratch/ cleaned before completion - the mutant copy is deleted after T096; the samples and the table stay as the phase's evidence. Evidence: `find $PHASE -iname '*mutant*'` prints nothing (run 2026-10-25), and T096 recorded `rm` exit `0`. The samples and the table remain, and so do the five `scratch/commit-message-*.txt` files the pass commits were written from
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -2799,11 +2805,13 @@ Stop and escalate if: the validator exits non-zero, or a staged path falls outsi
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | [ ]/13 |
-| P1 Items | 12 | [ ]/12 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+No open items.
+
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---

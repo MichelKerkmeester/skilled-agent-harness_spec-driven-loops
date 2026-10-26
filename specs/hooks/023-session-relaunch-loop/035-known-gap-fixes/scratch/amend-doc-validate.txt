@@ -1,0 +1,6 @@
+== validate_document.py on .skilled/hooks/session-relaunch/README.md (2026-10-25T20:19:21Z)
+
+✅ VALID: .skilled/hooks/session-relaunch/README.md
+Document type: readme
+Total issues: 0
+exit=0

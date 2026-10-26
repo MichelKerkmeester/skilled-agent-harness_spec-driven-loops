@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Universal Patterns - Cross-Language Code Standards
@@ -167,7 +167,7 @@ for (const entry of entry) { ... }  // very confusing
 
 ### Core Principles
 
-1. **Quantity limit (Skilled surface setting):** Maximum 3 comments per 10 lines of code. This number is the Skilled surface's budget. The comment-density rule it applies, and the rule that each surface sets its own budget, live in the shared [code style guide](../../../../shared/references/universal/code-style-guide.md).
+1. **Quantity limit (Skilled surface setting):** Maximum 3 comments per 10 lines of code. This number is the Skilled surface's budget. The comment-density rule it applies, and the rule that each surface sets its own budget, live in the shared [code style guide](../../../../sk-code-quality/references/code-style-guide.md).
 2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
 3. **No commented-out code:** Delete unused code (git preserves history)
 4. **Function purpose comments:** Single line above function describing intent
@@ -232,7 +232,7 @@ const score = calculateDecay(baseScore, age); // weighted decay
 
 ## 4. REFERENCE COMMENT PATTERNS
 
-> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../../../shared/references/universal/code-style-guide.md`](../../../../shared/references/universal/code-style-guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
+> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer: a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../../../sk-code-quality/references/code-style-guide.md`](../../../../sk-code-quality/references/code-style-guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
 
 ### Hard-Block Comment-Hygiene Gate
 

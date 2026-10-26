@@ -4,13 +4,14 @@
 // ║ PURPOSE: One path-dispatch table deciding which quality checker(s) run   ║
 // ║          for an edited file, shared by the Claude PostToolUse hook and   ║
 // ║          the OpenCode plugin so the two runtimes cannot drift on policy. ║
-// ║          resolveDispatch() is a pure, side-effect-free path/string       ║
-// ║          resolver (deterministic given the same inputs); runChecks()     ║
+// ║          resolveDispatch() is a side-effect-free resolver that reads     ║
+// ║          only whether the hub copy of a checker exists; runChecks()      ║
 // ║          spawns the resolved checkers under a shared deadline and        ║
 // ║          returns bounded, redacted findings. Neither function writes to  ║
-// ║          stdout/stderr or throws -- every failure path (missing checker, ║
-// ║          non-{0,1} exit, spawn error, exhausted deadline) resolves to no ║
-// ║          finding so a bug here can never block the edit it observes.    ║
+// ║          stdout/stderr or throws. A missing checker becomes one          ║
+// ║          quality-notice finding, and every other failure path (non-{0,1} ║
+// ║          exit, spawn error, exhausted deadline) resolves to no finding,  ║
+// ║          so a bug here can never block the edit it observes.            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -18,7 +19,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const { existsSync } = require('node:fs');
+const { existsSync, readFileSync, realpathSync } = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
@@ -41,7 +42,46 @@ const CHECKER_RELATIVE_PATHS = {
   distStaleness: '.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh',
 };
 
-const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', '.sh', '.bash', '.jsonc']);
+// The router ships three folders below the source root it belongs to
+// (hooks/post-edit-quality/lib), so its own real path names the hub copy of
+// each checker even when a project reaches the hub through a link and its own
+// tree lacks the checker.
+const ROUTER_SOURCE_ROOT = (() => {
+  try {
+    return path.resolve(path.dirname(realpathSync(__filename)), '..', '..', '..');
+  } catch (_) {
+    return path.resolve(__dirname, '..', '..', '..');
+  }
+})();
+const COMMENT_SYNTAX_PATH = path.join(
+  ROUTER_SOURCE_ROOT, 'skills', 'sk-code', 'sk-code-quality', 'assets', 'comment-syntax.json',
+);
+
+// Used when the comment family table cannot be read, so the hook stays fail-open
+// and still checks the languages it always covered.
+const BUILTIN_SOURCE_EXTENSIONS = Object.freeze(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', '.sh', '.bash', '.jsonc']);
+
+/**
+ * Read the extensions the comment-hygiene checker covers from its family table,
+ * falling back to the built-in set when the table is missing or malformed.
+ *
+ * @param {string} tablePath
+ * @returns {Set<string>}
+ */
+function loadSourceExtensions(tablePath) {
+  try {
+    const table = JSON.parse(readFileSync(tablePath, 'utf8'));
+    const extensions = Object.values(table.languages).flatMap((language) => language.extensions);
+    if (extensions.length > 0 && extensions.every((ext) => typeof ext === 'string' && ext.startsWith('.'))) {
+      return new Set(extensions.map((ext) => ext.toLowerCase()));
+    }
+  } catch (_) {
+    // Fall through to the built-in set.
+  }
+  return new Set(BUILTIN_SOURCE_EXTENSIONS);
+}
+
+const SOURCE_EXTENSIONS = loadSourceExtensions(COMMENT_SYNTAX_PATH);
 const EXCLUDED_DIR_SEGMENTS = new Set(['dist', 'node_modules', '.git']);
 const SPEC_DOC_BASENAMES = new Set(['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md']);
 const WIKILINKS_ENABLE_ENV = 'SPECKIT_VALIDATE_LINKS';
@@ -132,6 +172,23 @@ function relativeSegments(absFilePath, projectDir) {
 }
 
 /**
+ * Resolve a checker from the router's own source root first and from the
+ * project folder second. The hub copy wins, so every adapter runs the checker
+ * the hub ships, and a project reached through a link still gets one. When
+ * neither exists the project path is returned and runChecks reports it missing.
+ *
+ * @param {string} relativePath - repo-relative checker path, first segment the source root
+ * @param {string} projectDir
+ * @returns {string}
+ */
+function resolveCheckerPath(relativePath, projectDir) {
+  const withinSourceRoot = relativePath.split('/').slice(1);
+  const hubCandidate = path.join(ROUTER_SOURCE_ROOT, ...withinSourceRoot);
+  if (existsSync(hubCandidate)) return hubCandidate;
+  return path.join(projectDir, relativePath);
+}
+
+/**
  * True when a relative-path-segment array names a file that is a "flowchart"
  * candidate for validate_flowchart.sh.
  *
@@ -181,7 +238,8 @@ function isVersionedSkillDoc(basename, segments) {
  *
  * @param {string} absFilePath - the edited file's path (absolute, or resolved
  *   against projectDir if relative)
- * @param {string} projectDir - project root the checker paths are joined to
+ * @param {string} projectDir - project root; a checker path falls back to it
+ *   when the hub copy beside the router is missing
  * @param {{ env?: NodeJS.ProcessEnv }} [opts]
  * @returns {Array<{ label: string, checkerPath: string, args: string[], surfaceRule: string, dedupeKey?: string }>}
  */
@@ -205,7 +263,7 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
     if (SOURCE_EXTENSIONS.has(ext) && !segments.some((seg) => EXCLUDED_DIR_SEGMENTS.has(seg))) {
       return [{
         label: 'comment-hygiene',
-        checkerPath: path.join(projectDir, CHECKER_RELATIVE_PATHS.commentHygiene),
+        checkerPath: resolveCheckerPath(CHECKER_RELATIVE_PATHS.commentHygiene, projectDir),
         args: [resolvedFile],
         surfaceRule: 'exit1-with-stdout',
       }];
@@ -370,18 +428,22 @@ function createDedupeTracker() {
  * Run a resolved dispatch list under a shared deadline. Spawns each checker
  * synchronously with a per-child timeout carved from the remaining budget,
  * in priority order, skipping any entry once the deadline is exhausted.
- * Every failure path (missing checker file, spawn error, timeout/signal kill,
- * exit code outside {0,1}) resolves to "no finding" for that entry -- this
- * function never throws and never writes to stdout/stderr.
+ * A missing checker file yields one `quality-notice` finding per checker path,
+ * de-duplicated within the call and through the dedupe tracker when one is
+ * given, because an unchecked edit must not read as a clean one. Every other
+ * failure path (spawn error, timeout/signal kill, exit code outside {0,1})
+ * resolves to "no finding" for that entry -- this function never throws and
+ * never writes to stdout/stderr.
  *
  * @param {Array<{label,checkerPath,args,surfaceRule,dedupeKey?}>} entries
  * @param {number} deadlineMs - total budget remaining for this call, ms
  * @param {{ perChildTimeoutMs?: number, minCheckerMs?: number, maxFindings?: number,
  *           dedupeTracker?: { shouldSurface(key: string): boolean }, cwd?: string }} [opts]
- * @returns {Array<{ label: string, exitCode: number, stdout: string }>}
+ * @returns {Array<{ label: string, exitCode: number|null, stdout: string }>}
  */
 function runChecks(entries, deadlineMs, opts = {}) {
   const findings = [];
+  const noticedMissing = new Set();
   try {
     if (!Array.isArray(entries) || entries.length === 0) return findings;
     // A finite, non-positive deadline means the shared budget is already
@@ -408,7 +470,22 @@ function runChecks(entries, deadlineMs, opts = {}) {
       if (remainingMs < minCheckerMs) break; // deadline exhausted -- skip remaining entries
 
       if (dedupeTracker && entry.dedupeKey && !dedupeTracker.shouldSurface(entry.dedupeKey)) continue;
-      if (!existsSync(entry.checkerPath)) continue; // fail-open: checker missing
+      if (!existsSync(entry.checkerPath)) {
+        const noticeKey = `quality-notice:${entry.checkerPath}`;
+        const firstNotice = !noticedMissing.has(noticeKey)
+          && (!dedupeTracker || dedupeTracker.shouldSurface(noticeKey));
+        noticedMissing.add(noticeKey);
+        if (firstNotice) {
+          findings.push({
+            label: 'quality-notice',
+            exitCode: null,
+            stdout: truncateAndRedact(
+              `${entry.label || 'unknown'} checker not found at ${entry.checkerPath}, so this edit was not checked`,
+            ),
+          });
+        }
+        continue;
+      }
 
       const timeoutMs = Math.max(minCheckerMs, Math.min(remainingMs, perChildCapMs));
       let result;
@@ -489,6 +566,7 @@ function runDistStalenessCheck(absFilePath, projectDir, opts = {}) {
 module.exports = {
   // constants
   CHECKER_RELATIVE_PATHS,
+  BUILTIN_SOURCE_EXTENSIONS,
   SOURCE_EXTENSIONS,
   EXCLUDED_DIR_SEGMENTS,
   SPEC_DOC_BASENAMES,
@@ -503,6 +581,8 @@ module.exports = {
   OPENCODE_MIN_CHECKER_MS,
   // path/scope helpers (exposed for table-driven testing)
   relativeSegments,
+  resolveCheckerPath,
+  loadSourceExtensions,
   isFlowchartCandidate,
   isVersionedSkillDoc,
   // policy

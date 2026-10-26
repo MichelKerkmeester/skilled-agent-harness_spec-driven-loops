@@ -356,6 +356,115 @@ function testGateAllowsKnownGraphMetadataExtra() {
   assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
 }
 
+function testGateAcceptsSurfaceDetectionObject() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'surface-detection-ok', {
+    'graph-metadata.json': {
+      skill_id: 'surface-detection-ok',
+      surface_detection: { label: 'FIXTURE', role: 'specific', pathMarkers: ['src/fixture/'] },
+    },
+    'leaf-manifest.config.json': { workflowMode: 'surface-detection-ok' },
+    'references/a.md': '# a\n',
+  });
+
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'pass');
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_INVALID_SURFACE_DETECTION'));
+}
+
+function testGateRejectsNonObjectSurfaceDetection() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'surface-detection-bad', {
+    'graph-metadata.json': { skill_id: 'surface-detection-bad', surface_detection: ['src/fixture/'] },
+    'leaf-manifest.config.json': { workflowMode: 'surface-detection-bad' },
+    'references/a.md': '# a\n',
+  });
+
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'fail');
+  assert.ok(codesOf(result).includes('GRAPH_METADATA_INVALID_SURFACE_DETECTION'));
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+}
+
+/** Check a synthetic root carrying the given surface_detection object. */
+function surfaceDetectionViolations(skillId, block) {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, skillId, {
+    'graph-metadata.json': { skill_id: skillId, surface_detection: block },
+    'leaf-manifest.config.json': { workflowMode: skillId },
+    'references/a.md': '# a\n',
+  });
+  const result = gate.checkRoot(dir, { fix: true });
+  return result.violations.filter((v) => v.code === 'GRAPH_METADATA_INVALID_SURFACE_DETECTION');
+}
+
+function testGateAcceptsSurfaceDetectionWithEveryMarkerList() {
+  const found = surfaceDetectionViolations('surface-detection-full', {
+    label: 'FIXTURE',
+    role: 'specific',
+    pathMarkers: ['src/fixture/'],
+    fileMarkers: ['fixture.config.json'],
+    // Spaces inside or around a real marker are legal; only a blank one fails.
+    contentMarkers: ['fixture-runtime', 'from "fixture"', ' fixture-edge '],
+  });
+  assert.deepEqual(found, []);
+}
+
+function testGateIgnoresAbsentSurfaceDetection() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'surface-detection-absent', {
+    'graph-metadata.json': { skill_id: 'surface-detection-absent' },
+    'leaf-manifest.config.json': { workflowMode: 'surface-detection-absent' },
+    'references/a.md': '# a\n',
+  });
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'pass');
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_INVALID_SURFACE_DETECTION'));
+}
+
+function testGateRejectsSurfaceDetectionWithoutLabel() {
+  for (const label of [undefined, '', '   ', 7]) {
+    const found = surfaceDetectionViolations('surface-detection-no-label', {
+      label, role: 'specific', pathMarkers: ['src/fixture/'],
+    });
+    assert.equal(found.length, 1, `label ${JSON.stringify(label)} must fail once`);
+    assert.match(found[0].message, /surface_detection\.label must be a non-empty string/);
+  }
+}
+
+function testGateRejectsSurfaceDetectionWithoutSpecificRole() {
+  // The fallback is the hub's own code, so an outside block may only be specific.
+  for (const role of [undefined, 'fallback', 'Specific', 'primary']) {
+    const found = surfaceDetectionViolations('surface-detection-bad-role', {
+      label: 'FIXTURE', role, pathMarkers: ['src/fixture/'],
+    });
+    assert.equal(found.length, 1, `role ${JSON.stringify(role)} must fail once`);
+    assert.match(found[0].message, /surface_detection\.role must be "specific"/);
+  }
+}
+
+function testGateRejectsSurfaceDetectionWithoutMarkers() {
+  for (const markers of [{}, { pathMarkers: [], fileMarkers: [], contentMarkers: [] }]) {
+    const found = surfaceDetectionViolations('surface-detection-no-markers', {
+      label: 'FIXTURE', role: 'specific', ...markers,
+    });
+    assert.equal(found.length, 1, `markers ${JSON.stringify(markers)} must fail once`);
+    assert.match(found[0].message, /at least one non-empty marker array/);
+  }
+}
+
+function testGateRejectsSurfaceDetectionMarkerEntries() {
+  // A usable list elsewhere does not excuse a malformed one beside it.
+  for (const bad of ['src/fixture/', [''], [' '], ['\t'], ['ok', 3], [null]]) {
+    const found = surfaceDetectionViolations('surface-detection-bad-entries', {
+      label: 'FIXTURE', role: 'specific', pathMarkers: ['src/fixture/'], contentMarkers: bad,
+    });
+    assert.equal(found.length, 1, `contentMarkers ${JSON.stringify(bad)} must fail once`);
+    assert.match(found[0].message, /surface_detection\.contentMarkers must be an array of non-blank strings/);
+  }
+}
+
 function testGateRejectsIntentSignalsBelowFloor() {
   const skillsDir = makeTmpSkillsDir();
   const dir = makeRoot(skillsDir, 'thin-intent-signals', {
@@ -604,6 +713,14 @@ try {
   testGateIgnoresSameNamedContinuityMetadata();
   testGateRejectsUnknownGraphMetadataKey();
   testGateAllowsKnownGraphMetadataExtra();
+  testGateAcceptsSurfaceDetectionObject();
+  testGateRejectsNonObjectSurfaceDetection();
+  testGateAcceptsSurfaceDetectionWithEveryMarkerList();
+  testGateIgnoresAbsentSurfaceDetection();
+  testGateRejectsSurfaceDetectionWithoutLabel();
+  testGateRejectsSurfaceDetectionWithoutSpecificRole();
+  testGateRejectsSurfaceDetectionWithoutMarkers();
+  testGateRejectsSurfaceDetectionMarkerEntries();
   testGateRejectsIntentSignalsBelowFloor();
   testGateRejectsEmptyIntentSignalsAndTriggers();
   testGateAcceptsIntentSignalsAtFloor();

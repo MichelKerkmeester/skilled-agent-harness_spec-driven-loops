@@ -40,6 +40,9 @@ jobs:
     steps:
       # Every remote action is pinned to a full commit SHA with the release tag as a comment.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Leave no token in the git config, so a step that later pushes gets it explicitly.
+          persist-credentials: false
 
       # A job that imports built trees calls the composite setup action here instead of
       # repeating install and build steps. See the job block template for the call.

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The advisor no longer speaks of the retired Webflow and Obsidian surfaces, sixteen directory scans treat a local-* private skill by design, and @code and @review fall back to an advisor-named local-* skill when sk-code cannot route."
+description: "The advisor no longer speaks of the retired Webflow and Obsidian surfaces, eighteen directory scans treat a local-* private skill by design, and @code and @review fall back to an advisor-named local-* skill when sk-code cannot route."
 trigger_phrases:
   - "advisor vocabulary cleanup implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup"
-    last_updated_at: "2026-10-24T20:00:00Z"
-    last_updated_by: "claude-sonnet-5-5"
-    recent_action: "Resolved review round 4 (T108 to T112) and re-verified"
-    next_safe_action: "Run the next independent review (T084), then commit and push (T074, T075)"
+    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed the phase records: e00fef3e76 on origin/main, AC-026 and AC-027 Met"
+    next_safe_action: "Phase complete, continue in phase 004"
     blockers: []
     key_files:
       - "tasks.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-advisor-vocabulary-cleanup"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-advisor-vocabulary-cleanup |
-| **Completed** | 2026-10-24 (build and verification; independent review, commit and push pending) |
+| **Completed** | 2026-10-24 (committed as e00fef3e76) |
 | **Level** | 3 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,7 +55,7 @@ The advisor now speaks only about the surface that still ships, and a `local-*` 
 
 The vocabulary sweep removed the `obsidian plugin` hint token from the lexical lane, the OBSIDIAN and WEBFLOW workspace detection from the OpenCode plugin, and the `WEBFLOW` example from both tool schemas and the advisor README. The tests that named those surfaces now name `SKILLED`.
 
-Sixteen scans state their rule for a top-level `local-*` entry, and the inventory in `spec.md` section 3 lists them so the count can be checked. Eight include it for the local advisor: the advisor graph scan, the source signature, the Python conflict-declaration reader, the Python signal-map reader, the Python skill-record discovery, the daemon watcher, the filesystem projection and the status scan. Each follows a symlink only when its realpath resolves inside the skills root or a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. A shared helper, `private-skill-target.ts`, holds that rule for TypeScript and `skill_advisor_runtime.py` holds its Python mirror. Both refuse a link to the skills root itself and resolve the trusted roots once per scan. Eight skip it by name before any filesystem probe: the compiler, the Hermes sync, the CI root-metadata gate, the doctor freshness panel, the command-bridge deriver, the skill-metadata regenerator, the router-signal generator and the cross-skill edge loader. The compiler and the deriver also refuse any other top-level symlink, which is safe because no tracked top-level skill is a link.
+Eighteen scans state their rule for a top-level `local-*` entry, and the inventory in `spec.md` section 3 lists them so the count can be checked. The sixteen below shipped in this phase. The derived-freshness CI gate and the doctor description-budget audit joined as Exclude rows on 2026-10-25, after the deep review found them. Eight include it for the local advisor: the advisor graph scan, the source signature, the Python conflict-declaration reader, the Python signal-map reader, the Python skill-record discovery, the daemon watcher, the filesystem projection and the status scan. Each follows a symlink only when its realpath resolves inside the skills root or a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. A shared helper, `private-skill-target.ts`, holds that rule for TypeScript and `skill_advisor_runtime.py` holds its Python mirror. Both refuse a link to the skills root itself and resolve the trusted roots once per scan. Eight skip it by name before any filesystem probe: the compiler, the Hermes sync, the CI root-metadata gate, the doctor freshness panel, the command-bridge deriver, the skill-metadata regenerator, the router-signal generator and the cross-skill edge loader. The compiler and the deriver also refuse any other top-level symlink, which is safe because no tracked top-level skill is a link.
 
 The agent fallback runs `advisor_recommend` when `sk-code` returns UNKNOWN, uses a top pick whose `skillId` starts with `local-` as the standards overlay, and keeps the existing escalation (`@code`) or baseline-only review (`@review`) for any other pick.
 
@@ -242,7 +242,7 @@ Expected: `local-webflow`, the top `skillId`.
 
 1. **The ambiguity slice is green once its clock is pinned.** `live=17/24` against `baseline=19` measured the calendar, because the derived lane discounts by age and the test read the real clock. With the clock fixed to the baseline's capture instant the live count is `19/24`, equal to the baseline (see the operator ruling amendment in `decision-record.md`).
 2. **The private-skill routing probe is deferred.** It needs the two phase-004 symlinks and both external roots in `SPECKIT_PRIVATE_SKILL_ROOTS`; until then no real `local-*` skill has been routed (AC-035, ADR-008).
-3. **Independent review, commit and push are not done here.** They are the orchestrator's (T072, T074, T075, T076).
+3. **Independent review, commit and push ran outside this summary.** The orchestrator ran them (T072, T074, T075, T076), and the phase reached `origin/main` as `e00fef3e76`.
 4. **The follow-up tests were not observed red before their guards.** They were written after the guards; each was instead shown to fail when its guard was removed (see How It Was Delivered).
 5. **The full runtime vitest run was red before this phase and is fixed.** The seven cases that failed on a clean `origin/main` (the baseline ambiguity slice, three hook-count cases, one parity case and two `skill_graph_scan` job cases) are resolved by the operator ruling, and `decision-record.md` gives each cause and fix. The full run now prints `Test Files  147 passed (147)` and `Tests  1225 passed | 8 skipped (1233)` with no `FAIL` line, after round 3 added eight cases and round 4 added two.
 6. **Several record-time proofs are time-dependent.** The Baseline, No-change and Final-counts table-line proofs count to the end of the file, so they hold only for the block that is last. Count each block to the next heading instead.

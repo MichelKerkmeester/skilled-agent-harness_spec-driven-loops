@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA SHARED HELPERS
+# ───────────────────────────────────────────────────────────────
 # Shared helpers for mcp-figma scripts. Source this; do not run directly.
 # WHY: every script must resolve the silships binary the same way, because the
 # npm package literally named "figma-cli" is an UNRELATED tool (unic/figma-cli,
 # which installs a bin named "figma"). The silships tool is "figma-ds-cli".
+# The constants at the end are read by the scripts that source this file.
+# shellcheck disable=SC2034
 
 set -euo pipefail
 
@@ -57,3 +62,5 @@ DAEMON_TOKEN_FILE="$HOME/.figma-ds-cli/.daemon-token"
 DAEMON_PID_FILE="$HOME/.figma-cli-daemon.pid"
 DAEMON_PORT=3456
 CDP_PORT=9222
+# figma-ds-cli declares engines.node >=18 and its setup exits below it.
+NODE_MIN_MAJOR=18

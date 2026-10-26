@@ -33,7 +33,7 @@ Nine workflows run on every push with no path filter. They spend 13 jobs and 25 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -70,8 +70,6 @@ This is **Phase 8** of the CI efficiency implementation phases specification. It
 - `scratch/consolidation-decision.md`: the decision record with the before and after numbers and D8's answer.
 - Under D8 = yes only: one merged workflow, the README rows and `scratch/merge-probe.md`.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

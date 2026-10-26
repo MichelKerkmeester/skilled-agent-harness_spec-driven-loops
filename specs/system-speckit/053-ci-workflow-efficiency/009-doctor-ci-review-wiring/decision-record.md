@@ -858,7 +858,7 @@ The `sk-code-ci` packet holds rules a parser can check and rules it cannot. A re
 <!-- ANCHOR:adr-009-context -->
 ### Context
 
-The report parses 33 YAML files, resolves six variables and walks a run list. The doctor family's other read-only routes run a script from a workflow YAML, and the route validator checks that the YAML names every declared script.
+The report parses every workflow file in the tree (32 today), resolves six variables and walks a run list. The doctor family's other read-only routes run a script from a workflow YAML, and the route validator checks that the YAML names every declared script.
 
 ### Constraints
 

@@ -68,7 +68,7 @@ EXECUTORS = {
 
 
 def load_analyzer():
-    """The phase-004 analyzer owns the prohibition checks, so every experiment scores alike."""
+    """The compliance analyzer owns the prohibition checks, so every experiment scores alike."""
     spec = importlib.util.spec_from_file_location("mrc", os.path.join(SCRIPT_DIR, "measure-rule-compliance.py"))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)

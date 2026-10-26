@@ -1,0 +1,7 @@
+after-run: 9ffe4047f7516b5691164fd39a54e8e1688b129a
+after-run 16:  "model": "claude-opus-5-5",
+after-run 326:  "effortLevel": "xhigh",
+restored: 9ffe4047f7516b5691164fd39a54e8e1688b129a
+16:  "model": "claude-opus-5-5",
+326:  "effortLevel": "xhigh",
+restore: identical to the pre-run backup

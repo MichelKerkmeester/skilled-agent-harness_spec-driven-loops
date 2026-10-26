@@ -1,0 +1,10 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off
+
+
+ Test Files  1 passed (1)
+      Tests  54 passed (54)
+   Start at  19:00:09
+   Duration  429ms (tests 92%, import 5%, transform 2%, worker 1%)
+
+exit 0

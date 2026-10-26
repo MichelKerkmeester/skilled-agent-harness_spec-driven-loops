@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/034-default-off-opt-in",
+  "spec_folder": "hooks/023-session-relaunch-loop/034-default-off-opt-in",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session relaunch default off",
+      "SYSTEM_SESSION_RELAUNCH_ENABLED",
+      "session relaunch opt in",
+      "default-off hook concern",
+      "default off opt in plan",
+      "session relaunch enable flag plan",
+      "default off opt in tasks",
+      "default off opt in acceptance criteria",
+      "default off opt in goal",
+      "default off opt in implementation summary"
+    ],
+    "key_topics": [
+      "session",
+      "relaunch",
+      "default",
+      "opt",
+      "default-off",
+      "hook",
+      "concern",
+      "plan",
+      "enable",
+      "flag",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/hooks/shared/hook-flags.mjs",
+      ".skilled/hooks/shared/hook-flags.ts",
+      ".skilled/hooks/shared/hook-flags.sh",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/shared/README.md",
+      ".skilled/hooks/README.md",
+      "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/shared/hook-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-hop.sh",
+        "kind": "script",
+        "path": "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`isHookEnabled` in `.skilled/hooks/shared/hook-flags.cjs` returns true unless the master switch or one of the concern's kill switches resolves truthy",
+    "created_at": "2026-10-25T17:48:08Z",
+    "last_save_at": "2026-10-25T18:23:27.597Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b398bbf34221687ae448da7be2a98bba56a9a138df0abd52c65e520e547cfd8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "da587ae5a8e464f8d1a519ecf820ae682d3c303d637e8a6140c4c90f5c97f8ac",
+      "plan.md": "1bed14afa43f18804b76c3b4c4fa3df7221e22139c9a28a4d4b9e90662b9c5ba",
+      "tasks.md": "6d10b9d1dc228366bf31914aaed7f1e500ed5d97c2fe29b0b386f5089e3f829a",
+      "implementation-summary.md": "219ace29c98f45aa66a056030b20e17b06ffd1137830b5b44aad9aeff1f37e1f"
+    },
+    "last_active_at": null
+  }
+}

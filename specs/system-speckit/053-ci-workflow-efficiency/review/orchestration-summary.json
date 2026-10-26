@@ -1,0 +1,70 @@
+{
+  "run_id": "1792944728998-0esx2f",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/053-ci-workflow-efficiency",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/specs/system-speckit/053-ci-workflow-efficiency/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 2,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/specs/system-speckit/053-ci-workflow-efficiency/review/lineages/deepseek/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-25T16:12:09.004Z",
+        "end_at_iso": "2026-10-25T16:24:33.506Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T16:31:12Z",
+          "deltaMs": 278494
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T16:44:05Z",
+          "deltaMs": 1051494
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T16:58:30Z",
+          "deltaMs": 1916494
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T17:12:44Z",
+          "deltaMs": 2770494
+        }
+      ]
+    }
+  ]
+}

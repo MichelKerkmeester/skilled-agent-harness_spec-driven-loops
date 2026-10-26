@@ -95,7 +95,7 @@ This catches complete file blobs, including a file renamed before staging with -
 
 ### F3. The documented Obsidian Plugin checkout is a separate consumer
 
-**Documented.** The Obsidian skill README says the plugin repository symlinks .opencode, .claude, .codex, .cursor, and .devin at its root back to this hub. The stack-detection guide describes this symlink relationship and includes plugin-checkout examples. [SOURCE: .skilled/skills/sk-code/sk-code-obsidian/README.md:75] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:67] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:139]
+**Documented.** The Obsidian skill README says the plugin repository symlinks .opencode, .claude, .codex, .cursor, and .devin at its root back to this hub. The stack-detection guide describes this symlink relationship and includes plugin-checkout examples. [SOURCE: sk-code-obsidian README line 75 at commit 42b41dd286] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:67] [SOURCE: shared stack-detection.md line 139 at commit 42b41dd286]
 
 **Documented.** Phase 005 T008 probes routing in the operator's main checkout. It does not run those probes from the Obsidian Plugin checkout. Whether the external checkout's links are currently active was not verified. [SOURCE: specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md:85] [SOURCE: specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md:88]
 

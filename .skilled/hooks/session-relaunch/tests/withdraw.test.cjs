@@ -11,6 +11,7 @@ const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const { withdrawHandOver } = require('../lib/withdraw.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables.
 for (const key of Object.keys(process.env)) {
@@ -29,7 +30,7 @@ function createSandbox(t) {
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: path.join(root, 'home'),
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,

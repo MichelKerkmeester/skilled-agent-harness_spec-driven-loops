@@ -6,14 +6,15 @@ trigger_phrases:
   - "p0 p1 p2 severity tiers"
   - "code quality gate severity"
   - "stack agnostic quality contract"
+  - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.4.0
 ---
 
 # Universal Code Quality Standards
 
-Surface-agnostic severity tiers used by the Phase 1.5 Code Quality Gate across SKILLED.
+Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate, plus the pre-write Design Restraint Ladder.
 
 ---
 
@@ -21,68 +22,67 @@ Surface-agnostic severity tiers used by the Phase 1.5 Code Quality Gate across S
 
 ### Purpose
 
-Defines the severity contract that wraps every surface code quality checklist in `sk-code`. P0 blocks completion; P1 requires explicit deferral approval; P2 is tracked but non-blocking. Surface rules (snake_case for SKILLED JS, SKILLED TypeScript/Python/Shell/Config standards) live in each surface's checklist; this doc captures the universal contract those checklists implement.
+The severity contract behind every surface quality checklist in `sk-code`. P0 blocks completion. P1 needs explicit approval to defer. P2 is tracked and never blocks. Surface checklists hold the concrete rules and give each one a tier from this contract.
 
 ### Core Principle
 
-Severity tiers exist so reviewers and authors agree on what blocks "done". A rule's severity is a stable contract: the bar doesn't move per-PR, per-author, or per-deadline.
+Severity tiers exist so reviewers and authors agree on what blocks "done". A rule's tier is a stable contract: the bar does not move per PR, per author or per deadline.
 
 ### When to Use
 
-- Before claiming Phase 1 (Implementation) complete — the Phase 1.5 Code Quality Gate.
-- When authoring or reviewing surface quality checklists.
+- At the Phase 1.5 Code Quality Gate, which the `sk-code-quality` mode runs before Phase 1 (Implementation) can be called complete.
+- When authoring or reviewing a surface quality checklist.
 - When deciding whether a finding blocks merge or can ship as a follow-up.
-- When `sk-code`'s code-review mode produces severity-ranked findings — the contract here aligns those tiers.
+- When the `sk-code-review` mode ranks findings, so reviewer and author tiers mean the same thing.
 
 ### Key Sources
 
-- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (author-side JavaScript and CSS) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.
-- Findings-first review baseline: `sk-code`'s code-review mode (severity model and review output contract).
+- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (the author-side overlay that sk-code-quality loads for the file types it names) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.
+- Findings-first review baseline: the `sk-code-review` mode and its review output contract.
 
 ### Design Restraint Ladder (pre-write)
 
-Before writing NEW code for an implementation task, stop at the first rung that holds. This runs AFTER surface + intent routing, so the rung vocabulary matches the detected surface, and it is a POST-READ reflex — rungs 2-5 require reading what already exists, which reinforces read-first.
+Before writing NEW code for an implementation task, stop at the first rung that holds. Each rung down adds code someone must read, test and keep. The ladder runs AFTER surface and intent routing, so its vocabulary matches the detected surface. It is a post-read reflex: rungs 2 to 5 need you to read what already exists.
 
-1. **Does this need to exist at all? (YAGNI)** — if the requirement looks unnecessary, surface a scope-amendment recommendation in the same response; NEVER silently cut scope (SCOPE-LOCK / Logic-Sync HALT still apply).
+1. **Does this need to exist at all? (YAGNI)** If the requirement looks unnecessary, recommend a scope amendment in the same response. NEVER silently cut scope. SCOPE LOCK and the Logic-Sync HALT still apply.
 2. **Already in this codebase (a helper, component, service, pattern)?** Use it the way the surrounding code does.
 3. **Standard library / language built-in?**
-4. **Native platform or runtime feature?** — surface-flavored: a stdlib/native API for SKILLED.
-5. **An already-installed dependency?** — never add a new dependency for what a few lines do.
+4. **Native platform or runtime feature?** Use the native API of the detected surface.
+5. **An already-installed dependency?** Never add a new dependency for what a few lines do.
 6. **Can it be one line?**
 7. **Only then: the minimum code that works.**
 
 Restraint never cuts a P0 item in §3 below, such as input validation, error handling, secrets handling and accessibility, or anything the user asked for.
 
-The ladder consumes the detected surface; it does NOT change surface precedence (SKILLED > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3.
+The ladder consumes the detected surface and does NOT change surface precedence. sk-code-skilled is the fallback surface, always last, and any other declared surface outranks it. Nor does the ladder change the Iron Law: Phase 3 verification is still required. For the over-engineering, gold-plating and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3 and `.skilled/repo-rules/prevent-overengineering.md`.
 
 ---
 
 ## 2. SEVERITY TIERS
 
-The Code Quality Gate categorizes every quality rule into one of three tiers:
+The Code Quality Gate puts every quality rule in exactly one tier:
 
-| Tier   | Handling      | Completion Impact                              |
-| ------ | ------------- | ---------------------------------------------- |
-| **P0** | HARD BLOCKER  | Cannot claim done until fixed                  |
-| **P1** | Required      | Must fix OR get user approval to defer         |
-| **P2** | Optional      | Can defer with documented reason; non-blocking |
+| Tier   | Handling      | Completion Impact                               |
+| ------ | ------------- | ----------------------------------------------- |
+| **P0** | HARD BLOCKER  | Cannot claim done until fixed                   |
+| **P1** | Required      | Must fix OR get user approval to defer          |
+| **P2** | Optional      | Can defer with a documented reason. Non-blocking |
 
-**Gate rule**: if ANY P0 item fails, completion is BLOCKED until fixed. P1 violations need explicit deferral approval. P2 violations are tracked but don't block.
+**Gate rule**: if ANY P0 item fails, completion is BLOCKED until fixed. P1 violations need explicit deferral approval. P2 violations are tracked but do not block.
 
 ---
 
-## 3. P0 CATEGORIES (universal — apply across stacks)
+## 3. P0 CATEGORIES (universal, apply across stacks)
 
-P0 covers issues that have caused production incidents or reviewer-author confusion in the past:
+P0 covers issues that have caused production incidents or reviewer-author confusion:
 
-1. **Initialization safety** — components must guard against double-initialization, race conditions, and partial loads.
-2. **Input validation** — all external inputs (function parameters, API responses, file contents, env vars) validated at boundaries.
-3. **No commented-out code** — delete it; commented code rots and confuses readers.
-4. **No silent failures** — exceptions either surface to the caller or are logged with enough context to debug.
-5. **Naming convention adherence** — surface-specific (camelCase for SKILLED TypeScript, snake_case for SKILLED Python/Shell, etc.).
-6. **No hardcoded secrets** — credentials, API keys, tokens never inline; always env vars or secret stores.
-7. **No ephemeral-artifact pointers in comments** — comments must not name a spec folder/number, packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; these get renamed or archived and rot into dangling pointers. Keep the durable WHY. See `code-style-guide.md` §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract.
-8. **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
+1. **Initialization safety**: code that sets up state guards against double initialization, race conditions and partial loads.
+2. **Input validation**: every external input (function parameters, API responses, file contents, env vars) is validated at the boundary.
+3. **No commented-out code**: delete it. Commented code rots and misleads readers.
+4. **No silent failures**: an exception either reaches the caller or is logged with enough context to debug it.
+5. **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store.
+6. **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4.
+7. **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
 
 ---
 
@@ -90,87 +90,87 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 
 P1 covers issues that degrade maintainability or reliability:
 
-1. **Documentation completeness** — public APIs, exported types, complex algorithms have docstrings or comments explaining WHY.
-2. **Test coverage at boundaries** — happy path plus at least one edge case per public surface.
-3. **Error message quality** — every error includes enough context for the operator to act.
-4. **Resource cleanup** — file handles, network connections, subscriptions, observers, timers all closed or canceled deterministically.
-5. **Type-safety enforcement** — language-appropriate (TypeScript strict mode, no `any`/`Any`, type hints on public functions).
+1. **Documentation completeness**: public APIs, exported types and complex algorithms carry docstrings or comments that explain WHY.
+2. **Test coverage at boundaries**: happy path plus at least one edge case per public surface.
+3. **Error message quality**: every error carries enough context for the operator to act.
+4. **Resource cleanup**: file handles, network connections, subscriptions, observers and timers close or cancel deterministically.
+5. **Type-safety enforcement**: in the language's own terms. TypeScript runs in strict mode without `any`. Python public functions carry type hints without `Any`.
+6. **Naming convention adherence**: names follow the surface convention, such as camelCase in JavaScript and TypeScript or snake_case in Python and Shell.
 
 ---
 
 ## 5. P2 CATEGORIES (universal)
 
-P2 covers issues that improve quality but don't affect correctness or maintainability:
+P2 covers issues that improve quality but do not affect correctness or maintainability:
 
-1. **Idiomatic refinements** — code follows community style guides and project conventions.
-2. **Performance polish** — optimization beyond meeting NFR targets.
-3. **Test coverage beyond boundaries** — additional edge cases, fuzz tests, property tests.
-4. **Documentation completeness for internal helpers** — even private functions get explained.
+1. **Idiomatic refinements**: code follows community style guides and project conventions.
+2. **Performance polish**: optimization beyond the NFR targets.
+3. **Test coverage beyond boundaries**: extra edge cases, fuzz tests and property tests.
+4. **Documentation completeness for internal helpers**: private functions get explained too.
 
 ---
 
 ## 6. SURFACE-SPECIFIC CHECKLISTS
 
-Each surface has quality checklists that add surface-specific rules to these universal tiers:
+Each surface adds its own rules to these universal tiers and gives each rule a tier. This file is the contract, and the surface checklists are the implementations.
 
-| Surface  | Checklist                                          | Notes                                                                |
-| -------- | -------------------------------------------------- | -------------------------------------------------------------------- |
-| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | LIVE — JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, and shared rules |
-| UNKNOWN  | n/a                                                | sk-code does not own Go, React/Next.js, generic Node.js, React Native, or Swift; surface a disambiguation prompt |
-
-The surface checklist assigns specific severity (P0/P1/P2) to specific rules. This universal doc is the contract and the surface checklists are the implementations.
+| Surface | Phase 1.5 source | Notes |
+| ------- | ---------------- | ----- |
+| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | The fallback. `universal-checklist.md` plus one per touched language (JavaScript, TypeScript, Python, Shell, Rust, JSON/JSONC) and authoring checklists for agents, commands, skills and MCP servers |
+| CI | `.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md` | Rule index for GitHub Actions workflows |
+| Declared specific surface | The standards its skill ships | Declared through `surface_detection` in that skill's `graph-metadata.json`. Outranks SKILLED |
+| UNKNOWN | n/a | sk-code does not own Go, React/Next.js, generic Node.js, React Native or Swift. Ask which surface applies |
 
 ---
 
 ## 7. WORKFLOW
 
-When you reach Phase 1.5 Code Quality Gate:
+At the Phase 1.5 Code Quality Gate:
 
-1. Identify the file type and code surface (the smart router does this; or check via the surface-detection block in SKILL.md §2).
+1. Identify the file type and code surface. The smart router does this, and `../stack-detection.md` holds the detection order.
 2. Run the comment-hygiene checker on each modified file before committing:
    ```bash
    .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
    ```
-   Zero violations required. To suppress a specific line that is a known false-positive, append `// hygiene-ok` to that line.
+   Zero violations are required. To suppress a known false positive, put `hygiene-ok` on that comment line.
 
-   The same check is enforced automatically at three gates — manual invocation here is early feedback, not the only safety net:
-   - **Write-time** (Claude Code only): `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the `Write|Edit` `PostToolUse` hook in `.claude/settings.json`, fires on every Write/Edit tool call and warns inline before the next AI turn
-   - **Commit-time**: `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh`, blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`. The older `.skilled/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` are direct-test helpers, not live gates
-   - **CI**: `.github/workflows/comment-hygiene.yml` re-validates on every PR to main; cannot be bypassed with `--no-verify`
+   Three gates also enforce it, so the manual run is early feedback, not the only safety net:
+   - **Write-time**: the shared router in `.skilled/hooks/post-edit-quality/` runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn.
+   - **Commit-time**: `.skilled/scripts/git-hooks/pre-commit`, installed by `.skilled/scripts/install-git-hooks.sh`, blocks any commit with violations. Bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`. The opt-in `.skilled/hooks/git/pre-commit` and the unregistered `sk-code-quality/scripts/hooks/claude-posttooluse.sh` are legacy, not default gates.
+   - **CI**: `.github/workflows/comment-hygiene.yml` re-checks every PR to main, and `--no-verify` cannot skip it.
 
-3. Load the matching surface checklist (see §6).
-4. Validate every P0 item — fix any failures before proceeding.
-5. Validate every P1 item — fix or document approved deferral.
-6. Validate every P2 item — track for follow-up; non-blocking.
-7. Mark checklist items `[x]` with evidence (the actual code passing the rule, or the test that proves it).
-8. Then proceed to Phase 2 (Debugging) if issues, or Phase 3 (Verification).
+3. Load the matching surface checklist from §6.
+4. Check every P0 item and fix each failure before going on.
+5. Check every P1 item. Fix it or record the approved deferral.
+6. Check every P2 item and track misses for follow-up. They do not block.
+7. Mark each checklist item `[x]` with evidence: the code that passes the rule or the test that proves it.
+8. Go to Phase 2 (Debugging) when a check fails, otherwise to Phase 3 (Verification).
 
 ---
 
 ## 8. RELATIONSHIP TO `sk-code`'s CODE-REVIEW MODE
 
-This skill (`sk-code`) produces **surface compliance evidence** at Phase 1.5. The formal **findings-first review output** (severity-ranked findings list, security/correctness/test minimums, risk reporting) belongs to `sk-code`'s code-review mode.
+The `sk-code-quality` mode produces **surface compliance evidence** at Phase 1.5, where the author checks their own change. The `sk-code-review` mode owns the **findings-first review output**: severity-ranked findings, risk reporting and the security and correctness minimums.
 
-Use `sk-code`'s code-review mode when:
+Use `sk-code-review` when:
 
-- A PR needs a structured review report.
-- Stakeholders need a severity-ranked findings list.
-- Security or correctness minimums need to be audited.
+- A PR or a stakeholder needs a structured, severity-ranked findings report.
+- Security or correctness minimums need an audit.
 
-Use this skill (`sk-code`) when:
+Use `sk-code-quality` when:
 
-- You are the author validating your own implementation against the quality bar before claiming done.
-- You need surface-specific quality rules applied during development.
+- You are the author checking your own implementation before claiming done.
+- You need surface-specific quality rules during development.
 
-The two facets compose: `sk-code` surface evidence + its code-review mode baseline = full quality story.
+Both modes rank against these tiers, so author evidence and review findings add up to one quality story.
 
 ---
 
 ## 9. RELATED RESOURCES
 
-- [`./code-style-guide.md`](./code-style-guide.md) - language-agnostic naming, formatting, and structure principles.
-- [`./error-recovery.md`](./error-recovery.md) - decision tree when a quality gate failure can't be resolved in-place.
-- [`../universal-debugging-checklist.md`](../universal-debugging-checklist.md) - applies after Phase 1.5 fails and you need root-cause analysis.
-- [`../universal-verification-checklist.md`](../universal-verification-checklist.md) - runs after Phase 1.5 clears, before any "done" claim.
+- [`../../../sk-code-quality/references/code-style-guide.md`](../../../sk-code-quality/references/code-style-guide.md) - language-agnostic naming, formatting and structure principles.
+- [`../stack-detection.md`](../stack-detection.md) - surface detection order, with specific surfaces first and the SKILLED fallback last.
+- [`../workflow-implement.md`](../workflow-implement.md) - Phase 1, where the Design Restraint Ladder is applied.
+- [`../workflow-debug.md`](../workflow-debug.md) - root-cause analysis and command-failure recovery when Phase 1.5 fails and the fix is not obvious.
+- [`../workflow-verify.md`](../workflow-verify.md) - the pre-claim gate that runs after Phase 1.5 clears, before any "done" claim.
 - [`../phase-detection.md`](../phase-detection.md) - Phase 1.5 position in the sk-code lifecycle.
-- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (author-side) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` (OpenCode).

@@ -108,6 +108,11 @@ Baseline before the first edit, rerun after, report the delta:
 node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs
 npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
 ```
+
+| Run | node --test | vitest | Evidence |
+|-----|-------------|--------|----------|
+| Baseline, before the first edit | 907 pass, 0 fail, exit 0 | 59 pass, exit 0 | `scratch/evidence/baseline-node.txt`, `baseline-vitest.txt` |
+| After the change | 915 pass, 0 fail, exit 0 (+8 new tests) | 59 pass, exit 0 | `scratch/evidence/final-node.txt`, `final-vitest.txt` |
 <!-- /ANCHOR:testing -->
 
 ---

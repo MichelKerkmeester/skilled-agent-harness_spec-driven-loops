@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.17.0
+version: 2.2.21.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,22 +23,22 @@ Authoritative routing reference for sk-code. Consolidates intent classification 
 
 ### Purpose
 
-The smart router maps a detected surface (SKILLED / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
+The smart router maps a detected surface (a declared specific surface, then the SKILLED fallback, then UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
 
 ### When to Use
 
-- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines SKILLED / UNKNOWN
+- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines the surface: a declared specific surface, then the SKILLED fallback, then UNKNOWN
 - When classifying task wording into the dominant work intent
 - When mapping intent to concrete reference paths
 - When picking verification commands for the surface
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (SKILLED vs UNKNOWN); intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. When a prompt ties between surfaces, a hinted specific surface leads the bundle. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §2).
 
 ### Key Sources
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/UNKNOWN) and OpenCode language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) and SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and phase-specific resource expectations
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 
@@ -58,7 +58,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
 | LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
-| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `concurrency group`, `action to a sha`, `sha-pinned action` |
+| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `.github/workflows/` |
 
 ### Scoring algorithm
 
@@ -95,7 +95,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |
+| ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
 | SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
@@ -186,7 +186,7 @@ Do not load Go/NextJS/React Native resources from canonical sk-code; those surfa
 
 Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the user explicitly asks for stack-agnostic guidance:
 
-- Confirm the active runtime surface (SKILLED or UNKNOWN)
+- Confirm the detected surface (a declared specific surface, the SKILLED fallback or UNKNOWN)
 - Confirm the task intent (implementation / debugging / verification / etc.)
 - Provide one concrete input, error, or expected output
 - Confirm the verification command set before completion
@@ -211,7 +211,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 10. RELATED RESOURCES
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/UNKNOWN) + SKILLED language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
@@ -249,12 +249,11 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
-    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "concurrency group", "action to a sha", "sha-pinned action"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]},
 }
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
-        "shared/references/universal/multi-agent-research.md",
         "sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
         "sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
         "sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md",
@@ -268,7 +267,7 @@ RESOURCE_MAP = {
     ],
     "CODE_QUALITY": [
         "shared/references/universal/code-quality-standards.md",
-        "shared/references/universal/code-style-guide.md",
+        "sk-code-quality/references/code-style-guide.md",
         "sk-code-skilled/assets/checklists/universal-checklist.md",
         "sk-code-skilled/assets/checklists/javascript-checklist.md",
         "sk-code-skilled/assets/checklists/typescript-checklist.md",
@@ -282,13 +281,12 @@ RESOURCE_MAP = {
 
     ],
     "DEBUGGING": [
-        "shared/references/universal/error-recovery.md",
-        "shared/references/universal-debugging-checklist.md",
+        "shared/references/workflow-debug.md",
 
     ],
     "VERIFICATION": [
         "sk-code-skilled/references/shared/alignment-verification-automation.md",
-        "shared/references/universal-verification-checklist.md",
+        "shared/references/workflow-verify.md",
         "sk-code-skilled/assets/scripts/README.md",
 
     ],
@@ -364,12 +362,9 @@ RESOURCE_MAP = {
 # preamble paths are hub-level controls too. No other shared/ path is a
 # control, so a guard that needs the control set reads these two lists.
 SHARED_CONTROL_RESOURCES = [
-    "shared/references/universal/multi-agent-research.md",
     "shared/references/universal/code-quality-standards.md",
-    "shared/references/universal/code-style-guide.md",
-    "shared/references/universal/error-recovery.md",
-    "shared/references/universal-debugging-checklist.md",
-    "shared/references/universal-verification-checklist.md",
+    "shared/references/workflow-debug.md",
+    "shared/references/workflow-verify.md",
 ]
 ```
 
@@ -378,7 +373,7 @@ SHARED_CONTROL_RESOURCES = [
 The router does NOT load the whole matched-intent union. After surface detection (§1, `stack-detection.md`), a route loads:
 
 - the always-loaded `DEFAULT_RESOURCE` preamble (stack/phase detection and the universal quality baseline), plus
-- the `shared/` entries the matched intents map (for example `code-style-guide.md` under CODE_QUALITY, `error-recovery.md` under DEBUGGING and `multi-agent-research.md` under IMPLEMENTATION), never the whole `shared/references/universal/` folder, plus
+- the `shared/` entries the matched intents map (for example `code-quality-standards.md` under CODE_QUALITY, `workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION), never the whole `shared/references/universal/` folder, plus
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents.
 
 It does not load another surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders. An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.

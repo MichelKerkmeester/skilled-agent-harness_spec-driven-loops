@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -62,7 +62,7 @@ The case that prompted the work, a Claude session launched as Sonnet low and swi
 
 Two inputs bound the rule. `SKILLED_LOOP_MODEL` is unset at first launch (`skilled-loop:473`), so a launch with no `--model` flag has an empty launch model, and after each hop line 793 overwrites it with the live model. An empty launch model therefore proves no switch. Hermes always records a live model (`hermes/session-end-arm.mjs:104-107`) but never an effort (session-relaunch README line 42: effort comes only from the launch flag), so a rule that drops the effort whenever the model changes without one would drop `--reasoning` on every Hermes hop.
 
-Claude's live values come from `readClaudeSettings` (`context-usage.cjs:153-173`), which reads the last main-chain assistant entry, so a `/model` or `/effort` switch with no later assistant turn is invisible to it.
+Claude's live values come from `readClaudeSettings` (`context-usage.cjs`), which read only the last main-chain assistant entry, so a `/model` or `/effort` switch with no later assistant turn was invisible to it. Claude logs the switch as a local command entry before the next turn, so the reader now applies a switch confirmed after that entry.
 
 ### Purpose
 A relaunched session starts on an effort taken from the same entry as its model, or on the runtime default.
@@ -95,7 +95,8 @@ A relaunched session starts on an effort taken from the same entry as its model,
 | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Modify | The AC-001 table across Claude, Codex and Pi, plus the AC-002, AC-003, AC-007 and AC-008 guards |
 | `.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs` | Modify | One arm test |
 | `.skilled/hooks/session-relaunch/README.md` | Modify | Replay rule and, if found, the Claude switch limit |
-| `.skilled/hooks/session-relaunch/lib/context-usage.cjs` | Modify (conditional) | Only if Claude logs a switch entry before the next turn |
+| `.skilled/hooks/session-relaunch/lib/context-usage.cjs` | Modify | Claude logs a `/model` and `/effort` switch as a local command entry before the next turn, so `readClaudeSettings` applies a switch confirmed after the last assistant entry |
+| `.skilled/hooks/session-relaunch/tests/context-usage.test.cjs` | Modify | Four `readClaudeSettings` tests over the logged switch shapes |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -198,7 +199,8 @@ A relaunched session starts on an effort taken from the same entry as its model,
 
 ### State Transitions
 - Arm with the same model and no effort: the recorded effort stays.
-- Switch with no later assistant turn: invisible to `readClaudeSettings` unless the investigation finds an entry.
+- Switch with no later assistant turn: `readClaudeSettings` applies the logged `/model` or `/effort` entry; a picker switch that names only a display model reads as an unproven model.
+- Pi launch `--model openai/gpt-6-luna` with a record of provider `openai` and model `gpt-6-luna`: the same model, so the launch thinking level stands when the record has none.
 <!-- /ANCHOR:edge-cases -->
 
 ---

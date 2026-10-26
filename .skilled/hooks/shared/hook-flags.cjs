@@ -5,7 +5,9 @@
 
 // Central kill-switch resolver for every repo-authored runtime hook. A hook is
 // enabled by default and only goes silent when the operator sets a kill-switch,
-// so adding this guard changes no behavior until a flag is set. The master
+// so adding this guard changes no behavior until a flag is set. The few concerns
+// in DEFAULT_OFF invert that and stay silent until their enable switch is set,
+// though a kill-switch still silences them. The master
 // switch disables the whole enforcement layer at once; a per-concern switch
 // disables one hook family across every runtime that carries it. Names that
 // predate this convention are honored as aliases so existing operator config
@@ -94,6 +96,22 @@ const LEGACY_ALIASES = {
   "post-edit-quality": ["MK_POST_EDIT_QUALITY_DISABLED"],
 };
 
+// concern -> the switch that turns it on. A concern listed here is off until the
+// operator opts in, because it acts on the session itself (the relaunch loop can
+// end a running session and start a new one), which nobody should get by just
+// checking out the repo. The opt-in resolves like every other flag, environment
+// over file, and the master and kill switches still win over it.
+const DEFAULT_OFF = {
+  "session-relaunch": "SYSTEM_SESSION_RELAUNCH_ENABLED",
+};
+
+// The CLI runtimes that can carry a default-off concern. An operator may want the
+// relaunch loop on in one runtime and off in another, so each runtime gets its own
+// enable switch, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers before
+// the global one whenever it holds a value. A caller names its runtime explicitly;
+// the resolver never guesses it from the environment.
+const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "hermes", "cursor", "devin"]);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -166,11 +184,27 @@ function _resetConfigCache() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // True unless the master switch or one of this concern's kill-switches is set.
+// A concern in DEFAULT_OFF also needs its enable switch set before it is true.
 // `env` is injectable for testing; it defaults to the live process environment.
 // When `env` is passed explicitly, the config file is skipped so tests stay
 // isolated — unless a `config` object is also injected to exercise the merge.
 // The environment always overrides the config file for a given key.
-function isHookEnabled(concern, env, config) {
+// `options.runtime` names the calling runtime. For a default-off concern, that
+// runtime's enable switch decides whenever it resolves to a non-empty value, and
+// the global enable switch decides otherwise; the master and kill switches still
+// win over both. With no runtime, or one outside RUNTIMES, only the global applies.
+function isHookEnabled(concern, env, config, options) {
+  return hookFlagDecision(concern, env, config, options).enabled;
+}
+
+// The single decision behind isHookEnabled, with the switch that made it, so a caller
+// can tell the operator which flag to change. `key` is the switch that decided, or null
+// when nothing did and the concern is on by default. `reason` says which rung of the
+// precedence answered: "master" (the master switch or an alias), "kill" (the concern's
+// kill switch or a legacy alias), "runtime" (the runtime's enable switch, which held a
+// value), "global" (the global enable switch, unset or set) or "default". Arguments are
+// those of isHookEnabled.
+function hookFlagDecision(concern, env, config, options) {
   const hasEnv = env !== undefined && env !== null;
   const source = hasEnv ? env : process.env;
   const cfg =
@@ -183,16 +217,37 @@ function isHookEnabled(concern, env, config) {
     const fromEnv = source[key];
     return fromEnv !== undefined ? fromEnv : cfg[key];
   };
-  if (isTruthy(resolve(MASTER_FLAG))) return false;
-  for (const alias of MASTER_ALIASES) {
-    if (isTruthy(resolve(alias))) return false;
+  for (const key of [MASTER_FLAG].concat(MASTER_ALIASES)) {
+    if (isTruthy(resolve(key))) return { enabled: false, key, reason: "master" };
   }
   const flag = concernFlag(concern);
   const keys = (flag ? [flag] : []).concat(LEGACY_ALIASES[concern] || []);
   for (const key of keys) {
-    if (isTruthy(resolve(key))) return false;
+    if (isTruthy(resolve(key))) return { enabled: false, key, reason: "kill" };
   }
-  return true;
+  if (Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) {
+    const runtimeFlag = runtimeEnableFlag(concern, options && options.runtime);
+    if (runtimeFlag) {
+      const value = resolve(runtimeFlag);
+      if (typeof value === "string" && value.trim() !== "") {
+        return { enabled: isTruthy(value), key: runtimeFlag, reason: "runtime" };
+      }
+    }
+    const globalFlag = DEFAULT_OFF[concern];
+    return { enabled: isTruthy(resolve(globalFlag)), key: globalFlag, reason: "global" };
+  }
+  return { enabled: true, key: null, reason: "default" };
+}
+
+// The per-runtime enable switch for a default-off concern, such as
+// SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED, or null when the concern has no enable
+// switch or the runtime is not one of RUNTIMES.
+function runtimeEnableFlag(concern, runtime) {
+  if (!Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) return null;
+  if (typeof runtime !== "string") return null;
+  const name = runtime.trim().toLowerCase();
+  if (!RUNTIMES.includes(name)) return null;
+  return DEFAULT_OFF[concern].replace(/_ENABLED$/, "_" + name.toUpperCase() + "_ENABLED");
 }
 
 // True when one named switch resolves truthy, for a switch that is not a hook
@@ -230,14 +285,18 @@ function concernFlag(concern) {
 
 module.exports = {
   isHookEnabled,
+  hookFlagDecision,
   isFlagOn,
   concernFlag,
+  runtimeEnableFlag,
   isTruthy,
   loadConfigFile,
   MASTER_FLAG,
   MASTER_ALIASES,
   CONCERN_CANONICAL,
   LEGACY_ALIASES,
+  DEFAULT_OFF,
+  RUNTIMES,
   configPath,
   _resetConfigCache,
 };

@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 777,
+  "derived_count": 780,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -684,6 +684,9 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/outcomes",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline",
     ".skilled/skills/system-spec-kit/config",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands",
     ".skilled/skills/system-spec-kit/runtime",

@@ -24,7 +24,7 @@ action: Generate scannable, well-organized README documentation with proper stru
 #   - DQI scoring (target: 70+ Acceptable)
 #   - sk-doc skill integration
 #
-# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# The command markdown verifies the @markdown agent BEFORE
 # this YAML workflow loads. If you're executing this workflow,
 # @markdown verification has already passed.
 #

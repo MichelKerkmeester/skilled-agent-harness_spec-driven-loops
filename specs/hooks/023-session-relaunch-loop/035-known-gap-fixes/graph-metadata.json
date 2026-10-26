@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/035-known-gap-fixes",
+  "spec_folder": "hooks/023-session-relaunch-loop/035-known-gap-fixes",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "known gap fixes",
+      "session relaunch known gaps",
+      "per-runtime session relaunch switch",
+      "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED",
+      "known gap fixes plan",
+      "per-runtime switch plan",
+      "known gap fixes tasks",
+      "known gap fixes acceptance criteria",
+      "known gap fixes goal",
+      "known gap fixes implementation summary"
+    ],
+    "key_topics": [
+      "known",
+      "gap",
+      "session",
+      "relaunch",
+      "gaps",
+      "per-runtime",
+      "switch",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "cli/validation/continuity-freshness.ts",
+      ".skilled/hooks/session-relaunch/tests/fixtures/relaunch-env.cjs",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".opencode/plugins/session-relaunch.js",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+      ".skilled/hooks/session-relaunch/tests/README.md",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/validator-git-fsmonitor.vitest.ts",
+      "specs/hooks/023-session-relaunch-loop/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "cli/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-env.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/fixtures/relaunch-env.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validator-git-fsmonitor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/validator-git-fsmonitor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight gaps remain after phase 34",
+    "created_at": "2026-10-25T19:05:02Z",
+    "last_save_at": "2026-10-25T21:18:28.880Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a3f9cc6655c228de3fdcf6ec74a898b663ab52c37c2227a0e91998a6d11538b7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "69a24ccccdacd7b012c0f1e4646db21d522e540c1c6ebbbf14652a178bbeee70",
+      "plan.md": "51927febb06176d3b3818393c19b02f2bd2e300a0e3f6b4f629290d472f510e2",
+      "tasks.md": "290399cd9abcba43f6686e7ffb449a5c6b413fc654e4a64163a838e256cc84bd",
+      "implementation-summary.md": "51a84f2881223a30853a0c941ea74a84f3351df6bae886c5033ca9b129b113ae"
+    },
+    "last_active_at": null
+  }
+}

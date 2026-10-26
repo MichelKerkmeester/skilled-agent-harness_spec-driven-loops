@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.6.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -17,7 +17,7 @@ metadata:
 
 # Code Quality (quality)
 
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the acting agent applying `workflow-implement.md` changes the code and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 
 ---
 
@@ -29,15 +29,15 @@ Use this mode when the request involves:
 - Running the post-implementation quality gate before a completion claim.
 - Applying P0/P1/P2 author-side checks to changed code, scripts, skills, agents, commands, MCP servers, or spec docs.
 - Checking comment hygiene on modified files and removing ephemeral artifact references from comments while preserving durable WHY.
-- Loading an OpenCode authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `.opencode/specs/`, MCP server source, or language-specific OpenCode files.
+- Loading a SKILLED authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `specs/`, MCP server source, or language-specific SKILLED files.
 - Fixing quality-gate failures in place with `Edit` when the fix belongs to the already-authored file.
 
-Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `P0`, `P1`, `P2`, `authoring checklist`, `OpenCode checklist`, `skill authoring`, `agent authoring`, `command authoring`, `MCP server authoring`, `spec folder authoring`, `check before done`.
+Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `P0`, `P1`, `P2`, `authoring checklist`, `SKILLED checklist`, `skill authoring`, `agent authoring`, `command authoring`, `MCP server authoring`, `spec folder authoring`, `check before done`.
 
 ### When NOT to Use
 
 Skip this mode when:
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-skilled`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Hand it to the acting agent applying `workflow-implement.md` for the detected surface.
 - A failure needs symptom-to-root-cause investigation or a single-cause bug fix. Use the surface's debugging workflow (`workflow-debug.md`).
 - The task is to collect final non-mutating verification evidence. Use the surface's verification workflow (`workflow-verify.md`).
 - The user asks for findings-first review output, severity-ranked findings, or PR review. Use `sk-code-review`.
@@ -68,8 +68,12 @@ QUALITY TASK
     +- Phase lifecycle  -> ../shared/references/phase-detection.md
     +- Resource routing -> ../ROUTER.md
     |
+    +- Quality runner     -> node scripts/quality-gate.cjs (one verdict for the change)
+    |     +- any surface  -> the universal floor plus the runner's built-in checks
+    |     +- UNKNOWN      -> the floor plus the runner's checks, with `unknown` recorded
+    |
     +- SKILLED target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
-    +- Comment hygiene    -> scripts/check-comment-hygiene.sh per modified file
+    +- Comment hygiene    -> scripts/check-comment-hygiene.sh, called once by the runner
     +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
 ```
 
@@ -78,10 +82,10 @@ QUALITY TASK
 ```text
 Phase 1 Implementation writes or changes files
     -> Phase 1.5 Code Quality Gate runs here
-        -> load quality checklist before any completion claim
-        -> select target-path authoring checklist
-        -> run comment hygiene on every modified file
-        -> apply P0/P1/P2 author checks
+        -> run node scripts/quality-gate.cjs and read its gate
+        -> load every checklist the verdict lists before any completion claim
+        -> the runner calls comment hygiene once over every modified file
+        -> apply P0/P1/P2 author checks and judge the judgment_required items
         -> edit in place only for gate failures
     -> Phase 2 Debugging if checks expose a failing symptom
     -> Phase 3 Verification after the gate is clean enough to verify
@@ -89,25 +93,31 @@ Phase 1 Implementation writes or changes files
 
 ### Resource Domains
 
-- `assets/code-quality-checklist/overview-header-and-comments.md` is the author-side quality checklist and the general post-implementation quality gate.
+- `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` hold the few surface-neutral JavaScript and CSS checks no surface checklist states, loaded for `.js` or `.css` targets on top of the surface's own language checklist. They carry no surface house style: naming, header form, section dividers and init patterns come from the surface checklist. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
-- `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
+- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file and runs no command a repository names. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids.
+- `assets/quality-defaults.json` holds the runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns. It names no command.
+- `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate. The runner calls it once per run with `--json`.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
 - `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
 - `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.
-- `../shared/references/universal/code-quality-standards.md` and `../shared/references/universal/code-style-guide.md` define shared standards consumed by this packet.
+- `../shared/references/universal/code-quality-standards.md` is the cross-mode severity standard this packet consumes, and `references/code-style-guide.md` is this packet's own style and comment-hygiene guide.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../ROUTER.md`, `../shared/references/phase-detection.md` |
-| ALWAYS | Before any implementation-done claim | `assets/code-quality-checklist/overview-header-and-comments.md`, `../shared/references/universal/code-quality-standards.md`, `../shared/references/universal/code-style-guide.md` |
-| ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
+| ALWAYS | Before any implementation-done claim | `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md`, `references/code-style-guide.md` |
+| ALWAYS | Any quality-gate invocation on changed files | `scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file |
+| CONDITIONAL | The verdict lists a checklist | Every file in the runner's `checklists[]`, each with the `why` the verdict gives |
+| CONDITIONAL | SKILLED is a resolved surface of the target | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
+| CONDITIONAL | A direct check on one file, outside a runner call | `scripts/check-comment-hygiene.sh` |
+| CONDITIONAL | `.js` or `.css` target, for the surface-neutral additions to the surface's own language checklist | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md`, `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
 | CONDITIONAL | `.skilled/skills/` target | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
 | CONDITIONAL | `.skilled/agents/` target | `../sk-code-skilled/assets/checklists/agent-authoring.md` |
 | CONDITIONAL | `.skilled/commands/` target | `../sk-code-skilled/assets/checklists/command-authoring.md` |
-| CONDITIONAL | `.opencode/specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
+| CONDITIONAL | `specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
 | CONDITIONAL | MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-skilled/assets/checklists/javascript-checklist.md`, `../sk-code-skilled/assets/checklists/typescript-checklist.md`, `../sk-code-skilled/assets/checklists/python-checklist.md`, `../sk-code-skilled/assets/checklists/shell-checklist.md`, `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-skilled/assets/checklists/config-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
@@ -116,18 +126,33 @@ Phase 1 Implementation writes or changes files
 
 ### Target-Path Checklist Map
 
-| Target Path | Authoring Checklist | Gate Behavior |
+The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and the `unit: target map` case in `scripts/tests/quality-gate.test.cjs` fails when the two differ. A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. Applies to lists path globs and extensions. A row with several values matches on any of them. The MCP server checklist, `../sk-code-skilled/assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
+
+| Owner | Applies to | Checklist |
 | --- | --- | --- |
-| `.skilled/skills/` | `../sk-code-skilled/assets/checklists/skill-authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
-| `.skilled/agents/` | `../sk-code-skilled/assets/checklists/agent-authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
-| `.skilled/commands/` | `../sk-code-skilled/assets/checklists/command-authoring.md` | Check command metadata, arguments, routing, and execution contract. |
-| `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
-| MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
-| OpenCode language/config files | language/config checklist in `../sk-code-skilled/assets/checklists/` | Check language-specific quality and style expectations. |
+| quality defaults | `**` | `../shared/references/universal/code-quality-standards.md` |
+| quality defaults | `.js`, `.css` | `assets/code-quality-checklist/overview-header-and-comments.md` |
+| quality defaults | `.js`, `.css` | `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
+| quality defaults | `.js`, `.css` | `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
+| quality defaults | `specs/**` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
+| SKILLED | `.skilled/**` | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
+| SKILLED | `.skilled/skills/**` | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
+| SKILLED | `.skilled/agents/**` | `../sk-code-skilled/assets/checklists/agent-authoring.md` |
+| SKILLED | `.skilled/commands/**` | `../sk-code-skilled/assets/checklists/command-authoring.md` |
+| SKILLED | `.js`, `.cjs`, `.mjs` | `../sk-code-skilled/assets/checklists/javascript-checklist.md` |
+| SKILLED | `.ts`, `.tsx`, `.mts`, `.cts` | `../sk-code-skilled/assets/checklists/typescript-checklist.md` |
+| SKILLED | `.py` | `../sk-code-skilled/assets/checklists/python-checklist.md` |
+| SKILLED | `.sh`, `.bash` | `../sk-code-skilled/assets/checklists/shell-checklist.md` |
+| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md` |
+| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md` |
+| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md` |
+| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` |
+| SKILLED | `.json`, `.jsonc`, `.yaml`, `.yml` | `../sk-code-skilled/assets/checklists/config-checklist.md` |
+| sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
 
 ### Comment-Hygiene Enforcement Gates
 
-This mode owns the author-side check and knows the three independent enforcement layers:
+This mode owns the author-side check and knows the three independent enforcement layers. The table describes this repository's wiring. In any repository, the runner's `layers` field reports what a probe found for each one, `present`, `absent`, `untrusted`, `broken` or `unknown`, and a quality claim cites that field, never this table.
 
 | Gate | Where | Effect |
 | --- | --- | --- |
@@ -137,21 +162,21 @@ This mode owns the author-side check and knows the three independent enforcement
 
 The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
 
-Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can contain comments. Zero violations are required before a quality pass.
+Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments. A finding on a changed line blocks. A finding on an unchanged line of a touched file blocks only when `layers` reports the pre-commit or CI layer `present`, because that layer scans whole files and would fail the change anyway. Otherwise it is P1 touched-file debt the change did not write.
 
 ### 2b. Machine-Readable Router (thin, Type-1 benchmark)
 
-sk-code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
+sk-code-quality routes primarily by TARGET PATH (the surface and checklist map above), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
 
 ```python
 # Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
-# real routing is target-path-keyed (the checklist map above, covered by a unit
-# test) and its parent discoverability is the hub quality signal — this block only
-# made the one asset scoreable by the retired deterministic router-replay.
+# real routing is target-path-keyed (the checklist map above), and its parent
+# discoverability is the hub quality signal. This block only made the one asset
+# scoreable by the retired deterministic router-replay.
 DEFAULT_RESOURCE = [
-    "assets/code-quality-checklist/overview-header-and-comments.md",
-    "assets/code-quality-checklist/naming-init-formatting-and-css.md",
-    "assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    "references/runner-contract.md",
+    "../shared/references/universal/code-quality-standards.md",
+    "references/code-style-guide.md",
 ]
 
 INTENT_SIGNALS = {
@@ -159,7 +184,11 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "QUALITY": ["assets/code-quality-checklist/overview-header-and-comments.md"],
+    "QUALITY": [
+        "assets/code-quality-checklist/overview-header-and-comments.md",
+        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
+        "assets/code-quality-checklist/verification-quick-reference-and-related.md",
+    ],
 }
 ```
 
@@ -173,7 +202,7 @@ discover_markdown_resources()
     -> UNKNOWN_FALLBACK when no routable target path is available
 ```
 
-The target-path checklist map remains authoritative; the prompt-intent projection only makes the default quality resources scoreable.
+The declarations behind the target-path checklist map stay authoritative, and the runner reads them directly. The prompt-intent projection only makes the default quality resources scoreable.
 
 ---
 
@@ -183,19 +212,24 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 
 1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned.
-4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
-5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
-6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-skilled`).
-8. If a gate failure is caused by an unclear runtime failure, hand to the surface's debugging workflow (`workflow-debug.md`) with the observed command, output, and failing target.
-9. When P0 items are clear, hand to the surface's verification workflow (`workflow-verify.md`) for non-mutating evidence before any done-claim.
+3. Run `node scripts/quality-gate.cjs` from the repository root. It takes the working-tree change by default, or `--base <ref>` or `--files <path>...`. Read the gate before anything else. `BLOCKED` means fix in place or escalate. `UNVERIFIED` means a required check produced no evidence, so hand each id in `summary.unverified` to verification as an open claim. `NOTHING_CHECKED` is reported as such and never as clean. `ERROR` stops the gate until its `errors[]` entry is repaired.
+4. Load every checklist the verdict's `checklists[]` names, with the `why` it gives. The universal floor `../shared/references/universal/code-quality-standards.md` is always one of them.
+5. Judge each item in `judgment_required`. No built-in check decides input validation, silent failures, initialization safety, commented-out code, accessibility or design restraint.
+6. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
+7. Before a gate fix adds code, apply the Design Restraint Ladder in `../shared/references/universal/code-quality-standards.md` and stop at the first rung that holds.
+8. Fix gate failures in place with `Edit` when the correction is limited to already-authored files, then rerun the runner.
+9. If a gate failure requires new files, broader implementation, or behavior design, hand back to the acting agent applying `workflow-implement.md`.
+10. If a gate failure is caused by an unclear runtime failure, hand to the surface's debugging workflow (`workflow-debug.md`) with the observed command, output, and failing target.
+11. When P0 items are clear, render `node scripts/quality-gate.cjs --format envelope`, fill its three `PENDING_AGENT_JUDGMENT` fields, and hand to the surface's verification workflow (`workflow-verify.md`) for non-mutating evidence before any done-claim.
 
 ### P0/P1/P2 Author Checks
 
+The tiers are the ones section 3 of `../shared/references/universal/code-quality-standards.md` defines.
+
 | Severity | Meaning | Gate Effect |
 | --- | --- | --- |
-| P0 | Correctness, safety, broken contract, forbidden comment metadata, unchecked generated drift, or missing required checklist evidence | Blocks completion until fixed or escalated. |
+| P0 | Correctness, safety, broken contract, or forbidden comment metadata | Blocks completion until fixed or escalated. |
+| UNVERIFIED | Unchecked generated drift, missing required checklist evidence, or a required check that produced no evidence | Neither clean nor blocked. The claim stays open until verification proves it with its own command or reports it open. |
 | P1 | Maintainability, routing, style, or authoring-contract issue likely to confuse future work | Fix before handoff unless the user accepts a documented risk. |
 | P2 | Local polish, clarity, or minor consistency issue with low behavioral risk | Fix when cheap; otherwise document the deferral and why it is safe. |
 
@@ -216,14 +250,16 @@ CODE_QUALITY_RESULT v1
 schema_version: code-quality/v1
 status: advisory
 modified_files: <repo-relative paths, or none>
-resolved_surface: <skilled | unknown>
+resolved_surface: <declared surface label(s) in detection order | unknown>
 checklists_loaded: <checklist paths loaded, or none>
-checker_outputs: <comment-hygiene and dist-staleness results, or N/A>
+checker_outputs: code-quality-run/v1 gate=<GATE> exit=<n> p0_blocking=<n> unverified=<ids|none> unchecked=<n> layers=pc:<state>,ci:<state>,pe:<state>
 p0_p1_p2_decisions: <per-severity dispositions>
 accepted_deferrals: <documented P1/P2 deferrals and why safe, or none>
 verification_handoff: workflow-verify.md
 remaining_accepted_risk: <one-line residual risk, or none>
 ```
+
+`node scripts/quality-gate.cjs --format envelope` renders the machine fields, and `references/runner-contract.md` section 4 holds the grammar. The three judgment fields, `p0_p1_p2_decisions`, `accepted_deferrals` and `remaining_accepted_risk`, print as `PENDING_AGENT_JUDGMENT` until the agent fills them, and a field that still reads it is open work. A private surface prints by its label only, so the envelope never names a `local-` skill.
 
 This envelope is advisory and additive only: its `status` is fixed to `advisory` and MUST NOT be `pass`, `success`, or `done`. Its presence NEVER reads as a completion, done, works, or passing claim, and it never replaces the handoff to the surface's verification workflow (`workflow-verify.md`) — it reinforces, and does not relax, the §4 NEVER rule that this mode makes no passing claims.
 
@@ -234,10 +270,10 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### ✅ ALWAYS
 
 1. Read target files before editing them.
-2. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any implementation-done or quality-pass claim.
+2. Run the runner, `node scripts/quality-gate.cjs`, before any implementation-done or quality-pass claim, and load every checklist its `checklists[]` names. The universal floor is always one of them, and the surface-neutral JavaScript and CSS additions join for a `.js` or `.css` target.
 3. Resolve surface identity through `../shared/references/stack-detection.md`; do not re-author surface detection in this packet.
-4. Load the correct OpenCode authoring checklist by target path before checking `.skilled/` work.
-5. Run `scripts/check-comment-hygiene.sh <file>` on each modified comment-capable file.
+4. Load the SKILLED authoring checklist the verdict names before checking `.skilled/` work, and the MCP server checklist by judgment for MCP server source.
+5. Let the runner call `scripts/check-comment-hygiene.sh` over every modified comment-capable file, or run the checker directly on one file outside a runner call.
 6. Fix P0 issues before handing to verification unless the only safe action is escalation.
 7. Keep fixes scoped to quality-gate failures in files already in scope.
 8. Hand failures that need root-cause investigation to the surface's debugging workflow (`workflow-debug.md`) with the exact symptom and evidence.
@@ -252,6 +288,8 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 6. Never broaden scope into cleanup or refactor work unrelated to the gate failure.
 7. Never allow ephemeral artifact labels in code comments; preserve durable WHY only.
 8. Never add a packet-local `graph-metadata.json`.
+9. Never run a command the repository layer does not name. The runner runs built-in checks only, and this mode adds no command of its own.
+10. Never read `NOTHING_CHECKED` or `UNVERIFIED` as clean. Each names evidence that does not exist yet.
 
 ### ⚠️ ESCALATE IF
 
@@ -267,9 +305,10 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - The quality gate ran after implementation and before verification.
 - Surface identity came from the shared router, not packet-local detection logic.
-- `assets/code-quality-checklist/overview-header-and-comments.md` was loaded before any quality-pass claim.
-- The correct `../sk-code-skilled/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
-- `scripts/check-comment-hygiene.sh` ran for each modified comment-capable file and reported zero violations or a documented escalation.
+- `scripts/quality-gate.cjs` ran on the change, and its gate is quoted as printed, never restated as a pass.
+- Every checklist the verdict's `checklists[]` names was loaded before any quality-pass claim, the universal floor among them.
+- The comment-hygiene result came from the runner's single checker call, with zero blocking findings or a documented escalation.
+- Each id in `summary.unverified` is handed to verification as an open claim.
 - P0 issues are fixed in place or escalated with evidence; P1/P2 handling is explicit.
 - No new files were authored by this mode.
 - Handoff to the surface's verification workflow (`workflow-verify.md`) includes the quality evidence and any remaining accepted risk.
@@ -279,7 +318,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ## 6. INTEGRATION POINTS
 
 - `sk-code` routes quality prompts here through `mode-registry.json` and keeps the hub routing-only.
-- `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- The acting agent applying `workflow-implement.md` changes files before this gate runs, then applies the surface's `workflow-debug.md` and `workflow-verify.md`, which `sk-code-skilled` bundles as read-only doctrine.
 - `sk-code-review` owns findings-first review output and PR-style severity reporting.
 - `system-spec-kit` owns spec-folder documentation, validation, and memory workflows when the broader task requires them.
 
@@ -297,8 +336,10 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### Quality References And Assets
 
-- [`assets/code-quality-checklist/overview-header-and-comments.md`](../../../.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) - Required quality checklist before implementation completion claims.
-- [`assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md) - Universal OpenCode quality baseline.
+- [`assets/code-quality-checklist/overview-header-and-comments.md`](../../../.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) - Surface-neutral JavaScript and CSS additions, loaded for `.js` or `.css` targets with the surface's own language checklist.
+- [`references/runner-contract.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
+- [`assets/quality-defaults.json`](../../../.skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.
+- [`assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
 - [`assets/checklists/skill-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
 - [`assets/checklists/agent-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.
 - [`assets/checklists/command-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md) - Command authoring checklist.
@@ -316,6 +357,8 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### Scripts
 
+- [`scripts/quality-gate.cjs`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs) - The quality runner, which prints one verdict for a change in any repository.
+- [`scripts/tests/quality-gate.test.cjs`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs) - Runner tests: the named fixtures and the unit cases, run with `node --test`.
 - [`scripts/check-comment-hygiene.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker.
 - [`scripts/check-comment-hygiene.test.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
 - [`scripts/check-dist-staleness.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh) - Distribution drift checker.
@@ -326,4 +369,4 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### Universal Standards
 
 - [`../shared/references/universal/code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md) - Shared code quality standards.
-- [`../shared/references/universal/code-style-guide.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-style-guide.md) - Shared code style and comment hygiene guidance.
+- [`references/code-style-guide.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md) - This mode's code style and comment hygiene guide.

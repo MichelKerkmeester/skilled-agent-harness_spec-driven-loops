@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7273,
-    "ok": 15146,
+    "missing-frontmatter": 7284,
+    "ok": 15262,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25967,
+  "documentsScanned": 26094,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c60069b54de597cfbc3befd8f57240dcd5597262084bbd6e8b0c23aa23f2605e",
+  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37545,
+      "ok": 37757,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10692,7 +10692,31 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-bug-fix-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-ci-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/workflow-alone-review-compiled-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10723,6 +10747,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10801,12 +10831,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/shared/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -34178,6 +34202,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/private-skill-commit-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -39868,6 +39898,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/013-private-surface-skills/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/013-private-surface-skills/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -40249,6 +40291,18 @@
       "line": 2,
       "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/014-code-modes-research/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -68526,6 +68580,18 @@
       "line": 2,
       "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -68992,10 +69058,6 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/benchmark/fixtures",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
@@ -70634,6 +70696,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -71270,6 +71340,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/013-private-surface-skills/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/007-shared-references-and-detection-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/scratch",
       "reason": "excluded directory"
     },
@@ -71278,7 +71364,35 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/014-code-modes-research/scratch",
+      "path": "specs/sk-code/014-code-modes-research/003-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/004-doctrine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
       "reason": "excluded directory"
     },
     {
@@ -72811,6 +72925,10 @@
     },
     {
       "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/042-fanout-review-focus/scratch",
       "reason": "excluded directory"
     },
     {
@@ -75622,6 +75740,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch",
       "reason": "excluded directory"
     },
@@ -75655,6 +75781,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/055-ci-efficiency-release-docs/scratch",
       "reason": "excluded directory"
     },
     {

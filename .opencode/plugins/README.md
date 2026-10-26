@@ -152,7 +152,7 @@ plugins/
 
 ## 7. CONFIGURATION
 
-Every plugin is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on` (case-insensitive) for the shared resolver. Each plugin that honors a switch checks `isHookEnabled('<concern>')` at entry (some at factory entry, some per-hook) and stops its main work when disabled. Housekeeping can still run, such as the deep-loop guard's stale-state sweep on `session.created`. The one exception named in the overview does not.
+Every plugin except `session-relaunch.js` is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on` (case-insensitive) for the shared resolver. Each plugin that honors a switch checks `isHookEnabled('<concern>')` at entry (some at factory entry, some per-hook) and stops its main work when disabled. Housekeeping can still run, such as the deep-loop guard's stale-state sweep on `session.created`. The one exception named in the overview does not.
 
 | Variable | Effect |
 |---|---|
@@ -160,6 +160,7 @@ Every plugin is enabled by default. Truthy disable values are `1`, `true`, `yes`
 | Per-concern switch | The default name is `SYSTEM_<CONCERN>_DISABLED` (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`). Six concerns use another canonical name: `OPENCODE_GOAL_DISABLED`, `CLI_DISPATCH_AUDIT_DISABLED`, `MCP_ROUTE_GUARD_DISABLED`, `CODEX_HOOKS_WATCHDOG_DISABLED`, `SK_GIT_PREFLIGHT_DISABLED` and `SK_CODE_POST_EDIT_QUALITY_DISABLED`. |
 | Older aliases | `hook-flags.cjs` still honors older names, e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` and `OPENCODE_GOAL_PLUGIN_DISABLED`. See each plugin's own README. |
 | `SK_VISION_AUTOINSPECT=1` | Turns on sk-vision's automatic image analysis and its 13 tools on both OpenCode versions. Off by default. |
+| `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED`, `SYSTEM_SESSION_RELAUNCH_ENABLED` | Turn on `session-relaunch.js`, which ships off. A non-empty OpenCode flag decides for OpenCode (`1` on, `0` off), and the global flag decides otherwise. `SYSTEM_SESSION_RELAUNCH_DISABLED=1` and the master switch still win. Also read from `.skilled/hooks/hook-flags.env`. |
 
 Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000, owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor plugin), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
 

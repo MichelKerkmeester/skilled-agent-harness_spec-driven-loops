@@ -35,14 +35,14 @@ Rebuilds the wrapper's manual claim template after each consume from the consume
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable): every test this phase owns passes; the one suite failure is phase 006's CLI test
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -121,6 +121,8 @@ npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-r
 ```
 
 No live proof is required.
+
+**Baseline** (before any edit, HEAD `65f37f5d70`): node 915 of 915 pass, exit 0; vitest 59 of 59 pass. **Final**: node 921 tests, 920 pass, 1 fail (phase 006's "a reused note with the goal switch off hands on no packet" in `session-relaunch-cli.test.cjs`), the delta being five tests from this phase and one from phase 006; vitest 59 of 59. Receipts: `scratch/baseline-suite.txt`, `scratch/final-suite.txt`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -184,7 +186,7 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline suite numbers recorded
+- [x] Baseline suite numbers recorded
 - [ ] Change isolated to its own commit
 
 ### Rollback Procedure

@@ -1,14 +1,14 @@
 ---
 id: CQ-001
 category: quality_gate
-title: 'Quality gate routes to the code-quality checklist'
-description: "This scenario validates QUALITY routing for `CQ-001`. It confirms a comment-hygiene and P0/P1/P2 quality-gate prompt resolves to code-quality's own routable checklist rather than a surface-owned OpenCode or Webflow checklist."
+title: 'Quality gate routes to the sk-code-quality checklist'
+description: "This scenario validates QUALITY routing for `CQ-001`. It confirms a comment-hygiene and P0/P1/P2 quality-gate prompt resolves to the resource set sk-code-quality's router emits: the runner contract from `DEFAULT_RESOURCE` plus the mode's quality checklists."
 expected_intent: QUALITY
 expected_resources:
-  - assets/code-quality-checklist/overview-header-and-comments.md
+  - references/runner-contract.md
   - assets/code-quality-checklist/naming-init-formatting-and-css.md
   - assets/code-quality-checklist/verification-quick-reference-and-related.md
-version: 1.0.1.0
+version: 1.1.3.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -21,11 +21,10 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `QUALITY` routing for `CQ-001`. `sk-code-quality` is a thin, deliberately narrow
 Type-1 prompt-intent router: its real routing precision is target-path-keyed (the checklist map in
-`SKILL.md` §2) and covered by a dedicated unit test, and its parent-to-child discoverability is the hub's
+`SKILL.md` §2), and its parent-to-child discoverability is the hub's
 `quality` signal. This scenario exercises the one prompt-intent route the deterministic router-replay can
-score — confirming that a comment-hygiene / P0-P1-P2 quality-gate prompt classifies as `QUALITY` and
-loads code-quality's own checklist rather than a surface-owned checklist under `sk-code-skilled` or a
-Webflow-only standard.
+score. It confirms that a comment-hygiene or P0-P1-P2 quality-gate prompt classifies as `QUALITY` and
+loads the set `DEFAULT_RESOURCE` names: the runner contract, the universal floor and the style guide, beside the mode's quality checklists.
 
 ### Why This Matters
 
@@ -53,9 +52,9 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
   `INTENT_SIGNALS` keywords (`quality gate`, `p0 p1 p2`, ...) match the prompt, and every path this
   scenario lists under `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-quality/`, and each one
-  documents the JavaScript/CSS quality checklist per `SKILL.md` §2.
-- Desired user-visible outcome: the bundled workflow loads code-quality's own checklist set, not
-  `sk-code-skilled`'s target-path checklists or a Webflow-only standard, before any completion claim.
+  is a resource `SKILL.md` §2 names.
+- Desired user-visible outcome: the bundled workflow loads the `DEFAULT_RESOURCE` checklist set
+  before any completion claim.
 - Pass/fail: PASS if every listed path exists and the frontmatter `expected_intent` is `QUALITY`; FAIL if
   any listed path is missing or the frontmatter disagrees.
 
@@ -71,7 +70,7 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
 
 1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`
 2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .skilled/skills/sk-code/sk-code-quality/SKILL.md`
-3. `for p in assets/code-quality-checklist/overview-header-and-comments.md assets/code-quality-checklist/naming-init-formatting-and-css.md assets/code-quality-checklist/verification-quick-reference-and-related.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/runner-contract.md ../shared/references/universal/code-quality-standards.md references/code-style-guide.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
@@ -95,9 +94,10 @@ excerpt.
 1. Re-run step 3 for the specific path that failed and confirm whether the checklist file was renamed or
    removed under `assets/code-quality-checklist/`.
 2. Diff this scenario's `expected_resources` against `SKILL.md`'s `RESOURCE_MAP["QUALITY"]` and
-   `DEFAULT_RESOURCE` (§2b) to see whether the drift is a stale scenario file or a stale router map —
-   `RESOURCE_MAP["QUALITY"]` names only the first checklist file directly, while `DEFAULT_RESOURCE` names
-   all three; this scenario tracks the full checklist set an operator actually loads.
+   `DEFAULT_RESOURCE` (§2b) to see whether the drift is a stale scenario file or a stale router map.
+   `RESOURCE_MAP["QUALITY"]` names the three surface-neutral JavaScript and CSS checklists, and
+   `DEFAULT_RESOURCE` names the runner contract, the universal floor and the style guide. Step 3 tracks
+   the `DEFAULT_RESOURCE` set, and `expected_resources` draws from both.
 
 ---
 
@@ -120,7 +120,7 @@ excerpt.
 
 ## 5. SOURCE METADATA
 
-- Group: code-quality routing
+- Group: sk-code-quality routing
 - Playbook ID: CQ-001
 - Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature file path: `quality-gate/quality-checklist.md`

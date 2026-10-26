@@ -13,7 +13,7 @@ const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const hopHistory = require('../lib/hop-history.cjs');
 const withdraw = require('../lib/withdraw.cjs');
-const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
+const { hookFlagDecision, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = core.RUNTIMES;
 const GOAL_FILENAME = 'goal.md';
@@ -363,21 +363,19 @@ function sessionIdFor(options, runtime) {
   return sessionId;
 }
 
-// The checkouts a note's packet may live in: this repository, and the working directory the
-// fresh session starts in, which a git worktree session does not share with the CLI's checkout.
 function goalRoots(noteCwd) {
-  const roots = [nudge.resolveRepoRoot(process.env)];
-  if (path.isAbsolute(noteCwd)) roots.push(noteCwd);
-  return roots;
+  return core.goalRoots(nudge.resolveRepoRoot(process.env), noteCwd);
 }
 
-// A packet the note carries and the receiver may be given: the switch is on and the packet
-// still holds a goal.md, which it may have lost since the note was written.
-function usableGoalPacket(frontmatter) {
-  const packet = typeof frontmatter.goal_packet === 'string' ? frontmatter.goal_packet : '';
-  if (packet === '' || !core.goalSwitchOn(resolvedSwitches())) return '';
-  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
-  return core.goalPacketProblem(packet, goalRoots(noteCwd)) === null ? packet : '';
+// A manual claim has no relaunch record, so it passes no recorded switch and reads the switch
+// as it is at claim time.
+function noteGoalPacket(frontmatter, recordedGoalSwitch) {
+  return core.usableGoalPacket(
+    frontmatter,
+    resolvedSwitches(),
+    nudge.resolveRepoRoot(process.env),
+    recordedGoalSwitch,
+  );
 }
 
 // The field belongs to this command and not to whoever wrote the note. Every prepare and keep
@@ -446,6 +444,21 @@ function validatedNote(options, runtime) {
   return { handoffPath, sessionId, specFolder };
 }
 
+// The refusal names the switch that turned the concern off, as the resolver reports it, so
+// the operator is never told to set a flag that is already set or that a kill switch overrides.
+function relaunchRefusal(decision, runtime) {
+  if (decision.reason === 'master' || decision.reason === 'kill') {
+    return `session relaunch is disabled by ${decision.key};`
+      + ' unset it to turn session relaunch back on';
+  }
+  if (decision.reason === 'runtime') {
+    return `session relaunch is off for ${runtime} by ${decision.key};`
+      + ` set it to 1 to turn it on for ${runtime}`;
+  }
+  return `session relaunch is disabled by hook flags for ${runtime}; set SYSTEM_SESSION_RELAUNCH_ENABLED=1`
+    + ` or SYSTEM_SESSION_RELAUNCH_${runtime.toUpperCase()}_ENABLED=1 to turn it on`;
+}
+
 function stateForLoop(loopId) {
   if (typeof loopId !== 'string' || !loopId.trim()) throw new Error('--loop-id is required');
   return core.readRelaunchFile(loopId);
@@ -479,16 +492,20 @@ function prepare(args) {
   // Inside the loop the exported runtime wins; outside it the flag names the runtime.
   const runtime = loopId ? envRuntime : (flagRuntime ?? envRuntime);
 
+  // A prepare that names no note is a usage error before it is a refusal.
+  if (!options['--handoff']) throw new Error('--handoff is required');
+  // A checkout that never opted in gets neither an armed record nor a printed claim command,
+  // so one check covers both paths and they refuse in the same words. It runs before the
+  // note is validated, because validation also records the goal packet into the note.
+  const decision = hookFlagDecision('session-relaunch', undefined, undefined, { runtime });
+  if (!decision.enabled) throw new Error(relaunchRefusal(decision, runtime));
+
   const { handoffPath, sessionId, specFolder } = validatedNote(options, runtime);
 
   if (!loopId) {
     supersedeClaimedNotes(handoffPath, { sessionId });
     printManualClaim(handoffPath, runtime, specFolder);
     return 3;
-  }
-
-  if (!isHookEnabled('session-relaunch')) {
-    throw new Error('session relaunch is disabled by hook flags');
   }
 
   refuseForShellChild(loopId, runtime);
@@ -532,6 +549,7 @@ function prepare(args) {
     hops,
     model: settings.model,
     effort: settings.effort,
+    goalSwitch: core.goalSwitchOn(resolvedSwitches()),
     env: process.env,
   });
   supersedeClaimedNotes(handoffPath, { loopId, sessionId });
@@ -636,7 +654,7 @@ function claim(args) {
   const claimed = core.claimHandoff(handoffPath, { sessionId });
   hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
-  const goalPacket = usableGoalPacket(claimed.frontmatter);
+  const goalPacket = noteGoalPacket(claimed.frontmatter);
   if (goalPacket !== '') {
     process.stdout.write(
       `\nGoal packet: ${goalPacket} (the goal the sending session worked under;`
@@ -690,7 +708,24 @@ function consume(args) {
   const { options } = parseArgs(args, { flags: ['--loop-id'] });
   const loopId = options['--loop-id'];
   if (!loopId) throw new Error('--loop-id is required');
-  const record = core.readRelaunchFile(loopId);
+  const statePath = core.relaunchFilePath(loopId);
+  // A withdraw rewrites the record under its lock, and the wrapper consumes in a call of its
+  // own after should-relaunch approved the hop. Reading, judging and removing the record
+  // under that same lock is what lets a withdraw that landed in between still stop the hop.
+  // The note is read after the lock, so a slow note never holds a withdraw up.
+  const { record, withdrawn } = core.withAppendLock(statePath, () => {
+    const locked = core.readRelaunchFile(loopId);
+    try {
+      fs.unlinkSync(statePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    return {
+      record: locked,
+      withdrawn: locked?.status === 'disarmed'
+        && core.WITHDRAWN_DISARM_REASONS.has(locked.disarmReason),
+    };
+  });
   const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
   let specFolder = '';
   let goalPacket = '';
@@ -705,7 +740,7 @@ function consume(args) {
         : '';
       if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
-      goalPacket = usableGoalPacket(note.frontmatter);
+      goalPacket = noteGoalPacket(note.frontmatter, record?.goalSwitch);
     } catch {
       ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }
@@ -713,15 +748,6 @@ function consume(args) {
   // The wrapper relaunches only an open note: a claim seed for any other state fails in
   // the fresh session and loses the hop, so it prints the manual command instead.
   const note = core.noteState(handoffPath);
-  const statePath = core.relaunchFilePath(loopId);
-  // A withdraw rewrites the record under its lock, so the unlink waits for the same lock.
-  core.withAppendLock(statePath, () => {
-    try {
-      fs.unlinkSync(statePath);
-    } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
-    }
-  });
   if (invalidSpecFolder) {
     try {
       core.appendLog('spec-folder-dropped', { loopId });
@@ -735,6 +761,8 @@ function consume(args) {
   for (const key of ['model', 'provider', 'effort']) {
     if (typeof record?.[key] === 'string' && record[key] !== '') consumed[key] = record[key];
   }
+  // Only a withdrawn record carries the key, so every other consume prints what it always did.
+  if (withdrawn) consumed.withdrawn = true;
   process.stdout.write(`${JSON.stringify(consumed)}\n`);
   return 0;
 }

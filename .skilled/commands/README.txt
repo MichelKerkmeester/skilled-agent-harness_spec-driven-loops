@@ -104,6 +104,7 @@ command/
 │   ├── deep-loop.md          # Deep-loop graph and convergence diagnostics
 │   ├── runtime-mirrors.md    # Runtime mirror parity check
 │   ├── sk-code.md            # sk-code setup battery with a repair per failing leg
+│   ├── ci.md                 # GitHub Actions workflow report, scaffold and switch toggle
 │   ├── git.md                # Git hook gate settings and sk-git standards
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
 │   ├── update.md             # Release-aware framework updater

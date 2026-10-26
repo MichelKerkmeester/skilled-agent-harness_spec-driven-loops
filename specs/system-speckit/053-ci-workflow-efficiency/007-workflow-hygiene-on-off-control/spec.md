@@ -33,7 +33,7 @@ Three hygiene passes close the gaps that let a hung job hold a runner for six ho
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |
@@ -69,8 +69,6 @@ This is **Phase 7** of the CI efficiency implementation phases specification. It
 - `.github/workflows/README.md`: a new `### On/off switches` section after the push-versus-pull-request table at `:75`.
 - `scratch/`: the pre-phase inventory, the switch group assignment, the R24 samples and table, the R26 probe record and the phase result.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

@@ -13,6 +13,7 @@ const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const { specFolderFromSeed } = require('../lib/nudge.cjs');
 const { runNested } = require('./fixtures/nested-run.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
 // and every sandbox copies this environment into the CLI it spawns.
@@ -69,11 +70,13 @@ function createSandbox(t) {
     { mode: 0o755 },
   );
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
     PATH: [binDir, process.env.PATH || ''].join(path.delimiter),
     SESSION_RELAUNCH_TEST_PS_OUTPUT: '',
     SESSION_RELAUNCH_TEST_PS_EXIT_CODE: '0',
@@ -410,6 +413,119 @@ test('prepare still arms a pending record below the hop limit', (t) => {
   const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
   assert.equal(record.status, 'pending');
   assert.equal(record.hops, 0);
+});
+
+// The loop can end a running session, so a checkout that never opted in must not
+// arm a record even inside the wrapper.
+test('prepare arms nothing under the loop when nothing enables the relaunch concern', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /session relaunch is disabled by hook flags/);
+  assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+});
+
+// A claim command printed while the concern is off would hand the operator a relaunch the
+// checkout never opted in to, so prepare refuses outside the loop exactly as it does inside.
+test('prepare refuses with one message inside and outside the loop when the concern is off', (t) => {
+  const refusals = [];
+  const statuses = [];
+  for (const insideLoop of [false, true]) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+    if (insideLoop) sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+    sandbox.env.CLAUDE_PID = String(process.pid);
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+    const label = insideLoop ? 'inside the loop' : 'outside the loop';
+    assert.ok(result.status !== 0 && result.status !== 3, `${label}: ${result.status}`);
+    assert.match(result.stderr, /SYSTEM_SESSION_RELAUNCH_ENABLED=1/, label);
+    assert.doesNotMatch(result.stdout, /claim/, label);
+    assert.equal(fs.existsSync(relaunchPath(sandbox)), false, label);
+    refusals.push(result.stderr);
+    statuses.push(result.status);
+  }
+  assert.equal(refusals[0], refusals[1]);
+  assert.equal(statuses[0], statuses[1]);
+});
+
+// The child sees only the flags a case sets, never the ones the test process inherited.
+function withoutRelaunchFlags(env) {
+  const clean = { ...env };
+  for (const key of Object.keys(clean)) {
+    if (/^SYSTEM_SESSION_RELAUNCH_/.test(key)) delete clean[key];
+  }
+  delete clean.SYSTEM_HOOKS_DISABLED;
+  delete clean.MK_HOOKS_DISABLED;
+  return clean;
+}
+
+// A refusal that names a flag already set, or one that a kill switch overrides, sends the
+// operator to the wrong place, so it names whatever actually turned the concern off.
+test('prepare refusal names the flag that turned session relaunch off', (t) => {
+  const cases = [
+    {
+      label: 'kill switch',
+      flags: { SYSTEM_SESSION_RELAUNCH_ENABLED: '1', SYSTEM_SESSION_RELAUNCH_DISABLED: '1' },
+      message: 'session relaunch is disabled by SYSTEM_SESSION_RELAUNCH_DISABLED;'
+        + ' unset it to turn session relaunch back on',
+    },
+    {
+      label: 'master switch',
+      flags: { SYSTEM_SESSION_RELAUNCH_ENABLED: '1', SYSTEM_HOOKS_DISABLED: '1' },
+      message: 'session relaunch is disabled by SYSTEM_HOOKS_DISABLED;'
+        + ' unset it to turn session relaunch back on',
+    },
+    {
+      label: 'falsy runtime flag over an enabled global',
+      flags: { SYSTEM_SESSION_RELAUNCH_ENABLED: '1', SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: '0' },
+      message: 'session relaunch is off for claude by SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED;'
+        + ' set it to 1 to turn it on for claude',
+    },
+    {
+      label: 'nothing set',
+      flags: {},
+      message: 'session relaunch is disabled by hook flags for claude;'
+        + ' set SYSTEM_SESSION_RELAUNCH_ENABLED=1 or SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=1'
+        + ' to turn it on',
+    },
+  ];
+  for (const { label, flags, message } of cases) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    const env = { ...withoutRelaunchFlags(sandbox.env), ...flags };
+    env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath], env);
+
+    assert.equal(result.status, 2, `${label}: ${result.stderr}`);
+    assert.equal(result.stderr, `[session-relaunch] ${message}\n`, label);
+  }
+});
+
+test('prepare arms a record when the flags file opts in to the relaunch concern', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_ENABLED=1\n');
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
 });
 
 test('prepare records the runtime from SKILLED_LOOP_RUNTIME', (t) => {
@@ -960,7 +1076,8 @@ for (const { label, specFolder } of [
 
 for (const { folder, valid } of SPEC_FOLDER_CASES) {
   test(`nudge and CLI agree on the spec folder ${folder}`, (t) => {
-    const seed = `[session-relaunch] claim /tmp/handoff.md | Spec folder: ${folder}`
+    const seed = '[session-relaunch] claim and continue handoff /tmp/handoff.md'
+      + ` | Spec folder: ${folder}`
       + ' (carried from the handoff; Gate 3 answered in the sending session)';
     assert.equal(specFolderFromSeed(seed), valid ? folder : '');
 
@@ -1670,6 +1787,75 @@ test('consume removes the relaunch file under the record lock', (t) => {
   assert.equal(fs.existsSync(`${filePath}.lock`), false);
 });
 
+// The wrapper consumes in a call of its own after should-relaunch approved the hop, so a
+// withdraw can land in between. Consume is the last point that can still see it.
+for (const reason of ['cancelled', 'user-message']) {
+  test(`consume reports withdrawn for a record ${reason} before it`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    const filePath = writeRelaunchRecord(sandbox, {
+      loopId: LOOP_ID,
+      status: 'disarmed',
+      disarmReason: reason,
+      handoff: handoffPath,
+    });
+
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(JSON.parse(result.stdout), {
+      handoff: handoffPath,
+      spec_folder: SPEC_FOLDER,
+      note: 'open',
+      withdrawn: true,
+    });
+    assert.equal(fs.existsSync(filePath), false);
+  });
+}
+
+// A record read before the lock is taken can be one a withdraw replaces before the unlink,
+// so the withdrawn check would judge a record that no longer exists.
+test('consume reads the record under the same lock as its unlink', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed' });
+  const probePath = path.join(sandbox.root, 'read-probe.json');
+  const preloadPath = path.join(sandbox.root, 'read-probe.cjs');
+  fs.writeFileSync(preloadPath, `
+    const fs = require('node:fs');
+    const realReadFileSync = fs.readFileSync;
+    fs.readFileSync = (target, ...rest) => {
+      if (String(target) === ${JSON.stringify(filePath)}) {
+        fs.writeFileSync(${JSON.stringify(probePath)}, JSON.stringify({
+          lockHeld: fs.existsSync(${JSON.stringify(`${filePath}.lock`)}),
+        }));
+      }
+      return realReadFileSync(target, ...rest);
+    };
+  `);
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID], {
+    ...sandbox.env,
+    NODE_OPTIONS: `--require=${preloadPath}`,
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(probePath, 'utf8')), { lockHeld: true });
+  assert.equal(fs.existsSync(filePath), false);
+});
+
+test('consume output has no withdrawn key for an armed record or another disarm reason', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  for (const fields of [{ status: 'armed' }, { status: 'disarmed', disarmReason: 'expired' }]) {
+    writeRelaunchRecord(sandbox, { loopId: LOOP_ID, handoff: handoffPath, ...fields });
+
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(Object.hasOwn(JSON.parse(result.stdout), 'withdrawn'), false, result.stdout);
+  }
+});
+
 test('consume returns the handoff path and its spec folder', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -2270,6 +2456,31 @@ for (const command of ['prepare', 'keep']) {
   });
 }
 
+// A refusal is the whole answer, so the note it refused is left exactly as the sender wrote
+// it, including a goal_packet that an accepted prepare would have dropped.
+test('a refused prepare leaves the note bytes unchanged', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeGoalFile(sandbox.repoRoot);
+  setNoteField(handoffPath, `goal_packet: ${GOAL_PACKET}`);
+  const before = fs.readFileSync(handoffPath);
+
+  const result = runCli(
+    sandbox,
+    ['prepare', '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', 'pi'],
+    withoutRelaunchFlags(sandbox.env),
+  );
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /session relaunch is disabled by hook flags for pi/);
+  assert.ok(fs.readFileSync(handoffPath).equals(before));
+
+  // A prepare that names no note is a usage error before it is a refusal.
+  const bare = runCli(sandbox, ['prepare', '--runtime', 'pi'], withoutRelaunchFlags(sandbox.env));
+  assert.equal(bare.status, 2, bare.stderr);
+  assert.match(bare.stderr, /--handoff is required/);
+});
+
 test('prepare under the loop records the goal packet and still arms the record', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -2514,6 +2725,41 @@ test('consume reports the goal packet only while the switch is on and the packet
   assert.deepEqual(consume(), {
     handoff: handoffPath, spec_folder: SPEC_FOLDER, note: 'open',
   });
+});
+
+// With the switch off, prepare leaves the note's goal_packet as an earlier prepare wrote it,
+// so only the relaunch record can say that this hand-over was prepared without a goal.
+test('a reused note with the goal switch off hands on no packet', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeGoalFile(sandbox.repoRoot);
+  setNoteField(handoffPath, `goal_packet: ${GOAL_PACKET}`);
+  const loopEnv = {
+    ...sandbox.env,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+    SKILLED_LOOP_ID: LOOP_ID,
+    SKILLED_LOOP_RUNTIME: 'claude',
+    CLAUDE_PID: String(process.pid),
+  };
+
+  const prepared = runCli(
+    sandbox,
+    ['prepare', '--handoff', handoffPath, '--session', SESSION_ID],
+    { ...loopEnv, SESSION_RELAUNCH_GOAL: '0' },
+  );
+  assert.equal(prepared.status, 0, prepared.stderr);
+  assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
+  const recordText = fs.readFileSync(relaunchPath(sandbox), 'utf8');
+
+  const consume = (env) => {
+    fs.writeFileSync(relaunchPath(sandbox), recordText);
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID], env);
+    assert.equal(result.status, 0, result.stderr);
+    return JSON.parse(result.stdout);
+  };
+  const expected = { handoff: handoffPath, spec_folder: SPEC_FOLDER, note: 'open' };
+  assert.deepEqual(consume({ ...loopEnv, SESSION_RELAUNCH_GOAL: '0' }), expected);
+  assert.deepEqual(consume(loopEnv), expected);
 });
 
 test('the usage text names the goal packet on claim and consume', (t) => {

@@ -1,6 +1,6 @@
 ---
 title: "sk-code Skill-Benchmark Artifacts"
-description: "Historical benchmark inputs and reports for sk-code, produced by the retired deep-improvement Lane C harness in router and live modes."
+description: "Historical benchmark reports for sk-code, produced by the retired deep-improvement Lane C harness in router and live modes."
 trigger_phrases:
   - "sk-code benchmark"
   - "skill-benchmark artifacts"
@@ -9,7 +9,7 @@ trigger_phrases:
 
 # sk-code Skill-Benchmark Artifacts
 
-> Reports and inputs for benchmarking how well `sk-code` is routed, discovered, and used in practice, kept beside the skill they measure.
+> Reports from benchmarking how well `sk-code` is routed, discovered, and used in practice, kept beside the skill they measure.
 
 > **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. This tree is a frozen index of the reports that lane produced; no new run can be started from it.
 
@@ -20,7 +20,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The retired deep-improvement Lane C harness benchmarked `sk-code` against its own `manual_testing_playbook` scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This folder holds the run inputs and the dual reports each archived run wrote.
+The retired deep-improvement Lane C harness benchmarked `sk-code` against its own `manual_testing_playbook` scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This folder holds the dual reports each archived run wrote.
 
 Two trace modes scored the same playbook corpus:
 
@@ -52,17 +52,15 @@ Two trace modes scored the same playbook corpus:
 ```text
 benchmark/
 +-- reports/           # Current and archived runs, indexed by report README files
-+-- fixtures/sk-code/  # Legacy synthetic fixtures, superseded by the playbook corpus
 ```
 
 | Path | Purpose |
 |---|---|
 | `reports/` | Current and archived router/live reports, including the compiled-routing archive lane |
-| `fixtures/sk-code/` | Two legacy fixtures, no longer the default corpus |
 
 ### Run-Label Index
 
-Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, `sidecar` is an additional run kept beside the canonical pair, and `legacy` is a pre-playbook artifact. Underscore-named folders are listed exactly as they sit on disk. Verdicts are read from each folder's report.
+Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, and `sidecar` is an additional run kept beside the canonical pair. Underscore-named folders are listed exactly as they sit on disk. Verdicts are read from each folder's report.
 
 | Run label | What it is | Verdict | Status |
 |---|---|---|---|
@@ -76,7 +74,6 @@ Every run-label folder on disk, one row each. `Status` separates current runs fr
 | [`reports/2026-06-01--after--router/`](./reports/2026-06-01--after--router/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
 | [`reports/2026-06-01--full--router/`](./reports/2026-06-01--full--router/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
 | [`reports/2026-06-01--live--live/`](./reports/2026-06-01--live--live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
-| [`fixtures/sk-code/`](./fixtures/sk-code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a, see folder | legacy |
 
 ---
 

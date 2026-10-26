@@ -117,7 +117,7 @@ Iterations 11, 12, 14 and 15 verified on the first dispatch. Iteration 13's firs
 |-------|--------|
 | AC-001 to AC-010 | Met, re-run after iteration 15, with command output in `acceptance-criteria.md` |
 | Second-model claims | The orchestrator opened the lines behind each refuted or new claim and re-ran one routing replay before they entered the synthesis |
-| Boundary | `sk-code-quality/` and `sk-code-review/` show no diff and no untracked file against `f8671e07c2` |
+| Boundary | Superseded by ADR-003. `sk-code-quality/` and `sk-code-review/` show no diff from `f8671e07c2` to `ee8c7e6f24` |
 | AC-011 | Met. The amended check, which skips a line that only states the sibling folder was not read, prints nothing. Devin's session records show no call that read the sibling folder |
 | Strict validation | Recorded in AC-010 |
 <!-- /ANCHOR:verification -->
@@ -128,7 +128,7 @@ Iterations 11, 12, 14 and 15 verified on the first dispatch. Iteration 13's firs
 ## Known Limitations
 
 1. **Some sub-claims stay untested.** The second model left the Obsidian drift and stage-two routing of rank 2, the user-surface leg of rank 8, the stage-two match of rank 12 and the hook attribution of rank 14 untested.
-2. **Stray dispatch files.** Iteration 13's first dispatch left a ledger, a state projection and lock folders under `research/deltas/`, and iteration 14 left `research/.iter-014-event.json`. They are kept for the operator to decide on.
+2. **Stray dispatch files.** Iteration 13's first dispatch left a ledger, a state projection and lock folders under `research/deltas/`, and iteration 14 left `research/.iter-014-event.json`. All were deleted with the operator's approval. One gitignored watermark file remains, `research/deltas/.legacy-projection-watermarks/research-state.json`.
 3. **Shared hub files moved during the first run.** Citations into `ROUTER.md`, `stack-detection.md`, `hub-router.json` and the hub `SKILL.md` were re-located to current line numbers. `sk-code-quality/` and `sk-code-review/` did not change.
 4. **No measured catch rate.** The packet's own benchmark scores routing only, so the gate's catch rate and cost stay unknown.
 <!-- /ANCHOR:limitations -->

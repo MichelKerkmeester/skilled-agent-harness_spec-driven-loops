@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/002-hub-surface-removal"
-    last_updated_at: "2026-10-24T11:01:04.139Z"
-    last_updated_by: "codex"
-    recent_action: "AC-001–012 Met; AC-013–014 Unmet after T039–T104/T107 evidence."
-    next_safe_action: "SWE-2 review (T105), validate (T106), commit and push (T108)."
+    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "AC-001 to AC-014 Met, AC-014 closed on commit ancestry"
+    next_safe_action: "Phase complete, continue in phase 003"
     blockers: []
     key_files:
       - "tasks.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deepseek-v4.1-flash-1017-002-planning"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -67,9 +67,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-011 | REQ-008 | Given the phase is implemented, When the D6 records that survive the two deleted surface folders are diffed against the base commit, Then nothing changed, and the only `z_archive` diff is the two live authored twins | Met | - |
 | AC-012 | REQ-009 | Given the canary fixture was edited, When it is compared with its authored twin and the link is checked, Then the twin matches and `.opencode/skills` still resolves | Met | - |
 | AC-013 | SC-002 | Given the hub now ships three packets, When a plain system-code prompt is routed, Then the hub still wins and the Skilled surface is its target — observed 2026-10-24 after the advisor rebuild and the sk-code manifest refresh: `advisor_recommend` for `implement a typescript script` prints `sk-code sk-code-skilled` | Met | - |
-| AC-014 | REQ-010 | Given the phase is committed and pushed to `main`, When the packet validator runs on the final state, Then the packet passes and the remote matches the local commit | Unmet | - |
+| AC-014 | REQ-010 | Given the phase is committed and pushed to `main`, When the packet validator runs on the final state, Then the packet passes and the remote matches the local commit | Met | `e3beac65f4` and `1218b94938` ancestors of `origin/main`, recursive strict validation `RESULT: PASSED` 2026-10-25 |
 
-#### Progress notes (uncommitted worktree state, 2026-10-24)
+#### Progress notes (2026-10-24, closed 2026-10-25)
 
 - AC-001 — Met. `git ls-tree -r --name-only 42b41dd286 | grep -cE '^\\.skilled/skills/sk-code/sk-code-(webflow|obsidian)/'` returned 226. `git ls-files | grep -cE '^\\.skilled/skills/sk-code/sk-code-(webflow|obsidian)/' || echo 0` returned 0; T004 reports both folders absent.
 - AC-002 — Met. The AC-002 registry command returned sk-code-quality,sk-code-review,sk-code-skilled and [\"sk-code-skilled\"], as recorded by T006-T013.
@@ -83,8 +83,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 - AC-010 — Met. T101 printed ℹ pass 109 and ℹ fail 0, T102 printed PASS, README parity printed PARITY PASS: verdict diff is empty, and manifest validation printed manifest=reproducible.
 - AC-011 — Met. T104 phase-scoped D6 comparisons returned 20, 0 and 0 after excluding the unrelated cli-external-orchestration manifest.
 - AC-012 — Met. `diff <live fixture> <authored twin> && echo IDENTICAL` printed IDENTICAL. `test -L .opencode/skills && echo LINK-OK` printed LINK-OK, and the link checker reported 0 broken links.
-- AC-013 — Unmet. The recommendation command returned sk-code first, but compiledRoute was absent because compiled-route.cjs returned the legacy sentinel. T103 remains Partial pending the T108 manifest refresh.
-- AC-014 — Unmet. The documentation validation run printed RESULT: PASSED, but T105 review, final T106 closure and T108 commit/push remain open.
+- AC-013 - Met. Re-observed 2026-10-25: top `skillId` `sk-code`, `compiledRoute` target `sk-code-skilled`.
+- AC-014 - Met. `e3beac65f4` and `1218b94938` are ancestors of `origin/main` (`git merge-base --is-ancestor`, exit 0), and recursive strict validation printed `RESULT: PASSED` on 2026-10-25.
 
 
 ### AC-001

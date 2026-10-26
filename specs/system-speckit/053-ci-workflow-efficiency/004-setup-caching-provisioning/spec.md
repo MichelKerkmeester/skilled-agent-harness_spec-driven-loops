@@ -32,7 +32,7 @@ Nothing in this repository's CI is cached. Zero of the 33 workflows use `actions
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -66,8 +66,6 @@ This is **Phase 4** of the CI efficiency implementation phases specification. It
 - Install-block substitutions in the ten multi-install workflows this phase edits, and `cache: pip` in the four pip workflows.
 - `scratch/`: the baseline rows, the cache probe, the npm-dedupe record and the phase result.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

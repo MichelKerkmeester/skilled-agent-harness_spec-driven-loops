@@ -31,6 +31,10 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 VALID_IDENTIFIER = re.compile(r'^[a-zA-Z_$][a-zA-Z0-9_$]*$')
 ENV_VAR_PATTERN = re.compile(r'\$\{([A-Z_][A-Z0-9_]*)\}')
+REQUIRED_TEMPLATE_FIELDS = ('name', 'call_template_type')
+KNOWN_CALL_TEMPLATE_TYPES = ('mcp', 'http', 'cli', 'file')
+VALID_HTTP_METHODS = ('GET', 'POST', 'PUT', 'DELETE', 'PATCH')
+REPORT_RULE_WIDTH = 70
 
 
 # ───────────────────────────────────────────────────────────────
@@ -214,8 +218,7 @@ class ConfigValidator:
         """
         prefix = f"manual_call_templates[{idx}]"
 
-        required_fields = ['name', 'call_template_type']
-        for field in required_fields:
+        for field in REQUIRED_TEMPLATE_FIELDS:
             if field not in template:
                 self.errors.append(f"{prefix}: missing required field '{field}'")
 
@@ -252,16 +255,15 @@ class ConfigValidator:
 
         call_template_type = template.get('call_template_type')
         if 'call_template_type' in template:
-            valid_types = ['mcp', 'http', 'cli', 'file']
             if not isinstance(call_template_type, str):
                 self.errors.append(
                     f"{prefix}: field 'call_template_type' must be a string"
                 )
-            elif call_template_type not in valid_types:
+            elif call_template_type not in KNOWN_CALL_TEMPLATE_TYPES:
                 self.warnings.append(
                     f"{prefix}: unexpected call_template_type "
                     f"'{call_template_type}' "
-                    f"(expected one of: {', '.join(valid_types)})"
+                    f"(expected one of: {', '.join(KNOWN_CALL_TEMPLATE_TYPES)})"
                 )
 
         if call_template_type == 'mcp':
@@ -320,12 +322,13 @@ class ConfigValidator:
 
             if 'http_method' in template:
                 http_method = template['http_method']
-                if not isinstance(http_method, str) or http_method not in {
-                    'GET', 'POST', 'PUT', 'DELETE', 'PATCH'
-                }:
+                if (
+                    not isinstance(http_method, str)
+                    or http_method not in VALID_HTTP_METHODS
+                ):
                     self.errors.append(
                         f"{prefix}.http_method: must be one of "
-                        "GET, POST, PUT, DELETE, PATCH"
+                        f"{', '.join(VALID_HTTP_METHODS)}"
                     )
             if 'content_type' in template and not isinstance(
                 template['content_type'], str
@@ -411,7 +414,7 @@ class ConfigValidator:
             return
 
         missing_vars = []
-        for prefixed_key, context in self._required_env_vars:
+        for prefixed_key, context in sorted(self._required_env_vars):
             if prefixed_key not in self.env_vars:
                 missing_vars.append(f"  - {prefixed_key} (referenced in {context})")
 
@@ -425,7 +428,7 @@ class ConfigValidator:
 
     def _print_results(self) -> None:
         """Print validation summary with errors and warnings."""
-        print("\n" + "=" * 70)
+        print("\n" + "=" * REPORT_RULE_WIDTH)
 
         if self.warnings:
             print(f"\n⚠️  WARNINGS ({len(self.warnings)}):\n")
@@ -436,14 +439,14 @@ class ConfigValidator:
             print(f"\n❌ ERRORS ({len(self.errors)}):\n")
             for error in self.errors:
                 print(f"  • {error}")
-            print("\n" + "=" * 70)
+            print("\n" + "=" * REPORT_RULE_WIDTH)
             print("❌ VALIDATION FAILED")
         else:
             print("\n✅ VALIDATION PASSED")
             if self.warnings:
                 print(f"   ({len(self.warnings)} warning(s))")
 
-        print("=" * 70)
+        print("=" * REPORT_RULE_WIDTH)
 
 
 # ───────────────────────────────────────────────────────────────

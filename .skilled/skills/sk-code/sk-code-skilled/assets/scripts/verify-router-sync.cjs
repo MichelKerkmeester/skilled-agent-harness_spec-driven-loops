@@ -20,9 +20,10 @@ const ROUTE_GOLD_CANDIDATES = [
   path.join(REPO_ROOT, ROUTE_GOLD_REL),
 ];
 
-// The hub SKILL.md tells the acting agent to read the implement, debug and verify doctrine
-// from the active surface's symlinked copy, so no router names the canonical shared path or
-// the symlink. Exact paths, not a folder, keep any other unrouted doc under shared/ reported.
+// Each surface reaches the implement, debug and verify doctrine through a symlink, so the
+// symlinked copies stay unrouted. The hub ROUTER routes the canonical debug and verify paths
+// as shared controls. Exact paths, not a folder, keep any other unrouted doc under shared/
+// reported.
 const NON_ROUTED_ALLOWLIST = new Set([
   'shared/references/workflow-implement.md',
   'shared/references/workflow-debug.md',

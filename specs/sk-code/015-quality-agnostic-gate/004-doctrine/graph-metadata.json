@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/004-doctrine",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/004-doctrine",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 4 doctrine",
+      "unknown surface iron law",
+      "skilled house checklist",
+      "sk-code shared doctrine amendment",
+      "phase 4 doctrine plan",
+      "phase 4 doctrine tasks",
+      "phase 4 doctrine acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "phase 4 doctrine decision record"
+    ],
+    "key_topics": [
+      "phase",
+      "doctrine",
+      "unknown",
+      "surface",
+      "iron",
+      "law",
+      "skilled",
+      "house",
+      "checklist",
+      "sk-code",
+      "shared",
+      "amendment"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/shared/references/phase-detection.md",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+      ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+      ".skilled/skills/sk-code/shared/references/workflow-debug.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md",
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md",
+      ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
+      ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-verify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-implement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-debug.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "universal-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming-init-formatting-and-css.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md",
+        "source": "derived"
+      },
+      {
+        "name": "overview-header-and-comments.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-quick-reference-and-related.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Iron Law 2 makes the Phase 1.5 quality gate mandatory",
+    "created_at": "2026-10-25T23:21:50Z",
+    "last_save_at": "2026-10-26T00:00:58.005Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2d37214d4bd8127a1d3f786232ac1b8b9ec06cc51e011baaf20edefdd2eb831a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "018f74657cf82f0dbde77028f84d71f9b144fb66062dcfc20d4f720c2f2ae361",
+      "plan.md": "9395eed5c82b0d5e84418ae9af9b59f7e428bf96debbbec6760cdbd8a0e33aa8",
+      "tasks.md": "169408120f92ad1f54db2c36160cc480e9394aad7ba13dfdacf2f273ebf15405",
+      "decision-record.md": "999383d9e256cdd601a0187b3da233a200d807c30972b33a61fdeb91df5793be",
+      "implementation-summary.md": "797b66ddd75c04e62064b938ece80456fb3dec91498e16c8db779c55e527c923"
+    },
+    "last_active_at": null
+  }
+}

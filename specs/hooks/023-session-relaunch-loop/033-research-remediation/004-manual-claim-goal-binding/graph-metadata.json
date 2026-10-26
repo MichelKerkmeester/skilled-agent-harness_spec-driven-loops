@@ -3,6 +3,7 @@
   "packet_id": "hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding",
   "spec_folder": "hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding",
   "parent_id": "hooks/023-session-relaunch-loop/033-research-remediation",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,7 +35,7 @@
       "first"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,8 +47,14 @@
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
       ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
-      ".skilled/hooks/session-relaunch/README.md"
+      "scratch/evidence/baseline-node.txt",
+      "scratch/evidence/final-node.txt",
+      "scratch/evidence/red-core.txt",
+      "scratch/evidence/red-wrapper.txt",
+      "scratch/evidence/inventories.txt",
+      "scratch/evidence/negative-control-open-state.txt"
     ],
     "entities": [
       {
@@ -111,15 +118,51 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
         "name": "goal-handover.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/session-relaunch/README.md",
+        "name": "baseline-node.txt",
+        "kind": "file",
+        "path": "scratch/evidence/baseline-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-node.txt",
+        "kind": "file",
+        "path": "scratch/evidence/final-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-core.txt",
+        "kind": "file",
+        "path": "scratch/evidence/red-core.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-wrapper.txt",
+        "kind": "file",
+        "path": "scratch/evidence/red-wrapper.txt",
+        "source": "derived"
+      },
+      {
+        "name": "inventories.txt",
+        "kind": "file",
+        "path": "scratch/evidence/inventories.txt",
+        "source": "derived"
+      },
+      {
+        "name": "negative-control-open-state.txt",
+        "kind": "file",
+        "path": "scratch/evidence/negative-control-open-state.txt",
         "source": "derived"
       },
       {
@@ -157,47 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shared",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "For Claude",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A first launch unsets the goal packet and claim seed so an outer session's values never leak in (`.skilled/bin/skilled-loop:470-474`)",
     "created_at": "2026-10-25T13:42:29Z",
-    "last_save_at": "2026-10-25T14:10:06.233Z",
+    "last_save_at": "2026-10-25T18:16:22.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10169377e036add2dcc824bc968640f083f1dae24f28dd69b3c27544a180b711",
+    "source_fingerprint": "sha256:8a69a62fdacd21df96daf3de6e0d52cba05a2f03b7181bc3a606c2fbb82f40e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50fd29ec56a2336bd956d6a5ed80f90bf997ae0838e9c526a31a58d86ca9b3e2",
-      "plan.md": "49ae51f658a5960af030ae8fe982df8a0127e6340e71d66bc64e32cb31e1eec7",
-      "tasks.md": "9201c4205f66b62d83227011f25d94b0cde7f8a070f1f3d199e75337aa651735",
-      "implementation-summary.md": "ed5db3db4c020348c95ec5f65df3a9c666552f044156fa2c9258c65ef9a440ab"
+      "spec.md": "55669f7e2b83aee058372b2b3cee2a2d9530dfcfe94148c759aebf152ce85be0",
+      "plan.md": "96bc285c5d9032b279e574714d4db28c8d96fd79c2d7b2a1d87b997cf5b155df",
+      "tasks.md": "8aa163cc4c263666dd8584beebcf22dda95129cc8970df6f5ceb15959b4da90f",
+      "implementation-summary.md": "af4aa50c647386f5b641916627cbce574d423756ddae579adaca90ef702a56ee"
     },
     "last_active_at": null
   }

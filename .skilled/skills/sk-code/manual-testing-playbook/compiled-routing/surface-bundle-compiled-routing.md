@@ -9,7 +9,7 @@ expected_bundle: [sk-code-review, sk-code-skilled]
 expected_resources:
   - sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
   - sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md
-expected_workflow_mode: sk-code-review
+expected_workflow_mode: sk-code-review+sk-code-skilled
 expected_leaf_resources:
   - workflow_mode: sk-code-skilled
     leaf_resource_id: references/typescript/style-guide/overview-strict-and-naming.md

@@ -1,0 +1,96 @@
+✔ enabled by default when no flag is set (0.557917ms)
+✔ master switch disables every concern (0.063584ms)
+✔ canonical per-concern switch disables only that concern (0.045959ms)
+✔ concernFlag derives the canonical env name (0.054875ms)
+✔ legacy aliases still disable their concern (0.077875ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.044875ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.043583ms)
+✔ .mjs and .ts facades re-export identical behavior (18.158ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.123708ms)
+✔ environment overrides the config file both ways (0.090791ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.899125ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.451167ms)
+✔ session-relaunch is off by default while every other concern stays on (0.045875ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.045ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.429042ms)
+✔ a kill switch beats the session-relaunch enable flag (0.036334ms)
+✔ the facades carry the session-relaunch default (0.099584ms)
+✔ the node and shell resolvers give the same session-relaunch answers (248.463125ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.171875ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.763083ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (52.563666ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.145875ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (46.087625ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (115.57175ms)
+✔ a byte order mark before the first line hides nothing from any reader (81.768166ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (450.809833ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (24.99525ms)
+✖ a per-runtime enable flag answers before the global one in every reader (1.252208ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1084.107834
+
+✖ failing tests:
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:490:1
+✖ a per-runtime enable flag answers before the global one in every reader (1.252208ms)
+  AssertionError [ERR_ASSERTION]: global on, claude off: hook-flags.cjs
+  + actual - expected
+  
+    [
+  -   'off',
+      'on',
+      'on',
+      'on',
+      'on',
+  +   'on'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/shared/hook-flags.test.cjs:524:16)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'on', 'on', 'on', 'on', 'on' ],
+    expected: [ 'off', 'on', 'on', 'on', 'on' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+## adapter red: claude/context-nudge.mjs check temporarily without its runtime
+✖ context-nudge stays silent with its runtime switched off while the global flag is on (39.512875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.221209
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:372:1
+✖ context-nudge stays silent with its runtime switched off while the global flag is on (39.512875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"[session-relaunch] Context is about 95% full. This session runs outside the skilled-loop wrapper, so it cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize. If the remaining work fits in a few more steps, finish it instead and skip these steps. Otherwise do these steps now, before any other work:\\n1. Write the handoff note at \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-69vpJl/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T192510Z-session-adapter-00000001.md\' in exactly this shape:\\n   ---\\n   status: open\\n   session_id: session-adapter-00000001\\n   loop_id: \\n   runtime: claude\\n   cwd: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-69vpJl/repo\\n   spec_folder: \\n   created_at: 2026-10-25T19:25:10.176Z\\n   ---\\n   followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.\\n   Under ## Remaining work list only the task\'s own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.\\n   spec_folder is a repo-relative packet path, \\"none\\" for Gate 3 D) Skip, or empty if unanswered.\\n2. When a spec packet is bound to this session, run `/speckit:save` first so its continuity is current.\\n3. Then run: node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs keep --handoff \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-69vpJl/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T192510Z-session-adapter-00000001.md\' --session \'session-adapter-00000001\' --runtime \'claude\'\\n4. Keep working in this session once it exits 0. After auto-compaction, claim the note with the command keep prints before you continue.\\nException: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback."}}'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:388:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"[session-relaunch] Context is about 95% full. This session runs outside the skilled-loop wrapper, so it cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize. If the remaining work fits in a few more steps, finish it instead and skip these steps. Otherwise do these steps now, before any other work:\\n1. Write the handoff note at \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-69vpJl/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T192510Z-session-adapter-00000001.md\' in exactly this shape:\\n   ---\\n   status: open\\n   session_id: session-adapter-00000001\\n   loop_id: \\n   runtime: claude\\n   cwd: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-69vpJl/repo\\n   spec_folder: \\n   created_at: 2026-10-25T19:25:10.176Z\\n   ---\\n   followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.\\n   Under ## Remaining work list only the task\'s own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.\\n   spec_folder is a repo-relative packet path, \\"none\\" for Gate 3 D) Skip, or empty if unanswered.\\n2. When a spec packet is bound to this session, run `/speckit:save` first so its continuity is current.\\n3. Then run: node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs keep --handoff \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-69vpJl/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T192510Z-session-adapter-00000001.md\' --session \'session-adapter-00000001\' --runtime \'claude\'\\n4. Keep working in this session once it exits 0. After auto-compaction, claim the note with the command keep prints before you continue.\\nException: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback."}}',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

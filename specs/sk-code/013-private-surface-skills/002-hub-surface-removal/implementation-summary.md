@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 002 is in progress at about 90%. T039-T104 and T107 are applied. T103 remains partial. T105, T106 and T108 stay open."
+description: "Phase 002 is complete. T001-T108 are done, and the work is on origin/main as e3beac65f4 with the follow-up 1218b94938."
 trigger_phrases:
   - "hub surface removal implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/002-hub-surface-removal"
-    last_updated_at: "2026-10-24T11:02:07.550Z"
-    last_updated_by: "codex"
-    recent_action: "Reconciled evidence and passed strict packet validation."
-    next_safe_action: "SWE-2 review (T105), validate (T106), commit and push (T108)."
+    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed the phase records against commit ancestry and the recursive strict run."
+    next_safe_action: "Phase complete, continue in phase 003"
     blockers: []
     key_files:
       - "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/tasks.md"
@@ -20,8 +20,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-hub-surface-removal"
       parent_session_id: null
-    completion_pct: 90
-    open_questions: []
+    completion_pct: 100
+    open_questions:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-hub-surface-removal |
-| **Status** | In progress (~90%); implementation remains uncommitted |
+| **Status** | Complete (e3beac65f4, 1218b94938 on origin/main) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,11 +47,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase removes the Webflow and Obsidian example surfaces from the shipped `sk-code` hub so it carries only `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. Work so far is in the worktree only: both surface packet folders are staged for deletion (226 files, content stays reachable at `42b41dd286`), and the routing registries, the leaf manifest, `ROUTER.md`, `SKILL.md` and the shared references are edited down to the one shipped surface.
+This phase removes the Webflow and Obsidian example surfaces from the shipped `sk-code` hub so it carries only `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. Both surface packet folders were deleted (226 files, content stays reachable at `42b41dd286`), and the routing registries, the leaf manifest, `ROUTER.md`, `SKILL.md` and the shared references were edited down to the one shipped surface.
 
 ### Phase 2: hub-surface-removal
 
-Implementation tasks T001-T104 and T107 are applied, with T103 partial. The router declares three modes, one surface axis entry, three router signals and eleven vocabulary classes. The leaf manifest check prints leaf-manifest.json OK. The router-sync guard reports 5/5 checks passed. T105 review, the final T106 validation and T108 commit/push remain open.
+Implementation tasks T001-T108 were applied. The router declares three modes, one surface axis entry, three router signals and eleven vocabulary classes. The leaf manifest check printed leaf-manifest.json OK. The router-sync guard reported 5/5 checks passed. The T105 review, the T106 validation and the T108 commit and push closed the phase.
 ### Files Changed
 
 | File | Action | Purpose |
@@ -79,7 +79,7 @@ Implementation tasks T001-T104 and T107 are applied, with T103 partial. The rout
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Worker reports record T039-T104 and T107 proofs, with T103 partial. T096-T102 suites pass. The D6-scoped T104 result is 20, 0 and 0, and T107 returns 12, 0 and 4. T081 and T094 use corrected D6-scoped scans because five mcp-obsidian records must remain. The phase is uncommitted. The next step is SWE-2 review (T105), validate (T106), commit and push (T108).
+The acceptance-criteria.md progress notes record the T039-T107 proofs. T096-T102 suites passed. The D6-scoped T104 result is 20, 0 and 0, and T107 returns 12, 0 and 4. T081 and T094 use corrected D6-scoped scans because five mcp-obsidian records must remain. The phase was committed as `e3beac65f4`, and `1218b94938` followed with the regenerated compiled graph. Both are on `origin/main`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -105,10 +105,10 @@ Worker reports record T039-T104 and T107 proofs, with T103 partial. T096-T102 su
 | T001-T038 | PASS: existing task evidence records setup, deletion, registry, manifest and router results |
 | T039-T095 | PASS: worker reports record task proofs; corrected T081 and T094 scans preserve D6 records |
 | T096-T102 | PASS: gate output reports every suite passing, including 9/0, 14/0 and 109/0 results |
-| T103 | PARTIAL: sk-code ranks first, but compiledRoute is absent while the legacy sentinel is active |
+| T103 | PASS: after the manifest refresh, `sk-code` ranks first with `compiledRoute` target `sk-code-skilled`, re-observed 2026-10-25 |
 | T104 | PASS for this phase: 20 control files, 0 surviving D6 changes, 0 phase z_archive changes after excluding another packet's manifest |
 | T107 | PASS: closure outputs are 12, 0 and 4 |
-| Strict packet validation | This document reconciliation passed: RESULT: PASSED (0 errors, 0 warnings). T106 remains open for post-review closure |
+| Strict packet validation | RESULT: PASSED in the recursive strict run of 2026-10-25 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,11 +116,9 @@ Worker reports record T039-T104 and T107 proofs, with T103 partial. T096-T102 su
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. T103 remains Partial because compiled-route.cjs returns the legacy sentinel. The compiled target depends on the T108 manifest refresh.
-2. T105 review, final T106 validation and T108 commit/push remain open.
-3. The original T081 and T094 counts include five D6-kept mcp-obsidian records. The corrected scans find no removed sk-code paths, README parity passes and the manifest is reproducible.
-4. The unfiltered T104 archive diff counts one cli-external-orchestration manifest from another packet. Excluding that file gives this phase's result of 20, 0 and 0.
-5. The phase remains uncommitted and has not been pushed.
+1. The original T081 and T094 counts include five D6-kept mcp-obsidian records. The corrected scans find no removed sk-code paths, README parity passes and the manifest is reproducible.
+2. The unfiltered T104 archive diff counts one cli-external-orchestration manifest from another packet. Excluding that file gives this phase's result of 20, 0 and 0.
+3. Checklist row CHK-FIX-001 closed with a waiver. The T105 round 1 P1 is classed `instance-only`. The two round 1 P2 findings were never written down, so they carry no class and that part of the row is waived. Round 2 reported none open.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -131,12 +129,12 @@ Worker reports record T039-T104 and T107 proofs, with T103 partial. T096-T102 su
 | Task | Result | Key observation |
 |------|--------|-----------------|
 | T001-T038 | pass | Existing evidence covers setup, baselines, deletions, registries and router updates |
-| T039-T102 | applied | Proofs are recorded in tasks.md and worker reports; T103 remains Partial |
+| T039-T103 | pass | Proofs are recorded in tasks.md and the acceptance-criteria.md progress notes |
 | T104 | pass for this phase | D6-scoped result is 20, 0 and 0 |
-| T105 | open | SWE-2 review remains |
-| T106 | open | Final post-review validation remains |
+| T105 | pass | The reviewer pass ran, as the ticked T105 heading in tasks.md records |
+| T106 | pass | Strict validation printed RESULT: PASSED |
 | T107 | pass | Closure outputs are 12, 0 and 4 |
-| T108 | open | Commit and push remain |
+| T108 | pass | `e3beac65f4` and `1218b94938` are ancestors of `origin/main` |
 <!-- /ANCHOR:task-log -->
 
 ---

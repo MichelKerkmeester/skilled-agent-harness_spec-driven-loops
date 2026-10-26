@@ -10,8 +10,10 @@
 
 set -euo pipefail
 
+# The file-system monitor stays off: a daemon that never answers would leave
+# the validator waiting on git with no error.
 resolve_repo_root() {
-    git rev-parse --show-toplevel 2>/dev/null || pwd
+    git -c core.fsmonitor=false rev-parse --show-toplevel 2>/dev/null || pwd
 }
 
 resolve_target_path() {

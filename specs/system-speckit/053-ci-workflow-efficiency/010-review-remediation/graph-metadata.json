@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/010-review-remediation",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/010-review-remediation",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation",
+      "phase 10 review remediation",
+      "review remediation plan",
+      "review remediation tasks",
+      "review remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "deep",
+      "found",
+      "routing",
+      "regression",
+      "bare"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".hermes/skills/sk-code-ci/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/commands/doctor/ci.md",
+      ".skilled/commands/doctor/scripts/ci-report.cjs",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".github/workflows/routing-registry-drift.yml",
+      ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-code-ci/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-template.yml",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml",
+        "source": "derived"
+      },
+      {
+        "name": "surface-alone-skilled-compiled-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/ci.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/ci-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-toggle.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review found a routing regression: the bare keyword `concurrency group` sent a worker-pool prompt to the CI surface and failed the guard test written to prevent it",
+    "created_at": "2026-10-25T17:19:17Z",
+    "last_save_at": "2026-10-25T19:54:18.602Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9fb4388cc422b833973026ab93ac064429c118376aec204727c4a9be4684774",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "788a571974787558efa27c0e855e80e7015e9e62c6013f94d0252b28bbd3dda2",
+      "plan.md": "372bb7b9bea11ce6f2d5e01be584265faf2254ad7247e6131faeadfb81edc67e",
+      "tasks.md": "9baf7164c4bc73c8b7c112f505f2180032f451595a4f01b130c4c74a5582fce9",
+      "implementation-summary.md": "90402b73e9b22ce30a71fbac5796a0881a171872cb659a4566728f26140b9613"
+    },
+    "last_active_at": null
+  }
+}

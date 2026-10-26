@@ -1,8 +1,11 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ mcp-code-mode-launcher — Resolve Node and hand off to the MCP server    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: MCP Code Mode Launcher
+// ───────────────────────────────────────────────────────────────────
 'use strict';
+
+// Resolves a Node interpreter the server manifest accepts and hands off to the
+// MCP server under it.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS

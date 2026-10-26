@@ -30,7 +30,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 | Invocation | Effect | Exit |
 |---|---|---|
-| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
+| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict, or the session-relaunch concern being off for this runtime, inside or outside the loop, when the reason names the switch that turned it off and the note is left unchanged), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
 | `keep --handoff <path> --session <id> [--runtime <name>]` | Outside the loop only: validate the note, record it in the hop history and print the claim command to run after auto-compaction | `0` kept, `2` refused, including a call from inside the loop |
@@ -107,7 +107,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 ### Step 5: Report By Exit Code
 
 - `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
-- `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
+- `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or no enable flag is set. Turning it on is the operator's choice, so report `STATUS=FAIL ERROR="<reason>"` and change no flag. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
 - `3`: no automatic hop. Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback. Both cases print the claim command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`. For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` launch starts under it.
 
 | Runtime | Printed command |

@@ -8,7 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Architecture: system-spec-kit
@@ -102,7 +102,7 @@ Allowed dependency direction:
 - `runtime/ ──▶ shared/`
 - `runtime/cli/ ──▶ shared/`
 
-Reverse imports are blocked by the CLI package's `npm run check`, which the `spec-kit-check` GitHub workflow runs on every pull request that touches the skill. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `runtime/cli/evals/` unless they carry a governed allowlist entry.
+Reverse imports are blocked by the CLI package's `npm run check`, which the `spec-kit-check` GitHub workflow runs on every pull request that touches the skill. The check is skipped when the `SKILLED_CI` or `SKILLED_CI_TESTS` repository variable is set to `off`. `/doctor:ci report` shows each switch state. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `runtime/cli/evals/` unless they carry a governed allowlist entry.
 
 ---
 

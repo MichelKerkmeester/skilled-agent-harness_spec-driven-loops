@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/003-config-and-doctor",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/003-config-and-doctor",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-code/015-quality-agnostic-gate/001-honest-checker",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "sk-code/015-quality-agnostic-gate/002-builtin-runner",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "config and doctor",
+      "phase 3 config and doctor",
+      "sk-code quality config",
+      "doctor sk-code quality route",
+      "config and doctor plan",
+      "config and doctor tasks",
+      "config and doctor acceptance criteria",
+      "config and doctor goal",
+      "config and doctor decision record",
+      "config and doctor implementation summary"
+    ],
+    "key_topics": [
+      "config",
+      "doctor",
+      "phase",
+      "sk-code",
+      "quality",
+      "route",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+      ".skilled/commands/doctor/sk-code.md",
+      ".codex/prompts/doctor-sk-code.md",
+      ".pi/prompts/doctor-sk-code.md",
+      ".hermes/prompts/doctor-sk-code.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-setup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code.md",
+        "kind": "doc",
+        "path": ".codex/prompts/doctor-sk-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The quality gate reads only the rules this framework ships",
+    "created_at": "2026-10-25T23:21:49Z",
+    "last_save_at": "2026-10-26T00:00:56.517Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:beae1ea9a71ffa8ca4a6d7e3e77b8ad60fe84b99eb63f5a27e35b879c85415ec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4386022c532ec94b04ed97c23ed397abb00a4b0258fb555b7c570694da968e99",
+      "plan.md": "d3c1ac8a15e188e6a50f6327ab7a762974ba7ae4c037c9fe39025f11c3fe0f60",
+      "tasks.md": "325a211e20cd5ad6fbda3ac479ccef1f129a0c8d3b274a1e419c695c097529f6",
+      "decision-record.md": "a37ded405ca531f95112a1dc39552dac616b25247cad0ae7a63895c967514bd5",
+      "implementation-summary.md": "f37a18e0aba506d09dd32cdbf6724895ad462eb84a5b02fa11d39c3e3722a917"
+    },
+    "last_active_at": null
+  }
+}

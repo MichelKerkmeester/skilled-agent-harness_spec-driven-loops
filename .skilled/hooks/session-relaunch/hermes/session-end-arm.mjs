@@ -77,7 +77,7 @@ function logSpawnError(loopId, env, error) {
 function armPendingRecord(payload, dependencies = {}) {
   const env = dependencies.env || process.env;
   try {
-    if (!isHookEnabled(CONCERN, dependencies.env)) return null;
+    if (!isHookEnabled(CONCERN, dependencies.env, undefined, { runtime: 'hermes' })) return null;
     const loopId = env.SKILLED_LOOP_ID;
     const sessionId = payload?.session_id;
     if (!loopId || typeof sessionId !== 'string' || !sessionId) return null;
@@ -150,7 +150,7 @@ function armPendingRecord(payload, dependencies = {}) {
 async function main() {
   let enabled = false;
   try {
-    enabled = isHookEnabled(CONCERN);
+    enabled = isHookEnabled(CONCERN, undefined, undefined, { runtime: 'hermes' });
   } catch {}
   if (!enabled) return done();
 

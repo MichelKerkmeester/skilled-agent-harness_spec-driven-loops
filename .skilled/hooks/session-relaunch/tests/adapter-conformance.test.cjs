@@ -20,6 +20,7 @@ const core = require('../lib/relaunch-core.cjs');
 const HOOK_ROOT = path.resolve(__dirname, '..');
 const OPENCODE_PLUGIN = path.resolve(HOOK_ROOT, '../../../.opencode/plugins/session-relaunch.js');
 const ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
+const { RUNTIME_SWITCH_KEYS, withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 const SESSION_ID = 'conformance-session-0001';
 const LOOP_ID = 'conformance-loop-0001';
 const NOTE_PATH = '/workspace/handoffs/note.md';
@@ -34,8 +35,12 @@ const ARM_LOOP_ID = '100';
 const ARM_HOOK_PID = 41;
 const ARM_PROCESS_TABLE = '41 50\n50 60\n60 100\n100 1\n';
 const STALE_ARM_AGE_MS = 20 * 60 * 1000;
+// The in-process OpenCode run swaps exactly these keys into process.env, so the
+// per-runtime switches sit here too and an exported one never reaches the plugin.
 const ENV_KEYS = [
+  ...RUNTIME_SWITCH_KEYS,
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
+  'SYSTEM_SESSION_RELAUNCH_ENABLED',
   'SYSTEM_HOOKS_DISABLED',
   'MK_HOOKS_DISABLED',
   'SESSION_RELAUNCH_THRESHOLD',
@@ -55,12 +60,14 @@ const ENV_KEYS = [
 function createSandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-conformance-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  const env = { ...process.env };
+  const env = withoutRelaunchSwitches(process.env);
   for (const key of ENV_KEYS) delete env[key];
   Object.assign(env, {
     XDG_RUNTIME_DIR: path.join(root, 'runtime'),
     SESSION_RELAUNCH_REPO_ROOT: root,
     HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
     SESSION_RELAUNCH_THRESHOLD: '0.8',
     SESSION_RELAUNCH_WINDOW_TOKENS: String(WINDOW_TOKENS),
   });

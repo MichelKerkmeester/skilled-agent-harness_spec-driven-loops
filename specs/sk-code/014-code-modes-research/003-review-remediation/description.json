@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/014-code-modes-research/003-review-remediation",
+  "description": "Phase 3: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-10-25T17:22:05.252Z",
+  "specId": "003",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-code",
+    "014-code-modes-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -28,8 +28,16 @@ const OPENCODE_CAPTURE = require(
 const core = require(CORE_PATH);
 const hookFlags = require('../../hooks/shared/hook-flags.cjs');
 const nudge = require('../../hooks/session-relaunch/lib/nudge.cjs');
+const {
+  RUNTIME_SWITCH_KEYS,
+  clearRelaunchSwitches,
+} = require('../../hooks/session-relaunch/tests/fixtures/relaunch-env.cjs');
+// Every key the setup clears is saved here first, so the per-runtime switches it drops
+// come back after each case exactly as the shell exported them.
 const ENV_KEYS = [
+  ...RUNTIME_SWITCH_KEYS,
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
+  'SYSTEM_SESSION_RELAUNCH_ENABLED',
   'SYSTEM_HOOKS_DISABLED',
   'MK_HOOKS_DISABLED',
   'SESSION_RELAUNCH_THRESHOLD',
@@ -47,12 +55,16 @@ const ENV_KEYS = [
 function setupEnv(t) {
   const previous = new Map(ENV_KEYS.map((key) => [key, process.env[key]]));
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-opencode-'));
+  // The plugin reads process.env itself, so an exported switch would decide the case.
+  clearRelaunchSwitches(process.env);
   process.env.XDG_RUNTIME_DIR = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
   process.env.SESSION_RELAUNCH_THRESHOLD = '0.8';
   // The note root is the repo root, never the session directory, so each test points
   // the repo root at its own sandbox to keep note files out of the real state dir.
   process.env.SESSION_RELAUNCH_REPO_ROOT = root;
+  // The relaunch hooks are off until opted in; these cases exercise them on.
+  process.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
   delete process.env.SYSTEM_SESSION_RELAUNCH_DISABLED;
   delete process.env.SYSTEM_HOOKS_DISABLED;
   delete process.env.MK_HOOKS_DISABLED;
@@ -148,9 +160,14 @@ function writeOpenNote(root, sessionID) {
     `20261018T000000Z-${sessionID.slice(0, 8)}.md`,
   );
   fs.mkdirSync(path.dirname(notePath), { recursive: true });
-  fs.writeFileSync(notePath, `---\nsession_id: ${sessionID}\nstatus: open\n---\n`);
+  fs.writeFileSync(
+    notePath,
+    `---\nsession_id: ${sessionID}\nstatus: open\ncreated_at: ${NOTE_CREATED_AT}\n---\n`,
+  );
   return notePath;
 }
+
+const NOTE_CREATED_AT = '2026-10-25T10:00:00Z';
 
 async function startLoopNudge(t, sessionID) {
   const root = setupEnv(t);
@@ -1463,6 +1480,25 @@ test('after compaction the next transform points the session at its open note', 
   assert.equal(output.length, 1);
   assert.ok(output[0].includes(`claim '${notePath}'`), output[0]);
   assert.equal(nudge.readState(sessionID, process.env), 0);
+});
+
+test('compaction pointer carries the note date', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-compact-dated-0001';
+  writeOpenNote(root, sessionID);
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  assert.ok(output[0].includes(`git log --since='${NOTE_CREATED_AT}'`), output[0]);
+  assert.ok(output[0].includes('git status'), output[0]);
 });
 
 test('the compaction pointer repeats until the note is claimed, then reminds, then clears', async (t) => {

@@ -14,6 +14,7 @@ const { spawn } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 const SUBAGENT_GUARD_PATH = path.resolve(__dirname, '../claude/subagent-guard.mjs');
 const CLI_PATH = '.skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
@@ -32,10 +33,12 @@ function createSandbox(t) {
   fs.mkdirSync(home, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
   };
   // Kill-switches are operator state. A machine that disabled them must not turn
   // a deny case into a silent pass, so the child starts with all three cleared;

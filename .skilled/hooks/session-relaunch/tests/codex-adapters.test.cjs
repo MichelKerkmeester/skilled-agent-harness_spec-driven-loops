@@ -18,6 +18,7 @@ const USER_PROMPT_SUBMIT = require('./fixtures/codex-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/codex-stop.json');
 const ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
 const SPAWN_RECORDER = path.resolve(__dirname, 'fixtures/codex-spawn-recorder.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 const ROOT_PATH = path.resolve(__dirname, '../../../..');
 const REGISTRY_PATH = path.join(
   ROOT_PATH,
@@ -58,11 +59,13 @@ function createSandbox(t) {
   ].join('\n'));
   fs.chmodSync(psPath, EXECUTABLE_FILE_MODE);
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
     PATH: `${binDir}${path.delimiter}${process.env.PATH || ''}`,
     CODEX_TEST_PARENT_PID: String(process.pid),
     CODEX_TEST_GRANDPARENT_PID: String(process.ppid),

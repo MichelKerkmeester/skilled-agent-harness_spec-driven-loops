@@ -4,7 +4,7 @@
 
 import { mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { delimiter, join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 // Wraps realpathSync so a test can count how often a path is resolved. Behavior is unchanged.
@@ -81,6 +81,64 @@ describe('private skill link containment', () => {
     symlinkSync(target, join(skills, 'local-webflow'));
     process.env.SPECKIT_PRIVATE_SKILL_ROOTS = external;
     expect(isTrustedPrivateSkillLink(join(skills, 'local-webflow'), skills)).toBe(true);
+  });
+
+  it('accepts a link into either of two joined roots and ignores an empty segment', () => {
+    const root = tempRoot();
+    const skills = join(root, 'skills');
+    const first = join(root, 'private-one');
+    const second = join(root, 'private-two');
+    mkdirSync(skills, { recursive: true });
+    mkdirSync(join(first, 'alpha'), { recursive: true });
+    mkdirSync(join(second, 'beta'), { recursive: true });
+    mkdirSync(join(root, 'outside-gamma'), { recursive: true });
+    symlinkSync(join(first, 'alpha'), join(skills, 'local-alpha'));
+    symlinkSync(join(second, 'beta'), join(skills, 'local-beta'));
+    symlinkSync(join(root, 'outside-gamma'), join(skills, 'local-gamma'));
+    // An empty segment resolves to the working directory, so point that at the
+    // folder holding the untrusted target: trusting the segment would accept it.
+    const cwd = vi.spyOn(process, 'cwd').mockReturnValue(root);
+    process.env.SPECKIT_PRIVATE_SKILL_ROOTS = [first, '', second].join(delimiter);
+    try {
+      expect(isTrustedPrivateSkillLink(join(skills, 'local-alpha'), skills)).toBe(true);
+      expect(isTrustedPrivateSkillLink(join(skills, 'local-beta'), skills)).toBe(true);
+      expect(isTrustedPrivateSkillLink(join(skills, 'local-gamma'), skills)).toBe(false);
+    } finally {
+      cwd.mockRestore();
+    }
+  });
+
+  it('rejects a target in a sibling folder that shares the declared root as a name prefix', () => {
+    const root = tempRoot();
+    const skills = join(root, 'skills');
+    const declared = join(root, 'private');
+    const sibling = join(root, 'private-x');
+    mkdirSync(skills, { recursive: true });
+    mkdirSync(declared, { recursive: true });
+    mkdirSync(join(sibling, 'beta'), { recursive: true });
+    symlinkSync(join(sibling, 'beta'), join(skills, 'local-beta'));
+    process.env.SPECKIT_PRIVATE_SKILL_ROOTS = declared;
+    expect(isTrustedPrivateSkillLink(join(skills, 'local-beta'), skills)).toBe(false);
+  });
+
+  it('trusts only the skills root when the variable is empty', () => {
+    const root = tempRoot();
+    const skills = join(root, 'skills');
+    const external = join(root, 'private-repos');
+    mkdirSync(join(skills, 'private-beta'), { recursive: true });
+    mkdirSync(join(external, 'gamma'), { recursive: true });
+    symlinkSync(join(skills, 'private-beta'), join(skills, 'local-beta'));
+    symlinkSync(join(external, 'gamma'), join(skills, 'local-gamma'));
+    // The working directory holds the external target, so reading the empty value
+    // as a root would accept it.
+    const cwd = vi.spyOn(process, 'cwd').mockReturnValue(root);
+    process.env.SPECKIT_PRIVATE_SKILL_ROOTS = '';
+    try {
+      expect(isTrustedPrivateSkillLink(join(skills, 'local-beta'), skills)).toBe(true);
+      expect(isTrustedPrivateSkillLink(join(skills, 'local-gamma'), skills)).toBe(false);
+    } finally {
+      cwd.mockRestore();
+    }
   });
 
   it('rejects a link to the skills root itself', () => {

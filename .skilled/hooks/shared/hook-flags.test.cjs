@@ -138,6 +138,107 @@ test("loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
+test("session-relaunch is off by default while every other concern stays on", () => {
+  assert.equal(isHookEnabled("session-relaunch", {}), false);
+  assert.equal(isHookEnabled("session-relaunch", {}, {}), false);
+  assert.equal(isHookEnabled("skill-advisor", {}), true);
+  assert.equal(isHookEnabled("session-cleanup", {}, {}), true);
+  // The enable flag of one concern switches on nothing else.
+  assert.equal(isHookEnabled("skill-advisor", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }), true);
+});
+
+test("session-relaunch turns on when its enable flag is set in the environment", () => {
+  for (const v of ["1", "true", " YES ", "on"]) {
+    assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: v }), true, v);
+  }
+  for (const v of ["0", "", "no", "enabled"]) {
+    assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: v }), false, v);
+  }
+});
+
+test("session-relaunch turns on from the config file, and the environment still wins", () => {
+  const cfg = { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" };
+  assert.equal(isHookEnabled("session-relaunch", {}, cfg), true);
+  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }, cfg), false);
+  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "" }, cfg), false);
+  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, {}), true);
+
+  // The live path: no env argument reads process.env and the file on disk.
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hookflags-optin-"));
+  const f = path.join(dir, "hook-flags.env");
+  fs.writeFileSync(f, "SYSTEM_SESSION_RELAUNCH_ENABLED=1   # opt in to the relaunch loop\n");
+  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_SESSION_RELAUNCH_DISABLED", "SYSTEM_SESSION_RELAUNCH_ENABLED"];
+  const prev = names.map((name) => [name, process.env[name]]);
+  const prevCfg = process.env.HOOK_FLAGS_CONFIG;
+  try {
+    for (const name of names) delete process.env[name];
+    process.env.HOOK_FLAGS_CONFIG = f;
+    _resetConfigCache();
+    assert.equal(isHookEnabled("session-relaunch"), true);
+    process.env.SYSTEM_SESSION_RELAUNCH_ENABLED = "0";
+    assert.equal(isHookEnabled("session-relaunch"), false);
+  } finally {
+    if (prevCfg === undefined) delete process.env.HOOK_FLAGS_CONFIG; else process.env.HOOK_FLAGS_CONFIG = prevCfg;
+    for (const [name, value] of prev) {
+      if (value === undefined) delete process.env[name]; else process.env[name] = value;
+    }
+    _resetConfigCache();
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a kill switch beats the session-relaunch enable flag", () => {
+  const on = { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" };
+  assert.equal(isHookEnabled("session-relaunch", { ...on, SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }), false);
+  assert.equal(isHookEnabled("session-relaunch", { ...on, [MASTER_FLAG]: "1" }), false);
+  assert.equal(isHookEnabled("session-relaunch", { ...on, MK_HOOKS_DISABLED: "1" }), false);
+  // The kill switch in the file still beats an enable flag in the environment.
+  assert.equal(isHookEnabled("session-relaunch", on, { SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }), false);
+});
+
+test("the facades carry the session-relaunch default", async () => {
+  const mjs = await import("./hook-flags.mjs");
+  assert.equal(mjs.isHookEnabled("session-relaunch", {}), false);
+  assert.equal(mjs.isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }), true);
+  const ts = await import("./hook-flags.ts");
+  assert.equal(ts.isHookEnabled("session-relaunch", {}), false);
+  assert.equal(ts.isHookEnabled("session-relaunch", {}, { SYSTEM_SESSION_RELAUNCH_ENABLED: "on" }), true);
+});
+
+test("the node and shell resolvers give the same session-relaunch answers", () => {
+  const { spawnSync } = require("node:child_process");
+  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_SESSION_RELAUNCH_DISABLED", "SYSTEM_SESSION_RELAUNCH_ENABLED", "SYSTEM_SKILL_ADVISOR_DISABLED"];
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-optin-parity-"));
+  try {
+    const f = path.join(dir, "hook-flags.env");
+    const ask = (fileText, envValues) => {
+      fs.writeFileSync(f, fileText);
+      const env = { ...process.env, HOOK_FLAGS_CONFIG: f };
+      for (const name of names) delete env[name];
+      Object.assign(env, envValues);
+      const node = ["session-relaunch", "skill-advisor"].map((c) => (isHookEnabled(c, envValues, loadConfigFile(f)) ? "on" : "off"));
+      const script = '. "$1"; for c in session-relaunch skill-advisor; do hook_enabled "$c" && echo on || echo off; done';
+      const shell = spawnSync("bash", ["-c", script, "probe", path.join(__dirname, "hook-flags.sh")], { env, encoding: "utf8" });
+      return { node, shell: shell.stdout.trim().split("\n") };
+    };
+    const cases = [
+      ["nothing set", "", {}, ["off", "on"]],
+      ["enabled in the environment", "", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, ["on", "on"]],
+      ["enabled in the file", "SYSTEM_SESSION_RELAUNCH_ENABLED=yes  # opt in\n", {}, ["on", "on"]],
+      ["environment unsets the file's opt-in", "SYSTEM_SESSION_RELAUNCH_ENABLED=1\n", { SYSTEM_SESSION_RELAUNCH_ENABLED: "" }, ["off", "on"]],
+      ["kill switch beats the opt-in", "SYSTEM_SESSION_RELAUNCH_ENABLED=1\nSYSTEM_SESSION_RELAUNCH_DISABLED=1\n", {}, ["off", "on"]],
+      ["master switch beats the opt-in", "", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", [MASTER_FLAG]: "1" }, ["off", "off"]],
+    ];
+    for (const [label, fileText, envValues, expected] of cases) {
+      const { node, shell } = ask(fileText, envValues);
+      assert.deepEqual(node, expected, `${label}: hook-flags.cjs`);
+      assert.deepEqual(shell, expected, `${label}: hook-flags.sh`);
+    }
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("a missing config file is fail-open (empty object, no throw)", () => {
   assert.deepEqual(loadConfigFile(path.join(os.tmpdir(), "does-not-exist-hookflags.env")), {});
 });
@@ -146,11 +247,14 @@ test("live file path resolves via HOOK_FLAGS_CONFIG and env still wins", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hookflags-"));
   const f = path.join(dir, "hook-flags.env");
   fs.writeFileSync(f, "OPENCODE_GOAL_DISABLED=1\n");
+  // Clear every name that could answer for this concern from the live
+  // environment, so an exported master switch or goal alias cannot decide.
+  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "OPENCODE_GOAL_DISABLED", ...LEGACY_ALIASES.goal];
+  const prev = names.map((name) => [name, process.env[name]]);
   const prevCfg = process.env.HOOK_FLAGS_CONFIG;
-  const prevGoal = process.env.OPENCODE_GOAL_DISABLED;
   try {
+    for (const name of names) delete process.env[name];
     process.env.HOOK_FLAGS_CONFIG = f;
-    delete process.env.OPENCODE_GOAL_DISABLED;
     _resetConfigCache();
     // no env arg -> reads process.env + the file; the file disables goal
     assert.equal(isHookEnabled("goal"), false);
@@ -159,7 +263,9 @@ test("live file path resolves via HOOK_FLAGS_CONFIG and env still wins", () => {
     assert.equal(isHookEnabled("goal"), true);
   } finally {
     if (prevCfg === undefined) delete process.env.HOOK_FLAGS_CONFIG; else process.env.HOOK_FLAGS_CONFIG = prevCfg;
-    if (prevGoal === undefined) delete process.env.OPENCODE_GOAL_DISABLED; else process.env.OPENCODE_GOAL_DISABLED = prevGoal;
+    for (const [name, value] of prev) {
+      if (value === undefined) delete process.env[name]; else process.env[name] = value;
+    }
     _resetConfigCache();
     fs.rmSync(dir, { recursive: true, force: true });
   }
@@ -180,6 +286,7 @@ test("the shell mirror reads the config file of whichever source root the checko
       delete env.HOOK_FLAGS_CONFIG;
       delete env.SYSTEM_SESSION_CLEANUP_DISABLED;
       delete env.SYSTEM_HOOKS_DISABLED;
+      delete env.MK_HOOKS_DISABLED;
       return spawnSync("bash", ["-c", script, "probe", repo, path.join(__dirname, "hook-flags.sh")], { env, encoding: "utf8" }).stdout.trim();
     } finally {
       fs.rmSync(repo, { recursive: true, force: true });
@@ -278,7 +385,7 @@ function askEveryReader(fileText, envValues) {
     const f = path.join(dir, "hook-flags.env");
     fs.writeFileSync(f, fileText);
     const env = { ...process.env, HOOK_FLAGS_CONFIG: f };
-    for (const name of ["SKDOC_SKIP_VALIDATION", "SYSTEM_PROBE_DISABLED", MASTER_FLAG]) delete env[name];
+    for (const name of ["SKDOC_SKIP_VALIDATION", "SYSTEM_PROBE_DISABLED", MASTER_FLAG, "MK_HOOKS_DISABLED"]) delete env[name];
     Object.assign(env, envValues);
     const cfg = loadConfigFile(f);
     const skip = { "hook-flags.cjs": isFlagOn("SKDOC_SKIP_VALIDATION", envValues, cfg) };
@@ -378,9 +485,63 @@ test("an example line uncommented as-is, trailing comment and all, disables its 
     const env = { ...process.env, HOOK_FLAGS_CONFIG: f };
     delete env.SYSTEM_SESSION_CLEANUP_DISABLED;
     delete env.SYSTEM_HOOKS_DISABLED;
+    delete env.MK_HOOKS_DISABLED;
     const script = `. "$1"; hook_enabled session-cleanup && echo on || echo off`;
     const shell = spawnSync("bash", ["-c", script, "probe", path.join(__dirname, "hook-flags.sh")], { env, encoding: "utf8" });
     assert.equal(shell.stdout.trim(), "off");
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a per-runtime enable flag answers before the global one in every reader", async () => {
+  const { spawnSync } = require("node:child_process");
+  const mjs = await import("./hook-flags.mjs");
+  const ts = await import("./hook-flags.ts");
+  const runtimes = ["claude", "pi", "opencode", "codex"];
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-runtime-"));
+  try {
+    const f = path.join(dir, "hook-flags.env");
+    // Each row lists the answer for claude, pi, opencode, codex and then for a call
+    // that names no runtime, which keeps the global-only answer. A fifth entry, when
+    // present, replaces the four runtime names as the caller spells them.
+    const rows = [
+      ["global on, claude off", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "0" }, "", "off on on on on"],
+      ["claude on, no global", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1" }, "", "on off off off off"],
+      ["kill switch beats a per-runtime opt-in", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }, "", "off off off off off"],
+      ["master switch beats a per-runtime opt-in", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", [MASTER_FLAG]: "1" }, "", "off off off off off"],
+      ["empty per-runtime falls through to the global", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "" }, "", "on on on on on"],
+      ["file per-runtime off beats an environment global on", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0\n", "off on on on on"],
+      ["nothing set", {}, "", "off off off off off"],
+      ["a runtime name with surrounding spaces still finds its switch", { SYSTEM_SESSION_RELAUNCH_PI_ENABLED: "1" }, "", "off on off off off", [" claude ", " pi", "opencode ", "  codex"]],
+      ["the legacy master alias beats every opt-in", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", MK_HOOKS_DISABLED: "1" }, "", "off off off off off"],
+      ["the legacy master alias in the file beats an environment opt-in", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, "MK_HOOKS_DISABLED=1\n", "off off off off off"],
+    ];
+    const relaunchNames = (env) => {
+      for (const name of Object.keys(env)) {
+        if (/^SYSTEM_SESSION_RELAUNCH_/.test(name) || name === MASTER_FLAG || name === "MK_HOOKS_DISABLED") delete env[name];
+      }
+      return env;
+    };
+    for (const [label, envValues, fileText, expectedText, spelled = runtimes] of rows) {
+      fs.writeFileSync(f, fileText);
+      const expected = expectedText.split(" ");
+      const cfg = loadConfigFile(f);
+      for (const [reader, flags] of [["cjs", { isHookEnabled }], ["mjs", mjs], ["ts", ts]]) {
+        const got = spelled
+          .map((runtime) => flags.isHookEnabled("session-relaunch", envValues, cfg, { runtime }))
+          .concat(flags.isHookEnabled("session-relaunch", envValues, cfg))
+          .map((on) => (on ? "on" : "off"));
+        assert.deepEqual(got, expected, `${label}: hook-flags.${reader}`);
+      }
+      // A stray per-runtime flag in the caller's shell must not leak into the probe.
+      const env = { ...relaunchNames({ ...process.env }), HOOK_FLAGS_CONFIG: f, ...envValues };
+      // The names go through as quoted arguments so their spaces reach the reader.
+      const script = '. "$1"; shift; for r in "$@"; do hook_enabled session-relaunch "$r" && echo on || echo off; done';
+      const shellArgs = ["-c", script, "probe", path.join(__dirname, "hook-flags.sh"), ...spelled, ""];
+      const shell = spawnSync("bash", shellArgs, { env, encoding: "utf8" });
+      assert.deepEqual(shell.stdout.trim().split("\n"), expected, `${label}: hook-flags.sh`);
+    }
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }

@@ -1,0 +1,40 @@
+✖ a Pi live provider that differs from the launch provider drops the launch thinking (644.89275ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 689.845042
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1528:1
+✖ a Pi live provider that differs from the launch provider drops the launch thinking (644.89275ms)
+  AssertionError [ERR_ASSERTION]: --provider openai
+  + actual - expected
+  
+    [
+      '--provider',
+      'azure',
+      '--model',
+      'gpt-6-luna',
+  +   '--thinking',
+  +   'low',
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Z6ISoZ/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1540:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ '--provider', 'azure', '--model', 'gpt-6-luna', '--thinking', 'low', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Z6ISoZ/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    expected: [ '--provider', 'azure', '--model', 'gpt-6-luna', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-Z6ISoZ/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1

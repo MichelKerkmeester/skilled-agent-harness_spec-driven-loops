@@ -1,0 +1,64 @@
+{
+  "run_id": "1792944728998-cwb2cp",
+  "loop_type": "review",
+  "spec_folder": "specs/sk-code/013-private-surface-skills",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/specs/sk-code/013-private-surface-skills/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/specs/sk-code/013-private-surface-skills/review/lineages/deepseek/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-25T16:12:09.004Z",
+        "end_at_iso": "2026-10-25T16:45:29.973Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T16:52:05Z",
+          "deltaMs": 275027
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T17:01:40Z",
+          "deltaMs": 850027
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-10-25T17:09:15Z",
+          "deltaMs": 1305027
+        }
+      ]
+    }
+  ]
+}

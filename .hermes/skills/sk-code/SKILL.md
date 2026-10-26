@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.4.0.0
+version: 3.2.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -34,7 +34,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | **sk-code-quality** | Quality gate, P0/P1/P2 author checks, comment hygiene and surface checklists. | `sk-code/sk-code-quality/` |
 | **sk-code-review** | Findings-first review, security and correctness baseline, checklists, output contract and PR-state gates. | `sk-code/sk-code-review/` |
 
-**Surface axis** (read-only, advisor-invisible evidence the hub bundles alongside the primary mode, never a primary itself):
+**Surface axis** (read-only, advisor-invisible evidence. When a workflow mode scores, the hub bundles the surface after that primary mode. When no workflow mode scores, the hub routes the surface alone for a lookup, implement, debug or verify task, and the acting agent hands the author gates to `sk-code-quality` before it claims completion):
 
 | Surface | Carries | Packet |
 |---------|---------|--------|
@@ -64,7 +64,7 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 > ```
 > Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate) or `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-code`. Set `SPECKIT_COMPILED_ROUTING=0`, the explicit kill-switch, to force legacy routing fleet-wide.
 
-**Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) on the session's working directory and the files it is editing, then add its result as `--surface-hint <SURFACE>`, for example `--surface-hint SKILLED`. When the prompt's keywords tie between surfaces, the hinted surface leads them. Workflow modes keep first place, and the targets and the bundle kind stay the same. With `UNKNOWN`, no hint or a surface the prompt did not match, the `routerPolicy.tieBreak` order applies.
+**Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) on the session's working directory and the files it is editing, then add its result as `--surface-hint <SURFACE>`, for example `--surface-hint SKILLED`. When the prompt's keywords tie between surfaces, a hinted specific surface leads them. Workflow modes keep first place, and the targets and the bundle kind stay the same. `SKILLED` is the fallback surface and always ranks last, so a `SKILLED` hint changes nothing. With `UNKNOWN`, no hint or a surface the prompt did not match, the `routerPolicy.tieBreak` order applies.
 
 ### Surface Router: per-intent leaf sets
 
@@ -140,7 +140,7 @@ def route(task):
 
 When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null`, so the hub does not force a stale default. An unclear code intent asks for disambiguation.
 
-Surface detection (`SKILLED`, `UNKNOWN`, at precedence SKILLED > UNKNOWN) lives once in the hub's `shared/` layer and is consumed by every mode and surface. Modes own workflow contracts, not surface identity. `sk-code-ci` is the one surface that stack detection does not select: the hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
+Surface detection lives once in the hub's `shared/` layer and is consumed by every mode and surface. It tries every declared specific surface first, then the `SKILLED` fallback, then `UNKNOWN`. When a specific surface and `SKILLED` both match, the specific one leads and `SKILLED` comes along as second evidence. Each surface declares its markers in a `surfaceDetection` block in `mode-registry.json`, or in its own `graph-metadata.json` when it lives outside the hub. Modes own workflow contracts, not surface identity. `sk-code-ci` is the one surface that stack detection does not select: the hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
 
 Per-mode behavior is **not flattened**: each packet keeps its own code-work contract, standards, evidence rules, and tool-permission guards.
 
@@ -173,7 +173,7 @@ sk-code/
 Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`. Only this hub carries one, so the advisor discovers exactly one code skill identity. The implement/debug/verify workflow doctrine is a single shared source under `shared/references/`, and each surface symlinks it in rather than duplicating it.
 
 ### Backend
-The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes SKILLED and UNKNOWN detection and their precedence, and it carries the shared implement → debug → verify workflow doctrine that the surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
+The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes the detection order over the declared surfaces, the SKILLED fallback and UNKNOWN, and it carries the shared implement → debug → verify workflow doctrine that the surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
 
 ---
 

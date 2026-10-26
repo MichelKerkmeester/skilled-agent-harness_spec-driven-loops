@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -18,7 +18,7 @@ metadata:
 
 # CI Surface: GitHub Actions Workflow Evidence
 
-**Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`. The packet states each workflow rule with the file and line that prove it, names the workflows that must never be weakened, records the one trigger that looks like drift and is not, and carries two scaffold templates. It writes nothing. The workflow mode the hub pairs it with reads the evidence and applies it.
+**Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`. The packet states each workflow rule with the file and line that prove it, names the workflows that must never be weakened, records the one trigger that looks like drift and is not, and carries two scaffold templates. It writes nothing. The workflow mode the hub pairs it with reads the evidence and applies it, and when the hub routes this packet alone because no workflow mode scored, the acting agent reads and applies it directly. Read-only means this packet writes nothing. It does not limit what the acting agent may do.
 
 A workflow change looks small and has a wide effect. One path filter decides which workflows a commit starts, one missing twin entry fails the gate that guards the source tree, and one switched-off workflow can remove the only check a branch ruleset requires. This packet keeps those facts in one place so a reviewer or author does not rebuild them from the workflow files and review history.
 
@@ -63,7 +63,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "concurrency group", "action to a sha", "sha-pinned action"]},
+    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]},
 }
 
 RESOURCE_MAP = {
@@ -92,7 +92,7 @@ The rules below hold for every workflow change, whoever applies it.
 
 ### ⛔ NEVER
 
-- **NEVER** write, edit or scaffold a workflow from this packet. The tool surface is `Read`, `Bash`, `Grep` and `Glob`, and the acting mode or a doctor command applies any change.
+- **NEVER** write, edit or scaffold a workflow from this packet. The tool surface is `Read`, `Bash`, `Grep` and `Glob`, and the acting mode, `/doctor:ci scaffold` or `/doctor:ci toggle` applies any change.
 - **NEVER** switch off or weaken a protected workflow without a second named confirmation that restates its role.
 - **NEVER** switch off `message-contract.yml` while its ruleset context is required.
 - **NEVER** treat the message-contract every-branch push trigger as drift. It is a recorded exception.

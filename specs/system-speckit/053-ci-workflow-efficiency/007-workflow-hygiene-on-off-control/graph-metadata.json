@@ -39,7 +39,7 @@
       "switch"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".github/workflows/dependabot-auto-merge.yml",
       ".github/workflows/advisory-checks.yml",
+      ".github/workflows/dependabot-auto-merge.yml",
+      "scratch/r24/size-timeouts.mjs",
+      ".github/workflows/README.md",
+      "scratch/gate-after-permissions.txt",
+      "scratch/r24/gate-after-timeouts.txt",
+      "scratch/phase-result.md",
+      "scratch/r26-probe.md",
+      "scratch/r25-dependabot.md",
+      "scratch/r24/timeouts.md",
       ".github/workflows/skill-doc-frontmatter.yml",
       ".github/workflows/trigger-index-rebuild.yml",
-      ".github/workflows/message-contract.yml",
-      ".github/workflows/README.md",
-      "scratch/r26-probe.md",
-      "scratch/r24/timeouts.md",
-      "scratch/switch-groups.md",
-      "scratch/decisions.md",
-      ".github/scripts/check-gate-inputs.sh",
-      "scratch/inventory.md",
-      "scratch/r25-dependabot.md"
+      ".github/workflows/message-contract.yml"
     ],
     "entities": [
       {
@@ -106,15 +106,63 @@
         "source": "derived"
       },
       {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
         "name": "dependabot-auto-merge.yml",
         "kind": "config",
         "path": ".github/workflows/dependabot-auto-merge.yml",
         "source": "derived"
       },
       {
-        "name": "advisory-checks.yml",
-        "kind": "config",
-        "path": ".github/workflows/advisory-checks.yml",
+        "name": "size-timeouts.mjs",
+        "kind": "file",
+        "path": "scratch/r24/size-timeouts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-after-permissions.txt",
+        "kind": "file",
+        "path": "scratch/gate-after-permissions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-after-timeouts.txt",
+        "kind": "file",
+        "path": "scratch/r24/gate-after-timeouts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "r26-probe.md",
+        "kind": "doc",
+        "path": "scratch/r26-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "r25-dependabot.md",
+        "kind": "doc",
+        "path": "scratch/r25-dependabot.md",
+        "source": "derived"
+      },
+      {
+        "name": "timeouts.md",
+        "kind": "doc",
+        "path": "scratch/r24/timeouts.md",
         "source": "derived"
       },
       {
@@ -133,54 +181,6 @@
         "name": "message-contract.yml",
         "kind": "config",
         "path": ".github/workflows/message-contract.yml",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".github/workflows/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "r26-probe.md",
-        "kind": "doc",
-        "path": "scratch/r26-probe.md",
-        "source": "derived"
-      },
-      {
-        "name": "timeouts.md",
-        "kind": "doc",
-        "path": "scratch/r24/timeouts.md",
-        "source": "derived"
-      },
-      {
-        "name": "switch-groups.md",
-        "kind": "doc",
-        "path": "scratch/switch-groups.md",
-        "source": "derived"
-      },
-      {
-        "name": "decisions.md",
-        "kind": "doc",
-        "path": "scratch/decisions.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-gate-inputs.sh",
-        "kind": "script",
-        "path": ".github/scripts/check-gate-inputs.sh",
-        "source": "derived"
-      },
-      {
-        "name": "inventory.md",
-        "kind": "doc",
-        "path": "scratch/inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "r25-dependabot.md",
-        "kind": "doc",
-        "path": "scratch/r25-dependabot.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A GitHub Actions job with no `timeout-minutes` inherits the 360-minute default, so a hung install or a stuck test holds a runner for six hours",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-25T15:49:54.126Z",
+    "last_save_at": "2026-10-25T21:46:27.328Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2731d37580189f765729a09c62cca6bad90291c13c79b3a179e98de608116b65",
+    "source_fingerprint": "sha256:64493d0349941555b27c14134b21ffdf6e34aa7b757314e054f3ba6c7e5f3974",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db3e18ac283ae62558d09cc09edd2eaef5a28e61b7c7ccbf6f73a3f147290e16",
+      "spec.md": "f28f64af036ac946b5f1c80e71e3ce7bea825bed0a3102cedffdc569359bd495",
       "plan.md": "34a379e8624f3fa0523a32de44099cf223aacdde9cd4f0788216a6984a466355",
-      "tasks.md": "dad1e991cd8c870e799308e5b94eb42052a1af3247e299742645b2c1e3f49efc",
-      "decision-record.md": "a4ddf1c6c93323052a698ab1bb5fa5254e80888090f6242913a7013d6d456901",
-      "implementation-summary.md": "2961b239375424704b0b12e8a6bab3fdf2f3ce7c31c8602bc5dae4966e77a12b"
+      "tasks.md": "45a5fad1444a396239ba2bc3e5411ec4ef69d2536b804424ecedcaeae19420e7",
+      "decision-record.md": "2b1f551af4e5dd9afa44ccdbbecbf8b63c0f5a529b9e85666f43fb7fe920edf5",
+      "implementation-summary.md": "8e239426ef190a8f5b4567195e98c1db2f277073a079ad232d59375ef8b0a7ce"
     },
     "last_active_at": null
   }

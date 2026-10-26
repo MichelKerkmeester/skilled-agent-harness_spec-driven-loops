@@ -8,7 +8,10 @@
     "sk-code/013-private-surface-skills/002-hub-surface-removal",
     "sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup",
     "sk-code/013-private-surface-skills/004-private-local-skills",
-    "sk-code/013-private-surface-skills/005-leak-and-routing-verification"
+    "sk-code/013-private-surface-skills/005-leak-and-routing-verification",
+    "sk-code/013-private-surface-skills/006-review-remediation",
+    "sk-code/013-private-surface-skills/007-shared-references-and-detection-order",
+    "sk-code/013-private-surface-skills/008-deferred-surface-items"
   ],
   "manual": {
     "depends_on": [],
@@ -48,6 +51,7 @@
       "goal.md",
       "research/research.md",
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      "review/review-report.md",
       "004-private-local-skills/decision-record.md",
       "001-ignore-and-commit-guard/goal.md",
       "002-hub-surface-removal/goal.md",
@@ -62,8 +66,7 @@
       "003-advisor-vocabulary-cleanup/acceptance-criteria.md",
       "002-hub-surface-removal/tasks.md",
       "003-advisor-vocabulary-cleanup/plan.md",
-      "003-advisor-vocabulary-cleanup/tasks.md",
-      "004-private-local-skills/tasks.md"
+      "003-advisor-vocabulary-cleanup/tasks.md"
     ],
     "entities": [
       {
@@ -88,6 +91,12 @@
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -203,17 +212,11 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Clone Proof Sufficiency",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-24T21:56:40.532Z",
+    "last_save_at": "2026-10-25T20:58:10.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,11 +224,11 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:736bd5fc3ff19e9e2a4f42a61c8d49e61524b4fd4df3749e98e13b5fe27f28b5",
+    "source_fingerprint": "sha256:f40b339abc8777e170501771c16f9e4328c269877c568fd7ade4b386c4f0cc25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "656a58d280139b1caff75e89762b9cf864e3862a6817f7b17725e927ebfcf79b",
-      "research/research.md": "92706e4a1ecee8313e345748936333709451094207f0c81b18846fbd8f7aefce"
+      "spec.md": "63265d35d593cbd1e5bbfec8885b599e2d9ffa5a55ac4024dae26b7e20b8224b",
+      "research/research.md": "271021e67ed463f16198332319ad5bba567eda43a94bb3115537a317956b5c4a"
     },
     "last_active_child_id": "sk-code/013-private-surface-skills/002-hub-surface-removal",
     "last_active_at": "2026-10-24T09:24:08.689Z"

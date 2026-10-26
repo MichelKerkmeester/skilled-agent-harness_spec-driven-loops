@@ -18,7 +18,7 @@ action: Route one operation branch with shared gates, validation, and context pe
 #   - sk-doc standards enforcement
 #   - Root document validation
 #
-# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# The command markdown verifies the @markdown agent BEFORE
 # this YAML workflow loads. If you are executing this workflow,
 # @markdown verification has already passed.
 # ─────────────────────────────────────────────────────────────────

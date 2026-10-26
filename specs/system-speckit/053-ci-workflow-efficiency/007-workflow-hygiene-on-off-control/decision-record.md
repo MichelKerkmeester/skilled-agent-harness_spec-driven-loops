@@ -11,13 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
-    last_updated_at: "2026-10-23T13:45:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded ten proposed ADRs for the planned phase"
-    next_safe_action: "D6 is answered; run the phase's tasks from T001"
-    blockers:
-      - "003, 004, 005 and 006 have not landed, so every job line is provisional"
-      - "No fork or throwaway test repository is recorded for the R26 probe"
+    last_updated_at: "2026-10-25T21:30:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Accepted all ten ADRs with the commits that shipped them"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-007-workflow-hygiene-on-off-control"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,6 +47,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `8ff7da700d` (every job timeout sized with `--floor 10`, none below 10), reading the `D6=10` line recorded in `eb664cc819` |
 | **Deciders** | Operator (D6=10, 2026-10-23), plan author |
 
 ---
@@ -149,8 +148,9 @@ A `timeout-minutes` value has two terms: a measured one, from the job's own samp
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in this order: `4b7d3d8941` (permissions) and `b1315701ca` (Dependabot split), then `8ff7da700d` (timeouts, including the new `metadata` job), then `9480d99e6d` (switches) |
 | **Deciders** | Plan author |
 
 ---
@@ -251,8 +251,9 @@ The review lists the three R-ids as R24, R25, R26. The build order is a differen
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `8ff7da700d` (one `scratch/r24/jobs/<run-id>.json` per run, each sample a job's own `startedAt` to `completedAt`) |
 | **Deciders** | Plan author |
 
 ---
@@ -353,8 +354,9 @@ The review lists the three R-ids as R24, R25, R26. The build order is a differen
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `8ff7da700d` (`scratch/r24/size-timeouts.mjs` with the three markers, `scratch/r24/timeouts.md` with 44 rows, one of them `no-sample`) |
 | **Deciders** | Plan author |
 
 ---
@@ -456,8 +458,9 @@ A single percentile is fooled by one slow run and by one fast one. The review's 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `b1315701ca` (read-only `metadata` job, write-scoped `auto-merge` job under the old name), with both timeouts in `8ff7da700d` |
 | **Deciders** | Plan author |
 
 ---
@@ -561,8 +564,9 @@ A single percentile is fooled by one slow run and by one fast one. The review's 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `9480d99e6d` (three ANDed conditions, mutant rejected in `scratch/pass-switch.md`), with the rebuild workflow test follow-up `1fd95b59cd` |
 | **Deciders** | Plan author |
 
 ---
@@ -665,8 +669,9 @@ Four jobs already carry a job-level `if:`. One is the rebuild loop guard (`trigg
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `9480d99e6d` (the switch at `message-contract.yml:23`) and `03abdb20d8` (the prohibition in the README switch section) |
 | **Deciders** | Plan author |
 
 ---
@@ -768,8 +773,9 @@ R26 puts a switch on every job except Dependabot's two. `message-contract.yml` h
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `9480d99e6d` (42 switches grouped by `scratch/switch-groups.md`) and `03abdb20d8` (the README section listing each group's files) |
 | **Deciders** | Plan author |
 
 ---
@@ -869,8 +875,9 @@ Six variables need a membership rule. The README already classifies every workfl
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `eb664cc819` (`D6=10` in `scratch/decisions.md`), read by the sizing script in `8ff7da700d`; the rule packet still reads `max(<floor>, ...)` |
 | **Deciders** | Plan author |
 
 ---
@@ -972,8 +979,9 @@ Six variables need a membership rule. The README already classifies every workfl
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped as the five concern commits `4b7d3d8941` (permissions), `b1315701ca` (Dependabot split), `8ff7da700d` (timeouts), `9480d99e6d` (switches) and `03abdb20d8` (README), with one deviation: the permissions and Dependabot records landed after their commits, in `b03d3bd1c6`, so reverting either of those two leaves its record behind |
 | **Deciders** | Plan author |
 
 ---

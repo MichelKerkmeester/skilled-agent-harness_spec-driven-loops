@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 This folder holds the regression suite for the session relaunch hooks in `.skilled/hooks/session-relaunch/`. The suite covers the runtime adapters for Claude, Codex, Hermes and Pi, the handoff note protocol, the context usage readers, the killer process that ends a session before a relaunch, and the `skilled-loop` wrapper that starts the next session.
 
-Every test file runs without a live agent runtime. Each file creates its own temporary root under the operating system temp directory, points the hooks at that root and removes it in a cleanup hook. A run started inside a looped session inherits the wrapper's `SKILLED_LOOP_` variables, so each file whose cases read that environment drops all of them when it loads, and the suite gives the same result inside the loop and outside it. The `fixtures/` folder supplies captured payloads so the adapters see the same shapes a real runtime sends.
+Every test file runs without a live agent runtime. Each file creates its own temporary root under the operating system temp directory, points the hooks at that root and removes it in a cleanup hook. A run started inside a looped session inherits the wrapper's `SKILLED_LOOP_` variables, so each file whose cases read that environment drops all of them when it loads, and the suite gives the same result inside the loop and outside it. Each sandbox also drops every relaunch switch it does not set itself, meaning the seven per-runtime flags, the global flag, the kill and master switches and `HOOK_FLAGS_CONFIG`, so a switch exported in the developer's shell cannot decide a case. The `fixtures/` folder supplies captured payloads so the adapters see the same shapes a real runtime sends.
 
 ---
 
@@ -38,7 +38,7 @@ tests/
 +-- session-relaunch-cli.test.cjs  # CLI subcommands: prepare, claim, should-relaunch and others
 +-- skilled-loop.test.cjs          # Wrapper that relaunches each runtime with its carried flags
 +-- skilled-loop-shell.test.cjs    # Shell shim that starts plain runtime launches under the wrapper
-`-- fixtures/                      # Captured runtime payloads and one recorder script
+`-- fixtures/                      # Captured runtime payloads, one recorder script and the sandbox env helper
 ```
 
 ---
@@ -73,6 +73,7 @@ The `fixtures/` folder holds captured runtime data. The adapter tests read these
 | Claude hook payloads | `payload-user-prompt-submit.json`, `payload-stop.json`, `payload-post-tool-use.json` | `claude-adapters.test.cjs` |
 | Codex hook payloads | `codex-user-prompt-submit.json`, `codex-stop.json`, `codex-rollout-token-count.json` | `adapter-conformance.test.cjs`, `codex-adapters.test.cjs`, `context-usage.test.cjs` |
 | Codex spawn recorder | `codex-spawn-recorder.cjs` | `codex-adapters.test.cjs` |
+| Sandbox environment | `relaunch-env.cjs`, which strips inherited relaunch switches before a sandbox sets its own | every suite that builds a sandbox environment, and `.opencode/plugins/tests/session-relaunch.test.cjs` |
 | Hermes hook payloads | `hermes-on-session-start.json`, `hermes-on-session-end.json`, `hermes-on-session-finalize.json`, `hermes-pre-api-request.json`, `hermes-post-api-request.json`, `hermes-pre-verify.json` | `hermes-adapters.test.cjs` |
 | Hermes usage | `hermes-usage.json` | `hermes-adapters.test.cjs` |
 | OpenCode and Pi usage | `opencode-assistant-message-updated.json`, `pi-assistant-message-end.json` | `context-usage.test.cjs` |

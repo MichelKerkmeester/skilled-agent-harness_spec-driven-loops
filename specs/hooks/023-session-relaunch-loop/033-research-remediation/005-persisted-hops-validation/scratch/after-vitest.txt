@@ -1,0 +1,96 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts (59 tests | 4 failed) 1176ms
+   ❯ session-relaunch Pi extension (40)
+     × arms on agent_settled and not on agent_end 28ms
+     × a continuation before agent_settled leaves the record armed 53ms
+     × agent_settled with aborted: true leaves the record pending 12ms
+     × agent_end alone sends the held nudge as a follow-up and leaves the record pending 36ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > arms on agent_settled and not on agent_end
+AssertionError: expected { version: 1, status: 'armed', …(10) } to match object { status: 'pending' }
+(11 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "pending",
++   "status": "armed",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1013:51
+    1011|
+    1012|     await emit(handlers, 'agent_end', {}, ctx);
+    1013|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ stat…
+       |                                                   ^
+    1014|     expect(spawnMock).not.toHaveBeenCalled();
+    1015|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > a continuation before agent_settled leaves the record armed
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ emit .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:90:19
+     88| async function emit(handlers: Map<string, Handler>, name: string, even…
+     89|   const handler = handlers.get(name);
+     90|   expect(handler).toBeTypeOf('function');
+       |                   ^
+     91|   return handler?.(event as ExtensionEvent, ctx as ExtensionContext);
+     92| }
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1034:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_settled with aborted: true leaves the record pending
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ emit .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:90:19
+     88| async function emit(handlers: Map<string, Handler>, name: string, even…
+     89|   const handler = handlers.get(name);
+     90|   expect(handler).toBeTypeOf('function');
+       |                   ^
+     91|   return handler?.(event as ExtensionEvent, ctx as ExtensionContext);
+     92| }
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1047:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end alone sends the held nudge as a follow-up and leaves the record pending
+AssertionError: expected { version: 1, status: 'armed', …(10) } to match object { status: 'pending' }
+(11 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "pending",
++   "status": "armed",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1074:51
+    1072|     await emit(handlers, 'agent_end', {}, ctx);
+    1073|
+    1074|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ stat…
+       |                                                   ^
+    1075|     expect(api.sendMessage).toHaveBeenCalledOnce();
+    1076|     expect(spawnMock).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 55 passed (59)
+   Start at  16:45:23
+   Duration  1.28s (tests 97%, transform 2%, import 1%)
+

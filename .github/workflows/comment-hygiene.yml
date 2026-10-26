@@ -23,34 +23,71 @@ jobs:
       - name: Check changed files for comment hygiene violations
         run: |
           set -euo pipefail
-          CHECKER=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
           # Fail closed in CI: a required guard must exist. A PR that deletes or
-          # moves the checker must not silently disable its own gate.
-          if [ ! -x "$CHECKER" ]; then
-            echo "::error::Comment hygiene checker not found at $CHECKER — failing closed."
+          # moves the checker must not silently disable its own gate. The source
+          # tree lives under .skilled/, and .opencode/ is the older root.
+          CHECKER=""
+          for candidate in \
+            .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh \
+            .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh; do
+            if [ -x "$candidate" ]; then
+              CHECKER="$candidate"
+              break
+            fi
+          done
+          if [ -z "$CHECKER" ]; then
+            echo "::error::Comment hygiene checker not found under .skilled/ or .opencode/, failing closed."
             exit 1
           fi
           VIOLATIONS=0
+          FAILURES=0
           BASE="${{ github.event.pull_request.base.sha }}"
           HEAD="${{ github.event.pull_request.head.sha }}"
+          REPORT="$(mktemp)"
           while IFS= read -r file; do
             if [ -f "$file" ]; then
-              # The checker exits 2 for any file it does not handle, so let a
-              # non-zero status reach CHECKER_RC instead of tripping errexit and
-              # killing the loop before the remaining files are ever checked.
+              # Exit 0 is clean and exit 2 means the checker does not handle the
+              # file. Exit 1 is a violation. Any code above 2 is a usage error, an
+              # unreadable file or family table, or a missing interpreter (127),
+              # and each of those fails the job. The status reaches CHECKER_RC
+              # instead of tripping errexit, so the loop checks every file.
               CHECKER_RC=0
-              python3 "$CHECKER" "$file" 2>/dev/null || CHECKER_RC=$?
+              python3 "$CHECKER" --json -- "$file" > "$REPORT" || CHECKER_RC=$?
               if [ "$CHECKER_RC" -eq 1 ]; then
                 VIOLATIONS=$((VIOLATIONS + 1))
-                echo "::error file=$file::Ephemeral-artifact pointer found in code comment"
+                # One annotation per finding, on its line, with the reason the checker gives.
+                python3 - "$REPORT" <<'PY'
+          import json
+          import sys
+
+          def escape(value, prop=False):
+              value = str(value).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              return value.replace(":", "%3A").replace(",", "%2C") if prop else value
+
+          with open(sys.argv[1], encoding="utf-8") as handle:
+              document = json.load(handle)
+          for record in document["files"]:
+              for finding in record["findings"]:
+                  message = f"{finding['reason']}: {finding['excerpt'].strip()}"
+                  print(f"::error file={escape(record['file'], True)},line={finding['line']}::{escape(message)}")
+          PY
+              elif [ "$CHECKER_RC" -gt 2 ]; then
+                FAILURES=$((FAILURES + 1))
+                echo "::error file=$file::The comment hygiene checker failed with exit $CHECKER_RC"
               fi
             fi
           done < <(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD")
+          rm -f "$REPORT"
+          if [ "$FAILURES" -gt 0 ]; then
+            echo ""
+            echo "BLOCKED: the comment hygiene checker could not check $FAILURES file(s)."
+            exit 1
+          fi
           if [ "$VIOLATIONS" -gt 0 ]; then
             echo ""
             echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
-            echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
+            echo "See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md section 4"
             echo "Fix: replace the pointer with the durable WHY."
             exit 1
           fi
-          echo "All clear — no comment hygiene violations found."
+          echo "All clear: no comment hygiene violations found."

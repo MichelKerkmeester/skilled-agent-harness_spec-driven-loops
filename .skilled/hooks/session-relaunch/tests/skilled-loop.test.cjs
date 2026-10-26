@@ -9,7 +9,10 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { RUNTIMES, manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
+const {
+  RUNTIMES, manualClaimCommand, resolveSessionSettings, validSpecFolder,
+} = require('../lib/relaunch-core.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
 // and a manual template that carries options would change every printed claim command.
@@ -238,7 +241,7 @@ function createSandbox(t) {
   fs.mkdirSync(binDir, { recursive: true });
   fs.mkdirSync(recordedCwd, { recursive: true });
   const env = {
-    ...process.env,
+    ...withoutRelaunchSwitches(process.env),
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
@@ -507,6 +510,23 @@ function installMalformedConsumeStub(sandbox) {
     '  "$REAL_NODE" "$@" >/dev/null',
     "  printf 'not-json\\n'",
     '  exit 0',
+    'fi',
+    'exec "$REAL_NODE" "$@"',
+    '',
+  ].join('\n');
+  fs.writeFileSync(nodePath, source, { mode: 0o755 });
+  sandbox.env.REAL_NODE = process.execPath;
+}
+
+// Cancels the hand-over through the real CLI right before consume runs, so the withdraw lands
+// after should-relaunch approved the hop with no timing involved.
+function installWithdrawBeforeConsumeStub(sandbox) {
+  const nodePath = path.join(sandbox.binDir, 'node');
+  const source = [
+    '#!/usr/bin/env bash',
+    'set -euo pipefail',
+    'if [[ "${2:-}" == "consume" ]]; then',
+    '  "$REAL_NODE" "$1" cancel --loop-id "$4" >/dev/null',
     'fi',
     'exec "$REAL_NODE" "$@"',
     '',
@@ -1063,6 +1083,41 @@ test('opencode 2 on --server leaves the launch alone and warns the loop cannot a
   assert.match(result.stderr, /warning: .*--server.*cannot arm/);
 });
 
+test('opencode 2 equals-form server warns and keeps the launch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, {
+    STUB_HELP: OPENCODE_2_HELP,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['opencode', '--server=http://localhost:4096']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[0].args, ['--server=http://localhost:4096']);
+  assert.match(result.stderr, /warning: .*--server.*cannot arm/);
+});
+
+// The harness puts its stubs in front of the real PATH, which holds every runtime on a
+// developer machine, so this case builds a PATH that has node and the system tools only.
+test('missing runtime binary exits 127', (t) => {
+  const sandbox = createSandbox(t);
+  const nodeOnly = path.join(sandbox.root, 'node-only');
+  fs.mkdirSync(nodeOnly);
+  fs.symlinkSync(process.execPath, path.join(nodeOnly, 'node'));
+  Object.assign(sandbox.env, {
+    PATH: `${nodeOnly}:/usr/bin:/bin`,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const lookup = spawnSync('/bin/bash', ['-c', 'command -v claude'], {
+    env: sandbox.env, encoding: 'utf8',
+  });
+  assert.notEqual(lookup.status, 0, `claude resolves on the test PATH: ${lookup.stdout}`);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 127, result.stderr);
+  assert.match(result.stderr, /claude: command not found/);
+});
+
 test('opencode without --standalone in its help keeps the launch and the -m replay', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
@@ -1348,6 +1403,180 @@ test('a Hermes sender live provider and model replace the launch values', (t) =>
   ]);
 });
 
+// An effort is chosen for one model, so a hop onto a different model carries the effort the
+// sender recorded beside that model, or none, and never the launch effort of the old one.
+const MODEL_SWITCH_EFFORT_CASES = [
+  {
+    runtime: 'claude',
+    first: ['--model', 'claude-sonnet-5-5', '--effort', 'low', 'p'],
+    liveModel: 'claude-opus-5-5',
+    relaunch: (seed, effort) => [
+      '--model', 'claude-opus-5-5', ...(effort ? ['--effort', effort] : []), seed,
+    ],
+  },
+  {
+    runtime: 'codex',
+    first: ['-m', 'gpt-5.6-luna', '-c', 'model_reasoning_effort="low"', 'p'],
+    liveModel: 'gpt-6-luna',
+    relaunch: (seed, effort) => [
+      '--no-daemon', '-m', 'gpt-6-luna',
+      ...(effort ? ['-c', `model_reasoning_effort="${effort}"`] : []), seed,
+    ],
+  },
+  {
+    runtime: 'pi',
+    first: ['--model', 'gpt-5.6-luna', '--thinking', 'low', 'p'],
+    liveModel: 'gpt-6-luna',
+    relaunch: (seed, effort) => [
+      '--model', 'gpt-6-luna', ...(effort ? ['--thinking', effort] : []), seed,
+    ],
+  },
+];
+
+for (const switchCase of MODEL_SWITCH_EFFORT_CASES) {
+  test(`a live model with no live effort drops the launch effort: ${switchCase.runtime}`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_MODEL: switchCase.liveModel,
+    });
+    const result = runWrapper(sandbox, [switchCase.runtime, ...switchCase.first]);
+
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.deepEqual(records[1].args, switchCase.relaunch(`${SEED} ${handoffPath}`, ''));
+    assert.equal(records[1].env.SKILLED_LOOP_EFFORT, '');
+  });
+
+  test(`a live model with its live effort renders that effort: ${switchCase.runtime}`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_MODEL: switchCase.liveModel,
+      RECORD_EFFORT: 'medium',
+    });
+    const result = runWrapper(sandbox, [switchCase.runtime, ...switchCase.first]);
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(
+      readRecords(recordPath)[1].args,
+      switchCase.relaunch(`${SEED} ${handoffPath}`, 'medium'),
+    );
+  });
+}
+
+test('a live model equal to the launch model keeps the launch effort', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'claude-sonnet-5-5',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'claude-sonnet-5-5', '--effort', 'low', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a launch with no model keeps its launch effort beside a live model', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'claude-opus-5-5',
+  });
+  const result = runWrapper(sandbox, ['claude', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'claude-opus-5-5', '--effort', 'low', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+// Pi takes `provider/model` on its launch line but records the bare model id beside its
+// provider, so the two spellings of one model are no switch.
+test('a Pi live model matching the provider-prefixed launch model keeps the launch thinking', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+  });
+  const result = runWrapper(sandbox, ['pi', '--model', 'openai/gpt-6-luna', '--thinking', 'low']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low', `${SEED} ${handoffPath}`,
+  ]);
+
+  const otherProvider = createSandbox(t);
+  const switched = installRuntimeStub(otherProvider, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+  });
+  const switchedResult = runWrapper(otherProvider, [
+    'pi', '--model', 'azure/gpt-6-luna', '--thinking', 'low',
+  ]);
+  assert.equal(switchedResult.status, 0, switchedResult.stderr);
+  assert.deepEqual(readRecords(switched.recordPath)[1].args, [
+    '--provider', 'openai', '--model', 'gpt-6-luna', `${SEED} ${switched.handoffPath}`,
+  ]);
+});
+
+// One model id under another provider is a different model, so a hop that changes only the
+// provider is a switch however the launch line spelled its provider.
+test('a Pi live provider that differs from the launch provider drops the launch thinking', (t) => {
+  for (const providerArguments of [['--provider', 'openai'], ['--provider=openai']]) {
+    const sandbox = createSandbox(t);
+    sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_MODEL: 'gpt-6-luna',
+      RECORD_PROVIDER: 'azure',
+    });
+    const result = runWrapper(sandbox, [
+      'pi', ...providerArguments, '--model', 'gpt-6-luna', '--thinking', 'low',
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(readRecords(recordPath)[1].args, [
+      '--provider', 'azure', '--model', 'gpt-6-luna', `${SEED} ${handoffPath}`,
+    ], providerArguments.join(' '));
+  }
+
+  const sameProvider = createSandbox(t);
+  sameProvider.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
+  const kept = installRuntimeStub(sameProvider, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+  });
+  const keptResult = runWrapper(sameProvider, [
+    'pi', '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low',
+  ]);
+  assert.equal(keptResult.status, 0, keptResult.stderr);
+  assert.deepEqual(readRecords(kept.recordPath)[1].args, [
+    '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low',
+    `${SEED} ${kept.handoffPath}`,
+  ]);
+});
+
+test('a Hermes live model with no live effort keeps the launch reasoning', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+  });
+  const result = runWrapper(sandbox, [
+    'hermes', 'chat', '-m', 'claude-sonnet-5-5', '--reasoning', 'high',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    'chat', '-m', 'gpt-6-luna', '--reasoning', 'high', '-q', `${SEED} ${handoffPath}`,
+  ]);
+});
+
 test('every launch carries the time it started, so a hop can tell its own changes apart', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
@@ -1415,6 +1644,132 @@ test('a live value is the next hop launch value when that hop records none', (t)
   const records = readRecords(recordPath);
   assert.equal(records.length, 3);
   assert.deepEqual(records[2].args, ['--model', 'live-model', `${SEED} ${handoffPath}`]);
+});
+
+// A manual claim must start the receiver where an automatic relaunch would have, so the
+// printed command carries the sender's live settings and the settings the current hop
+// launched on, never only the first launch's.
+const MANUAL_SEED_TEMPLATE = `"${SEED} @@HANDOFF@@"`;
+
+function printedManualCommand(result) {
+  return result.stdout.split('\n').find((line) => line.startsWith('skilled-loop '));
+}
+
+test('manual command carries the live model and effort', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: 'claude-opus-5-5',
+    RECORD_EFFORT: 'medium',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p',
+  ]);
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  const template = `skilled-loop claude '--model' 'claude-opus-5-5' '--effort' 'medium' ${MANUAL_SEED_TEMPLATE}`;
+  const command = printedManualCommand(result);
+  assert.equal(command, withManualTemplate(template, () => manualClaimCommand('claude', handoffPath)));
+  assert.equal(command.includes('claude-sonnet-5-5'), false, command);
+});
+
+test('Cursor manual command carries the live Cursor model', (t) => {
+  const sandbox = createSandbox(t);
+  const configPath = path.join(sandbox.home, '.cursor', 'cli-config.json');
+  fs.mkdirSync(path.dirname(configPath), { recursive: true });
+  fs.writeFileSync(configPath, JSON.stringify({
+    version: 1,
+    model: { modelId: 'grok-4.7', displayModelId: 'grok-4.7' },
+    selectedModel: { modelId: 'grok-4.7', parameters: [{ id: 'context', value: '256k' }] },
+  }));
+  const { model: liveModel } = resolveSessionSettings({
+    runtime: 'cursor',
+    sessionId: 'session-cursor-0001',
+    env: { HOME: sandbox.home, SKILLED_LOOP_LAUNCHED_AT: String(Date.now() - 60000) },
+  });
+  assert.equal(liveModel, 'grok-4.7[context=256k]');
+  const { handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: liveModel,
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['cursor', '--model', 'gpt-5.6-luna', 'p']);
+
+  assert.equal(result.status, 7, result.stderr);
+  const template = `skilled-loop cursor '--model' '${liveModel}' ${MANUAL_SEED_TEMPLATE}`;
+  assert.equal(
+    printedManualCommand(result),
+    withManualTemplate(template, () => manualClaimCommand('cursor', handoffPath)),
+  );
+});
+
+test('manual command keeps the launch model for an invalid live model', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: '--evil',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p',
+  ]);
+
+  assert.equal(result.status, 7, result.stderr);
+  const startupTemplate = readRecords(recordPath)[0].env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  assert.ok(startupTemplate.includes("'claude-sonnet-5-5'"), startupTemplate);
+  assert.equal(
+    printedManualCommand(result),
+    withManualTemplate(startupTemplate, () => manualClaimCommand('claude', handoffPath)),
+  );
+});
+
+test('manual command reports a live model that holds the placeholder', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_MODEL: 'model-@@HANDOFF@@',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'claude-sonnet-5-5', 'p']);
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.equal(
+    printedManualCommand(result),
+    withManualTemplate('', () => manualClaimCommand('claude', handoffPath)),
+  );
+  const errorLine = result.stderr.split('\n').find((line) => line.startsWith('error: '));
+  assert.ok(errorLine && errorLine.includes('model-@@HANDOFF@@'), result.stderr);
+});
+
+test("manual command after a model-switching hop carries the current hop's model", (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'claude-opus-5-5',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'claude-sonnet-5-5', '--effort', 'low', 'p',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  const template = `skilled-loop claude '--model' 'claude-opus-5-5' ${MANUAL_SEED_TEMPLATE}`;
+  assert.equal(records[1].env.SKILLED_LOOP_MANUAL_TEMPLATE, template);
+  const command = printedManualCommand(result);
+  assert.equal(command, withManualTemplate(template, () => manualClaimCommand('claude', handoffPath)));
+  assert.equal(command.includes('claude-sonnet-5-5'), false, command);
 });
 
 test('multi-hop relaunches carry each runtime model and provider on every invocation', (t) => {
@@ -2277,7 +2632,12 @@ test('wrapper and CLI both print the manual command on stdout', (t) => {
   const cliResult = spawnSync(process.execPath, [
     CLI_PATH, 'prepare', '--handoff', notePath,
     '--session', 'session-stream-0001', '--runtime', 'claude',
-  ], { cwd: sandbox.repoRoot, env: sandbox.env, encoding: 'utf8', timeout: 12000 });
+  ], {
+    cwd: sandbox.repoRoot,
+    env: { ...sandbox.env, SYSTEM_SESSION_RELAUNCH_ENABLED: '1' },
+    encoding: 'utf8',
+    timeout: 12000,
+  });
 
   assert.equal(cliResult.status, 3, cliResult.stderr);
   const cliLines = cliResult.stdout.split('\n').filter((line) => line.startsWith('skilled-loop '));
@@ -2570,6 +2930,51 @@ test('wrapper still warns about an unclaimed seed note when a different next han
     result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
     expectedClaudeManualCommand(handoffPath, SPEC_FOLDER),
   );
+});
+
+test('a withdraw between approval and consume declines with the runtime exit code', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1', exitCodes: '7' });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  installWithdrawBeforeConsumeStub(sandbox);
+
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  assert.ok(
+    result.stderr.includes(
+      `warning: the prepared hand-over was withdrawn in the session; ${handoffPath} stays open`,
+    ),
+    result.stderr,
+  );
+  assert.equal(
+    (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+    false,
+  );
+  assert.deepEqual(handOverLines(sandbox), []);
+});
+
+test('a withdrawn record on the Ctrl-C path prints no claim command', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    exitCodes: '130',
+  });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  installWithdrawBeforeConsumeStub(sandbox);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 130, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  assert.match(result.stderr, /the prepared hand-over was withdrawn in the session/);
+  assert.equal(
+    (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+    false,
+    result.stdout,
+  );
+  assert.deepEqual(handOverLines(sandbox), []);
 });
 
 test('wrapper keeps a clean runtime exit when the hand-over call itself fails', (t) => {
@@ -2885,4 +3290,137 @@ test('a Hermes hop restores the operator folder once a hop carries no goal', (t)
   assert.equal(records[0].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
   assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
   assert.equal(records[2].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MANUAL FIRST LAUNCH GOAL BINDING
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A manual claim is a first launch with no armed record, so each case records one session.
+function runSeededFirstLaunch(t, args, { env = {}, note } = {}) {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+    ...env,
+  });
+  writeGoalNote(sandbox, handoffPath);
+  if (note) note(sandbox, handoffPath);
+  const seed = claimSeedFor(handoffPath);
+  const result = runWrapper(sandbox, args(seed));
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 1);
+  return { record: records[0], seed, result };
+}
+
+test('manual first launch with a claim seed exports the note goal packet', (t) => {
+  const cases = [
+    ['pi', (seed) => ['pi', '--model', 'm1', seed], (seed) => ['--model', 'm1', seed]],
+    ['opencode', (seed) => ['opencode', '-m', 'm1', '--prompt', seed],
+      (seed) => ['-m', 'm1', '--prompt', seed]],
+    ['codex', (seed) => ['codex', '-m', 'm1', seed], (seed) => ['--no-daemon', '-m', 'm1', seed]],
+    ['devin', (seed) => ['devin', '--model', 'm1', '--', seed],
+      (seed) => ['--model', 'm1', '--', seed]],
+    ['cursor', (seed) => ['cursor', seed, '--model', 'm1'], (seed) => [seed, '--model', 'm1']],
+  ];
+  for (const [runtime, args, expected] of cases) {
+    const { record, seed } = runSeededFirstLaunch(t, args);
+    assert.deepEqual(record.args, expected(seed), runtime);
+    assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET, runtime);
+    assert.equal(record.env.hasClaimSeed, false, runtime);
+    assert.equal(record.env.hasHermesSpecFolder, false, runtime);
+  }
+});
+
+test('a seeded Claude first launch starts on the goal command with the seed in place', (t) => {
+  const { record, seed, result } = runSeededFirstLaunch(
+    t, (claimSeed) => ['claude', '--model', 'opus', claimSeed, '--name', 'Work'],
+  );
+
+  assert.deepEqual(record.args, ['--model', 'opus', `/goal ${GOAL_SLICE}`, '--name', 'Work']);
+  assert.equal(record.env.SKILLED_LOOP_CLAIM_SEED, seed);
+  assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.deepEqual(warningLines(result), []);
+});
+
+test('a seeded Hermes first launch after -q binds the packet as its spec folder', (t) => {
+  const { record, seed } = runSeededFirstLaunch(
+    t, (claimSeed) => ['hermes', 'chat', '-m', 'm1', '-q', claimSeed],
+    { env: { HERMES_SPEC_FOLDER: 'specs/operator-chosen' } },
+  );
+
+  assert.deepEqual(record.args, ['chat', '-m', 'm1', '-q', seed]);
+  assert.equal(record.env.HERMES_SPEC_FOLDER, GOAL_PACKET);
+  assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.equal(record.env.hasClaimSeed, false);
+});
+
+test('a seeded OpenCode 2 first launch finds the seed after the prepended --standalone', (t) => {
+  const { record, seed } = runSeededFirstLaunch(
+    t, (claimSeed) => ['opencode', '--agent', 'build', '--prompt', claimSeed],
+    { env: { STUB_HELP: OPENCODE_2_HELP } },
+  );
+
+  assert.deepEqual(record.args, ['--standalone', '--agent', 'build', '--prompt', seed]);
+  assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+});
+
+test('a seeded Claude first launch with no slice to send keeps its seed as the prompt', (t) => {
+  const { record, seed, result } = runSeededFirstLaunch(
+    t, (claimSeed) => ['claude', claimSeed],
+    { note: (sandbox) => fs.rmSync(path.join(sandbox.repoRoot, BUDGET_MANIFEST)) },
+  );
+
+  assert.deepEqual(record.args, [seed]);
+  assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.equal(record.env.hasClaimSeed, false);
+  assert.equal(warningLines(result).length, 1);
+});
+
+test('manual first launch ignores a seed for a claimed or outside note', (t) => {
+  const cases = [
+    ['claimed note', (sandbox, handoffPath) => fs.writeFileSync(
+      handoffPath,
+      fs.readFileSync(handoffPath, 'utf8').replace('status: open', 'status: claimed'),
+    )],
+    ['note outside the repository', (sandbox, handoffPath) => {
+      const outside = path.join(sandbox.root, 'outside');
+      fs.mkdirSync(outside);
+      fs.renameSync(handoffPath, path.join(outside, 'handoff.md'));
+      fs.symlinkSync(path.join(outside, 'handoff.md'), handoffPath);
+    }],
+    ['packet that lost its goal.md', (sandbox) => fs.rmSync(
+      path.join(sandbox.repoRoot, GOAL_PACKET, 'goal.md'),
+    )],
+    ['missing note', (sandbox, handoffPath) => fs.rmSync(handoffPath)],
+  ];
+  for (const runtime of ['claude', 'hermes']) {
+    for (const [label, note] of cases) {
+      const { record, seed } = runSeededFirstLaunch(t, (claimSeed) => [runtime, claimSeed], {
+        note,
+      });
+      assert.deepEqual(record.args, [seed], `${runtime}: ${label}`);
+      assert.equal(record.env.hasGoalPacket, false, `${runtime}: ${label}`);
+      assert.equal(record.env.hasClaimSeed, false, `${runtime}: ${label}`);
+      assert.equal(record.env.hasHermesSpecFolder, false, `${runtime}: ${label}`);
+    }
+  }
+
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+    SESSION_RELAUNCH_GOAL: '0',
+  });
+  writeGoalNote(sandbox, handoffPath);
+  assert.equal(runWrapper(sandbox, ['claude', claimSeedFor(handoffPath)]).status, 0);
+  assert.equal(readRecords(recordPath)[0].env.hasGoalPacket, false, 'switch off');
+
+  const outsideNote = path.join(sandbox.root, 'outside-note.md');
+  fs.copyFileSync(handoffPath, outsideNote);
+  fs.rmSync(recordPath);
+  sandbox.env.SESSION_RELAUNCH_GOAL = '1';
+  assert.equal(runWrapper(sandbox, ['claude', claimSeedFor(outsideNote)]).status, 0);
+  const [outsideRecord] = readRecords(recordPath);
+  assert.equal(outsideRecord.env.hasGoalPacket, false, 'a path outside the handoffs directory');
+  assert.deepEqual(outsideRecord.args, [claimSeedFor(outsideNote)]);
 });

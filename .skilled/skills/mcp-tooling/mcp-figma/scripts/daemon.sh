@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-FIGMA DAEMON WRAPPER
+# ───────────────────────────────────────────────────────────────
 # Thin wrapper over `figma-ds-cli daemon <verb>`. Read verbs are safe; start/stop/
 # restart/reconnect change daemon state (not the Figma document).
+#
+# Exit Codes:
+#   0 - The daemon verb succeeded, or help was printed
+#   1 - No silships figma binary on PATH
+#   2 - Unknown daemon verb
+#   Any other status comes from figma-ds-cli daemon itself
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=_common.sh
+# shellcheck source=SCRIPTDIR/_common.sh
 . "$HERE/_common.sh"
 
 verb="${1:-status}"

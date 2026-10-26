@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`claimHandoff` refuses any non-open note with one message, `cannot claim handoff with status ${status || 'missing'}` (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1072-1076`)",
     "created_at": "2026-10-25T13:42:35Z",
-    "last_save_at": "2026-10-25T14:10:00.145Z",
+    "last_save_at": "2026-10-25T15:51:11.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc299099ee3c7ea60ee41b136a2a48f6a8e10b1a608c35e1b086e0c0ea15abff",
+    "source_fingerprint": "sha256:13b54b0fff5fee61664aa314c6c93dda1f4ec05f542a00d26164fc4e111408c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b117e43e4c041d306810f7d3d6d12889f61c3231b0617dd5be8e9f14a8d493f5",
+      "spec.md": "4ab42f881143833def603eed6d80d4cd2df51ba8e8f07693410ff3b45d7be7e7",
       "plan.md": "67176bf233a32407c97ddeb571b441046253c76e0d354079e0c13bba7db8aa87",
-      "tasks.md": "95b61834b4f5cb7b51c50b2663159d4e059e9342d6da566eefd51de2a2a0fa16",
-      "implementation-summary.md": "e34521bd5842ab3768efe10eac4d7cfa2c492d7ea7ac87e90aeb5c8f51936cb0"
+      "tasks.md": "9299baba98a845b323e874e4d7633c2cba3a88753b5feb37c349e95c54465781",
+      "implementation-summary.md": "d0102ec6b5a8ec3e91213c2c3e9db4085eb82887f80d90055a656720cddee71c"
     },
     "last_active_at": null
   }

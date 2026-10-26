@@ -15,9 +15,9 @@ trigger_phrases:
 
 `post-edit-quality/` runs quality checkers against a file right after it is written or edited and surfaces bounded, redacted findings back to the model. One path-dispatch table in `lib/post-edit-router.cjs` decides which checker(s) apply to which file, shared by every runtime adapter so policy cannot drift between them. The router returns at most one checker per edit: the table is deliberately narrow and near-mutually-exclusive, with rows evaluated in priority order so an overlapping path resolves to exactly one checker, never two.
 
-Warn-only by contract: every failure path (missing checker, unexpected exit code, spawn error, exhausted deadline) resolves to no finding, and the edit itself is never blocked. The router never writes stdout/stderr and never throws; each adapter owns its own transport.
+Warn-only by contract: a missing checker becomes one `quality-notice` finding, so an unchecked edit never reads as a clean one, and every other failure path (unexpected exit code, spawn error, exhausted deadline) resolves to no finding. The edit itself is never blocked. The router never writes stdout/stderr and never throws; each adapter owns its own transport.
 
-The checker scripts themselves (comment hygiene, dist staleness, flowchart, frontmatter, placeholders, wikilinks) stay in their owning skills: the router invokes them by project-root-relative path via `spawnSync`, never a static import.
+The checker scripts themselves (comment hygiene, dist staleness, flowchart, frontmatter, placeholders, wikilinks) stay in their owning skills: the router spawns them by path via `spawnSync`, never a static import. It looks for the comment-hygiene checker beside its own real path first, so a project that reaches this hub through a link still gets the hub's copy, and in the project folder second. The extensions it sends to that checker come from the checker's family table, `sk-code-quality/assets/comment-syntax.json`, with a built-in set used when the table cannot be read.
 
 ---
 
@@ -30,7 +30,7 @@ COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
 Violations in <file>:
   <file>:<line>: <offending comment excerpt>
-See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 ```
 
@@ -96,7 +96,7 @@ post-edit-quality/
 
 | File | Responsibility |
 |---|---|
-| `lib/post-edit-router.cjs` | `resolveDispatch()` is a pure path/string resolver mapping an edited file to its applicable checker (the five-row table above). `runChecks()` spawns the resolved checker under a shared deadline and returns bounded, redacted findings. `runDistStalenessCheck()` is the separate dist-staleness entrypoint. `createDedupeTracker()` gives the OpenCode plugin per-skill-per-session suppression. Imports Node builtins only; checkers are spawned by path, never imported. |
+| `lib/post-edit-router.cjs` | `resolveDispatch()` is a side-effect-free resolver mapping an edited file to its applicable checker (the five-row table above). The only state it reads is whether the hub copy of a checker exists. `runChecks()` spawns the resolved checker under a shared deadline and returns bounded, redacted findings. `runDistStalenessCheck()` is the separate dist-staleness entrypoint. `createDedupeTracker()` gives the OpenCode plugin per-skill-per-session suppression. Imports Node builtins only; checkers are spawned by path, never imported. |
 | `claude/claude-posttooluse.cjs` | Claude `PostToolUse(Write\|Edit)` adapter. Resolves the file, runs the router under the Claude budget, writes findings as a `hookSpecificOutput.additionalContext` JSON envelope on stdout. Runs dist-staleness separately. |
 | `codex/post-edit-quality.cjs` | Codex `PostToolUse(apply_patch\|edit)` adapter. Extracts every `*** Add/Update/Delete File:` / `*** Move to:` target from a multi-file patch so each file gets checked. |
 | `devin/post-edit-quality.cjs` | Devin `PostToolUse(^(edit\|write)$)` adapter. Accepts `file_path`/`filePath`/`path` and resolves relative paths against the project dir. |
@@ -124,9 +124,9 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | The router imports Node builtins only; checker scripts are spawned by project-root-relative path, never imported. Adapters import `../lib/` and the shared helpers in `../../shared/` (`hook-flags.cjs`, or `hook-flags.mjs` for Pi, plus `hook-adapter-shared.cjs` for stdin) only. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
+| Imports | The router imports Node builtins only; checker scripts are spawned by path, the hub copy beside the router first and the project folder second, never imported. Adapters import `../lib/` and the shared helpers in `../../shared/` (`hook-flags.cjs`, or `hook-flags.mjs` for Pi, plus `hook-adapter-shared.cjs` for stdin) only. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
 | Decisions | Findings are advisory text. Nothing here can block or roll back an edit. |
-| Failure | Every checker failure mode (missing checker, spawn error, timeout/signal kill, exit code outside `{0,1}`, exhausted deadline) resolves to silence. |
+| Failure | A missing checker returns one de-duplicated `quality-notice` finding. Every other checker failure mode (spawn error, timeout/signal kill, exit code outside `{0,1}`, exhausted deadline) resolves to silence. |
 | Output | The router never writes stdout/stderr. The OpenCode plugin never writes stdout/stderr either (it logs to file and buffers for the system transform); the Claude and Devin adapters write a `hookSpecificOutput.additionalContext` JSON envelope on stdout, Codex prints plain text on stdout; Pi appends to tool-result content. |
 
 ---

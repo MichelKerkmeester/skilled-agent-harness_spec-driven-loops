@@ -69,7 +69,7 @@ function resolveHermesWindow(payload, usage) {
 
 async function main() {
   const config = loadConfigFile(configPath());
-  if (!isHookEnabled(CONCERN, process.env, config)) return done();
+  if (!isHookEnabled(CONCERN, process.env, config, { runtime: 'hermes' })) return done();
 
   const payload = parseJsonFailOpen(await readStdin());
   if (!payload || typeof payload !== 'object') return done();

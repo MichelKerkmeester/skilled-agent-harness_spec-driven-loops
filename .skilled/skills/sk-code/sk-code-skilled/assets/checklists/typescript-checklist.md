@@ -8,7 +8,7 @@ trigger_phrases:
   - "pascalcase types check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.21
+version: 1.0.1.0
 ---
 
 # TypeScript Code Quality Checklist
@@ -79,26 +79,6 @@ export interface SearchOptions { metadata: any; }
 const sqliteVec = require('sqlite-vec') as any;
 ```
 
-### PascalCase Types and Interfaces
-
-```markdown
-[ ] All interfaces, type aliases, and enums use PascalCase naming
-```
-
-**Correct**:
-```typescript
-interface SearchResult { }
-type MemoryState = 'active' | 'archived';
-enum ErrorCode { NotFound, Timeout }
-```
-
-**Wrong**:
-```typescript
-interface searchResult { }       // camelCase
-type memoryState = string;       // camelCase
-enum errorCode { }               // camelCase
-```
-
 ### No Commented-Out Code
 
 ```markdown
@@ -128,6 +108,26 @@ Same rule as JavaScript. Explain reasoning, not mechanics.
 ## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
+
+### PascalCase Types and Interfaces
+
+```markdown
+[ ] All interfaces, type aliases, and enums use PascalCase naming
+```
+
+**Correct**:
+```typescript
+interface SearchResult { }
+type MemoryState = 'active' | 'archived';
+enum ErrorCode { NotFound, Timeout }
+```
+
+**Wrong**:
+```typescript
+interface searchResult { }       // camelCase
+type memoryState = string;       // camelCase
+enum errorCode { }               // camelCase
+```
 
 ### Explicit Return Types on Public Functions
 

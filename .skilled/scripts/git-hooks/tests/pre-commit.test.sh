@@ -651,6 +651,17 @@ plant_real_comment_checker
 stage_new "café.js" "// see ADR-12"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a staged name with non-ASCII bytes is checked" 1 "$RC" "café.js:1:"
+# A staged name that starts with -- is a file, never a checker option.
+setup_gate_fixture
+plant_real_comment_checker
+stage_new "--notes.js" "// see ADR-12"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a staged name that starts with -- is checked" 1 "$RC" "notes.js:1: // see ADR-12"
+setup_gate_fixture
+plant_real_comment_checker
+stage_new "--notes.js" "// see ADR-12"
+run_legacy; RC=$?
+check "the helper checks a staged name that starts with --" 1 "$RC" "staged files contain ephemeral-artifact pointers"
 
 # ── 45. every staged file goes to one checker run ──
 setup_gate_fixture
@@ -1070,6 +1081,18 @@ setup_gate_fixture
 git -C "$TMP" update-index --add --cacheinfo 160000,1111111111111111111111111111111111111111,.skilled/skills/local-sub
 run_hook; RC=$?
 check "a staged gitlink named local-* is refused" 1 "$RC" ".skilled/skills/local-sub"
+
+# ── 81. a tracked local-* file that changes type to a symlink is refused ──
+setup_gate_fixture
+stage_new ".skilled/skills/local-tc/SKILL.md" "private"
+git -C "$TMP" commit -q --no-verify -m "force-tracked private file"
+mkdir -p "$TMP/outside"
+printf 'private\n' > "$TMP/outside/SKILL.md"
+rm "$TMP/.skilled/skills/local-tc/SKILL.md"
+ln -s ../../../outside/SKILL.md "$TMP/.skilled/skills/local-tc/SKILL.md"
+git -C "$TMP" add -- ".skilled/skills/local-tc/SKILL.md"
+run_hook; RC=$?
+check "a staged type change named local-* is refused" 1 "$RC" ".skilled/skills/local-tc/SKILL.md"
 
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

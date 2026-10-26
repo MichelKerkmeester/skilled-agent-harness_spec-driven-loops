@@ -81,7 +81,15 @@ const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
   'deprecated',
   'importance_tier',
   'enhance_when',
+  // An outside sk-code family skill declares where its surface is detected.
+  // The sk-code detectors read the inner block and rank it ahead of the
+  // fallback surface.
+  'surface_detection',
 ]);
+
+// The marker lists a surface_detection block may carry. The detectors read
+// all three and drop any entry that is not a non-empty string.
+const SURFACE_MARKER_KEYS = ['pathMarkers', 'fileMarkers', 'contentMarkers'];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -170,6 +178,44 @@ function isSkillShapedGraph(value) {
 function isSkillShapedDescription(value) {
   if (!value || typeof value !== 'object') return false;
   return 'name' in value && 'description' in value && 'keywords' in value;
+}
+
+/**
+ * List the field problems in an outside skill's surface_detection object.
+ *
+ * The detectors skip a block with no label or no usable marker, and skip any
+ * outside block whose role is not specific, so each of those shapes would
+ * reach CI green and then never be detected. The fallback role is reserved
+ * for the hub's own mode-registry.json.
+ *
+ * @param {Object} block - The surface_detection value, already known to be a plain object.
+ * @returns {string[]} One message per failed rule, naming the field.
+ */
+function surfaceDetectionProblems(block) {
+  const problems = [];
+  if (typeof block.label !== 'string' || !block.label.trim()) {
+    problems.push('surface_detection.label must be a non-empty string');
+  }
+  if (block.role !== 'specific') {
+    problems.push(`surface_detection.role must be "specific" (got ${JSON.stringify(block.role)}); only the hub declares the fallback, in its mode-registry.json`);
+  }
+  const hasMarkers = SURFACE_MARKER_KEYS
+    .some((key) => Array.isArray(block[key]) && block[key].length > 0);
+  if (!hasMarkers) {
+    problems.push(`surface_detection must carry at least one non-empty marker array: ${SURFACE_MARKER_KEYS.join(', ')}`);
+  }
+  for (const key of SURFACE_MARKER_KEYS) {
+    if (!Object.prototype.hasOwnProperty.call(block, key)) continue;
+    const value = block[key];
+    // A blank marker would match nearly every path or request and make the
+    // surface lead everywhere. Spaces inside or around a real marker are kept.
+    const isStringList = Array.isArray(value)
+      && value.every((entry) => typeof entry === 'string' && entry.trim().length > 0);
+    if (!isStringList) {
+      problems.push(`surface_detection.${key} must be an array of non-blank strings`);
+    }
+  }
+  return problems;
 }
 
 /**
@@ -418,6 +464,28 @@ function checkGraphMetadata(skillDir) {
       file: 'graph-metadata.json',
       message: `${skillId}: graph-metadata.json has unknown top-level key(s): ${unknown.join(', ')}`,
     });
+  }
+
+  // The key is optional, but a present value must be an object: a string or
+  // array would reach the surface detectors as a block with no markers. A
+  // present object must also carry the fields the detectors need.
+  if (Object.prototype.hasOwnProperty.call(metadata, 'surface_detection')) {
+    const block = metadata.surface_detection;
+    if (!block || typeof block !== 'object' || Array.isArray(block)) {
+      violations.push({
+        code: 'GRAPH_METADATA_INVALID_SURFACE_DETECTION',
+        file: 'graph-metadata.json',
+        message: `${skillId}: graph-metadata.json surface_detection must be a JSON object`,
+      });
+    } else {
+      for (const problem of surfaceDetectionProblems(block)) {
+        violations.push({
+          code: 'GRAPH_METADATA_INVALID_SURFACE_DETECTION',
+          file: 'graph-metadata.json',
+          message: `${skillId}: graph-metadata.json ${problem}`,
+        });
+      }
+    }
   }
 
   const intentSignals = Array.isArray(metadata.intent_signals)

@@ -29,7 +29,7 @@ const ACTIVATION_ROOT = path.join(__dirname, '..', 'lib', 'compiled-routing', '0
 const TEMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-admission-'));
 // The live gold corpus at the admitted hubs' playbook roots. A change here means
 // scenarios were added or removed, so the baseline report needs a rerun.
-const LIVE_CORPUS_SIZE = 85;
+const LIVE_CORPUS_SIZE = 90;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -82,6 +82,9 @@ function fixtureRoute(hubId, prompt) {
   return { action: 'route', selectionKind: 'single', targets: [target(word)] };
 }
 
+// Hash only the live hubs' activation directories. The manifest test file mints
+// short-lived fixture hubs beside them in the same root, and node --test runs
+// the two files at once, so hashing the whole root would race with it.
 function hashActivationTree() {
   const hash = crypto.createHash('sha256');
   const walk = (dir) => {
@@ -91,7 +94,11 @@ function hashActivationTree() {
       else hash.update(`${path.relative(ACTIVATION_ROOT, full)}\0`).update(fs.readFileSync(full));
     }
   };
-  walk(ACTIVATION_ROOT);
+  for (const hubId of Object.keys(HUB_CHILD).sort()) {
+    const hubDir = path.join(ACTIVATION_ROOT, hubId);
+    hash.update(`${hubId}\0${fs.existsSync(hubDir) ? 'present' : 'absent'}\0`);
+    if (fs.existsSync(hubDir)) walk(hubDir);
+  }
   return hash.digest('hex');
 }
 

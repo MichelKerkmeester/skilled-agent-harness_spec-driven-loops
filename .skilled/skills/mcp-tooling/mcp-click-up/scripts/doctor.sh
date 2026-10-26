@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
-# WHY: Read-only diagnostics for the ClickUp skill. It changes nothing and
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP-CLICK-UP DOCTOR
+# ───────────────────────────────────────────────────────────────
+# Read-only diagnostics for the ClickUp skill. It changes nothing and
 # installs nothing, and it never prints secrets.
+#
+# Usage: doctor.sh
+#
+# Exit Codes:
+#   0 - Diagnostics printed (findings are warnings, never failures)
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-_c_red=$'\033[31m'; _c_grn=$'\033[32m'; _c_ylw=$'\033[33m'; _c_dim=$'\033[2m'; _c_rst=$'\033[0m'
+_c_grn=$'\033[32m'; _c_ylw=$'\033[33m'; _c_dim=$'\033[2m'; _c_rst=$'\033[0m'
 log()  { printf '%s\n' "$*"; }
 info() { printf '%s%s%s\n' "$_c_dim" "$*" "$_c_rst"; }
 ok()   { printf '%s✓ %s%s\n' "$_c_grn" "$*" "$_c_rst"; }
 warn() { printf '%s! %s%s\n' "$_c_ylw" "$*" "$_c_rst" >&2; }
-err()  { printf '%s✗ %s%s\n' "$_c_red" "$*" "$_c_rst" >&2; }
 
 node_major() {
   command -v node >/dev/null 2>&1 || { printf ''; return 0; }
@@ -32,7 +39,7 @@ if command -v node >/dev/null 2>&1; then
   nv="$(node -v 2>/dev/null || printf 'unknown')"
   if [ -n "$nm" ] && [ "$nm" -ge 18 ] 2>/dev/null; then ok "Node $nv"; else warn "Node $nv (<18)"; fi
 else warn "Node not found"; fi
-command -v npm >/dev/null 2>&1 && ok "npm $(npm -v)" || warn "npm not found"
+if command -v npm >/dev/null 2>&1; then ok "npm $(npm -v)"; else warn "npm not found"; fi
 
 # Embedded CLI
 log "-- cupt CLI --"

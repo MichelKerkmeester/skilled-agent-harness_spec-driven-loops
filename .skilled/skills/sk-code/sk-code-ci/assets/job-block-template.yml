@@ -15,6 +15,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Leave no token in the git config, so a step that later pushes gets it explicitly.
+          persist-credentials: false
 
       # Provision the dependency trees through the composite action. Set cache to false
       # to force a cold provision. bun-version is the only other input.

@@ -1,0 +1,93 @@
+✖ readClaudeSettings takes a later /model switch and drops the old turn effort (2.951041ms)
+✖ readClaudeSettings pairs a later /model with a later /effort, in either order (1.461ms)
+✔ readClaudeSettings lets a turn after the switch speak for itself (0.94825ms)
+✖ readClaudeSettings ignores a cancelled switch and proves no model from a picker name (1.8875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46.80575
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:420:1
+✖ readClaudeSettings takes a later /model switch and drops the old turn effort (2.951041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   effort: 'low',
+  +   model: 'claude-sonnet-5-5'
+  -   effort: '',
+  -   model: 'claude-opus-5-5'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:425:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { model: 'claude-sonnet-5-5', effort: 'low' },
+    expected: { model: 'claude-opus-5-5', effort: '' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:434:1
+✖ readClaudeSettings pairs a later /model with a later /effort, in either order (1.461ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   effort: 'low',
+  +   model: 'claude-sonnet-5-5'
+  -   effort: 'medium',
+  -   model: 'claude-opus-5-5'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:440:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { model: 'claude-sonnet-5-5', effort: 'low' },
+    expected: { model: 'claude-opus-5-5', effort: 'medium' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:459:1
+✖ readClaudeSettings ignores a cancelled switch and proves no model from a picker name (1.8875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   effort: 'low',
+  +   model: 'claude-sonnet-5-5'
+  -   effort: '',
+  -   model: ''
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:472:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { model: 'claude-sonnet-5-5', effort: 'low' },
+    expected: { model: '', effort: '' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

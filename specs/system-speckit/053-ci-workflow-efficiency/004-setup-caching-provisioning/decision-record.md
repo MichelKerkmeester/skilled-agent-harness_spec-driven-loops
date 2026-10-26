@@ -11,12 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning"
-    last_updated_at: "2026-10-24T09:00:00Z"
-    last_updated_by: "markdown"
-    recent_action: "Recorded the round-two cache figures in the ADR-005 amendment"
-    next_safe_action: "Build the hook-and-plugin merge (T030)"
-    blockers:
-      - "002-rebuild-fanout-removal baseline pending"
+    last_updated_at: "2026-10-25T22:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed on the scheduled cold run: 17/17 criteria met, 26/26 checks ticked"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,11 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-004-setup-caching-provisioning"
       parent_session_id: null
-    completion_pct: 10
-    open_questions:
-      - "Does a 2.22 GB tree set compress under the 10 GB budget with room for dependabot churn?"
-      - "Does filter: blob:none save anything on a single-commit checkout?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does a 2.22 GB tree set compress under the 10 GB budget with room for dependabot churn? Yes: the probe entry was 1.28 GB, verdict go (scratch/cache-probe/summary.md), and the trimmed entry is 864407808 bytes"
+      - "Does filter: blob:none save anything on a single-commit checkout? No: 98 s against a 52 s baseline, and the sparse variant at 3 s was kept (scratch/checkout-probe.md)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: setup caching provisioning
@@ -149,8 +148,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `cd58109fc5` (scan loop, label branch, four fixtures), with the ignored-build-output follow-up `a393488d82` |
 | **Deciders** | Plan author |
 
 ---
@@ -249,8 +249,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `fafaaa4e49` (`.github/actions/setup/action.yml`, four steps, save only on a miss after a successful provision) |
 | **Deciders** | Plan author |
 
 ---
@@ -348,8 +349,9 @@ Five provisioning sites in three workflows repeat the same eleven lines: install
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped as amended on 2026-10-24 (review of the setup action): `fafaaa4e49`, then `5efe36e731`. The Node major is derived in the action's first step instead of a `node-major` input, and the key also hashes the action file, the bun version, the 14 manifests, `.npmrc` and two tsconfigs. Still no `restore-keys` |
 | **Deciders** | Plan author |
 
 ---
@@ -447,8 +449,9 @@ Five provisioning sites in three workflows repeat the same eleven lines: install
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped as amended: `fafaaa4e49` added the build outputs the review found, and `a4d92ea8e0` dropped `~/.npm` under the 2026-10-24 operator ruling, leaving 20 cached paths |
 | **Deciders** | Plan author |
 
 ---
@@ -547,8 +550,9 @@ The provisioned set is 2.22 GB uncompressed, and only about 3.6 MB of it is buil
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped: the `cold` inputs in `68e735d630`, the weekly schedule and the `cache:` expression in `2759de1119` (`opencode-plugin-tests.yml:64-65,94`). The scheduled cold run has not fired yet; its first firing is 2026-10-26T04:17Z |
 | **Deciders** | Plan author |
 
 ---
@@ -646,8 +650,9 @@ A warm cache stops exercising `provision_worktree`, which is the only path that 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `fafaaa4e49` (`oven-sh/setup-bun` SHA-pinned, `bun-version` default `'1.3.9'`) and `68e735d630` (the four bun bootstraps at the adoption sites removed). Narrowed: `spec-kit-check.yml:112` keeps its npm bootstrap of `bun@1.3.9`, because ADR-008's keep rule restored that file in `b5451258b2` |
 | **Deciders** | Plan author |
 
 ---
@@ -746,8 +751,9 @@ Five sites run `npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9` and
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped: every block substituted in `1c0c3534cf`, then the keep rule applied in `b5451258b2`, which kept `routing-registry-drift.yml` and restored the other nine (`scratch/npm-dedupe.md`) |
 | **Deciders** | Plan author |
 
 ---
@@ -846,8 +852,9 @@ Eleven workflows run two to eight `npm ci` commands inside their jobs, and `spec
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `1c0c3534cf` (`cache: pip` and `cache-dependency-path` in the four `setup-python` steps, AC-011) |
 | **Deciders** | Plan author |
 
 ---
@@ -944,8 +951,9 @@ Four workflows install one or two pinned Python packages: `naming-standard-guard
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Shipped in `ea39cd7b2c` with one deviation: the sparse list also names `/.opencode/skills`, because the step runs the checker through that tracked symlink and the two planned paths do not materialize it (`scratch/checkout-probe.md:15`). `blob:none` alone measured 98 s against 52 s, so the sparse variant (3 s) was kept |
 | **Deciders** | Plan author |
 
 ---
@@ -1044,8 +1052,9 @@ A default-depth checkout still costs about 50 s per job in the samples. `rule-ca
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Implemented** | Followed across the phase commits `cd58109fc5` to `ea39cd7b2c`: each commit carries one concern, every message passed `validate-message.mjs`, and the ephemeral-id search over the workflow diffs printed nothing (AC-017) |
 | **Deciders** | Plan author |
 
 ---

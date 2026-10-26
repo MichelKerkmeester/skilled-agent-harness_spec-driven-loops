@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.28
+version: 1.0.2.0
 ---
 
 # Universal Code Quality Checklist
@@ -86,8 +86,8 @@ manual review gates; the alignment verifier does not parse intent from comments.
 ```markdown
 [ ] No spec/packet/phase numbers, T###/REQ-###/CHK-###, feature-catalog, ADR, or ticket ids in comments
     - Keep the durable WHY; drop the perishable label
-    - Structural path/globs the code needs (e.g. .opencode/specs/) and stable standards (CWE-###) are OK
-    - See references/universal/code-style-guide.md §4 "No ephemeral-artifact pointers"
+    - Structural path/globs the code needs (e.g. specs/ or .skilled/specs/) and stable standards (CWE-###) are OK
+    - See sk-code-quality/references/code-style-guide.md §4 "No ephemeral-artifact pointers"
 ```
 
 ### Numbered ALL-CAPS Section Invariant
@@ -111,7 +111,7 @@ manual review gates; the alignment verifier does not parse intent from comments.
 
 ```markdown
 [ ] Spec folder operations enforce `NNN-name` and approved roots
-    - Allowed roots: `specs/` and `.opencode/specs/` only
+    - Allowed roots: `specs/` and `.skilled/specs/` only
     - Archive/restore/create targets validated before execution
     - Do not emit restore instructions unless checkpoint creation succeeded
 ```

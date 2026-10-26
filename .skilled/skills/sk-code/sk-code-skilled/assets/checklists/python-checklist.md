@@ -8,7 +8,7 @@ trigger_phrases:
   - "python naming checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.20
+version: 1.0.1.0
 ---
 
 # Python Code Quality Checklist
@@ -85,6 +85,32 @@ Options:
 """
 ```
 
+### No Commented-Out Code
+
+```markdown
+[ ] No commented-out code blocks
+```
+
+### WHY Comments
+
+```markdown
+[ ] Purposeful WHY comments only (max 3 comments per 10 LOC)
+    - Comments explain WHY, not WHAT
+    - No narrative comments describing obvious mechanics
+```
+
+### Numbered ALL-CAPS Sections
+
+```markdown
+[ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
+```
+
+---
+
+## 3. P1 - REQUIRED
+
+These must be addressed or receive approval to defer.
+
 ### Function Naming
 
 ```markdown
@@ -121,32 +147,6 @@ MAX_FILE_SIZE = 5000
 REQUIRED_FIELDS = ['name', 'description']
 DEFAULT_TIMEOUT = 30
 ```
-
-### No Commented-Out Code
-
-```markdown
-[ ] No commented-out code blocks
-```
-
-### WHY Comments
-
-```markdown
-[ ] Purposeful WHY comments only (max 3 comments per 10 LOC)
-    - Comments explain WHY, not WHAT
-    - No narrative comments describing obvious mechanics
-```
-
-### Numbered ALL-CAPS Sections
-
-```markdown
-[ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
-```
-
----
-
-## 3. P1 - REQUIRED
-
-These must be addressed or receive approval to defer.
 
 ### Type Hints
 

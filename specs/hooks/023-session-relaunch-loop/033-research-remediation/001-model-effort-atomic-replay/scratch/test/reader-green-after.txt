@@ -1,0 +1,33 @@
+✔ readClaudeFill uses the last main-chain usage, not sidechain or cumulative usage (1.93675ms)
+✔ resolveWindow gives SESSION_RELAUNCH_WINDOW_TOKENS precedence over settings (1.681125ms)
+✔ resolveWindow prefers settings.local.json over project and home settings (1.973042ms)
+✔ resolveWindow uses project settings.json before the home setting (1.424ms)
+✔ resolveWindow treats settings read errors as absent (1.544959ms)
+✔ resolveWindow falls back to the home Claude setting (1.036542ms)
+✔ resolveWindow selects a one-million-token window for a model containing [1m] (0.748125ms)
+✔ resolveWindow defaults to a 200000-token window (0.774416ms)
+✔ readClaudeFill finds a complete entry at the end of a long transcript (1.062958ms)
+✔ readClaudeFill widens the tail past a final row larger than the default tail (2.64175ms)
+✔ readClaudeFill treats transcript read errors as absent (0.926958ms)
+✔ fillRatio divides plainly and returns zero for a zero window (0.040542ms)
+✔ fillFromPiUsage reads the assistant usage payload captured from Pi (0.035458ms)
+✔ fillFromOpenCodeTokens reads the completed assistant tokens captured from OpenCode (0.024042ms)
+✔ Pi and OpenCode usage helpers treat missing fields as zero (0.026ms)
+✔ readCodexUsage selects the latest token_count and its last input usage (1.033ms)
+✔ readCodexUsage widens the tail past a final row larger than the default tail (2.061625ms)
+✔ readCodexUsage treats missing rollout files as absent (0.710584ms)
+✔ resolveCodexWindow prefers the shared override to the rollout window (0.065333ms)
+✔ resolveWindow reads the repository settings from a subdirectory cwd (2.08725ms)
+✔ resolveWindow stops at the repository boundary and walks nowhere outside a repository (1.697958ms)
+✔ readClaudeSettings takes a later /model switch and drops the old turn effort (2.364708ms)
+✔ readClaudeSettings pairs a later /model with a later /effort, in either order (1.864334ms)
+✔ readClaudeSettings lets a turn after the switch speak for itself (0.921625ms)
+✔ readClaudeSettings ignores a cancelled switch and proves no model from a picker name (2.342583ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 70.602458

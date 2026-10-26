@@ -1,0 +1,26 @@
+regex: /(?:^|[;&|(`!]|\b(?:then|do|else|command|exec))\s*git\s/u
+MISSED  (want caught)  if git rev-parse --show-toplevel >/dev/null; then
+MISSED  (want caught)  elif git diff --quiet; then
+MISSED  (want caught)  while git status --porcelain | read -r x; do
+MISSED  (want caught)  until git fetch; do
+MISSED  (want caught)  GIT_DIR=x git status
+MISSED  (want caught)  if GIT_DIR="a b" GIT_WORK_TREE=y git log -1; then
+CAUGHT  (want caught)  root=$(git rev-parse --show-toplevel)
+ok  (want not flagged)  if git -c core.fsmonitor=false rev-parse --show-toplevel >/dev/null; then
+ok  (want not flagged)  GIT_DIR=x git -c core.fsmonitor=false status
+ok  (want not flagged)  # if git status in a comment
+ok  (want not flagged)  echo "diff git output"
+ok  (want not flagged)  gitignore_check=1
+ok  (want not flagged)  notif git status
+wrong=6
+probe exit=1
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  21:05:17
+   Duration  111ms (transform 16ms, setup 14ms, import 21ms, tests 6ms, environment 0ms)
+
+vitest exit=
+note: the line above lost its exit code (PIPESTATUS inside a tee'd group); the run printed 'Tests 2 passed (2)', the baseline before the matcher change.

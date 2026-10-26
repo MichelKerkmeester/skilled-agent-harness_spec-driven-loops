@@ -136,6 +136,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 31 | 031-relaunch-model-and-effort/ | A relaunched session starts on the sender's model and effort on every runtime that takes them at launch, from the launch flags or the sender's current state | Complete |
 | 32 | 032-opencode2-standalone-replay/ | The wrapper starts OpenCode 2 with `--standalone` on the first launch and every relaunch and drops the `-m` replay it rejects, so the loop hops more than once with no flag to remember | Complete |
 | 33 | 033-research-remediation/ | Nine children fix what the research after phase 32 verified: model and effort replay as one set, a locked consume that honours a withdraw, live settings and the goal packet on manual claims, hop validation, four test gaps, a dated compaction pointer, per-state claim errors and Pi arming on `agent_settled` | Draft |
+| 34 | 034-default-off-opt-in/ | The session-relaunch hooks are off for a fresh clone and run only when `SYSTEM_SESSION_RELAUNCH_ENABLED` is set, the kill switch still wins and every other hook concern stays on by default | Draft |
+| 35 | 035-known-gap-fixes/ | Eight known gaps close: the claim-seed parsers agree, a Pi `--provider` switch drops the launch effort, `prepare` refuses whenever the concern is off, the Codex goal paragraph is corrected, the spec validator's git calls skip fsmonitor, the parent goal binds every child goal, the concern switches per runtime and the README stops featuring it | Complete |
 
 ### Phase Transition Rules
 
@@ -180,6 +182,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 030-opencode2-killer-target | 031-relaunch-model-and-effort | Phase 30 is Complete and committed, because both change `skilled-loop` | `validate.sh 030-opencode2-killer-target --strict` RESULT: PASSED |
 | 030-opencode2-killer-target | 032-opencode2-standalone-replay | Phase 30 is pushed, and its live hop relied on a PATH shim that added `--standalone` | The 030 harness `run-hop.sh` holds the shim |
 | 032-opencode2-standalone-replay | 033-research-remediation | Phase 32 is Complete and the research after it has a merged report reviewed against the code | `validate.sh 032-opencode2-standalone-replay --strict` RESULT: PASSED, and `research/research.md` sections 9 to 15 hold the findings |
+| 033-research-remediation | 034-default-off-opt-in | Phase 33's edits to the relaunch tests are in, because phase 34 opts the same test files in | `validate.sh 033-research-remediation --strict` RESULT: PASSED, and the relaunch suites exit 0 before the opt-in lands |
+| 034-default-off-opt-in | 035-known-gap-fixes | Phase 34's default-off resolver and test opt-ins are in, because phase 35 changes the same `prepare` check and adds the per-runtime flags beside the global one | `validate.sh 034-default-off-opt-in --strict` RESULT: PASSED, and the relaunch suites exit 0 before the 035 tests land |
 <!-- /ANCHOR:phase-map -->
 
 ---

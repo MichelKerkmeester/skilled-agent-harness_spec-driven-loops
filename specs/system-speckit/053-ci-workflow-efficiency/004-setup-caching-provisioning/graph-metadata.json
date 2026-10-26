@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,18 +49,18 @@
       "decision-record.md",
       "implementation-summary.md",
       ".github/scripts/check-gate-inputs.sh",
-      ".github/scripts/tests/check-gate-inputs.test.sh",
-      "scratch/decisions.md",
-      "scratch/phase-result.md",
       ".github/actions/setup/action.yml",
-      ".github/workflows/opencode-plugin-tests.yml",
-      ".github/workflows/opencode-dual-version.yml",
       ".github/workflows/rule-canary-sync.yml",
+      "scratch/phase-result.md",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      ".github/workflows/opencode-plugin-tests.yml",
       ".github/workflows/routing-registry-drift.yml",
+      "scratch/npm-dedupe.md",
+      "scratch/checkout-probe.md",
       ".github/workflows/README.md",
       "scratch/cache-adoption-runs.md",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
-      ".github/workflows/spec-kit-check.yml"
+      ".github/workflows/opencode-dual-version.yml"
     ],
     "entities": [
       {
@@ -112,39 +112,9 @@
         "source": "derived"
       },
       {
-        "name": "check-gate-inputs.test.sh",
-        "kind": "script",
-        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "decisions.md",
-        "kind": "doc",
-        "path": "scratch/decisions.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase-result.md",
-        "kind": "doc",
-        "path": "scratch/phase-result.md",
-        "source": "derived"
-      },
-      {
         "name": "action.yml",
         "kind": "config",
         "path": ".github/actions/setup/action.yml",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-plugin-tests.yml",
-        "kind": "config",
-        "path": ".github/workflows/opencode-plugin-tests.yml",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-dual-version.yml",
-        "kind": "config",
-        "path": ".github/workflows/opencode-dual-version.yml",
         "source": "derived"
       },
       {
@@ -154,9 +124,39 @@
         "source": "derived"
       },
       {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "npm-dedupe.md",
+        "kind": "doc",
+        "path": "scratch/npm-dedupe.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkout-probe.md",
+        "kind": "doc",
+        "path": "scratch/checkout-probe.md",
         "source": "derived"
       },
       {
@@ -178,9 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-check.yml",
+        "name": "opencode-dual-version.yml",
         "kind": "config",
-        "path": ".github/workflows/spec-kit-check.yml",
+        "path": ".github/workflows/opencode-dual-version.yml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-24T21:15:40.886Z",
+    "last_save_at": "2026-10-25T21:47:37.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0be47d6ea918cf36a9610e133200404abf4a91293ed95db91820da2eee749d47",
+    "source_fingerprint": "sha256:9445d3cb43bfbd39960dfd0195e761f0249ae7c9e5ec2d5cf92782ecf2966c42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "321f8e5e1f8748f9d270399a896fbe01342b2249e6fd4df15bb85b4769973f87",
-      "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "7b269b859403fcac55e9929640f9e0c68fba15c4d385d0f41591b468f524efde",
-      "decision-record.md": "69f6b92070587abcfea391bfd99770f3f7fd20e4a9648880074142b9e59848e0",
-      "implementation-summary.md": "d8afdc9a01afd19cc5c96e2bac3935fc2510b5fc02cfdfcfebe106269339c5fc"
+      "spec.md": "cdb352f228ba78fe85b830f4cfb5dbe63fde91cf246b7d32b9e5324b7007a2d1",
+      "plan.md": "d05e0977a5587941fd4151152faaaac2a7d0f9d02ea59fe5a08aaf25f51cedf1",
+      "tasks.md": "e98a94068fb4921a96054743666dbc13bf0102aaedb6767d772403966b4797fa",
+      "decision-record.md": "29767cc440a351acaadaf81cc4887e7c1829b0bd21cd630da3f6c0dcd3e40811",
+      "implementation-summary.md": "584167bc3904f3db88faa84d5f13a2e568de2dadb0ac2931b14e4665ff310b80"
     },
     "last_active_at": null
   }

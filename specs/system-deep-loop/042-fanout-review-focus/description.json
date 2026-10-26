@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/042-fanout-review-focus",
+  "description": "Fan-out review focus input for deep-review",
+  "keywords": [
+    "fan-out",
+    "review",
+    "focus",
+    "input",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-10-25T18:30:25.412Z",
+  "specId": "042",
+  "folderSlug": "fanout-review-focus",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-10-26_19-30__added-an-optional-review-focus-input-to-deep.md"
+  ]
+}

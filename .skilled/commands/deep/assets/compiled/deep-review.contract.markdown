@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "9be19a65e137b9de755f1f00d3a38bf200a924b13be3f13ce030aa9e3dbf29fe",
+      "sha256": "098c452ac3cd58ac016d3f2e9b6dc0e5dd8eeb97fb08b2339477eefa3c86966b",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "ff823dd8684b879cc77c5ee6dfdc22b1712d5e59deba3714e4428f91c6722b93",
+      "sha256": "d3147738b36cf2c0cf7741d3837b35df8805db9234ec89e6d774f7c434e588df",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "00b37f8d4810560a11e4dcaeb5d66c180b4eb301ee0691af62dafd5d1ee3f8b7",
+      "sha256": "5be576c6ac2e7c84d15f1522eaf48f1c4b732f125cf9efcebc5c0039583ee73a",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "256db852d9e94a874c57dc1e928168ad1e16827812db1a5b98b557e81b446326",
+      "sha256": "a2b068ba53588fcb13850faf54be74087ac38296e0e2abccdf2959522c04ea4e",
       "section": "full"
     },
     {
@@ -67,12 +67,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "9858cd455800740b092710088905509e603b47b71a4bd3a7dd82a401689fba32",
+      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "c32a3c47f37afe120fb051ad36e4c1de9bab97bfa749eada054c4eb35505e4e6",
+      "sha256": "45a0a3fb47673020204cdf537f63deb991a35c04ecec3c8bf5a9d4d7723cc862",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "633bce8f751c7910826f23013d80b66d609b572205162f1337a242d9a81a8af6"
+  "compiledBodyDigest": "a58cc89afa684523df670f39374e69f2a1f5eb9722e94567166d92396e02d134"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -159,7 +159,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review-auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -176,6 +176,7 @@ PRE-BOUND SETUP ANSWERS:
   review_target: <spec-folder>
   review_target_type: spec-folder  # one of: spec-folder | skill | agent | track | files
   review_dimensions: all  # or comma-separated subset: correctness, security, traceability, maintainability
+  review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
  lineage_mode: auto  # one of: auto | resume | restart
@@ -208,6 +209,7 @@ Rules:
 | `review_target` | Y | `$ARGUMENTS` first positional target, or marker `review_target` | none | N |
 | `review_target_type` | Y | marker `review_target_type`, or auto-detect from `review_target` | inferred only | Y, when target is present but ambiguous |
 | `review_dimensions` | Y | flag `--dims` if supported by caller, marker `review_dimensions`, or default | `"all"` | N |
+| `review_focus` | N | flag `--review-focus="TEXT"`, marker `review_focus`, or default. Control characters and whitespace runs collapse to one space, an empty result is absent, and more than 1000 characters fails setup | empty (dimensions only) | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
@@ -264,6 +266,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --stop-policy=convergence|max-iterations -> stop_policy = value
+   |-- --review-focus="TEXT" -> review_focus = TEXT (optional, carried into every iteration prompt)
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
@@ -365,6 +368,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - review_target = [from Q0 or $ARGUMENTS]
    - review_target_type = [from Q1_type, auto-detected]
    - review_dimensions = [from Q_dims or default "all"]
+   - review_focus = [from flag, marker, or empty]
    - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
@@ -386,7 +390,7 @@ NEVER split questions into multiple prompts
 
 **Phase Output:**
 
-- `review_target` | `review_target_type` | `review_dimensions`
+- `review_target` | `review_target_type` | `review_dimensions` | `review_focus`
 - `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `stop_policy`
 - `lineage_mode`
 - `config.fanout_lineage_artifact_dir` when present

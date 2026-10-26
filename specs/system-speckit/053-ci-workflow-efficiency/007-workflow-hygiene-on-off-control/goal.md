@@ -11,13 +11,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
-    last_updated_at: "2026-10-23T13:55:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers:
-      - "003, 004, 005 and 006 have not landed"
-      - "No fork is recorded for the switch probe"
+    last_updated_at: "2026-10-25T21:40:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Phase closed: 0 timeout kills in 690 runs, 13 of 13 criteria met"
+    next_safe_action: "None, phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -28,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-007-workflow-hygiene-on-off-control"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -89,14 +87,21 @@ and findings belong here.
 |------|-------|----------|
 | Plan authored | Done | `spec.md` (REQ-001 to REQ-013), `plan.md` (L3 dependency graph, critical path, milestones and ADR index), `tasks.md` (T001 to T102), `acceptance-criteria.md` (AC-001 to AC-013), `decision-record.md` (ADR-001 to ADR-010) |
 | D6 | Done | `D6=10` (operator, 2026-10-23) recorded in `scratch/decisions.md` |
-| Permissions pass | Pending | Twelve workflow files still declare no `permissions:` block |
-| Timeout pass | Pending | No sample is taken and no value is written |
-| Switch pass | Pending | No job carries a `vars.SKILLED_CI` line |
-| Probe | Pending | No fork is recorded |
+| Permissions pass | Done | `4b7d3d8941`: every workflow declares `permissions:` (AC-001) |
+| Dependabot split | Done | `b1315701ca`: a read-only `metadata` job and a write-scoped `auto-merge` job (AC-002, on the operator's ruling of 2026-10-25) |
+| Timeout pass | Done | `8ff7da700d`: all 44 jobs carry a timeout sized from their own samples (AC-003, AC-004) |
+| Switch pass | Done | `9480d99e6d` and `03abdb20d8`: 42 jobs carry the switch and the README documents it (AC-005 to AC-007) |
+| Probe | Done | Runs 40150455358 (`off: skipped`) and 40150476111 (`unset: ran`) on a throwaway probe repository (AC-008) |
+| Timeout-kill read | Done | `timeout kills: 0` over the 690 runs from 2026-10-25T00:43Z to 21:30Z (`scratch/phase-result.md`) |
+| Final gates and closure | Done | T101's gates passed and T102 committed the closure; 13 of 13 acceptance rows `Met` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | The phase has not started, so no work has diverged from the directive |
+| Kill-read window, 2026-10-25 | The read covers 20.8 hours, not 24, because the operator asked not to wait for the full window. None of the repository's own schedules falls in the hours left out: the daily schedule ran inside the window, and both weekly schedules fire after it. Separately, the one scheduled run after 21:30Z, the one-shot plugin-test run 40236652343 the setup caching phase fired at 21:41Z, finished `success` in 251 s against its 10-minute timeout, with no kill message in its log. |
+| Kill-read listing | `gh run list --limit 300` covers only the newest 3.5 to 5 hours at today's rate, so the read lists the window by creation date in three-hour chunks. |
+| AC-011 path check | Other work reached `main` after the phase start, so the whole-range path list holds 5,488 paths. The check reads the phase's own nine commits, which stay inside the three roots except a consumer test and the parent's derived metadata. |
+| ADR-010 | The permissions and Dependabot records landed after their commits, in `b03d3bd1c6`. |
+| Probe repository | GitHub does not let an account fork its own repository, so a throwaway repository with the same workflows stood in for the fork. Its `off` run concluded `skipped`, not `success`, with its job `skipped`. |
 <!-- /ANCHOR:log -->

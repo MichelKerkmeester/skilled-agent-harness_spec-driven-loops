@@ -67,8 +67,6 @@ This is **Phase 3** of the CI efficiency implementation phases specification. It
 - Default-depth checkout on `rule-canary-sync.yml` and `repo-rules-corpus.yml`, depth 2 on `deep-loop-runtime.yml`.
 - `.github/workflows/README.md`'s push/PR table matching the YAML, and `scratch/pre-commit-inventory.md` naming every pre-commit checker and whether CI duplicates it.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

@@ -1,0 +1,47 @@
+✔ enabled by default when no flag is set (0.592458ms)
+✔ master switch disables every concern (0.099875ms)
+✔ canonical per-concern switch disables only that concern (0.057667ms)
+✔ concernFlag derives the canonical env name (0.086ms)
+✔ legacy aliases still disable their concern (0.247ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.054417ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.051083ms)
+✔ .mjs and .ts facades re-export identical behavior (18.051583ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.114625ms)
+✔ environment overrides the config file both ways (0.081542ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.986542ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.44375ms)
+✔ session-relaunch is off by default while every other concern stays on (0.063833ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.045334ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.424958ms)
+✔ a kill switch beats the session-relaunch enable flag (0.037375ms)
+✔ the facades carry the session-relaunch default (0.100542ms)
+✔ the node and shell resolvers give the same session-relaunch answers (253.6715ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.160042ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.539916ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (49.018917ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.124542ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (45.087417ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (112.502333ms)
+✔ a byte order mark before the first line hides nothing from any reader (81.051875ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (474.393666ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (27.486875ms)
+✔ a per-runtime enable flag answers before the global one in every reader (890.913041ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1997.384958
+## adapter green
+✔ context-nudge stays silent with its runtime switched off while the global flag is on (69.50125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.768459
+exit 0

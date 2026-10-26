@@ -152,6 +152,7 @@ describe('prompt-pack', () => {
       state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
       pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
       saturated_directions: '- traceability',
+      review_focus_block: '',
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');

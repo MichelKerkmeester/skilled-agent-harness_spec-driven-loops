@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Review Core Doctrine
@@ -65,7 +65,7 @@ Numeric scores are advisory context, not the gate. A reviewer may add an optiona
 
 Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
 
-- Detected code surface -> `SKILLED`, paired with its `sk-code` evidence packet (`sk-code-skilled`); unsupported or unclear surfaces -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.
+- Detected code surfaces -> every declared surface that matches, specific surfaces first and the `SKILLED` fallback last. Each one pairs with its `sk-code` evidence packet, such as `sk-code-skilled` for `SKILLED`. No match -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.
 - Unclear surfaces -> baseline-only plus explicit uncertainty
 
 Precedence rules:

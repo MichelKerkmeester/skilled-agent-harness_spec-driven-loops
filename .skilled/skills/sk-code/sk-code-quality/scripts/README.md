@@ -1,7 +1,7 @@
 ---
-title: "Scripts: comment-hygiene, dist-staleness and ceiling-report checkers"
-description: "The sk-code-quality skill's standalone checkers, including the ceiling-marker report, and pointers to the hook adapters and shared dispatch table that wire them into editor tool calls."
-version: 1.0.0.0
+title: "Scripts: quality runner, comment-hygiene, dist-staleness and ceiling-report checkers"
+description: "The sk-code-quality skill's quality runner and standalone checkers, including the ceiling-marker report, and pointers to the hook adapters and shared dispatch table that wire them into editor tool calls."
+version: 1.0.2.0
 ---
 
 # Scripts
@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`scripts/` owns the `sk-code-quality` skill's three standalone checkers (comment hygiene, dist staleness and the ceiling-marker report). The per-edit PostToolUse adapters and their shared dispatch table moved to `.skilled/hooks/post-edit-quality/`, and the `hooks/` and `lib/` subfolders here keep only the legacy `claude-posttooluse.sh` and a pointer README.
+`scripts/` owns the `sk-code-quality` skill's quality runner and its three standalone checkers (comment hygiene, dist staleness and the ceiling-marker report). The runner prints one verdict for a change in any repository and calls the checkers it needs. The per-edit PostToolUse adapters and their shared dispatch table moved to `.skilled/hooks/post-edit-quality/`, and the `hooks/` subfolder here keeps only the legacy `claude-posttooluse.sh`.
 
 ---
 
@@ -18,26 +18,31 @@ version: 1.0.0.0
 
 | File / Folder | Purpose |
 |------|---------|
-| `check-comment-hygiene.sh` | Python script (kept as a `.sh` entrypoint) that scans the comment lines of one or more files for ephemeral-artifact references such as packet/phase IDs, ADR/REQ/CHK IDs and spec paths. It exits 1 with the offending lines when any file has one, 0 when at least one file was checked clean, and 2 when every file was skipped |
+| `quality-gate.cjs` | Node entry point for the quality gate. It reads the change (`--worktree`, `--base <ref>` or `--files`), runs the built-in sensors, one comment-hygiene call and a parse floor chosen by shebang before extension, probes the pre-commit, CI and post-edit layers, lists the checklists the declarations name and prints one verdict as `json`, `text` or `envelope`. It writes no file and runs no command a repository names. Its exit codes are 0 `NO_BLOCKER_FOUND`, 1 `BLOCKED`, 2 `NOTHING_CHECKED`, 3 `ERROR` and 4 `UNVERIFIED`, and `../references/runner-contract.md` holds the full contract |
+| `lib/` | `run-check.cjs`, the runner's only process spawner and workspace guard, see `lib/README.md` |
+| `tests/` | `node:test` suite for the runner. `fixtures.cjs` builds throwaway git repositories from quoted strings, and `quality-gate.test.cjs` holds the named fixtures and the unit cases |
+| `check-comment-hygiene.sh` | Python script (kept as a `.sh` entrypoint) that scans the comments of one or more files for ephemeral-artifact references such as packet/phase IDs, ADR/REQ/CHK IDs, spec paths and issue numbers. It reads its languages and comment families from `../assets/comment-syntax.json`, prints each finding with its reason, and prints a `comment-hygiene/v1` document with `--json`. It exits 1 when any file has a finding, 0 when at least one file was checked clean, 2 when every file was skipped and 3 on a usage error, an unreadable table or an unreadable file |
 | `check-comment-hygiene.test.sh` | Bash test harness that runs the comment-hygiene checker against seeded fixture files covering both violation and allowed-pattern cases |
 | `check-dist-staleness.sh` | Python script (kept as a `.sh` entrypoint) that checks whether a watched TypeScript package's compiled dist is stale, scoped to one edited file by default or every watched package with `--all` |
 | `ceiling-report.sh` | Python report behind a `.sh` entrypoint that lists the `ceiling:` and `intentional-limit:` comment markers, tags the ones with no trigger or no measurable trigger, and exits 0 when it runs |
 | `ceiling-report.test.sh` | Bash test harness with fixture cases for the ceiling report |
 | `hooks/` | Legacy `claude-posttooluse.sh` and its test, registered in no runtime. The live adapters are in `.skilled/hooks/post-edit-quality/`, see `hooks/README.md` |
-| `lib/` | Pointer only. The shared dispatch table moved to `.skilled/hooks/post-edit-quality/lib/`, see `lib/README.md` |
 
 ---
 
 ## 3. VALIDATION
 
-Run from the repository root:
+Run the four bash suites and the `node --test` suite from the repository root. The `sk-code-script-tests.yml` workflow runs all five.
 
 ```bash
 bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh
 bash .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh
+bash .skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh
+bash .skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh
+node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs
 ```
 
-Expected: `All comment hygiene test cases passed` and `All ceiling report test cases passed`.
+Expected: `All comment hygiene test cases passed`, `All ceiling report test cases passed`, `All typo-flag test cases passed` and `Post-edit adapter parse regression fixture passed`, each with exit 0, and a `node --test` summary with `fail 0`.
 
 ---
 
@@ -45,3 +50,4 @@ Expected: `All comment hygiene test cases passed` and `All ceiling report test c
 
 - [`sk-code-quality SKILL.md`](../SKILL.md)
 - [`sk-code-quality README.md`](../README.md)
+- [`Runner contract`](../references/runner-contract.md)

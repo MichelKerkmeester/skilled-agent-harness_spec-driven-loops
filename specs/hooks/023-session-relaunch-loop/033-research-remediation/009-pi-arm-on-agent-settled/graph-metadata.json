@@ -34,7 +34,7 @@
       "extension"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,8 +45,17 @@
       ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
       ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
       ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red-before.txt",
+      "scratch/agent-end-inventory.txt",
+      "scratch/tsc-negative-control.txt",
+      "scratch/final-vitest.txt",
+      "scratch/final-tsc.txt",
+      "scratch/final-node.txt",
+      "scratch/after-node.txt",
       ".pi/extensions/session-relaunch.ts",
-      ".pi/types/pi-coding-agent.d.ts"
+      ".pi/types/pi-coding-agent.d.ts",
+      "scratch/baseline-vitest.txt",
+      "scratch/baseline-node.txt"
     ],
     "entities": [
       {
@@ -104,9 +113,63 @@
         "source": "derived"
       },
       {
+        "name": "red-before.txt",
+        "kind": "file",
+        "path": "scratch/red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-end-inventory.txt",
+        "kind": "file",
+        "path": "scratch/agent-end-inventory.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tsc-negative-control.txt",
+        "kind": "file",
+        "path": "scratch/tsc-negative-control.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-vitest.txt",
+        "kind": "file",
+        "path": "scratch/final-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-tsc.txt",
+        "kind": "file",
+        "path": "scratch/final-tsc.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-node.txt",
+        "kind": "file",
+        "path": "scratch/final-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-node.txt",
+        "kind": "file",
+        "path": "scratch/after-node.txt",
+        "source": "derived"
+      },
+      {
         "name": "pi-coding-agent.d.ts",
         "kind": "code",
         "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-vitest.txt",
+        "kind": "file",
+        "path": "scratch/baseline-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-node.txt",
+        "kind": "file",
+        "path": "scratch/baseline-node.txt",
         "source": "derived"
       },
       {
@@ -138,65 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Event",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Pi extension arms the prepared record on `agentend` (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:526`) and withdraws an arm on `agentstart` (`:561`)",
     "created_at": "2026-10-25T13:42:36Z",
-    "last_save_at": "2026-10-25T14:11:49.703Z",
+    "last_save_at": "2026-10-25T15:59:02.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddce355a3355fb6b43e221db4bd6e4a7b4d2f06d5378e937b4d1bd26daf8e18b",
+    "source_fingerprint": "sha256:55c0e70aa22cef1768d050630c9481e93f7b43b26a0668d4da47a433fdd34175",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ba1d8ab7f0d543a2c54ce76c2ca10e29a14f6365632943b4bd447eacbbd0c83",
+      "spec.md": "1eb70976b519c73348487557e8eb56f316e17a742927fc4a4ade444bd8d2e027",
       "plan.md": "a6b3662f1022776f27df486bd1f5bd6fab49c63b82a456fe85ad8207caf28d20",
-      "tasks.md": "4767b11319943dbf6146c5510e755c7599149e3505e844eff4ed4308468fd78d",
-      "implementation-summary.md": "c4a25885e87559a60d2013169b5d848a1c819c10da4bfe4293118bd58d7c21f0"
+      "tasks.md": "ce1163f9be26d550edb925a8645b6baefa4ab04330aa6ecc8dc61696254c9711",
+      "implementation-summary.md": "9160f61f1f9345a3a42a44c9e4f9cfd0a7c69c16c58ed32e1320c5d88a34546e"
     },
     "last_active_at": null
   }

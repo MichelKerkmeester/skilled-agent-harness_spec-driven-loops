@@ -255,7 +255,7 @@ json_validate() {
         fi
     else
         # Fallback to Python
-        if python3 -c "import json; json.load(open('$file'))" 2>/dev/null; then
+        if python3 -c 'import json, sys; json.load(open(sys.argv[1]))' "$file" 2>/dev/null; then
             return 0
         fi
     fi
@@ -282,13 +282,14 @@ json_set_value() {
     fi
     
     # Fallback to Python
-    python3 << EOF
+    # Values travel as argv, never as source text, so quotes in them stay data.
+    python3 - "$file" "$path" "$value" << 'PYEOF'
 import json
 import sys
 
-file_path = "$file"
-json_path = "$path".lstrip('.')
-value = json.loads('''$value''')
+file_path = sys.argv[1]
+json_path = sys.argv[2].lstrip('.')
+value = json.loads(sys.argv[3])
 
 with open(file_path, 'r') as f:
     data = json.load(f)
@@ -304,7 +305,7 @@ current[keys[-1]] = value
 
 with open(file_path, 'w') as f:
     json.dump(data, f, indent=2)
-EOF
+PYEOF
 }
 
 # Create directory if it doesn't exist
@@ -332,12 +333,12 @@ json_has_key() {
     fi
     
     # Fallback to Python
-    python3 << EOF
+    python3 - "$file" "$path" << 'PYEOF'
 import json
 import sys
 
-file_path = "$file"
-json_path = "$path".lstrip('.')
+file_path = sys.argv[1]
+json_path = sys.argv[2].lstrip('.')
 
 try:
     with open(file_path, 'r') as f:
@@ -350,7 +351,7 @@ try:
     sys.exit(0)
 except (KeyError, TypeError):
     sys.exit(1)
-EOF
+PYEOF
 }
 
 # Add MCP server entry to opencode.json
@@ -359,8 +360,9 @@ EOF
 json_add_mcp_entry() {
     local name="$1"
     local command="$2"
-    local args_json="${3:-'[]'}"
-    local env_json="${4:-'{}'}"
+    local empty_args='[]' empty_env='{}'
+    local args_json="${3:-$empty_args}"
+    local env_json="${4:-$empty_env}"
     
     local project_root
     project_root="$(find_project_root 2>/dev/null)" || project_root="."
@@ -405,19 +407,20 @@ json_add_mcp_entry() {
     fi
     
     # Fallback to Python
-    python3 << EOF
+    python3 - "$name" "$command" "$args_json" "$env_json" "$opencode_json" << 'PYEOF'
 import json
 import sys
 
-name = "$name"
-command = "$command"
-args = json.loads('$args_json')
-env = json.loads('$env_json')
+name = sys.argv[1]
+command = sys.argv[2]
+args = json.loads(sys.argv[3])
+env = json.loads(sys.argv[4])
+config_path = sys.argv[5]
 
 try:
-    with open("$opencode_json", "r") as f:
+    with open(config_path, "r") as f:
         data = json.load(f)
-except:
+except (OSError, ValueError):
     data = {}
 
 if "mcp" not in data:
@@ -430,9 +433,9 @@ data["mcp"][name] = {
     "enabled": True
 }
 
-with open("$opencode_json", "w") as f:
+with open(config_path, "w") as f:
     json.dump(data, f, indent=2)
-EOF
+PYEOF
     
     if json_validate "$opencode_json"; then
         log_success "Added MCP entry '$name' to opencode.json"
@@ -450,8 +453,9 @@ json_add_utcp_entry() {
     local name="$1"
     local transport_type="${2:-stdio}"
     local command="$3"
-    local args_json="${4:-'[]'}"
-    local env_json="${5:-'{}'}"
+    local empty_args='[]' empty_env='{}'
+    local args_json="${4:-$empty_args}"
+    local env_json="${5:-$empty_env}"
     
     local project_root
     project_root="$(find_project_root 2>/dev/null)" || project_root="."
@@ -521,19 +525,21 @@ UTCPEOF
     fi
     
     # Fallback to Python
-    python3 << EOF
+    python3 - "$name" "$transport_type" "$command" "$args_json" "$env_json" "$utcp_config" << 'PYEOF'
 import json
+import sys
 
-name = "$name"
-transport = "$transport_type"
-command = "$command"
-args = json.loads('$args_json')
-env = json.loads('$env_json')
+name = sys.argv[1]
+transport = sys.argv[2]
+command = sys.argv[3]
+args = json.loads(sys.argv[4])
+env = json.loads(sys.argv[5])
+config_path = sys.argv[6]
 
 try:
-    with open("$utcp_config", "r") as f:
+    with open(config_path, "r") as f:
         data = json.load(f)
-except:
+except (OSError, ValueError):
     data = {
         "load_variables_from": [{"variable_loader_type": "dotenv", "env_file_path": ".env"}],
         "tool_repository": {"tool_repository_type": "in_memory"},
@@ -561,9 +567,9 @@ new_entry = {
 
 data["manual_call_templates"].append(new_entry)
 
-with open("$utcp_config", "w") as f:
+with open(config_path, "w") as f:
     json.dump(data, f, indent=2)
-EOF
+PYEOF
     
     if json_validate "$utcp_config"; then
         log_success "Added UTCP entry '$name' to .utcp_config.json"
@@ -581,7 +587,8 @@ EOF
 # Backup a file before modification
 backup_file() {
     local file="$1"
-    local backup="${file}.bak.$(date +%Y%m%d_%H%M%S)"
+    local backup
+    backup="${file}.bak.$(date +%Y%m%d_%H%M%S)"
     
     if [[ -f "$file" ]]; then
         cp "$file" "$backup"
@@ -654,18 +661,18 @@ add_mcp_entry() {
     fi
     
     # Fallback to Python
-    python3 << EOF
+    python3 - "$file" "$name" "$config_json" << 'PYEOF'
 import json
 import sys
 
-file_path = "$file"
-name = "$name"
-config = json.loads('''$config_json''')
+file_path = sys.argv[1]
+name = sys.argv[2]
+config = json.loads(sys.argv[3])
 
 try:
     with open(file_path, 'r') as f:
         data = json.load(f)
-except:
+except (OSError, ValueError):
     data = {}
 
 if 'mcp' not in data:
@@ -675,7 +682,7 @@ data['mcp'][name] = config
 
 with open(file_path, 'w') as f:
     json.dump(data, f, indent=2)
-EOF
+PYEOF
     
     return $?
 }

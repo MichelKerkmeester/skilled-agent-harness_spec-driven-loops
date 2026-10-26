@@ -3039,7 +3039,7 @@ Done 2026-10-24: `57 passed, 0 failed`, `files=45 ... failures=0`, `RESULT: PASS
 
 ---
 
-### T072 Measure the phase delta (AC-014)
+### T072 [x] Measure the phase delta (AC-014)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Final gates` section T071 wrote.
 
@@ -3058,9 +3058,11 @@ Rollback: delete the `## Phase delta` section and `scratch/runs-after.json`.
 
 Stop and escalate if: fewer than 24 h have passed, or a touched workflow has no after row.
 
+Done 2026-10-25: T070G reached main in the push created at 2026-10-24T19:41:04Z (run 40126415686), and the collection ran at 2026-10-25T19:53Z, 24 h 12 min later. `scratch/runs-after.json` holds 1000 runs, 635 inside the 24 h window, and the sampled jobs are in `scratch/runs-after-jobs/`. The grep printed `14`. The fourteen rows sum to 3079 before and 1212 after (-1867 raw), and every touched workflow had runs in the window. See `## Phase delta` in `scratch/phase-result.md`.
+
 ---
 
-### T073 Close the criteria (AC-013, AC-014, AC-015)
+### T073 [x] Close the criteria (AC-013, AC-014, AC-015)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md:101`, anchor: the `## 3. CLOSURE STATEMENT` heading.
 
@@ -3079,9 +3081,11 @@ Rollback: restore the previous Status cells and closure statement.
 
 Stop and escalate if: a row cannot name observed evidence, or the validator prints `RESULT: FAILED` for any reason other than the two `GENERATED_METADATA_*` checks.
 
+Done 2026-10-25: AC-014 now names the T072 evidence and is `Met`, so all 17 rows are `Met` and the closure statement reads `Closeable: Yes`. `grep -c '| Unmet |'` printed `0`. The first strict run failed only on `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT`, `repair-derived.cjs --apply` re-derived the graph metadata (`repaired=1 failed=0`), and the rerun printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` with exit `0`.
+
 ---
 
-### T074 Commit the closure (AC-013, AC-014, AC-015, AC-017)
+### T074 [x] Commit the closure (AC-013, AC-014, AC-015, AC-017)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -3109,6 +3113,10 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-closure.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, or the commit stages a path outside the packet folder.
 
+Evidence 2026-10-25: CHK-022 and CHK-FIX-006 closed on the scheduled cold run 40236652343, `validate-message.mjs` exited `0`, and this commit is the closure.
+
+Evidence recorded 2026-10-25 for the intermediate commit: the fixture suite printed `check-gate-inputs: 57 passed, 0 failed` (exit `0`), the gate printed `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` and `RESULT: PASSED` (exit `0`), and the YAML parse over 33 files exited `0`.
+
 ---
 
 <!-- /ANCHOR:phase-3 -->
@@ -3118,9 +3126,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`. Evidence: `grep -cE '^### T[0-9]+[A-Z]? \[ \]' tasks.md` prints `0`; all 82 task headings are `[x]` (run 2026-10-25)
+- [x] No `[B]` blocked tasks remaining. Evidence: `grep -n '\[B\]' tasks.md` matches only the legend row and T067's conditional instruction, no task heading; T067 found phase 003's R8 landed, so T068 to T070 ran (`scratch/checkout-probe.md`)
+- [x] Manual verification passed. Evidence: the cold, warm and `.hermes`-only probes are recorded in `scratch/cache-adoption-runs.md` (`### Cold path (T028)`, `## Cold dispatch`, `## Warm dispatch`) and `scratch/phase-result.md` (`## R14 cold run`, `## R14 warm run`, `## R15 merge`, run 40125544828 `success`); all 17 acceptance rows are `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -3169,9 +3177,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming its R-id or a gate
-- [ ] CHK-002 [P0] Technical approach defined in plan.md - the action shape, the key rules, the five adoption sites, the merge shape and the cold-path trigger
-- [ ] CHK-003 [P1] Dependencies identified and available - the 002 baseline (T002), D5 (T001), phase 003's R8 (T067), and `gh` with `repo` and `actions`
+- [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming its R-id or a gate. Evidence: `grep -oE 'REQ-0[0-9]{2}' spec.md | sort -u` prints REQ-001 to REQ-013 (run 2026-10-25), and the R-id map is the cross-reference table above
+- [x] CHK-002 [P0] Technical approach defined in plan.md - the action shape, the key rules, the five adoption sites, the merge shape and the cold-path trigger. Evidence: `plan.md` `### Key Components` (the action shape, line 62), `### Data Flow` (line 67), `### Implementation Notes` (the key and save rules, lines 114-115), `## FIX ADDENDUM: AFFECTED SURFACES` (the adoption sites and the merge, lines 73-100) and ADR-001 (line 322)
+- [x] CHK-003 [P1] Dependencies identified and available - the 002 baseline (T002), D5 (T001), phase 003's R8 (T067), and `gh` with `repo` and `actions`. Evidence: T001 `D5=approve` in `scratch/decisions.md`; T002 recorded `BASELINE_MISSING` and took the 001-dataset fallback named in `plan.md:153`; T067 printed `0` for `fetch-depth`, so R8 had landed; `gh` listed runs and dispatched workflows throughout (run ids in `scratch/cache-adoption-runs.md`) and `gh run list` answered again on 2026-10-25
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -3179,10 +3187,10 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks - the gates this change touches are `bash .github/scripts/check-gate-inputs.sh`, its fixture suite and the YAML parse (T071); all three must pass
-- [ ] CHK-011 [P0] No console errors or warnings - the gate prints `failures=0`, the parse prints nothing, and every adopted workflow is green (T029, T041, T071)
-- [ ] CHK-012 [P1] Error handling implemented - the action's provision step is the only authority, a failed provision fails the job, and the save step cannot run after it (T014)
-- [ ] CHK-013 [P1] Code follows project patterns - every `uses:` is SHA-pinned in the tree's existing form, every new comment explains why, and no comment carries a packet id (T014, T021, T030)
+- [x] CHK-010 [P0] Code passes lint/format checks - the gates this change touches are `bash .github/scripts/check-gate-inputs.sh`, its fixture suite and the YAML parse (T071); all three must pass. Evidence (rerun 2026-10-25 on this checkout): the fixture suite printed `check-gate-inputs: 57 passed, 0 failed` with exit `0`; the gate printed `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` and `RESULT: PASSED` with exit `0`; the YAML parse over the 32 workflows and the action exited `0` (AC-013)
+- [x] CHK-011 [P0] No console errors or warnings - the gate prints `failures=0`, the parse prints nothing, and every adopted workflow is green (T029, T041, T071). Evidence: the 2026-10-25 rerun printed `failures=0` and the parse raised no error; the adopted workflows ran green in the warm, cold and merge probes (`scratch/phase-result.md` `## R14 warm run`, `### Round 2 after dropping ~/.npm`, `## R15 merge` run 40125544828). The concurrent-miss runs log a non-fatal `Unable to reserve cache` warning from the save step, a known race that keeps the job green (`scratch/cache-adoption-runs.md:110`)
+- [x] CHK-012 [P1] Error handling implemented - the action's provision step is the only authority, a failed provision fails the job, and the save step cannot run after it (T014). Evidence: `.github/actions/setup/action.yml` runs `provision_worktree` under `set -euo pipefail` on every path, and the save step at line 63 carries `if: inputs.cache == 'true' && steps.restore.outputs.cache-hit != 'true'`, a condition with no `always()`, so a failed provision step skips it; there are no `restore-keys` (AC-004)
+- [x] CHK-013 [P1] Code follows project patterns - every `uses:` is SHA-pinned in the tree's existing form, every new comment explains why, and no comment carries a packet id (T014, T021, T030). Evidence: the three external `uses:` in the action (lines 28, 53, 64) are 40-character SHAs with a `# vX.Y.Z` tag; `git diff cd58109fc5~1 ea39cd7b2c -- .github` has no added `uses:` line that is neither SHA-pinned nor local (grep exit `1`, run 2026-10-25); the merged workflow's comments state why (`opencode-plugin-tests.yml:3-17,88-104`); the ephemeral-id search is clean (AC-017)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -3190,10 +3198,10 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-017
-- [ ] CHK-021 [P0] Manual testing complete - the warm, cold and trigger probes (T028, T029, T041) are recorded in `scratch/`
-- [ ] CHK-022 [P1] Edge cases tested - a dispatch with `cold: true`, the scheduled cold run, and the first run after a lockfile change
-- [ ] CHK-023 [P1] Error scenarios validated - a fixture action with an unresolved path fails the gate (T007), and a provision failure leaves no cache entry saved (T014's step condition)
+- [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-017. Verified 2026-10-25: all 17 rows are `Met` and `grep -c '| Unmet |'` prints `0` (T073)
+- [x] CHK-021 [P0] Manual testing complete - the warm, cold and trigger probes (T028, T029, T041) are recorded in `scratch/`. Evidence: T028 under `### Cold path (T028)` and `## Cold dispatch` in `scratch/cache-adoption-runs.md` (runs 40107101405, 40107567830, 40109540094, 40109542114); T029 under `## R14 warm run` in `scratch/phase-result.md`; T041 under `## R15 merge` (probe `666844f806`, run 40125544828 `success`)
+- [x] CHK-022 [P1] Edge cases tested - a dispatch with `cold: true`, the scheduled cold run, and the first run after a lockfile change. Evidence 2026-10-25: the `cold: true` dispatches are green (AC-006), and the first run after a key change is observed as the miss round at `113d8b56d1` after `a4d92ea8e0` changed a hashed file (`scratch/cache-adoption-runs.md:117,131`), which stands in for a lockfile edit by inference. The scheduled cold run is run 40236652343, event `schedule`, `success` on `bbb6c2b53e`: its log runs no `actions/cache/restore` step and holds no `Cache restored from key` line, prints 11 `provisioning` lines and `provisioned: 11 installed, 5 built, 3 already present, 0 failed`, and the suites print `# pass 1182` and `# fail 0` for the hook suites and `# pass 553` and `# fail 0` for the plugin suites (`scratch/cache-adoption-runs.md`, `## Scheduled cold run`). The schedule event came from a one-shot entry added in `174ebbdc0e` and removed in `0ab8f9f74e` after GitHub created the run, because the operator asked on 2026-10-25 not to wait for the weekly cron's first firing on 2026-10-26T04:17Z
+- [x] CHK-023 [P1] Error scenarios validated - a fixture action with an unresolved path fails the gate (T007), and a provision failure leaves no cache entry saved (T014's step condition). Evidence: the fixture suite's `an unresolved path in a composite action fails workflow-inputs` case passes within `57 passed, 0 failed` (AC-002, rerun 2026-10-25); the save step's condition is `.github/actions/setup/action.yml:63`, and a provision failure is covered by that condition by design, not by a run that failed on purpose
 <!-- /ANCHOR:testing -->
 
 ---
@@ -3201,13 +3209,13 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the missing cache and the unguarded action surface, `instance-only` for the five bun bootstraps and the checkout trial, `matrix/evidence` for the install inventory and the cache probe
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed - `grep -rn 'bun@1.3.9'`, the lockfile find and the per-file install counts in plan.md, Affected Surfaces
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed - the four `provision_worktree` call sites, the eleven multi-install files and the four pip steps, each with its verification in plan.md
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the cache matrix in plan.md covers a lockfile edited without its manifest, a provision-list addition, a Node major bump, a missing package in a hit, a stale stamp and a failed provision
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (4) x cache state (2) x workflow class (4) with 6 required rows, in plan.md
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the `cold: true` dispatch and the scheduled cold run are the hostile variants (T028, T037)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every probe records the head SHA and the run id in `scratch/`
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the missing cache and the unguarded action surface, `instance-only` for the five bun bootstraps and the checkout trial, `matrix/evidence` for the install inventory and the cache probe. Evidence: the classes are assigned in this row, and every finding R12 to R18 maps to its tasks and criteria in the cross-reference table above
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed - `grep -rn 'bun@1.3.9'`, the lockfile find and the per-file install counts in plan.md, Affected Surfaces. Evidence: `plan.md:94` (five `bun@1.3.9` sites, 13 lockfiles, the `node-version:` counts) and `plan.md:95` (the per-file install counts). On 2026-10-25 `grep -rn 'bun@1.3.9' .github` finds only `spec-kit-check.yml:112`, the site restored by AC-009's amendment
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - the four `provision_worktree` call sites, the eleven multi-install files and the four pip steps, each with its verification in plan.md. Evidence: `plan.md:73-100`, one table row per surface with its verification cell, and `plan.md:95` for the call sites and install counts; the outcome per file is `scratch/npm-dedupe.md` (10 rows) and AC-011 for the pip steps
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the cache matrix in plan.md covers a lockfile edited without its manifest, a provision-list addition, a Node major bump, a missing package in a hit, a stale stamp and a failed provision. Evidence: the six adversarial cases are listed at `plan.md:97`; the key hashes every lockfile, the provision list and the provisioner and derives the Node major (`.github/actions/setup/action.yml:23-24,51`); a hit with changed sources rebuilds (`N built`, `scratch/cache-adoption-runs.md:109`); the gate's path rules carry fixture tests (AC-002, `57 passed`)
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (4) x cache state (2) x workflow class (4) with 6 required rows, in plan.md. Evidence: `plan.md:96`
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the `cold: true` dispatch and the scheduled cold run are the hostile variants (T028, T037). Evidence 2026-10-25: the `cold: true` dispatches ran green (runs 40107101405, 40107567830, 40109540094, 40109542114), and the scheduled cold run is run 40236652343, event `schedule`, `success` on `bbb6c2b53e`, which took the `schedule` branch of the `cache:` expression (`opencode-plugin-tests.yml:94`) and provisioned from scratch. The schedule event came from a one-shot entry added in `174ebbdc0e` and removed in `0ab8f9f74e` after GitHub created the run, because the operator asked on 2026-10-25 not to wait for the weekly cron's first firing on 2026-10-26T04:17Z
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every probe records the head SHA and the run id in `scratch/`. Evidence: `scratch/cache-adoption-runs.md` names the head of each round (`0029a3ead5`, `113d8b56d1`, `75ef2608d0`) with its run ids; `scratch/phase-result.md:56` pins the miss round to `113d8b56d1` and runs 40108770493, 40108770392, 40108770355; the merge probe is `666844f806` with run 40125544828
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -3215,9 +3223,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets - the action caches dependency trees and build output only; no token, key or `.env` file enters a cache path
-- [ ] CHK-031 [P0] Input validation implemented - the action's inputs are a boolean string, a Node major and a bun version, each used only in a key or a pinned setup
-- [ ] CHK-032 [P1] Auth/authz working correctly - no `permissions:` block is added, removed or reordered, and every `uses:` is pinned to a full commit SHA
+- [x] CHK-030 [P0] No hardcoded secrets - the action caches dependency trees and build output only; no token, key or `.env` file enters a cache path. Evidence: the 20 cached paths in `.github/actions/setup/action.yml` are `node_modules` trees, `dist` outputs, one bundle, one version marker and `.git/provision-stamps`; `git diff cd58109fc5~1 ea39cd7b2c -- .github` has no added line matching `secrets.`, `token`, `.env` or `api key` (grep exit `1`, run 2026-10-25)
+- [x] CHK-031 [P0] Input validation implemented - the action's inputs are a boolean string, a Node major and a bun version, each used only in a key or a pinned setup. Evidence: the action now has two inputs, `cache` (default `'true'`, compared with `== 'true'` only) and `bun-version` (used in the key and the SHA-pinned `setup-bun`); the Node major became a derived step output after the review amendment (AC-004, `grep -c 'node-major'` returns `0`)
+- [x] CHK-032 [P1] Auth/authz working correctly - no `permissions:` block is added, removed or reordered, and every `uses:` is pinned to a full commit SHA. Evidence: the only `permissions:` line in `git diff cd58109fc5~1 ea39cd7b2c -- .github` is the removal inside the deleted `hooks-node-tests.yml`, whose `contents: read` block matches the one `opencode-plugin-tests.yml:67-68` keeps; the unpinned-`uses:` grep over the same range exited `1` (run 2026-10-25)
 <!-- /ANCHOR:security -->
 
 ---
@@ -3225,9 +3233,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-013, tasks.md 82 tasks: T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G, acceptance-criteria.md AC-001 to AC-017
-- [ ] CHK-041 [P1] Code comments adequate - the action's description says the cache only shortens the work, and the merged workflow keeps both original rationale comments
-- [ ] CHK-042 [P2] README updated - `.github/workflows/README.md:37,42,69` (T039, T040)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-013, tasks.md 82 tasks: T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G, acceptance-criteria.md AC-001 to AC-017. Evidence (2026-10-25): `grep -c '^### T[0-9]' tasks.md` prints `82`; spec.md carries REQ-001 to REQ-013; acceptance-criteria.md has rows AC-001 to AC-017, all `Met`
+- [x] CHK-041 [P1] Code comments adequate - the action's description says the cache only shortens the work, and the merged workflow keeps both original rationale comments. Evidence: `.github/actions/setup/action.yml:3-9` ends with "a cache hit shortens the install and build work and is not a check of installed versions"; `opencode-plugin-tests.yml:3-10` is the plugin rationale and `:12-17` the hook rationale
+- [x] CHK-042 [P2] README updated - `.github/workflows/README.md:37,42,69` (T039, T040). Evidence: the planned line numbers moved after the merge; on 2026-10-25 the merged row is `README.md:41`, `grep -c 'hooks-node-tests' .github/workflows/README.md` prints `0`, and the path-filtered row is `README.md:68` (AC-016)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -3235,8 +3243,8 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only - the baseline, the cache probe, the npm-dedupe record, the checkout probe and the result all live in `scratch/`
-- [ ] CHK-051 [P1] scratch/ cleaned before completion - the five documents are kept on purpose: they are the before and after numbers a later phase measures against, and `cache-probe/summary.md` is the go/no-go record for the action
+- [x] CHK-050 [P1] Temp files in scratch/ only - the baseline, the cache probe, the npm-dedupe record, the checkout probe and the result all live in `scratch/`. Verified 2026-10-25: `phase-baseline.md`, `cache-probe/`, `npm-dedupe.md`, `checkout-probe.md`, `phase-result.md`, and the T072 outputs `runs-after.json` and `runs-after-jobs/` are all under `scratch/` (T072)
+- [x] CHK-051 [P1] scratch/ cleaned before completion - the five documents are kept on purpose: they are the before and after numbers a later phase measures against, and `cache-probe/summary.md` is the go/no-go record for the action. Evidence (2026-10-25 listing): `scratch/` holds the planned records plus `cache-adoption-runs.md` (cited by AC-006), `decisions.md` (AC-015), `gate-fix.md` (the record of the `a393488d82` gate fix), `probe-branch-approval.md` (the operator's probe-branch approval cited by T012), `cache-probe/caches-raw.json` and `observations.md` (AC-003), and the T072 data `runs-after.json` and `runs-after-jobs/` (70 job files, AC-014). Every file is a kept record; no temporary output remains
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -3246,11 +3254,13 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+No open items. CHK-022 and CHK-FIX-006 closed on the scheduled cold run 40236652343.
+
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---

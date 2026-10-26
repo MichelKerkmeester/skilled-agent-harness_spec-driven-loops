@@ -1,0 +1,19 @@
+== gate claude0 (2026-10-25T20:47:36Z) HEAD 2a57a5e5ac
+SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0
+node exit=0
+ℹ tests 934
+ℹ pass 934
+ℹ fail 0
+hookflags exit=0
+ℹ tests 28
+ℹ pass 28
+ℹ fail 0
+pi-vitest exit=0
+      Tests  59 passed (59)
+validator-vitest exit=0
+      Tests  13 passed | 1 skipped (14)
+envdrift exit=0
+      Tests  5 passed (5)
+bash-n skilled-loop exit=0
+bash-n hook-flags.sh exit=0
+shellcheck exit=0

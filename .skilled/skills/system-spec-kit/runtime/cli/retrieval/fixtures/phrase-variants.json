@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c60069b54de597cfbc3befd8f57240dcd5597262084bbd6e8b0c23aa23f2605e",
+  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10321,6 +10321,9 @@
     "ai 006": [
       "ai-006"
     ],
+    "ai 007": [
+      "ai-007"
+    ],
     "ai assistant project context": [
       "ai assistant project context"
     ],
@@ -14325,9 +14328,6 @@
     "build doc dispatch shape": [
       "build doc dispatch shape"
     ],
-    "build failure recovery steps": [
-      "build failure recovery steps"
-    ],
     "build obsidian theme": [
       "build obsidian theme"
     ],
@@ -14390,6 +14390,27 @@
     ],
     "buildskilladvisorbrief": [
       "buildSkillAdvisorBrief"
+    ],
+    "builtin runner": [
+      "builtin runner"
+    ],
+    "builtin runner acceptance criteria": [
+      "builtin runner acceptance criteria"
+    ],
+    "builtin runner decision record": [
+      "builtin runner decision record"
+    ],
+    "builtin runner goal": [
+      "builtin runner goal"
+    ],
+    "builtin runner implementation summary": [
+      "builtin runner implementation summary"
+    ],
+    "builtin runner plan": [
+      "builtin runner plan"
+    ],
+    "builtin runner tasks": [
+      "builtin runner tasks"
     ],
     "bulk create tasks": [
       "bulk create tasks"
@@ -15488,6 +15509,9 @@
     ],
     "catalog validator in ci": [
       "catalog validator in ci"
+    ],
+    "catch rate and false positives": [
+      "catch rate and false positives"
     ],
     "category quantity comparison": [
       "category quantity comparison"
@@ -17661,6 +17685,21 @@
     "ci efficiency final synthesis review": [
       "ci efficiency final synthesis review"
     ],
+    "ci efficiency release docs": [
+      "ci efficiency release docs"
+    ],
+    "ci efficiency release docs acceptance criteria": [
+      "ci efficiency release docs acceptance criteria"
+    ],
+    "ci efficiency release docs implementation summary": [
+      "ci efficiency release docs implementation summary"
+    ],
+    "ci efficiency release docs plan": [
+      "ci efficiency release docs plan"
+    ],
+    "ci efficiency release docs tasks": [
+      "ci efficiency release docs tasks"
+    ],
     "ci efficiency synthesis deepseek review": [
       "ci efficiency synthesis deepseek review"
     ],
@@ -17802,6 +17841,9 @@
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
     ],
+    "ci workflow efficiency changelogs": [
+      "ci workflow efficiency changelogs"
+    ],
     "ci workflow efficiency phase parent spec": [
       "ci workflow efficiency phase parent spec"
     ],
@@ -17834,6 +17876,9 @@
     ],
     "ci workflow surface detection": [
       "ci workflow surface detection"
+    ],
+    "ci workflow switches": [
+      "ci workflow switches"
     ],
     "ci workflow tasks": [
       "ci workflow tasks"
@@ -17997,11 +18042,17 @@
     "citation past end of file lineage": [
       "citation past end of file lineage"
     ],
+    "citation redirects for removed surfaces": [
+      "citation redirects for removed surfaces"
+    ],
     "citation resolver reuse": [
       "citation resolver reuse"
     ],
     "citation retrofit coverage floor": [
       "citation retrofit coverage floor"
+    ],
+    "citation scan fsmonitor hang": [
+      "citation scan fsmonitor hang"
     ],
     "citation spot check research": [
       "citation spot check research"
@@ -23545,6 +23596,12 @@
     "code quality review checklist": [
       "code quality review checklist"
     ],
+    "code quality run v1": [
+      "code-quality-run/v1"
+    ],
+    "code quality run verdict": [
+      "code-quality-run verdict"
+    ],
     "code quality score": [
       "code quality score"
     ],
@@ -23815,6 +23872,9 @@
     ],
     "code standards research outcome": [
       "code standards research outcome"
+    ],
+    "code style guide moved": [
+      "code style guide moved"
     ],
     "code tuned reranker investigation": [
       "code-tuned reranker investigation"
@@ -24822,11 +24882,17 @@
     "comment hygiene checker coverage done": [
       "comment hygiene checker coverage done"
     ],
+    "comment hygiene checker languages": [
+      "comment hygiene checker languages"
+    ],
     "comment hygiene checker plan": [
       "comment hygiene checker plan"
     ],
     "comment hygiene checker tasks": [
       "comment hygiene checker tasks"
+    ],
+    "comment hygiene coverage": [
+      "comment hygiene coverage"
     ],
     "comment hygiene doc": [
       "comment hygiene doc"
@@ -24845,6 +24911,9 @@
     ],
     "comment hygiene implementation summary": [
       "comment hygiene implementation summary"
+    ],
+    "comment hygiene languages": [
+      "comment hygiene languages"
     ],
     "comment hygiene plan": [
       "comment hygiene plan"
@@ -24875,6 +24944,9 @@
     ],
     "comment sweep compliance": [
       "comment sweep compliance"
+    ],
+    "comment syntax table": [
+      "comment syntax table"
     ],
     "comment thread": [
       "comment thread"
@@ -25955,6 +26027,27 @@
     "config 1 1 aligned summary": [
       "config 1:1 aligned summary"
     ],
+    "config and doctor": [
+      "config and doctor"
+    ],
+    "config and doctor acceptance criteria": [
+      "config and doctor acceptance criteria"
+    ],
+    "config and doctor decision record": [
+      "config and doctor decision record"
+    ],
+    "config and doctor goal": [
+      "config and doctor goal"
+    ],
+    "config and doctor implementation summary": [
+      "config and doctor implementation summary"
+    ],
+    "config and doctor plan": [
+      "config and doctor plan"
+    ],
+    "config and doctor tasks": [
+      "config and doctor tasks"
+    ],
     "config compatibility plan": [
       "config compatibility plan"
     ],
@@ -26389,6 +26482,27 @@
     ],
     "consumer skilled link plan": [
       "consumer skilled link plan"
+    ],
+    "consumers and routing": [
+      "consumers and routing"
+    ],
+    "consumers and routing acceptance criteria": [
+      "consumers and routing acceptance criteria"
+    ],
+    "consumers and routing decision record": [
+      "consumers and routing decision record"
+    ],
+    "consumers and routing goal": [
+      "consumers and routing goal"
+    ],
+    "consumers and routing implementation summary": [
+      "consumers and routing implementation summary"
+    ],
+    "consumers and routing plan": [
+      "consumers and routing plan"
+    ],
+    "consumers and routing tasks": [
+      "consumers and routing tasks"
     ],
     "consumption log pii redaction query hash": [
       "consumption-log pii redaction query_hash"
@@ -28021,6 +28135,9 @@
     "cp op au ai lc sc pc scenarios": [
       "CP OP AU AI LC SC PC scenarios"
     ],
+    "cq 002 to cq 008": [
+      "CQ-002 to CQ-008"
+    ],
     "craft markdown structure": [
       "craft markdown structure"
     ],
@@ -29149,6 +29266,9 @@
     ],
     "cupt example scripts": [
       "cupt example scripts"
+    ],
+    "cupt exits 0 on error": [
+      "cupt exits 0 on error"
     ],
     "cupt install": [
       "cupt install"
@@ -30619,6 +30739,9 @@
     ],
     "declaration module header alignment": [
       "declaration module header alignment"
+    ],
+    "declare an sk code surface": [
+      "declare an sk-code surface"
     ],
     "declare research shape": [
       "declare research shape"
@@ -34825,6 +34948,24 @@
     "default off flag earn or delete": [
       "default off flag earn or delete"
     ],
+    "default off hook concern": [
+      "default-off hook concern"
+    ],
+    "default off opt in acceptance criteria": [
+      "default off opt in acceptance criteria"
+    ],
+    "default off opt in goal": [
+      "default off opt in goal"
+    ],
+    "default off opt in implementation summary": [
+      "default off opt in implementation summary"
+    ],
+    "default off opt in plan": [
+      "default off opt in plan"
+    ],
+    "default off opt in tasks": [
+      "default off opt in tasks"
+    ],
     "default on hubs cohort": [
       "default-on hubs cohort"
     ],
@@ -34908,6 +35049,18 @@
     ],
     "deferred suite gating": [
       "deferred suite gating"
+    ],
+    "deferred surface items": [
+      "deferred surface items"
+    ],
+    "deferred surface items implementation summary": [
+      "deferred surface items implementation summary"
+    ],
+    "deferred surface items plan": [
+      "deferred surface items plan"
+    ],
+    "deferred surface items tasks": [
+      "deferred surface items tasks"
     ],
     "deferred usefulness cells rerun": [
       "deferred usefulness cells rerun"
@@ -37682,11 +37835,20 @@
     "doctor ci and sk code ci packet": [
       "doctor ci and sk-code-ci packet"
     ],
+    "doctor ci command": [
+      "doctor ci command"
+    ],
+    "doctor ci command contract": [
+      "doctor ci command contract"
+    ],
     "doctor ci command design": [
       "doctor ci command design"
     ],
     "doctor ci design research": [
       "doctor ci design research"
+    ],
+    "doctor ci report routing": [
+      "doctor ci report routing"
     ],
     "doctor ci review wiring": [
       "doctor ci review wiring"
@@ -38523,6 +38685,9 @@
     "doctor signals summary": [
       "doctor signals summary"
     ],
+    "doctor sk code quality route": [
+      "doctor sk-code quality route"
+    ],
     "doctor sk code setup": [
       "doctor sk-code setup"
     ],
@@ -39050,9 +39215,6 @@
     ],
     "done with audit comment": [
       "done with audit comment"
-    ],
-    "done works complete claims": [
-      "done works complete claims"
     ],
     "dot skilled migration": [
       "dot-skilled migration"
@@ -40296,6 +40458,9 @@
     ],
     "embedding cache profile key migration": [
       "embedding cache profile key migration"
+    ],
+    "embedding client fail fast": [
+      "embedding client fail fast"
     ],
     "embedding consolidation": [
       "embedding consolidation"
@@ -41991,6 +42156,9 @@
     "execfilesync migration": [
       "execfilesync migration"
     ],
+    "executable author gate": [
+      "executable author gate"
+    ],
     "execute cdp with parameters": [
       "execute cdp with parameters"
     ],
@@ -42387,6 +42555,9 @@
     "extension convention lint pin": [
       "extension convention lint pin"
     ],
+    "extension floors sk code review": [
+      "extension floors sk-code-review"
+    ],
     "extension guide ac traceability": [
       "extension guide ac traceability"
     ],
@@ -42461,6 +42632,9 @@
     ],
     "external scanner reset bash": [
       "external_scanner_reset bash"
+    ],
+    "external surface detection validation": [
+      "external surface detection validation"
     ],
     "external surface priority build": [
       "external surface priority build"
@@ -43444,6 +43618,9 @@
     "fan out review closes complete": [
       "fan-out review closes complete"
     ],
+    "fan out review focus input for deep review": [
+      "fan out review focus input for deep review"
+    ],
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
     ],
@@ -43728,6 +43905,18 @@
     ],
     "fanout resume salvage evidence": [
       "fanout resume salvage evidence"
+    ],
+    "fanout review focus": [
+      "fanout review focus"
+    ],
+    "fanout review focus implementation summary": [
+      "fanout review focus implementation summary"
+    ],
+    "fanout review focus plan": [
+      "fanout review focus plan"
+    ],
+    "fanout review focus tasks": [
+      "fanout review focus tasks"
     ],
     "fanout run cjs": [
       "fanout-run.cjs"
@@ -46272,9 +46461,6 @@
     ],
     "four part semantic version changelog": [
       "four part semantic version changelog"
-    ],
-    "four phase debugging workflow": [
-      "four phase debugging workflow"
     ],
     "four phases closed with items recorded rather": [
       "four phases closed with items recorded rather"
@@ -50756,6 +50942,9 @@
     "handover freshness timestamp field": [
       "handover freshness timestamp field"
     ],
+    "handover goal and model carry over": [
+      "handover goal and model carry-over"
+    ],
     "handover outranking continuity fixed": [
       "handover outranking continuity fixed"
     ],
@@ -51970,6 +52159,27 @@
     "home config cutover checklist": [
       "home config cutover checklist"
     ],
+    "honest checker": [
+      "honest checker"
+    ],
+    "honest checker acceptance criteria": [
+      "honest checker acceptance criteria"
+    ],
+    "honest checker decision record": [
+      "honest checker decision record"
+    ],
+    "honest checker goal": [
+      "honest checker goal"
+    ],
+    "honest checker implementation summary": [
+      "honest checker implementation summary"
+    ],
+    "honest checker plan": [
+      "honest checker plan"
+    ],
+    "honest checker tasks": [
+      "honest checker tasks"
+    ],
     "honest measurement contract": [
       "honest measurement contract"
     ],
@@ -53016,9 +53226,6 @@
     ],
     "hypothesis challenge re rank": [
       "hypothesis challenge re-rank"
-    ],
-    "hypothesis testing debugging": [
-      "hypothesis testing debugging"
     ],
     "ibm granite r2 triage": [
       "ibm granite r2 triage"
@@ -54754,6 +54961,9 @@
     "javascript checklist module header": [
       "javascript checklist module header"
     ],
+    "javascript css overlay naming": [
+      "javascript css overlay naming"
+    ],
     "javascript css style compliance": [
       "javascript css style compliance"
     ],
@@ -55632,6 +55842,24 @@
     ],
     "knowledge graph production methodology deep loop": [
       "knowledge graph production methodology deep loop"
+    ],
+    "known gap fixes": [
+      "known gap fixes"
+    ],
+    "known gap fixes acceptance criteria": [
+      "known gap fixes acceptance criteria"
+    ],
+    "known gap fixes goal": [
+      "known gap fixes goal"
+    ],
+    "known gap fixes implementation summary": [
+      "known gap fixes implementation summary"
+    ],
+    "known gap fixes plan": [
+      "known gap fixes plan"
+    ],
+    "known gap fixes tasks": [
+      "known gap fixes tasks"
     ],
     "known row move destination": [
       "known row move destination"
@@ -58360,6 +58588,12 @@
     "local rest api reference folder": [
       "local rest api reference folder"
     ],
+    "local skill link": [
+      "local skill link"
+    ],
+    "local skill link discovery": [
+      "local skill link discovery"
+    ],
     "local vision": [
       "local vision"
     ],
@@ -59699,6 +59933,9 @@
     "mcp chrome devtools 1 0 14 0": [
       "mcp-chrome-devtools 1.0.14.0"
     ],
+    "mcp chrome devtools 1 0 15 0": [
+      "mcp-chrome-devtools 1.0.15.0"
+    ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
     ],
@@ -59743,6 +59980,9 @@
     ],
     "mcp chrome devtools v1 0 14 0": [
       "mcp-chrome-devtools v1.0.14.0"
+    ],
+    "mcp chrome devtools v1 0 15 0": [
+      "mcp-chrome-devtools v1.0.15.0"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -59801,6 +60041,9 @@
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
     ],
+    "mcp click up 1 2 4 0": [
+      "mcp-click-up 1.2.4.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -59815,6 +60058,9 @@
     ],
     "mcp click up reference frontmatter": [
       "mcp-click-up reference frontmatter"
+    ],
+    "mcp click up standards alignment": [
+      "mcp-click-up standards alignment"
     ],
     "mcp click up v1 0 0 0": [
       "mcp-click-up v1.0.0.0"
@@ -59836,6 +60082,9 @@
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
+    ],
+    "mcp click up v1 2 4 0": [
+      "mcp-click-up v1.2.4.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -59899,6 +60148,9 @@
     ],
     "mcp code mode 1 0 11 0": [
       "mcp-code-mode 1.0.11.0"
+    ],
+    "mcp code mode 1 0 12 0": [
+      "mcp-code-mode 1.0.12.0"
     ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
@@ -59971,6 +60223,9 @@
     ],
     "mcp code mode v1 0 11 0": [
       "mcp-code-mode v1.0.11.0"
+    ],
+    "mcp code mode v1 0 12 0": [
+      "mcp-code-mode v1.0.12.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -60241,6 +60496,12 @@
     "mcp figma 1 1 4 0": [
       "mcp-figma 1.1.4.0"
     ],
+    "mcp figma 1 1 5 0": [
+      "mcp-figma 1.1.5.0"
+    ],
+    "mcp figma standards alignment": [
+      "mcp-figma standards alignment"
+    ],
     "mcp figma v1 0 0 0": [
       "mcp-figma v1.0.0.0"
     ],
@@ -60261,6 +60522,9 @@
     ],
     "mcp figma v1 1 4 0": [
       "mcp-figma v1.1.4.0"
+    ],
+    "mcp figma v1 1 5 0": [
+      "mcp-figma v1.1.5.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -61199,6 +61463,9 @@
     "measured vs authored": [
       "measured vs authored"
     ],
+    "measurement acceptance criteria": [
+      "measurement acceptance criteria"
+    ],
     "measurement and receipts foundation": [
       "measurement and receipts foundation"
     ],
@@ -61214,11 +61481,26 @@
     "measurement and traceability": [
       "measurement and traceability"
     ],
+    "measurement decision record": [
+      "measurement decision record"
+    ],
     "measurement driven implementation": [
       "measurement driven implementation"
     ],
+    "measurement goal": [
+      "measurement goal"
+    ],
+    "measurement implementation summary": [
+      "measurement implementation summary"
+    ],
+    "measurement plan": [
+      "measurement plan"
+    ],
     "measurement regime": [
       "measurement regime"
+    ],
+    "measurement tasks": [
+      "measurement tasks"
     ],
     "measurement traceability implementation plan": [
       "measurement traceability implementation plan"
@@ -63740,6 +64022,9 @@
     "mermaid extract": [
       "mermaid_extract"
     ],
+    "mermaid extract constants": [
+      "mermaid extract constants"
+    ],
     "mermaid extract intermediate representation": [
       "mermaid extract intermediate representation"
     ],
@@ -65548,9 +65833,6 @@
     ],
     "multi actor workflow": [
       "multi actor workflow"
-    ],
-    "multi agent research patterns": [
-      "multi agent research patterns"
     ],
     "multi ai council frontmatter": [
       "multi-ai-council frontmatter"
@@ -68990,6 +69272,9 @@
     "operator copy of goal": [
       "operator copy of goal"
     ],
+    "operator decisions taken at defaults": [
+      "operator decisions taken at defaults"
+    ],
     "operator deferred rss severity": [
       "operator deferred rss severity"
     ],
@@ -70608,9 +70893,6 @@
     "parallel browser testing": [
       "parallel browser testing"
     ],
-    "parallel codebase analysis": [
-      "parallel codebase analysis"
-    ],
     "parallel deep review program": [
       "parallel deep-review program"
     ],
@@ -71536,6 +71818,9 @@
     "per runtime activation gate": [
       "per-runtime activation gate"
     ],
+    "per runtime handover switch": [
+      "per-runtime handover switch"
+    ],
     "per runtime hook validation": [
       "per-runtime hook validation"
     ],
@@ -71547,6 +71832,12 @@
     ],
     "per runtime pre write hook": [
       "per runtime pre write hook"
+    ],
+    "per runtime session relaunch switch": [
+      "per-runtime session relaunch switch"
+    ],
+    "per runtime switch plan": [
+      "per-runtime switch plan"
     ],
     "per runtime symlink map": [
       "per runtime symlink map"
@@ -71589,9 +71880,6 @@
     ],
     "perf instrumentation batching tasks": [
       "perf instrumentation batching tasks"
-    ],
-    "performance audit agents": [
-      "performance audit agents"
     ],
     "performance baseline script": [
       "performance baseline script"
@@ -72178,6 +72466,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 honest checker": [
+      "phase 1 honest checker"
+    ],
     "phase 1 hook stdin deadlines": [
       "phase 1 hook stdin deadlines"
     ],
@@ -72273,6 +72564,9 @@
     ],
     "phase 10 post fix research": [
       "phase 10 post fix research"
+    ],
+    "phase 10 review remediation": [
+      "phase 10 review remediation"
     ],
     "phase 10 trigger index ci rebuild": [
       "phase 10 trigger index ci rebuild"
@@ -72523,6 +72817,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 builtin runner": [
+      "phase 2 builtin runner"
+    ],
     "phase 2 consume locked withdraw": [
       "phase 2 consume locked withdraw"
     ],
@@ -72766,6 +73063,9 @@
     "phase 3 command trigger runtimes": [
       "phase 3 command trigger runtimes"
     ],
+    "phase 3 config and doctor": [
+      "phase 3 config and doctor"
+    ],
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
     ],
@@ -72813,6 +73113,9 @@
     ],
     "phase 3 quality mode": [
       "phase 3 quality mode"
+    ],
+    "phase 3 review remediation": [
+      "phase 3 review remediation"
     ],
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
@@ -72913,6 +73216,24 @@
     "phase 4 dispatch guard and vitest": [
       "phase 4 dispatch guard and vitest"
     ],
+    "phase 4 doctrine": [
+      "phase 4 doctrine"
+    ],
+    "phase 4 doctrine acceptance criteria": [
+      "phase 4 doctrine acceptance criteria"
+    ],
+    "phase 4 doctrine decision record": [
+      "phase 4 doctrine decision record"
+    ],
+    "phase 4 doctrine implementation summary": [
+      "phase 4 doctrine implementation summary"
+    ],
+    "phase 4 doctrine plan": [
+      "phase 4 doctrine plan"
+    ],
+    "phase 4 doctrine tasks": [
+      "phase 4 doctrine tasks"
+    ],
     "phase 4 final deep review": [
       "phase 4 final deep review"
     ],
@@ -73011,6 +73332,9 @@
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
+    ],
+    "phase 5 consumers and routing": [
+      "phase 5 consumers and routing"
     ],
     "phase 5 deep review remediation": [
       "phase 5 deep review remediation"
@@ -73120,6 +73444,9 @@
     "phase 59 cross cli map refresh": [
       "phase 59 cross cli map refresh"
     ],
+    "phase 6 adr": [
+      "phase 6 ADR"
+    ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
     ],
@@ -73131,6 +73458,9 @@
     ],
     "phase 6 closure evidence": [
       "phase 6 closure evidence"
+    ],
+    "phase 6 closure gate": [
+      "phase 6 closure gate"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -73171,6 +73501,9 @@
     "phase 6 implementation summary": [
       "phase 6 implementation summary"
     ],
+    "phase 6 measurement": [
+      "phase 6 measurement"
+    ],
     "phase 6 plan": [
       "phase 6 plan"
     ],
@@ -73185,6 +73518,9 @@
     ],
     "phase 6 research lineage reducer path": [
       "phase 6 research lineage reducer path"
+    ],
+    "phase 6 review remediation": [
+      "phase 6 review remediation"
     ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
@@ -73206,6 +73542,9 @@
     ],
     "phase 6 speckit command and agent alignment": [
       "phase 6 speckit command and agent alignment"
+    ],
+    "phase 6 task list": [
+      "phase 6 task list"
     ],
     "phase 6 tasks": [
       "phase 6 tasks"
@@ -73285,6 +73624,9 @@
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
+    "phase 7 shared references and detection order": [
+      "phase 7 shared references and detection order"
+    ],
     "phase 7 sk code script kebab names": [
       "phase 7 sk code script kebab names"
     ],
@@ -73329,6 +73671,9 @@
     ],
     "phase 8 consolidation decision tasks": [
       "phase 8 consolidation decision tasks"
+    ],
+    "phase 8 deferred surface items": [
+      "phase 8 deferred surface items"
     ],
     "phase 8 docs and readmes": [
       "phase 8 docs and readmes"
@@ -76471,9 +76816,6 @@
     "pre bound setup answers": [
       "pre-bound setup answers"
     ],
-    "pre claim gate": [
-      "pre claim gate"
-    ],
     "pre commit auto remint": [
       "pre-commit auto remint"
     ],
@@ -76948,6 +77290,9 @@
     "priority based checklist items": [
       "priority-based checklist items"
     ],
+    "private local skill roots": [
+      "private local skill roots"
+    ],
     "private local skills": [
       "private local skills"
     ],
@@ -76969,14 +77314,23 @@
     "private procedure card structure": [
       "private procedure card structure"
     ],
+    "private skill containment": [
+      "private skill containment"
+    ],
     "private skill guard adr": [
       "private skill guard adr"
     ],
     "private skill restore decision": [
       "private skill restore decision"
     ],
+    "private skill roots": [
+      "private skill roots"
+    ],
     "private skill scan containment decision": [
       "private skill scan containment decision"
+    ],
+    "private surface skills": [
+      "private surface skills"
     ],
     "private surface skills phase parent spec": [
       "private surface skills phase parent spec"
@@ -78132,6 +78486,12 @@
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
     ],
+    "quality agnostic gate honest checker changelog": [
+      "quality agnostic gate honest checker changelog"
+    ],
+    "quality agnostic gate phase parent spec": [
+      "quality agnostic gate phase parent spec"
+    ],
     "quality assessment framework": [
       "quality assessment framework"
     ],
@@ -78147,14 +78507,38 @@
     "quality checklist": [
       "quality checklist"
     ],
+    "quality checklist declarations": [
+      "quality checklist declarations"
+    ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
     ],
     "quality fallback fts5 bm25 grep plan": [
       "quality fallback fts5 bm25 grep plan"
     ],
+    "quality floor split": [
+      "quality floor split"
+    ],
     "quality gate": [
       "quality gate"
+    ],
+    "quality gate cjs": [
+      "quality-gate.cjs"
+    ],
+    "quality gate cjs verdict": [
+      "quality-gate.cjs verdict"
+    ],
+    "quality gate exit codes": [
+      "quality gate exit codes"
+    ],
+    "quality gate measurement": [
+      "quality gate measurement"
+    ],
+    "quality gate measurement goal": [
+      "quality gate measurement goal"
+    ],
+    "quality gate measurement plan": [
+      "quality gate measurement plan"
     ],
     "quality gate obsidian coverage": [
       "quality gate obsidian coverage"
@@ -78162,8 +78546,20 @@
     "quality gate ranked recommendations": [
       "quality gate ranked recommendations"
     ],
+    "quality gate resolved surface": [
+      "quality gate resolved surface"
+    ],
     "quality gate resources": [
       "quality gate resources"
+    ],
+    "quality gate runner": [
+      "quality gate runner"
+    ],
+    "quality gate runner goal": [
+      "quality gate runner goal"
+    ],
+    "quality gate runner plan": [
+      "quality gate runner plan"
     ],
     "quality gates": [
       "quality gates"
@@ -78251,6 +78647,15 @@
     ],
     "quality review before indexing": [
       "quality review before indexing"
+    ],
+    "quality runner adr": [
+      "quality runner ADR"
+    ],
+    "quality runner contract": [
+      "quality runner contract"
+    ],
+    "quality runner verdict": [
+      "quality runner verdict"
     ],
     "quality scorer": [
       "quality scorer"
@@ -79895,9 +80300,6 @@
     ],
     "recover iteration from stdout": [
       "recover iteration from stdout"
-    ],
-    "recovery decision tree": [
-      "recovery decision tree"
     ],
     "recovery manifest removed": [
       "recovery manifest removed"
@@ -85148,9 +85550,6 @@
     "retry utilities": [
       "retry utilities"
     ],
-    "retry verbose escalate": [
-      "retry verbose escalate"
-    ],
     "retune the token file": [
       "retune the token file"
     ],
@@ -85412,6 +85811,9 @@
     "review executor behavior scenarios": [
       "review executor behavior scenarios"
     ],
+    "review extension floors": [
+      "review extension floors"
+    ],
     "review finding case": [
       "review finding case"
     ],
@@ -85450,6 +85852,9 @@
     ],
     "review first implement second": [
       "review first implement second"
+    ],
+    "review focus flag": [
+      "review focus flag"
     ],
     "review folder without config": [
       "review folder without config"
@@ -85691,6 +86096,9 @@
     ],
     "review remediation closeout tasks": [
       "review remediation closeout tasks"
+    ],
+    "review remediation decision record": [
+      "review remediation decision record"
     ],
     "review remediation doc accuracy changelog": [
       "review remediation doc accuracy changelog"
@@ -86720,6 +87128,9 @@
     ],
     "router read recount": [
       "router read recount"
+    ],
+    "router replay detection order": [
+      "router replay detection order"
     ],
     "router replay rename plan": [
       "router-replay rename plan"
@@ -88260,6 +88671,9 @@
     ],
     "safe concurrent writers and resume": [
       "safe concurrent writers and resume"
+    ],
+    "safe json helper values": [
+      "safe JSON helper values"
     ],
     "safe model switch dim drift warn": [
       "safe model switch dim drift warn"
@@ -90703,6 +91117,12 @@
     "session relaunch conformance suite": [
       "session relaunch conformance suite"
     ],
+    "session relaunch default off": [
+      "session relaunch default off"
+    ],
+    "session relaunch enable flag plan": [
+      "session relaunch enable flag plan"
+    ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
     ],
@@ -90718,6 +91138,9 @@
     "session relaunch keep command": [
       "session relaunch keep command"
     ],
+    "session relaunch known gaps": [
+      "session relaunch known gaps"
+    ],
     "session relaunch lanes": [
       "session relaunch lanes"
     ],
@@ -90727,6 +91150,9 @@
     "session relaunch loop": [
       "Session relaunch loop",
       "session relaunch loop"
+    ],
+    "session relaunch opt in": [
+      "session relaunch opt in"
     ],
     "session relaunch pi opencode": [
       "session-relaunch-pi-opencode"
@@ -91719,6 +92145,21 @@
     "shared reference counted maintenance marker module": [
       "shared reference-counted maintenance marker module"
     ],
+    "shared references and detection order": [
+      "shared references and detection order"
+    ],
+    "shared references and detection order acceptance criteria": [
+      "shared references and detection order acceptance criteria"
+    ],
+    "shared references and detection order implementation summary": [
+      "shared references and detection order implementation summary"
+    ],
+    "shared references and detection order plan": [
+      "shared references and detection order plan"
+    ],
+    "shared references and detection order tasks": [
+      "shared references and detection order tasks"
+    ],
     "shared removal criteria": [
       "shared removal criteria"
     ],
@@ -91796,6 +92237,9 @@
     ],
     "shared vs handler local readiness vocabulary": [
       "shared vs handler-local readiness vocabulary"
+    ],
+    "shared workflow doctrine": [
+      "shared workflow doctrine"
     ],
     "shell argument parsing": [
       "shell argument parsing"
@@ -92586,6 +93030,15 @@
     "sk code 2 4 0 0": [
       "sk-code 2.4.0.0"
     ],
+    "sk code 3 0 0 0": [
+      "sk-code 3.0.0.0"
+    ],
+    "sk code 3 1 0 0": [
+      "sk-code 3.1.0.0"
+    ],
+    "sk code 3 2 0 0": [
+      "sk-code 3.2.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -92724,6 +93177,9 @@
     "sk code ci 1 0 0 0": [
       "sk-code-ci 1.0.0.0"
     ],
+    "sk code ci 1 1 0 0": [
+      "sk-code-ci 1.1.0.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -92757,6 +93213,9 @@
     ],
     "sk code ci v1 0 0 0": [
       "sk-code-ci v1.0.0.0"
+    ],
+    "sk code ci v1 1 0 0": [
+      "sk-code-ci v1.1.0.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -92992,6 +93451,9 @@
     ],
     "sk code modes research": [
       "sk-code modes research"
+    ],
+    "sk code modes research review fixes": [
+      "sk-code modes research review fixes"
     ],
     "sk code no ephemeral artifact pointers fix": [
       "sk-code no ephemeral-artifact pointers fix"
@@ -93237,6 +93699,27 @@
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
+    "sk code quality 1 3 0 0": [
+      "sk-code-quality 1.3.0.0"
+    ],
+    "sk code quality 1 4 0 0": [
+      "sk-code-quality 1.4.0.0"
+    ],
+    "sk code quality 1 4 1 0": [
+      "sk-code-quality 1.4.1.0"
+    ],
+    "sk code quality 1 5 0 0": [
+      "sk-code-quality 1.5.0.0"
+    ],
+    "sk code quality 1 6 0 0": [
+      "sk-code-quality 1.6.0.0"
+    ],
+    "sk code quality codebase agnostic": [
+      "sk-code quality codebase agnostic"
+    ],
+    "sk code quality config": [
+      "sk-code quality config"
+    ],
     "sk code quality mode research": [
       "sk-code quality mode research"
     ],
@@ -93251,6 +93734,9 @@
     ],
     "sk code quality research synthesis": [
       "sk-code-quality research synthesis"
+    ],
+    "sk code quality runner": [
+      "sk-code quality runner"
     ],
     "sk code quality v1 0 0 0": [
       "sk-code-quality v1.0.0.0"
@@ -93269,6 +93755,21 @@
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
+    ],
+    "sk code quality v1 3 0 0": [
+      "sk-code-quality v1.3.0.0"
+    ],
+    "sk code quality v1 4 0 0": [
+      "sk-code-quality v1.4.0.0"
+    ],
+    "sk code quality v1 4 1 0": [
+      "sk-code-quality v1.4.1.0"
+    ],
+    "sk code quality v1 5 0 0": [
+      "sk-code-quality v1.5.0.0"
+    ],
+    "sk code quality v1 6 0 0": [
+      "sk-code-quality v1.6.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -93363,6 +93864,9 @@
     "sk code review 1 7 1 0": [
       "sk-code-review 1.7.1.0"
     ],
+    "sk code review 1 8 0 0": [
+      "sk-code-review 1.8.0.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -93441,6 +93945,9 @@
     "sk code review v1 7 1 0": [
       "sk-code-review v1.7.1.0"
     ],
+    "sk code review v1 8 0 0": [
+      "sk-code-review v1.8.0.0"
+    ],
     "sk code review workflow": [
       "sk code review workflow"
     ],
@@ -93464,6 +93971,9 @@
     ],
     "sk code routing benchmark tasks": [
       "sk-code routing benchmark tasks"
+    ],
+    "sk code routing gap closure": [
+      "sk-code routing gap closure"
     ],
     "sk code routing parity fixtures": [
       "sk-code routing parity fixtures"
@@ -93510,6 +94020,15 @@
     "sk code shared assets references research": [
       "sk-code shared assets references research"
     ],
+    "sk code shared doctrine amendment": [
+      "sk-code shared doctrine amendment"
+    ],
+    "sk code shared folder": [
+      "sk-code shared folder"
+    ],
+    "sk code shared references": [
+      "sk-code shared references"
+    ],
     "sk code skilled 1 0 0 0": [
       "sk-code-skilled 1.0.0.0"
     ],
@@ -93551,6 +94070,12 @@
     ],
     "sk code skilled 2 0 0 0": [
       "sk-code-skilled 2.0.0.0"
+    ],
+    "sk code skilled 2 0 1 0": [
+      "sk-code-skilled 2.0.1.0"
+    ],
+    "sk code skilled 2 0 2 0": [
+      "sk-code-skilled 2.0.2.0"
     ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
@@ -93642,6 +94167,12 @@
     "sk code skilled v2 0 0 0": [
       "sk-code-skilled v2.0.0.0"
     ],
+    "sk code skilled v2 0 1 0": [
+      "sk-code-skilled v2.0.1.0"
+    ],
+    "sk code skilled v2 0 2 0": [
+      "sk-code-skilled v2.0.2.0"
+    ],
     "sk code smart routing": [
       "sk-code smart routing"
     ],
@@ -93653,6 +94184,9 @@
     ],
     "sk code surface detection": [
       "sk-code surface detection"
+    ],
+    "sk code surface detection order": [
+      "sk-code surface detection order"
     ],
     "sk code surface insertion rule build": [
       "sk-code surface insertion rule build"
@@ -93770,6 +94304,15 @@
     ],
     "sk code v2 4 0 0": [
       "sk-code v2.4.0.0"
+    ],
+    "sk code v3 0 0 0": [
+      "sk-code v3.0.0.0"
+    ],
+    "sk code v3 1 0 0": [
+      "sk-code v3.1.0.0"
+    ],
+    "sk code v3 2 0 0": [
+      "sk-code v3.2.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -94020,6 +94563,9 @@
     "sk create command 1 0 4 0": [
       "sk-create-command 1.0.4.0"
     ],
+    "sk create command 1 0 5 0": [
+      "sk-create-command 1.0.5.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -94040,6 +94586,9 @@
     ],
     "sk create command v1 0 4 0": [
       "sk-create-command v1.0.4.0"
+    ],
+    "sk create command v1 0 5 0": [
+      "sk-create-command v1.0.5.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -94431,6 +94980,9 @@
     "sk create skill 1 5 5 0": [
       "sk-create-skill 1.5.5.0"
     ],
+    "sk create skill 1 5 6 0": [
+      "sk-create-skill 1.5.6.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -94469,6 +95021,9 @@
     ],
     "sk create skill v1 5 5 0": [
       "sk-create-skill v1.5.5.0"
+    ],
+    "sk create skill v1 5 6 0": [
+      "sk-create-skill v1.5.6.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -94734,6 +95289,9 @@
     "sk design diagram 1 2 2 0": [
       "sk-design-diagram 1.2.2.0"
     ],
+    "sk design diagram 1 2 3 0": [
+      "sk-design-diagram 1.2.3.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -94754,6 +95312,9 @@
     ],
     "sk design diagram v1 2 2 0": [
       "sk-design-diagram v1.2.2.0"
+    ],
+    "sk design diagram v1 2 3 0": [
+      "sk-design-diagram v1.2.3.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -94967,6 +95528,12 @@
     ],
     "sk doc 2 3 11 0": [
       "sk-doc 2.3.11.0"
+    ],
+    "sk doc 2 3 12 0": [
+      "sk-doc 2.3.12.0"
+    ],
+    "sk doc 2 3 13 0": [
+      "sk-doc 2.3.13.0"
     ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
@@ -95304,6 +95871,12 @@
     "sk doc v2 3 11 0": [
       "sk-doc v2.3.11.0"
     ],
+    "sk doc v2 3 12 0": [
+      "sk-doc v2.3.12.0"
+    ],
+    "sk doc v2 3 13 0": [
+      "sk-doc v2.3.13.0"
+    ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
     ],
@@ -95456,6 +96029,9 @@
     ],
     "sk git 1 9 4 0": [
       "sk-git 1.9.4.0"
+    ],
+    "sk git 1 9 5 0": [
+      "sk-git 1.9.5.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -95657,6 +96233,9 @@
     ],
     "sk git v1 9 4 0": [
       "sk-git v1.9.4.0"
+    ],
+    "sk git v1 9 5 0": [
+      "sk-git v1.9.5.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -98366,6 +98945,9 @@
     "skilled generator rebuild results": [
       "skilled generator rebuild results"
     ],
+    "skilled house checklist": [
+      "skilled house checklist"
+    ],
     "skilled layout options": [
       "skilled layout options"
     ],
@@ -98710,6 +99292,9 @@
     ],
     "skilled v4 0 0 13 release notes": [
       "skilled v4.0.0.13 release notes"
+    ],
+    "skilled v4 0 0 14": [
+      "skilled v4.0.0.14"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -101475,6 +102060,9 @@
     "speckit presentation verification": [
       "speckit presentation verification"
     ],
+    "speckit private skill roots": [
+      "SPECKIT_PRIVATE_SKILL_ROOTS"
+    ],
     "speckit quick reference": [
       "speckit quick reference"
     ],
@@ -101794,7 +102382,6 @@
       "stable message identity opencode"
     ],
     "stack agnostic debugging": [
-      "stack agnostic debugging",
       "stack-agnostic debugging"
     ],
     "stack agnostic quality contract": [
@@ -102355,6 +102942,9 @@
     ],
     "standard component definitions": [
       "standard component definitions"
+    ],
+    "standards alignment": [
+      "standards alignment"
     ],
     "standards alignment audit": [
       "standards alignment audit"
@@ -103771,6 +104361,12 @@
     "surface design plan task breakdown": [
       "surface design plan task breakdown"
     ],
+    "surface detection block check": [
+      "surface detection block check"
+    ],
+    "surface evidence labels": [
+      "surface evidence labels"
+    ],
     "surface hint hub root": [
       "surface hint hub root"
     ],
@@ -103785,6 +104381,12 @@
     ],
     "surface implementation standards": [
       "surface implementation standards"
+    ],
+    "surface marker kinds": [
+      "surface marker kinds"
+    ],
+    "surface neutral javascript css checks": [
+      "surface-neutral javascript css checks"
     ],
     "surface packet plan": [
       "surface packet plan"
@@ -103884,9 +104486,6 @@
     ],
     "surface verification adr": [
       "surface verification adr"
-    ],
-    "surface verification commands": [
-      "surface verification commands"
     ],
     "surgical fix vs runtime refactor": [
       "surgical fix vs runtime refactor"
@@ -104461,6 +105060,12 @@
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
     ],
+    "system session relaunch claude enabled": [
+      "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED"
+    ],
+    "system session relaunch enabled": [
+      "SYSTEM_SESSION_RELAUNCH_ENABLED"
+    ],
     "system skill advisor": [
       "system skill advisor"
     ],
@@ -104535,6 +105140,9 @@
     ],
     "system skill advisor 0 16 3 0": [
       "system-skill-advisor 0.16.3.0"
+    ],
+    "system skill advisor 0 17 0 0": [
+      "system-skill-advisor 0.17.0.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -104712,6 +105320,9 @@
     ],
     "system skill advisor v0 16 3 0": [
       "system-skill-advisor v0.16.3.0"
+    ],
+    "system skill advisor v0 17 0 0": [
+      "system-skill-advisor v0.17.0.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -105036,6 +105647,12 @@
     ],
     "system spec kit 2 9 0 0": [
       "system-spec-kit 2.9.0.0"
+    ],
+    "system spec kit 2 9 1 0": [
+      "system-spec-kit 2.9.1.0"
+    ],
+    "system spec kit 2 9 2 0": [
+      "system-spec-kit 2.9.2.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -105474,6 +106091,12 @@
     ],
     "system spec kit v2 9 0 0": [
       "system-spec-kit v2.9.0.0"
+    ],
+    "system spec kit v2 9 1 0": [
+      "system-spec-kit v2.9.1.0"
+    ],
+    "system spec kit v2 9 2 0": [
+      "system-spec-kit v2.9.2.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -106430,9 +107053,6 @@
     ],
     "ten adversarial review iterations by swe 2 max": [
       "ten adversarial review iterations by swe 2 max"
-    ],
-    "ten agent specialization": [
-      "ten agent specialization"
     ],
     "ten iteration deep research comparing how system spec": [
       "ten iteration deep research comparing how system spec"
@@ -108482,6 +109102,9 @@
     "trusted mutation gate": [
       "trusted mutation gate"
     ],
+    "trusted private skill roots": [
+      "trusted private skill roots"
+    ],
     "truthful stop without consensus": [
       "truthful stop without consensus"
     ],
@@ -109187,6 +109810,9 @@
     "universal ceiling probe audit": [
       "universal ceiling probe audit"
     ],
+    "universal checklist baseline": [
+      "universal checklist baseline"
+    ],
     "universal code quality checklist": [
       "universal code quality checklist"
     ],
@@ -109196,20 +109822,14 @@
     "universal code style guide": [
       "universal code style guide"
     ],
-    "universal debugging checklist": [
-      "universal debugging checklist"
+    "universal code style guide moved": [
+      "universal code style guide moved"
     ],
     "universal debugging methodology": [
       "universal debugging methodology"
     ],
-    "universal error recovery": [
-      "universal error recovery"
-    ],
     "universal formatting principles": [
       "universal formatting principles"
-    ],
-    "universal verification checklist": [
-      "universal verification checklist"
     ],
     "unknown access role veto": [
       "unknown access role veto"
@@ -109231,6 +109851,9 @@
     ],
     "unknown surface fallback": [
       "unknown surface fallback"
+    ],
+    "unknown surface iron law": [
+      "unknown surface iron law"
     ],
     "unknowns and baseline": [
       "unknowns and baseline"
@@ -110135,6 +110758,9 @@
     "v4 0 0 13 reliability fixes tasks": [
       "v4 0 0 13 reliability fixes tasks"
     ],
+    "v4 0 0 14 release notes": [
+      "v4.0.0.14 release notes"
+    ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
@@ -110738,6 +111364,9 @@
     ],
     "validator first template dedup": [
       "validator-first template dedup"
+    ],
+    "validator fsmonitor hang": [
+      "validator fsmonitor hang"
     ],
     "validator help printer hidden rules": [
       "validator help printer hidden rules"
@@ -112184,6 +112813,9 @@
     "webflow checker fix tasks": [
       "webflow checker fix tasks"
     ],
+    "webflow house style removed": [
+      "webflow house style removed"
+    ],
     "webflow labels and playbook": [
       "webflow labels and playbook"
     ],
@@ -113059,6 +113691,9 @@
     ],
     "worktree provisioning skips sk doc": [
       "worktree provisioning skips sk-doc"
+    ],
+    "worktree provisioning stale builds": [
+      "worktree provisioning stale builds"
     ],
     "worktree provisioning tasks": [
       "worktree provisioning tasks"

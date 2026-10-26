@@ -1,0 +1,28 @@
+✔ relaunch replays the launch effort: claude --effort (639.567708ms)
+✔ relaunch replays the launch effort: claude --effort= (622.753625ms)
+✔ relaunch replays the launch effort: codex quoted -c model_reasoning_effort (640.634125ms)
+✔ relaunch replays the launch effort: codex bare --config model_reasoning_effort (609.792083ms)
+✔ relaunch replays the launch effort: pi --thinking (827.646292ms)
+✔ relaunch replays the launch effort: hermes chat --reasoning (889.656041ms)
+✔ relaunch drops a launch effort its runtime would reject (773.116875ms)
+✔ the sender live model and effort replace the launch values for that hop (664.111834ms)
+✔ a live model with no live effort drops the launch effort: claude (625.544416ms)
+✔ a live model with its live effort renders that effort: claude (644.429292ms)
+✔ a live model with no live effort drops the launch effort: codex (642.251375ms)
+✔ a live model with its live effort renders that effort: codex (651.223584ms)
+✔ a live model with no live effort drops the launch effort: pi (599.668583ms)
+✔ a live model with its live effort renders that effort: pi (606.873625ms)
+✔ a live model equal to the launch model keeps the launch effort (620.479875ms)
+✔ a launch with no model keeps its launch effort beside a live model (609.37ms)
+✔ a Pi live model matching the provider-prefixed launch model keeps the launch thinking (1224.638542ms)
+✔ a Hermes live model with no live effort keeps the launch reasoning (602.539791ms)
+✔ a Cursor live model keeps its bracketed parameters on the relaunch (608.07475ms)
+✔ a live model or effort the runtime would reject falls back to the launch value (654.447625ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13818.237458

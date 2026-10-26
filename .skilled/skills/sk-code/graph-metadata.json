@@ -126,9 +126,9 @@
     "timeout-minutes",
     "required status check workflow",
     "ci job",
-    "concurrency group",
     "sha-pinned action",
-    "action to a sha"
+    "action to a sha",
+    ".github/workflows/"
   ],
   "derived": {
     "trigger_phrases": [
@@ -216,7 +216,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-code is the single public code skill that routes a request through mode-registry.json to two workflow modes (sk-code-quality, sk-code-review) or bundles one of two read-only surface evidence packets (sk-code-ci, sk-code-skilled) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its domain knowledge. The shared router centralizes SKILLED and UNKNOWN identity and precedence so the advisor sees exactly one code identity.",
+    "causal_summary": "sk-code is the single public code skill that routes a request through mode-registry.json to two workflow modes (sk-code-quality, sk-code-review) or bundles one of two read-only surface evidence packets (sk-code-ci, sk-code-skilled) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its domain knowledge. The shared router centralizes the detection order, every declared specific surface before the SKILLED fallback and then UNKNOWN, so the advisor sees exactly one code identity.",
     "created_at": "2026-04-30T08:30:00Z",
     "sanitizer_version": "sanitizeSkillLabel:v2",
     "last_updated_at": "2026-10-24T00:00:00Z"

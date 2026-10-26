@@ -1,0 +1,37 @@
+✔ enabled by default when no flag is set (0.641583ms)
+✔ master switch disables every concern (0.069ms)
+✔ canonical per-concern switch disables only that concern (0.047ms)
+✔ concernFlag derives the canonical env name (0.0575ms)
+✔ legacy aliases still disable their concern (0.075375ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.053ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.045916ms)
+✔ .mjs and .ts facades re-export identical behavior (17.940084ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.107875ms)
+✔ environment overrides the config file both ways (0.08175ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (1.134834ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (2.412542ms)
+✔ session-relaunch is off by default while every other concern stays on (0.113458ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.062084ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.483084ms)
+✔ a kill switch beats the session-relaunch enable flag (0.059667ms)
+✔ the facades carry the session-relaunch default (0.104709ms)
+✔ the node and shell resolvers give the same session-relaunch answers (248.13ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.160083ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.494041ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (55.806959ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.137125ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (56.241625ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (133.711833ms)
+✔ a byte order mark before the first line hides nothing from any reader (88.994667ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (506.957083ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (32.385334ms)
+✔ a per-runtime enable flag answers before the global one in every reader (1211.363541ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2399.825666
+hookflags exit 0

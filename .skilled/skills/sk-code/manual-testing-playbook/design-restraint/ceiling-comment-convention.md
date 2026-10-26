@@ -1,14 +1,14 @@
 ---
 title: "DR-003: Intentional-simplification ceiling comment"
 description: "Verify that when sk-code takes a deliberate shortcut it emits a neutral ceiling: comment naming the shortcut, its ceiling, and the upgrade trigger as a durable WHY, and that comment-hygiene passes it without allow-listing."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # DR-003: Intentional-simplification ceiling comment
 
 ## 1. OVERVIEW
 
-This scenario verifies the `ceiling:` comment convention added to `shared/references/universal/code-style-guide.md` §4. When a simplification is deliberate — a known shortcut chosen on purpose, not an oversight — it should read as intent. The convention introduces a neutral `ceiling:` comment that names the shortcut, its known ceiling, and the upgrade path or trigger.
+This scenario verifies the `ceiling:` comment convention added to `sk-code-quality/references/code-style-guide.md` §4. When a simplification is deliberate, a known shortcut chosen on purpose and not an oversight, it should read as intent. The convention introduces a neutral `ceiling:` comment that names the shortcut, its known ceiling, and the upgrade path or trigger.
 
 It is a durable WHY, not a brand or tool prefix (a brand prefix reads as a perishable, cargo-cult label), and it is explicitly NOT added to the comment-hygiene checker's allowed-pattern list — it already passes because it carries no forbidden id, and allow-listing it would let a forbidden id on the same line slip through. This is the producer-side companion to the reviewer-side downgrade rule (sk-code-review CR-022).
 
@@ -43,7 +43,7 @@ Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server a
 
 ### Preconditions
 
-1. `.skilled/skills/sk-code/shared/references/universal/code-style-guide.md` §4 documents the `ceiling:` convention: `bash: rg -n "ceiling:" .skilled/skills/sk-code/shared/references/universal/code-style-guide.md`.
+1. `.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md` §4 documents the `ceiling:` convention: `bash: rg -n "ceiling:" .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md`.
 2. The comment-hygiene checker resolves: `bash: test -f .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`.
 3. `ceiling:` is NOT in the checker's allowed-pattern list: `bash: rg -n "ALLOWED_PATTERN|allowed" .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` returns no `ceiling` entry.
 
@@ -69,7 +69,7 @@ Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server a
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: the ceiling comment follows `shared/references/universal/code-style-guide.md` §4 (neutral WHY, not allow-listed), names the shortcut, ceiling, and upgrade trigger, AND comment-hygiene exits 0 on the file.
+- **PASS** iff: the ceiling comment follows `sk-code-quality/references/code-style-guide.md` §4 (neutral WHY, not allow-listed), names the shortcut, ceiling, and upgrade trigger, AND comment-hygiene exits 0 on the file.
 - **FAIL** iff: the comment brands the prefix, embeds a forbidden id, gets added to the allowed-pattern list, fails the hygiene checker, or omits the ceiling or the upgrade trigger.
 
 Evidence: `/tmp/skc-DR003-hygiene.txt` (comment-hygiene checker output).
@@ -85,7 +85,7 @@ Evidence: `/tmp/skc-DR003-hygiene.txt` (comment-hygiene checker output).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/shared/references/universal/code-style-guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
+- `.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md`: §4 neutral `ceiling:` intentional-simplification convention.
 - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
 
 ---

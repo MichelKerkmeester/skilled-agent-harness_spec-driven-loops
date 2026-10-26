@@ -1,0 +1,6 @@
+2026-10-25T15:47:14Z sender launched (pi, label settled, env:none, no_goal=0)
+2026-10-25T15:47:16Z sender ready=yes
+2026-10-25T15:47:23Z sender goal records in /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//sb009p/.skilled/skills/.state/goal: 1
+2026-10-25T15:47:52Z sender session: 
+2026-10-25T15:47:52Z wrapper pid (loop id): 61960
+2026-10-25T15:47:52Z no sender session id; stopping

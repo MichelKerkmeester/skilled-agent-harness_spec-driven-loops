@@ -97,7 +97,8 @@ fi
 # A private skill belongs to the operator, not to this repository: staging one
 # publishes a file that exists only on this machine. Names are read NUL-separated,
 # so a path with a space or non-ASCII bytes is refused rather than skipped, and
-# --diff-filter=ACMR ignores a staged deletion, which publishes nothing. The match
+# --diff-filter=ACMRT ignores a staged deletion, which publishes nothing, while a
+# type change still counts because the new blob is published. The match
 # is on the path name, so a renamed copy is not caught; a content match would need
 # a manifest of private bytes to compare against, and this guard owns no such
 # manifest. There is no bypass variable and no gate-config row: staging a private
@@ -108,7 +109,7 @@ while IFS= read -r -d '' PRIVATE_PATH; do
   if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE ]]; then
     PRIVATE_STAGED+=("$PRIVATE_PATH")
   fi
-done < <(git diff --cached --name-only -z --diff-filter=ACMR)
+done < <(git diff --cached --name-only -z --diff-filter=ACMRT)
 if [[ "${#PRIVATE_STAGED[@]}" -gt 0 ]]; then
   echo "BLOCKED [gate:private-skill]: a private skill is staged and would be published:" >&2
   for PRIVATE_PATH in "${PRIVATE_STAGED[@]}"; do
@@ -121,7 +122,7 @@ fi
 # --- Comment hygiene gate (blocking) ---
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
-# See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+# See: .opencode/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 COMMENT_CHECKER="${SOURCE_ROOT}/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 # This hook is installed globally and runs in repositories that never carried this
 # toolchain, where blocking would make an unrelated repo uncommittable for a gate with
@@ -137,7 +138,8 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   # The staged blobs are what gets committed, so they are what is checked: a fix left
   # unstaged must not hide the violation going in. Names are read NUL-separated, so a
   # path with spaces or non-ASCII bytes is checked rather than skipped, and every file
-  # goes to one checker run, which reports each finding as <path>:<line>.
+  # goes to one checker run, which reports each finding as <path>:<line>. The -- ends
+  # the checker's options, so a staged path that starts with -- is checked as a file.
   HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
   trap 'rm -rf "$HYGIENE_DIR"' EXIT
   HYGIENE_FILES=()
@@ -154,7 +156,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   CHECKER_OUTPUT=""
   CHECKER_RC=0
   if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
-    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
+    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" -- "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
   fi
   rm -rf "$HYGIENE_DIR"
   case "$CHECKER_RC" in
@@ -164,7 +166,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
       printf '%s\n' "$CHECKER_OUTPUT"
       echo ""
       echo "BLOCKED [gate:comment-hygiene]: staged files contain ephemeral-artifact pointers in code comments."
-      echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
+      echo "See: .opencode/skills/sk-code/sk-code-quality/references/code-style-guide.md §4"
       echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
       echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..."
       exit 1

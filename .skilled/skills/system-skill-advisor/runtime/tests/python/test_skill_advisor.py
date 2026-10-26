@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 """
 TEST: Skill Advisor Automated Coverage
-T243: skill-advisor harnesses lacking direct automated coverage
-T246: Add automated test files for skill_advisor scripts
 
-Finding #27: These harnesses appear to have no direct automated coverage.
-Finding #32: .skilled/skills/system-skill-advisor/runtime currently has no automated test
-files adjacent to the reviewed scripts.
+The skill_advisor harnesses had no direct automated coverage, and the runtime folder
+had no test files beside the scripts it ships.
 
 This test suite provides direct automated coverage for:
 - skill_advisor.py: analyze_prompt, analyze_batch, health_check, get_skills

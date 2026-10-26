@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills"
-    last_updated_at: "2026-10-23T14:10:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Phase 001 landed on main as 7648ae8b56; phase 002 in progress uncommitted"
-    next_safe_action: "Finish phase 002 T039, then continue at T040"
+    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Phase 005 closed and phase 006 applied the confirmed deep-review findings"
+    next_safe_action: "None, optional history-rewrite decision"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-013-private-surface-skills"
       parent_session_id: null
-    completion_pct: 27
+    completion_pct: 100
     open_questions:
       - "Rewrite history after phase 005's read-only inventory?"
     answered_questions:
@@ -50,7 +50,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The hub ships `sk-code-quality`, `sk-code-review` and `sk-code-skilled`; the two surfaces return only as gitignored `local-*` symlinks to two external `local-skills/` folders. |
 | D2 | Four slash-less rules ignore `local-*` under `.skilled`, `.hermes`, `.codex`, `.cursor`; a blocking guard refuses a staged `local-*` path under all eight skill roots. |
-| D3 | Recorded limits: `--no-verify` bypasses the guard, history keeps the content, a renamed copy passes, and no standing pre-push token guard exists. |
+| D3 | Recorded limits: `--no-verify` bypasses the guard, history keeps the content, a renamed copy passes, no pre-push token guard exists, and it needs trusted hooks. |
 | D4 | A followed top-level `local-*` symlink must resolve inside the skills root or one of the two roots in `SPECKIT_PRIVATE_SKILL_ROOTS`; no other link is followed. |
 | D5 | Every tracked-output writer skips a `local-*` name before its first probe. |
 | D6 | The boundary is the hub tree, tracked consumers naming the two surfaces, and the advisor's sk-code vocabulary; generic words elsewhere, dated records and history stay unchanged. |
@@ -88,7 +88,7 @@ string, not these files.
 
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills --recursive --strict` prints `RESULT: PASSED`.
 - [x] `git ls-files` lists no path under `.skilled/skills/sk-code/sk-code-webflow/` or `.skilled/skills/sk-code/sk-code-obsidian/`, and `.skilled/skills/sk-code/mode-registry.json` declares `sk-code-quality`, `sk-code-review` and `sk-code-skilled`.
-- [x] `.skilled/skills/local-*/SKILL.md` exists through its symlink, each skill root holds one `graph-metadata.json`, and `git status --porcelain .skilled` prints nothing.
+- [x] Operator checkout: each `local-*` link holds `SKILL.md` and one `graph-metadata.json`, and `git status --porcelain --ignored` on them prints two `!!` lines.
 - [x] A fresh clone of `origin/main` prints `0 live` paths matching `local-(webflow|obsidian)|sk-code-(webflow|obsidian)` from `git ls-files -- ':!specs/**'`, `108 retained` under `specs/`, and `336` at `42b41dd286`.
 - [x] `node .skilled/bin/skill-advisor.cjs advisor_recommend` in the operator checkout, with both external roots in `SPECKIT_PRIVATE_SKILL_ROOTS`, returns `local-webflow` for `implement a responsive webflow animation module`, `local-obsidian` for `add an obsidian plugin command palette integration`, and `sk-code` for `add a responsive css layout to the settings page`.
 <!-- /ANCHOR:completion -->
@@ -112,10 +112,12 @@ and findings belong here.
 | Phase 003 | Done | Four review rounds closed with no open P0 or P1; advisor suite 147 files green, Python `pass=84`; committed with the advisor refactor on 2026-10-24 |
 | Phase 004 | Done | Commits `e8256b8044` and `ff993936c7` on `origin/main`, plus the external commits `4434c1b` (anobel.com) and `c6cd64b7` (Obsidian Plugin); operator approvals recorded in `004-private-local-skills/scratch/operator-approvals.md` |
 | Phase 005 | Done | Commits `01742752c1` and `ee0fdc94eb` on `origin/main`; 15 of 15 criteria Met, a final-tip clone at `634c32b3c7` matched the earlier run, strict validation passed |
+| Phase 006 | Done | The confirmed deep-review findings applied on 2026-10-25. Criterion 3 was rerun in the operator checkout that day and printed two `!!` lines |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| D1 amendment, 2026-10-25 | `sk-code-ci` joined the hub later in `028bd0f5cd`, and D1 governs only the two removed surfaces. |
 | The parent spec carried no D-rows | The children cite the parent packet's D1-D7, so the parent now states them under Scope > Frozen Decisions and this goal repeats them. |
 <!-- /ANCHOR:log -->

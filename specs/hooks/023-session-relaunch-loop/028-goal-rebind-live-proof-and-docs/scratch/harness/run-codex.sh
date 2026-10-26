@@ -33,7 +33,7 @@ cat > "$out/launch.sh" <<LAUNCH
 #!/usr/bin/env bash
 cd '$repo_root'
 $clean_prefix
-exec env "\${unset_args[@]}" XDG_RUNTIME_DIR='$XDG_RUNTIME_DIR' SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop codex -m gpt-6-luna --sandbox danger-full-access
+exec env "\${unset_args[@]}" XDG_RUNTIME_DIR='$XDG_RUNTIME_DIR' SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop codex -m gpt-6-luna --sandbox danger-full-access
 LAUNCH
 chmod +x "$out/launch.sh"
 tm new-session -d -x 200 -y 50 -s "$session_name" "bash '$out/launch.sh'"

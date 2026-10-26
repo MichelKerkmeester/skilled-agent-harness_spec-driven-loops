@@ -719,10 +719,78 @@ function resolveHubSkilledRoot() {
   return hubSkilledRoot;
 }
 
-// The sk-code surface a session works in, read from its workspace. Only the hub's
-// own root is detected; any other workspace sends no hint, so the compiled
-// tie-break order applies. The check is cheap because it runs before every
-// uncached advisor call.
+// The sk-code surfaces declared for detection, in the order detection tries them:
+// every specific surface first, the hub registry's in registry order and then those
+// of outside skills whose graph-metadata.json names the sk-code family, by skill_id,
+// and the hub's one fallback last. An outside block that claims the fallback role is
+// ignored, because the fallback is the hub's own code.
+const SK_CODE_HUB = 'sk-code';
+const EXTENSION_MARKER = /^\.[a-z0-9]+$/i;
+
+function readJsonFile(file) {
+  try {
+    const value = JSON.parse(readFileSync(file, 'utf8'));
+    return value && typeof value === 'object' ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function surfaceEntry(block) {
+  if (!block || typeof block !== 'object' || typeof block.label !== 'string' || !block.label.trim()) return null;
+  const markers = [block.pathMarkers, block.fileMarkers]
+    .flatMap((list) => (Array.isArray(list) ? list : []))
+    .filter((marker) => typeof marker === 'string' && marker.length > 0);
+  return { label: block.label.toUpperCase(), role: block.role, markers };
+}
+
+function declaredSurfaces(hubRoot) {
+  const skillsDir = join(hubRoot, 'skills');
+  const registry = readJsonFile(join(skillsDir, SK_CODE_HUB, 'mode-registry.json'));
+  const hub = (registry && Array.isArray(registry.modes) ? registry.modes : [])
+    .map((mode) => surfaceEntry(mode && mode.surfaceDetection))
+    .filter(Boolean);
+  const outside = [];
+  let names = [];
+  try {
+    names = readdirSync(skillsDir);
+  } catch {
+    names = [];
+  }
+  for (const name of names) {
+    const meta = readJsonFile(join(skillsDir, name, 'graph-metadata.json'));
+    if (!meta || meta.family !== SK_CODE_HUB || meta.skill_id === SK_CODE_HUB) continue;
+    const entry = surfaceEntry(meta.surface_detection);
+    if (entry && entry.role === 'specific') outside.push({ ...entry, skillId: String(meta.skill_id || name) });
+  }
+  outside.sort((a, b) => (a.skillId < b.skillId ? -1 : a.skillId > b.skillId ? 1 : 0));
+  return [
+    ...hub.filter((entry) => entry.role === 'specific'),
+    ...outside,
+    ...hub.filter((entry) => entry.role === 'fallback'),
+  ];
+}
+
+// A specific surface matches when the resolved workspace holds one of its path or
+// file markers, or sits inside a folder a path marker names. Extension and content
+// markers need the files a task touches, which a workspace check does not have.
+function workspaceHasMarker(real, entry) {
+  return entry.markers.some((marker) => {
+    if (EXTENSION_MARKER.test(marker)) return false;
+    const rel = marker.replace(/\/+$/, '');
+    if (!rel) return false;
+    return existsSync(join(real, rel)) || `${real}${sep}`.includes(`${sep}${rel.split('/').join(sep)}${sep}`);
+  });
+}
+
+// The sk-code surface a session works in, read from its workspace. A specific
+// surface whose markers the workspace holds wins, so a surface another repository
+// adds always leads the hub's own. The fallback holds only when the resolved
+// workspace lies inside the hub's own .skilled directory, so a symlinked local
+// skill or a .skilled folder in another repository is never read as hub code. Any
+// other workspace sends no hint, so the compiled tie-break order applies. The
+// result is cached per workspace because the check runs before every uncached
+// advisor call.
 const workspaceSurfaceCache = new Map();
 function detectWorkspaceSurface(projectDir) {
   if (typeof projectDir !== 'string' || projectDir.length === 0) return null;
@@ -731,7 +799,13 @@ function detectWorkspaceSurface(projectDir) {
   try {
     const real = realpathSync(projectDir);
     const hubRoot = resolveHubSkilledRoot();
-    if (hubRoot && (real === hubRoot || real.startsWith(`${hubRoot}${sep}`))) surface = 'SKILLED';
+    const insideHub = Boolean(hubRoot) && (real === hubRoot || real.startsWith(`${hubRoot}${sep}`));
+    const match = hubRoot
+      ? declaredSurfaces(hubRoot).find((entry) => (
+        entry.role === 'fallback' ? insideHub : workspaceHasMarker(real, entry)
+      ))
+      : null;
+    surface = match ? match.label : null;
   } catch {
     surface = null;
   }

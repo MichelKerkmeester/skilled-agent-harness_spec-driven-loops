@@ -13,6 +13,7 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 const SKILLED_DIR = path.resolve(__dirname, '..', '..', '..');
 const SHIM = path.join(SKILLED_DIR, 'bin', 'skilled-loop-shell.sh');
@@ -62,7 +63,7 @@ function sandbox(t) {
 }
 
 function cleanEnv(extra = {}) {
-  const env = { ...process.env, ...extra };
+  const env = { ...withoutRelaunchSwitches(process.env), ...extra };
   if (!('SKILLED_LOOP_ID' in extra)) delete env.SKILLED_LOOP_ID;
   return env;
 }

@@ -76,3 +76,7 @@
 #
 # excluded: .skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp
 # It declares no dependencies; the obsidian manual starts the server through npx.
+#
+# excluded: .skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp
+# A placeholder that declares no dependencies; the clickup_official manual starts
+# the hosted server through npx mcp-remote.

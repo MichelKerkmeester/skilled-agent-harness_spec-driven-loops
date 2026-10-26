@@ -87,7 +87,7 @@ async function main(expectedEvent) {
   const config = loadConfigFile(configPath());
   let enabled = false;
   try {
-    enabled = isHookEnabled(CONCERN, process.env, config);
+    enabled = isHookEnabled(CONCERN, process.env, config, { runtime: 'codex' });
   } catch {}
   if (!enabled) return done();
 

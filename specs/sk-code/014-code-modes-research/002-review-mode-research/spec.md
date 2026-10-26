@@ -68,7 +68,7 @@ This is **Phase 2** of the sk-code Quality and Review Modes Research specificati
 
 `sk-code-review` is the findings-first review baseline. It takes its surface evidence from one `.skilled/` path marker and resolves only to SKILLED or UNKNOWN (`SKILL.md` lines 223 to 241). It names the `@review` agent file under `.skilled/agents/` (line 472), keeps its review-result cache in a per-user cache directory keyed by the origin remote URL (lines 501 to 503) and carries a sensitive-path list of stack-specific file patterns (lines 530 to 539). Its output ends in an exact status line that downstream automation parses (lines 378 to 409).
 
-Nothing in the packet says how a repository tunes severity, adds a mandatory check or declares its own surface evidence. No other file under `.skilled/skills/sk-code/` mentions the quality gate's advisory envelope, so review has no documented way to read what the quality gate already checked. A mode a user adds to the hub has no documented way to plug into review either.
+Nothing in the packet says how a repository tunes severity, adds a mandatory check or declares its own surface evidence. Only the hub playbook (`manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md:153`) documents a reader of the quality gate's advisory envelope, and that reader is deep-review, so `sk-code-review` has no documented way to read what the quality gate already checked. A mode a user adds to the hub has no documented way to plug into review either.
 
 ### Purpose
 

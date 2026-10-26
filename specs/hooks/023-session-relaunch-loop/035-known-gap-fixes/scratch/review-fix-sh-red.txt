@@ -1,0 +1,67 @@
+✔ enabled by default when no flag is set (0.545416ms)
+✔ master switch disables every concern (0.058833ms)
+✔ canonical per-concern switch disables only that concern (0.043833ms)
+✔ concernFlag derives the canonical env name (0.054792ms)
+✔ legacy aliases still disable their concern (0.074125ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.047125ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.048208ms)
+✔ .mjs and .ts facades re-export identical behavior (17.422ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.083167ms)
+✔ environment overrides the config file both ways (0.071042ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.690834ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.346667ms)
+✔ session-relaunch is off by default while every other concern stays on (0.045666ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.039542ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.36925ms)
+✔ a kill switch beats the session-relaunch enable flag (0.032209ms)
+✔ the facades carry the session-relaunch default (0.088208ms)
+✔ the node and shell resolvers give the same session-relaunch answers (222.603791ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.123042ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.428792ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (39.120792ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.105583ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (37.339834ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (106.25225ms)
+✔ a byte order mark before the first line hides nothing from any reader (71.649ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (419.873917ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (21.485584ms)
+✖ a per-runtime enable flag answers before the global one in every reader (889.249792ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1864.335917
+
+✖ failing tests:
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:490:1
+✖ a per-runtime enable flag answers before the global one in every reader (889.249792ms)
+  AssertionError [ERR_ASSERTION]: a runtime name with surrounding spaces still finds its switch: hook-flags.sh
+  + actual - expected
+  
+    [
+      'off',
+  -   'on',
+      'off',
+      'off',
+      'off',
+  +   'off'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/shared/hook-flags.test.cjs:536:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'off', 'off', 'off', 'off', 'off' ],
+    expected: [ 'off', 'on', 'off', 'off', 'off' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1
+--- direct shell probes (each row in isolation) ---
+spaced runtime: off (cjs says on)
+MK_HOOKS_DISABLED=1: on (cjs says off)

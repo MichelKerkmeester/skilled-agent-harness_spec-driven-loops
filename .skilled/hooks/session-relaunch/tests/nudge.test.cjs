@@ -27,6 +27,7 @@ const {
   hopLimitReached,
 } = nudgeModule;
 const core = require('../lib/relaunch-core.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 const NOTE_PATH = '/tmp/session-relaunch/handoff-01a14869.md';
 const SESSION_ID = '01a14869-0b90-74a9-8231-4d14477ec215';
@@ -380,6 +381,50 @@ test('seed text carries the complete command the reminder builder returns', () =
   );
 });
 
+test('after-compaction pointer names the note created_at and the git checks', () => {
+  const createdAt = '2026-10-25T10:00:00Z';
+  const pointer = seedText({
+    notePath: NOTE_PATH,
+    specFolder: SPEC_FOLDER,
+    sessionId: SESSION_ID,
+    cliPath: CLI_PATH,
+    afterCompaction: true,
+    createdAt,
+  });
+  const lines = pointer.split('\n');
+  const checkIndex = lines.findIndex((line) => line.includes('git status'));
+  const continueIndex = lines.findIndex((line) => line.includes('Continue the work'));
+
+  assert.ok(pointer.includes(createdAt), pointer);
+  assert.ok(pointer.includes(`git log --since='${createdAt}'`), pointer);
+  assert.ok(checkIndex > 0 && checkIndex < continueIndex, pointer);
+  assert.deepEqual(
+    lines.slice(1).map((line) => Number.parseInt(line, 10)),
+    [1, 2, 3, 4, 5],
+  );
+
+  // A date the session pastes into its shell stays one quoted argument.
+  const hostile = seedText({ notePath: NOTE_PATH, afterCompaction: true, createdAt: "x'; rm -rf ~" });
+  assert.ok(hostile.includes(`git log --since='x'"'"'; rm -rf ~'\``), hostile);
+});
+
+test('after-compaction pointer without a note date keeps the undated git step', () => {
+  for (const createdAt of [undefined, '', null]) {
+    const pointer = seedText({
+      notePath: NOTE_PATH,
+      specFolder: '',
+      sessionId: SESSION_ID,
+      cliPath: CLI_PATH,
+      afterCompaction: true,
+      createdAt,
+    });
+    assert.ok(pointer.includes('`git log`'), pointer);
+    assert.ok(pointer.includes('`git status`'), pointer);
+    assert.equal(pointer.includes('--since'), false, pointer);
+    assert.equal(/undefined|null/.test(pointer), false, pointer);
+  }
+});
+
 test('isSeedPrompt recognizes the relaunch seed prefix only', () => {
   assert.equal(isSeedPrompt('[session-relaunch] continue the handoff'), true);
   assert.equal(isSeedPrompt('continue the handoff'), false);
@@ -699,6 +744,19 @@ test('notePathFromSeed returns the raw absolute path or null', () => {
   assert.equal(notePathFromSeed('not a seed'), null);
 });
 
+test('a note path holding the spec folder marker reads the same as the wrapper reads it', () => {
+  const markedPath = '/tmp/odd | Spec folder: x/handoff.md';
+  const seed = '[session-relaunch] claim and continue handoff ' + markedPath
+    + ` | Spec folder: ${SPEC_FOLDER}`
+    + ' (carried from the handoff; Gate 3 answered in the sending session)';
+
+  assert.deepEqual(core.parseClaimSeed(seed), { notePath: markedPath, specFolder: SPEC_FOLDER });
+  assert.equal(notePathFromSeed(seed), markedPath);
+  assert.equal(specFolderFromSeed(seed), SPEC_FOLDER);
+  const text = nudgeModule.seedInstructions({ prompt: seed, sessionId: SESSION_ID });
+  assert.ok(text.includes(`/speckit:resume ${SPEC_FOLDER}`), text);
+});
+
 test('nextLevel nudges at the threshold and once more at threshold plus 0.05, then stays quiet', () => {
   assert.deepEqual(nextLevel({ ratio: 0.8, threshold: 0.8, state: 0 }), { level: 1, nudge: true });
   assert.deepEqual(nextLevel({ ratio: 0.8 + 0.05, threshold: 0.8, state: 1 }), { level: 2, nudge: true });
@@ -712,7 +770,7 @@ test('validSessionId rejects shell metacharacters and accepts a safe session id'
 
 test('nudge state round-trips in the isolated runtime directory', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
-  const env = { ...process.env, XDG_RUNTIME_DIR: root };
+  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root };
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
 
   writeState(SESSION_ID, 2, env);
@@ -721,7 +779,7 @@ test('nudge state round-trips in the isolated runtime directory', (t) => {
 
 test('writeState repairs a permissive state directory back to private mode', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
-  const env = { ...process.env, XDG_RUNTIME_DIR: root };
+  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root };
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
 
   const stateDirectory = path.join(root, 'skilled-relaunch');
@@ -743,7 +801,12 @@ function recordSandbox(t) {
     if (previousConfigFile === undefined) delete process.env.HOOK_FLAGS_CONFIG;
     else process.env.HOOK_FLAGS_CONFIG = previousConfigFile;
   });
-  const env = { ...process.env, XDG_RUNTIME_DIR: root };
+  // The helper drops the flags file path too, so the sandbox's own path is put back.
+  const env = {
+    ...withoutRelaunchSwitches(process.env),
+    HOOK_FLAGS_CONFIG: process.env.HOOK_FLAGS_CONFIG,
+    XDG_RUNTIME_DIR: root,
+  };
   delete env.SESSION_RELAUNCH_MAX_AGE_MIN;
   return env;
 }

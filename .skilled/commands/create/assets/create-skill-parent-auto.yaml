@@ -17,7 +17,7 @@ action: Normalize inputs, load standards, generate the hub + registry + packets 
 #   - sk-doc standards enforcement
 #   - Hub document validation
 #
-# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# The command markdown verifies the @markdown agent BEFORE
 # this YAML workflow loads. If you are executing this workflow,
 # @markdown verification has already passed.
 # ─────────────────────────────────────────────────────────────────

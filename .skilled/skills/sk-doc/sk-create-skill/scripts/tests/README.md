@@ -32,6 +32,7 @@ trigger_phrases:
 | `leaf-route-replay.test.cjs` | Tests the keyword replay, the transcript count, the replay verdict, the baseline selection and the verdict math. |
 | `skill-derived-regenerator.test.cjs` | Tests derived-data regeneration and freshness behavior. |
 | `skill-root-metadata-contract.test.cjs` | Tests skill-root metadata classification and fleet conformance. |
+| `skill-root-reader-inventory.test.cjs` | Fails when a tracked script lists the skills root without a `local-*` rule and is not in the reader inventory. |
 | `validate-compiled-routing-scenarios.test.cjs` | Tests compiled-routing scenario admission fixtures. |
 | `validate-playbook-topology.test.cjs` | Tests playbook topology parsing and validation. |
 

@@ -2206,7 +2206,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **Evidence:** `RESULT: PASSED`, `Errors: 0  Warnings: 0`.
 - **Drift:** The first run failed on `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT` (`SOURCE_FINGERPRINT_MISMATCH`), because the derived `graph-metadata.json` predated the edited docs. `repair-derived.cjs --folder <folder> --apply` re-derived it (`repaired=1 failed=0`) and the rerun passed.
 
-### [ ] T072 — Independent review
+### [x] T072 — Independent review
+
+- **Evidence:** `decision-record.md` section Review follow-up amendments records four review rounds (`:772`, `:789`, `:820`, `:833`), and round 4 ends with no open P0 or P1 and its three P2 findings resolved. The `/tmp` report was session-local and is gone.
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2239,7 +2241,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **Stop if:** the last line is not `RESULT: PASSED`.
 - **Evidence:** `RESULT: PASSED`, `Errors: 0  Warnings: 0`, from the final doc state after the last `repair-derived.cjs --apply`.
 
-### [ ] T074 — Commit the phase
+### [x] T074 — Commit the phase
+
+- **Evidence:** `e00fef3e76` is an ancestor of `origin/main` (`git merge-base --is-ancestor`, exit 0, 2026-10-25). The clean-tree and `HEAD` equals `origin/main` checks held at delivery and cannot be replayed, so commit ancestry stands in for them.
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2300,7 +2304,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **Stop if:** `git status --porcelain` names a path outside the 31 changed files and this phase's documents.
 - **Evidence:** Pending. The orchestrator commits after the independent review.
 
-### [ ] T075 — Push the phase
+### [x] T075 — Push the phase
+
+- **Evidence:** `e00fef3e76` is an ancestor of `origin/main` (`git merge-base --is-ancestor`, exit 0, 2026-10-25). The clean-tree and `HEAD` equals `origin/main` checks held at delivery and cannot be replayed, so commit ancestry stands in for them.
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2319,7 +2325,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **Stop if:** the push is rejected, because a non-fast-forward means someone else landed on `main`.
 - **Evidence:** Pending. The orchestrator pushes after the commit.
 
-### [ ] T076 — Confirm the final state
+### [x] T076 — Confirm the final state
+
+- **Evidence:** `e00fef3e76` is an ancestor of `origin/main` (`git merge-base --is-ancestor`, exit 0, 2026-10-25). The clean-tree and `HEAD` equals `origin/main` checks held at delivery and cannot be replayed, so commit ancestry stands in for them.
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2457,7 +2465,9 @@ Round 1 of the independent review failed the phase. Each task below resolves one
 - **Stop if:** the validator fails.
 - **Evidence:** `RESULT: PASSED` after the final `repair-derived.cjs --apply`.
 
-### [ ] T084 — Round 2 of the independent review
+### [x] T084 — Round 2 of the independent review
+
+- **Evidence:** `decision-record.md` section Review follow-up amendments records four review rounds (`:772`, `:789`, `:820`, `:833`), and round 4 ends with no open P0 or P1 and its three P2 findings resolved. The `/tmp` report was session-local and is gone.
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2923,9 +2933,9 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`. Evidence 2026-10-25: every task heading carries `[x]`.
+- [x] No `[B]` blocked tasks remaining. Evidence 2026-10-25: no task heading carries `[B]`.
+- [x] Manual verification passed. Evidence: phase 005 ran the routing probes in the operator checkout, and the parent goal records them under criterion 5.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -2967,10 +2977,10 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks. Evidence 2026-10-25: `tsc --noEmit -p tsconfig.build.json` in the advisor runtime exited 0. `node --check` passed on all 12 JavaScript files of `e00fef3e76` and `ast.parse` on all 4 Python files, exit 0. The one ESLint config in the repository, `system-spec-kit/runtime/eslint.config.mjs`, covers 2 of the commit's files, `sync-skills-hermes.cjs` and `hf-local-client.vitest.ts`, and `eslint` on them exited 0. No ESLint config covers the other files.
+- [x] CHK-011 [P0] No console errors or warnings. Evidence 2026-10-25: the helper, `skill-graph-db`, `advisor-status`, projection freshness and daemon freshness vitest files printed `Tests  66 passed (66)`, exit 0, with no warning or error line. `test_skill_advisor.py` printed `Summary: pass=84, fail=0`, exit 0. Its one `WARNING` line names the `invalid-skill` fixture, which a parser test writes on purpose.
+- [x] CHK-012 [P1] Error handling implemented. Evidence: the containment helper returns false when `realpathSync` or `statSync` throws, and the helper suite covers a missing target and a file target.
+- [x] CHK-013 [P1] Code follows project patterns. Evidence: four review rounds closed with no open P0 or P1.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -2978,8 +2988,8 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met, or waived against a decision record (AC-035 under ADR-008)
-- [ ] CHK-021 [P0] Manual testing complete
+- [x] CHK-020 [P0] All acceptance criteria met, or waived against a decision record (AC-035 under ADR-008). Evidence 2026-10-25: 40 criteria read `Met` and AC-035 reads `Waived` under ADR-008.
+- [x] CHK-021 [P0] Manual testing complete. Evidence: the same phase 005 routing probes as the manual verification line above.
 - [x] CHK-022 [P1] Edge cases tested (outside-root, missing-target and file-target cases in the helper suite)
 - [x] CHK-023 [P1] Error scenarios validated (untrusted and missing links leave every scan green)
 <!-- /ANCHOR:testing -->
@@ -2989,13 +2999,13 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence 2026-10-25: all 34 round 1 to 4 findings in `decision-record.md` carry a `Class:` label.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: the scanner inventory in `spec.md` section 3, now enforced by `skill-root-reader-inventory.test.cjs`.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence 2026-10-25: the advisor README and catalog leaf document the private-root variable, and playbook scenario AI-007 (`manual-testing-playbook/auto-indexing/private-skill-roots.md`) exercises it. `validate-playbook-package.cjs` printed `scenarios=62 ... violations=0`, exit 0.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence 2026-10-25: `private-skill-target.vitest.ts` adds two roots joined by `path.delimiter` with an empty segment, a sibling-prefix root (`private` against `private-x`) and an empty variable, and prints `Tests  11 passed (11)`, exit 0. No case exposed a bug. With the empty-segment skip removed, the joined and empty cases failed. With a string-prefix containment test, the sibling case failed.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Not done: the inventory lists scans, not a matrix.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: round 4 P2-2 made the lease cases unset `SYSTEM_SKILL_ADVISOR_DB_DIR`, and the helper suite sets and restores `SPECKIT_PRIVATE_SKILL_ROOTS`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: AC-026 pins `e00fef3e76`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -3003,9 +3013,9 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-030 [P0] No hardcoded secrets. Evidence 2026-10-25: a credential-pattern scan of the lines `e00fef3e76` adds came back empty.
 - [x] CHK-031 [P0] Input validation implemented (realpath containment against the skills root and `SPECKIT_PRIVATE_SKILL_ROOTS`)
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [ ] CHK-032 [P1] Auth/authz working correctly. Not applicable: the phase adds no auth surface.
 <!-- /ANCHOR:security -->
 
 ---
@@ -3013,9 +3023,9 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence 2026-10-25: status, criteria and checklist reconciled to Complete.
+- [x] CHK-041 [P1] Code comments adequate. Evidence 2026-10-25: a scan of the comment lines `e00fef3e76` adds found no task, criterion, phase or packet id, and the helper exports gained TSDoc in the review remediation.
+- [x] CHK-042 [P2] README updated (if applicable). Evidence: the advisor README dropped its `WEBFLOW` example in this phase.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -3023,8 +3033,8 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [ ] CHK-050 [P1] Temp files in scratch/ only. Not as written: the phase wrote its temp output to `/tmp`, outside the repo tree, not to `scratch/`.
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence 2026-10-25: `ls -A scratch` lists only `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -3034,11 +3044,11 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 10/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---

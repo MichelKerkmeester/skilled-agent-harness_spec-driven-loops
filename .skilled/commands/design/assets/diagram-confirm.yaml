@@ -13,7 +13,7 @@ action: Resolve html-svg (default) versus ascii-markdown before selecting a type
 # -----------------------------------------------------------------
 # PREREQUISITE: CREATE-DIAGRAM PACKET VERIFICATION
 # -----------------------------------------------------------------
-# PHASE 0 in the presentation contract verifies the packet resources
+# The presentation contract verifies the packet resources
 # BEFORE this YAML workflow loads. If you're executing this workflow,
 # create-diagram verification has already passed.
 #
