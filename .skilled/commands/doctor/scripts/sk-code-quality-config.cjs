@@ -40,7 +40,7 @@ const path = require('node:path');
 const QUALITY_ROOT = path.resolve(__dirname, '../../../skills/sk-code/sk-code-quality');
 const qualityConfig = require(path.join(QUALITY_ROOT, 'scripts', 'lib', 'quality-config.cjs'));
 const { findTool, runGit } = require(path.join(QUALITY_ROOT, 'scripts', 'lib', 'run-check.cjs'));
-const { CHECK_IDS, probeLayers } = require(path.join(QUALITY_ROOT, 'scripts', 'quality-gate.cjs'));
+const { CHECK_IDS, TRUST_REPAIR, checkTrust, probeLayers } = require(path.join(QUALITY_ROOT, 'scripts', 'quality-gate.cjs'));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -54,8 +54,8 @@ const USAGE_TEXT = [
   'Usage: sk-code-quality-config.cjs status|check|init [options]',
   '',
   'Modes:',
-  '  status            report the config source, its errors, each named tool and the hygiene layers',
-  '  check             validate the config against the schema and report its errors, probing nothing',
+  '  status            report the config source, its trust, its errors, each named tool and the hygiene layers',
+  '  check             validate the config against the schema and report its errors and trust state, probing no tool',
   '  init              show the config init would create, and write it only with --apply',
   '',
   'Options:',
@@ -155,7 +155,7 @@ function load(ctx, opts) {
     });
   } catch (error) {
     if (!(error instanceof qualityConfig.ConfigError)) throw error;
-    return { source: error.source || null, path: error.path || null, display: error.path || null, bytes: null, raw: null,
+    return { source: error.source || null, scope: error.scope || null, path: error.path || null, display: error.path || null, bytes: null, raw: null,
       errors: [{ code: error.code, field: '', message: error.message }], merged: null };
   }
 }
@@ -167,6 +167,24 @@ function describeSource(loaded) {
 
 function errorCode(loaded) {
   return loaded.errors.some((entry) => entry.code === 'CONFIG_PATH_MISSING') ? 'CONFIG_PATH_MISSING' : 'CONFIG_INVALID';
+}
+
+// The doctor reads the same trust rule the runner applies, so the state it reports is the
+// state the gate would act on. A config that did not validate names no check for this run.
+function trustState(loaded, ctx) {
+  if (loaded.errors.length > 0) {
+    const missing = loaded.errors.some((entry) => entry.code === 'CONFIG_PATH_MISSING');
+    const reason = missing ? 'the config could not be read, so no configured check runs' : 'the config did not validate, so no configured check runs';
+    return { checks: 'none', reason, repair: null };
+  }
+  const merged = loaded.merged;
+  const configured = merged ? merged.checks.length + merged.generated.filter((row) => row.layer === 'repo').length : 0;
+  const trust = checkTrust({ git: true, root: ctx.root, env: ctx.env, source: loaded.source, scope: loaded.scope, value: loaded.value, configured });
+  return { ...trust, repair: trust.checks === 'untrusted' ? TRUST_REPAIR : null };
+}
+
+function trustLine(trust) {
+  return `Trust: ${trust.checks} (${trust.reason})${trust.repair ? ` (repair: ${trust.repair})` : ''}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -202,9 +220,10 @@ function probeTools(ctx, loaded) {
 
 function status(ctx, opts) {
   const loaded = load(ctx, opts);
+  const trust = trustState(loaded, ctx);
   const tools = probeTools(ctx, loaded);
   const layers = probeLayers({ git: true, root: ctx.root, env: ctx.env });
-  const lines = [`Repository: ${ctx.root}`, `Config: ${describeSource(loaded)}`];
+  const lines = [`Repository: ${ctx.root}`, `Config: ${describeSource(loaded)}`, trustLine(trust)];
   if (loaded.errors.length === 0) lines.push('Errors: none');
   for (const entry of loaded.errors) lines.push(`  ERROR  ${entry.message}`);
   if (tools.length === 0) lines.push('Tools: none named');
@@ -218,21 +237,22 @@ function status(ctx, opts) {
   const source = loaded.source || 'unknown';
   emit(opts, {
     repo: ctx.root,
-    config: { source: loaded.source, path: loaded.display, bytes: loaded.bytes, errors: loaded.errors },
+    config: { source: loaded.source, path: loaded.display, bytes: loaded.bytes, errors: loaded.errors, trust },
     tools,
     layers,
-  }, lines, `STATUS=${state} SOURCE="${source}"${failed ? ` ERROR=${errorCode(loaded)}` : ''}`);
+  }, lines, `STATUS=${state} SOURCE="${source}" TRUST=${trust.checks}${failed ? ` ERROR=${errorCode(loaded)}` : ''}`);
   return failed ? 1 : 0;
 }
 
 function check(ctx, opts) {
   const loaded = load(ctx, opts);
-  const lines = [`Config: ${describeSource(loaded)}`];
+  const trust = trustState(loaded, ctx);
+  const lines = [`Config: ${describeSource(loaded)}`, trustLine(trust)];
   for (const entry of loaded.errors) lines.push(`  ERROR  ${entry.message}`);
   if (loaded.errors.length === 0) lines.push(loaded.source === 'none' ? 'Nothing to check.' : 'Valid against the schema.');
   const failed = loaded.errors.length > 0;
-  emit(opts, { repo: ctx.root, config: { source: loaded.source, path: loaded.display, bytes: loaded.bytes, errors: loaded.errors } }, lines,
-    `STATUS=${failed ? 'FAIL' : 'OK'} SOURCE="${loaded.source || 'unknown'}" ERRORS=${loaded.errors.length}${failed ? ` ERROR=${errorCode(loaded)}` : ''}`);
+  emit(opts, { repo: ctx.root, config: { source: loaded.source, path: loaded.display, bytes: loaded.bytes, errors: loaded.errors, trust } }, lines,
+    `STATUS=${failed ? 'FAIL' : 'OK'} SOURCE="${loaded.source || 'unknown'}" TRUST=${trust.checks} ERRORS=${loaded.errors.length}${failed ? ` ERROR=${errorCode(loaded)}` : ''}`);
   return failed ? 1 : 0;
 }
 

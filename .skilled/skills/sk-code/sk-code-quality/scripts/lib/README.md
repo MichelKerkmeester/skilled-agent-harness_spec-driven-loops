@@ -1,7 +1,7 @@
 ---
 title: "Lib: the quality runner's spawner, workspace guard and config reader"
 description: "run-check.cjs, the one module that starts a process for the sk-code quality runner, plus the config reader quality-config.cjs and the new home of the shared post-edit dispatch table."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Lib
@@ -24,6 +24,7 @@ The shared post-edit dispatch module no longer lives here. It is `.skilled/hooks
 |------|---------|
 | `run-check.cjs` | Exports `spawnArgv()` (one argv array under a deadline, with `NODE_OPTIONS`, `NODE_COMPILE_CACHE`, `BASH_ENV` and `ENV` removed, mapped to `RAN_CLEAN`, `RAN_FAIL`, `TIMEOUT` or `ERROR`), `runGit()` (git with optional locks and the file-system monitor off and literal pathspecs on), `findTool()` (a PATH lookup that starts nothing) `spawnGroup()` (one repository command as the leader of its own process group, with no shell and no input, the whole group killed at the deadline and again when the leader exits) and `withGuard()` (the content-hash guard, which can chain snapshots. The runner passes its built-in checks as one piece of work and gives each configured check its own window chained from the last, so a run takes two snapshots plus one per configured check it runs, and a file over 2 MB is compared by size and change time) |
 | `quality-config.cjs` | Exports `discoverConfig()` (`--config`, then the file-scoped `skcode.qualityConfig` git config value, then `.sk-code/quality.json`), `loadConfig()` and `validateConfig()` (every field error collected before any check starts), `mergeConfig()` (the repository config over the shipped defaults), `readSuggestions()` (the checks the root manifests imply, never run) and `initialConfig()` (the template filled with those suggestions, used by `/doctor:sk-code quality`) |
+| `parallel-node-check.cjs` | A helper `../quality-gate.cjs` starts for the `syntax-node` check: it reads a JSON list of paths on stdin, runs one `node --check` per file with at most a bounded number in flight, and prints one `{file, status, stderr, timedOut, error}` record per input path in input order. Each child carries the check's own deadline and is killed at it, so the parent rebuilds the same findings from the same evidence a sequential loop produced. Each child runs in its own process group, and the helper kills every live group when it is stopped or fails, so no `node --check` outlives it. A stored stderr keeps at most 4096 characters, its head and its tail, which holds the lines the parent reads. |
 
 The post-edit dispatch table, `post-edit-router.cjs`, is at `.skilled/hooks/post-edit-quality/lib/` and absent from this folder. It exports `resolveDispatch()`, `runChecks()` and `runDistStalenessCheck()`.
 

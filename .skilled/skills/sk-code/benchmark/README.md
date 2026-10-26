@@ -130,6 +130,8 @@ Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<
 
 A report folder is a rendered artifact, so it is produced from its machine record rather than written by hand. `scripts/render-report.cjs` renders a record in the `skill-benchmark-report.v1` shape into the seven-file set.
 
+Folders written before the renderer existed are legacy. They do not reproduce from their records, and `render-report.cjs --check` does not apply to them. The seven legacy folders are `reports/2026-06-01--after--router`, `reports/2026-06-01--full--router`, `reports/2026-06-02--d4r-live--live` and `reports/baseline` under this hub, plus `sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router`, `sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live` and `sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router` under the mode packets.
+
 | Command | What it does |
 |---|---|
 | `node .skilled/skills/sk-code/benchmark/scripts/render-report.cjs <report.json> <out-folder>` | Writes the seven files from one machine record. The record's `corpus` field fills the `Scenario corpus` row of `source.md`, and `targetSkill.root` is written exactly as recorded, so a record that stores a repository-relative root renders a portable folder. |

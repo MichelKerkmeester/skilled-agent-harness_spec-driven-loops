@@ -190,6 +190,13 @@ function buildRepo({ base = {}, change = {}, links = {}, modes = {}, git = true,
   };
 }
 
+// A fixture whose committed checks should run vouches for them the way the operator of a
+// third-party repository would, so the case keeps testing what it tested.
+function trustRepoChecks(repo) {
+  repo.git(['config', '--local', 'skilled.trustRepoChecks', 'true']);
+  return repo;
+}
+
 /**
  * Run fn and fail when any file under the fixture folder, the runner's scripts folder
  * or a folder that holds a declared generated path was created, changed or removed.
@@ -210,4 +217,4 @@ function assertSnapshotUnchanged(repo, fn) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { assertSnapshotUnchanged, buildRepo };
+module.exports = { REPO_ROOT, assertSnapshotUnchanged, buildRepo, trustRepoChecks };

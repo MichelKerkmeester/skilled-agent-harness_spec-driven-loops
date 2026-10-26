@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Quality Runner Contract
@@ -79,6 +79,7 @@ Precedence runs `ERROR`, then `BLOCKED`, then `UNVERIFIED`, then `NOTHING_CHECKE
 | `RAN_FAIL` | It ran and reported findings | No |
 | `SKIPPED_ABSENT` | Its tool is missing. `repair` names what to install | Yes |
 | `SKIPPED_BY_FLAG` | `--only`, `--skip` or a hook switch turned it off | Yes |
+| `SKIPPED_UNTRUSTED` | A configured check whose config no trust rule vouched for. `repair` holds `git config --local skilled.trustRepoChecks true` | Yes |
 | `TIMEOUT` | It passed its deadline and was killed | Yes |
 | `ERROR` | It failed, printed output the runner cannot read or was not run after an earlier mutation. A configured check outside git reads `ERROR` with code `GUARD_UNAVAILABLE` | Yes |
 | `LISTED` | `--no-run` listed it without running it | Yes |
@@ -97,7 +98,9 @@ Precedence runs `ERROR`, then `BLOCKED`, then `UNVERIFIED`, then `NOTHING_CHECKE
 | `syntax-yaml` | P0 | no | The same python3 process, through PyYAML `compose_all`, when it imports |
 | `syntax-toml` | P0 | no | The same python3 process, through `tomllib`, when it imports |
 | `dist-staleness` | P1 | no | The dist adapter in section 8 |
-| A configured id | Declared | Declared, and true by default for P0 only | The commands `.sk-code/quality.json` names in `checks` and `generated`, after the built-in rows, as `quality-config.md` describes |
+| A configured id | Declared | Declared, and true by default for P0 only | The commands `.sk-code/quality.json` names in `checks` and `generated`, after the built-in rows, as `quality-config.md` describes. A command starts only from a trusted config |
+
+A configured check runs only from a trusted config. One of four rules makes it trusted. The operator names the file with `--config`, `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include, `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test, or the repository under test shares its git common dir with the checkout that holds the runner. Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one is unverified. A built-in check is never gated this way, and `--no-run` lists a configured check without starting it, so trust does not change that listing. The trust rule compares git common dirs, so every worktree of the hub's repository counts as the hub's own checkout, while a checklist row scoped to `hubRepo` reads the hub checkout's own path instead.
 
 | Layer state | Meaning |
 | --- | --- |
@@ -117,7 +120,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | `FILE_NOT_FOUND`, `FILE_OUTSIDE_ROOT` | A named file that is missing, not regular or outside the root |
 | `BASE_NOT_FOUND`, `GIT_FAILED` | A ref with no merge base, or a git call that failed |
 | `HUB_ROOT_INVALID`, `TABLE_UNREADABLE`, `DEFAULTS_INVALID` | The override, `comment-syntax.json` or `quality-defaults.json` cannot be read |
-| `CHECKLIST_MISSING`, `CHECKLIST_OUTSIDE_SKILL`, `CHECKLIST_ROW_INVALID` | A matched declaration names a checklist file that is missing or not a regular file, one an outside skill declares resolves outside that skill's folder, or a row or a block is malformed. All three are reported in `config.errors` |
+| `CHECKLIST_MISSING`, `CHECKLIST_OUTSIDE_SKILL`, `CHECKLIST_ROW_INVALID` | A matched declaration names a checklist file that is missing or not a regular file, one an outside skill declares resolves outside that skill's folder, or a row or a block is malformed. A missing file is reported in `config.errors`. The other two gate only for a declaration that applies to the change, so a fault on one that applies to no scoped file is reported in `config.warnings` and leaves the gate unchanged |
 | `CHECK_MUTATED_WORKSPACE`, `GUARD_FAILED` | The workspace changed while a spawned check ran, or the guard could not take its snapshot. The built-in spawned checks share one window, so `check` names every built-in check that ran in it. Each configured check runs in its own window after that, chained from the last, so `check` names the one configured check. The first mutation stops every configured check after it. Nothing is reverted |
 | `GUARD_UNAVAILABLE` | Not an `errors[]` row: the `code` of a configured check row outside git, which reads `ERROR` and never starts |
 | `INTERNAL_ERROR` | A fault in the runner. The message prints, and no stack trace does |
@@ -133,7 +136,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | `schema`, `status` | `code-quality-run/v1` and `advisory`. `status` never holds another value |
 | `gate`, `exit_code` | One gate from section 2 and its exit code |
 | `scope` | `mode`, `base`, `merge_base`, `lines` and `files`, the repository-relative paths in scope |
-| `config` | `source` is `cli`, `git-config`, `repo` or `none`, or null when the run stopped before reading it. `path` and `bytes` describe the repository file, `defaults` names `quality-defaults.json` and `errors` holds config and checklist faults |
+| `config` | `source` is `cli`, `git-config`, `repo` or `none`, or null when the run stopped before reading it. `path` and `bytes` describe the repository file, `defaults` names `quality-defaults.json`, `trust` holds `checks` (`trusted`, `untrusted` or `none`) and `reason`, the rule that decided it or why no configured check was read, `errors` holds config and checklist faults and `warnings` holds each checklist fault on a declaration that applies to no file in scope, which never changes the gate or the exit code |
 | `resolved_surface` | Every surface label any file resolved to, in detection order, or `["unknown"]` |
 | `surfaces` | One `{file, labels}` row per file that is not excluded. A file with no surface reads `["UNKNOWN"]` |
 | `layers` | `pre_commit_hygiene`, `ci_hygiene` and `post_edit`, each one layer state |
@@ -146,7 +149,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | `summary` | `p0_blocking`, `p0_heuristic`, `p1_open`, `p2_open`, `touched_file_debt` and `unverified` |
 | `errors` | `{code, message, repair}` rows. A mutation row adds `check` and `paths` |
 
-A check row holds `id`, `origin` (`builtin`, `configured` or `generated`), `severity`, `required`, `state`, `argv`, `cwd`, `exit`, `duration_ms`, `requires`, `repair`, `code` and `files`, the count of files it applies to. `argv` is a template, with `{files}` or `{file}` where the paths go. `code` is null unless a state needs one. A configured row adds `runs`, one `{cwd, argv, files, state, exit, duration_ms}` row per run, with the paths filled in.
+A check row holds `id`, `origin` (`builtin`, `configured` or `generated`), `severity`, `required`, `state`, `argv`, `cwd`, `exit`, `duration_ms`, `requires`, `repair`, `code` and `files`, the count of files it applies to. `argv` is a template, with `{files}` or `{file}` where the paths go. `code` is null unless a state needs one. A configured row adds `runs`, one `{cwd, argv, files, state, exit, duration_ms}` row per run, with the paths filled in. For a check that runs its files concurrently, `duration_ms` is the wall time of the whole check rather than the sum of the per-file times.
 
 A finding holds `rule`, `severity`, `confidence` (`exact` or `heuristic`), `file`, `line`, `origin` (`changed-line` or `touched-file`), `blocking`, `reason`, `excerpt` and `check`. An excerpt is at most 200 characters. It is null for every secret finding, for any finding on a line that holds a secret signature, and for any excerpt that shares eight characters in a row with a key in its file. The same test runs on each `reason`. A parse fault in a file that holds a key keeps only the prefix of its reason, such as `node --check`, and withholds the parser message, because a parser quotes a window of text that can sit anywhere. The redaction reads the file's text, so it holds when the `secrets` check is skipped too.
 
@@ -154,7 +157,7 @@ An unchecked reason is `excluded`, `size` (over 2 MB), `binary` (a NUL byte in t
 
 `--explain` prints `code-quality-explain/v1` with `file`, `language`, `language_source` (`shebang`, `config` or `extension`), `unchecked`, `surfaces`, `config`, `checklists` with their `why` and `checks`, one `{id, applies, why}` row per built-in check and one `{id, origin, applies, why}` row per configured check. It always exits 2, because nothing ran.
 
-`--format text` prints the same facts as lines for a reader. It carries no field the JSON lacks.
+`--format text` prints the same facts as lines for a reader, each `config.warnings` row included and labelled `warning`. It carries no field the JSON lacks.
 
 ---
 
@@ -212,7 +215,7 @@ A finding blocks when it is P0, exact and on a changed line. A parse fault count
 - **Hub paths.** A checklist path is written `hub:<hub>/<path>` and resolves against the skills folder that holds the hub. An outside skill's row is labelled with the folder its path resolves through, so `hub:<folder>/<path>` finds the file beside the declaring skill even when its `skill_id` differs from its folder name. One checklist lists once, with every file it serves.
 - **Outside rows.** A row an outside skill declares is checked before it is used, by the rules `ci-skill-root-metadata.cjs` applies: a quality block that names `checklists` and no other key, a non-empty `checklists` array, a JSON object per row, one selector at least, a non-blank string list per selector, a dotted extension, no other key, and a `file` that is a relative `.md` path holding no `..` segment. A row that names an absolute path, or whose path or real path resolves outside that skill's folder, is refused with `CHECKLIST_OUTSIDE_SKILL` and its path is never read. A row that fails any other rule, and a block that names no readable row, is refused with `CHECKLIST_ROW_INVALID`. Both name the skill's public label and, for a row, its index, and the rest of the run continues. A row that applies and whose path is not a regular file reads `CHECKLIST_MISSING`.
 
-One refused row makes the gate `ERROR` and exit 3, ahead of a `BLOCKED` another check found. A checklist the runner cannot read honestly leaves the verdict untrustworthy, so nothing below `ERROR` is reported.
+One refused row on a declaration that applies to the change makes the gate `ERROR` and exit 3, ahead of a `BLOCKED` another check found. A checklist the runner cannot read honestly leaves the verdict untrustworthy, so nothing below `ERROR` is reported. A refused row or a malformed block declared by a skill that reaches no file in scope is reported in `config.warnings` instead and changes no gate, because nothing in the change depends on it.
 
 ---
 

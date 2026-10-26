@@ -172,7 +172,8 @@ function stringList(value, field, errors, { required = false, nonEmpty = require
 
 // Only a value stored in a config file counts. A git -c flag or a GIT_CONFIG_*
 // variable reports scope command, and honoring it would let one invocation swap the
-// commands a repository committed. The last value wins, as git reads it.
+// commands a repository committed. The last value wins, as git reads it, and its scope
+// travels with it because a value stored by the operator outranks one a repository ships.
 function fileScopedGitValue(root, env) {
   const result = runGit(['config', '--show-scope', '--get-all', GIT_CONFIG_KEY], { cwd: root, env });
   if (!result.ok) {
@@ -181,8 +182,11 @@ function fileScopedGitValue(root, env) {
   }
   return result.stdout.split('\n')
     .filter((line) => line && !line.startsWith('command\t'))
-    .map((line) => line.slice(line.indexOf('\t') + 1).trim())
-    .filter(Boolean)
+    .map((line) => {
+      const tab = line.indexOf('\t');
+      return { scope: line.slice(0, tab), value: line.slice(tab + 1).trim() };
+    })
+    .filter((entry) => entry.value)
     .pop() || null;
 }
 
@@ -192,31 +196,37 @@ function fileScopedGitValue(root, env) {
  * .sk-code/quality.json at the root. A named path that points nowhere is a broken
  * install, never a fall back to the next source.
  *
+ * `value` is the git config value discovery read, verbatim, and null for every other
+ * source. A trust decision needs it, because whether that value sits in the repository's
+ * own .git/config is a different question from which scope git labels it with.
+ *
  * @param {Object} options - cliPath, cwd, root, git and env.
- * @returns {{source:string, path:string|null}} source is cli, git-config, repo or none.
+ * @returns {{source:string, path:string|null, scope:string|null, value:string|null}}
+ *   source is cli, git-config, repo or none, and scope is the git config scope that
+ *   supplied it.
  */
 function discoverConfig({ cliPath = null, cwd, root, git, env = process.env }) {
   if (cliPath) {
     const file = path.resolve(cwd, cliPath);
     if (!statOrNull(file)) {
-      throw new ConfigError('CONFIG_PATH_MISSING', `--config names ${file}, which does not exist`, { source: 'cli', path: file });
+      throw new ConfigError('CONFIG_PATH_MISSING', `--config names ${file}, which does not exist`, { source: 'cli', path: file, scope: null });
     }
-    return { source: 'cli', path: file };
+    return { source: 'cli', path: file, scope: null, value: null };
   }
   if (git) {
     const configured = fileScopedGitValue(root, env);
     if (configured) {
-      const file = path.resolve(root, configured);
+      const file = path.resolve(root, configured.value);
       if (!statOrNull(file)) {
         throw new ConfigError('CONFIG_PATH_MISSING', `git config ${GIT_CONFIG_KEY} names ${file}, which does not exist`,
-          { source: 'git-config', path: file });
+          { source: 'git-config', path: file, scope: configured.scope });
       }
-      return { source: 'git-config', path: file };
+      return { source: 'git-config', path: file, scope: configured.scope, value: configured.value };
     }
   }
   const file = path.join(root, REPO_CONFIG_FILE);
-  if (!lstatOrNull(file)) return { source: 'none', path: null };
-  return { source: 'repo', path: file };
+  if (!lstatOrNull(file)) return { source: 'none', path: null, scope: null, value: null };
+  return { source: 'repo', path: file, scope: null, value: null };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -539,11 +549,11 @@ function mergeConfig(defaults, repo) {
  * and merged is null whenever errors is not empty.
  *
  * @param {Object} options - cliPath, cwd, root, git, env, defaults and builtinIds.
- * @returns {{source:string, path:string|null, display:string|null, bytes:number|null, raw:*, errors:Object[], merged:Object|null}}
+ * @returns {{source:string, path:string|null, scope:string|null, display:string|null, bytes:number|null, raw:*, errors:Object[], merged:Object|null}}
  */
 function loadConfig({ cliPath = null, cwd, root, git, env = process.env, defaults, builtinIds = [] }) {
   const found = discoverConfig({ cliPath, cwd, root, git, env });
-  const base = { source: found.source, path: found.path, display: displayPath(found.path, root), bytes: null, raw: null, errors: [] };
+  const base = { source: found.source, scope: found.scope, path: found.path, value: found.value, display: displayPath(found.path, root), bytes: null, raw: null, errors: [] };
   if (!found.path) return { ...base, merged: mergeConfig(defaults, null) };
   // The committed file is the one source no operator named, so it must be this
   // repository's own content. A link that leads out of the repository is refused.
