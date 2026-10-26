@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7284,
-    "ok": 15211,
+    "ok": 15255,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26043,
+  "documentsScanned": 26087,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
+  "manifestHash": "bf5b2360698f81f0b8195f37bae13683b12cbe77c724e54971ee3bfe269726b7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37666,
+      "ok": 37735,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71369,6 +71369,30 @@
     },
     {
       "path": "specs/sk-code/014-code-modes-research/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/004-doctrine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
       "reason": "excluded directory"
     },
     {

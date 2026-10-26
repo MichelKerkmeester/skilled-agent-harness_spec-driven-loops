@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3ab1895a6b8723f5d17afccde7fb03f44b61c5931b2a4c8818815c24fad92ac0",
+  "corpusHash": "d521fc76a3a479ca383ea4a865f3f9689ea0a3e66885d22cc5ff7e1858c33a0e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26043,
+  "includedPathCount": 26087,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12225,6 +12225,50 @@
     "specs/sk-code/014-code-modes-research/review/fanout-attribution.md",
     "specs/sk-code/014-code-modes-research/review/review-report.md",
     "specs/sk-code/014-code-modes-research/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/004-doctrine/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/006-measurement/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -26074,7 +26118,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
+  "manifestHash": "bf5b2360698f81f0b8195f37bae13683b12cbe77c724e54971ee3bfe269726b7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28858,6 +28902,30 @@
     },
     {
       "path": "specs/sk-code/014-code-modes-research/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/004-doctrine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
       "reason": "excluded directory"
     },
     {

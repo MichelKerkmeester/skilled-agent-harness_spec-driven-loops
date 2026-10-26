@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
+  "manifestHash": "bf5b2360698f81f0b8195f37bae13683b12cbe77c724e54971ee3bfe269726b7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14391,6 +14391,27 @@
     "buildskilladvisorbrief": [
       "buildSkillAdvisorBrief"
     ],
+    "builtin runner": [
+      "builtin runner"
+    ],
+    "builtin runner acceptance criteria": [
+      "builtin runner acceptance criteria"
+    ],
+    "builtin runner decision record": [
+      "builtin runner decision record"
+    ],
+    "builtin runner goal": [
+      "builtin runner goal"
+    ],
+    "builtin runner implementation summary": [
+      "builtin runner implementation summary"
+    ],
+    "builtin runner plan": [
+      "builtin runner plan"
+    ],
+    "builtin runner tasks": [
+      "builtin runner tasks"
+    ],
     "bulk create tasks": [
       "bulk create tasks"
     ],
@@ -15488,6 +15509,9 @@
     ],
     "catalog validator in ci": [
       "catalog validator in ci"
+    ],
+    "catch rate and false positives": [
+      "catch rate and false positives"
     ],
     "category quantity comparison": [
       "category quantity comparison"
@@ -23572,6 +23596,9 @@
     "code quality review checklist": [
       "code quality review checklist"
     ],
+    "code quality run verdict": [
+      "code-quality-run verdict"
+    ],
     "code quality score": [
       "code quality score"
     ],
@@ -24852,6 +24879,9 @@
     "comment hygiene checker coverage done": [
       "comment hygiene checker coverage done"
     ],
+    "comment hygiene checker languages": [
+      "comment hygiene checker languages"
+    ],
     "comment hygiene checker plan": [
       "comment hygiene checker plan"
     ],
@@ -25985,6 +26015,27 @@
     "config 1 1 aligned summary": [
       "config 1:1 aligned summary"
     ],
+    "config and doctor": [
+      "config and doctor"
+    ],
+    "config and doctor acceptance criteria": [
+      "config and doctor acceptance criteria"
+    ],
+    "config and doctor decision record": [
+      "config and doctor decision record"
+    ],
+    "config and doctor goal": [
+      "config and doctor goal"
+    ],
+    "config and doctor implementation summary": [
+      "config and doctor implementation summary"
+    ],
+    "config and doctor plan": [
+      "config and doctor plan"
+    ],
+    "config and doctor tasks": [
+      "config and doctor tasks"
+    ],
     "config compatibility plan": [
       "config compatibility plan"
     ],
@@ -26419,6 +26470,27 @@
     ],
     "consumer skilled link plan": [
       "consumer skilled link plan"
+    ],
+    "consumers and routing": [
+      "consumers and routing"
+    ],
+    "consumers and routing acceptance criteria": [
+      "consumers and routing acceptance criteria"
+    ],
+    "consumers and routing decision record": [
+      "consumers and routing decision record"
+    ],
+    "consumers and routing goal": [
+      "consumers and routing goal"
+    ],
+    "consumers and routing implementation summary": [
+      "consumers and routing implementation summary"
+    ],
+    "consumers and routing plan": [
+      "consumers and routing plan"
+    ],
+    "consumers and routing tasks": [
+      "consumers and routing tasks"
     ],
     "consumption log pii redaction query hash": [
       "consumption-log pii redaction query_hash"
@@ -28050,6 +28122,9 @@
     ],
     "cp op au ai lc sc pc scenarios": [
       "CP OP AU AI LC SC PC scenarios"
+    ],
+    "cq 002 to cq 008": [
+      "CQ-002 to CQ-008"
     ],
     "craft markdown structure": [
       "craft markdown structure"
@@ -38598,6 +38673,9 @@
     "doctor signals summary": [
       "doctor signals summary"
     ],
+    "doctor sk code quality route": [
+      "doctor sk-code quality route"
+    ],
     "doctor sk code setup": [
       "doctor sk-code setup"
     ],
@@ -42065,6 +42143,9 @@
     ],
     "execfilesync migration": [
       "execfilesync migration"
+    ],
+    "executable author gate": [
+      "executable author gate"
     ],
     "execute cdp with parameters": [
       "execute cdp with parameters"
@@ -52066,6 +52147,27 @@
     "home config cutover checklist": [
       "home config cutover checklist"
     ],
+    "honest checker": [
+      "honest checker"
+    ],
+    "honest checker acceptance criteria": [
+      "honest checker acceptance criteria"
+    ],
+    "honest checker decision record": [
+      "honest checker decision record"
+    ],
+    "honest checker goal": [
+      "honest checker goal"
+    ],
+    "honest checker implementation summary": [
+      "honest checker implementation summary"
+    ],
+    "honest checker plan": [
+      "honest checker plan"
+    ],
+    "honest checker tasks": [
+      "honest checker tasks"
+    ],
     "honest measurement contract": [
       "honest measurement contract"
     ],
@@ -61349,6 +61451,9 @@
     "measured vs authored": [
       "measured vs authored"
     ],
+    "measurement acceptance criteria": [
+      "measurement acceptance criteria"
+    ],
     "measurement and receipts foundation": [
       "measurement and receipts foundation"
     ],
@@ -61364,11 +61469,26 @@
     "measurement and traceability": [
       "measurement and traceability"
     ],
+    "measurement decision record": [
+      "measurement decision record"
+    ],
     "measurement driven implementation": [
       "measurement driven implementation"
     ],
+    "measurement goal": [
+      "measurement goal"
+    ],
+    "measurement implementation summary": [
+      "measurement implementation summary"
+    ],
+    "measurement plan": [
+      "measurement plan"
+    ],
     "measurement regime": [
       "measurement regime"
+    ],
+    "measurement tasks": [
+      "measurement tasks"
     ],
     "measurement traceability implementation plan": [
       "measurement traceability implementation plan"
@@ -69140,6 +69260,9 @@
     "operator copy of goal": [
       "operator copy of goal"
     ],
+    "operator decisions taken at defaults": [
+      "operator decisions taken at defaults"
+    ],
     "operator deferred rss severity": [
       "operator deferred rss severity"
     ],
@@ -72331,6 +72454,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 honest checker": [
+      "phase 1 honest checker"
+    ],
     "phase 1 hook stdin deadlines": [
       "phase 1 hook stdin deadlines"
     ],
@@ -72679,6 +72805,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 builtin runner": [
+      "phase 2 builtin runner"
+    ],
     "phase 2 consume locked withdraw": [
       "phase 2 consume locked withdraw"
     ],
@@ -72922,6 +73051,9 @@
     "phase 3 command trigger runtimes": [
       "phase 3 command trigger runtimes"
     ],
+    "phase 3 config and doctor": [
+      "phase 3 config and doctor"
+    ],
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
     ],
@@ -73072,6 +73204,24 @@
     "phase 4 dispatch guard and vitest": [
       "phase 4 dispatch guard and vitest"
     ],
+    "phase 4 doctrine": [
+      "phase 4 doctrine"
+    ],
+    "phase 4 doctrine acceptance criteria": [
+      "phase 4 doctrine acceptance criteria"
+    ],
+    "phase 4 doctrine decision record": [
+      "phase 4 doctrine decision record"
+    ],
+    "phase 4 doctrine implementation summary": [
+      "phase 4 doctrine implementation summary"
+    ],
+    "phase 4 doctrine plan": [
+      "phase 4 doctrine plan"
+    ],
+    "phase 4 doctrine tasks": [
+      "phase 4 doctrine tasks"
+    ],
     "phase 4 final deep review": [
       "phase 4 final deep review"
     ],
@@ -73170,6 +73320,9 @@
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
+    ],
+    "phase 5 consumers and routing": [
+      "phase 5 consumers and routing"
     ],
     "phase 5 deep review remediation": [
       "phase 5 deep review remediation"
@@ -73279,6 +73432,9 @@
     "phase 59 cross cli map refresh": [
       "phase 59 cross cli map refresh"
     ],
+    "phase 6 adr": [
+      "phase 6 ADR"
+    ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
     ],
@@ -73290,6 +73446,9 @@
     ],
     "phase 6 closure evidence": [
       "phase 6 closure evidence"
+    ],
+    "phase 6 closure gate": [
+      "phase 6 closure gate"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -73330,6 +73489,9 @@
     "phase 6 implementation summary": [
       "phase 6 implementation summary"
     ],
+    "phase 6 measurement": [
+      "phase 6 measurement"
+    ],
     "phase 6 plan": [
       "phase 6 plan"
     ],
@@ -73368,6 +73530,9 @@
     ],
     "phase 6 speckit command and agent alignment": [
       "phase 6 speckit command and agent alignment"
+    ],
+    "phase 6 task list": [
+      "phase 6 task list"
     ],
     "phase 6 tasks": [
       "phase 6 tasks"
@@ -78309,6 +78474,9 @@
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
     ],
+    "quality agnostic gate phase parent spec": [
+      "quality agnostic gate phase parent spec"
+    ],
     "quality assessment framework": [
       "quality assessment framework"
     ],
@@ -78336,6 +78504,15 @@
     "quality gate": [
       "quality gate"
     ],
+    "quality gate measurement": [
+      "quality gate measurement"
+    ],
+    "quality gate measurement goal": [
+      "quality gate measurement goal"
+    ],
+    "quality gate measurement plan": [
+      "quality gate measurement plan"
+    ],
     "quality gate obsidian coverage": [
       "quality gate obsidian coverage"
     ],
@@ -78347,6 +78524,15 @@
     ],
     "quality gate resources": [
       "quality gate resources"
+    ],
+    "quality gate runner": [
+      "quality gate runner"
+    ],
+    "quality gate runner goal": [
+      "quality gate runner goal"
+    ],
+    "quality gate runner plan": [
+      "quality gate runner plan"
     ],
     "quality gates": [
       "quality gates"
@@ -78434,6 +78620,9 @@
     ],
     "quality review before indexing": [
       "quality review before indexing"
+    ],
+    "quality runner adr": [
+      "quality runner ADR"
     ],
     "quality scorer": [
       "quality scorer"
@@ -93480,6 +93669,12 @@
     "sk code quality 1 4 1 0": [
       "sk-code-quality 1.4.1.0"
     ],
+    "sk code quality codebase agnostic": [
+      "sk-code quality codebase agnostic"
+    ],
+    "sk code quality config": [
+      "sk-code quality config"
+    ],
     "sk code quality mode research": [
       "sk-code quality mode research"
     ],
@@ -93494,6 +93689,9 @@
     ],
     "sk code quality research synthesis": [
       "sk-code-quality research synthesis"
+    ],
+    "sk code quality runner": [
+      "sk-code quality runner"
     ],
     "sk code quality v1 0 0 0": [
       "sk-code-quality v1.0.0.0"
@@ -93770,6 +93968,9 @@
     ],
     "sk code shared assets references research": [
       "sk-code shared assets references research"
+    ],
+    "sk code shared doctrine amendment": [
+      "sk-code shared doctrine amendment"
     ],
     "sk code shared folder": [
       "sk-code shared folder"
@@ -98680,6 +98881,9 @@
     ],
     "skilled generator rebuild results": [
       "skilled generator rebuild results"
+    ],
+    "skilled house checklist": [
+      "skilled house checklist"
     ],
     "skilled layout options": [
       "skilled layout options"
@@ -109581,6 +109785,9 @@
     ],
     "unknown surface fallback": [
       "unknown surface fallback"
+    ],
+    "unknown surface iron law": [
+      "unknown surface iron law"
     ],
     "unknowns and baseline": [
       "unknowns and baseline"
