@@ -1,0 +1,409 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "catch rate, false positive count, wall time and intent recall per scenario, with no weighted dimension score",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "sk-code-quality",
+    "root": ".skilled/skills/sk-code/sk-code-quality"
+  },
+  "executor": "node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs for the fixtures and the timing set, and node .skilled/bin/compiled-route.cjs for the intent prompts",
+  "model": "none, the gate's built-in checks and the compiled route front door are deterministic",
+  "verdict": "not recorded",
+  "aggregateScore": "not recorded",
+  "corpus": "the seven live scenarios CQ-002 to CQ-008, fixtures F01, F02, F05 and F06, the 50-file timing set built at run time and the four intent prompts (CQ-001 and canaries CB-CR-006 to CB-CR-008). Raw transcripts and the measurement record stay in the packet that produced this report, at specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/",
+  "headlineBottleneck": null,
+  "bottlenecks": [],
+  "divergence": [],
+  "lintFindings": [],
+  "funnel": {
+    "passed": 5,
+    "recorded with no target": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "F01",
+      "tier": "fixture",
+      "classKind": "fixture",
+      "files": 7,
+      "met": true,
+      "reason": "met: 7 of 7 seeded labels matched, 0 unseeded findings, gate BLOCKED at exit 1"
+    },
+    {
+      "scenarioId": "F02",
+      "tier": "fixture",
+      "classKind": "fixture",
+      "files": 2,
+      "met": true,
+      "reason": "met: 0 findings, gate NO_BLOCKER_FOUND at exit 0"
+    },
+    {
+      "scenarioId": "F05",
+      "tier": "fixture",
+      "classKind": "fixture",
+      "files": 2,
+      "met": true,
+      "reason": "met: NOTHING_CHECKED at exit 2, blob.js unchecked as binary and main.zig unchecked as no comment family"
+    },
+    {
+      "scenarioId": "F06",
+      "tier": "fixture",
+      "classKind": "fixture",
+      "files": 1,
+      "met": true,
+      "reason": "met: UNVERIFIED at exit 4, absent-tool SKIPPED_ABSENT, unverified [absent-tool]"
+    },
+    {
+      "scenarioId": "50-file timing set",
+      "tier": "generated",
+      "classKind": "generated",
+      "files": 50,
+      "met": true,
+      "reason": "met: 1561.0, 1576.3, 1608.3, 1581.0 and 1661.0 ms on five full runs, largest 1661.0 ms against a 2000 ms target, gate NO_BLOCKER_FOUND with comment-hygiene and syntax-node RAN_CLEAN on every run"
+    },
+    {
+      "scenarioId": "intent prompts",
+      "tier": "routing",
+      "classKind": "routing",
+      "files": 4,
+      "met": null,
+      "reason": "recorded as found with no target: 4 of 4 prompts routed single to sk-code-quality"
+    }
+  ],
+  "measures": [
+    {
+      "name": "catch rate",
+      "result": "7 of 7 seeded labels matched on F01",
+      "target": "all 7 seeded labels"
+    },
+    {
+      "name": "false positive",
+      "result": "0 findings on F02 and 0 unseeded findings on F01",
+      "target": "0"
+    },
+    {
+      "name": "wall time",
+      "result": "1661.0 ms max on the 50-file set, largest of five full runs with both built-in checks running",
+      "target": "under 2000 ms"
+    },
+    {
+      "name": "intent recall",
+      "result": "4 of 4 prompts routed to sk-code-quality",
+      "target": "no target, recorded as found"
+    }
+  ],
+  "method_notes": [
+    {
+      "subject": "catch rate and false positive count",
+      "note": "The 7 of 7 catch and the 0 false positives are read from fixtures F01 and F02 of scripts/tests/quality-gate.test.cjs, which CI already asserts. They prove those two scenario fixtures rather than an independent corpus, because one file supplies both the seeded change and the expectation, so they do not report the gate's precision over a wider set of repositories. What they do establish is that each fixture holds what the scenario claims about it, on every run of the suite."
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 6,
+    "traceMode": "live",
+    "note": "Every number in this folder is read from the measurement record this run wrote. The catch rate is 7 of 7 seeded exact labels on fixture F01, with 0 unseeded findings. There were 0 false positive findings on fixture F02. Both of those come from the suite fixtures the gate's own tests assert, so they prove the fixtures rather than an independent corpus. The measured wall time on the 50-file set is five full runs at 1561.0, 1576.3, 1608.3, 1581.0 and 1661.0 ms, each with both built-in checks RAN_CLEAN and a NO_BLOCKER_FOUND gate, with the largest at 1661.0 ms against a 2000 ms target. An earlier set of runs with --no-run measured 138.2, 144.5 and 166.7 ms, replayed at 142.8, 178.6 and 165.4 ms, and is kept as setup only, because those runs start neither built-in check. Measured intent recall is 4 of 4 prompts routed single to sk-code-quality, recorded as found with no target. The read-only invariant held on every run and the transcript scan found 0 passing claims. The run measured commit 716a1a8ac4e37478835e14e91b804811e686875d on Node v26.8.2, darwin arm64, Apple M5 Max, 18 cores, load average 5.40 at the first full timing run. No weighted benchmark dimension was scored here, so the verdict and the aggregate read as not recorded rather than as a number nothing measured. A scenario whose recorded result matched the expectation it was written against reads as passed, and a scenario measured against no target reads as recorded rather than passed, so neither reading is a claim that the gate let a change through. F01 is meant to block, F05 to report NOTHING_CHECKED and F06 to report UNVERIFIED."
+  },
+  "measurement": {
+    "commit": "716a1a8ac4e37478835e14e91b804811e686875d",
+    "root": ".skilled/skills/sk-code/sk-code-quality",
+    "corpus": [
+      {
+        "axis": "F01",
+        "kind": "fixture",
+        "what": "Foreign polyglot change with seven seeded labels across go, rust, yaml, css, python, ts and mts",
+        "files": 7,
+        "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "expected": "seven seeded exact labels block and the surface stays unknown",
+        "result": "7 of 7 seeded labels matched, 0 unseeded findings, gate BLOCKED at exit 1",
+        "met": true
+      },
+      {
+        "axis": "F02",
+        "kind": "fixture",
+        "what": "False-positive set: measurement ratios, encoding names, hash and RFC names, a status code and a CWE id",
+        "files": 2,
+        "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "expected": "zero findings",
+        "result": "0 findings, gate NO_BLOCKER_FOUND at exit 0",
+        "met": true
+      },
+      {
+        "axis": "F05",
+        "kind": "fixture",
+        "what": "A language with no comment family and a binary file",
+        "files": 2,
+        "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "expected": "NOTHING_CHECKED at exit 2, with both files listed as unchecked",
+        "result": "NOTHING_CHECKED at exit 2, blob.js unchecked as binary and main.zig unchecked as no comment family",
+        "met": true
+      },
+      {
+        "axis": "F06",
+        "kind": "fixture",
+        "what": "A committed quality config naming one required check whose tool is not installed",
+        "files": 1,
+        "source": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs",
+        "expected": "UNVERIFIED at exit 4 with the required check SKIPPED_ABSENT",
+        "result": "UNVERIFIED at exit 4, absent-tool SKIPPED_ABSENT, unverified [absent-tool]",
+        "met": true
+      },
+      {
+        "axis": "50-file timing set",
+        "kind": "generated",
+        "what": "Fifty changed .js files, each with one changed clean comment line, built at run time",
+        "files": 50,
+        "source": "built in a temporary repository, never committed",
+        "expected": "both built-in checks run and the whole run finishes under 2000 ms on each of five runs",
+        "result": "1561.0, 1576.3, 1608.3, 1581.0 and 1661.0 ms, largest 1661.0 ms, gate NO_BLOCKER_FOUND at exit 0 with comment-hygiene and syntax-node RAN_CLEAN on every run",
+        "met": true
+      },
+      {
+        "axis": "intent prompts",
+        "kind": "routing",
+        "what": "The CQ-001 prompt and the three canary prompts replayed through the compiled route front door",
+        "files": 4,
+        "source": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md and .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/",
+        "expected": "recorded as found, with no target",
+        "result": "4 of 4 routed single to sk-code-quality",
+        "met": null
+      }
+    ],
+    "catch": {
+      "seeded": 7,
+      "matched": 7,
+      "misses": []
+    },
+    "false_positives": {
+      "f02_findings": 0,
+      "f01_unseeded": 0
+    },
+    "method_notes": [
+      {
+        "subject": "catch rate and false positive count",
+        "note": "The 7 of 7 catch and the 0 false positives are read from fixtures F01 and F02 of scripts/tests/quality-gate.test.cjs, which CI already asserts. They prove those two scenario fixtures rather than an independent corpus, because one file supplies both the seeded change and the expectation, so they do not report the gate's precision over a wider set of repositories. What they do establish is that each fixture holds what the scenario claims about it, on every run of the suite."
+      }
+    ],
+    "timing": {
+      "files": 50,
+      "builtin_only": true,
+      "full_run": true,
+      "runs_ms": [
+        1561,
+        1576.3,
+        1608.3,
+        1581,
+        1661
+      ],
+      "median_ms": 1581,
+      "max_ms": 1661,
+      "target_ms": 2000,
+      "met": true,
+      "max_source": "largest of the five full runs in runs_ms, each one measured alone",
+      "command": "node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format json, run from the temporary repository that holds the change",
+      "set": "temporary git repository holding 50 changed .js files, each with one changed clean comment line, git diff --numstat 1 1 for all 50",
+      "gate": "NO_BLOCKER_FOUND at exit 0 on every run",
+      "checks": {
+        "comment-hygiene": "RAN_CLEAN",
+        "syntax-node": "RAN_CLEAN"
+      },
+      "machine": {
+        "platform": "darwin",
+        "arch": "arm64",
+        "cpu": "Apple M5 Max",
+        "cores": 18,
+        "node": "v26.8.2",
+        "loadavg_1m_first_run": 5.4,
+        "loadavg_1m_last_run": 5.69
+      }
+    },
+    "timing_no_run": {
+      "label": "setup only, neither built-in check started",
+      "files": 50,
+      "runs_ms": [
+        138.2,
+        144.5,
+        166.7
+      ],
+      "median_ms": 144.5,
+      "max_ms": 178.6,
+      "max_source": "largest of the six setup measurements in runs_ms and replay_runs_ms",
+      "replay_runs_ms": [
+        142.8,
+        178.6,
+        165.4
+      ],
+      "command": "node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --no-run --format json",
+      "set": "temporary git repository holding 50 changed .js files, each with one changed clean comment line, git diff --numstat 1 1 for all 50",
+      "gate": "UNVERIFIED at exit 4 on every run, because --no-run lists comment-hygiene and syntax-node and starts neither",
+      "note": "Setup only. These numbers cover file discovery, the changed-line set and the surface read, with both required built-in checks left listed rather than run.",
+      "machine": {
+        "platform": "darwin",
+        "arch": "arm64",
+        "cpu": "Apple M5 Max",
+        "cores": 18,
+        "node": "v26.8.2",
+        "loadavg_1m": 9.03
+      }
+    },
+    "intent": {
+      "prompts": 4,
+      "matched": 4,
+      "targeted": false,
+      "rows": [
+        {
+          "source": "CQ-001",
+          "prompt": "Run the comment hygiene quality gate and check P0/P1/P2 standards before marking this done.",
+          "exit_code": 0,
+          "selection_kind": "single",
+          "targets": [
+            "sk-code-quality"
+          ],
+          "matched": true
+        },
+        {
+          "source": "CB-CR-006",
+          "prompt": "run the quality gate on the agent file I edited under .skilled/agents",
+          "exit_code": 0,
+          "selection_kind": "single",
+          "targets": [
+            "sk-code-quality"
+          ],
+          "matched": true
+        },
+        {
+          "source": "CB-CR-007",
+          "prompt": "run the quality gate on my edited .github/workflows/ci.yml",
+          "exit_code": 0,
+          "selection_kind": "single",
+          "targets": [
+            "sk-code-quality"
+          ],
+          "matched": true
+        },
+        {
+          "source": "CB-CR-008",
+          "prompt": "quality gate for my rails app before I claim done",
+          "exit_code": 0,
+          "selection_kind": "single",
+          "targets": [
+            "sk-code-quality"
+          ],
+          "matched": true
+        }
+      ]
+    },
+    "readonly_invariant": true,
+    "pass_claims": 0,
+    "same_class": "none",
+    "runs": [
+      {
+        "id": "f01",
+        "axis": "F01",
+        "gate": "BLOCKED",
+        "exit_code": 1,
+        "duration_ms": 365
+      },
+      {
+        "id": "f02",
+        "axis": "F02",
+        "gate": "NO_BLOCKER_FOUND",
+        "exit_code": 0,
+        "duration_ms": 387.6
+      },
+      {
+        "id": "f05",
+        "axis": "F05",
+        "gate": "NOTHING_CHECKED",
+        "exit_code": 2,
+        "duration_ms": 145.5
+      },
+      {
+        "id": "f06",
+        "axis": "F06",
+        "gate": "UNVERIFIED",
+        "exit_code": 4,
+        "duration_ms": 273.4
+      },
+      {
+        "id": "timing-no-run-1",
+        "axis": "50-file timing set",
+        "label": "setup only",
+        "gate": "UNVERIFIED",
+        "exit_code": 4,
+        "duration_ms": 138.2
+      },
+      {
+        "id": "timing-no-run-2",
+        "axis": "50-file timing set",
+        "label": "setup only",
+        "gate": "UNVERIFIED",
+        "exit_code": 4,
+        "duration_ms": 144.5
+      },
+      {
+        "id": "timing-no-run-3",
+        "axis": "50-file timing set",
+        "label": "setup only",
+        "gate": "UNVERIFIED",
+        "exit_code": 4,
+        "duration_ms": 166.7
+      },
+      {
+        "id": "timing-full-1",
+        "axis": "50-file timing set",
+        "gate": "NO_BLOCKER_FOUND",
+        "exit_code": 0,
+        "checks": {
+          "comment-hygiene": "RAN_CLEAN",
+          "syntax-node": "RAN_CLEAN"
+        },
+        "duration_ms": 1561
+      },
+      {
+        "id": "timing-full-2",
+        "axis": "50-file timing set",
+        "gate": "NO_BLOCKER_FOUND",
+        "exit_code": 0,
+        "checks": {
+          "comment-hygiene": "RAN_CLEAN",
+          "syntax-node": "RAN_CLEAN"
+        },
+        "duration_ms": 1576.3
+      },
+      {
+        "id": "timing-full-3",
+        "axis": "50-file timing set",
+        "gate": "NO_BLOCKER_FOUND",
+        "exit_code": 0,
+        "checks": {
+          "comment-hygiene": "RAN_CLEAN",
+          "syntax-node": "RAN_CLEAN"
+        },
+        "duration_ms": 1608.3
+      },
+      {
+        "id": "timing-full-4",
+        "axis": "50-file timing set",
+        "gate": "NO_BLOCKER_FOUND",
+        "exit_code": 0,
+        "checks": {
+          "comment-hygiene": "RAN_CLEAN",
+          "syntax-node": "RAN_CLEAN"
+        },
+        "duration_ms": 1581
+      },
+      {
+        "id": "timing-full-5",
+        "axis": "50-file timing set",
+        "gate": "NO_BLOCKER_FOUND",
+        "exit_code": 0,
+        "checks": {
+          "comment-hygiene": "RAN_CLEAN",
+          "syntax-node": "RAN_CLEAN"
+        },
+        "duration_ms": 1661
+      }
+    ]
+  }
+}

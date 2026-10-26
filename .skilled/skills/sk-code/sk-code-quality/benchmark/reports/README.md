@@ -24,6 +24,7 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-26 | [`2026-10-26--quality-gate-fixtures--live/`](./2026-10-26--quality-gate-fixtures--live/) | live | 6 scenarios, 5 targets met and 1 recorded with no target | **not recorded** (no weighted score) | `specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/` |
 | 2026-07-10 | [`2026-07-10--router-mode-a--router/`](./2026-07-10--router-mode-a--router/) | router | 1 PASS | **PASS** 89/100 | not recorded |
 | 2026-07-10 | [`2026-07-10--live-mode-b--live/`](./2026-07-10--live-mode-b--live/) | live | 1 PASS | **PASS** 100/100 | not recorded |
 

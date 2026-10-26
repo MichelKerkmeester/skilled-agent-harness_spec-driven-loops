@@ -18,14 +18,14 @@ expected_leaf_resources:
     leaf_resource_id: references/runner-contract.md
 full_inventory_intent: false
 evidence_compiled_route: sk-code/sk-code-quality
-evidence_serving_authority: pending
-evidence_flag_state: pending
-evidence_fallback_cause: pending
-evidence_manifest_digest: pending
+evidence_serving_authority: compiled
+evidence_flag_state: unset
+evidence_fallback_cause: compiled-serving
+evidence_manifest_digest: a59b57286f96f3bbf170e8f52b7818a58d89555a611a946f5e4f54f63e3236d4
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-26
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code quality gate on an agent file routes the quality mode alone
@@ -116,4 +116,4 @@ run the quality gate on the agent file I edited under .skilled/agents
 - **Destructive**: No
 - **Sandbox**: not needed
 - **Concurrent-safe**: Yes
-- **Last validated**: pending first manual run
+- **Last validated**: 2026-10-26

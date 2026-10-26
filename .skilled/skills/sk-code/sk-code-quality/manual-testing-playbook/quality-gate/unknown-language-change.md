@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/comment-syntax.json
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CQ-003: A Change With No Checkable File Reports Nothing Checked
@@ -19,7 +19,7 @@ This document captures the run contract, execution process, source anchors and m
 
 ## 1. OVERVIEW
 
-This scenario validates the gate run for `CQ-003`. Fixture F05 seeds two files. `main.zig` is a language the comment table does not list, so it has no comment family and no language check reads it. `blob.js` is a `.js` name whose first bytes hold a NUL byte, so it is binary and no language check reads it either. Both files are still readable, so the conflict, secret and debug sensors scan them. Neither file counts as checked, and the run reports `NOTHING_CHECKED` with exit 2.
+This scenario validates the gate run for `CQ-003`. Fixture F05 seeds two files. `main.zig` is a language the comment table does not list, so it has no comment family and no language check reads it. `blob.js` is a `.js` name whose first bytes hold a NUL byte, so it is binary and no language check reads it either. Both files are still readable, so the conflict and secret sensors scan them and report `RAN_CLEAN`. The debug sensor reads the changed lines of checked files only, and neither file counts as checked, so it reports `NOT_APPLICABLE`. Neither file counts as checked, and the run reports `NOTHING_CHECKED` with exit 2.
 
 ### Why This Matters
 
@@ -48,7 +48,7 @@ Run the quality gate on this change and tell me whether it passed.
 | `main.zig` | a Zig source line, a language the comment table does not list | unchecked, reason `no comment family` |
 | `blob.js` | a `.js` name whose first bytes hold a NUL byte | unchecked, reason `binary` |
 
-- Expected execution process: the operator builds F05 in a temporary repository, runs `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --worktree --format json` inside that repository, and reads `gate`, `exit_code` and `coverage`. The snapshot of the fixture folder is compared before and after the run, and the run must leave it unchanged.
+- Expected execution process: the operator replays the F05 case, reads the case that builds the fixture, then builds the same fixture by hand from the suite's `buildRepo`, runs `quality-gate.cjs --format json` on it and reads the fields the table names. Each run is wrapped in the fixture builder's snapshot check, so a run that writes any file fails the command rather than the reading.
 - Expected signals: `gate` is `NOTHING_CHECKED`, `exit_code` is `2`, `findings` is empty, `coverage.files_checked` is `0` and `coverage.unchecked` holds the two rows in file order.
 - Desired user-visible outcome: the answer names the two files and their reasons and never says the gate passed. The author either drops the change from the claim or adds a checkable file to it.
 - Pass/fail: PASS if every value in the expected-result table below holds, the two unchecked rows carry the reasons shown, and the fixture snapshot is unchanged. FAIL if the gate reads `NO_BLOCKER_FOUND`, if a file is missing from `coverage.unchecked`, or if any part of the run reads as clean.
@@ -63,13 +63,58 @@ Run the quality gate on this change and tell me whether it passed.
 
 ### Commands
 
+Run the commands from the repository root.
+
 1. `node --test --test-reporter=tap --test-name-pattern='^F05' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
 2. `sed -n "/^test('F05/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
-3. `for p in references/runner-contract.md scripts/quality-gate.cjs assets/comment-syntax.json; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. Build fixture F05 by hand in a temporary repository, run the gate on it and assert every field the table names.
+
+```bash
+node -e '
+const assert = require("node:assert/strict");
+const path = require("node:path");
+const Q = path.resolve(".skilled/skills/sk-code/sk-code-quality/scripts");
+const { assertSnapshotUnchanged, buildRepo } = require(path.join(Q, "tests/fixtures.cjs"));
+const repo = buildRepo({
+  change: {
+    "main.zig": "const std = @import(\"std\");\n",
+    "blob.js": Buffer.from([0x50, 0x00, 0x01, 0x02]),
+  },
+});
+try {
+  const run = assertSnapshotUnchanged(repo, () => repo.run(["--format", "json"]));
+  const verdict = run.verdict;
+  assert.equal(run.status, 2);
+  assert.equal(verdict.gate, "NOTHING_CHECKED");
+  console.log("gate " + verdict.gate);
+  assert.equal(verdict.exit_code, 2);
+  console.log("exit_code " + verdict.exit_code);
+  assert.deepEqual(verdict.findings, []);
+  console.log("findings " + JSON.stringify(verdict.findings));
+  assert.equal(verdict.coverage.files_checked, 0);
+  console.log("coverage.files_checked " + verdict.coverage.files_checked);
+  assert.deepEqual(verdict.coverage.unchecked, [
+    { file: "blob.js", reason: "binary" },
+    { file: "main.zig", reason: "no comment family" },
+  ]);
+  console.log("coverage.unchecked " + verdict.coverage.unchecked.map((row) => row.file + ": " + row.reason).join(", "));
+  assert.equal(verdict.summary.p0_blocking, 0);
+  console.log("summary.p0_blocking " + verdict.summary.p0_blocking);
+  console.log("fixture snapshot after the run unchanged");
+} finally {
+  repo.cleanup();
+}
+'
+status=$?
+echo "exit $status"
+(exit $status)
+```
+
+4. `for p in references/runner-contract.md scripts/quality-gate.cjs assets/comment-syntax.json; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
-Step 1 replays F05 and prints `# pass 1` then `# fail 0`. Step 2 shows the Zig line, the binary blob and the `withRepo` call that keeps the fixture in a temporary repository. Step 3 prints `OK` for all three paths.
+Step 1 replays F05 and prints `# pass 1` then `# fail 0`. Step 2 shows the Zig line, the binary blob and the `withRepo` call that keeps the fixture in a temporary repository. Step 3 builds the same fixture by hand and prints one line per field, one for `gate`, `exit_code`, `findings`, `coverage.files_checked`, `coverage.unchecked` and `summary.p0_blocking`, plus a closing line for the snapshot check, and a closing `exit` line that prints `exit 0` and is also the status the step exits with. Step 4 prints `OK` for all three paths.
 
 | Signal | Expected value |
 | --- | --- |
@@ -83,7 +128,7 @@ Step 1 replays F05 and prints `# pass 1` then `# fail 0`. Step 2 shows the Zig l
 
 ### Evidence
 
-Command transcript from steps 1 to 3, the frontmatter block with `expected_intent: QUALITY`, the `coverage` excerpt and the gate line. Save the transcript under the dated run label the playbook names. The transcript must not contain a passing claim.
+Command transcript from steps 1 to 4, the frontmatter block with `expected_intent: QUALITY`, the field lines step 3 prints, the `coverage` excerpt and the gate line. Save the transcript under the dated run label the playbook names. The transcript must not contain a passing claim.
 
 ### Pass / Fail
 

@@ -6,9 +6,8 @@ description: "This scenario validates the envelope round trip for `CQ-007`. It r
 expected_intent: QUALITY
 expected_resources:
   - references/runner-contract.md
-  - ../shared/references/workflow-verify.md
   - scripts/quality-gate.cjs
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CQ-007: Envelope Round Trip Keeps Both Verdicts Intact

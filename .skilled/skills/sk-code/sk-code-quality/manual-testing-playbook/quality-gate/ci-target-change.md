@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/quality-defaults.json
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CQ-004: A CI Workflow Change Lists The CI Checklist
@@ -47,7 +47,7 @@ Run the quality gate on my edited .github/workflows/ci.yml.
 | --- | --- | --- |
 | `.github/workflows/x.yml` | a workflow with a name, an `on` trigger and one job that runs a command | `syntax-yaml` reads 1 file and reports nothing |
 
-- Expected execution process: the operator builds F14 in a temporary repository, runs `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --worktree --format json` inside that repository, reads `gate`, `checklists` and the `syntax-yaml` row, then loads each listed checklist in the order given. The snapshot of the fixture folder is compared before and after the run, and the run must leave it unchanged.
+- Expected execution process: the operator replays the F14 case, reads the case that builds the fixture, then builds the same fixture by hand from the suite's `buildRepo` with the real `sk-code` hub, runs `quality-gate.cjs --format json` on it and reads the fields the table names before loading each listed checklist in the order given. Each run is wrapped in the fixture builder's snapshot check, so a run that writes any file fails the command rather than the reading.
 - Expected signals: `gate` is `NO_BLOCKER_FOUND`, `exit_code` is `0`, `checklists` holds the universal floor first and `hub:sk-code/sk-code-ci/references/ci-workflow-standards.md` second, and the `syntax-yaml` row reads `RAN_CLEAN` over 1 file.
 - Desired user-visible outcome: the author loads the CI checklist beside the floor and edits the workflow against both, rather than against the YAML alone.
 - Pass/fail: PASS if every value in the expected-result table below holds and the fixture snapshot is unchanged. FAIL if the CI checklist is missing, if the floor is not first, if the YAML check covers no file, or if the gate is not `NO_BLOCKER_FOUND`.
@@ -62,13 +62,58 @@ Run the quality gate on my edited .github/workflows/ci.yml.
 
 ### Commands
 
+Run the commands from the repository root.
+
 1. `node --test --test-reporter=tap --test-name-pattern='^F14' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
 2. `sed -n "/^test('F14/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
-3. `for p in references/runner-contract.md scripts/quality-gate.cjs assets/quality-defaults.json; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. Build fixture F14 by hand in a temporary repository against the real hub, run the gate on it and assert every field the table names.
+
+```bash
+node -e '
+const assert = require("node:assert/strict");
+const path = require("node:path");
+const Q = path.resolve(".skilled/skills/sk-code/sk-code-quality/scripts");
+const { assertSnapshotUnchanged, buildRepo } = require(path.join(Q, "tests/fixtures.cjs"));
+const repo = buildRepo({
+  hub: "real",
+  change: { ".github/workflows/x.yml": "name: x\non: push\njobs:\n  a:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo hi\n" },
+});
+try {
+  const run = assertSnapshotUnchanged(repo, () => repo.run(["--format", "json"]));
+  const verdict = run.verdict;
+  const yaml = verdict.checks.find((entry) => entry.id === "syntax-yaml");
+  assert.equal(run.status, 0);
+  assert.equal(verdict.gate, "NO_BLOCKER_FOUND");
+  console.log("gate " + verdict.gate);
+  assert.equal(verdict.exit_code, 0);
+  console.log("exit_code " + verdict.exit_code);
+  assert.ok(verdict.checklists.length >= 2, "fewer than two checklist rows");
+  assert.equal(verdict.checklists[0].file, "hub:sk-code/shared/references/universal/code-quality-standards.md");
+  console.log("checklists[0].file " + verdict.checklists[0].file);
+  assert.equal(verdict.checklists[1].file, "hub:sk-code/sk-code-ci/references/ci-workflow-standards.md");
+  console.log("checklists[1].file " + verdict.checklists[1].file);
+  assert.ok(yaml, "the syntax-yaml row is missing");
+  assert.equal(yaml.state, "RAN_CLEAN");
+  console.log("syntax-yaml state " + yaml.state);
+  assert.equal(yaml.files, 1);
+  console.log("syntax-yaml files " + yaml.files);
+  assert.equal(verdict.coverage.files_checked, 1);
+  console.log("coverage.files_checked " + verdict.coverage.files_checked);
+  console.log("fixture snapshot after the run unchanged");
+} finally {
+  repo.cleanup();
+}
+'
+status=$?
+echo "exit $status"
+(exit $status)
+```
+
+4. `for p in references/runner-contract.md scripts/quality-gate.cjs assets/quality-defaults.json; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
-Step 1 replays F14 and prints `# pass 1` then `# fail 0`. Step 2 shows the seeded workflow, the `hub: 'real'` call and the two checklist assertions. Step 3 prints `OK` for all three paths.
+Step 1 replays F14 and prints `# pass 1` then `# fail 0`. Step 2 shows the seeded workflow, the `hub: 'real'` call and the two checklist assertions. Step 3 builds the same fixture by hand against the real hub and prints one line per field, one for `gate`, `exit_code`, `checklists[0].file`, `checklists[1].file`, the `syntax-yaml` `state`, the `syntax-yaml` `files` count and `coverage.files_checked`, plus a closing line for the snapshot check, and a closing `exit` line that prints `exit 0` and is also the status the step exits with. Step 4 prints `OK` for all three paths.
 
 | Signal | Expected value |
 | --- | --- |
@@ -83,7 +128,7 @@ Step 1 replays F14 and prints `# pass 1` then `# fail 0`. Step 2 shows the seede
 
 ### Evidence
 
-Command transcript from steps 1 to 3, the frontmatter block with `expected_intent: QUALITY`, the two `checklists` rows in order, and the `syntax-yaml` row. Save the transcript under the dated run label the playbook names.
+Command transcript from steps 1 to 4, the frontmatter block with `expected_intent: QUALITY`, the field lines step 3 prints, the two `checklists` rows in order, and the `syntax-yaml` row. Save the transcript under the dated run label the playbook names.
 
 ### Pass / Fail
 

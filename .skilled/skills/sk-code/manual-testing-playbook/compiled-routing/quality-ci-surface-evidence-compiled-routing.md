@@ -6,6 +6,7 @@ title: "sk-code quality gate on a CI workflow edit routes the quality mode at st
 description: "This scenario validates that the compiled sk-code route for one prompt is a single route to `sk-code-quality`, and that the stage-two surface replay adds the four CI references under the intent `CI_WORKFLOW`."
 route_shape: single
 expected_intent: sk-code-quality
+expected_bundle: [sk-code-quality]
 expected_resources:
   - sk-code-ci/references/ci-workflow-standards.md
   - sk-code-ci/references/trigger-and-filter-rules.md
@@ -13,24 +14,20 @@ expected_resources:
   - sk-code-ci/references/protected-set.md
 expected_workflow_mode: sk-code-quality
 expected_leaf_resources:
-  - workflow_mode: sk-code-ci
-    leaf_resource_id: references/ci-workflow-standards.md
-  - workflow_mode: sk-code-ci
-    leaf_resource_id: references/trigger-and-filter-rules.md
-  - workflow_mode: sk-code-ci
-    leaf_resource_id: references/job-shape-rules.md
-  - workflow_mode: sk-code-ci
-    leaf_resource_id: references/protected-set.md
+  - workflow_mode: sk-code-quality
+    leaf_resource_id: references/code-style-guide.md
+  - workflow_mode: sk-code-quality
+    leaf_resource_id: references/runner-contract.md
 full_inventory_intent: false
 evidence_compiled_route: sk-code/sk-code-quality
-evidence_serving_authority: pending
-evidence_flag_state: pending
-evidence_fallback_cause: pending
-evidence_manifest_digest: pending
+evidence_serving_authority: compiled
+evidence_flag_state: unset
+evidence_fallback_cause: compiled-serving
+evidence_manifest_digest: a59b57286f96f3bbf170e8f52b7818a58d89555a611a946f5e4f54f63e3236d4
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-26
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code quality gate on a CI workflow edit routes the quality mode at stage one and adds the CI standards at stage two
@@ -88,9 +85,9 @@ run the quality gate on my edited .github/workflows/ci.yml
 |---|---|
 | 1 | The status line carries `servingAuthority` set to `compiled`. |
 | 2 | The decision carries `"selectionKind":"single"`. |
-| 3 | The decision carries exactly one target, with `packetId` set to `sk-code-quality` and `packetKind` set to `workflow`. |
-| 4 | The stage-two replay prints `["CI_WORKFLOW"]` for `surfaceIntents`. |
-| 5 | The stage-two `resources` list holds all four CI references: `sk-code-ci/references/ci-workflow-standards.md`, `sk-code-ci/references/trigger-and-filter-rules.md`, `sk-code-ci/references/job-shape-rules.md` and `sk-code-ci/references/protected-set.md`. |
+| 2 | The decision carries exactly one target, with `packetId` set to `sk-code-quality` and `packetKind` set to `workflow`. |
+| 3 | The stage-two replay prints `["CI_WORKFLOW"]` for `surfaceIntents`. |
+| 3 | The stage-two `resources` list holds all four CI references: `sk-code-ci/references/ci-workflow-standards.md`, `sk-code-ci/references/trigger-and-filter-rules.md`, `sk-code-ci/references/job-shape-rules.md` and `sk-code-ci/references/protected-set.md`. |
 
 ### Pass/Fail Criteria
 
@@ -131,4 +128,4 @@ run the quality gate on my edited .github/workflows/ci.yml
 - **Destructive**: No
 - **Sandbox**: not needed
 - **Concurrent-safe**: Yes
-- **Last validated**: pending first manual run
+- **Last validated**: 2026-10-26

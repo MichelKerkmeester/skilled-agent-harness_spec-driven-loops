@@ -34,6 +34,9 @@ const FILE_ORDER = [
   'source.md',
   'README.md',
 ];
+// A live run also records the companion ablation evidence the reading index documents beside the
+// rendered files, so the check allows that one name and calls anything else an extra file.
+const COMPANION_FILES = ['d4-ablation.json'];
 const NOT_RECORDED = 'not recorded';
 const DERIVED_NOTE = "_Derived after the fact from this run's stored record, not written at run time._";
 const TEMP_PREFIX = 'render-report-';
@@ -84,9 +87,27 @@ function advisoryCell(signal) {
 }
 
 // A scenario fails on the stage it first failed, and a routed-out scenario records neither a
-// score nor a stage, so its reason is the only thing there is to print.
+// score nor a stage, so its reason is the only thing there is to print. A row measured against no
+// target is recorded rather than passed, because nothing in it can be called a pass or a failure.
 function scenarioVerdict(row) {
-  return row.firstFailingStage ? 'FAIL' : 'PASS';
+  if (row.firstFailingStage) return 'FAIL';
+  return row.met === null ? 'RECORDED' : 'PASS';
+}
+
+// A table cell holding a pipe would split into two cells and shift the rest of the row, so a pipe
+// is escaped before the value reaches the table.
+function tableCell(value) {
+  return String(value).replace(/\|/g, '\\|');
+}
+
+// A record may carry no aggregate, and one kind of run records the absence as a word instead of a
+// number. A word is printed as it stands, so a rendered line never turns a recorded absence into a
+// score nothing measured.
+function aggregateText(record) {
+  const score = record.aggregateScore;
+  if (isNumber(score)) return `${score}/100`;
+  if (typeof score === 'string') return score;
+  return `${score ?? 0}/100`;
 }
 
 // A score the run did not capture reads as not recorded, never as a zero, so a missing
@@ -99,9 +120,12 @@ function scenarioScoreCell(row) {
   return row.routedOut ? '_routed-out_' : scoreText(row);
 }
 
+// The stage column is where the table shows a scenario's outcome, so a row measured against no
+// target records that here as well rather than reading as a pass it never claimed.
 function scenarioStageCell(row) {
   if (row.firstFailingStage) return row.firstFailingStage;
-  return row.routedOut ? (row.reason ?? NOT_RECORDED) : 'passed';
+  if (row.routedOut) return row.reason ?? NOT_RECORDED;
+  return row.met === null ? 'recorded' : 'passed';
 }
 
 function scenarioReason(row) {
@@ -127,6 +151,18 @@ function corpusCell(record) {
   return NOT_RECORDED;
 }
 
+// The measures a run was built to report are not scored dimensions, so a record carries them as its
+// own list, in its own order. An absent list yields no rows and therefore no section, which is what
+// keeps a folder rendered before the section existed byte-identical to a render of its record.
+function measureRows(record) {
+  const measures = record.measures;
+  if (!Array.isArray(measures)) return [];
+  return measures.map((measure) => {
+    const row = measure ?? {};
+    return `| ${tableCell(row.name ?? NOT_RECORDED)} | ${tableCell(row.result ?? NOT_RECORDED)} | ${tableCell(row.target ?? NOT_RECORDED)} |`;
+  });
+}
+
 function csvCell(value) {
   const text = value === undefined || value === null ? '' : String(value);
   return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
@@ -149,7 +185,7 @@ function renderMarkdownReport(record) {
 
   lines.push(`# Skill Benchmark Report — ${skillId}`, '');
   lines.push(`> Rendered from report.json (do not hand-edit). Scoring: \`${record.scoringMethod ?? NOT_RECORDED}\` · trace mode: \`${record.traceMode ?? NOT_RECORDED}\`.`, '');
-  lines.push(`**Verdict: ${record.verdict ?? NOT_RECORDED}** · aggregate ${record.aggregateScore ?? 0}/100`, '');
+  lines.push(`**Verdict: ${record.verdict ?? NOT_RECORDED}** · aggregate ${aggregateText(record)}`, '');
 
   const coverage = record.coverage;
   if (coverage) {
@@ -211,7 +247,8 @@ function renderMarkdownReport(record) {
     lines.push('| -------- | ----- | ----- | ------- |');
     for (const item of bottlenecks) {
       const locus = item.locus ?? item.stage ?? NOT_RECORDED;
-      lines.push(`| ${item.severity ?? NOT_RECORDED} | ${item.class ?? NOT_RECORDED} | ${locus} | ${item.detail ?? ''} |`);
+      const cells = [item.severity ?? NOT_RECORDED, item.class ?? NOT_RECORDED, locus, item.detail ?? ''];
+      lines.push(`| ${cells.map(tableCell).join(' | ')} |`);
     }
   }
   lines.push('');
@@ -230,7 +267,7 @@ function renderMarkdownReport(record) {
     const cells = [row.scenarioId ?? NOT_RECORDED, row.classKind ?? NOT_RECORDED];
     if (hasStage) cells.push(row.stage ?? NOT_RECORDED);
     cells.push(scenarioScoreCell(row), scenarioStageCell(row));
-    lines.push(`| ${cells.join(' | ')} |`);
+    lines.push(`| ${cells.map(tableCell).join(' | ')} |`);
   }
   lines.push('');
 
@@ -360,7 +397,7 @@ function renderReadme(record, folderName) {
   lines.push(`# ${folderName}`, '');
   lines.push(DERIVED_NOTE, '');
   lines.push(`> ${skillId} · ${record.traceMode ?? NOT_RECORDED}`, '');
-  lines.push(`**Verdict: ${record.verdict ?? NOT_RECORDED}** · aggregate ${record.aggregateScore ?? 0}/100`, '');
+  lines.push(`**Verdict: ${record.verdict ?? NOT_RECORDED}** · aggregate ${aggregateText(record)}`, '');
   lines.push('---', '');
   lines.push('## 1. OVERVIEW', '');
   lines.push('This is a curated report. Raw execution evidence stays in the packet that produced it, named in `source.md`. Every file here is generated from the run record: a field this run did not capture reads as not recorded rather than being filled in.', '');
@@ -376,8 +413,22 @@ function renderReadme(record, folderName) {
   lines.push(`| Scenarios | ${rows.length} |`);
   lines.push(`| Outcome tally | ${outcomeTally(rows)} |`);
   lines.push('');
+  // The results sit between the run fields and the file index, so a reader meets the measures before
+  // the list of files. The section is numbered with the ones around it, and only a record that
+  // carries measures moves the later numbers along.
+  const measures = measureRows(record);
+  let sectionNumber = 3;
+  if (measures.length) {
+    lines.push('---', '');
+    lines.push(`## ${sectionNumber}. RESULTS`, '');
+    lines.push('| Measure | Result | Target |');
+    lines.push('|---|---|---|');
+    for (const row of measures) lines.push(row);
+    lines.push('');
+    sectionNumber += 1;
+  }
   lines.push('---', '');
-  lines.push('## 3. FILES', '');
+  lines.push(`## ${sectionNumber}. FILES`, '');
   lines.push('| File | Contents |');
   lines.push('|---|---|');
   lines.push(`| [\`${RECORD_FILE}\`](./${RECORD_FILE}) | The machine record every other file here derives from |`);
@@ -452,9 +503,14 @@ function checkFolder(folder) {
   try {
     writeFolder(tempFolder, rendered);
     const differing = FILE_ORDER.filter((name) => differs(path.join(tempFolder, name), path.join(resolved, name)));
+    const extra = fs.readdirSync(resolved).filter((name) => !FILE_ORDER.includes(name) && !COMPANION_FILES.includes(name)).sort();
     for (const name of differing) console.log(`DIFF ${name}`);
-    if (differing.length) {
-      console.log(`render-report: ${resolved} differs from a render of its record in ${differing.length} of ${FILE_ORDER.length} file(s)`);
+    for (const name of extra) console.log(`EXTRA ${name}`);
+    if (differing.length || extra.length) {
+      const reasons = [];
+      if (differing.length) reasons.push(`differs from a render of its record in ${differing.length} of ${FILE_ORDER.length} file(s)`);
+      if (extra.length) reasons.push(`holds ${extra.length} file(s) outside the ${FILE_ORDER.length} it renders`);
+      console.log(`render-report: ${resolved} ${reasons.join(' and ')}`);
       return 1;
     }
     console.log(`render-report: ${resolved} matches a render of its record in all ${FILE_ORDER.length} files`);

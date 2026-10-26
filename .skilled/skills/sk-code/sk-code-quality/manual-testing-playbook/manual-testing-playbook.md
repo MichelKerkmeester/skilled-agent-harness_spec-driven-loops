@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -216,7 +216,7 @@ Fixture: F14, a GitHub Actions workflow change in a temporary repository.
 
 Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner and reads the `checklists[]` rows with their `why`.
 
-Desired user-visible outcome: the CI workflow checklist is one of the rows, and its path-based finding blocks the change.
+Desired user-visible outcome: the CI workflow checklist is listed after the universal floor, the YAML check reads the one workflow file clean, and the gate returns `NO_BLOCKER_FOUND`.
 
 #### Test Execution
 
@@ -230,7 +230,7 @@ Verify that a surface declared by a private skill mounted beside the hub resolve
 
 #### Scenario Contract
 
-Fixture: F15, a fixture hub whose private surface carries a `surface_detection` block and a `quality` block under a placeholder name.
+Fixture: F15, a private sibling skill beside the fixture hub whose own `graph-metadata.json` declares the hub's family, a `surface_detection` block and a `quality` block, under a placeholder name.
 
 Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the runner over the fixture and reads the checklist rows and the envelope labels.
 

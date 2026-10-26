@@ -1,0 +1,8 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+F01,sk-code-quality,fixture,,fixture,,,,,PASS,"met: 7 of 7 seeded labels matched, 0 unseeded findings, gate BLOCKED at exit 1"
+F02,sk-code-quality,fixture,,fixture,,,,,PASS,"met: 0 findings, gate NO_BLOCKER_FOUND at exit 0"
+F05,sk-code-quality,fixture,,fixture,,,,,PASS,"met: NOTHING_CHECKED at exit 2, blob.js unchecked as binary and main.zig unchecked as no comment family"
+F06,sk-code-quality,fixture,,fixture,,,,,PASS,"met: UNVERIFIED at exit 4, absent-tool SKIPPED_ABSENT, unverified [absent-tool]"
+50-file timing set,sk-code-quality,generated,,generated,,,,,PASS,"met: 1561.0, 1576.3, 1608.3, 1581.0 and 1661.0 ms on five full runs, largest 1661.0 ms against a 2000 ms target, gate NO_BLOCKER_FOUND with comment-hygiene and syntax-node RAN_CLEAN on every run"
+intent prompts,sk-code-quality,routing,,routing,,,,,RECORDED,recorded as found with no target: 4 of 4 prompts routed single to sk-code-quality

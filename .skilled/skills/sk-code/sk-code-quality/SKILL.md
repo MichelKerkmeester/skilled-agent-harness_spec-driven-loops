@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.11.0.0
+version: 1.12.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -176,7 +176,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "QUALITY": {"weight": 1, "keywords": ["quality gate", "comment hygiene", "p0 p1 p2", "code smell", "dist staleness", "naming", "standards", "checklist", "author quality gate"]},
+    "QUALITY": {"weight": 1, "keywords": ["quality gate", "comment hygiene", "p0 p1 p2", "code smell", "dist staleness", "naming", "standards", "checklist", "author quality gate", "envelope", "restraint", "yagni"]},
 }
 
 RESOURCE_MAP = {
