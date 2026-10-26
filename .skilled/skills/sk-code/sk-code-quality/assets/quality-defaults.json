@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "description": "The base layer the quality runner reads on every surface: the paths it never checks, the settings of its built-in sensors, the checklists the quality mode owns and the generated paths the dist adapter checks. It names no command. Each checklist file is written hub: and resolves against the skills folder that holds this hub.",
+  "exclude": ["**/node_modules/**", "**/dist/**", "**/.git/**"],
+  "sensors": {
+    "conflictMarkers": {"exclude": []},
+    "secrets": {"exclude": []},
+    "debugLeftovers": {"enabled": true, "exclude": []}
+  },
+  "checklists": [
+    {"file": "hub:sk-code/shared/references/universal/code-quality-standards.md", "why": "universal floor", "paths": ["**"]},
+    {"file": "hub:sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md", "why": "surface-neutral JavaScript and CSS additions", "extensions": [".js", ".css"]},
+    {"file": "hub:sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md", "why": "surface-neutral JavaScript and CSS additions", "extensions": [".js", ".css"]},
+    {"file": "hub:sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md", "why": "surface-neutral JavaScript and CSS additions", "extensions": [".js", ".css"]},
+    {"file": "hub:system-spec-kit/references/workflows/spec-folder-authoring-checklist.md", "why": "spec-folder authoring", "paths": ["specs/**"]}
+  ],
+  "generated": []
+}

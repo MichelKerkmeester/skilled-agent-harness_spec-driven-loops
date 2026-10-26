@@ -493,13 +493,20 @@ function selectIntents(scores) {
 const SURFACE_MARKER_KEYS = ['pathMarkers', 'fileMarkers', 'contentMarkers'];
 const declaredSurfaceCache = new Map();
 
+// The merged list serves request text, where any marker kind can appear. The
+// per-kind lists serve a reader that matches a real file, where a path marker reads
+// the path, a file marker the name and a content marker the text.
 function surfaceEntry(block, extra) {
   if (!block || typeof block !== 'object' || typeof block.label !== 'string' || !block.label.trim()) return null;
-  const markers = SURFACE_MARKER_KEYS.flatMap((key) => (Array.isArray(block[key]) ? block[key] : []))
-    .filter((marker) => typeof marker === 'string' && marker.length > 0)
-    .map((marker) => marker.toLowerCase());
+  const byKind = {};
+  for (const key of SURFACE_MARKER_KEYS) {
+    byKind[key] = (Array.isArray(block[key]) ? block[key] : [])
+      .filter((marker) => typeof marker === 'string' && marker.length > 0)
+      .map((marker) => marker.toLowerCase());
+  }
+  const markers = SURFACE_MARKER_KEYS.flatMap((key) => byKind[key]);
   if (markers.length === 0) return null;
-  return { label: block.label.toUpperCase(), role: block.role, markers, ...extra };
+  return { label: block.label.toUpperCase(), role: block.role, markers, ...byKind, ...extra };
 }
 
 function outsideSurfaces(skillsDir, family) {

@@ -3,7 +3,7 @@ title: "DOC-392 -- Doctor CI report"
 description: "Manual scenario validating that /doctor:ci report lists every GitHub Actions workflow file, returns an empty error list on a clean tree, reads every switch variable as unknown offline, rejects a bad argument with exit 2 and writes nothing."
 version: 1.0.0.0
 id: doctor-commands-doctor-ci-report
-expected_workflow_mode: UNKNOWN
+expected_workflow_mode: sk-code-ci
 expected_leaf_resources: []
 ---
 

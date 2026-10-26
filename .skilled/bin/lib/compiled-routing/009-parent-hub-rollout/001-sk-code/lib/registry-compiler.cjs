@@ -32,6 +32,8 @@ const PACKET_AUTHORITY = Object.freeze({
 
 const SURFACE_DETECTION_ROLES = Object.freeze(['specific', 'fallback']);
 const SURFACE_MARKER_KEYS = Object.freeze(['pathMarkers', 'fileMarkers', 'contentMarkers']);
+const QUALITY_BLOCK_KEYS = Object.freeze(['checklists']);
+const QUALITY_SELECTOR_KEYS = Object.freeze(['paths', 'extensions', 'contentMarkers']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -288,6 +290,49 @@ function validateSurfaceDetection(registry, hubRouter) {
   return declared;
 }
 
+// A surface declares the checklists that apply to its files, and the quality runner
+// loads every one it names. A malformed row would load nothing or the wrong file
+// without any error, so the compiler refuses it here. A block carries checklists
+// only, never a command, because commands come only from the repository.
+function failQuality(label, message) {
+  fail('QUALITY_DECLARATION_INVALID', `${label} ${message}`);
+}
+
+function validateQualitySelector(row, key, label) {
+  if (row[key] === undefined) return 0;
+  if (!Array.isArray(row[key]) || row[key].length === 0) failQuality(label, `${key} must be a non-empty array`);
+  row[key].forEach((value, index) => {
+    if (typeof value !== 'string' || !/\S/.test(value)) failQuality(label, `${key}[${index}] must be a non-empty string`);
+    if (key === 'extensions' && !/^\.[^./\s]+$/.test(value)) failQuality(label, `${key}[${index}] must start with a dot`);
+  });
+  return 1;
+}
+
+function validateQualityDeclarations(registry) {
+  for (const mode of registry.modes) {
+    const block = mode.quality;
+    if (block === undefined) continue;
+    const label = `${mode.workflowMode} quality`;
+    if (mode.packetKind !== 'surface') failQuality(label, `is declared on a ${String(mode.packetKind)} mode, not a surface`);
+    if (!block || typeof block !== 'object' || Array.isArray(block)) failQuality(label, 'must be an object');
+    const unknown = Object.keys(block).filter((key) => !QUALITY_BLOCK_KEYS.includes(key));
+    if (unknown.length > 0) failQuality(label, `holds unknown key ${unknown.join(', ')}`);
+    if (!Array.isArray(block.checklists) || block.checklists.length === 0) failQuality(label, 'checklists must be a non-empty array');
+    block.checklists.forEach((row, index) => {
+      const rowLabel = `${label}.checklists[${index}]`;
+      if (!row || typeof row !== 'object' || Array.isArray(row)) failQuality(rowLabel, 'must be an object');
+      const extra = Object.keys(row).filter((key) => key !== 'file' && !QUALITY_SELECTOR_KEYS.includes(key));
+      if (extra.length > 0) failQuality(rowLabel, `holds unknown key ${extra.join(', ')}`);
+      const selectors = QUALITY_SELECTOR_KEYS.reduce((count, key) => count + validateQualitySelector(row, key, rowLabel), 0);
+      if (selectors === 0) failQuality(rowLabel, `names no selector, one of ${QUALITY_SELECTOR_KEYS.join(', ')}`);
+      const file = row.file;
+      if (typeof file !== 'string' || !/\.md$/.test(file) || file.startsWith('/') || file.split('/').includes('..')) {
+        failQuality(rowLabel, 'file must be a relative .md path inside the hub');
+      }
+    });
+  }
+}
+
 // The detection facts the compiled router needs at serve time: which surface is
 // the fallback, so a session hint naming it never moves it ahead of another
 // surface, and which label names each declared surface.
@@ -392,6 +437,7 @@ function compileRegistry(input) {
   }
   assertSourceIdentity(input);
   const surfaceDetection = validateSurfaceDetection(input.registry, input.hubRouter);
+  validateQualityDeclarations(input.registry);
   const sourceHashes = sourceDigests(input.sourceBytes);
   const destinations = buildDestinationGraph(input.registry);
   const selection = buildSelectors(input.registry, input.hubRouter, destinations);
@@ -469,5 +515,6 @@ module.exports = {
   compileRegistry,
   extractFallbackChecklist,
   sha256,
+  validateQualityDeclarations,
   validateSurfaceDetection,
 };

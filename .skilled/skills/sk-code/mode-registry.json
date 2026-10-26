@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "3.1.0.0",
+  "version": "3.2.0.0",
   "resourceContractVersion": 1,
   "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-ci/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md, symlinked into the surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
@@ -81,6 +81,23 @@
         "pathMarkers": [".skilled/", ".opencode/"],
         "fileMarkers": ["SKILL.md", ".ts", ".tsx", ".cjs", ".mjs", ".py", ".sh", ".rs"],
         "contentMarkers": ["graph-metadata", "spec-folder", "argparse"]
+      },
+      "quality": {
+        "checklists": [
+          {"paths": [".skilled/**"], "file": "sk-code-skilled/assets/checklists/universal-checklist.md"},
+          {"paths": [".skilled/skills/**"], "file": "sk-code-skilled/assets/checklists/skill-authoring.md"},
+          {"paths": [".skilled/agents/**"], "file": "sk-code-skilled/assets/checklists/agent-authoring.md"},
+          {"paths": [".skilled/commands/**"], "file": "sk-code-skilled/assets/checklists/command-authoring.md"},
+          {"extensions": [".js", ".cjs", ".mjs"], "file": "sk-code-skilled/assets/checklists/javascript-checklist.md"},
+          {"extensions": [".ts", ".tsx", ".mts", ".cts"], "file": "sk-code-skilled/assets/checklists/typescript-checklist.md"},
+          {"extensions": [".py"], "file": "sk-code-skilled/assets/checklists/python-checklist.md"},
+          {"extensions": [".sh", ".bash"], "file": "sk-code-skilled/assets/checklists/shell-checklist.md"},
+          {"extensions": [".rs"], "file": "sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"},
+          {"extensions": [".rs"], "file": "sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md"},
+          {"extensions": [".rs"], "file": "sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"},
+          {"extensions": [".rs"], "file": "sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md"},
+          {"extensions": [".json", ".jsonc", ".yaml", ".yml"], "file": "sk-code-skilled/assets/checklists/config-checklist.md"}
+        ]
       }
     },
     {
@@ -99,6 +116,11 @@
       "aliases": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"],
       "advisorRouting": {
         "routingClass": "metadata"
+      },
+      "quality": {
+        "checklists": [
+          {"paths": [".github/workflows/**"], "file": "sk-code-ci/references/ci-workflow-standards.md"}
+        ]
       }
     }
   ]
