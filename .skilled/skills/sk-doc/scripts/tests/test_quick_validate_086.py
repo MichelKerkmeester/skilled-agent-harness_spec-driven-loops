@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tests for packet 086 — description-length budget check in quick_validate.py.
+Tests for the description-length budget check in quick_validate.py.
 
 Builds fixtures in a temporary directory at test time so no persistent SKILL.md
 files live under .opencode/skills/ where runtime scanners (OpenCode, Claude Code,

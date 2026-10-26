@@ -18,7 +18,7 @@ action: Wrap the create-diff engine from input verification through comparison, 
 #   - Baseline snapshot capture and self-contained HTML rendering
 #   - Report safety/self-containment validation
 #
-# PHASE 0 in the presentation contract verifies the packet resources
+# The presentation contract verifies the packet resources
 # BEFORE this YAML workflow loads. If you're executing this workflow,
 # create-diff verification has already passed.
 #
