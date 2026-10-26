@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9c5c2b76a89a0ef4b1c436fe6417dea20d8a88ec36149e72ad95867ffbe935c9",
+  "corpusHash": "d267fb83de020ee4f2da54d1d615f5027655094579a6cab8c6f45896fd70c21e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26129,
+  "includedPathCount": 26136,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2730,6 +2730,7 @@
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.5.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.6.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.7.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2769,6 +2770,7 @@
     ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
@@ -2797,6 +2799,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.10.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -2843,6 +2846,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.8.0.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2928,6 +2932,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6388,6 +6393,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.5.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.6.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.7.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -12307,6 +12313,7 @@
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-004-doctrine.md",
+    "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-005-consumers-and-routing.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-007-checker-debt-closeout.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-008-runner-limit-closeout.md",
     "specs/sk-code/015-quality-agnostic-gate/goal.md",
@@ -26160,7 +26167,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7ea28ca8c0b8ecda38e145fed6806268cbca3c4e270989f4e02d7ce54dfb9275",
+  "manifestHash": "b778fa2a2c7f1f50436f6943e88753137869c8eb731efe05639b403938860c67",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

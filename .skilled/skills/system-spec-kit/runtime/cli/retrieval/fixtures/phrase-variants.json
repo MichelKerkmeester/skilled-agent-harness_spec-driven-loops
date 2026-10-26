@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7ea28ca8c0b8ecda38e145fed6806268cbca3c4e270989f4e02d7ce54dfb9275",
+  "manifestHash": "b778fa2a2c7f1f50436f6943e88753137869c8eb731efe05639b403938860c67",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17292,6 +17292,9 @@
     "checklist retirement": [
       "checklist retirement"
     ],
+    "checklist row containment": [
+      "checklist row containment"
+    ],
     "checkout not following live branch": [
       "checkout not following live branch"
     ],
@@ -17906,6 +17909,9 @@
     ],
     "ci workflow status report": [
       "ci workflow status report"
+    ],
+    "ci workflow surface bundle": [
+      "ci workflow surface bundle"
     ],
     "ci workflow surface detection": [
       "ci workflow surface detection"
@@ -24950,6 +24956,9 @@
     ],
     "comment hygiene plan": [
       "comment hygiene plan"
+    ],
+    "comment hygiene routing": [
+      "comment hygiene routing"
     ],
     "comment hygiene tasks": [
       "comment hygiene tasks"
@@ -37485,6 +37494,9 @@
     ],
     "doc claims hardening tasks": [
       "doc claims hardening tasks"
+    ],
+    "doc claims reason": [
+      "doc claims reason"
     ],
     "doc cleanup": [
       "doc cleanup"
@@ -70295,6 +70307,12 @@
     "outside loop handoff tasks": [
       "outside loop handoff tasks"
     ],
+    "outside quality checklists": [
+      "outside quality checklists"
+    ],
+    "outside skill checklist rows": [
+      "outside skill checklist rows"
+    ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
@@ -78567,6 +78585,9 @@
     "quality agnostic gate config and doctor changelog": [
       "quality agnostic gate config and doctor changelog"
     ],
+    "quality agnostic gate consumers and routing changelog": [
+      "quality agnostic gate consumers and routing changelog"
+    ],
     "quality agnostic gate doctrine changelog": [
       "quality agnostic gate doctrine changelog"
     ],
@@ -78590,6 +78611,9 @@
     ],
     "quality bar": [
       "quality bar"
+    ],
+    "quality block gate": [
+      "quality block gate"
     ],
     "quality checklist": [
       "quality checklist"
@@ -78743,6 +78767,9 @@
     ],
     "quality review before indexing": [
       "quality review before indexing"
+    ],
+    "quality row declaration": [
+      "quality row declaration"
     ],
     "quality runner adr": [
       "quality runner ADR"
@@ -84959,6 +84986,9 @@
     "restraint and routing gates acceptance criteria": [
       "restraint and routing gates acceptance criteria"
     ],
+    "restraint route test": [
+      "restraint route test"
+    ],
     "restraint routing": [
       "restraint routing"
     ],
@@ -84973,6 +85003,9 @@
     ],
     "restraint routing tasks": [
       "restraint routing tasks"
+    ],
+    "restraint vocabulary": [
+      "restraint vocabulary"
     ],
     "restrict to my tasks": [
       "restrict to my tasks"
@@ -86405,6 +86438,9 @@
     ],
     "review traceability checks": [
       "review traceability checks"
+    ],
+    "review trigger split": [
+      "review trigger split"
     ],
     "review verdict": [
       "review verdict"
@@ -87945,6 +87981,9 @@
     ],
     "run validation rules": [
       "run validation rules"
+    ],
+    "run verdict evidence": [
+      "run verdict evidence"
     ],
     "run versus iteration field": [
       "run versus iteration field"
@@ -93189,6 +93228,9 @@
     "sk code 3 6 0 0": [
       "sk-code 3.6.0.0"
     ],
+    "sk code 3 7 0 0": [
+      "sk-code 3.7.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93330,6 +93372,9 @@
     "sk code ci 1 1 0 0": [
       "sk-code-ci 1.1.0.0"
     ],
+    "sk code ci 1 1 1 0": [
+      "sk-code-ci 1.1.1.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -93366,6 +93411,9 @@
     ],
     "sk code ci v1 1 0 0": [
       "sk-code-ci v1.1.0.0"
+    ],
+    "sk code ci v1 1 1 0": [
+      "sk-code-ci v1.1.1.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -93849,6 +93897,9 @@
     "sk code quality 1 10 0 0": [
       "sk-code-quality 1.10.0.0"
     ],
+    "sk code quality 1 11 0 0": [
+      "sk-code-quality 1.11.0.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -93920,6 +93971,9 @@
     ],
     "sk code quality v1 10 0 0": [
       "sk-code-quality v1.10.0.0"
+    ],
+    "sk code quality v1 11 0 0": [
+      "sk-code-quality v1.11.0.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -94044,6 +94098,9 @@
     "sk code review 1 8 0 0": [
       "sk-code-review 1.8.0.0"
     ],
+    "sk code review 1 9 0 0": [
+      "sk-code-review 1.9.0.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -94124,6 +94181,9 @@
     ],
     "sk code review v1 8 0 0": [
       "sk-code-review v1.8.0.0"
+    ],
+    "sk code review v1 9 0 0": [
+      "sk-code-review v1.9.0.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -94257,6 +94317,9 @@
     "sk code skilled 2 1 0 0": [
       "sk-code-skilled 2.1.0.0"
     ],
+    "sk code skilled 2 1 1 0": [
+      "sk-code-skilled 2.1.1.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94355,6 +94418,9 @@
     ],
     "sk code skilled v2 1 0 0": [
       "sk-code-skilled v2.1.0.0"
+    ],
+    "sk code skilled v2 1 1 0": [
+      "sk-code-skilled v2.1.1.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94508,6 +94574,9 @@
     ],
     "sk code v3 6 0 0": [
       "sk-code v3.6.0.0"
+    ],
+    "sk code v3 7 0 0": [
+      "sk-code v3.7.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -95178,6 +95247,9 @@
     "sk create skill 1 5 6 0": [
       "sk-create-skill 1.5.6.0"
     ],
+    "sk create skill 1 5 7 0": [
+      "sk-create-skill 1.5.7.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -95219,6 +95291,9 @@
     ],
     "sk create skill v1 5 6 0": [
       "sk-create-skill v1.5.6.0"
+    ],
+    "sk create skill v1 5 7 0": [
+      "sk-create-skill v1.5.7.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
