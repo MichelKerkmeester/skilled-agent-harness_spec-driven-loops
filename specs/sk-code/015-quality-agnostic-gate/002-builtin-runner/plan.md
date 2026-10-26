@@ -114,14 +114,14 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 Build the entry point, the scope stage, the verdict and the three renderers. The runner must print a verdict for a plain folder with `--files` and write no file.
 
 Acceptance: a verdict prints in `code-quality-run/v1` form for a file in a folder that is not a git repository, and the fixture snapshot is unchanged afterwards.
-Verify: `node --test --test-name-pattern='^F10|^F01' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` prints `# fail 0`.
+Verify: `node --test --test-reporter=tap --test-name-pattern='^F10|^F01' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` prints `# fail 0`.
 
 ### Step 2: Run the sensors, the hygiene call and the layer probes
 
 Add the built-in sensors, the syntax floor, the single hygiene call, the layer probes and the python-absent path. Every spawn goes through `run-check.cjs`.
 
 Acceptance: the fixtures for changed-line and touched-file hygiene, the sensors, the syntax floor, the layers and the python-absent path all pass.
-Verify: `node --test --test-name-pattern='^F0[3-5]|^F1[2-3]|^F17|^F18|unit: layers' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` prints `# fail 0`.
+Verify: `node --test --test-reporter=tap --test-name-pattern='^F0[3-5]|^F1[2-3]|^F17|^F18|unit: layers' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` prints `# fail 0`.
 
 ### Step 3: Declare the surfaces and resolve checklists
 

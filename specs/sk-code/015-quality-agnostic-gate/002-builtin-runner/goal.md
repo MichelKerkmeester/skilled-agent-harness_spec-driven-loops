@@ -9,17 +9,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/002-builtin-runner"
-    last_updated_at: "2026-10-25T23:21:48Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive, the completion criteria and the decision record"
-    next_safe_action: "Land 001-honest-checker, then run the Setup tasks in tasks.md"
-    blockers: ["001-honest-checker has not landed"]
+    last_updated_at: "2026-10-26T04:14:20Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Put the TAP reporter in the two node --test criteria and recorded the finished log"
+    next_safe_action: "Operator reviews the working tree, confirms ADR-011 to ADR-018, then commits the phase"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-builtin-runner"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,8 +57,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` exits 0 and prints `# fail 0`.
-- [ ] `node --test --test-name-pattern='^F(0[1-5]|10|1[234]|1[678])' .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` prints `# pass 12` and `# fail 0`.
+- [ ] `node --test --test-reporter=tap .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` exits 0 and prints `# fail 0`.
+- [ ] `node --test --test-reporter=tap --test-name-pattern='^F(0[1-5]|10|1[234]|1[678])' .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` prints `# pass 12` and `# fail 0`.
 - [ ] `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --files .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh --format json | node -p "(v => v.resolved_surface.includes('SKILLED') && !v.findings.some(f => f.rule.startsWith('syntax.')))(JSON.parse(require('fs').readFileSync(0, 'utf8')))"` prints `true`.
 - [ ] `ROOT=$(git rev-parse --show-toplevel) && T=$(mktemp -d) && git -C "$T" init -q && printf 'package a\n\n// see ADR-12\nfunc A() {}\n' > "$T/a.go" && (cd "$T" && node "$ROOT/.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs" > "$T/v.json" || echo "exit=$?") && node -p "(v => v.gate === 'BLOCKED' && v.resolved_surface[0] === 'unknown')(require('$T/v.json'))"` prints `exit=1` and then `true`.
 - [ ] `node .skilled/bin/compiled-route-sync.cjs --check && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` exits 0.
@@ -81,11 +81,11 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet documents authored | Done | `validate.sh --strict --no-recursive` prints `RESULT: PASSED` with zero errors and zero warnings. `validate_document.py --type spec` exits 0 on the five named files |
-| 001-honest-checker landed | Pending | `check-comment-hygiene.sh --json` does not exist on the branch yet (`rg -n -- '--json' .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` prints nothing) |
-| Runner core and sensors | Pending | Not started |
-| Surface declarations and reader row | Pending | Not started |
-| Docs, changelogs and versions | Pending | Not started |
-| Self-run and foreign smoke test | Pending | Not started |
+| 001-honest-checker landed | Done | `tasks.md` T001 printed `phase1-json` |
+| Runner core and sensors | Done | The runner suite printed `# tests 27`, `# pass 27`, `# fail 0` after the review fixes |
+| Surface declarations and reader row | Done | `tasks.md` T015 to T017 and T027 |
+| Docs, changelogs and versions | Done | `tasks.md` T025 to T032 and T044 |
+| Self-run and foreign smoke test | Done | `tasks.md` T035 printed `true`, and T036 printed `exit=1` then `true` |
 
 ### Deviations and findings
 

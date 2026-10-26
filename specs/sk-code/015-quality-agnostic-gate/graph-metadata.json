@@ -51,6 +51,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
       ".github/workflows/comment-hygiene.yml",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
       ".skilled/skills/sk-code/shared/references/phase-detection.md",
@@ -60,10 +63,7 @@
       ".skilled/skills/sk-code/ROUTER.md",
       "001-honest-checker/goal.md",
       "002-builtin-runner/goal.md",
-      "003-config-and-doctor/goal.md",
-      "004-doctrine/goal.md",
-      "005-consumers-and-routing/goal.md",
-      "006-measurement/goal.md"
+      "003-config-and-doctor/goal.md"
     ],
     "entities": [
       {
@@ -106,6 +106,24 @@
         "name": "comment-hygiene.yml",
         "kind": "config",
         "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-defaults.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
         "source": "derived"
       },
       {
@@ -191,39 +209,21 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Quality Gate",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "six",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
     "created_at": "2026-10-25T23:21:45Z",
-    "last_save_at": "2026-10-26T02:30:23.552Z",
+    "last_save_at": "2026-10-26T03:42:59.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c1070bce795a0985974c372e6fbbecd29242ab22b72a9e096fb0f0a1d411488a",
+    "source_fingerprint": "sha256:90686921d6d82413cb38503f24c1338d8e26241c1bb032ad2256c5e7ae108a53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "41580a96cf24f753226213ac1b945b4db3e95eccf24fd202b51213894c18d868"
+      "spec.md": "3d6a0b60e24dc5392ed156f0bc3b14b18de0008a369ddeababf20c161323e5d4"
     },
     "last_active_at": null
   }

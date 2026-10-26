@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
@@ -88,7 +88,8 @@ One command prints one verdict for a change in any repository. The verdict holds
 - Repository config `.sk-code/quality.json`, configured checks and suggested checks. Phase 3, see ADR-010 and ADR-013.
 - The `/doctor:sk-code quality` route and the battery leg. Phase 3.
 - The Iron Law 3 text, the UNKNOWN rows and the universal checklist retitle. Phase 4, see ADR-011 and ADR-012.
-- The verify, review and `@code` consumers, the outside-skill `quality` metadata, the advisor vocabulary and the leaf manifest. Phase 5.
+- The verify, review and `@code` consumers, the outside-skill `quality` metadata, the advisor vocabulary, and the leaf-manifest regeneration for Phase 5's own routing changes. Phase 5. This phase regenerates `leaf-manifest.json` with its generator only, so that it lists the two resources this phase adds.
+- The hub `ROUTER.md` CODE_QUALITY intent overlay row and RESOURCE_MAP entry, which load `universal-checklist.md` for every CODE_QUALITY route and do not name `runner-contract.md`. Phase 5 owns the file and plans to add the runner-contract resource to that map. No phase plans to scope the `universal-checklist.md` entry to SKILLED as ADR-012 does for the runner: Phase 4 defers the file to Phase 5, and Phase 5's ADR-010 keeps the entry. Until the operator or a later phase decides, the route loads the checklist on every surface while the runner lists it only when SKILLED resolves, as `implementation-summary.md` Known Limitations records.
 - The Phase 6 playbook scenarios and the benchmark report, see ADR-015.
 - Any change to the whole-file scope of CI or pre-commit, see ADR-014.
 
@@ -106,16 +107,27 @@ One command prints one verdict for a change in any repository. The verdict holds
 | `.skilled/skills/sk-code/sk-code-quality/scripts/README.md` | Edit | REQ-019 | The VALIDATION list gains the `node --test` suite beside the four bash suites |
 | `.skilled/skills/sk-code/sk-code-quality/SKILL.md` | Edit | REQ-019, REQ-022 | Workflow with the restraint step, tree, loading table, target map, enforcement table, P0 table rows that become UNVERIFIED, envelope, rules, `DEFAULT_RESOURCE` and version |
 | `.skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md` | Edit | REQ-019 | The CQ-001 path loop follows the new ALWAYS rows, as `DEFAULT_RESOURCE` does |
-| `.github/workflows/sk-code-script-tests.yml` | Edit | REQ-024 | The `node --test` row for the quality tests |
+| `.skilled/skills/sk-code/sk-code-quality/README.md` | Edit | REQ-019 | The quick start, the flow and the verification table describe the runner and the SKILLED-only universal checklist, and the version |
+| `.github/workflows/sk-code-script-tests.yml` | Edit | REQ-024 | The `node --test` row for the quality tests, and path filters for the compiler folders those tests load |
 | `.skilled/skills/sk-code/mode-registry.json` | Edit | REQ-011, REQ-022 | `quality.checklists` for SKILLED and `sk-code-ci`, and the hub version |
 | `.skilled/skills/sk-code/hub-router.json` | Edit | REQ-022 | Hub version |
 | `.skilled/skills/sk-code/description.json` | Edit | REQ-022 | Hub version |
 | `.skilled/skills/sk-code/SKILL.md` | Edit | REQ-022 | Hub version |
-| `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Edit | REQ-011 | `QUALITY_DECLARATION_INVALID` beside `SURFACE_DETECTION_INVALID` |
+| `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Regenerate | REQ-011 | The served copy, promoted from its authored twin by `compiled-route-sync.cjs` |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Edit | REQ-011 | The authored compiler: `QUALITY_DECLARATION_INVALID` beside `SURFACE_DETECTION_INVALID` |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` and its authored twin under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/` | Regenerate | REQ-011 | `compiled-route-manifest.cjs refresh --hub sk-code`, copied over the authored twin |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Edit | REQ-012 | Per-kind lists beside the merged list in `surfaceEntry`, with export names unchanged |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Edit | REQ-012 | Patch version for the reader change |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md` | Create | REQ-012 | Surface packet changelog for the reader change |
+| `.skilled/skills/sk-code/leaf-manifest.json` | Regenerate | REQ-018, REQ-019 | `generate-leaf-manifest.cjs --write`, so it lists the two new resources |
+| `.hermes/skills/sk-code/SKILL.md`, `.hermes/skills/sk-code-quality/SKILL.md`, `.hermes/skills/sk-code-skilled/SKILL.md` | Regenerate | REQ-019, REQ-022 | `sync-skills-hermes.cjs` copies of the three edited `SKILL.md` files |
 | `.skilled/skills/sk-code/shared/references/stack-detection.md` | Edit | REQ-018 | Runner row in the reader table at lines 121 to 125 |
 | `.skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md` | Create | REQ-022 | Packet changelog |
 | `.skilled/skills/sk-code/changelog/v3.2.0.0.md` | Create | REQ-022 | Hub changelog |
+| `.skilled/skills/sk-code/README.md` | Edit | REQ-022 | The newest-entry row names `v3.2.0.0.md`, and the document version |
+| `.skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md` | Edit | REQ-011 | Gold mode `sk-code-ci` in place of `UNKNOWN`, since the prompt routes to the CI surface. The compiled-route suite this phase must run scored the old gold as drift |
+| `.skilled/bin/tests/compiled-route-admission.test.cjs` | Edit | REQ-011 | Corpus pin 89 to 90, and the activation-state hash scoped to the live hubs, so it no longer races with the manifest test's fixture hubs |
+| `specs/sk-code/015-quality-agnostic-gate/spec.md` and the two `graph-metadata.json` files of the parent and this phase | Edit, Regenerate | All | The parent phase map, and the derived metadata from `repair-derived.cjs --apply` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -140,7 +152,7 @@ One command prints one verdict for a change in any repository. The verdict holds
 | REQ-011 | `mode-registry.json` declares `quality.checklists` for SKILLED and `sk-code-ci`. The registry compiler rejects a malformed declaration with `QUALITY_DECLARATION_INVALID` |
 | REQ-012 | `surfaceEntry` keeps the merged marker list and adds `pathMarkers`, `fileMarkers` and `contentMarkers` lists. The exported names stay the same |
 | REQ-013 | The envelope keeps the `code-quality/v1` keys. Judgment fields read `PENDING_AGENT_JUDGMENT`. `checker_outputs` follows the grammar in `runner-contract.md` |
-| REQ-014 | A private surface appears in the envelope by its label only. The envelope never contains `local-` |
+| REQ-014 | A private surface appears in the envelope by its label only. No path segment or word in the envelope starts with `local-`. A public name that only holds the text, such as `nonlocal-config.js`, prints as it is |
 | REQ-015 | Fixtures F01 to F05, F10, F12 to F14 and F16 to F18 pass. Each one asserts that the fixture snapshot is unchanged after the run |
 | REQ-016 | When `python3` is absent, hygiene reports `SKIPPED_ABSENT`, the run reports UNVERIFIED with exit 4, and hygiene is never reported clean |
 | REQ-017 | New code files pass the repository's comment hygiene check, and each new comment states a durable reason only |
@@ -171,7 +183,7 @@ One command prints one verdict for a change in any repository. The verdict holds
 - **SC-003**: The self-run on `check-comment-hygiene.sh` names SKILLED in `resolved_surface` and has no `syntax.` finding. The check prints `true`.
 - **SC-004**: The foreign smoke test on an untracked Go file with a spec-style comment prints `exit=1`, and its verdict reads `BLOCKED` with `unknown` as the surface.
 - **SC-005**: `compiled-route-sync.cjs --check` and `parent-skill-check.cjs` on `sk-code` both exit 0.
-- **SC-006**: The envelope for a run contains no `local-` text and no pass value.
+- **SC-006**: The envelope for a run contains no path segment or word that starts with `local-`, and no pass value.
 
 <!-- /ANCHOR:success-criteria -->
 
@@ -219,7 +231,7 @@ One command prints one verdict for a change in any repository. The verdict holds
 ### Data Boundaries
 - Empty input: no in-scope file. The run prints `NOTHING_CHECKED` and exits 2.
 - Maximum length: a file over 2 MB goes to `coverage.unchecked` with the reason `size`. The run does not read it.
-- Invalid format: a file with a NUL byte in its first 8 KB is binary. It goes to `coverage.unchecked` with the reason `binary`. A file with an extension that has no comment family goes to `coverage.unchecked` with the reason `no comment family`.
+- Invalid format: a file with a NUL byte in its first 8 KB is binary. It goes to `coverage.unchecked` with the reason `binary`. A file with an extension that has no comment family goes to `coverage.unchecked` with the reason `no comment family`. The conflict and secret sensors still scan its text, and it never counts as checked.
 
 ### Error Scenarios
 - Checker failure: the hygiene output cannot be parsed. The check reads `ERROR`, the run is UNVERIFIED, and exit 4 applies unless a blocking P0 already set exit 1.

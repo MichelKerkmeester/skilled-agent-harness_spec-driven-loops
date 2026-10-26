@@ -39,7 +39,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
-      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/fixtures.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md",
+      ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
-      ".github/workflows/sk-code-script-tests.yml",
-      ".skilled/skills/sk-code/mode-registry.json",
-      ".skilled/skills/sk-code/hub-router.json",
-      ".skilled/skills/sk-code/description.json",
-      ".skilled/skills/sk-code/SKILL.md",
-      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
-      ".skilled/skills/sk-code/shared/references/stack-detection.md",
-      ".skilled/plugins/system-skill-advisor.js"
+      ".skilled/skills/sk-code/sk-code-quality/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md"
     ],
     "entities": [
       {
@@ -106,9 +106,57 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fixtures.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-defaults.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
         "source": "derived"
       },
       {
@@ -124,51 +172,9 @@
         "source": "derived"
       },
       {
-        "name": "sk-code-script-tests.yml",
-        "kind": "config",
-        "path": ".github/workflows/sk-code-script-tests.yml",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "registry-compiler.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay-lib.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "stack-detection.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor.js",
-        "kind": "code",
-        "path": ".skilled/plugins/system-skill-advisor.js",
+        "path": ".skilled/skills/sk-code/sk-code-quality/README.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The checker scans nine extensions and prints findings as text beside its exit code",
     "created_at": "2026-10-25T23:21:47Z",
-    "last_save_at": "2026-10-26T00:00:55.037Z",
+    "last_save_at": "2026-10-26T04:59:49.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32483924360b5de74301d176a061e1ce6ced64c9ab74543d2592336060d28473",
+    "source_fingerprint": "sha256:1c4b22eb3f7b8bd8d08d77e6f0d287fa8a861dfb3d32ed82247188b8a80f406f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b267d06db03a6457c9a86a68931aeab4dd460585e4f827f3b734337e857b7b87",
-      "plan.md": "15c07f79e3b0e9eba38277e1e02b260418e2732e1fb135f27ae233b81e96d346",
-      "tasks.md": "620c8017f23f82653b9b084b73c59606fce9b4ca69f7bec561bb8a67f5193c94",
-      "decision-record.md": "6acb80776751f6a8f185b11c171d15998f8c92f7d452adb94f574e15dc769239",
-      "implementation-summary.md": "9447e9dda840f9164f9be2a7d44d1be0fdcc6e58ebb31cd42fdb672eba0ba268"
+      "spec.md": "4c3b98cb84daf114f92766337a8b43df95285f150b2affa80e5907ce1cceada6",
+      "plan.md": "e6e004c6413c19d28c6642fecf7c29e067abae9ef7af1cc6c6a6c3c44e585b0a",
+      "tasks.md": "9db7ce51776c3fdaae02037244e57d08f1b852e51263ff9c2dfab154db5413a0",
+      "decision-record.md": "58870e1ebb67c69a970ad03f9bf1709b72e95338d75f83efd0aec7d40f4f9590",
+      "implementation-summary.md": "b7bfd257a540ebab96c20efc9bc4bf7f219dceb6cb4f87bc6c93c035343b137e"
     },
     "last_active_at": null
   }

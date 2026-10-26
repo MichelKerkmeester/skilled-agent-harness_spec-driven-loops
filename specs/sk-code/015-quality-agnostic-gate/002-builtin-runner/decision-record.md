@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 2: builtin-runner"
-description: "The decisions this phase relies on: the runner's engine, roots, scope, verdict and surfaces, the phase boundary, and six operator decisions taken with the design's default."
+description: "The decisions this phase relies on: the runner's engine, roots, scope, verdict and surfaces, the phase boundary, six operator decisions taken with the design's default and two decisions taken during the build."
 trigger_phrases:
   - "builtin runner decision record"
   - "quality runner ADR"
@@ -9,11 +9,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate/002-builtin-runner"
-    last_updated_at: "2026-10-25T23:21:48Z"
-    last_updated_by: "scaffold"
-    recent_action: "Recorded sixteen decisions for the built-in runner"
-    next_safe_action: "Confirm ADR-011 to ADR-016 at program end, and implement ADR-001 to ADR-010 in the tasks order"
-    blockers: ["001-honest-checker has not landed"]
+    last_updated_at: "2026-10-26T03:35:41Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Added ADR-017 for --no-run and ADR-018 for the empty generated list"
+    next_safe_action: "Confirm ADR-011 to ADR-018 at program end"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-This record holds the decisions that Phase 2 relies on. The requirements these decisions serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). ADR-001 to ADR-010 are design decisions with a settled default. ADR-011 to ADR-016 are operator decisions. The operator gave a standing instruction to build autonomously and to take each open decision at the design's recommended default. Those six carry the status line the instruction names, so the operator can confirm or reverse each one at program end. Labels such as D6 in the text refer to the synthesized quality design. That design is not committed in this tree, so each ADR states its decision in full.
+This record holds the decisions that Phase 2 relies on. The requirements these decisions serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). ADR-001 to ADR-010 are design decisions with a settled default. ADR-011 to ADR-016 are operator decisions. The operator gave a standing instruction to build autonomously and to take each open decision at the design's recommended default. Those six carry the status line the instruction names, so the operator can confirm or reverse each one at program end. ADR-017 and ADR-018 settle two questions the build met that no document answered, each with the most conservative option, and they carry the same status line. Labels such as D6 in the text refer to the synthesized quality design. That design is not committed in this tree, so each ADR states its decision in full.
 
 ---
 
@@ -1597,3 +1597,197 @@ The advisor plugin has its own `declaredSurfaces` (`.skilled/plugins/system-skil
 **How to roll back**: Not needed. The shared reader's change is reverted with ADR-006.
 <!-- /ANCHOR:adr-016-impl -->
 <!-- /ANCHOR:adr-016 -->
+
+---
+
+<!-- ANCHOR:adr-017 -->
+## ADR-017: `--no-run` lists spawning checks and makes the run UNVERIFIED
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Operator, under the standing autonomous-build instruction |
+
+---
+
+<!-- ANCHOR:adr-017-context -->
+### Context
+
+REQ-020 names a `--no-run` flag but no document says what it prints or how it exits. A caller uses it to see what a run would start without starting it. The open question is whether a listed check counts as evidence, and whether the in-process checks still run.
+
+### Constraints
+
+- No gate value may mean pass, so a check that produced no evidence cannot read clean.
+- The in-process checks start no process, so running them costs no trust.
+
+<!-- /ANCHOR:adr-017-context -->
+
+---
+
+<!-- ANCHOR:adr-017-decision -->
+### Decision
+
+**We chose**: Every spawning check reads `LISTED` with its argv template, the in-process checks still run, and a required check in `LISTED` makes the run `UNVERIFIED` with exit 4.
+
+**How it works**: `LISTED` joins `SKIPPED_ABSENT`, `SKIPPED_BY_FLAG`, `TIMEOUT` and `ERROR` as an unverified state. A blocking finding from an in-process sensor still exits 1, because precedence puts `BLOCKED` before `UNVERIFIED`.
+<!-- /ANCHOR:adr-017-decision -->
+
+---
+
+<!-- ANCHOR:adr-017-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **List spawns, run in-process checks, exit 4 (chosen)** | Honest exit, and a conflict marker or secret still blocks | A dry run never exits 0 | 8/10 |
+| Skip every check and exit 2 | Simple | Hides in-process blockers the run could find for free | 5/10 |
+| List spawns and exit 0 | A dry run looks clean | Reads as a pass with no evidence behind it | 1/10 |
+
+**Why this one**: It is the most conservative choice that still reports what the run can see without starting a process.
+<!-- /ANCHOR:adr-017-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-017-consequences -->
+### Consequences
+
+**What improves**:
+- A caller sees each argv the run would start, and no listed check can be mistaken for a clean one.
+
+**What it costs**:
+- A dry run on a clean change exits 4. Mitigation: `runner-contract.md` section 2 lists `LISTED` as an unverified state.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A caller reads exit 4 from a dry run as a fault | L | The verdict names each listed id in `summary.unverified` |
+<!-- /ANCHOR:adr-017-consequences -->
+
+---
+
+<!-- ANCHOR:adr-017-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | REQ-020 names the flag without its semantics |
+| 2 | **Beyond Local Maxima?** | PASS | Three behaviors were compared |
+| 3 | **Sufficient?** | PASS | `unit: flags` checks the state, the argv and that no process started |
+| 4 | **Fits Goal?** | PASS | No exit code means pass |
+| 5 | **Open Horizons?** | PASS | Phase 3 configured checks take the same state |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-017-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-017-impl -->
+### Implementation
+
+**What changes**:
+- `quality-gate.cjs` sets `LISTED` on each spawning check when the flag is present, and `decideGate` treats it as unverified.
+
+**How to roll back**: Drop `LISTED` from the unverified states and from the flag parser, then rerun `unit: flags`.
+<!-- /ANCHOR:adr-017-impl -->
+<!-- /ANCHOR:adr-017 -->
+
+---
+
+<!-- ANCHOR:adr-018 -->
+## ADR-018: No generated path is declared while the dist checker can write a cache
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted, pending operator confirmation at program end |
+| **Date** | 2026-10-26 |
+| **Deciders** | Operator, under the standing autonomous-build instruction |
+
+---
+
+<!-- ANCHOR:adr-018-context -->
+### Context
+
+REQ-023 has the dist adapter run on declared generated paths. The per-file mode of `check-dist-staleness.sh` calls the freshness library in the hub's repository, and that library writes a cache record beside a dist entry (`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:329-334`). The workspace guard watches the target repository only, and it does not list ignored files, so that write would go unseen while the runner promises to write nothing.
+
+### Constraints
+
+- The runner writes no file anywhere.
+- REQ-023 still needs the adapter built and tested.
+
+<!-- /ANCHOR:adr-018-context -->
+
+---
+
+<!-- ANCHOR:adr-018-decision -->
+### Decision
+
+**We chose**: Build and test the adapter against a stand-in checker, and ship `quality-defaults.json` with an empty `generated` list, so no real run reaches the adapter in this phase.
+
+**How it works**: `runDistAdapter` is exported and covered by `unit: dist adapter`, which drives a stand-in script through every banner, the hook switch, `--no-run` and a missing `python3`. A real run reads `dist-staleness` as `NOT_APPLICABLE`.
+<!-- /ANCHOR:adr-018-decision -->
+
+---
+
+<!-- ANCHOR:adr-018-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Empty list, stand-in tests (chosen)** | The no-write promise holds | No real dist check runs yet | 8/10 |
+| Declare the system-spec-kit dist paths now | Real coverage | A cache write the guard cannot see breaks the promise | 3/10 |
+| Change the freshness library to skip its cache | Closes the gap at the source | Edits another skill's runtime in a phase that does not own it | 4/10 |
+
+**Why this one**: It keeps the invariant and leaves the cache decision to the library's owner.
+<!-- /ANCHOR:adr-018-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-018-consequences -->
+### Consequences
+
+**What improves**:
+- Every real run keeps the no-write promise.
+
+**What it costs**:
+- Generated drift stays unchecked by the runner. Mitigation: the quality mode's P0 table reads unchecked generated drift as UNVERIFIED, and the hooks still run the dist checker.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later phase declares a path without closing the cache write | M | `runner-contract.md` section 8 names the limit next to the `generated` list |
+<!-- /ANCHOR:adr-018-consequences -->
+
+---
+
+<!-- ANCHOR:adr-018-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The cache write conflicts with the no-write invariant |
+| 2 | **Beyond Local Maxima?** | PASS | Three options were compared |
+| 3 | **Sufficient?** | PASS | The adapter's banner contract is tested in full |
+| 4 | **Fits Goal?** | PASS | The goal requires that the runner writes nothing |
+| 5 | **Open Horizons?** | PASS | Declaring a path later is a one-line defaults change |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-018-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-018-impl -->
+### Implementation
+
+**What changes**:
+- `quality-defaults.json` holds `"generated": []`, and `runner-contract.md` section 8 records the cache limit.
+
+**How to roll back**: Add `paths` rows to `generated` once the cache write is closed, then extend `unit: dist adapter` with a run against the real checker.
+<!-- /ANCHOR:adr-018-impl -->
+<!-- /ANCHOR:adr-018 -->
