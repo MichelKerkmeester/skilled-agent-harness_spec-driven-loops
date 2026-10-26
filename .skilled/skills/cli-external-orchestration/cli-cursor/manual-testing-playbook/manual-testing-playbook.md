@@ -1,7 +1,7 @@
 ---
 title: "cli-cursor: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-scenario validation files for the cli-cursor skill."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-cursor: Manual Testing Playbook
@@ -626,7 +626,7 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 
 ---
 
-## 19. STRESS MATRIX (`cli-cursor-EC-001..cli-cursor-EC-014`)
+## 16. STRESS MATRIX (`cli-cursor-EC-001..cli-cursor-EC-014`)
 
 This category runs the shared hermetic stress-matrix cells for the `cli-cursor` adapter: authentication,
 model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing

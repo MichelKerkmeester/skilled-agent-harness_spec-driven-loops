@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: QUICK VALIDATE DESCRIPTION BUDGET TESTS
+# ───────────────────────────────────────────────────────────────
 """
 Tests for the description-length budget check in quick_validate.py.
 

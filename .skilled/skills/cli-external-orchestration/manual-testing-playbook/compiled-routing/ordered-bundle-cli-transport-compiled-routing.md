@@ -23,7 +23,7 @@ evidence_manifest_digest: 8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b5
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.4.0.2
+version: 1.4.1.0
 ---
 
 # cli-external-orchestration opencode transport serves compiled and matches legacy
@@ -47,7 +47,9 @@ Delegate this to OpenCode and run the ablation suite with full plugin and Spec K
 
 ---
 
-## 3. COMMAND SEQUENCE
+## 3. TEST EXECUTION
+
+### Exact Command Sequence
 
 Capture this hub's compiled-routing parity evidence with the live front door and serving-status probe:
 ```
@@ -55,8 +57,32 @@ node .skilled/bin/compiled-route-status.cjs --hub cli-external-orchestration
 node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<the exact prompt in section 2>"
 ```
 
-## Pass/Fail Criteria
+### Pass/Fail Criteria
 
 - **PASS** iff the captured evidence shows `servingAuthority: compiled` and the compiled routing decision (workflow-mode intents) matches the legacy decision.
 - **FAIL** iff the serving authority is not `compiled`, or the compiled routing decision names a different workflow mode than legacy (a real drift), or the compiled path is structurally broken (`resolver-missing`).
 - **SKIP** iff the hub is outside the compiled serving closure (parity status `n/a`).
+
+---
+
+## 4. SOURCE FILES
+
+- `manual-testing-playbook.md` - Root directory page and scenario summary.
+- `.skilled/skills/cli-external-orchestration/SKILL.md` - Hub contract and its compiled-serving declaration.
+- `.skilled/skills/cli-external-orchestration/hub-router.json` - Hub vocabulary classes and the transport-mode signal.
+- `.skilled/bin/compiled-route.cjs` - Compiled route front door.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Compiled Routing
+- Playbook ID: CE-CR-001
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `compiled-routing/ordered-bundle-cli-transport-compiled-routing.md`
+- **Created**: 2026-07-21
+- **Critical path**: No
+- **Destructive**: No
+- **Sandbox**: not needed
+- **Concurrent-safe**: Yes
+- **Last validated**: 2026-10-26

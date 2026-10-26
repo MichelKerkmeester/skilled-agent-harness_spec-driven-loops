@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.30.0
+version: 2.2.31.0
 ---
 
 # sk-code
@@ -121,7 +121,7 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 1. Delete the folder `.skilled/skills/sk-code/<mode>/`.
 2. In `.skilled/skills/sk-code/mode-registry.json`, delete the mode's `modes` entry and its name in `extensions.surface-axis.surfaces`. In `.skilled/skills/sk-code/hub-router.json`, delete it from `routerPolicy.tieBreak`, delete its `routerSignals` entry and delete the two `vocabularyClasses` that entry names.
 3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
-4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
+4. Edit section 9 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 9 that point at the removed packet.
 5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the mode's `surfaceDetection` block in `.skilled/skills/sk-code/mode-registry.json` (`stack-detection.md` section 2 reads it) and the surface lines in the root `README.md`.
 6. Delete or adjust the files written for the surface. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the surface checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which name each live surface, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
 7. Run `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including those in this README. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which names each surface.
@@ -132,7 +132,7 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 
 1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of `sk-code-skilled` in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l warns about a surface placed after it, and the registry compiler rejects a hub whose single fallback is not ranked last in `routerPolicy.tieBreak` (`SURFACE_FALLBACK_INVALID`).
 2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
-3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks, such as "two surfaces", in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
+3. Add the packet's paths to the `ROUTER.md` maps and section 9, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks, such as "two surfaces", in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
 
@@ -199,7 +199,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
-| [`changelog/v3.9.0.0.md`](./changelog/v3.9.0.0.md) | The newest hub release entry |
+| [`changelog/v3.9.1.0.md`](./changelog/v3.9.1.0.md) | The newest hub release entry |
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
 | [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |

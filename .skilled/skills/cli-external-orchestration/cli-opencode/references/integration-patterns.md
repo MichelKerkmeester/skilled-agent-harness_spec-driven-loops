@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -423,7 +423,13 @@ The full Memory Handback Protocol is shared with cli-claude-code and cli-opencod
 
 ---
 
-## 8. RELATED RESOURCES
+## 8. SINGLE-DISPATCH DISCIPLINE
+
+**Single-dispatch discipline (operator-gated, session-scoped).** Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-opencode, cli-claude-code). Wait for the work to return, verify outputs exist, then SIGKILL only the dispatch THIS skill started: capture its PID at launch (`opencode run ... & OC_PID=$!`) and kill that captured PID directly plus its own orphan children (`kill -9 "$OC_PID" 2>/dev/null; pkill -9 -P "$OC_PID" 2>/dev/null`), then apply the same PID-scoped `gtimeout` / `positional_scoring_fallback:app` cleanup. (A backgrounded `opencode run &` is not a process-group leader, so a group kill would miss it. Kill the captured PID directly.) **Kill only the dispatch you started, by captured PID. Never a blanket `pkill -9 -f "opencode run"` pattern (see Rule 5)**, which kills operator-owned sessions too. Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole session at start, and iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently, but still SIGKILL each by its own captured PID as its work returns.
+
+---
+
+## 9. RELATED RESOURCES
 
 - `./cli-reference.md` - Full subcommand and flag reference
 - `./opencode-tools.md` - Unique value props vs sibling cli-* skills

@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: RULE COPY CANARY TESTS
+# ───────────────────────────────────────────────────────────────
 set -euo pipefail
 
 # Self-contained test for check-rule-copies.js. Runnable from anywhere — paths
 # are resolved relative to this script, not the caller's CWD.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CHECKER="$SCRIPT_DIR/check-rule-copies.js"
 FINAL_LINE_CHECKER="$SCRIPT_DIR/check-review-final-line.js"
 FINDINGS_CHECKER="$SCRIPT_DIR/check-review-findings.js"

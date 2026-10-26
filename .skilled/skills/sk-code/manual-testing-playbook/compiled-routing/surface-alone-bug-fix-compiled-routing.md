@@ -25,7 +25,7 @@ evidence_manifest_digest: 663f1ef350f40caed2baaf929eaeb29ab61cc9f279f9577410dcab
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-25
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code bug fix in a TypeScript file routes the skilled surface alone
@@ -53,16 +53,45 @@ fix this bug in foo.ts
 
 ---
 
-## 3. COMMAND SEQUENCE
+## 3. TEST EXECUTION
 
-Capture the serving status and the compiled decision with the live front door:
-```
-node .skilled/bin/compiled-route-status.cjs --hub sk-code
-node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix this bug in foo.ts"
-```
+### Exact Command Sequence
 
-## Pass/Fail Criteria
+1. Capture the serving status:
+   ```
+   node .skilled/bin/compiled-route-status.cjs --hub sk-code
+   ```
+2. Capture the compiled decision:
+   ```
+   node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix this bug in foo.ts"
+   ```
+
+### Pass/Fail Criteria
 
 - **PASS** iff the status shows `servingAuthority: compiled` and the decision prints `"selectionKind":"single"` with one target whose `workflowMode` is `sk-code-skilled`.
 - **FAIL** iff the serving authority is not `compiled`, the decision is a `defer`, a `surfaceBundle` or a different single target, or the compiled path is structurally broken (`resolver-missing`).
 - **SKIP** iff the hub is outside the compiled serving closure (parity status `n/a`).
+
+---
+
+## 4. SOURCE FILES
+
+- `manual-testing-playbook.md` - Root directory page and scenario summary.
+- `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` - Skilled surface contract and the vocabulary that carries `bug` and `.ts`.
+- `.skilled/skills/sk-code/ROUTER.md` - Surface intent signals and the resource map.
+- `.skilled/bin/compiled-route.cjs` - Compiled route front door.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Compiled Routing
+- Playbook ID: CB-CR-005
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `compiled-routing/surface-alone-bug-fix-compiled-routing.md`
+- **Created**: 2026-10-25
+- **Critical path**: No
+- **Destructive**: No
+- **Sandbox**: not needed
+- **Concurrent-safe**: Yes
+- **Last validated**: pending first manual run

@@ -55,6 +55,7 @@ jobs:
 
       - name: Run naming guard tests
         run: |
+          set -euo pipefail
           python3 -m pytest \
             .opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py \
             .opencode/skills/sk-doc/scripts/tests/test_naming_root_resolver.py

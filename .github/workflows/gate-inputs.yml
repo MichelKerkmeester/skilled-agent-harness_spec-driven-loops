@@ -46,6 +46,7 @@ jobs:
       # fails instead of passing on an empty loop.
       - name: Run the hook test scripts against the real hooks
         run: |
+          set -euo pipefail
           root=.skilled
           [ -f "$root/skills/system-spec-kit/SKILL.md" ] || root=.opencode
           shopt -s nullglob

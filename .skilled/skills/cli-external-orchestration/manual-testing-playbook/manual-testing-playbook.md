@@ -1,7 +1,7 @@
 ---
 title: "cli-external-orchestration: Manual Testing Playbook"
 description: "Operator-facing index for cli-external-orchestration hub-routing validation: does the advisor resolve cli-opencode vs cli-claude-code correctly through mode-registry.json and hub-router.json."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-external-orchestration: Manual Testing Playbook
@@ -11,6 +11,11 @@ version: 1.4.1.0
 This document is the hub-level operator directory for `cli-external-orchestration`'s routing behavior. It covers the NEW routing surface introduced by the parent-hub fold-in (packet `125-cli-external-orchestration-parent`) — resolving `cli-opencode` vs `cli-claude-code` — not the internal dispatch behavior of either packet, which each packet's own testing material already covers (`cli-opencode/manual-testing-playbook/`, `cli-claude-code/manual-testing-playbook/`, unchanged by the fold-in).
 
 Source of truth for routing behavior: `.skilled/skills/cli-external-orchestration/SKILL.md` §2 Smart Routing, `.skilled/skills/cli-external-orchestration/hub-router.json`.
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Manual scenario completion**: a scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome, the
+> reason and the evidence paths are recorded under
+> `cli-external-orchestration/benchmark/reports/<dated-run-label>/`.
 
 ---
 
@@ -64,6 +69,27 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 | cli-dispatch-preflight-authorization | CLI Dispatch Preflight Authorization | [cli-dispatch-preflight-authorization.md](plugins-and-hooks/cli-dispatch-preflight-authorization.md) |
 | codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](plugins-and-hooks/codex-hook-parity.md) |
 | goal-manage-cli | Goal Manage CLI: Session Isolation And Legacy Cutover | [goal-manage-cli.md](plugins-and-hooks/goal-manage-cli.md) |
+
+### Fanout Stress
+
+Hermetic operator scenarios for the shared fan-out runner live under `fanout-stress/`. Each one runs a single manifest-indexed Vitest case against shim providers and carries the five-section operator contract, so none of them is a routing-gold file:
+
+| Matrix cell | Scenario | File |
+| --- | --- | --- |
+| fanout-run:EC-001 | fanout-run authentication failure | [auth-failure.md](fanout-stress/auth-failure.md) |
+| fanout-run:EC-002 | fanout-run model or balance failure | [model-or-balance.md](fanout-stress/model-or-balance.md) |
+| fanout-run:EC-003 | fanout-run rate limit | [rate-limit.md](fanout-stress/rate-limit.md) |
+| fanout-run:EC-004 | fanout-run timeout | [timeout.md](fanout-stress/timeout.md) |
+| fanout-run:EC-005 | fanout-run stdin closure | [stdin-hang.md](fanout-stress/stdin-hang.md) |
+| fanout-run:EC-006 | fanout-run child spec gate | [child-spec-gate.md](fanout-stress/child-spec-gate.md) |
+| fanout-run:EC-007 | fanout-run sandbox or permission | [sandbox-permission.md](fanout-stress/sandbox-permission.md) |
+| fanout-run:EC-008 | fanout-run missing transport | [transport-missing.md](fanout-stress/transport-missing.md) |
+| fanout-run:EC-009 | fanout-run budget rejection | [budget-rejection.md](fanout-stress/budget-rejection.md) |
+| fanout-run:EC-010 | fanout-run partial lineage death | [partial-lineage-death.md](fanout-stress/partial-lineage-death.md) |
+| fanout-run:EC-011 | fanout-run orphan cleanup | [orphan-cleanup.md](fanout-stress/orphan-cleanup.md) |
+| fanout-run:EC-012 | fanout-run worktree collision | [worktree-collision.md](fanout-stress/worktree-collision.md) |
+| fanout-run:EC-013 | fanout-run node modules integrity | [node-modules-integrity.md](fanout-stress/node-modules-integrity.md) |
+| fanout-run:EC-014 | fanout-run self invocation | [self-invocation.md](fanout-stress/self-invocation.md) |
 
 ---
 

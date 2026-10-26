@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode script maintenance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk code assets scripts
@@ -66,9 +66,9 @@ Run individual scripts from the repository root with the documented arguments.
 
 ---
 
-## 4. STRUCTURE
+## 4. CONTENTS
 
-| Path | Purpose |
+| File | Purpose |
 |---|---|
 | `router-replay-lib.cjs` | Replays the sk-code router (intent signals, resource maps, default resources) for the router-sync guard. Library only, no CLI. |
 | `test_verify_alignment_drift.py` | Unit-style coverage for alignment drift file discovery, language checks, severity behavior, and CLI exit codes. |

@@ -2577,7 +2577,7 @@ GENERATED_COMMAND_BRIDGES = {
     },
     "command-doctor-git-setup": {
         "description": "",
-        "slash_markers": ["/doctor:git setup"],
+        "slash_markers": ["/doctor:git setup", "/doctor:git"],
         "inventory_id": "command-doctor-git-setup",
         "command": "/doctor:git",
         "skill_id": "sk-git",
@@ -2595,7 +2595,7 @@ GENERATED_COMMAND_BRIDGES = {
     },
     "command-doctor-sk-code-setup": {
         "description": "",
-        "slash_markers": ["/doctor:sk-code setup"],
+        "slash_markers": ["/doctor:sk-code setup", "/doctor:sk-code"],
         "inventory_id": "command-doctor-sk-code-setup",
         "command": "/doctor:sk-code",
         "skill_id": "sk-code",
@@ -2694,7 +2694,7 @@ GENERATED_COMMAND_BRIDGES = {
     },
     "command-doctor-ci-report": {
         "description": "",
-        "slash_markers": ["/doctor:ci report"],
+        "slash_markers": ["/doctor:ci report", "/doctor:ci"],
         "lead_phrases": ["which ci workflow switches are off", "ci workflow switch state", "ci switch report"],
         "inventory_id": "command-doctor-ci-report",
         "command": "/doctor:ci",

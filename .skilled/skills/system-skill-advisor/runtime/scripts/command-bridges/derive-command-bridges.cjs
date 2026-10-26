@@ -202,6 +202,7 @@ function doctorRouteEntries() {
     const leadPhrases = doctorLeadPhrases(route, label, phrases);
     DOCTOR_DETAILS.set(id, {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
+      bareCommand: doctorDefaultTarget(route, label, multiTarget),
       phrases,
       leadPhrases,
       readOnly: isReadOnlyRoute(route),
@@ -304,6 +305,23 @@ function stringArray(value, label) {
 // question; add-only and mutating routes keep the read-only confidence floor.
 function isReadOnlyRoute(item) {
   return item.mutating === 'read-only';
+}
+
+// A command with several targets runs only as `<command> <target>`, yet its router binds one
+// target when none is typed. A route marked default_target also answers the bare command, so
+// the typed command alone still reaches a bridge.
+function doctorDefaultTarget(route, label, multiTarget) {
+  if (!Object.prototype.hasOwnProperty.call(route, 'default_target')) return null;
+  if (typeof route.default_target !== 'boolean') {
+    throw new Error(`[command-bridges] ${label}.default_target must be a boolean`);
+  }
+  if (!route.default_target) return null;
+  if (!multiTarget) {
+    throw new Error(
+      `[command-bridges] ${label}.default_target is only valid on a command with several targets`,
+    );
+  }
+  return route.command;
 }
 
 function doctorLeadPhrases(item, label, triggerPhrases) {
@@ -428,12 +446,12 @@ function tsArray(values) {
 }
 
 function doctorRuntime(entryId, platform, compat) {
-  const { runnable, phrases, leadPhrases, readOnly } = DOCTOR_DETAILS.get(entryId);
+  const { runnable, bareCommand, phrases, leadPhrases, readOnly } = DOCTOR_DETAILS.get(entryId);
   if (platform === 'typescript') {
     return {
       ...compat,
       name: runnable,
-      keywords: [...phrases],
+      keywords: bareCommand ? [...phrases, bareCommand] : [...phrases],
       intentSignals: [runnable],
       ...(leadPhrases.length > 0 ? { leadPhrases: [...leadPhrases] } : {}),
       ...(readOnly ? { readOnly: true } : {}),
@@ -442,7 +460,7 @@ function doctorRuntime(entryId, platform, compat) {
   }
   return {
     ...compat,
-    slashMarkers: [runnable],
+    slashMarkers: bareCommand ? [runnable, bareCommand] : [runnable],
     ...(leadPhrases.length > 0 ? { leadPhrases: [...leadPhrases] } : {}),
   };
 }

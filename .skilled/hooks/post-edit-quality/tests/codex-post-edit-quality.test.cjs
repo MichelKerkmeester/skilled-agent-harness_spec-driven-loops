@@ -25,7 +25,7 @@ const { tmpdir } = require('node:os');
 const { join } = require('node:path');
 const { test } = require('node:test');
 
-const HOOK_PATH = join(__dirname, 'post-edit-quality.cjs');
+const HOOK_PATH = join(__dirname, '..', 'codex', 'post-edit-quality.cjs');
 
 // An enabled hook is the precondition for every assertion below, and any of
 // these switches would make the hook a silent no-op -- turning the cases into

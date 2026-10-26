@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: GATE INPUT CHECK
+# ───────────────────────────────────────────────────────────────
 # Independent gate-input check.
 #
 # The git hooks and CI workflows find their scripts under the source root and match

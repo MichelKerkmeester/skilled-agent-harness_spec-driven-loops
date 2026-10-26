@@ -33,6 +33,7 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `opencode-goal-capabilities.test.cjs` | `opencode-goal.js` | Goal capability and operator-status reporting. |
 | `opencode-goal-continuation.test.cjs` | `opencode-goal.js` | Guarded continuation behavior, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, internals reached through `getGoalCore(plugin.server)`). |
+| `opencode-goal-handover.test.cjs` | `opencode-goal.js` hand-over binding | A receiver with no goal binds the hand-over goal packet, and a dispatched child process never binds it. |
 | `opencode-goal-lifecycle.test.cjs` | `opencode-goal.js` | Goal lifecycle events and usage tracking, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-render-parity.test.cjs` | `opencode-goal.js` + `hooks/goal/lib/goal-core.cjs` | Pins the shared injection label set across both renderers and the brief cache key's write sensitivity. |
 | `opencode-goal-state.test.cjs` | `opencode-goal.js` | Session-keyed goal persistence, using `helpers/continuation-log.cjs`. |
@@ -71,6 +72,7 @@ tests/
 +-- opencode-goal-capabilities.test.cjs
 +-- opencode-goal-continuation.test.cjs
 +-- opencode-goal-export-contract.test.cjs
++-- opencode-goal-handover.test.cjs
 +-- opencode-goal-lifecycle.test.cjs
 +-- opencode-goal-render-parity.test.cjs
 +-- opencode-goal-state.test.cjs
@@ -107,7 +109,7 @@ tests/
 |---|---|
 | `system-spec-gate.test.cjs` | Pins the kill-switch ordering contract: `SYSTEM_SPEC_GATE_DISABLED=1` must be checked before `experimental.chat.system.transform` reads or mutates `output` at all. Also pins normal hook behavior (normalize + inject) when enabled. |
 | `system-skill-advisor.test.cjs` | Pins advisor caching, lifecycle, and bridge behavior. Imports the bridge via `pathToFileURL(BRIDGE_PATH)` and exercises the TTL+LRU cache, in-flight dedup, and fail-open paths. |
-| `opencode-goal-*.test.cjs` (8 files) | The goal plugin's split test surface: capabilities, continuation, export contract, lifecycle, render parity, state, supervisor, tool-path. Uses `helpers/continuation-log.cjs` for continuation-log fixtures. |
+| `opencode-goal-*.test.cjs` (9 files) | The goal plugin's split test surface: capabilities, continuation, export contract, hand-over, lifecycle, render parity, state, supervisor, tool-path. Uses `helpers/continuation-log.cjs` for continuation-log fixtures. |
 | `sk-code-post-edit-quality.test.cjs` | Pins the `tool.execute.before`/`after` callID-to-filePath correlation and the post-edit router drain on the next transform. |
 
 ---

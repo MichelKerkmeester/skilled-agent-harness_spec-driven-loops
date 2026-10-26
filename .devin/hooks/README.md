@@ -58,6 +58,5 @@ Expected result: `8`.
 - [Claude mirror](../../.claude/hooks/README.md)
 - [Codex mirror](../../.codex/hooks/README.md)
 - [Cursor mirror](../../.cursor/hooks/README.md)
-- [Canonical live evidence](../../specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md)
 - [Injection contract](../../.skilled/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
 - [Runtime hooks tree](../../.skilled/hooks/README.md): the six fully-portable guard cores this mirror points at outside `.skilled/skills/`

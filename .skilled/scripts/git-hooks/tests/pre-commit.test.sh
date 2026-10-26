@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: PRE-COMMIT HOOK TESTS
+# ───────────────────────────────────────────────────────────────
 # Test harness for the pre-commit hook's two auto re-mint gates, compiled routing
 # and spec derived metadata, the private-skill guard, and how every gate treats a
 # source tree under .skilled/ and a gate script that is missing.

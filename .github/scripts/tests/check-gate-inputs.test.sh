@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: GATE INPUT CHECK TESTS
+# ───────────────────────────────────────────────────────────────
 # Fixture test for the independent gate-input check.
 #
 # Builds a small repository that satisfies every rule, then breaks one rule per case

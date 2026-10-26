@@ -227,6 +227,22 @@ routes:
       - 'python3 .skilled/commands/doctor/scripts/route-validate.py'
 EOF
 
+  # Default target (G3): a mutating route may not carry default_target
+  cat > "$TMPDIR_FIX/default-target-mutating.yaml" <<'EOF'
+schema_version: 1
+routes:
+  - command: /doctor:speckit
+    target: memory
+    default_target: true
+    yaml: doctor-memory.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: mutates
+    gate3_location: "n/a"
+    mcp_tools: []
+    trigger_phrases: ["fixture default target"]
+EOF
+
   run_fixture missing-key B2
   run_fixture unknown-command B3
   run_fixture missing-asset D1
@@ -235,6 +251,7 @@ EOF
   run_fixture target-set-mismatch J1
   run_fixture read-only-with-write K1 "$TMPDIR_FIX/write-assets"
   run_fixture activity-missing L1
+  run_fixture default-target-mutating G3
 
   echo "INFO: All self-tests passed."
   exit 0

@@ -752,6 +752,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
 - Two surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
+- A quality runner, `sk-code-quality/scripts/quality-gate.cjs`, gives one verdict for a change in any repository. A committed `.sk-code/quality.json` runs its commands only after `git config --local skilled.trustRepoChecks true`. Without it each configured check reads `SKIPPED_UNTRUSTED`
 - Reviews before you ship (`code-review` mode): security, correctness and design checklists always run first, then the surface evidence above, and findings come ranked P0, P1 or P2
 
 **`sk-git`** - one clean path from change to PR
@@ -982,7 +983,7 @@ The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers 
 &nbsp;
 #### OpenCode Plugins
 
-Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds them through `.opencode/plugins/`. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode` keeps CLI dispatches on OpenCode 1.
+Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds them through `.opencode/plugins/`. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
@@ -1246,7 +1247,10 @@ Eleven commands check and repair the setup, one per area.
 
 **`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
 
-**`/doctor:sk-code [setup] [--prompt=<text>]`** - read-only sk-code setup battery: runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
+**`/doctor:sk-code [setup|quality] [--prompt=<text>] [--dry-run]`** - the read-only sk-code setup battery, plus the `quality` target, which reports the repository quality config and creates `.sk-code/quality.json` once after approval
+
+- `setup` runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
+- `quality` shows which quality config the gate reads and checks it, and when there is none it creates `.sk-code/quality.json` once after your yes
 
 **`/doctor:ci [report|scaffold|toggle]`** - GitHub Actions workflows and their on/off switches
 

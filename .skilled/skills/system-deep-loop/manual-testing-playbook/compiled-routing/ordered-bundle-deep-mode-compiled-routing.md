@@ -26,7 +26,7 @@ evidence_manifest_digest: 82d7f3af886d3e154da2b0f4ec01302c9266fd24ef89f30244a032
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-deep-loop research mode serves compiled and matches legacy
@@ -50,14 +50,40 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 ---
 
-## 3. COMMAND SEQUENCE
+## 3. TEST EXECUTION
+
+### Exact Command Sequence
 
 The cutover executor runs this hub's compiled-routing parity check scoped to this directory and gates on the captured evidence contract. The run is scoped to this directory and to scenario `DL-CR-001` alone, pins trace mode `router`, turns compiled-routing parity on, and turns route-gold scoring off, so the captured evidence is a pure compiled-versus-legacy comparison.
 
 > The runner that produced the archived evidence for this scenario was retired together with its improvement lane. The archived pair under `benchmark/compiled-routing/` is the frozen record of that parity result.
 
-## Pass/Fail Criteria
+### Pass/Fail Criteria
 
 - **PASS** iff the captured evidence shows `servingAuthority: compiled` and the compiled routing decision (workflow-mode intents) matches the legacy decision.
 - **FAIL** iff the serving authority is not `compiled`, or the compiled routing decision names a different workflow mode than legacy (a real drift), or the compiled path is structurally broken (`resolver-missing`).
 - **SKIP** iff the hub is outside the compiled serving closure (parity status `n/a`).
+
+---
+
+## 4. SOURCE FILES
+
+- `manual-testing-playbook.md` - Root directory page and scenario summary.
+- `.skilled/skills/system-deep-loop/SKILL.md` - Hub contract and its compiled-serving declaration.
+- `.skilled/skills/system-deep-loop/hub-router.json` - Hub vocabulary classes and the deep-mode signal.
+- `.skilled/bin/compiled-route.cjs` - Compiled route front door.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Compiled Routing
+- Playbook ID: DL-CR-001
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `compiled-routing/ordered-bundle-deep-mode-compiled-routing.md`
+- **Created**: 2026-07-21
+- **Critical path**: No
+- **Destructive**: No
+- **Sandbox**: not needed
+- **Concurrent-safe**: Yes
+- **Last validated**: 2026-10-26

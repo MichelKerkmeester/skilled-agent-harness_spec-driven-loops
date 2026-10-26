@@ -14,25 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PURPOSE](#2--purpose)
-- [3. STRUCTURE](#3--structure)
-- [4. COMMAND GROUPS](#4--command-groups)
-- [5. INSTRUCTIONS](#5--instructions)
-- [6. USAGE](#6--usage)
-- [7. EXECUTION MODES](#7--execution-modes)
-- [8. FAQ](#8--faq)
-- [9. TROUBLESHOOTING](#9--troubleshooting)
-- [10. RELATED DOCUMENTS](#10--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/speckit:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
@@ -53,25 +34,19 @@ Standalone commands live at the root level: `goal-opencode.md` manages the passi
 
 Each group's command count above is the number of command files in that folder. When a command is added, update the count and its row in section 4. A group whose file set outgrew this index is the failure mode this document has hit before.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:purpose -->
 ## 2. PURPOSE
 
 Use this document as the top-level routing reference for the OpenCode slash-command surface. It explains which command group owns which workflow and points readers to the canonical sub-index for deeper command-family detail.
 
 This file is descriptive only. The executable contract for any workflow lives in the command entrypoint markdown file itself.
 
-<!-- /ANCHOR:purpose -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 3. STRUCTURE
 
-```
+```text
 command/
 ├── goal-opencode.md          # Session-goal router for the opencode-goal plugin (OpenCode only)
 ├── vision.md                 # On-device read of your most recent image
@@ -128,11 +103,8 @@ command/
     └── assets/               # YAML workflow definitions, plus save/search presentation contracts
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:command-groups -->
 ## 4. COMMAND GROUPS
 
 ### Create Commands
@@ -166,7 +138,7 @@ Eleven command files cover the diagnostic surface, one per owner. Backed by `_ro
 | Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
 | Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
-| sk-code Setup | `/doctor:sk-code [setup] [--prompt=<text>]` | Run the sk-code setup battery read-only and name the repair command for each failing leg |
+| sk-code Setup | `/doctor:sk-code [setup\|quality] [--prompt=<text>] [--dry-run]` | Run the sk-code setup battery read-only, or check the repository quality config and create `.sk-code/quality.json` once after an approved plan, naming each repair |
 | CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List GitHub Actions workflows with their switch state, scaffold a new workflow or toggle one CI switch |
 | Git | `/doctor:git <hooks\|standards\|setup> [--dry-run]` | Switch shipped git hook gates on or off in git config, change the commit, PR and branch rules in `.sk-git/` and check which sk-git settings are live |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
@@ -218,11 +190,8 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 | Save | `/speckit:save <spec-folder>` | Write conversation context into canonical spec-doc continuity surfaces |
 | Search | `/speckit:search <query> [--packet <spec-folder>] [--triggers\|--paths\|--count]` | Lexical retrieval: trigger-index lookup plus ripgrep recipes over spec docs and skill docs |
 
-<!-- /ANCHOR:command-groups -->
-
 ---
 
-<!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
 1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt` or `speckit`.
@@ -231,11 +200,8 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
 5. Follow the family-specific index under `commands/<group>/README.txt` when one exists and you need detailed routing help.
 
-<!-- /ANCHOR:instructions -->
-
 ---
 
-<!-- ANCHOR:usage -->
 ## 6. USAGE
 
 ### Basic Invocation
@@ -264,11 +230,8 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 # With automatic debug recovery notes
 ```
 
-<!-- /ANCHOR:usage -->
-
 ---
 
-<!-- ANCHOR:execution-modes -->
 ## 7. EXECUTION MODES
 
 Most commands in `create/`, `deep/`, `prompt`, and `speckit/` support two execution modes controlled by a suffix argument.
@@ -285,11 +248,8 @@ Each mode maps to a separate YAML workflow file in the command's `assets/` folde
 The `speckit:complete` command supports two additional modes:
 - `:with-research` adds a research phase before planning
 
-<!-- /ANCHOR:execution-modes -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: What is the difference between `:auto` and `:confirm` mode?**
@@ -308,11 +268,8 @@ A: Use `/speckit:plan` when you want to produce a spec and plan document for rev
 
 A: Run `/speckit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs. When you still need to find something afterwards, `/speckit:search` runs the lexical lanes over spec docs and skill docs.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 9. TROUBLESHOOTING
 
 | Problem | Cause | Fix |
@@ -324,11 +281,8 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | Tool permission denied | Command lacks required tool | Check `allowed-tools` in command frontmatter |
 | Agent router has no request | Empty arguments passed | Provide an explicit request string |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -339,5 +293,3 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and packet continuity |
 | [Spec Kit Commands](speckit/README.txt) | SpecKit plan, implement, complete, resume, save and search commands |
-
-<!-- /ANCHOR:related-documents -->

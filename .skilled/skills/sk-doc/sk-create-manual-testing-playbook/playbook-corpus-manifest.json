@@ -3,7 +3,9 @@
   "defaultContract": "operator-scenario",
   "routingGoldRootsDescription": "Explicit whole-tree overrides retained for homogeneous routing-oracle hubs; mixed hubs are classified per file by the typed routing-gold signature.",
   "routingGoldRoots": [
-    ".skilled/skills/cli-external-orchestration/manual-testing-playbook",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook",
     ".skilled/skills/mcp-tooling/manual-testing-playbook",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing",

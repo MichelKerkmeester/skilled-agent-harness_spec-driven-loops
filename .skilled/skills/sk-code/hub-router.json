@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "3.9.0.0",
+  "version": "3.9.1.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -47,7 +47,7 @@
       "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "quality check", "check before done", "author quality gate", "pre-verification quality check"]
     },
     "quality-gates": {
-      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check"]
+      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "skipped_untrusted", "untrusted repository check", "trustrepochecks", "quality config", ".sk-code/quality.json", "configured check", "unverified"]
     },
     "quality-restraint": {
       "keywords": ["yagni", "simplest solution", "simplify", "simplification", "over-engineering", "over-engineered", "overengineering", "overengineered", "over-engineering check", "bloat", "bloated", "unnecessary abstraction"]
@@ -74,7 +74,7 @@
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
     },
     "code-ci-aliases": {
-      "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"]
+      "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "deploy workflow", "release workflow", "turn off the ci", "turn on the ci", "ci review workflow"]
     },
     "code-ci-runtime": {
       "keywords": ["runner-minutes", "timeout-minutes", "paths-ignore", "pull_request_target", "permissions: contents: read", "actions/cache", "setup-bun", "fail-fast: false", "strategy matrix", "ruleset context", "trigger-index rebuild", "workflow_dispatch", "actions concurrency group", "actions cache key", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]

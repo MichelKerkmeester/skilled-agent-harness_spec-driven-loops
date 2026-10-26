@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.0.0
+version: 1.13.1.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -358,10 +358,10 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`scripts/quality-gate.cjs`](scripts/quality-gate.cjs) - The quality runner, which prints one verdict for a change in any repository.
 - [`scripts/tests/quality-gate.test.cjs`](scripts/tests/quality-gate.test.cjs) - Runner tests: the named fixtures and the unit cases, run with `node --test`.
 - [`scripts/check-comment-hygiene.sh`](scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker.
-- [`scripts/check-comment-hygiene.test.sh`](scripts/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
+- [`scripts/tests/check-comment-hygiene.test.sh`](scripts/tests/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
 - [`scripts/check-dist-staleness.sh`](scripts/check-dist-staleness.sh) - Distribution drift checker.
 - [`scripts/ceiling-report.sh`](scripts/ceiling-report.sh) - Ceiling-marker report. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts.
-- [`scripts/ceiling-report.test.sh`](scripts/ceiling-report.test.sh) - Ceiling-marker report tests.
+- [`scripts/tests/ceiling-report.test.sh`](scripts/tests/ceiling-report.test.sh) - Ceiling-marker report tests.
 - [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Legacy write-time comment-hygiene hook, kept for direct tests and registered in no runtime.
 
 ### Universal Standards

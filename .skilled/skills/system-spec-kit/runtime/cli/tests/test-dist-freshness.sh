@@ -14,7 +14,7 @@ FIXTURE="$SCRIPT_DIR/../test-fixtures/053-template-compliant-level2"
 SOURCE="$REPO_ROOT/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
 DIST="$REPO_ROOT/.skilled/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js"
 REBUILD_COMMAND="cd .skilled/skills/system-spec-kit/runtime && npm run build"
-CACHE_GLOB="$REPO_ROOT/.skilled/skills/system-spec-kit/runtime/dist/lib/validation/.dist-freshness-system-spec-kit-runtime-"*.json
+CACHE_DIR="$REPO_ROOT/.skilled/skills/system-spec-kit/runtime/dist/lib/validation"
 
 PASSED=0
 FAILED=0
@@ -41,7 +41,7 @@ if os.path.exists(source):
 if os.path.exists(dist):
     os.utime(dist, ns=(int(dist_atime), int(dist_mtime)))
 PY
-    rm -f $CACHE_GLOB
+    rm -f "$CACHE_DIR"/.dist-freshness-system-spec-kit-runtime-*.json
     [[ -n "$SOURCE_BACKUP" && -f "$SOURCE_BACKUP" ]] && rm -f "$SOURCE_BACKUP"
     if [[ -n "$HOISTED_FIXTURE" && -d "$HOISTED_FIXTURE" ]]; then
         rm -rf "$HOISTED_FIXTURE"
@@ -79,7 +79,7 @@ printf '%s\n' '-----------------------------------------------------------------
 
 printf '\n' >> "$SOURCE"
 touch -t 202001010000 "$DIST"
-rm -f $CACHE_GLOB
+rm -f "$CACHE_DIR"/.dist-freshness-system-spec-kit-runtime-*.json
 
 stale_rc=0
 stale_output=$(SPECKIT_COMPLETION_FRESHNESS=0 "$VALIDATOR" "$FIXTURE" 2>&1) || stale_rc=$?

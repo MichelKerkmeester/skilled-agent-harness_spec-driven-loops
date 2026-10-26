@@ -129,7 +129,20 @@
     "sha-pinned action",
     "action to a sha",
     ".github/workflows/",
-    "comment hygiene"
+    "comment hygiene",
+    "untrusted repository check",
+    "quality config",
+    "configured check",
+    "github actions permissions",
+    "ci workflows",
+    "ci switch",
+    "turn off ci",
+    "workflow concurrency",
+    "deploy workflow",
+    "release workflow",
+    "turn off the ci",
+    "turn on the ci",
+    "ci review workflow"
   ],
   "derived": {
     "trigger_phrases": [

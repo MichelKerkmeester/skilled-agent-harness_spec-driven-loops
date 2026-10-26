@@ -84,8 +84,8 @@ reads, what you may claim about wiring you have changed, and how a turn hands co
 back to the operator. The delegation posture was the first widening and Delivery the
 second, added when `AGENTS.md` §8 moved down. Delivery is one of two rules here whose
 trigger is a whole turn rather than a specific action, the other being the handback rule,
-which fires at every turn's end, and §8 keeps the two clauses that must bind even when
-nothing loads.
+which fires at every turn's end, and `AGENTS.md` §4, under Reply Rules and Mandates, keeps
+the two clauses that must bind even when nothing loads.
 
 **Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
 of agent and CLI dispatch: which agent, which command, which model, which flags.

@@ -1,7 +1,7 @@
 ---
 title: "DOC-391 -- Doctor setup umbrella run"
 description: "Manual scenario validating that /doctor:setup lists every doctor target with what it checks, runs the five read-only legs once, names the repair command for each failing leg and leaves the working tree unchanged."
-version: 1.0.8.0
+version: 1.0.9.0
 id: doctor-commands-doctor-setup-run
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -19,14 +19,14 @@ The run writes nothing in the repository. The advisor leg's CLI creates its sock
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Prove `/doctor:setup` prints the 18-command target table, runs all five read-only legs, names the mapped repair command for each failing leg, ends with a status that agrees with the leg results, leaves the working tree unchanged and rejects an unexpected argument.
+- Objective: Prove `/doctor:setup` prints the 19-command target table, runs all five read-only legs, names the mapped repair command for each failing leg, ends with a status that agrees with the leg results, leaves the working tree unchanged and rejects an unexpected argument.
 - Playbook ID: DOC-391.
 - Real user request: `/doctor:setup`
 - Prompt: `/doctor:setup`
 - Preconditions: The advisor runtime is built (`npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0) and the bridge projection is fresh (`node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`). Every command runs from the repository root.
 - Expected execution process: Record `git status --porcelain` into `/tmp/doc-391-before.txt`. Run `/doctor:setup` in an AI session, or run the five legs directly and record each exit code and last line. Record `git status --porcelain` into `/tmp/doc-391-after.txt` and diff the two files. Run `/doctor:setup extra` and read the argument error.
 - Expected signals:
-  - The command prints the target table first. It has 18 rows and starts with `/doctor:setup`. It includes `/doctor:env list`, `/doctor:git setup` and `/doctor:ci report`.
+  - The command prints the target table first. It has 19 rows and starts with `/doctor:setup`. It includes `/doctor:env list`, `/doctor:git setup`, `/doctor:sk-code quality` and `/doctor:ci report`.
   - The command prints one row per leg with PASS, FAIL, SKIP, DEGRADED or ERROR. Every failing leg names its mapped repair command: sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit`, runtime-mirrors -> `/doctor:runtime-mirrors` and advisor -> `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` for stale builds or `/doctor:skill-advisor rebuild` for other failures.
   - The advisor reports PASS for exit 0 when `data.freshness` is `live`. Any other freshness on exit 0 is DEGRADED and names `/doctor:skill-advisor rebuild`.
   - The advisor reports FAIL for exit 75 when stderr JSON includes `staleDistWarning`. Its repair command is `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Exit 75 without that field is SKIP because the daemon is stopped. Any other advisor exit is FAIL and names `/doctor:skill-advisor rebuild`.
@@ -68,7 +68,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --for
 
 ### Expected
 
-When step 2 runs `/doctor:setup` in an AI session, it prints the doctor target table first. When the five legs run directly, there is no table. Check each exit code and the advisor JSON. Exit 0 passes for sk-code, sk-git, trigger-index and runtime-mirrors. Advisor exit 0 with `data.freshness` set to `live` is PASS. Any other freshness is DEGRADED and names `/doctor:skill-advisor rebuild`. Exit 75 with `staleDistWarning` in stderr JSON is FAIL and names `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Exit 75 without that field is SKIP because the daemon is stopped. Any other advisor exit is FAIL and names `/doctor:skill-advisor rebuild`. A sk-git exit 2 is ERROR for a usage error or crash. Exit 3 is DEGRADED. Any other sk-git exit is FAIL. Any other nonzero exit is FAIL. The table has 18 rows. It starts with `/doctor:setup` and includes `/doctor:env list` and `/doctor:git setup`.
+When step 2 runs `/doctor:setup` in an AI session, it prints the doctor target table first. When the five legs run directly, there is no table. Check each exit code and the advisor JSON. Exit 0 passes for sk-code, sk-git, trigger-index and runtime-mirrors. Advisor exit 0 with `data.freshness` set to `live` is PASS. Any other freshness is DEGRADED and names `/doctor:skill-advisor rebuild`. Exit 75 with `staleDistWarning` in stderr JSON is FAIL and names `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Exit 75 without that field is SKIP because the daemon is stopped. Any other advisor exit is FAIL and names `/doctor:skill-advisor rebuild`. A sk-git exit 2 is ERROR for a usage error or crash. Exit 3 is DEGRADED. Any other sk-git exit is FAIL. Any other nonzero exit is FAIL. The table has 19 rows. It starts with `/doctor:setup` and includes `/doctor:env list` and `/doctor:git setup`.
 
 Then the command prints one row per leg with PASS, FAIL, SKIP, DEGRADED or ERROR. The mapped repair commands are sk-code -> `/doctor:sk-code setup`, sk-git -> `/doctor:git setup`, trigger-index -> `/doctor:speckit` and runtime-mirrors -> `/doctor:runtime-mirrors`. The advisor shows the build command for a stale build and `/doctor:skill-advisor rebuild` for other FAIL or DEGRADED results. Exit 75 without `staleDistWarning` is SKIP because the daemon is stopped. A sk-git exit 2 shows ERROR. Exit 3 shows DEGRADED, never FAIL. After the leg rows, a `Last session hop:` line shows the newest hop history entry, or says no hop is recorded yet. While a handoff note is still open, an `open notes:` line follows it with the count and the oldest note. An orphans line follows, either `orphans: none` or the count, the size and the `--reap` command that lists them. All three are information only and never change the status.
 

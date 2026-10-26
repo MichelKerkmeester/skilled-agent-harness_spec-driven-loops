@@ -24,7 +24,7 @@ evidence_manifest_digest: 1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92ae
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-code single-surface bundle route serves compiled and matches legacy
@@ -48,16 +48,46 @@ review my typescript module for jank
 
 ---
 
-## 3. COMMAND SEQUENCE
+## 3. TEST EXECUTION
 
-Capture this hub's compiled-routing parity evidence with the live front door and serving-status probe:
-```
-node .skilled/bin/compiled-route-status.cjs --hub sk-code
-node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review my typescript module for jank"
-```
+### Exact Command Sequence
 
-## Pass/Fail Criteria
+1. Capture the hub serving status:
+   ```
+   node .skilled/bin/compiled-route-status.cjs --hub sk-code
+   ```
+2. Capture the compiled decision for the bundle prompt:
+   ```
+   node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review my typescript module for jank"
+   ```
+
+### Pass/Fail Criteria
 
 - **PASS** iff the captured evidence shows `servingAuthority: compiled` and the compiled decision resolves exactly to `[sk-code-review, sk-code-skilled]`, matching the legacy decision. The bundle order must keep the workflow mode first and the surface packet second.
 - **FAIL** iff the serving authority is not `compiled`, the compiled decision differs from the legacy decision, the bundle includes an additional surface packet, or the compiled path is structurally broken (`resolver-missing`).
 - **SKIP** iff the hub is outside the compiled serving closure (parity status `n/a`).
+
+---
+
+## 4. SOURCE FILES
+
+- `manual-testing-playbook.md` - Root directory page and scenario summary.
+- `.skilled/skills/sk-code/sk-code-review/SKILL.md` - Review mode contract, the bundle's workflow mode.
+- `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` - Skilled surface contract, the bundle's read-only evidence packet.
+- `.skilled/skills/sk-code/ROUTER.md` - Surface intent signals and the resource map.
+- `.skilled/bin/compiled-route.cjs` - Compiled route front door.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Compiled Routing
+- Playbook ID: CB-CR-001
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `compiled-routing/surface-bundle-compiled-routing.md`
+- **Created**: 2026-07-21
+- **Critical path**: No
+- **Destructive**: No
+- **Sandbox**: not needed
+- **Concurrent-safe**: Yes
+- **Last validated**: pending first manual run

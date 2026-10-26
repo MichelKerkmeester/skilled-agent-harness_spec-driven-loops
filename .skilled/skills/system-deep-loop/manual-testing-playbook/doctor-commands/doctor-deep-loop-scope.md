@@ -1,7 +1,7 @@
 ---
 title: "DOC-368 -- Doctor deep-loop scope"
 description: "Manual scenario validating that /doctor:deep-loop --scope selects the research, review, council, both or all graph sources, that an absent flag asks the scope prompt and applies its default of all, and that a value outside the documented set is refused with the argument failure path."
-version: 1.2.0.0
+version: 1.2.1.0
 id: doctor-commands-doctor-deep-loop-scope
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -14,6 +14,8 @@ expected_leaf_resources: []
 This scenario validates the `/doctor:deep-loop` scope flag against the source sets its policy names. A run with `--scope=research` reads the research iteration folders alone, a run with `--scope=review` reads the review iteration folders alone, and a run with `--scope=council` reads the ai-council artifacts and the council graph alone. A run with `--scope=both` reads the research and review iteration folders against the deep-loop coverage graph alone, and a run with `--scope=all` reads both iteration folders plus the ai-council artifacts against the deep-loop and council graphs. A run with no `--scope` flag asks the presentation contract's scope prompt, and an empty answer applies the default of `all`. The command contract limits the flag to `research|review|council|both|all`.
 
 The refusal path is also user-observable. A value outside that set fails before the workflow YAML loads and prints the presentation contract's argument failure block with `STATUS=FAIL ERROR="unknown_argument"`. No workflow phase and no state log follow.
+
+---
 
 ## 2. SCENARIO CONTRACT
 

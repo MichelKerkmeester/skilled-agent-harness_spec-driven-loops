@@ -128,7 +128,7 @@ function proseExplicitPaths(problems) {
   const md = fs.readFileSync(path.join(SKCODE, 'ROUTER.md'), 'utf8');
   // The prose maps start at the first `## N. <NAME> MAP` heading, so a hub without one example's map still scans the rest.
   const start = md.search(/^## \d+\. [A-Z][A-Z0-9_ -]* MAP$/m);
-  const end = md.indexOf('## 7. VERIFICATION COMMANDS');
+  const end = md.search(/^## \d+\. VERIFICATION COMMANDS$/m);
   if (start < 0 || end <= start) {
     problems.push(`ROUTER.md section anchors not found (start=${start}, end=${end}), so the prose scan would be empty`);
     return new Set();

@@ -1,7 +1,7 @@
 ---
 title: "Scripts: drift-guard gate runner"
 description: "Single entry point that runs all sk-code drift guards as one completion gate."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Scripts
@@ -15,6 +15,17 @@ version: 1.0.1.0
 ---
 
 ## 2. CONTENTS
+
+```text
+scripts/
++-- run-all-drift-guards.sh
+`-- tests/
+    +-- declared-surfaces-parity.test.cjs
+    +-- router-stage-two-quality.test.cjs
+    +-- run-all-drift-guards.test.cjs
+    +-- verify-doc-claims.test.cjs
+    `-- verify-router-sync.test.cjs
+```
 
 | File | Purpose |
 |------|---------|

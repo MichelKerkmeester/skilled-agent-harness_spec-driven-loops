@@ -1613,6 +1613,54 @@ def validate_changelog_frontmatter(
     return errors
 
 
+# The changelog contract omits internal labels and test accounting from prose.
+# Released entries already carry some, so the check advises rather than blocks.
+CHANGELOG_INTERNAL_ID = re.compile(r'\b[A-Z]{2,4}-\d{3}\b')
+CHANGELOG_TEST_COUNT = re.compile(r'\b\d+\s+(?:cases|tests|PASS lines)\b')
+
+
+def validate_changelog_omissions(content: str, file_path: str) -> List[Dict[str, Any]]:
+    """Flag internal ids and test counts in the prose of a changelog entry.
+
+    The frontmatter block and the spec-folder blockquote are exempt: the quoted
+    line is where the contract allows packet labels to live.
+    """
+    file_name = PurePosixPath(str(file_path).replace('\\', '/')).name
+    if not CHANGELOG_ENTRY_NAME.match(file_name):
+        return []
+
+    text = content[1:] if content.startswith('﻿') else content
+    offset = _skip_leading_trivia(text)
+    head = text[offset:]
+    fence = re.match(r'^---[ \t]*\r?\n.*?\r?\n---[ \t]*(?:\r?\n|$)', head, re.DOTALL)
+    body = head[fence.end():] if fence else head
+
+    ids: List[str] = []
+    counts: List[str] = []
+    for line in body.split('\n'):
+        if line.lstrip().startswith('>'):
+            continue
+        ids.extend(CHANGELOG_INTERNAL_ID.findall(line))
+        counts.extend(CHANGELOG_TEST_COUNT.findall(line))
+
+    errors: List[Dict[str, Any]] = []
+    if ids:
+        errors.append({
+            'type': 'changelog_internal_id',
+            'severity': 'warning',
+            'message': f"Changelog prose names an internal id ({', '.join(sorted(set(ids)))}); ids belong only on the spec-folder line",
+            'fix_hint': 'Describe the behavior in plain words and drop the id',
+        })
+    if counts:
+        errors.append({
+            'type': 'changelog_test_count',
+            'severity': 'warning',
+            'message': f"Changelog prose carries a test count ({', '.join(sorted(set(counts)))}); the omission rule drops test counts",
+            'fix_hint': 'State what the release now guarantees, not how many checks run',
+        })
+    return errors
+
+
 # The value list belongs to sk-create-frontmatter, which owns the frontmatter contract;
 # spec-kit's validator reads the same file, so spec docs and skill docs agree.
 FRONTMATTER_VALUES_PATH = (
@@ -1794,6 +1842,7 @@ def validate_document(
         all_errors.extend(validate_command_frontmatter(content, file_path, doc_type_rules))
     if doc_type == 'changelog':
         all_errors.extend(validate_changelog_frontmatter(content, file_path, doc_type_rules))
+        all_errors.extend(validate_changelog_omissions(content, file_path))
     if doc_type == 'code_folder':
         all_errors.extend(validate_code_folder(content, file_path))
     all_errors.extend(validate_frontmatter_values(content, _load_frontmatter_values()))

@@ -106,6 +106,26 @@ def test_entry_in_a_numbered_folder_ending_in_fixtures_is_checked(tmp_path: Path
     assert "changelog_frontmatter_missing" in _blocking(entry)
 
 
+def _warnings(path: Path) -> List[str]:
+    result = validate_document(str(path), rules=load_rules())
+    return [warning["type"] for warning in result["warnings"]]
+
+
+def test_prose_with_internal_id_and_test_count_is_warned(tmp_path: Path) -> None:
+    text = COMPLETE_ENTRY + "\nThe TH-002 scenario lists tokens. The suite now runs 95 cases.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", text)
+
+    assert {"changelog_internal_id", "changelog_test_count"} <= set(_warnings(entry))
+    assert _blocking(entry) == []
+
+
+def test_spec_folder_blockquote_and_clean_prose_are_not_warned(tmp_path: Path) -> None:
+    text = COMPLETE_ENTRY + "\n> Spec folder: specs/x/TH-002-example\n\nThe checker now rejects stale tokens.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", text)
+
+    assert not [warning for warning in _warnings(entry) if warning.startswith("changelog_")]
+
+
 def test_install_guides_and_fixture_trees_keep_their_handling() -> None:
     assert detect_document_type(".skilled/skills/example-skill/INSTALL-GUIDE.md", "", load_rules()) == "install_guide"
     assert should_exclude_path(".skilled/skills/example-skill/tests/fixtures/sample.md")[0] is True

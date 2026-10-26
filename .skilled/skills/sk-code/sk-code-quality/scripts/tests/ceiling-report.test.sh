@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CEILING REPORT TESTS
+# ───────────────────────────────────────────────────────────────
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REPORT="$SCRIPT_DIR/ceiling-report.sh"
 TMP_DIR="$(mktemp -d)"
 

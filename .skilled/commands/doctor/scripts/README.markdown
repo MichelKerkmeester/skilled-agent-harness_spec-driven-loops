@@ -33,6 +33,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- audit_descriptions.py
 +-- command-catalog-mirror-check.cjs
 +-- check-mcp-mutation-class.sh
++-- ci-report.cjs
 +-- doctor-phrase-reach.cjs
 +-- git-hook-gates.cjs
 +-- git-setup-check.cjs
@@ -40,6 +41,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- mcp-doctor-lib.sh
 +-- mcp-doctor.sh
 +-- opencode-version-battery.cjs
++-- orphan-process-check.cjs
 +-- parent-skill-check.cjs
 +-- route-validate.py
 +-- route-validate.sh
@@ -67,7 +69,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `release-update.cjs` | Plans, aligns, applies, rolls back and records framework release bases for the five `/doctor:update` workflows. |
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
 | `sk-code-setup-check.cjs` | Runs the sk-code setup battery from a repository root: one verdict per setup leg, one repair command per failing leg and no writes. Its quality leg runs the quality runner's own tests, which build throwaway repositories under the OS temp folder and remove them. |
-| `sk-code-quality-config.cjs` | Reports which quality config the sk-code quality gate reads and whether each tool it names is on PATH, validates that config and creates `.sk-code/quality.json` once from the shipped template for `/doctor:sk-code quality`. It never runs a command the config names. It exits 0 on success, 1 on an invalid or missing config or a refused init and 2 on a usage error or outside a git repository. |
+| `sk-code-quality-config.cjs` | Reports which quality config the sk-code quality gate reads, whether each tool it names is on PATH, and the trust state the runner applies to that config: `trusted`, `untrusted` or `none`. `status` and `check` both print it, and when the config is untrusted they print `git config --local skilled.trustRepoChecks true` as the repair. It validates that config and creates `.sk-code/quality.json` once from the shipped template for `/doctor:sk-code quality`. It never runs a command the config names. It exits 0 on success, 1 on an invalid or missing config or a refused init and 2 on a usage error or outside a git repository. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
 | `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
 | `git-hook-gates.cjs` | Lists the shipped hook gates from `scripts/git-hooks/lib/gates.tsv` with their saved `speckit.hooks.<key>` values, and sets or unsets one in local or global git config for `/doctor:git hooks`. Refuses the per-push approvals. |
@@ -76,6 +78,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails. Prose divergence reports and fails only under `--strict`. |
 | `doctor-phrase-reach.cjs` | Scores every activated doctor phrase and each runnable doctor command through the built advisor scorer, then keeps the three results the hooks show. It fails when a phrase reaches neither the top pick nor the second line. It also fails if a runnable command does not rank first or an activated phrase has fewer than three words. It exits 2 when the advisor build is missing or stale. |
 | `opencode-version-battery.cjs` | Checks this repository's OpenCode plugins on OpenCode 1 and 2. On 1 it proves plugin discovery through `debug config` and plugin load through an import check. On 2 it starts and stops a private server with the v2 binary it selected (`$OPENCODE_BIN`, `opencode` or `opencode2`, whichever reports a v2 version) and reads plugin and skill state from it. It exits 0 when every requested leg passes, 1 on a failed leg, 2 on a usage error, a crash or an `--out` file it cannot write and 3 when a leg is degraded or skipped. |
+| `ci-report.cjs` | Reads every workflow under `.github/workflows/` and reports its `SKILLED_CI*` switch state, triggers, path filters and drift flags for `/doctor:ci report`. A switch is read from each job's `if:` expression, so the workflow file is its only copy, and a repository variable value is reduced to a state and never printed. It exits 0 on a printed report, 1 when a workflow fails to parse and 2 on a bad argument. |
+| `orphan-process-check.cjs` | Lists the helper processes and model servers this user started that were reparented to init and are older than a minimum age (60 minutes by default), classifying each as a node test, vitest, tail monitor, grep search, executor worker, session-relaunch test helper, model server or git-live-follow, and reports each one's age and memory with a total. `--reap` sends `SIGTERM` after re-checking each process's identity, `--yes` confirms it, and `--json` and `--summary` print machine-readable and one-line forms. It exits 0 on a printed report, 1 on an unexpected error and 2 on a bad argument. |
 
 ---
 
@@ -128,7 +132,7 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `node .skilled/commands/doctor/scripts/git-hook-gates.cjs list` | Show every hook gate and its saved setting. |
 | `node .skilled/commands/doctor/scripts/git-standards.cjs status` | Show which commit, PR and branch rules are enforced, and from where. |
 | `node .skilled/commands/doctor/scripts/git-setup-check.cjs` | Check which sk-git hooks, rules and settings are live in this repository. |
-| `node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status` | Show which quality config the gate reads and whether each tool it names is on PATH. |
+| `node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status` | Show which quality config the gate reads, whether each tool it names is on PATH and the trust state the runner applies to that config. |
 | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Check this repository's OpenCode plugins on OpenCode 1 and 2. |
 | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1\|v2\|both` | Choose the family to check. The default is `both`. |
 | `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --json` | Print the JSON summary on stdout instead of the human lines. |

@@ -6,8 +6,9 @@ on:
       - 'REPO RULES.md'
       - 'repo-rules/**'
       - '.skilled/repo-rules/**'
-      # No .opencode/repo-rules tree exists; the gate-input check requires every
-      # source-root filter to name both roots, so this twin is required and inert.
+      # .opencode/repo-rules is a tracked symlink to .skilled/repo-rules, so git reports
+      # no changes beneath it. The gate-input check requires every source-root filter to
+      # name both roots, so this twin is required and inert.
       - '.opencode/repo-rules/**'
       - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
       - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
@@ -17,8 +18,9 @@ on:
       - 'REPO RULES.md'
       - 'repo-rules/**'
       - '.skilled/repo-rules/**'
-      # No .opencode/repo-rules tree exists; the gate-input check requires every
-      # source-root filter to name both roots, so this twin is required and inert.
+      # .opencode/repo-rules is a tracked symlink to .skilled/repo-rules, so git reports
+      # no changes beneath it. The gate-input check requires every source-root filter to
+      # name both roots, so this twin is required and inert.
       - '.opencode/repo-rules/**'
       - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
       - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'

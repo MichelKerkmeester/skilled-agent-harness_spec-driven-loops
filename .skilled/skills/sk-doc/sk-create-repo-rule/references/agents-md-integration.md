@@ -11,7 +11,7 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
@@ -36,9 +36,12 @@ of need**.
 | **Index row** | `REPO RULES.md` §3 | The rule is unbrowsable — reachable only by already knowing its trigger |
 | **Governed-section pointer** | The `AGENTS.md` section it expands | The rule is discoverable at session start and invisible at the moment of need. This is the one people skip |
 
-**Measured:** every shipped rule has all three. Pointer counts run 2-4 per rule across 18
-sections — a rule governing two areas gets a pointer in each, and the two-pointer minimum
-is not an accident.
+**Required:** every shipped rule has its trigger row and its index row, and
+`check-repo-rules.cjs` fails the corpus when either is missing. The governed-section
+pointer is the default, not a gate: a rule that expands an `AGENTS.md` section gets a
+pointer there, and a rule governing two areas gets one in each. A rule whose subject no
+`AGENTS.md` section states is reached through its trigger row alone. Count the live
+pointers with `grep -c <rule-file> AGENTS.md` rather than trusting a number written here.
 
 ---
 

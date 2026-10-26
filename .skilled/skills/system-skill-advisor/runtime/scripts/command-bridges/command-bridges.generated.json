@@ -429,7 +429,8 @@
             "github actions drift report",
             "ci workflow inventory",
             "ci workflow switch state",
-            "ci switch report"
+            "ci switch report",
+            "/doctor:ci"
           ],
           "intentSignals": [
             "/doctor:ci report"
@@ -452,7 +453,8 @@
           "id": "command-doctor-ci-report",
           "description": "",
           "slashMarkers": [
-            "/doctor:ci report"
+            "/doctor:ci report",
+            "/doctor:ci"
           ],
           "leadPhrases": [
             "which ci workflow switches are off",
@@ -686,7 +688,8 @@
             "sk-git setup check",
             "is my sk-git setup working",
             "which git rules are live",
-            "check my git hooks setup"
+            "check my git hooks setup",
+            "/doctor:git"
           ],
           "intentSignals": [
             "/doctor:git setup"
@@ -704,7 +707,8 @@
           "id": "command-doctor-git-setup",
           "description": "",
           "slashMarkers": [
-            "/doctor:git setup"
+            "/doctor:git setup",
+            "/doctor:git"
           ]
         }
       }
@@ -970,7 +974,8 @@
             "sk-code setup check",
             "verify my sk-code surface",
             "sk-code battery fails",
-            "does my sk-code surface route"
+            "does my sk-code surface route",
+            "/doctor:sk-code"
           ],
           "intentSignals": [
             "/doctor:sk-code setup"
@@ -988,7 +993,8 @@
           "id": "command-doctor-sk-code-setup",
           "description": "",
           "slashMarkers": [
-            "/doctor:sk-code setup"
+            "/doctor:sk-code setup",
+            "/doctor:sk-code"
           ]
         }
       }

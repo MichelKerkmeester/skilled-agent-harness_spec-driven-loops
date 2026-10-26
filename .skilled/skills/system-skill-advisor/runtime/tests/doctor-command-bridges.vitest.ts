@@ -37,6 +37,7 @@ const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 
 interface DoctorBridgeExpectation {
   readonly runnable: string;
+  readonly bareCommand?: string;
   readonly phrases: readonly string[];
   readonly leadPhrases?: readonly string[];
   readonly readOnly: boolean;
@@ -48,6 +49,7 @@ interface DoctorManifest {
     readonly target: string;
     readonly trigger_phrases: readonly string[];
     readonly lead_phrases?: readonly string[];
+    readonly default_target?: boolean;
     readonly mutating?: string;
   }[];
   readonly standalone?: readonly {
@@ -97,6 +99,7 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
     const multiTarget = (routeCounts.get(name) ?? 0) > 1;
     bridges.set(multiTarget ? `${DOCTOR_PREFIX}${name}-${route.target}` : `${DOCTOR_PREFIX}${name}`, {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
+      bareCommand: route.default_target === true ? route.command : undefined,
       phrases: route.trigger_phrases,
       leadPhrases: route.lead_phrases?.length ? route.lead_phrases : undefined,
       readOnly: route.mutating === 'read-only',
@@ -180,7 +183,10 @@ describe('doctor command bridges', () => {
       }
 
       const keywords = [...entry.keywords].sort();
-      const phrases = [...expected.phrases].sort();
+      const phrases = [
+        ...expected.phrases,
+        ...(expected.bareCommand ? [expected.bareCommand] : []),
+      ].sort();
       if (JSON.stringify(keywords) !== JSON.stringify(phrases)) {
         failures.push(
           `${entry.id}: keywords ${JSON.stringify(keywords)} !== phrases ${JSON.stringify(phrases)}`,
@@ -260,9 +266,12 @@ describe('doctor command bridges', () => {
       }
 
       const markers = entry.runtime.python.slashMarkers ?? [];
-      if (JSON.stringify(markers) !== JSON.stringify([expected.runnable])) {
+      const expectedMarkers = expected.bareCommand
+        ? [expected.runnable, expected.bareCommand]
+        : [expected.runnable];
+      if (JSON.stringify(markers) !== JSON.stringify(expectedMarkers)) {
         failures.push(
-          `${entry.id}: slashMarkers ${JSON.stringify(markers)} !== ${JSON.stringify([expected.runnable])}`,
+          `${entry.id}: slashMarkers ${JSON.stringify(markers)} !== ${JSON.stringify(expectedMarkers)}`,
         );
       }
       for (const marker of markers) {

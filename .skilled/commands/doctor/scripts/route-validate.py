@@ -546,6 +546,35 @@ def check_lead_phrases(manifest: Dict[str, Any], result: Result) -> None:
         result.passed("G2: lead_phrases are valid across routes, standalone and mcp_subroutes")
 
 
+def check_default_targets(routes: Sequence[Dict[str, Any]], result: Result) -> None:
+    """G3: default_target is a boolean, read-only, and set on at most one target per command."""
+    g3_failed = False
+    marked: Dict[str, List[str]] = {}
+    for index, route in enumerate(routes):
+        if "default_target" not in route:
+            continue
+        label = f"routes[{index}].default_target"
+        value = route["default_target"]
+        if not isinstance(value, bool):
+            result.fail(f"G3: {label} must be a boolean")
+            g3_failed = True
+            continue
+        if not value:
+            continue
+        if route.get("mutating") != "read-only":
+            result.fail(f"G3: {label} may be set only on a read-only route")
+            g3_failed = True
+        marked.setdefault(command_name(route), []).append(str(route.get("target")))
+    for command, targets in marked.items():
+        if len(targets) > 1:
+            result.fail(
+                f"G3: /doctor:{command} marks several default targets: {', '.join(targets)}"
+            )
+            g3_failed = True
+    if not g3_failed:
+        result.passed("G3: default_target is boolean, read-only and unique per command")
+
+
 def report_flag_collisions(routes: Sequence[Dict[str, Any]], result: Result) -> None:
     """H1: informational warning for a flag name shared by targets of one command.
 
@@ -730,6 +759,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     check_tool_declarations(route_maps, doctor_dir, result)
     check_trigger_phrases(route_maps, result)
     check_lead_phrases(manifest, result)
+    check_default_targets(route_maps, result)
     report_flag_collisions(route_maps, result)
     check_script_invocations(route_maps, repo_root, result)
     check_target_parity(route_maps, doctor_dir, assets_dir, result)

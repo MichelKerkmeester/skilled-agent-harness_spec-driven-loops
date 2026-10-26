@@ -9,7 +9,7 @@ trigger_phrases:
   - "divergence classification"
 importance_tier: important
 contextType: reference
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # Rule Anatomy Contract
@@ -59,14 +59,14 @@ Every one of these is carried by every shipped rule. A generated rule that omits
 |---------|-------|----------|
 | Frontmatter | Six keys, one order: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | Every rule, in exactly one distinct key order across the corpus |
 | Title line | `# Rule: <Subject>` | Every rule |
-| Routed-from line | `> Routed from [REPO RULES.md](../REPO%20RULES.md). <when to load>.` | Every rule |
+| Routed-from line | `> Routed from [REPO RULES.md](../../REPO%20RULES.md). <when to load>.` under `.skilled/repo-rules/`, or `../REPO%20RULES.md` under a root `repo-rules/` | Every rule |
 | Subordination line | `> Expands AGENTS.md, never overrides it. Where they appear to disagree, AGENTS.md wins and this file is wrong. Say so.` | Every rule, verbatim |
 | `## Fires when` | Unnumbered; a bullet list of actions, not topics | Every rule |
 | `## The rule` | Unnumbered; exactly one bold binding sentence, then at most a short gloss | Every rule |
 | Numbered body | `## N. ALL CAPS TITLE`, sequential from 1 | Every rule, all uppercase outside backticks |
 | Divider discipline | One `---` per numbered section | Every rule and the router — dividers equal numbered sections, with no exception |
 | Closing self-check | Final numbered section, titled `SELF-CHECK`, a `- [ ]` checklist | Every rule |
-| Back-link | A resolving link to `../REPO%20RULES.md` | Every rule |
+| Back-link | A link to the router that resolves from the rule's own folder: `../../REPO%20RULES.md` from `.skilled/repo-rules/`, `../REPO%20RULES.md` from a root `repo-rules/` | Every rule |
 
 **The strongest invariant is the divider rule.** Dividers equal numbered sections in
 every file including the router, with zero variance. It is the one structural property a
@@ -115,13 +115,14 @@ explanation should be looked at.
 
 ## 4. A SECOND FINDING: THE RULES ARE NEARLY INDEPENDENT
 
-Cross-references between rules are rare: every rule links back to the router, and almost
-none links sideways.
+Every rule links back to the router, and sideways links between rules stay few next to
+the doctrine each rule holds. `check-repo-rules.cjs` reports the live link count, so this
+page states no number that can go stale.
 
-That is a stronger result than the doctrine claimed. "Cross-reference rather than restate"
-was written as a duplication guard, and the measured outcome is that rules rarely need
-each other at all. A generated rule should therefore default to **zero** sideways links,
-and add one only where it would otherwise restate another rule's doctrine.
+"Cross-reference rather than restate" was written as a duplication guard, and the
+outcome is that rules rarely need each other. A generated rule should therefore default to
+**zero** sideways links, and add one only where it would otherwise restate another rule's
+doctrine.
 
 ---
 

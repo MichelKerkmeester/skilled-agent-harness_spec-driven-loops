@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: COMMENT HYGIENE CHECKER TESTS
+# ───────────────────────────────────────────────────────────────
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CHECKER="$SCRIPT_DIR/check-comment-hygiene.sh"
 TMP_DIR="$(mktemp -d)"
 

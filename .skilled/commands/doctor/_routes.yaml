@@ -33,6 +33,11 @@
 #   trigger_phrases:  list   — diagnostic routing phrases for this target, three or
 #                              more words each; the bridge deriver copies them
 #                              into the advisor (see "Consumed by" above)
+#   default_target:   bool   — optional; true marks the read-only target a bare typed command
+#                              should suggest (the router's no-token target, or its read-only
+#                              entry point), so /doctor:ci alone also reaches this route's
+#                              advisor bridge. At most one per command, only on a command with
+#                              several targets, and never on a mutating route.
 #   lead_phrases:     list   — optional subset of trigger_phrases that puts this bridge ahead of a passing skill when the prompt contains the phrase. Use it only where the doctor command must lead the skill.
 #
 # Skill-advisor recommendation tools are registered through system-skill-advisor.
@@ -226,6 +231,7 @@ routes:
 
   - command: /doctor:sk-code
     target: setup
+    default_target: true
     yaml: doctor-sk-code-setup.yaml
     setup_vars: [execution_mode, prompt]
     allowed_flags: ["--prompt=<text>"]
@@ -299,6 +305,7 @@ routes:
 
   - command: /doctor:git
     target: setup
+    default_target: true
     yaml: doctor-git-setup.yaml
     setup_vars: [execution_mode, tool]
     allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|hermes>"]
@@ -337,6 +344,7 @@ routes:
 
   - command: /doctor:ci
     target: report
+    default_target: true
     yaml: doctor-ci-report.yaml
     setup_vars: [execution_mode, json_output, sha, use_gh]
     allowed_flags: ["--json", "--sha=<sha>", "--no-gh"]

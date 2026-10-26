@@ -9,14 +9,16 @@ trigger_phrases:
   - "what goes in a rule"
 importance_tier: important
 contextType: reference
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Repo Rule Template
 
 Copy everything between the markers into the target repository's rules directory
 (`.skilled/repo-rules/<subject>.md` where a `.skilled` source root exists,
-`repo-rules/<subject>.md` otherwise) and fill it. Angle brackets are placeholders.
+`repo-rules/<subject>.md` otherwise) and fill it. Angle brackets are placeholders. The
+routed-from link below resolves from `.skilled/repo-rules/`. Under a root `repo-rules/`,
+write `../REPO%20RULES.md` instead.
 Every instruction here is derived from the shipped corpus, not from taste.
 
 ---
@@ -51,7 +53,7 @@ version: 1.0.0.0
 
 # Rule: <Subject>
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). <When to load this. One clause.>
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). <When to load this. One clause.>
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
@@ -90,8 +92,8 @@ the rest of the sections refer back to.>
 
 ## <N>. WHAT THIS RULE IS NOT
 
-<Include this whenever the rule could be read as licence to do less. Three of the eight
-shipped rules have it, and all three added it after someone misread the rule.>
+<Include this whenever the rule could be read as licence to do less. The rules that
+have it added it after someone misread the rule.>
 
 - **Not <a misreading>.** <Why that reading is wrong.>
 
@@ -108,21 +110,22 @@ shipped rules have it, and all three added it after someone misread the rule.>
 
 ## 3. WHAT IS NOT OPTIONAL
 
-Ten elements are universal across all nine shipped rules. A file missing any of them is
+Ten elements are universal across every shipped rule, and `check-repo-rules.cjs` counts them
+on the live corpus. A file missing any of them is
 not a rule of this set.
 
 | Element | Why it is fixed |
 |---------|-----------------|
-| Six-key frontmatter, in order | One key order across all nine, and discovery depends on it |
-| `# Rule: <Subject>` | 9/9 |
-| Routed-from line | 9/9, and it is how a reader knows where the file sits |
-| Subordination line, verbatim | 9/9, the rule declaring its own rank below `AGENTS.md` |
-| `## Fires when` | 9/9, unnumbered |
-| `## The rule` with one bold sentence | 9/9, unnumbered |
-| Uppercase numbered sections, sequential | 9/9 |
-| One `---` per numbered section | 9/9 including the router, the strongest invariant in the corpus |
-| Closing `SELF-CHECK` | 9/9, always the last numbered section |
-| A resolving back-link to the router | 9/9 |
+| Six-key frontmatter, in order | One key order across every rule, and discovery depends on it |
+| `# Rule: <Subject>` | Every rule |
+| Routed-from line | Every rule, and it is how a reader knows where the file sits |
+| Subordination line, verbatim | Every rule, the rule declaring its own rank below `AGENTS.md` |
+| `## Fires when` | Every rule, unnumbered |
+| `## The rule` with one bold sentence | Every rule, unnumbered |
+| Uppercase numbered sections, sequential | Every rule |
+| One `---` per numbered section | Every rule and the router, the strongest invariant in the corpus |
+| Closing `SELF-CHECK` | Every rule, always the last numbered section |
+| A resolving back-link to the router | Every rule |
 
 ---
 
@@ -133,8 +136,8 @@ does. Unquoted, the frontmatter is invalid YAML, and the failure is invisible to
 reader: it looks right and only a parser objects. Every shipped rule failed this on
 first authoring.
 
-**Default to zero sideways cross-references.** The corpus carries four inter-rule links
-across eight files. Rules turn out to be nearly independent. Add a link only where it
+**Default to zero sideways cross-references.** Sideways links stay few next to the
+doctrine each rule holds, and `check-repo-rules.cjs` reports the live count. Add a link only where it
 replaces a restatement of another rule's doctrine.
 
 ---

@@ -25,7 +25,7 @@ evidence_manifest_digest: efa54f648388fd15d1e2faf3149af2c7200c88627c1c25daa9f8d3
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-25
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code CI edit routes the CI surface alone
@@ -53,16 +53,45 @@ add a timeout-minutes to the ci job
 
 ---
 
-## 3. COMMAND SEQUENCE
+## 3. TEST EXECUTION
 
-Capture the serving status and the compiled decision with the live front door:
-```
-node .skilled/bin/compiled-route-status.cjs --hub sk-code
-node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "add a timeout-minutes to the ci job"
-```
+### Exact Command Sequence
 
-## Pass/Fail Criteria
+1. Capture the serving status:
+   ```
+   node .skilled/bin/compiled-route-status.cjs --hub sk-code
+   ```
+2. Capture the compiled decision:
+   ```
+   node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "add a timeout-minutes to the ci job"
+   ```
+
+### Pass/Fail Criteria
 
 - **PASS** iff the status shows `servingAuthority: compiled` and the decision prints `"selectionKind":"single"` with one target whose `workflowMode` is `sk-code-ci`.
 - **FAIL** iff the serving authority is not `compiled`, the decision is a `surfaceBundle`, a `defer` or a different single target, or the compiled path is structurally broken (`resolver-missing`).
 - **SKIP** iff the hub is outside the compiled serving closure (parity status `n/a`).
+
+---
+
+## 4. SOURCE FILES
+
+- `manual-testing-playbook.md` - Root directory page and scenario summary.
+- `.skilled/skills/sk-code/sk-code-ci/SKILL.md` - CI surface contract and its job-shape references.
+- `.skilled/skills/sk-code/ROUTER.md` - Surface intent signals and the CI resource map.
+- `.skilled/bin/compiled-route.cjs` - Compiled route front door.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Compiled Routing
+- Playbook ID: CB-CR-003
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `compiled-routing/surface-alone-ci-compiled-routing.md`
+- **Created**: 2026-10-25
+- **Critical path**: No
+- **Destructive**: No
+- **Sandbox**: not needed
+- **Concurrent-safe**: Yes
+- **Last validated**: pending first manual run

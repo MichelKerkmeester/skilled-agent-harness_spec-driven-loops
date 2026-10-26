@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.0.0
+version: 2.3.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -51,14 +51,14 @@ Intent classification scores task text against weighted keyword signals to pick 
 | Intent | Strong Signals |
 | --- | --- |
 | IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module` |
-| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat` |
+| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat`, `skipped_untrusted`, `untrusted repository check`, `trustrepochecks`, `quality config`, `.sk-code/quality.json`, `configured check`, `unverified` |
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
 | TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
 | LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
-| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `.github/workflows/` |
+| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `.github/workflows/`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `deploy workflow`, `release workflow`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
 
 ### Scoring algorithm
 
@@ -95,7 +95,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
+| ALWAYS | Every invocation | The §9 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
 | SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
@@ -103,7 +103,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 
 ---
 
-## 6. SKILLED MAP
+## 4. SKILLED MAP
 
 SKILLED loads from `sk-code-skilled/references/` and `sk-code-skilled/assets/`.
 
@@ -162,7 +162,7 @@ The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so th
 
 ---
 
-## 7. VERIFICATION COMMANDS
+## 5. VERIFICATION COMMANDS
 
 | Surface | Required verification evidence |
 | --- | --- |
@@ -171,7 +171,7 @@ The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so th
 
 ---
 
-## 8. UNKNOWN FALLBACK
+## 6. UNKNOWN FALLBACK
 
 If no supported surface matches, ask:
 
@@ -193,7 +193,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ---
 
-## 9. LOADING DISCIPLINE (DO / DON'T)
+## 7. LOADING DISCIPLINE (DO / DON'T)
 
 ### DO
 
@@ -209,7 +209,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ---
 
-## 10. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 - [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
@@ -218,9 +218,9 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ---
 
-## 11. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 9. MACHINE-READABLE ROUTER (replay / benchmark source)
 
-This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface map (§6 SKILLED). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
+This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface map (§4 SKILLED). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
 
 This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
 
@@ -239,7 +239,7 @@ DEFAULT_RESOURCE = [
 
 INTENT_SIGNALS = {
     "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
-    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell", "comment hygiene", "restraint", "yagni", "simplify", "over-engineering", "bloat"]},
+    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell", "comment hygiene", "restraint", "yagni", "simplify", "over-engineering", "bloat", "skipped_untrusted", "untrusted repository check", "trustrepochecks", "quality config", ".sk-code/quality.json", "configured check", "unverified"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
@@ -249,7 +249,7 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
-    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "deploy workflow", "release workflow", "turn off the ci", "turn on the ci", "ci review workflow"]},
 }
 
 RESOURCE_MAP = {
@@ -381,9 +381,9 @@ It does not load another surface's resources, and it defers `assets/*` (checklis
 
 ---
 
-## 12. HOW TO READ THIS
+## 10. HOW TO READ THIS
 
 - Every code task first loads the always-on preamble (stack + phase detection and the universal quality baseline); routing then narrows to the detected surface's slice for the matched intents.
 - One dominant intent on one surface loads that surface's slice; two near-tied intents (within the router's ambiguity delta) load both intent sets, deduped by canonical pair.
 - A single-surface task never pulls another surface's resources.
-- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the shared-tier entries its matched intents map — confirm the surface and intent before loading more. See §8 (UNKNOWN FALLBACK) and §9 (LOADING DISCIPLINE) for the full rules.
+- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the shared-tier entries its matched intents map — confirm the surface and intent before loading more. See §6 (UNKNOWN FALLBACK) and §7 (LOADING DISCIPLINE) for the full rules.

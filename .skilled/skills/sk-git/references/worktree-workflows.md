@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -649,6 +649,14 @@ The doctor battery does this on its own: its v2 read names each outer plugin fol
 1. Add appropriate pattern to .gitignore
 2. Commit immediately: `git add .gitignore && git commit -m "chore: ignore worktree directories" -m "Keeps worktree checkouts out of the parent repository."`
 3. Proceed with worktree creation
+
+### Launch-Wrapper Sessions Read the Main Checkout's Code
+
+**Symptom**: a launch-wrapper session edits its own files but reads, builds or validates against the main checkout's first-party code, and a generator run inside it exits 0 without writing.
+
+**Cause**: Those links are wholesale, so a wrapper session does not yet satisfy the ALWAYS #8 invariant: it reads the main checkout's first-party code however much it edits its own, and a generator run inside one exits 0 without writing. That is the real reason the line above sends strict-validate and metadata regeneration to `main`. Treat it as a constraint to work within, not a property of worktrees. The deep-loop lane provisioner performs the same sharing correctly, by splitting the link and recreating each self-link relative to the lane.
+
+**Actions**: run strict-validate and metadata regeneration on `main` after merge.
 
 ---
 

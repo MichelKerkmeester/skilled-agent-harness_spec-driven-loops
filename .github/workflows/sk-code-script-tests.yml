@@ -80,8 +80,8 @@ jobs:
       - name: Run the sk-code-quality bash suites
         run: |
           set -euo pipefail
-          bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh
-          bash .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh
+          bash .skilled/skills/sk-code/sk-code-quality/scripts/tests/check-comment-hygiene.test.sh
+          bash .skilled/skills/sk-code/sk-code-quality/scripts/tests/ceiling-report.test.sh
           bash .skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh
           bash .skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh
 

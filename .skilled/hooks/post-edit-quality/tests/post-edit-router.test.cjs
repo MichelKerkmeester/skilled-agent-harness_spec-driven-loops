@@ -21,7 +21,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { test } = require('node:test');
 
-const ROUTER_PATH = path.join(__dirname, 'post-edit-router.cjs');
+const ROUTER_PATH = path.join(__dirname, '..', 'lib', 'post-edit-router.cjs');
 const router = require(ROUTER_PATH);
 
 // The router sits three folders below its source root.

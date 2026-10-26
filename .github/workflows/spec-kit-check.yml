@@ -140,6 +140,7 @@ jobs:
       # process finds no test file and fails, so the split cannot silently drop it.
       - name: CLI vitest project
         run: |
+          # -e is off so the first wait cannot exit before the second process is reaped. Each wait records its failure in status instead.
           set -uo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
           npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts &

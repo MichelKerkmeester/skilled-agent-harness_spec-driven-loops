@@ -1,7 +1,7 @@
 ---
 title: "Lib: the quality runner's spawner, workspace guard and config reader"
-description: "run-check.cjs, the one module that starts a process for the sk-code quality runner, plus the config reader quality-config.cjs and the new home of the shared post-edit dispatch table."
-version: 1.0.3.0
+description: "run-check.cjs, the quality runner's spawner and workspace guard, the config reader quality-config.cjs and parallel-node-check.cjs, the bounded parallel node --check helper."
+version: 1.0.4.0
 ---
 
 # Lib
@@ -10,11 +10,11 @@ version: 1.0.3.0
 
 ## 1. OVERVIEW
 
-`lib/` holds `run-check.cjs`, the only place the quality runner `../quality-gate.cjs` starts a process. Every command is an argv array with no shell in between and its own deadline, and the workspace guard hashes what a check could change before and after it runs, so a check that edits the code it reports on ends the run with `CHECK_MUTATED_WORKSPACE`.
+`lib/` holds `run-check.cjs`, which starts every process `../quality-gate.cjs` starts directly, the `parallel-node-check.cjs` helper among them, which in turn starts one `node --check` per file. Every command is an argv array with no shell in between and its own deadline, and the workspace guard hashes what a check could change before and after it runs, so a check that edits the code it reports on ends the run with `CHECK_MUTATED_WORKSPACE`.
 
 `quality-config.cjs` finds the one repository config the runner reads, validates it against the schema and merges it over the shipped defaults. The only process it starts is git, through `runGit()`, to read the `skcode.qualityConfig` value, and it runs no command the config names.
 
-The shared post-edit dispatch module no longer lives here. It is `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, where the Claude, Codex and Devin adapters call it, so those adapters cannot drift on which checker runs for a given edited file.
+The shared post-edit dispatch module is `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, where the Claude, Codex and Devin adapters call it, so those adapters cannot drift on which checker runs for a given edited file.
 
 ---
 
@@ -26,16 +26,18 @@ The shared post-edit dispatch module no longer lives here. It is `.skilled/hooks
 | `quality-config.cjs` | Exports `discoverConfig()` (`--config`, then the file-scoped `skcode.qualityConfig` git config value, then `.sk-code/quality.json`), `loadConfig()` and `validateConfig()` (every field error collected before any check starts), `mergeConfig()` (the repository config over the shipped defaults), `readSuggestions()` (the checks the root manifests imply, never run) and `initialConfig()` (the template filled with those suggestions, used by `/doctor:sk-code quality`) |
 | `parallel-node-check.cjs` | A helper `../quality-gate.cjs` starts for the `syntax-node` check: it reads a JSON list of paths on stdin, runs one `node --check` per file with at most a bounded number in flight, and prints one `{file, status, stderr, timedOut, error}` record per input path in input order. Each child carries the check's own deadline and is killed at it, so the parent rebuilds the same findings from the same evidence a sequential loop produced. Each child runs in its own process group, and the helper kills every live group when it is stopped or fails, so no `node --check` outlives it. A stored stderr keeps at most 4096 characters, its head and its tail, which holds the lines the parent reads. |
 
-The post-edit dispatch table, `post-edit-router.cjs`, is at `.skilled/hooks/post-edit-quality/lib/` and absent from this folder. It exports `resolveDispatch()`, `runChecks()` and `runDistStalenessCheck()`.
+The post-edit dispatch table, `post-edit-router.cjs`, is at `.skilled/hooks/post-edit-quality/lib/`. It exports `resolveDispatch()`, `runChecks()` and `runDistStalenessCheck()`.
 
 ---
 
 ## 3. CONSUMERS
 
 - `../quality-gate.cjs` requires `run-check.cjs` and `quality-config.cjs`.
+- `../quality-gate.cjs` starts `parallel-node-check.cjs` for the `syntax-node` check.
 - `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` requires `quality-config.cjs`, the `runGit()` and `findTool()` helpers and the runner's `CHECK_IDS` and `probeLayers()` exports.
 - `../tests/quality-gate.test.cjs` tests its spawn, timeout and guard behavior directly, `../tests/configured-checks.test.cjs` tests the process group kill and the chained guard windows, and `../tests/quality-config.test.cjs` tests the config reader.
-- `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` and `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` call the dispatch table in its new home.
+- `../tests/parallel-node-check.test.cjs` tests the helper.
+- `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` and `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` call the dispatch table at `.skilled/hooks/post-edit-quality/lib/`.
 
 ---
 

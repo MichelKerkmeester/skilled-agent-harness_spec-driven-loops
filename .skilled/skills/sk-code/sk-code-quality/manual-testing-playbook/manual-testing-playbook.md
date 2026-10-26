@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -148,7 +148,7 @@ This section records wave planning for the manual testing package. It is not a r
 
 ---
 
-## 7. QUALITY GATE (`CQ-001..CQ-008`)
+## 7. QUALITY GATE (`CQ-001..CQ-011`)
 
 ### CQ-001 | Quality gate routes to the sk-code-quality checklist
 
@@ -294,13 +294,67 @@ Desired user-visible outcome: the gate walks the ladder and stops at the first r
 
 > **Feature File:** [CQ-008](quality-gate/restraint-prompt.md)
 
+### CQ-009 | Untrusted config reads SKIPPED_UNTRUSTED until the operator grants trust
+
+#### Description
+
+Verify that a configured check from a config no trust rule vouches for reads `SKIPPED_UNTRUSTED`, starts nothing, prints the repair line `git config --local skilled.trustRepoChecks true` and leaves a required check `UNVERIFIED`, and that setting the local key lets the same check run.
+
+#### Scenario Contract
+
+Fixture: a temporary repository whose committed `.sk-code/quality.json` names one required configured check, run once without trust and once after the local trust key is set.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner twice and reads the check row, the repair line and `config.trust`.
+
+Desired user-visible outcome: the first run reads `UNVERIFIED` with exit 4 and no process started, and the second run reads the blocking gate with `config.trust` naming the key.
+
+#### Test Execution
+
+> **Feature File:** [CQ-009](quality-gate/untrusted-config.md)
+
+### CQ-010 | A checklist row fault stays scoped to the files its declaration reaches
+
+#### Description
+
+Verify that a malformed `quality.checklists` row in a private skill's declaration gates a change its surface reaches, appears only in `config.warnings` for a change its surface does not reach, and leaves the valid row beside it listed.
+
+#### Scenario Contract
+
+Fixture: two temporary repositories with the same private sibling skill declaring one valid row and one row with no selector, one changing a file inside the skill's surface and one changing a file outside it.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner over each repository and reads `config.errors`, `config.warnings` and the gate.
+
+Desired user-visible outcome: the reached change reads `ERROR` with exit 3 and the fault in `config.errors`, and the unreached change reads `NO_BLOCKER_FOUND` with the same fault in `config.warnings`.
+
+#### Test Execution
+
+> **Feature File:** [CQ-010](quality-gate/scoped-checklist-faults.md)
+
+### CQ-011 | A multi-file change gets one syntax finding per bad file from the parallel pool
+
+#### Description
+
+Verify that the `syntax-node` check, which runs through a bounded worker pool under one shared deadline, reports exactly one finding per bad file on a twenty-file change and reads every other file clean inside its deadline, and that the pool helper refuses a file list that is not JSON.
+
+#### Scenario Contract
+
+Fixture: a temporary repository changing twenty `.mjs` files, two with a syntax error, plus direct runs of `parallel-node-check.cjs`.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner with a 30 second deadline and starts the helper by hand with a valid and an invalid payload.
+
+Desired user-visible outcome: two findings naming the two bad files, a `RAN_FAIL` row over twenty files, ordered helper records and a usage error with exit 2 for the invalid payload.
+
+#### Test Execution
+
+> **Feature File:** [CQ-011](quality-gate/parallel-syntax-pool.md)
+
 ---
 
 ## 8. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `scripts/check-comment-hygiene.test.sh` | Comment-hygiene checker violations, skips and exit codes | CQ-001 |
+| `scripts/tests/check-comment-hygiene.test.sh` | Comment-hygiene checker violations, skips and exit codes | CQ-001 |
 | `scripts/hooks/claude-posttooluse.test.sh` | A `node --check` syntax check of the edit-time hook adapter, plus a broken copy that must fail it | CQ-001 |
 
 No test for target-path checklist routing was found in this package. CQ-001 checks the prompt-intent route only.
@@ -319,3 +373,6 @@ No test for target-path checklist routing was found in this package. CQ-001 chec
 | CQ-006 | Absent required tool reports UNVERIFIED | QUALITY GATE | [CQ-006](quality-gate/absent-required-tool.md) |
 | CQ-007 | Envelope round trip keeps both verdicts intact | QUALITY GATE | [CQ-007](quality-gate/envelope-round-trip.md) |
 | CQ-008 | Restraint prompt routes to the quality gate and the Design Restraint Ladder | QUALITY GATE | [CQ-008](quality-gate/restraint-prompt.md) |
+| CQ-009 | Untrusted config reads SKIPPED_UNTRUSTED until the operator grants trust | QUALITY GATE | [CQ-009](quality-gate/untrusted-config.md) |
+| CQ-010 | A checklist row fault stays scoped to the files its declaration reaches | QUALITY GATE | [CQ-010](quality-gate/scoped-checklist-faults.md) |
+| CQ-011 | A multi-file change gets one syntax finding per bad file from the parallel pool | QUALITY GATE | [CQ-011](quality-gate/parallel-syntax-pool.md) |

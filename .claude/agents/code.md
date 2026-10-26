@@ -437,7 +437,7 @@ If ANY is NO: **DO NOT return `DONE`.** Fix the verification gap or RETURN the a
 
 > **NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK.**
 
-Canonical source: `.skilled/skills/sk-code/SKILL.md:62`.
+Canonical source: `.skilled/skills/sk-code/shared/references/workflow-verify.md` (Iron Law section).
 
 Before returning: (1) run the 6-question self-validation, (2) verify every RETURN path and citation exists, (3) capture command/action evidence and exit status, (4) confirm scope and residue checks, (5) document confidence level, and only then send the RETURN.
 

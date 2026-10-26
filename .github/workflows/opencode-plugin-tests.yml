@@ -96,6 +96,7 @@ jobs:
       # The installer test makes commits in temporary repositories, which need an author.
       - name: Set a git identity for the tests
         run: |
+          set -euo pipefail
           git config --global user.name "hook-tests-ci"
           git config --global user.email "hook-tests-ci@example.invalid"
 

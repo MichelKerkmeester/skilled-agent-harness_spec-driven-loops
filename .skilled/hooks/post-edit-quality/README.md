@@ -82,6 +82,10 @@ Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot
 post-edit-quality/
 +-- lib/
 |   `-- post-edit-router.cjs      # dispatch table + deadline-bounded checker runner
++-- tests/
+|   +-- post-edit-router.test.cjs
+|   +-- codex-post-edit-quality.test.cjs
+|   `-- devin-post-edit-quality.test.cjs
 +-- claude/   claude-posttooluse.cjs
 +-- devin/    post-edit-quality.cjs
 +-- codex/    post-edit-quality.cjs
@@ -132,6 +136,12 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 ---
 
 ## 8. VALIDATION
+
+```bash
+node --test .skilled/hooks/post-edit-quality/tests/*.test.cjs
+```
+
+Expected result: the router suite and the Codex and Devin adapter suites all pass, with `fail 0`.
 
 ```bash
 node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
