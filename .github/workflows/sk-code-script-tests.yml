@@ -12,8 +12,11 @@ on:
       - '.opencode/skills/sk-code/**'
       # The runner tests load the registry compiler and the two folders it requires.
       - '.skilled/bin/lib/compiled-routing/003-contract-schemas/**'
+      - '.opencode/bin/lib/compiled-routing/003-contract-schemas/**'
       - '.skilled/bin/lib/compiled-routing/004-compiler-n1-shadow/**'
+      - '.opencode/bin/lib/compiled-routing/004-compiler-n1-shadow/**'
       - '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
+      - '.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
       - '.github/workflows/sk-code-script-tests.yml'
   push:
     branches: [main, 'skilled/**']
@@ -22,8 +25,11 @@ on:
       - '.opencode/skills/sk-code/**'
       # The runner tests load the registry compiler and the two folders it requires.
       - '.skilled/bin/lib/compiled-routing/003-contract-schemas/**'
+      - '.opencode/bin/lib/compiled-routing/003-contract-schemas/**'
       - '.skilled/bin/lib/compiled-routing/004-compiler-n1-shadow/**'
+      - '.opencode/bin/lib/compiled-routing/004-compiler-n1-shadow/**'
       - '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
+      - '.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
       - '.github/workflows/sk-code-script-tests.yml'
 
 permissions:
