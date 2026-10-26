@@ -124,3 +124,22 @@ Retained from the retired lane; these symptoms describe historical runs only.
 
 Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
+---
+
+## 7. RENDERING A REPORT FOLDER
+
+A report folder is a rendered artifact, so it is produced from its machine record rather than written by hand. `scripts/render-report.cjs` renders a record in the `skill-benchmark-report.v1` shape into the seven-file set.
+
+| Command | What it does |
+|---|---|
+| `node .skilled/skills/sk-code/benchmark/scripts/render-report.cjs <report.json> <out-folder>` | Writes the seven files from one machine record. The record's `corpus` field fills the `Scenario corpus` row of `source.md`, and `targetSkill.root` is written exactly as recorded, so a record that stores a repository-relative root renders a portable folder. |
+| `node .skilled/skills/sk-code/benchmark/scripts/render-report.cjs --check <report-folder>` | Re-renders the folder's record into a temporary folder, compares every file byte for byte, names each file that differs and exits 1. It exits 0 when the folder matches its record. |
+
+The same record produces the same bytes on every run, so a difference in a rendered report is a difference in the measurement and never a difference in the template. The golden test re-renders the committed reports of the current format and fails when a template change would rewrite one of them:
+
+```bash
+node --test .skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs
+```
+
+Archived folders stay frozen. A folder written by an earlier template, or written by hand, fails `--check` by design, and the storage rule above gives a changed result a new folder rather than an edit to an old one.
+

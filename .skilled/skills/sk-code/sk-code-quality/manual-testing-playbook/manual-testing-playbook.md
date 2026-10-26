@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -148,7 +148,7 @@ This section records wave planning for the manual testing package. It is not a r
 
 ---
 
-## 7. QUALITY GATE (`CQ-001..CQ-001`)
+## 7. QUALITY GATE (`CQ-001..CQ-008`)
 
 ### CQ-001 | Quality gate routes to the sk-code-quality checklist
 
@@ -168,6 +168,132 @@ Desired user-visible outcome: the bundled workflow loads the `DEFAULT_RESOURCE` 
 
 > **Feature File:** [CQ-001](quality-gate/quality-checklist.md)
 
+### CQ-002 | Foreign polyglot change gets a real verdict
+
+#### Description
+
+Verify that a foreign polyglot change built from fixture F01 gets a real gate verdict in a repository with no surface packet.
+
+#### Scenario Contract
+
+Fixture: F01, a polyglot change in a temporary repository whose surface resolves to `UNKNOWN`.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner over the fixture and reads its verdict and its checklist set.
+
+Desired user-visible outcome: the run resolves the universal floor and the built-in checks, and every seeded defect is named in the findings.
+
+#### Test Execution
+
+> **Feature File:** [CQ-002](quality-gate/foreign-polyglot-change.md)
+
+### CQ-003 | Unknown language change is never read as clean
+
+#### Description
+
+Verify that a change written in a language no surface declares is reported as uncovered and never as clean.
+
+#### Scenario Contract
+
+Fixture: F05, a change whose only file no surface claims.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner over the fixture and reads its gate.
+
+Desired user-visible outcome: the run reports `NOTHING_CHECKED` with exit 2, and the unknown language is recorded rather than filled in from a default.
+
+#### Test Execution
+
+> **Feature File:** [CQ-003](quality-gate/unknown-language-change.md)
+
+### CQ-004 | CI workflow change resolves the CI checklist by path
+
+#### Description
+
+Verify that a change under `.github/workflows/` resolves the CI workflow checklist from the target path and reports the findings that checklist names.
+
+#### Scenario Contract
+
+Fixture: F14, a GitHub Actions workflow change in a temporary repository.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner and reads the `checklists[]` rows with their `why`.
+
+Desired user-visible outcome: the CI workflow checklist is one of the rows, and its path-based finding blocks the change.
+
+#### Test Execution
+
+> **Feature File:** [CQ-004](quality-gate/ci-target-change.md)
+
+### CQ-005 | Private surface resolves through its quality declaration
+
+#### Description
+
+Verify that a surface declared by a private skill mounted beside the hub resolves its checklists through the declaration, with the name supplied only at run time.
+
+#### Scenario Contract
+
+Fixture: F15, a fixture hub whose private surface carries a `surface_detection` block and a `quality` block under a placeholder name.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the runner over the fixture and reads the checklist rows and the envelope labels.
+
+Desired user-visible outcome: the declared checklist is listed, the surface label appears, and no private skill name reaches the envelope.
+
+#### Test Execution
+
+> **Feature File:** [CQ-005](quality-gate/private-surface-change.md)
+
+### CQ-006 | Absent required tool reports UNVERIFIED
+
+#### Description
+
+Verify that a configured required check whose tool is missing reports `UNVERIFIED` with a repair line and exits 4.
+
+#### Scenario Contract
+
+Fixture: F06, a temporary repository whose committed config names a required check for a tool that is not installed.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner and reads the check row and the gate.
+
+Desired user-visible outcome: the row reads `SKIPPED_ABSENT` with the repair text, and the run makes no clean or blocked claim.
+
+#### Test Execution
+
+> **Feature File:** [CQ-006](quality-gate/absent-required-tool.md)
+
+### CQ-007 | Envelope round trip keeps both verdicts intact
+
+#### Description
+
+Verify that the blocking envelope from CQ-002 and the `UNVERIFIED` envelope from CQ-006 keep their fields when the verify reader parses them.
+
+#### Scenario Contract
+
+Input: the two envelopes those scenarios produce, one blocked and one unverified.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then renders both envelopes and reads each field the verify workflow consumes.
+
+Desired user-visible outcome: every field survives the round trip, and the unverified ids reach verification as open claims.
+
+#### Test Execution
+
+> **Feature File:** [CQ-007](quality-gate/envelope-round-trip.md)
+
+### CQ-008 | Restraint prompt routes to the quality gate and the Design Restraint Ladder
+
+#### Description
+
+Verify that the restraint prompt `apply yagni to this change` resolves a single route to `sk-code-quality`, reports `CODE_QUALITY` at stage two, and reaches the Design Restraint Ladder.
+
+#### Scenario Contract
+
+Prompt: `apply yagni to this change`
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then checks both routing stages and the workflow step that applies the ladder before code is added.
+
+Desired user-visible outcome: the gate walks the ladder and stops at the first rung that holds, rather than adding code.
+
+#### Test Execution
+
+> **Feature File:** [CQ-008](quality-gate/restraint-prompt.md)
+
 ---
 
 ## 8. AUTOMATED TEST CROSS-REFERENCE
@@ -186,3 +312,10 @@ No test for target-path checklist routing was found in this package. CQ-001 chec
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
 | CQ-001 | Quality gate routes to the sk-code-quality checklist | QUALITY GATE | [CQ-001](quality-gate/quality-checklist.md) |
+| CQ-002 | Foreign polyglot change gets a real verdict | QUALITY GATE | [CQ-002](quality-gate/foreign-polyglot-change.md) |
+| CQ-003 | Unknown language change is never read as clean | QUALITY GATE | [CQ-003](quality-gate/unknown-language-change.md) |
+| CQ-004 | CI workflow change resolves the CI checklist by path | QUALITY GATE | [CQ-004](quality-gate/ci-target-change.md) |
+| CQ-005 | Private surface resolves through its quality declaration | QUALITY GATE | [CQ-005](quality-gate/private-surface-change.md) |
+| CQ-006 | Absent required tool reports UNVERIFIED | QUALITY GATE | [CQ-006](quality-gate/absent-required-tool.md) |
+| CQ-007 | Envelope round trip keeps both verdicts intact | QUALITY GATE | [CQ-007](quality-gate/envelope-round-trip.md) |
+| CQ-008 | Restraint prompt routes to the quality gate and the Design Restraint Ladder | QUALITY GATE | [CQ-008](quality-gate/restraint-prompt.md) |
