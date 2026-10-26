@@ -8,7 +8,7 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Spec Authoring Card
@@ -17,7 +17,7 @@ This card is the short path. Follow the steps in order. Each step has one action
 
 `references/templates/template-guide.md` is the long guide. Read it only when a section's fill note leaves you unsure what to write.
 
-## 1. BOUNDS
+## 1. OVERVIEW AND BOUNDS
 
 You write one packet, in one folder. The folder is the one `create.sh` prints.
 
@@ -26,6 +26,8 @@ Forbidden: `git commit`, `git push`, `git checkout`, `git switch`, `git branch`,
 
 Acceptance: you can name the packet folder and the one command you will run to check it.
 Verify: `pwd` prints the repository root, and `ls <packet folder>` lists `spec.md`.
+
+---
 
 ## 2. PICK THE LEVEL
 
@@ -46,6 +48,8 @@ Use the level it prints. If it prints Level 0, use `--level 1`. Do not raise the
 Acceptance: the level in the scaffold header matches the level the helper printed.
 Verify: `rg -n 'SPECKIT_LEVEL' <packet folder>/spec.md` prints one line with that level.
 
+---
+
 ## 3. SCAFFOLD
 
 Create the packet with one command. Keep `--skip-branch` so no git state changes.
@@ -59,6 +63,8 @@ The command prints the folder it made. Use that path for every later command. Wh
 Acceptance: the folder holds `spec.md`, `plan.md`, `tasks.md` and `scratch/`.
 Verify: `ls <packet folder>` lists those names.
 
+---
+
 ## 4. READ BEFORE YOU WRITE
 
 Open one rendered example at the same level under `.skilled/skills/system-spec-kit/templates/examples/level-<level>/`. Read `spec.md` and `tasks.md`.
@@ -69,6 +75,8 @@ Each section of your scaffold carries a fill note. The note says what that secti
 
 Acceptance: you can say, in one sentence, what the first section of `spec.md` must contain.
 Verify: `sed -n '1,40p' <packet folder>/spec.md` shows the fill notes.
+
+---
 
 ## 5. ONE ACTION PER SECTION
 
@@ -86,6 +94,8 @@ Do not put a task list in `spec.md`. Do not put requirements in `plan.md`.
 Acceptance: every heading in the packet has content under it, and no heading holds content that belongs to another heading.
 Verify: `rg -n '^## ' <packet folder>/spec.md <packet folder>/plan.md` lists the headings you filled.
 
+---
+
 ## 6. THE PLAN SHAPE
 
 A plan names its three phases, Setup, Implementation and Verification, one line each, under `## 4. IMPLEMENTATION PHASES`. That is the plan template's phases fill note. More than three phases means the feature needs more than one packet. Stop and ask, as section 11 says.
@@ -100,6 +110,8 @@ Setup reads the current archive count. Implementation adds `--keep <n>`. Verific
 
 Acceptance: `plan.md` holds its three phases in one line each, and it points at `tasks.md` for the ordered work.
 Verify: `rg -n '^## 4' <packet folder>/plan.md` prints one line.
+
+---
 
 ## 7. TASK LINES
 
@@ -119,6 +131,8 @@ Rules:
 Acceptance: every task line, open or done, ends with a `Verify:` clause.
 Verify: `rg -c '^- \[[ xB]\] T[0-9].*Verify: ' <packet folder>/tasks.md` and `rg -c '^- \[[ xB]\] T[0-9]' <packet folder>/tasks.md` print the same number.
 
+---
+
 ## 8. FILL EVERY TOKEN
 
 A scaffold stamped `v2.3` or later carries tokens. A token starts with `[YOUR_VALUE_HERE:` and ends at the next closing bracket. Replace the whole token, brackets included, with real content. Do not leave a token in a finished packet.
@@ -129,6 +143,8 @@ A token in a packet whose `spec.md` says `Status: Draft` is a warning, so strict
 
 Acceptance: the count is 0.
 Verify: `rg -o '\[YOUR_VALUE_HERE:' <packet folder>/*.md | wc -l` prints 0.
+
+---
 
 ## 9. VALIDATE
 
@@ -149,6 +165,8 @@ When `spec.md` says `Status: Draft` and every error is a derived-metadata one, a
 Acceptance: the `--quiet` command prints `RESULT: PASSED`.
 Verify: the last `--quiet` run printed `RESULT: PASSED`.
 
+---
+
 ## 10. CLOSE
 
 A packet is closeable when:
@@ -162,6 +180,8 @@ Acceptance: all five are true.
 Verify: the checks in sections 7 and 8 print what they say, and the section 9 run printed `RESULT: PASSED`.
 
 The continuity block and the `description.json` and `graph-metadata.json` refresh belong to `references/workflows/spec-folder-authoring-checklist.md`, not to this card.
+
+---
 
 ## 11. WHEN TO STOP AND ASK
 

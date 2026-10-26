@@ -467,7 +467,7 @@ agent_availability:
     available_at_step: 10
     condition: "Activate when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or <spec-folder> sk-code ships authoring checklists (skill-authoring.md, agent-authoring.md, command-authoring.md, mcp-server-authoring.md); spec-folder authoring now lives in system-spec-kit: read references/workflows/spec-authoring-card.md first, then references/workflows/spec-folder-authoring-checklist.md and spec-folder-write-recipe.md for the detail."
     resources:
-      - "sk-code/sk-code-skilled/assets/checklists/{matching_target}_authoring.md"
+      - "sk-code/sk-code-skilled/assets/checklists/{matching_target}-authoring.md"
       - "system-spec-kit/references/workflows/spec-authoring-card.md (read first, for every spec-doc target)"
       - "system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under .opencode/specs/)"
     precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
@@ -1120,7 +1120,7 @@ workflow:
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below"
     activities:
-    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (assets/opencode/checklists/{skill,agent,command,mcp_server}_authoring.md), and for .opencode/specs/ targets read the system-spec-kit authoring card (references/workflows/spec-authoring-card.md) first, then the spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .skilled/ targets are present.
+    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md), and for .opencode/specs/ targets read the system-spec-kit authoring card (references/workflows/spec-authoring-card.md) first, then the spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .skilled/ targets are present.
     - Load tasks.md and parse task structure
     - Execute implementation phase by phase
     - Setup first (project structure, dependencies, configuration)

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci gate regressions",
+      "phase 21 ci gate regressions",
+      "ci gate regressions plan",
+      "ci gate regressions tasks",
+      "ci gate regressions acceptance criteria",
+      "ci gate regressions goal",
+      "ci gate regressions implementation summary"
+    ],
+    "key_topics": [
+      "gate",
+      "regressions",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "changed-packet-validation",
+      "yml"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/workflows/changed-packet-validation.yml",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts",
+      ".skilled/skills/system-spec-kit/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      "references/templates/level-selection-guide.md",
+      ".skilled/skills/system-spec-kit/runtime/eslint.config.mjs",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
+      "changelog/v2.12.2.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-validation.yml",
+        "kind": "config",
+        "path": ".github/workflows/changed-packet-validation.yml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-rule-set-comparison.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/ci-rule-set-comparison.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-selection-guide.md",
+        "kind": "doc",
+        "path": "references/templates/level-selection-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "eslint.config.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/eslint.config.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Registry Drift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`changed-packet-validation.yml` grades every changed packet, including the benchmark-result copies under `scratch/`, whose `description.json` names a `zz-bench-authoring/...` sandbox, so they fail `METADATADISKPATHCONSISTENCY` and CI run 40380947180 on `b51a341a07` failed with 81 \"New packet does not validate\" errors (Measured Behavior below)",
+    "created_at": "2026-10-26T22:13:57Z",
+    "last_save_at": "2026-10-26T22:44:24.891Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:abfcb2385d86e4e6fd8113f4baa39f9a4922c2f724cf41344485e1b375cd3893",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e50afff55c3c2c04e211a2aa05cfc64bf6332d58a286ebaf757a57e181e0ca06",
+      "plan.md": "88e2913a24dfd203908db941e53663600bc9d3c39caf139355103a84604c9284",
+      "tasks.md": "dc4f4e1014932a2d51884cbc3b068c43575c354456f8ca2c2b16bd9ab937d86a",
+      "implementation-summary.md": "6ee87f0ab29ee1bd77bbdc0e5f5c0abef3507b22ade601f26a0263142b03f3da"
+    },
+    "last_active_at": null
+  }
+}

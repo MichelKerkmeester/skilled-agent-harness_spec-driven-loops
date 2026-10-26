@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.4.0
+version: 2.7.5.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -203,7 +203,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | ----- | -------------------------------------------------------------- |
 | 1     | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`  |
 | 2     | Level 1 + `acceptance-criteria.md`                                       |
-| 3     | Level 2 + `decision-record.md`                                 |
+| 3     | Level 2 files; `decision-record.md` is a lazy add-on, not required |
 | **review** | `spec.md`, `review/review-report.md` (lean review record, entered only via the `<!-- SPECKIT_LEVEL: review -->` marker, waives plan/tasks/decision-record/implementation-summary) |
 | **Phase Parent** | `spec.md`, `description.json`, `graph-metadata.json` (lean trio only; heavy docs live in phase children) |
 

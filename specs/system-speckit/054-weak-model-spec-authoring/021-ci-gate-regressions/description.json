@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions",
+  "description": "Phase 21: ci-gate-regressions",
+  "keywords": [
+    "phase",
+    "ci-gate-regressions"
+  ],
+  "lastUpdated": "2026-10-26T22:13:58.283Z",
+  "specId": "021",
+  "folderSlug": "ci-gate-regressions",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

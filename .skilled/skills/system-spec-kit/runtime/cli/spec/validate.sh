@@ -83,7 +83,7 @@ EXIT CODES: 0=pass, 1=user error, 2=validation error, 3=system error
 
 $(list_registry_rules)
 
-LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+architecture guidance
+LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+acceptance-criteria (optional), 3=+architecture guidance
         decision-record.md and other add-ons are on-demand when explicitly added
         review=spec+review/review-report (lean review record, marker-gated)
         *impl-summary required after tasks completed

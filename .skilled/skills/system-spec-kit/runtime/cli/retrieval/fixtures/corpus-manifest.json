@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cff1bbd7f0bc42fb7b988e770c5afc7c280d511fa8ff312e96846c31f7d78fc0",
+  "corpusHash": "e3f97a50c7dc477395f721a84875bafb0428dfd7469bfd7acba1a3d00763c302",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26267,
+  "includedPathCount": 26275,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7926,6 +7926,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -26266,6 +26267,12 @@
     "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26286,6 +26293,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-018-benchmark-redesign-and-remeasure.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-019-follow-up-fixes.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-020-alignment-audit-fixes.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-021-ci-gate-regressions.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
@@ -26298,7 +26306,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2facdf99aa6fcec2fc3038342f81036ce7e4dfc951b403179be7eac5fcd081e0",
+  "manifestHash": "cc187c987bd84dbd20b44db95b1093f111997d13e58b5055fe7e5b51e4c04845",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33562,6 +33570,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/scratch",
       "reason": "excluded directory"
     },
     {

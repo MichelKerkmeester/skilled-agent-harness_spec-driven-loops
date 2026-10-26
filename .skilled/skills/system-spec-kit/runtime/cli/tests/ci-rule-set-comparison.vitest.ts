@@ -40,6 +40,12 @@ const SPACED_FIXTURE_PACKET = 'specs/demo/spaced café-fixture';
 // escaped property is what the runner reads, so it is asserted in full.
 const HOSTILE_FIXTURE_PACKET = 'specs/demo/evil%0A\n::add-mask::x,y:z';
 const HOSTILE_ESCAPED_PROPERTY = 'specs/demo/evil%250A%0A%3A%3Aadd-mask%3A%3Ax%2Cy%3Az/spec.md';
+// A sandbox packet copied into a packet's scratch/ folder as a benchmark result
+// carries a spec.md and metadata naming the sandbox, so it fails if graded.
+const SCRATCH_COPY_PACKET = 'specs/demo/001-fixture/scratch/results/run-1/001-sandbox';
+// Only a whole scratch path segment is working space; a real packet whose name
+// merely contains the word must still be graded.
+const SCRATCH_NAMED_PACKET = 'specs/demo/001-scratch-notes';
 const BASH = 'bash';
 
 interface WorkflowStep {
@@ -487,6 +493,30 @@ describe('changed-packet gate rule-set comparison', () => {
       `::error file=${SPACED_FIXTURE_PACKET}/spec.md::Regression — new failing rule(s): rule-alpha`,
     );
     expect(outcome.output).toContain('BLOCKED: 1 packet(s) regressed in this PR.');
+    expect(outcome.exitCode).toBe(1);
+  });
+
+  it('does not grade a packet copied under a scratch folder', () => {
+    const outcome = runGate({
+      headReport: failingReport('METADATA_DISK_PATH_CONSISTENCY'),
+      baseReport: PASSING_REPORT,
+      packet: SCRATCH_COPY_PACKET,
+    });
+
+    expect(outcome.output).toContain('No spec packets changed by this PR.');
+    expect(outcome.output).not.toContain(SCRATCH_COPY_PACKET);
+    expect(outcome.exitCode).toBe(0);
+  });
+
+  it('still grades a packet whose name only contains the word scratch', () => {
+    const outcome = runGate({
+      headReport: failingReport('rule-alpha'),
+      baseReport: PASSING_REPORT,
+      packet: SCRATCH_NAMED_PACKET,
+    });
+
+    expect(outcome.output).toContain(`::error file=${SCRATCH_NAMED_PACKET}/spec.md::Regression`);
+    expect(outcome.output).toContain('new failing rule(s): rule-alpha');
     expect(outcome.exitCode).toBe(1);
   });
 

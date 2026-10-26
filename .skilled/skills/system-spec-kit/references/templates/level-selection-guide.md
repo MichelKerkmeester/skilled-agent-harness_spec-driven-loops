@@ -8,7 +8,7 @@ trigger_phrases:
   - "level mapping thresholds"
 importance_tier: normal
 contextType: planning
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm
@@ -132,7 +132,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Platform migrat
 Templates are Level-gated manifest files rendered by `create.sh`:
 - Level 1 - spec.md, plan.md, tasks.md, implementation-summary.md
 - Level 2 - Level 1 plus acceptance-criteria.md
-- Level 3 - Level 2 plus decision-record.md
+- Level 3 - Level 2 file set; decision-record.md is a lazy add-on that `--with-lazy-addons` adds
 - Level 3+ - Level 3 file set with governance sections rendered by gate
 
 > **Source of truth for template LOC counts:** [level-specifications.md](./level-specifications.md)

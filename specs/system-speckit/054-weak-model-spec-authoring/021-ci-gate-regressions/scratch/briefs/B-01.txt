@@ -1,0 +1,26 @@
+
+TASK B-01. One file: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+
+Edit: insert a line holding exactly `---` followed by one blank line immediately above each of these ten headings:
+## 2. PICK THE LEVEL
+## 3. SCAFFOLD
+## 4. READ BEFORE YOU WRITE
+## 5. ONE ACTION PER SECTION
+## 6. THE PLAN SHAPE
+## 7. TASK LINES
+## 8. FILL EVERY TOKEN
+## 9. VALIDATE
+## 10. CLOSE
+## 11. WHEN TO STOP AND ASK
+
+Result shape around each heading (blank line, `---`, blank line, heading):
+
+<previous text>
+
+---
+
+## 2. PICK THE LEVEL
+
+Change nothing else: no wording, no heading text, no frontmatter. Do not touch `## 1. BOUNDS`.
+
+Verify: `rg -c '^---$' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` prints 12 (2 frontmatter fences plus 10 separators).

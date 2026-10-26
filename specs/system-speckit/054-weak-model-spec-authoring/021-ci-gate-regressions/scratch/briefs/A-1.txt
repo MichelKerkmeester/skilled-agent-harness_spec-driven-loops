@@ -1,0 +1,11 @@
+
+TASK A-1. One file: .skilled/skills/system-spec-kit/runtime/eslint.config.mjs
+
+Edit line 10. Replace exactly:
+    ignores: ['dist/**', 'node_modules/**', 'tmp-test-fixtures/**'],
+with exactly:
+    ignores: ['**/dist/**', 'node_modules/**', 'tmp-test-fixtures/**'],
+
+Change nothing else.
+
+Verify: `rg -n "ignores:" .skilled/skills/system-spec-kit/runtime/eslint.config.mjs` prints line 10 with `'**/dist/**'`.

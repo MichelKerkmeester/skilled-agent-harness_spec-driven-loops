@@ -83,6 +83,12 @@ jobs:
           packet_list=$(mktemp)
           git diff -z --name-only --diff-filter=ACMR "$BASE" "$HEAD" -- specs \
             | while IFS= read -r -d '' file; do
+                # A packet's scratch/ folder is disposable working space that the
+                # validator's own discovery never descends into. A spec.md under
+                # it is evidence, such as a sandbox packet copied out as a
+                # benchmark result, not a packet. Only a whole scratch path
+                # segment matches, so a packet named 001-scratch-notes is graded.
+                case "$file" in (*/scratch/*) continue ;; esac
                 # Parameter expansion, not basename or dirname: command substitution
                 # would strip a line break from the end of a folder name.
                 case "${file##*/}" in

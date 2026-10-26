@@ -67,7 +67,7 @@
     "measured-behavior anchor",
     "spec template add-ons",
     "template add-ons",
-    "draft auto-repair"
+    "spec docs"
   ],
   "derived": {
     "trigger_phrases": [
@@ -90,7 +90,7 @@
       "measured-behavior anchor",
       "spec template add-ons",
       "template add-ons",
-      "draft auto-repair"
+      "spec docs"
     ],
     "key_topics": [
       "spec",

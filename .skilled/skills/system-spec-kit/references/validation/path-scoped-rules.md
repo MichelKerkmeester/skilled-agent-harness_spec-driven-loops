@@ -8,7 +8,7 @@ trigger_phrases:
   - "location-based validation"
 importance_tier: important
 contextType: implementation
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation
@@ -66,7 +66,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | ----- | ---------------------------- | ----------------------------------------- |
 | 1     | spec.md, plan.md, tasks.md   | FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS |
 | 2     | Level 1 + acceptance-criteria.md       | + P0/P1 section headers                   |
-| 3     | Level 2 + decision-record.md | + Context/Decision/Consequences sections  |
+| 3     | Level 2 files (decision-record.md is a lazy add-on, not required) | + Context/Decision/Consequences sections  |
 
 ---
 

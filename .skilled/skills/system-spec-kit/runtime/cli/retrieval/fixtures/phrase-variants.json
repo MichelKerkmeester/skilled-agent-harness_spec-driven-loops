@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2facdf99aa6fcec2fc3038342f81036ce7e4dfc951b403179be7eac5fcd081e0",
+  "manifestHash": "cc187c987bd84dbd20b44db95b1093f111997d13e58b5055fe7e5b51e4c04845",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17843,6 +17843,24 @@
     ],
     "ci efficiency synthesis deepseek review": [
       "ci efficiency synthesis deepseek review"
+    ],
+    "ci gate regressions": [
+      "ci gate regressions"
+    ],
+    "ci gate regressions acceptance criteria": [
+      "ci gate regressions acceptance criteria"
+    ],
+    "ci gate regressions goal": [
+      "ci gate regressions goal"
+    ],
+    "ci gate regressions implementation summary": [
+      "ci gate regressions implementation summary"
+    ],
+    "ci gate regressions plan": [
+      "ci gate regressions plan"
+    ],
+    "ci gate regressions tasks": [
+      "ci gate regressions tasks"
     ],
     "ci lanes wired": [
       "ci lanes wired"
@@ -73276,6 +73294,9 @@
     "phase 20 tasks": [
       "phase 20 tasks"
     ],
+    "phase 21 ci gate regressions": [
+      "phase 21 ci gate regressions"
+    ],
     "phase 21 closure gate": [
       "phase 21 closure gate"
     ],
@@ -106281,6 +106302,9 @@
     "system spec kit 2 12 1 0": [
       "system-spec-kit 2.12.1.0"
     ],
+    "system spec kit 2 12 2 0": [
+      "system-spec-kit 2.12.2.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -106724,6 +106748,9 @@
     ],
     "system spec kit v2 12 1 0": [
       "system-spec-kit v2.12.1.0"
+    ],
+    "system spec kit v2 12 2 0": [
+      "system-spec-kit v2.12.2.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -113505,6 +113532,9 @@
     ],
     "weak model spec authoring changelog": [
       "weak model spec authoring changelog"
+    ],
+    "weak model spec authoring ci gate regressions changelog": [
+      "weak model spec authoring ci gate regressions changelog"
     ],
     "weak model spec authoring deep review finding fixes changelog": [
       "weak model spec authoring deep review finding fixes changelog"

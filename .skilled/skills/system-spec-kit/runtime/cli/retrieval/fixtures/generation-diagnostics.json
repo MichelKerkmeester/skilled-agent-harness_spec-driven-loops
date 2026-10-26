@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7311,
-    "ok": 15408,
+    "ok": 15416,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26267,
+  "documentsScanned": 26275,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2facdf99aa6fcec2fc3038342f81036ce7e4dfc951b403179be7eac5fcd081e0",
+  "manifestHash": "cc187c987bd84dbd20b44db95b1093f111997d13e58b5055fe7e5b51e4c04845",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38021,
+      "ok": 38031,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -76011,6 +76011,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/scratch",
       "reason": "excluded directory"
     },
     {

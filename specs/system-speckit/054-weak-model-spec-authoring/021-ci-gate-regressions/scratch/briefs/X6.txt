@@ -1,0 +1,16 @@
+
+TASK X6. One file: .skilled/commands/speckit/assets/speckit-complete.yaml
+
+Edit 1, line 470. Replace exactly:
+"sk-code/sk-code-skilled/assets/checklists/{matching_target}_authoring.md"
+with exactly:
+"sk-code/sk-code-skilled/assets/checklists/{matching_target}-authoring.md"
+
+Edit 2, line 1123. Replace exactly:
+(assets/opencode/checklists/{skill,agent,command,mcp_server}_authoring.md)
+with exactly:
+(sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md)
+
+Change nothing else on either line or in the file. Keep indentation.
+
+Verify: `python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/speckit/assets/speckit-complete.yaml'));print('YAML OK')"` prints YAML OK, and `rg -n "_authoring|assets/opencode" .skilled/commands/speckit/assets/speckit-complete.yaml` prints nothing.

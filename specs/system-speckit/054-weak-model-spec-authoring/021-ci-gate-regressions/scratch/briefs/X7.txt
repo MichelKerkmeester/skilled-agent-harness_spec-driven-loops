@@ -1,0 +1,14 @@
+
+TASK X7. One file: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh
+
+Edit line 86 (inside the --help heredoc). Replace exactly:
+2=+checklist,
+with exactly:
+2=+acceptance-criteria (optional),
+
+The full line must read:
+LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+acceptance-criteria (optional), 3=+architecture guidance
+
+Change nothing else.
+
+Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --help | rg -n LEVELS` prints that line.

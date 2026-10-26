@@ -168,6 +168,7 @@ and findings belong here.
 | 018 benchmark redesign | Done | 9/9 AC; report review PASS; loop review PASS after fix check |
 | 019 follow-up fixes | Done | manifest test 2/2 with fsmonitor off; dirty sandbox re-prepared between rounds, refusal final; review P1 fixed |
 | 020 alignment audit fixes | Done | 46 findings (1 P0 CI import gate) fixed across 4 lanes; verifiers PASS; system-spec-kit 2.12.1.0 |
+| 021 ci gate regressions | Done | scratch skip: replay 7 graded, 0 scratch (was 111, 104); ratchet 9/9; comparison 17/17; v2.12.2.0, Hermes PASS 67 |
 
 ### Deviations and findings
 
