@@ -27,9 +27,9 @@ contextType: "general"
 | **Created** | 2026-10-26 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 9, the review closeout of the parent packet, built after every other phase |
+| **Phase** | 9 of 10, the review closeout of the parent packet, built after every phase but the alignment audit |
 | **Predecessor** | 008-runner-limit-closeout, and 006-measurement, which closed the packet before the review |
-| **Successor** | None |
+| **Successor** | 010-alignment-audit |
 | **Handoff Criteria** | The ten requirements pass on the branch head, the five-run timing record exists in `evidence/timing.json`, every phase folder passes `validate.sh --strict`, and the whole packet passes recursive strict validation |
 <!-- /ANCHOR:metadata -->
 

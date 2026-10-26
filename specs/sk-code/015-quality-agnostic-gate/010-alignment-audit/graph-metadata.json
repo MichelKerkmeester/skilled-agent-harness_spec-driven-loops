@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/010-alignment-audit",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/010-alignment-audit",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment audit",
+      "phase 10 alignment audit",
+      "sk-code-skilled alignment",
+      "readme and changelog currency",
+      "alignment audit plan",
+      "alignment audit lanes",
+      "alignment audit tasks",
+      "alignment audit finding ledger",
+      "alignment audit acceptance criteria",
+      "alignment audit goal",
+      "alignment audit decision record",
+      "alignment audit implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "audit",
+      "phase",
+      "sk-code-skilled",
+      "readme",
+      "changelog",
+      "currency",
+      "plan",
+      "lanes",
+      "tasks",
+      "finding",
+      "ledger"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/README.txt",
+      ".skilled/agents/code.md",
+      ".claude/agents/code.md",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+      ".skilled/commands/doctor/_routes.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-workflow-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-dist-freshness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "derive-command-bridges.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine phases changed hundreds of files across code, skills, playbooks, READMEs, workflows, commands and agents, and nobody had checked the whole set against the contracts that govern each file type",
+    "created_at": "2026-10-26T19:15:18Z",
+    "last_save_at": "2026-10-26T19:45:01.352Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab39735262a1313bc9973cfa54ef64e65b191bde86554cb44e33ddf10be35ed4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c80bf55621219eaa40078f7532c7b92ae3784c46b8ef6977b79804aaf8c01d34",
+      "plan.md": "0a98bbe38099dae7c3a67ae06cabc960ea76b783bc6040c5443ae21034da8fa3",
+      "tasks.md": "ff59520266335edc91b557d428c28dc77dd894f08060973e75b7e110fc659280",
+      "decision-record.md": "c5880d76edec60423c14810fa9d6f9efa53f534c9db49f62c784dfff3bd69dea",
+      "implementation-summary.md": "5f50701e9c08a263f3ddca81ee9a86542ec4907bc02c91cffa4bb8c1c3b346d7"
+    },
+    "last_active_at": null
+  }
+}

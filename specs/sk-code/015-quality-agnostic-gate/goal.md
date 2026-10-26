@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
-    last_updated_at: "2026-10-26T18:30:00Z"
+    last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 009, so all nine bound phases are Complete and every criterion holds"
-    next_safe_action: "Commit, then pin the 009 fix SHA"
+    recent_action: "Phase 010 closed, all ten phases Complete"
+    next_safe_action: "Operator commits the working tree"
     blockers: []
     key_files:
       - "spec.md"
@@ -74,6 +74,7 @@ phase and binds as if written here.
 | 007-checker-debt-closeout | `007-checker-debt-closeout/goal.md` |
 | 008-runner-limit-closeout | `008-runner-limit-closeout/goal.md` |
 | 009-review-closeout | `009-review-closeout/goal.md` |
+| 010-alignment-audit | `010-alignment-audit/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -88,8 +89,8 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [x] Recursive strict validation of the packet prints the pass line: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate --recursive --strict | tail -1` prints `RESULT: PASSED`.
-- [x] Every phase is Complete in the map: `grep -cE '^\| [1-9] \|.*\| Complete \|$' specs/sk-code/015-quality-agnostic-gate/spec.md` prints 9.
-- [x] Every phase folder holds a goal file, one for each binding row: `ls specs/sk-code/015-quality-agnostic-gate/00[1-9]-*/goal.md | wc -l` prints 9.
+- [x] Every phase is Complete in the map: `grep -cE '^\| ([1-9]|10) \|.*\| Complete \|$' specs/sk-code/015-quality-agnostic-gate/spec.md` prints 10.
+- [x] Every phase folder holds a goal file, one for each binding row: `ls specs/sk-code/015-quality-agnostic-gate/0[01][0-9]-*/goal.md | wc -l` prints 10.
 - [x] Both quality suites exit 0: `node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` and `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh`. The node suite includes the foreign fixture F01, a repository with no `.skilled/` tree, which must come out BLOCKED.
 - [x] The runner resolves this repository to SKILLED: `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --files .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh --format json | grep -c '"SKILLED"'` prints 1 or more.
 - [x] The consumers read the envelope: `grep -c checker_outputs .skilled/skills/sk-code/shared/references/workflow-verify.md` prints 1 or more, and `grep -c 'Quality Gate:' .skilled/agents/code.md` prints 1 or more.
@@ -112,7 +113,8 @@ and findings belong here.
 | Parent spec and goal authored | Done | The parent spec carries the eight-row phase map and this goal binds all eight phases |
 | Phases 001 to 008 | Done | Every row of the spec phase map reads Complete, and each phase passed `validate.sh --strict` on its own folder before landing |
 | Phase 009 | Done | Complete 2026-10-26 on the final tree: all sixteen acceptance criteria `Met` and `validate.sh --strict` on the folder printed `RESULT: PASSED`. Its fix SHA pin, CHK-FIX-007, is recorded at commit |
-| Completion criteria | Done | Run 2026-10-26: the phase map count and the goal file count each printed `9`, the node suite and `check-comment-hygiene.test.sh` exited 0 with F01 `ok`, the SKILLED count printed `2`, the two consumer counts printed `1` and `1`, and the recursive strict run printed `RESULT: PASSED` |
+| Phase 010 | Done | Complete 2026-10-26: the alignment audit ran four lanes over 705 files and fixed or recorded 47 findings, the CI routing fix closed AC-006, and a repo-rules audit kept and closed 5 findings. All eighteen acceptance criteria read `Met`. Its record is `010-alignment-audit/tasks.md` |
+| Completion criteria | Done | Run 2026-10-26 after phase 010 closed: the phase map count printed `10` and the recursive strict run printed `RESULT: PASSED`. The other criteria carry their phase 9 readings: the node suite and `check-comment-hygiene.test.sh` exited 0 with F01 `ok`, the SKILLED count printed `2` and the two consumer counts printed `1` and `1` |
 
 ### Deviations and findings
 
@@ -122,5 +124,6 @@ and findings belong here.
 | Design line cites | Re-checked against the tree after commits `2d068d4b7f` and `c3ca0efaa9`. Every cite this packet repeats still holds. |
 | Two closeout phases | Phases 007 and 008 were added to close the checker and runner limitations that phases 001 and 002 recorded. The binding table and the two count criteria were widened from six phases to eight to match, as an amendment to this goal. |
 | Operator decisions | Six decisions took the design defaults. They are recorded as ADRs in spec.md section 5. The operator confirmed all six on 2026-10-26 and none was reversed, so their status now reads Accepted, confirmed by the operator 2026-10-26. |
+| Alignment audit phase | Phase 010 was added for the operator's ten alignment questions of 2026-10-26. The binding table and the two count criteria were widened from nine phases to ten as an amendment to this goal. The phase-count criterion reads open until phase 010 is Complete, and the goal file count reads 10 |
 | Review closeout phase | Phase 009 was added for the review recommendations the operator accepted on 2026-10-26 ("Go, all is accepted as recommended"). The binding table and the two count criteria were widened from eight phases to nine to match, as an amendment to this goal. |
 <!-- /ANCHOR:log -->

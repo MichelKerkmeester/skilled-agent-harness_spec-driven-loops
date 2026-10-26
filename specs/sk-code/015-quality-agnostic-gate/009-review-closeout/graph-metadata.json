@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The review found that the gate still trusts too much and claims too much in a few places",
     "created_at": "2026-10-26T15:21:47Z",
-    "last_save_at": "2026-10-26T17:32:51.563Z",
+    "last_save_at": "2026-10-26T19:30:13.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ee57bd8a55c7cc9ba148e61dadd0c6c6e1ba12bfedb667f7a750bd6baa909f6",
+    "source_fingerprint": "sha256:cacf2747305ba58d5223acf59461796e0492fe025c90ba0701ce723a0cc08766",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d480792c6e2dc1d3f2792d56d99593dafe8dc4e6488b0a3019241c870570e92e",
+      "spec.md": "41cfb83e5a5816932051257c1d1783584babfd6c8742c9e5962505305de3ec47",
       "plan.md": "d55f28f74eab16e8b8bf4dc30caab5172171fc987520a84bd16d2f3745bafbb3",
       "tasks.md": "69799cf5c815aa29d4c2de278c894628e58d2fe085a3ea570cc527effd6295c5",
       "decision-record.md": "029f7a200b48be97eccb45412da915784cec658b2cdf302f9d9d77c80374a5d4",
