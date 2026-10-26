@@ -1,0 +1,25 @@
+
+TASK T010. Edit exactly one file:
+specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/summarize.py
+
+Read the whole file first. In the "Paired difference per round" table (around lines 127-165), add a paired
+output-token verdict next to the existing seconds verdict. Change nothing else.
+
+1. Next to `diffs` (seconds, line ~145), build `tdiffs` the same way from "tok_out":
+   tdiffs = [num(vv[rd], "tok_out") - num(bv[rd], "tok_out") for rd in rounds
+             if rd in bv and rd in vv and num(vv[rd], "tok_out") is not None and num(bv[rd], "tok_out") is not None]
+   Check how `num` handles a missing value first and match it.
+2. tok verdict rule: "REAL (more)" when len(tdiffs) >= 4 and min(tdiffs) > 0; "REAL (fewer)" when
+   len(tdiffs) >= 4 and max(tdiffs) < 0; otherwise "INCONCLUSIVE".
+3. Add two columns at the end of the table: "tok_out pairs" and "tok_out verdict". Update the header row, the
+   `"|" + "---|" * 15` separator count, every printed row (including the NA row at line ~165), so every row has the
+   same column count.
+4. Add one sentence to the explanation paragraph (lines ~128-131): "The tok_out verdict is REAL only with at least
+   4 valid pairs that all share one sign; otherwise INCONCLUSIVE."
+
+Verify, from the repository root, and paste the outputs in your reply:
+  python3 -m py_compile specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/summarize.py; echo rc=$?
+  python3 -I specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/summarize.py specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261026T140632Z-79914/results.tsv | rg -c 'tok_out verdict'
+  python3 -I specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/summarize.py specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261026T140632Z-79914/results.tsv | rg '^\| author \| refined \| now054'
+The first prints rc=0, the second at least 1, the third one row ending in "| 3 | INCONCLUSIVE |".
+Do not write the output anywhere; do not touch summary.md files.

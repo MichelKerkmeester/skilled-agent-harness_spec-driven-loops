@@ -1,0 +1,24 @@
+TASK TC. One file, edited IN PLACE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+(the card is not read by the validator, so do not use the staging folder for it). Read the whole card first.
+1. A. Example swap at the SWEEP lines for the card (97, 99, 100, 111: the section 6 Step example and the section 7
+   task-line example). Keep the card's real instructions: line 35 (run recommend-level.sh) and the `validate.sh --quiet`
+   lines are real tool use and stay.
+2. Phase 016 task T014, as written in specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/tasks.md
+   line 63 and that folder's spec.md decision: section 6 no longer asks for `### Step` blocks. Rewrite section 6 so a
+   plan names its 3 or 4 phases in one line each (matching the plan template's phases fill note: "Point to tasks.md and
+   name the three phases in one line"), and the per-step Acceptance and Verify lines live on the task lines in tasks.md
+   (section 7). Keep section 6's one-action-one-acceptance-one-command shape for its own Acceptance and Verify lines,
+   with a Verify command that checks the plan without `### Step` (for example `rg -n '^## 4' <packet folder>/plan.md`).
+   In section 11, drop the bullet about the feature needing more than 4 plan steps, or reword it to "more than 4 phases".
+   Make sure no line still contains `### Step` or "plan steps".
+3. Phase 017 task T015, as written in specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/tasks.md
+   line 60: in section 9 add one sentence that a Draft run repairs derived metadata itself (validate applies
+   repair-derived.cjs --apply once, prints what it rewrote and validates again; SPECKIT_DRAFT_AUTO_REPAIR=0 turns it off);
+   in section 5 add one bullet or sentence that spec.md's Measured Behavior block holds the command and its verbatim
+   output, and every number about current behavior quotes it.
+Keep the card at most 260 lines. Never write an em dash.
+Verify (repo root), paste outputs:
+  rg -n '### Step|plan steps' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md   (prints nothing)
+  rg -c -e 'rotate-logs' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md         (prints at least 1)
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | tail -1                          (prints CARD SYNC OK)
+  wc -l < .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md                         (at most 260)

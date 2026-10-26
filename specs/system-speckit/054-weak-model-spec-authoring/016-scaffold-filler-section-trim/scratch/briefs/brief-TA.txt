@@ -1,0 +1,7 @@
+TASK TA. Six files under specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/: handover.md.tmpl, debug-delegation.md.tmpl, goal.md.tmpl,
+acceptance-criteria.md.tmpl, timeline.md.tmpl, decision-record.md.tmpl.
+A. Example swap at the SWEEP lines for each of these six files.
+B. Stamp v2.4 for acceptance-criteria.md.tmpl only. No stamp change for the other five.
+Verify (repo root), paste outputs:
+  rg -c -e '--quiet' -e 'recommend-level' -e '17-line' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/handover.md.tmpl specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/debug-delegation.md.tmpl specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/goal.md.tmpl specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/acceptance-criteria.md.tmpl specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/timeline.md.tmpl specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/decision-record.md.tmpl   (prints nothing)
+  rg -c '\| v2.4 -->' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/acceptance-criteria.md.tmpl   (prints 1)

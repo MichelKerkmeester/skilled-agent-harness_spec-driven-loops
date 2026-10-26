@@ -1,0 +1,23 @@
+
+SHARED CONTEXT (read before your task).
+ST = specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates
+  ST is a staged copy of .skilled/skills/system-spec-kit/templates. Edit template files ONLY under ST, never the live
+  .skilled/.../templates copy (a validation census is reading it). The conductor copies ST back later.
+SWEEP = specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/scratch/example-sweep.md
+  Its table lists, per template file, the line numbers (in the unedited file) whose fill-note examples name the old
+  example task. Line numbers in SWEEP match the staged files before you edit them.
+
+A. EXAMPLE SWAP. The templates' fill notes used one worked example: adding a `--quiet` flag to
+   `recommend-level.sh` (words such as `--quiet`, recommend-level, "17-line report", "prints 1 and 17", "the same 40 ms
+   run", "callers already pass flags", "Does `--quiet` suppress warnings?"). Replace that story everywhere SWEEP lists,
+   with ONE neutral example used consistently:
+     a `--keep <n>` option for `scripts/rotate-logs.sh`, which deletes all but the newest n archives in `logs/archive/`.
+     Proof: with 10 archives, `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run.
+     A missing value exits 2.
+   Rules: change only the example text inside fill notes. Every fill note keeps its instruction and its
+   "GOOD: ... WEAK: ..." shape; the GOOD example stays concrete and checkable, the WEAK example stays vague.
+   Do not touch anything that is not an example of the old story.
+B. STAMP. Where your brief says so, change `| v2.3 -->` to `| v2.4 -->` on every SPECKIT_TEMPLATE_SOURCE line of that file.
+C. Tokens look like `[YOUR_VALUE_HERE: short hint]`. Keep `<!-- IF ... -->` conditional blocks balanced.
+Never write an em dash. Do the SWEEP swaps first (by the listed line numbers), then the structural edits (match by text,
+since line numbers shift). Report each change with file:line.

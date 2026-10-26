@@ -1,0 +1,15 @@
+TASK TP. One file: specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/plan.md.tmpl.
+1. A. Example swap at the SWEEP lines for templates/core/plan.md.tmpl.
+2. Phase 016 tasks T005, T006, T007 and T008, exactly as written in
+   specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/tasks.md lines 54-57 (read them,
+   and that folder's spec.md for the decisions): replace the DoD line "Tests passing (if applicable)" with one token for
+   the test command and its expected output; replace the "Phase 1.5 (Config)" phase-dependency sample with the line
+   `Setup ──► Implementation ──► Verification` plus token table rows; remove the whole L2 effort-estimation section
+   (anchor `effort`); remove the whole L2 enhanced-rollback section (anchor `enhanced-rollback`). Remove a section with
+   its anchor pair, its heading, its fill note and the `---` divider that belonged to it, leaving one divider between
+   the neighbours.
+3. B. Stamp v2.4.
+Verify (repo root), paste outputs:
+  rg -n 'Tests passing|Phase 1.5|Config\)|ANCHOR:effort|ANCHOR:enhanced-rollback|Feature flag configured' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/plan.md.tmpl   (prints nothing)
+  rg -c -e '--quiet' -e 'recommend-level' -e '17-line' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/plan.md.tmpl   (prints nothing or 0)
+  rg -c '\| v2.4 -->' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/plan.md.tmpl                                      (prints at least 1)

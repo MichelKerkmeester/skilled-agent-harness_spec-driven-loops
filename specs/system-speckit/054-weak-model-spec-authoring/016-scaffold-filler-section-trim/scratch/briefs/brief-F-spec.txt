@@ -1,0 +1,17 @@
+TASK F-spec. One file: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl.
+1. Line ~404: "added `--keep <n`." is missing the closing `>`; make it "`--keep <n>`".
+2. Lines ~310, ~415, ~425 say "`--keep 0` ... exits 2". Change each so the exit-2 case is a missing `--keep` value, the
+   only exit-2 case in the story (for `--keep 0` either drop the claim or state it deletes every archive only if the note
+   needs a boundary; prefer dropping).
+3. Lines ~253 and ~258 (edge cases FILL): "Empty input: the script exits 2 with usage" reads like an empty archive folder.
+   Make the GOOD example say "Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over
+   10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage."
+4. Lines ~207 and ~212: replace "adds no measurable time" / the under-one-second bound with the single timing claim
+   "adds under 5 ms to a run".
+5. The three edge-case token lines (~261-263, "Empty input:", "Maximum input:", "Failure path:") sit outside the
+   edge-cases anchor. Read the whole edge-cases region including its ANCHOR and IF lines, and move the token lines so
+   they sit inside the `edge-cases` anchor, rendered at the same levels as the heading. Check that a Level 2 render and a
+   Level 3 render each get the heading, the fill note and the three lines exactly once.
+Verify (repo root), paste outputs:
+  rg -n -e '--keep <n`' -e '--keep 0' -e 'no measurable time' .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl   (prints nothing)
+  for f in spec plan tasks; do printf "%s %s %s\n" $f $(rg -c '<!-- IF ' .skilled/skills/system-spec-kit/templates/core/$f.md.tmpl) $(rg -c '<!-- /IF' .skilled/skills/system-spec-kit/templates/core/$f.md.tmpl); done   (open equals close)

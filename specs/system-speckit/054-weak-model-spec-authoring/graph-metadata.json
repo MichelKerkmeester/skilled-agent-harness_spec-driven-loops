@@ -17,7 +17,11 @@
     "system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research",
     "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment",
     "system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements",
-    "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep"
+    "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep",
+    "system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization",
+    "system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim",
+    "system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata",
+    "system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure"
   ],
   "manual": {
     "depends_on": [],
@@ -116,6 +120,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -140,12 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -153,12 +157,6 @@
       },
       {
         "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -184,17 +182,17 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-26T13:23:57.681Z",
+    "last_save_at": "2026-10-26T17:40:43.172Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:44cce83d42478aeeba011f240aab5a57a503d89af0d099f69e45ea34e3077a0c",
+    "source_fingerprint": "sha256:35b016a2d4ec8cc8697c56099353a06241c80c1f3db70b8ae77cd00a14114fde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c978e3986914e20566231b7943071eabf0d083b36215041d36a1a7a3b24648ba"
+      "spec.md": "721e8c971217df0d5a11cfc6e53ac4282c10a2aea88062dee6fab5dab8012970"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
     "last_active_at": "2026-10-25T21:42:09.493Z"

@@ -1,0 +1,7 @@
+
+TASK D1. S = .skilled/skills/system-spec-kit. The validator registry gains one rule, MEASURED_BEHAVIOR, so it now
+holds 42 rules. Edit only S/README.md. Read it first.
+Replace every "41-rule registry" with "42-rule registry" (lines 63, 136, 463 and 618 today). Change nothing else.
+Verify from the repository root and paste the output:
+  rg -n '41-rule registry' .skilled/skills/system-spec-kit --glob '!**/node_modules/**'    (prints nothing)
+  rg -c '42-rule registry' .skilled/skills/system-spec-kit/README.md                         (prints 4)

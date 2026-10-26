@@ -1,0 +1,23 @@
+
+TASK R1: the validator registry now holds 42 rules, not 41. Update the count in two files.
+
+Facts: `.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` holds 42 rules:
+23 authored-template, 13 operational-runtime and 6 structural.
+
+Edits, exactly these five lines, nothing else:
+
+1. `.skilled/skills/system-spec-kit/ARCHITECTURE.md` line 185:
+   replace `the 41 rules` with `the 42 rules`, and
+   replace `(22 authored-template, 14 operational-runtime and 6 structural)` with
+   `(23 authored-template, 13 operational-runtime and 6 structural)`.
+2. `README.md` (repository root) line 148: replace `41 rules` with `42 rules`. This line is inside an
+   ASCII box; keep every other character, so the box border stays aligned.
+3. `README.md` line 373: replace `runs 41 rules` with `runs 42 rules`.
+4. `README.md` line 378: replace `run 41 validation rules` with `run 42 validation rules`.
+5. `README.md` line 738: replace `41 validation rules` with `42 validation rules`.
+
+Verify, and print both outputs in your report:
+  rg -n -i '\b41 (rules|validation rules)|22 authored-template|14 operational' README.md .skilled/skills/system-spec-kit/ARCHITECTURE.md
+  (expected: no output)
+  rg -n '42 (rules|validation rules)|23 authored-template' README.md .skilled/skills/system-spec-kit/ARCHITECTURE.md
+  (expected: 5 lines)

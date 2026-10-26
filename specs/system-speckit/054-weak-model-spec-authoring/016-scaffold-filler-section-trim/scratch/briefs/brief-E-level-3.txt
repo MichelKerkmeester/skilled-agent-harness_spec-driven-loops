@@ -1,0 +1,24 @@
+TASK E-level-3. Edit IN PLACE only the files under .skilled/skills/system-spec-kit/templates/examples/level-3/ (examples are not
+read by the validator). Read the example's spec.md, plan.md and tasks.md first. This example is a filled "Add User
+Authentication" packet; keep its story and content.
+1. spec.md: right after the line that closes the `problem` anchor, add a filled Measured Behavior block:
+     <!-- ANCHOR:measured-behavior -->
+     ### Measured Behavior
+     a fenced `text` block with one realistic command for this example's current behavior and its verbatim output
+     (for example a curl call to the login endpoint and its current 404 or 200 response line), then one sentence
+     saying which number or line the spec quotes from it.
+     <!-- /ANCHOR:measured-behavior -->
+   No H2 heading, not inside another anchor.
+2. plan.md: remove the whole effort-estimation section (anchor `effort`) and the whole enhanced-rollback section (anchor
+   `enhanced-rollback`) if present, each with its anchor pair, heading and its `---` divider, leaving one divider between
+   the neighbours. Keep phase-deps as filled content.
+3. tasks.md: if a fix-completeness section exists, rename its header to `## FIX ADDENDUM: FIX COMPLETENESS` and keep its
+   content. If a sign-off section names Technical Lead, Product Owner and QA Lead as three rows, keep it as filled content
+   (examples stay filled).
+4. spec.md edge cases: keep the filled content, but drop rows about external service failure, network timeout or session
+   expiry only if they are generic placeholders; filled, example-specific rows stay.
+Never write an em dash. Do not touch description.json or any file outside this example folder.
+Verify (repo root), paste outputs:
+  rg -c 'ANCHOR:measured-behavior' .skilled/skills/system-spec-kit/templates/examples/level-3/spec.md   (prints 2)
+  rg -n 'ANCHOR:effort|ANCHOR:enhanced-rollback' .skilled/skills/system-spec-kit/templates/examples/level-3/plan.md   (prints nothing)
+The conductor runs check-example-drift.sh after the template copy-back; do not run it (the live templates are not updated yet).

@@ -1,0 +1,1626 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/resource-map-extractor.vitest.ts (4 tests) 12ms
+ ✓ runtime/tests/progressive-validation.vitest.ts (50 tests) 175696ms
+       ✓ Level 1 detect runs and produces output  3494ms
+       ✓ Level 1 detect identifies missing files  1955ms
+       ✓ Level 1 detect with --json produces JSON output  2342ms
+       ✓ Level 1 does not modify files  2422ms
+       ✓ YYYY-MM-DD placeholder replaced with an ISO date  3040ms
+       ✓ [DATE] placeholder replaced with an ISO date  2529ms
+       ✓ date: TBD replaced with an ISO date  2421ms
+       ✓ headings starting at H2 are shifted to start at H1  2270ms
+       ✓ sub-heading levels are preserved relatively after normalization  2729ms
+       ✓ files already starting at H1 are not modified by heading fix  2822ms
+       ✓ trailing whitespace is trimmed from lines  2607ms
+       ✓ CRLF line endings are normalized to LF  2549ms
+       ✓ file ends with a newline after normalization  3120ms
+       ✓ JSON output includes autoFixes section with diffs  9957ms
+       ✓ each auto-fix item has type and description  7287ms
+       ✓ human-readable output mentions auto-fix activity  2357ms
+       ✓ Level 3 runs suggest phase for issues  6692ms
+       ✓ Level 4 with --json includes suggestions array  6846ms
+       ✓ suggestions include remediation guidance  6683ms
+       ✓ Level 4 JSON report has expected top-level keys  6727ms
+       ✓ Level 4 human report includes summary section  7366ms
+       ✓ Level 4 quiet mode produces single-line result  6599ms
+       ✓ report correctly reflects dry-run state  7042ms
+       ✓ exit code 2 for missing required files (errors)  2490ms
+       ✓ exit code in {0, 1, 2} for valid folder  2173ms
+       ✓ exit codes are consistent between levels  9935ms
+       ✓ exit code 2 with --strict mode when warnings exist  2179ms
+       ✓ --dry-run does not modify files  2555ms
+       ✓ --dry-run still shows what would be changed  2470ms
+       ✓ --dry-run JSON report shows count of proposed fixes  6987ms
+       ✓ files are unmodified after dry-run with whitespace issues  2545ms
+       ✓ validate.sh still works independently  2177ms
+       ✓ validate.sh --json produces valid JSON  2090ms
+       ✓ validate.sh error exit codes are unchanged  2520ms
+       ✓ level 1 only runs detect (no auto-fix)  2276ms
+       ✓ multiple auto-fix types can apply to the same file  9269ms
+       ✓ empty spec folder (no .md files) handled gracefully  2610ms
+       ✓ level 2 runs both detect and auto-fix  2892ms
+       ✓ level 2 propagates detect errors when required files are missing  2423ms
+       ✓ level 3 runs detect, auto-fix, and suggest  8618ms
+       ✓ level 4 is the default when no --level specified  7458ms
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts (170 tests) 178746ms
+     ✓ tolerates a non-zero pi exit when artifacts are present, but still fails a pi run that produced none  2341ms
+     ✓ completes a hermetic live cli-codex leaf with top-level search argv  1008ms
+     ✓ rejects an unsupported policy before the pool or executor spawn is touched  350ms
+     ✓ feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool  6401ms
+     ✓ exits 0 and emits ok JSON for native fanout through opencode command dispatch  1065ms
+     ✓ passes the absolute lineage path to native dispatch when the base path is relative  1046ms
+     ✓ logs and falls back to flat_pool when wave assignment is requested  958ms
+     ✓ replays a native fanout cassette with a stable normalized run envelope  1725ms
+     ✓ exits 3 (INPUT_VALIDATION) when the fan-out schema is invalid  348ms
+     ✓ creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages  1424ms
+     ✓ dispatches a cli-opencode lineage with no explicit sandboxMode without throwing, and records danger-full-access as effective  936ms
+     ✓ sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions  1872ms
+     ✓ expands a single count>1 executor into replicas each receiving a distinct SPECKIT_OPENCODE_STATE_DIR  1487ms
+     ✓ records exit 3 (all failed) when the only lineage exits non-zero  991ms
+     ✓ retries a salvage-miss lineage once and exits ok when the retry succeeds  2337ms
+     ✓ treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)  1557ms
+     ✓ classifies an exit-0 question as needs_input without retry  1204ms
+     ✓ classifies a current-attempt projection refusal as fatal without retrying  1189ms
+     ✓ carries a pre-append provenance refusal through with its own code, without retrying  1127ms
+     ✓ fails a CLI lineage whose state log has rows but whose ledger has none, without retrying  1070ms
+     ✓ records exit 2 (some failed) when one of two lineages exits non-zero  1680ms
+     ✓ resolves a lineage with complete artifacts and a containment violation, carrying an advisory status  11258ms
+     ✓ completes the lineage with a containment advisory for the stray file, which survives byte-for-byte  8890ms
+     ✓ lets the --containment-mode flag override the fan-out config value, and rejects an unknown value  19084ms
+     ✓ reports an out-of-scope write from a lane that exits non-zero and keeps it failed  9227ms
+     ✓ reports an out-of-scope write from a lane that produced no artifacts and keeps it failed  8620ms
+     ✓ a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore  11105ms
+     ✓ churn at or below the threshold leaves the requested restore mode alone  12084ms
+     ✓ a neighbour dirtying one path per heartbeat trips the cumulative arm without any burst  12911ms
+     ✓ overlaps the lineage sleeps: concurrency 2 saves ~one sleep versus a serial run of the same lineages  12111ms
+     ✓ writes a stopped partial orchestration summary when SIGTERM interrupts an in-flight run  952ms
+     ✓ persists a pre-dispatch checkpoint and delays lineage launch until it expires  1549ms
+     ✓ resumes a future checkpoint before dispatching lineages  1520ms
+     ✓ migrates legacy checkpoints without wait fields to the null state  1061ms
+     ✓ emits a stall_detected alert when a lineage event stream goes quiet  1245ms
+     ✓ detects a silent child even while host progress heartbeats continue  1130ms
+     ✓ emits progress events for a long lineage when cadence is configured  2029ms
+     ✓ does not emit progress events when cadence is left disabled  1901ms
+     ✓ halts an over-budget lineage before spawning the executor  383ms
+     ✓ halts the whole run before spawning any executor when the aggregate budget is exceeded  389ms
+     ✓ records skippedCount 0 and slotDurationMs for a fast completed lineage  976ms
+     ✓ records missed fixed-rate slots without launching catch-up lineages  5313ms
+     ✓ omits --variant from opencode argv when reasoningEffort is unset  1159ms
+     ✓ includes --variant in opencode argv when reasoningEffort is set  985ms
+     ✓ adds config.maxIterations to the prompt when lineage.iterations is set (A3)  995ms
+     ✓ omits config.maxIterations from the prompt when iterations is null (A3)  1046ms
+     ✓ passes an absolute lineage directory to the prompt when the base artifact dir is relative  954ms
+     ✓ reuses the stored session id of a resumed lineage  935ms
+     ✓ stamps the dispatched CLI seat env with its kind when the parent stack is empty  1069ms
+     ✓ appends the kind onto an existing parent dispatch stack (cross-kind chain)  945ms
+     ✓ preserves per-replica state-dir + lineage-id env after the dispatch-env allowlist filter  942ms
+     ✓ demonstrates the guard end-to-end: the stamped kind is detected as same-kind recursion  924ms
+     ✓ injects expanded CLAUDE_CONFIG_DIR for a cli-claude-code lineage with configDir  1083ms
+     ✓ leaves CLAUDE_CONFIG_DIR absent when configDir is unset  958ms
+     ✓ completes the run and records a containment_git_contention warning naming the status call  6166ms
+     ✓ warns on the ledger with the lane label and the delta finding count  1017ms
+     ✓ stays silent for a review lane whose registry carries open findings  1005ms
+     ✓ stays silent for a research lane whose registry carries key findings  1100ms
+ ✓ ../system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts (38 tests) 76832ms
+     ✓ exposes an exact merit-only payload with assignment-local labels  924ms
+     ✓ normalizes presentation-only style and records source/presentation digests  924ms
+     ✓ rejects producer-equivalent self-scoring before a raw event is appended  305ms
+     ✓ rejects producer-equivalent and eligibility-changing submission profiles  948ms
+     ✓ exposes no proof-free append path for adjudication evidence  435ms
+     ✓ records mirrored raw evidence, reaches a stable verdict, and replays exactly  8248ms
+     ✓ rejects forged complete-verdict evidence, graph, and authority fields  9343ms
+     ✓ classifies an order-sensitive counterfactual as unstable without a winner  3012ms
+     ✓ fails closed when a required probe or mirrored judgment is missing  1736ms
+     ✓ requires the complete council probe policy at admission and reduction  3088ms
+     ✓ preserves ties and hard vetoes instead of forcing a preference  3257ms
+     ✓ rejects forged assignments and appends no accepted raw score  901ms
+     ✓ rejects forged opaque labels and identity-derived weighting fields  877ms
+     ✓ keeps both request adapters typed and preserves verdict status without re-reduction  7976ms
+     ✓ returns the exact legacy result after recording a non-authoritative shadow comparison  8387ms
+     ✓ denies premature deblinding and records the denied audit without identities  574ms
+     ✓ requires external authorization and releases only the audited post-verdict scope  17408ms
+     ✓ appends invalidation without deleting the original verdict or raw evidence  8332ms
+ ✓ ../system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts (18 tests) 72169ms
+     ✓ returns the phase-007 claim ID on retry and concurrent exact mint requests  2075ms
+     ✓ accepts only the earliest equivalent mint decision and explicitly conflicts the other  2041ms
+     ✓ rejects wrong-kind and coordinate-like substitutes for the durable key  1121ms
+     ✓ reuses an exact fingerprint without minting a second claim identity  3149ms
+     ✓ reuses a paraphrase deterministically and mints an explicitly distinct neighbor  6634ms
+     ✓ blocks remint and attachment for multiple, weak, cross-namespace, and disputed matches  8315ms
+     ✓ retains duplicate-source provenance while only independent support changes status  3671ms
+     ✓ enforces the proposed-active-retracted transition table with exact retries  3577ms
+     ✓ keeps lifecycle and epistemic status orthogonal through contradiction, refutation, and retraction  6975ms
+     ✓ uses compensating correction events and retains the voided evidence record  3656ms
+     ✓ rejects a second correction before append and keeps the ledger healthy  7182ms
+     ✓ gives a materially different successor a new identity without rewriting its predecessor  5720ms
+     ✓ recovers claim registration after identity mint succeeds and claim append crashes  1999ms
+     ✓ produces identical incremental and full replay state and projection hashes  5907ms
+     ✓ round-trips resume and handover and rejects a stale claim cursor  3945ms
+     ✓ rejects wrong-kind, missing, and ambiguous active references before new work  3589ms
+     ✓ reports divergence while returning the exact authoritative legacy result  2302ms
+     ✓ denies claim events without the isolated dark write capability  309ms
+ ✓ ../system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts (16 tests) 55574ms
+     ✓ allows one independent-process holder and preserves monotonic reclaim  645ms
+     ✓ rejects every stale protected mutation at commit without changing the accepted fold  6300ms
+     ✓ fences a two-process branch worker after the parent revokes its lease  5079ms
+     ✓ persists the held ledger fence on a committed branch mutation  2238ms
+     ✓ admits only the current wave, uses the full cap, and preserves pool settlement order  13853ms
+     ✓ rejects a cached pool item that fails the runtime validator  1298ms
+     ✓ requires durable close-and-advance authorization before a later wave opens  2265ms
+     ✓ retains the shipped pool retry classification and retry ownership semantics  5542ms
+     ✓ fails closed instead of collapsing non-canonical results onto a fallback digest  2522ms
+     ✓ reconstructs a partial wave and dispatches only its unsatisfied member after restart  5442ms
+     ✓ reconstructs ownership and wave authority after every durable boundary  5711ms
+     ✓ treats an accepted result as resume-complete after a crash before terminal transition  2762ms
+     ✓ fails closed on manifest and wave-plan drift during restart  1834ms
+ ✓ ../system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts (54 tests) 46054ms
+     ✓ certifies and deduplicates the 'phase-enter' boundary  900ms
+     ✓ certifies and deduplicates the 'phase-pause' boundary  861ms
+     ✓ certifies and deduplicates the 'phase-resume' boundary  752ms
+     ✓ certifies and deduplicates the 'phase-completion' boundary  861ms
+     ✓ certifies and deduplicates the 'phase-abort' boundary  844ms
+     ✓ certifies and deduplicates the 'phase-handoff' boundary  834ms
+     ✓ certifies and deduplicates the 'mode-enter' boundary  738ms
+     ✓ certifies and deduplicates the 'mode-pause' boundary  748ms
+     ✓ certifies and deduplicates the 'mode-resume' boundary  796ms
+     ✓ certifies and deduplicates the 'mode-completion' boundary  801ms
+     ✓ certifies and deduplicates the 'mode-abort' boundary  762ms
+     ✓ certifies and deduplicates the 'mode-handoff' boundary  747ms
+     ✓ issues one durable receipt after the exact committed result and head  627ms
+     ✓ returns the original receipt on exact retry without another frame  799ms
+     ✓ verifies after provider reconstruction and rejects any fact mutation  680ms
+     ✓ fails closed for unknown providers and advisory process-local profiles  642ms
+     ✓ rejects reused boundary identity with changed result or signer metadata  1108ms
+     ✓ makes intent visible through the verified reader before adapter invocation  580ms
+     ✓ does not return success when target application precedes a missing confirmation  353ms
+     ✓ deduplicates concurrent and later exact calls to one external mutation  752ms
+     ✓ elects one subprocess execution owner across independent gateway processes  683ms
+     ✓ elects one atomic-file execution owner across independent gateway processes  742ms
+     ✓ refuses an adapter-returned success that has no external status proof  400ms
+     ✓ records changed logical-effect facts as conflict without another mutation  1025ms
+     ✓ rejects an orphan confirmation before it can certify any effect  330ms
+     ✓ rejects confirmation reuse when adapter facts do not match the intent  626ms
+     ✓ rejects duplicate confirmations instead of accepting the first match  1077ms
+     ✓ deduplicates response loss after durable confirmation without replay  694ms
+     ✓ recovers an adapter interruption without losing the durable intent  1299ms
+     ✓ recovers post-intent/pre-effect as not_applied and executes once with the same key  1289ms
+     ✓ recovers post-application/pre-confirmation as applied without replay  1200ms
+     ✓ records successful not_applied recovery with confirmed terminal status  1156ms
+     ✓ records successful applied recovery with confirmed terminal status  919ms
+     ✓ records in_doubt and requires operator action without replay or confirmation  1384ms
+     ✓ reconciles a repeated operator resolution after a post-execution crash  2516ms
+     ✓ records conflicting target evidence and performs no mutation  960ms
+     ✓ applies the not_applied recovery verdict to logical subprocess evidence  1219ms
+     ✓ applies the applied recovery verdict to logical subprocess evidence  1186ms
+     ✓ applies the in_doubt recovery verdict to logical subprocess evidence  924ms
+     ✓ applies the conflict recovery verdict to logical subprocess evidence  910ms
+     ✓ applies the not_applied recovery verdict to atomic file evidence  1108ms
+     ✓ applies the applied recovery verdict to atomic file evidence  2046ms
+     ✓ applies the in_doubt recovery verdict to atomic file evidence  1186ms
+     ✓ applies the conflict recovery verdict to atomic file evidence  922ms
+     ✓ rejects stale recovery claims and stops after the bounded retry budget  1784ms
+     ✓ publishes files atomically and reconciles by content rather than process state  711ms
+     ✓ uses logical subprocess outcome evidence and refuses missing reconciliation capability  683ms
+     ✓ derives byte-stable replay fingerprints over receipt and effect records  1487ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts (20 tests) 48517ms
+     ✓ registers and seals every Deep Review lifecycle kind through the shared store  652ms
+     ✓ rejects combinator-joined prose while accepting structured selector controls  380ms
+     ✓ builds byte-identical complete review sets and shared replay inputs  9846ms
+     ✓ rejects missing, reordered, and unknown lifecycle artifacts  17963ms
+     ✓ rejects a binding that does not match its verified creation evidence  8790ms
+     ✓ rejects stale context and post-build corruption during replay  10383ms
+ ✓ ../system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts (38 tests) 52050ms
+     ✓ keeps the fingerprint stable across a hostile-collation child process  1503ms
+     ✓ emits byte-identical descriptors and final digests across repeated derivations  1002ms
+     ✓ returns trusted projection only through the same API for both consumers  1397ms
+     ✓ fails closed on covered-frame mutation  1294ms
+     ✓ fails closed on covered-frame deletion  1222ms
+     ✓ fails closed on covered-frame insertion  1295ms
+     ✓ fails closed on covered-frame reorder  2222ms
+     ✓ surfaces requested range drift without selecting another attestation  1790ms
+     ✓ surfaces envelope registry drift independently of upcasters  1287ms
+     ✓ surfaces upcaster registry drift before the aggregate envelope digest  1294ms
+     ✓ surfaces reducer identity drift  1307ms
+     ✓ surfaces projection schema drift  1324ms
+     ✓ rejects a claimed config digest that differs from the content supplied to reducers  1023ms
+     ✓ surfaces projection byte drift under the same registered identities and inputs  2322ms
+     ✓ surfaces an effective-event digest mismatch from an authorized false claim  2193ms
+     ✓ rejects missing ledger-addressed replay inputs before projection trust  1321ms
+     ✓ rejects a reducer that produces different bytes on repeated reduction  1355ms
+     ✓ surfaces authorization linkage mutation in authorization_linkage  1367ms
+     ✓ surfaces observed versions mutation in observed_event_versions  1335ms
+     ✓ surfaces chain identities mutation in upcaster_chain  1876ms
+     ✓ surfaces replay input mutation in replay_input  2776ms
+     ✓ surfaces canonicalization mutation in canonicalization  1312ms
+     ✓ surfaces final commitment mutation in final_digest  1259ms
+     ✓ reports an accurate descriptor bytes binding mismatch  910ms
+     ✓ reports an accurate metadata binding mismatch  987ms
+     ✓ reports an accurate digest binding mismatch  1045ms
+     ✓ fails closed when the required attestation is missing  1004ms
+     ✓ rejects unknown future fingerprint_version without envelope-version inference  1494ms
+     ✓ rejects missing fingerprint_version without envelope-version inference  1688ms
+     ✓ rejects an attestation payload that omits fingerprint_version  1815ms
+     ✓ retains historical verification while current writers emit the latest version  1402ms
+     ✓ appends after the range, excludes itself, and makes exact duplicates idempotent  1342ms
+     ✓ rejects conflicting attestations for one run, range, and version  1446ms
+     ✓ leaves legacy authority unchanged when dark fingerprint verification fails  1340ms
+     ✓ never rewrites or promotes a mismatched actual digest  2496ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-sealed-artifacts.vitest.ts (13 tests) 49939ms
+     ✓ registers and seals every council input and output kind through the shared store  1785ms
+     ✓ builds byte-identical complete council lifecycle sets and replay inputs  14983ms
+     ✓ rejects missing and reordered council lifecycle artifacts before binding  11713ms
+     ✓ rejects bindings that do not match verified creation evidence  10988ms
+     ✓ rejects stale context, unknown fields, and post-build corruption before replay  10198ms
+ ✓ ../system-deep-loop/runtime/tests/hierarchical-budgets/hierarchical-budgets.vitest.ts (26 tests) 34238ms
+     ✓ rebuilds the complete program-to-iteration tree from authorized events  1122ms
+     ✓ reserves exact capacity across every ancestor in one ledger transition  1477ms
+     ✓ records one typed exhaustion and leaves every dimension unchanged on failure  1456ms
+     ✓ serializes sibling races so only one request consumes the final remainder  1584ms
+     ✓ returns the original logical outcome for a duplicate request without a second event  1365ms
+     ✓ fails closed when one request identity is reused for another operation  1370ms
+     ✓ charges retries at start and retains failed terminal spend  2162ms
+     ✓ settles under-estimate usage and releases only the proven unused remainder  1890ms
+     ✓ quarantines missing usage, blocks admission, and clears the block after reconciliation  2476ms
+     ✓ records over-estimate actual spend as unreconciled without negative balances  1893ms
+     ✓ releases an unstarted expired lease but refuses early expiry  1926ms
+     ✓ requires no-dispatch evidence before cancellation releases capacity  1599ms
+     ✓ renews and partially releases one reservation idempotently  1888ms
+     ✓ cancels an unstarted reservation when no-dispatch evidence is present  1549ms
+     ✓ resumes from ledger state after authority re-instantiation  1912ms
+     ✓ denies stale pricing and replay mismatch before a reservation exists  1550ms
+     ✓ denies child allocation after parent spend consumes the allocatable remainder  692ms
+     ✓ denies admission after the monotonic scope deadline  1290ms
+     ✓ denies gateway authorization failure without appending a domain event  1050ms
+     ✓ denies a ledger write failure and leaves no domain mutation  1338ms
+     ✓ derives byte-identical replay fingerprints from the authorized budget ledger  1342ms
+     ✓ exposes remaining capacity, reservation age, and settlement lag as read-only data  1230ms
+ ✓ ../system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts (29 tests) 31388ms
+     ✓ denies one atomic continuation reservation when a shared ancestor is exhausted  1599ms
+     ✓ checks 'tokens' admission at the 'program' scope in the ancestor path  1608ms
+     ✓ checks 'cost' admission at the 'program' scope in the ancestor path  1597ms
+     ✓ checks 'iterations' admission at the 'program' scope in the ancestor path  1607ms
+     ✓ checks 'wallTime' admission at the 'program' scope in the ancestor path  1706ms
+     ✓ checks 'tokens' admission at the 'mode' scope in the ancestor path  1616ms
+     ✓ checks 'cost' admission at the 'mode' scope in the ancestor path  1527ms
+     ✓ checks 'iterations' admission at the 'mode' scope in the ancestor path  1547ms
+     ✓ checks 'wallTime' admission at the 'mode' scope in the ancestor path  1614ms
+     ✓ checks 'tokens' admission at the 'lineage-b' scope in the ancestor path  1650ms
+     ✓ checks 'cost' admission at the 'lineage-b' scope in the ancestor path  1630ms
+     ✓ checks 'iterations' admission at the 'lineage-b' scope in the ancestor path  1617ms
+     ✓ checks 'wallTime' admission at the 'lineage-b' scope in the ancestor path  1609ms
+     ✓ checks 'tokens' admission at the 'iteration-b' scope in the ancestor path  1622ms
+     ✓ checks 'cost' admission at the 'iteration-b' scope in the ancestor path  1611ms
+     ✓ checks 'iterations' admission at the 'iteration-b' scope in the ancestor path  1610ms
+     ✓ checks 'wallTime' admission at the 'iteration-b' scope in the ancestor path  1623ms
+     ✓ allows a value signal to rank only and never bypass budget denial  1648ms
+     ✓ cancels reserved-not-started capacity only through proof-backed budget authority  1704ms
+     ✓ rejects a finalized cut when a terminal event wins the cancel-complete race  335ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-bookkeeping-emission.vitest.ts (6 tests) 36287ms
+     ✓ routes only gateway-accepted rows through the append directives in deep-research-auto.yaml  15571ms
+     ✓ routes only gateway-accepted rows through the append directives in deep-research-confirm.yaml  20710ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-sealed-artifacts.vitest.ts (12 tests) 29074ms
+     ✓ registers and seals every lifecycle kind through the shared store  487ms
+     ✓ builds byte-identical complete lifecycle sets and replay inputs  7318ms
+     ✓ rejects missing and reordered lifecycle artifacts before binding  6452ms
+     ✓ rejects a binding that does not match its verified creation evidence  6864ms
+     ✓ rejects stale context and post-build artifact corruption during replay  7796ms
+ ✓ ../system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts (30 tests) 32014ms
+     ✓ appends a plain JSON event record to deep-research ledger and exits 0  928ms
+     ✓ records one gateway refusal when the projection refresh fails  743ms
+     ✓ supports sequential appends across multiple CLI invocations  1642ms
+       ✓ deep-research: a spec-folder run directory gets exactly one state file at the declared path  795ms
+       ✓ deep-research: a artifact-directory run directory gets exactly one state file at the declared path  767ms
+       ✓ deep-research: a lineage-directory run directory gets exactly one state file at the declared path  733ms
+       ✓ deep-review: a spec-folder run directory gets exactly one state file at the declared path  682ms
+       ✓ deep-review: a artifact-directory run directory gets exactly one state file at the declared path  830ms
+       ✓ deep-review: a lineage-directory run directory gets exactly one state file at the declared path  806ms
+     ✓ routes every mode in the frozen authority order through the CLI  1336ms
+     ✓ does not treat the run directory as the authority root  742ms
+     ✓ keeps an iteration-error row and a run-now row after a later append  2568ms
+     ✓ keeps review claim-adjudication and iteration-error rows after a later append  6857ms
+     ✓ drops a row written directly to the projection on the next gateway append  1823ms
+     ✓ records a bare review iteration record and projects it back unchanged  1727ms
+     ✓ records a review iteration record larger than ten kilobytes  964ms
+     ✓ still refuses a review row that is not an iteration record  375ms
+     ✓ appends the legacy spec-check-result row and rebuilds it as the last state-log line  777ms
+     ✓ appends the legacy spec-seed-created row and rebuilds it as the last state-log line  822ms
+     ✓ appends the legacy spec-preinit-context-added row and rebuilds it as the last state-log line  873ms
+     ✓ appends the legacy spec-preinit-context-deduped row and rebuilds it as the last state-log line  774ms
+     ✓ appends the legacy spec-mutation row and rebuilds it as the last state-log line  870ms
+     ✓ appends the legacy spec-mutation-conflict-preinit row and rebuilds it as the last state-log line  795ms
+     ✓ appends the legacy spec-mutation-conflict-post-synthesis row and rebuilds it as the last state-log line  822ms
+     ✓ appends the legacy spec-synthesis-deferred row and rebuilds it as the last state-log line  812ms
+     ✓ refuses a spec_mutation row whose generatedFence is missing, before writing  443ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts (51 tests) 26817ms
+     ✓ authorizes and appends every event stem with replay-addressable metadata  21562ms
+     ✓ authorizes closed convergence signals with numeric and digest evidence  354ms
+     ✓ authorizes and reads back legitimate tokens and explanatory reasons  4324ms
+ ✓ ../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts (53 tests) 26667ms
+     ✓ rejects an append whose fence has been superseded, before any frame commits  421ms
+     ✓ uses one exact allow once, returns the original receipt on retry, and rejects ID conflict  774ms
+     ✓ rejects one allow when presented for a different event or ledger identity  472ms
+     ✓ defaults missing, unknown, unsupported, stale, exceptional, and timed-out inputs to deny  513ms
+     ✓ returns the same legacy result for allow, deny, and typed-ledger failure  683ms
+     ✓ serializes concurrent processes into one contiguous unambiguous head  11200ms
+     ✓ detects mutation before yielding a typed event  896ms
+     ✓ detects deletion before yielding a typed event  844ms
+     ✓ detects insertion before yielding a typed event  911ms
+     ✓ detects reorder before yielding a typed event  901ms
+     ✓ detects fork before yielding a typed event  891ms
+     ✓ detects and byte-preserves a torn tail, then resumes at the same next sequence  1156ms
+     ✓ completes an interrupted quarantine when the recovery marker is already durable  942ms
+     ✓ rejects a recomputed frame carrying an unknown event type or altered authorization link  341ms
+     ✓ rebuilds byte-identical projections from verified events only  928ms
+     ✓ verifies allow linkage, deny absence, and policy parity across both streams  502ms
+     ✓ keeps a crash-before-domain-commit allow durable and visibly unapplied  383ms
+     ✓ replay parity holds when a policy binds captured authorization state into its digest  434ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts (20 tests | 1 skipped) 23458ms
+     ✓ preserves an out-of-scope write on disk, reports it, and completes the lineage  1638ms
+     ✓ retains fan-out authentication diagnostics in the failed lineage log  1056ms
+     ✓ retains fan-out model-or-balance diagnostics in the failed lineage log  965ms
+     ✓ rejects a rate-limited fan-out lineage without a retry spawn  918ms
+     ✓ times out and reaps the captured fan-out lineage process  2867ms
+     ✓ closes stdin for the headless fan-out lineage process  858ms
+     ✓ propagates the non-interactive spec-gate environment through fan-out  855ms
+     ✓ expands flat-pool lineages while bounding concurrency and queuing overflow  1792ms
+     ✓ fails before fan-out execution when the executor transport is unavailable  1092ms
+     ✓ rejects lineage and aggregate budgets before provider process spawn  793ms
+     ✓ reports one externally killed lineage without erasing surviving artifacts  1955ms
+     ✓ reaps the captured fan-out orphan process group without a blanket sweep  3033ms
+     ✓ preserves exclusive ownership when concurrent worktrees collide  1430ms
+     ✓ preserves independent node_modules realpaths while fan-out is active  1293ms
+     ✓ blocks same-kind recursive fan-out before provider process spawn  347ms
+     ✓ binds convergence, maximum iterations, completion marker, artifacts, and summary status  1758ms
+     ✓ rejects a zero-exit lineage whose required artifact is absent  807ms
+ ✓ ../system-deep-loop/runtime/tests/unit/write-containment.vitest.ts (79 tests) 30821ms
+     ✓ retries until a two-second lock is released and returns the real dirty snapshot  4150ms
+     ✓ gives up within the retry budget, fails open, and reports the loss exactly once  4048ms
+     ✓ reports the deletion with the baseline hash under the default preserve remedy  346ms
+     ✓ keeps a real tracked-source breach fatal, and also fails on an unrelated concurrent untracked write — neither is deleted  347ms
+     ✓ reports an out-of-packet untracked file as a non-fatal advisory under preserve, byte-for-byte intact  306ms
+     ✓ fails the same out-of-packet untracked file when the caller asks for restore  417ms
+     ✓ fails the iteration on a write unrelated to the packet, while a concurrent packet-doc write stays a preserved advisory  617ms
+     ✓ exempts the packet's own description.json but fails on an unrelated packet's description.json  310ms
+     ✓ restores an already-dirty path from the captured baseline bytes, not from HEAD  335ms
+     ✓ still fails the iteration on the same write when no lock claims the directory  399ms
+     ✓ grants no exemption for a stale lock left behind by a finished run  409ms
+     ✓ still fails a leaf that writes a neighbour sharing the exempted ledger’s prefix  343ms
+     ✓ names the captured diff for the remedy: out-of-scope under preserve, reverted under restore  434ms
+     ✓ restores the erased edit when the saved patch is applied — the recoverability claim  312ms
+     ✓ captures the deletion diff when the reverted path was a deleted tracked file  326ms
+     ✓ writes no patch for a preserved untracked path — nothing was undone to save  351ms
+     ✓ still reverts, and records the write failure, when the patch cannot be saved  318ms
+     ✓ flags a symlinked directory that leaves the artifact tree, and the write made through it  371ms
+     ✓ stores the on-disk bytes and the HEAD patch, and hashes the copy as it hashed the file  353ms
+     ✓ marks a file over the per-file bound content_truncated with no bytes stored, and still records its patch  695ms
+     ✓ keeps the failure on that path entry and never throws, and names no directory, when the quarantine destination is unwritable  1067ms
+     ✓ retains a manifest and a patch set per pass, each named on the pass that wrote it  1394ms
+     ✓ keys the quarantine directory by attempt when a pass is a retry, so neither retry overwrites the other  965ms
+     ✓ writes nothing through a quarantine pass directory that is a symlink out of the repository  670ms
+     ✓ still writes the manifest and the patches when the destination is an ordinary directory  751ms
+     ✓ leaves the link target untouched and records the refusal as preserved_in_head  608ms
+     ✓ refuses a baseline restore whose parent directory is a symlink out of the repository  313ms
+     ✓ marks a baseline entry whose path passes through a symlinked component, capturing nothing from the link target  330ms
+ ✓ ../system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts (20 tests) 19860ms
+     ✓ returns one recorded logical identity on exact retries  398ms
+     ✓ recovers the same ID after authorization succeeds but domain commit is interrupted  651ms
+     ✓ collapses concurrent exact mint requests to one accepted entity  431ms
+     ✓ accepts one concurrent provenance and rejects token reuse with another  439ms
+     ✓ mints a linked child for a true fork without mutating the parent  1153ms
+     ✓ records retry and resume attempts under one logical mode session  1047ms
+     ✓ restores the same typed frontier, cursor, and replay fingerprint  1729ms
+     ✓ rejects tampered, missing, and wrong-kind frontier references  1726ms
+     ✓ rejects a stale cursor before dispatch after the ledger advances  1984ms
+     ✓ derives byte-identical state and replay identity from the same authorized prefix  1705ms
+     ✓ fails explicitly when stored ledger bytes are tampered  1628ms
+     ✓ preserves one source claim across every registered mode boundary  1932ms
+     ✓ records dark aliases through the existing adapter and never changes legacy results  3786ms
+     ✓ validates downstream typed subjects without cloning or mode-local rewriting  1000ms
+ ✓ ../system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts (30 tests) 18797ms
+     ✓ pairs one terminal result to the receipt and returns the original append receipt on repeat  779ms
+     ✓ rejects changed status facts before append  772ms
+     ✓ rejects changed result facts before append  788ms
+     ✓ rejects changed evidence facts before append  788ms
+     ✓ rejects changed cost facts before append  837ms
+     ✓ excludes raw output, credentials, and invented unknown cost zeros  367ms
+     ✓ does not accept recorded success when required evidence is missing or stale  710ms
+     ✓ fails closed when required evidence resolves to a different digest  721ms
+     ✓ does not accept unknown cost provenance as complete  716ms
+     ✓ produces byte-identical folds and never re-enables a durably completed leaf  734ms
+     ✓ fails closed when the ledger hash chain cannot be verified  386ms
+     ✓ recovers an injected torn append and reconstructs the committed prefix deterministically  860ms
+     ✓ keeps a dispatched leaf ineligible until effect reconciliation is recorded  341ms
+     ✓ not_applied recovery yields expected retry eligibility  1030ms
+     ✓ applied recovery yields expected retry eligibility  1035ms
+     ✓ in_doubt recovery yields expected retry eligibility  1013ms
+     ✓ conflict recovery yields expected retry eligibility  1068ms
+     ✓ does not retry a not-applied attempt when retry policy rejects it  1049ms
+     ✓ rejects recovery evidence correlated to a different dispatched leaf  1012ms
+     ✓ records complete provenance, deduplicates exact repeats, and conflicts on changed content  870ms
+     ✓ never promotes a failed result to success after recovered salvage  1053ms
+     ✓ rejects reconstructed captured_stdout claiming byte identity with original evidence  337ms
+     ✓ rejects reconstructed future_typed_fragment claiming byte identity with original evidence  363ms
+     ✓ rejects reconstructed iteration_artifact claiming byte identity with original evidence  358ms
+     ✓ rejects reconstructed registry claiming byte identity with original evidence  351ms
+     ✓ rejects reconstructed state_event claiming byte identity with original evidence  347ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-bookkeeping-emission.vitest.ts (3 tests) 20462ms
+     ✓ routes only gateway-accepted rows through the append directives in deep-review-auto.yaml  10273ms
+     ✓ routes only gateway-accepted rows through the append directives in deep-review-confirm.yaml  10187ms
+ ✓ ../system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts (54 tests) 16392ms
+     ✓ records and reads creation evidence through gateway, ledger, and event boundary  403ms
+     ✓ rejects ledger creation evidence from a decoy sharing digests but not the artifact kind  599ms
+     ✓ binds order and verification evidence into replay and parity inputs  790ms
+     ✓ rejects a missing artifact before producing replay fingerprint input  363ms
+     ✓ rejects a fabricated verification field before replay fingerprint input  310ms
+     ✓ rejects a fabricated ledger field before replay fingerprint input  336ms
+     ✓ rejects substituted bytes before producing replay fingerprint input  365ms
+     ✓ changes the phase fingerprint when the verified artifact order changes  948ms
+     ✓ retains an artifact protected by the live-run root  1081ms
+     ✓ retains an artifact protected by the replay-attestation root  1112ms
+     ✓ retains an artifact protected by the receipt-certificate root  1152ms
+     ✓ retains an artifact protected by the rollback-window root  1157ms
+     ✓ retains an artifact protected by the archival-reader root  1156ms
+     ✓ retains an artifact protected by the explicit-hold root  1106ms
+     ✓ sweeps only an eligible artifact and binds its tombstone to ledger evidence  1132ms
+     ✓ rejects a deletion authorization that does not resolve to a real ledger entry  363ms
+     ✓ restores only byte-identical canonical content under the original digest  1652ms
+     ✓ rejects a restoration authorization that does not resolve to a real ledger entry  1250ms
+ ✓ ../system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts (12 tests) 17421ms
+     ✓ consumes a run-now sentinel and emits requested plus accepted events before dispatch  1876ms
+     ✓ rejects a run-now sentinel while paused and leaves the sentinel in place  1734ms
+     ✓ records a restored sentinel when it reappears after an accepted dispatch starts  943ms
+     ✓ logs synthesis_incomplete instead of synthesis_complete when required artifacts are missing  2696ms
+     ✓ logs synthesis_complete for legitimate zero-finding runs when empty artifacts exist  1802ms
+     ✓ logs synthesis_complete for fan-out research when lineage artifacts exist without a root dashboard  946ms
+     ✓ keeps the root dashboard required for research without lineage logs  934ms
+     ✓ logs synthesis_complete for fan-out review when lineage artifacts exist without a root dashboard  954ms
+     ✓ keeps the root dashboard required for review without lineage logs  945ms
+     ✓ logs synthesis_incomplete when structured state findings are only partially present in the registry  1906ms
+     ✓ logs synthesis_incomplete when registry count matches but a structured state finding is missing  1774ms
+     ✓ folds review lineage logs so a lineage finding missing from the registry is caught  908ms
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > keeps registry-owned question text and emits one conflict event for disagreeing inbox input
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > keeps the reducer conflict row in a ledger-backed run across the next gateway append
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > keeps leaf idea observations and the promotion they earn in a ledger-backed run
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > promotes observed ideas by threshold and suppresses rejected ideas
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > writes registry outputs into an explicit artifact directory instead of the spec research folder
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > reads key questions from a lineage strategy that omits the canonical heading ordinal
+[deep-research] strategy file left unchanged: Missing anchor section key-questions in strategy file
+
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts (28 tests) 15345ms
+     ✓ keeps the reducer conflict row in a ledger-backed run across the next gateway append  3198ms
+     ✓ keeps leaf idea observations and the promotion they earn in a ledger-backed run  6528ms
+     ✓ keeps the workflow lifecycle rows and each row's own timestamp in a ledger-backed run  5530ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts (19 tests | 1 skipped) 14600ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  860ms
+     ✓ retains cli-opencode authentication diagnostics in bounded lineage output  803ms
+     ✓ retains cli-opencode model-or-balance diagnostics in bounded lineage output  810ms
+     ✓ retains cli-opencode rate-limit diagnostics without retry delay  767ms
+     ✓ times out and terminates the captured cli-opencode process  2819ms
+     ✓ closes stdin for the headless cli-opencode process  810ms
+     ✓ passes child gate variables through the full cli-opencode runtime  847ms
+     ✓ reports a signal-killed cli-opencode lineage as failed  814ms
+     ✓ terminates the captured detached cli-opencode process group after timeout  2856ms
+     ✓ blocks recursive cli-opencode fan-out before process spawn  310ms
+     ✓ bounds three detached opencode replicas at concurrency two and queues the third  1800ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-pi.vitest.ts (20 tests | 1 skipped) 14457ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  1055ms
+     ✓ retains cli-pi authentication diagnostics in bounded lineage output  785ms
+     ✓ retains cli-pi model-or-balance diagnostics in bounded lineage output  821ms
+     ✓ retains cli-pi rate-limit diagnostics without retry delay  835ms
+     ✓ times out and terminates the captured cli-pi process  2751ms
+     ✓ closes stdin for the headless cli-pi process  818ms
+     ✓ passes child gate variables through the full cli-pi runtime  855ms
+     ✓ reports a signal-killed cli-pi lineage as failed  808ms
+     ✓ terminates the captured detached cli-pi process group after timeout  2777ms
+     ✓ accepts a non-zero pi exit only when artifacts exist and retains provider output  789ms
+     ✓ rejects a zero-exit pi run when the required artifact is absent  782ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-run-open.vitest.ts (11 tests) 12979ms
+     ✓ the auto workflow carries a moved legacy state log through the gateway and keeps the migration row  4003ms
+     ✓ the confirm workflow carries a moved legacy state log through the gateway and keeps the migration row  3993ms
+     ✓ the auto init step opens the run so later appends project  1543ms
+     ✓ the confirm init step opens the run so later appends project  1522ms
+     ✓ the auto init step projects the configured topic into the config row  789ms
+     ✓ the confirm init step projects the configured topic into the config row  793ms
+     ✓ a config row written beside the ledger blocks the first append before it reaches the ledger  313ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts (16 tests) 12472ms
+     ✓ authorizes and appends every event stem through the real ledger  11802ms
+     ✓ keeps candidates non-verdict-bearing until typed adjudication  322ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-devin.vitest.ts (19 tests | 1 skipped) 13299ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  882ms
+     ✓ retains cli-devin authentication diagnostics in bounded lineage output  800ms
+     ✓ retains cli-devin model-or-balance diagnostics in bounded lineage output  796ms
+     ✓ retains cli-devin rate-limit diagnostics without retry delay  773ms
+     ✓ times out and terminates the captured cli-devin process  2808ms
+     ✓ closes stdin for the headless cli-devin process  825ms
+     ✓ passes child gate variables through the full cli-devin runtime  784ms
+     ✓ reports a signal-killed cli-devin lineage as failed  789ms
+     ✓ terminates the captured detached cli-devin process group after timeout  2803ms
+     ✓ keeps the captured Devin failure diagnostic bounded  814ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts (18 tests | 1 skipped) 12506ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  876ms
+     ✓ retains cli-claude-code authentication diagnostics in bounded lineage output  809ms
+     ✓ retains cli-claude-code model-or-balance diagnostics in bounded lineage output  803ms
+     ✓ retains cli-claude-code rate-limit diagnostics without retry delay  857ms
+     ✓ times out and terminates the captured cli-claude-code process  2797ms
+     ✓ closes stdin for the headless cli-claude-code process  797ms
+     ✓ passes child gate variables through the full cli-claude-code runtime  789ms
+     ✓ reports a signal-killed cli-claude-code lineage as failed  843ms
+     ✓ terminates the captured detached cli-claude-code process group after timeout  2771ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts (18 tests | 1 skipped) 12530ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  883ms
+     ✓ retains cli-cursor authentication diagnostics in bounded lineage output  809ms
+     ✓ retains cli-cursor model-or-balance diagnostics in bounded lineage output  837ms
+     ✓ retains cli-cursor rate-limit diagnostics without retry delay  798ms
+     ✓ times out and terminates the captured cli-cursor process  2774ms
+     ✓ closes stdin for the headless cli-cursor process  841ms
+     ✓ passes child gate variables through the full cli-cursor runtime  787ms
+     ✓ reports a signal-killed cli-cursor lineage as failed  803ms
+     ✓ terminates the captured detached cli-cursor process group after timeout  2803ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts (18 tests | 1 skipped) 12620ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  915ms
+     ✓ retains cli-hermes authentication diagnostics in bounded lineage output  820ms
+     ✓ retains cli-hermes model-or-balance diagnostics in bounded lineage output  859ms
+     ✓ retains cli-hermes rate-limit diagnostics without retry delay  818ms
+     ✓ times out and terminates the captured cli-hermes process  2841ms
+     ✓ closes stdin for the headless cli-hermes process  772ms
+     ✓ passes child gate variables through the full cli-hermes runtime  828ms
+     ✓ reports a signal-killed cli-hermes lineage as failed  785ms
+     ✓ terminates the captured detached cli-hermes process group after timeout  2740ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts (5 tests) 12105ms
+     ✓ emits a warning ledger event and summary field without changing a successful outcome  10337ms
+     ✓ does not emit a ledger event or summary field when counts are zero  1765ms
+ ✓ runtime/tests/directive-lifecycle-adapter-parity.vitest.ts (16 tests) 11862ms
+     ✓ claude fails open on malformed and timed-out advisor children  2586ms
+     ✓ codex fails open on malformed and timed-out advisor children  2670ms
+     ✓ cursor fails open on malformed and timed-out advisor children  2652ms
+     ✓ devin fails open on malformed and timed-out advisor children  2668ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-run-open.vitest.ts (10 tests) 12353ms
+     ✓ the auto init step opens the run for later gateway appends  1686ms
+     ✓ the confirm init step opens the run for later gateway appends  1777ms
+     ✓ uses the same init step for a fan-out lineage directory  1845ms
+     ✓ the auto init step projects the configured topic into the opening config row  968ms
+     ✓ the confirm init step projects the configured topic into the opening config row  919ms
+     ✓ refuses a hand-written config row before the ledger, and a retry adds no duplicate  674ms
+     ✓ keeps legacy config rows on the gateway upcaster path  1576ms
+     ✓ keeps a legacy config row topic through the upcaster into the projected config row  793ms
+     ✓ stores a retried identical event once  2113ms
+ ✓ ../system-deep-loop/runtime/tests/unit/legacy-projections.test.ts (16 tests) 9860ms
+     ✓ renders insertion-ordered JSONL bytes while leaving the legacy file untouched  774ms
+     ✓ renders snapshot indentation, insertion order, newline, and integrity stamp exactly  885ms
+     ✓ appends incrementally, suppresses unchanged rows, and is restart-idempotent  1427ms
+     ✓ recovers output made durable before a crash without duplicating JSONL rows  573ms
+     ✓ leaves no output or watermark when a crash occurs before output commit  436ms
+     ✓ rebuilds disposable torn shadow output before advancing its watermark  579ms
+     ✓ refuses a replace that would drop keys from an existing config row  571ms
+     ✓ rejects a projection head older than the durable watermark  1012ms
+     ✓ observes byte parity failure without creating shadow output or mutating legacy  419ms
+     ✓ rejects traversal, symlink escape, direct live roots, and hard-link aliases  1277ms
+     ✓ rejects corrupt ledger frames and unknown event versions before publication  811ms
+     ✓ rejects invalid replay identity and nondeterministic reducers or serializers  667ms
+     ✓ keeps observation sinks outside projector control flow  424ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts (12 tests) 8452ms
+     ✓ authorizes and appends every event stem through the real ledger  8243ms
+ ✓ ../system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts (14 tests) 8015ms
+     ✓ records budget denial without partial reservation or convergence  1338ms
+     ✓ populates only the frozen rank extension and leaves a finalized decision immutable  1284ms
+     ✓ replays one durable trigger to identical eligibility, ordering, quanta, and digest  1688ms
+     ✓ serializes competing decisions so the final typed remainder is admitted once  1654ms
+     ✓ ledgers a complete additive-dark decision with uniform/static authority retained  2011ms
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 2 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":2}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"a","findingId":"F1","unknownSeverity":"P3","message":"Finding \"F1\" from lineage \"a\" carries severity \"P3\", which is outside the review severity scale (P0|P1|P2). It is unranked, sorts below every P2, and cannot raise the merged verdict; collapse it to P2 where the finding is rated."}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"openFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"openFindings","coercedCount":1}
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"lina","message":"lineage lina merged with unverified provenance: no deep-research-dashboard.md confirms the reducer wrote its registry"}
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"linb","message":"lineage linb merged with unverified provenance: no deep-research-dashboard.md confirms the reducer wrote its registry"}
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts (63 tests) 7309ms
+     ✓ keeps duplicate iteration basenames distinct and completes against all lineage findings in both workflows  1601ms
+     ✓ reports incomplete synthesis when one lineage finding is missing from the registry in both workflows  1713ms
+     ✓ fails synthesis when any lineage state row is malformed in both workflows  1660ms
+ ✓ ../system-deep-loop/runtime/tests/unit/contradiction-supersession.vitest.ts (16 tests) 7158ms
+     ✓ projects one canonical contradiction with typed counterparts and evidence state  325ms
+     ✓ withdraws by prior event identity without deleting assertion or evidence history  700ms
+     ✓ withdraws a directional supersession without reversing or deleting its history  653ms
+     ✓ returns the original receipt on exact retry and rejects changed bytes under the same event id  504ms
+     ✓ folds directional supersession chains without reversing predecessor semantics  655ms
+     ✓ gives supersession precedence without erasing active contradiction evidence  665ms
+     ✓ rejects competing active successors before append  407ms
+     ✓ rejects a supersession cycle before append  717ms
+     ✓ binds successful replay to verified bytes, authorization, reducer, and reference inputs  860ms
+     ✓ reports the earliest invalid stored cycle and returns no trusted projection  625ms
+     ✓ fails closed on fingerprint mismatch and stored-frame corruption  457ms
+ ✓ ../system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts (26 tests) 7426ms
+     ✓ persists a verified native receipt before its spawn sentinel  343ms
+     ✓ persists a verified cli-codex receipt before its spawn sentinel  335ms
+     ✓ persists a verified cli-claude-code receipt before its spawn sentinel  359ms
+     ✓ persists a verified cli-opencode receipt before its spawn sentinel  338ms
+     ✓ runs every resolution stage before a verified durable append and only then spawns  354ms
+     ✓ returns the original append receipt on exact retry and rejects changed facts before spawn  465ms
+     ✓ converges concurrent exact retries on one original ledger append receipt  374ms
+     ✓ does not spawn when authorization or durable storage fails  891ms
+     ✓ persists only safe digests even when raw prompt, environment, credential, and key canaries exist  310ms
+     ✓ keeps process-local HMAC advisory but verifies a reconstructable durable provider after restart  729ms
+     ✓ classifies no receipt, receipt-only, caller result evidence, and desired-fingerprint conflict  435ms
+     ✓ leaves a durable unresolved receipt after the post-append crash cut and never auto-spawns on retry  410ms
+     ✓ does not blindly re-execute after a spawn crash or a missing successor result  381ms
+     ✓ rejects hash-invalid evidence  347ms
+     ✓ rejects unauthorized evidence even when the frame hash is internally consistent  337ms
+     ✓ rejects an unknown event version before trusting its payload  342ms
+     ✓ rejects malformed frame bytes without minting a replacement receipt  340ms
+ ✓ ../system-deep-loop/runtime/tests/unit/mode-append-gateway.vitest.ts (22 tests) 7067ms
+     ✓ happy path: append and read the event back through the ledger  334ms
+     ✓ concurrency: two racing appends both succeed with total order  650ms
+     ✓ projection not attempted (pre-flight config gap): append succeeds with the reason surfaced  330ms
+     ✓ projection engine failure: an explicit ok:false from the engine fails the outcome closed  426ms
+     ✓ projection success: run directory shaped like a spec folder projects legacy JSONL state file nested under research/  481ms
+       ✓ 'deep-research': run directory shaped like a 'spec-folder' lands the projection at the declared state-log path  446ms
+       ✓ 'deep-review': run directory shaped like a 'spec-folder' lands the projection at the declared state-log path  472ms
+       ✓ 'deep-research': run directory shaped like a 'artifact-directory' lands the projection at the declared state-log path  471ms
+       ✓ 'deep-review': run directory shaped like a 'artifact-directory' lands the projection at the declared state-log path  472ms
+       ✓ 'deep-research': run directory shaped like a 'lineage-directory' lands the projection at the declared state-log path  454ms
+       ✓ 'deep-review': run directory shaped like a 'lineage-directory' lands the projection at the declared state-log path  487ms
+       ✓ a retry after a failed projection replays the stored event instead of appending it again  590ms
+       ✓ refuses a reused key on a different event kind before the append  505ms
+     ✓ admission: fresh empty authority root succeeds and produces receipt  315ms
+ ✓ ../system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts (20 tests) 8181ms
+     ✓ emits score delta from the latest prior snapshot and gates improvement effect output  574ms
+     ✓ accepts divergent mode while preserving existing convergence decisions  671ms
+     ✓ keeps divergent CONTINUE and STOP_BLOCKED decisions identical to existing modes  1622ms
+     ✓ blocks research STOP under an explicit observation threshold until the leading finding is confirmed enough times  667ms
+     ✓ blocks research STOP when low reported novelty disagrees with graph novelty  647ms
+     ✓ allows research STOP when low reported novelty matches a flat graph delta  448ms
+     ✓ allows research STOP when the only post-snapshot graph change is insight metadata  573ms
+     ✓ replays a recorded research convergence cassette against the pinned envelope  664ms
+     ✓ pins coverage graph threshold traces for research, review, and context loops  777ms
+ ✓ ../system-deep-loop/runtime/tests/unit/atomic-state.vitest.ts (18 tests) 5655ms
+     ✓ serializes identical concurrent diff-gated appends so exactly one row lands  349ms
+     ✓ does not reclaim an append lock owned by a live process just because it looks old  5004ms
+ ✓ runtime/tests/spec-doc-structure.vitest.ts (30 tests) 6274ms
+     ✓ reports strict validation failures on the legacy Level 3 filled template fixture  1655ms
+     ✓ fails semantic-empty authored frontmatter fields  2919ms
+     ✓ fails duplicate opening anchor IDs during packet validation  1597ms
+ ✓ runtime/tests/user-prompt-submit-shim.vitest.ts (8 tests) 5326ms
+     ✓ lets a slow child finish within the shim timeout  2280ms
+     ✓ clamps an operator budget to the kill deadline  2342ms
+ ✓ runtime/tests/validation-optional-anchors.vitest.ts (2 tests) 2792ms
+     ✓ does not require optional L2 spec and plan anchors for ANCHORS_VALID  1381ms
+     ✓ does not require the fix-completeness section in a current tasks.md  1410ms
+ ✓ runtime/tests/embedders/hf-model-server-shutdown.vitest.ts (3 tests) 5192ms
+     ✓ 009-REQ-001/002/003: SIGTERM mid-embed does not SIGKILL before the fake embed drains, and exits cleanly  3065ms
+     ✓ 009-REQ-002: repeated signals during shutdown do not re-arm a second failsafe timer  2065ms
+ ✓ ../system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts (39 tests) 4075ms
+     ✓ keeps legacy status and exit authority while ledgering a known-defect difference  376ms
+     ✓ replays the same final verdict after restart and excludes a late result  1350ms
+     ✓ collapses duplicate terminal event identity during replay  902ms
+     ✓ ledgers abort without producing a reduction or degraded transition  1207ms
+ ✓ ../system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts (29 tests) 3824ms
+     ✓ admits only one holder across two independent operating-system processes  489ms
+     ✓ admits one expected-head commit and rejects the competing append atomically  685ms
+     ✓ writes only through the gateway, reads verified events, and reduces deterministically  409ms
+stdout | ../system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts > deep-research post-flip fan-out gateway integration > accepts the gateway watermark, detects a direct perturbation, and accepts restoration
+{"guard":"gateway-output","stdout":"{\"ok\":true,\"status\":\"ok\",\"mode\":\"deep-research\",\"reason\":\"Legacy file bytes match the gateway watermark.\",\"digest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"byteLength\":780,\"expectedDigest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"expectedByteLength\":780}","exitCode":0}
+{"guard":"direct-perturbation","stdout":"{\"ok\":false,\"status\":\"violation\",\"mode\":\"deep-research\",\"reason\":\"Legacy file bytes do not match the gateway watermark; a write bypassed the sanctioned gateway path.\",\"code\":\"DIRECT_APPEND_DETECTED\",\"expectedDigest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"actualDigest\":\"f97a489372986919b1a213358eea5055fe3161b10a9d2283066314aa8e79941e\",\"expectedByteLength\":780,\"actualByteLength\":781,\"refreshedAt\":\"2026-08-22T12:00:00.000Z\",\"watermarkPath\":\"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/deep-research-postflip-fixture-1dChvZ/.legacy-projection-watermarks/research-state.json\",\"legacyFile\":\"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/deep-research-postflip-fixture-1dChvZ/research/deep-research-state.jsonl\"}","exitCode":2}
+{"guard":"restored-output","stdout":"{\"ok\":true,\"status\":\"ok\",\"mode\":\"deep-research\",\"reason\":\"Legacy file bytes match the gateway watermark.\",\"digest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"byteLength\":780,\"expectedDigest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"expectedByteLength\":780}","exitCode":0}
+
+stdout | ../system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts > deep-research post-flip fan-out gateway integration > leaves the same guard inert while the authority root is unflipped
+{"guard":"preflip-inert","stdout":"{\"ok\":true,\"status\":\"not-enforced\",\"mode\":\"deep-research\",\"reason\":\"Authority state is 'legacy_authoritative'; the legacy writer is still the sanctioned one, so a divergence here is expected rather than a violation.\",\"authorityState\":\"legacy_authoritative\",\"epoch\":1,\"selectedWriter\":\"legacy\"}","exitCode":0}
+
+ ✓ ../system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts (4 tests) 3532ms
+     ✓ accepts the gateway watermark, detects a direct perturbation, and accepts restoration  394ms
+ ✓ ../system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts (18 tests) 3314ms
+     ✓ aborts the complete unit when any view or precommit boundary fails  513ms
+     ✓ preserves canonical hashes across restart boundaries and JSON key insertion order  335ms
+     ✓ rebuilds a bounded 250-event prefix without weakening sequential cutoffs  711ms
+ ✓ ../system-deep-loop/runtime/tests/unit/loop-lock-cli.vitest.ts (9 tests) 2559ms
+     ✓ refresh and release honor owner-pid gating like the library  540ms
+     ✓ refresh and release reject a nonce-bearing lock when --nonce is missing or wrong  527ms
+ ✓ ../system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts (10 tests) 2459ms
+     ✓ queries each council query type  597ms
+     ✓ reports empty and ready council status payloads  304ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts (27 tests | 1 skipped) 2406ms
+     ✓ invokes captured-pid and direct-child cleanup without a blanket process sweep  819ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts (37 tests) 2302ms
+     ✓ emits byte-identical output in a hostile-locale child process  403ms
+     ✓ binds a ledger replay to the shipped replay-fingerprint identity  801ms
+     ✓ records durable evidence only through an exact gateway allow  793ms
+ ✓ runtime/tests/generated-metadata-integrity.vitest.ts (19 tests) 2122ms
+     ✓ enforces the gate at the orchestrator entrypoint (validateFolder) when explicitly enabled  1051ms
+     ✓ leaves the orchestrator entrypoint in report mode by default (flag unset)  1033ms
+ ✓ ../system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts (4 tests) 2241ms
+     ✓ a legacy config row that upcasts appends to the deep-research ledger and exits 0  838ms
+     ✓ a legacy row the upcaster refuses exits 1 carrying the decision reason and writes nothing  309ms
+     ✓ a canonical stem event still appends unchanged with no warnings key  784ms
+     ✓ a non-research mode given a legacy row exits 1 with the original unrecognized-format message  309ms
+ ✓ ../system-deep-loop/runtime/tests/unit/graph-read-only.vitest.ts (4 tests) 1911ms
+     ✓ serves empty results from missing database directories without creating them  597ms
+     ✓ leaves populated database directories byte-identical across read-only runs  999ms
+ ✓ ../system-deep-loop/runtime/tests/unit/next-focus.vitest.ts (18 tests) 1745ms
+     ✓ accepts semantic retries and fails closed on conflicting identity reuse  404ms
+     ✓ accepts a recomputed retry when invalid candidates arrive in a different order  350ms
+     ✓ restores focus from the stored event instead of a changed live ranking  329ms
+     ✓ replays an unavailable event without inventing a direction  329ms
+     ✓ rejects candidate-set fingerprint drift during replay  321ms
+ ✓ ../system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (42 tests) 1317ms
+     ✓ writes one Jev report and one call record per arm request  491ms
+ ✓ ../system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts (14 tests) 1275ms
+ ✓ ../system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts (6 tests) 1195ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-recovery-baseline-drain.vitest.ts (2 tests) 1058ms
+     ✓ appends the staged event, projects the row, and removes the staging directory  772ms
+ ✓ ../system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts (2 tests) 1025ms
+     ✓ opens and closes the SQLite DB cleanly across sequential script invocations  415ms
+     ✓ returns a DB error when overlapping writers contend for the graph lock  608ms
+ ✓ runtime/tests/continuity-freshness.vitest.ts (7 tests) 979ms
+     ✓ keeps flag-off validate.sh output byte-identical after a stale edit  345ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cli-matrix.vitest.ts (7 tests) 1034ms
+     ✓ records a timeout failure event from a real subprocess timeout  1004ms
+ ✓ runtime/tests/embedders/launcher-model-server-live-two-launcher.vitest.ts (5 tests | 2 skipped) 1076ms
+     ✓ leaves the socket file behind after SIGKILL (the stale-socket the launcher reclaims)  536ms
+ ✓ ../system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts (10 tests) 987ms
+ ✓ ../system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts (3 tests) 988ms
+     ✓ flag-on reads stay byte-identical to lock-per-read reads after each append  616ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --auto. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --auto. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --auto. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ✓ ../system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts (28 tests) 989ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+stdout | ../system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts > fanout-run.cjs — complete executor/model/sandbox construction matrix > constructs every matrix combination, proves exact representative argv, and logs live skips
+[combo-matrix] constructed kind=native model=(none) sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=native model=(none) sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=native model=(none) sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=native model=(none) sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=native model=(none) sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=native model=(none) sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=o4-mini sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=o4-mini sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=o4-mini sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=o4-mini sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=o4-mini sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=o4-mini sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=gpt-5.6-codex sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=gpt-5.6-codex sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=gpt-5.6-codex sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=gpt-5.6-codex sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=gpt-5.6-codex sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=gpt-5.6-codex sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-opus-4-8 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-opus-4-8 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-opus-4-8 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-opus-4-8 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-opus-4-8 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-opus-4-8 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-sonnet-4-6 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-sonnet-4-6 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-sonnet-4-6 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-sonnet-4-6 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-sonnet-4-6 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-sonnet-4-6 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] rejected kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=read-only reason=unenforceable-sandbox
+[combo-matrix] rejected kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=workspace-write reason=unenforceable-sandbox
+[combo-matrix] constructed kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] rejected kind=cli-opencode model=opencode-go/glm-5.1 sandbox=read-only reason=unenforceable-sandbox
+[combo-matrix] rejected kind=cli-opencode model=opencode-go/glm-5.1 sandbox=workspace-write reason=unenforceable-sandbox
+[combo-matrix] constructed kind=cli-opencode model=opencode-go/glm-5.1 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-opencode model=opencode-go/glm-5.1 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gemini-3.8-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gemini-3.8-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gemini-3.8-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gemini-3.8-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gemini-3.8-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gemini-3.8-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-flash-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-flash-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-flash-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-flash-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-flash-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-flash-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gemini-3-8-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gemini-3-8-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gemini-3-8-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gemini-3-8-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gemini-3-8-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gemini-3-8-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-1m sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-1m sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-1m sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-1m sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-1m sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-1m sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max-1m sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max-1m sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max-1m sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max-1m sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max-1m sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max-1m sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none-1m sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none-1m sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none-1m sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none-1m sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none-1m sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none-1m sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max-priority sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max-priority sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max-priority sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max-priority sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max-priority sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max-priority sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-lightning sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-lightning sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-lightning sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-lightning sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-lightning sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-lightning sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek-v4.1-flash-1017 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek-v4.1-flash-1017 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek-v4.1-flash-1017 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek-v4.1-flash-1017 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek-v4.1-flash-1017 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek-v4.1-flash-1017 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=opencode-go/deepseek-v4.1-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=opencode-go/deepseek-v4.1-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=opencode-go/deepseek-v4.1-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=opencode-go/deepseek-v4.1-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=opencode-go/deepseek-v4.1-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=opencode-go/deepseek-v4.1-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=minimax-m3 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=minimax-m3 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=minimax-m3 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=minimax-m3 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=minimax-m3 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=minimax-m3 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-luna sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-luna sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-luna sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-luna sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-luna sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-luna sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-sol sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-sol sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-sol sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-sol sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-sol sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-sol sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=qwen3.8-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=qwen3.8-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=qwen3.8-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=qwen3.8-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=qwen3.8-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=qwen3.8-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=z-ai/glm-5.3-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=z-ai/glm-5.3-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=z-ai/glm-5.3-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=z-ai/glm-5.3-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=z-ai/glm-5.3-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=z-ai/glm-5.3-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=glm-5.3-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=glm-5.3-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=glm-5.3-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=glm-5.3-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=glm-5.3-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=glm-5.3-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash-1017 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash-1017 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash-1017 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash-1017 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash-1017 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash-1017 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=minimax-m3 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=minimax-m3 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=minimax-m3 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=minimax-m3 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=minimax-m3 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=minimax-m3 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-luna sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-luna sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-luna sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-luna sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-luna sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-luna sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-sol sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-sol sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-sol sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-sol sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-sol sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-sol sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=qwen3.8-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=qwen3.8-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=qwen3.8-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=qwen3.8-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=qwen3.8-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=qwen3.8-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=glm-5.3-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=glm-5.3-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=glm-5.3-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=glm-5.3-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=glm-5.3-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=glm-5.3-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] SUMMARY constructed=221 rejected=4 liveCredentialedDispatch=SKIPPED outOfScope=true skipped=221 credentialGatedKinds=native,cli-codex,cli-claude-code,cli-opencode,cli-cursor,cli-devin,cli-pi,cli-hermes
+
+ ✓ ../system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts (2 tests) 828ms
+     ✓ constructs every matrix combination, proves exact representative argv, and logs live skips  817ms
+ ✓ ../system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts (9 tests) 880ms
+ ✓ ../system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts (31 tests) 830ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cycle-detection.vitest.ts (28 tests) 873ms
+     ✓ authorizes and appends confirmed evidence once, then accepts an exact retry  411ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-merge-structured-missing.vitest.ts (5 tests) 795ms
+ ✓ ../system-deep-loop/runtime/tests/integration/query-script.vitest.ts (7 tests) 769ms
+ ✓ ../system-deep-loop/runtime/tests/unit/typo-flags.vitest.ts (15 tests) 723ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-direct-append-cli.vitest.ts (7 tests) 698ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts (5 tests) 684ms
+ ✓ ../system-deep-loop/runtime/tests/integration/status-script.vitest.ts (6 tests) 660ms
+ ✓ ../system-deep-loop/runtime/tests/unit/jsonl-repair.vitest.ts (12 tests) 615ms
+ ✓ ../system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts (26 tests) 585ms
+     ✓ convergence telemetry records both novelty ratios only in sliding-window mode  522ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stopping-clocks.vitest.ts (29 tests) 579ms
+     ✓ authorizes one terminal event, accepts exact retry, and rejects a conflict  434ms
+ ✓ ../system-deep-loop/runtime/tests/unit/health-degeneration-harness.vitest.ts (14 tests) 543ms
+stderr | runtime/tests/folder-discovery-integration.vitest.ts > F12: mixed-mode aggregation with corrupt/missing/stale combinations > includes all folders and falls back to spec.md for stale/corrupt/missing description.json
+Warning: description.json parse error, writing minimal replacement (Expected property name or '}' in JSON at position 1 (line 1 column 2))
+
+stderr | runtime/tests/folder-discovery-integration.vitest.ts > F12: mixed-mode aggregation with corrupt/missing/stale combinations > repairs stale and corrupt description.json files during discovery when the file already exists
+Warning: description.json parse error, writing minimal replacement (Expected property name or '}' in JSON at position 1 (line 1 column 2))
+
+ ✓ runtime/tests/folder-discovery-integration.vitest.ts (43 tests) 499ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts (90 tests) 521ms
+ ✓ runtime/tests/orphan-sweeper-ipc-preserve.vitest.ts (7 tests) 490ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-protocol-append-sites.vitest.ts (18 tests) 446ms
+ ✓ runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts (6 tests) 427ms
+GREEN: {"claimsCount":2,"sourcesCount":1}
+RED: {"claimsCount":0,"sourcesCount":1}
+RESTORE: {"claimsCount":2,"sourcesCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts (3 tests) 401ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  398ms
+ ✓ ../system-deep-loop/runtime/tests/unit/loop-lock.vitest.ts (20 tests) 415ms
+GREEN: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+RED: {"artifactCount":1,"paths":["research/deltas/iter-001.jsonl"],"iter1RowCount":2}
+RESTORE: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-deltas-contract.vitest.ts (3 tests) 390ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  386ms
+GREEN: {"rowCount":3,"hasComplete":true}
+RED: {"rowCount":2,"hasComplete":false}
+RESTORE: {"rowCount":3,"hasComplete":true}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-config-state-contract.vitest.ts (3 tests) 388ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  383ms
+GREEN: {"findingsCount":1,"evidenceCount":1}
+RED: {"findingsCount":0,"evidenceCount":1}
+RESTORE: {"findingsCount":1,"evidenceCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts (4 tests) 384ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  380ms
+ ✓ runtime/tests/opencode-plugins-folder-purity.vitest.ts (1 test) 387ms
+     ✓ contains only importable plugin entrypoints with valid hook objects  386ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts (8 tests) 382ms
+ ✓ ../system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts (58 tests) 352ms
+     ✓ keeps the registry digest stable across a hostile-collation child process  336ms
+ ✓ ../system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts (12 tests) 356ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts (47 tests) 364ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts (4 tests) 320ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-pool.vitest.ts (37 tests) 337ms
+ ✓ ../system-deep-loop/runtime/tests/unit/spawn-cjs.vitest.ts (4 tests) 283ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-reducers.vitest.ts (19 tests) 245ms
+ ✓ runtime/tests/completion-evidence-sentinel.vitest.ts (31 tests) 260ms
+ ✓ runtime/tests/validation-orchestrator-bridge.vitest.ts (11 tests) 259ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts (8 tests) 238ms
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-audit-process-group.vitest.ts (1 test) 234ms
+ ✓ runtime/tests/env-reference-drift.vitest.ts (5 tests) 246ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-projection-coverage.vitest.ts (8 tests) 224ms
+ ✓ runtime/tests/graph-metadata-schema.vitest.ts (54 tests) 204ms
+ ✓ runtime/tests/hook-completion-evidence-stop.vitest.ts (7 tests) 181ms
+ ✓ runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts (4 tests) 184ms
+ ✓ ../system-deep-loop/runtime/tests/executor-audit-receipts.test.ts (6 tests) 151ms
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"  DeepSeek-V4-Pro  "}}
+{"type":"step_start","part":{"type":"step-start","modelID":"some-other-model"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"gpt-9-substituted"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-provenance-mismatch.vitest.ts (10 tests) 151ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-merge-question-shape.vitest.ts (1 test) 149ms
+ ✓ ../system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts (33 tests) 130ms
+WARN [speckit-hook:stdin] Failed to parse hook stdin: stdin.on is not a function
+WARN [speckit-hook:stdin] Failed to parse hook stdin: stdin.on is not a function
+WARN [speckit-hook:timeout] Operation timed out after 50ms
+ ✓ runtime/tests/edge-cases.vitest.ts (13 tests) 123ms
+ ✓ runtime/tests/description/repair-specimens.vitest.ts (7 tests) 126ms
+ ✓ ../system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts (3 tests) 106ms
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts (52 tests) 99ms
+ ✓ ../system-deep-loop/runtime/tests/unit/synthesis-closeout-latest-record.vitest.ts (4 tests) 103ms
+ ✓ runtime/tests/folder-discovery.vitest.ts (104 tests) 103ms
+ ✓ runtime/tests/embedders/hf-model-server.vitest.ts (18 tests) 101ms
+ ✓ ../system-deep-loop/runtime/tests/council/round-state-jsonl.vitest.ts (8 tests) 111ms
+ ✓ runtime/tests/esm-entry-symlink.vitest.ts (7 tests) 79ms
+ ✓ runtime/tests/folder-discovery-idempotent.vitest.ts (10 tests) 77ms
+ ✓ ../system-deep-loop/runtime/tests/unit/path-coverage-termination.vitest.ts (62 tests) 66ms
+ ✓ ../system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts (7 tests) 58ms
+ ✓ runtime/tests/template-phrase-lint-fail-open.vitest.ts (1 test) 57ms
+ ✓ runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts (14 tests) 52ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts (9 tests) 54ms
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-skipped
+INFO [speckit-hook:session-stop] Session autosave-skipped stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-failed
+INFO [speckit-hook:session-stop] Session summary extracted (20 chars)
+WARN [speckit-hook:session-stop] Context auto-save failed: autosave failed
+INFO [speckit-hook:session-stop] Session autosave-failed stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-different-packet
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-different-packet stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session ambiguous-retarget
+WARN [speckit-hook:session-stop] Spec folder detection was ambiguous; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session ambiguous-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session io-failed-retarget
+WARN [speckit-hook:session-stop] Transcript parsing failed: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-stop-hook-autosave-5fENSi/missing-transcript.jsonl'
+WARN [speckit-hook:session-stop] Spec folder detection skipped: transcript I/O failed; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session io-failed-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session offset-sentinel-session
+INFO [speckit-hook:session-stop] Token snapshot: 165 total (claude-sonnet), est. $0.001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 120 prompt + 45 completion = 165 total tokens
+INFO [speckit-hook:session-stop] Session offset-sentinel-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-write-session
+INFO [speckit-hook:session-stop] Token snapshot: 75 total (claude-sonnet-4-6), est. $0.0005
+INFO [speckit-hook:session-stop] Parsed 1 messages: 50 prompt + 25 completion = 75 total tokens
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/026-graph-and-context-optimization/016-foundational-runtime/001-initial-research
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+INFO [speckit-hook:session-stop] Session atomic-write-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session preparse-stat-session
+INFO [speckit-hook:session-stop] Token snapshot: 15 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 10 prompt + 5 completion = 15 total tokens
+INFO [speckit-hook:session-stop] Session preparse-stat-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-refresh-session
+INFO [speckit-hook:session-stop] Token snapshot: 8 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 5 prompt + 3 completion = 8 total tokens
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-refresh-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session persist-fail-session
+INFO [speckit-hook:session-stop] Token snapshot: 50 total (claude-sonnet-4-6), est. $0.0004
+INFO [speckit-hook:session-stop] Parsed 1 messages: 30 prompt + 20 completion = 50 total tokens
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+ERROR [speckit-hook:state] Failed to save state: Simulated atomic state write failure
+WARN [speckit-hook:state] State update was not persisted for session persist-fail-session
+INFO [speckit-hook:session-stop] Session persist-fail-session stop processing complete
+ ✓ runtime/tests/hook-session-stop.vitest.ts (16 tests) 51ms
+ ✓ runtime/tests/identity-resolver-merge-safety.vitest.ts (18 tests) 42ms
+ ✓ runtime/tests/generator-hardening.vitest.ts (16 tests) 38ms
+ ✓ runtime/tests/council-helpers-smoke.vitest.ts (2 tests) 29ms
+ ✓ runtime/tests/graph-metadata-lineage.vitest.ts (7 tests) 25ms
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] lease holder pid=123 socket=tcp://127.0.0.1:65535 failed 1 consecutive liveness probes: timeout
+[test-launcher] bridging to lease holder pid=123 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-owner-sock-L6OaOx/daemon-ipc.sock
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (no-bridge-socket)
+[test-launcher] bridging to lease holder pid=123 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-legacy-sock-4h238j/daemon-ipc.sock
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (no-bridge-socket)
+ ✓ runtime/tests/launcher-ipc-bridge-probe.vitest.ts (20 tests) 20ms
+ ✓ runtime/tests/model-server-respawn-lock-atomic.vitest.ts (6 tests) 15ms
+ ✓ runtime/tests/path-boundary.vitest.ts (7 tests) 18ms
+INFO [speckit-hook:session-stop] Stop hook fired for session producer-metadata-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session producer-metadata-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-no-summary
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session autosave-enabled-no-summary stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+ERROR [speckit-hook:state] Failed to save state: injected EIO for autosave failure test
+WARN [speckit-hook:state] State update was not persisted for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Session autosave-enabled-state-write-fail stop processing complete
+ ✓ runtime/tests/hook-session-stop-replay.vitest.ts (5 tests) 17ms
+ ✓ runtime/tests/council-playbook-anchor-integrity.vitest.ts (1 test) 13ms
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/18ea807f967c/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/18ea807f967c/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] {"event":"load_most_recent_state_rejected","reason":"scope_unknown_fail_closed"}
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/3982894341ae/poison-pill.json.bad
+WARN [speckit-hook:state] {"event":"clean_stale_states_skipped","file":"blocked.json","path":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/9a7fce91481f/blocked.json","reason":"EPERM: operation not permitted, unlink '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/9a7fce91481f/blocked.json'"}
+ ✓ runtime/tests/hook-state.vitest.ts (18 tests) 14ms
+ ✓ runtime/tests/index-scope.vitest.ts (7 tests) 11ms
+ ✓ runtime/tests/hook-session-start.vitest.ts (13 tests) 10ms
+ ✓ runtime/tests/launcher-session-proxy.vitest.ts (23 tests) 10ms
+ ✓ runtime/tests/hook-precompact.vitest.ts (13 tests) 8ms
+ ✓ runtime/tests/hook-adapter-path-parity.vitest.ts (130 tests) 7ms
+ ✓ runtime/tests/calibrated-overlap-bonus.vitest.ts (24 tests) 8ms
+ ✓ runtime/tests/p0-d-toctou-cleanup-regression.vitest.ts (1 test) 6ms
+ ✓ runtime/tests/hook-stop-token-tracking.vitest.ts (8 tests) 6ms
+ ✓ runtime/tests/content-normalizer.vitest.ts (77 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts (9 tests) 4ms
+ ✓ ../system-deep-loop/runtime/tests/fanout-lineage-stderr.test.ts (2 tests) 51ms
+ ✓ runtime/tests/local-llm-features/default-model-selection.vitest.ts (4 tests) 54ms
+ ✓ ../system-deep-loop/runtime/tests/unit/per-mode-authority-flip.vitest.ts (20 tests) 55ms
+ ✓ runtime/tests/session-start-context-pi-extension.vitest.ts (2 tests) 52ms
+ ✓ runtime/tests/workflow-memory-tracking.vitest.ts (5 tests) 48ms
+ ✓ ../system-deep-loop/runtime/tests/unit/dependency-seams.vitest.ts (6 tests) 48ms
+ ✓ ../system-deep-loop/runtime/tests/unit/coverage-graph-query.vitest.ts (13 tests) 57ms
+ ✓ runtime/tests/embedders/launcher-model-server-single-writer-cluster.vitest.ts (4 tests) 43ms
+ ✓ ../system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts (16 tests) 44ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-salvage.vitest.ts (14 tests) 45ms
+ ✓ ../system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts (9 tests) 43ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts (10 tests) 42ms
+ ✓ runtime/tests/embedders/hf-local-client.vitest.ts (34 tests) 42ms
+ ✓ ../system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts (58 tests) 43ms
+ ✓ runtime/tests/phase-parent-health.vitest.ts (9 tests) 45ms
+ ✓ runtime/tests/spec-folder-mutex-liveness.vitest.ts (6 tests) 29ms
+ ✓ runtime/tests/spec-gate-pi-extension.vitest.ts (9 tests) 32ms
+ ✓ runtime/tests/resume-ladder.vitest.ts (15 tests) 28ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts (14 tests) 27ms
+ ✓ ../system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts (30 tests) 22ms
+ ✓ ../system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts (7 tests) 20ms
+ ✓ ../system-deep-loop/runtime/tests/unit/council-graph-query.vitest.ts (6 tests) 22ms
+ ✓ ../system-deep-loop/runtime/tests/unit/workflow-session-id-parity.vitest.ts (2 tests) 21ms
+ ✓ runtime/tests/stdio-logging-safety.vitest.ts (1 test) 19ms
+ ✓ runtime/tests/trigger-extractor.vitest.ts (14 tests) 18ms
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-config.vitest.ts (109 tests) 16ms
+ ✓ runtime/tests/smart-router-measurement.vitest.ts (4 tests) 16ms
+ ✓ ../system-deep-loop/runtime/tests/unit/coverage-graph-db.vitest.ts (3 tests) 14ms
+ ✓ ../system-deep-loop/runtime/tests/unit/post-dispatch-receipt-validator.vitest.ts (10 tests) 13ms
+ ✓ runtime/tests/api-validation.vitest.ts (7 tests) 14ms
+ ✓ runtime/tests/dist-freshness.vitest.ts (4 tests) 14ms
+ ✓ ../system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts (13 tests) 14ms
+ ✓ runtime/tests/upgrade-baseline.vitest.ts (11 tests) 12ms
+ ✓ runtime/tests/embedders/model-server-perimeter.vitest.ts (4 tests) 18ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-lock-refresh.vitest.ts (6 tests) 13ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts (4 tests) 12ms
+ ✓ runtime/tests/smart-router-telemetry.vitest.ts (17 tests) 10ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-stage-skip.vitest.ts (4 tests) 10ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts (2 tests) 9ms
+ ✓ runtime/tests/flag-ceiling.vitest.ts (7 tests) 10ms
+ ✓ runtime/tests/slug-utils-boundary.vitest.ts (10 tests) 8ms
+ ✓ runtime/tests/unit-rrf-fusion.vitest.ts (28 tests) 9ms
+INFO [speckit-hook:state] Skipped clearing compact payload for session r33001-session because the cached payload changed
+ ✓ runtime/tests/adversarial/compact-prime-identity-race.vitest.ts (2 tests) 8ms
+ ✓ runtime/tests/smart-router-analyze.vitest.ts (7 tests) 8ms
+ ✓ runtime/tests/review-depth-reducer.vitest.ts (1 test) 9ms
+ ✓ runtime/tests/rrf-fusion.vitest.ts (25 tests) 8ms
+ ✓ ../system-deep-loop/runtime/tests/unit/permissions-gate.vitest.ts (9 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts (5 tests) 6ms
+ ✓ runtime/tests/completion-evidence-pi-extension.vitest.ts (1 test) 6ms
+ ✓ ../system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts (11 tests) 6ms
+ ✓ runtime/tests/session-token-resume.vitest.ts (4 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts (6 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts (4 tests) 6ms
+ ✓ runtime/tests/thin-continuity-record.vitest.ts (15 tests) 6ms
+stdout | runtime/tests/security/adversarial-unicode.vitest.ts > adversarial Unicode round-trip corpus > captures the active runtime fingerprint for regression triage
+[adversarial-unicode-runtime] {"normalizer":"nfkc-hidden-mark-confusable-v1","node":"26.8.2","icu":"78.3","unicode":"17.0"}
+
+ ✓ runtime/tests/security/adversarial-unicode.vitest.ts (6 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/unit/runtime-capabilities.vitest.ts (11 tests) 5ms
+ ✓ runtime/tests/multi-ai-council-runtime-parity.vitest.ts (2 tests) 5ms
+ ✓ runtime/tests/token-snapshot-store.vitest.ts (3 tests) 5ms
+ ✓ runtime/tests/multi-ai-council-rollback.vitest.ts (1 test) 4ms
+ ✓ ../system-deep-loop/runtime/tests/unit/artifact-root.vitest.ts (6 tests) 5ms
+ ✓ runtime/tests/hooks-shared-provenance.vitest.ts (21 tests) 5ms
+ ✓ runtime/tests/gate-d-regression-quality-gates.vitest.ts (1 test) 5ms
+ ✓ runtime/tests/factory-auto-resolution.vitest.ts (1 test) 5ms
+ ✓ ../system-deep-loop/runtime/tests/unit/dispatch-failure.vitest.ts (2 tests) 4ms
+ ✓ ../system-deep-loop/runtime/tests/unit/sleep.vitest.ts (5 tests) 4ms
+ ✓ runtime/tests/multi-ai-council-permission-scope.vitest.ts (2 tests) 4ms
+ ✓ runtime/tests/entity-extractor.vitest.ts (34 tests) 4ms
+ ✓ runtime/tests/multi-ai-council-audit-trail.vitest.ts (2 tests) 4ms
+ ✓ runtime/tests/memory-drift-full-tree-discovery.vitest.ts (1 test) 4ms
+ ✓ ../system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts (4 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/observability-events.vitest.ts (3 tests) 4ms
+ ✓ ../system-deep-loop/runtime/tests/unit/runtime-capabilities-matrix-conformance.vitest.ts (13 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-authority-composition.vitest.ts (3 tests) 3ms
+ ✓ runtime/tests/embedders/hf-model-server-perimeter.vitest.ts (20 tests) 3ms
+ ✓ runtime/tests/shared-payload-advisor.vitest.ts (8 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/workflow-event-dir-binding.vitest.ts (7 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cutover-binding.vitest.ts (10 tests) 4ms
+ ✓ runtime/tests/local-llm-features/health-reporting.vitest.ts (3 tests) 3ms
+ ✓ runtime/tests/continue-session.vitest.ts (32 tests) 3ms
+ ✓ runtime/tests/exclusion-ssot-unification.vitest.ts (1 test) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts (6 tests) 3ms
+[compact-merger evidence]
+Rendered section headers and token estimates:
+- ## Active Files & Structural Context source=code-graph tokenEstimate=17
+- ## Session State / Next Steps source=session tokenEstimate=14
+- ## Triggered Memories source=memory tokenEstimate=13
+MergedBrief.allocation:
+- codeGraph floor=1200 requested=17 granted=17 dropped=0
+- sessionState floor=0 requested=24 granted=24 dropped=0
+- triggered floor=400 requested=13 granted=13 dropped=0
+MergedBrief.metadata.totalTokenEstimate=44
+MergedBrief.metadata.sourceCount=3
+MergedBrief.metadata.mergedAt=2026-10-26T17:27:06.704Z
+MergedBrief.metadata.mergeDurationMs=1
+MergedBrief.metadata.deduplicatedFiles=1
+ ✓ runtime/tests/compact-merger.vitest.ts (2 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts (6 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts (12 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts (8 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/pivot-candidates.vitest.ts (4 tests) 2ms
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T002: path traversal attempt (../../etc/passwd) is rejected
+[utils] Path traversal blocked: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/etc/passwd -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/etc/passwd
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T003: null bytes in path rejected
+[utils] Null byte in path blocked: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/file .txt
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T004: path outside allowed bases rejected
+[utils] Path traversal blocked: /usr/bin/node -> /usr/bin/node
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T005: symlink resolution blocks escape from allowed base
+[utils] Path traversal blocked: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-test-pathsec-1793035627069/allowed/sneaky-link -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-test-pathsec-1793035627069/outside/secret.txt
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T007: empty/null/undefined allowed_base_paths rejected
+[utils] validateFilePath called with empty allowedBasePaths
+[utils] validateFilePath called with empty allowedBasePaths
+[utils] validateFilePath called with empty allowedBasePaths
+
+ ✓ runtime/tests/unit-path-security.vitest.ts (7 tests) 3ms
+ ✓ runtime/tests/launcher-existing-service-probe.vitest.ts (4 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fallback-router.vitest.ts (10 tests) 3ms
+ ✓ runtime/tests/local-llm-features/prefix-system.vitest.ts (6 tests) 3ms
+ ✓ runtime/tests/model-server-demand-probe.vitest.ts (3 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/receipt-crypto.test.ts (11 tests) 3ms
+ ✓ runtime/tests/embedders/hf-local-model-identity.vitest.ts (4 tests) 3ms
+ ✓ runtime/tests/chunking-semantic.vitest.ts (5 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts (3 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/evidence-contract.vitest.ts (8 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/convergence-score-delta.vitest.ts (9 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts (4 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/council/cost-guards.vitest.ts (7 tests) 3ms
+ ✓ runtime/tests/hook-adapter-runtime-label.vitest.ts (3 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/legacy-projection-surface-fold.vitest.ts (2 tests) 2ms
+ ✓ runtime/tests/folder-discovery-threshold.vitest.ts (4 tests) 3ms
+ ✓ runtime/tests/repair-hint-order.vitest.ts (2 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cli-guards-needs-input.vitest.ts (7 tests) 2ms
+ ✓ runtime/tests/validation/evidence-marker-audit.vitest.ts (4 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/council/session-state-hierarchy.vitest.ts (3 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts (2 tests) 2ms
+ ✓ runtime/tests/description/description-merge.vitest.ts (5 tests) 2ms
+ ✓ runtime/tests/exhaustiveness.vitest.ts (7 tests) 2ms
+ ✓ runtime/tests/launcher-reap-hardening.vitest.ts (6 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts (6 tests) 3ms
+ ✓ runtime/tests/api-key-validation.vitest.ts (4 tests) 2ms
+ ✓ runtime/tests/api-graph-refresh.vitest.ts (2 tests) 2ms
+ ✓ runtime/tests/budget-allocator.vitest.ts (4 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/council/adjudicator-verdict-scoring.vitest.ts (3 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lifecycle-taxonomy-yaml-parity.vitest.ts (3 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-marker-scan.vitest.ts (2 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts (1 test) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-marker-scan.vitest.ts (2 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-merge-latest-record.vitest.ts (2 tests) 2ms
+ ✓ runtime/tests/architecture-seam.vitest.ts (2 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts (3 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/bayesian-scorer.vitest.ts (6 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-novelty-inertness.vitest.ts (3 tests) 2ms
+ ✓ runtime/tests/hooks-reexport-parity.vitest.ts (2 tests) 1ms
+ ↓ runtime/tests/copilot-compact-cycle.vitest.ts (2 tests | 2 skipped)
+ ↓ runtime/tests/copilot-user-prompt-submit-hook.vitest.ts (7 tests | 7 skipped)
+ ↓ runtime/tests/remediation-008-docs.vitest.ts (2 tests | 2 skipped)
+
+ Test Files  279 passed | 3 skipped (282)
+      Tests  4184 passed | 21 skipped (4205)
+   Start at  18:02:52
+   Duration  1458.03s (transform 3.65s, setup 1.61s, import 7.44s, tests 1432.72s, environment 10ms)
+
+vitest_exit=0

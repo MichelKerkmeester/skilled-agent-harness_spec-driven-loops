@@ -1,0 +1,15 @@
+TASK TT. One file: specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/tasks.md.tmpl.
+1. A. Example swap at the SWEEP lines for templates/core/tasks.md.tmpl.
+2. Phase 016 tasks T010, T011 and the tasks.md part of T012, exactly as written in
+   specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/tasks.md lines 59-61 (read them
+   and that folder's spec.md decisions): replace the three named sign-off roles (Technical Lead, Product Owner, QA Lead)
+   with one token row, keeping the section at Level 3 and 3+; rename the fix-completeness header to
+   `## FIX ADDENDUM: FIX COMPLETENESS` and set its fill note to "Write this section when the packet fixes a reported
+   finding. Delete it otherwise." keeping a GOOD and WEAK example; reword CHK-100 so it points at plan.md's
+   ARCHITECTURE DECISION RECORD section, or at `decision-record.md` only when the packet has one.
+3. B. Stamp v2.4.
+Verify (repo root), paste outputs:
+  rg -n 'Technical Lead|Product Owner|QA Lead' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/tasks.md.tmpl          (prints nothing)
+  rg -n '^## FIX ADDENDUM: FIX COMPLETENESS' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/tasks.md.tmpl             (prints one line)
+  rg -c -e '--quiet' -e 'recommend-level' -e '17-line' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/tasks.md.tmpl   (prints nothing or 0)
+  rg -c '\| v2.4 -->' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/tasks.md.tmpl                                   (prints at least 1)

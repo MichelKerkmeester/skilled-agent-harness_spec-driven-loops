@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "measured behavior and draft metadata",
+      "phase 17 measured behavior and draft metadata",
+      "measured behavior block",
+      "draft metadata auto repair",
+      "measured behavior and draft metadata plan",
+      "measured behavior and draft metadata tasks",
+      "measured behavior and draft metadata acceptance criteria",
+      "measured behavior and draft metadata goal",
+      "measured behavior and draft metadata implementation summary"
+    ],
+    "key_topics": [
+      "measured",
+      "behavior",
+      "draft",
+      "metadata",
+      "phase",
+      "block",
+      "auto",
+      "repair",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/metadata-rounds.md",
+      "templates/core/spec.md.tmpl",
+      "templates/core/plan.md.tmpl",
+      "templates/core/tasks.md.tmpl",
+      "templates/core/implementation-summary.md.tmpl",
+      "templates/addons/acceptance-criteria.md.tmpl",
+      "templates/spec-kit-docs.json",
+      "templates/examples/level-1/spec.md",
+      "runtime/cli/rules/check-measured-behavior.sh",
+      "runtime/cli/lib/validator-registry.json",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/spec/validate.sh",
+      "runtime/cli/spec/repair-derived.cjs",
+      "runtime/cli/spec/upgrade-legacy.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "metadata-rounds.md",
+        "kind": "doc",
+        "path": "scratch/metadata-rounds.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/implementation-summary.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-measured-behavior.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-measured-behavior.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Graders found a wrong report shape (\"five-row\", \"nine-line\", \"eight-line\") in 5 of 12 benchmark packets (`../015-template-example-neutralization/scratch/evidence-summary.md:28-29`), and four of those authors had run the script (`insight-review.md:31`), so running a command does not stop an author from misstating its output; nothing asks the author to quote it",
+    "created_at": "2026-10-26T15:03:32Z",
+    "last_save_at": "2026-10-26T17:35:54.796Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b9d70ad941a29ca19111653edee65231b4965aabe8fa78e9201899c1b330d200",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c1e74e61a50936584c44c3039e4b06fba4aa0a7dc7e6ebb27512f59dbd520e1f",
+      "plan.md": "c42b8f3b38ea6eda30b011225c9b13c1fc054053728a10414965b5a114ef2795",
+      "tasks.md": "b3684d1e6f388bf1c3f99622b8dab06b0d560016ff6f95f17e82fa7729c72087",
+      "implementation-summary.md": "dca7b0fb2b34f9714e53539115e7764223b472ec6be302f0a1014edc8ab9694b"
+    },
+    "last_active_at": null
+  }
+}

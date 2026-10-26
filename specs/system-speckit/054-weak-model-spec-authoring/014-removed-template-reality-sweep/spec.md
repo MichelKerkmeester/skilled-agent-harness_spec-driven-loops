@@ -27,7 +27,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 14 of 14 |
 | **Predecessor** | 013-addon-removal-and-speed-refinements |
-| **Successor** | None |
+| **Successor** | 015-template-example-neutralization |
 | **Handoff Criteria** | Both sweeps report zero stale hits from the final tree |
 <!-- /ANCHOR:metadata -->
 

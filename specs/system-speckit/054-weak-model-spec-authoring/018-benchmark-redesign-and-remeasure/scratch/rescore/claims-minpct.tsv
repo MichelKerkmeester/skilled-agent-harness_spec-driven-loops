@@ -1,0 +1,2 @@
+run	variant	round	file	line	stated	input	actual	verdict	why	text
+20261026T164410Z-40710	now054	3	tasks.md	37	2			UNPARSED	no --loc and --files input named	Write `# Fixture`, two lines carrying the bracketed TBD marker and one `Content line`.

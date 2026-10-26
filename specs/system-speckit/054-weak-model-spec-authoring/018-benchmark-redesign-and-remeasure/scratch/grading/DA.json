@@ -1,0 +1,22 @@
+{
+  "label": "DA",
+  "scores": {"grounding": 5, "requirements": 5, "verification": 3, "scope": 5, "consistency": 4, "clarity": 4},
+  "total": 26,
+  "notes": {
+    "grounding": "All claims about the script hold: the options, 'Overall Completion: N%' at line 348, the unconditional exit 0 at line 587, the exit-code comment listing only 0 and 1, the 'ERROR: Unexpected argument: 90' rejection (--min-percent is taken as SPEC_FOLDER, then 90 is unexpected), the local percentage that output_text computes at lines 376-387, and the --file not-found early return.",
+    "requirements": "REQ-001 to REQ-007 are testable and cover exit 3 below N, exit 0 at or above N, byte-identical text and JSON output, missing/non-integer/out-of-range values (exit 1, stderr ERROR, no report) and --file gating.",
+    "verification": "Every task has a Verify clause with a command and expected output, but T007, T011 and T013 pass the fixture file $X as a positional spec folder; the real script fails that with 'ERROR: Spec folder not found' and exit 1 (confirmed by running it on a file path), so a correct implementation would fail those checks. T014's 'missing value' case passes $P as the value, so it tests a non-integer value and never the missing-value branch.",
+    "scope": "Stays on the one option at Level 1 and adds no subsystem. No unfilled tokens or filler sections.",
+    "consistency": "Exit codes, paths and numbers mostly agree, but tasks.md runs the fixture as a 'folder run' using a file path while spec REQ-002 and plan.md speak of a below-threshold folder/scratch fixture, and plan.md line 56 says '--min-percent|-m-style' handling although spec.md line 79 puts the -m alias out of scope.",
+    "clarity": "A developer could implement the change from plan.md section 3 (globals, both output functions, gate replacing exit 0, default 0 for not-found). The broken fixture invocations would cause confusion during verification."
+  },
+  "defects": [
+    "tasks.md:52: T007 Verify runs 'bash $S --min-percent 100 $X' with $X a file (scratch/fixture/spec.md) as the positional spec folder; the script exits 1 with 'ERROR: Spec folder not found', so the expected 3 never appears even after a correct implementation (needs --file $X or the fixture directory)",
+    "tasks.md:63: T011 is titled a folder run but passes the file $X positionally; the same 'Spec folder not found' exit 1 makes the expected 3 unreachable",
+    "tasks.md:65: T013 'bash $S --min-percent 0 $X' exits 1 for the same reason, not the expected 0",
+    "tasks.md:66: T014 second case 'bash $S --min-percent $P' consumes $P as the value, so it tests a non-integer value, not the missing-value case REQ-005 requires (spec.md:107)",
+    "plan.md:56: says '--min-percent|-m-style handling of the long form only', which muddles the -m alias that spec.md:79 places out of scope",
+    "plan.md:43: Definition of Done says 'the same command against the scratch fixture prints 3' without naming whether the fixture is a folder or a --file target; tasks.md resolves it to a file path that the folder form rejects",
+    "tasks.md:41: T003 expects 'bash --version' to print 3.2.57, which depends on which bash is first on PATH rather than proving the change keeps Bash 3.2 compatibility"
+  ]
+}

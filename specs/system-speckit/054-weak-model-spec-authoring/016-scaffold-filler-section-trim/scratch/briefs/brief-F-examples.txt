@@ -1,0 +1,16 @@
+TASK F-examples. Files: .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl, .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl,
+.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl, and the examples under .skilled/skills/system-spec-kit/templates/examples/.
+1. Run: rg -n 'Phase 1.5|Feature flag configured|External service failure|Tests passing \(if applicable\)|Technical Lead' .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl .skilled/skills/system-spec-kit/templates/examples
+   The review found hits at handover.md.tmpl:114, examples/level-1/plan.md:52 and examples/level-2/plan.md:156. For the
+   handover template, replace the filler phrase with neutral wording that keeps the line's purpose. For the examples
+   (filled "Add User Authentication" packets), replace the generic phrase with a concrete, example-specific line
+   (for example "Tests passing (if applicable)" becomes "`npm test -- auth` passes").
+2. .skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md ~347: "See plan.md L2: Enhanced Rollback section" points at a
+   section that no longer exists; point it at plan.md's rollback section (read that example's plan.md for the real heading).
+3. .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl ~128: "Flag over config file" uses "flag" while every other note says
+   "option", and research rejects an environment variable. Make it "Option over environment variable".
+4. .skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl ~95: "confirm one `rm`" is ambiguous when seven archives are deleted. Make
+   it "confirm the run deletes exactly 7 of the 10 archives".
+Verify (repo root), paste outputs:
+  rg -n 'Phase 1.5|Feature flag configured|External service failure|Tests passing \(if applicable\)|Technical Lead' .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl .skilled/skills/system-spec-kit/templates/examples   (prints nothing)
+  rg -n 'Enhanced Rollback' .skilled/skills/system-spec-kit/templates/examples   (prints nothing)

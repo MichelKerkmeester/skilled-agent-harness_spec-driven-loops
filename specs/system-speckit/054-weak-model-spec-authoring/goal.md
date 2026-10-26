@@ -160,6 +160,12 @@ and findings belong here.
 | Speed loop, refined tree, end of row | Done | The row above hit the log's cell limit. Its end: the gap to pre-054 is main's drift, and run time follows tool-call count (r=0.91 over 12 author runs), not the tree |
 | 013 addon removal + speed refinements | Done | 7 add-ons; card --quiet once; apply-first hint; strict census 2 rows toward PASS (ADR-001); changed tests 146/146 alone |
 | 014 removed-template reality sweep | Done | 2 audits, 5 DeepSeek briefs, Opus review OK; final sweep 0 stale; links 0 broken; mirrors in sync |
+| Phases 015-018 scaffolded from the 2026-10-26 Opus xhigh insight review: neutral template examples, filler-section trim, measured behavior and Draft metadata repair, benchmark redesign at the helpe... | Planned | 015-template-example-neutralization/scratch/insight-review.md |
+| 015 neutral template examples | Done | 87 lines in 12 files use rotate-logs --keep; term gate 0 (D3 line excluded); 9/9 AC; re-review PASS after fix check |
+| 016 scaffold filler trim | Done | effort, enhanced-rollback gone; edge cases 3 lines; sign-off 1 row; census before = after (4,562 PASS, 195 FAIL); 8/8 AC |
+| Benchmark minpct, 8 rounds | Done | now054 vs pre054 quality REAL better 8/8 (24.8 vs 22.9 of 30); refined 25.5, INCONCLUSIVE vs pre054 (7/8) and vs now054; speed: only upkeep tok_out refined < main-no054 REAL |
+| 017 measured behavior + Draft auto-repair | Done | MEASURED_BEHAVIOR warn-only on v2.4; Draft strict run repairs derived metadata; 9/9 AC; runtime suite 279/0 fail, CLI 189 pass, 1 known git-hang flake |
+| 018 benchmark redesign | Done | 9/9 AC; report review PASS; loop review PASS after fix check |
 
 ### Deviations and findings
 

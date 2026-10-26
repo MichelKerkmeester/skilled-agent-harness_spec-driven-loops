@@ -1,0 +1,4 @@
+TASK TR. One file: specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/research.md.tmpl.
+A. Example swap at the SWEEP lines for templates/addons/research.md.tmpl. No stamp change for this file.
+Verify (repo root), paste outputs:
+  rg -c -e '--quiet' -e 'recommend-level' -e '17-line' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/addons/research.md.tmpl   (prints nothing or 0)

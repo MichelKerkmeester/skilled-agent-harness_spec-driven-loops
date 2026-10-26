@@ -1,0 +1,210 @@
+[Deliverable 1]
+[Deliverable 2]
+[Deliverable 3]
+[Excluded item 1] - [why]
+[Excluded item 2] - [why]
+| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | [Requirement description] |
+| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | [Requirement description] |
+**SC-001**: [Primary measurable outcome]
+**SC-002**: [Secondary measurable outcome]
+| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+**NFR-P01**: [Response time target - e.g., <200ms p95]
+**NFR-P02**: [Throughput target - e.g., 100 req/sec]
+**NFR-P01**: [Response time target]
+**NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+**NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+**NFR-S01**: [Auth requirement]
+**NFR-R01**: [Uptime target - e.g., 99.9%]
+**NFR-R02**: [Error rate - e.g., <1%]
+**NFR-R01**: [Uptime target]
+Empty input: [How system handles]
+Maximum length: [Limit and behavior]
+Invalid format: [Validation response]
+External service failure: [Fallback behavior]
+Network timeout: [Retry strategy]
+Concurrent access: [Conflict resolution]
+Partial completion: [Recovery behavior]
+Session expiry: [User experience]
+| Scope | [/25] | [Files, LOC, systems] |
+| Risk | [/25] | [Auth, API, breaking changes] |
+| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
+| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
+| Research | [/20] | [Investigation needs] |
+| **Total** | **[/70]** | **Level 2** |
+| Multi-Agent | [/15] | [Workstreams: X] |
+| Coordination | [/15] | [Dependencies: X] |
+| **Total** | **[/100]** | **Level 3+** |
+| **Total** | **[/100]** | **Level 3** |
+| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| Spec Review | [Role/Name] | [Pending/Approved] | [Date] |
+| Design Review | [Role/Name] | [Pending/Approved] | [Date] |
+| Implementation Review | [Role/Name] | [Pending/Approved] | [Date] |
+| Launch Approval | [Role/Name] | [Pending/Approved] | [Date] |
+Security review completed
+OWASP Top 10 addressed
+Data protection requirements met
+Coding standards followed
+License compliance verified
+| [Name] | Product | High | [Weekly sync] |
+| [Name] | Engineering | High | [Daily standup] |
+[Question 1 requiring clarification]
+[Question 2 requiring clarification]
+| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
+| **Framework** | [e.g., React, FastAPI] |
+| **Storage** | [e.g., PostgreSQL, None] |
+| **Testing** | [e.g., Jest, pytest] |
+Problem statement clear and scope documented
+Success criteria measurable
+Dependencies identified
+All acceptance criteria met
+Tests passing (if applicable)
+Docs updated (spec/plan/tasks)
+**[Component 1]**: [Purpose]
+**[Component 2]**: [Purpose]
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
+Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
+Matrix axes: list every independent input axis and the required rows before implementation.
+Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Unit | [Components/functions] | [Jest/pytest/etc.] |
+| Integration | [API endpoints/flows] | [Tools] |
+| Manual | [User journeys] | Browser |
+| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+**Trigger**: [Conditions requiring rollback]
+**Procedure**: [How to revert changes]
+Phase 1 (Setup)
+Phase 2 (Core)
+Phase 3 (Verify)
+Phase 1.5 (Config)
+| Setup | None | Core, Config |
+| Config | Setup | Core |
+| Core | Setup, Config | Verify |
+| Verify | Core | None |
+| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
+| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
+| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
+| **Total** | | **[e.g., 6-12 hours]** |
+Backup created (if data changes)
+Feature flag configured
+Monitoring alerts set
+[Immediate action - e.g., disable feature flag]
+[Revert code - e.g., git revert or redeploy previous version]
+[Verify rollback - e.g., smoke test critical paths]
+[Notify stakeholders - if user-facing]
+**Has data migrations?** [Yes/No]
+**Reversal procedure**: [Steps or "N/A"]
+| [Component A] | None | [Output] | B, C |
+| [Component B] | A | [Output] | D |
+| [Component C] | A | [Output] | D |
+| [Component D] | B, C | [Final] | None |
+**[Phase/Task]** - [Duration estimate] - CRITICAL
+[Task A] and [Task B] can run simultaneously
+[Task C] and [Task D] can run after Phase 1
+| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
+| M2 | [Core Done] | [Main features working] | [Date/Phase] |
+| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+[Positive outcome 1]
+[Negative outcome + mitigation]
+[Option B]: [Why rejected]
+| Plan Agent | plan.md | Technical approach |
+| Checklist Agent | tasks.md | Verification items |
+| Requirements Agent | spec.md (4-6) | Requirements detail |
+Read spec.md, this plan and tasks.md before the first edit
+Confirm the target files match the workstream file ownership below
+Know the verification command for the task before starting it
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+Mark the task BLOCKED with the blocking fact
+Record the fact in the tasks.md blocked section
+Continue with the next unblocked task; escalate after two blocked tasks
+| W-A | [Core Logic] | [Primary] | [file1.ts, file2.ts] | [Active] |
+| W-B | [UI Components] | [Secondary] | [comp1.tsx, comp2.tsx] | [Active] |
+| W-C | [Tests] | [Primary] | [test/*.ts] | [Blocked on W-A] |
+| SYNC-001 | W-A, W-B complete | All agents | Integration test |
+| SYNC-002 | All workstreams | All agents | Final verification |
+Each file owned by ONE workstream
+Cross-workstream changes require SYNC
+Conflicts resolved at sync points
+**Daily**: Status update in tasks.md
+**Per Phase**: Review meeting notes
+**Blockers**: Immediate escalation
+Technical blockers → Engineering Lead
+Scope changes → Product Owner
+Resource issues → Project Manager
+Create project structure
+Install dependencies
+Configure development tools
+[Implement core feature 1]
+[Implement core feature 2]
+[Implement core feature 3]
+[Add error handling]
+Test happy path manually
+Test edge cases
+Update documentation
+Manual verification passed
+Requirements documented in spec.md
+Technical approach defined in plan.md
+Dependencies identified and available
+Code passes lint/format checks
+No console errors or warnings
+Error handling implemented
+Code follows project patterns
+Manual testing complete
+Edge cases tested
+Error scenarios validated
+Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+Same-class producer inventory completed, or instance-only status proven by grep.
+Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+Matrix axes and row count are listed before completion is claimed.
+Hostile env/global-state variant executed when tests or code read process-wide state.
+Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+No hardcoded secrets
+Input validation implemented
+Auth/authz working correctly
+Spec/plan/tasks synchronized
+Code comments adequate
+README updated (if applicable)
+Temp files in scratch/ only
+scratch/ cleaned before completion
+| P0 Items | [X] | [ ]/[X] |
+| P1 Items | [Y] | [ ]/[Y] |
+| P2 Items | [Z] | [ ]/[Z] |
+Architecture decisions documented in decision-record.md
+All ADRs have status (Proposed/Accepted)
+Alternatives documented with rejection rationale
+Migration path documented (if applicable)
+Response time targets met (NFR-P01)
+Throughput targets met (NFR-P02)
+Load testing completed
+Performance benchmarks documented
+Rollback procedure documented and tested
+Feature flag configured (if applicable)
+Monitoring/alerting configured
+Runbook created
+Deployment runbook reviewed
+Dependency licenses compatible
+OWASP Top 10 checklist completed
+Data handling compliant with requirements
+All spec documents synchronized
+API documentation complete (if applicable)
+User-facing documentation updated
+Knowledge transfer documented
+| [Name] | Technical Lead | [ ] Approved | |
+| [Name] | Product Owner | [ ] Approved | |
+| [Name] | QA Lead | [ ] Approved | |
+Implementation
+Verification
+Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
+Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
+Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
+Test edge cases (`<test>`). Verify: `<test command>` exits 0.
+Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section, or in `decision-record.md` when the packet has one

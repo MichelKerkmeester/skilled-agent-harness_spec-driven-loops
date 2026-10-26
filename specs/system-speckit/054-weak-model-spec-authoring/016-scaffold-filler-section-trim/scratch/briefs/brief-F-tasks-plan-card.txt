@@ -1,0 +1,21 @@
+TASK F-tasks-plan-card. Three files.
+1. .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl, Deployment Readiness (anchor deploy-ready, ~253-260): keep CHK-120; replace CHK-121
+   ("Feature flag configured (if applicable)") and CHK-122 ("Monitoring/alerting configured") with ONE token row:
+   "- [ ] CHK-121 [P1] [YOUR_VALUE_HERE: one deployment check this packet needs, or delete this row]". Keep CHK-123 and
+   CHK-124 as they are.
+2. .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl, Sign-Off fill note (~291): the table now has one row. Change the note to "Name the real
+   approver. Add a row only for a second approver who signs. Write `N/A` or delete the section when no sign-off applies."
+   and keep a GOOD (one concrete approver, e.g. "Operator, merges the commit") and a WEAK ("Signed off.").
+3. .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl ~242: make the timing claim "adds under 5 ms to a run".
+4. .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl ~67 (Definition of Ready example) expects the new branch to exist "before the task
+   starts", which cannot be true before implementation. Make the GOOD example something checkable before work starts,
+   for example "`ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts."
+5. .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md section 6 (~91, ~101): it says the plan "names its 3 or 4 phases". The
+   plan template's phases fill note says "name the three phases in one line". Make the card say the plan names its three
+   phases (Setup, Implementation, Verification) in one line each, matching the template and the card's own sample (~98).
+   Also check section 11 for a matching "more than 4 phases" bullet and make it consistent (for example "the feature needs
+   more than one packet's three phases").
+Verify (repo root), paste outputs:
+  rg -n 'Phase 1.5|Feature flag configured|External service failure|Tests passing \(if applicable\)|Technical Lead' .skilled/skills/system-spec-kit/templates   (prints nothing or only the hits named in TASK F-examples)
+  rg -n '3 or 4 phases' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md   (prints nothing)
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | tail -1   (CARD SYNC OK)

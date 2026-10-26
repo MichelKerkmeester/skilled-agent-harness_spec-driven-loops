@@ -1,0 +1,24 @@
+
+TASK D3. S = .skilled/skills/system-spec-kit. Four doc lines name the wrong file for sections. Facts (verified):
+- At Level 3+ `spec.md` has "## 12. APPROVAL WORKFLOW" (anchor approval-workflow, S/templates/core/spec.md.tmpl:356).
+- The sign-off section is in `tasks.md` (anchor sign-off, heading "## L3+: Sign-Off", S/templates/core/tasks.md.tmpl:289-290),
+  rendered at Level 3 and 3+.
+- `acceptance-criteria.md` (S/templates/addons/acceptance-criteria.md.tmpl) is the closure gate; its anchors are
+  metadata, criteria and closure. It has no sign-off section.
+Read each file before editing. Edit only these lines:
+1. S/assets/level-decision-matrix.md:264, last cell "Sign-off section in spec.md + multi-agent coordination patterns"
+   becomes "Approval workflow in spec.md, sign-off section in tasks.md + multi-agent coordination patterns".
+2. S/assets/template-mapping.md:400, "The closure-gate template; sign-offs and compliance render inside spec.md" becomes
+   "The closure-gate template; the approval workflow renders in spec.md and the sign-off section in tasks.md".
+3. S/references/templates/level-specifications.md:387, "extended criteria with a sign-off section" becomes
+   "the closure-gate criteria; the sign-off section lives in tasks.md".
+4. S/references/validation/template-compliance-contract.md:156, the heading "### acceptance-criteria.md — `# Acceptance
+   Criteria: [Title]`" sits over a table of tasks.md checklist anchors (protocol, pre-impl, code-quality, ...). Rename that
+   heading to "### tasks.md checklist (Level 2 and above)" and keep the table. Then check whether the file has a table for
+   acceptance-criteria.md's real anchors (metadata, criteria, closure); if not, add one right after it, in the same
+   format, reading the real H2 headings from S/templates/addons/acceptance-criteria.md.tmpl.
+Never write an em dash (the existing heading's em dash goes away with the rename).
+Verify from the repo root and paste outputs:
+  rg -n 'Sign-off section in spec.md|sign-offs and compliance render inside spec.md|extended criteria with a sign-off' .skilled/skills/system-spec-kit   (prints nothing)
+  rg -n '^### tasks.md checklist' .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md   (prints one line)
+  node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs 2>&1 | tail -1   (0 broken)

@@ -1,0 +1,6 @@
+TASK TI. One file: specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/implementation-summary.md.tmpl.
+1. A. Example swap at the SWEEP lines for templates/core/implementation-summary.md.tmpl.
+2. B. Stamp v2.4.
+Verify (repo root), paste outputs:
+  rg -c -e '--quiet' -e 'recommend-level' -e '17-line' -e '40 ms' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/implementation-summary.md.tmpl   (prints nothing or 0)
+  rg -c '\| v2.4 -->' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/implementation-summary.md.tmpl   (prints at least 1)

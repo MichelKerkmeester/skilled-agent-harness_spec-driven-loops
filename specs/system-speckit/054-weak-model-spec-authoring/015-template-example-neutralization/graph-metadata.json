@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template example neutralization",
+      "phase 15 template example neutralization",
+      "template example neutralization plan",
+      "template example neutralization tasks",
+      "template example neutralization acceptance criteria",
+      "template example neutralization goal",
+      "template example neutralization implementation summary"
+    ],
+    "key_topics": [
+      "template",
+      "example",
+      "neutralization",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "speed"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/example-sweep.md",
+      ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/addons/research.md.tmpl",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      "scratch/review.md",
+      "scratch/insight-review.md",
+      "references/workflows/spec-authoring-card.md",
+      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      "runtime/dist/lib/validation/orchestrator.js",
+      "scratch/evidence-summary.md",
+      "changelog/v2.12.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "example-sweep.md",
+        "kind": "doc",
+        "path": "scratch/example-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "research.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/addons/research.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": "scratch/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "insight-review.md",
+        "kind": "doc",
+        "path": "scratch/insight-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.js",
+        "kind": "code",
+        "path": "runtime/dist/lib/validation/orchestrator.js",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-summary.md",
+        "kind": "doc",
+        "path": "scratch/evidence-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.12.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The speed benchmark asks a model to plan a `--quiet` flag for `recommend-level.sh`, and the fill notes the model reads tell that same story: `templates/core/spec.md.tmpl:100` states the 17-line report, `templates/core/tasks.md.tmpl:83` gives the expected counts \"prints 1 and 17\", and `spec.md.tmpl:318`, `:423` and `:433` answer the benchmark's later upkeep question (\"Does `--quiet` suppress warnings? No, stderr is unchanged\")",
+    "created_at": "2026-10-26T15:03:30Z",
+    "last_save_at": "2026-10-26T17:21:42.338Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5cadbd2123bdbb6d256e0f377e8b4ca1b4cafeb74f2e6e177c2474a7351c4acd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1c0ed9bc8df026bd63f4d8263bc2a694e25cc089b20f8e554108e78c6f0c299d",
+      "plan.md": "1cb4e96596374ebeaa19407589abfd81fd8b9070625613f5d917940a4b06b12c",
+      "tasks.md": "3ee338f8dc38885b7261be30f4ffc0cd411862bcb83bac2359d550667c0f90ad",
+      "implementation-summary.md": "6db6a47ce9a0c3ad2d39f5f7a76485a37599d36f1ecb2dd0e506c35a3acda0d0"
+    },
+    "last_active_at": null
+  }
+}

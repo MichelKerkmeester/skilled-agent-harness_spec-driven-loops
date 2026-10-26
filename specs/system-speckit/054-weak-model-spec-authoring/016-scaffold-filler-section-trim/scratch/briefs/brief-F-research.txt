@@ -1,0 +1,11 @@
+TASK F-research. One file: .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl.
+1. Line ~843: "`--keep` with no value exited 2: the parser never checked the next word." presents the intended exit 2 as
+   the bug. Rewrite the GOOD example as a real defect in the same story, for example "`--keep 3` kept 4 archives: the
+   sort compared modification times in whole seconds and two archives tied."
+2. Line ~403: "Read the `-k` value" invents a short option. Use `--keep`.
+3. Line ~777: "`--dry-run`: lists what it would delete" adds a second feature. Replace it with an alternative inside the
+   story (for example "an environment variable instead of the `--keep` option", which matches the rejected alternative
+   elsewhere).
+4. Line ~621: make the timing claim "adds under 5 ms to a run".
+Verify (repo root), paste outputs:
+  rg -n -e '-k`' -e 'dry-run' -e 'never checked the next word' .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl   (prints nothing)

@@ -1,0 +1,23 @@
+TASK TS. One file: specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/spec.md.tmpl.
+1. A. Example swap at the SWEEP lines for templates/core/spec.md.tmpl.
+2. Phase 016 task T009 and the spec.md part of T012, exactly as written in
+   specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/tasks.md (read lines 58 and 61):
+   replace the eight edge-case category rows with three token lines (empty input, maximum input, failure path), and
+   drop the always-present "Decision Records: See `decision-record.md`" related-docs line.
+3. Phase 017 task T007, as written in specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/tasks.md
+   line 52 and that folder's spec.md section 3: right after the line that closes the `problem` anchor, add
+     <!-- ANCHOR:measured-behavior -->
+     ### Measured Behavior
+     <!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
+     ```text
+     [YOUR_VALUE_HERE: command and its verbatim output]
+     ```
+     <!-- /ANCHOR:measured-behavior -->
+   No H2 heading. It must not sit inside another anchor. If the file renders sections per level with IF blocks, place it
+   so every level renders it.
+4. B. Stamp v2.4.
+Verify (repo root), paste outputs:
+  rg -c -e '--quiet' -e 'recommend-level' -e '17-line' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/spec.md.tmpl            (prints nothing or 0)
+  rg -c 'ANCHOR:measured-behavior' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/spec.md.tmpl                                 (prints 2)
+  rg -n 'External service failure|Network timeout|Session expiry' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/spec.md.tmpl   (prints nothing)
+  rg -c '\| v2.4 -->' specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/spec.md.tmpl                                              (prints 3)

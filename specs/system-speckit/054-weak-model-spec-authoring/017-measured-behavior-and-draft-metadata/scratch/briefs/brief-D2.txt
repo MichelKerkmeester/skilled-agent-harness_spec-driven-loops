@@ -1,0 +1,30 @@
+
+TASK D2. S = .skilled/skills/system-spec-kit. Two validator behaviors are being added; describe them in three docs.
+Read each file first and match its existing section style, tone and table formats. Add text only; change nothing else.
+
+The facts (use these words, add no other behavior):
+- Rule MEASURED_BEHAVIOR, severity warning, never an error. It checks only a spec.md whose SPECKIT_TEMPLATE_SOURCE stamp
+  is v2.4 or later. It warns when the `measured-behavior` anchor (heading `### Measured Behavior`, right after the
+  problem section) is missing, or when its block has neither a non-empty fenced command output nor an `N/A:` line with a
+  reason. Purpose: the author pastes the command the feature changes and its verbatim output, and every number the spec
+  states about current behavior quotes that block.
+- Draft auto-repair. When validate.sh runs on a packet whose spec.md Status is Draft and every error is a derived-metadata
+  rule that repair-derived.cjs can fix, the validator runs `repair-derived.cjs --folder <packet> --apply` once, prints
+  each file it rewrote, and validates again. It never runs for any other status, when any content rule fails, or when
+  the environment variable CI is set. `SPECKIT_DRAFT_AUTO_REPAIR=0` (also `false` or `off`) turns it off. It rewrites
+  only generated metadata (description.json, graph-metadata.json) and frontmatter packet pointers, never body text.
+
+Edits:
+1. S/references/validation/validation-rules.md: add a MEASURED_BEHAVIOR entry where the other rules are listed, in the
+   same shape as its neighbours, and a short "Draft auto-repair" subsection near the text about repair-derived or the
+   repair hint, naming SPECKIT_DRAFT_AUTO_REPAIR and CI.
+2. S/runtime/ENV-REFERENCE.md: add SPECKIT_DRAFT_AUTO_REPAIR to the table or list of validation variables: default on,
+   `0`/`false`/`off` disables, ignored when CI is set, effect as above.
+3. S/SKILL.md: where SKILL.md describes validate.sh and the repair hint, add one sentence on the Draft auto-repair with
+   its switch, and one sentence naming the MEASURED_BEHAVIOR warning for v2.4 spec docs. Keep SKILL.md growth to at most
+   4 lines.
+Never write an em dash.
+Verify from the repository root and paste the output:
+  rg -l 'SPECKIT_DRAFT_AUTO_REPAIR' .skilled/skills/system-spec-kit/SKILL.md .skilled/skills/system-spec-kit/references/validation/validation-rules.md .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md   (prints three paths)
+  rg -c 'MEASURED_BEHAVIOR' .skilled/skills/system-spec-kit/references/validation/validation-rules.md   (prints at least 1)
+  node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs 2>&1 | tail -1   (prints 0 broken)

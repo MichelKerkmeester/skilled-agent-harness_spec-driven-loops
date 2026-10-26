@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scaffold filler section trim",
+      "phase 16 scaffold filler section trim",
+      "scaffold filler section trim plan",
+      "scaffold filler section trim tasks",
+      "scaffold filler section trim acceptance criteria",
+      "scaffold filler section trim goal",
+      "scaffold filler section trim implementation summary"
+    ],
+    "key_topics": [
+      "scaffold",
+      "filler",
+      "section",
+      "trim",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md",
+      ".skilled/skills/system-spec-kit/assets/level-decision-matrix.md",
+      ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/validation-optional-anchors.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      "scratch/review.md",
+      "scratch/baseline/census-list.txt",
+      ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-compliance-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-decision-matrix.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/assets/level-decision-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-specifications.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-fill-guidance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validation-optional-anchors.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/validation-optional-anchors.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": "scratch/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "census-list.txt",
+        "kind": "file",
+        "path": "scratch/baseline/census-list.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The core templates scaffold sample rows that read as finished content: in 12 graded packets the sign-off role table survived 9 times, the enhanced-rollback pre-deployment rows 8 times, the \"Phase 1.5 (Config)\" diagram 6 times, the \"External service failure / Network timeout\" rows 6 times and \"Tests passing (if applicable)\" 4 times",
+    "created_at": "2026-10-26T15:03:31Z",
+    "last_save_at": "2026-10-26T17:21:53.873Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e7b4b2db136ff8c9cbe3eb4b84c0b44e5ee205c99b64681f256e7ea6b25c811",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "66611f78fbb703798473db9585cf47745ab568753b9fcd82dd2b64a8d1f4ff6f",
+      "plan.md": "6b9f5b28f428e540a7d122d7ee4ed00a0a9155e5d194a72c1d751ca90f7d6569",
+      "tasks.md": "2cf2451a58dd7efdf0c97be38ddc593291b3220cec075aaf3283bc8a4d41c39b",
+      "implementation-summary.md": "35df6e69b01aa04b970abd4d38705b30b90e0e9f83fdbdf14234d7b0e9dcbb39"
+    },
+    "last_active_at": null
+  }
+}

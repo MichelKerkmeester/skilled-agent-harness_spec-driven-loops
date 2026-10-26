@@ -1,0 +1,10 @@
+
+CONTEXT. S = .skilled/skills/system-spec-kit. Edit the LIVE files named below (no staging any more). The templates' fill
+notes use one worked example: a `--keep <n>` option for `scripts/rotate-logs.sh` that deletes all but the newest n
+archives in `logs/archive/`. With 10 archives, `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain
+run. A missing `--keep` value exits 2 with usage; that is the ONLY exit-2 case. The single timing claim used everywhere
+is "adds under 5 ms to a run". Reviews with the findings: specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/scratch/review.md
+and specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/review.md. Line numbers
+below are from the reviews; re-read each file and match by text. Keep every fill note's instruction and its GOOD then
+WEAK shape. Keep IF blocks and ANCHOR pairs balanced. Never write an em dash. Edit only the files your task names.
+Report each change with file:line.

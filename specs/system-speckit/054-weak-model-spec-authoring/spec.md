@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring`, where every phase ran. The branch reached `main` on 2026-10-25 |
 | **Parent Spec** | None. The track folder `specs/system-speckit/` holds no `spec.md` |
@@ -142,6 +142,10 @@ The operator meets all four before the first phase runs. The conductor records e
 | 12 | 012-authoring-speed-fixes-and-alignment/ | Build the speed changes phase 011 ranks as safe, then align the skill, README, catalog and playbook docs with phases 010 and 012 | Complete |
 | 13 | 013-addon-removal-and-speed-refinements/ | Drop the before-after, roadmap and resource-map add-on templates, then build the six speed refinements the speed-loop analysis ranked | Complete |
 | 14 | 014-removed-template-reality-sweep/ | Sweep READMEs, skill docs, commands and agents for the removed add-on templates, and fix every doc that no longer matches the shipped behavior | Complete |
+| 15 | 015-template-example-neutralization/ | Replace the benchmark task in every template fill-note example with a neutral feature, so a benchmark run cannot copy hints about its own task | Complete |
+| 16 | 016-scaffold-filler-section-trim/ | Stop scaffolding the sections models fill with generic text, make fix completeness optional, and fix the card and plan-template step contradiction and the stale decision-record pointers | Complete |
+| 17 | 017-measured-behavior-and-draft-metadata/ | Add an optional measured-behavior block that quotes real command output, and repair derived metadata automatically while a packet is a Draft | Complete |
+| 18 | 018-benchmark-redesign-and-remeasure/ | Rescore the 24 existing packets with deterministic checks, then benchmark a task no template mentions at the level the helper picks, with saved per-packet grades | Complete |
 
 ### Phase Transition Rules
 
@@ -167,6 +171,10 @@ The operator meets all four before the first phase runs. The conductor records e
 | 011-authoring-speed-research | 012-authoring-speed-fixes-and-alignment | Every ranked change is assigned to a lane or deferred with a reason | `rg -c '\*\*(build now|defer)\*\*' 011-authoring-speed-research/research/research.md` prints 12 |
 | 012-authoring-speed-fixes-and-alignment | 013-addon-removal-and-speed-refinements | The speed loop ran on 2026-10-26 and its analysis ranked six refinements; the operator chose to drop three add-ons and build all six | `011-authoring-speed-research/goal.md` logs the loop result |
 | 013-addon-removal-and-speed-refinements | 014-removed-template-reality-sweep | The operator asked on 2026-10-26 for a separate check that no doc still names a removed template and that the docs match the shipped behavior | `014-removed-template-reality-sweep/scratch/audit-*.md` record both sweeps |
+| 014-removed-template-reality-sweep | 015-template-example-neutralization | A fresh Opus xhigh review on 2026-10-26 found the core templates use the benchmark task as their worked example, and the operator asked for phases that act on every recommendation | `rg -c -e '--quiet' -e 'recommend-level' templates/core/` counts the examples phase 015 replaces |
+| 015-template-example-neutralization | 016-scaffold-filler-section-trim | No core template, golden snapshot or rendered example names the benchmark task | The phase 015 sweep over `templates/` prints no benchmark-task term |
+| 016-scaffold-filler-section-trim | 017-measured-behavior-and-draft-metadata | The trimmed sections no longer scaffold and no existing packet changed verdict | The before and after strict census match |
+| 017-measured-behavior-and-draft-metadata | 018-benchmark-redesign-and-remeasure | The measured-behavior block and the Draft metadata repair ship with tests | Both new tests pass and the strict census is unchanged |
 <!-- /ANCHOR:phase-map -->
 
 ---
