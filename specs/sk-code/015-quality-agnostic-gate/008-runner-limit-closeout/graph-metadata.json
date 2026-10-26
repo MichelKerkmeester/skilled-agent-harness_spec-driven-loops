@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,6 +48,9 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "runtime/cli/lib/dist-freshness.cjs",
+      "runtime/cli/tests/test-dist-freshness.sh",
+      "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-008-runner-limit-closeout.md",
       ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
       ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
@@ -57,10 +60,7 @@
       ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
       ".skilled/skills/sk-code/sk-code-quality/scripts/tests/fixtures.cjs",
       "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/decision-record.md",
-      "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-      ".skilled/skills/sk-code/SKILL.md",
-      ".skilled/skills/sk-code/description.json"
+      "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/implementation-summary.md"
     ],
     "entities": [
       {
@@ -106,6 +106,24 @@
         "source": "derived"
       },
       {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": "runtime/cli/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-dist-freshness.sh",
+        "kind": "script",
+        "path": "runtime/cli/tests/test-dist-freshness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-015-008-runner-limit-closeout.md",
+        "kind": "doc",
+        "path": "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-008-runner-limit-closeout.md",
+        "source": "derived"
+      },
+      {
         "name": "quality-gate.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
@@ -115,12 +133,6 @@
         "name": "run-check.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
         "source": "derived"
       },
       {
@@ -151,18 +163,6 @@
         "name": "fixtures.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/fixtures.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/description.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The runner gives an honest verdict, but five items in its own record are unfinished",
     "created_at": "2026-10-26T06:50:04Z",
-    "last_save_at": "2026-10-26T07:11:53.140Z",
+    "last_save_at": "2026-10-26T12:24:08.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc8c8d3c7aabdb1f537a97eb85ae8a77c8b14e5056d843a45096090d4f01971c",
+    "source_fingerprint": "sha256:3a4fcae93017fe3fb22bc3bcce03eef25d774347a570513e34ff38bb7a13b553",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d6632608deb0d5e790be6b4f1f87cedfcc1cc7adacab3d97054ae0ba67676b3",
-      "plan.md": "fde2e46f8808e89e37fd5d7ba194021b9e610babdee576e03a6b8ca9ea53328b",
-      "tasks.md": "695e92283a95ff330c2a9cd2ed351ed9b1f55fa00c5ce8160dbe6d3eb70bcfdf",
-      "decision-record.md": "34237010929c5145839b6c81625b2bf4a06abe1e7ccfad2e514a3539051124fa",
-      "implementation-summary.md": "ea8249920ba6149dae61b079c89ec25edb7bcda8f9f556e3049649a6a1cef38a"
+      "spec.md": "27dd2e1836efd362330bfffcf443e62e7416c7df6a8604d5b67c33cfbfe1ac0c",
+      "plan.md": "e85fc1a695da4ebcb8435c25e5e7102ae46c8e898dd20b121841e84dfe40962e",
+      "tasks.md": "f17842e5c28a84ccf7a9a62aa81211287c1799f29b1c81c75c7ceaddd52c210a",
+      "decision-record.md": "dc7d0c4021d497b6b7b019516980cf9a72d708a856b314f97920964c83e38873",
+      "implementation-summary.md": "2c8d4d0654971e1b09d74b0dd9b8315cc52eba83233149ee1f4e8fe60fe224e2"
     },
     "last_active_at": null
   }

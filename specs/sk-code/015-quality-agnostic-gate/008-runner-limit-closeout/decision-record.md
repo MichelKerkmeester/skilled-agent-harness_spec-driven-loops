@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-runner-limit-closeout"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -31,7 +31,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-This record holds the decisions this phase rests on. The requirements they serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). Each status line reads `Accepted, pending operator confirmation at program end`, the line the operator's standing autonomous-build instruction gives every decision in this program. ADR-001 to ADR-003 close three of the items the built-in runner phase left in its limitation list. ADR-004 settles the guard boundary with the measurement the plan already took, and ADR-005 settles how far the spec-folder checklist row reaches. Every line number in this record was read at HEAD `f69e5cd2e8`, before the config phase lands on this branch.
+This record holds the decisions this phase rests on. The requirements they serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). Each status line reads `Accepted, pending operator confirmation at program end`, the line the operator's standing autonomous-build instruction gives every decision in this program. ADR-001 to ADR-003 close three of the items the built-in runner phase left in its limitation list. ADR-004 settles the guard boundary with the measurement taken on the landed tree, and ADR-005 settles how far the spec-folder checklist row reaches. Every line number in this record was read at HEAD `f69e5cd2e8`, before the config phase lands on this branch.
 
 ---
 
@@ -275,9 +275,9 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: read the workspace listing once per run, bound it to the folders the scope reaches, share it between the scope and both snapshots, take no untracked listing at all for a `--files` scope, and prove the result with five runs of one recorded command.
+**We chose**: read the workspace listing once per run, bound it to the folders the scope reaches, share it between the scope and both snapshots, take no scope listing for a `--files` run while each of its guard snapshots takes one listing bounded to the folders its named files sit in, and prove the result with five runs of one recorded command.
 
-**How it works**: `collectScope` takes the listing and hands it to `withGuard` through the earlier-snapshot argument the guard already accepts, and `takeSnapshot` hashes the entries it is given instead of listing again. The measurement is `/usr/bin/time -p` around a `--files` run over fifty paths from `git ls-files '*.cjs'`, five times, with `git rev-parse --short HEAD` and the machine recorded beside the five lines. A bounded pool of `node --check` and `bash -n` spawns is considered only after the listing change is measured, because it touches every check while the repeated walks sit behind one seam.
+**How it works**: `collectScope` takes the listing and hands it to `withGuard`, which hashes that list in its opening snapshot instead of walking the tree again, and every guard window after it takes one listing bounded to the folders the scope reaches. A `--files` run hands the guard no listing, because its scope takes none, so both of its snapshots take that bounded listing over the folders its named files sit in, and a named file at the repository root bounds it to the whole tree. The measurement is `/usr/bin/time -p` around a `--files` run over fifty paths from `git ls-files '*.cjs'`, five times, with `git rev-parse --short HEAD` and the machine recorded beside the five lines. A bounded pool of `node --check` and `bash -n` spawns is considered only after the listing change is measured, because it touches every check while the repeated walks sit behind one seam.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -302,10 +302,10 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 
 **What improves**:
 - A fifty-file run meets two seconds on this machine, and the measurement phase can gate on the same command.
-- A `--files` run pays no tree walk at all, so its git cost is bounded by the scope it was given.
+- A `--files` run takes no listing for its own scope, and each guard snapshot there takes one listing bounded to the folders its named files sit in, so its git cost follows the scope it was given and a file a check creates beside one of its files is still seen.
 
 **What it costs**:
-- The scope and the guard now share one seam, so a change to the listing shape reaches both. Mitigation: `unit: guard snapshot source` asserts one listing per snapshot and no listing for `--files`, and `unit: scope listing` asserts the bounded pathspec.
+- The scope and the guard now share one seam, so a change to the listing shape reaches both. Mitigation: `unit: guard snapshot source` asserts that a handed listing is hashed rather than re-taken and that a `--files` run bounds its guard listings to the folder its named file sits in, and `unit: scope listing` asserts the bounded pathspec.
 
 **Risks**:
 
@@ -324,7 +324,7 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Every recorded run of the scope was over the two-second budget |
 | 2 | **Beyond Local Maxima?** | PASS | Four options were compared against the recorded timings |
-| 3 | **Sufficient?** | PASS | Five runs of one command, plus cases that assert one listing and none for `--files` |
+| 3 | **Sufficient?** | PASS | Five runs of one command, plus cases that assert one scope listing, a bounded guard listing and no scope listing for `--files` |
 | 4 | **Fits Goal?** | PASS | The budget is the number the measurement phase gates on |
 | 5 | **Open Horizons?** | PASS | A spawn pool stays available if the listing change falls short |
 <!-- /ANCHOR:adr-003-five-checks -->
@@ -338,7 +338,7 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 
 **What changes**:
 - `collectScope` in `quality-gate.cjs` produces the listing and bounds it.
-- `takeSnapshot` in `lib/run-check.cjs` consumes it.
+- `takeSnapshot` in `lib/run-check.cjs` consumes it, and lists the folders the scope reaches in any window that was handed no listing.
 - `runner-contract.md` states the listing count, and the test file gains `unit: scope listing` and `unit: guard snapshot source`.
 
 **How to roll back**: restore the per-snapshot listing, then run `unit: guard snapshot source` and the five-run command.
@@ -348,7 +348,7 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 ---
 
 <!-- ANCHOR:adr-004 -->
-## ADR-004: The guard watches the target repository and the scope, with a bounded ignored watch
+## ADR-004: The guard watches the target repository and the scope, and ignored paths stay outside
 
 ### Metadata
 
@@ -363,15 +363,18 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-The guard hashes the tracked diff, every untracked file and the commit HEAD names (`run-check.cjs:153-173`). It lists no ignored path, so a write to an ignored file is invisible to it. The dist adapter's cache record is exactly such a write, as ADR-002 records. The same limit means a write in the hub this runner lives in is invisible too, because the guard hashes the target repository only. Nothing in the contract states either boundary, so a reader cannot tell what the guard would catch.
+The guard hashes the tracked diff, every untracked file and the commit HEAD names (`takeSnapshot` in `lib/run-check.cjs`). It lists no ignored path, so a write to an ignored file is invisible to it. The dist adapter's cache record is exactly such a write, as ADR-002 records. The same limit means a write in the hub this runner lives in is invisible too, because the guard hashes the target repository only. Nothing in the contract states either boundary, so a reader cannot tell what the guard would catch.
 
-The plan recorded the ignored listing at both bounds before this record was written. The decision rule below takes the bounded number and the whole-tree number and settles whether the watch is affordable.
+The plan recorded the ignored listing at both bounds before this record was written. The decision rule below takes the bounded number and the whole-tree number and settles whether the watch is affordable. What the plan did not weigh is that the watch has to hash every path it lists, so this record measures the listing and the hash together, five runs at each bound, on this tree at HEAD `f1732e4d95`, on `arm64` with an `Apple M5 Max`. The listing is `git ls-files --others --ignored --exclude-standard -z -- <bound>` and the hash is the guard's own entry digest, one sha256 per regular file under 2 MB.
+
+The bound is not the plan's choice. `scopeFolders` folds the folders the scope reaches, and one file at the repository root folds the whole scope to `.`, so a bound can be any folder the tracked diff or the named files touch.
 
 ### Constraints
 
 - The budget this phase meets is two seconds for fifty files, so a watch that costs a large share of it defeats the phase.
 - The watch may hash only folders the scope already reads, because a path outside the scope is outside what the run was asked to check.
 - Whatever the outcome, `runner-contract.md` states what the guard sees and what it does not.
+- A measurement reads five runs at each bound, the listing and the hash together, because the listing alone is not the cost of the watch.
 <!-- /ANCHOR:adr-004-context -->
 
 ---
@@ -379,15 +382,21 @@ The plan recorded the ignored listing at both bounds before this record was writ
 <!-- ANCHOR:adr-004-decision -->
 ### Decision
 
-**We chose**: add a bounded watch of ignored paths inside the scope, refuse the whole-tree watch, and state both halves of the boundary in the contract. The decision rule is fixed and the two numbers decide it. The watch is added when its measured cost stays under 50 milliseconds on this machine and it hashes only folders the scope already reads.
+**We chose**: keep the target-repository boundary and state it exactly, because the bounded watch does not stay under 50 milliseconds at the bound a scope yields. The rule was fixed before the number was read, and the number decides against the watch.
 
-The measurement: the whole tree listed 91555 ignored entries in 0.91 to 1.43 seconds over six runs.
+**The rule**: add the bounded watch when its measured cost stays under 50 milliseconds on this machine and it hashes only folders the scope reads. Otherwise the target-repository boundary stands. The second condition holds at every bound, because the folders come from the scope. The first holds only where the folders happen to hold little, and a scope cannot promise a folder like that, so a watch that met the threshold on one run and missed it on the next is not a watch this contract could state.
 
-The same listing bounded to the dist folder of the spec-kit runtime listed 447 entries in 0.02 seconds.
+**The measurement**, five runs at each bound, the listing and the hash together:
 
-So the bounded watch sits under the budget and the whole-tree watch costs at least eighteen times that budget, on folders no check in the scope reads. Task T023 repeats both measurements on the landed tree, and a bounded number over 50 milliseconds puts the target-repository boundary back without touching the rule.
+| Bound | Ignored paths | The listing | The listing and the hash |
+| --- | ---: | ---: | ---: |
+| The dist folder of the spec-kit runtime | 447 | 21 to 47 milliseconds | 33 to 98 milliseconds |
+| The system-spec-kit skill folder, which holds the dist output | 10570 | 68 to 81 milliseconds | 327 to 1232 milliseconds |
+| The whole tree | 91558 | 988 to 1384 milliseconds | 10782 to 12786 milliseconds |
 
-**How it works**: `takeSnapshot` takes the ignored listing bounded to the same folders as its untracked listing, so both come from one pass per scope. The contract then states what the guard sees, which is the tracked diff, the untracked files inside the scope and the ignored paths inside the scope. It states what stays outside, which is a write outside the scope, a write in another repository and a write to the hub itself.
+The whole tree held 91558 ignored paths on this tree, where the plan recorded 91555 on the tree it was written against, so both numbers stay here. The dist folder is the one bound under the threshold, and only after its first run stopped paying a cold git index. The skill folder is a bound this phase's own scope reaches, it holds a package tree and the dist output, and it measured six times the threshold and worse. The folder the runner itself lives in held no ignored path at all, so a rule read on that folder alone would have been right by luck. A rule that has to hold for the bound a run actually gets cannot depend on that, so the watch is not added. The plan timed the dist listing alone at 0.02 seconds, and the number this record adds is what that listing costs once every path in it is hashed.
+
+**How it works**: the guard keeps hashing the tracked diff against HEAD, the untracked files inside the folders the scope reaches, the commit HEAD names and the named files. An ignored path stays outside, so a write to one is invisible. A write outside the folders the scope reaches stays outside too, as does a write in another repository or to the hub that holds the runner. `runner-contract.md` states both halves in section 1, beside the listing count, and section 8 says what the boundary leaves unproven beside a dist entry.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -397,12 +406,12 @@ So the bounded watch sits under the budget and the whole-tree watch costs at lea
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Bounded ignored watch inside the scope (chosen)** | Catches an ignored write where a check runs, at the measured bounded cost | One more listing per scope | 8/10 |
-| Whole-tree ignored watch | Catches every ignored write in the repository | Costs 0.91 to 1.43 seconds, which is most of the budget the phase just met | 2/10 |
-| Keep the tracked and untracked watch and state the boundary only | No cost | The cache record beside a dist entry stays invisible, so a promise rests on a watch that cannot see it | 4/10 |
-| Watch the hub as well as the target repository | Covers the tree the adapter itself writes in | The hub is not the repository under test, and its size is outside the measured scope | 3/10 |
+| **Keep the boundary and state it (chosen)** | Pays nothing, so the budget the listing change bought stays, and a reader learns exactly which writes stay unseen | An ignored write inside the scope stays invisible | 7/10 |
+| Bounded ignored watch at the folder bound | Catches an ignored write where a check runs, where the folder holds little | The cost follows the folder, and the folder this phase's own scope reaches measured 327 to 1232 milliseconds | 3/10 |
+| Whole-tree ignored watch | Catches every ignored write in the repository | 10782 to 12786 milliseconds, five times the two-second budget | 1/10 |
+| Bounded watch with a size cap | Keeps the cheap bounds and skips the expensive ones | The coverage would then depend on how many ignored paths a folder holds, which no reader could predict from the contract | 4/10 |
 
-**Why this one**: it closes the gap the dist adapter opened at the bound the measurement proves affordable, and it states where the guard still stops.
+**Why this one**: the rule is a threshold, two of the three measured bounds miss it, and a guard whose coverage changes with the size of a folder cannot be stated exactly in a contract.
 <!-- /ANCHOR:adr-004-alternatives -->
 
 ---
@@ -411,18 +420,19 @@ So the bounded watch sits under the budget and the whole-tree watch costs at lea
 ### Consequences
 
 **What improves**:
-- An ignored write inside the scope now ends the run rather than passing unseen.
-- A reader of the contract can tell exactly which writes the guard catches and which it leaves.
+- The contract states what the guard sees and what it does not, so no run claims coverage it does not have.
+- Every run keeps the listing budget, because no snapshot pays a second walk over the ignored paths a folder holds.
 
 **What it costs**:
-- Every scope pays one more listing, measured at 0.02 seconds at the folder bound. Mitigation: the listing shares the folders the untracked listing already walks.
+- An ignored write inside the scope stays invisible. Mitigation: the read-only dist path removes the one write this phase could cause, and the contract names the blind spot so a reader is never misled.
+- A later phase that wants the watch has to re-take the measurement and change the case that pins the boundary. Mitigation: the case states the reason, so the change is deliberate.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The bounded watch misses an ignored write outside the scope | M | The contract names that write as outside the watch, so no run claims to have seen it |
-| The bounded cost grows on a bigger tree | L | The decision rule re-reads the measurement on the landed tree, and a number over 50 milliseconds restores the boundary |
+| The ignored blind spot hides a real write | M | The read-only dist path removes the write this phase knows about, and the boundary is stated where a reader looks for it |
+| A later phase adds the watch on a bound that was cheap on one run | L | The measurement keeps all three bounds, so the folder that decided it is readable |
 <!-- /ANCHOR:adr-004-consequences -->
 
 ---
@@ -432,11 +442,11 @@ So the bounded watch sits under the budget and the whole-tree watch costs at lea
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | An ignored write beside a dist entry is invisible to the guard today |
-| 2 | **Beyond Local Maxima?** | PASS | Four options were compared, two of them with a measured cost |
-| 3 | **Sufficient?** | PASS | One bounded listing at the scope bound, and the boundary stated for the rest |
-| 4 | **Fits Goal?** | PASS | A promise to write nothing needs a guard that can see the writes it can cause |
-| 5 | **Open Horizons?** | PASS | If the bound grows, the rule removes the watch and no caller changes |
+| 1 | **Necessary?** | PASS | The boundary was unstated, and the rule needed a number before the watch could be added or refused |
+| 2 | **Beyond Local Maxima?** | PASS | Four options were compared, three of them with a measured cost |
+| 3 | **Sufficient?** | PASS | The contract states both halves, and cases pin a write outside the watch and an ignored record inside it |
+| 4 | **Fits Goal?** | PASS | The phase needs the boundary settled by a measurement rather than by preference, at the budget it just met |
+| 5 | **Open Horizons?** | PASS | The same three bounds decide the question again if a later phase asks for the watch |
 <!-- /ANCHOR:adr-004-five-checks -->
 
 **Checks Summary**: 5/5 PASS
@@ -447,11 +457,11 @@ So the bounded watch sits under the budget and the whole-tree watch costs at lea
 ### Implementation
 
 **What changes**:
-- `lib/run-check.cjs` takes the bounded ignored listing.
-- `references/runner-contract.md` states the boundary in section 8.
-- `quality-gate.test.cjs` gains the boundary cases, including a write outside the scope.
+- `references/runner-contract.md` states the boundary in section 1, beside the listing count, and names what it leaves unproven in section 8.
+- `quality-gate.test.cjs` gains the boundary cases, a write outside the folders the scope reaches and an ignored record a check writes.
+- `lib/run-check.cjs` keeps its snapshot as it is, which is the refusal written down.
 
-**How to roll back**: drop the ignored listing from `takeSnapshot` and state the tracked-and-untracked boundary instead, then run `unit: argv spawn and guard`.
+**How to roll back**: add the ignored listing to `takeSnapshot` bounded to `folders`, re-take the three measurements, then change the boundary case and the contract sentence to match.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
 

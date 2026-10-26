@@ -178,7 +178,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Planned |
 | 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
 | 7 | 007-checker-debt-closeout/ | Closes the checker limitations phase 001 left: the ceiling report reads comment text through the checker, template literals, heredocs and bare string statements, a zero-finding tree and the live CI failure record. Depends on 001 only, and lands before 006 | Complete |
-| 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Planned |
+| 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Complete |
 
 ### Phase Transition Rules
 

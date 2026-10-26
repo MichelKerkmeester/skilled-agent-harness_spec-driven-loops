@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The checker scans nine extensions and prints findings as text beside its exit code",
     "created_at": "2026-10-25T23:21:47Z",
-    "last_save_at": "2026-10-26T04:59:49.543Z",
+    "last_save_at": "2026-10-26T11:09:04.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c4b22eb3f7b8bd8d08d77e6f0d287fa8a861dfb3d32ed82247188b8a80f406f",
+    "source_fingerprint": "sha256:cc955529a6da46b1f815269e93c3917f31f2397f91f0e966d2fe32f65b5225b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c3b98cb84daf114f92766337a8b43df95285f150b2affa80e5907ce1cceada6",
       "plan.md": "e6e004c6413c19d28c6642fecf7c29e067abae9ef7af1cc6c6a6c3c44e585b0a",
       "tasks.md": "9db7ce51776c3fdaae02037244e57d08f1b852e51263ff9c2dfab154db5413a0",
       "decision-record.md": "58870e1ebb67c69a970ad03f9bf1709b72e95338d75f83efd0aec7d40f4f9590",
-      "implementation-summary.md": "b7bfd257a540ebab96c20efc9bc4bf7f219dceb6cb4f87bc6c93c035343b137e"
+      "implementation-summary.md": "e598633fd6477843918ea45d9f8f4cc94674909372dffaa30e48a979dff0065c"
     },
     "last_active_at": null
   }
