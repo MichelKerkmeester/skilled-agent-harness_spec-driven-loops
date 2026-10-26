@@ -146,7 +146,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix; the phase edits doc lines and comments only.
 - [x] CHK-FIX-005 [P1] Matrix axes are listed in the audit files: the three template names across the swept surfaces, and the six reality topics across their sources.
 - [x] CHK-FIX-006 [P1] N/A: no test or code reads process-wide state; no code line changes.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA in `implementation-summary.md`. Commit `6df0a21a0d` carries phases 013 and 014.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -190,7 +190,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 10 | 9/10 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-26

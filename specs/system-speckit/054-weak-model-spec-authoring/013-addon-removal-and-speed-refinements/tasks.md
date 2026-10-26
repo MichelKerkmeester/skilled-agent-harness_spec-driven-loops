@@ -145,7 +145,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 
 - [x] CHK-FIX-002 [P0] Same-class producer inventory: every reader of the three templates is listed in the dependency maps and changed or proven unaffected. Evidence: the Opus reviews covered the manifest, create.sh, census and cleanup tools, template-structure.js, frontmatter-migration.ts, spec-doc-structure.ts, upgrade-legacy and repo-era.
 - [x] CHK-FIX-003 [P0] Consumer inventory: docs, tests and snapshots that name the three add-ons are updated. Evidence: the docs `rg` prints nothing; snapshots 36/36.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the commit SHAs in `implementation-summary.md`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the commit SHAs in `implementation-summary.md`. Commit `6df0a21a0d` carries phases 013 and 014.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -185,7 +185,7 @@ A blocked task is marked `[B]` with its reason, and the phase stays In Progress.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 9 | 9/9 |
-| P1 Items | 5 | 4/5 |
+| P1 Items | 5 | 5/5 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-10-26

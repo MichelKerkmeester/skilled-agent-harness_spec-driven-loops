@@ -35,7 +35,7 @@
       "record"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The before-after, roadmap and resource-map add-ons sit in 11 and 137 packets at most, yet every template change has to carry their manifest entries, phrase maps and snapshots",
     "created_at": "2026-10-26T07:16:18Z",
-    "last_save_at": "2026-10-26T12:12:41.601Z",
+    "last_save_at": "2026-10-26T12:13:51.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a4a6945ffc0693279b58a748fdd29c16b3fb079c185e03f1357c0f7c0803731",
+    "source_fingerprint": "sha256:a5ecc9a2d96f2395cf8aa639414fb8c6e1a22f969bc9bf999ecb0bf5e8c7d743",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80c7abff3662f8c7a0961dec0db48bb780ddef369e987f54779d28fdaa530ced",
       "plan.md": "3671b0b609077cbf3714c93dec44f3dab2f50baa9af7d49f2632bc1c00f87f62",
-      "tasks.md": "8f1b2ef5e0ce95b7b97958887eda365cbbb95f527630a4abbe8acc20396dbad7",
+      "tasks.md": "0c210b54c241765c07a090778cd6bbb5d00de1e4ea39b14102d52dc33527854c",
       "decision-record.md": "c9e9a8359a03ada0fb8eefb23992561d6a8fd662692bdc8cdb431c68feafda46",
       "implementation-summary.md": "767332b834164adb6f0d012d2e2d51597cf4e75665d0edfb2fe878ac6fae2b78"
     },
