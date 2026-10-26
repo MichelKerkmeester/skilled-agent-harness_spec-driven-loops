@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6d8aceeb69cf7945fd82117ff0fd82de134722ffd707829cc74259b1ab7a5c12",
+  "corpusHash": "5e68702a43acbaf482b3b5012809755f418675147a6744bec017e3a25a7944fb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26115,
+  "includedPathCount": 26125,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2728,6 +2728,7 @@
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.5.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2802,6 +2803,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.8.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
@@ -12285,6 +12287,13 @@
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/plan.md",
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/spec.md",
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/tasks.md",
     "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/acceptance-criteria.md",
     "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/decision-record.md",
     "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/goal.md",
@@ -12295,6 +12304,7 @@
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-004-doctrine.md",
+    "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-007-checker-debt-closeout.md",
     "specs/sk-code/015-quality-agnostic-gate/goal.md",
     "specs/sk-code/015-quality-agnostic-gate/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -26146,7 +26156,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "85ee9a6dba5d2197f3d19f4050ba04ba9e60963b6d843e466602c73465e64ffd",
+  "manifestHash": "00bc46eb7ede2a04e27c01d0e211680691747b9b7288b94ce3c9a1a5a91f0eeb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28958,6 +28968,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/scratch",
       "reason": "excluded directory"
     },
     {

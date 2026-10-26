@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7284,
-    "ok": 15283,
+    "ok": 15293,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26115,
+  "documentsScanned": 26125,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "85ee9a6dba5d2197f3d19f4050ba04ba9e60963b6d843e466602c73465e64ffd",
+  "manifestHash": "00bc46eb7ede2a04e27c01d0e211680691747b9b7288b94ce3c9a1a5a91f0eeb",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37800,
+      "ok": 37820,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71397,6 +71397,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout/scratch",
       "reason": "excluded directory"
     },
     {

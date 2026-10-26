@@ -1,5 +1,5 @@
 {
-  "manifestHash": "85ee9a6dba5d2197f3d19f4050ba04ba9e60963b6d843e466602c73465e64ffd",
+  "manifestHash": "00bc46eb7ede2a04e27c01d0e211680691747b9b7288b94ce3c9a1a5a91f0eeb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12903,6 +12903,12 @@
     "bare integer reference hit rate": [
       "bare integer reference hit rate"
     ],
+    "bare string statement hygiene": [
+      "bare string statement hygiene"
+    ],
+    "bare string statement rule": [
+      "bare string statement rule"
+    ],
     "bare token collision": [
       "bare token collision"
     ],
@@ -15754,6 +15760,12 @@
     "ceiling report": [
       "ceiling report"
     ],
+    "ceiling report shared extraction": [
+      "ceiling report shared extraction"
+    ],
+    "ceiling report shared extraction plan": [
+      "ceiling report shared extraction plan"
+    ],
     "census 114 packets drift": [
       "census 114 packets drift"
     ],
@@ -17195,6 +17207,27 @@
     ],
     "check the vision runtime health": [
       "check the vision runtime health"
+    ],
+    "checker debt closeout": [
+      "checker debt closeout"
+    ],
+    "checker debt closeout acceptance criteria": [
+      "checker debt closeout acceptance criteria"
+    ],
+    "checker debt closeout decision record": [
+      "checker debt closeout decision record"
+    ],
+    "checker debt closeout goal": [
+      "checker debt closeout goal"
+    ],
+    "checker debt closeout implementation summary": [
+      "checker debt closeout implementation summary"
+    ],
+    "checker debt closeout plan": [
+      "checker debt closeout plan"
+    ],
+    "checker debt closeout tasks": [
+      "checker debt closeout tasks"
     ],
     "checker mutation ci": [
       "checker mutation ci"
@@ -24947,6 +24980,9 @@
     ],
     "comment syntax table": [
       "comment syntax table"
+    ],
+    "comment text extraction": [
+      "comment text extraction"
     ],
     "comment thread": [
       "comment thread"
@@ -47104,6 +47140,9 @@
     ],
     "frozen corpus gate": [
       "frozen corpus gate"
+    ],
+    "frozen evidence hygiene ok decision": [
+      "frozen evidence hygiene-ok decision"
     ],
     "frozen sha gate": [
       "frozen sha gate"
@@ -73615,6 +73654,9 @@
     "phase 7 advisor name mention scoring": [
       "phase 7 advisor name mention scoring"
     ],
+    "phase 7 checker debt closeout": [
+      "phase 7 checker debt closeout"
+    ],
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
     ],
@@ -78518,6 +78560,9 @@
     ],
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
+    ],
+    "quality agnostic gate checker debt closeout changelog": [
+      "quality agnostic gate checker debt closeout changelog"
     ],
     "quality agnostic gate config and doctor changelog": [
       "quality agnostic gate config and doctor changelog"
@@ -93126,6 +93171,9 @@
     "sk code 3 4 0 0": [
       "sk-code 3.4.0.0"
     ],
+    "sk code 3 5 0 0": [
+      "sk-code 3.5.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93807,6 +93855,9 @@
     "sk code quality 1 8 0 0": [
       "sk-code-quality 1.8.0.0"
     ],
+    "sk code quality 1 9 0 0": [
+      "sk-code-quality 1.9.0.0"
+    ],
     "sk code quality codebase agnostic": [
       "sk-code quality codebase agnostic"
     ],
@@ -93872,6 +93923,9 @@
     ],
     "sk code quality v1 8 0 0": [
       "sk-code-quality v1.8.0.0"
+    ],
+    "sk code quality v1 9 0 0": [
+      "sk-code-quality v1.9.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -94427,6 +94481,9 @@
     ],
     "sk code v3 4 0 0": [
       "sk-code v3.4.0.0"
+    ],
+    "sk code v3 5 0 0": [
+      "sk-code v3.5.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -114321,6 +114378,9 @@
     ],
     "zero feature loss": [
       "zero feature loss"
+    ],
+    "zero finding comment hygiene tree": [
+      "zero finding comment hygiene tree"
     ],
     "zero javascript diff report": [
       "zero javascript diff report",
