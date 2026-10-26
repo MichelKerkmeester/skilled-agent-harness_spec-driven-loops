@@ -59,7 +59,7 @@ _memory:
 | **Parent Packet** | sk-code track |
 | **Predecessor** | `014-code-modes-research` |
 | **Successor** | None |
-| **Handoff Criteria** | Each of the six phases passes `validate.sh --strict` on its own folder, and the whole packet passes recursive strict validation with `RESULT: PASSED` |
+| **Handoff Criteria** | Each phase folder in the map passes `validate.sh --strict` on its own folder, and the whole packet passes recursive strict validation with `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -173,6 +173,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Complete |
 | 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Planned |
 | 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
+| 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Planned |
 
 ### Phase Transition Rules
 
@@ -190,6 +191,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 003-config-and-doctor | 004-doctrine | The setup battery lists a passing `quality` leg | `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` lists a `quality` leg that reads PASS |
 | 004-doctrine | 005-consumers-and-routing | The drift guards pass on the amended doctrine | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 |
 | 005-consumers-and-routing | 006-measurement | The mirrors and the metadata gate pass | `node .skilled/bin/check-agent-mirror-sync.cjs --all` exits 0, and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0 |
+| 008-runner-limit-closeout | 006-measurement | The six requirements pass and the budget command prints five runs under two seconds | `node --test --test-reporter=tap .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` prints `# fail 0`, and the five timed runs each read under `2.00` |
 <!-- /ANCHOR:phase-map -->
 
 ---

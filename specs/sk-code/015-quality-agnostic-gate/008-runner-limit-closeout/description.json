@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/015-quality-agnostic-gate/008-runner-limit-closeout",
+  "description": "Runner limit closeout",
+  "keywords": [
+    "runner",
+    "limit",
+    "closeout"
+  ],
+  "lastUpdated": "2026-10-26T06:50:04.927Z",
+  "specId": "008",
+  "folderSlug": "runner-limit-closeout",
+  "parentChain": [
+    "sk-code",
+    "015-quality-agnostic-gate"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

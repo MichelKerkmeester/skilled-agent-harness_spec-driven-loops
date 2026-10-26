@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/008-runner-limit-closeout",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/008-runner-limit-closeout",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runner limit closeout",
+      "phase 8 runner limit closeout",
+      "runner limits closed",
+      "quality runner budget",
+      "runner limit closeout plan",
+      "quality runner budget plan",
+      "runner guard boundary",
+      "runner limit closeout tasks",
+      "runner limit closeout acceptance criteria",
+      "runner limit closeout goal",
+      "quality runner budget goal",
+      "runner limit closeout decision record"
+    ],
+    "key_topics": [
+      "runner",
+      "limit",
+      "closeout",
+      "phase",
+      "limits",
+      "closed",
+      "quality",
+      "budget",
+      "plan",
+      "guard",
+      "boundary",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+      ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/fixtures.cjs",
+      "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/decision-record.md",
+      "specs/sk-code/015-quality-agnostic-gate/002-builtin-runner/implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/description.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "quality-defaults.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fixtures.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The runner gives an honest verdict, but five items in its own record are unfinished",
+    "created_at": "2026-10-26T06:50:04Z",
+    "last_save_at": "2026-10-26T07:11:53.140Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fc8c8d3c7aabdb1f537a97eb85ae8a77c8b14e5056d843a45096090d4f01971c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0d6632608deb0d5e790be6b4f1f87cedfcc1cc7adacab3d97054ae0ba67676b3",
+      "plan.md": "fde2e46f8808e89e37fd5d7ba194021b9e610babdee576e03a6b8ca9ea53328b",
+      "tasks.md": "695e92283a95ff330c2a9cd2ed351ed9b1f55fa00c5ce8160dbe6d3eb70bcfdf",
+      "decision-record.md": "34237010929c5145839b6c81625b2bf4a06abe1e7ccfad2e514a3539051124fa",
+      "implementation-summary.md": "ea8249920ba6149dae61b079c89ec25edb7bcda8f9f556e3049649a6a1cef38a"
+    },
+    "last_active_at": null
+  }
+}

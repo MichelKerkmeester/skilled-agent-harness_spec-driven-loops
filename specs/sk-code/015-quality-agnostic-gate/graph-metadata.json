@@ -9,7 +9,8 @@
     "sk-code/015-quality-agnostic-gate/003-config-and-doctor",
     "sk-code/015-quality-agnostic-gate/004-doctrine",
     "sk-code/015-quality-agnostic-gate/005-consumers-and-routing",
-    "sk-code/015-quality-agnostic-gate/006-measurement"
+    "sk-code/015-quality-agnostic-gate/006-measurement",
+    "sk-code/015-quality-agnostic-gate/008-runner-limit-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -213,17 +214,17 @@
     ],
     "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
     "created_at": "2026-10-25T23:21:45Z",
-    "last_save_at": "2026-10-26T08:04:14.813Z",
+    "last_save_at": "2026-10-26T08:29:38.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e7a0be1e880518f520b15f22e9292a68964150c4da0d9c031aa10fbf592466c8",
+    "source_fingerprint": "sha256:b66daf60b661cd934e2d8d0a9d661bee14046fedd1dbfaf93ba8aa5d319a1c18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cfd4e1b999f975874f36e01b5403c21c139470f8502d00e1a595699146b76095"
+      "spec.md": "3f4176e8139503f62c80545e9ba1926e6d1be31b1b99a03a740f202132920637"
     },
     "last_active_at": null
   }
