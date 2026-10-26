@@ -1,5 +1,5 @@
 {
-  "corpusHash": "73360f9161cc50dc46d0356c370a4aecd8d30ae37ada4b5edba356fac2baa1fa",
+  "corpusHash": "29eb8892d5acc8ba0e7ce906a6f6ea946213e39e912d3d57efcaaed039ca0b7b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26090,
+  "includedPathCount": 26094,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2724,6 +2724,7 @@
     ".skilled/skills/sk-code/changelog/v2.4.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2795,9 +2796,11 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.5.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
+    ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
@@ -2913,6 +2916,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.7.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.1.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -26121,7 +26125,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3863124f04b28c6bbf726dbcb134aef436cd910cbcffb89dbc382e142ffff555",
+  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

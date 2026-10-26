@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3863124f04b28c6bbf726dbcb134aef436cd910cbcffb89dbc382e142ffff555",
+  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23595,6 +23595,9 @@
     ],
     "code quality review checklist": [
       "code quality review checklist"
+    ],
+    "code quality run v1": [
+      "code-quality-run/v1"
     ],
     "code quality run verdict": [
       "code-quality-run verdict"
@@ -78504,6 +78507,9 @@
     "quality checklist": [
       "quality checklist"
     ],
+    "quality checklist declarations": [
+      "quality checklist declarations"
+    ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
     ],
@@ -78515,6 +78521,15 @@
     ],
     "quality gate": [
       "quality gate"
+    ],
+    "quality gate cjs": [
+      "quality-gate.cjs"
+    ],
+    "quality gate cjs verdict": [
+      "quality-gate.cjs verdict"
+    ],
+    "quality gate exit codes": [
+      "quality gate exit codes"
     ],
     "quality gate measurement": [
       "quality gate measurement"
@@ -78635,6 +78650,12 @@
     ],
     "quality runner adr": [
       "quality runner ADR"
+    ],
+    "quality runner contract": [
+      "quality runner contract"
+    ],
+    "quality runner verdict": [
+      "quality runner verdict"
     ],
     "quality scorer": [
       "quality scorer"
@@ -93015,6 +93036,9 @@
     "sk code 3 1 0 0": [
       "sk-code 3.1.0.0"
     ],
+    "sk code 3 2 0 0": [
+      "sk-code 3.2.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93687,6 +93711,9 @@
     "sk code quality 1 5 0 0": [
       "sk-code-quality 1.5.0.0"
     ],
+    "sk code quality 1 6 0 0": [
+      "sk-code-quality 1.6.0.0"
+    ],
     "sk code quality codebase agnostic": [
       "sk-code quality codebase agnostic"
     ],
@@ -93740,6 +93767,9 @@
     ],
     "sk code quality v1 5 0 0": [
       "sk-code-quality v1.5.0.0"
+    ],
+    "sk code quality v1 6 0 0": [
+      "sk-code-quality v1.6.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -94044,6 +94074,9 @@
     "sk code skilled 2 0 1 0": [
       "sk-code-skilled 2.0.1.0"
     ],
+    "sk code skilled 2 0 2 0": [
+      "sk-code-skilled 2.0.2.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94136,6 +94169,9 @@
     ],
     "sk code skilled v2 0 1 0": [
       "sk-code-skilled v2.0.1.0"
+    ],
+    "sk code skilled v2 0 2 0": [
+      "sk-code-skilled v2.0.2.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94274,6 +94310,9 @@
     ],
     "sk code v3 1 0 0": [
       "sk-code v3.1.0.0"
+    ],
+    "sk code v3 2 0 0": [
+      "sk-code v3.2.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -104342,6 +104381,9 @@
     ],
     "surface implementation standards": [
       "surface implementation standards"
+    ],
+    "surface marker kinds": [
+      "surface marker kinds"
     ],
     "surface neutral javascript css checks": [
       "surface-neutral javascript css checks"
