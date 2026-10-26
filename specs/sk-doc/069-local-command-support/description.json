@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/069-local-command-support",
+  "description": "Support git-ignored local-* commands in every runtime",
+  "keywords": [
+    "local",
+    "command",
+    "support",
+    "git-ignored",
+    "private",
+    "runtime",
+    "mirrors",
+    "pre-commit",
+    "guard",
+    "catalog"
+  ],
+  "lastUpdated": "2026-10-26T22:10:00.000Z",
+  "specId": "069",
+  "folderSlug": "local-command-support",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

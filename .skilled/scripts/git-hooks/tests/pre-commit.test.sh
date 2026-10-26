@@ -1094,5 +1094,38 @@ git -C "$TMP" add -- ".skilled/skills/local-tc/SKILL.md"
 run_hook; RC=$?
 check "a staged type change named local-* is refused" 1 "$RC" ".skilled/skills/local-tc/SKILL.md"
 
+# ── 82. a private command, its assets folder and every runtime mirror of it are refused ──
+PRIVATE_COMMAND_PATHS=(
+  ".skilled/commands/local-probe.md"
+  ".skilled/commands/assets/local-probe/workflow.yaml"
+  ".opencode/commands/local-probe.md"
+  ".claude/commands/local-probe.md"
+  ".cursor/commands/local-probe.md"
+  ".codex/prompts/local-probe.md"
+  ".pi/prompts/local-probe.md"
+  ".hermes/prompts/local-probe.md"
+)
+setup_gate_fixture
+for P in "${PRIVATE_COMMAND_PATHS[@]}"; do stage_new "$P" "private"; done
+run_hook; RC=$?
+check "a staged private command is refused" 1 "$RC" "BLOCKED \[gate:private-skill\]"
+for P in "${PRIVATE_COMMAND_PATHS[@]}"; do
+  if grep -qF "$P" "$TMP/out.log"; then
+    echo "PASS  the refusal names $P"; PASS=$((PASS + 1))
+  else echo "FAIL  the refusal never named $P"; FAIL=$((FAIL + 1)); fi
+done
+
+# ── 83. a local- name inside a command family is an ordinary file ──
+setup_gate_fixture
+stage_new ".skilled/commands/doctor/local-notes.md" "an ordinary file"
+stage_new ".skilled/commands/doctor/assets/local-notes.yaml" "an ordinary file"
+run_hook; RC=$?
+check "a local- file inside a command family is committable" 0 "$RC"
+if grep -q 'gate:private-skill' "$TMP/out.log"; then
+  echo "FAIL  the guard spoke on an ordinary command-family file"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the guard stayed silent on an ordinary command-family file"; PASS=$((PASS + 1))
+fi
+
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

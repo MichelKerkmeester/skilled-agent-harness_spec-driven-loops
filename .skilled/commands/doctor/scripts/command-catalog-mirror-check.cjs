@@ -136,6 +136,9 @@ function readFrontmatter(file) {
 function readCommandTree(commandsDir) {
   const commands = [];
   for (const entry of fs.readdirSync(commandsDir).sort()) {
+    // A local-* command or namespace is private to one checkout and git-ignored,
+    // so no tracked catalog may list it and its absence from one is not drift.
+    if (entry.startsWith('local-')) continue;
     const abs = path.join(commandsDir, entry);
     if (fs.statSync(abs).isDirectory()) {
       if (NON_NAMESPACE_DIRS.has(entry)) continue;

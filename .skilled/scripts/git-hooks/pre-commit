@@ -103,15 +103,18 @@ fi
 # a manifest of private bytes to compare against, and this guard owns no such
 # manifest. There is no bypass variable and no gate-config row: staging a private
 # skill is never correct.
+# A local-* command is private the same way: its router, its assets folder and
+# the mirror each runtime generator derives from it all carry the local- name.
 PRIVATE_SKILL_RE='^\.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)/skills/local-[^/]+(/|$)'
+PRIVATE_COMMAND_RE='^\.(skilled|opencode|claude|cursor)/commands/(assets/)?local-[^/]+(/|$)|^\.(codex|pi|hermes)/prompts/local-[^/]+(/|$)'
 PRIVATE_STAGED=()
 while IFS= read -r -d '' PRIVATE_PATH; do
-  if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE ]]; then
+  if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE || "$PRIVATE_PATH" =~ $PRIVATE_COMMAND_RE ]]; then
     PRIVATE_STAGED+=("$PRIVATE_PATH")
   fi
 done < <(git diff --cached --name-only -z --diff-filter=ACMRT)
 if [[ "${#PRIVATE_STAGED[@]}" -gt 0 ]]; then
-  echo "BLOCKED [gate:private-skill]: a private skill is staged and would be published:" >&2
+  echo "BLOCKED [gate:private-skill]: a private skill or command is staged and would be published:" >&2
   for PRIVATE_PATH in "${PRIVATE_STAGED[@]}"; do
     echo "  $PRIVATE_PATH" >&2
     echo "  Fix: git rm --cached -r -- \"$PRIVATE_PATH\"" >&2

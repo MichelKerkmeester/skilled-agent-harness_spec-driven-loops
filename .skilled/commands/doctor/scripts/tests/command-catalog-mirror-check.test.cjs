@@ -189,6 +189,25 @@ test('a linked local-* skill holding command metadata is skipped, not read', () 
   assert.doesNotMatch(out, /local-private/);
 });
 
+test('a local-* command and namespace missing from every catalog are skipped, not drift', () => {
+  const root = buildRoot();
+  const commandsDir = path.join(root, '.skilled', 'commands');
+  writeFile(path.join(commandsDir, 'local-private.md'), '---\ndescription: "Private"\n---\n');
+  writeFile(path.join(commandsDir, 'local-family', 'run.md'), '---\ndescription: "Private"\n---\n');
+  const { status, out } = run(root);
+  assert.equal(status, 0, out);
+  assert.match(out, /STATUS=OK command-catalog-mirror/);
+  assert.doesNotMatch(out, /local-/);
+});
+
+test('a non-local root command missing from the catalog is still drift', () => {
+  const root = buildRoot();
+  writeFile(path.join(root, '.skilled', 'commands', 'localize.md'), '---\ndescription: "Public"\n---\n');
+  const { status, out } = run(root);
+  assert.equal(status, 1, out);
+  assert.match(out, /\/localize not listed/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. MALFORMED INPUT AND CRASHES
 // ─────────────────────────────────────────────────────────────────────────────
