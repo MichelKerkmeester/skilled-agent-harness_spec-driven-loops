@@ -1,0 +1,14 @@
+
+TASK: In ONE file, change four occurrences of the template stamp version v2.3 to v2.4. Do not touch any other line.
+
+FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md
+
+EDITS (exact old text -> exact new text):
+1. line 29: `rewrite every v2.3 stamp to v2.2` -> `rewrite every v2.4 stamp to v2.2`
+2. line 61: `perl -pi -e 's/\| v2\.3 -->/| v2.2 -->/g'` -> `perl -pi -e 's/\| v2\.4 -->/| v2.2 -->/g'`
+   (keep the backslashes exactly; only the digit 3 becomes 4)
+3. line 97: `A document keeps a v2.3 stamp` -> `A document keeps a v2.4 stamp`
+4. line 101: `still saw v2.3 somewhere` -> `still saw v2.4 somewhere`
+
+VERIFY (must print 0 then 4):
+grep -c 'v2\.3' .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md; grep -c 'v2\.4' .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md

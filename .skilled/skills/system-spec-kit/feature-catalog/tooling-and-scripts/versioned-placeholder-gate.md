@@ -1,12 +1,12 @@
 ---
 title: "Versioned placeholder gate"
-description: "Gates unfilled value tokens by the template stamp, warning while a v2.3 packet is Draft and failing it at any other status."
+description: "Gates unfilled value tokens by the template stamp, warning while a v2.3-or-later packet is Draft and failing it at any other status."
 trigger_phrases:
   - "versioned placeholder gate"
   - "placeholder token warning"
   - "Draft placeholder rule"
   - "v2.3 template stamp"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Versioned placeholder gate
@@ -39,7 +39,7 @@ The standalone `spec/check-placeholders.sh`, which the post-edit hook runs on th
 
 ### Edge Cases
 
-A fenced code block is skipped, so a token shown in an example does not fail a document. A token inside an inline code span is skipped for the same reason. In a v2.3 doc a fence may open with backticks or tildes at any indent, every marker on a line is read and a `[template:` title is an error. A status such as `Draft (phase 3)` is not the word Draft, so it counts as any other value.
+A fenced code block is skipped, so a token shown in an example does not fail a document. A token inside an inline code span is skipped for the same reason. In a v2.3-or-later doc a fence may open with backticks or tildes at any indent, every marker on a line is read and a `[template:` title is an error. A status such as `Draft (phase 3)` is not the word Draft, so it counts as any other value.
 
 ---
 

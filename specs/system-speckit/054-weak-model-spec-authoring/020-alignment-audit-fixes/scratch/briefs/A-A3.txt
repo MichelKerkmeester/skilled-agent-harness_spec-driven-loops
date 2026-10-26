@@ -1,0 +1,27 @@
+
+TASK: make ONE edit to ONE file. Do not read any other file. Do not explore.
+Use your file edit tool, not a shell rewrite: the file is executable and must stay executable.
+
+FILE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+
+OLD TEXT (lines 1-2, occurs once):
+
+#!/usr/bin/env bash
+# Guard: every hand-written example keeps the template's required anchors in the
+
+NEW TEXT (insert a three-line COMPONENT header between them):
+
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CHECK EXAMPLE DRIFT
+# ───────────────────────────────────────────────────────────────
+# Guard: every hand-written example keeps the template's required anchors in the
+
+Each rule line is "# " followed by exactly 63 box-drawing characters U+2500, the same
+as lines 2 and 4 of .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh.
+Change nothing else.
+
+VERIFY (run from the repo root; it must print SYNTAX_OK, then a line containing EXAMPLE_DRIFT_OK, then -rwx at the start of the ls line):
+bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && echo SYNTAX_OK; bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh; ls -l .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+
+Report the edited file and the verify output.

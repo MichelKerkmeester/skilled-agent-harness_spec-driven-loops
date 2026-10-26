@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Templates
@@ -96,6 +96,9 @@ examples/ → scaffolder input
 ```text
 templates/
 ├── README.md
+├── CONTRACT.md
+├── EXTENSION-GUIDE.md
+├── MIGRATION.md
 ├── spec-kit-docs.json
 ├── core/
 │   ├── spec.md.tmpl
@@ -194,7 +197,7 @@ Render flow:
 | ------------------------------------------- | ----------------- | -------------------------------------------------------- |
 | `spec-kit-docs.json`               | Data file         | Primary Level and document contract consumed by scripts. |
 | `core/`, `addons/` and `packet-types/` `*.md.tmpl`                        | Template files    | Rendered into packet markdown files.                     |
-| `examples/level_*`                          | Reference folders | Show expected rendered output by Level.                  |
+| `examples/level-*`                          | Reference folders | Show expected rendered output by Level.                  |
 | `runtime/cli/spec/create.sh`                    | Script caller     | Reads this folder to scaffold packets.                   |
 | `runtime/cli/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
 | `runtime/cli/templates/inline-gate-renderer.sh` | Script caller     | Renders gated template blocks for a selected Level.      |

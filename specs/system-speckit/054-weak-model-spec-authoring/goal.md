@@ -167,6 +167,7 @@ and findings belong here.
 | 017 measured behavior + Draft auto-repair | Done | MEASURED_BEHAVIOR warn-only on v2.4; Draft strict run repairs derived metadata; 9/9 AC; runtime suite 279/0 fail, CLI 189 pass, 1 known git-hang flake |
 | 018 benchmark redesign | Done | 9/9 AC; report review PASS; loop review PASS after fix check |
 | 019 follow-up fixes | Done | manifest test 2/2 with fsmonitor off; dirty sandbox re-prepared between rounds, refusal final; review P1 fixed |
+| 020 alignment audit fixes | Done | 46 findings (1 P0 CI import gate) fixed across 4 lanes; verifiers PASS; system-spec-kit 2.12.1.0 |
 
 ### Deviations and findings
 

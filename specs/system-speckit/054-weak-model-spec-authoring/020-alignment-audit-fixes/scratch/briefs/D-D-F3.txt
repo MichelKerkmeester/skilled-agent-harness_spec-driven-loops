@@ -1,0 +1,25 @@
+
+TASK: replace one sentence fragment in three files. Do not read any other file. Do not change anything else.
+
+Files (edit all three, same change; each holds the old text once):
+  .skilled/commands/speckit/plan.md
+  .skilled/commands/speckit/implement.md
+  .skilled/commands/speckit/complete.md
+
+Old text (exact):
+now include two warn-only rules, and neither fails the run:
+
+New text (exact):
+now include three warn-only rules, and none fails the run:
+
+AND in the same three files, old text (exact):
+of packets created after 2026-10-04. The command also runs
+
+New text (exact):
+of packets created after 2026-10-04, and `MEASURED_BEHAVIOR` warns when a `spec.md` stamped v2.4 or later has a `measured-behavior` anchor holding neither command output nor a reasoned `N/A:`. The command also runs
+
+Use your edit tool for exact string replacements. Do not rewrite whole files.
+
+VERIFY (run it and report the output):
+  rg -c "three warn-only rules, and none fails the run|MEASURED_BEHAVIOR. warns when" .skilled/commands/speckit/plan.md .skilled/commands/speckit/implement.md .skilled/commands/speckit/complete.md
+Expected: each file reports 1 (both strings sit on the same line).

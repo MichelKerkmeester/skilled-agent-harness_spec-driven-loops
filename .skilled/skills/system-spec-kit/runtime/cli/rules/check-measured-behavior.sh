@@ -6,6 +6,10 @@
 # Sourced by validate.sh and compatible with strict mode.
 set -euo pipefail
 
+_measured_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../lib/status-classifier.sh
+source "${_measured_rule_dir}/../lib/status-classifier.sh"
+
 # Rule: MEASURED_BEHAVIOR
 # Severity: warn
 # Description: Warns when spec.md has no measured-behavior block, or a block that
@@ -16,8 +20,9 @@ set -euo pipefail
 # Applicability: only a spec.md whose SPECKIT_TEMPLATE_SOURCE stamp names spec-core
 #   at v2.4 or later. An older stamp, another template source or no stamp at all was
 #   written before the block existed, so the rule passes it as not applicable.
-#   The stamp is read the way the orchestrator's TEMPLATE_STAMP_RE reads it: the
-#   first stamp line in the first 70 lines, major and minor compared as numbers.
+#   The shared speckit_template_stamp helper reads the stamp the way the
+#   orchestrator's TEMPLATE_STAMP_RE does: the first stamp line in the first 70
+#   lines, major and minor compared as numbers.
 # This rule never reports fail, so its verdict can never become an error.
 
 MEASURED_BEHAVIOR_MIN_MAJOR=2
@@ -27,16 +32,11 @@ MEASURED_BEHAVIOR_MIN_MINOR=4
 # and "skip<TAB>reason" otherwise.
 measured_behavior_applicability() {
     local spec="$1"
-    local stamp_line source major minor
-    stamp_line=$(head -n 70 "$spec" 2>/dev/null | \
-        grep -m1 -E '^[[:space:]]*<!--[[:space:]]*SPECKIT_TEMPLATE_SOURCE:[^|>]*\|[[:space:]]*v[0-9]+\.[0-9]+[[:space:]]*-->' || true)
-    if [[ -z "$stamp_line" ]]; then
+    local source major minor
+    IFS=$'\t' read -r source major minor < <(speckit_template_stamp "$spec") || {
         printf 'skip\tspec.md carries no template stamp\n'
         return 0
-    fi
-    source=$(printf '%s' "$stamp_line" | sed -E 's/.*SPECKIT_TEMPLATE_SOURCE:[[:space:]]*([^|>]*)\|.*/\1/')
-    major=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\1/')
-    minor=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\2/')
+    }
     if [[ ! "$source" =~ ^spec-core([[:space:]+]|$) ]]; then
         printf 'skip\tspec.md is not stamped from spec-core\n'
         return 0

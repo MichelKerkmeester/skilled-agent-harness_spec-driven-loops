@@ -1,0 +1,10 @@
+
+TASK: Replace the end of ONE sentence in ONE file. Do not touch any other text.
+
+FILE: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md (line 722)
+
+OLD (exact): , and the fill guidance test prints `24 passed`.
+NEW (exact): , and the fill guidance test fails when a section lacks that line.
+
+VERIFY (must print 0 then 1):
+grep -c '24 passed' .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md; grep -c 'fill guidance test fails when a section lacks that line\.' .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md

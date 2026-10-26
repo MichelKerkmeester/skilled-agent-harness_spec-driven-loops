@@ -1,0 +1,10 @@
+
+TASK: Fix one path in ONE file. Do not touch any other text, and keep the table column padding as is.
+
+FILE: .skilled/skills/system-spec-kit/templates/README.md (line 197)
+
+OLD (exact): `examples/level_*`
+NEW (exact): `examples/level-*`
+
+VERIFY (must print 0 then 1):
+grep -c 'level_\*' .skilled/skills/system-spec-kit/templates/README.md; grep -c '`examples/level-\*`' .skilled/skills/system-spec-kit/templates/README.md

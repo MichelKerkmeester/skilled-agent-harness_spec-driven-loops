@@ -65,18 +65,31 @@ classify_status() {
     printf '%s\n' "unknown"
 }
 
+# Prints "source<TAB>major<TAB>minor" for the first SPECKIT_TEMPLATE_SOURCE stamp in
+# the doc's first 70 lines, and returns 1 when there is none. Every shell rule that
+# needs the stamp reads it here, so they parse it the same way the orchestrator's
+# TEMPLATE_STAMP_RE does. An empty source prints as "-" so a tab-split read keeps
+# the three fields aligned.
+speckit_template_stamp() {
+    local filepath="$1"
+    local stamp_line source major minor
+    stamp_line=$(head -n 70 "$filepath" 2>/dev/null | \
+        grep -m1 -E '^[[:space:]]*<!--[[:space:]]*SPECKIT_TEMPLATE_SOURCE:[^|>]*\|[[:space:]]*v[0-9]+\.[0-9]+[[:space:]]*-->' || true)
+    [[ -n "$stamp_line" ]] || return 1
+    source=$(printf '%s' "$stamp_line" | sed -E 's/.*SPECKIT_TEMPLATE_SOURCE:[[:space:]]*([^|>]*)\|.*/\1/')
+    major=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\1/')
+    minor=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\2/')
+    printf '%s\t%s\t%s\n' "${source:--}" "$major" "$minor"
+}
+
 # Succeeds when the doc carries a SPECKIT_TEMPLATE_SOURCE stamp of v2.3 or later
 # within its first 70 lines. The checks added with that template version apply
 # only to such docs, so a doc with an older stamp, or none, keeps its verdict.
 speckit_carries_token_gate_stamp() {
     local filepath="$1"
-    local stamp_line major minor
-    stamp_line=$(head -n 70 "$filepath" 2>/dev/null | \
-        grep -m1 -E '^[[:space:]]*<!--[[:space:]]*SPECKIT_TEMPLATE_SOURCE:[^|>]*\|[[:space:]]*v[0-9]+\.[0-9]+[[:space:]]*-->' || true)
-    [[ -n "$stamp_line" ]] || return 1
-    major=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\1/')
-    minor=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\2/')
-    if (( major > 2 )) || { (( major == 2 )) && (( minor >= 3 )); }; then
+    local _src major minor
+    IFS=$'\t' read -r _src major minor < <(speckit_template_stamp "$filepath") || return 1
+    if (( 10#$major > 2 )) || { (( 10#$major == 2 )) && (( 10#$minor >= 3 )); }; then
         return 0
     fi
     return 1

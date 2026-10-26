@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Template Fill Guidance Tests
+// ───────────────────────────────────────────────────────────────────
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';

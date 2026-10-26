@@ -1,0 +1,21 @@
+
+TASK: make ONE edit to ONE file. Do not read any other file. Do not explore. The file is large:
+read only lines 1480-1490 of it, never the whole file.
+
+FILE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+
+OLD TEXT (line 1485, occurs once):
+
+export function writeRepairHint(report: ValidationReport): void {
+
+NEW TEXT (a one-line TSDoc comment inserted directly above it):
+
+/** Prints the repair-derived.cjs --apply command when the report holds a recomputable error or warning, and nothing otherwise. */
+export function writeRepairHint(report: ValidationReport): void {
+
+Change nothing else. Do not move or rename the function.
+
+VERIFY (run from the repo root; the grep must show the comment line directly above the export, and the typecheck must end with EXIT=0):
+grep -n -B1 '^export function writeRepairHint' .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts; cd .skilled/skills/system-spec-kit/runtime && npm run typecheck; echo EXIT=$?
+
+Report the edited file and the verify output.

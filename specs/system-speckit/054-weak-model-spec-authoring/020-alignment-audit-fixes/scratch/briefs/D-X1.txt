@@ -1,0 +1,17 @@
+
+TASK: insert one new line into one file. Do not read any other file. Do not change anything else.
+
+File:
+  .env.example
+
+Find this existing line (exact):
+# SPECKIT_RULES=                        # Comma-separated subset of rules to run
+
+Insert this new line directly AFTER it (exact, starts with "# "):
+# SPECKIT_DRAFT_AUTO_REPAIR=true        # Graduated ON: a strict full-rule validate on a Draft packet repairs derived metadata once; 0/false/off keeps it read-only
+
+Use your edit tool: replace the existing line with itself followed by a newline and the new line. Do not rewrite the whole file. Keep the existing line unchanged.
+
+VERIFY (run it and report the output):
+  rg -n -A1 "^# SPECKIT_RULES=" .env.example
+Expected: the SPECKIT_RULES line, then the SPECKIT_DRAFT_AUTO_REPAIR line right below it.

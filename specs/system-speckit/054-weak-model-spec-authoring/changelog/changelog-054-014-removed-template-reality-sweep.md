@@ -19,6 +19,10 @@ contextType: "implementation"
 
 Phase 014 swept the tree after the 2.11.0.0 release. One audit found 19 stale lines plus 3 nearby gaps that still offered the deleted before-after, roadmap or resource-map add-on. A second audit found 12 docs that contradicted the shipped code: 9 from the release and 3 older ones that called decision-record required at Level 3. Five briefs fixed them all, and a fresh review found nine follow-ups, which were fixed too. The /speckit workflows keep their own per-step strict gate.
 
+### Added
+
+- None recorded.
+
 ### Changed
 
 - Counts and lists: ten add-ons to seven, 16 passed to 24, 18 template kinds to 15, the add-on table, the packet-types tree and the link-guard output.
@@ -27,6 +31,10 @@ Phase 014 swept the tree after the 2.11.0.0 release. One audit found 19 stale li
 - The card's section 10 checklist line now points at the section 9 `--quiet` run.
 - Ten deep-loop catalog and playbook lines call the loop map a renderer layout, not a template.
 - One comment line in `upgrade-legacy.vitest.ts`.
+
+### Fixed
+
+- None recorded.
 
 ### Verification
 
@@ -48,3 +56,7 @@ Phase 014 swept the tree after the 2.11.0.0 release. One audit found 19 stale li
 | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` | Modified | Section 10 checklist line |
 | `.skilled/skills/system-deep-loop/deep-research/` and `deep-review/` catalog and playbook files | Modified | Map wording |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Modified | Comment only |
+
+### Follow-Ups
+
+- None recorded.

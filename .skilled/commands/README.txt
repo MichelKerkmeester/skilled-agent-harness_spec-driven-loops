@@ -77,7 +77,7 @@ command/
 ├── vision.md                 # On-device read of your most recent image
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
-├── create/                   # Component creation commands — see create/README.txt for the
+├── create/                   # Component creation commands, see create/README.txt for the
 │   │                         # full thirteen-command table and per-command invocations
 │   ├── agent.md              # Create new agent
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder

@@ -7,7 +7,7 @@ trigger_phrases:
   - "run validation rules"
   - "rule scripts"
   - "recursive phase validation"
-version: 2.1.0.30
+version: 2.1.1.0
 ---
 
 # Spec Validation Rule Engine
@@ -37,6 +37,8 @@ Registry dispatch is guarded. For each rule the orchestrator resolves the real p
 ### Quality Gates & Validation
 
 Severity comes from the registry, not from a table in the front-end. Missing files, placeholders, anchor issues, table-of-contents policy, template-header mismatches, and spec-doc integrity failures are errors. Section, priority, evidence, and phase-link issues are warnings. Level declaration is informational. `--strict` upgrades warning-bearing runs into exit-code failure without changing the underlying rule outputs.
+
+On a `--strict` run, a Draft packet whose every error is a derived-metadata one gets one `repair-derived.cjs --apply` run and a second validation before the report prints, unless `CI`, a `SPECKIT_RULES` subset or `SPECKIT_DRAFT_AUTO_REPAIR` turns it off. See [draft-auto-repair](draft-auto-repair.md).
 
 Level detection belongs to the orchestrator. It first looks for explicit level markers in `spec.md`, including `<!-- SPECKIT_LEVEL: ... -->`, metadata tables, bullet metadata, YAML frontmatter, or line-anchored `Level:` text. A `<!-- SPECKIT_LEVEL: review -->` marker selects the lean review-record path, which requires only `spec.md` plus `review/review-report.md` and waives the `plan.md`, `tasks.md` and `implementation-summary.md` requirements that apply to numbered levels. The review marker is the only entry into that path, so no inferred folder reaches it. If no explicit declaration is present, it infers Level 3 from `decision-record.md`, Level 2 from `checklist.md`, and Level 1 otherwise.
 

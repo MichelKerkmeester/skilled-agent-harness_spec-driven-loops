@@ -30,7 +30,7 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**3-Tier Task Format**: `T### [W-X] [P?] Description (file path) [effort] {deps: T###}. Verify: <command> prints <expected output>`
+**3-Tier Task Format**: `T### [W-X] [P?] Description (file path) {deps: T###}. Verify: <command> prints <expected output>`
 
 
 <!-- /ANCHOR:notation -->
@@ -87,10 +87,10 @@ Before starting any task, verify:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup [Milestone M1] [W-A]
 
-- [x] T001 [W-A] Create auth directory structure (`src/auth/`) [15m]. Verify: `ls src/auth` exits 0.
-- [x] T002 [W-A] Install bcrypt, jsonwebtoken, express-validator (`package.json`) [10m]. Verify: `npm ls bcrypt jsonwebtoken` prints both versions.
-- [x] T003 [W-A] [P] Configure environment variables (`env.example`, `.env`) [15m]. Verify: `rg -c JWT_SECRET env.example` prints 1.
-- [x] T004 [W-A] [P] Add User model to Prisma schema (`prisma/schema.prisma`) [20m]. Verify: `npx prisma validate` prints that the schema is valid.
+- [x] T001 [W-A] Create auth directory structure (`src/auth/`). Verify: `ls src/auth` exits 0.
+- [x] T002 [W-A] Install bcrypt, jsonwebtoken, express-validator (`package.json`). Verify: `npm ls bcrypt jsonwebtoken` prints both versions.
+- [x] T003 [W-A] [P] Configure environment variables (`env.example`, `.env`). Verify: `rg -c JWT_SECRET env.example` prints 1.
+- [x] T004 [W-A] [P] Add User model to Prisma schema (`prisma/schema.prisma`). Verify: `npx prisma validate` prints that the schema is valid.
 
 
 <!-- /ANCHOR:phase-1 -->
@@ -99,8 +99,8 @@ Before starting any task, verify:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Database [Milestone M1] [W-A]
 
-- [x] T005 [W-A] Run Prisma migration (`prisma/migrations/`) [15m] {deps: T004}. Verify: `npx prisma migrate status` prints "Database schema is up to date".
-- [x] T006 [W-A] Add unique index on email (`prisma/schema.prisma`) [10m] {deps: T005}. Verify: `rg -n '@unique' prisma/schema.prisma` prints the email line.
+- [x] T005 [W-A] Run Prisma migration (`prisma/migrations/`) {deps: T004}. Verify: `npx prisma migrate status` prints "Database schema is up to date".
+- [x] T006 [W-A] Add unique index on email (`prisma/schema.prisma`) {deps: T005}. Verify: `rg -n '@unique' prisma/schema.prisma` prints the email line.
 
 
 <!-- /ANCHOR:phase-2 -->
@@ -110,16 +110,16 @@ Before starting any task, verify:
 ## Phase 3: Core Services [Milestone M2] [W-A]
 
 ### Hash Service
-- [x] T007 [W-A] Implement hashPassword function (`src/utils/hash.js`) [30m] {deps: T002}. Verify: `node --check src/utils/hash.js` exits 0.
-- [x] T008 [W-A] Implement verifyPassword function (`src/utils/hash.js`) [20m] {deps: T007}. Verify: `node --check src/utils/hash.js` exits 0.
+- [x] T007 [W-A] Implement hashPassword function (`src/utils/hash.js`) {deps: T002}. Verify: `node --check src/utils/hash.js` exits 0.
+- [x] T008 [W-A] Implement verifyPassword function (`src/utils/hash.js`) {deps: T007}. Verify: `node --check src/utils/hash.js` exits 0.
 
 ### Token Service
-- [x] T009 [W-A] [P] Implement generateToken function (`src/utils/token.js`) [30m] {deps: T002}. Verify: `node --check src/utils/token.js` exits 0.
-- [x] T010 [W-A] [P] Implement verifyToken function (`src/utils/token.js`) [30m] {deps: T009}. Verify: `node --check src/utils/token.js` exits 0.
+- [x] T009 [W-A] [P] Implement generateToken function (`src/utils/token.js`) {deps: T002}. Verify: `node --check src/utils/token.js` exits 0.
+- [x] T010 [W-A] [P] Implement verifyToken function (`src/utils/token.js`) {deps: T009}. Verify: `node --check src/utils/token.js` exits 0.
 
 ### Validators
-- [x] T011 [W-A] [P] Create registration validator (`src/validators/auth.js`) [30m] {deps: T002}. Verify: `node --check src/validators/auth.js` exits 0.
-- [x] T012 [W-A] [P] Create login validator (`src/validators/auth.js`) [20m] {deps: T011}. Verify: `node --check src/validators/auth.js` exits 0.
+- [x] T011 [W-A] [P] Create registration validator (`src/validators/auth.js`) {deps: T002}. Verify: `node --check src/validators/auth.js` exits 0.
+- [x] T012 [W-A] [P] Create login validator (`src/validators/auth.js`) {deps: T011}. Verify: `node --check src/validators/auth.js` exits 0.
 
 **>>> SYNC-001: W-A Services ready for API integration <<<**
 
@@ -131,24 +131,24 @@ Before starting any task, verify:
 ## Phase 4: API Endpoints [Milestone M3] [W-B]
 
 ### Registration
-- [x] T013 [W-B] Create registration route handler (`src/auth/register.js`) [45m] {deps: T007, T011, SYNC-001}. Verify: `curl -si -X POST localhost:3000/auth/register` prints `HTTP/1.1 400`.
-- [x] T014 [W-B] Add user creation with hashed password (`src/auth/register.js`) [30m] {deps: T013}. Verify: `node --check src/auth/register.js` exits 0.
-- [x] T015 [W-B] Add duplicate email check (`src/auth/register.js`) [20m] {deps: T014}. Verify: `node --check src/auth/register.js` exits 0.
+- [x] T013 [W-B] Create registration route handler (`src/auth/register.js`) {deps: T007, T011, SYNC-001}. Verify: `curl -si -X POST localhost:3000/auth/register` prints `HTTP/1.1 400`.
+- [x] T014 [W-B] Add user creation with hashed password (`src/auth/register.js`) {deps: T013}. Verify: `node --check src/auth/register.js` exits 0.
+- [x] T015 [W-B] Add duplicate email check (`src/auth/register.js`) {deps: T014}. Verify: `node --check src/auth/register.js` exits 0.
 
 ### Login
-- [x] T016 [W-B] Create login route handler (`src/auth/login.js`) [30m] {deps: T008, T009, T012}. Verify: `curl -si -X POST localhost:3000/auth/login` prints `HTTP/1.1 400`.
-- [x] T017 [W-B] Add password verification (`src/auth/login.js`) [20m] {deps: T016}. Verify: `node --check src/auth/login.js` exits 0.
-- [x] T018 [W-B] Add token generation on success (`src/auth/login.js`) [20m] {deps: T017}. Verify: `node --check src/auth/login.js` exits 0.
+- [x] T016 [W-B] Create login route handler (`src/auth/login.js`) {deps: T008, T009, T012}. Verify: `curl -si -X POST localhost:3000/auth/login` prints `HTTP/1.1 400`.
+- [x] T017 [W-B] Add password verification (`src/auth/login.js`) {deps: T016}. Verify: `node --check src/auth/login.js` exits 0.
+- [x] T018 [W-B] Add token generation on success (`src/auth/login.js`) {deps: T017}. Verify: `node --check src/auth/login.js` exits 0.
 
 ### Logout
-- [x] T019 [W-B] Create logout route handler (`src/auth/logout.js`) [20m] {deps: T010}. Verify: `node --check src/auth/logout.js` exits 0.
+- [x] T019 [W-B] Create logout route handler (`src/auth/logout.js`) {deps: T010}. Verify: `node --check src/auth/logout.js` exits 0.
 
 ### Middleware
-- [x] T020 [W-A] Create auth middleware (`src/middleware/auth.js`) [45m] {deps: T010}. Verify: `node --check src/middleware/auth.js` exits 0.
-- [x] T021 [W-B] Add protected route example (`src/routes/dashboard.js`) [15m] {deps: T020}. Verify: `curl -si localhost:3000/dashboard` prints `HTTP/1.1 401`.
+- [x] T020 [W-A] Create auth middleware (`src/middleware/auth.js`) {deps: T010}. Verify: `node --check src/middleware/auth.js` exits 0.
+- [x] T021 [W-B] Add protected route example (`src/routes/dashboard.js`) {deps: T020}. Verify: `curl -si localhost:3000/dashboard` prints `HTTP/1.1 401`.
 
 ### Integration
-- [x] T022 [W-B] Wire up all routes in app.js (`app.js`) [20m] {deps: T015, T018, T019, T020}. Verify: `curl -si localhost:3000/dashboard` prints `HTTP/1.1 401`.
+- [x] T022 [W-B] Wire up all routes in app.js (`app.js`) {deps: T015, T018, T019, T020}. Verify: `curl -si localhost:3000/dashboard` prints `HTTP/1.1 401`.
 
 
 <!-- /ANCHOR:phase-4 -->
@@ -157,12 +157,12 @@ Before starting any task, verify:
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: UI [Milestone M4] [W-B]
 
-- [x] T023 [W-B] Create registration form view (`views/auth/register.ejs`) [30m] {deps: T015}. Verify: `curl -s localhost:3000/register | rg -c '<form'` prints 1.
-- [x] T024 [W-B] Create login form view (`views/auth/login.ejs`) [30m] {deps: T018}. Verify: `curl -s localhost:3000/login | rg -c '<form'` prints 1.
-- [x] T025 [W-B] [P] Add client-side token storage (`public/js/auth.js`) [30m] {deps: T018}. Verify: `rg -n localStorage public/js/auth.js` prints the token line.
-- [x] T026 [W-B] [P] Add error message styling (`public/css/auth.css`) [20m]. Verify: `rg -c 'auth-error' public/css/auth.css` prints 1.
-- [x] T027 [W-B] [P] Add success feedback styling (`public/css/auth.css`) [15m]. Verify: `rg -c 'auth-success' public/css/auth.css` prints 1.
-- [x] T028 [W-B] Add logout button to nav (`views/partials/nav.ejs`) [15m] {deps: T019}. Verify: `rg -n logout views/partials/nav.ejs` prints the button line.
+- [x] T023 [W-B] Create registration form view (`views/auth/register.ejs`) {deps: T015}. Verify: `curl -s localhost:3000/register | rg -c '<form'` prints 1.
+- [x] T024 [W-B] Create login form view (`views/auth/login.ejs`) {deps: T018}. Verify: `curl -s localhost:3000/login | rg -c '<form'` prints 1.
+- [x] T025 [W-B] [P] Add client-side token storage (`public/js/auth.js`) {deps: T018}. Verify: `rg -n localStorage public/js/auth.js` prints the token line.
+- [x] T026 [W-B] [P] Add error message styling (`public/css/auth.css`). Verify: `rg -c 'auth-error' public/css/auth.css` prints 1.
+- [x] T027 [W-B] [P] Add success feedback styling (`public/css/auth.css`). Verify: `rg -c 'auth-success' public/css/auth.css` prints 1.
+- [x] T028 [W-B] Add logout button to nav (`views/partials/nav.ejs`) {deps: T019}. Verify: `rg -n logout views/partials/nav.ejs` prints the button line.
 
 **>>> SYNC-002: W-A, W-B complete - Full integration test suite <<<**
 
@@ -173,8 +173,8 @@ Before starting any task, verify:
 <!-- ANCHOR:phase-6 -->
 ## Phase 6: Security Review [Milestone M5]
 
-- [x] T029 Security team review scheduled [0m] {deps: SYNC-002}. Verify: `rg -n 'Reviewer' tasks.md` prints the reviewer line.
-- [x] T030 Security review completed and sign-off obtained [4h] {deps: T029}. Verify: `rg -n 'Approved with notes' tasks.md` prints the status line.
+- [x] T029 Security team review scheduled {deps: SYNC-002}. Verify: `rg -n 'Reviewer' tasks.md` prints the reviewer line.
+- [x] T030 Security review completed and sign-off obtained {deps: T029}. Verify: `rg -n 'Approved with notes' tasks.md` prints the status line.
   - **Reviewer**: Alex (Security Lead)
   - **Date**: 2025-01-17
   - **Status**: Approved with notes (HttpOnly cookies recommended for Phase 2)
@@ -187,32 +187,32 @@ Before starting any task, verify:
 ## Phase 7: Verification [Milestone M6] [W-C]
 
 ### Unit Tests
-- [x] T031 [W-C] Test hashPassword function (`tests/unit/hash.test.js`) [20m] {deps: T008}. Verify: `npx jest tests/unit/hash.test.js` exits 0.
-- [x] T032 [W-C] Test verifyPassword function (`tests/unit/hash.test.js`) [15m] {deps: T031}. Verify: `npx jest tests/unit/hash.test.js` exits 0.
-- [x] T033 [W-C] [P] Test generateToken function (`tests/unit/token.test.js`) [15m] {deps: T010}. Verify: `npx jest tests/unit/token.test.js` exits 0.
-- [x] T034 [W-C] [P] Test verifyToken function (`tests/unit/token.test.js`) [15m] {deps: T033}. Verify: `npx jest tests/unit/token.test.js` exits 0.
-- [x] T035 [W-C] [P] Test validation schemas (`tests/unit/auth-validator.test.js`) [30m] {deps: T012}. Verify: `npx jest tests/unit/auth-validator.test.js` exits 0.
+- [x] T031 [W-C] Test hashPassword function (`tests/unit/hash.test.js`) {deps: T008}. Verify: `npx jest tests/unit/hash.test.js` exits 0.
+- [x] T032 [W-C] Test verifyPassword function (`tests/unit/hash.test.js`) {deps: T031}. Verify: `npx jest tests/unit/hash.test.js` exits 0.
+- [x] T033 [W-C] [P] Test generateToken function (`tests/unit/token.test.js`) {deps: T010}. Verify: `npx jest tests/unit/token.test.js` exits 0.
+- [x] T034 [W-C] [P] Test verifyToken function (`tests/unit/token.test.js`) {deps: T033}. Verify: `npx jest tests/unit/token.test.js` exits 0.
+- [x] T035 [W-C] [P] Test validation schemas (`tests/unit/auth-validator.test.js`) {deps: T012}. Verify: `npx jest tests/unit/auth-validator.test.js` exits 0.
 
 ### Integration Tests
-- [x] T036 [W-C] Test registration - success case (`tests/integration/auth.test.js`) [20m] {deps: SYNC-002}. Verify: `npx jest tests/integration/auth.test.js -t 'registration success'` exits 0.
-- [x] T037 [W-C] Test registration - duplicate email (`tests/integration/auth.test.js`) [15m] {deps: T036}. Verify: `npx jest tests/integration/auth.test.js -t 'duplicate email'` exits 0.
-- [x] T038 [W-C] Test registration - invalid input (`tests/integration/auth.test.js`) [15m] {deps: T036}. Verify: `npx jest tests/integration/auth.test.js -t 'invalid input'` exits 0.
-- [x] T039 [W-C] Test login - success case (`tests/integration/auth.test.js`) [20m] {deps: T036}. Verify: `npx jest tests/integration/auth.test.js -t 'login success'` exits 0.
-- [x] T040 [W-C] Test login - invalid credentials (`tests/integration/auth.test.js`) [15m] {deps: T039}. Verify: `npx jest tests/integration/auth.test.js -t 'invalid credentials'` exits 0.
-- [x] T041 [W-C] Test protected route - with token (`tests/integration/auth.test.js`) [15m] {deps: T039}. Verify: `npx jest tests/integration/auth.test.js -t 'with token'` exits 0.
-- [x] T042 [W-C] Test protected route - without token (`tests/integration/auth.test.js`) [10m] {deps: T041}. Verify: `npx jest tests/integration/auth.test.js -t 'without token'` exits 0.
+- [x] T036 [W-C] Test registration - success case (`tests/integration/auth.test.js`) {deps: SYNC-002}. Verify: `npx jest tests/integration/auth.test.js -t 'registration success'` exits 0.
+- [x] T037 [W-C] Test registration - duplicate email (`tests/integration/auth.test.js`) {deps: T036}. Verify: `npx jest tests/integration/auth.test.js -t 'duplicate email'` exits 0.
+- [x] T038 [W-C] Test registration - invalid input (`tests/integration/auth.test.js`) {deps: T036}. Verify: `npx jest tests/integration/auth.test.js -t 'invalid input'` exits 0.
+- [x] T039 [W-C] Test login - success case (`tests/integration/auth.test.js`) {deps: T036}. Verify: `npx jest tests/integration/auth.test.js -t 'login success'` exits 0.
+- [x] T040 [W-C] Test login - invalid credentials (`tests/integration/auth.test.js`) {deps: T039}. Verify: `npx jest tests/integration/auth.test.js -t 'invalid credentials'` exits 0.
+- [x] T041 [W-C] Test protected route - with token (`tests/integration/auth.test.js`) {deps: T039}. Verify: `npx jest tests/integration/auth.test.js -t 'with token'` exits 0.
+- [x] T042 [W-C] Test protected route - without token (`tests/integration/auth.test.js`) {deps: T041}. Verify: `npx jest tests/integration/auth.test.js -t 'without token'` exits 0.
 
 ### Manual Verification
-- [x] T043 Test full user journey in Chrome [30m] {deps: T028}. Verify: `npx playwright test --project=chromium` exits 0.
-- [x] T044 Test full user journey in Firefox [20m] {deps: T043}. Verify: `npx playwright test --project=firefox` exits 0.
-- [x] T045 Test edge cases (empty input, max length) [20m] {deps: T043}. Verify: `npx jest tests/integration/auth.test.js -t 'max length'` exits 0.
-- [x] T046 Verify error messages display correctly [15m] {deps: T043}. Verify: `npx playwright test e2e/errors.spec.js` exits 0.
+- [x] T043 Test full user journey in Chrome {deps: T028}. Verify: `npx playwright test --project=chromium` exits 0.
+- [x] T044 Test full user journey in Firefox {deps: T043}. Verify: `npx playwright test --project=firefox` exits 0.
+- [x] T045 Test edge cases (empty input, max length) {deps: T043}. Verify: `npx jest tests/integration/auth.test.js -t 'max length'` exits 0.
+- [x] T046 Verify error messages display correctly {deps: T043}. Verify: `npx playwright test e2e/errors.spec.js` exits 0.
 
 ### Documentation
-- [x] T047 Update spec.md with implementation notes [15m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
-- [x] T048 Finalize decision-record.md [20m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
-- [x] T049 Complete implementation-summary.md [20m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
-- [x] T050 Mark all checklist items with evidence [20m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T047 Update spec.md with implementation notes. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T048 Finalize decision-record.md. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T049 Complete implementation-summary.md. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T050 Mark all checklist items with evidence. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
 
 **>>> SYNC-003: All workstreams complete - Final verification <<<**
 

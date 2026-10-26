@@ -1,0 +1,23 @@
+
+TASK: make ONE edit to ONE file. Do not read any other file. Do not explore.
+
+FILE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts
+
+OLD TEXT (line 1, the first line of the file):
+
+import fs from 'node:fs';
+
+NEW TEXT (a three-line MODULE header inserted above it):
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Template Fill Guidance Tests
+// ───────────────────────────────────────────────────────────────────
+import fs from 'node:fs';
+
+Each rule line is "// " followed by exactly 67 box-drawing characters U+2500. Insert only these
+three lines at the top. Change nothing else.
+
+VERIFY (run from the repo root; the head output must show the three header lines, and vitest must report the file passed):
+head -4 .skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts; cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/template-fill-guidance.vitest.ts 2>&1 | tail -8
+
+Report the edited file and the verify output.

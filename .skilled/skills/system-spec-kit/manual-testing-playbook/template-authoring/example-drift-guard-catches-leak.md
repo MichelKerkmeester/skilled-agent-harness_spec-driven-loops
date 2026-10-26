@@ -1,7 +1,7 @@
 ---
 title: "479 -- Example drift guard catches a leaked description"
 description: "This scenario validates that the example drift guard passes a clean tree and fails a copy whose description holds a leaked comment tail."
-version: 1.0.1.0
+version: 1.0.2.0
 id: template-authoring-example-drift-guard-catches-leak
 ---
 
@@ -25,7 +25,7 @@ Operators run the guard twice, once on the clean tree and once on a copy with on
 - Playbook ID: 479.
 - Real user request: `Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.`
 - Prompt: `Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.`
-- Preconditions: A checkout with Node, bash, perl, `rg` and `awk` on PATH, and phase 4 closed so `runtime/cli/spec/check-example-drift.sh` exists. The scenario needs no network.
+- Preconditions: A checkout with Node, bash, perl, `rg` and `awk` on PATH, and `runtime/cli/spec/check-example-drift.sh` present. The scenario needs no network.
 - Expected execution process: Run the guard on the tree, copy one example into a scratch folder, inject a leaked comment tail into its description, run the guard on the scratch folder, then remove the scratch folder.
 - Expected signals: The clean run prints `EXAMPLE_DRIFT_OK` and exits 0. The broken run exits 1 and prints five `FAIL` lines: one with `description holds an HTML comment tail`, one with `description does not end with a period`, because the injected tail now follows the period, and three with `no example docs`, because the scratch tree holds only a Level 2 example and the guard requires one at Levels 1, 2, 3 and 3+. The broken run does not print `EXAMPLE_DRIFT_OK`.
 - Desired user-visible outcome: The operator sees the guard accept the tree and reject the injected defect.

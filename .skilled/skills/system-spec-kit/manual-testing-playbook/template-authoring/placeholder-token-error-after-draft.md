@@ -1,7 +1,7 @@
 ---
 title: "477 -- Placeholder token error after Draft"
-description: "This scenario validates that the same v2.3 packet fails strict validation once its status leaves Draft with a value token still unfilled."
-version: 1.0.0.0
+description: "This scenario validates that the same v2.4 packet fails strict validation once its status leaves Draft with a value token still unfilled."
+version: 1.0.1.0
 id: template-authoring-placeholder-token-error-after-draft
 ---
 
@@ -21,7 +21,7 @@ The Draft warning exists so planning commits can land. It must not survive into 
 
 Operators scaffold a packet, set its status to Complete, and confirm that the gate now fails.
 
-- Objective: Prove that a v2.3 packet with an unfilled value token reports `PLACEHOLDER_FILLED` as `error` and `passed: false` once its Status row reads Complete.
+- Objective: Prove that a v2.4 packet with an unfilled value token reports `PLACEHOLDER_FILLED` as `error` and `passed: false` once its Status row reads Complete.
 - Playbook ID: 477.
 - Real user request: `Mark this scaffold Complete and tell me whether strict validation now fails on the value tokens I left behind.`
 - Prompt: `Mark this scaffold Complete and tell me whether strict validation now fails on the value tokens I left behind.`
@@ -95,7 +95,7 @@ Step 1 prints `packet=specs/zz-pb-gate-complete/001-gate-complete`. Step 2 print
 
 ### Failure Triage
 
-A `warn` entry means the status edit did not land, so check step 2. A `pass` entry means the scaffold held no token, so read the stamp line and confirm phase 3 is closed. A `true` `passed` value means the gate did not run, so read `$OUT/gate.json` for the `PLACEHOLDER_FILLED` entry itself.
+A `warn` entry means the status edit did not land, so check step 2. A `pass` entry means the scaffold held no token, so read the stamp line and confirm it is v2.3 or later. A `true` `passed` value means the gate did not run, so read `$OUT/gate.json` for the `PLACEHOLDER_FILLED` entry itself.
 
 ---
 

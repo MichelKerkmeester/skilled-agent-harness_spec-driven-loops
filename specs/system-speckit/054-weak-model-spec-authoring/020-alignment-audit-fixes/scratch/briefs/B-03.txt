@@ -1,0 +1,15 @@
+
+TASK: Replace ONE sentence in ONE file. Do not touch any other text.
+
+FILE: .skilled/skills/system-spec-kit/SKILL.md (line 483)
+
+OLD (exact, one sentence in the middle of the line):
+The read-only tools that run the validator as a child (`repair-derived.cjs`, `upgrade-legacy.mjs`, `quality-audit.sh`, `progressive-validate.sh` and the strict-pass freshness sweep) set it to `0`, so they stay read-only.
+
+NEW (exact):
+Child validator runs inside read-only tools set it to `0`.
+
+Keep the sentence before it and the sentence after it (starting `A `spec.md` stamped v2.4`) unchanged, separated by single spaces.
+
+VERIFY (must print 0 then 1):
+grep -c 'The read-only tools that run the validator' .skilled/skills/system-spec-kit/SKILL.md; grep -c 'Child validator runs inside read-only tools set it to `0`. A `spec.md` stamped' .skilled/skills/system-spec-kit/SKILL.md

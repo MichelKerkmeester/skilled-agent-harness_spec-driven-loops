@@ -6,7 +6,7 @@ trigger_phrases:
   - "authoring card"
   - "write a spec packet"
   - "fill a spec scaffold"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Spec authoring card
@@ -35,7 +35,7 @@ The card is a leaf resource, so the two generated inventory files list it. Both 
 
 ### Authoring Use
 
-A model reads the card, scaffolds with `create.sh`, fills every section, removes every token, and runs `validate.sh --strict`. Three smoke runs measure the path, and the manual playbook holds a full end to end scenario.
+A model reads the card, scaffolds with `create.sh`, fills every section, removes every token, and runs `validate.sh --strict --quiet`, reading the full report only on `FAILED` and stopping after three rounds. Three smoke runs measure the path, and the manual playbook holds a full end to end scenario.
 
 ---
 

@@ -1,0 +1,10 @@
+
+TASK: Replace the end of ONE sentence in ONE file. Do not touch any other text.
+
+FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md (line 38)
+
+OLD (exact): and runs `validate.sh --strict`.
+NEW (exact): and runs `validate.sh --strict --quiet`, reading the full report only on `FAILED` and stopping after three rounds.
+
+VERIFY (must print 1):
+grep -c 'runs `validate.sh --strict --quiet`, reading the full report only on `FAILED` and stopping after three rounds\.' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md

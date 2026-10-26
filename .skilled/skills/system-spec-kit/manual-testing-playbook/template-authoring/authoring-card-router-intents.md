@@ -1,7 +1,7 @@
 ---
 title: "481 -- Authoring card loaded by four intents"
 description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load the authoring card and leave the long guide on demand."
-version: 1.0.0.0
+version: 1.0.1.0
 id: template-authoring-authoring-card-router-intents
 ---
 
@@ -9,7 +9,7 @@ id: template-authoring-authoring-card-router-intents
 
 ## 1. OVERVIEW
 
-This scenario validates the router change phase 5 makes. The `RESOURCE_MAP` in `SKILL.md` sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
+This scenario validates the router change that sends four authoring intents to the card. The `RESOURCE_MAP` in `SKILL.md` sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
 
 ### Why This Matters
 
@@ -25,7 +25,7 @@ Operators count the card and guide lines in the router and read three numbers.
 - Playbook ID: 481.
 - Real user request: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
 - Prompt: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
-- Preconditions: A checkout with `awk` on PATH and phase 5 closed so `SKILL.md` and the card exist. The scenario needs no network.
+- Preconditions: A checkout with `awk` on PATH and `SKILL.md` and `references/workflows/spec-authoring-card.md` present. The scenario needs no network.
 - Expected execution process: Run one `awk` count over the four intent blocks for the card, one for the guide, and one over the on demand list for the guide.
 - Expected signals: The card count prints `4`. The intent guide count prints `0`. The on demand guide count prints `1`.
 - Desired user-visible outcome: The operator sees the four intents load the card and the guide held for an on demand read.
@@ -82,7 +82,7 @@ Step 1 prints `4`. Step 2 prints `0`. Step 3 prints `1`.
 
 ### Failure Triage
 
-A `3` on step 1 means one intent block still points elsewhere, so read the four blocks and name the missing intent. A `1` on step 2 means the guide did not leave that intent, so compare the block with the card row. A `0` on step 3 means the guide became unreachable, so add it back to `ON_DEMAND` before closing phase 5.
+A `3` on step 1 means one intent block still points elsewhere, so read the four blocks and name the missing intent. A `1` on step 2 means the guide did not leave that intent, so compare the block with the card row. A `0` on step 3 means the guide became unreachable, so add it back to `ON_DEMAND` before ending this scenario.
 
 ---
 

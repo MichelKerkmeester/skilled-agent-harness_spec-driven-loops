@@ -22,7 +22,8 @@
     "system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim",
     "system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata",
     "system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure",
-    "system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes"
+    "system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes",
+    "system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -65,6 +66,7 @@
       "011-authoring-speed-research/research/research.md",
       "011-authoring-speed-research/goal.md",
       "018-benchmark-redesign-and-remeasure/scratch/report.md",
+      "020-alignment-audit-fixes/scratch/audit/findings.json",
       "spec/check-placeholders.sh",
       "001-template-drift-census-and-baseline/goal.md",
       "002-template-and-example-defect-repair/goal.md",
@@ -74,8 +76,7 @@
       "006-speckit-command-and-agent-alignment/goal.md",
       "007-playbook-catalog-readme-alignment/goal.md",
       "008-playbook-run-in-worktree/goal.md",
-      "009-authoring-benchmark-and-closeout/goal.md",
-      "010-deep-review-finding-fixes/goal.md"
+      "009-authoring-benchmark-and-closeout/goal.md"
     ],
     "entities": [
       {
@@ -118,6 +119,12 @@
         "name": "report.md",
         "kind": "doc",
         "path": "018-benchmark-redesign-and-remeasure/scratch/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "020-alignment-audit-fixes/scratch/audit/findings.json",
         "source": "derived"
       },
       {
@@ -189,17 +196,17 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-26T18:22:40.722Z",
+    "last_save_at": "2026-10-26T19:40:15.340Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:211bff2e74b131842f106482645eb0e42c73d949dbddb46c73acd297f88faceb",
+    "source_fingerprint": "sha256:56aec1e956b5b22df8fa316c8446b6de577ffe1c9e717452a2e225a1583004a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bcb7ed40a537585c241f95725cd2b54cd8d969062087d0047662017577411726"
+      "spec.md": "8a934596b3a7a46b354962851a5be692bd55a9eadf9224e6e446efec39d1f143"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
     "last_active_at": "2026-10-25T21:42:09.493Z"

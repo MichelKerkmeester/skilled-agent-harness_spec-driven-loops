@@ -1,0 +1,18 @@
+
+TASK: make TWO small text replacements in ONE file (two table rows next to each other). Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+
+Replacement 1 (line 120, appears once):
+OLD: leave in the 18 document kinds
+NEW: leave in the 15 document kinds
+
+Replacement 2 (line 121, appears once):
+OLD: for the same 18 kinds
+NEW: for the same 15 kinds
+
+Use your edit tool for each replacement. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "15 document kinds\|same 15 kinds" .skilled/skills/system-spec-kit/runtime/cli/spec/README.md; grep -c "18 document kinds\|same 18 kinds" .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+Expected: 2 then 0.

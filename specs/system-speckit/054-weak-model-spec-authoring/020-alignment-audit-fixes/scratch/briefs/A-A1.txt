@@ -1,0 +1,35 @@
+
+TASK: make ONE edit to ONE file. Do not read any other file. Do not explore.
+
+FILE: .skilled/skills/system-spec-kit/runtime/cli/evals/import-policy-allowlist.json
+
+The file ends with these exact 4 lines (OLD TEXT, it occurs once, at the very end of the file):
+
+      "expiresAt": "2027-04-26"
+    }
+  ]
+}
+
+Replace them with this NEW TEXT (append one entry to the "exceptions" array):
+
+      "expiresAt": "2027-04-26"
+    },
+    {
+      "file": "cli/tests/draft-auto-repair.vitest.ts",
+      "import": "../../lib/validation/orchestrator.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Test pins the CLI-only Draft auto-repair refusal logic, which has no public api surface",
+      "removeWhen": "draftAutoRepairRefusal gains an api export or the test moves beside the module",
+      "createdAt": "2026-10-26",
+      "lastReviewedAt": "2026-10-26",
+      "expiresAt": "2027-04-26"
+    }
+  ]
+}
+
+Keep the two-space indentation exactly as shown. Change nothing else.
+
+VERIFY (run from the repo root, it must print EXIT=0):
+cd .skilled/skills/system-spec-kit/runtime/cli && npx tsx evals/check-no-mcp-lib-imports-ast.ts; echo EXIT=$?
+
+Report the edited file and the verify output.

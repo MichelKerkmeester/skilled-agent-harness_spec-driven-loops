@@ -1,0 +1,18 @@
+
+TASK: replace one piece of text in two files. Do not read any other file. Do not change anything else.
+
+Files (edit both, same change):
+  .skilled/agents/orchestrate.md
+  .claude/agents/orchestrate.md
+
+Old text (exact):
+(e.g., "copied from level_contract_spec.md")
+
+New text (exact):
+(e.g., "scaffolded from templates/core/spec.md.tmpl")
+
+Use your edit tool for an exact string replacement. Do not rewrite the whole file.
+
+VERIFY (run it and report the output):
+  rg -n "Verify template source cited" .skilled/agents/orchestrate.md .claude/agents/orchestrate.md
+Expected: exactly two lines, both containing scaffolded from templates/core/spec.md.tmpl

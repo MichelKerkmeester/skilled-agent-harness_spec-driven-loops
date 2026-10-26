@@ -1,0 +1,14 @@
+
+TASK: Fix version wording in THREE files, five exact replacements. Do not touch any other text.
+
+1. FILE .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+   line 798: `warning while a v2.3 packet is Draft` -> `warning while a v2.3-or-later packet is Draft`
+   line 802: `warns in a v2.3 packet while` -> `warns in a v2.3-or-later packet while`
+2. FILE .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+   line 3: `warning while a v2.3 packet is Draft` -> `warning while a v2.3-or-later packet is Draft`
+3. FILE .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md
+   line 3: `the same v2.3 packet fails` -> `the same v2.4 packet fails`
+   line 24: `Prove that a v2.3 packet with` -> `Prove that a v2.4 packet with`
+
+VERIFY (must print 0, 0, 0 and then 2, 1, 2):
+S=.skilled/skills/system-spec-kit; grep -c 'a v2\.3 packet' $S/feature-catalog/feature-catalog.md; grep -c 'a v2\.3 packet' $S/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md; grep -c 'v2\.3 packet' $S/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md; grep -c 'v2\.3-or-later packet' $S/feature-catalog/feature-catalog.md; grep -c 'v2\.3-or-later packet' $S/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md; grep -c 'v2\.4 packet' $S/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md

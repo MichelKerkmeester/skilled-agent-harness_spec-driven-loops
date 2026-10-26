@@ -387,11 +387,11 @@ TASK #2: Implement Notification System
 2. **AUTHORING VALIDATION**: When the main agent writes spec folder docs directly:
    - Spec folder path MUST be provided in task context
    - Level MUST be specified
-   - Template source (`Level template contract`) MUST be referenced
+   - Template source (`spec-authoring-card.md` and the level's `templates/core/*.md.tmpl`) MUST be referenced
    - `validate.sh --strict --quiet` MUST run once after the last doc write (spec-authoring-card.md section 9)
 3. **POST-AUTHORING VERIFICATION**:
    - Verify files exist via @context file existence check
-   - Confirm validation passed (exit code 0 or 1, NOT 2)
+   - Confirm validation printed RESULT: PASSED (exit code 0; 1 is a bad invocation, 2 a validation error, 3 a system error)
 4. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
 
 **ENFORCEMENT**: Spec-doc authoring without a spec folder path, level determination, template source, and `validate.sh --strict` evidence MUST be rejected.
@@ -417,7 +417,7 @@ TASK #2: Implement Notification System
 
 ### Rule 5: Spec Documentation Governance
 **Trigger:** Any task that creates or substantively writes spec folder template documents.
-**Action:** The main agent writes spec-folder docs directly using `Level template contract`, runs `validate.sh --strict --quiet` once after the last doc write, and routes continuity via `/speckit:save`.
+**Action:** The main agent writes spec-folder docs directly using `spec-authoring-card.md` and the level's `templates/core/*.md.tmpl`, runs `validate.sh --strict --quiet` once after the last doc write, and routes continuity via `/speckit:save`.
 **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
 **Exceptions:**
 - `scratch/` subdirectory → temporary workspace, any agent may write
@@ -437,7 +437,7 @@ TASK #2: Implement Notification System
 | Violation Type                | Detection Signal                                                                                                | Correct Routing                |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
-| **Template Bypass**           | Write tool used on spec folder paths WITHOUT prior Read from `Level template contract`                               | REJECT → Must use templates    |
+| **Template Bypass**           | Write tool used on spec folder paths WITHOUT prior Read from `spec-authoring-card.md` and the level's `templates/core/*.md.tmpl`                               | REJECT → Must use templates    |
 | **Level Not Determined**      | Spec-doc authoring without explicit Level (1/2/3/3+) in task context                                             | REJECT → Determine level first |
 | **No Validation**             | Spec-doc completion claim without `validate.sh` output                                                          | REJECT → Run validation        |
 
@@ -449,7 +449,7 @@ TASK #2: Implement Notification System
 
 2. **Output Review**: When reviewing spec-doc outputs (see §5):
    - Verify `validate.sh` was run (exit code in output)
-   - Verify template source cited (e.g., "copied from level_contract_spec.md")
+   - Verify template source cited (e.g., "scaffolded from templates/core/spec.md.tmpl")
    - Verify all required files for level present
 
 3. **Violation Response**: If wrong agent detected:

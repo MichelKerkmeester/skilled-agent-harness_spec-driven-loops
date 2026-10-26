@@ -1,0 +1,18 @@
+
+TASK: make TWO small number replacements in ONE file (two tree comment lines). Do not read any other file. Do not reformat or realign anything.
+
+FILE: .skilled/skills/system-spec-kit/README.md
+
+Replacement 1 (line 432, appears once):
+OLD: # Core library (28 modules)
+NEW: # Core library (27 modules)
+
+Replacement 2 (line 434, appears once):
+OLD: # Utility modules (18 utilities)
+NEW: # Utility modules (17 utilities)
+
+Use your edit tool for each replacement. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "Core library (27 modules)\|Utility modules (17 utilities)" .skilled/skills/system-spec-kit/README.md
+Expected: 2

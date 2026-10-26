@@ -19,6 +19,10 @@ contextType: "implementation"
 
 Phase 016 removed the sample rows that weak models kept as filler. In 12 graded packets the sign-off role table survived 9 times, the pre-deployment rows 8 times, the "Phase 1.5" diagram and the service edge cases 6 times each, and "Tests passing (if applicable)" 4 times. Each section got one decision: remove it, or replace its sample with tokens. Fix Completeness became optional, the card's plan shape now matches the template, and both decision-record pointers hold when the file does not exist. The strict and six-rule censuses over 4,757 folders matched their baselines exactly.
 
+### Added
+
+- None recorded.
+
 ### Changed
 
 - `plan.md.tmpl` drops the L2 effort and enhanced-rollback sections. The phase-deps sample is a `Setup ──► Implementation ──► Verification` skeleton with token rows, and the DoD test line is one token.
@@ -28,6 +32,10 @@ Phase 016 removed the sample rows that weak models kept as filler. In 12 graded 
 - `spec-kit-docs.json` section gates, the compliance contract (v1.6.0.17), the level and template reference docs and the `create.sh` and `upgrade-level.sh` help text match the new sections.
 - Examples level-1 to level-3+ and the handover add-on drop the filler strings.
 - `template-fill-guidance.vitest.ts` has new anchor counts, `validation-optional-anchors.vitest.ts` gains a Fix Completeness case, and the golden snapshots are regenerated.
+
+### Fixed
+
+- None recorded.
 
 ### Verification
 
@@ -52,3 +60,7 @@ Phase 016 removed the sample rows that weak models kept as filler. In 12 graded 
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts`, `runtime/tests/validation-optional-anchors.vitest.ts` | Modified | Anchor counts and the new case |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` | Regenerated | The new scaffold |
 | `.hermes/skills/system-spec-kit/` | Synced | Copies of the edited docs |
+
+### Follow-Ups
+
+- None recorded.

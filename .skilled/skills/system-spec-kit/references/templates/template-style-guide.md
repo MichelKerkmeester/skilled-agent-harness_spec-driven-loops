@@ -8,7 +8,7 @@ trigger_phrases:
   - "placeholder syntax types"
 importance_tier: normal
 contextType: general
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Template Style Guide - Formatting Standards
@@ -251,7 +251,7 @@ The `validate.sh` script enforces these rules:
 | Required files | Level-appropriate files exist | ERROR |
 | Frontmatter syntax | Valid YAML | ERROR |
 | implementation-summary.md | Exists for completed specs | ERROR (Level 1+) |
-| Placeholder completion while Draft | No unfilled `[YOUR_VALUE_HERE:]` token in a v2.3 doc | WARNING |
+| Placeholder completion while Draft | No unfilled `[YOUR_VALUE_HERE:]` token in a v2.3-or-later doc | WARNING |
 | Placeholder completion after Draft | No unfilled `[YOUR_VALUE_HERE:]` token | ERROR |
 
 ### Manual Checks

@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-25"
-version: 2.1.6.0
+version: 2.1.7.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -346,6 +346,8 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | 481 | Authoring card loaded by four intents | [481](template-authoring/authoring-card-router-intents.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 | 482 | Authoring card sync guard | [482](template-authoring/authoring-card-sync-guard.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 | 483 | Level 1 packet authored from the card | [483](template-authoring/level-1-packet-authored-from-card.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
+| 485 | Measured behavior warns when unfilled | [485](template-authoring/measured-behavior-warns-unfilled.md) | [measured-behavior-block](../feature-catalog/tooling-and-scripts/measured-behavior-block.md) |
+| 486 | Draft auto-repair rewrites derived metadata | [486](template-authoring/draft-auto-repair-rewrites-derived.md) | [draft-auto-repair](../feature-catalog/tooling-and-scripts/draft-auto-repair.md) |
 
 ---
 

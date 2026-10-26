@@ -1,0 +1,16 @@
+
+TASK: make ONE punctuation replacement in ONE file. Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+
+OLD (line 46, appears once):
+are three token lines per level; the Level 3 edge-case block
+
+NEW:
+are three token lines per level. The Level 3 edge-case block
+
+Use your edit tool to replace OLD with NEW. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "per level; the" .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md; grep -c "per level. The Level 3" .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+Expected: 0 then 1.

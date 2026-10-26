@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.15.0
+version: 2.7.16.0
 ---
 
 # System Spec Kit
@@ -133,7 +133,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh \
   specs/[project]/042-my-feature/
 ```
 
-The default validation set runs the non-strict rules from the 42-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error.
+The default validation set runs the non-strict rules from the 42-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error. `--quiet` prints the result line only. A `--strict` run on a Draft packet may first run `repair-derived.cjs --apply` to rewrite derived metadata, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns that off.
 
 **Step 6: Verify retrieval works.**
 
@@ -429,9 +429,9 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── spec/                   # Spec folder management scripts
 │   ├── continuity/             # Continuity scripts
 │   ├── templates/              # Inline gate renderer
-│   ├── core/                   # Core library (28 modules)
+│   ├── core/                   # Core library (27 modules)
 │   ├── extractors/             # Session data extractors (12 extractors)
-│   ├── utils/                  # Utility modules (18 utilities)
+│   ├── utils/                  # Utility modules (17 utilities)
 │   └── dist/                   # Compiled JavaScript output
 ├── runtime/                 # Spec Kit engine (TypeScript), consumed as a library
 │   ├── api/                    # Public barrel imported by the scripts workspace
@@ -615,7 +615,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[pr
 | Script | Purpose |
 |---|---|
 | `create.sh` | create spec folders with level-appropriate templates, `--phase` for parent plus child folders |
-| `validate.sh` | run the validation set from the 42-rule registry, `--strict` for strict-only rules, `--recursive` for phase folders, `--verbose` for details |
+| `validate.sh` | run the validation set from the 42-rule registry, `--strict` for strict-only rules, `--recursive` for phase folders, `--verbose` for details, `--quiet` for the result line only. A `--strict` run on a Draft packet whose only errors are derived metadata repairs it once and revalidates, so it can write files, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns that off |
 | `upgrade-level.sh` | render additional Level contract sections for a higher level |
 | `recommend-level.sh` | analyze scope and risk to recommend the right level |
 | `calculate-completeness.sh` | calculate spec folder completeness as a percentage |

@@ -1,0 +1,16 @@
+
+TASK: make ONE text replacement in ONE file. Do not read any other file. Do not reformat anything.
+
+FILE: README.md (the repository root README)
+
+OLD (exact text, appears once, on line 373):
+Seven of them only warn and never fail a run
+
+NEW:
+Eight of them only warn and never fail a run
+
+Use your edit tool to replace OLD with NEW. Change nothing else on the line or in the file.
+
+VERIFY (run it and report the output):
+grep -c "Eight of them only warn and never fail a run" README.md; grep -c "Seven of them only warn" README.md
+Expected: 1 then 0.

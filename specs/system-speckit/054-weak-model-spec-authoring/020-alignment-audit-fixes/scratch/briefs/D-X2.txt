@@ -1,0 +1,17 @@
+
+TASK: replace one table cell in one file. Do not read any other file. Do not change anything else.
+
+File:
+  .skilled/skills/system-spec-kit/assets/complexity-decision-matrix.md
+
+Old text (exact, includes the trailing pipe):
+| dep-graph (ASCII), effort-est |
+
+New text (exact, same width, padded with spaces before the trailing pipe):
+| dep-graph (ASCII)             |
+
+Use your edit tool for an exact string replacement. Do not rewrite the whole file. The old text appears once.
+
+VERIFY (run it and report the output):
+  rg -n "effort-est|dep-graph \(ASCII\)" .skilled/skills/system-spec-kit/assets/complexity-decision-matrix.md
+Expected: no line contains effort-est; the Level 3 row shows dep-graph (ASCII) followed by spaces and a pipe.

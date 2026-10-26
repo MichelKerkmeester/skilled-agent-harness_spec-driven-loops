@@ -1,0 +1,18 @@
+
+TASK: replace one line of text in two files. Do not read any other file. Do not change anything else.
+
+Files (edit both, same change):
+  .skilled/agents/orchestrate.md
+  .claude/agents/orchestrate.md
+
+Old line (exact, 3 leading spaces):
+   - Confirm validation passed (exit code 0 or 1, NOT 2)
+
+New line (exact, 3 leading spaces):
+   - Confirm validation printed RESULT: PASSED (exit code 0; 1 is a bad invocation, 2 a validation error, 3 a system error)
+
+Use your edit tool for an exact string replacement. Do not rewrite the whole file.
+
+VERIFY (run it and report the output):
+  rg -n "Confirm validation" .skilled/agents/orchestrate.md .claude/agents/orchestrate.md
+Expected: exactly two lines, both showing the new text.

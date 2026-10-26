@@ -1,0 +1,11 @@
+
+TASK: In ONE file, change the expected stamp ending on two lines. Do not touch any other line.
+
+FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md
+
+EDITS (exact old text -> exact new text):
+1. line 30: `The stamp line ends with `v2.3 -->`.` -> `The stamp line ends with `v2.4 -->`.`
+2. line 76: `a stamp line that ends with `v2.3 -->`` -> `a stamp line that ends with `v2.4 -->``
+
+VERIFY (must print 0 then 2):
+grep -c 'v2\.3 -->' .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md; grep -c 'v2\.4 -->' .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md

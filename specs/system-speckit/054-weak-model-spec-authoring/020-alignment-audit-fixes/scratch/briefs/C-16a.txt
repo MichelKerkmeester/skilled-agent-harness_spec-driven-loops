@@ -1,0 +1,45 @@
+
+TASK: remove every long dash from ONE file by making the replacements below. Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/commands/speckit/README.txt
+
+In the OLD texts below, the token {D} stands for the single Unicode character U+2014 (EM DASH) that is in the file. Type the real character when you match. The NEW texts contain no such character, and you must never write one.
+
+1. Line 49. OLD: `no mode suffix {D} \`save\` routes`   NEW: `no mode suffix: \`save\` routes`
+   (exact OLD on disk: "no mode suffix" + space + U+2014 + space + "`save` routes")
+2. Line 181. OLD: `combines research, plan, and implement`   NEW: `combines research, plan and implement`
+3. Line 181. OLD: `inside it {D} either can run at any point.`   NEW: `inside it. Either can run at any point.`
+4. Line 194. OLD: `No delegation {D} routes directly to \`generate-context.js\``   NEW: `No delegation: routes directly to \`generate-context.js\``
+5. Line 195. OLD: `No delegation {D} routes directly to the trigger-index lookup`   NEW: `No delegation: routes directly to the trigger-index lookup`
+6. Line 196. OLD: `No delegation {D} writes the note`   NEW: `No delegation: writes the note`
+7. Line 268. OLD: `which is the point {D} you can check`   NEW: `which is the point: you can check`
+8. Line 355. OLD: `it walks the continuity ladder {D} \`handover.md\`, then \`_memory.continuity\`, then canonical spec docs {D} and falls back`
+   NEW: `it walks the continuity ladder (\`handover.md\`, then \`_memory.continuity\`, then canonical spec docs) and falls back`
+
+(The backslashes before backticks above are only to show the backticks; the file has plain backticks.)
+
+A simple safe way: run this Python script, which does exactly these replacements and fails loudly if any OLD is missing:
+python3 - <<'PY'
+p='.skilled/commands/speckit/README.txt'
+D=chr(0x2014)
+t=open(p,encoding='utf-8').read()
+pairs=[
+ ('no mode suffix '+D+' `save` routes','no mode suffix: `save` routes'),
+ ('combines research, plan, and implement','combines research, plan and implement'),
+ ('inside it '+D+' either can run at any point.','inside it. Either can run at any point.'),
+ ('No delegation '+D+' routes directly to `generate-context.js`','No delegation: routes directly to `generate-context.js`'),
+ ('No delegation '+D+' routes directly to the trigger-index lookup','No delegation: routes directly to the trigger-index lookup'),
+ ('No delegation '+D+' writes the note','No delegation: writes the note'),
+ ('which is the point '+D+' you can check','which is the point: you can check'),
+ ('it walks the continuity ladder '+D+' `handover.md`, then `_memory.continuity`, then canonical spec docs '+D+' and falls back','it walks the continuity ladder (`handover.md`, then `_memory.continuity`, then canonical spec docs) and falls back'),
+]
+for o,n in pairs:
+    assert t.count(o)==1,('missing or repeated',o)
+    t=t.replace(o,n)
+open(p,'w',encoding='utf-8').write(t)
+print('ok')
+PY
+
+VERIFY (run it and report the output):
+python3 -c "t=open('.skilled/commands/speckit/README.txt',encoding='utf-8').read();print(t.count(chr(0x2014)), t.count('plan, and implement'))"
+Expected: 0 0

@@ -59,4 +59,4 @@ Phase 012 built the changes phase 011 ranked as safe to build now and brought th
 
 ### Follow-Ups
 
-- Ranks 4 to 8 and 10 to 12 of the phase 011 ranking wait for the 2026-10-26 timing run.
+- The 2026-10-26 speed loop timed this tree against 054: all runs strict PASS, time difference INCONCLUSIVE, so the wording edits stand on clarity, not speed.

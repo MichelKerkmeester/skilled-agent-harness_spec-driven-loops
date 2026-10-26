@@ -19,6 +19,10 @@ contextType: "implementation"
 
 Phase 018 measured packet 054 again on fair terms. The old benchmark task was the templates' own worked example, the brief forced Level 3, and no per-packet grade was kept. This phase rescored the 23 uncontaminated old packets with deterministic checks, then reran the speed loop on a task no template names, at the helper's level, with a leak gate, a paired output-token verdict and one blind Opus medium grade per packet. Over 8 rounds and 29 valid packets, now054 beat pre054 on the blind total in all 8 rounds. The tree after phases 015 to 017 scored highest, 25.5 of 30, but its leads are INCONCLUSIVE. The only REAL speed result is upkeep output tokens, refined against main-no054, fewer in 5 of 5 pairs, and every seconds verdict is INCONCLUSIVE.
 
+### Added
+
+- None recorded.
+
 ### Changed
 
 - `scratch/rescore/rescore.py` scores each packet's `Verify:` ratio, template residue, stated line counts and dangling `decision-record.md` pointers; it ran on the 23 old packets and on the 29 new ones.
@@ -28,6 +32,10 @@ Phase 018 measured packet 054 again on fair terms. The old benchmark task was th
 - `step.sh` keeps `SPECKIT_DIST_AUTO_REBUILD=0` on the dispatch line, and the loop `README.md` documents the switch, the scan, the verdict and the decision rule.
 - A 5-round run on pre054, main-no054, now054 and refined, plus a 3-round top-up after the loop refused main-no054 rounds 3 to 5 when its sandbox was dirtied, gave 29 valid author runs.
 - `scratch/report.md` gives one REAL or INCONCLUSIVE verdict per comparison, with the rescore and grade figures behind each.
+
+### Fixed
+
+- None recorded.
 
 ### Verification
 
@@ -48,3 +56,7 @@ Phase 018 measured packet 054 again on fair terms. The old benchmark task was th
 | `018-benchmark-redesign-and-remeasure/scratch/remeasure/` | Created | Both runs' results and their merge |
 | `018-benchmark-redesign-and-remeasure/scratch/grading/` | Created | Rubric, 29 blind grades, label map, unblinded table, verdicts |
 | `018-benchmark-redesign-and-remeasure/scratch/report.md`, `review-loop.md`, `review-report.md` | Created | Operator summary and both reviews |
+
+### Follow-Ups
+
+- None recorded.

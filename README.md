@@ -370,12 +370,12 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Scripts and Validation
 
-`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Seven of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
+`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Eight of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
 
 **Spec management scripts** in `.skilled/skills/system-spec-kit/runtime/cli/spec/`:
 
 - **`create.sh`** - create spec folders with level-appropriate templates. Use `--phase` for a parent with child phases
-- **`validate.sh`** - run 42 validation rules. Use `--recursive` for phase folders
+- **`validate.sh`** - run 42 validation rules. Use `--recursive` for phase folders and `--quiet` for the result line only. A `--strict` run on a Draft packet whose only errors are derived metadata repairs it once and revalidates, so it can write files, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns that off
 - **`upgrade-level.sh`** - upgrade a spec folder to a higher level by injecting new sections
 - **`recommend-level.sh`** - analyze scope and risk to recommend the right documentation level
 - **`calculate-completeness.sh`** - calculate spec folder completeness as a percentage

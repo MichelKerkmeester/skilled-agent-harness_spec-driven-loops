@@ -1,0 +1,10 @@
+
+TASK: Replace one phrase in ONE file. Do not touch any other text.
+
+FILE: .skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md (line 27)
+
+OLD (exact): under `templates/` using
+NEW (exact): under its role folder (`templates/core/`, `templates/addons/` or `templates/packet-types/`) using
+
+VERIFY (must print 1):
+grep -c 'under its role folder (`templates/core/`, `templates/addons/` or `templates/packet-types/`) using' .skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md

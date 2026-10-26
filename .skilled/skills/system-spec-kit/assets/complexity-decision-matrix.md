@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature decision matrix"
 importance_tier: normal
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Complexity Decision Matrix - Quick Reference for Level Selection
@@ -41,7 +41,7 @@ For cross-phase campaigns, treat boundary-management overhead as part of the com
 | ----------- | ----- | ------------ | ------------------------------------------- | ----------------------------- |
 | 0-25        | 1     | Baseline     | spec, plan, tasks, impl-summary             | None                          |
 | 26-55       | 2     | Verification | Level 1 + checklist                         | dep-graph (table)             |
-| 56-79       | 3     | Full         | Level 2 + decision-record                   | dep-graph (ASCII), effort-est |
+| 56-79       | 3     | Full         | Level 2 + decision-record                   | dep-graph (ASCII)             |
 | 80-100      | 3+    | Extended     | Level 3 + AI protocols + extended checklist | All features                  |
 
 **Coordination-Root Override**: Root coordination packets governing multi-phase efforts

@@ -1,0 +1,16 @@
+
+TASK: make ONE text replacement in ONE file (a YAML frontmatter line). Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+
+OLD (exact full line, line 3, appears once):
+description: "Template examples no longer echo a real task, the scaffold drops sections models filled with boilerplate, spec.md gains a Measured Behavior block with a warn-only rule, and a Draft packet's strict validate repairs its own derived metadata. No existing packet changes verdict."
+
+NEW:
+description: "Template examples no longer echo a real task, the scaffold drops sections models padded, spec.md gains a Measured Behavior block with a warn-only rule and a Draft packet's strict validate repairs its own derived metadata."
+
+Use your edit tool to replace OLD with NEW. Change nothing else.
+
+VERIFY (run it and report the output; it prints the new description length, which must be 250 or less):
+python3 -c "import re;t=open('.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md').read();m=re.search(r'^description: \"(.*)\"$',t,re.M);print(len(m.group(1)))"
+Expected: 221

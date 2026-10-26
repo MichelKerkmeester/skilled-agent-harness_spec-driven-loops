@@ -8,7 +8,7 @@ trigger_phrases:
   - template version workflow
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SpecKit Template Extension Guide
@@ -24,7 +24,7 @@ Use this guide when extending the manifest taxonomy, template version map, or le
 
 ## 1. ADD A DOCUMENT TYPE
 
-1. Add the template file under `templates/` using the `*.md.tmpl` suffix.
+1. Add the template file under its role folder (`templates/core/`, `templates/addons/` or `templates/packet-types/`) using the `*.md.tmpl` suffix.
 2. Add an entry in `spec-kit-docs.json.documents` with:
    - `template`: the template filename.
    - `owner`: `author`, `command`, `agent`, or `workflow`.

@@ -1,0 +1,26 @@
+
+TASK: make FOUR small punctuation replacements in ONE file. Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md
+
+Replacement 1 (line 32, appears once):
+OLD: followed by what it rewrites; the dry run is
+NEW: followed by what it rewrites. The dry run is
+
+Replacement 2 (line 49, appears once):
+OLD: the templates tree, and the docs
+NEW: the templates tree and the docs
+
+Replacement 3 (line 65, appears once):
+OLD: That is one round; after three rounds
+NEW: That is one round. After three rounds
+
+Replacement 4 (line 79, appears once):
+OLD: because no template defines its values; the file is left as written.
+NEW: because no template defines its values. The file is left as written.
+
+Use your edit tool for each replacement. Change nothing else.
+
+VERIFY (run it and report the output; it counts semicolons in prose lines):
+grep -c ";" .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md; grep -c "templates tree, and" .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md
+Expected: the first count must not include lines 32, 65 or 79 (run `grep -n ";" .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md` and confirm only `&nbsp;` lines remain), and the second count is 0.

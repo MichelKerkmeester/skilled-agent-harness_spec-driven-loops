@@ -19,6 +19,10 @@ contextType: "implementation"
 
 Phase 015 took the speed benchmark's own task, a quiet flag for `recommend-level.sh`, out of the guidance a model reads while authoring. The sweep found 87 lines in 12 files, 52 with the task's own words and 35 that told the same story in other words. Every one now uses one neutral feature: `scripts/rotate-logs.sh --keep <n>`, which deletes all but the newest n archives in `logs/archive/`. A fresh review found ten follow-ups, all ten were fixed, and a fix check recorded a PASS verdict. The phase is Complete, with three recorded deviations: the term gate excludes the one instruction line `goal.md` D3 keeps word for word, the scope check uses list membership because phases 016 and 017 share the uncommitted tree, and the planned replacement table was never written, so the sweep table stands in for it.
 
+### Added
+
+- None recorded.
+
 ### Changed
 
 - Fill-note examples in four core templates (spec, plan, tasks, implementation-summary) and seven add-ons (research, handover, debug-delegation, goal, acceptance-criteria, timeline, decision-record) tell the `--keep` story: ten archives become 3 after `--keep 3`, stay 10 after a plain run, and a missing value exits 2.
@@ -26,6 +30,10 @@ Phase 015 took the speed benchmark's own task, a quiet flag for `recommend-level
 - The implementation-summary decision example reads "Option over environment variable".
 - `research.md.tmpl` drops the stray `-k` short option and the `--dry-run` feature, and its failure example is now a real defect.
 - The golden snapshot is regenerated from the edited templates.
+
+### Fixed
+
+- None recorded.
 
 ### Verification
 
@@ -45,3 +53,7 @@ Phase 015 took the speed benchmark's own task, a quiet flag for `recommend-level
 | `.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl`, `handover.md.tmpl`, `debug-delegation.md.tmpl`, `goal.md.tmpl`, `acceptance-criteria.md.tmpl`, `timeline.md.tmpl`, `decision-record.md.tmpl` | Modified | Fill-note examples |
 | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` | Modified | Section 6 and section 7 examples |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` | Regenerated | Rendered fill notes |
+
+### Follow-Ups
+
+- None recorded.

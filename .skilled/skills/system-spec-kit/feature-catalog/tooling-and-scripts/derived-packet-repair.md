@@ -6,7 +6,7 @@ trigger_phrases:
   - "repair-derived"
   - "packet autofix boundary"
   - "derived versus authored failures"
-version: 1.6.0.1
+version: 1.6.1.0
 ---
 
 # Derived packet repair
@@ -51,6 +51,8 @@ was kept to preserve.
 
 In CI it runs without `--apply`. A gate that silently rewrote packets would
 erase the drift it exists to surface.
+
+`validate.sh --strict` runs this tool once on a Draft packet whose errors are all derived-metadata ones, then validates again. When a strict run still fails on a recomputable rule, the failure hint prints the `repair-derived.cjs --apply` command first and offers the dry run after it. See [draft-auto-repair](draft-auto-repair.md).
 
 ### Symbolic Links
 

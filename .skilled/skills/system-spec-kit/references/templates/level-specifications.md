@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -118,7 +118,6 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols
 **tasks.md required sections:**
 - Task breakdown by user story
 - Dependencies between tasks
-- Estimated effort per task
 
 **Enforcement:** Hard block if any required file missing
 

@@ -1,0 +1,24 @@
+
+TASK: make ONE replacement in ONE file to remove a long dash. Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/commands/README.txt
+
+Line 80 is a tree comment: `# Component creation commands` + space + U+2014 (EM DASH) + space + `see create/README.txt for the`.
+Replace the space + U+2014 + space with a comma + space, so it reads:
+# Component creation commands, see create/README.txt for the
+
+Never write a U+2014 character. A safe way is this Python script:
+python3 - <<'PY'
+p='.skilled/commands/README.txt'
+D=chr(0x2014)
+t=open(p,encoding='utf-8').read()
+o='Component creation commands '+D+' see create/README.txt'
+assert t.count(o)==1
+t=t.replace(o,'Component creation commands, see create/README.txt')
+open(p,'w',encoding='utf-8').write(t)
+print('ok')
+PY
+
+VERIFY (run it and report the output):
+python3 -c "t=open('.skilled/commands/README.txt',encoding='utf-8').read();print(t.count(chr(0x2014)), t.count('Component creation commands, see create/README.txt'))"
+Expected: 0 1

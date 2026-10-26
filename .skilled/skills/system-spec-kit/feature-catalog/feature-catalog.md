@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-25"
-version: 2.1.12.0
+version: 2.1.13.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -43,11 +43,11 @@ Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session 
 
 #### Description
 
-Fails a spec document whose anchors nest, close before they open or close more times than they open, or, in a v2.3 document, leave out an anchor its template requires, and ignores anchor markers quoted in inline code.
+Fails a spec document whose anchors nest, close before they open or close more times than they open, or, in a v2.3-or-later document, leave out an anchor its template requires, and ignores anchor markers quoted in inline code.
 
 #### Current Reality
 
-The rule runs inside the native validation orchestrator with the other anchor checks. Nesting findings are errors, an adr-NNN anchor may hold adr-NNN-* anchors, and a v2.3 document fails for each template-required anchor it lacks.
+The rule runs inside the native validation orchestrator with the other anchor checks. Nesting findings are errors, an adr-NNN anchor may hold adr-NNN-* anchors, and a v2.3-or-later document fails for each template-required anchor it lacks.
 
 #### Source Files
 
@@ -215,6 +215,22 @@ See [`tooling-and-scripts/dist-freshness-enforcement.md`](tooling-and-scripts/di
 
 ---
 
+### Draft auto-repair
+
+#### Description
+
+Runs the derived-metadata repair once during a strict validate of a Draft packet whose every error is recomputable, names each file it rewrote and validates again.
+
+#### Current Reality
+
+`validate.sh --strict` on a Draft packet applies `repair-derived.cjs --apply` once when every error is a derived-metadata one, prints `Draft auto-repair:` with each rewritten file, then validates again. A set `CI`, a `SPECKIT_RULES` subset or `SPECKIT_DRAFT_AUTO_REPAIR` at `0`, `false` or `off` skips it.
+
+#### Source Files
+
+See [`tooling-and-scripts/draft-auto-repair.md`](tooling-and-scripts/draft-auto-repair.md) for full implementation and test file listings.
+
+---
+
 ### Example drift guard
 
 #### Description
@@ -308,6 +324,22 @@ It catches breakage from deleted or moved files that survives in an unchanged re
 #### Source Files
 
 See [`tooling-and-scripts/markdown-link-integrity-guard.md`](tooling-and-scripts/markdown-link-integrity-guard.md) for full implementation and test file listings.
+
+---
+
+### Measured behavior block
+
+#### Description
+
+Warns when a spec.md stamped v2.4 or later leaves its measured-behavior block without command output or a reasoned N/A, and never fails a strict run.
+
+#### Current Reality
+
+`MEASURED_BEHAVIOR` warns when the `measured-behavior` anchor is missing or holds neither a non-empty fenced line nor an `N/A:` line with a reason. It is a warning, so strict JSON still reports `passed: true`.
+
+#### Source Files
+
+See [`tooling-and-scripts/measured-behavior-block.md`](tooling-and-scripts/measured-behavior-block.md) for full implementation and test file listings.
 
 ---
 
@@ -719,7 +751,7 @@ Places one imperative fill instruction below every template section heading, wit
 
 #### Current Reality
 
-Every content section of the four core templates and the seven add-on templates carries one `<!-- FILL: ... -->` line, and the fill guidance test prints `24 passed`.
+Every content section of the four core templates and the seven add-on templates carries one `<!-- FILL: ... -->` line, and the fill guidance test fails when a section lacks that line.
 
 #### Source Files
 
@@ -795,11 +827,11 @@ See [`tooling-and-scripts/upgrade-legacy-downgrades-report.md`](tooling-and-scri
 
 #### Description
 
-Gates unfilled value tokens by the template stamp, warning while a v2.3 packet is Draft and failing it at any other status.
+Gates unfilled value tokens by the template stamp, warning while a v2.3-or-later packet is Draft and failing it at any other status.
 
 #### Current Reality
 
-`PLACEHOLDER_FILLED` warns in a v2.3 packet while its status is Draft and errors at any other status, and a packet with an older stamp keeps its old verdict.
+`PLACEHOLDER_FILLED` warns in a v2.3-or-later packet while its status is Draft and errors at any other status, and a packet with an older stamp keeps its old verdict.
 
 #### Source Files
 

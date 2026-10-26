@@ -46,7 +46,7 @@ trigger_phrases:
 
 The `speckit` command group manages the full development lifecycle around spec folders. Commands cover planning, implementation, deep-research, resumption, end-to-end workflows, continuity writing, and lexical retrieval over spec docs and skill docs.
 
-Most commands load a YAML workflow from `assets/` and execute it step by step, supporting `:auto` and `:confirm` execution modes. `save` and `search` are the exception: each is a direct-dispatch router with no mode suffix — `save` routes straight to the continuity writer, `search` routes straight to the trigger-index lookup or a ripgrep recipe.
+Most commands load a YAML workflow from `assets/` and execute it step by step, supporting `:auto` and `:confirm` execution modes. `save` and `search` are the exception: each is a direct-dispatch router with no mode suffix. `save` routes straight to the continuity writer and `search` routes straight to the trigger-index lookup or a ripgrep recipe.
 
 Retrieval runs on two local mechanisms and no background service:
 
@@ -178,7 +178,7 @@ phase (optional: decompose into phase children)
 /speckit:search (find prior decisions or context by hand)
 ```
 
-The `complete` command combines research, plan, and implement into a single invocation. `save` and `search` sit alongside the lifecycle rather than inside it — either can run at any point.
+The `complete` command combines research, plan and implement into a single invocation. `save` and `search` sit alongside the lifecycle rather than inside it. Either can run at any point.
 
 ### Agent Delegation
 
@@ -191,9 +191,9 @@ The `complete` command combines research, plan, and implement into a single invo
 | resume | Loads memory context, continues from last state |
 | phase | Main agent creates packet folders, @general runs scripts as needed |
 | complete | /deep:research and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake-contract.md`) when packet state requires repair |
-| save | No delegation — routes directly to `generate-context.js` |
-| search | No delegation — routes directly to the trigger-index lookup or a ripgrep recipe |
-| handoff | No delegation — writes the note and calls `session-relaunch.cjs prepare` |
+| save | No delegation: routes directly to `generate-context.js` |
+| search | No delegation: routes directly to the trigger-index lookup or a ripgrep recipe |
+| handoff | No delegation: writes the note and calls `session-relaunch.cjs prepare` |
 
 <!-- /ANCHOR:workflow-progression -->
 
@@ -265,7 +265,7 @@ Each mode-pair command maps to a YAML workflow file in `assets/`:
 /doctor:skill-advisor tune
 ```
 
-Both retrieval mechanisms behind `search` are runnable by hand, which is the point — you can check exactly what the command saw:
+Both retrieval mechanisms behind `search` are runnable by hand, which is the point: you can check exactly what the command saw:
 
 ```bash
 # The trigger-index lane
@@ -352,7 +352,7 @@ The `:with-phases` flag on `/speckit:plan` or `/speckit:complete` creates a pare
 
 **Q: What is the difference between `/speckit:search` and `/speckit:resume`?**
 
-`/speckit:search` finds text: it matches a prompt against declared trigger phrases, or runs one ripgrep recipe over spec docs and skill docs. `/speckit:resume` handles session continuation and interrupted-session recovery: it walks the continuity ladder — `handover.md`, then `_memory.continuity`, then canonical spec docs — and falls back to a packet-scoped ripgrep recipe only for a gap the packet named and did not answer. Use `search` for lookup and `resume` when you need to continue prior work.
+`/speckit:search` finds text: it matches a prompt against declared trigger phrases, or runs one ripgrep recipe over spec docs and skill docs. `/speckit:resume` handles session continuation and interrupted-session recovery: it walks the continuity ladder (`handover.md`, then `_memory.continuity`, then canonical spec docs) and falls back to a packet-scoped ripgrep recipe only for a gap the packet named and did not answer. Use `search` for lookup and `resume` when you need to continue prior work.
 
 **Q: Why did `/speckit:search` return nothing for a query I know is covered?**
 

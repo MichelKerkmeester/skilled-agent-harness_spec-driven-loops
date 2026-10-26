@@ -1,7 +1,7 @@
 ---
 title: "478 -- Placeholder gate unchanged for a v2.2 doc"
 description: "This scenario validates that a packet stamped v2.2 keeps the placeholder error it always had, even while its status is Draft."
-version: 1.0.0.0
+version: 1.0.1.0
 id: template-authoring-placeholder-gate-legacy-stamp-unchanged
 ---
 
@@ -26,7 +26,7 @@ Operators rewrite the stamp on a scaffold, keep the Draft status, and confirm th
 - Real user request: `This packet uses the older template stamp. Confirm that the placeholder rule still gives it the same error it always had.`
 - Prompt: `This packet uses the older template stamp. Confirm that the placeholder rule still gives it the same error it always had.`
 - Preconditions: A checkout with Node, bash, perl and jq on PATH, and a built `.skilled/skills/system-spec-kit` so `validate.sh` runs. The scenario needs no network.
-- Expected execution process: Scaffold one Level 2 packet, rewrite every v2.3 stamp to v2.2, confirm the Draft status and the stamp, run strict validation with JSON output, then read the gate entry.
+- Expected execution process: Scaffold one Level 2 packet, rewrite every v2.4 stamp to v2.2, confirm the Draft status and the stamp, run strict validation with JSON output, then read the gate entry.
 - Expected signals: Each document stamp ends with `v2.2 -->`. The status line reads Draft. The gate entry prints `error`. The `passed` field prints `false`.
 - Desired user-visible outcome: The operator sees the older packet keep its error, so no existing repository changes verdict.
 - Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warn`, or if `passed` is `true`.
@@ -58,7 +58,7 @@ test -f "$P/spec.md" && echo "packet=$P"
 
 ```bash
 for f in spec plan tasks implementation-summary acceptance-criteria; do
-  perl -pi -e 's/\| v2\.3 -->/| v2.2 -->/g' "$P/$f.md"
+  perl -pi -e 's/\| v2\.4 -->/| v2.2 -->/g' "$P/$f.md"
   printf '%s ' "$f"
   grep -c 'v2\.2 -->' "$P/$f.md"
 done
@@ -94,11 +94,11 @@ Step 1 prints `packet=specs/zz-pb-gate-legacy/001-gate-legacy`. Step 2 prints fi
 ### Pass / Fail
 
 - **Pass**: Every document reports one v2.2 stamp, the status stays Draft, the gate entry is `error`, and `passed` is `false`.
-- **Fail**: A document keeps a v2.3 stamp, the gate entry is `warn`, or `passed` is `true`.
+- **Fail**: A document keeps a v2.4 stamp, the gate entry is `warn`, or `passed` is `true`.
 
 ### Failure Triage
 
-A stamp count of `0` means the rewrite did not match, so read the stamp line and confirm the template version. A `warn` entry means the stamp gate still saw v2.3 somewhere, so check all five documents before judging the rule. A different rule failure is separate from this scenario, so read the other error entries.
+A stamp count of `0` means the rewrite did not match, so read the stamp line and confirm the template version. A `warn` entry means the stamp gate still saw v2.4 somewhere, so check all five documents before judging the rule. A different rule failure is separate from this scenario, so read the other error entries.
 
 ---
 

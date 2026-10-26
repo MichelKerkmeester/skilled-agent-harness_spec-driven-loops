@@ -1,6 +1,6 @@
 ---
 title: "Anchor integrity and nesting check"
-description: "Fails a spec document whose anchors nest, close before they open or close more times than they open, or, in a v2.3 document, leave out an anchor its template requires, and ignores anchor markers quoted in inline code."
+description: "Fails a spec document whose anchors nest, close before they open or close more times than they open, or, in a v2.3-or-later document, leave out an anchor its template requires, and ignores anchor markers quoted in inline code."
 trigger_phrases:
   - "Anchor integrity and nesting check"
   - "ANCHORS_VALID"

@@ -1,0 +1,13 @@
+
+TASK: delete ONE line from ONE file (a YAML frontmatter list item). Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+
+DELETE this exact full line (line 9, appears once, two leading spaces):
+  - "template v2.4"
+
+The line before it is `  - "draft auto-repair"` and the line after it is `importance_tier: "normal"`. After the edit those two lines must be adjacent. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "template v2.4" .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md; sed -n 1,12p .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+Expected: 0, then frontmatter whose trigger_phrases list ends with "draft auto-repair".

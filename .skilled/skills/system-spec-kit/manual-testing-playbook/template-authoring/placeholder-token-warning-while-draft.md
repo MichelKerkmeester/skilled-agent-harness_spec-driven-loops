@@ -1,7 +1,7 @@
 ---
 title: "476 -- Placeholder token warning while Draft"
-description: "This scenario validates that a v2.3 scaffold keeps an unfilled value token as a warning and still passes strict validation while its status is Draft."
-version: 1.0.0.0
+description: "This scenario validates that a v2.3-or-later scaffold keeps an unfilled value token as a warning and still passes strict validation while its status is Draft."
+version: 1.0.1.0
 id: template-authoring-placeholder-token-warning-while-draft
 ---
 
@@ -9,7 +9,7 @@ id: template-authoring-placeholder-token-warning-while-draft
 
 ## 1. OVERVIEW
 
-This scenario validates the Draft half of the versioned placeholder gate. A packet scaffolded from a v2.3 template carries `[YOUR_VALUE_HERE: ...]` tokens and a Status row that reads Draft. The gate must report an unfilled token as a warning and must not fail the strict run, because a planning commit is expected to hold tokens.
+This scenario validates the Draft half of the versioned placeholder gate. A packet scaffolded from a v2.3-or-later template carries `[YOUR_VALUE_HERE: ...]` tokens and a Status row that reads Draft. The gate must report an unfilled token as a warning and must not fail the strict run, because a planning commit is expected to hold tokens.
 
 ### Why This Matters
 
@@ -21,13 +21,13 @@ A gate that fails a fresh scaffold blocks every new packet before its first word
 
 Operators scaffold a Level 2 packet, read the gate entry from a strict JSON run, and confirm the warning.
 
-- Objective: Prove that a v2.3 Level 2 scaffold with its Status row at Draft reports `PLACEHOLDER_FILLED` as `warn`, and that the strict run still reports `passed: true`.
+- Objective: Prove that a v2.3-or-later Level 2 scaffold with its Status row at Draft reports `PLACEHOLDER_FILLED` as `warn`, and that the strict run still reports `passed: true`.
 - Playbook ID: 476.
 - Real user request: `Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.`
 - Prompt: `Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.`
 - Preconditions: A checkout with Node, bash and jq on PATH, and a built `.skilled/skills/system-spec-kit` so `validate.sh` runs. The scenario needs no network.
-- Expected execution process: Scaffold one Level 2 packet, confirm the v2.3 stamp and the Draft status, run strict validation with JSON output, then read the `PLACEHOLDER_FILLED` entry and the `passed` field.
-- Expected signals: The scaffold prints the packet path. The stamp line ends with `v2.3 -->`. The status line reads Draft. The gate entry prints `warn`. The `passed` field prints `true`.
+- Expected execution process: Scaffold one Level 2 packet, confirm the v2.4 stamp and the Draft status, run strict validation with JSON output, then read the `PLACEHOLDER_FILLED` entry and the `passed` field.
+- Expected signals: The scaffold prints the packet path. The stamp line ends with `v2.4 -->`. The status line reads Draft. The gate entry prints `warn`. The `passed` field prints `true`.
 - Desired user-visible outcome: The operator sees a clean strict pass and one warning that names the unfilled tokens, with the packet left ready to fill.
 - Pass/fail: PASS if the gate entry is `warn` and `passed` is `true`. FAIL if the entry is `error` or `pass`, or if `passed` is `false`.
 
@@ -73,7 +73,7 @@ test ! -d specs/zz-pb-gate-draft && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line that ends with `v2.3 -->`, then a Status row that reads Draft. Step 2 prints `warn`, then `true`. Step 3 prints `cleanup=ok`.
+Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line that ends with `v2.4 -->`, then a Status row that reads Draft. Step 2 prints `warn`, then `true`. Step 3 prints `cleanup=ok`.
 
 ### Evidence
 
@@ -88,7 +88,7 @@ Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line 
 
 ### Failure Triage
 
-A `pass` entry means the scaffold held no token, so read the stamp line. A stamp below v2.3 means phase 3 is not closed, so stop and report it. An `error` entry at Draft means the gate is not installed, so run the phase 3 test file before this scenario. A `false` `passed` value means another rule failed, so read the other error entries in `$OUT/gate.json` before judging the gate.
+A `pass` entry means the scaffold held no token, so read the stamp line. A stamp below v2.3 means the scaffold predates the versioned placeholder gate, so stop and report it. An `error` entry at Draft means the gate is not installed, so run `runtime/cli/tests/placeholder-token-gate.vitest.ts` before this scenario. A `false` `passed` value means another rule failed, so read the other error entries in `$OUT/gate.json` before judging the gate.
 
 ---
 

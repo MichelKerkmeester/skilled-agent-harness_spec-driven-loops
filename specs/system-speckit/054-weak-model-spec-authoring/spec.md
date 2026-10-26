@@ -147,6 +147,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 17 | 017-measured-behavior-and-draft-metadata/ | Add an optional measured-behavior block that quotes real command output, and repair derived metadata automatically while a packet is a Draft | Complete |
 | 18 | 018-benchmark-redesign-and-remeasure/ | Rescore the 24 existing packets with deterministic checks, then benchmark a task no template mentions at the level the helper picks, with saved per-packet grades | Complete |
 | 19 | 019-follow-up-fixes/ | Turn fsmonitor off in the goal-file manifest check, and rebuild a dirty speed-loop sandbox between rounds instead of dropping its variant | Complete |
+| 20 | 020-alignment-audit-fixes/ | Fix every misalignment a four-lane audit found in the files 054 touched: code, skill docs, playbooks, catalog, READMEs, changelogs, routing, advisor, commands and agents | Complete |
 
 ### Phase Transition Rules
 
@@ -177,6 +178,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 016-scaffold-filler-section-trim | 017-measured-behavior-and-draft-metadata | The trimmed sections no longer scaffold and no existing packet changed verdict | The before and after strict census match |
 | 017-measured-behavior-and-draft-metadata | 018-benchmark-redesign-and-remeasure | The measured-behavior block and the Draft metadata repair ship with tests | Both new tests pass and the strict census is unchanged |
 | 018-benchmark-redesign-and-remeasure | 019-follow-up-fixes | The closeout named two follow-ups: the manifest test hung on fsmonitor, and one dirty sandbox dropped main-no054 for rounds 3 to 5 | `018-benchmark-redesign-and-remeasure/scratch/report.md` records the dropped rounds and the top-up |
+| 019-follow-up-fixes | 020-alignment-audit-fixes | The operator asked on 2026-10-26 for a check that everything 054 touched aligns with its standards | `020-alignment-audit-fixes/scratch/audit/findings.json` holds the 46 findings |
 <!-- /ANCHOR:phase-map -->
 
 ---

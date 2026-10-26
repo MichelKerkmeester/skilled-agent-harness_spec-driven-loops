@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7e2c7fc9747444014abce9266b8a8efdaf68d8cb881590ec204b7a90560afed1",
+  "manifestHash": "07524595d33a7a44489d02f67b93c33fe4373cc667efa0aab255f59f69639622",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8012,6 +8012,9 @@
     "add a vault": [
       "Add a vault"
     ],
+    "add an operator local local skilled alignment command": [
+      "add an operator local local skilled alignment command"
+    ],
     "add apple health data file": [
       "add apple health data file"
     ],
@@ -10485,6 +10488,21 @@
     "alignment audit fixes": [
       "alignment audit fixes"
     ],
+    "alignment audit fixes acceptance criteria": [
+      "alignment audit fixes acceptance criteria"
+    ],
+    "alignment audit fixes goal": [
+      "alignment audit fixes goal"
+    ],
+    "alignment audit fixes implementation summary": [
+      "alignment audit fixes implementation summary"
+    ],
+    "alignment audit fixes plan": [
+      "alignment audit fixes plan"
+    ],
+    "alignment audit fixes tasks": [
+      "alignment audit fixes tasks"
+    ],
     "alignment audit summary": [
       "alignment audit summary"
     ],
@@ -12411,6 +12429,9 @@
     "authored write surface quality tasks": [
       "authored write surface quality tasks"
     ],
+    "authoring alignment fixes": [
+      "authoring alignment fixes"
+    ],
     "authoring benchmark and closeout": [
       "authoring benchmark and closeout"
     ],
@@ -13523,6 +13544,24 @@
     ],
     "benchmark re run mistake": [
       "benchmark re-run mistake"
+    ],
+    "benchmark redesign and remeasure": [
+      "benchmark redesign and remeasure"
+    ],
+    "benchmark redesign and remeasure acceptance criteria": [
+      "benchmark redesign and remeasure acceptance criteria"
+    ],
+    "benchmark redesign and remeasure goal": [
+      "benchmark redesign and remeasure goal"
+    ],
+    "benchmark redesign and remeasure implementation summary": [
+      "benchmark redesign and remeasure implementation summary"
+    ],
+    "benchmark redesign and remeasure plan": [
+      "benchmark redesign and remeasure plan"
+    ],
+    "benchmark redesign and remeasure tasks": [
+      "benchmark redesign and remeasure tasks"
     ],
     "benchmark report automation": [
       "benchmark report automation"
@@ -39432,8 +39471,15 @@
     "dr 001 prefix": [
       "DR-001 prefix"
     ],
+    "draft auto repair": [
+      "Draft auto-repair",
+      "draft auto-repair"
+    ],
     "draft compare tasks": [
       "draft compare tasks"
+    ],
+    "draft metadata auto repair": [
+      "draft metadata auto repair"
     ],
     "draft placeholder rule": [
       "Draft placeholder rule"
@@ -46240,13 +46286,24 @@
     "follow up defect fixes tasks": [
       "follow up defect fixes tasks"
     ],
+    "follow up fixes": [
+      "follow up fixes"
+    ],
+    "follow up fixes goal": [
+      "follow up fixes goal"
+    ],
+    "follow up fixes implementation summary": [
+      "follow up fixes implementation summary"
+    ],
     "follow up fixes plan": [
+      "follow up fixes plan",
       "follow-up fixes plan"
     ],
     "follow up fixes summary": [
       "follow-up fixes summary"
     ],
     "follow up fixes tasks": [
+      "follow up fixes tasks",
       "follow-up fixes tasks"
     ],
     "follow up quality pass": [
@@ -58771,6 +58828,21 @@
     "local skill link discovery": [
       "local skill link discovery"
     ],
+    "local skilled alignment command": [
+      "local skilled alignment command"
+    ],
+    "local skilled alignment command goal": [
+      "local skilled alignment command goal"
+    ],
+    "local skilled alignment command implementation summary": [
+      "local skilled alignment command implementation summary"
+    ],
+    "local skilled alignment command plan": [
+      "local skilled alignment command plan"
+    ],
+    "local skilled alignment command tasks": [
+      "local skilled alignment command tasks"
+    ],
     "local vision": [
       "local vision"
     ],
@@ -59518,6 +59590,9 @@
     ],
     "manifest backed template documentation": [
       "manifest-backed template documentation"
+    ],
+    "manifest check fsmonitor": [
+      "manifest check fsmonitor"
     ],
     "manifest dead field acceptance": [
       "manifest dead field acceptance"
@@ -61627,6 +61702,33 @@
     ],
     "measure the track claim": [
       "measure the track claim"
+    ],
+    "measured behavior": [
+      "MEASURED_BEHAVIOR"
+    ],
+    "measured behavior anchor": [
+      "measured-behavior anchor"
+    ],
+    "measured behavior and draft metadata": [
+      "measured behavior and draft metadata"
+    ],
+    "measured behavior and draft metadata acceptance criteria": [
+      "measured behavior and draft metadata acceptance criteria"
+    ],
+    "measured behavior and draft metadata goal": [
+      "measured behavior and draft metadata goal"
+    ],
+    "measured behavior and draft metadata implementation summary": [
+      "measured behavior and draft metadata implementation summary"
+    ],
+    "measured behavior and draft metadata plan": [
+      "measured behavior and draft metadata plan"
+    ],
+    "measured behavior and draft metadata tasks": [
+      "measured behavior and draft metadata tasks"
+    ],
+    "measured behavior block": [
+      "measured behavior block"
     ],
     "measured catch rate": [
       "measured catch rate"
@@ -72922,6 +73024,9 @@
     "phase 15 tasks": [
       "phase 15 tasks"
     ],
+    "phase 15 template example neutralization": [
+      "phase 15 template example neutralization"
+    ],
     "phase 15 v4 0 0 13 changelog": [
       "phase 15 v4 0 0 13 changelog"
     ],
@@ -72939,6 +73044,9 @@
     ],
     "phase 16 results": [
       "phase 16 results"
+    ],
+    "phase 16 scaffold filler section trim": [
+      "phase 16 scaffold filler section trim"
     ],
     "phase 16 sk doc tooling followups": [
       "phase 16 sk doc tooling followups"
@@ -72958,6 +73066,9 @@
     "phase 17 hop history": [
       "phase 17 hop history"
     ],
+    "phase 17 measured behavior and draft metadata": [
+      "phase 17 measured behavior and draft metadata"
+    ],
     "phase 17 plan": [
       "phase 17 plan"
     ],
@@ -72969,6 +73080,9 @@
     ],
     "phase 17 tasks": [
       "phase 17 tasks"
+    ],
+    "phase 18 benchmark redesign and remeasure": [
+      "phase 18 benchmark redesign and remeasure"
     ],
     "phase 18 closure gate": [
       "phase 18 closure gate"
@@ -72996,6 +73110,9 @@
     ],
     "phase 19 closure gate": [
       "phase 19 closure gate"
+    ],
+    "phase 19 follow up fixes": [
+      "phase 19 follow up fixes"
     ],
     "phase 19 fork compact pointer research": [
       "phase 19 fork compact pointer research"
@@ -73122,6 +73239,9 @@
     ],
     "phase 2 webflow runtime and references": [
       "phase 2 webflow runtime and references"
+    ],
+    "phase 20 alignment audit fixes": [
+      "phase 20 alignment audit fixes"
     ],
     "phase 20 closure gate": [
       "phase 20 closure gate"
@@ -89347,6 +89467,24 @@
     "scaffold debug delegation sh": [
       "scaffold-debug-delegation.sh"
     ],
+    "scaffold filler section trim": [
+      "scaffold filler section trim"
+    ],
+    "scaffold filler section trim acceptance criteria": [
+      "scaffold filler section trim acceptance criteria"
+    ],
+    "scaffold filler section trim goal": [
+      "scaffold filler section trim goal"
+    ],
+    "scaffold filler section trim implementation summary": [
+      "scaffold filler section trim implementation summary"
+    ],
+    "scaffold filler section trim plan": [
+      "scaffold filler section trim plan"
+    ],
+    "scaffold filler section trim tasks": [
+      "scaffold filler section trim tasks"
+    ],
     "scaffold golden ac": [
       "scaffold golden ac"
     ],
@@ -102354,6 +102492,9 @@
     "speckit directive lifecycle dedup docs": [
       "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP docs"
     ],
+    "speckit draft auto repair": [
+      "SPECKIT_DRAFT_AUTO_REPAIR"
+    ],
     "speckit embedder execution no op": [
       "SPECKIT_EMBEDDER_EXECUTION no-op"
     ],
@@ -102791,6 +102932,9 @@
     ],
     "specs symlink retirement": [
       "specs symlink retirement"
+    ],
+    "speed loop re prepare dirty sandbox": [
+      "speed loop re-prepare dirty sandbox"
     ],
     "spider chart comparison": [
       "spider chart comparison"
@@ -104293,6 +104437,9 @@
     ],
     "strict validate memory save divergence": [
       "strict validate memory_save divergence"
+    ],
+    "strict validate rewrote": [
+      "strict validate rewrote"
     ],
     "strict validation add ons": [
       "strict validation add-ons"
@@ -106122,6 +106269,12 @@
     "system spec kit 2 11 0 0": [
       "system-spec-kit 2.11.0.0"
     ],
+    "system spec kit 2 12 0 0": [
+      "system-spec-kit 2.12.0.0"
+    ],
+    "system spec kit 2 12 1 0": [
+      "system-spec-kit 2.12.1.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -106559,6 +106712,12 @@
     ],
     "system spec kit v2 11 0 0": [
       "system-spec-kit v2.11.0.0"
+    ],
+    "system spec kit v2 12 0 0": [
+      "system-spec-kit v2.12.0.0"
+    ],
+    "system spec kit v2 12 1 0": [
+      "system-spec-kit v2.12.1.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -107209,6 +107368,24 @@
     ],
     "template duplication analysis": [
       "template duplication analysis"
+    ],
+    "template example neutralization": [
+      "template example neutralization"
+    ],
+    "template example neutralization acceptance criteria": [
+      "template example neutralization acceptance criteria"
+    ],
+    "template example neutralization goal": [
+      "template example neutralization goal"
+    ],
+    "template example neutralization implementation summary": [
+      "template example neutralization implementation summary"
+    ],
+    "template example neutralization plan": [
+      "template example neutralization plan"
+    ],
+    "template example neutralization tasks": [
+      "template example neutralization tasks"
     ],
     "template examples": [
       "template examples"
@@ -111103,9 +111280,6 @@
     "v2 2 1 0 release notes": [
       "v2.2.1.0 release notes"
     ],
-    "v2 3 gate hardening": [
-      "v2.3 gate hardening"
-    ],
     "v2 3 template stamp": [
       "v2.3 template stamp"
     ],
@@ -111689,6 +111863,9 @@
     "validate recursive orchestrator tasks": [
       "validate recursive orchestrator tasks"
     ],
+    "validate repairs derived metadata": [
+      "validate repairs derived metadata"
+    ],
     "validate report py check": [
       "validate_report.py check"
     ],
@@ -112246,6 +112423,9 @@
     ],
     "venv rebuild tasks": [
       "venv rebuild tasks"
+    ],
+    "verbatim command output in spec": [
+      "verbatim command output in spec"
     ],
     "verbatim replay immutable receipt": [
       "verbatim replay immutable receipt"
@@ -113308,14 +113488,26 @@
     "weak model spec authoring addon removal and speed refinements changelog": [
       "weak model spec authoring addon removal and speed refinements changelog"
     ],
+    "weak model spec authoring alignment audit fixes changelog": [
+      "weak model spec authoring alignment audit fixes changelog"
+    ],
     "weak model spec authoring benchmark and closeout changelog": [
       "weak model spec authoring benchmark and closeout changelog"
+    ],
+    "weak model spec authoring benchmark redesign and remeasure changelog": [
+      "weak model spec authoring benchmark redesign and remeasure changelog"
     ],
     "weak model spec authoring changelog": [
       "weak model spec authoring changelog"
     ],
     "weak model spec authoring deep review finding fixes changelog": [
       "weak model spec authoring deep review finding fixes changelog"
+    ],
+    "weak model spec authoring follow up fixes changelog": [
+      "weak model spec authoring follow up fixes changelog"
+    ],
+    "weak model spec authoring measured behavior and draft metadata changelog": [
+      "weak model spec authoring measured behavior and draft metadata changelog"
     ],
     "weak model spec authoring phase parent spec": [
       "weak model spec authoring phase parent spec"
@@ -113328,6 +113520,9 @@
     ],
     "weak model spec authoring removed template reality sweep changelog": [
       "weak model spec authoring removed template reality sweep changelog"
+    ],
+    "weak model spec authoring scaffold filler section trim changelog": [
+      "weak model spec authoring scaffold filler section trim changelog"
     ],
     "weak model spec authoring speckit command and agent alignment changelog": [
       "weak model spec authoring speckit command and agent alignment changelog"
@@ -113343,6 +113538,9 @@
     ],
     "weak model spec authoring template drift census and baseline changelog": [
       "weak model spec authoring template drift census and baseline changelog"
+    ],
+    "weak model spec authoring template example neutralization changelog": [
+      "weak model spec authoring template example neutralization changelog"
     ],
     "weak model spec authoring template section fill guidance changelog": [
       "weak model spec authoring template section fill guidance changelog"

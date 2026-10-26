@@ -1,7 +1,7 @@
 ---
 title: "480 -- Golden render of every level"
 description: "This scenario validates that every level renders to the stored golden snapshots and that each document keeps its frozen anchor count."
-version: 1.0.1.0
+version: 1.0.2.0
 id: template-authoring-golden-render-all-levels
 ---
 
@@ -9,7 +9,7 @@ id: template-authoring-golden-render-all-levels
 
 ## 1. OVERVIEW
 
-This scenario validates the two template guards phase 4 adds. The golden test renders every level and compares the result with a stored snapshot. The fill guidance test renders every level and document and checks the anchor count and the one fill line per section. The scenario runs both and reads their test counts.
+This scenario validates the two template guards. The golden test renders every level and compares the result with a stored snapshot. The fill guidance test renders every level and document and checks the anchor count and the one fill line per section. The scenario runs both and reads their test counts.
 
 ### Why This Matters
 
@@ -25,7 +25,7 @@ Operators run both template guards and read the pass counts.
 - Playbook ID: 480.
 - Real user request: `Render every level and confirm the stored snapshots still match and every document still holds its anchors.`
 - Prompt: `Render every level and confirm the stored snapshots still match and every document still holds its anchors.`
-- Preconditions: A checkout with Node and the installed `node_modules` under `.skilled/skills/system-spec-kit`, and phase 4 closed so both test files exist. The scenario needs no network.
+- Preconditions: A checkout with Node and the installed `node_modules` under `.skilled/skills/system-spec-kit`, and both test files, `runtime/cli/tests/scaffold-golden-snapshots.vitest.ts` and `runtime/cli/tests/template-fill-guidance.vitest.ts`, present. The scenario needs no network.
 - Expected execution process: Run the golden test without a snapshot update, then run the fill guidance test, then read the `Tests` line from each run.
 - Expected signals: The golden run prints `Tests  12 passed (12)`. The fill run prints `Tests  24 passed (24)`. Neither run prints `failed`.
 - Desired user-visible outcome: The operator sees both guards green on the unchanged tree.
@@ -88,7 +88,7 @@ Step 1 prints `golden_exit=0`, then the `Tests  12 passed (12)` line, then `0`. 
 
 ### Failure Triage
 
-A snapshot mismatch means a template change altered the render, so read the diff in `$OUT/golden.txt` and fix the template rather than updating the snapshot. A fill failure names the section that lacks one fill line, so read `$OUT/fill.txt`. A missing test file means phase 4 is not closed, so stop and report it.
+A snapshot mismatch means a template change altered the render, so read the diff in `$OUT/golden.txt` and fix the template rather than updating the snapshot. A fill failure names the section that lacks one fill line, so read `$OUT/fill.txt`. A missing test file means the guards are not installed, so stop and report it.
 
 ---
 

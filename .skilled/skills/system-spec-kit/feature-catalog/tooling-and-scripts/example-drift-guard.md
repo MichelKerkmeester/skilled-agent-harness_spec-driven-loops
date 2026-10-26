@@ -6,7 +6,7 @@ trigger_phrases:
   - "check-example-drift"
   - "example anchor drift"
   - "example description check"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Example drift guard
@@ -31,7 +31,7 @@ The guard checks Levels 1, 2, 3 and 3+ and fails when any of them has no example
 
 ### Description Check
 
-The guard reads the first `description:` line of each example. It fails when the line holds the end of an HTML comment, starts lowercase, or lacks a closing period. Those three defects were the leaked line phase 2 repaired, and the check keeps them from coming back.
+The guard reads the first `description:` line of each example. It fails when the line holds the end of an HTML comment, starts lowercase, or lacks a closing period. Those three defects are what a leaked comment ending looks like in a description, and the check keeps them out of the examples.
 
 ### Invocation
 

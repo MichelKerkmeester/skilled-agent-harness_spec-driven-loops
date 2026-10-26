@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CHECK EXAMPLE DRIFT
+# ───────────────────────────────────────────────────────────────
 # Guard: every hand-written example keeps the template's required anchors in the
 # template's order, adds no anchor the template does not allow, and carries a
 # description a reader can use. Every level has at least one example, because a
 # model reads the example at its own level.
 # Read-only. Prints one line per failure and exits 1. Exits 2 when rg is missing,
 # since the anchor checks read the compare report through rg.
-set -uo pipefail
+set -euo pipefail
 
 if ! command -v rg >/dev/null 2>&1; then
   echo "check-example-drift.sh: rg (ripgrep) is required and was not found on PATH" >&2
@@ -43,8 +46,8 @@ for dir in "$EXAMPLES"/level-*; do
     [[ "$bare" == [[:lower:]]* ]] && fail "$example" "description starts lowercase"
     [[ "$bare" == *. ]] || fail "$example" "description does not end with a period"
 
-    report="$(node "$UTIL" compare "$level" "$name" "$example" anchors 2>&1)"
-    rc=$?
+    rc=0
+    report="$(node "$UTIL" compare "$level" "$name" "$example" anchors 2>&1)" || rc=$?
     if [[ $rc -ne 0 ]]; then
       fail "$example" "template-structure compare exited $rc"
       continue
@@ -52,7 +55,7 @@ for dir in "$EXAMPLES"/level-*; do
     printf '%s\n' "$report" | rg "$DRIFT" \
       | while read -r kind anchor; do
           printf 'FAIL %s: %s %s\n' "$example" "$kind" "$anchor"
-        done
+        done || true
     printf '%s\n' "$report" | rg -q "$DRIFT" && status=1
   done
 done

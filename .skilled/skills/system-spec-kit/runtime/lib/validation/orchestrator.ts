@@ -1482,6 +1482,7 @@ const RECOMPUTABLE_RULES = new Set([
   'SPEC_DOC_INTEGRITY',
 ]);
 
+/** Prints the repair-derived.cjs --apply command when the report holds a recomputable error or warning, and nothing otherwise. */
 export function writeRepairHint(report: ValidationReport): void {
   const hit = report.entries.some(
     (item) => (item.status === 'error' || item.status === 'warn') && RECOMPUTABLE_RULES.has(item.rule),

@@ -50,7 +50,7 @@ examples/
 `-- level-3+/     # Governance and coordination example
 ```
 
-Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/core/` and `templates/addons/`, and the manifest maps public levels to those templates.
+Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/core/`, `templates/addons/` and `templates/packet-types/`, and the manifest maps public levels to those templates.
 
 ---
 

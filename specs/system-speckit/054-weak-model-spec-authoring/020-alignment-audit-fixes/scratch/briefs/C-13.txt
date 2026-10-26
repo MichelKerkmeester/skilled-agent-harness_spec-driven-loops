@@ -1,0 +1,16 @@
+
+TASK: make ONE text replacement in ONE file. Do not read any other file. Do not reformat anything.
+
+FILE: .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md
+
+OLD (exact full line, line 17, appears once):
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements` (Level 2)
+
+NEW:
+> Spec folders: `specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements` and `014-removed-template-reality-sweep` (Level 2)
+
+Use your edit tool to replace OLD with NEW. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "and \`014-removed-template-reality-sweep\` (Level 2)" .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md; ls -d specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep
+Expected: 1, then the folder path printed (it exists).

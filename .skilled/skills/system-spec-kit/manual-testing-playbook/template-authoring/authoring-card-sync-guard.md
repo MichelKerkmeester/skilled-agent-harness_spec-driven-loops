@@ -1,7 +1,7 @@
 ---
 title: "482 -- Authoring card sync guard"
 description: "This scenario validates that the card sync guard passes the changed tree and fails a disposable copy whose card is missing."
-version: 1.0.1.0
+version: 1.0.2.0
 id: template-authoring-authoring-card-sync-guard
 ---
 
@@ -25,7 +25,7 @@ Operators run the guard twice, once on the tree and once on a copy without the c
 - Playbook ID: 482.
 - Real user request: `Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.`
 - Prompt: `Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.`
-- Preconditions: A checkout with bash, rsync, `jq`, `rg` and `awk` on PATH, and phase 5 closed so `runtime/cli/spec/check-card-sync.sh` and the card exist. The scenario needs no network.
+- Preconditions: A checkout with bash, rsync, `jq`, `rg` and `awk` on PATH, and `runtime/cli/spec/check-card-sync.sh` and the card present. The scenario needs no network.
 - Expected execution process: Run the guard on the tree, copy the skill without `node_modules` into a scratch folder, run the guard on the copy, delete the card from the copy, run the guard again, then remove the scratch folder.
 - Expected signals: The tree run prints ten `PASS` lines, then `CARD SYNC OK`, and exits 0. The copy run prints `CARD SYNC OK` before the card is deleted. The broken run exits 1, prints one `FAIL card-exists` line and one `FAIL card-names-checklist` line, since a missing card also names no checklist, then `CARD SYNC FAILED`.
 - Desired user-visible outcome: The operator sees the four surfaces agree and the guard refuse a copy that lost one of them.

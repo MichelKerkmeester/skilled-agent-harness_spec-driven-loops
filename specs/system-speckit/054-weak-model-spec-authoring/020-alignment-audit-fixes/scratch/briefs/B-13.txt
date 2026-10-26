@@ -1,0 +1,20 @@
+
+TASK: Insert three lines into a directory tree in ONE file. Do not touch any other text.
+
+FILE: .skilled/skills/system-spec-kit/templates/README.md (lines 98-99)
+
+OLD (exact, two consecutive lines):
+├── README.md
+├── spec-kit-docs.json
+
+NEW (exact, five consecutive lines):
+├── README.md
+├── CONTRACT.md
+├── EXTENSION-GUIDE.md
+├── MIGRATION.md
+├── spec-kit-docs.json
+
+Edit only the tree near line 98. Leave the other tree near line 68 alone.
+
+VERIFY (must print three lines numbered 99, 100, 101):
+grep -n '^├── \(CONTRACT\|EXTENSION-GUIDE\|MIGRATION\)\.md$' .skilled/skills/system-spec-kit/templates/README.md

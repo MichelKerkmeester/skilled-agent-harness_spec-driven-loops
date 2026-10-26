@@ -170,6 +170,16 @@
       "createdAt": "2026-10-26",
       "lastReviewedAt": "2026-10-26",
       "expiresAt": "2027-04-26"
+    },
+    {
+      "file": "cli/tests/draft-auto-repair.vitest.ts",
+      "import": "../../lib/validation/orchestrator.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Test pins the CLI-only Draft auto-repair refusal logic, which has no public api surface",
+      "removeWhen": "draftAutoRepairRefusal gains an api export or the test moves beside the module",
+      "createdAt": "2026-10-26",
+      "lastReviewedAt": "2026-10-26",
+      "expiresAt": "2027-04-26"
     }
   ]
 }

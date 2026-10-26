@@ -1,5 +1,5 @@
 {
-  "corpusHash": "622c381d962a30c38c5efe719ad5675fb378c913899d7b0d0bf61fcd304ec7f0",
+  "corpusHash": "25bc66840089c74893f19867a314230cdc7323e44ddee6245bcf5a5639d43b35",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26215,
+  "includedPathCount": 26267,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7924,6 +7924,8 @@
     ".skilled/skills/system-spec-kit/changelog/v2.1.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.10.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -7981,12 +7983,14 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/derived-packet-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/draft-auto-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/measured-behavior-block.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
@@ -8059,9 +8063,11 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/draft-auto-repair-rewrites-derived.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/golden-render-all-levels.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/measured-behavior-warns-unfilled.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md",
@@ -13368,6 +13374,11 @@
     "specs/sk-doc/068-hub-repo-folder-exemption/plan.md",
     "specs/sk-doc/068-hub-repo-folder-exemption/spec.md",
     "specs/sk-doc/068-hub-repo-folder-exemption/tasks.md",
+    "specs/sk-doc/069-local-skilled-alignment-command/goal.md",
+    "specs/sk-doc/069-local-skilled-alignment-command/implementation-summary.md",
+    "specs/sk-doc/069-local-skilled-alignment-command/plan.md",
+    "specs/sk-doc/069-local-skilled-alignment-command/spec.md",
+    "specs/sk-doc/069-local-skilled-alignment-command/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -26220,6 +26231,41 @@
     "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26234,6 +26280,12 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-012-authoring-speed-fixes-and-alignment.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-013-addon-removal-and-speed-refinements.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-014-removed-template-reality-sweep.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-015-template-example-neutralization.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-016-scaffold-filler-section-trim.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-017-measured-behavior-and-draft-metadata.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-018-benchmark-redesign-and-remeasure.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-019-follow-up-fixes.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-020-alignment-audit-fixes.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
@@ -26246,7 +26298,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7e2c7fc9747444014abce9266b8a8efdaf68d8cb881590ec204b7a90560afed1",
+  "manifestHash": "07524595d33a7a44489d02f67b93c33fe4373cc667efa0aab255f59f69639622",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29786,6 +29838,10 @@
     },
     {
       "path": "specs/sk-doc/068-hub-repo-folder-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/069-local-skilled-alignment-command/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33482,6 +33538,30 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/scratch",
       "reason": "excluded directory"
     },
     {

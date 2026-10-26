@@ -8,7 +8,7 @@ trigger_phrases:
   - "changelog evidence stack"
 importance_tier: normal
 contextType: implementation
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Nested Changelog Workflow
@@ -64,11 +64,10 @@ The generator prefers these sources, in order:
 
 1. `implementation-summary.md`
 2. `tasks.md`
-3. `acceptance-criteria.md`
-4. `decision-record.md`
-5. `spec.md`
+3. `checklist.md` (root mode only, when a legacy packet still has one)
+4. `spec.md`
 
-It derives summary, change bullets, verification notes, files changed, and follow-ups from the available packet evidence. Root changelogs also roll up direct child phase folders when they exist.
+It does not read `acceptance-criteria.md` or `decision-record.md`. It derives summary, change bullets, verification notes, files changed and follow-ups from the available packet evidence. Root changelogs also roll up direct child phase folders when they exist.
 
 ---
 

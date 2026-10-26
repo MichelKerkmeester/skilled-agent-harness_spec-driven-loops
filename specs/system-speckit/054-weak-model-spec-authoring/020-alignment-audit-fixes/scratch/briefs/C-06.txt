@@ -1,0 +1,16 @@
+
+TASK: make ONE text replacement in ONE table row of ONE file. Do not read any other file. Do not reformat the table.
+
+FILE: specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-006-speckit-command-and-agent-alignment.md
+
+OLD (exact text, appears once, at the end of line 58):
+| Modified | Card and filled example, retired checklist doc dropped |
+
+NEW:
+| Modified | Card and filled example in markdown.md only; retired checklist doc dropped in all four |
+
+Use your edit tool to replace OLD with NEW. Keep the start of line 58 (the file-path cell) exactly as it is. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "Card and filled example in markdown.md only; retired checklist doc dropped in all four |" specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-006-speckit-command-and-agent-alignment.md
+Expected: 1

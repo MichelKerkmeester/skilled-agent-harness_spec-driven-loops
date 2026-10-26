@@ -1,0 +1,10 @@
+
+TASK: Rename one command reference in ONE file. Do not touch any other text.
+
+FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md (line 63)
+
+OLD (exact): (`/memory:save`)
+NEW (exact): (`/speckit:save`)
+
+VERIFY (must print 0 then 1):
+grep -c 'memory:save' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md; grep -c '(`/speckit:save`)' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md

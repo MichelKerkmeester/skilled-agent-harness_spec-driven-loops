@@ -1,7 +1,7 @@
 ---
 title: "483 -- Level 1 packet authored from the card"
 description: "This scenario validates that a cli-devin deepseek-v4-1-flash-1017-max worker can scaffold and fill a Level 1 packet from the authoring card alone, with strict validation passing and no token left."
-version: 1.0.2.0
+version: 1.0.3.0
 id: template-authoring-level-1-packet-authored-from-card
 ---
 
@@ -25,7 +25,7 @@ Operators dispatch one worker, then validate the packet it wrote.
 - Playbook ID: 483.
 - Real user request: `Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.`
 - Prompt: `Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.`
-- Preconditions: A checkout with Node, bash and `rg` on PATH, the `devin` CLI on PATH with `devin auth status` printing `Logged in`, the operator's approval for `--permission-mode dangerous` on this run, and phase 5 closed so the card exists. The scenario needs network access and one cli-devin deepseek-v4-1-flash-1017-max run.
+- Preconditions: A checkout with Node, bash and `rg` on PATH, the `devin` CLI on PATH with `devin auth status` printing `Logged in`, the operator's approval for `--permission-mode dangerous` on this run, and `references/workflows/spec-authoring-card.md` present so the card exists. The scenario needs network access and one cli-devin deepseek-v4-1-flash-1017-max run.
 - Expected execution process: Remove any earlier throwaway track, write the worker brief, record the checkout status, dispatch the worker with cli-devin, validate the packet it wrote, count the tokens left, check that the worker changed nothing outside the track, then remove the track, the scratch path and the pointer.
 - Expected signals: The worker returns a final reply and `devin` exits `0`. The packet holds `spec.md`. Strict validation prints `RESULT: PASSED`. The token count prints `0`. The containment check prints `escaped=0`. The track, the scratch path and the pointer are gone at the end.
 - Desired user-visible outcome: The operator sees a finished Level 1 packet that a strict run accepts, with no authoring hint left for a reader to fill.
@@ -49,8 +49,7 @@ Run steps 1 to 4 from the checkout root. Step 1 writes the scratch path to a fix
 
 ```bash
 OUT="$(mktemp -d)"
-POINTER=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
-mkdir -p "$(dirname "$POINTER")"
+POINTER="${TMPDIR:-/tmp}/pb-scenario-483-out.txt"
 printf '%s\n' "$OUT" > "$POINTER"
 echo "out=$OUT"
 echo "pointer=$POINTER"
@@ -90,7 +89,7 @@ echo "status_before=$(wc -l < "$OUT/status-before.txt" | tr -d ' ') lines"
 2. Dispatch one worker with cli-devin.
 
 ```bash
-OUT="$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
+OUT="$(cat "${TMPDIR:-/tmp}/pb-scenario-483-out.txt")"
 AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 devin -p --model deepseek-v4-1-flash-1017-max --permission-mode dangerous -- "$(cat "$OUT/brief.txt")" </dev/null > "$OUT/reply.txt" 2> "$OUT/reply.err"
 echo "devin_exit=$?"
 tail -n 1 "$OUT/reply.txt"
@@ -99,7 +98,7 @@ tail -n 1 "$OUT/reply.txt"
 3. Validate the packet, count the tokens left and check that nothing outside the track changed.
 
 ```bash
-OUT="$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
+OUT="$(cat "${TMPDIR:-/tmp}/pb-scenario-483-out.txt")"
 P=specs/zz-pb-card/001-card-authoring
 test -f "$P/spec.md" && echo "packet=$P"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict > "$OUT/val.txt" 2>&1
@@ -116,7 +115,7 @@ The containment check compares status lines, so a path that was already dirty be
 4. Remove the throwaway track, the scratch path and the pointer. Copy any evidence you keep out of the scratch path first, because this step deletes it.
 
 ```bash
-POINTER=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+POINTER="${TMPDIR:-/tmp}/pb-scenario-483-out.txt"
 OUT="$(cat "$POINTER")"
 rm -rf specs/zz-pb-card "$OUT" "$POINTER"
 test ! -d specs/zz-pb-card && test ! -e "$OUT" && test ! -e "$POINTER" && echo "cleanup=ok"
@@ -124,7 +123,7 @@ test ! -d specs/zz-pb-card && test ! -e "$OUT" && test ! -e "$POINTER" && echo "
 
 ### Expected
 
-Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20, then `status_before=` with a line count. Step 2 prints `devin_exit=0`, then the worker's first `RESULT` line from its last `--quiet` run, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`, then `escaped=0`. Step 4 prints `cleanup=ok`.
+Step 1 prints `out=` followed by the scratch path, then `pointer=` followed by a path that ends in `pb-scenario-483-out.txt`, then a brief line count above 20, then `status_before=` with a line count. Step 2 prints `devin_exit=0`, then the worker's first `RESULT` line from its last `--quiet` run, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`, then `escaped=0`. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 

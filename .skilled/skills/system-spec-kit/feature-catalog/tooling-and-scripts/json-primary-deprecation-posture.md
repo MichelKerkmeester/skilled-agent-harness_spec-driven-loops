@@ -7,7 +7,7 @@ trigger_phrases:
   - --json --stdin preference
   - structured input routing
   - positional json file support
-version: 1.6.0.15
+version: 1.6.1.0
 ---
 
 # JSON-primary deprecation posture
@@ -60,7 +60,7 @@ The shipped posture enforces the following behavior:
 ### 3.3 Operator guidance updates
 
 - SKILL.md updated to describe `--json` / `--stdin` as the preferred routine-save contract.
-- The save command (`/memory:save`) updated to document the JSON-primary posture.
+- The save command (`/speckit:save`) updated to document the JSON-primary posture.
 - CLAUDE.md and equivalent agent instructions updated to emphasize structured JSON capture without claiming positional file input was removed.
 
 ### 3.4 Follow-up workstream archival

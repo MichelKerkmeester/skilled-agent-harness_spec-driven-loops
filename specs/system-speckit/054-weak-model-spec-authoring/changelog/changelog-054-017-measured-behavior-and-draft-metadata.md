@@ -32,6 +32,10 @@ Phase 017 acts on two findings from the benchmark. Authors misstated a script's 
 - `repair-derived.cjs`, `upgrade-legacy.mjs`, `quality-audit.sh`, `progressive-validate.sh` and the strict-pass freshness sweep run their child `validate.sh` with the switch at `0`, so dry runs and audits stay read-only.
 - The card, `SKILL.md`, `validation-rules.md`, `ENV-REFERENCE.md`, the `validate.sh` help and `README.md` describe the rule, the repair and its switch, and say 42-rule registry. `ARCHITECTURE.md` says 42 rules (23 authored-template, 13 operational-runtime, 6 structural).
 
+### Fixed
+
+- None recorded.
+
 ### Verification
 
 - Rule and repair tests: 7 and 15 passed; eight more targeted CLI test files pass, each run on its own
@@ -41,14 +45,6 @@ Phase 017 acts on two findings from the benchmark. Authors misstated a script's 
 - Full runtime suite: `Test Files 279 passed | 3 skipped (282)`, `Tests 4184 passed | 21 skipped (4205)`, no failure
 - Full CLI suite: `Tests 1 failed | 2202 passed | 20 skipped (2223)`; the one failure, `recursive-child-manifest`, also fails in phase 013's baseline run, where `repo-era` failed too and now passes
 - Census write check: `git status --porcelain specs/` outside packet 054 prints nothing
-
-### Deviations
-
-- No suite baseline was taken before the edits; phase 013's whole CLI run stands in for it, and no runtime-project baseline exists, which the zero-failure runtime run makes moot.
-- No tree-status snapshot was taken before the census; the write check ran afterwards, and the census path calls `validateFolder`, which cannot repair.
-- The census baselines are shared with phase 016 and live in its `scratch/baseline/`.
-- Phases 015, 016 and 017 were built in one uncommitted tree and are committed together; the stamp v2.4 was set once for all five templates.
-- The commit SHA is pinned after the commit.
 
 ### Files Changed
 
@@ -65,3 +61,11 @@ Phase 017 acts on two findings from the benchmark. Authors misstated a script's 
 | `.skilled/skills/system-spec-kit/runtime/tests/validation-optional-anchors.vitest.ts`, `runtime/cli/tests/level-contract-resolver.vitest.ts`, `upgrade-legacy.vitest.ts` | Modified | Updated cases |
 | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`, `SKILL.md`, `references/validation/validation-rules.md`, `runtime/ENV-REFERENCE.md`, `README.md`, and the `.hermes` copy of `SKILL.md` | Modified | Docs for the rule, the repair and the count |
 | `.skilled/skills/system-spec-kit/ARCHITECTURE.md` | Modified | The 42-rule count |
+
+### Follow-Ups
+
+- No suite baseline was taken before the edits; phase 013's whole CLI run stands in for it, and no runtime-project baseline exists, which the zero-failure runtime run makes moot.
+- No tree-status snapshot was taken before the census; the write check ran afterwards, and the census path calls `validateFolder`, which cannot repair.
+- The census baselines are shared with phase 016 and live in its `scratch/baseline/`.
+- Phases 015, 016 and 017 were built in one uncommitted tree and are committed together; the stamp v2.4 was set once for all five templates.
+- The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs).

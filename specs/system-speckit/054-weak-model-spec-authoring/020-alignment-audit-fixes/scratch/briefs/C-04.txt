@@ -1,0 +1,16 @@
+
+TASK: make ONE text replacement in ONE file. Do not read any other file. Do not reformat anything.
+
+FILE: specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-017-measured-behavior-and-draft-metadata.md
+
+OLD (exact full line, appears once, line 51):
+- The commit SHA is pinned after the commit.
+
+NEW:
+- The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs).
+
+Use your edit tool to replace OLD with NEW. Change nothing else.
+
+VERIFY (run it and report the output):
+grep -c "committed as \`62e4661e01\` (code) and \`ef939bf0ac\` (docs)" specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-017-measured-behavior-and-draft-metadata.md; grep -c "SHA is pinned after" specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-017-measured-behavior-and-draft-metadata.md
+Expected: 1 then 0.

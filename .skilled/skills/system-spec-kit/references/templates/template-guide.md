@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -123,7 +123,6 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 **tasks.md sections to fill:**
 - Task breakdown by user story
 - Dependencies between tasks
-- Estimated effort per task
 
 **Adaptation tips:**
 - Keep problem statement focused and specific
@@ -456,7 +455,6 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
 
 **Sections to fill:**
 - Task list (ordered by dependencies)
-- Estimated effort per task
 - Dependencies between tasks
 - Task ownership (if multi-person)
 

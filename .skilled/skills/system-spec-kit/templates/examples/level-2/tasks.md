@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Add User Authentication"
-description: "Level 2 task list for the user authentication example, with effort estimates and explicit verification tasks."
+description: "Level 2 task list for the user authentication example, with explicit verification tasks."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -15,7 +15,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 2 task list with more detailed tracking
-including effort estimates and explicit verification tasks for each feature. -->
+including explicit verification tasks for each feature. -->
 
 ---
 
@@ -29,72 +29,72 @@ including effort estimates and explicit verification tasks for each feature. -->
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: `T### [P?] Description (file path) [effort]. Verify: <command> prints <expected output>`
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
 
 <!-- /ANCHOR:notation -->
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup (1 hour)
+## Phase 1: Setup
 
-- [x] T001 Create auth directory structure (`src/auth/`) [15m]. Verify: `ls src/auth` exits 0.
-- [x] T002 Install bcrypt, jsonwebtoken, express-validator (`package.json`) [10m]. Verify: `npm ls bcrypt jsonwebtoken` prints both versions.
-- [x] T003 [P] Add User model to Prisma schema (`prisma/schema.prisma`) [20m]. Verify: `npx prisma validate` prints that the schema is valid.
-- [x] T004 [P] Run Prisma migration (`prisma/migrations/`) [15m]. Verify: `npx prisma migrate status` prints "Database schema is up to date".
+- [x] T001 Create auth directory structure (`src/auth/`). Verify: `ls src/auth` exits 0.
+- [x] T002 Install bcrypt, jsonwebtoken, express-validator (`package.json`). Verify: `npm ls bcrypt jsonwebtoken` prints both versions.
+- [x] T003 [P] Add User model to Prisma schema (`prisma/schema.prisma`). Verify: `npx prisma validate` prints that the schema is valid.
+- [x] T004 [P] Run Prisma migration (`prisma/migrations/`). Verify: `npx prisma migrate status` prints "Database schema is up to date".
 
 
 <!-- /ANCHOR:phase-1 -->
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation (4-6 hours)
+## Phase 2: Implementation
 
 ### Core Utilities
-- [x] T005 Implement password hashing utility (`src/utils/hash.js`) [30m]. Verify: `node --check src/utils/hash.js` exits 0.
-- [x] T006 Create input validation schemas (`src/validators/auth.js`) [30m]. Verify: `node --check src/validators/auth.js` exits 0.
+- [x] T005 Implement password hashing utility (`src/utils/hash.js`). Verify: `node --check src/utils/hash.js` exits 0.
+- [x] T006 Create input validation schemas (`src/validators/auth.js`). Verify: `node --check src/validators/auth.js` exits 0.
 
 ### API Endpoints
-- [x] T007 Create registration endpoint (`src/auth/register.js`) [1h]. Verify: `curl -si -X POST localhost:3000/auth/register` prints `HTTP/1.1 400`.
-- [x] T008 Create login endpoint (`src/auth/login.js`) [1h]. Verify: `curl -si -X POST localhost:3000/auth/login` prints `HTTP/1.1 400`.
-- [x] T009 Add auth middleware (`src/middleware/auth.js`) [45m]. Verify: `node --check src/middleware/auth.js` exits 0.
+- [x] T007 Create registration endpoint (`src/auth/register.js`). Verify: `curl -si -X POST localhost:3000/auth/register` prints `HTTP/1.1 400`.
+- [x] T008 Create login endpoint (`src/auth/login.js`). Verify: `curl -si -X POST localhost:3000/auth/login` prints `HTTP/1.1 400`.
+- [x] T009 Add auth middleware (`src/middleware/auth.js`). Verify: `node --check src/middleware/auth.js` exits 0.
 
 ### UI Components
-- [x] T010 [P] Create registration form view (`views/auth/register.ejs`) [30m]. Verify: `curl -s localhost:3000/register | rg -c '<form'` prints 1.
-- [x] T011 [P] Create login form view (`views/auth/login.ejs`) [30m]. Verify: `curl -s localhost:3000/login | rg -c '<form'` prints 1.
-- [x] T012 [P] Add error message styling (`public/css/auth.css`) [20m]. Verify: `rg -c 'auth-error' public/css/auth.css` prints 1.
+- [x] T010 [P] Create registration form view (`views/auth/register.ejs`). Verify: `curl -s localhost:3000/register | rg -c '<form'` prints 1.
+- [x] T011 [P] Create login form view (`views/auth/login.ejs`). Verify: `curl -s localhost:3000/login | rg -c '<form'` prints 1.
+- [x] T012 [P] Add error message styling (`public/css/auth.css`). Verify: `rg -c 'auth-error' public/css/auth.css` prints 1.
 
 ### Integration
-- [x] T013 Wire up routes in app.js (`app.js`) [15m]. Verify: `curl -si -X POST localhost:3000/auth/login` prints `HTTP/1.1 400`.
+- [x] T013 Wire up routes in app.js (`app.js`). Verify: `curl -si -X POST localhost:3000/auth/login` prints `HTTP/1.1 400`.
 
 
 <!-- /ANCHOR:phase-2 -->
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification (2-3 hours)
+## Phase 3: Verification
 
 ### Unit Tests
-- [x] T014 Test hash utility functions (`tests/unit/hash.test.js`) [30m]. Verify: `npx jest tests/unit/hash.test.js` exits 0.
-- [x] T015 Test validation schemas (`tests/unit/auth-validator.test.js`) [30m]. Verify: `npx jest tests/unit/auth-validator.test.js` exits 0.
+- [x] T014 Test hash utility functions (`tests/unit/hash.test.js`). Verify: `npx jest tests/unit/hash.test.js` exits 0.
+- [x] T015 Test validation schemas (`tests/unit/auth-validator.test.js`). Verify: `npx jest tests/unit/auth-validator.test.js` exits 0.
 
 ### Integration Tests
-- [x] T016 Test registration endpoint - success case (`tests/integration/auth.test.js`) [20m]. Verify: `npx jest tests/integration/auth.test.js -t 'registration success'` exits 0.
-- [x] T017 Test registration endpoint - duplicate email (`tests/integration/auth.test.js`) [15m]. Verify: `npx jest tests/integration/auth.test.js -t 'duplicate email'` exits 0.
-- [x] T018 Test login endpoint - success case (`tests/integration/auth.test.js`) [20m]. Verify: `npx jest tests/integration/auth.test.js -t 'login success'` exits 0.
-- [x] T019 Test login endpoint - invalid credentials (`tests/integration/auth.test.js`) [15m]. Verify: `npx jest tests/integration/auth.test.js -t 'invalid credentials'` exits 0.
+- [x] T016 Test registration endpoint - success case (`tests/integration/auth.test.js`). Verify: `npx jest tests/integration/auth.test.js -t 'registration success'` exits 0.
+- [x] T017 Test registration endpoint - duplicate email (`tests/integration/auth.test.js`). Verify: `npx jest tests/integration/auth.test.js -t 'duplicate email'` exits 0.
+- [x] T018 Test login endpoint - success case (`tests/integration/auth.test.js`). Verify: `npx jest tests/integration/auth.test.js -t 'login success'` exits 0.
+- [x] T019 Test login endpoint - invalid credentials (`tests/integration/auth.test.js`). Verify: `npx jest tests/integration/auth.test.js -t 'invalid credentials'` exits 0.
 
 ### Manual Verification
-- [x] T020 Test full registration flow in browser [15m]. Verify: `npx playwright test e2e/register.spec.js` exits 0.
-- [x] T021 Test full login flow in browser [15m]. Verify: `npx playwright test e2e/login.spec.js` exits 0.
-- [x] T022 Test session persistence after refresh [10m]. Verify: `npx playwright test e2e/session.spec.js` exits 0.
-- [x] T023 Verify error messages display correctly [10m]. Verify: `npx playwright test e2e/errors.spec.js` exits 0.
-- [x] T024 Test in Firefox (cross-browser) [15m]. Verify: `npx playwright test --project=firefox` exits 0.
+- [x] T020 Test full registration flow in browser. Verify: `npx playwright test e2e/register.spec.js` exits 0.
+- [x] T021 Test full login flow in browser. Verify: `npx playwright test e2e/login.spec.js` exits 0.
+- [x] T022 Test session persistence after refresh. Verify: `npx playwright test e2e/session.spec.js` exits 0.
+- [x] T023 Verify error messages display correctly. Verify: `npx playwright test e2e/errors.spec.js` exits 0.
+- [x] T024 Test in Firefox (cross-browser). Verify: `npx playwright test --project=firefox` exits 0.
 
 ### Documentation
-- [x] T025 Update spec.md with implementation notes [15m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
-- [x] T026 Complete implementation-summary.md [20m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
-- [x] T027 Mark all checklist items with evidence [15m]. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T025 Update spec.md with implementation notes. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T026 Complete implementation-summary.md. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
+- [x] T027 Mark all checklist items with evidence. Verify: `validate.sh . --strict` prints `RESULT: PASSED`.
 
 
 <!-- /ANCHOR:phase-3 -->
@@ -128,7 +128,6 @@ including effort estimates and explicit verification tasks for each feature. -->
 <!--
 LEVEL 2 TASKS (~100 lines)
 - Core + Level 2 detail
-- Effort estimates per task
 - Explicit verification tasks
 -->
 

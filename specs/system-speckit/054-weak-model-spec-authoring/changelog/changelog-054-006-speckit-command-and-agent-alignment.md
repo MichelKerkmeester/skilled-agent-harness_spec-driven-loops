@@ -55,7 +55,7 @@ The speckit, create and deep commands and the doc-authoring agents now send a wr
 |---|---|---|
 | `.skilled/commands/speckit/plan.md, implement.md, complete.md` | Modified | Name the guard scripts after strict validation |
 | `.skilled/commands/speckit/assets/*.yaml (5 files)` | Modified | Guard command, placeholder classifier, authoring card, filled example, continuity ladder |
-| `.skilled/agents/markdown.md, orchestrate.md, code.md, context.md` | Modified | Card and filled example, retired checklist doc dropped |
+| `.skilled/agents/markdown.md, orchestrate.md, code.md, context.md` | Modified | Card and filled example in markdown.md only, retired checklist doc dropped in all four |
 | `.claude/agents/ (same 4 files)` | Modified | Same body text as the .skilled sources |
 | `.skilled/commands/create/assets/*.yaml (14 files)` | Modified | Retired checklist doc replaced or dropped |
 | `.skilled/commands/deep/assets/deep-review-auto.yaml, deep-review-confirm.yaml` | Modified | Retired checklist doc replaced |

@@ -1,0 +1,16 @@
+
+TASK: run ONE build command. Edit no file by hand. Do not read source files. Do not explore.
+
+The CLI workspace's local dist is stale. Rebuild it with that workspace's own build script
+(dist is gitignored, so the build output is the only thing that changes):
+
+cd .skilled/skills/system-spec-kit/runtime/cli && npm run build; echo BUILD_EXIT=$?
+
+If the build prints a TypeScript error, stop and report the error text verbatim. Do not fix code.
+
+VERIFY (run from the repo root; the first command must NOT say "stale" and must end FRESH_EXIT=0,
+and the grep count must be 0):
+node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime/cli --entry default; echo FRESH_EXIT=$?
+grep -c 'resource-map.md.tmpl' .skilled/skills/system-spec-kit/runtime/cli/dist/lib/frontmatter-migration.js
+
+Report BUILD_EXIT, the last lines of the build output, and the verify output.

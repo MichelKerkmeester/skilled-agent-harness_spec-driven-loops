@@ -33,12 +33,13 @@ Phase 013 dropped the before-after, roadmap and resource-map add-on templates an
 - `--with-lazy-addons` scaffolds `timeline.md` and `decision-record.md`.
 - The reference docs, catalog, playbook, skill README, `SKILL.md`, the Hermes copy and the root README list seven add-ons.
 - `upgrade-legacy` leaves an existing root `resource-map.md` as written, because no template defines its values.
+- Removed: `templates/addons/before-after.md.tmpl`, `roadmap.md.tmpl` and `resource-map.md.tmpl`, with their manifest entries, `create.sh` phrases and seeds, phrase-tool maps, template-structure names and test pins.
+- Removed: The unused `shared.resource_map` path in the `/speckit:plan`, `/speckit:implement` and `/speckit:complete` workflows.
+- Removed: The resource-map template entries in the feature catalog and the manual testing playbook.
 
-### Removed
+### Fixed
 
-- `templates/addons/before-after.md.tmpl`, `roadmap.md.tmpl` and `resource-map.md.tmpl`, with their manifest entries, `create.sh` phrases and seeds, phrase-tool maps, template-structure names and test pins.
-- The unused `shared.resource_map` path in the `/speckit:plan`, `/speckit:implement` and `/speckit:complete` workflows.
-- The resource-map template entries in the feature catalog and the manual testing playbook.
+- None recorded.
 
 ### Verification
 
@@ -63,3 +64,7 @@ Phase 013 dropped the before-after, roadmap and resource-map add-on templates an
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/` and the golden snapshot | Modified | Match seven add-ons and the new template lines |
 | `.skilled/commands/speckit/assets/speckit-{plan,implement,complete}.yaml` | Modified | Drop the unused path |
 | Spec-kit docs, catalog, playbook, `SKILL.md`, `.hermes` copy, root `README.md` | Modified or Deleted | Seven add-ons |
+
+### Follow-Ups
+
+- None recorded.

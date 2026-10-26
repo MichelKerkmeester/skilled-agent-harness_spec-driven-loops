@@ -19,15 +19,19 @@ contextType: "implementation"
 
 Phase 019 fixes the two follow-ups the 054 closeout named. The goal-file manifest check ran `git ls-files` with fsmonitor on, and in this checkout that call hung for 853 s in a full CLI suite run, so `recursive-child-manifest` was the one failing test. Both of the script's git calls now turn fsmonitor off, and the test passes. The speed loop dropped main-no054 for rounds 3 to 5 of its main run, because one author step ran vitest inside the sandbox and the loop only rebuilt dirty sandboxes when a run started. It now rebuilds a dirty sandbox before each later round and keeps the rebuild only when its snapshot head matches the head the run started with.
 
-### Fixed
+### Added
 
-- `check-goal-file-manifest.sh` passes `-c core.fsmonitor=false` to `rev-parse` and `ls-files`, with a one-line comment giving the reason. The fail-closed exits are unchanged, and the file stays executable.
-- `loop.sh` runs `prepare.sh` before every round after the first for any sandbox marked `DIRTY` or still holding the packet track, outside every timed step. A rebuild is kept only when its `head=` matches the run-start head and, for a task with a terms file, its `ready` reads `task_term_refs=0`. Otherwise the variant is refused once and stays out for the rest of the run.
+- None recorded.
 
 ### Changed
 
 - A dry run plans a round-start rebuild only for a variant the start-of-run block did not already plan to prepare.
 - The speed-loop `README.md` gains a "Re-prepare between rounds" section.
+
+### Fixed
+
+- `check-goal-file-manifest.sh` passes `-c core.fsmonitor=false` to `rev-parse` and `ls-files`, with a one-line comment giving the reason. The fail-closed exits are unchanged, and the file stays executable.
+- `loop.sh` runs `prepare.sh` before every round after the first for any sandbox marked `DIRTY` or still holding the packet track, outside every timed step. A rebuild is kept only when its `head=` matches the run-start head and, for a task with a terms file, its `ready` reads `task_term_refs=0`. Otherwise the variant is refused once and stays out for the rest of the run.
 
 ### Verification
 
@@ -37,13 +41,6 @@ Phase 019 fixes the two follow-ups the 054 closeout named. The goal-file manifes
 - The `loop.sh` dry run exits 0, reuses both sandboxes and writes no results folder
 - One fresh Opus medium review: one P1 (the edit dropped the executable bit) and three P2s; the P1 and two P2s are fixed
 
-### Deviations
-
-- DeepSeek V4.1 Flash made the manifest edit through cli-pi and wrote the file back as mode 100644; the remediation restored 100755.
-- The leak check on a rebuild applies only when the task has a terms file, as the start-of-run gate does, because the quiet task always records `NA`.
-- No real speed-loop run rebuilt a sandbox, since a real run dispatches paid model runs; the harness covers the decision paths.
-- One P2 stays open: a failed `prepare.sh` can leave a half-built directory that the sandbox map never names.
-
 ### Files Changed
 
 | File | Action | What changed |
@@ -52,3 +49,10 @@ Phase 019 fixes the two follow-ups the 054 closeout named. The goal-file manifes
 | `specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/loop.sh` | Modified | Between-round rebuild with the head and leak checks |
 | `specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md` | Modified | "Re-prepare between rounds" section |
 | `specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes/` | Created | Phase docs, review, brief, harness |
+
+### Follow-Ups
+
+- DeepSeek V4.1 Flash made the manifest edit through cli-pi and wrote the file back as mode 100644; the remediation restored 100755.
+- The leak check on a rebuild applies only when the task has a terms file, as the start-of-run gate does, because the quiet task always records `NA`.
+- No real speed-loop run rebuilt a sandbox, since a real run dispatches paid model runs; the harness covers the decision paths.
+- One P2 stays open: a failed `prepare.sh` can leave a half-built directory that the sandbox map never names.

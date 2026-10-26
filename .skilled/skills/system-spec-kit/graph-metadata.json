@@ -59,7 +59,15 @@
     "environment variables",
     "runtime mirrors",
     "resume spec",
-    "validate spec"
+    "validate spec",
+    "spec authoring card",
+    "spec packet repair-derived",
+    "repair-derived",
+    "measured behavior block",
+    "measured-behavior anchor",
+    "spec template add-ons",
+    "template add-ons",
+    "draft auto-repair"
   ],
   "derived": {
     "trigger_phrases": [
@@ -74,7 +82,15 @@
       "validate spec packet",
       "system-spec-kit",
       "system spec kit",
-      "spec-kit"
+      "spec-kit",
+      "spec authoring card",
+      "spec packet repair-derived",
+      "repair-derived",
+      "measured behavior block",
+      "measured-behavior anchor",
+      "spec template add-ons",
+      "template add-ons",
+      "draft auto-repair"
     ],
     "key_topics": [
       "spec",
@@ -171,7 +187,7 @@
       "references/memory/memory-system.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
-    "last_updated_at": "2026-09-04T00:00:00Z",
+    "last_updated_at": "2026-10-26T00:00:00Z",
     "sanitizer_version": "sanitizeSkillLabel:v2"
   }
 }

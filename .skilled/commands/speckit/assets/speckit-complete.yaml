@@ -808,6 +808,8 @@ workflow:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair spec.md template drift before proceeding"
+      guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
     validation: spec_complete
     checkpoint:
       applies_to: confirm
@@ -864,6 +866,8 @@ workflow:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair acceptance-criteria.md template drift before proceeding"
+      guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
     validation: acceptance_verified_and_marked
     checkpoint:
       applies_to: confirm
@@ -972,6 +976,8 @@ workflow:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair plan.md or decision-record.md template drift before proceeding"
+      guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
     validation: approach_defined
     checkpoint:
       applies_to: confirm
@@ -1022,6 +1028,8 @@ workflow:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair tasks.md template drift before proceeding"
+      guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
     validation: tasks_documented
 
     phase_gate_checkpoint:
@@ -1265,6 +1273,8 @@ workflow:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair implementation-summary.md template drift before marking completion"
+      guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
     validation: implementation_complete
 
     completion_checkpoint:
