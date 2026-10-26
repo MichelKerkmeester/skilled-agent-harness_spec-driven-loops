@@ -1,5 +1,5 @@
 {
-  "manifestHash": "86b204003782356f6d17b6b0b5c76a926b97d031951ee49bfd17eaedb24fac01",
+  "manifestHash": "ec846751a9ae8c0d45d84c87c86bec41adfa259e848fc8a7afdbdd8c1a9e59ec",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -56197,9 +56197,6 @@
     "langchain graphs": [
       "LangChain graphs"
     ],
-    "language agnostic checks": [
-      "language agnostic checks"
-    ],
     "language agnostic naming": [
       "language agnostic naming"
     ],
@@ -78498,6 +78495,9 @@
     "quality agnostic gate config and doctor changelog": [
       "quality agnostic gate config and doctor changelog"
     ],
+    "quality agnostic gate doctrine changelog": [
+      "quality agnostic gate doctrine changelog"
+    ],
     "quality agnostic gate honest checker changelog": [
       "quality agnostic gate honest checker changelog"
     ],
@@ -78566,6 +78566,9 @@
     ],
     "quality gate resources": [
       "quality gate resources"
+    ],
+    "quality gate result values": [
+      "quality gate result values"
     ],
     "quality gate runner": [
       "quality gate runner"
@@ -93057,6 +93060,9 @@
     "sk code 3 3 0 0": [
       "sk-code 3.3.0.0"
     ],
+    "sk code 3 4 0 0": [
+      "sk-code 3.4.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93735,6 +93741,9 @@
     "sk code quality 1 7 0 0": [
       "sk-code-quality 1.7.0.0"
     ],
+    "sk code quality 1 8 0 0": [
+      "sk-code-quality 1.8.0.0"
+    ],
     "sk code quality codebase agnostic": [
       "sk-code quality codebase agnostic"
     ],
@@ -93797,6 +93806,9 @@
     ],
     "sk code quality v1 7 0 0": [
       "sk-code-quality v1.7.0.0"
+    ],
+    "sk code quality v1 8 0 0": [
+      "sk-code-quality v1.8.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -94104,6 +94116,9 @@
     "sk code skilled 2 0 2 0": [
       "sk-code-skilled 2.0.2.0"
     ],
+    "sk code skilled 2 1 0 0": [
+      "sk-code-skilled 2.1.0.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94199,6 +94214,9 @@
     ],
     "sk code skilled v2 0 2 0": [
       "sk-code-skilled v2.0.2.0"
+    ],
+    "sk code skilled v2 1 0 0": [
+      "sk-code-skilled v2.1.0.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94343,6 +94361,9 @@
     ],
     "sk code v3 3 0 0": [
       "sk-code v3.3.0.0"
+    ],
+    "sk code v3 4 0 0": [
+      "sk-code v3.4.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -98980,6 +99001,12 @@
     ],
     "skilled house checklist": [
       "skilled house checklist"
+    ],
+    "skilled house checks": [
+      "skilled house checks"
+    ],
+    "skilled house code quality checklist": [
+      "skilled house code quality checklist"
     ],
     "skilled layout options": [
       "skilled layout options"
@@ -109852,9 +109879,6 @@
     "universal checklist baseline": [
       "universal checklist baseline"
     ],
-    "universal code quality checklist": [
-      "universal code quality checklist"
-    ],
     "universal code quality standards": [
       "universal code quality standards"
     ],
@@ -109893,6 +109917,9 @@
     ],
     "unknown surface iron law": [
       "unknown surface iron law"
+    ],
+    "unknown surface universal floor": [
+      "unknown surface universal floor"
     ],
     "unknowns and baseline": [
       "unknowns and baseline"

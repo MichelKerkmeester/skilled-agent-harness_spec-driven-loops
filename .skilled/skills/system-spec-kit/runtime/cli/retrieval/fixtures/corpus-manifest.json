@@ -1,5 +1,5 @@
 {
-  "corpusHash": "084fa861cdbd6e7c7e29194bfb1d7606053d602f65e1f559e2748ad634f00ff6",
+  "corpusHash": "17fc8cfc748449b7381988d1483fe03f40b4e4e6665c46d6316e67d4444baa62",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26099,
+  "includedPathCount": 26103,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2726,6 +2726,7 @@
     ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2799,6 +2800,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.7.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
@@ -2920,6 +2922,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -12279,6 +12282,7 @@
     "specs/sk-code/015-quality-agnostic-gate/006-measurement/tasks.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md",
+    "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-004-doctrine.md",
     "specs/sk-code/015-quality-agnostic-gate/goal.md",
     "specs/sk-code/015-quality-agnostic-gate/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -26130,7 +26134,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "86b204003782356f6d17b6b0b5c76a926b97d031951ee49bfd17eaedb24fac01",
+  "manifestHash": "ec846751a9ae8c0d45d84c87c86bec41adfa259e848fc8a7afdbdd8c1a9e59ec",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
