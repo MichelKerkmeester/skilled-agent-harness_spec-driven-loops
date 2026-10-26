@@ -55,7 +55,7 @@ The phase's changes sit on branch head f1732e4d95 as one uncommitted change set.
 - The five-run timing command on the final tree - Printed real 1.23, 0.86, 0.87, 0.83 and 0.90 at a load average of 8.69 at HEAD f1732e4d95, every run under 2.00. The round-5 run before it printed real 1.10, 0.84, 0.82, 0.97 and 0.99
 - The dist freshness library suite - Totals: 4 passed, 0 failed, exit 0, with ls -d .skilled/skills/system-spec-kit/runtime/node_modules reporting the folder absent. The worktree hoists dependencies to .skilled/skills/system-spec-kit/node_modules, and the library read every package under it as unprovisioned, so the stale-dist case fell back to a clean verdict. The walk now reaches any ancestor up to the workspace root, and the suite gained a case that hoists node_modules to an intermediate ancestor and asserts a stale exit 69. Before the change the suite printed Totals: 2 passed, 1 failed with [FAIL] validate.sh stale-dist backstop
 - bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout --strict --no-recursive after the authored documents were finished - Summary: Errors: 0 Warnings: 0, then RESULT: PASSED
-- Tasks complete - 84 completed task item(s) recorded
+- Tasks complete - 85 completed task item(s) recorded
 
 ### Files Changed
 

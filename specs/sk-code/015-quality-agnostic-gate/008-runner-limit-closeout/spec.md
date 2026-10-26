@@ -116,6 +116,7 @@ The runner closes its own gaps. One run over 50 changed files finishes under two
 | `.skilled/skills/sk-code/leaf-manifest.json` | Regenerate | All | `generate-leaf-manifest.cjs --write`, only if a resource is added or removed |
 | `specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-008-runner-limit-closeout.md` | Create | All | Packet changelog, written when the phase closes |
 | `specs/sk-code/015-quality-agnostic-gate/spec.md` and the graph metadata of the parent and this phase | Edit, Regenerate | All | The parent phase map row, and the derived metadata from `repair-derived.cjs --apply` |
+| `.github/workflows/sk-code-script-tests.yml` | Edit | REQ-002 | The runner tests job installs the spec-kit workspace before the runner tests, because the test file loads the dist freshness library, and the job triggers on that library, its shared workspace and the lockfile |
 <!-- /ANCHOR:scope -->
 
 ---

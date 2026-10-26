@@ -17,6 +17,13 @@ on:
       - '.opencode/bin/lib/compiled-routing/004-compiler-n1-shadow/**'
       - '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
       - '.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
+      # The runner's dist check loads the spec-kit freshness library and its workspace.
+      - '.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'
+      - '.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'
+      - '.skilled/skills/system-spec-kit/shared/workspace/**'
+      - '.opencode/skills/system-spec-kit/shared/workspace/**'
+      - '.skilled/skills/system-spec-kit/package-lock.json'
+      - '.opencode/skills/system-spec-kit/package-lock.json'
       - '.github/workflows/sk-code-script-tests.yml'
   push:
     branches: [main, 'skilled/**']
@@ -30,6 +37,13 @@ on:
       - '.opencode/bin/lib/compiled-routing/004-compiler-n1-shadow/**'
       - '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
       - '.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/**'
+      # The runner's dist check loads the spec-kit freshness library and its workspace.
+      - '.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'
+      - '.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'
+      - '.skilled/skills/system-spec-kit/shared/workspace/**'
+      - '.opencode/skills/system-spec-kit/shared/workspace/**'
+      - '.skilled/skills/system-spec-kit/package-lock.json'
+      - '.opencode/skills/system-spec-kit/package-lock.json'
       - '.github/workflows/sk-code-script-tests.yml'
 
 permissions:
@@ -70,6 +84,12 @@ jobs:
           bash .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh
           bash .skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh
           bash .skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh
+
+      # The runner's dist check loads the spec-kit freshness library, which resolves
+      # the shared workspace package through node_modules. Install scripts are skipped
+      # because the tests need only the workspace links, never a native build.
+      - name: Install the spec-kit workspace
+        run: npm --prefix .skilled/skills/system-spec-kit ci --no-audit --no-fund --ignore-scripts
 
       # The quality runner's fixtures build throwaway repositories and assert the run
       # wrote nothing, so a runner that starts writing fails here before any hook uses it.
