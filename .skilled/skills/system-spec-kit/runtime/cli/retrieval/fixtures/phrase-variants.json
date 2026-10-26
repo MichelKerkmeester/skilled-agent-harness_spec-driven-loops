@@ -1,5 +1,5 @@
 {
-  "manifestHash": "53946cb76a39506b559da1054be5bf73f5eef00fc8e63f5133e52530bdbc167f",
+  "manifestHash": "a996114ea99cff227b3f59a39650882dd3967b86f1c51924c00eee872d4cb204",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -61616,6 +61616,9 @@
     "measure the track claim": [
       "measure the track claim"
     ],
+    "measured catch rate": [
+      "measured catch rate"
+    ],
     "measured convention state": [
       "measured convention state"
     ],
@@ -78705,6 +78708,9 @@
     "quality agnostic gate honest checker changelog": [
       "quality agnostic gate honest checker changelog"
     ],
+    "quality agnostic gate measurement changelog": [
+      "quality agnostic gate measurement changelog"
+    ],
     "quality agnostic gate phase parent spec": [
       "quality agnostic gate phase parent spec"
     ],
@@ -78773,6 +78779,9 @@
     ],
     "quality gate ranked recommendations": [
       "quality gate ranked recommendations"
+    ],
+    "quality gate report": [
+      "quality gate report"
     ],
     "quality gate resolved surface": [
       "quality gate resolved surface"
@@ -83635,6 +83644,9 @@
     ],
     "report only ticket": [
       "report only ticket"
+    ],
+    "report results section": [
+      "report results section"
     ],
     "report safety validation": [
       "Report safety validation"
@@ -93363,6 +93375,9 @@
     "sk code 3 7 0 0": [
       "sk-code 3.7.0.0"
     ],
+    "sk code 3 8 0 0": [
+      "sk-code 3.8.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -94032,6 +94047,9 @@
     "sk code quality 1 11 0 0": [
       "sk-code-quality 1.11.0.0"
     ],
+    "sk code quality 1 12 0 0": [
+      "sk-code-quality 1.12.0.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -94106,6 +94124,9 @@
     ],
     "sk code quality v1 11 0 0": [
       "sk-code-quality v1.11.0.0"
+    ],
+    "sk code quality v1 12 0 0": [
+      "sk-code-quality v1.12.0.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -94709,6 +94730,9 @@
     ],
     "sk code v3 7 0 0": [
       "sk-code v3.7.0.0"
+    ],
+    "sk code v3 8 0 0": [
+      "sk-code v3.8.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
