@@ -185,7 +185,7 @@ Four more prompts show where the CI vocabulary stops: "fix the timeout-minutes i
 
 | Check | Result |
 |-------|--------|
-| Tasks T001 to T070 | All ticked with dated evidence in `tasks.md` |
+| Tasks T001 to T071 | All ticked with dated evidence in `tasks.md` |
 | Verification checklist | 10 of 10 P0, 11 of 11 P1 and 1 of 1 P2 rows ticked with evidence |
 | AC-001 to AC-027 | 26 `Met` and AC-018 `Waived` under ADR-006. See `acceptance-criteria.md`, whose closure statement records the observed output |
 | Canaries 1 to 10 | Run on the final tree, with the output in the table above and in T049 to T053 |
