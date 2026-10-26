@@ -63,7 +63,7 @@ Other: one shared data table, read by independent readers with no shared module.
 - **`comment-hygiene.yml` and `sk-code-script-tests.yml`**: the pull request gate and the suite runner.
 
 Consumers of the checker output, checked before the change:
-- Pre-commit (`.skilled/scripts/git-hooks/pre-commit`, lines 142 to 158): copies staged blobs into a temporary directory, runs the checker from there, and treats exit 0 and 2 as clean and every other code as a block. The new reason suffix shows in its printed output. The table path must not depend on the working directory.
+- Pre-commit (`.skilled/scripts/git-hooks/pre-commit`, lines 142 to 158): copies staged blobs into a temporary directory, runs the checker from there, and treats exit 0 and 2 as clean and every other code as a block. The new reason suffix shows in its printed output. The table path must not depend on the working directory. Both pre-commit hooks pass `--` before the staged paths, because the checker reads any argument that starts with `--` as an option.
 - CI (`.github/workflows/comment-hygiene.yml`, lines 36 to 48): runs the checker over each changed file and counts exit 1 only.
 - Router adapters: the Claude, Codex, Devin, Pi and OpenCode plugin adapters. Codex and Devin build their checker in the fixture root, so they change with ADR-009.
 
