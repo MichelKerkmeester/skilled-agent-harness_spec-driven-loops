@@ -1,5 +1,5 @@
 {
-  "corpusHash": "873a9d0f36c90046d506b5605fbe26a1e9f6919728238ceb7b1ee13088aa073f",
+  "corpusHash": "a7b9f93f5051ecaacfc75fff6894129c098eca6a1ddc16f8316df255a6e3d496",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26202,
+  "includedPathCount": 26215,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2732,6 +2732,7 @@
     ".skilled/skills/sk-code/changelog/v3.6.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.7.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.8.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2810,6 +2811,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.10.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.12.0.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -2950,6 +2952,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.1.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -7491,6 +7494,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.16.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.1.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -12335,6 +12339,14 @@
     "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/plan.md",
     "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/spec.md",
     "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/acceptance-criteria.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/decision-record.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/goal.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/implementation-summary.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/plan.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/spec.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/tasks.md",
+    "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/timeline.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-001-honest-checker.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-003-config-and-doctor.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-004-doctrine.md",
@@ -12342,6 +12354,7 @@
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-006-measurement.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-007-checker-debt-closeout.md",
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-008-runner-limit-closeout.md",
+    "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-009-review-closeout.md",
     "specs/sk-code/015-quality-agnostic-gate/goal.md",
     "specs/sk-code/015-quality-agnostic-gate/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -26233,7 +26246,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a996114ea99cff227b3f59a39650882dd3967b86f1c51924c00eee872d4cb204",
+  "manifestHash": "79d6496c05556902272cb78bf94797ef7330078e7ea7c9b6ee8effcd744734c6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29053,6 +29066,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/scratch",
       "reason": "excluded directory"
     },
     {

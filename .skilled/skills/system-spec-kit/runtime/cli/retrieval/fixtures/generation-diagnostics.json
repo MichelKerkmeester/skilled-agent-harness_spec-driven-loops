@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7309,
-    "ok": 15345,
+    "ok": 15358,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26202,
+  "documentsScanned": 26215,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a996114ea99cff227b3f59a39650882dd3967b86f1c51924c00eee872d4cb204",
+  "manifestHash": "79d6496c05556902272cb78bf94797ef7330078e7ea7c9b6ee8effcd744734c6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37923,
+      "ok": 37954,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71555,6 +71555,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/015-quality-agnostic-gate/009-review-closeout/scratch",
       "reason": "excluded directory"
     },
     {

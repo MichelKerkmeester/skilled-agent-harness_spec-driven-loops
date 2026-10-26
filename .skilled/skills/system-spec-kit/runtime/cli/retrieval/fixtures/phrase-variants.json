@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a996114ea99cff227b3f59a39650882dd3967b86f1c51924c00eee872d4cb204",
+  "manifestHash": "79d6496c05556902272cb78bf94797ef7330078e7ea7c9b6ee8effcd744734c6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22594,6 +22594,9 @@
     "code": [
       "code"
     ],
+    "code agent quality step": [
+      "code agent quality step"
+    ],
     "code aware chunker stage b": [
       "code-aware chunker stage b"
     ],
@@ -26224,6 +26227,9 @@
     ],
     "configure fanout executors": [
       "configure fanout executors"
+    ],
+    "configured check trust": [
+      "configured check trust"
     ],
     "configured quality checks": [
       "configured quality checks"
@@ -30877,6 +30883,12 @@
     ],
     "declared signal closure": [
       "declared signal closure"
+    ],
+    "declared surfaces parity": [
+      "declared surfaces parity"
+    ],
+    "declared surfaces plugin": [
+      "declared surfaces plugin"
     ],
     "declared trigger scores zero": [
       "declared trigger scores zero"
@@ -73957,6 +73969,9 @@
     "phase 9 research fixes": [
       "phase 9 research fixes"
     ],
+    "phase 9 review closeout": [
+      "phase 9 review closeout"
+    ],
     "phase 9 review remediation": [
       "phase 9 review remediation"
     ],
@@ -78714,6 +78729,9 @@
     "quality agnostic gate phase parent spec": [
       "quality agnostic gate phase parent spec"
     ],
+    "quality agnostic gate review closeout changelog": [
+      "quality agnostic gate review closeout changelog"
+    ],
     "quality agnostic gate runner limit closeout changelog": [
       "quality agnostic gate runner limit closeout changelog"
     ],
@@ -78800,6 +78818,12 @@
     ],
     "quality gate runner plan": [
       "quality gate runner plan"
+    ],
+    "quality gate trust opt in": [
+      "quality gate trust opt-in"
+    ],
+    "quality gate trust plan": [
+      "quality gate trust plan"
     ],
     "quality gates": [
       "quality gates"
@@ -83657,6 +83681,9 @@
     "reported changelog descriptions": [
       "reported changelog descriptions"
     ],
+    "repository checks trust": [
+      "repository checks trust"
+    ],
     "repository database path": [
       "repository database path"
     ],
@@ -85996,6 +86023,30 @@
     ],
     "review checklists move to assets": [
       "review checklists move to assets"
+    ],
+    "review closeout": [
+      "review closeout"
+    ],
+    "review closeout acceptance criteria": [
+      "review closeout acceptance criteria"
+    ],
+    "review closeout decision record": [
+      "review closeout decision record"
+    ],
+    "review closeout goal": [
+      "review closeout goal"
+    ],
+    "review closeout implementation summary": [
+      "review closeout implementation summary"
+    ],
+    "review closeout plan": [
+      "review closeout plan"
+    ],
+    "review closeout tasks": [
+      "review closeout tasks"
+    ],
+    "review closeout timeline": [
+      "review closeout timeline"
     ],
     "review confirmed findings": [
       "review confirmed findings"
@@ -89664,6 +89715,9 @@
     ],
     "scoped backfill boundary": [
       "scoped backfill boundary"
+    ],
+    "scoped checklist errors": [
+      "scoped checklist errors"
     ],
     "scoped fill limit regression decision": [
       "scoped fill limit regression decision"
@@ -93378,6 +93432,9 @@
     "sk code 3 8 0 0": [
       "sk-code 3.8.0.0"
     ],
+    "sk code 3 9 0 0": [
+      "sk-code 3.9.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -94050,6 +94107,9 @@
     "sk code quality 1 12 0 0": [
       "sk-code-quality 1.12.0.0"
     ],
+    "sk code quality 1 13 0 0": [
+      "sk-code-quality 1.13.0.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -94127,6 +94187,9 @@
     ],
     "sk code quality v1 12 0 0": [
       "sk-code-quality v1.12.0.0"
+    ],
+    "sk code quality v1 13 0 0": [
+      "sk-code-quality v1.13.0.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -94473,6 +94536,9 @@
     "sk code skilled 2 1 1 0": [
       "sk-code-skilled 2.1.1.0"
     ],
+    "sk code skilled 2 1 2 0": [
+      "sk-code-skilled 2.1.2.0"
+    ],
     "sk code skilled audit": [
       "sk-code-skilled audit"
     ],
@@ -94574,6 +94640,9 @@
     ],
     "sk code skilled v2 1 1 0": [
       "sk-code-skilled v2.1.1.0"
+    ],
+    "sk code skilled v2 1 2 0": [
+      "sk-code-skilled v2.1.2.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94733,6 +94802,9 @@
     ],
     "sk code v3 8 0 0": [
       "sk-code v3.8.0.0"
+    ],
+    "sk code v3 9 0 0": [
+      "sk-code v3.9.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -105156,6 +105228,12 @@
     "synonym cycling significance inflation false ranges": [
       "synonym cycling significance inflation false ranges"
     ],
+    "syntax node pool decision": [
+      "syntax node pool decision"
+    ],
+    "syntax node pool plan": [
+      "syntax node pool plan"
+    ],
     "synthesis": [
       "synthesis"
     ],
@@ -105600,6 +105678,9 @@
     "system skill advisor 0 17 1 0": [
       "system-skill-advisor 0.17.1.0"
     ],
+    "system skill advisor 0 17 2 0": [
+      "system-skill-advisor 0.17.2.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -105782,6 +105863,9 @@
     ],
     "system skill advisor v0 17 1 0": [
       "system-skill-advisor v0.17.1.0"
+    ],
+    "system skill advisor v0 17 2 0": [
+      "system-skill-advisor v0.17.2.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -109549,6 +109633,12 @@
     "trust lanes derived": [
       "trust lanes derived"
     ],
+    "trust repo checks": [
+      "trust repo checks"
+    ],
+    "trust repo checks grant": [
+      "trust repo checks grant"
+    ],
     "trust state": [
       "trust state"
     ],
@@ -109581,6 +109671,9 @@
     ],
     "trusted private skill roots": [
       "trusted private skill roots"
+    ],
+    "trustrepochecks decision": [
+      "trustRepoChecks decision"
     ],
     "truthful stop without consensus": [
       "truthful stop without consensus"
