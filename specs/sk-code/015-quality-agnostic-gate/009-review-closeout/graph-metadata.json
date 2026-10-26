@@ -39,7 +39,7 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The review found that the gate still trusts too much and claims too much in a few places",
     "created_at": "2026-10-26T15:21:47Z",
-    "last_save_at": "2026-10-26T17:24:06.563Z",
+    "last_save_at": "2026-10-26T17:32:51.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28a86ff04d88e61b80a4b77cd40d2f6566fcaff8ab99272b25c5aafa8c2d6412",
+    "source_fingerprint": "sha256:4ee57bd8a55c7cc9ba148e61dadd0c6c6e1ba12bfedb667f7a750bd6baa909f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d480792c6e2dc1d3f2792d56d99593dafe8dc4e6488b0a3019241c870570e92e",
-      "plan.md": "c8769e7a7090bdf8693a5b182913a28d53f8c69fb63e128641ad2cba6f4917de",
-      "tasks.md": "77ab43dd09c05f6d8837329bdbc2ac304db365033859dac42ee7b98c25ffc124",
+      "plan.md": "d55f28f74eab16e8b8bf4dc30caab5172171fc987520a84bd16d2f3745bafbb3",
+      "tasks.md": "69799cf5c815aa29d4c2de278c894628e58d2fe085a3ea570cc527effd6295c5",
       "decision-record.md": "029f7a200b48be97eccb45412da915784cec658b2cdf302f9d9d77c80374a5d4",
-      "implementation-summary.md": "ce55918f32d24ce3e0a801239c0d3847887821fc4f9434f7bdd3462090e35dc0"
+      "implementation-summary.md": "7dfc3b371133b17b81995fca5aa45d49ce3260a5a9c40b11bc0198d7854f3fa3"
     },
     "last_active_at": null
   }

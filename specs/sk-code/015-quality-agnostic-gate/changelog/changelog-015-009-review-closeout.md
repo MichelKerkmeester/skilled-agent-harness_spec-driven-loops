@@ -74,9 +74,8 @@ The phase's changes sit on branch head 002c94662f as one uncommitted change set.
 
 ### Follow-Ups
 
-- CHK-FIX-007 Evidence is pinned to a fix SHA, not a moving branch range. Open 2026-10-26: the evidence here is pinned to HEAD 002c94662f plus the uncommitted working tree. The fix SHA does not exist until the commit lands, so it is filled after commit.
+- The evidence is pinned to fix commit 6988bb2c9d. Every run was taken on HEAD 002c94662f plus the change set, which landed on main with no difference from the tested tree.
 - Two record readers are exported for tests. nodeCheckRecords and nodeCheckResult joined the runner's test exports, so the mapping of a killed child to ERROR with no finding is asserted directly rather than resting on code reading. evidence/timing.json records HEAD 002c94662f and the uncommitted tree the after runs measured.
 - Five Verify commands were amended. T007, T018, T020, T021 and T024 each failed as written while the behaviour held. Each now carries an amendment line naming the old check, why it could not hold and the new check, with the new check's output.
 - The baselines are reconstructed. No run was taken before the first source edit, so T001, T002 and CHK-003 rest on runs in a git archive HEAD copy of the unedited tree.
-- The fix commit SHA is recorded at commit. The evidence is pinned to HEAD 002c94662f plus the uncommitted change set. CHK-FIX-007 stays open until the commit lands and its SHA is written in.
 - The packet changelog was cleaned by hand after generation. nested-changelog.js reads backtick spans in task evidence as file paths, so it wrote a few Files Changed rows holding command text in place of a path. Those rows were removed from changelog-015-009-review-closeout.md after the last run.

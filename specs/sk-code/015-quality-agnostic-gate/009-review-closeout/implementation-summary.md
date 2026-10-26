@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 9: review-closeout"
-description: "Complete. All ten operator-accepted review items are built and verified on the final tree, and the fix SHA is recorded at commit."
+description: "Complete. All ten operator-accepted review items are built and verified on the final tree, and the evidence is pinned to fix commit 6988bb2c9d on main."
 trigger_phrases:
   - "review closeout implementation summary"
 importance_tier: "normal"
@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed the phase on the final tree"
-    next_safe_action: "Commit, then pin CHK-FIX-007 to the fix SHA"
+    next_safe_action: "None: the phase is closed and its fix commit 6988bb2c9d is on main"
     blockers: []
     key_files:
       - ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 009-review-closeout |
 | **Status** | Complete |
-| **Completed** | 2026-10-26, on the final tree. CHK-FIX-007, the fix SHA pin, is recorded at commit, and the conductor owns the commit |
+| **Completed** | 2026-10-26, on the final tree, landed on main as fix commit `6988bb2c9d` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -123,7 +123,7 @@ The lanes ran in the order `plan.md` section 4 sets: A, then B, then C on `quali
 1. **Two record readers are exported for tests.** `nodeCheckRecords` and `nodeCheckResult` joined the runner's test exports, so the mapping of a killed child to `ERROR` with no finding is asserted directly rather than resting on code reading. `evidence/timing.json` records HEAD `002c94662f` and the uncommitted tree the after runs measured.
 2. **Five Verify commands were amended.** T007, T018, T020, T021 and T024 each failed as written while the behaviour held. Each now carries an amendment line naming the old check, why it could not hold and the new check, with the new check's output.
 3. **The baselines are reconstructed.** No run was taken before the first source edit, so T001, T002 and CHK-003 rest on runs in a `git archive HEAD` copy of the unedited tree.
-4. **The fix commit SHA is recorded at commit.** The evidence is pinned to HEAD `002c94662f` plus the uncommitted change set. CHK-FIX-007 stays open until the commit lands and its SHA is written in.
+4. **The evidence is pinned to the fix commit.** Every run was taken on HEAD `002c94662f` plus the change set, which landed on main as `6988bb2c9d` with no difference from the tested tree: `git diff --stat` between the local commit and the landed one printed nothing.
 5. **The packet changelog was cleaned by hand after generation.** `nested-changelog.js` reads backtick spans in task evidence as file paths, so it wrote a few Files Changed rows holding command text in place of a path. Those rows were removed from `changelog-015-009-review-closeout.md` after the last run.
 6. **The hub grant has no end-to-end run here.** This repository holds no `.sk-code/quality.json`, so a gate run over it reads trust `none`. The hub-repository grant rests on the unit case in `configured-checks.test.cjs`.
 <!-- /ANCHOR:limitations -->

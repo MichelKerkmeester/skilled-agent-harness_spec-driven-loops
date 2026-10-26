@@ -42,10 +42,10 @@ Ten requirements in seven lanes. Lane A scopes the outside-skill faults (REQ-001
 - [ ] Scope is frozen in `spec.md` section 3, and no file outside it changes.
 
 ### Definition of Done
-- [ ] Every row of `acceptance-criteria.md` is `Met`, with the command and its output in the cell.
-- [ ] The quality, doctor and sk-code-skilled suites print `# fail 0`.
-- [ ] `evidence/timing.json` holds five full runs under 2000 ms on the reference machine.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate --recursive --strict | tail -1` prints `RESULT: PASSED`.
+- [x] Every row of `acceptance-criteria.md` is `Met`, with the command and its output in the cell.
+- [x] The quality, doctor and sk-code-skilled suites print `# fail 0`.
+- [x] `evidence/timing.json` holds five full runs under 2000 ms on the reference machine.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate --recursive --strict | tail -1` prints `RESULT: PASSED`.
 <!-- /ANCHOR:quality-gates -->
 
 ---

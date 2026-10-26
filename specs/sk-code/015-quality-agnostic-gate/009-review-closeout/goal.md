@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed every completion criterion on the final tree, three on the amended checks"
-    next_safe_action: "Commit, then pin CHK-FIX-007 to the fix SHA"
+    next_safe_action: "None: the phase is closed and its fix commit 6988bb2c9d is on main"
     blockers: []
     key_files: []
     session_dedup:
@@ -75,7 +75,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase documents authored | Done | `validate.sh --strict` on this folder, recorded in the handback |
-| Lanes A to G | Done | Tasks T001 to T032 are `[x]` in `tasks.md`, all sixteen acceptance criteria are `Met`, and the recursive strict validator printed `RESULT: PASSED`. CHK-FIX-007 is recorded at commit, when the fix SHA exists |
+| Lanes A to G | Done | Tasks T001 to T032 are `[x]` in `tasks.md`, all sixteen acceptance criteria are `Met`, and the recursive strict validator printed `RESULT: PASSED`. CHK-FIX-007 pins the evidence to fix commit `6988bb2c9d` |
 
 ### Deviations and findings
 

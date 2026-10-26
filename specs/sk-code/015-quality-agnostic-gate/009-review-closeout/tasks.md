@@ -106,7 +106,7 @@ Every task is open. The conductor ticks each one with its evidence. Comments in 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`: T001 to T032 are ticked. One checklist item, CHK-FIX-007, stays open below, because the fix SHA it pins to exists only once the commit lands.
+- [x] All tasks marked `[x]`: T001 to T032 are ticked, and every checklist item is closed.
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: `evidence/timing.json` holds five runs under 2000 ms on the reference machine, and the recursive validator printed `RESULT: PASSED`. Evidence 2026-10-26: the after runs read 723, 704, 725, 668 and 620 ms (see T015), and T032 printed `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -181,7 +181,7 @@ A blocked task is marked `[B]` with the reason and the command that showed it, a
 - [x] CHK-FIX-004 [P0] The trust gate has a case for each grant and for none of them. Evidence 2026-10-26: `configured-checks.test.cjs` cases 5 (none), 6 (local key), 8 (`--config`), 9 (`skcode.qualityConfig`) and 12 (hub repository) all print `ok` in the 23-test run, see T008.
 - [x] CHK-FIX-005 [P1] The matrix axes in `plan.md` are listed with their row count before completion is claimed. Evidence 2026-10-26: `plan.md` section "Required inventories" now gives the row count, 11 rows over four axes tested one axis at a time, and the case that covers each row, with the two rows that rest on code reading named.
 - [x] CHK-FIX-006 [P1] The trust cases run with a hostile environment: a global `skilled.trustRepoChecks` set to true grants nothing, because only the local key counts. Evidence 2026-10-26: case 10 `trust: the same key at global scope does not trust the committed config` and case 11 `trust: a value reached through an include in .git/config is not trusted` print `ok`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA, not a moving branch range. Open 2026-10-26: the evidence here is pinned to HEAD `002c94662f` plus the uncommitted working tree. The fix SHA does not exist until the commit lands, so it is filled after commit.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA, not a moving branch range. Evidence 2026-10-26: every run was taken on HEAD `002c94662f` plus the change set, which landed on main as fix commit `6988bb2c9d`; `git diff --stat 91dbb0702b 6988bb2c9d` between the tested local commit and the landed one printed nothing.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -224,7 +224,7 @@ A blocked task is marked `[B]` with the reason and the command that showed it, a
 | P1 Items | 13 | 12/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-26, on the final tree. One P1 item is open: CHK-FIX-007, which pins the evidence to the fix SHA and is closed once the commit lands.
+**Verification Date**: 2026-10-26, on the final tree, landed as fix commit `6988bb2c9d`. No item is open.
 <!-- /ANCHOR:summary -->
 
 ---

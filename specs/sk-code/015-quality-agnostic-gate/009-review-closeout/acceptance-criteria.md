@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed AC-015 and AC-016 on the final tree, all sixteen Met"
-    next_safe_action: "Commit, then pin CHK-FIX-007 to the fix SHA"
+    next_safe_action: "None: the phase is closed and its fix commit 6988bb2c9d is on main"
     blockers: []
     key_files: []
     session_dedup:
@@ -95,5 +95,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All sixteen rows are `Met`: AC-001 to AC-016. AC-007, AC-009, AC-010, AC-011 and AC-013 closed on amended checks, each recorded in its cell. AC-015 closed on the generated packet changelog and AC-016 on the final strict runs. The one open item in `tasks.md`, CHK-FIX-007, pins the evidence to the fix SHA and is closed once the commit lands; it is not an acceptance criterion.
+All sixteen rows are `Met`: AC-001 to AC-016. AC-007, AC-009, AC-010, AC-011 and AC-013 closed on amended checks, each recorded in its cell. AC-015 closed on the generated packet changelog and AC-016 on the final strict runs. CHK-FIX-007 in `tasks.md` pins the evidence to fix commit `6988bb2c9d`; it is not an acceptance criterion.
 <!-- /ANCHOR:closure -->
