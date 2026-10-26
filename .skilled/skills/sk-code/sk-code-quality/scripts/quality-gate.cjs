@@ -6,10 +6,13 @@
 
 // One verdict for one change, in any repository. The runner reads the change, runs its
 // built-in sensors, one comment-hygiene call and a parse floor, probes which hooks and
-// workflows enforce hygiene, resolves the checklists the hub declares and prints the
-// result. It writes no file and starts no command a repository names. No gate value
-// means pass: exit 0 says only that no blocker was found and every required check
-// produced evidence, and the acting agent still owns every judgment item.
+// workflows enforce hygiene, resolves the checklists the hub and the repository declare
+// and prints the result. It writes no file. The only commands a repository can make it
+// start are the ones its committed config names, each run as an argv array under a
+// deadline and inside the workspace guard. A command a manifest implies is reported as
+// a suggestion and never started. No gate value means pass: exit 0 says only that no
+// blocker was found and every required check produced evidence, and the acting agent
+// still owns every judgment item.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -19,7 +22,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 
-const { findTool, runGit, spawnArgv, withGuard } = require('./lib/run-check.cjs');
+const qualityConfig = require('./lib/quality-config.cjs');
+const { findTool, runGit, spawnArgv, spawnGroup, withGuard } = require('./lib/run-check.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -49,6 +53,9 @@ const GATE_EXIT = Object.freeze({ NO_BLOCKER_FOUND: 0, BLOCKED: 1, NOTHING_CHECK
 // say that nothing blocks.
 const UNVERIFIED_STATES = new Set(['SKIPPED_ABSENT', 'SKIPPED_BY_FLAG', 'TIMEOUT', 'ERROR', 'LISTED']);
 const RAN_STATES = new Set(['RAN_CLEAN', 'RAN_FAIL']);
+// A repository command reports through its exit code alone, so a required P0 one that
+// fails blocks by itself. A generated row is a command too.
+const REPOSITORY_ORIGINS = new Set(['configured', 'generated']);
 const FORMATS = Object.freeze(['json', 'text', 'envelope']);
 const DEFAULT_TIMEOUT_SEC = 120;
 const MAX_FILE_BYTES = 2 * 1024 * 1024;
@@ -176,10 +183,49 @@ const REPAIRS = Object.freeze({
   TABLE_UNREADABLE: 'restore sk-code-quality/assets/comment-syntax.json',
   DEFAULTS_INVALID: 'restore sk-code-quality/assets/quality-defaults.json',
   CHECKLIST_MISSING: 'restore the checklist file or fix the declaration that names it',
+  CONFIG_PATH_MISSING: 'create the named config file, or fix the --config value or the skcode.qualityConfig git config value that names it',
+  CONFIG_INVALID: 'fix each field that config.errors lists, as references/quality-config.md describes',
   CHECK_MUTATED_WORKSPACE: 'review the listed paths, the runner reverts nothing',
   GUARD_FAILED: 'run git status in this repository and fix what it reports',
+  GUARD_UNAVAILABLE: 'run inside a git repository, because only git can show whether a configured command changed the workspace',
   INTERNAL_ERROR: 'rerun with --format json and report the message',
 });
+
+const USAGE_TEXT = [
+  'Usage: quality-gate.cjs [scope] [options]',
+  '',
+  'Scope, choose one:',
+  '  --worktree              the uncommitted change against HEAD, the default',
+  '  --base REF              everything since the merge base of REF and HEAD',
+  '  --files PATH...         exactly the named files, the only scope outside git',
+  '  -- PATH...              the same as --files, for names that start with --',
+  '  --explain PATH          why each checklist and check applies to one file, run nothing',
+  '',
+  'Options:',
+  '  --lines changed|file    report findings on changed lines only, or on the whole file',
+  '  --no-run                list the spawned and configured checks as LISTED and start none',
+  '  --only ID,...           run only these check ids, built-in or configured',
+  '  --skip ID,...           leave these check ids out',
+  '  --config PATH           read this repository config, relative to the working directory',
+  '  --timeout SECONDS       the deadline for each spawned check, default 120',
+  '  --format json|text|envelope   the output form, default json',
+  '  -h, --help              print this help and exit 0',
+  '',
+  'Config discovery, the first source found wins:',
+  '  1. --config PATH',
+  '  2. git config skcode.qualityConfig from a config file, relative to the repository root',
+  '     (a git -c or GIT_CONFIG_* value is ignored)',
+  '  3. .sk-code/quality.json at the repository root',
+  '  4. none, so only the built-in checks run',
+  '',
+  'Exit codes:',
+  '  0  NO_BLOCKER_FOUND  no blocker, and every required check produced evidence',
+  '  1  BLOCKED           a blocking P0 finding, or a required P0 configured check failed',
+  '  2  NOTHING_CHECKED   no check applied to any file in scope',
+  '  3  ERROR             a usage or config error, or a check changed the workspace',
+  '  4  UNVERIFIED        no blocker, but a required check produced no evidence',
+].join('\n');
+const HELP_FLAGS = new Set(['-h', '--help']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -457,6 +503,7 @@ function checkEntry(id, overrides = {}) {
     duration_ms: 0,
     requires: spec.requires,
     repair: null,
+    code: null,
     files: 0,
     ...overrides,
   };
@@ -472,19 +519,40 @@ function aggregateState(results, hasFindings) {
 // 4. CLI ARGUMENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The ids a run may name are known only once the repository config is read, so the
+// parser keeps the raw list and the context checks it against both sets.
 function parseCheckIds(flag, value) {
   const ids = value.split(',').map((id) => id.trim()).filter(Boolean);
-  const unknown = ids.filter((id) => !CHECK_IDS.has(id));
-  if (ids.length === 0 || unknown.length > 0) {
-    throw usage(`${flag} needs check ids from: ${[...CHECK_IDS].join(', ')}${unknown.length ? ` (unknown: ${unknown.join(', ')})` : ''}`);
+  if (ids.length === 0) throw usage(`${flag} needs at least one check id`);
+  return { flag, ids: new Set(ids) };
+}
+
+function checkIdSet(request, known) {
+  if (!request) return null;
+  const unknown = [...request.ids].filter((id) => !known.includes(id));
+  if (unknown.length > 0) throw usage(`${request.flag} needs check ids from: ${known.join(', ')} (unknown: ${unknown.join(', ')})`);
+  return request.ids;
+}
+
+/**
+ * Whether the arguments ask for help. Only an argument before -- counts, so a file
+ * named -h can still be checked after the separator.
+ *
+ * @param {string[]} argv - The arguments after the program name.
+ * @returns {boolean} True when -h or --help comes before any --.
+ */
+function wantsHelp(argv) {
+  for (const arg of argv) {
+    if (arg === '--') return false;
+    if (HELP_FLAGS.has(arg)) return true;
   }
-  return new Set(ids);
+  return false;
 }
 
 function parseArgs(argv) {
   const options = {
     scope: null, base: null, files: [], lines: 'changed', noRun: false, only: null,
-    skip: new Set(), timeoutSec: DEFAULT_TIMEOUT_SEC, format: 'json', explain: null,
+    skip: null, timeoutSec: DEFAULT_TIMEOUT_SEC, format: 'json', explain: null, configPath: null,
   };
   const setScope = (scope) => {
     if (options.scope && options.scope !== scope) throw usage('choose one of --worktree, --base, --files and --explain');
@@ -520,7 +588,7 @@ function parseArgs(argv) {
     } else if (arg === '--skip') {
       options.skip = parseCheckIds(arg, value());
     } else if (arg === '--config') {
-      throw usage('--config is not accepted: this runner reads no repository config and runs built-in checks only');
+      options.configPath = value();
     } else if (arg === '--timeout') {
       options.timeoutSec = Number(value());
       if (!Number.isFinite(options.timeoutSec) || options.timeoutSec <= 0) throw usage('--timeout takes a number of seconds above zero');
@@ -580,6 +648,39 @@ function resolveDeclarationHub(env) {
   return realpathOrSelf(hub);
 }
 
+function configSummary(loaded) {
+  return {
+    source: loaded.source,
+    path: loaded.display,
+    bytes: loaded.bytes,
+    defaults: DEFAULTS_FILE,
+    errors: loaded.errors.map((entry) => ({ ...entry, repair: REPAIRS.CONFIG_INVALID })),
+  };
+}
+
+// A config fault ends the run before any check starts, because a check list that did
+// not validate cannot say which commands the repository meant.
+function readRepositoryConfig(options, realCwd, root, git, env, defaults) {
+  let loaded;
+  try {
+    loaded = qualityConfig.loadConfig({
+      cliPath: options.configPath, cwd: realCwd, root, git, env, defaults, builtinIds: [...CHECK_IDS],
+    });
+  } catch (error) {
+    if (!(error instanceof qualityConfig.ConfigError)) throw error;
+    const failure = new GateError(error.code === 'CONFIG_PATH_MISSING' ? 'CONFIG_PATH_MISSING' : 'GIT_FAILED', error.message);
+    failure.config = { source: error.source || null, path: error.path || null, bytes: null, defaults: DEFAULTS_FILE, errors: [] };
+    throw failure;
+  }
+  if (loaded.errors.length > 0) {
+    const where = loaded.display || 'the repository config';
+    const failure = new GateError('CONFIG_INVALID', `${where} has ${loaded.errors.length} config error(s), listed in config.errors`);
+    failure.config = configSummary(loaded);
+    throw failure;
+  }
+  return loaded;
+}
+
 function buildContext(options, cwd, env) {
   const table = loadCommentSyntax();
   const defaults = loadDefaults();
@@ -591,8 +692,16 @@ function buildContext(options, cwd, env) {
     throw new GateError('NO_GIT_REPOSITORY', top.missing ? 'git is not on PATH' : `${realCwd} is not inside a git repository`);
   }
   const root = git ? top.stdout.trim() : realCwd;
+  const loaded = readRepositoryConfig(options, realCwd, root, git, env, defaults);
+  const known = [...CHECK_IDS, ...loaded.merged.checks.map((entry) => entry.id),
+    ...loaded.merged.generated.filter((row) => row.layer === 'repo').map((row) => row.id)];
   return {
     options, env, table, defaults, declHub, git, root, cwd: realCwd,
+    merged: loaded.merged,
+    config: configSummary(loaded),
+    configLoaded: loaded,
+    only: checkIdSet(options.only, known),
+    skip: checkIdSet(options.skip, known) || new Set(),
     rootReal: realpathOrSelf(root),
     skilledDir: realpathOrSelf(path.resolve(declHub, '..', '..')),
     // spawnSync reads a deadline of 0 as none, so a tiny value rounds up to 1 ms.
@@ -733,7 +842,7 @@ function fileFacts(file, context) {
   facts.real = realpathOrSelf(file.abs);
   facts.insideHub = isInside(facts.real, context.skilledDir);
   facts.matchPath = matchPathFor(facts, context);
-  if (matchesGlob(context.defaults.exclude, file.rel)) {
+  if (matchesGlob(context.merged.exclude, file.rel)) {
     facts.unchecked = 'excluded';
     return facts;
   }
@@ -761,14 +870,20 @@ function fileFacts(file, context) {
   const firstLine = facts.text.split('\n', 1)[0];
   facts.interpreter = interpreterFromShebang(firstLine);
   const ext = path.extname(file.rel).toLowerCase();
+  // The order is the checker's own: a shebang, then an extension the repository maps
+  // to a family, then the table. A mapped extension names a family and no language.
+  const mapped = context.merged.commentHygiene.extensions[ext];
   if (facts.interpreter && context.table.byInterpreter[facts.interpreter]) {
     facts.language = context.table.byInterpreter[facts.interpreter];
     facts.languageSource = 'shebang';
+  } else if (mapped) {
+    facts.family = mapped;
+    facts.languageSource = 'config';
   } else if (context.table.byExtension[ext]) {
     facts.language = context.table.byExtension[ext];
     facts.languageSource = 'extension';
   }
-  facts.family = facts.language ? context.table.languages[facts.language].family : null;
+  if (facts.language) facts.family = context.table.languages[facts.language].family;
   facts.syntax = syntaxKind(file.rel, facts.language, facts.languageSource === 'shebang' ? facts.interpreter : null);
   if (!facts.family && !facts.syntax) facts.unchecked = 'no comment family';
   return facts;
@@ -827,12 +942,14 @@ function hubFile(file, skillsDir) {
   return path.join(skillsDir, file.slice('hub:'.length));
 }
 
+// A base-layer row always names a hub file. A repository row names a file of its own,
+// relative to the root, or opts into a hub file with the hub: prefix.
 function checklistRows(context) {
-  const rows = context.defaults.checklists.map((row) => ({
+  const rows = context.merged.checklists.map((row) => ({
     owner: null,
     file: row.file,
-    path: hubFile(row.file, path.dirname(HUB_ROOT)),
-    why: row.why,
+    path: row.file.startsWith('hub:') ? hubFile(row.file, path.dirname(HUB_ROOT)) : path.join(context.root, row.file),
+    why: row.why || `${context.config.path}, ${describeSelectors(row)}`,
     selectors: row,
   }));
   const registry = readJson(path.join(context.declHub, 'mode-registry.json'));
@@ -895,7 +1012,7 @@ function resolveChecklists(files, context) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function sensorExcluded(context, sensor, facts) {
-  const settings = context.defaults.sensors[sensor] || {};
+  const settings = context.merged.sensors[sensor] || {};
   return matchesGlob(settings.exclude, facts.rel);
 }
 
@@ -907,11 +1024,17 @@ function applicability(facts, context, { explain = false } = {}) {
   // comment family, such as a .env or a Markdown file, where a marker or a key matters
   // as much as in code. A debugger line in such a file is an example, not a leftover.
   const readable = facts.text !== null;
-  const generated = context.defaults.generated || [];
-  const debugOn = (context.defaults.sensors.debugLeftovers || {}).enabled !== false;
+  // Only the base layer's generated rows name paths for the dist checker. A row the
+  // repository adds carries its own command and runs as a configured check.
+  const generated = context.merged.generated.filter((row) => row.layer === 'defaults');
+  const debugOn = (context.merged.sensors.debugLeftovers || {}).enabled !== false;
   const kind = facts.syntax;
   return {
-    'comment-hygiene': textual && facts.family ? `${facts.language} comments, ${facts.family} family, chosen by ${facts.languageSource}` : null,
+    'comment-hygiene': textual && facts.family && !matchesGlob(context.merged.commentHygiene.exclude, facts.rel)
+      ? (facts.language
+        ? `${facts.language} comments, ${facts.family} family, chosen by ${facts.languageSource}`
+        : `${facts.family} comments, the family the repository config maps ${path.extname(facts.rel).toLowerCase()} to`)
+      : null,
     'conflict-markers': readable && !sensorExcluded(context, 'conflictMarkers', facts) ? 'every readable text file' : null,
     secrets: readable && !sensorExcluded(context, 'secrets', facts) ? 'every readable text file' : null,
     'debug-leftovers': textual && debugOn && !sensorExcluded(context, 'debugLeftovers', facts) && (explain || hasChanges(facts))
@@ -938,7 +1061,7 @@ function planChecks(files, context) {
 }
 
 function selected(context, id) {
-  const { only, skip } = context.options;
+  const { only, skip } = context;
   return (!only || only.has(id)) && !skip.has(id);
 }
 
@@ -1021,8 +1144,45 @@ function runInProcessSyntax(plan) {
 // 9. SPAWNED CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The repository's additions reach the checker as its own flags, so the checker keeps
+// every core pattern and adds these on top. A value it refuses ends its run with a
+// usage error, which the row reports with the checker's own message. A refusal that
+// names one of these flags is a config fault instead, because only the field that
+// supplied the value can be repaired, so the gate reports that field the way a bad
+// config file is reported.
+function hygieneFlags(context) {
+  const { ticketPrefixes, extraPatterns, extensions } = context.merged.commentHygiene;
+  return [
+    ...ticketPrefixes.flatMap((prefix) => ['--ticket-prefix', prefix]),
+    ...Object.entries(extensions).flatMap(([ext, family]) => ['--extension', `${ext}=${family}`]),
+    ...extraPatterns.flatMap((pattern) => ['--extra-pattern', pattern]),
+  ];
+}
+
+const HYGIENE_FLAG_FIELDS = Object.freeze({
+  '--ticket-prefix': 'commentHygiene.ticketPrefixes',
+  '--extension': 'commentHygiene.extensions',
+  '--extra-pattern': 'commentHygiene.extraPatterns',
+});
+
+// The checker marks its own refusal with ERROR, and the interpreter can print a warning
+// above that line, so the marker decides which line carries the refusal. A stderr with no
+// marked line falls back to the first line that is not part of the usage text.
+function hygieneRefusal(stderr) {
+  const lines = stderr.split('\n').map((line) => line.trim()).filter((line) => line);
+  return lines.find((line) => line.startsWith('ERROR:')) || lines.find((line) => !line.startsWith('Usage:')) || '';
+}
+
+// A flag refusal starts with the flag the checker named, so its first word decides which
+// field supplied the value. A flag the runner supplies itself names no field, so its row
+// stays a plain error.
+function refusedHygieneField(refusal) {
+  const [flag] = (refusal || '').split(/[^A-Za-z0-9-]+/).filter(Boolean);
+  return flag && Object.prototype.hasOwnProperty.call(HYGIENE_FLAG_FIELDS, flag) ? HYGIENE_FLAG_FIELDS[flag] : null;
+}
+
 function runHygiene(files, context) {
-  const argv = [context.python, '-B', '-I', HYGIENE_CHECKER, '--json', '--', ...files.map((facts) => facts.rel)];
+  const argv = [context.python, '-B', '-I', HYGIENE_CHECKER, '--json', ...hygieneFlags(context), '--', ...files.map((facts) => facts.rel)];
   const result = spawnArgv(argv, { cwd: context.root, env: context.env, timeoutMs: context.timeoutMs });
   const base = { exit: result.exit, duration_ms: result.durationMs };
   if (result.state === 'TIMEOUT' || result.state === 'ERROR') return { ...base, state: result.state, findings: [] };
@@ -1030,7 +1190,15 @@ function runHygiene(files, context) {
   try {
     report = JSON.parse(result.stdout);
   } catch {
-    return { ...base, state: 'ERROR', findings: [], repair: 'the checker printed no comment-hygiene/v1 document' };
+    const refusal = hygieneRefusal(result.stderr);
+    const quoted = (refusal || '').replace(/^ERROR:\s*/, '');
+    const field = refusedHygieneField(quoted);
+    if (field) {
+      return { ...base, state: 'ERROR', findings: [],
+        configFault: { field, message: `${field}: the checker refused the value: ${quoted}` } };
+    }
+    return { ...base, state: 'ERROR', findings: [],
+      repair: refusal ? `the checker refused its arguments: ${refusal}` : 'the checker printed no comment-hygiene/v1 document' };
   }
   const byRel = new Map(files.map((facts) => [facts.rel, facts]));
   const findings = [];
@@ -1201,6 +1369,180 @@ function runDistAdapter(files, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_
   return { check: { ...check, state: aggregateState(results, findings.length > 0), duration_ms: duration }, findings };
 }
 
+// The commands below come from the repository's committed config and from nowhere
+// else. Each one gets the files it matched, never a shell, and never a file the
+// runner could not find as a regular file, because a tool handed a folder or a dead
+// link fails for a reason that is not the change's.
+const PASSABLE = new Set([null, 'binary', 'size', 'no comment family']);
+
+function isRegularFile(abs) {
+  try {
+    return fs.statSync(abs).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function configuredEntries(context) {
+  return [...context.merged.checks, ...context.merged.generated.filter((row) => row.layer === 'repo')];
+}
+
+// A generated row names output folders that the built-in excludes skip, such as dist,
+// so it matches by its own paths alone. A check matches what the runner reads.
+function configuredMatches(entry, files) {
+  return files.filter((facts) => {
+    const passable = entry.kind === 'generated'
+      ? (facts.unchecked === 'excluded' ? isRegularFile(facts.abs) : PASSABLE.has(facts.unchecked))
+      : PASSABLE.has(facts.unchecked);
+    if (!passable) return false;
+    if (entry.languages && !entry.languages.includes(facts.language)) return false;
+    return !entry.paths || matchesGlob(entry.paths, facts.rel);
+  });
+}
+
+// The nearest folder above a file that holds a project manifest, so a tool that reads
+// its own project file starts where that file is. A file with none above it runs at
+// the root.
+function packageDir(root, rel, cache) {
+  const chain = [];
+  let dir = path.posix.dirname(rel);
+  let found = '.';
+  for (;;) {
+    if (cache.has(dir)) {
+      found = cache.get(dir);
+      break;
+    }
+    chain.push(dir);
+    if (qualityConfig.PACKAGE_MARKERS.some((name) => fs.existsSync(path.join(root, dir, name)))) {
+      found = dir;
+      break;
+    }
+    if (dir === '.') break;
+    dir = path.posix.dirname(dir);
+  }
+  for (const entry of chain) cache.set(entry, found);
+  return found;
+}
+
+// A name that starts with a dash would read as an option to most tools, so it is
+// passed as ./name.
+function fileArgument(cwd, rel) {
+  const out = cwd === '.' ? rel : path.posix.relative(cwd, rel);
+  return out.startsWith('-') ? `./${out}` : out;
+}
+
+// A program named with a slash is a file in the repository, read from the root the same
+// way a requires value is, so a run in a package folder starts the file the presence
+// probe found instead of one looked up under that folder.
+function programArgument(root, argv) {
+  const [program, ...rest] = argv;
+  if (!program || !program.includes('/') || path.isAbsolute(program)) return argv;
+  return [path.resolve(root, program), ...rest];
+}
+
+function configuredRuns(entry, matched, context, cache) {
+  const groups = new Map();
+  for (const facts of matched) {
+    const cwd = entry.cwd === 'package' ? packageDir(context.root, facts.rel, cache) : '.';
+    if (!groups.has(cwd)) groups.set(cwd, []);
+    groups.get(cwd).push(facts);
+  }
+  return [...groups.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)).map(([cwd, members]) => {
+    const expanded = entry.argv.flatMap((arg) => (arg === qualityConfig.FILES_TOKEN ? members.map((facts) => fileArgument(cwd, facts.rel)) : [arg]));
+    return { cwd, files: members, argv: programArgument(context.root, expanded) };
+  });
+}
+
+function configuredRow(entry, overrides = {}) {
+  return {
+    id: entry.id,
+    origin: entry.kind === 'generated' ? 'generated' : 'configured',
+    severity: entry.severity,
+    required: entry.required,
+    state: 'NOT_APPLICABLE',
+    argv: [...entry.argv],
+    cwd: entry.cwd,
+    exit: null,
+    duration_ms: 0,
+    requires: entry.requires,
+    repair: null,
+    code: null,
+    files: 0,
+    runs: [],
+    ...overrides,
+  };
+}
+
+// A requires value holding a slash names a file in the repository, read from the root.
+function requiredTool(entry, context) {
+  const name = entry.requires.includes('/') ? path.resolve(context.root, entry.requires) : entry.requires;
+  return findTool(name, context.env);
+}
+
+/**
+ * Decide what each configured check does in this run. The order is the built-in one:
+ * no matching file, then the flags, then an absent tool, then --no-run. A check that
+ * would start a command outside git stops there, because nothing could show whether
+ * it changed the workspace.
+ *
+ * @param {Object[]} files - File facts for the scope.
+ * @param {Object} context - The run context.
+ * @returns {Array<{entry:Object, row:Object, matched:Object[], runs:Object[], pending:boolean}>}
+ */
+function planConfigured(files, context) {
+  const cache = new Map();
+  return configuredEntries(context).map((entry) => {
+    const matched = configuredMatches(entry, files);
+    const row = configuredRow(entry, { files: matched.length });
+    const item = { entry, row, matched, runs: [], pending: false };
+    if (matched.length === 0) return item;
+    if (!selected(context, entry.id)) return { ...item, row: { ...row, state: 'SKIPPED_BY_FLAG' } };
+    if (!requiredTool(entry, context)) {
+      return { ...item, row: { ...row, state: 'SKIPPED_ABSENT', repair: `install '${entry.requires}' or remove the check from ${context.config.path}` } };
+    }
+    const runs = configuredRuns(entry, matched, context, cache);
+    if (context.options.noRun) {
+      return { ...item, row: { ...row, state: 'LISTED', runs: runs.map((run) => ({ cwd: run.cwd, argv: run.argv, files: run.files.length, state: 'LISTED' })) } };
+    }
+    if (!context.git) return { ...item, row: { ...row, state: 'ERROR', code: 'GUARD_UNAVAILABLE', repair: REPAIRS.GUARD_UNAVAILABLE } };
+    return { ...item, runs, pending: true };
+  });
+}
+
+// Each cwd group is one run under the check's own deadline. A run that times out or
+// cannot start ends the check, so a stuck tool costs one deadline and not one per
+// folder.
+function runConfigured(item, context) {
+  const timeoutMs = item.entry.timeoutSec ? Math.max(1, Math.round(item.entry.timeoutSec * 1000)) : context.timeoutMs;
+  const runs = [];
+  for (const run of item.runs) {
+    const result = spawnGroup(run.argv, { cwd: path.join(context.root, run.cwd), env: context.env, timeoutMs });
+    runs.push({ cwd: run.cwd, argv: run.argv, files: run.files.length, state: result.state, exit: result.exit, duration_ms: result.durationMs });
+    if (result.state === 'TIMEOUT' || result.state === 'ERROR') break;
+  }
+  const state = aggregateState(runs, runs.some((run) => run.state === 'RAN_FAIL'));
+  const failed = runs.find((run) => run.state !== 'RAN_CLEAN');
+  const repair = {
+    RAN_FAIL: 'rerun the command in the listed cwd to read what it reported',
+    TIMEOUT: `the command passed its ${timeoutMs / 1000} second deadline, raise timeoutSec or --timeout`,
+    ERROR: 'the command could not start, check its argv and its requires value',
+  }[state] || null;
+  return {
+    ...item.row,
+    state,
+    exit: failed ? failed.exit : 0,
+    duration_ms: runs.reduce((sum, run) => sum + run.duration_ms, 0),
+    repair,
+    runs,
+  };
+}
+
+function readSuggested(context) {
+  const taken = configuredEntries(context);
+  return qualityConfig.readSuggestions(context.root).filter((item) => !taken.some((entry) => entry.id === item.id
+    || JSON.stringify(entry.argv) === JSON.stringify(item.entry.argv)));
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 10. ENFORCEMENT LAYER PROBES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1315,7 +1657,7 @@ function applyLayerRule(findings, layers) {
 function decideGate({ errors = [], findings = [], checks = [], filesChecked = 0 }) {
   const unverified = checks.filter((check) => check.required && UNVERIFIED_STATES.has(check.state)).map((check) => check.id);
   const blocked = findings.some((entry) => entry.blocking && entry.severity === 'P0' && entry.confidence === 'exact')
-    || checks.some((check) => check.origin === 'configured' && check.severity === 'P0' && check.required && check.state === 'RAN_FAIL');
+    || checks.some((check) => REPOSITORY_ORIGINS.has(check.origin) && check.severity === 'P0' && check.required && check.state === 'RAN_FAIL');
   let gate = 'NO_BLOCKER_FOUND';
   if (errors.length > 0) gate = 'ERROR';
   else if (blocked) gate = 'BLOCKED';
@@ -1393,7 +1735,7 @@ function emptyVerdict(options) {
     exit_code: GATE_EXIT.ERROR,
     scope: { mode: options ? options.scope : null, base: options ? options.base : null, merge_base: null,
       lines: options ? options.lines : 'changed', files: [] },
-    config: { source: 'defaults', path: DEFAULTS_FILE, errors: [] },
+    config: { source: null, path: null, bytes: null, defaults: DEFAULTS_FILE, errors: [] },
     resolved_surface: ['unknown'],
     surfaces: [],
     layers: { pre_commit_hygiene: 'unknown', ci_hygiene: 'unknown', post_edit: 'unknown' },
@@ -1410,8 +1752,10 @@ function emptyVerdict(options) {
 
 function errorVerdict(error, options) {
   const code = error instanceof GateError ? error.code : 'INTERNAL_ERROR';
+  const verdict = emptyVerdict(options);
   return {
-    ...emptyVerdict(options),
+    ...verdict,
+    config: error.config || verdict.config,
     errors: [{ code, message: error.message, repair: REPAIRS[code] || REPAIRS.INTERNAL_ERROR }],
   };
 }
@@ -1419,7 +1763,7 @@ function errorVerdict(error, options) {
 function recordSpawnedCheck(id, files, context, run) {
   const tool = { 'comment-hygiene': context.python, 'syntax-node': process.execPath, 'syntax-shell': context.bash }[id];
   const argv = {
-    'comment-hygiene': ['python3', '-B', '-I', HYGIENE_CHECKER, '--json', '--', '{files}'],
+    'comment-hygiene': ['python3', '-B', '-I', HYGIENE_CHECKER, '--json', ...hygieneFlags(context), '--', '{files}'],
     'syntax-node': ['node', '--check', '{file}'],
     'syntax-shell': ['bash', '-n', '{file}'],
   }[id];
@@ -1442,6 +1786,9 @@ function runGate(context) {
   const plan = planChecks(files, context);
   const checks = new Map();
   const errors = [];
+  // A config fault found while a check runs reports the way a bad config file reports:
+  // one summary error and one row per bad field, so the gate exits with the config code.
+  const configFaults = [];
   let findings = [];
   const ranOn = new Map();
 
@@ -1478,6 +1825,12 @@ function runGate(context) {
       continue;
     }
     steps.push({ id, run, finish: (outcome) => {
+      if (outcome.configFault) {
+        configFaults.push({ code: 'CONFIG_INVALID', ...outcome.configFault, repair: REPAIRS.CONFIG_INVALID });
+        const where = context.config.path || 'the repository config';
+        errors.push({ code: 'CONFIG_INVALID', repair: REPAIRS.CONFIG_INVALID,
+          message: `${where} has ${configFaults.length} config error(s), listed in config.errors` });
+      }
       findings.push(...outcome.findings);
       settle({ ...entry, state: outcome.state, exit: outcome.exit === undefined ? null : outcome.exit,
         duration_ms: outcome.duration_ms || 0, repair: outcome.repair || null }, plan.get(id));
@@ -1540,8 +1893,10 @@ function runGate(context) {
   const failRest = (repair) => {
     for (const step of steps) if (!finished.has(step)) step.finish({ state: 'ERROR', findings: [], repair });
   };
+  const guardContext = { root: context.root, git: context.git, files: files.map((facts) => facts.rel), env: context.env };
+  let snapshot = null;
+  let halted = null;
   if (steps.length > 0) {
-    const guardContext = { root: context.root, git: context.git, files: files.map((facts) => facts.rel), env: context.env };
     try {
       const outcome = withGuard(guardContext, () => {
         for (const step of steps) {
@@ -1550,26 +1905,63 @@ function runGate(context) {
           step.finish(result);
         }
       });
+      snapshot = outcome.after;
       if (outcome.mutated.length > 0) {
         const ids = steps.map((step) => step.id).join(',');
         errors.push({ code: 'CHECK_MUTATED_WORKSPACE', message: `the workspace changed while ${ids} ran`, check: ids,
           paths: outcome.mutated, repair: REPAIRS.CHECK_MUTATED_WORKSPACE });
+        halted = `the workspace changed while ${ids} ran`;
       }
     } catch (error) {
       errors.push({ code: error.code === 'GUARD_FAILED' ? 'GUARD_FAILED' : 'INTERNAL_ERROR', message: error.message,
         repair: REPAIRS.GUARD_FAILED });
       failRest('not run, because the workspace guard or an earlier check failed');
+      halted = 'the workspace guard failed';
+    }
+  }
+
+  // Each repository command runs in its own guard window, chained from the last one,
+  // so a mutation names the one command that made it. The first mutation stops the
+  // rest, because a later command would read a tree the author did not write.
+  const configured = planConfigured(files, context);
+  const configuredRows = [];
+  const configuredRan = new Set();
+  for (const item of configured) {
+    if (!item.pending) {
+      configuredRows.push(item.row);
+      continue;
+    }
+    if (halted) {
+      configuredRows.push({ ...item.row, state: 'ERROR', repair: `not run, because ${halted}` });
+      continue;
+    }
+    try {
+      const outcome = withGuard(guardContext, () => runConfigured(item, context), snapshot);
+      snapshot = outcome.after;
+      configuredRows.push(outcome.value);
+      if (RAN_STATES.has(outcome.value.state)) for (const facts of item.matched) configuredRan.add(facts.rel);
+      if (outcome.mutated.length > 0) {
+        errors.push({ code: 'CHECK_MUTATED_WORKSPACE', message: `the workspace changed while ${item.entry.id} ran`, check: item.entry.id,
+          paths: outcome.mutated, repair: REPAIRS.CHECK_MUTATED_WORKSPACE });
+        halted = `the workspace changed while ${item.entry.id} ran`;
+      }
+    } catch (error) {
+      errors.push({ code: error.code === 'GUARD_FAILED' ? 'GUARD_FAILED' : 'INTERNAL_ERROR', message: error.message,
+        repair: REPAIRS.GUARD_FAILED });
+      configuredRows.push({ ...item.row, state: 'ERROR', repair: 'not run, because the workspace guard failed' });
+      halted = 'the workspace guard failed';
     }
   }
 
   findings = redactSecrets(applyLayerRule(findings, layers), files)
     .sort((a, b) => (a.file < b.file ? -1 : a.file > b.file ? 1 : (a.line || 0) - (b.line || 0) || (a.rule < b.rule ? -1 : 1)));
-  const orderedChecks = CHECKS.map((check) => checks.get(check.id));
+  const orderedChecks = [...CHECKS.map((check) => checks.get(check.id)), ...configuredRows];
   // A file the language checks could not read stays unchecked, even when the sensors
-  // scanned its raw text, so a change of such files alone never reads as checked.
-  const checked = new Set();
+  // scanned its raw text, so a change of such files alone never reads as checked. A
+  // file a repository command ran on has that command's evidence, so it counts.
+  const checked = new Set(configuredRan);
   for (const applicable of ranOn.values()) for (const facts of applicable) if (!facts.unchecked) checked.add(facts.rel);
-  const allErrors = [...configErrors, ...errors];
+  const allErrors = [...configErrors, ...configFaults, ...errors];
   const decision = decideGate({ errors: allErrors, findings, checks: orderedChecks, filesChecked: checked.size });
   const labels = [];
   for (const surface of surfaces) {
@@ -1582,19 +1974,20 @@ function runGate(context) {
     exit_code: decision.exit_code,
     scope: { mode: context.options.scope, base: scope.base, merge_base: scope.mergeBase, lines: context.options.lines,
       files: files.map((facts) => facts.rel) },
-    config: { source: 'defaults', path: DEFAULTS_FILE, errors: configErrors },
+    config: { ...context.config, errors: [...context.config.errors, ...configErrors, ...configFaults] },
     resolved_surface: labels.length > 0 ? labels : ['unknown'],
     surfaces: files.filter((facts) => facts.unchecked !== 'excluded').map((facts) => ({ file: facts.rel, labels: facts.labels })),
     layers,
     checklists,
     checks: orderedChecks,
     findings,
-    suggested_checks: [],
+    suggested_checks: readSuggested(context),
     judgment_required: [...JUDGMENT_REQUIRED],
     coverage: {
       files_total: files.length,
       files_checked: checked.size,
-      unchecked: files.filter((facts) => facts.unchecked).map((facts) => ({ file: facts.rel, reason: facts.unchecked })),
+      unchecked: files.filter((facts) => facts.unchecked && !checked.has(facts.rel))
+        .map((facts) => ({ file: facts.rel, reason: facts.unchecked })),
     },
     summary: summarize(findings, decision.unverified),
     errors,
@@ -1610,6 +2003,13 @@ function explain(context) {
   if (facts.unchecked !== 'excluded') facts.labels = fileLabels(facts, surfaces);
   const { checklists, errors } = resolveChecklists([facts], context);
   const reasons = applicability(facts, context, { explain: true });
+  const repository = configuredEntries(context).map((entry) => {
+    const applies = configuredMatches(entry, [facts]).length > 0;
+    const selectors = [entry.languages ? `languages ${entry.languages.join(' ')}` : null, entry.paths ? `paths ${entry.paths.join(' ')}` : null]
+      .filter(Boolean).join(', ') || 'every file the runner reads';
+    return { id: entry.id, origin: entry.kind === 'generated' ? 'generated' : 'configured', applies,
+      why: applies ? `matches ${selectors} in ${context.config.path}` : `does not match ${selectors}` };
+  });
   return {
     schema: EXPLAIN_SCHEMA,
     status: 'advisory',
@@ -1619,12 +2019,13 @@ function explain(context) {
     language_source: facts.languageSource,
     unchecked: facts.unchecked,
     surfaces: facts.labels,
+    config: context.config,
     checklists: checklists.map(({ file, path: where, why }) => ({ file, path: where, why })),
-    checks: CHECKS.map((check) => ({
+    checks: [...CHECKS.map((check) => ({
       id: check.id,
       applies: Boolean(reasons[check.id]),
       why: reasons[check.id] || (facts.unchecked ? `the file is unchecked: ${facts.unchecked}` : 'not this file\'s language or path'),
-    })),
+    })), ...repository],
     errors,
     note: 'nothing was run',
   };
@@ -1673,10 +2074,13 @@ function renderText(verdict) {
   out.push(`scope: ${verdict.scope.mode}, lines ${verdict.scope.lines}, ${verdict.scope.files.length} file(s)`);
   out.push(`surfaces: ${verdict.resolved_surface.join(', ')}`);
   out.push(`layers: pre-commit ${verdict.layers.pre_commit_hygiene}, ci ${verdict.layers.ci_hygiene}, post-edit ${verdict.layers.post_edit}`);
+  out.push(`config: ${verdict.config.source || 'not read'}${verdict.config.path ? ` ${verdict.config.path}` : ''}`);
   for (const error of verdict.errors.concat(verdict.config.errors)) out.push(`error ${error.code}: ${error.message} (repair: ${error.repair})`);
   out.push('checks:');
   for (const check of verdict.checks) {
-    out.push(`  ${check.id} ${check.state} ${check.severity}${check.required ? ' required' : ''}${check.repair ? ` (${check.repair})` : ''}`);
+    const origin = check.origin === 'builtin' ? '' : ` ${check.origin}`;
+    const code = check.code ? ` ${check.code}` : '';
+    out.push(`  ${check.id}${origin} ${check.state}${code} ${check.severity}${check.required ? ' required' : ''}${check.repair ? ` (${check.repair})` : ''}`);
   }
   out.push(`findings: ${verdict.findings.length}`);
   for (const entry of verdict.findings) {
@@ -1687,6 +2091,7 @@ function renderText(verdict) {
   out.push('checklists to load:');
   for (const entry of verdict.checklists) out.push(`  ${entry.file} (${entry.why})`);
   for (const entry of verdict.coverage.unchecked) out.push(`unchecked: ${entry.file} (${entry.reason})`);
+  for (const item of verdict.suggested_checks) out.push(`suggested, never run: ${item.id} from ${item.source}: ${item.entry.argv.join(' ')}`);
   out.push(`judgment required: ${verdict.judgment_required.join(', ')}`);
   return out.join('\n');
 }
@@ -1703,6 +2108,9 @@ function render(verdict, format) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main(argv, { cwd = process.cwd(), env = process.env } = {}) {
+  // Help reads nothing and starts nothing, because it is the call an operator makes
+  // before trusting the tool.
+  if (wantsHelp(argv)) return { output: USAGE_TEXT, exitCode: 0, message: null };
   let options = null;
   try {
     options = parseArgs(argv);
@@ -1730,4 +2138,4 @@ if (require.main === module) {
 // 14. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { decideGate, runDistAdapter };
+module.exports = { CHECK_IDS, USAGE_TEXT, decideGate, probeLayers, runDistAdapter };

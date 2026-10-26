@@ -21,8 +21,10 @@
         "assets/code-quality-checklist/overview-header-and-comments.md",
         "assets/code-quality-checklist/verification-quick-reference-and-related.md",
         "assets/comment-syntax.json",
+        "assets/quality-config.template.json",
         "assets/quality-defaults.json",
         "references/code-style-guide.md",
+        "references/quality-config.md",
         "references/runner-contract.md"
       ],
       "packet": "sk-code-quality",

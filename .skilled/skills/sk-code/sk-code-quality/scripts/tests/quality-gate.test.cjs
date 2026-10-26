@@ -43,6 +43,12 @@ const OPEN = '<'.repeat(7);
 const MIDDLE = '='.repeat(7);
 const CLOSE = '>'.repeat(7);
 const PASS_WORD = /\bpass(?:ed|es|ing)?\b/i;
+// JavaScript reads this as a control escape and Python's re refuses it, so the value
+// passes the config validator and the hygiene checker is the one that rejects it.
+const CHECKER_REFUSED_PATTERN = '\\cA';
+// A nested set makes python warn on stderr before re refuses the bad escape that follows,
+// so the checker's refusal is not the first line it writes there.
+const NESTED_SET_REFUSED_PATTERN = '[[]\\cA';
 const LAYER_STATE = '(?:present|absent|untrusted|broken|unknown)';
 const CHECKER_OUTPUTS = new RegExp('^code-quality-run/v1 gate=(?:NO_BLOCKER_FOUND|BLOCKED|NOTHING_CHECKED|ERROR|UNVERIFIED) '
   + 'exit=[0-4] p0_blocking=\\d+ unverified=(?:none|[a-z0-9,-]+) unchecked=\\d+ '
@@ -371,6 +377,45 @@ test('unit: checker failure', () => withRepo({ change: { 'app.go': 'package a\n'
   assert.equal(check(refused.verdict, 'comment-hygiene').state, 'ERROR');
 }));
 
+test('unit: config fault: a pattern the checker cannot compile ends the run as a config error', () => withRepo({
+  base: {
+    '.sk-code/quality.json': `${JSON.stringify({ schemaVersion: 1, commentHygiene: { extraPatterns: [CHECKER_REFUSED_PATTERN] } })}\n`,
+  },
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 3);
+  assert.equal(verdict.gate, 'ERROR');
+  assert.equal(verdict.errors[0].code, 'CONFIG_INVALID');
+  const [field] = verdict.config.errors;
+  assert.equal(field.code, 'CONFIG_INVALID');
+  assert.equal(field.field, 'commentHygiene.extraPatterns');
+  assert.match(field.message, /--extra-pattern/);
+
+  const runnerFlag = fakePython(path.join(repo.parent, 'own-flag'),
+    'process.stderr.write("ERROR: --json needs a value\\n"); process.exit(3);');
+  const refused = assertSnapshotUnchanged(repo, () => repo.run([], { env: { PATH: `${runnerFlag}${path.delimiter}${repo.env.PATH}` } }));
+  assert.equal(refused.status, 4);
+  assert.equal(check(refused.verdict, 'comment-hygiene').state, 'ERROR');
+  assert.deepEqual(refused.verdict.config.errors, []);
+}));
+
+test('unit: config fault: a checker warning above its refusal still names the field', () => withRepo({
+  base: {
+    '.sk-code/quality.json': `${JSON.stringify({ schemaVersion: 1, commentHygiene: { extraPatterns: [NESTED_SET_REFUSED_PATTERN] } })}\n`,
+  },
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 3);
+  assert.equal(verdict.gate, 'ERROR');
+  assert.equal(verdict.errors[0].code, 'CONFIG_INVALID');
+  const [field] = verdict.config.errors;
+  assert.equal(field.code, 'CONFIG_INVALID');
+  assert.equal(field.field, 'commentHygiene.extraPatterns');
+  assert.match(field.message, /--extra-pattern/);
+}));
+
 test('unit: exit precedence', () => {
   const blocker = { blocking: true, severity: 'P0', confidence: 'exact' };
   const skipped = { id: 'comment-hygiene', origin: 'builtin', severity: 'P0', required: true, state: 'SKIPPED_ABSENT' };
@@ -586,8 +631,13 @@ test('unit: flags', () => withRepo({
   const canary = path.join(repo.parent, 'canary');
   const spy = fakePython(repo.parent, `require("fs").writeFileSync(${JSON.stringify(canary)}, "ran");\n${HYGIENE_REPORT}`);
   const spyPath = { env: { PATH: `${spy}${path.delimiter}${repo.env.PATH}` } };
+  const named = path.join(repo.parent, 'named-quality.json');
+  fs.writeFileSync(named, '{"schemaVersion": 1}\n');
   assertSnapshotUnchanged(repo, () => {
     assert.equal(repo.run([]).status, 0);
+    const configured = repo.run(['--config', named]);
+    assert.equal(configured.status, 0);
+    assert.deepEqual([configured.verdict.config.source, configured.verdict.config.path], ['cli', named]);
     const whole = repo.run(['--lines', 'file']);
     assert.equal(whole.status, 1);
     assert.equal(hygieneFindings(whole.verdict)[0].origin, 'changed-line');
@@ -614,7 +664,7 @@ test('unit: flags', () => withRepo({
     assert.ok(explained.verdict.checklists.every((item) => typeof item.why === 'string' && item.why.length > 0));
     assert.ok(!fs.existsSync(canary));
 
-    for (const args of [['--config', '/dev/null'], ['--only', 'sk-code-absent-check'], ['--timeout', '0'],
+    for (const args of [['--config'], ['--only', 'sk-code-absent-check'], ['--timeout', '0'],
       ['--format', 'yaml'], ['--worktree', '--files', 'app.go'], ['--lines', 'some']]) {
       const refused = repo.run(args);
       assert.equal(refused.status, 3, args.join(' '));

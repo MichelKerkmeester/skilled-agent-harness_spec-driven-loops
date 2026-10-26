@@ -9,15 +9,18 @@
 // provisioned, the parent hub passes its structural invariants, the root
 // metadata manifests are fresh, the compiled-route guard finds no stale or
 // drifted hub, the served runtime copies match their authored closure, the
-// sk-code drift guards pass, the derived metadata is fresh, and a probe prompt
-// actually routes through the compiled router.
+// sk-code drift guards pass, the derived metadata is fresh, a probe prompt
+// actually routes through the compiled router, and the quality gate is ready to
+// run: its tools, its executables, its tables, its own tests and its route.
 //
 // Every leg except the provisioning precheck runs as a child process from the
 // repository root, and the precheck resolves the shared package in-process, so
-// the battery reports the tree a caller would see. Nothing is written: each
-// failing leg prints the command that repairs it and the operator decides. The
-// probe is the one leg whose exit code proves nothing, because the legacy stub
-// exits 0 too, so it passes only on a parsed `action: "route"` decision.
+// the battery reports the tree a caller would see. Nothing in the repository is
+// written: the quality tests build their throwaway repositories under the OS
+// temp folder and remove them, and each failing leg prints the command that
+// repairs it and the operator decides. The probe is the one leg whose exit code
+// proves nothing, because the legacy stub exits 0 too, so it passes only on a
+// parsed `action: "route"` decision.
 //
 // Usage: sk-code-setup-check.cjs [--prompt=<text>]
 // Environment override, so the battery can be pointed at a fixture tree:
@@ -60,6 +63,15 @@ const DRIFT_GUARDS = '.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-dr
 const DERIVED_FRESHNESS = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs';
 const REGENERATE_DERIVED = '.skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs';
 const ROUTE_PROBE = '.skilled/bin/compiled-route.cjs';
+const QUALITY_DIR = '.skilled/skills/sk-code/sk-code-quality';
+const QUALITY_RUNNER = `${QUALITY_DIR}/scripts/quality-gate.cjs`;
+const QUALITY_CHECKER = `${QUALITY_DIR}/scripts/check-comment-hygiene.sh`;
+const QUALITY_TABLES = [`${QUALITY_DIR}/assets/comment-syntax.json`, `${QUALITY_DIR}/assets/quality-defaults.json`];
+const QUALITY_TESTS = `${QUALITY_DIR}/scripts/tests`;
+const QUALITY_MODE = 'sk-code-quality';
+// The default probe prompt never reaches the quality mode, so the quality leg
+// probes with a prompt of its own.
+const QUALITY_PROMPT = 'run the quality gate on my changed files before I claim done';
 
 const PROVISION = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
 
@@ -80,9 +92,10 @@ const DETAIL_LIMIT = 10;
 
 // Every leg runs from the repository root so the battery reports the tree a
 // caller would see; a missing binary is normalized to a failure, never a crash.
-function spawnLeg(argv) {
+function spawnLeg(argv, env = process.env) {
   const result = spawnSync(argv[0], argv.slice(1), {
     cwd: ROOT,
+    env,
     encoding: 'utf8',
     maxBuffer: MAX_BUFFER,
   });
@@ -92,6 +105,78 @@ function spawnLeg(argv) {
     stderr: result.stderr || '',
     output: `${result.stdout || ''}${result.stderr || ''}`,
   };
+}
+
+function onPath(name) {
+  for (const dir of String(process.env.PATH || '').split(path.delimiter)) {
+    if (!dir) continue;
+    try {
+      fs.accessSync(path.join(dir, name), fs.constants.X_OK);
+      if (fs.statSync(path.join(dir, name)).isFile()) return true;
+    } catch {
+      // Not in this folder, so the next one is read.
+    }
+  }
+  return false;
+}
+
+function isExecutable(rel) {
+  try {
+    fs.accessSync(path.join(ROOT, rel), fs.constants.X_OK);
+    return fs.statSync(path.join(ROOT, rel)).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function unparsable(rel) {
+  try {
+    JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+    return false;
+  } catch {
+    return true;
+  }
+}
+
+function qualityTests() {
+  try {
+    return fs.readdirSync(path.join(ROOT, QUALITY_TESTS)).filter((name) => name.endsWith('.test.cjs')).sort()
+      .map((name) => `${QUALITY_TESTS}/${name}`);
+  } catch {
+    return [];
+  }
+}
+
+// Five checks in one leg, each with its own repair, so a broken quality setup names
+// the one step to fix. The tests run last but one because they take the longest,
+// and the route probe last because it reads the served manifest the other legs
+// already checked.
+function runQuality() {
+  const checks = [];
+  const add = (id, ok, detail, repair) => checks.push({ id, ok, detail, repair });
+  add('tools', onPath('python3'), 'python3 is not on PATH, and the comment-hygiene check runs on it',
+    'install python3 and put it on PATH');
+  const closed = [QUALITY_RUNNER, QUALITY_CHECKER].filter((rel) => !isExecutable(rel));
+  add('executables', closed.length === 0, `not an executable file: ${closed.join(', ')}`, `chmod +x ${closed.join(' ')}`);
+  const broken = QUALITY_TABLES.filter(unparsable);
+  add('tables', broken.length === 0, `does not parse as JSON: ${broken.join(', ')}`,
+    `restore ${broken.join(' and ')} from version control`);
+  const tests = qualityTests();
+  // A battery started from inside a node test run inherits that run's context marker,
+  // which turns a nested test run into a reporting child whose exit code is not its
+  // verdict, so the marker is dropped.
+  const { NODE_TEST_CONTEXT: omitted, ...testEnv } = process.env;
+  const suite = tests.length > 0 ? spawnLeg([process.execPath, '--test', '--test-reporter=tap', ...tests], testEnv) : null;
+  const failing = suite ? suite.stdout.split('\n').filter((line) => /^\s*not ok /.test(line)).map((line) => line.trim()) : [];
+  add('tests', Boolean(suite) && suite.status === 0,
+    suite ? `the quality tests failed${failing.length > 0 ? `: ${failing.slice(0, DETAIL_LIMIT).join(', ')}` : ''}` : `no *.test.cjs file in ${QUALITY_TESTS}`,
+    `node --test ${QUALITY_TESTS}/*.test.cjs, then fix each failing test`);
+  const decision = probeDecision(spawnLeg([process.execPath, ROUTE_PROBE, '--hub', HUB, '--prompt', QUALITY_PROMPT]));
+  const routed = Boolean(decision) && decision.action === 'route' && Array.isArray(decision.targets)
+    && decision.targets.some((target) => target && target.workflowMode === QUALITY_MODE);
+  add('route', routed, `the quality prompt did not route to ${QUALITY_MODE}`,
+    `rerun node ${ROUTE_PROBE} --hub ${HUB} --prompt ${shellQuote(QUALITY_PROMPT)} and read its decision`);
+  return { status: checks.every((entry) => entry.ok) ? 0 : 1, stdout: '', stderr: '', output: '', checks };
 }
 
 const LEGS = [
@@ -145,6 +230,11 @@ const LEGS = [
     id: 'probe',
     command: (ctx) => `node ${ROUTE_PROBE} --hub ${HUB} --prompt ${shellQuote(ctx.prompt)}`,
     run: (ctx) => spawnLeg([process.execPath, ROUTE_PROBE, '--hub', HUB, '--prompt', ctx.prompt]),
+  },
+  {
+    id: 'quality',
+    command: () => `python3, executables, tables, node --test ${QUALITY_TESTS}, quality route probe`,
+    run: () => runQuality(),
   },
 ];
 
@@ -277,6 +367,12 @@ const JUDGES = {
       'rerun with --prompt="<a prompt that names your stack>"; if your surface still does not route, '
         + 'add its words to .skilled/skills/sk-code/hub-router.json and refresh the manifest',
     ]);
+  },
+
+  quality: (result) => {
+    if (result.status === 0) return pass();
+    const failed = result.checks.filter((entry) => !entry.ok);
+    return fail(failed.map((entry) => `${entry.id}: ${entry.detail}`), failed.map((entry) => entry.repair));
   },
 };
 

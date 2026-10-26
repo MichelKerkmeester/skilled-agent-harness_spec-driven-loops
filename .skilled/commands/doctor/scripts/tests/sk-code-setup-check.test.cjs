@@ -6,7 +6,7 @@
 
 // Drives the setup battery as a process against throwaway repo-shaped roots, so
 // every verdict is observed through its exit code and STATUS line, the two
-// things the /doctor route reads, while stubs stand in for the eight legs.
+// things the /doctor route reads, while stubs stand in for the nine legs.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND FIXTURES
@@ -30,8 +30,16 @@ const DRIFT_GUARDS = '.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-dr
 const DERIVED_FRESHNESS = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs';
 const ROUTE_PROBE = '.skilled/bin/compiled-route.cjs';
 const SHARED_FRONTMATTER = 'node_modules/@spec-kit/shared/frontmatter/parse-frontmatter.js';
+const QUALITY_DIR = '.skilled/skills/sk-code/sk-code-quality';
+const QUALITY_RUNNER = `${QUALITY_DIR}/scripts/quality-gate.cjs`;
+const QUALITY_CHECKER = `${QUALITY_DIR}/scripts/check-comment-hygiene.sh`;
+const QUALITY_TABLES = [`${QUALITY_DIR}/assets/comment-syntax.json`, `${QUALITY_DIR}/assets/quality-defaults.json`];
+const QUALITY_TEST = `${QUALITY_DIR}/scripts/tests/stub.test.cjs`;
+const PASSING_TEST = "require('node:test')('stub passes', () => {});\n";
 
-const ROUTE_DECISION = '{"hubId":"sk-code","action":"route"}\n';
+// The quality leg probes with its own prompt and reads the routed mode, and the stub
+// answers every prompt the same way, so one decision serves both probes.
+const ROUTE_DECISION = '{"hubId":"sk-code","action":"route","targets":[{"workflowMode":"sk-code-quality"}]}\n';
 
 const fixtures = [];
 
@@ -68,6 +76,7 @@ function buildRoot({
   driftGuards = null,
   derived = null,
   probe = null,
+  quality = {},
 } = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-code-setup-check-'));
   fixtures.push(root);
@@ -83,6 +92,12 @@ function buildRoot({
   bashStub(root, DRIFT_GUARDS, driftGuards || {});
   nodeStub(root, DERIVED_FRESHNESS, derived || { out: '{"staleRoots":[],"erroredRoots":[]}\n' });
   nodeStub(root, ROUTE_PROBE, probe || { out: ROUTE_DECISION });
+  for (const rel of [QUALITY_RUNNER, QUALITY_CHECKER]) {
+    writeFile(root, rel, '#!/usr/bin/env node\n');
+    fs.chmodSync(path.join(root, rel), rel === QUALITY_CHECKER && quality.checkerMode !== undefined ? quality.checkerMode : 0o755);
+  }
+  for (const rel of QUALITY_TABLES) writeFile(root, rel, '{}\n');
+  writeFile(root, QUALITY_TEST, quality.testBody || PASSING_TEST);
   return root;
 }
 
@@ -110,13 +125,14 @@ test.afterEach(() => {
 // 2. HAPPY PATH AND THE PROMPT OPTION
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('a provisioned tree whose legs all pass reports eight PASS lines and exit 0', () => {
+test('a provisioned tree whose legs all pass reports nine PASS lines and exit 0', () => {
   const { status, out } = run(buildRoot());
   assert.equal(status, 0, out);
   assert.match(out, /^\/doctor:sk-code setup \(read-only; writes nothing\)$/m);
-  assert.equal((out.match(/^PASS {2}/gm) || []).length, 8);
+  assert.equal((out.match(/^PASS {2}/gm) || []).length, 9);
   assert.match(out, /^PASS {2}probe +node \S+ --hub sk-code --prompt "fix a typescript bug in the opencode plugin"$/m);
-  assert.match(out, /^STATUS=OK legs=8$/m);
+  assert.match(out, /^PASS {2}quality +python3, executables, tables, node --test \S+, quality route probe$/m);
+  assert.match(out, /^STATUS=OK legs=9$/m);
 });
 
 test('a custom prompt replaces the default on the probe command line', () => {
@@ -142,7 +158,9 @@ test('the legacy stub exits 0 but fails the probe with the guard repair', () => 
   assert.match(out, /^FAIL {2}probe +node /m);
   assert.match(out, /^ {6}served the legacy stub, so sk-code serves no compiled route$/m);
   assert.match(out, /^ {6}repair: .*compiled-route-manifest\.cjs refresh --hub sk-code.*$/m);
-  assert.match(out, /^STATUS=FAIL failed=1 skipped=0$/m);
+  // The quality leg probes the same stub, so its route check fails beside the probe.
+  assert.match(out, /^ {6}route: the quality prompt did not route to sk-code-quality$/m);
+  assert.match(out, /^STATUS=FAIL failed=2 skipped=0$/m);
 });
 
 test('the legacy stub under SPECKIT_COMPILED_ROUTING=0 fails the probe with the unset repair', () => {
@@ -253,7 +271,7 @@ test('an unprovisioned tree fails provisioning, skips its two dependents, and le
 // 6. A CHECKOUT WITHOUT THE V4 TREE FAILS FAST
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('a checkout missing the sk-code SKILL.md fails provisioning and skips the other seven legs', () => {
+test('a checkout missing the sk-code SKILL.md fails provisioning and skips the other eight legs', () => {
   const root = buildRoot();
   fs.rmSync(path.join(root, SKILL_FILE));
   const { status, out } = run(root);
@@ -261,13 +279,37 @@ test('a checkout missing the sk-code SKILL.md fails provisioning and skips the o
   assert.match(out, /^FAIL {2}provisioning /m);
   assert.match(out, /^ {6}\.skilled\/skills\/sk-code\/SKILL\.md is missing, so this checkout predates the v4 layout or never installed sk-code$/m);
   assert.match(out, /^ {6}repair: install the \.skilled\/ tree from a v4 release, run \/doctor:update compat, then rerun this check$/m);
-  assert.equal((out.match(/^SKIP .*needs the v4 layout$/gm) || []).length, 7);
+  assert.equal((out.match(/^SKIP .*needs the v4 layout$/gm) || []).length, 8);
   const lines = out.trimEnd().split('\n');
-  assert.equal(lines[lines.length - 1], 'STATUS=FAIL failed=1 skipped=7');
+  assert.equal(lines[lines.length - 1], 'STATUS=FAIL failed=1 skipped=8');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. BAD ARGUMENTS
+// 7. THE QUALITY LEG NAMES EACH FAILING CHECK
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('a quality checker that is not executable fails the quality leg with its chmod repair', () => {
+  const { status, out } = run(buildRoot({ quality: { checkerMode: 0o644 } }));
+  assert.equal(status, 1, out);
+  assert.match(out, /^FAIL {2}quality +/m);
+  assert.match(out, /^ {6}executables: not an executable file: \.skilled\/skills\/sk-code\/sk-code-quality\/scripts\/check-comment-hygiene\.sh$/m);
+  assert.match(out, /^ {6}repair: chmod \+x \.skilled\/skills\/sk-code\/sk-code-quality\/scripts\/check-comment-hygiene\.sh$/m);
+  assert.match(out, /^STATUS=FAIL failed=1 skipped=0$/m);
+});
+
+test('a failing quality test and a quality prompt that routes elsewhere are each named', () => {
+  const testBody = "require('node:test')('stub fails', () => { throw new Error('seeded'); });\n";
+  const probe = { out: '{"hubId":"sk-code","action":"route","targets":[{"workflowMode":"sk-code-skilled"}]}\n' };
+  const { status, out } = run(buildRoot({ quality: { testBody }, probe }));
+  assert.equal(status, 1, out);
+  assert.match(out, /^PASS {2}probe +/m);
+  assert.match(out, /^ {6}tests: the quality tests failed: not ok 1 - stub fails$/m);
+  assert.match(out, /^ {6}route: the quality prompt did not route to sk-code-quality$/m);
+  assert.match(out, /^ {6}repair: node --test \.skilled\/skills\/sk-code\/sk-code-quality\/scripts\/tests\/\*\.test\.cjs, then fix each failing test$/m);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. BAD ARGUMENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('an unknown argument prints usage on stderr and exits 2', () => {

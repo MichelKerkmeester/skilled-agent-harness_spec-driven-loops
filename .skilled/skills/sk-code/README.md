@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.23.0
+version: 2.2.24.0
 ---
 
 # sk-code
@@ -160,7 +160,7 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
 ```
 
-`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs and a provisioning precheck, fails the route probe when it returns the legacy stub, and prints one repair command for each failing leg. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
+`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg. `/doctor:sk-code quality` shows which quality config the gate reads and checks it, and when there is none it creates `.sk-code/quality.json` once after you approve. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
 
 ---
 
@@ -199,7 +199,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
-| [`changelog/v3.2.0.0.md`](./changelog/v3.2.0.0.md) | The newest hub release entry |
+| [`changelog/v3.3.0.0.md`](./changelog/v3.3.0.0.md) | The newest hub release entry |
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
 | [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |

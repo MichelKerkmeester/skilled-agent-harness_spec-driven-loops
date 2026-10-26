@@ -212,13 +212,13 @@ describe('doctor bridge ordering', () => {
   it('puts the matching skill bridge first when its id appears in the slash command', () => {
     const ranked = [
       rec('sk-code', 'skill', true),
-      rec('command-doctor-sk-code', 'command', true),
+      rec('command-doctor-sk-code-setup', 'command', true),
     ];
 
-    const result = keepPassingSkillsAboveDoctorBridges(ranked, '/doctor:sk-code');
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, '/doctor:sk-code setup');
 
     expect(result.map((recommendation) => recommendation.skill)).toEqual([
-      'command-doctor-sk-code',
+      'command-doctor-sk-code-setup',
       'sk-code',
     ]);
   });

@@ -1,0 +1,114 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SK-CODE QUALITY CONFIG WORKFLOW (INTERACTIVE MUTATING MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator helping a repository name its own quality checks in one committed file
+purpose: Show which config the sk-code quality gate reads and whether each tool it names is on PATH, validate that config and create .sk-code/quality.json once from the shipped template behind one approval
+action: Status -> check -> init dry run when no config exists -> approval -> apply -> check -> report
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single_approval
+  compliance: MANDATORY
+  execution: interactive
+  approvals: one_for_the_write
+  tracking: single_run
+  validation: config_check_after_the_write
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIG INVARIANT
+# ─────────────────────────────────────────────────────────────────
+config_invariant: |
+  The quality gate reads one repository config: --config, else the file-scoped git config
+  value skcode.qualityConfig, else .sk-code/quality.json at the repository root. The gate
+  runs every command that file names, so this workflow never runs one: status looks each
+  named tool up on PATH and stops there, and check validates the file against the schema.
+  The only write is init --apply, which creates .sk-code/quality.json from the shipped
+  template with the checks the repository's manifests imply entered as not required, and
+  which refuses with CONFIG_EXISTS when the file already exists. A dry run shows the plan
+  and writes nothing.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  config_script: ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs"
+  config_module: ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs"
+  template: ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json"
+  reference: ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md"
+  config_file: ".sk-code/quality.json"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+  dry_run: "[DRY_RUN] - show the plan and stop before the write (default false)"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    dry_run: false
+  validation:
+    execution_mode_must_be: INTERACTIVE
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  allowed_targets:
+    - ".sk-code/quality.json"
+  forbidden_targets:
+    - ".skilled/skills/sk-code/**"
+    - ".opencode/skills/sk-code/**"
+    - "git config skcode.qualityConfig"
+  invariant: "The config file is created only through sk-code-quality-config.cjs init --apply after an approved plan, and only when it does not exist. An existing config is never overwritten or edited by this workflow, and no command the config names is ever run."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_status:
+    purpose: "Show which config is read and whether its tools are present before asking for anything"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status --json and keep the source, the path, the errors, each tool's PASS, SKIP or DEGRADED state with its repair line and the hygiene layers"
+      - "Render the presentation contract's quality status table"
+
+  phase_2_check:
+    purpose: "Validate the config the gate would read"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs check --json. Exit 0 is valid or no config, exit 1 lists each config error and exit 2 means the directory is not a git repository"
+      - "When a config exists, render its errors through the presentation contract and go to phase_5_report. This workflow does not edit an existing config: the operator fixes the fields the errors name"
+
+  phase_3_init_plan_and_approval:
+    purpose: "Show the config init would create, then ask once"
+    runs_when: "the status reports source none"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs init --json, which writes nothing, and render the presentation's init plan: the target, each suggested check with its argv and any git config value that would outrank the new file"
+      - "If the plan reports CONFIG_EXISTS, render it and go to phase_5_report"
+      - "If dry_run is true, render the dry-run line and go to phase_5_report without writing"
+      - "Ask the presentation's init prompt. On anything but approve, render the cancelled result (STATUS=CANCELLED ACTION=cancelled) and stop"
+
+  phase_4_apply_and_check:
+    purpose: "Write the approved config once"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs init --apply --json. STATUS=OK MODE=APPLIED is the write, and STATUS=FAIL MODE=REFUSED ERROR=CONFIG_EXISTS means a file appeared and was kept"
+      - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs check --json, which must report ERRORS=0"
+      - "Record the undo: delete .sk-code/quality.json, which this run created"
+
+  phase_5_report:
+    purpose: "Summarize what was read and what was written"
+    activities:
+      - "Render the presentation contract's quality result: the source, each tool state, the errors, the file written and its undo"
+      - "Remind the operator that .sk-code/quality.json is ordinary repository content: review each check it enables, then commit it"
+      - "Status is STATUS=OK when the config is valid or was created and checks clean, STATUS=CANCELLED ACTION=cancelled when the write was declined, STATUS=FAIL when the config has errors or a write or check failed"
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]
