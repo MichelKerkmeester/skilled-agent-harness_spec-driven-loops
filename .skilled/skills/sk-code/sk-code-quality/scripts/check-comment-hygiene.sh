@@ -17,6 +17,20 @@ A file's language comes from a shebang that names a known interpreter, and from 
 extension otherwise. The comment families, extensions and interpreters live in
 ../assets/comment-syntax.json, which is read from this script's real path.
 
+Three rules decide what counts as comment text beyond a plain comment. A string that spans lines is
+a string, and a backslash before the closing backtick keeps a template literal open. A shell
+heredoc body is text until the line that holds only its word, after leading tabs when the opener
+was <<-. A quoted string that opens a logical line at bracket depth 0 is comment text wherever it
+stands, because nothing reads its value, unless its prefix holds f. In a family that sets
+regexLiterals, a slash that follows an operator or a keyword opens a regex literal, a block
+comment between the two leaves the token in front of its opener to decide, and the body of that
+literal is skipped whole, so a quote or a backtick inside one opens nothing. In a family
+that sets templateInterpolation, the text of a template literal ends where an unescaped ${ opens
+an interpolation, whose code runs to the brace that closes it, so a template literal nested inside
+one opens and closes on its own, and a comment inside an interpolation is comment text. A shell
+arithmetic construct runs on to the )) that closes it, so a shift inside one opens no heredoc
+even when the construct runs past the line end.
+
 Text output prints one line per finding: FILEPATH:LINE: excerpt [reason]
 
 Exit codes:
@@ -41,14 +55,30 @@ TABLE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "as
 
 EXCLUDED_DIRS = ["/dist/", "/node_modules/", "/.git/"]
 SHEBANG_READ_BYTES = 512
-# A docstring is a triple-quoted string standing alone as a statement, so only a
-# string prefix may sit in front of its opening quotes.
-DOCSTRING_PREFIXES = {"", "r", "u", "b", "f", "rb", "br", "rf", "fr"}
-# A string statement documents the code only where Python or its documentation tools
-# read it: first in a module, first in a def or class body, or right after an
-# assignment, as an attribute docstring. Anywhere else it is data.
-DOCUMENTED_STATEMENT = re.compile(r"^(?:(?:async\s+)?(?:def|class)\b.*:|[A-Za-z_][\w.]*\s*(?::[^=]*)?=(?!=).*)$", re.DOTALL)
+# A string statement is comment text wherever it stands, because an expression statement's
+# value is discarded and only a person reads it. Nothing but a prefix may open its logical
+# line, and a prefix that holds f makes the string data, because Python evaluates an
+# f-string as an expression.
+DOCSTRING_PREFIXES = {"", "r", "u", "b", "rb", "br"}
+# A single-line literal leaves this marker in the unfinished logical line, so the code
+# beside it decides whether the line continues: a backslash after the marker still
+# continues the line, and a line that ends with one ends. The literal's own text never
+# decides either, because a string is never code.
+LITERAL_MARKER = "0"
 BLOCK_OPENER_AFTER = "([{,;=:)]}"
+# A slash opens a regex literal when the last token before it can end no expression: an
+# operator or an opener, one of these words, or nothing at all. A name, a number and a closer
+# all end an expression, so a slash after one of them divides.
+REGEX_OPENER_PUNCTUATION = set("(,=:[!&|?{};+-*%<>~^")
+REGEX_OPENER_WORDS = {"return", "typeof", "instanceof", "in", "of", "new", "delete", "void", "throw",
+                      "case", "do", "else", "yield", "await"}
+# A slash after the ) that closes one of these headers stands where code starts again, so it
+# opens a regex literal rather than dividing.
+REGEX_HEADER_WORDS = {"if", "while", "for"}
+# A template literal's text ends at an interpolation, whose code is code, so the checker reads
+# the ${ of one as a second way out of the text beside the closing backtick.
+TEMPLATE_DELIMITER = "`"
+INTERPOLATION_OPENER = "${"
 URL_SPAN = re.compile(r"\bhttps?://\S+", re.IGNORECASE)
 # A Rust char literal, so a quote inside one never opens a string. A lifetime such as
 # 'a has no closing quote and stays code.
@@ -61,6 +91,14 @@ YAML_BLOCK_SCALAR = re.compile(
     r"(?:(?P<key>(?:'[^']*')+|\"(?:[^\"\\]|\\.)*\"|[^\s#'\"][^#]*?)[ \t]*:[ \t]+)?"
     r"(?:(?:&\S+|!\S*)[ \t]+){0,2}"
     r"[|>](?:[1-9][+-]?|[+-][1-9]?)?(?:[ \t]+#.*)?[ \t]*$"
+)
+# A heredoc opener queues its word, and the body that follows is text. The word is bare or
+# quoted, and `<<-` strips leading tabs from the closing line. The operator never touches
+# another `<`, so a here-string opens nothing, and an arithmetic expansion is skipped
+# before this pattern runs, so a shift opens nothing either.
+HEREDOC_OPENER = re.compile(
+    r"<<(?P<dash>-?)[ \t]*(?:'(?P<single>[^'\n]+)'"
+    r"|\"(?P<double>[^\"\n]+)\"|(?P<bare>[A-Za-z_][A-Za-z0-9_-]*))"
 )
 
 # --- Allowed-class patterns ---
@@ -148,6 +186,16 @@ def load_table(path):
             # Longest first, so ''' is tried before the ' it starts with.
             "multiline": sorted(_string_list(spec.get("multilineStrings", []), f"family {name} multilineStrings"),
                                 key=len, reverse=True),
+            # Only the families whose language reads escapes in a string that spans lines set
+            # this, so a Go raw string still ends at its first backtick.
+            "multiline_escapes": bool(spec.get("multilineEscapes", False)),
+            # A template literal in this family reads its ${...} as code, so a template literal
+            # nested inside one never flips the outer literal's backtick parity.
+            "template_interpolation": bool(spec.get("templateInterpolation", False)),
+            # A regex literal is cut out of the line whole, so a quote or a backtick inside it
+            # never opens a string. Only the families whose language reads them set this.
+            "regex_literals": bool(spec.get("regexLiterals", False)),
+            "heredocs": bool(spec.get("heredocs", False)),
             "docstrings": bool(spec.get("docstrings", False)),
             "block_scalars": bool(spec.get("blockScalars", False)),
             "char_literals": bool(spec.get("charLiterals", False)),
@@ -217,65 +265,347 @@ def _line_comment_at(line, index, family):
 class ScanState:
     """What one line leaves open for the next.
 
-    open is None, ("block",) inside a block comment, or ("string", closer, is_docstring)
-    inside a string that spans lines. scalar_base is the column a YAML block scalar's
-    text must be deeper than. The last three fields serve docstring families only: the
-    open bracket depth, the code of the unfinished logical line, and the last finished one.
+    contexts holds the constructs that run past the end of a line, the innermost last. A
+    frame is ("block",) inside a block comment, ("string", closer, is_comment, templated)
+    inside a string that spans lines, ("code", depth) inside a template literal's
+    interpolation, whose brace depth counts from 1, or ("arith", depth) inside an arithmetic
+    construct, whose paren depth does. scalar_base is the column a YAML block scalar's text
+    must be deeper than, and heredocs holds the words of the bodies still open. The rest
+    serve the families that read string statements: the open bracket depth, the code of the
+    unfinished logical line, what that line holds so far, and the text of its literals,
+    which stays here until the logical line ends.
     """
 
     def __init__(self):
-        self.open = None
+        self.contexts = []
         self.scalar_base = None
+        self.heredocs = []
         self.depth = 0
         self.statement = ""
-        self.last_statement = None
+        self.line_kind = "blank"
+        self.string_text = []
+
+    @property
+    def open(self):
+        """The construct this line continues, or None at code scope."""
+        return self.contexts[-1] if self.contexts else None
+
+    def enter(self, context):
+        """Open a construct that runs past the end of this line."""
+        self.contexts.append(context)
+
+    def leave(self):
+        """Close the innermost open construct."""
+        self.contexts.pop()
+
+    def set_depth(self, depth):
+        """Replace the depth of the innermost frame that counts one."""
+        self.contexts[-1] = (self.contexts[-1][0], depth)
 
 
-def _opens_docstring(state):
-    if state.depth != 0 or state.statement.strip().lower() not in DOCSTRING_PREFIXES:
+def _opens_bare_string(state):
+    """Say whether the string opening now starts a bare string statement.
+
+    A string statement opens a logical line at bracket depth 0 with nothing before it but a
+    prefix, so an assignment, a return, a call and a dict entry all leave their string data.
+    """
+    return (state.depth == 0 and state.line_kind in ("blank", "prefix")
+            and state.statement.strip().lower() in DOCSTRING_PREFIXES)
+
+
+def _note_literal(state, text):
+    """Record one string literal that a bare string statement may gather.
+
+    A literal joins the statement when nothing but literals or a prefix came before it on
+    its logical line, and any other code makes it data.
+    """
+    if _opens_bare_string(state) or (state.line_kind == "strings" and state.depth == 0):
+        state.string_text.append(text)
+        state.line_kind = "strings"
+        return
+    state.line_kind = "code"
+
+
+def _note_code(state, char):
+    """Take one code character into the logical line.
+
+    Whitespace, a string prefix and the backslash that continues the line are all that
+    may sit before a bare string statement, so any other character says the literals on
+    this line are data.
+    """
+    if char.isspace() or char == "\\" or state.line_kind == "code":
+        return
+    state.line_kind = "prefix" if char in "rRuUbB" else "code"
+
+
+def _find_closer(line, start, closer, escapes, opener=None):
+    """Return the index where the string's text ends, or -1 when it runs past this line.
+
+    A backslash before a candidate escapes it only in the families whose language reads
+    escapes in a string that spans lines, so a Go raw string ends at its first backtick. An
+    opener ends the text too, a template literal's interpolation, and the caller tells the
+    two apart by reading the token at the index returned. Whichever comes first ends the
+    text, and reading on past an escaped candidate leaves it as text.
+    """
+    index = start
+    while True:
+        close = line.find(closer, index)
+        if opener:
+            opened = line.find(opener, index)
+            if 0 <= opened and (close < 0 or opened < close):
+                close = opened
+        if close < 0 or not escapes:
+            return close
+        backslashes = 0
+        position = close - 1
+        while position >= 0 and line[position] == "\\":
+            backslashes += 1
+            position -= 1
+        if backslashes % 2 == 0:
+            return close
+        index = close + 1
+
+
+def _header_word(line, close_index):
+    """Return the word before the ( that matches the ) at close_index, or "".
+
+    Only the ) that closes a header lets code start again, so the word in front of the
+    matching ( decides. A word that follows a dot names a method on its receiver, so a call
+    ends an expression like any other. A pair that does not close on this line, or a bracket
+    that has no opener here, names no header and leaves the slash a division.
+    """
+    depth = 0
+    position = close_index
+    while position >= 0:
+        char = line[position]
+        if char == ")":
+            depth += 1
+        elif char == "(":
+            depth -= 1
+            if depth == 0:
+                break
+        position -= 1
+    if position < 0:
+        return ""
+    position -= 1
+    while position >= 0 and line[position].isspace():
+        position -= 1
+    end = position + 1
+    while position >= 0 and (line[position].isalnum() or line[position] in "_$"):
+        position -= 1
+    if position >= 0 and line[position] == ".":
+        return ""
+    return line[position + 1:end]
+
+
+def _skip_space_back(line, position):
+    """Return the index of the last character that is not a space at or before position."""
+    while position >= 0 and line[position].isspace():
+        position -= 1
+    return position
+
+
+def _expression_end_before(line, index, block):
+    """Return the index of the token that ends just before index, or -1 at statement start.
+
+    A block comment is not code, so a comment between a token and the slash leaves the token
+    in front of the comment's opener to decide. A closer that matches no opener here is an
+    operator, so the star that ends a regex literal still divides.
+    """
+    closer_length = len(block[1]) if block else 1
+    position = _skip_space_back(line, index - 1)
+    while block and position >= closer_length - 1:
+        closer = position - closer_length + 1
+        if not line.startswith(block[1], closer):
+            break
+        opened = line.rfind(block[0], 0, closer)
+        if opened < 0:
+            break
+        position = _skip_space_back(line, opened - 1)
+    return position
+
+
+def _regex_opens(line, index, block):
+    """Say whether the slash at index opens a regex literal rather than a division.
+
+    A slash opens a literal when the last token before it can end no expression: nothing at
+    the start of the line, an operator or an opener, a word such as return, or the ) that
+    closes an if, while or for header. A name, a number, a closer, a property name after a
+    dot and a postfix increment or decrement all end an expression, so a slash after one of
+    them divides. A closed block comment changes none of that, because a comment is no code.
+    """
+    position = _expression_end_before(line, index, block)
+    if position < 0:
+        return True
+    if position and line[position] in "+-" and line[position - 1] == line[position]:
         return False
-    return state.last_statement is None or DOCUMENTED_STATEMENT.match(state.last_statement) is not None
+    if line[position] in REGEX_OPENER_PUNCTUATION:
+        return True
+    if line[position] == ")":
+        return _header_word(line, position) in REGEX_HEADER_WORDS
+    end = position + 1
+    while position >= 0 and (line[position].isalnum() or line[position] in "_$"):
+        position -= 1
+    # A word after a dot names a property, and an expression that ends there divides.
+    if position >= 0 and line[position] == ".":
+        return False
+    return line[position + 1:end] in REGEX_OPENER_WORDS
+
+
+def _skip_regex(line, start):
+    """Return the index just past the regex literal that opens at start, or -1 when it never ends.
+
+    A backslash escapes the next character, a bracketed class runs to its unescaped close, and
+    the literal ends at the next unescaped slash outside a class. The flags after it and a
+    division that follows stay code, and a literal that reaches the line end was no literal.
+    """
+    index = start + 1
+    in_class = False
+    while index < len(line):
+        char = line[index]
+        if char == "\\":
+            index += 2
+            continue
+        if char == "[":
+            in_class = True
+        elif char == "]":
+            in_class = False
+        elif char == "/" and not in_class:
+            return index + 1
+        index += 1
+    return -1
+
+
+def _arithmetic_scan(line, index, depth, family):
+    """Return the index just past the )) that closes an arithmetic construct, and its depth.
+
+    The close is the first )) that stands at the depth the construct opened at, because an
+    inner pair brings a )) of its own: in the expansion that holds (a*(b+c)) beside a shift,
+    the pair around c returns only to the depth the shift sits at. A quoted span and an
+    escaped character are text, so neither hides the close. A scan that reaches the line end
+    returns -1, and the depth it reached carries into the next line, so a construct that runs
+    past the line end is still arithmetic there.
+    """
+    while index < len(line):
+        char = line[index]
+        if char == "\\":
+            index += 2
+            continue
+        if char in "'\"":
+            index = _skip_string(line, index, char, family)
+            continue
+        if char == "(":
+            depth += 1
+        elif char == ")" and depth:
+            depth -= 1
+        elif char == ")" and line.startswith("))", index):
+            return index + 2, depth
+        index += 1
+    return -1, depth
+
+
+def _skip_arithmetic(line, index, family, state):
+    """Return the index just past the arithmetic construct at index, or None.
+
+    An expansion or a command from $(( or (( runs to the )) that closes it, and let takes
+    arithmetic arguments up to the separator or the comment that ends the command. A <<
+    inside either is a shift, so neither opens a heredoc. A construct that runs past the line
+    end leaves its frame open, so the lines that follow are arithmetic until it closes.
+    """
+    if line.startswith("$((", index) or line.startswith("((", index):
+        opened = index + (3 if line.startswith("$((", index) else 2)
+        close, depth = _arithmetic_scan(line, opened, 0, family)
+        if close < 0:
+            state.enter(("arith", depth))
+            return len(line)
+        return close
+    if not line.startswith("let", index):
+        return None
+    if index and not (line[index - 1].isspace() or line[index - 1] in ";|&({"):
+        return None
+    end = index + 3
+    if end < len(line) and not (line[end].isspace() or line[end] in ";|&)"):
+        return None
+    while end < len(line):
+        char = line[end]
+        if char in "\"'":
+            end = _skip_string(line, end, char, family)
+            continue
+        if char == "\\":
+            end += 2
+            continue
+        if char in ";|&`":
+            return end
+        if char == "#" and (line[end - 1].isspace() or line[end - 1] in ";|&("):
+            return end
+        end += 1
+    return end
 
 
 def scan_line(line, family, state):
     """Split one line into comment segments, updating state in place.
 
-    Only docstring text counts as comment text, so the body of any other string that
-    spans lines is skipped.
+    Text counts as comment text only inside a string that opens a bare string statement, so
+    the body of any other string that spans lines is skipped. A template literal's
+    interpolation holds code, which is read as code is, so a comment in one is comment text.
     """
     segments = []
     index = 0
     block = family["block"]
     tracks_statements = family["docstrings"]
     while index < len(line):
-        if state.open is not None:
-            if state.open[0] == "block":
+        context = state.open
+        # A block comment and a string that spans lines take the text up to where each ends,
+        # while an interpolation holds code, which the tail of this loop reads as code.
+        if context is not None and context[0] != "code":
+            if context[0] == "arith":
+                # Arithmetic that ran past the line end is still arithmetic, so a shift here
+                # opens no heredoc and the scan resumes after the )) that closes it.
+                close, depth = _arithmetic_scan(line, index, context[1], family)
+                if close < 0:
+                    state.set_depth(depth)
+                    return segments
+                state.leave()
+                index = close
+                continue
+            if context[0] == "block":
                 close = line.find(block[1], index)
                 if close < 0:
                     segments.append(line[index:])
                     return segments
                 segments.append(line[index:close + len(block[1])])
                 index = close + len(block[1])
-            else:
-                _, closer, is_docstring = state.open
-                close = line.find(closer, index)
-                if close < 0:
-                    if is_docstring:
-                        segments.append(line[index:])
-                    return segments
-                if is_docstring:
-                    segments.append(line[index:close])
-                index = close + len(closer)
-            state.open = None
+                state.leave()
+                continue
+            _, closer, is_comment, templated = context
+            close = _find_closer(line, index, closer, family["multiline_escapes"],
+                                 INTERPOLATION_OPENER if templated else None)
+            if close < 0:
+                if is_comment:
+                    segments.append(line[index:])
+                return segments
+            if is_comment:
+                segments.append(line[index:close])
+            if templated and line.startswith(INTERPOLATION_OPENER, close):
+                # The interpolation's code runs at brace depth 1 until the brace that closes
+                # it, and a template literal nested in that code opens and closes inside it.
+                state.enter(("code", 1))
+                index = close + len(INTERPOLATION_OPENER)
+                continue
+            index = close + len(closer)
+            state.leave()
             continue
 
         char = line[index]
+        # A triple quote or a backtick opens a string that spans lines, and its body holds data
+        # unless it opens a bare string statement.
         token = next((t for t in family["multiline"] if line.startswith(t, index)), None)
         if token:
-            is_docstring = tracks_statements and _opens_docstring(state)
+            is_comment = tracks_statements and _opens_bare_string(state)
             if tracks_statements:
-                state.statement += token
-            state.open = ("string", token, is_docstring)
+                state.line_kind = "strings" if is_comment else "code"
+            templated = family["template_interpolation"] and token == TEMPLATE_DELIMITER
+            state.enter(("string", token, is_comment, templated))
             index += len(token)
             continue
         if family["char_literals"] and char == "'":
@@ -285,9 +615,29 @@ def scan_line(line, family, state):
         if char in family["quotes"]:
             end = _skip_string(line, index, char, family)
             if tracks_statements:
-                state.statement += line[index:end]
+                text = line[index + 1:end]
+                _note_literal(state, text[:-1] if text.endswith(char) else text)
+                state.statement += LITERAL_MARKER
             index = end
             continue
+        # A shell arithmetic construct reads << as a shift, so no heredoc opens in one, and
+        # the arguments of let are arithmetic too. The scan resumes after the construct, or
+        # after the separator that ends the let, so a comment after one is still checked.
+        if family["heredocs"]:
+            arithmetic = _skip_arithmetic(line, index, family, state)
+            if arithmetic is not None:
+                index = arithmetic
+                continue
+        # A heredoc body holds text, and its opener queues the word on this line, so a
+        # comment after the opener is still checked. A here-string opens nothing.
+        if family["heredocs"] and line.startswith("<<", index):
+            if (index == 0 or line[index - 1] != "<") and not line.startswith("<<<", index):
+                opener = HEREDOC_OPENER.match(line, index)
+                if opener:
+                    word = opener.group("single") or opener.group("double") or opener.group("bare")
+                    state.heredocs.append((word, opener.group("dash") == "-"))
+                    index = opener.end()
+                    continue
         # An opener counts only at the start of a line, after whitespace or after
         # punctuation that can end code, so a glob such as src/** in prose or an
         # escaped slash in a regex literal never opens a block comment.
@@ -296,7 +646,7 @@ def scan_line(line, family, state):
             close = line.find(block[1], index + len(block[0]))
             if close < 0:
                 segments.append(line[index:])
-                state.open = ("block",)
+                state.enter(("block",))
                 return segments
             segments.append(line[index:close + len(block[1])])
             index = close + len(block[1])
@@ -304,24 +654,53 @@ def scan_line(line, family, state):
         if _line_comment_at(line, index, family):
             segments.append(line[index:])
             return segments
+        # A slash that opens a regex literal is skipped as one, so the quotes and the
+        # backticks inside it open nothing. A division stays code, and so does a slash whose
+        # literal would reach the line end.
+        if family["regex_literals"] and char == "/" and _regex_opens(line, index, block):
+            end = _skip_regex(line, index)
+            if end > 0:
+                if tracks_statements:
+                    state.statement += line[index:end]
+                    _note_code(state, char)
+                index = end
+                continue
+        # An interpolation's code ends at the brace that closes it, and a pair inside that
+        # code nests, so the frame carries the depth from one line to the next.
+        if context is not None:
+            if char in "{}":
+                depth = context[1] + (1 if char == "{" else -1)
+                if depth:
+                    state.set_depth(depth)
+                else:
+                    state.leave()
+            index += 1
+            continue
         if tracks_statements:
             if char in "([{":
                 state.depth += 1
             elif char in ")]}":
                 state.depth = max(0, state.depth - 1)
             state.statement += char
+            _note_code(state, char)
         index += 1
     return segments
 
 
 def _end_logical_line(state):
-    """Close the logical line unless a string, a bracket or a backslash continues it."""
+    """Close the logical line unless a string, a bracket or a backslash continues it.
+
+    A logical line that ends with nothing but string literals holds a bare string statement,
+    so the text its literals gathered is comment text, returned here to be reported.
+    """
     if state.open is not None or state.depth > 0 or state.statement.rstrip().endswith("\\"):
         state.statement += " "
-        return
-    if state.statement.strip():
-        state.last_statement = state.statement.strip()
+        return []
+    text = state.string_text if state.line_kind in ("prefix", "strings") else []
     state.statement = ""
+    state.line_kind = "blank"
+    state.string_text = []
+    return text
 
 
 def yaml_block_base(line):
@@ -341,13 +720,28 @@ def yaml_block_base(line):
     return match.start("dashes") + dashes.rstrip().rfind("-")
 
 
+def _heredoc_closes(line, word, strip_tabs):
+    """Say whether this line is the closing line of a heredoc body.
+
+    That line holds only the word, after leading tabs when the opener was `<<-`.
+    """
+    return (line.lstrip("\t") if strip_tabs else line) == word
+
+
 def comment_text(raw_line, family, state):
     """Return the comment text of one line, updating state in place.
 
-    After a YAML block scalar opens, each following line that is blank or indented
-    deeper than state.scalar_base is text, and the first other line ends it.
+    A line inside a heredoc body is text, so it holds no comment, and the first body that
+    is still open decides whether this line closes it. After a YAML block scalar opens,
+    each following line that is blank or indented deeper than state.scalar_base is text,
+    and the first other line ends it.
     """
     line = raw_line.rstrip("\n")
+    if state.heredocs:
+        word, strip_tabs = state.heredocs[0]
+        if _heredoc_closes(line, word, strip_tabs):
+            state.heredocs.pop(0)
+        return ""
     if state.scalar_base is not None:
         if not line.strip() or len(line) - len(line.lstrip(" ")) > state.scalar_base:
             return ""
@@ -356,7 +750,7 @@ def comment_text(raw_line, family, state):
     was_open = state.open is not None
     segments = scan_line(line, family, state)
     if family["docstrings"]:
-        _end_logical_line(state)
+        segments += _end_logical_line(state)
     if family["block_scalars"] and state.open is None:
         state.scalar_base = yaml_block_base(line.rstrip())
     # A star at the start of a line outside any tracked comment is read as the body of

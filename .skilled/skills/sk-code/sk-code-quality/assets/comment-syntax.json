@@ -5,8 +5,12 @@
     "c": {
       "lineComment": ["//"],
       "blockComment": ["/*", "*/"],
-      "quotes": ["'", "\"", "`"],
+      "quotes": ["'", "\""],
       "singleQuoteEscapes": true,
+      "multilineStrings": ["`"],
+      "multilineEscapes": true,
+      "templateInterpolation": true,
+      "regexLiterals": true,
       "leadingStarComment": true
     },
     "go": {
@@ -39,7 +43,8 @@
       "lineComment": ["#"],
       "lineCommentAfterSpace": true,
       "quotes": ["'", "\""],
-      "singleQuoteEscapes": false
+      "singleQuoteEscapes": false,
+      "heredocs": true
     },
     "yaml": {
       "lineComment": ["#"],

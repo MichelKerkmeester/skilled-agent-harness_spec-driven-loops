@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.25.0
+version: 2.2.26.0
 ---
 
 # sk-code
@@ -199,7 +199,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
-| [`changelog/v3.4.0.0.md`](./changelog/v3.4.0.0.md) | The newest hub release entry |
+| [`changelog/v3.5.0.0.md`](./changelog/v3.5.0.0.md) | The newest hub release entry |
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
 | [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |

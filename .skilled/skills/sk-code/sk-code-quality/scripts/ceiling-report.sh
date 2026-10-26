@@ -12,9 +12,15 @@ keeping the extensions that ../assets/comment-syntax.json lists.
 It skips any path with a node_modules component and any path under specs/ with a context component.
 With arguments, each path is read as given, without those filters.
 
-A marker is a comment that starts with a comment prefix, then the marker word, then a colon. The marker words are
-ceiling and intentional-limit. The text after the colon is split at its first semicolon, or at its first comma when
-there is no semicolon. The part after that split is the trigger. The part before it is the ceiling and is not checked.
+A marker is comment text that starts with the marker word and a colon, after an optional comment prefix. The
+marker words are ceiling and intentional-limit. The text after the colon is split at its first semicolon, or at
+its first comma when there is no semicolon. The part after that split is the trigger. The part before it is the
+ceiling and is not checked.
+
+Comment text, and the language and family a file is read with, come from check-comment-hygiene.sh, which is
+loaded from beside this file, so the report and the checker read one set of rules. A marker inside a string, a
+template literal, a heredoc body or a YAML block scalar is therefore never counted, and a marker in a docstring
+is, because the checker decides which text of a line is a comment.
 
 Tags, at most one per marker:
   no-trigger  the trigger is empty or missing
@@ -26,87 +32,71 @@ Output: one line per marker in scan order, "path:line  text  [tags]", then the s
 Exit codes:
   0  the report ran, whatever it found (it reports, it does not gate)
   2  a bad argument (an unknown option, a path that does not exist, or a directory), no repository
-     around the working directory, or an unreadable comment family table
+     around the working directory, an unusable comment family table, or a checker that cannot
+     be loaded
+
 """
-import json
+import importlib.machinery
+import importlib.util
 import os
 import re
 import subprocess
 import sys
 
-TABLE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "assets", "comment-syntax.json")
+# Loading the checker must not leave a bytecode cache beside the scripts.
+sys.dont_write_bytecode = True
+
+CHECKER_NAME = "check-comment-hygiene.sh"
 
 MEASURABLE_RE = re.compile(
     r"\b(throughput|latency|rows?|requests?|users?|size|count|memory|load|rate|ms|seconds?|MB)\b",
     re.IGNORECASE,
 )
 MARKER_WORDS = r"\s*(ceiling|intentional-limit):"
-# A file whose extension the table does not name, passed as an argument, is read with
-# hash comments, as the report always did.
-FALLBACK_FAMILY = {"lineComment": ["#"], "lineCommentAfterSpace": True, "quotes": ["'", '"'], "singleQuoteEscapes": False}
+# A file of unknown language, named as an argument, is read with the table's hash family.
+FALLBACK_FAMILY = "hash"
 
 
-def family_reader(spec):
-    """Build the marker pattern and the comment tokens for one family of the table.
+def load_checker():
+    """Load the comment-hygiene checker that sits beside this file.
 
-    A marker starts at a comment prefix, so prose and identifiers that merely contain the
-    word do not count. A family with block comments also takes a leading star, the body
-    line of a block comment.
+    The checker owns what counts as comment text, so the report asks it rather than
+    keeping a second copy of the rules. The loader reads a file of any name, which a
+    .sh entrypoint needs, and bytecode writing is off so no cache folder is left behind.
     """
-    line_tokens = list(spec.get("lineComment", []))
-    block = spec.get("blockComment")
-    prefixes = line_tokens + ([block[0], "*"] if block else [])
-    return {
-        "marker": re.compile("^(?:" + "|".join(re.escape(token) for token in prefixes) + ")" + MARKER_WORDS),
-        "line": line_tokens,
-        "block_opener": block[0] if block else None,
-        "prefixes": tuple(prefixes),
-        # A one-character multi-line string token, such as a Go backtick, quotes text on one line too.
-        "quotes": tuple(spec.get("quotes", [])) + tuple(t for t in spec.get("multilineStrings", []) if len(t) == 1),
-        "after_space": bool(spec.get("lineCommentAfterSpace", False)),
-        "single_quote_escapes": bool(spec.get("singleQuoteEscapes", True)),
-    }
+    path = os.path.join(os.path.dirname(os.path.realpath(__file__)), CHECKER_NAME)
+    if not os.path.isfile(path):
+        print("ceiling-report: cannot load the comment-hygiene checker %s" % path, file=sys.stderr)
+        sys.exit(2)
+    try:
+        loader = importlib.machinery.SourceFileLoader("comment_hygiene", path)
+        spec = importlib.util.spec_from_loader(loader.name, loader)
+        module = importlib.util.module_from_spec(spec)
+        loader.exec_module(module)
+    except Exception as error:
+        print("ceiling-report: cannot load the comment-hygiene checker %s: %s" % (path, error), file=sys.stderr)
+        sys.exit(2)
+    return module
 
 
-# Comment detection is kept here because check-comment-hygiene.sh is a shell entrypoint with no importable
-# module. A marker sits on one line, so block, docstring and block scalar state are not tracked. Text inside a
-# string literal is never a comment, so quoted fixtures do not count as markers.
-def find_unquoted_comment(line, reader):
-    in_string = False
-    quote = ""
-    escaping = False
-    for index, char in enumerate(line):
-        if in_string:
-            if escaping:
-                escaping = False
-            elif char == "\\" and (quote != "'" or reader["single_quote_escapes"]):
-                escaping = True
-            elif char == quote:
-                in_string = False
-            continue
-        if char in reader["quotes"]:
-            in_string = True
-            quote = char
-            continue
-        starts_token = any(line.startswith(token, index) for token in reader["line"])
-        if starts_token and reader["after_space"] and index > 0 and not line[index - 1].isspace():
-            starts_token = False
-        opener = reader["block_opener"]
-        if opener and line.startswith(opener, index) and (index == 0 or line[index - 1].isspace()):
-            starts_token = True
-        if starts_token:
-            return index
-    return -1
+# One module serves the whole run, so the report never keeps a second copy of the rules.
+CHECKER = load_checker()
 
 
-def comment_text(raw_line, reader):
-    stripped = raw_line.strip()
-    if stripped.startswith(reader["prefixes"]):
-        return stripped
-    index = find_unquoted_comment(raw_line, reader)
-    if index < 0:
-        return ""
-    return raw_line[index:].strip()
+def marker_pattern(family):
+    """Build the marker pattern for one comment family of the table.
+
+    A marker starts the comment text, after an optional comment prefix, so a docstring
+    line and a block body line can carry one, and prose that holds the word later in
+    the text still does not count. A family with block comments also takes a leading
+    star, the body of a block comment.
+    """
+    prefixes = list(family["line"])
+    if family["block"]:
+        prefixes.extend([family["block"][0], "*"])
+    if not prefixes:
+        return re.compile("^" + MARKER_WORDS)
+    return re.compile("^(?:" + "|".join(re.escape(token) for token in prefixes) + ")?" + MARKER_WORDS)
 
 
 def trigger_clause(after_marker):
@@ -137,34 +127,52 @@ def read_lines(path):
     except UnicodeDecodeError:
         print("WARNING: %s is not valid UTF-8, decoded with replacement characters" % path, file=sys.stderr)
         text = raw.decode("utf-8", errors="replace")
-    return text.split("\n")
+    # The checker reads with universal newlines, so a CRLF closing word ends a heredoc there and
+    # would not end it here without the same translation, losing every marker after the body.
+    return text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
 
-def scan(shown, path, reader, markers):
+def scan(shown, path, table, patterns, found):
+    """Collect the ceiling markers of one file, reading its comment text through the checker.
+
+    The language comes from the checker, and one scan state runs over the whole file, so a
+    construct that spans lines is read here the way the checker reads it.
+    """
+    try:
+        _, family_name = CHECKER.language_for(path, table, {})
+    except OSError as error:
+        print("WARNING: cannot read %s: %s" % (path, error), file=sys.stderr)
+        return
+    family_name = family_name or FALLBACK_FAMILY
+    family = table["families"][family_name]
+    state = CHECKER.ScanState()
     for lineno, raw_line in enumerate(read_lines(path), start=1):
-        text = comment_text(raw_line, reader)
-        match = reader["marker"].match(text)
+        text = CHECKER.comment_text(raw_line, family, state)
+        match = patterns[family_name].match(text)
         if match is None:
             continue
         trigger = trigger_clause(text[match.end():])
-        markers.append((shown, lineno, raw_line.strip(), tags_for(trigger)))
+        found.append((shown, lineno, raw_line.strip(), tags_for(trigger)))
 
 
-def load_readers():
-    """Map each extension in the comment family table to the comment reader of its family."""
+def read_table():
+    """Read the comment family table through the checker, and exit 2 when it cannot."""
     try:
-        with open(TABLE_PATH, "r", encoding="utf-8") as handle:
-            table = json.load(handle)
-        families = table["families"]
-        reader_by_extension = {}
-        for spec in table["languages"].values():
-            reader = family_reader(families[spec["family"]])
-            for ext in spec["extensions"]:
-                reader_by_extension[ext.lower()] = reader
-    except (OSError, ValueError, KeyError, TypeError, AttributeError, IndexError, re.error) as error:
-        print("ceiling-report: cannot read the comment family table %s: %s" % (TABLE_PATH, error), file=sys.stderr)
+        table = CHECKER.load_table(CHECKER.TABLE_PATH)
+    # The loader validates the table while reading it, so a malformed table reaches here as any
+    # of these, and each must read as one message rather than a traceback.
+    except (OSError, ValueError, KeyError, TypeError, AttributeError, IndexError) as error:
+        print("ceiling-report: cannot read the comment family table %s: %s" % (CHECKER.TABLE_PATH, error),
+              file=sys.stderr)
         sys.exit(2)
-    return reader_by_extension
+    # A file of unknown language is read with the fallback family, so a table without that
+    # family is refused here, before any file is read, rather than raising partway through a
+    # run that had already printed the markers before it.
+    if FALLBACK_FAMILY not in table["families"]:
+        print("ceiling-report: the comment family table %s has no %s family for files of unknown language"
+              % (CHECKER.TABLE_PATH, FALLBACK_FAMILY), file=sys.stderr)
+        sys.exit(2)
+    return table
 
 
 # The report serves the repository it is run in, which need not be the one that holds this script.
@@ -206,8 +214,8 @@ def tracked_code_files(root, extensions):
 
 
 def main(argv):
-    reader_by_extension = load_readers()
-    fallback = family_reader(FALLBACK_FAMILY)
+    table = read_table()
+    patterns = {name: marker_pattern(family) for name, family in table["families"].items()}
     if argv:
         for arg in argv:
             if arg.startswith("-"):
@@ -223,22 +231,21 @@ def main(argv):
         targets = [(arg, arg) for arg in argv]
     else:
         root = repo_root()
-        targets = [(rel, os.path.join(root, rel)) for rel in tracked_code_files(root, reader_by_extension)]
+        targets = [(rel, os.path.join(root, rel)) for rel in tracked_code_files(root, table["by_extension"])]
 
-    markers = []
+    found = []
     for shown, path in targets:
-        reader = reader_by_extension.get(os.path.splitext(shown)[1].lower(), fallback)
-        scan(shown, path, reader, markers)
+        scan(shown, path, table, patterns, found)
 
     no_trigger = 0
     no_signal = 0
-    for shown, lineno, text, tags in markers:
+    for shown, lineno, text, tags in found:
         print("%s:%d  %s  [%s]" % (shown, lineno, text, ",".join(tags)))
         if "no-trigger" in tags:
             no_trigger += 1
         if "no-signal" in tags:
             no_signal += 1
-    print("markers=%d no-trigger=%d no-signal=%d" % (len(markers), no_trigger, no_signal))
+    print("markers=%d no-trigger=%d no-signal=%d" % (len(found), no_trigger, no_signal))
     return 0
 
 
