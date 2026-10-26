@@ -88,7 +88,7 @@ The design line numbers were re-checked against the tree on the branch head. Cor
 | 5.5 `registry-compiler.cjs:250-278` | Confirmed. `validateSurfaceDetection` spans that range | None |
 | 1.3 `router-replay-lib.cjs:773` exports | Confirmed. The export list names `routeSkillResources` | None |
 | 6.5 "hub benchmark replay shows no regression" | The Lane C harness is retired. `benchmark/README.md` says no new run can start from it | Replaced by the successor gate and the canaries. ADR-006 |
-| 6.5 second canary expects `sk-code-ci` as a surface bundle | Stage one returns `single` today. Stage two returns `CI_WORKFLOW` in `surfaceIntents` | Recorded as AC-018, Unmet until decided. ADR-006 |
+| 6.5 second canary expects `sk-code-ci` as a surface bundle | Stage one returns `single` today. Stage two returns `CI_WORKFLOW` in `surfaceIntents` | Recorded as AC-018, closed as a waiver. Stage one stays `single`, and stage two carries `CI_WORKFLOW` with the 4 CI references. ADR-006 |
 | 6.5 stage-two test for "apply yagni to this change" | Baseline `surfaceIntents` is empty, so the test starts red | AC-006 |
 
 ### Design Judgements in This Phase
@@ -157,14 +157,16 @@ Each canary is run after the edits. The baseline column is what the branch print
 | # | Command | Baseline | Expected after this phase |
 |---|---------|----------|---------------------------|
 | 1 | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on the agent file I edited under .skilled/agents"` | `selectionKind` single, target `sk-code-quality` | Target `sk-code-quality` |
-| 2 | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on my edited .github/workflows/ci.yml"` | `selectionKind` single, target `sk-code-quality`. Stage two carries `CI_WORKFLOW` | `sk-code-quality` first, with `sk-code-ci` as a surface. Measured result goes to ADR-006 |
+| 2 | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on my edited .github/workflows/ci.yml"` | `selectionKind` single, target `sk-code-quality`. Stage two carries `CI_WORKFLOW` | `selectionKind` single, target `sk-code-quality`, with stage two carrying `CI_WORKFLOW` and its 4 CI references. AC-018 closes as a waiver under ADR-006 |
 | 3 | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "quality gate for my rails app before I claim done"` | Target `sk-code-quality` | Target `sk-code-quality` |
 | 4 | `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"check comment hygiene on these files"}' --format json` | `"recommendations": []` | `sk-code` at confidence 0.8 or above |
 | 5 | `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"simplify this README paragraph"}' --format json` | `"recommendations": []` | `sk-code` below 0.8 or absent |
 | 6 | Stage-two replay of "apply yagni to this change" through `routeSkillResources` | `surfaceIntents` empty | `surfaceIntents` includes `CODE_QUALITY` |
-| 7 | Out-of-domain replays of "over-engineering", "yagni" and "comment hygiene" in prose, as the hub routing rule requires for each new alias | Not measured before the edit | `sk-code` below 0.8 for each phrase |
+| 7 | Out-of-domain replays of "over-engineering", "yagni" and "comment hygiene" in prose, as the hub routing rule requires for each new alias | Not measured before the edit | `sk-code` below 0.8 for `over-engineering` and `yagni`. `comment hygiene` is exempt, because its prose replay ties sk-code with sk-doc at 0.82, as the amended ADR-003 records |
+| 8 | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on .github/workflows/release.yml"` | Not measured before the edit. The HEAD vocabulary held one path spelling, so this prompt scored one CI hit against two for the quality mode (derived) | `selectionKind` single, target `sk-code-quality`, with stage two carrying `CI_WORKFLOW` |
+| 9 | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix the gitlab pipeline stage in .gitlab-ci.yml"` | `defer`, the same as at HEAD | `defer` with no target, because the CI vocabulary matches no `.gitlab-ci.yml` and sk-code-ci is not targeted |
 
-Canary 2 is the open gap. Its stage-one result decides ADR-006 and AC-018.
+Canary 2 stays `single`. ADR-006 records it and AC-018 closes as a waiver.
 
 ### Targets carried from Phase 6
 

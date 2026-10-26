@@ -175,7 +175,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 2 | 002-builtin-runner/ | The runner with built-in checks only: scope, sensors, checklist resolution, layers, render formats, the envelope grammar, and the hub surface declarations with their reader row | Complete |
 | 3 | 003-config-and-doctor/ | The `.sk-code/quality.json` seam, configured checks with argv and cwd, the mutation guard, the read-only doctor leg and the `/doctor:sk-code quality` route | Complete |
 | 4 | 004-doctrine/ | Iron Law 3, the UNKNOWN rows, the SKILLED house checklist, the mechanical floor and the severity crosswalk | Complete |
-| 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Planned |
+| 5 | 005-consumers-and-routing/ | The envelope readers in verify, @code and review, the surface `quality` declarations and their metadata gate, routing keywords, aliases and mirrors | Complete |
 | 6 | 006-measurement/ | Playbook scenarios on real changes, three compiled-routing canaries and the live benchmark report | Planned |
 | 7 | 007-checker-debt-closeout/ | Closes the checker limitations phase 001 left: the ceiling report reads comment text through the checker, template literals, heredocs and bare string statements, a zero-finding tree and the live CI failure record. Depends on 001 only, and lands before 006 | Complete |
 | 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Complete |

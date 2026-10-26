@@ -215,17 +215,17 @@
     ],
     "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
     "created_at": "2026-10-25T23:21:45Z",
-    "last_save_at": "2026-10-26T12:26:07.856Z",
+    "last_save_at": "2026-10-26T12:38:46.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d2d22857534417206d2e24dac0b9443825d518ee0419e3c38b4ae58ec7a88411",
+    "source_fingerprint": "sha256:ac332066dbc2acf5af236ae76568ab8edd300b0351c74bc10ca4ac6857a262d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e51666ea7e7c3ff9379ee48b28c61e3682eba0c6ff12f354c6e6463e8ba536e3"
+      "spec.md": "609bc5dfd3c3c3d6fa6fb256fe32116a8af8e073078c0771f4ce0f9a6d99a859"
     },
     "last_active_at": null
   }
