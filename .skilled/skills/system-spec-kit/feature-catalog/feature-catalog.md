@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-25"
-version: 2.1.11.0
+version: 2.1.12.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -719,7 +719,7 @@ Places one imperative fill instruction below every template section heading, wit
 
 #### Current Reality
 
-Every content section of the four core templates and the ten addon templates carries one `<!-- FILL: ... -->` line, and the fill guidance test prints `16 passed`.
+Every content section of the four core templates and the seven add-on templates carries one `<!-- FILL: ... -->` line, and the fill guidance test prints `24 passed`.
 
 #### Source Files
 
@@ -948,22 +948,6 @@ See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery
 ---
 
 ## 9. CONTEXT PRESERVATION
-
-### Resource map template
-
-#### Description
-
-Optional cross-cutting packet template that records the file footprint of a packet in one flat, review-friendly place.
-
-#### Current Reality
-
-It complements `implementation-summary.md` by listing paths rather than narrative, so a reviewer never reconstructs that ledger from prose or git history.
-
-#### Source Files
-
-See [`context-preservation/resource-map-template.md`](context-preservation/resource-map-template.md) for full implementation and test file listings.
-
----
 
 ### Session relaunch loop
 

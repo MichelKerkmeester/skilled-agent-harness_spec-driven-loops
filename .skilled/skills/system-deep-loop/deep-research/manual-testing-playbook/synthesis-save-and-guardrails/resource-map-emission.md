@@ -1,7 +1,7 @@
 ---
 title: "DR-035 -- Research resource-map emission"
 description: "Verify synthesis emits research/resource-map.md from converged deltas and honors the opt-out path."
-version: 1.14.0.14
+version: 1.14.1.0
 ---
 
 # DR-035 -- Research resource-map emission
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates research resource-map emission for `DR-035`. The objective is to verify that synthesis emits `research/resource-map.md` from converged delta evidence, that the map preserves the template category structure, and that `--no-resource-map` disables the write cleanly.
+This scenario validates research resource-map emission for `DR-035`. The objective is to verify that synthesis emits `research/resource-map.md` from converged delta evidence, that the map keeps the renderer's ten-category structure, and that `--no-resource-map` disables the write cleanly.
 
 ### WHY THIS MATTERS
 
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate resource-map emission from delta evidence and --no-resource-map suppression.`
 - Expected execution process: Inspect the docs and workflow first, then run the shared extractor or reducer emission path on representative deltas, then exercise the opt-out branch.
 - Desired user-visible outcome: The user is told where `resource-map.md` appears, what it summarizes, and how to skip it.
-- Expected signals: The synthesis workflow contains an emission step, the reducer supports `--emit-resource-map`, the shared extractor renders template categories with citation counts, and config opt-out skips cleanly.
+- Expected signals: The synthesis workflow contains an emission step, the reducer supports `--emit-resource-map`, the shared extractor renders its ten built-in categories with citation counts, and config opt-out skips cleanly.
 - Pass/fail posture: PASS if emission and opt-out both work as documented; FAIL if synthesis omits the map, produces malformed categories, or writes a file when opt-out is set.
 
 ---
@@ -55,7 +55,7 @@ Validate resource-map emission from delta evidence and --no-resource-map suppres
 
 ### Expected
 
-Synthesis emits `research/resource-map.md`, the output uses the ten-category template skeleton with per-file citation notes, and opt-out skips the write without error.
+Synthesis emits `research/resource-map.md`, the output uses the ten-category skeleton with per-file citation notes, and opt-out skips the write without error.
 
 ### Evidence
 

@@ -1,0 +1,43 @@
+
+CONTEXT: the spec kit deleted three add-on templates. Seven add-ons remain in templates/addons/ (acceptance-criteria,
+debug-delegation, decision-record, goal, handover, research, timeline), four packet-types remain in templates/packet-types/
+(phase-parent.spec, research.spec, review-report, review.spec), 15 templates in total. The fill guidance test now prints
+`Tests  24 passed (24)`. S = .skilled/skills/system-spec-kit. Read each file before editing. Make only these edits.
+
+1. S/feature-catalog/feature-catalog.md line 722: change "the ten addon templates" to "the seven add-on templates", and
+   change the fill guidance test count `16 passed` to `24 passed` in the same line.
+2. S/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md line 18: change "the ten addon templates" to
+   "the seven add-on templates". If the same file states `16 passed` for the fill guidance test, change it to `24 passed`.
+3. S/manual-testing-playbook/template-authoring/golden-render-all-levels.md lines 24, 30, 63, 76 and 86: every fill guidance
+   count `16 passed` becomes `24 passed`, and `Tests  16 passed (16)` becomes `Tests  24 passed (24)`. Line 63's grep becomes
+   grep -E '^ *Tests +24 passed' "$OUT/fill.txt"
+   Leave every `12 passed` (the golden render count) unchanged.
+4. S/templates/README.md line 220: `Tests  16 passed (16)` becomes `Tests  24 passed (24)`.
+5. S/templates/README.md near lines 141-144 (the key-files table): the add-on rows list only acceptance-criteria,
+   decision-record, handover and goal. Add three rows in the same column alignment style:
+   | `addons/debug-delegation.md.tmpl`       | Renders the debug escalation record.                                             |
+   | `addons/research.md.tmpl`               | Renders `research/research.md` research notes.                                   |
+   | `addons/timeline.md.tmpl`               | Renders the chronological event log.                                             |
+6. S/references/structure/folder-structure.md near lines 41-44 (the packet-types tree): it lists only phase-parent.spec
+   and review.spec, and the last entry wrongly uses `├──`. Make the block list all four in this order, the last with `└──`:
+   │   ├── phase-parent.spec.md.tmpl
+   │   ├── research.spec.md.tmpl
+   │   ├── review-report.md.tmpl
+   │   └── review.spec.md.tmpl
+   Keep the existing indentation and any trailing comments.
+7. S/runtime/cli/spec/README.md line 105: change "the 18 template document kinds" to "the 15 template document kinds".
+8. S/runtime/cli/tests/upgrade-legacy.vitest.ts line 486: the comment begins "// resource-map.md is the addon the spec-doc
+   set does not hold and no template". Change only that comment line so it begins
+   "// resource-map.md is a legacy packet-root document the spec-doc set does not hold and no template"
+   and rewrap the next comment line only if the line gets longer than its neighbours. Change no code.
+9. S/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md lines 62-64 record an old broken-link
+   output that lists `../templates/addons/checklist.md.tmpl`. Run
+   node S/runtime/cli/check-markdown-links.cjs
+   and replace that recorded output block and its broken-link count with what the command prints now. If the doc frames it
+   as a captured past result, keep that framing and update the date to 2026-10-26.
+
+Never write an em dash. Change nothing else.
+VERIFY and paste the output of:
+rg -n 'ten addon|16 passed|18 template document' S/feature-catalog S/manual-testing-playbook/template-authoring S/templates/README.md S/runtime/cli/spec/README.md
+rg -n 'packet-types' -A5 S/references/structure/folder-structure.md | head -8
+sed -n 484,489p S/runtime/cli/tests/upgrade-legacy.vitest.ts

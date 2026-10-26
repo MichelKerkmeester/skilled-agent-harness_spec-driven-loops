@@ -1482,7 +1482,7 @@ const RECOMPUTABLE_RULES = new Set([
   'SPEC_DOC_INTEGRITY',
 ]);
 
-function writeRepairHint(report: ValidationReport): void {
+export function writeRepairHint(report: ValidationReport): void {
   const hit = report.entries.some(
     (item) => (item.status === 'error' || item.status === 'warn') && RECOMPUTABLE_RULES.has(item.rule),
   );
@@ -1490,11 +1490,16 @@ function writeRepairHint(report: ValidationReport): void {
   // Printed relative to where the reader is standing, so the line can be copied
   // rather than retyped around an absolute path.
   const target = path.relative(process.cwd(), report.folder) || report.folder;
-  process.stdout.write('\nSome of these are recomputable from the repository:\n');
+  process.stdout.write('\nSome of these are recomputable from the repository. Fix them with:\n');
   process.stdout.write(
-    `  preview  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder ${target}\n`,
+    `  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder ${target} --apply\n`,
   );
-  process.stdout.write('  apply    add --apply\n');
+  process.stdout.write(
+    '  It rewrites generated metadata (description.json, graph-metadata.json), frontmatter packet\n' +
+      '  pointers and the Spec Folder row, and reports any failure it cannot repair. It never edits\n' +
+      '  other text. Run validate once after it.\n',
+  );
+  process.stdout.write('  Optional: run it without --apply first to preview the changes.\n');
 }
 
 // ───────────────────────────────────────────────────────────────────

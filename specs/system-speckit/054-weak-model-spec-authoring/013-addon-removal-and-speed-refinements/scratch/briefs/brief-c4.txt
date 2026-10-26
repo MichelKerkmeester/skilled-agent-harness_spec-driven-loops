@@ -1,0 +1,20 @@
+
+CONTEXT: the add-on template resource-map.md.tmpl was deleted, so templates/spec-kit-docs.json no longer has a
+version for it. In repo-era.mjs a stamp counts as 'new' only when it matches the manifest version, so every
+`resource-map | vX` stamp now reads 'legacy'. That is correct. One test still expects the old answer.
+S = .skilled/skills/system-spec-kit. Do NOT run npm build. Do not edit repo-era.mjs. Read the test file first.
+
+TASK, in S/runtime/cli/tests/repo-era.vitest.ts only:
+1. The test "normalizes drifting headers and makes report totals agree with packet tallies" (near lines 222-260)
+   uses 'resource-map-old.md': 'resource-map | v1.1' (expected 'new') and 'resource-map-legacy.md':
+   'resource-map | v2.2' (expected 'legacy') to test current-versus-legacy stamps. Replace that pair with a
+   template that still ships: 'handover-current.md': 'handover | v1.0' (expected 'new', since the manifest version
+   of handover.md.tmpl is v1.0) and 'handover-legacy.md': 'handover | v0.9' (expected 'legacy'). Rename the two
+   variables to match. Keep one 'resource-map-old.md': 'resource-map | v1.1' document and assert its status is
+   'legacy', with a short comment: no resource-map template ships, so no resource-map stamp is current.
+2. The fixture near lines 130-137 (packet number 8) has the same two resource-map documents. Leave it unless a
+   test that reads it now fails; if one does, apply the same replacement there.
+
+VERIFY and paste the summary, from S:
+  ./node_modules/.bin/vitest run runtime/cli/tests/repo-era.vitest.ts --config vitest.config.ts
+REPLY: the edits with file:line, then the output.

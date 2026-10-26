@@ -227,8 +227,9 @@ describe('repository era report', () => {
         'alias-a.md': 'impl-summary-core | v2.2',
         'alias-b.md': 'implementation-summary-core | v2.2',
         'alias-c.md': 'implementation-summary | v2.2',
+        'handover-current.md': 'handover | v1.0',
+        'handover-legacy.md': 'handover | v0.9',
         'resource-map-old.md': 'resource-map | v1.1',
-        'resource-map-legacy.md': 'resource-map | v2.2',
       },
     });
     const classification = classifyRepo(root);
@@ -240,17 +241,22 @@ describe('repository era report', () => {
     const aliases = packet?.documents
       .filter((document) => document.templateMarker.canonical === 'implementation-summary')
       .map((document) => document.templateMarker.source);
-    const currentResourceMap = packet?.documents
-      .find((document) => document.name === 'resource-map-old.md')?.templateMarker.status;
+    const currentHandover = packet?.documents
+      .find((document) => document.name === 'handover-current.md')?.templateMarker.status;
+    const legacyHandover = packet?.documents
+      .find((document) => document.name === 'handover-legacy.md')?.templateMarker.status;
     const legacyResourceMap = packet?.documents
-      .find((document) => document.name === 'resource-map-legacy.md')?.templateMarker.status;
+      .find((document) => document.name === 'resource-map-old.md')?.templateMarker.status;
 
     expect(aliases).toEqual([
       'impl-summary-core',
       'implementation-summary-core',
       'implementation-summary',
     ]);
-    expect(currentResourceMap).toBe('new');
+    expect(currentHandover).toBe('new');
+    expect(legacyHandover).toBe('legacy');
+    // No resource-map template ships, so no resource-map stamp is current. The deep loops still stamp their maps
+    // `resource-map | v1.1`, so the era report counts every loop map as legacy.
     expect(legacyResourceMap).toBe('legacy');
     expect(
       report.signals.frontmatter.present + report.signals.frontmatter.missing,

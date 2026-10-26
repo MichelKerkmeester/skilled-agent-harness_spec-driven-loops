@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements",
+  "description": "The before-after, roadmap and resource-map add-ons sit in 11 and 137 packets at most, yet every template change has to carry their manifest entries",
+  "keywords": [
+    "before-after",
+    "roadmap",
+    "resource-map",
+    "add-ons",
+    "sit",
+    "packets",
+    "every",
+    "template",
+    "change",
+    "carry",
+    "manifest",
+    "entries"
+  ],
+  "lastUpdated": "2026-10-26T12:09:00.678Z",
+  "specId": "013",
+  "folderSlug": "addon-removal-and-speed-refinements",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

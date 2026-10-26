@@ -1,0 +1,14 @@
+
+TASK: two line replacements in .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md,
+section 9. Match the text exactly.
+
+1. Replace the paragraph that starts "When a failing rule is GENERATED_METADATA_DRIFT or
+GENERATED_METADATA_INTEGRITY, run" (one paragraph, ending "never your text.") with exactly:
+When the full output ends with a `repair-derived.cjs ... --apply` command, run that command, then run the `--quiet` command again. It rewrites generated metadata, frontmatter packet pointers and the Spec Folder row, never your prose.
+
+2. Replace the line "Verify: that line is the last validator output you saw." with exactly:
+Verify: the last `--quiet` run printed `RESULT: PASSED`.
+
+Change nothing else.
+VERIFY and paste: sed -n '135,155p' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+and: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | tail -1

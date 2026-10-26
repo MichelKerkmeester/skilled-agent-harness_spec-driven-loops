@@ -1,0 +1,28 @@
+
+TASK: doc alignment. Three spec-kit add-on templates no longer exist: before-after.md,
+roadmap.md and resource-map.md (the templates/addons/*.md.tmpl files are deleted). Seven add-ons
+remain: acceptance-criteria, debug-delegation, decision-record, goal, handover, research,
+timeline. `--with-lazy-addons` now adds only timeline.md and decision-record.md.
+IMPORTANT: the deep-research and deep-review loops still WRITE their own research/resource-map.md
+and review/resource-map.md (built in code). Do not remove mentions of that loop output; only
+remove or reword text that offers resource-map.md as a template or an add-on a packet author adds.
+
+Edit only these files (S = .skilled/skills/system-spec-kit), removing or rewording each mention of
+the three deleted add-ons so the docs describe the seven that remain. Keep each doc's style; do
+not add new sections. Line numbers are hints.
+  S/templates/README.md (near 112-115, 147)
+  S/templates/EXTENSION-GUIDE.md (near 49: "scaffolds four of them" becomes the true count, two)
+  S/references/structure/folder-structure.md (near 41-44)
+  S/references/templates/template-guide.md (near 187, 200)
+  S/references/templates/template-style-guide.md (near 42)
+  S/references/templates/level-specifications.md (near 38, 748, 845)
+  S/references/workflows/quick-reference.md (near 723)
+  S/assets/template-mapping.md (near 115)
+  S/runtime/cli/README.md (near 81)
+  S/runtime/cli/resource-map/README.md (near 64: drop the link to the deleted template; the
+    extractor itself stays)
+
+VERIFY and paste the output:
+  rg -n -i 'before-after|roadmap\.md|resource-map\.md\.tmpl|resource-map template|resource map template' S/templates/README.md S/templates/EXTENSION-GUIDE.md S/references S/assets/template-mapping.md S/runtime/cli/README.md S/runtime/cli/resource-map/README.md
+Every remaining hit must be about deep-loop output or unrelated wording; say which for each.
+REPLY: the edits with file:line, then the output with your note per remaining hit.

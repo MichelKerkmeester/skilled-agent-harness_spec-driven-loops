@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -184,7 +184,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
 
-Add `--with-lazy-addons` to scaffold `before-after.md`, `timeline.md`, `roadmap.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`. Both work at every level, but with `--phase` the goal flag writes a `goal.md` into each child only. Author a parent goal, or any goal after scaffolding, with `/create:goal`.
+Add `--with-lazy-addons` to scaffold `timeline.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`. Both work at every level, but with `--phase` the goal flag writes a `goal.md` into each child only. Author a parent goal, or any goal after scaffolding, with `/create:goal`.
 
 **Optional Templates:**
 ```bash
@@ -193,11 +193,6 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
   --level 3 \
   --out-dir specs/###-name/research \
   .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
-
-bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
-  --level 3 \
-  --out-dir specs/###-name \
-  .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 ```
 
 **When to use:**
@@ -757,7 +752,7 @@ Before presenting documentation to user, verify:
 - [ ] Numbering and emojis preserved
 - [ ] Structure matches template
 - [ ] Descriptive filenames used (for decision records)
-- [ ] No ToC heading in non-research spec artifacts (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, `resource-map.md`)
+- [ ] No ToC heading in non-research spec artifacts (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`)
 
 **If ANY unchecked → Fix before presenting to user**
 

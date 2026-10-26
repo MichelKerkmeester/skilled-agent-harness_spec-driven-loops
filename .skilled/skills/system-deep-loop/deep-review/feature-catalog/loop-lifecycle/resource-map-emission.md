@@ -7,7 +7,7 @@ trigger_phrases:
   - "resource-map.md"
   - "review coverage ledger"
   - "P0 P1 P2 per-file counts"
-version: 1.11.0.8
+version: 1.11.1.0
 ---
 
 # Resource Map Emission
@@ -16,7 +16,7 @@ version: 1.11.0.8
 
 Emits a convergence-time `resource-map.md` from review delta evidence with a clean opt-out path.
 
-This feature gives the review loop a flat path ledger alongside `review-report.md`. Instead of forcing operators to reconstruct file coverage from iteration markdown and JSONL state, synthesis writes a template-shaped `resource-map.md` grouped by category and annotated with per-file P0/P1/P2 counts.
+This feature gives the review loop a flat path ledger alongside `review-report.md`. Instead of forcing operators to reconstruct file coverage from iteration markdown and JSONL state, synthesis writes a ten-category `resource-map.md` grouped by category and annotated with per-file P0/P1/P2 counts.
 
 ---
 

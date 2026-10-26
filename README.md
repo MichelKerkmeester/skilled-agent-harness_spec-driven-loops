@@ -251,21 +251,16 @@ specs/<track>/<###-feature-name>/
 ├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
 ├── decision-record.md           # Architecture decisions (lazy add-on, any level)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
-├── resource-map.md              # Path ledger of resources the packet touched (lazy add-on, any level)
 ├── graph-metadata.json          # Packet-level graph metadata (auto-refreshed on save)
 └── scratch/                     # Temporary workspace files
 ```
 
-`resource-map.md` is a lazy add-on at any level.
-
-- Render it by hand with the inline gate renderer when a packet wants a lean, central listing of the files, scripts and external resources it interacts with
-- Command: `bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <N> --out-dir <packet> .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl`
-- Deep-research and deep-review loops write a different file of the same name: an evidence ledger extracted from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root
+`resource-map.md` is not a packet add-on. The deep-research and deep-review loops write their own evidence ledger of that name, extracted from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root.
 
 &nbsp;
 #### Available Templates
 
-Eighteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
+Fifteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
 
 ##### Core
 
@@ -293,10 +288,6 @@ Eighteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Whic
 
 Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the inline gate renderer on an existing packet. A `goal.md` for an existing packet comes from `/create:goal` instead. All live in `addons/`.
 
-**`before-after.md`**
-- Record of what changed, why it changed and the resulting effect.
-- For migrations, rewrites and tuning work where the delta is the story.
-
 **`decision-record.md`**
 - Architecture decision records: choices, alternatives, consequences and implementation notes.
 - Required backing for any `Waived` or `Superseded` acceptance-criteria row.
@@ -304,14 +295,6 @@ Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the in
 **`goal.md`**
 - The durable directive the packet executes against plus the criteria that decide when it is done.
 - Scaffolded by `--with-goal`, into each child only under `--phase`. Authored, amended or retrofitted with `/create:goal`, which also writes a phase parent's goal and binding table.
-
-**`resource-map.md`**
-- Lean catalog of every file path the packet analyzed, created, updated or removed, grouped by category.
-- Rendered by hand through the inline gate renderer.
-
-**`roadmap.md`**
-- Forward plan for near-term, next-step and later work.
-- For features that ship in stages.
 
 **`timeline.md`**
 - Chronological record of events, outcomes and milestones.

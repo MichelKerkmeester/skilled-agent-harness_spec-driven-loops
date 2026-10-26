@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.0.14
+version: 1.14.1.0
 ---
 
 # deep-research: Feature Catalog
@@ -187,7 +187,7 @@ Emits a convergence-time `resource-map.md` from research delta evidence with a c
 
 #### How It Works
 
-Synthesis turns citation evidence from converged delta files into a template-shaped `resource-map.md`, grouped by category and annotated with per-file citation counts. The emitter is enabled by default through `config.resource_map.emit = true`, and the `--no-resource-map` flag disables the write cleanly for a run.
+Synthesis turns citation evidence from converged delta files into a ten-category `resource-map.md`, grouped by category and annotated with per-file citation counts. The emitter is enabled by default through `config.resource_map.emit = true`, and the `--no-resource-map` flag disables the write cleanly for a run.
 
 #### Source Files
 

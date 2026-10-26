@@ -225,9 +225,9 @@ export const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
 /**
  * Documents whose `_memory` continuity block is optional. The one home of this
  * set: the orchestrator's native frontmatter rule imports it, so a document
- * cannot get two verdicts from two copies. resource-map.md is here because its
- * template ships no continuity block; goal.md is absent because its template
- * does.
+ * cannot get two verdicts from two copies. resource-map.md is here because older
+ * packet-root copies and the deep loops' own maps carry no continuity block;
+ * goal.md is absent because its template does.
  */
 export const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
@@ -237,15 +237,13 @@ export const OPTIONAL_CONTINUITY_DOCS = new Set([
   'handover.md',
   'debug-delegation.md',
   'research/research.md',
-  'before-after.md',
   'timeline.md',
-  'roadmap.md',
   'resource-map.md',
 ]);
-// goal.md carries contract section gates like the three author add-ons, so its
+// goal.md carries contract section gates like the author add-ons, so its
 // anchors are required whenever the document is present. decision-record.md is
 // deliberately absent: its entries are dynamic and its own contract owns them.
-const LAZY_DOCS_WITH_STATIC_ANCHORS = new Set(['before-after.md', 'timeline.md', 'roadmap.md', 'goal.md']);
+const LAZY_DOCS_WITH_STATIC_ANCHORS = new Set(['timeline.md', 'goal.md']);
 
 function collectDocuments(folder: string, level: string): DocumentRecord[] {
   const documents: DocumentRecord[] = [];

@@ -1,7 +1,7 @@
 ---
 title: "483 -- Level 1 packet authored from the card"
 description: "This scenario validates that a cli-devin deepseek-v4-1-flash-1017-max worker can scaffold and fill a Level 1 packet from the authoring card alone, with strict validation passing and no token left."
-version: 1.0.1.0
+version: 1.0.2.0
 id: template-authoring-level-1-packet-authored-from-card
 ---
 
@@ -77,10 +77,10 @@ TASK:
 1. Read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md completely.
 2. Run exactly: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --with-goal --level 1 --track zz-pb-card --short-name card-authoring --number 1 "Author a Level 1 packet from the card"
 3. Fill spec.md, plan.md, tasks.md, implementation-summary.md and goal.md. Describe this feature in the packet and do not build it: a --quiet flag for .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh that prints only the final recommended-level line. Say in implementation-summary.md that the packet is planned and not implemented.
-4. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-pb-card/001-card-authoring --strict
-5. Fix what it reports and run it again, at most three times in all.
+4. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-pb-card/001-card-authoring --strict --quiet
+5. Follow section 9 of the card: on FAILED run it once without --quiet, fix every failing rule, rerun the --quiet command; stop after three rounds.
 
-RETURN exactly one line: the last RESULT line validate.sh printed.
+RETURN exactly one line: the first RESULT line of the last --quiet run.
 TXT
 echo "brief=$(wc -l < "$OUT/brief.txt") lines"
 GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git status --porcelain --untracked-files=all > "$OUT/status-before.txt"
@@ -124,12 +124,12 @@ test ! -d specs/zz-pb-card && test ! -e "$OUT" && test ! -e "$POINTER" && echo "
 
 ### Expected
 
-Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20, then `status_before=` with a line count. Step 2 prints `devin_exit=0`, then the worker's last `RESULT` line, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`, then `escaped=0`. Step 4 prints `cleanup=ok`.
+Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20, then `status_before=` with a line count. Step 2 prints `devin_exit=0`, then the worker's first `RESULT` line from its last `--quiet` run, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`, then `escaped=0`. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 
 - The `out=` line, the `pointer=` line and the brief line count from step 1.
-- The reply file in the scratch path from step 2 and the worker's last `RESULT` line, copied out before step 4.
+- The reply file in the scratch path from step 2 and the worker's first `RESULT` line, copied out before step 4.
 - The packet path, the validation exit code, the `RESULT` line, the token count and the `escaped=` line from step 3.
 - The `cleanup=ok` line from step 4.
 

@@ -1,0 +1,49 @@
+
+CONTEXT: in the spec kit, `decision-record.md` is a lazy add-on at every level. `templates/spec-kit-docs.json` requires no add-on
+at Levels 1 to 3+; `runtime/cli/spec/upgrade-level.sh:10` and `:878-881` say L2 to L3 adds no new file ("decision-record.md stays
+a lazy add-on rendered on demand"). A review found lines that still say otherwise. S = .skilled/skills/system-spec-kit.
+Read each file before editing. Line numbers are approximate: match the quoted text. Make only these edits.
+
+1. S/references/templates/level-specifications.md:
+   a. ~789: "(each with spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md)" becomes
+      "(each with spec.md, plan.md, tasks.md and acceptance-criteria.md; decision-record.md on request)".
+   b. ~387: "`decision-record.md` (from Level 3) - Architecture Decision Records" becomes
+      "`decision-record.md` - Architecture Decision Records".
+   c. ~540: the L2 to L3 row "`decision-record.md` + addendum sections" becomes "addendum sections (`decision-record.md` on request)".
+   d. ~566: the 2 to 3 row "Render `templates/addons/decision-record.md.tmpl` for Level 3" becomes
+      "Promote Level 2 sections; `decision-record.md` stays on request".
+   e. In the fenced `templates/` tree near lines 25-36, run `ls .skilled/skills/system-spec-kit/templates` and add one line for each
+      real top-level entry the tree leaves out (for example `changelog/`, `CONTRACT.md`, `EXTENSION-GUIDE.md`, `MIGRATION.md`,
+      `README.md`), each with a short `#` comment in the same style. List only entries that exist. Keep `└──` on the last line.
+2. S/assets/level-decision-matrix.md ~263: the 2 to 3 row "`decision-record.md` (+ optional `research/research.md`)" becomes
+   "No new file (`decision-record.md` and `research/research.md` on request)".
+3. S/references/workflows/quick-reference.md ~308: the 2 to 3 row "decision-record.md (+ optional research/research.md)" becomes
+   "No new file (decision-record.md and research/research.md on request)".
+4. S/runtime/cli/spec/upgrade-level.sh ~281, help text only: "L2 → L3:   Adds decision-record.md, dependency graph, milestones, ADRs"
+   becomes "L2 → L3:   Promotes L2 sections, adds dependency graph and milestones (decision-record.md on request)".
+   Keep the `→` character as it is. Change no code. Run: bash -n S/runtime/cli/spec/upgrade-level.sh
+5. S/SKILL.md line 61:
+   a. "`goal.md`, `timeline.md` (the last three optional)" : rewrite the parenthesis so it is true: `decision-record.md`, `handover.md`,
+      `debug-delegation.md`, `goal.md` and `timeline.md` are optional add-ons; `review-report.md` belongs to review packets. Use:
+      "(`acceptance-criteria.md` from Level 2; the rest after `implementation-summary.md` are optional add-ons or packet-type docs)".
+      Keep the list of file names as it is.
+   b. After the sentence that ends "as section 9 of `references/workflows/spec-authoring-card.md` sets out", insert the sentence:
+      "The /speckit workflows also run their own strict gate after each doc-writing step."
+   Then run: node S/runtime/cli/hermes/sync-skills-hermes.cjs
+   then:     node S/runtime/cli/hermes/sync-skills-hermes.cjs --check
+6. S/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md: the clean-run output blocks omit the checker's
+   final `OK ... 0 broken markdown links.` line because it holds an em dash. Directly after each such block add one plain line:
+   "The checker also prints a closing `OK` line; it is left out here because it contains an em dash."
+7. .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md and
+   .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md,
+   lines ~58-59: "ten-category template skeleton" becomes "ten-category skeleton".
+8. S/runtime/cli/tests/upgrade-legacy.vitest.ts lines ~486-488 (comment only): rewrap the three comment lines that start
+   "// resource-map.md is a legacy packet-root document" so no line is longer than 100 characters, words unchanged. No code change.
+
+Never write an em dash. Change nothing else.
+VERIFY and paste the output of:
+rg -n 'decision-record' S/references/templates/level-specifications.md S/assets/level-decision-matrix.md S/references/workflows/quick-reference.md | rg -v 'on request|lazy|optional|on-demand'
+rg -n 'template skeleton|last three optional' .skilled/skills/system-deep-loop S/SKILL.md
+bash -n S/runtime/cli/spec/upgrade-level.sh; echo bashn=$?
+node S/runtime/cli/hermes/sync-skills-hermes.cjs --check
+node S/runtime/cli/check-markdown-links.cjs | tail -2

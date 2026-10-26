@@ -1,0 +1,18 @@
+
+TASK: the before-after and roadmap add-on templates were just deleted from the spec-kit template
+system (templates, spec-kit-docs.json, create.sh and the phrase tools no longer name them).
+Update the tests so they match. S = .skilled/skills/system-spec-kit. Line numbers are hints.
+
+Edit only these test files, removing the expectations for the two deleted add-ons:
+  S/runtime/cli/tests/level-contract-resolver.vitest.ts (near 21, 23, 46, 48, 64, 66, 77, 79, 95)
+  S/runtime/cli/tests/create-root-numbering.vitest.ts (near 416-418)
+  S/runtime/cli/tests/template-phrase-integration.vitest.ts (near 92-94)
+  S/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts (near 113-115 and 143)
+Then regenerate the golden snapshot file by running, from S:
+  ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts -u
+Do NOT change any non-test file and do not touch resource-map expectations.
+
+VERIFY, from S, and paste the summary line of each:
+  ./node_modules/.bin/vitest run runtime/cli/tests/level-contract-resolver.vitest.ts runtime/cli/tests/create-root-numbering.vitest.ts runtime/cli/tests/template-phrase-integration.vitest.ts runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts
+  rg -n 'before-after|roadmap' runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+REPLY: the edits with file:line, then the outputs.

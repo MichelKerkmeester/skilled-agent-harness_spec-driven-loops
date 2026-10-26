@@ -140,6 +140,8 @@ The operator meets all four before the first phase runs. The conductor records e
 | 10 | 010-deep-review-finding-fixes/ | Fix the nine P1 findings and every reproducing P2 from the 2026-10-25 deep review, plus the three tooling gaps it hit | Complete |
 | 11 | 011-authoring-speed-research/ | Research where spec authoring and upkeep spend model time, then rank changes that make them faster without losing the quality this packet added | Complete |
 | 12 | 012-authoring-speed-fixes-and-alignment/ | Build the speed changes phase 011 ranks as safe, then align the skill, README, catalog and playbook docs with phases 010 and 012 | Complete |
+| 13 | 013-addon-removal-and-speed-refinements/ | Drop the before-after, roadmap and resource-map add-on templates, then build the six speed refinements the speed-loop analysis ranked | Complete |
+| 14 | 014-removed-template-reality-sweep/ | Sweep READMEs, skill docs, commands and agents for the removed add-on templates, and fix every doc that no longer matches the shipped behavior | In Progress |
 
 ### Phase Transition Rules
 
@@ -163,6 +165,8 @@ The operator meets all four before the first phase runs. The conductor records e
 | 009-authoring-benchmark-and-closeout | 010-deep-review-finding-fixes | The deep review of the closed packet is committed with its P1 and P2 registry | `review/review-report.md` lists the nine P1 findings this phase fixes |
 | 010-deep-review-finding-fixes | 011-authoring-speed-research | The operator asked on 2026-10-25 that authoring stay fast as well as correct; the research runs beside phase 010 | `011-authoring-speed-research/research/research.md` ranks each recommendation with its evidence |
 | 011-authoring-speed-research | 012-authoring-speed-fixes-and-alignment | Every ranked change is assigned to a lane or deferred with a reason | `rg -c '\*\*(build now|defer)\*\*' 011-authoring-speed-research/research/research.md` prints 12 |
+| 012-authoring-speed-fixes-and-alignment | 013-addon-removal-and-speed-refinements | The speed loop ran on 2026-10-26 and its analysis ranked six refinements; the operator chose to drop three add-ons and build all six | `011-authoring-speed-research/goal.md` logs the loop result |
+| 013-addon-removal-and-speed-refinements | 014-removed-template-reality-sweep | The operator asked on 2026-10-26 for a separate check that no doc still names a removed template and that the docs match the shipped behavior | `014-removed-template-reality-sweep/scratch/audit-*.md` record both sweeps |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -26,17 +26,16 @@ Templates use a manifest-backed model where `templates/spec-kit-docs.json` selec
 ```
 templates/
 ├── spec-kit-docs.json       # Level contract and document membership
-├── spec.md.tmpl             # Requirements and scope
-├── plan.md.tmpl             # Technical approach
-├── tasks.md.tmpl            # Task breakdown
-├── acceptance-criteria.md.tmpl  # Closure criteria (Level 2+)
-├── decision-record.md.tmpl  # Architecture decisions
-├── implementation-summary.md.tmpl
-├── phase-parent.spec.md.tmpl
-├── handover.md.tmpl
-├── debug-delegation.md.tmpl
-├── resource-map.md.tmpl
-└── research.md.tmpl          # Optional research notes
+├── core/                    # spec, plan, tasks, implementation-summary
+├── addons/                  # acceptance-criteria, debug-delegation, decision-record, goal, handover, research, timeline
+├── packet-types/            # phase-parent.spec, research.spec, review-report, review.spec
+├── examples/                # Rendered examples by Level
+├── changelog/               # Root and phase child changelog templates
+├── scratch/                 # Disposable scratch folder templates
+├── CONTRACT.md              # Manifest contract for gated templates
+├── EXTENSION-GUIDE.md       # Guide to adding manifest document types
+├── MIGRATION.md             # Legacy marker and manifest migration policy
+└── README.md                # Folder layout and maintainer guidance
 ```
 
 ### Template Paths - Quick Reference
@@ -99,7 +98,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols
 
 ### Optional Files
 
-- `resource-map.md` - lean path catalog (cross-cutting, see §9)
+- `timeline.md` - Chronological event log (lazy add-on at every level)
 
 ### Content Expectations
 
@@ -190,7 +189,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols
 
 ### Optional Files
 
-- `resource-map.md` - lean path catalog (cross-cutting, see §9)
+- `timeline.md` - Chronological event log (lazy add-on at every level)
 
 ### Content Expectations
 
@@ -296,19 +295,19 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols
 - Significant architectural impact
 - Major technical decisions need to be documented
 
-### Required Files (Level 2 + decision-record)
+### Required Files (Level 2 file set)
 
 - `spec.md` (from Level 2) - Requirements and user stories
 - `plan.md` (from Level 2) - Technical implementation plan
 - `tasks.md` (from Level 2) - Task breakdown by user story
 - `acceptance-criteria.md` (from Level 2) - the criteria that decide whether the packet may close
-- `decision-record.md` (NEW at Level 3) - Architecture Decision Records/ADRs
 - `implementation-summary.md` (from Level 2) - Post-implementation outcomes and verification evidence
 
 ### Optional Files
 
-- `resource-map.md` - lean path catalog (cross-cutting, see §9)
+- `decision-record.md` - Architecture Decision Records (lazy add-on: `--with-lazy-addons` or on request)
 - `research/research.md` - Comprehensive research documentation
+- `timeline.md` - Chronological event log (lazy add-on at every level)
 
 ### Content Expectations
 
@@ -321,7 +320,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols
 - Rationale
 - Consequences and trade-offs
 
-**Enforcement:** Hard block if `decision-record.md` missing
+**Enforcement:** none; an absent `decision-record.md` is skipped.
 
 ### Example Scenarios
 
@@ -386,12 +385,12 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 - `plan.md` (from Level 3) - With AI Execution Framework, dependency graphs
 - `tasks.md` (from Level 3) - With 3-Tier Task Format, AI Execution Protocol
 - `acceptance-criteria.md` (from Level 3) - extended criteria with a sign-off section
-- `decision-record.md` (from Level 3) - Architecture Decision Records
 - `implementation-summary.md` (from Level 3) - Required completion artifact for all levels
 
 ### Optional Files
 
-- `resource-map.md` - lean path catalog (cross-cutting, see §9)
+- `decision-record.md` - Architecture Decision Records (lazy add-on: `--with-lazy-addons` or on request)
+- `timeline.md` - Chronological event log (lazy add-on at every level)
 
 ### Extended Features (Auto-Enabled)
 
@@ -543,7 +542,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042
 | From   | To   | Files Added                                            |
 | ------ | ---- | ------------------------------------------------------ |
 | L1 → L2 | +Verify | `acceptance-criteria.md` + the verification region in tasks.md |
-| L2 → L3 | +Arch   | `decision-record.md` + addendum sections             |
+| L2 → L3 | +Arch   | addendum sections (`decision-record.md` on request) |
 | L3 → L3+ | +Govern | Extended governance sections + AI protocols          |
 | L1 → L3 | Skip-level | Chains through L2 automatically                 |
 
@@ -569,7 +568,7 @@ If the script is unavailable, manually add the required files:
 | From   | To                         | Action                                                 | Files to Add |
 | ------ | -------------------------- | ------------------------------------------------------ | ------------ |
 | 1 → 2  | Add verification           | Render `templates/addons/acceptance-criteria.md.tmpl` for Level 2     |              |
-| 2 → 3  | Add decision documentation | Render `templates/addons/decision-record.md.tmpl` for Level 3 |              |
+| 2 → 3  | Add decision documentation | Promote Level 2 sections; `decision-record.md` stays on request |              |
 | 3 → 3+ | Add governance             | Re-render affected manifest templates for Level 3+             |              |
 
 **Changelog example:**
@@ -738,14 +737,12 @@ Some templates are not level-specific but can be used at any documentation level
 | Template | Purpose | When to Use | Created By |
 |----------|---------|-------------|------------|
 | `implementation-summary.md` | Post-implementation documentation | End of implementation phase (REQUIRED all levels) | Manual or context save |
-| `resource-map.md` | Lean path catalog | Any level, when reviewers need a scannable file ledger | Manual (optional) |
 
 **Template Sources:**
 - Level 1: `templates/core/implementation-summary.md.tmpl`
 - Level 2: `templates/core/implementation-summary.md.tmpl`
 - Level 3: `templates/core/implementation-summary.md.tmpl`
 - Level 3+: `templates/core/implementation-summary.md.tmpl`
-- `templates/addons/resource-map.md.tmpl`
 
 **Why Required for ALL Levels:**
 - `implementation-summary.md` documents outcomes, lessons learned, and deviations from plan
@@ -794,7 +791,7 @@ A series parent is the one exception. It groups separate small packets that chan
 ### What Phases Add to a Level
 
 Phases do not change the documentation requirements for a given level. Each phase child folder independently follows the level requirements:
-- A Level 3 parent with phases produces Level 3 child folders (each with spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md)
+- A Level 3 parent with phases produces Level 3 child folders (each with spec.md, plan.md, tasks.md and acceptance-criteria.md; decision-record.md on request)
 - The parent folder adds a **Phase Documentation Map** section to its spec.md
 - Child folders add a **parent back-reference** to their spec.md metadata
 
@@ -842,7 +839,6 @@ See [phase-definitions.md](../structure/phase-definitions.md) for complete phase
 **Session Management Templates (Any Level):**
 - [handover.md.tmpl](../../templates/addons/handover.md.tmpl) - Session context transfer
 - [debug-delegation.md.tmpl](../../templates/addons/debug-delegation.md.tmpl) - Debug task delegation
-- [resource-map.md.tmpl](../../templates/addons/resource-map.md.tmpl) - Optional lean path catalog
 
 **Non-Template Helpers:**
 - canonical continuity inside packet docs, primarily `_memory.continuity` in `implementation-summary.md`

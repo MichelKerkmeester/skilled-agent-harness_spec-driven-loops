@@ -8,7 +8,7 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Spec Authoring Card
@@ -134,18 +134,20 @@ Verify: `rg -o '\[YOUR_VALUE_HERE:' <packet folder>/*.md | wc -l` prints 0.
 
 ## 9. VALIDATE
 
-Run the validator before you claim the packet is done.
+Run the validator once, after your last edit, before you claim the packet is done.
 
 ```bash
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict --quiet
 ```
 
-The last line must be `RESULT: PASSED`. Read the summary line above it. `Errors: 0` is the pass condition. Warnings do not block the pass, but read them.
+It prints one `RESULT:` line per packet; the first line is the folder you named, and that line decides. `RESULT: PASSED (errors=0 ...)` is the pass. Do not run it again to re-check a pass.
 
-When it fails, read the first failing rule. Fix that rule only. Run the command again. Stop after three fixes on the same rule and write the rule and the error in the packet's `goal.md`.
+When it prints `FAILED`, run the same command once without `--quiet` and read every failing rule. Fix all of them in one pass, then run the `--quiet` command again. That is one round. Stop after three rounds and write the rules and their errors in the packet's `goal.md`.
 
-Acceptance: the command prints `RESULT: PASSED` and `Errors: 0`.
-Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict | tail -1` prints `RESULT: PASSED`.
+When the full output contains a `repair-derived.cjs ... --apply` command, run that command, then run the `--quiet` command again. It rewrites generated metadata, frontmatter packet pointers and the Spec Folder row, never your prose.
+
+Acceptance: the `--quiet` command prints `RESULT: PASSED`.
+Verify: the last `--quiet` run printed `RESULT: PASSED`.
 
 ## 10. CLOSE
 
@@ -154,10 +156,10 @@ A packet is closeable when:
 - every token is filled, or replaced with `UNKNOWN` and an open question in `goal.md`
 - `tasks.md` has no `[B]` line
 - `implementation-summary.md` names the files that changed
-- `validate.sh --strict` prints `RESULT: PASSED`
+- the section 9 `--quiet` run printed `RESULT: PASSED`
 
 Acceptance: all five are true.
-Verify: run the five commands in this card in order, then run the validator once more. The last line prints `RESULT: PASSED`.
+Verify: the checks in sections 7 and 8 print what they say, and the section 9 run printed `RESULT: PASSED`.
 
 The continuity block and the `description.json` and `graph-metadata.json` refresh belong to `references/workflows/spec-folder-authoring-checklist.md`, not to this card.
 
@@ -166,7 +168,7 @@ The continuity block and the `description.json` and `graph-metadata.json` refres
 Stop and write the question in `goal.md` when:
 - two documents in the packet state opposite rules
 - a command in the plan would write outside the packet folder
-- the validator fails on the same rule after three fixes
+- the validator still fails after three rounds
 - the feature needs more than 4 plan steps
 
 Acceptance: the question is written in `goal.md` as `Open question:` under the rule or command that raised it.

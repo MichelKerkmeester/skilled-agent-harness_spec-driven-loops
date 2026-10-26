@@ -8,7 +8,7 @@ trigger_phrases:
   - "required templates by level"
 importance_tier: normal
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Template Mapping - Level to File Assignments
@@ -112,13 +112,11 @@ These templates are OPTIONAL and can be added at any documentation level:
 | Template File | Render As     | When to Use                          | Render Command                                                                        |
 | ------------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
 | `research/research.md` | `research/research.md` | Comprehensive research documentation (Level 3+ typical) | Render `templates/addons/research.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name/research` |
-| `resource-map.md` | `resource-map.md` | Lean path catalog of every file analyzed/created/updated/removed (any level) | Render `templates/addons/resource-map.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name` |
 
 **Notes:**
 - These are OPTIONAL - only render when the packet benefits from them
 - `decision-record.md` is created on request at Level 3 and above. Without it, the ADRs live in `plan.md`
 - Topic-specific ADR files are supplemental. A packet that keeps a separate decision file names it `decision-record.md`
-- `resource-map.md` is level-agnostic and pairs well with `implementation-summary.md` when reviewers need a scannable blast-radius view
 
 ---
 
@@ -171,8 +169,7 @@ specs/045-user-dashboard/
 ├── implementation-summary.md    (REQUIRED - from Level 2)
 ├── acceptance-criteria.md       (from Level 2)
 ├── decision-record.md           (OPTIONAL - on request, else ADRs live in plan.md)
-├── research/research.md         (OPTIONAL - comprehensive research)
-└── resource-map.md              (OPTIONAL - lean path catalog)
+└── research/research.md         (OPTIONAL - comprehensive research)
 ```
 
 **Additional expectations:**

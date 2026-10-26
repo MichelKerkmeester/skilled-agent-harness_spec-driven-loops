@@ -1,0 +1,22 @@
+
+TASK: two small template edits. S = .skilled/skills/system-spec-kit.
+
+1. S/templates/core/spec.md.tmpl: under the `## 4. REQUIREMENTS` heading and its single FILL
+   comment line, insert one plain line (not a comment, not a second FILL), then a blank line:
+   REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
+2. S/templates/addons/acceptance-criteria.md.tmpl: in section 2, find the line
+   "One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it."
+   and append to the same line: " A new row takes the highest AC-ID plus one."
+3. S/templates/addons/acceptance-criteria.md.tmpl, section 3 CLOSURE STATEMENT:
+   replace the FILL comment line with exactly:
+   <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
+   and replace the bracketed paragraph below **Closeable:** (the two lines starting
+   "[One or two sentences: which criteria carried the packet") with exactly:
+   [One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+4. Regenerate the golden snapshots, from S:
+   ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts -u
+
+VERIFY and paste the summary lines, from S:
+  ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts
+  bash runtime/cli/spec/check-example-drift.sh; echo "exit=$?"
+REPLY: the edits with file:line, then the outputs.

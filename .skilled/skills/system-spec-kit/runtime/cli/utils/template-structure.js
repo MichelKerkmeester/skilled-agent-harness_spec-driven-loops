@@ -73,9 +73,7 @@ const DOC_TEMPLATE_NAMES = {
   'debug-delegation.md': 'debug-delegation.md.tmpl',
   'research.md': 'research.md.tmpl',
   'review-report.md': 'review-report.md.tmpl',
-  'before-after.md': 'before-after.md.tmpl',
   'timeline.md': 'timeline.md.tmpl',
-  'roadmap.md': 'roadmap.md.tmpl',
 };
 const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review', 'research']);
 const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
@@ -209,7 +207,7 @@ function getContractDocs(level, templatesRoot = getTemplatesRoot()) {
 // not stamp a marker. The template-source rule reads this list and skips any
 // document that is not present; the file-presence rules keep reading the
 // required set above.
-const AUTHOR_SCAFFOLDED_LAZY_DOCS = ['before-after.md', 'timeline.md', 'roadmap.md', 'decision-record.md', 'goal.md', 'resource-map.md'];
+const AUTHOR_SCAFFOLDED_LAZY_DOCS = ['timeline.md', 'decision-record.md', 'goal.md'];
 
 function getTemplateSourceDocs(level, templatesRoot = getTemplatesRoot()) {
   const contract = loadLevelContract(level, templatesRoot);

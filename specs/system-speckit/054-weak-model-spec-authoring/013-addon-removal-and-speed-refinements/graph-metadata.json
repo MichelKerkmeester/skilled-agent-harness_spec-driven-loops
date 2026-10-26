@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "addon removal and speed refinements",
+      "phase 13 addon removal and speed refinements",
+      "addon removal and speed refinements plan",
+      "addon removal and speed refinements tasks",
+      "addon removal and speed refinements acceptance criteria",
+      "addon removal and speed refinements goal",
+      "addon removal and speed refinements decision record",
+      "addon removal and speed refinements implementation summary"
+    ],
+    "key_topics": [
+      "addon",
+      "removal",
+      "speed",
+      "refinements",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/utils/template-structure.js",
+      "runtime/cli/lib/frontmatter-migration.ts",
+      "runtime/lib/validation/spec-doc-structure.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "runtime/tests/repair-hint-order.vitest.ts",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+      "templates/addons/acceptance-criteria.md.tmpl",
+      ".skilled/skills/system-spec-kit/changelog/v2.9.4.0.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "templates/spec-kit-docs.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "runtime/cli/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": "runtime/cli/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-hint-order.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/repair-hint-order.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.9.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The before-after, roadmap and resource-map add-ons sit in 11 and 137 packets at most, yet every template change has to carry their manifest entries, phrase maps and snapshots",
+    "created_at": "2026-10-26T07:16:18Z",
+    "last_save_at": "2026-10-26T12:12:41.601Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a4a6945ffc0693279b58a748fdd29c16b3fb079c185e03f1357c0f7c0803731",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "80c7abff3662f8c7a0961dec0db48bb780ddef369e987f54779d28fdaa530ced",
+      "plan.md": "3671b0b609077cbf3714c93dec44f3dab2f50baa9af7d49f2632bc1c00f87f62",
+      "tasks.md": "8f1b2ef5e0ce95b7b97958887eda365cbbb95f527630a4abbe8acc20396dbad7",
+      "decision-record.md": "c9e9a8359a03ada0fb8eefb23992561d6a8fd662692bdc8cdb431c68feafda46",
+      "implementation-summary.md": "767332b834164adb6f0d012d2e2d51597cf4e75665d0edfb2fe878ac6fae2b78"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,24 @@
+
+TASK: four small text fixes. S = .skilled/skills/system-spec-kit. Read each file first. Match text exactly.
+Do NOT run npm build.
+
+1. S/runtime/lib/validation/spec-doc-structure.ts near lines 229-230: the comment now reads "...goal.md is absent
+   because its" then " * does." Make it read "goal.md is absent because its template does." Comment only.
+2. S/references/workflows/spec-authoring-card.md section 9: replace the line
+   "It prints one line. `RESULT: PASSED (errors=0 ...)` is the pass. Do not run it again to re-check a pass."
+   with exactly:
+   "It prints one `RESULT:` line per packet; the first line is the folder you named, and that line decides. `RESULT: PASSED (errors=0 ...)` is the pass. Do not run it again to re-check a pass."
+3. Same section: replace "When the full output ends with a `repair-derived.cjs ... --apply` command, run that command"
+   with "When the full output contains a `repair-derived.cjs ... --apply` command, run that command". Keep the rest.
+4. S/runtime/cli/tests/repo-era.vitest.ts: replace the comment
+   "// No resource-map template ships, so no resource-map stamp is current."
+   with
+   "// No resource-map template ships, so no resource-map stamp is current. The deep loops still stamp their maps
+   // `resource-map | v1.1`, so the era report counts every loop map as legacy."
+   (two comment lines, same indentation).
+
+Never write an em dash. Change nothing else.
+VERIFY and paste, from S:
+  sed -n 139,152p references/workflows/spec-authoring-card.md
+  bash runtime/cli/spec/check-card-sync.sh | tail -1
+  ./node_modules/.bin/vitest run runtime/cli/tests/repo-era.vitest.ts --config vitest.config.ts 2>&1 | tail -4

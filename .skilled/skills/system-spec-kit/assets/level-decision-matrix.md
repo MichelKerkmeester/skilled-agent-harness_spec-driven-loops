@@ -8,7 +8,7 @@ trigger_phrases:
   - "secondary factors override"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.33
+version: 1.6.1.0
 ---
 
 # Level Decision Matrix - Complexity Scoring Guide
@@ -43,7 +43,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 | ------------------- | ---------------- | ------------------------------------------------------------------- | ---------------------------------- | ------------------------------------ |
 | **1: Baseline**     | <100             | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`    | (foundation)                       | All features - minimum documentation |
 | **2: Verification** | 100-499          | Level 1 + `acceptance-criteria.md`; verification checklist inside `tasks.md` | Closure criteria + QA checklist    | Needs systematic validation          |
-| **3: Full**         | ≥500             | Level 2 + `decision-record.md`                                      | ADR + optional research            | Complex/architectural changes        |
+| **3: Full**         | ≥500             | Level 2 file set; `decision-record.md` on request                   | ADR + optional research            | Complex/architectural changes        |
 | **3+: Extended**    | Complexity 80+   | Level 3 + approval workflow + compliance + stakeholders             | Review tracking + coordination     | High-complexity, multi-workstream    |
 
 **Progressive Enhancement Model:**
@@ -52,7 +52,7 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + acceptance-criteria.md, with the verification checklist inside tasks.md
                               ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md + optional resource-map.md (any level)
+Level 3 (Full):         Level 2 + optional decision-record.md + optional research/research.md
                               ↓
 Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder tracking
 ```
@@ -117,8 +117,8 @@ These factors can push you to a higher level even if LOC suggests lower:
 | Refactor (no new logic) | 200 | Level 2         | L1 + acceptance-criteria        | Complexity needs verification            |
 | Config cascade          | 50  | Level 2         | L1 + acceptance-criteria        | Risk trumps LOC - needs validation       |
 | Authentication change   | 80  | Level 2         | L1 + acceptance-criteria        | Security implications require QA         |
-| System redesign         | 300 | Level 3         | L2 + decision-record            | Architectural decisions must be recorded |
-| Multi-team project      | 400 | Level 3         | L2 + decision-record + research | Coordination needs full documentation    |
+| System redesign         | 300 | Level 3         | L2 (add decision-record)        | Architectural decisions must be recorded |
+| Multi-team project      | 400 | Level 3         | L2 (add decision-record, research) | Coordination needs full documentation |
 
 ---
 
@@ -217,7 +217,7 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 - Purpose: Ensures all required files for the documentation level are present
 - Applies to: All levels (checks level-specific required files)
 - Severity: error (blocks completion)
-- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`; Level 2 adds `acceptance-criteria.md`; Level 3 adds `decision-record.md`
+- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`; Level 2 adds `acceptance-criteria.md`; Level 3 adds no required file
 
 **PLACEHOLDER_FILLED**
 - Purpose: Detects unfilled template placeholders that indicate incomplete documentation
@@ -260,7 +260,7 @@ If scope grows during implementation, escalate by adding the required files:
 | From Level | To Level                   | Action                                          | Files to Add                                                    |
 | ---------- | -------------------------- | ----------------------------------------------- | --------------------------------------------------------------- |
 | 1 → 2      | Add verification           | `acceptance-criteria.md` and the tasks.md checklist |                                                                 |
-| 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research/research.md`) |                                                                 |
+| 2 → 3      | Add decision documentation | No new file (`decision-record.md` and `research/research.md` on request) |                                                                 |
 | 3 → 3+     | Add governance             | AI execution protocol + extended checklist      | Sign-off section in spec.md + multi-agent coordination patterns |
 
 **Changelog example:**

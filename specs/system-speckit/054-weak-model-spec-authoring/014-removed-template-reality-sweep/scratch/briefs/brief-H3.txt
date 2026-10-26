@@ -1,0 +1,35 @@
+
+CONTEXT: the spec kit's authoring card, .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md section 9,
+now says: run `validate.sh <folder> --strict --quiet` ONCE after the last edit; the first RESULT line decides; on FAILED run it
+once without --quiet, fix every failing rule in one pass, rerun the --quiet command; that is one round; stop after three rounds.
+Read section 9 of the card first. Three docs still say otherwise. S = .skilled/skills/system-spec-kit. Make only these edits.
+
+1. S/SKILL.md line 61. Replace exactly
+   "run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims"
+   with
+   "run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict --quiet` once after the last authored spec-doc write and before completion claims, as section 9 of `references/workflows/spec-authoring-card.md` sets out"
+   and in the same line replace "is exempt from that generic per-write rule" with "is exempt from that rule".
+   Then run: node S/runtime/cli/hermes/sync-skills-hermes.cjs
+   then:     node S/runtime/cli/hermes/sync-skills-hermes.cjs --check
+2. .skilled/agents/orchestrate.md line 400: "`validate.sh --strict` MUST run after each doc write" becomes
+   "`validate.sh --strict --quiet` MUST run once after the last doc write (spec-authoring-card.md section 9)".
+   Line 429: "runs `validate.sh --strict` after each doc write" becomes "runs `validate.sh --strict --quiet` once after the last doc write".
+   Then sync the agent copies, running each command and pasting its last lines:
+   node S/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
+   node S/runtime/cli/codex/sync-agents.cjs
+   node S/runtime/cli/pi/sync-agents-pi.cjs
+   If a command offers a --check form, run that too.
+3. S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md lines 80-83 (a worker brief inside a heredoc):
+   "4. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-pb-card/001-card-authoring --strict" becomes
+   "4. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-pb-card/001-card-authoring --strict --quiet"
+   "5. Fix what it reports and run it again, at most three times in all." becomes
+   "5. Follow section 9 of the card: on FAILED run it once without --quiet, fix every failing rule, rerun the --quiet command; stop after three rounds."
+   "RETURN exactly one line: the last RESULT line validate.sh printed." becomes
+   "RETURN exactly one line: the first RESULT line of the last --quiet run."
+   If later lines of that scenario (expected signals, pass criteria) depend on the old wording, align them and list each.
+
+Never write an em dash. Change nothing else.
+VERIFY and paste the output of:
+rg -n 'after each doc write|per-write rule' .skilled/agents .claude/agents .codex/agents .pi/agents .hermes/agents S/SKILL.md .hermes/skills/system-spec-kit/SKILL.md
+rg -c 'once after the last doc write' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md .codex/agents/orchestrate.toml .pi/agents/orchestrate.md .hermes/agents/orchestrate.md
+node S/runtime/cli/hermes/sync-skills-hermes.cjs --check

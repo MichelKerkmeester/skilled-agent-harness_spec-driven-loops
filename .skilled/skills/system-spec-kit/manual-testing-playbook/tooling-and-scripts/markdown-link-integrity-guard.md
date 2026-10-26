@@ -1,7 +1,7 @@
 ---
 title: "Markdown link integrity guard"
 description: "This scenario validates the markdown link integrity guard. It runs check-markdown-links.cjs and its --self-test, records the current baseline, and confirms an injected broken link is named and counted before reverting."
-version: 1.6.0.1
+version: 1.6.1.0
 id: tooling-and-scripts-markdown-link-integrity-guard
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -49,23 +49,15 @@ the baseline count is recorded; --self-test passes all cases; the injected broke
 
 ### Evidence
 
-Baseline scan command. The tree is not link-clean: six pre-existing broken links survive, so the baseline is exit 1 with a known set rather than exit 0. The injection legs below are what prove the guard, by showing a seventh link appear and then disappear against that fixed baseline.
+Baseline scan command. The tree is link-clean at this capture: it holds no broken link, so the baseline is exit 0 with an empty broken set. The injection legs below are what prove the guard, by showing one broken link appear and then disappear against that empty baseline.
 
 ```text
 $ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
-check-markdown-links: 7888 files, 13414 links checked, 6 broken
-
-Broken markdown links (target resolves under neither the file dir nor repo root):
-  .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md  ](./llmstxt-templates.md)
-  .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md  ](../references/core-standards.md)
-  .skilled/skills/system-skill-advisor/runtime/plugin-bridges/README.md  ](../../../system-spec-kit/runtime/plugin-bridges/README.md)
-  .skilled/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
-  .skilled/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
-  .skilled/skills/system-spec-kit/assets/template-mapping.md  ](../templates/addons/checklist.md.tmpl)
-
-Fix the link, or — if it is an intentional placeholder/example — add it to the ALLOWLIST in this script.
-Observed exit code: 1
+check-markdown-links: 7629 files, 13779 links checked, 0 broken
+Observed exit code: 0
 ```
+
+The checker also prints a closing `OK` line; it is left out here because it contains an em dash.
 
 Self-test command:
 
@@ -92,11 +84,10 @@ Injected scan command:
 
 ```text
 $ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
-check-markdown-links: 7888 files, 13415 links checked, 7 broken
+check-markdown-links: 7629 files, 13780 links checked, 1 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
   .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md  ](./definitely-missing-link-target-for-guard-verification.md)
-  [plus the same six pre-existing broken links shown by the baseline scan]
 Observed exit code: 1
 ```
 
@@ -104,12 +95,11 @@ Reverted scan command:
 
 ```text
 $ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
-check-markdown-links: 7888 files, 13414 links checked, 6 broken
-
-Broken markdown links (target resolves under neither the file dir nor repo root):
-  [the same six pre-existing broken links shown by the baseline scan]
-Observed exit code: 1
+check-markdown-links: 7629 files, 13779 links checked, 0 broken
+Observed exit code: 0
 ```
+
+The checker also prints a closing `OK` line; it is left out here because it contains an em dash.
 
 ### Pass / Fail
 

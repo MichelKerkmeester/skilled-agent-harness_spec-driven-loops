@@ -18,12 +18,9 @@ describe('resolveLevelContract', () => {
       'handover.md',
       'debug-delegation.md',
       'research/research.md',
-      'before-after.md',
       'timeline.md',
-      'roadmap.md',
       'decision-record.md',
       'goal.md',
-      'resource-map.md',
     ]);
     expect(contract.frontmatterMarkerLevel).toBe(1);
   });
@@ -43,12 +40,9 @@ describe('resolveLevelContract', () => {
         'handover.md',
         'debug-delegation.md',
         'research/research.md',
-        'before-after.md',
         'timeline.md',
-        'roadmap.md',
         'decision-record.md',
         'goal.md',
-        'resource-map.md',
       ]);
     }
   });
@@ -61,12 +55,9 @@ describe('resolveLevelContract', () => {
     expect(contract.optionalAddonDocs).toEqual([]);
     expect(contract.lazyAddonDocs).toEqual([
       'handover.md',
-      'before-after.md',
       'timeline.md',
-      'roadmap.md',
       'decision-record.md',
       'goal.md',
-      'resource-map.md',
     ]);
     expect(contract.sectionGates.get('phase-list')).toEqual(['phase']);
   });
@@ -74,11 +65,8 @@ describe('resolveLevelContract', () => {
   it('keeps review lazy add-ons opt-in', () => {
     expect(resolveLevelContract('review').lazyAddonDocs).toEqual([
       'handover.md',
-      'before-after.md',
       'timeline.md',
-      'roadmap.md',
       'decision-record.md',
-      'resource-map.md',
     ]);
     expect(resolveLevelContract('review').lifecycleRequiredDocs).toEqual({ afterImplementationStarts: [] });
   });
@@ -92,7 +80,6 @@ describe('resolveLevelContract', () => {
       afterImplementationStarts: ['implementation-summary.md'],
     });
     expect(serialized.templateVersions['spec.md.tmpl']).toBe('v2.3');
-    expect(serialized.templateVersions['before-after.md.tmpl']).toBe('v2.2');
     expect(Object.keys(serialized)).toEqual([
       'requiredCoreDocs',
       'requiredAddonDocs',

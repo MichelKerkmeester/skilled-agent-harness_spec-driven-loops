@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep",
+  "description": "Phase 013 checked its removal with name sweeps over the template file names, which miss prose that still calls a deleted template an add-on",
+  "keywords": [
+    "phase",
+    "checked",
+    "removal",
+    "name",
+    "sweeps",
+    "template",
+    "file",
+    "names",
+    "miss",
+    "prose",
+    "still",
+    "calls",
+    "deleted",
+    "add-on"
+  ],
+  "lastUpdated": "2026-10-26T12:11:43.379Z",
+  "specId": "014",
+  "folderSlug": "removed-template-reality-sweep",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

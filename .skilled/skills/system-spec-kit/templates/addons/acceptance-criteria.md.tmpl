@@ -53,7 +53,7 @@ _memory:
 ## 2. CRITERIA
 <!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--quiet` runs, Then `wc -l` prints 1. WEAK: The feature works. -->
 
-One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
+One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
@@ -81,11 +81,10 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence that names the criteria that carried the packet. GOOD: No. AC-002 is unmet. WEAK: Almost done. -->
+<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
 **Closeable:** [YOUR_VALUE_HERE: Yes/No]
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
 <!-- /ANCHOR:closure -->
 <!-- /IF -->

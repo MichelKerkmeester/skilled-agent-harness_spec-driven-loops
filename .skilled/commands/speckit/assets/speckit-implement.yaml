@@ -278,7 +278,6 @@ available_templates:
   shared:
     handover: .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
     debug_delegation: .skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
-    resource_map: .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 
 template_compliance:
   # cadence: declared once; each step's own gate below states why it re-runs this command

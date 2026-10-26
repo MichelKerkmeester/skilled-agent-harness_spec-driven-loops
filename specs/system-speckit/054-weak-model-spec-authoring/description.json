@@ -1,19 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-speckit/054-weak-model-spec-authoring",
-  "description": "Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm",
+  "description": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that",
   "keywords": [
-    "system-spec-kit",
-    "templates",
-    "authoring",
-    "docs",
-    "followable",
+    "weak-model",
+    "worker",
+    "benchmark",
+    "subject",
+    "cli-devin",
+    "deepseek-v4-1-flash-1017-max",
+    "single-change",
+    "swarm",
+    "lanes",
+    "run",
     "deepseek",
-    "flash",
-    "agent",
-    "swarm"
+    "flash"
   ],
-  "lastUpdated": "2026-10-25T21:42:09.459Z",
+  "lastUpdated": "2026-10-26T12:02:04.031Z",
   "specId": "054",
   "folderSlug": "weak-model-spec-authoring",
   "parentChain": [

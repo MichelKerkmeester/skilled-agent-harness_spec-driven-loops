@@ -1,0 +1,169 @@
+run	step	doc	edit_calls	read_or_check_calls	words_after
+pre054/r1	author	spec.md	1	1	1650
+pre054/r1	author	plan.md	1	1	1883
+pre054/r1	author	tasks.md	1	1	1437
+pre054/r1	author	implementation-summary.md	0	1	287
+pre054/r1	author	acceptance-criteria.md	1	1	650
+pre054/r1	author	goal.md	0	0	
+pre054/r1	author	multi-or-other	0	10	
+pre054/r1	upkeep	spec.md	1	1	1682
+pre054/r1	upkeep	plan.md	0	1	1883
+pre054/r1	upkeep	tasks.md	1	1	1470
+pre054/r1	upkeep	implementation-summary.md	0	0	287
+pre054/r1	upkeep	acceptance-criteria.md	1	1	716
+pre054/r1	upkeep	goal.md	0	0	
+pre054/r1	upkeep	multi-or-other	0	9	
+pre054/r2	author	spec.md	1	3	1759
+pre054/r2	author	plan.md	1	1	2092
+pre054/r2	author	tasks.md	1	1	1571
+pre054/r2	author	implementation-summary.md	0	3	287
+pre054/r2	author	acceptance-criteria.md	2	1	1009
+pre054/r2	author	goal.md	0	0	
+pre054/r2	author	multi-or-other	0	14	
+pre054/r2	upkeep	spec.md	1	1	1793
+pre054/r2	upkeep	plan.md	0	0	2092
+pre054/r2	upkeep	tasks.md	1	1	1607
+pre054/r2	upkeep	implementation-summary.md	0	0	287
+pre054/r2	upkeep	acceptance-criteria.md	1	1	1115
+pre054/r2	upkeep	goal.md	0	0	
+pre054/r2	upkeep	multi-or-other	0	5	
+pre054/r3	author	spec.md	1	2	1741
+pre054/r3	author	plan.md	1	2	2178
+pre054/r3	author	tasks.md	1	2	1559
+pre054/r3	author	implementation-summary.md	2	2	287
+pre054/r3	author	acceptance-criteria.md	1	1	778
+pre054/r3	author	goal.md	0	0	
+pre054/r3	author	multi-or-other	0	13	
+pre054/r3	upkeep	spec.md	1	1	1764
+pre054/r3	upkeep	plan.md	0	0	2178
+pre054/r3	upkeep	tasks.md	1	1	1581
+pre054/r3	upkeep	implementation-summary.md	0	0	287
+pre054/r3	upkeep	acceptance-criteria.md	1	1	843
+pre054/r3	upkeep	goal.md	0	0	
+pre054/r3	upkeep	multi-or-other	0	12	
+main-no054/r1	author	spec.md	1	1	2216
+main-no054/r1	author	plan.md	1	1	2323
+main-no054/r1	author	tasks.md	2	1	1330
+main-no054/r1	author	implementation-summary.md	0	3	287
+main-no054/r1	author	acceptance-criteria.md	1	1	951
+main-no054/r1	author	goal.md	0	0	
+main-no054/r1	author	multi-or-other	0	11	
+main-no054/r1	upkeep	spec.md	1	1	2248
+main-no054/r1	upkeep	plan.md	0	0	2323
+main-no054/r1	upkeep	tasks.md	1	1	1361
+main-no054/r1	upkeep	implementation-summary.md	0	0	287
+main-no054/r1	upkeep	acceptance-criteria.md	1	1	1015
+main-no054/r1	upkeep	goal.md	0	0	
+main-no054/r1	upkeep	multi-or-other	0	8	
+main-no054/r2	author	spec.md	2	3	1574
+main-no054/r2	author	plan.md	1	2	1843
+main-no054/r2	author	tasks.md	3	3	1950
+main-no054/r2	author	implementation-summary.md	0	2	287
+main-no054/r2	author	acceptance-criteria.md	1	1	860
+main-no054/r2	author	goal.md	0	0	
+main-no054/r2	author	multi-or-other	0	20	
+main-no054/r2	upkeep	spec.md	1	1	1596
+main-no054/r2	upkeep	plan.md	0	0	1843
+main-no054/r2	upkeep	tasks.md	1	1	1978
+main-no054/r2	upkeep	implementation-summary.md	0	0	287
+main-no054/r2	upkeep	acceptance-criteria.md	1	1	931
+main-no054/r2	upkeep	goal.md	0	0	
+main-no054/r2	upkeep	multi-or-other	0	14	
+main-no054/r3	author	spec.md	2	2	1385
+main-no054/r3	author	plan.md	1	1	1637
+main-no054/r3	author	tasks.md	1	1	1058
+main-no054/r3	author	implementation-summary.md	0	3	287
+main-no054/r3	author	acceptance-criteria.md	2	2	633
+main-no054/r3	author	goal.md	0	0	
+main-no054/r3	author	multi-or-other	0	19	
+main-no054/r3	upkeep	spec.md	1	1	1408
+main-no054/r3	upkeep	plan.md	0	0	1637
+main-no054/r3	upkeep	tasks.md	1	1	1076
+main-no054/r3	upkeep	implementation-summary.md	0	1	287
+main-no054/r3	upkeep	acceptance-criteria.md	1	1	684
+main-no054/r3	upkeep	goal.md	0	0	
+main-no054/r3	upkeep	multi-or-other	0	15	
+now054/r1	author	spec.md	5	7	1845
+now054/r1	author	plan.md	2	4	2056
+now054/r1	author	tasks.md	3	4	1618
+now054/r1	author	implementation-summary.md	0	2	466
+now054/r1	author	acceptance-criteria.md	2	1	796
+now054/r1	author	goal.md	0	0	
+now054/r1	author	multi-or-other	1	18	
+now054/r1	upkeep	spec.md	1	1	1872
+now054/r1	upkeep	plan.md	0	1	2056
+now054/r1	upkeep	tasks.md	1	1	1659
+now054/r1	upkeep	implementation-summary.md	0	0	466
+now054/r1	upkeep	acceptance-criteria.md	1	1	876
+now054/r1	upkeep	goal.md	0	0	
+now054/r1	upkeep	multi-or-other	0	9	
+now054/r2	author	spec.md	1	3	1473
+now054/r2	author	plan.md	2	1	1494
+now054/r2	author	tasks.md	1	2	1492
+now054/r2	author	implementation-summary.md	0	1	466
+now054/r2	author	acceptance-criteria.md	2	1	641
+now054/r2	author	goal.md	0	0	
+now054/r2	author	multi-or-other	1	20	
+now054/r2	upkeep	spec.md	1	1	1496
+now054/r2	upkeep	plan.md	0	0	1494
+now054/r2	upkeep	tasks.md	1	1	1554
+now054/r2	upkeep	implementation-summary.md	0	0	466
+now054/r2	upkeep	acceptance-criteria.md	1	1	700
+now054/r2	upkeep	goal.md	0	0	
+now054/r2	upkeep	multi-or-other	0	9	
+now054/r3	author	spec.md	1	1	1485
+now054/r3	author	plan.md	2	1	2006
+now054/r3	author	tasks.md	1	2	2113
+now054/r3	author	implementation-summary.md	0	2	466
+now054/r3	author	acceptance-criteria.md	1	1	682
+now054/r3	author	goal.md	0	0	
+now054/r3	author	multi-or-other	0	9	
+now054/r3	upkeep	spec.md	1	1	1508
+now054/r3	upkeep	plan.md	0	1	2006
+now054/r3	upkeep	tasks.md	1	1	2179
+now054/r3	upkeep	implementation-summary.md	0	0	466
+now054/r3	upkeep	acceptance-criteria.md	1	1	735
+now054/r3	upkeep	goal.md	0	0	
+now054/r3	upkeep	multi-or-other	0	12	
+refined/r1	author	spec.md	1	2	1923
+refined/r1	author	plan.md	1	1	2231
+refined/r1	author	tasks.md	1	2	2094
+refined/r1	author	implementation-summary.md	0	0	466
+refined/r1	author	acceptance-criteria.md	2	1	831
+refined/r1	author	goal.md	0	0	
+refined/r1	author	multi-or-other	0	13	
+refined/r1	upkeep	spec.md	1	1	1952
+refined/r1	upkeep	plan.md	0	0	2231
+refined/r1	upkeep	tasks.md	1	1	2138
+refined/r1	upkeep	implementation-summary.md	0	0	466
+refined/r1	upkeep	acceptance-criteria.md	2	1	897
+refined/r1	upkeep	goal.md	0	0	
+refined/r1	upkeep	multi-or-other	0	23	
+refined/r2	author	spec.md	1	2	1817
+refined/r2	author	plan.md	3	1	1755
+refined/r2	author	tasks.md	4	2	2139
+refined/r2	author	implementation-summary.md	0	3	466
+refined/r2	author	acceptance-criteria.md	3	1	882
+refined/r2	author	goal.md	0	0	
+refined/r2	author	multi-or-other	0	13	
+refined/r2	upkeep	spec.md	1	1	1846
+refined/r2	upkeep	plan.md	0	0	1755
+refined/r2	upkeep	tasks.md	1	1	2204
+refined/r2	upkeep	implementation-summary.md	0	0	466
+refined/r2	upkeep	acceptance-criteria.md	1	1	950
+refined/r2	upkeep	goal.md	0	0	
+refined/r2	upkeep	multi-or-other	0	15	
+refined/r3	author	spec.md	3	2	1666
+refined/r3	author	plan.md	2	1	1937
+refined/r3	author	tasks.md	9	1	1736
+refined/r3	author	implementation-summary.md	0	1	466
+refined/r3	author	acceptance-criteria.md	3	2	819
+refined/r3	author	goal.md	0	0	
+refined/r3	author	multi-or-other	1	24	
+refined/r3	upkeep	spec.md	1	1	1692
+refined/r3	upkeep	plan.md	0	2	1937
+refined/r3	upkeep	tasks.md	1	1	1774
+refined/r3	upkeep	implementation-summary.md	0	0	466
+refined/r3	upkeep	acceptance-criteria.md	1	1	873
+refined/r3	upkeep	goal.md	0	0	
+refined/r3	upkeep	multi-or-other	0	9	

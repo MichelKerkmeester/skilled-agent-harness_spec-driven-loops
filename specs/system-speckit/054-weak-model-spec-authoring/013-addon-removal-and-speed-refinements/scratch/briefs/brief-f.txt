@@ -1,0 +1,31 @@
+
+TASK: change the validator's repair hint so the apply command comes first.
+S = .skilled/skills/system-spec-kit. File: S/runtime/lib/validation/orchestrator.ts, function
+writeRepairHint (near line 1485). Keep RECOMPUTABLE_RULES and the `hit` check unchanged.
+
+1. Replace the three process.stdout.write calls after `const target = ...` with exactly:
+
+  process.stdout.write('\nSome of these are recomputable from the repository. Fix them with:\n');
+  process.stdout.write(
+    `  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder ${target} --apply\n`,
+  );
+  process.stdout.write(
+    '  It rewrites generated metadata (description.json, graph-metadata.json), frontmatter packet\n' +
+      '  pointers and the Spec Folder row, and reports any failure it cannot repair. It never edits\n' +
+      '  other text. Run validate once after it.\n',
+  );
+  process.stdout.write('  Optional: run it without --apply first to preview the changes.\n');
+
+2. Add `export` to `function writeRepairHint` so a test can call it. Change nothing else.
+3. Add a test file S/runtime/tests/repair-hint-order.vitest.ts. Follow the import style of
+   S/runtime/tests/validation-orchestrator-bridge.vitest.ts. The test calls writeRepairHint with a
+   minimal report object, { folder: <a path>, entries: [{ rule: 'GENERATED_METADATA_DRIFT',
+   status: 'error' }] } (cast as needed), captures process.stdout.write with vi.spyOn, and asserts:
+   the first line containing 'repair-derived.cjs' also contains '--apply'; it comes before the
+   line containing 'Optional'; and a report whose only entry is a pass prints nothing.
+4. Rebuild: npm --prefix .skilled/skills/system-spec-kit/runtime run build
+
+VERIFY and paste each output, run from S:
+  ./node_modules/.bin/vitest run runtime/tests/repair-hint-order.vitest.ts --config vitest.config.ts
+  rg -n 'Optional: run it without --apply' runtime/dist/lib/validation/orchestrator.js
+REPLY: the edits with file:line, then the outputs.

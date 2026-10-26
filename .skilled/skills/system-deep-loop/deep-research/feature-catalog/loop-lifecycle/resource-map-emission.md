@@ -7,7 +7,7 @@ trigger_phrases:
   - "resource-map.md"
   - "coverage ledger"
   - "delta evidence opt-out"
-version: 1.14.0.7
+version: 1.14.1.0
 ---
 
 # Resource Map Emission
@@ -16,7 +16,7 @@ version: 1.14.0.7
 
 Emits a convergence-time `resource-map.md` from research delta evidence with a clean opt-out path.
 
-This feature gives the research loop a compact coverage ledger beside `research.md`. Synthesis turns citation evidence from converged delta files into a template-shaped `resource-map.md`, grouped by category and annotated with per-file citation counts.
+This feature gives the research loop a compact coverage ledger beside `research.md`. Synthesis turns citation evidence from converged delta files into a ten-category `resource-map.md`, grouped by category and annotated with per-file citation counts.
 
 ---
 

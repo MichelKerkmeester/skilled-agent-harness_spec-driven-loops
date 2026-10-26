@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.0.22
+version: 1.14.1.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -683,9 +683,9 @@ Expected signals: research/research.md has a mandatory "Eliminated Alternatives"
 Verify synthesis emits `research/resource-map.md` from converged delta evidence and honors the `--no-resource-map` opt-out.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that synthesis emits `research/resource-map.md` from converged delta evidence, that the map preserves the template category structure, and that `--no-resource-map` disables the write cleanly. Return a concise operator-facing verdict.
+Prompt summary: As a manual-testing orchestrator, validate that synthesis emits `research/resource-map.md` from converged delta evidence, that the map keeps the renderer's ten-category structure, and that `--no-resource-map` disables the write cleanly. Return a concise operator-facing verdict.
 
-Expected signals: Default run produces `research/resource-map.md` with category sections matching the template; `--no-resource-map` run leaves the file absent while `research.md` still emits.
+Expected signals: Default run produces `research/resource-map.md` with the ten category sections the renderer emits; `--no-resource-map` run leaves the file absent while `research.md` still emits.
 
 #### Test Execution
 > **Feature File:** [DR-035](../manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md)

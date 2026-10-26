@@ -39,13 +39,10 @@ const SEED_PHRASE_SUFFIXES = Object.freeze({
   phaseParentSpec: 'phase parent spec',
   reviewSpec: 'review spec',
   researchSpec: 'research spec',
-  resourceMap: 'resource map',
   handover: 'handover',
   debugDelegation: 'debug delegation',
   research: 'research',
-  beforeAfter: 'before after',
   timeline: 'timeline',
-  roadmap: 'roadmap',
   reviewReport: 'review report',
   goal: 'goal',
 });

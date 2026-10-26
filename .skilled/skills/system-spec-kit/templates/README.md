@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Templates
@@ -109,10 +109,7 @@ templates/
 │   ├── debug-delegation.md.tmpl
 │   ├── goal.md.tmpl
 │   ├── research.md.tmpl
-│   ├── resource-map.md.tmpl
-│   ├── before-after.md.tmpl
-│   ├── timeline.md.tmpl
-│   └── roadmap.md.tmpl
+│   └── timeline.md.tmpl
 ├── packet-types/
 │   ├── phase-parent.spec.md.tmpl
 │   ├── research.spec.md.tmpl
@@ -144,8 +141,10 @@ templates/
 | `addons/acceptance-criteria.md.tmpl`    | Renders the closure-gating acceptance criteria for Levels 2, 3 and 3+.           |
 | `addons/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
 | `addons/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
-| `addons/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
 | `addons/goal.md.tmpl`                   | Renders the durable directive an operator sets as the session objective.        |
+| `addons/debug-delegation.md.tmpl`       | Renders the debug escalation record.                                             |
+| `addons/research.md.tmpl`               | Renders `research/research.md` research notes.                                   |
+| `addons/timeline.md.tmpl`               | Renders the chronological event log.                                             |
 | `EXTENSION-GUIDE.md`                      | Explains how maintainers add a new document type.                                |
 | `examples/`                               | Shows rendered output for Levels 1, 2, 3 and 3+. Phase-parent scaffolding is defined by the manifest template contract. |
 
@@ -221,7 +220,7 @@ cd .skilled/skills/system-spec-kit
 bash runtime/cli/spec/check-example-drift.sh
 ```
 
-Expected: `Tests  12 passed (12)`, `Tests  16 passed (16)` and `EXAMPLE_DRIFT_OK`.
+Expected: `Tests  12 passed (12)`, `Tests  24 passed (24)` and `EXAMPLE_DRIFT_OK`.
 
 ---
 

@@ -1,0 +1,40 @@
+
+TASK: three edits to one file, .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md.
+Match the text, not line numbers.
+
+1. Replace section 9 (from the line "## 9. VALIDATE" up to, not including, "## 10. CLOSE") with exactly:
+
+## 9. VALIDATE
+
+Run the validator once, after your last edit, before you claim the packet is done.
+
+```bash
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict --quiet
+```
+
+It prints one line. `RESULT: PASSED (errors=0 ...)` is the pass. Do not run it again to re-check a pass.
+
+When it prints `FAILED`, run the same command once without `--quiet` and read every failing rule. Fix all of them in one pass, then run the `--quiet` command again. That is one round. Stop after three rounds and write the rules and their errors in the packet's `goal.md`.
+
+When a failing rule is GENERATED_METADATA_DRIFT or GENERATED_METADATA_INTEGRITY, run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <packet folder> --apply`. It rewrites generated metadata and frontmatter pointers, never your text.
+
+Acceptance: the `--quiet` command prints `RESULT: PASSED`.
+Verify: that line is the last validator output you saw.
+
+2. In section 10, replace the line
+"Verify: run the five commands in this card in order, then run the validator once more. The last line prints `RESULT: PASSED`."
+with exactly:
+"Verify: the checks in sections 7 and 8 print what they say, and the section 9 run printed `RESULT: PASSED`."
+
+3. In section 11, replace the list item
+"- the validator fails on the same rule after three fixes"
+with exactly:
+"- the validator still fails after three rounds"
+
+Change nothing else in the card. Keep the line that names spec-folder-authoring-checklist.md.
+
+VERIFY and paste each output:
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh; echo "exit=$?"
+  wc -l .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+  rg -n 'validate.sh|once more|same rule' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+REPLY: the edits with line numbers, then the outputs.

@@ -1,0 +1,28 @@
+
+TASK: remove the spec-kit resource-map ADD-ON TEMPLATE. Keep the deep-research and deep-review
+loops' own resource-map output exactly as it is: they build their maps in code and never read
+the template. S = .skilled/skills/system-spec-kit. Line numbers are hints; match the text.
+
+1. Delete S/templates/addons/resource-map.md.tmpl.
+2. S/templates/spec-kit-docs.json: remove the resource-map version key (near 12), its document
+   entry (near 62-64) and its name in every level's lazyAddonDocs list (7 levels). Keep JSON valid.
+3. S/runtime/cli/spec/create.sh: remove the resource-map template handling near 482-489 and the
+   packet-copy patch near 699, and any help text naming the resource-map add-on.
+4. S/runtime/cli/spec/template-phrase-census.mjs: remove the resourceMap entry (near 37).
+5. .skilled/commands/speckit/assets/speckit-plan.yaml (near 306), speckit-implement.yaml (near
+   281), speckit-complete.yaml (near 343): remove the shared.resource_map template-path line.
+   Leave speckit-resume-*.yaml alone.
+6. Tests under S/runtime/cli/tests/: remove the resource-map template expectations in
+   create-root-numbering.vitest.ts (near 412-448), template-version-parity.vitest.ts (near 53,
+   64), template-phrase-cleanup-hardening.vitest.ts (near 28, 56, 76, 86) and
+   upgrade-legacy.vitest.ts (near 509). Keep each test's other cases.
+Do NOT touch: S/runtime/cli/resource-map/, .skilled/skills/system-deep-loop/, the --no-resource-map
+flag, the deep YAML assets, or the name 'resource-map.md' in runtime name lists
+(spec-doc-structure.ts, folder-discovery.ts, resume-ladder.ts, repair-derived.cjs).
+
+VERIFY and paste each output:
+  rg -n 'resource-map.md.tmpl|resourceMap' .skilled
+  node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/system-spec-kit/templates/spec-kit-docs.json','utf8')); console.log('json ok')"
+  bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh && echo 'bash ok'
+  from S: ./node_modules/.bin/vitest run runtime/cli/tests/create-root-numbering.vitest.ts runtime/cli/tests/template-version-parity.vitest.ts runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts runtime/cli/tests/upgrade-legacy.vitest.ts --config vitest.config.ts
+REPLY: the edits with file:line, then the outputs.

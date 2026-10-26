@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.15.0
+version: 1.0.16.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -168,7 +168,6 @@ Both ways grant the session exactly one more context nudge, whatever level it ha
 - Feature file path: context-preservation/session-relaunch-loop.md
 
 Related references:
-- [Resource map template](resource-map-template.md)
 - [Claude session relaunch scenarios](../../manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md)
 - [Pi and OpenCode session relaunch scenarios](../../manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md)
 - [Codex, Cursor, Hermes and Devin session relaunch scenarios](../../manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md)

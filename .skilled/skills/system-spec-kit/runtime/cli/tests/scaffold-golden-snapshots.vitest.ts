@@ -110,9 +110,7 @@ describe('manifest template golden snapshots', () => {
 
   it('renders each lazy add-on template with its stable anchor structure', () => {
     const expectedAnchors: Record<string, string[]> = {
-      'before-after.md': ['metadata', 'summary', 'comparison', 'net-effect', 'notes-caveats'],
       'timeline.md': ['metadata', 'timeline', 'milestones'],
-      'roadmap.md': ['metadata', 'now-next-later', 'milestones-targets', 'dependencies'],
       'decision-record.md': ['adr-001'],
       'goal.md': ['directive', 'completion', 'log'],
     };
@@ -140,7 +138,7 @@ describe('manifest template golden snapshots', () => {
       [CREATE_SCRIPT, '--path', target, '--level', '3', '--skip-branch', ...(withLazyAddons ? ['--with-lazy-addons'] : []), 'lazy add-on test'],
       { cwd: SKILL_ROOT, encoding: 'utf8' },
     );
-    const lazyDocs = ['before-after.md', 'timeline.md', 'roadmap.md', 'decision-record.md'];
+    const lazyDocs = ['timeline.md', 'decision-record.md'];
 
     try {
       const defaultResult = runCreate(defaultPath);
@@ -154,7 +152,7 @@ describe('manifest template golden snapshots', () => {
       for (const docName of lazyDocs) {
         expect(fs.existsSync(path.join(optInPath, docName)), docName).toBe(true);
       }
-      // The goal document has its own flag and is not part of the lazy four.
+      // The goal document has its own flag and is not part of the lazy add-on set.
       expect(fs.existsSync(path.join(optInPath, 'goal.md'))).toBe(false);
       const goalPath = path.join(root, '003-with-goal');
       const goalResult = spawnSync(

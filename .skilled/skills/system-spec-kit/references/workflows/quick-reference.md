@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -33,7 +33,7 @@ Quick reference for spec folder management, commands, and troubleshooting using 
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + acceptance-criteria.md
-Level 3 (Full):         Level 2 + decision-record.md + optional research
+Level 3 (Full):         Level 2 + optional decision-record.md + optional research
 Level 3+ (Extended):    Level 3 + governance/AI execution content
 ```
 
@@ -48,10 +48,10 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 
 | Situation | Level | Required Templates | Optional Templates |
 |-----------|-------|-------------------|-------------------|
-| Any task (baseline) | 1 | spec.md + plan.md + tasks.md + implementation-summary.md | resource-map.md (any level) |
-| Needs QA validation | 2 | L1 + acceptance-criteria.md | resource-map.md (any level) |
-| Complex/architectural | 3 | L2 + decision-record.md | research/research.md, resource-map.md |
-| Enterprise/governance heavy | 3+ | L3 file set rendered at Level 3+ | research/research.md, resource-map.md |
+| Any task (baseline) | 1 | spec.md + plan.md + tasks.md + implementation-summary.md | timeline.md (any level) |
+| Needs QA validation | 2 | L1 + acceptance-criteria.md | timeline.md (any level) |
+| Complex/architectural | 3 | L2 file set | decision-record.md, research/research.md, timeline.md |
+| Enterprise/governance heavy | 3+ | L3 file set rendered at Level 3+ | research/research.md, timeline.md |
 
 **LOC as one input to `runtime/cli/spec/recommend-level.sh`, which scores it with file count and risk:**
 - <100 LOC suggests Level 1
@@ -177,12 +177,12 @@ Before making ANY file changes, verify:
 - [ ] Scaffolded ALL REQUIRED templates for chosen level:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + acceptance-criteria.md
-  - [ ] Level 3: Level 2 + decision-record.md
+  - [ ] Level 3: Level 2 file set (decision-record.md on request)
   - [ ] Level 3+: Use full Level 3 file set rendered at Level 3+
 - [ ] Rendered template output names are correct
 - [ ] Filled ALL template sections with actual content
 - [ ] Removed placeholder text and sample sections
-- [ ] Copied optional templates if needed (resource-map.md at any level; research and decision records at Level 3)
+- [ ] Copied optional templates if needed (timeline.md at any level; research and decision records at Level 3)
 - [ ] Presented approach to user (including templates used)
 - [ ] Got explicit approval ("yes"/"go ahead"/"proceed")
 
@@ -305,7 +305,7 @@ Then verify placeholders are fully resolved:
 | From | To | Files to Add |
 |------|----|--------------|
 | 1 → 2 | Add verification | acceptance-criteria.md |
-| 2 → 3 | Add decision documentation | decision-record.md (+ optional research/research.md) |
+| 2 → 3 | Add decision documentation | No new file (decision-record.md and research/research.md on request) |
 | 3 → 3+ | Add governance | Extended governance sections + AI protocols |
 
 **Always:**
@@ -444,8 +444,8 @@ Before presenting documentation to user:
 - [ ] All REQUIRED templates for level copied from `.skilled/skills/system-spec-kit/templates/`:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + acceptance-criteria.md
-  - [ ] Level 3: Level 2 + decision-record.md
-- [ ] Optional templates copied if needed (resource-map.md at any level; research and decision records at Level 3)
+  - [ ] Level 3: Level 2 file set (decision-record.md on request)
+- [ ] Optional templates copied if needed (timeline.md at any level; research and decision records at Level 3)
 - [ ] All placeholders replaced (`<PLACEHOLDER>`, `<NEEDS_CLARIFICATION: ...>`)
 - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
 - [ ] Template footer deleted
@@ -564,7 +564,7 @@ specs/###-parent/
 - **ALWAYS copy ALL REQUIRED templates for chosen level**:
   - Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - Level 2: Level 1 + acceptance-criteria.md
-  - Level 3: Level 2 + decision-record.md
+  - Level 3: Level 2 file set (decision-record.md on request)
 - **ALWAYS fill ALL placeholders** - No `<PLACEHOLDER>` marker in final docs
 - **ALWAYS respond to workflow prompts** - Ask user for A/B/C/D choice
 - **ALWAYS get user approval** - Explicit "yes" before file changes
@@ -720,7 +720,6 @@ When in doubt:
 **Session Management Templates:**
 - [handover.md.tmpl](../../templates/addons/handover.md.tmpl) - Full session handover document
 - [debug-delegation.md.tmpl](../../templates/addons/debug-delegation.md.tmpl) - Debug task delegation template
-- [resource-map.md.tmpl](../../templates/addons/resource-map.md.tmpl) - Optional lean path catalog (any level)
 
 **Summary Templates:**
 - [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 1 baseline)

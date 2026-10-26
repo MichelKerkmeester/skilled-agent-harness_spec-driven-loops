@@ -89,9 +89,7 @@ describe('template phrase seeding, cleanup and lint integration', () => {
     const packet = path.dirname(specFile);
     const seededDocuments = [
       { filename: 'decision-record.md', kind: 'decisionRecord' },
-      { filename: 'before-after.md', kind: 'beforeAfter' },
       { filename: 'timeline.md', kind: 'timeline' },
-      { filename: 'roadmap.md', kind: 'roadmap' },
       { filename: 'goal.md', kind: 'goal' },
     ];
     for (const { filename, kind } of seededDocuments) {

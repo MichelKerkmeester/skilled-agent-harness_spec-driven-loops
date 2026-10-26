@@ -1,0 +1,24 @@
+
+TASK: remove two spec-kit add-on templates, before-after and roadmap, from the template system.
+S = .skilled/skills/system-spec-kit. Line numbers are hints from an earlier read; match the text.
+
+1. Delete S/templates/addons/before-after.md.tmpl and S/templates/addons/roadmap.md.tmpl.
+2. S/templates/spec-kit-docs.json: remove every entry for the before-after and roadmap documents:
+   their version keys (near lines 16 and 18), their document entries (near 78-81 and 86-89),
+   their names in every level's lazyAddonDocs list (7 levels), and their sectionGates entries
+   (near 296, 348 and the matching blocks in the other levels). Keep the JSON valid.
+3. S/runtime/cli/spec/create.sh: remove the two docs from the phrase arrays (near 507-521),
+   the seeds (near 703-705), the requested lazy-doc list (near 716), and the help text that lists
+   them (near 281 and 2282). The manifest and the requested list must agree, or create.sh exits 3.
+4. Remove the two docs from the name maps in S/runtime/cli/spec/template-phrase-census.mjs
+   (near 41, 43, 59, 61), S/runtime/cli/spec/template-phrase-cleanup.mjs (near 46, 48),
+   S/runtime/cli/utils/template-structure.js (near 76, 78, 212) and
+   S/runtime/lib/validation/spec-doc-structure.ts (near 240, 242, 248).
+Do NOT touch resource-map, tests, snapshots or any doc; later briefs handle those.
+
+VERIFY and paste the output of each:
+  rg -n 'before-after|roadmap' S/templates/spec-kit-docs.json S/runtime/cli/spec/create.sh S/runtime/cli/spec/template-phrase-census.mjs S/runtime/cli/spec/template-phrase-cleanup.mjs S/runtime/cli/utils/template-structure.js S/runtime/lib/validation/spec-doc-structure.ts
+  node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/system-spec-kit/templates/spec-kit-docs.json','utf8')); console.log('json ok')"
+  bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh && echo 'bash ok'
+  ls .skilled/skills/system-spec-kit/templates/addons/
+REPLY: the list of edits with file:line, then the four verify outputs.

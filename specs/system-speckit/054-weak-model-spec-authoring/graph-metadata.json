@@ -15,7 +15,9 @@
     "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment",
     "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
     "system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research",
-    "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment"
+    "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment",
+    "system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements",
+    "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep"
   ],
   "manual": {
     "depends_on": [],
@@ -56,6 +58,7 @@
       ".skilled/agents/markdown.md",
       "review/review-report.md",
       "011-authoring-speed-research/research/research.md",
+      "011-authoring-speed-research/goal.md",
       "spec/check-placeholders.sh",
       "001-template-drift-census-and-baseline/goal.md",
       "002-template-and-example-defect-repair/goal.md",
@@ -67,7 +70,6 @@
       "008-playbook-run-in-worktree/goal.md",
       "009-authoring-benchmark-and-closeout/goal.md",
       "010-deep-review-finding-fixes/goal.md",
-      "011-authoring-speed-research/goal.md",
       "012-authoring-speed-fixes-and-alignment/goal.md"
     ],
     "entities": [
@@ -182,17 +184,17 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-26T05:34:03.415Z",
+    "last_save_at": "2026-10-26T12:11:54.334Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5d4fc9058792da1eabf218b93485f3681daa9303270775f933557cb84ab89648",
+    "source_fingerprint": "sha256:ab4d97dfde289dcea3ae781ee375fb54450733a66f63c5c712ec982f2ac42c25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbbe853b0933a83750bdb070bebccc47c85aec3293d9647be926d982f4b2c693"
+      "spec.md": "8a53f7ae42f95da19b0a20461a5e4d594f7615a781392292945883709c4363d0"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
     "last_active_at": "2026-10-25T21:42:09.493Z"

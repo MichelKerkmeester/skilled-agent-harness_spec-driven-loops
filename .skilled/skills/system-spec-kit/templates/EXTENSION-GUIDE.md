@@ -8,7 +8,7 @@ trigger_phrases:
   - template version workflow
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SpecKit Template Extension Guide
@@ -46,7 +46,7 @@ Use this guide when extending the manifest taxonomy, template version map, or le
      identical across the four numbered levels; phase parents drop the two
      documents a workflow writes into a child, and review and research
      packets drop `goal.md` as well. It mixes two ownership models: documents an
-     author asks for (`--with-lazy-addons` scaffolds four of them,
+     author asks for (`--with-lazy-addons` scaffolds two of them,
      `--with-goal` one, the inline gate renderer any of them) and documents a
      command or workflow writes (`handover.md`, `debug-delegation.md`,
      `research/research.md`).

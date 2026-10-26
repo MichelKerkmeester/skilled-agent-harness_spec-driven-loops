@@ -9,13 +9,10 @@
     "decision-record.md.tmpl": "v2.2",
     "phase-parent.spec.md.tmpl": "v2.2",
     "review.spec.md.tmpl": "v2.2",
-    "resource-map.md.tmpl": "v1.1",
     "handover.md.tmpl": "v1.0",
     "debug-delegation.md.tmpl": "v1.0",
     "research.md.tmpl": "v1.0",
-    "before-after.md.tmpl": "v2.2",
     "timeline.md.tmpl": "v2.2",
-    "roadmap.md.tmpl": "v2.2",
     "acceptance-criteria.md.tmpl": "v2.3",
     "goal.md.tmpl": "v2.2",
     "review-report.md.tmpl": "v1.0",
@@ -59,10 +56,6 @@
       "template": "research.spec.md.tmpl",
       "owner": "author"
     },
-    "resource-map.md": {
-      "template": "resource-map.md.tmpl",
-      "owner": "author"
-    },
     "handover.md": {
       "template": "handover.md.tmpl",
       "owner": "command"
@@ -75,16 +68,8 @@
       "template": "research.md.tmpl",
       "owner": "workflow"
     },
-    "before-after.md": {
-      "template": "before-after.md.tmpl",
-      "owner": "author"
-    },
     "timeline.md": {
       "template": "timeline.md.tmpl",
-      "owner": "author"
-    },
-    "roadmap.md": {
-      "template": "roadmap.md.tmpl",
       "owner": "author"
     },
     "review/review-report.md": {
@@ -121,12 +106,9 @@
         "handover.md",
         "debug-delegation.md",
         "research/research.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
         "decision-record.md",
-        "goal.md",
-        "resource-map.md"
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -293,38 +275,6 @@
             "3+"
           ]
         },
-        "before-after.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "comparison": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "net-effect": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "notes-caveats": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
         "timeline.md": {
           "metadata": [
             "1",
@@ -339,32 +289,6 @@
             "3+"
           ],
           "milestones": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
-        "roadmap.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "now-next-later": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "milestones-targets": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "dependencies": [
             "1",
             "2",
             "3",
@@ -504,12 +428,9 @@
         "handover.md",
         "debug-delegation.md",
         "research/research.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
         "decision-record.md",
-        "goal.md",
-        "resource-map.md"
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -756,38 +677,6 @@
             "3+"
           ]
         },
-        "before-after.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "comparison": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "net-effect": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "notes-caveats": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
         "timeline.md": {
           "metadata": [
             "1",
@@ -802,32 +691,6 @@
             "3+"
           ],
           "milestones": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
-        "roadmap.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "now-next-later": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "milestones-targets": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "dependencies": [
             "1",
             "2",
             "3",
@@ -999,12 +862,9 @@
         "handover.md",
         "debug-delegation.md",
         "research/research.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
         "decision-record.md",
-        "goal.md",
-        "resource-map.md"
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -1347,38 +1207,6 @@
             "3+"
           ]
         },
-        "before-after.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "comparison": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "net-effect": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "notes-caveats": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
         "timeline.md": {
           "metadata": [
             "1",
@@ -1393,32 +1221,6 @@
             "3+"
           ],
           "milestones": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
-        "roadmap.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "now-next-later": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "milestones-targets": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "dependencies": [
             "1",
             "2",
             "3",
@@ -1554,12 +1356,9 @@
         "handover.md",
         "debug-delegation.md",
         "research/research.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
         "decision-record.md",
-        "goal.md",
-        "resource-map.md"
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -1914,38 +1713,6 @@
             "3+"
           ]
         },
-        "before-after.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "comparison": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "net-effect": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "notes-caveats": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
         "timeline.md": {
           "metadata": [
             "1",
@@ -1960,32 +1727,6 @@
             "3+"
           ],
           "milestones": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ]
-        },
-        "roadmap.md": {
-          "metadata": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "now-next-later": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "milestones-targets": [
-            "1",
-            "2",
-            "3",
-            "3+"
-          ],
-          "dependencies": [
             "1",
             "2",
             "3",
@@ -2113,12 +1854,9 @@
       "optionalAddonDocs": [],
       "lazyAddonDocs": [
         "handover.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
         "decision-record.md",
-        "goal.md",
-        "resource-map.md"
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2138,23 +1876,6 @@
             "phase"
           ]
         },
-        "before-after.md": {
-          "metadata": [
-            "phase"
-          ],
-          "summary": [
-            "phase"
-          ],
-          "comparison": [
-            "phase"
-          ],
-          "net-effect": [
-            "phase"
-          ],
-          "notes-caveats": [
-            "phase"
-          ]
-        },
         "timeline.md": {
           "metadata": [
             "phase"
@@ -2163,20 +1884,6 @@
             "phase"
           ],
           "milestones": [
-            "phase"
-          ]
-        },
-        "roadmap.md": {
-          "metadata": [
-            "phase"
-          ],
-          "now-next-later": [
-            "phase"
-          ],
-          "milestones-targets": [
-            "phase"
-          ],
-          "dependencies": [
             "phase"
           ]
         },
@@ -2255,11 +1962,8 @@
       "optionalAddonDocs": [],
       "lazyAddonDocs": [
         "handover.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
-        "decision-record.md",
-        "resource-map.md"
+        "decision-record.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2279,23 +1983,6 @@
             "review"
           ]
         },
-        "before-after.md": {
-          "metadata": [
-            "review"
-          ],
-          "summary": [
-            "review"
-          ],
-          "comparison": [
-            "review"
-          ],
-          "net-effect": [
-            "review"
-          ],
-          "notes-caveats": [
-            "review"
-          ]
-        },
         "timeline.md": {
           "metadata": [
             "review"
@@ -2304,20 +1991,6 @@
             "review"
           ],
           "milestones": [
-            "review"
-          ]
-        },
-        "roadmap.md": {
-          "metadata": [
-            "review"
-          ],
-          "now-next-later": [
-            "review"
-          ],
-          "milestones-targets": [
-            "review"
-          ],
-          "dependencies": [
             "review"
           ]
         },
@@ -2373,11 +2046,8 @@
       "optionalAddonDocs": [],
       "lazyAddonDocs": [
         "handover.md",
-        "before-after.md",
         "timeline.md",
-        "roadmap.md",
-        "decision-record.md",
-        "resource-map.md"
+        "decision-record.md"
       ],
       "sectionGates": {
         "spec.md": {

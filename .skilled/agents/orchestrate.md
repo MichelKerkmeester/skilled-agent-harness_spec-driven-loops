@@ -397,7 +397,7 @@ TASK #2: Implement Notification System
    - Spec folder path MUST be provided in task context
    - Level MUST be specified
    - Template source (`Level template contract`) MUST be referenced
-   - `validate.sh --strict` MUST run after each doc write
+   - `validate.sh --strict --quiet` MUST run once after the last doc write (spec-authoring-card.md section 9)
 3. **POST-AUTHORING VERIFICATION**:
    - Verify files exist via @context file existence check
    - Confirm validation passed (exit code 0 or 1, NOT 2)
@@ -426,7 +426,7 @@ TASK #2: Implement Notification System
 
 ### Rule 5: Spec Documentation Governance
 **Trigger:** Any task that creates or substantively writes spec folder template documents.
-**Action:** The main agent writes spec-folder docs directly using `Level template contract`, runs `validate.sh --strict` after each doc write, and routes continuity via `/speckit:save`.
+**Action:** The main agent writes spec-folder docs directly using `Level template contract`, runs `validate.sh --strict --quiet` once after the last doc write, and routes continuity via `/speckit:save`.
 **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
 **Exceptions:**
 - `scratch/` subdirectory → temporary workspace, any agent may write

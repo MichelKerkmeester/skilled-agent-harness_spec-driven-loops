@@ -1,0 +1,25 @@
+
+CONTEXT: the packet add-on templates before-after, roadmap and resource-map were deleted. The deep loops still
+write their own research/resource-map.md and review/resource-map.md; that is not a packet add-on.
+S = .skilled/skills/system-spec-kit. Read each file before editing. Make only these six edits.
+
+1. S/references/templates/level-specifications.md near line 309: the Level 3 "Optional Files" list keeps only
+   `research/research.md`. Add, after it, a bullet in the same style as the Level 1 and 2 lists' timeline bullet
+   (copy that bullet's wording exactly from the Level 1 or Level 2 Optional Files list).
+2. S/README.md near line 210: delete the folder-tree line that lists `resource-map.md` as an optional catalog.
+3. S/README.md near line 295: remove the clause saying `resource-map.md` has no owning workflow and is rendered
+   by hand. End that sentence cleanly after the preceding clause.
+4. S/assets/level-decision-matrix.md near line 55: delete the phrase "+ optional resource-map.md (any level)"
+   and any separator it leaves dangling.
+5. S/templates/MIGRATION.md near line 37: change "`decision-record.md` and `resource-map.md`" to
+   "`decision-record.md` and `timeline.md`".
+6. S/SKILL.md near line 528 (rule 9, the no-ToC list): change "`handover.md`, `debug-delegation.md`, and
+   `resource-map.md` must not" to "`handover.md` and `debug-delegation.md` must not". Then run
+   node S/runtime/cli/hermes/sync-skills-hermes.cjs
+   and then the same command with --check.
+
+Never write an em dash. Change nothing else.
+VERIFY and paste the output of:
+rg -n 'resource-map' S/README.md S/assets/level-decision-matrix.md S/templates/MIGRATION.md S/SKILL.md S/references/templates/level-specifications.md
+node S/runtime/cli/hermes/sync-skills-hermes.cjs --check
+node S/runtime/cli/check-markdown-links.cjs | tail -2

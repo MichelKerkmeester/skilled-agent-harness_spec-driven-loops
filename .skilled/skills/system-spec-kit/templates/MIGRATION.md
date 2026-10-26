@@ -8,7 +8,7 @@ trigger_phrases:
   - template compatibility policy
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SpecKit Template Migration Guide
@@ -34,7 +34,7 @@ Writers always emit the current manifest-backed marker version from `spec-kit-do
 When a legacy packet does not have manifest-aware metadata, derive its document list from files on disk:
 
 - Always include existing core docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
-- Include add-on docs when present: `decision-record.md` and `resource-map.md`.
+- Include add-on docs when present: `decision-record.md` and `timeline.md`.
 - Include command-owned docs only when present: `handover.md`, `debug-delegation.md`, and `research/research.md`.
 - For phase parents, prefer the lean trio: `spec.md`, `description.json`, and `graph-metadata.json`.
 

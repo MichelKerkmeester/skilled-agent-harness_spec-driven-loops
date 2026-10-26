@@ -1,0 +1,26 @@
+
+CONTEXT: the deep-research and deep-review loops write their own resource-map.md. It is rendered by
+.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs from a hard-coded list of ten categories
+(`CATEGORY_ORDER`, line 22); it reads no template file. The spec-kit resource-map template was deleted, so docs that say the map
+matches or is shaped by "the template" now point at a file that no longer exists. D = .skilled/skills/system-deep-loop.
+Read each file before editing. Make only these edits, changing only the quoted phrase in each line.
+
+1. D/deep-research/manual-testing-playbook/manual-testing-playbook.md line 686: "the map preserves the template category structure"
+   becomes "the map keeps the renderer's ten-category structure".
+   Line 688: "category sections matching the template" becomes "the ten category sections the renderer emits".
+2. D/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md line 15: "the map preserves the
+   template category structure" becomes "the map keeps the renderer's ten-category structure". Line 32: "renders template
+   categories with citation counts" becomes "renders its ten built-in categories with citation counts".
+3. D/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md line 15: same change as 2, line 15.
+   Line 32: "renders template categories with finding counts" becomes "renders its ten built-in categories with finding counts".
+   Line 48: "in a template-shaped output" becomes "in the renderer's ten-category output".
+4. D/deep-research/feature-catalog/loop-lifecycle/resource-map-emission.md line 19, D/deep-review/feature-catalog/loop-lifecycle/
+   resource-map-emission.md line 19 and D/deep-research/feature-catalog/feature-catalog.md line 190: "a template-shaped
+   `resource-map.md`" becomes "a ten-category `resource-map.md`".
+Leave "the ten-category template skeleton" lines (around 58-59 of the emission playbooks) unchanged.
+If a quoted phrase differs slightly, match the nearest equivalent and report the exact before and after.
+
+Never write an em dash. Change nothing else.
+VERIFY and paste the output of:
+rg -n -i 'matching the template|template category|template-shaped|template categories' D
+node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs | tail -2

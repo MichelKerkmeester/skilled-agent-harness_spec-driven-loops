@@ -469,9 +469,6 @@ describe('upgrade-legacy', () => {
     // supply a whole block for the first and only the missing key for the second.
     const acceptanceBody = '# Acceptance Criteria\n\nLegacy criteria written before v4.\n';
     fs.writeFileSync(path.join(sandbox, folder, 'acceptance-criteria.md'), acceptanceBody);
-    const resourceAuthored = '---\ntitle: "Authored Resource Map"\ndescription: "An authored resource map."\nimportance_tier: "critical"\n';
-    const resourceBody = '# Resource Map\n\nLegacy map written before v4.\n';
-    fs.writeFileSync(path.join(sandbox, folder, 'resource-map.md'), `${resourceAuthored}---\n${resourceBody}`);
     // The spec-doc classes below carry only title and description, so the fill
     // has to supply both managed value keys from each class's template.
     const summaryAuthored = '---\ntitle: "Authored Implementation Summary"\ndescription: "An authored implementation summary."\n';
@@ -486,6 +483,12 @@ describe('upgrade-legacy', () => {
     const handoverAuthored = '---\ntitle: "Authored Handover"\ndescription: "An authored handover."\n';
     const handoverBody = '# Handover\n\nLegacy handover written before v4.\n';
     fs.writeFileSync(path.join(sandbox, folder, 'handover.md'), `${handoverAuthored}---\n${handoverBody}`);
+    // resource-map.md is a legacy packet-root document the spec-doc set does not hold and no
+    // template maps, so the fill passes it over; the whole-file comparison below is what pins
+    // that rather than a rewritten key.
+    const resourceMapAuthored = '---\ntitle: "Authored Resource Map"\ndescription: "An authored resource map."\nimportance_tier: "critical"\n';
+    const resourceMapBody = '# Resource Map\n\nLegacy map written before v4.\n';
+    fs.writeFileSync(path.join(sandbox, folder, 'resource-map.md'), `${resourceMapAuthored}---\n${resourceMapBody}`);
     // A missing key takes the value its document class's template declares, so
     // the expectations are read from the copied templates; the literal checks
     // fail here first if a template's defaults change.
@@ -506,7 +509,6 @@ describe('upgrade-legacy', () => {
     const tasksDefaults = templateDefaults('core/tasks.md.tmpl');
     const goalDefaults = templateDefaults('addons/goal.md.tmpl');
     const acceptanceDefaults = templateDefaults('addons/acceptance-criteria.md.tmpl');
-    const resourceDefaults = templateDefaults('addons/resource-map.md.tmpl');
     const summaryDefaults = templateDefaults('core/implementation-summary.md.tmpl');
     const decisionDefaults = templateDefaults('addons/decision-record.md.tmpl');
     const researchDefaults = templateDefaults('addons/research.md.tmpl');
@@ -520,7 +522,6 @@ describe('upgrade-legacy', () => {
     expect(goalDefaults.contextType).toBe('planning');
     expect(acceptanceDefaults.importance_tier).toBe('important');
     expect(acceptanceDefaults.contextType).toBe('implementation');
-    expect(resourceDefaults.contextType).toBe('general');
     expect(summaryDefaults.importance_tier).toBe('normal');
     expect(summaryDefaults.contextType).toBe('general');
     // The fill follows each class's template literal even where the
@@ -557,13 +558,6 @@ describe('upgrade-legacy', () => {
     expect(acceptance, acceptance).toContain(`importance_tier: "${acceptanceDefaults.importance_tier}"`);
     expect(acceptance, acceptance).toContain(`contextType: "${acceptanceDefaults.contextType}"`);
     expect(acceptance.endsWith(acceptanceBody), acceptance).toBe(true);
-    const resourceMap = fs.readFileSync(path.join(sandbox, folder, 'resource-map.md'), 'utf8');
-    expect(resourceMap.startsWith(resourceAuthored), resourceMap).toBe(true);
-    // The authored tier is present, so the fill leaves it alone and supplies
-    // only the key the block lacks.
-    expect(resourceMap.match(/importance_tier: "critical"/gu)?.length, resourceMap).toBe(1);
-    expect(resourceMap, resourceMap).toContain(`contextType: "${resourceDefaults.contextType}"`);
-    expect(resourceMap.endsWith(resourceBody), resourceMap).toBe(true);
     const summary = fs.readFileSync(path.join(sandbox, folder, 'implementation-summary.md'), 'utf8');
     expect(summary.startsWith(summaryAuthored), summary).toBe(true);
     expect(summary, summary).toContain(`importance_tier: "${summaryDefaults.importance_tier}"`);
@@ -584,6 +578,15 @@ describe('upgrade-legacy', () => {
     expect(handover, handover).toContain(`importance_tier: "${handoverDefaults.importance_tier}"`);
     expect(handover, handover).toContain(`contextType: "${handoverDefaults.contextType}"`);
     expect(handover.endsWith(handoverBody), handover).toBe(true);
+    const resourceMap = fs.readFileSync(path.join(sandbox, folder, 'resource-map.md'), 'utf8');
+    // No fill reaches this document, so the run leaves it byte-identical: the
+    // authored block survives as written, its critical tier stays single, and no
+    // contextType appears because no template literal supplies one.
+    expect(resourceMap.startsWith(resourceMapAuthored), resourceMap).toBe(true);
+    expect(resourceMap.match(/importance_tier: "critical"/gu)?.length, resourceMap).toBe(1);
+    expect(resourceMap.endsWith(resourceMapBody), resourceMap).toBe(true);
+    expect(resourceMap, resourceMap).not.toContain('contextType');
+    expect(resourceMap, resourceMap).toBe(`${resourceMapAuthored}---\n${resourceMapBody}`);
   }, 180_000);
 
   // A template the fill cannot read must not fail the run and must leave the

@@ -1,0 +1,20 @@
+
+CONTEXT: the packet add-on template addons/resource-map.md.tmpl was deleted. The deep loops still write their
+own resource-map.md files, and runtime name lists that recognise that file name stay. S = .skilled/skills/system-spec-kit.
+Read each file before editing. Make only these three edits.
+
+1. S/runtime/cli/lib/frontmatter-migration.ts:139: delete the line
+   ['resource-map.md', 'addons/resource-map.md.tmpl'],
+   from TEMPLATE_DOC_FILES. (The template read already failed and fell back to the tables, so behavior is unchanged.)
+2. S/runtime/cli/spec/template-phrase-cleanup.mjs:42: delete the line `  resourceMap: 'resource map',` from
+   SEED_PHRASE_SUFFIXES. First confirm with rg that nothing else in that file reads SEED_PHRASE_SUFFIXES.resourceMap
+   or the key 'resourceMap'; if something does, stop and report instead of editing.
+3. S/runtime/cli/tests/level-contract-resolver.vitest.ts lines 24, 47, 63, 73: remove the 'resource-map.md'
+   entry from each expected lazy-add-on list, because the manifest no longer lists it.
+
+VERIFY and paste the summary lines, from S:
+  ./node_modules/.bin/vitest run runtime/cli/tests/level-contract-resolver.vitest.ts runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts runtime/cli/tests/template-phrase-integration.vitest.ts --config vitest.config.ts
+  rg -n 'frontmatter' -l runtime/cli/tests | head -20   (then run every listed test file whose name contains frontmatter, and paste its summary)
+  npm --prefix runtime run build 2>&1 | tail -3
+  rg -n 'resource-map.md.tmpl|resourceMap' runtime/cli
+REPLY: the edits with file:line, then the outputs.

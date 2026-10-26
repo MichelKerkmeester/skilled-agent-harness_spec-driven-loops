@@ -1,0 +1,44 @@
+
+CONTEXT: in the spec kit, `decision-record.md` is NOT required at Level 3. `templates/spec-kit-docs.json` lists it in the
+Level 3 `lazyAddonDocs`; `runtime/cli/spec/validate.sh:83` says "decision-record.md and other add-ons are on-demand when
+explicitly added"; `create.sh --with-lazy-addons` (or a request) adds it at any level. `assets/template-mapping.md` lines 55
+and 178 already say this correctly ("optional decision-record.md", "An absent decision-record.md is skipped"); read them
+and match their wording. S = .skilled/skills/system-spec-kit. Read each file before editing. Make only these edits.
+
+1. S/references/templates/level-specifications.md:
+   a. Lines 25-38, the fenced `templates/` tree, shows an old flat layout. Replace the tree with the real layout, keeping the
+      fence and the one-line comments style:
+      templates/
+      ├── spec-kit-docs.json             # Level contract and document membership
+      ├── core/                          # spec, plan, tasks, implementation-summary
+      ├── addons/                        # acceptance-criteria, debug-delegation, decision-record, goal, handover, research, timeline
+      ├── packet-types/                  # phase-parent.spec, research.spec, review-report, review.spec
+      └── examples/                      # Rendered examples by Level
+      First run `ls .skilled/skills/system-spec-kit/templates` and keep any other real top-level entry it shows that the tree
+      should name (for example README.md); do not list files that do not exist.
+   b. Line 298: "### Required Files (Level 2 + decision-record)" becomes "### Required Files (Level 2 file set)".
+   c. Line 304: move `decision-record.md` out of the required list into the Level 3 Optional Files list, worded
+      "`decision-record.md` - Architecture Decision Records (lazy add-on: `--with-lazy-addons` or on request)".
+      Remove the "(NEW at Level 3)" wording.
+   d. Line 323: "**Enforcement:** Hard block if `decision-record.md` missing" becomes
+      "**Enforcement:** none; an absent `decision-record.md` is skipped."
+   e. Line 388: where the Level 3+ file list names decision-record "(from Level 3)" as a carried required file, mark it
+      optional the same way.
+2. S/assets/level-decision-matrix.md:
+   line 46: Level 3 Required Files "Level 2 + `decision-record.md`" becomes "Level 2 file set; `decision-record.md` on request".
+   line 55: "Level 3 (Full): Level 2 + decision-record.md + optional research/research.md" becomes
+            "Level 3 (Full): Level 2 + optional decision-record.md + optional research/research.md".
+   line 220: the FILE_EXISTS row text saying "Level 3 adds `decision-record.md`" becomes "Level 3 adds no required file".
+3. S/references/workflows/quick-reference.md:
+   line 36: "Level 3 (Full): Level 2 + decision-record.md + optional research" becomes
+            "Level 3 (Full): Level 2 + optional decision-record.md + optional research".
+   line 53: the Level 3 Required Templates cell "L2 + decision-record.md" becomes "L2 file set", and add decision-record.md to
+            that row's optional cell if the table has one.
+   lines 180, 447 and 567: "Level 3: Level 2 + decision-record.md" becomes "Level 3: Level 2 file set (decision-record.md on request)".
+Line numbers are approximate: re-read and match the quoted text. If a quoted text is not found, report it and skip it.
+
+Never write an em dash. Change nothing else.
+VERIFY and paste the output of:
+rg -n 'decision-record' S/references/templates/level-specifications.md S/assets/level-decision-matrix.md S/references/workflows/quick-reference.md
+sed -n 22,36p S/references/templates/level-specifications.md
+node S/runtime/cli/check-markdown-links.cjs | tail -2

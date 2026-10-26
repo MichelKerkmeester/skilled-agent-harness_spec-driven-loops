@@ -6,7 +6,7 @@ trigger_phrases:
   - "section fill instruction"
   - "good and weak example"
   - "template fill line"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Template section fill guidance
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 Template section fill guidance is the line below each content heading in the packet templates. It tells a writer the one action the section needs, then shows a good answer and a weak answer. A token alone says what to replace. The fill line says what a finished answer looks like.
 
-The guidance covers every content section of the four core templates and the ten addon templates. The `TEMPLATE INSTRUCTIONS` and `Author Instructions` headings hold fixed instructions and get no fill line.
+The guidance covers every content section of the four core templates and the seven add-on templates. The `TEMPLATE INSTRUCTIONS` and `Author Instructions` headings hold fixed instructions and get no fill line.
 
 ---
 

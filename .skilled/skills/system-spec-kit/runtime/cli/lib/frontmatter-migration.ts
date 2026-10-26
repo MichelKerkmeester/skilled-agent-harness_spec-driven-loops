@@ -136,7 +136,6 @@ const TEMPLATE_DOC_FILES = new Map<string, string>([
   ['handover.md', 'addons/handover.md.tmpl'],
   ['goal.md', 'addons/goal.md.tmpl'],
   ['acceptance-criteria.md', 'addons/acceptance-criteria.md.tmpl'],
-  ['resource-map.md', 'addons/resource-map.md.tmpl'],
 ]);
 
 // Resolution order for a missing importance_tier or contextType:

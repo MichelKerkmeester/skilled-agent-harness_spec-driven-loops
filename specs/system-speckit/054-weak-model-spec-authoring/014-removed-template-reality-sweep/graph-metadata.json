@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "removed template reality sweep",
+      "phase 14 removed template reality sweep",
+      "removed template reality sweep plan",
+      "removed template reality sweep tasks",
+      "removed template reality sweep acceptance criteria",
+      "removed template reality sweep goal",
+      "removed template reality sweep implementation summary"
+    ],
+    "key_topics": [
+      "removed",
+      "template",
+      "reality",
+      "sweep",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/audit-mentions.md",
+      "scratch/audit-reality.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "feature-catalog/tooling-and-scripts/template-section-fill-guidance.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "references/structure/folder-structure.md",
+      "templates/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/golden-render-all-levels.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+      "references/workflows/quick-reference.md",
+      "assets/level-decision-matrix.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+      ".skilled/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-mentions.md",
+        "kind": "doc",
+        "path": "scratch/audit-mentions.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-reality.md",
+        "kind": "doc",
+        "path": "scratch/audit-reality.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-section-fill-guidance.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/template-section-fill-guidance.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "golden-render-all-levels.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/golden-render-all-levels.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "level-specifications.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-decision-matrix.md",
+        "kind": "doc",
+        "path": "assets/level-decision-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 013 checked its removal with name sweeps over the template file names, which miss prose that still calls a deleted template an add-on, add-on lists and counts, and runtime mirrors outside `.skilled/`",
+    "created_at": "2026-10-26T11:50:28Z",
+    "last_save_at": "2026-10-26T12:12:44.774Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01717536c60dc36cf25c3221555dcb4996a938a760969f50111b86a9a5c72619",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c6e19167d314594b65de50890f85cbbbff0ef6fe28bc41b792e19d51770969c0",
+      "plan.md": "48acebe10ddb114e7a4f26f360df1d28e91dccc01eb08faa28fedf724e5adcb0",
+      "tasks.md": "3b16f6a675fc9b0fac788d3f7733dc4ee3a9baf6bbbc9aa08eb3d5835f4b29c3",
+      "implementation-summary.md": "89df18a0266b44a7778ee9717707620d995df63cd45c76e34f164cb150782f4d"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+
+TASK: doc alignment, part 2. Three spec-kit add-on templates no longer exist: before-after.md,
+roadmap.md and resource-map.md. Seven add-ons remain: acceptance-criteria, debug-delegation,
+decision-record, goal, handover, research, timeline. `--with-lazy-addons` adds only timeline.md
+and decision-record.md. The deep-research and deep-review loops still write their own
+research/resource-map.md and review/resource-map.md in code; keep every mention of that output.
+S = .skilled/skills/system-spec-kit. Line numbers are hints.
+
+1. Delete these two files:
+   S/feature-catalog/context-preservation/resource-map-template.md
+   S/manual-testing-playbook/context-preservation/resource-map-template.md
+2. S/feature-catalog/feature-catalog.md: remove the "### Resource map template" entry (near
+   952-964) up to the next "###" heading. S/manual-testing-playbook/manual-testing-playbook.md:
+   remove the table row for scenario 270 (near 334). S/feature-catalog/context-preservation/
+   session-relaunch-loop.md: remove the list line linking resource-map-template.md (near 171).
+3. Root README.md: near 254-262, change the resource-map.md tree line and the lazy add-on lines so
+   they no longer offer it as a packet add-on (if the tree shows packet files, drop the line; keep
+   any mention of deep-loop output); near 296-314 remove the before-after.md, resource-map.md and
+   roadmap.md entries from the add-on list.
+4. S/SKILL.md line 61: in the list of authored docs, remove resource-map.md, before-after.md and
+   roadmap.md, and change "(the last six optional)" to the correct count of optional docs left in
+   that list. Line 65: replace the bullet with: "- The deep loops write their own `resource-map.md`
+   evidence ledger into their artifact directory; it is not a packet add-on." Line 528: remove
+   `resource-map.md` from that list only if the list is about packet add-ons; it is about ToC
+   headings in spec artifacts, so keep it.
+Then run: node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs
+(it regenerates the .hermes copy of SKILL.md).
+
+VERIFY and paste each output:
+  rg -n -i 'resource-map-template|before-after\.md|roadmap\.md|resource-map\.md\.tmpl' README.md S/SKILL.md S/feature-catalog S/manual-testing-playbook .hermes/skills/system-spec-kit/SKILL.md
+  node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+REPLY: the edits with file:line, then the outputs, with a note for any remaining hit.

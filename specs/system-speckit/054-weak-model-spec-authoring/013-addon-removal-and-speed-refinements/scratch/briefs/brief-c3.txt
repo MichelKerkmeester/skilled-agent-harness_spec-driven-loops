@@ -1,0 +1,25 @@
+
+CONTEXT: the packet add-on template addons/resource-map.md.tmpl was deleted, and frontmatter-migration.ts no
+longer maps resource-map.md to it. The deep loops still write resource-map.md files; 177 packets hold one at their
+root. S = .skilled/skills/system-spec-kit. Read each file before editing. Make only these three changes.
+
+1. S/runtime/cli/utils/template-structure.js near line 210: remove 'resource-map.md' from the
+   AUTHOR_SCAFFOLDED_LAZY_DOCS array (the line 214 filter already drops it, because the manifest no longer lists it).
+2. S/runtime/lib/validation/spec-doc-structure.ts near lines 228-229: the comment says resource-map.md is listed
+   "because its template ships no continuity block". Reword only that reason to: because the deep loops write it
+   without a continuity block. Keep the code unchanged.
+3. S/runtime/cli/tests/upgrade-legacy.vitest.ts: the test near lines 460-560 used to write a root resource-map.md
+   with frontmatter `title`, `description` and `importance_tier: "critical"` but no contextType, and asserted the
+   fill added contextType from the deleted template. First find out what upgrade-legacy does to that file now:
+   write that same fixture back into the same test (title "Authored Resource Map", description "An authored
+   resource map.", importance_tier "critical", body "# Resource Map\n\nLegacy map written before v4.\n"),
+   run the test, and read the resulting file. Then assert exactly what it does now: the authored block is kept,
+   `importance_tier: "critical"` appears once, the body is unchanged, and either the contextType it now adds
+   (assert the literal value you observed) or, if it adds nothing, that the file is byte-identical.
+   Do not change upgrade-legacy itself.
+
+VERIFY and paste, from S:
+  ./node_modules/.bin/vitest run runtime/cli/tests/upgrade-legacy.vitest.ts runtime/cli/tests/template-structure*.vitest.ts --config vitest.config.ts
+  npm --prefix runtime run build 2>&1 | tail -2
+REPLY: the edits with file:line, what upgrade-legacy now does to resource-map.md (quote the resulting frontmatter),
+then the outputs.

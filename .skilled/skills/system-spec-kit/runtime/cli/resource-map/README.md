@@ -61,4 +61,3 @@ Expected result: `true`.
 ## 6. RELATED
 
 - [`../`](../) - System Spec Kit scripts.
-- [`../../../templates/addons/resource-map.md.tmpl`](../../../templates/addons/resource-map.md.tmpl) - The resource map template, a lazy add-on at every level.

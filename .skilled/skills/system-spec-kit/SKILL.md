@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.9.3.0
+version: 2.9.4.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -58,11 +58,11 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md`, `goal.md`, `before-after.md`, `timeline.md`, `roadmap.md` (the last six optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. `goal.md` may also come from `/create:goal`, whose per-kind templates are parity-checked copies of `goal.md.tmpl`. This is a workflow-required gate, not a runtime hook: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /speckit:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `goal.md`, `timeline.md` (`acceptance-criteria.md` from Level 2; the rest after `implementation-summary.md` are optional add-ons or packet-type docs)) MUST use contract-backed templates through `create.sh` or the inline renderer. `goal.md` may also come from `/create:goal`, whose per-kind templates are parity-checked copies of `goal.md.tmpl`. This is a workflow-required gate, not a runtime hook: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict --quiet` once after the last authored spec-doc write and before completion claims, as section 9 of `references/workflows/spec-authoring-card.md` sets out. The /speckit workflows also run their own strict gate after each doc-writing step. Then route continuity updates through /speckit:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/speckit:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
-- `resource-map.md` is a lazy add-on in every level contract; render it with the inline gate renderer when a packet wants a lean file ledger alongside `implementation-summary.md`. The deep loops write their own evidence ledger of the same name into their artifact directory, not the packet root.
+- The deep loops write their own `resource-map.md` evidence ledger into their artifact directory; it is not a packet add-on.
 
 ### Utility Template Triggers
 
@@ -525,7 +525,7 @@ The packet `goal.md` is the source of goal state. A session binds to it (`openco
 6. **Claim done without clearing both completion gates** - Level 2+ requires the `tasks.md` verification checklist verified with evidence AND every `acceptance-criteria.md` criterion `Met`, `Waived` or `Superseded`
 7. **Proceed without spec folder confirmation** - Wait for A/B/C/D. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
 8. **Skip validation before completion** - Completion Verification hard block
-9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, and `resource-map.md` must not contain ToC headings
+9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md` and `debug-delegation.md` must not contain ToC headings
 
 ### ⚠️ ESCALATE IF
 

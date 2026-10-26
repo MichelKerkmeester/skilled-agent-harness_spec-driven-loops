@@ -278,7 +278,7 @@ while [[ $i -le $# ]]; do
             echo "                      1=baseline, 2=verification, 3=full, 3+=extended"
             echo "                      Default: 1"
             echo "                      Creates spec-sections/ with modular documentation"
-            echo "  --with-lazy-addons  Add before-after.md, timeline.md, roadmap.md, and decision-record.md"
+            echo "  --with-lazy-addons  Add timeline.md and decision-record.md"
             echo "                      (off by default; all are valid at every level)"
             echo "  --with-goal         Add goal.md, the durable directive an operator sets as the session objective"
             echo "                      (off by default; valid at every level. With --phase it writes child goals only,"
@@ -479,14 +479,6 @@ replace_template_default_trigger_phrases() {
         "research findings"
         "investigation notes"
     )
-    local -a resource_map_template_default_phrases=(
-        "resource map"
-        "path catalog"
-        "files touched"
-        "paths analyzed"
-        "paths updated"
-        "paths created"
-    )
     local -a handover_template_default_phrases=(
         "session handover"
         "continuation context"
@@ -504,23 +496,11 @@ replace_template_default_trigger_phrases() {
         "open questions"
         "research synthesis"
     )
-    local -a before_after_template_default_phrases=(
-        "before after"
-        "change comparison"
-        "change record"
-        "migration comparison"
-    )
     local -a timeline_template_default_phrases=(
         "packet timeline"
         "event chronology"
         "event history"
         "milestone dates"
-    )
-    local -a roadmap_template_default_phrases=(
-        "roadmap plan"
-        "forward plan"
-        "now next later"
-        "strategic milestones"
     )
     local -a review_report_template_default_phrases=(
         "review report"
@@ -696,13 +676,10 @@ replace_template_default_trigger_phrases() {
     fi
 
     seed_template_document "$folder_path/decision-record.md" "$slug_phrase" "decision record" "${decision_record_template_default_phrases[@]}"
-    seed_template_document "$folder_path/resource-map.md" "$slug_phrase" "resource map" "${resource_map_template_default_phrases[@]}"
     seed_template_document "$folder_path/handover.md" "$slug_phrase" "handover" "${handover_template_default_phrases[@]}"
     seed_template_document "$folder_path/debug-delegation.md" "$slug_phrase" "debug delegation" "${debug_delegation_template_default_phrases[@]}"
     seed_template_document "$folder_path/research/research.md" "$slug_phrase" "research" "${research_template_default_phrases[@]}"
-    seed_template_document "$folder_path/before-after.md" "$slug_phrase" "before after" "${before_after_template_default_phrases[@]}"
     seed_template_document "$folder_path/timeline.md" "$slug_phrase" "timeline" "${timeline_template_default_phrases[@]}"
-    seed_template_document "$folder_path/roadmap.md" "$slug_phrase" "roadmap" "${roadmap_template_default_phrases[@]}"
     seed_template_document "$folder_path/review/review-report.md" "$slug_phrase" "review report" "${review_report_template_default_phrases[@]}"
     seed_template_document "$folder_path/goal.md" "$slug_phrase" "goal" "${goal_template_default_phrases[@]}"
 
@@ -713,7 +690,7 @@ requested_lazy_addon_docs() {
     local contract_json="$1"
     node - "$contract_json" <<'NODE'
 const contract = JSON.parse(process.argv[2]);
-const requested = ['before-after.md', 'timeline.md', 'roadmap.md', 'decision-record.md'];
+const requested = ['timeline.md', 'decision-record.md'];
 const lazyDocs = contract.lazyAddonDocs || [];
 const invalid = requested.filter((doc) => !lazyDocs.includes(doc));
 if (invalid.length > 0) {
@@ -2279,7 +2256,7 @@ else
         echo "    4. Add verification items to tasks.md"
     fi
     if $WITH_LAZY_ADDONS; then
-        echo "    5. Lazy add-ons: before-after.md, timeline.md, roadmap.md, decision-record.md"
+        echo "    5. Lazy add-ons: timeline.md, decision-record.md"
     else
         echo "    5. Add on-demand docs with --with-lazy-addons when needed"
     fi

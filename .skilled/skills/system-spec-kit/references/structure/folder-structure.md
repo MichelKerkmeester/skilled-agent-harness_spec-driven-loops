@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Folder Structure Reference
@@ -38,14 +38,13 @@ templates/
 │   ├── handover.md.tmpl
 │   ├── debug-delegation.md.tmpl
 │   ├── research.md.tmpl
-│   ├── resource-map.md.tmpl
-│   ├── before-after.md.tmpl
-│   ├── timeline.md.tmpl
-│   └── roadmap.md.tmpl
+│   └── timeline.md.tmpl
 │
 ├── packet-types/                   # Non-level packet shapes
 │   ├── phase-parent.spec.md.tmpl
-│   ├── review.spec.md.tmpl
+│   ├── research.spec.md.tmpl
+│   ├── review-report.md.tmpl
+│   └── review.spec.md.tmpl
 │
 ├── spec-kit-docs.json              # Level contract resolved by create.sh
 ├── examples/               # Rendered examples by Level
