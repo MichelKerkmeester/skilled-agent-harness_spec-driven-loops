@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7cf670e0a13c6efe7007a0edb1645756ce10cbec9e80b7a412cfcd83730f3a59",
+  "manifestHash": "86b204003782356f6d17b6b0b5c76a926b97d031951ee49bfd17eaedb24fac01",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26111,6 +26111,9 @@
     "configure fanout executors": [
       "configure fanout executors"
     ],
+    "configured quality checks": [
+      "configured quality checks"
+    ],
     "configured specs root membership": [
       "configured specs root membership"
     ],
@@ -38684,6 +38687,12 @@
     ],
     "doctor signals summary": [
       "doctor signals summary"
+    ],
+    "doctor sk code quality": [
+      "doctor sk-code quality"
+    ],
+    "doctor sk code quality bridge": [
+      "doctor sk-code quality bridge"
     ],
     "doctor sk code quality route": [
       "doctor sk-code quality route"
@@ -78486,6 +78495,9 @@
     "qualify allowed tools tasks": [
       "qualify allowed-tools tasks"
     ],
+    "quality agnostic gate config and doctor changelog": [
+      "quality agnostic gate config and doctor changelog"
+    ],
     "quality agnostic gate honest checker changelog": [
       "quality agnostic gate honest checker changelog"
     ],
@@ -78509,6 +78521,9 @@
     ],
     "quality checklist declarations": [
       "quality checklist declarations"
+    ],
+    "quality config seam": [
+      "quality config seam"
     ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
@@ -93039,6 +93054,9 @@
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
+    "sk code 3 3 0 0": [
+      "sk-code 3.3.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93714,11 +93732,17 @@
     "sk code quality 1 6 0 0": [
       "sk-code-quality 1.6.0.0"
     ],
+    "sk code quality 1 7 0 0": [
+      "sk-code-quality 1.7.0.0"
+    ],
     "sk code quality codebase agnostic": [
       "sk-code quality codebase agnostic"
     ],
     "sk code quality config": [
       "sk-code quality config"
+    ],
+    "sk code quality json": [
+      ".sk-code/quality.json"
     ],
     "sk code quality mode research": [
       "sk-code quality mode research"
@@ -93770,6 +93794,9 @@
     ],
     "sk code quality v1 6 0 0": [
       "sk-code-quality v1.6.0.0"
+    ],
+    "sk code quality v1 7 0 0": [
+      "sk-code-quality v1.7.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -94313,6 +94340,9 @@
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
+    ],
+    "sk code v3 3 0 0": [
+      "sk-code v3.3.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -97298,6 +97328,9 @@
     ],
     "sk vision zoom": [
       "sk_vision_zoom"
+    ],
+    "skcode qualityconfig": [
+      "skcode.qualityConfig"
     ],
     "skd036 019 implementation summary": [
       "skd036-019 implementation summary"
@@ -105144,6 +105177,9 @@
     "system skill advisor 0 17 0 0": [
       "system-skill-advisor 0.17.0.0"
     ],
+    "system skill advisor 0 17 1 0": [
+      "system-skill-advisor 0.17.1.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -105323,6 +105359,9 @@
     ],
     "system skill advisor v0 17 0 0": [
       "system-skill-advisor v0.17.0.0"
+    ],
+    "system skill advisor v0 17 1 0": [
+      "system-skill-advisor v0.17.1.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
