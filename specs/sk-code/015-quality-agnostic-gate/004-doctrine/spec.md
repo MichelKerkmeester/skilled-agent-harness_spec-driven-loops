@@ -231,7 +231,7 @@ Give an UNKNOWN surface the universal floor and the runner's built-in checks, so
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Operator confirmation of ADR-001 (Iron Law 3) and ADR-002 (SKILLED house checklist) at program end. Both are accepted for this build, and neither blocks this packet.
+- The operator confirmed ADR-001 (Iron Law 3) and ADR-002 (SKILLED house checklist) on 2026-10-26. Both are accepted for this build, and neither blocks this packet.
 - Should the seven tracked files outside this phase that name the operator-private id stay as they are? All seven are tests or fixtures, and several look like tests of private-skill containment. The program owner decides, and the decision does not block this phase.
 - Do the `sk-code-review` confirmations of the review-severity column match the rows as written? This is open until task T021 is done.
 <!-- /ANCHOR:questions -->

@@ -133,7 +133,7 @@ Success is one measurement record and one report that state the catch rate, the 
 | REQ-009 | Misses and false positives are named in the measurement record, not counted only. |
 | REQ-011 | `source.md` in the report records a repository-relative root and the scenario corpus, with no absolute path (synthesis rank 13 at `specs/sk-code/014-code-modes-research/001-quality-mode-research/research/synthesis-v1.md:207`). |
 | REQ-013 | This spec and `plan.md` name each dependency on phases 001 to 005. |
-| REQ-014 | ADR-001 to ADR-006 each state the alternative and the reversal, and each carries the status line "Accepted, pending operator confirmation at program end". |
+| REQ-014 | ADR-001 to ADR-006 each state the alternative and the reversal, and each carries the status line "Accepted, confirmed by the operator 2026-10-26". |
 | REQ-015 | Phase 6 changes no file under the quality scripts, the quality hooks or the gate code. The one exception is the benchmark report renderer and its golden test, which this phase adds under the sk-code benchmark tree (ADR-008, option a). |
 | REQ-016 | Changelog entries at packet and quality-mode level are written at landing, with the version chosen then. |
 | REQ-017 | Raw transcripts stay in `evidence/`, and `scratch/` is empty at close. |
@@ -180,7 +180,7 @@ Success is one measurement record and one report that state the catch rate, the 
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: Built-in checks finish in under 2000 ms for 50 changed `.js` files on each of three runs. The timing repository holds no `.sk-code/quality.json`, so no configured check runs (design 6.5). The runs leave out `--no-run`, which would also stop both built-in checks and time setup alone.
+- **NFR-P01**: Built-in checks finish in under 2000 ms for 50 changed `.js` files on each of five full runs. The 2000 ms target is a reference-machine figure, measured on an Apple M5 Max with 18 cores (`evidence/measurement.json` `timing.machine`), and a slower machine may not meet it. The timing repository holds no `.sk-code/quality.json`, so no configured check runs (design 6.5). The runs leave out `--no-run`, which would also stop both built-in checks and time setup alone.
 - **NFR-P02**: N/A for throughput. The phase runs no service and answers no request, so NFR-P01 is the only timed path.
 
 ### Security

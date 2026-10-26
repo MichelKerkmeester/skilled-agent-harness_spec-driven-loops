@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-code/015-quality-agnostic-gate/006-measurement"
     last_updated_at: "2026-10-26T14:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Recorded ADR-001 to ADR-008, all still awaiting the operator at program end"
-    next_safe_action: "Wait for the operator confirmation at program end"
+    recent_action: "Recorded ADR-001 to ADR-008, which the operator confirmed on 2026-10-26"
+    next_safe_action: "None. The operator confirmed every decision on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -29,7 +29,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-Operator decisions from the design (section 1.4) are taken here at the design default, as the standing instruction asks. Each one carries its alternative and its reversal, so the operator can confirm or reverse it at program end.
+Operator decisions from the design (section 1.4) are taken here at the design default, as the standing instruction asks. Each one carries its alternative and its reversal, and the operator confirmed each one on 2026-10-26.
 
 ---
 
@@ -40,7 +40,7 @@ Operator decisions from the design (section 1.4) are taken here at the design de
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-25 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
@@ -138,7 +138,7 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`.skilled/skills/sk-code/
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-25 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
@@ -194,7 +194,7 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`.skilled/skills/sk-code/
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The narrowing reads as a loss of the ADR-001 baseline set | M | The operator confirms it at program end |
+| The narrowing reads as a loss of the ADR-001 baseline set | M | The operator confirmed it on 2026-10-26 |
 <!-- /ANCHOR:adr-002-consequences -->
 
 ---
@@ -235,7 +235,7 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`.skilled/skills/sk-code/
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-25 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
@@ -332,7 +332,7 @@ The runner needs one committed place where a repository names its own checks. Th
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-25 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
@@ -427,7 +427,7 @@ The CI job scans every changed file in full (`.github/workflows/comment-hygiene.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-25 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
@@ -522,7 +522,7 @@ The design says the report follows the existing reports under `.skilled/skills/s
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-25 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 
@@ -711,7 +711,7 @@ Both saved 014 runs record an intent recall of 0 (`specs/sk-code/014-code-modes-
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction. Drafted by the markdown agent |
 

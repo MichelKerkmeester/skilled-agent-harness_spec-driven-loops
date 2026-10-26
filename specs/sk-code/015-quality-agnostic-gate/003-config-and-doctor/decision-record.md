@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Recorded the phase 3 decisions"
-    next_safe_action: "Confirm the operator-owned records at program end"
+    next_safe_action: "None. The operator confirmed the operator-owned records on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -38,7 +38,7 @@ ADR-001 to ADR-003 take operator-owned decisions from design section 1.4 at the 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing build instruction, recorded by the phase author |
 
@@ -140,7 +140,7 @@ The gate needs one committed place for a repository's own checks. Design section
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing build instruction, recorded by the phase author |
 
@@ -239,7 +239,7 @@ Design section 1.4 item 3 leaves the merge rule to the operator. The shipped bas
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing build instruction, recorded by the phase author |
 
@@ -1026,7 +1026,7 @@ Design section 5.8 says the route has "its presentation text" without naming a f
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Coordinator, added to this phase's scope because it extends the same CLI |
 
@@ -1125,7 +1125,7 @@ Design section 5.8 says the route has "its presentation text" without naming a f
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Build agent, deciding an open point at its most conservative option |
 
@@ -1226,7 +1226,7 @@ Design section 5.8 says the route has "its presentation text" without naming a f
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Build agent, applying the coordinator's ruling that this phase reuses the phase 002 snapshot helper |
 
@@ -1336,7 +1336,7 @@ ADR-006 and REQ-006 describe the snapshot as `git diff --binary HEAD`, the untra
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Build agent, deciding the schema points the design leaves open at their most conservative option |
 
@@ -1445,7 +1445,7 @@ REQ-005 names `languages`, `paths`, `{files}`, `cwd`, `required` and `timeoutSec
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Build agent, deciding an open point at its most conservative option |
 

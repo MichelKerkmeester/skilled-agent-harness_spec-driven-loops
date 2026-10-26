@@ -13,7 +13,6 @@ _memory:
     recent_action: "Closed the doctrine phase with every task, checklist row and criterion met"
     next_safe_action: "Land the phase after phase 003, re-picking the version numbers if the landing order changes"
     blockers:
-      - "ADR-001 to ADR-005 await operator confirmation at program end. They do not block this phase"
       - "Phase 003 is not on main, so the hub and sk-code-quality changelogs name 3.3.0.0 and 1.7.0.0 as previous versions that land first"
     key_files:
       - ".skilled/skills/sk-code/shared/references/phase-detection.md"
@@ -28,6 +27,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The review-severity column was checked row by row against the sk-code-review contract. Eighteen rows match the default, and two were refined (ADR-003)"
+      - "The operator confirmed ADR-001 to ADR-005 on 2026-10-26"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 # Implementation Summary
@@ -134,11 +134,11 @@ No workflow changed, so actionlint had nothing to check.
 
 | Decision | Why |
 |----------|-----|
-| Amend Iron Law 3 (ADR-001). Status: accepted, pending operator confirmation at program end | An UNKNOWN repository could not complete the required gate under the old text |
-| Make `universal-checklist.md` the SKILLED house checklist (ADR-002). Status: accepted, pending operator confirmation at program end | Foreign repositories should not receive SKILLED's header and spec-root rules |
-| Add a review-severity column to the rule tables (ADR-003). Status: accepted, pending operator confirmation at program end | Every row was checked against the loaded `sk-code-review` contract. Eighteen match the default, and error message quality and type-safety were refined where the default named no case |
-| Keep the verify handoff line in this phase (ADR-004). Status: accepted, pending operator confirmation at program end | The dispatch assigns the line here, and the envelope fields exist since phase 002 |
-| Check three amended lines where they land (ADR-005). Status: accepted, pending operator confirmation at program end | The phase's own additions, and phase 002's rewrite of the quality `SKILL.md`, moved the lines the criteria name |
+| Amend Iron Law 3 (ADR-001). Status: accepted, confirmed by the operator 2026-10-26 | An UNKNOWN repository could not complete the required gate under the old text |
+| Make `universal-checklist.md` the SKILLED house checklist (ADR-002). Status: accepted, confirmed by the operator 2026-10-26 | Foreign repositories should not receive SKILLED's header and spec-root rules |
+| Add a review-severity column to the rule tables (ADR-003). Status: accepted, confirmed by the operator 2026-10-26 | Every row was checked against the loaded `sk-code-review` contract. Eighteen match the default, and error message quality and type-safety were refined where the default named no case |
+| Keep the verify handoff line in this phase (ADR-004). Status: accepted, confirmed by the operator 2026-10-26 | The dispatch assigns the line here, and the envelope fields exist since phase 002 |
+| Check three amended lines where they land (ADR-005). Status: accepted, confirmed by the operator 2026-10-26 | The phase's own additions, and phase 002's rewrite of the quality `SKILL.md`, moved the lines the criteria name |
 <!-- /ANCHOR:decisions -->
 
 ---

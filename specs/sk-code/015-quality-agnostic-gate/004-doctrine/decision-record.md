@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T09:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Checked every ADR-003 row against the review contract and added ADR-005"
-    next_safe_action: "Operator confirms ADR-001 to ADR-005 at program end"
+    next_safe_action: "None. The operator confirmed ADR-001 to ADR-005 on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -27,7 +27,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-The operator set a standing instruction to build autonomously and to verify open decisions at program end. ADR-001 and ADR-002 take the design's recommended default. ADR-004 follows the phase dispatch over the design's phase 5 scope. ADR-003 was checked row by row against the `sk-code-review` contract in this phase, and ADR-005 records why three line anchors moved. All five carry the status line the operator asked for. The alternative and the reversal are recorded in each one. Scores in the alternatives tables are the author's judgement, not measurements.
+The operator set a standing instruction to build autonomously and to bring the open decisions back for confirmation, and the operator confirmed all five on 2026-10-26. ADR-001 and ADR-002 take the design's recommended default. ADR-004 follows the phase dispatch over the design's phase 5 scope. ADR-003 was checked row by row against the `sk-code-review` contract in this phase, and ADR-005 records why three line anchors moved. All five carry the status line the operator asked for. The alternative and the reversal are recorded in each one. Scores in the alternatives tables are the author's judgement, not measurements.
 
 ---
 
@@ -38,7 +38,7 @@ The operator set a standing instruction to build autonomously and to verify open
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Phase author, under the operator's standing instruction to build autonomously |
 
@@ -142,7 +142,7 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md` line
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Phase author, under the operator's standing instruction to build autonomously |
 
@@ -243,7 +243,7 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md` line
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Phase author. Each row was checked against the `sk-code-review` contract, its `SKILL.md` and `references/review-core.md` section 2 |
 
@@ -284,7 +284,7 @@ Quality tiers and review severities are separate scales. Quality P0 blocks compl
 | Mechanical floor | Credential signature | P0 | Confirmed | A committed credential is an exploitable security issue, and unsafe secrets handling is a security minimum in section 6 |
 | P0 | Initialization safety | P1. P0 when the gap is exploitable or causes data loss | Confirmed | A double initialization or a race is a correctness bug. It reaches P0 only through section 2's own P0 cases |
 | P0 | Input validation | P1. P0 when the gap is exploitable or causes data loss | Confirmed | Boundary handling is a correctness minimum. An injection path is exploitable, which is P0 |
-| P0 | No commented-out code | P1 | Confirmed | An unresolved quality P0 fails the mandatory gate, a must-fix gate issue. A reviewer who reads it as maintainability alone would rank it P2, so the operator may confirm this row at program end |
+| P0 | No commented-out code | P1 | Confirmed | An unresolved quality P0 fails the mandatory gate, a must-fix gate issue. A reviewer who reads it as maintainability alone would rank it P2, so the operator confirmed this row on 2026-10-26 |
 | P0 | No silent failures | P1 | Confirmed | A swallowed exception hides a wrong result, a correctness bug |
 | P0 | No hardcoded secrets | P0 | Confirmed | Same reason as the credential signature row |
 | P0 | No ephemeral-artifact pointers in comments | P1 | Confirmed | The pre-commit and CI gates block it, a must-fix gate issue |
@@ -375,7 +375,7 @@ Twenty rows were checked. Eighteen match the default mapping, and two refine it 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Phase author, under the operator's standing instruction to build autonomously |
 
@@ -472,7 +472,7 @@ The design lists `workflow-verify.md` line 56 under the shared doctrine (section
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Phase author, under the coordinator's ruling that a task wrong for the tree is done to its intent with the deviation recorded |
 
@@ -549,7 +549,7 @@ Three checks name a line number that the phase itself moves, or that an earlier 
 | 4 | **Fits Goal?** | PASS | The criteria keep proving the amended doctrine |
 | 5 | **Open Horizons?** | PASS | A later move needs only a new number |
 
-**Checks Summary**: 5/5 PASS, by the author's judgement. The operator confirms it at program end.
+**Checks Summary**: 5/5 PASS, by the author's judgement. The operator confirmed it on 2026-10-26.
 <!-- /ANCHOR:adr-005-five-checks -->
 
 ---

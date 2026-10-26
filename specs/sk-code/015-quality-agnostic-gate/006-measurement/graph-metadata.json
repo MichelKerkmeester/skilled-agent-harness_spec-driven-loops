@@ -58,9 +58,9 @@
       ".skilled/bin/compiled-route.cjs",
       "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-006-measurement.md",
       ".skilled/bin/tests/compiled-route-admission.test.cjs",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
-      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-      ".skilled/plugins/system-skill-advisor.js"
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code/SKILL.md"
     ],
     "entities": [
       {
@@ -160,21 +160,15 @@
         "source": "derived"
       },
       {
-        "name": "universal-checklist.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor.js",
-        "kind": "code",
-        "path": ".skilled/plugins/system-skill-advisor.js",
+        "path": ".skilled/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The saved benchmark runs for `sk-code-quality` measure routing, not catching",
     "created_at": "2026-10-25T23:21:53Z",
-    "last_save_at": "2026-10-26T13:50:16.189Z",
+    "last_save_at": "2026-10-26T15:39:39.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:617a703e8a67351d4b1e7ceecabf31427487f3db475fecab0045bef4ca5b8ef3",
+    "source_fingerprint": "sha256:fa91187d04f49ab0497525b0429ecfc75c39c8abf0a64a83955dfa8e7093ba54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9ed137ec4bb640b46772df873d59f81438cfb1464dbe68133ebd51bdce0900d",
+      "spec.md": "f1d3a49cf313f19855b51cbae111ee04e59a4447ca03614b78ce17800e21152e",
       "plan.md": "e1917af12d03e15c19141c27bf0c73001266a3598f8b4c6f7612ce9478a7585a",
-      "tasks.md": "79b10b7506ab42337ea35d08a3b79db1b8d123d68e6940f00967bb17d60dd2dc",
-      "decision-record.md": "c5dfcd3e9567566c67257c0540a19b634ed8ff63960a2120bd7c980610b00603",
-      "implementation-summary.md": "d795843a5c50ff2d27b70f0b66a9db4b13e729617803cdb8beff0eff56c378b8"
+      "tasks.md": "e6efb46a285e0a9ac282f415fa7ea676ed39960e8d9d95030d6fca7310598430",
+      "decision-record.md": "da2d9ec9592b78f1dfda24842d34a3d8acd01f4aeed0f66ee764a83ab9dcd375",
+      "implementation-summary.md": "a3fed66c66d7c7e8ef497603331f540e05017e39039eaec208078d30c55732ce"
     },
     "last_active_at": null
   }

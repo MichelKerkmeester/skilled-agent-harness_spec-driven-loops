@@ -1,0 +1,210 @@
+{
+  "files": 50,
+  "target_ms": 2000,
+  "head": "002c94662f",
+  "tree": "the before and after runs both measured on HEAD 002c94662f; the after runs measured the uncommitted working tree on top of that head",
+  "reference_machine": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M5 Max",
+    "cores": 18,
+    "node": "v26.8.2"
+  },
+  "before": {
+    "runs_ms": [
+      1845,
+      1849,
+      1599,
+      1546,
+      1473
+    ],
+    "median_ms": 1599,
+    "max_ms": 1849,
+    "checks_ms": {
+      "comment-hygiene": [
+        64,
+        67,
+        67,
+        58,
+        61
+      ],
+      "conflict-markers": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "secrets": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "debug-leftovers": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-json": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-cjs": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-node": [
+        1504,
+        1476,
+        1268,
+        1236,
+        1188
+      ],
+      "syntax-python": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-shell": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-yaml": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-toml": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "dist-staleness": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "after": {
+    "runs_ms": [
+      723,
+      704,
+      725,
+      668,
+      620
+    ],
+    "median_ms": 704,
+    "max_ms": 725,
+    "checks_ms": {
+      "comment-hygiene": [
+        89,
+        85,
+        91,
+        84,
+        76
+      ],
+      "conflict-markers": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "secrets": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "debug-leftovers": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-json": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-cjs": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-node": [
+        286,
+        281,
+        283,
+        261,
+        252
+      ],
+      "syntax-python": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-shell": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-yaml": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "syntax-toml": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "dist-staleness": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "met": true,
+  "command": "node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format json",
+  "set": "a temporary git repository, outside the working directory, holding 50 .js files each committed and then changed by one comment line, so git diff --numstat reads 1 1 for all 50. Five runs per side, each run alone, the before runs on the unedited runner and the after runs on the pooled runner, with the runner started by its absolute in-tree path so it finds the same hub both times. checks_ms holds each check from the verdict checks array in run order."
+}

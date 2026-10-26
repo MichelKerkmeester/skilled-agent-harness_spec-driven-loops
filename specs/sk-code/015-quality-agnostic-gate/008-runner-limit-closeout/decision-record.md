@@ -31,7 +31,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-This record holds the decisions this phase rests on. The requirements they serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). Each status line reads `Accepted, pending operator confirmation at program end`, the line the operator's standing autonomous-build instruction gives every decision in this program. ADR-001 to ADR-003 close three of the items the built-in runner phase left in its limitation list. ADR-004 settles the guard boundary with the measurement taken on the landed tree, and ADR-005 settles how far the spec-folder checklist row reaches. Every line number in this record was read at HEAD `f69e5cd2e8`, before the config phase lands on this branch.
+This record holds the decisions this phase rests on. The requirements they serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). Each status line reads `Accepted, confirmed by the operator 2026-10-26`, the confirmation the operator gave every decision in this program. ADR-001 to ADR-003 close three of the items the built-in runner phase left in its limitation list. ADR-004 settles the guard boundary with the measurement taken on the landed tree, and ADR-005 settles how far the spec-folder checklist row reaches. Every line number in this record was read at HEAD `f69e5cd2e8`, before the config phase lands on this branch.
 
 ---
 
@@ -42,7 +42,7 @@ This record holds the decisions this phase rests on. The requirements they serve
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -146,7 +146,7 @@ The state carries more than a report. A `present` layer makes a finding on an un
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -250,7 +250,7 @@ A matching stored record short-circuits the check to `fresh` before any source h
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -354,7 +354,7 @@ The probe also says where the time sits. The whole-tree untracked listing cost 0
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -474,7 +474,7 @@ The whole tree held 91558 ignored paths on this tree, where the plan recorded 91
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 

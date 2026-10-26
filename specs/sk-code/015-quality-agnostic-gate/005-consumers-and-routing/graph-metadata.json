@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The @code agent has no quality step, and its RETURN has no field for a gate result, so a change can come back as done with no gate evidence",
     "created_at": "2026-10-25T23:21:52Z",
-    "last_save_at": "2026-10-26T12:49:33.414Z",
+    "last_save_at": "2026-10-26T15:39:39.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f52f4db8bda937bb953636183da761e4ca7af3f6173d9b5c2ab97380378e709a",
+    "source_fingerprint": "sha256:ca9ed874d52458f8b44e2672c12f59d83319a05153df4fad0e449235d7364eee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dbd42af6acba4c2000edd3e44cfb14332433755acea39e564d29380e61493412",
+      "spec.md": "e697a1343208872a441416952a9fafc1ed5b49b2477120e42fc7d050c0729232",
       "plan.md": "83dc9009fb8f5456dcc28e0f6685bd774943e1a51ebd912a34f558837ac5b3b7",
       "tasks.md": "6c9a40e8bc3601609c57a9ed235f33f857a68b2cf8c0bad26476764edf20da06",
-      "decision-record.md": "b7ba5064597569e6e0e7e2df7da5490cfd855f24826f0fc4227df296456ed17d",
-      "implementation-summary.md": "b0383a8030a9c04cce55369b601d24dda519c0871c60bf12b9c8bf948e882d32"
+      "decision-record.md": "c78529e899e00b06378dacf3fbfe234824defeee22bf4fbbf54f369972f82acb",
+      "implementation-summary.md": "d8695dd87406e7b41ac80a6d411652a4bf4b3dfce723683bf33d25ed0affd688"
     },
     "last_active_at": null
   }

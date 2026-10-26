@@ -12,7 +12,7 @@ _memory:
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed the phase; all criteria verified"
     next_safe_action: "Commit the phase, then start phase 004"
-    blockers: ["ADR-001 to ADR-003 and ADR-011 to ADR-015 await operator confirmation at program end. They do not block this phase"]
+    blockers: []
     key_files:
       - ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs"
       - ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
@@ -26,7 +26,7 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions: ["Does the program need Windows support for configured commands?"]
-    answered_questions: ["Phase 1 publishes --ticket-prefix, --extension and --extra-pattern, each repeatable"]
+    answered_questions: ["Phase 1 publishes --ticket-prefix, --extension and --extra-pattern, each repeatable", "The operator confirmed ADR-001 to ADR-003 and ADR-011 to ADR-015 on 2026-10-26"]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 # Implementation Summary

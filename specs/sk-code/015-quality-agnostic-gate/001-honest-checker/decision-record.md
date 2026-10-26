@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T01:09:37Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded the ADR-010 amendment that counts only the baseline delta outside specs/"
-    next_safe_action: "Confirm ADR-001 to ADR-010 and the ADR-010 amendment at program end"
+    next_safe_action: "None. The operator confirmed ADR-001 to ADR-010 and the ADR-010 amendment on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -27,7 +27,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-ADR-001 to ADR-006 take the six decisions that the design leaves to the operator (design section 1.4). Each takes the design's recommended default under the operator's standing instruction to build autonomously. Each carries the status "Accepted, pending operator confirmation at program end". ADR-007 to ADR-010 are this phase's own judgments. Each names its reversal.
+ADR-001 to ADR-006 take the six decisions that the design leaves to the operator (design section 1.4). Each takes the design's recommended default under the operator's standing instruction to build autonomously. Each carries the status "Accepted, confirmed by the operator 2026-10-26". ADR-007 to ADR-010 are this phase's own judgments. Each names its reversal.
 
 ---
 
@@ -38,7 +38,7 @@ ADR-001 to ADR-006 take the six decisions that the design leaves to the operator
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator (standing build instruction), recorded by the markdown agent |
 
@@ -136,7 +136,7 @@ Iron Law 2 makes the Phase 1.5 quality gate mandatory (`phase-detection.md:108`)
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator (standing build instruction), recorded by the markdown agent |
 
@@ -233,7 +233,7 @@ The universal checklist says it serves "the OpenCode development environment" (`
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator (standing build instruction), recorded by the markdown agent |
 
@@ -328,7 +328,7 @@ Phase 2 needs one committed seam for the repository's own commands and checklist
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator (standing build instruction), recorded by the markdown agent |
 
@@ -422,7 +422,7 @@ Pre-commit checks each staged file whole (`.skilled/scripts/git-hooks/pre-commit
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator (standing build instruction), recorded by the markdown agent |
 
@@ -515,7 +515,7 @@ The design's Phase 6 writes a live benchmark report. Its format owner is the har
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator (standing build instruction), recorded by the markdown agent |
 
@@ -608,7 +608,7 @@ The advisor plugin, `.skilled/plugins/system-skill-advisor.js`, holds its own co
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Markdown agent, under the operator's standing build instruction |
 
@@ -706,7 +706,7 @@ The design narrows `\bphase\s+0+\d*\b` to `\bphase\s+0\d+\b`, and `\bT\d{3,4}\b`
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Markdown agent, under the operator's standing build instruction |
 
@@ -799,7 +799,7 @@ The pattern `\b\d{3}/\d{3}\b` at `Q/scripts/check-comment-hygiene.sh` line 161 f
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Markdown agent, under the operator's standing build instruction |
 
@@ -892,7 +892,7 @@ The router joins the checker path to the project folder (`.skilled/hooks/post-ed
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Markdown agent, under the operator's standing build instruction |
 
@@ -941,7 +941,7 @@ The design says to stop and ask the operator when the new-language delta is too 
 - A visible stop lands before CI and pre-commit inherit a large block.
 
 **What it costs**:
-- The number may not suit this repository. Mitigation: the operator confirms it at program end, and the class counts sit in the changelog.
+- The number may not suit this repository. Mitigation: the operator confirmed it on 2026-10-26, and the class counts sit in the changelog.
 
 **Risks**:
 
@@ -983,7 +983,7 @@ The design says to stop and ask the operator when the new-language delta is too 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | The coordinator, ruling on the T043 halt under the operator's standing build instruction, recorded by claude-opus-5-5 |
 

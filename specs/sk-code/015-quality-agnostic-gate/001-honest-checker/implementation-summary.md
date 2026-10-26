@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 001-honest-checker |
 | **Status** | Complete. T001 to T063 are ticked, all 28 acceptance criteria are Met and the sk-code drift-guard wrapper passes. |
-| **Completed** | 2026-10-26. The ADR-010 amendment waits for operator confirmation at program end. |
+| **Completed** | 2026-10-26. The operator confirmed the ADR-010 amendment on 2026-10-26. |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

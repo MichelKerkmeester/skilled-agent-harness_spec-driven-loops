@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-10-26T14:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the phase as Complete, with each design 6.5 measure against its target"
-    next_safe_action: "Wait for the operator confirmation at program end"
+    next_safe_action: "None. The operator confirmed every decision on 2026-10-26"
     blockers: []
     key_files:
       - "evidence/measurement.json"
@@ -81,7 +81,7 @@ OQ-1 was answered during the phase as ADR-008 option (a), so the phase owns the 
 
 | Decision | Why |
 |----------|-----|
-| Operator decisions D4, D12, D16, D6, rank 13 and D14 are taken at their design defaults (ADR-001 to ADR-006) | The standing instruction asks for autonomous build with decisions taken and verified at program end. Each one has its alternative and reversal recorded |
+| Operator decisions D4, D12, D16, D6, rank 13 and D14 are taken at their design defaults (ADR-001 to ADR-006), confirmed by the operator 2026-10-26 | The standing instruction asks for autonomous build with decisions taken at the design default, and the operator confirmed them on 2026-10-26. Each one has its alternative and reversal recorded |
 | Intent recall is measured with no target (ADR-007) | Four prompts are too few to tune against, and the 014 runs left the cause UNKNOWN. The record sets `targeted` to `false` and carries the result as found |
 | The report is rendered by a renderer this phase owns (ADR-008 option a) | The retired harness owned the D4 dimension and its renderer, and the playbook forbids hand-written report markdown. One machine record in, the seven-file set out |
 | The transcript scan separates a TAP summary line from a gate claim | The case-insensitive `\bPASS\b` pattern matches the `# pass N` line a replayed `node --test` prints. Filtering that line keeps the scan about the gate, and the unfiltered hits are read by hand once |
@@ -113,6 +113,6 @@ The document validator resolves at `.skilled/skills/sk-doc/shared/scripts/valida
 ## Known Limitations
 
 1. **Seven legacy report folders do not reproduce from their records, and they did not before this phase.** Four sit under the hub, `.skilled/skills/sk-code/benchmark/reports/2026-06-01--after--router`, `.skilled/skills/sk-code/benchmark/reports/2026-06-01--full--router`, `.skilled/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live` and `.skilled/skills/sk-code/benchmark/reports/baseline`, and three under the mode packets, `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router`, `.skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live` and `.skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router`. Each differs from a render of its record in its generated Markdown, and `.skilled/skills/sk-code/benchmark/reports/compiled-routing` holds no machine record at all. A `--check` over those folders fails exactly as it did before the renderer gained its measures section, so this is a known pre-existing condition rather than a regression. Workaround: none in this phase. A repair is a new change under whichever packet owns the archived reports.
-2. **The operator read and the operator confirmation stay open.** All seven transcripts are saved in full under `evidence/transcripts/`, so the read can happen at program end. The seven operator decisions in `decision-record.md` carry `Accepted, pending operator confirmation at program end` and wait for the same moment.
+2. **The operator read stays open, and the operator confirmation is recorded.** All seven transcripts are saved in full under `evidence/transcripts/`, so the read can still happen. The seven operator decisions in `decision-record.md` carry `Accepted, confirmed by the operator 2026-10-26`.
 3. **Intent recall carries no target, by design.** The record sets `targeted` to `false` and the corpus row leaves `met` as `null`, because four prompts are too few to tune against (ADR-007). The rendered report states the result with no target rather than inventing one.
 <!-- /ANCHOR:limitations -->

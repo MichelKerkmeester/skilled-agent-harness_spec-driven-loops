@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The runner gives an honest verdict, but five items in its own record are unfinished",
     "created_at": "2026-10-26T06:50:04Z",
-    "last_save_at": "2026-10-26T12:37:45.364Z",
+    "last_save_at": "2026-10-26T15:39:39.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e779fcbe0f45140af31061c5e3e09dad077a4de31bbf6b31f62dda5f46cd41c1",
+    "source_fingerprint": "sha256:970210f384ae9eac99fee71c85b36de5899616ac43861cbb054387430c1414c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "445930845463c80900884990824e0e04b751bd77aac2589dec00401065a89169",
-      "plan.md": "e85fc1a695da4ebcb8435c25e5e7102ae46c8e898dd20b121841e84dfe40962e",
+      "plan.md": "943813f62c44ed7e0e3279f16671f1962c8c6be80a805e8984bc7d53e3ebee10",
       "tasks.md": "28e42dc27576c438f9dbb666929c6812ec6feabb6e3ec474256eeae3e704e97a",
-      "decision-record.md": "dc7d0c4021d497b6b7b019516980cf9a72d708a856b314f97920964c83e38873",
+      "decision-record.md": "25462985ac51081307c25ea2130efa65696eb8b37263dc2a11bfef450cd8282d",
       "implementation-summary.md": "2c8d4d0654971e1b09d74b0dd9b8315cc52eba83233149ee1f4e8fe60fe224e2"
     },
     "last_active_at": null

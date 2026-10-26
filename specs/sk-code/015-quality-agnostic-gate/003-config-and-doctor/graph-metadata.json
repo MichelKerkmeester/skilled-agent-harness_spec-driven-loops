@@ -219,7 +219,7 @@
     ],
     "causal_summary": "The quality gate reads only the rules this framework ships",
     "created_at": "2026-10-25T23:21:49Z",
-    "last_save_at": "2026-10-26T07:56:25.662Z",
+    "last_save_at": "2026-10-26T15:39:39.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,14 +231,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b76c3019edbc9f49a2f9017ca4b53b2a5668aa415409aa36d46b01eed01b1278",
+    "source_fingerprint": "sha256:5fa9f02ef6839f9243d55a3f80785eac33d1545754e176a5cda1747bc870ebde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe9d6c0ad48471441df9251c193b13b9f360fd80047161e9391026d13ba7d3a2",
       "plan.md": "d3c1ac8a15e188e6a50f6327ab7a762974ba7ae4c037c9fe39025f11c3fe0f60",
       "tasks.md": "43ca89087b13cf355b922b56bd5cc5fd6562a59a9d442086e56a5f1e7120bae3",
-      "decision-record.md": "cdc9b58c9de600fb98af9059afc823d5c24f670287cd27f238ea870370e6e41b",
-      "implementation-summary.md": "72de50065d28cee7db3d9a464d582e5da2aa10d522ef82c5e43d0bbb2684c155"
+      "decision-record.md": "7e15c0638ceaac11dcd7a7e8979250bf69c7d82024d3c667c4416b0e4223ccca",
+      "implementation-summary.md": "daad79b5e0ea4c1d57737b61d2a49233f60ba26ac0ac37378a2f0d4e707a7974"
     },
     "last_active_at": null
   }

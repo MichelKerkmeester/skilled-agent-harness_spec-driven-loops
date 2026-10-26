@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-10-26T06:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded ADR-001 to ADR-006"
-    next_safe_action: "Confirm ADR-001 to ADR-006 at program end"
+    next_safe_action: "None. The operator confirmed ADR-001 to ADR-006 on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -28,7 +28,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-The operator asked for an autonomous build, so each decision below takes the default this phase judged best and carries the status "Accepted, pending operator confirmation at program end". Each one names its alternatives and its reversal. The design behind the packet does not cover this phase, so these are this phase's own judgments, drawn from the measurements of 2026-10-26 at `f69e5cd2e8`.
+The operator asked for an autonomous build, so each decision below takes the default this phase judged best and carries the status "Accepted, confirmed by the operator 2026-10-26". Each one names its alternatives and its reversal. The design behind the packet does not cover this phase, so these are this phase's own judgments, drawn from the measurements of 2026-10-26 at `f69e5cd2e8`.
 
 ---
 
@@ -39,7 +39,7 @@ The operator asked for an autonomous build, so each decision below takes the def
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | claude-opus-5-5, under the operator's standing build instruction |
 
@@ -136,7 +136,7 @@ The ceiling report keeps its own comment scanner, `family_reader`, `find_unquote
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | claude-opus-5-5, under the operator's standing build instruction |
 
@@ -232,7 +232,7 @@ With one extraction, the report lists exactly what the checker reads as comment 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | claude-opus-5-5, under the operator's standing build instruction |
 
@@ -327,7 +327,7 @@ The report counts a marker only when the comment text starts with a comment pref
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | claude-opus-5-5, under the operator's standing build instruction |
 
@@ -422,7 +422,7 @@ The checker reads a triple-quoted string as comment text only first in a module,
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | claude-opus-5-5, under the operator's standing build instruction |
 
@@ -518,7 +518,7 @@ The whole-tree run at `f69e5cd2e8` reports 63 findings in 41 files, all under `s
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | claude-opus-5-5, under the operator's standing build instruction |
 
@@ -556,7 +556,7 @@ ADR-002 and ADR-004 change what the blocking engine reads, so CI and pre-commit 
 | No halt | Simplest | No stop before CI inherits a large block | 3/10 |
 | A halt of 0 added lines | Strictest | Stops on any honest finding a bare string reveals | 4/10 |
 
-**Why this one**: The phase 001 limits are already pending the same operator confirmation, and the delta outside `specs/` is expected to be small.
+**Why this one**: The phase 001 limits already carry the same operator confirmation of 2026-10-26, and the delta outside `specs/` is expected to be small.
 <!-- /ANCHOR:adr-006-alternatives -->
 
 ---

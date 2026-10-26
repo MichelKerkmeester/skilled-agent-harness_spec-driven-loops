@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the Phase 5 decisions and the operator decisions taken by default"
-    next_safe_action: "Confirm the operator decisions at program end"
+    next_safe_action: "None. The operator confirmed the operator decisions on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -31,7 +31,7 @@ _memory:
 
 ## Decisions in This Record
 
-ADR-001 to ADR-008 are Phase 5 choices. ADR-009 to ADR-014 take the six decisions that the program design leaves to the operator (its section 1.4). Each of those is taken at the design's recommended default, and its status line says it awaits confirmation at program end. The Gate 3 placement question is not taken here. The folder sits under the parent at `015-quality-agnostic-gate`, and this phase may not move it.
+ADR-001 to ADR-008 are Phase 5 choices. ADR-009 to ADR-014 take the six decisions that the program design leaves to the operator (its section 1.4). Each of those is taken at the design's recommended default, and the operator confirmed each one on 2026-10-26. The Gate 3 placement question is not taken here. The folder sits under the parent at `015-quality-agnostic-gate`, and this phase may not move it.
 
 ---
 
@@ -567,11 +567,11 @@ The design's second canary expects `sk-code-ci` as a surface bundle at stage one
 <!-- ANCHOR:adr-006-decision -->
 ### Decision
 
-**We chose**: The regression check is the successor gate's steps that cover this hub, plus the canaries in plan.md section 5. The stage-one CI canary is recorded as measured. AC-018 closes as a waiver under this decision, and the operator confirms the waiver at program end.
+**We chose**: The regression check is the successor gate's steps that cover this hub, plus the canaries in plan.md section 5. The stage-one CI canary is recorded as measured. AC-018 closes as a waiver under this decision, and the operator confirmed the waiver on 2026-10-26.
 
 **How it works**: Each gate prints a fixed line, and each canary records its exact output in the implementation summary.
 
-**Amended 2026-10-26**: The CI vocabulary is unchanged from the base commit, and this phase adds no CI keyword. The `code-ci-runtime` class in `hub-router.json`, the `CI_WORKFLOW` row of `ROUTER.md` and the `INTENT_SIGNALS` `CI_WORKFLOW` row of `sk-code-ci/SKILL.md` each end `"sha-pinned action", ".github/workflows/"]`. Stage one for "run the quality gate on my edited .github/workflows/ci.yml" prints `"selectionKind":"single"` with the target `sk-code-quality`. Stage two through the router-replay `routeSkillResources` returns `surfaceIntents` `["CI_WORKFLOW"]` and loads four sk-code-ci references, so the CI standards still reach the quality run. "review the .github/workflows/test.yml diff for bugs" prints `surfaceBundle`, with review, ci and skilled, and "fix the gitlab pipeline stage in .gitlab-ci.yml" defers. The doc-claims guard prints fresh and the router sync matches 5 of 5. Two keyword fixes were tried and rejected. The bare file name `ci.yml` matches only a file named exactly that, and it pulled `.gitlab-ci.yml` and ci.yml prose into sk-code-ci. The keyword `github/workflows/` is a substring of `.github/workflows/`, so every workflow path scored twice, which broke the "code quality" phrasings and dropped review mode from the review-on-workflow bundle. AC-018 therefore closes as a waiver under this decision, and the operator confirms it at program end.
+**Amended 2026-10-26**: The CI vocabulary is unchanged from the base commit, and this phase adds no CI keyword. The `code-ci-runtime` class in `hub-router.json`, the `CI_WORKFLOW` row of `ROUTER.md` and the `INTENT_SIGNALS` `CI_WORKFLOW` row of `sk-code-ci/SKILL.md` each end `"sha-pinned action", ".github/workflows/"]`. Stage one for "run the quality gate on my edited .github/workflows/ci.yml" prints `"selectionKind":"single"` with the target `sk-code-quality`. Stage two through the router-replay `routeSkillResources` returns `surfaceIntents` `["CI_WORKFLOW"]` and loads four sk-code-ci references, so the CI standards still reach the quality run. "review the .github/workflows/test.yml diff for bugs" prints `surfaceBundle`, with review, ci and skilled, and "fix the gitlab pipeline stage in .gitlab-ci.yml" defers. The doc-claims guard prints fresh and the router sync matches 5 of 5. Two keyword fixes were tried and rejected. The bare file name `ci.yml` matches only a file named exactly that, and it pulled `.gitlab-ci.yml` and ci.yml prose into sk-code-ci. The keyword `github/workflows/` is a substring of `.github/workflows/`, so every workflow path scored twice, which broke the "code quality" phrasings and dropped review mode from the review-on-workflow bundle. AC-018 therefore closes as a waiver under this decision, and the operator confirmed it on 2026-10-26.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -605,7 +605,7 @@ The design's second canary expects `sk-code-ci` as a surface bundle at stage one
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | A route changes without a gate noticing | M | The canaries record exact output, and T049 to T053 replay them |
-| Canary 2 stays `single` and nobody decides | M | AC-018 closes only as a waiver that names this decision, and the operator confirms it at program end |
+| Canary 2 stays `single` and nobody decides | M | AC-018 closes only as a waiver that names this decision, and the operator confirmed it on 2026-10-26 |
 <!-- /ANCHOR:adr-006-consequences -->
 
 ---
@@ -846,7 +846,7 @@ The design's D21 rules a fix a patch and a feature a minor release. Each phase w
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction to build autonomously |
 | **Owner phase** | 004-doctrine |
@@ -945,7 +945,7 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`phase-detection.md` line
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction to build autonomously |
 | **Owner phase** | 004-doctrine |
@@ -995,7 +995,7 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`phase-detection.md` line
 - A foreign repository stops receiving SKILLED header and spec-root rules.
 
 **What it costs**:
-- The baseline meaning in ADR-001 of `specs/sk-code/014-code-modes-research/003-review-remediation` narrows. Mitigation: the operator confirms it at program end.
+- The baseline meaning in ADR-001 of `specs/sk-code/014-code-modes-research/003-review-remediation` narrows. Mitigation: the operator confirmed it on 2026-10-26.
 
 **Risks**:
 
@@ -1044,7 +1044,7 @@ Iron Law 3 forbids any standard on an UNKNOWN surface (`phase-detection.md` line
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction to build autonomously |
 | **Owner phase** | 003-config-and-doctor |
@@ -1143,7 +1143,7 @@ The runner needs one committed place where a repository names its checks. The op
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction to build autonomously |
 | **Owner phase** | 001-honest-checker |
@@ -1240,7 +1240,7 @@ The author gate checks changed lines. CI and pre-commit scan whole files. The de
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction to build autonomously |
 | **Owner phase** | 006-measurement |
@@ -1337,7 +1337,7 @@ Phase 6 writes a live benchmark report. The design leaves the report format to i
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, by standing instruction to build autonomously |
 | **Owner phase** | None in this program. The advisor plugin is outside the quality packets |

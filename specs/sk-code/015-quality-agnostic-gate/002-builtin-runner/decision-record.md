@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-10-26T03:35:41Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Added ADR-017 for --no-run and ADR-018 for the empty generated list"
-    next_safe_action: "Confirm ADR-011 to ADR-018 at program end"
+    next_safe_action: "None. The operator confirmed ADR-011 to ADR-018 on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -28,7 +28,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-This record holds the decisions that Phase 2 relies on. The requirements these decisions serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). ADR-001 to ADR-010 are design decisions with a settled default. ADR-011 to ADR-016 are operator decisions. The operator gave a standing instruction to build autonomously and to take each open decision at the design's recommended default. Those six carry the status line the instruction names, so the operator can confirm or reverse each one at program end. ADR-017 and ADR-018 settle two questions the build met that no document answered, each with the most conservative option, and they carry the same status line. Labels such as D6 in the text refer to the synthesized quality design. That design is not committed in this tree, so each ADR states its decision in full.
+This record holds the decisions that Phase 2 relies on. The requirements these decisions serve are in [spec.md](spec.md), the steps are in [plan.md](plan.md), and the proof that closes them is in [acceptance-criteria.md](acceptance-criteria.md). ADR-001 to ADR-010 are design decisions with a settled default. ADR-011 to ADR-016 are operator decisions. The operator gave a standing instruction to build autonomously and to take each open decision at the design's recommended default. Those six carry the status line the instruction names, and the operator confirmed each one on 2026-10-26. ADR-017 and ADR-018 settle two questions the build met that no document answered, each with the most conservative option, and they carry the same status line. Labels such as D6 in the text refer to the synthesized quality design. That design is not committed in this tree, so each ADR states its decision in full.
 
 ---
 
@@ -1026,7 +1026,7 @@ The design puts config discovery, configured checks and suggestions in Phase 3. 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1123,7 +1123,7 @@ Iron Law 2 makes the quality gate mandatory before a Phase 1 completion claim (`
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1220,7 +1220,7 @@ Iron Law 2 makes the quality gate mandatory before a Phase 1 completion claim (`
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1319,7 +1319,7 @@ Every design proposed a local override file. This one does not, because an absen
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1415,7 +1415,7 @@ CI scans whole files (`.github/workflows/comment-hygiene.yml:36-48`). Pre-commit
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1511,7 +1511,7 @@ Rank 13 in the research synthesis asks that every benchmark run record a reposit
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1607,7 +1607,7 @@ The advisor plugin has its own `declaredSurfaces` (`.skilled/plugins/system-skil
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
@@ -1704,7 +1704,7 @@ REQ-020 names a `--no-run` flag but no document says what it prints or how it ex
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, pending operator confirmation at program end |
+| **Status** | Accepted, confirmed by the operator 2026-10-26 |
 | **Date** | 2026-10-26 |
 | **Deciders** | Operator, under the standing autonomous-build instruction |
 
