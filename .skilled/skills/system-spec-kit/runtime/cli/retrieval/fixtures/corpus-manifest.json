@@ -1,5 +1,5 @@
 {
-  "corpusHash": "df55eadb47ff0dd991cfabc54afc9470ecaf8f0a54c1d38bd5857a269ae4ee57",
+  "corpusHash": "cff1bbd7f0bc42fb7b988e770c5afc7c280d511fa8ff312e96846c31f7d78fc0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26262,
+  "includedPathCount": 26267,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13374,6 +13374,11 @@
     "specs/sk-doc/068-hub-repo-folder-exemption/plan.md",
     "specs/sk-doc/068-hub-repo-folder-exemption/spec.md",
     "specs/sk-doc/068-hub-repo-folder-exemption/tasks.md",
+    "specs/sk-doc/069-local-command-support/goal.md",
+    "specs/sk-doc/069-local-command-support/implementation-summary.md",
+    "specs/sk-doc/069-local-command-support/plan.md",
+    "specs/sk-doc/069-local-command-support/spec.md",
+    "specs/sk-doc/069-local-command-support/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -26293,7 +26298,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cda70737d79ebcabba06d3dad3d75e09303e9f328435147832f5e45a75338a77",
+  "manifestHash": "2facdf99aa6fcec2fc3038342f81036ce7e4dfc951b403179be7eac5fcd081e0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29833,6 +29838,10 @@
     },
     {
       "path": "specs/sk-doc/068-hub-repo-folder-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/069-local-command-support/scratch",
       "reason": "excluded directory"
     },
     {

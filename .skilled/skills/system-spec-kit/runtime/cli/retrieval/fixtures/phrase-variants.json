@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cda70737d79ebcabba06d3dad3d75e09303e9f328435147832f5e45a75338a77",
+  "manifestHash": "2facdf99aa6fcec2fc3038342f81036ce7e4dfc951b403179be7eac5fcd081e0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -48540,6 +48540,9 @@
     "git hooks reinstall tasks": [
       "git hooks reinstall tasks"
     ],
+    "git ignored command mirrors": [
+      "git-ignored command mirrors"
+    ],
     "git live follow": [
       "git live follow"
     ],
@@ -58683,6 +58686,24 @@
     ],
     "local classifier hub": [
       "local classifier hub"
+    ],
+    "local command": [
+      "local-* command"
+    ],
+    "local command support": [
+      "local command support"
+    ],
+    "local command support goal": [
+      "local command support goal"
+    ],
+    "local command support implementation summary": [
+      "local command support implementation summary"
+    ],
+    "local command support plan": [
+      "local command support plan"
+    ],
+    "local command support tasks": [
+      "local command support tasks"
     ],
     "local deem measurement": [
       "local deem measurement"
@@ -77613,6 +77634,9 @@
     ],
     "priority based checklist items": [
       "priority-based checklist items"
+    ],
+    "private local command": [
+      "private local command"
     ],
     "private local skill roots": [
       "private local skill roots"
