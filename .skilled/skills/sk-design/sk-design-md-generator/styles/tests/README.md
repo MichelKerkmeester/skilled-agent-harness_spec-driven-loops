@@ -15,4 +15,4 @@ use the built-in `node:sqlite`).
 
 `engine/` and `database/` each have an `index.mjs` aggregator. The `oracle/` proves the two
 implementations agree byte-for-byte across the query matrix, so the persistent path can be trusted as a
-drop-in for the flat path. The manual counterpart is `../docs/manual-testing-playbook.md`.
+drop-in for the flat path.

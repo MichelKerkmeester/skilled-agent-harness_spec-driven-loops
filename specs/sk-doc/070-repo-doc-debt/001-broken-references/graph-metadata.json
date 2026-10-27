@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/070-repo-doc-debt/001-broken-references",
+  "spec_folder": "sk-doc/070-repo-doc-debt/001-broken-references",
+  "parent_id": "sk-doc/070-repo-doc-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "broken references",
+      "phase 1 broken references",
+      "readme broken reference fix",
+      "broken references plan",
+      "broken references tasks",
+      "broken references acceptance criteria",
+      "broken references implementation summary"
+    ],
+    "key_topics": [
+      "broken",
+      "references",
+      "phase",
+      "readme",
+      "reference",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "audit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/README.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/README.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/README.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/README.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/README.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit reports 119 broken references",
+    "created_at": "2026-10-27T06:53:10Z",
+    "last_save_at": "2026-10-27T07:05:35.091Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c937cd16f4364968384bdc8becf46e8a54f45409044800feaccb4124113c3e3a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e0f269911d577a9080cb98143a0a6f49a7955ef2e4075353f42131bf2725792",
+      "plan.md": "0c3045a4b7332fcc0d5e9ea4a2c39d09cd9362792406e42d32b0548835065eca",
+      "tasks.md": "5d1ac1623d87339ee66abfa9ac2a77a0688ae75fbecbce3885a21e47bf5af02b",
+      "implementation-summary.md": "26f7e65c5983ff7c2e334636aa295034b1e9b8e56a3a3a7c6b453837b4e7b0fa"
+    },
+    "last_active_at": null
+  }
+}

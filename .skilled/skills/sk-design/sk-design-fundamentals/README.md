@@ -6,7 +6,7 @@ trigger_phrases:
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-design
@@ -76,7 +76,7 @@ The scales in Section 3 are the always-loaded part; everything else loads on int
 **Step 2: Take the token file.**
 
 ```bash
-cp .skilled/skills/sk-design/assets/tokens.css <your-project>/styles/tokens.css
+cp .skilled/skills/sk-design/sk-design-fundamentals/assets/tokens.css <your-project>/styles/tokens.css
 ```
 
 You get every scale as CSS custom properties, a semantic role layer, and a dark-mode block. Retune the hues rather than rebuilding the ramps.
