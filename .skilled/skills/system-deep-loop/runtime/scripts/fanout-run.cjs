@@ -2618,6 +2618,7 @@ const PI_ALLOWED_MODELS = new Set([
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
+  'gpt-6.1-terra',
   'qwen3.8-max',
   // OpenRouter carries exactly DeepSeek V4 Flash and GLM-5.3-Flash; each id keeps its
   // upstream provider path so `${provider}/${model}` composes the full
@@ -2844,6 +2845,7 @@ const PI_MODEL_PROVIDERS = new Map([
   ['minimax-m3', 'minimax'],
   ['gpt-6-luna', 'openai'],
   ['gpt-6-sol', 'openai'],
+  ['gpt-6.1-terra', 'openai'],
   ['qwen3.8-max', 'opencode-go'],
   // OpenRouter fronts exactly DeepSeek V4 Flash and GLM-5.3-Flash here. Each model id
   // already carries its upstream provider path, so `${provider}/${model}` yields the

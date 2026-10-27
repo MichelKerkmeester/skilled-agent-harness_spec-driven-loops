@@ -226,6 +226,7 @@ export const PI_SUPPORTED_MODELS = [
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
+  'gpt-6.1-terra',
   'qwen3.8-max',
   // OpenRouter carries exactly two models here, each keeping its upstream provider path so
   // `${provider}/${model}` composes the full three-segment OpenRouter selector:

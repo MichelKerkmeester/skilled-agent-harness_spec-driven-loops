@@ -970,6 +970,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'glm-5.3-flash',
       'gpt-6-luna',
       'gpt-6-sol',
+      'gpt-6.1-terra',
       'minimax-m3',
       'opencode-go/deepseek-v4.1-flash',
       'qwen3.8-max',

@@ -2012,6 +2012,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'minimax-m3': 'minimax',
       'gpt-6-luna': 'openai',
       'gpt-6-sol': 'openai',
+      'gpt-6.1-terra': 'openai',
       'qwen3.8-max': 'opencode-go',
       // OpenRouter routes exactly DeepSeek V4 Flash and GLM-5.3-Flash, each dispatched as
       // openrouter/<upstream>/<id>; both stay on the max thinking pin.
