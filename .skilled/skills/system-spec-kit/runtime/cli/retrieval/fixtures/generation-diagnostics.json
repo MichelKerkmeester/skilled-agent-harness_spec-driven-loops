@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15592,
+    "ok": 15601,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26478,
+  "documentsScanned": 26487,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e0b8a7b09f178e1da2a4fc9fc3b2a8592e2d9d3975919d66ce80bba63ca52cd4",
+  "manifestHash": "12a5479e11b18ec6b6255098e053c3a0c6e7af8c8e519541fd2741685f88735a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38401,
+      "ok": 38421,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71681,6 +71681,10 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/008-deferred-surface-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/009-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {
