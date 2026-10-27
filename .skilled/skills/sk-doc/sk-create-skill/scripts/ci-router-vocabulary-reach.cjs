@@ -72,6 +72,38 @@ function allowedFor(hub, phrase, winner) {
   return e && e.wonBy === winner ? e : null;
 }
 
+// An operator can link private skills into the skills root under this prefix, and
+// the advisor scores one whenever its link resolves inside a trusted root
+// (system-skill-advisor/runtime/lib/private-skill-target.cjs). The tracked tree
+// ignores every such entry, so CI never has one. This check gates the shipped
+// fleet: a verdict that flips with what one machine happens to link cannot be
+// fixed in the tracked tree, and the allowlist could not name the winner without
+// leaking a private name. A private surface that ranks ahead of the shipped
+// leader is still reported, as a note that never fails the run, because on that
+// machine it really does take the phrase.
+const PRIVATE_SKILL_PREFIX = 'local-';
+
+function isOperatorLocal(skillId) {
+  return typeof skillId === 'string' && skillId.startsWith(PRIVATE_SKILL_PREFIX);
+}
+
+// Ranks the shipped fleet out of one passing-recommendation list, and keeps the
+// confidence of every private surface that sat ahead of the shipped leader.
+function rankShippedFleet(above, hub) {
+  const shipped = above.filter((r) => !isOperatorLocal(r.skillId));
+  const leaderAt = shipped.length ? above.indexOf(shipped[0]) : above.length;
+  return {
+    hit: shipped.length > 0 && shipped[0].skillId === hub,
+    present: shipped.some((r) => r.skillId === hub),
+    top: shipped.slice(0, 2),
+    localAhead: above.slice(0, leaderAt).filter((r) => isOperatorLocal(r.skillId)),
+  };
+}
+
+// Kinds reported for a human and never failed: a length limit, a pinned dispute,
+// and a private surface the tracked tree does not own.
+const NON_FAILING = new Set(['no-reach', 'allowed', 'operator-local']);
+
 function hubs() {
   return fs.readdirSync(SKILLS, { withFileTypes: true })
     .filter((e) => e.isDirectory())
@@ -153,14 +185,9 @@ async function reaches(phrase, hub) {
   const above = (data.recommendations || []).filter((r) => r.confidence >= bar);
   const generation = trust.generation;
   // Presence above the bar is not routing. A hub sitting second behind a higher
-  // scorer never answers the request, so the declaring hub has to rank first for
-  // the phrase to count as reaching it.
-  return {
-    hit: above.length > 0 && above[0].skillId === hub,
-    present: above.some((r) => r.skillId === hub),
-    top: above.slice(0, 2),
-    generation,
-  };
+  // scorer never answers the request, so the declaring hub has to rank first in
+  // the shipped fleet for the phrase to count as reaching it.
+  return { ...rankShippedFleet(above, hub), generation };
 }
 
 async function main() {
@@ -213,6 +240,19 @@ async function main() {
         unreachable.push({ phrase, kind: 'probe-error', reaches: [r.error] });
         continue;
       }
+      // The private surface is never named: its folder name stays on the machine
+      // that links it, so the row carries only its confidence.
+      if (r.hit && r.localAhead.length) {
+        unreachable.push({
+          phrase,
+          kind: 'operator-local',
+          reaches: [
+            ...r.localAhead.map((t) => `operator-local=${t.confidence.toFixed(4)}`),
+            ...r.top.slice(0, 1).map((t) => `${t.skillId}=${t.confidence.toFixed(4)}`),
+          ],
+        });
+        continue;
+      }
       if (!r.hit) {
         const winner = r.top.length ? r.top[0].skillId : null;
         const allowed = winner ? allowedFor(hub, phrase, winner) : null;
@@ -244,8 +284,9 @@ async function main() {
       const lost = r.unreachable.filter((u) => u.kind === 'outranked');
       const none = r.unreachable.filter((u) => u.kind === 'no-reach');
       const ok = r.unreachable.filter((u) => u.kind === 'allowed');
+      const local = r.unreachable.filter((u) => u.kind === 'operator-local');
       const bad = errs.length + wrong.length + lost.length;
-      process.stdout.write(`${bad ? 'FAIL' : 'OK  '} ${r.hub.padEnd(28)} declared=${String(r.declared).padStart(3)} wrong-hub=${String(wrong.length).padStart(3)} outranked=${String(lost.length).padStart(3)} no-reach=${String(none.length).padStart(3)} allowed=${String(ok.length).padStart(3)} probe-error=${String(errs.length).padStart(3)}\n`);
+      process.stdout.write(`${bad ? 'FAIL' : 'OK  '} ${r.hub.padEnd(28)} declared=${String(r.declared).padStart(3)} wrong-hub=${String(wrong.length).padStart(3)} outranked=${String(lost.length).padStart(3)} no-reach=${String(none.length).padStart(3)} allowed=${String(ok.length).padStart(3)} probe-error=${String(errs.length).padStart(3)} operator-local=${String(local.length).padStart(3)}\n`);
       for (const u of errs) {
         process.stdout.write(`       probe-error ${u.phrase.padEnd(41)} ${u.reaches.join(', ')}\n`);
       }
@@ -258,6 +299,9 @@ async function main() {
       for (const u of none) {
         process.stdout.write(`       no-reach   ${u.phrase}\n`);
       }
+      for (const u of local) {
+        process.stdout.write(`       note       ${u.phrase.padEnd(42)} ${u.reaches.join(', ')} (ranks first on this machine only)\n`);
+      }
     }
     const tally = (kind) => report.reduce((n, r) => n + r.unreachable.filter((u) => u.kind === kind).length, 0);
     const errs = tally('probe-error');
@@ -265,7 +309,8 @@ async function main() {
     const lost = tally('outranked');
     const none = tally('no-reach');
     const allowed = tally('allowed');
-    process.stdout.write(`\nchecked=${report.length} hub(s), wrong-hub=${wrong}, outranked=${lost}, no-reach=${none}, allowed=${allowed}, probe-error=${errs}\n`);
+    const local = tally('operator-local');
+    process.stdout.write(`\nchecked=${report.length} hub(s), wrong-hub=${wrong}, outranked=${lost}, no-reach=${none}, allowed=${allowed}, probe-error=${errs}, operator-local=${local}\n`);
     process.stdout.write(`advisor generation: ${generation == null ? 'unknown' : generation}\n`);
     // A phrase that reaches nobody is reported rather than failed: it is usually a
     // length limit, and failing on it would make the check unrunnable. Everything
@@ -273,7 +318,7 @@ async function main() {
     // because it is the one that would otherwise print a pass.
     process.stdout.write(errs + wrong + lost ? 'RESULT: FAILED\n' : 'RESULT: PASSED\n');
   }
-  const failed = report.some((r) => r.unreachable.some((u) => u.kind !== 'no-reach' && u.kind !== 'allowed'));
+  const failed = report.some((r) => r.unreachable.some((u) => !NON_FAILING.has(u.kind)));
   process.exit(failed ? 1 : 0);
 }
 

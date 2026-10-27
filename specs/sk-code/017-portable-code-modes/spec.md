@@ -136,6 +136,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 10 | 010-docs-and-doctor-alignment | Every doctor command, README, guide, skill document, agent and mirror aligned with the new behavior | 002 to 009 | Planned |
 | 11 | 011-node20-test-fixes | The two tests that fail on Node 20 | None | Complete |
 | 12 | 012-verification-and-release | End-to-end proof, this repository's `.sk-code/quality.json`, the framework changelog and release | All | Planned |
+| 13 | 013-router-reach-local-ties/ | The router reach check judges only the shipped fleet, and an operator-local surface ranked ahead of a shipped hub is a non-failing note that never prints its name | None | Complete |
 
 ### Phase Transition Rules
 
@@ -153,6 +154,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 005 | 006 | Review reads overrides and records a `Rule sources` line | The phase 005 fixtures |
 | 002 to 009 | 010 | Every behavior change has landed | Each child validates with `RESULT: PASSED` |
 | 010 | 012 | Docs match the shipped behavior | A fresh read-only review of every doc phase 010 touched |
+| 001 | 013 | A shipped hub's declared phrase can be outranked only by another shipped hub before the check fails | The reach check prints `RESULT: PASSED` from a checkout with operator-local links and from one without |
 <!-- /ANCHOR:phase-map -->
 
 ---

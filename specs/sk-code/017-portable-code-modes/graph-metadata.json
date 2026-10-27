@@ -9,7 +9,8 @@
     "sk-code/017-portable-code-modes/004-quality-resolver",
     "sk-code/017-portable-code-modes/008-ci-drift-flags",
     "sk-code/017-portable-code-modes/002-quality-hygiene-policy",
-    "sk-code/017-portable-code-modes/003-quality-floor-and-style-split"
+    "sk-code/017-portable-code-modes/003-quality-floor-and-style-split",
+    "sk-code/017-portable-code-modes/013-router-reach-local-ties"
   ],
   "manual": {
     "depends_on": [],
@@ -111,16 +112,16 @@
     ],
     "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
     "created_at": "2026-10-27T20:47:57Z",
-    "last_save_at": "2026-10-27T22:29:47.075Z",
+    "last_save_at": "2026-10-27T22:38:52.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4f8fe3d9829bca568201d066ed935a422680cc6797ea7f59d96406cd191381da",
+    "source_fingerprint": "sha256:2e053ddc76b978c62ef2d47317a908356ecc31a404aa9fddaa3790780aa86917",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6687adf59d4e516af9845a8b0fbc62106e21c9f8ddc99e5319dc04bf54ff63bb"
+      "spec.md": "70bfe76945d8988ef3e229f4b330d8df0671cce02149a97c7c0dac2342bc21ec"
     },
     "last_active_at": null
   }

@@ -23,6 +23,7 @@ trigger_phrases:
 |---|---|
 | `advisor-index-handoff-contract.test.cjs` | Checks advisor handoff documentation and verification-state vocabulary. |
 | `ci-leaf-manifest-freshness.test.cjs` | Checks leaf-manifest freshness traversal. |
+| `ci-router-vocabulary-reach.test.cjs` | Tests that the router reach check judges the shipped fleet and reports a private surface's tie as a note that never names it. |
 | `compiled-routing-lockstep-parity.test.cjs` | Checks compiled-routing lockstep fixtures and reports live parity. |
 | `create-journey-proof.test.cjs` | Checks standalone and parent-hub create journeys. |
 | `generate-leaf-manifest-ignores.test.cjs` | Tests that git-ignored leaves are dropped and that the fallback drops generated noise outside a work tree. |

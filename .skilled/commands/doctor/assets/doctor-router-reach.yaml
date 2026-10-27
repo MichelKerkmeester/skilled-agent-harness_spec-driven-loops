@@ -39,6 +39,15 @@ router_reach_invariant: |
     - PROBE-ERROR:  the advisor could not be asked. This FAILS. A probe that never ran once
                     printed a clean pass over an advisor that was not there, and single
                     words are skipped precisely so real cases are not buried.
+    - OPERATOR-LOCAL: the declaring hub leads the shipped fleet, but a private surface
+                    linked into this checkout ranks ahead of it. Printed as a note line
+                    with the private surface's confidence and never its name. Reported,
+                    never failed: CI never has the surface, the tracked tree cannot fix
+                    it, and on this machine the surface really does take the phrase.
+
+  Every verdict is taken over the shipped fleet. A private surface is dropped from the
+  ranking before the declaring hub is judged, so it can neither fail a phrase nor hide a
+  shipped hub that takes it.
 
   Single-word declarations are skipped by design. Sampling is refused under CI, because a
   truncated inventory proves only what it sampled and that is how phrases stayed broken
@@ -104,6 +113,7 @@ workflow:
     purpose: "Present the reach report and the final status."
     activities:
       - "Print the per-hub counts and every failing phrase with the hub that took it instead."
+      - "Print every operator-local note separately, as a phrase a private surface takes on this machine only, and never count it as a failure."
       - "State the advisor generation the numbers were taken at, since a rebuild changes them."
       - "Require the literal RESULT line. A run that printed no rule output has failed, not passed."
       - "Report the doctor reach probe separately: its STATUS= line and every FAIL row with the top pick and the second line it got instead. A doctor miss fails the run like a wrong-hub row."
@@ -119,6 +129,8 @@ output_format: |
 
   A no-reach row does not fail. It is reported for a human to judge, because it is usually
   a phrase too short to clear the bar at all and no amount of vocabulary changes that.
+  An operator-local note does not fail either. It tells the operator that a surface only
+  this machine links takes the phrase here, which that surface's own vocabulary decides.
 
   The doctor reach probe adds its own STATUS=OK or STATUS=FAIL line. RESULT: FAILED also
   covers a doctor probe exit 1, and its exit 2 is reported as a refused run.

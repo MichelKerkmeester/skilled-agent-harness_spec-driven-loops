@@ -1,7 +1,7 @@
 ---
 title: "DOC-364 -- Doctor skill-advisor router reach"
 description: "Manual scenario validating that /doctor:skill-advisor router-reach probes each declared phrase against the live advisor, prints the per-hub reach report with the literal RESULT line, and writes nothing."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-skill-advisor-router-reach
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,7 +25,7 @@ The target is read-only. It must not edit a router, add or remove a signal, rebu
 - Prompt: `A declared router phrase reaches the wrong hub. Check router reach.`
 - Preconditions: A working tree with the advisor reachable. The declared phrases currently reach their hubs, or every failing row is a known ownership dispute pinned in the reach allowlist.
 - Expected execution process: Run the target for one hub with an explicit concurrency, then run it for the whole fleet without flags, and compare the routing artifacts before and after.
-- Expected signals: The single-hub run prints the per-hub counts and every failing phrase with the hub that took it instead, states the advisor generation, and prints a literal `RESULT:` line. The whole-fleet run probes at the script default concurrency and asks no scope question. Each row is sorted as wrong-hub, outranked, no-reach, allowed or probe-error. A no-reach row is reported and never fails the run. `RESULT: PASSED` with exit 0 appears when every declared phrase reaches its hub or is an allowed dispute, and `RESULT: FAILED` with exit 1 appears on any wrong-hub, outranked or probe-error row. Exit 2 means the run was refused rather than failed, which today means a sampled inventory under CI. Single-word declarations are skipped by design. Every `ROUTER.md`, every `graph-metadata.json` and the allowlist keep their checksums.
+- Expected signals: The single-hub run prints the per-hub counts and every failing phrase with the hub that took it instead, states the advisor generation, and prints a literal `RESULT:` line. The whole-fleet run probes at the script default concurrency and asks no scope question. Each row is sorted as wrong-hub, outranked, no-reach, allowed, probe-error or operator-local. A no-reach row is reported and never fails the run. An operator-local note appears only on a checkout that links a private surface, gives that surface's confidence without its name, and never fails the run, because every verdict is taken over the shipped fleet. `RESULT: PASSED` with exit 0 appears when every declared phrase reaches its hub or is an allowed dispute, and `RESULT: FAILED` with exit 1 appears on any wrong-hub, outranked or probe-error row. Exit 2 means the run was refused rather than failed, which today means a sampled inventory under CI. Single-word declarations are skipped by design. Every `ROUTER.md`, every `graph-metadata.json` and the allowlist keep their checksums.
 - Desired user-visible outcome: A reach report that names each failing phrase and the hub that took it, with the advisor generation noted so the numbers can be compared after a rebuild.
 - Pass/fail: PASS if the report carries the literal RESULT line with its exit status, no-reach rows are not treated as failures, the advisor generation is stated, and no router, signal or allowlist changes.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
@@ -46,7 +46,7 @@ A declared router phrase reaches the wrong hub. Check router reach.
 2. Run `/doctor:skill-advisor router-reach --hub=<skill-id> --concurrency=4`. Use a hub directory under `.skilled/skills/` that carries both `ROUTER.md` and `mode-registry.json`. The run probes concurrently and takes minutes, not seconds.
 3. Confirm the report prints the per-hub counts, every failing phrase with the hub that took it instead, the advisor generation, and the literal `RESULT:` line. Record the exit code.
 4. Run `/doctor:skill-advisor router-reach` with no flags. Confirm the whole fleet is probed at the script default concurrency and no scope question is asked.
-5. Categorize each printed row as wrong-hub, outranked, no-reach, allowed or probe-error and confirm the exit status matches the documented rule for the rows observed. A run that printed no rule output has failed, not passed.
+5. Categorize each printed row as wrong-hub, outranked, no-reach, allowed, probe-error or operator-local and confirm the exit status matches the documented rule for the rows observed. A run that printed no rule output has failed, not passed.
 6. Compare `git status --porcelain` and the allowlist checksum with step 1. Confirm no router and no `graph-metadata.json` was edited.
 
 ### Expected
@@ -62,8 +62,8 @@ Phase 0 probes every declared phrase against the live advisor and captures the s
 
 ### Pass / Fail
 
-- **Pass**: The report carries the literal RESULT line with its exit status, no-reach rows do not fail the run, the advisor generation is stated, and no router, signal or allowlist changes.
-- **Fail**: The report omits the RESULT line, a no-reach row fails the run, a probe error is rendered as a pass, a single-word declaration is reported as a failure, or the allowlist or a router changes.
+- **Pass**: The report carries the literal RESULT line with its exit status, no-reach and operator-local rows do not fail the run, the advisor generation is stated, and no router, signal or allowlist changes.
+- **Fail**: The report omits the RESULT line, a no-reach or operator-local row fails the run, a note line names a private surface, a probe error is rendered as a pass, a single-word declaration is reported as a failure, or the allowlist or a router changes.
 
 ### Failure Triage
 

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/013-router-reach-local-ties",
+  "spec_folder": "sk-code/017-portable-code-modes/013-router-reach-local-ties",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router reach local ties",
+      "router reach check scores the shipped fleet",
+      "operator-local reach note",
+      "router reach local ties plan",
+      "router reach local ties tasks",
+      "router reach local ties acceptance criteria",
+      "router reach local ties decision record",
+      "router reach local ties implementation summary"
+    ],
+    "key_topics": [
+      "router",
+      "reach",
+      "local",
+      "ties",
+      "check",
+      "scores",
+      "shipped",
+      "fleet",
+      "operator-local",
+      "note",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md",
+      ".skilled/commands/doctor/assets/doctor-router-reach.yaml",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md",
+      ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.11.0.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.13.0.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".hermes/skills/sk-create-skill/SKILL.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-router-reach.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-router-reach.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-router-reach.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.11.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.11.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.13.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.13.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Filter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:skill-advisor router-reach` runs `ci-router-vocabulary-reach.cjs`, which prints `RESULT: FAILED` in the main checkout with two outranked rows: `mcp-tooling` declares \"browser agent\" and `sk-design` declares \"css extraction\", and an operator-local surface (a gitignored link under `.skilled/skills/` into another project) ranks first on both",
+    "created_at": "2026-10-27T22:13:57Z",
+    "last_save_at": "2026-10-27T22:23:41.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:521e650a9e12c9f94365ed9056b32cc9101b24c2a5218c075d2c5c4b3885b754",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1231ce4147333419928fd511cba80ff1001535b8a6f592b16c0bc219a4b4e15a",
+      "plan.md": "848d38d5d17cb2d250947323284e271daa7a0069c69a9652f2332938782f5fff",
+      "tasks.md": "05f4dfb8875fab58f18ddd075630ef31cce9ae4bfeee3ada9731941f8653c2f3",
+      "decision-record.md": "19725efb4667d4e06d646b8aee480b57ce4c2779eae178c8c09a8ff3cd6885bb",
+      "implementation-summary.md": "684603fbf5a8a60053c323201beee9b7feee8763f8b25800caa1a7afce288e41"
+    },
+    "last_active_at": null
+  }
+}
