@@ -1282,7 +1282,7 @@ Eleven commands check and repair the setup, one per area.
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 
 - Shows each setting in `ENV-REFERENCE.md` and `.env.example`, with its default, its purpose and where it is set, by name only and never by value
-- Saves a preference to `hook-flags.env` or Claude Code's `settings.local.json` only after showing the exact line and getting your yes, or prints an `export` line for your shell profile
+- Saves a preference to `hook-flags.env` or Claude Code's `.claude/settings.local.json` only after showing the exact line and getting your yes, or prints an `export` line for your shell profile
 - Never asks for or saves a secret
 
 &nbsp;
@@ -1492,7 +1492,7 @@ Where you set a value depends on what reads it:
 | `.claude/settings.local.json`, `env` block | Claude Code only | Settings for Claude Code sessions only |
 | `.env` | Code Mode only | The provider keys in section 1 of `.env.example` |
 
-Git ignores all four, so your values stay on your machine. `/doctor:env list` shows every setting and where it is set, by name only. `/doctor:env <NAME>` shows one setting, then saves a new value to `hook-flags.env` or `settings.local.json` after showing you the exact line, or prints the `export` line for your profile. It never asks for a key.
+Git ignores all four, so your values stay on your machine. `/doctor:env list` shows every setting and where it is set, by name only. `/doctor:env <NAME>` shows one setting, then saves a new value to `hook-flags.env` or `.claude/settings.local.json` after showing you the exact line, or prints the `export` line for your profile. It never asks for a key.
 
 &nbsp;
 ### Off Switches
@@ -1654,10 +1654,5 @@ Everything is a file in your own repository.
 - **[→ Daemon CLI Reference](.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - the advisor's daemon-backed CLI front door, its warm-only policy and its exit codes
 
 <!-- readme-check
-allow-ref research/research.md | a research packet writes it inside its own spec folder
-allow-ref review/review-report.md | a review packet writes it inside its own spec folder
-allow-ref ../etc/passwd | an example of a path-traversal input the tools reject
-allow-ref settings.local.json | Claude Code's machine-local settings file, which git ignores
-allow-ref CLAUDE.md | the line says the repository ships none
 allow-count two example files | the next two bullets name .env.example and hook-flags.env.example
 -->

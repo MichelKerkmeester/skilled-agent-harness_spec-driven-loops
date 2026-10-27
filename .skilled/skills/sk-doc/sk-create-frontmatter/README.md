@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-frontmatter
@@ -187,3 +187,9 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 | [`assets/frontmatter-values.json`](./assets/frontmatter-values.json) | The `contextType` and `importance_tier` values and aliases every checker reads |
 | [`references/frontmatter-versioning.md`](./references/frontmatter-versioning.md) | The 4-part version standard: scope, format, anchor derivation, the numstat gate and the insertion rule |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Eleven operator scenarios across field resolution, the description budget and version derivation |
+
+<!-- readme-check
+allow-count three scripts | the sentence names the three by role (the versioning engine frontmatter-version.mjs, the corpus gate check-frontmatter-versions.sh that wraps it, and the fast validator quick_validate.py), and the folder they share holds other scripts, so no folder count proves it
+allow-count four command workflows | the create-agent-confirm, create-command-auto, create-skill-auto and create-skill-confirm workflow assets call quick_validate.py
+allow-count two files | refers back to the one file and the other file named in the same table row
+-->

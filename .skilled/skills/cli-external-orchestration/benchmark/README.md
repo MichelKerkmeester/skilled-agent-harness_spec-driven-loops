@@ -51,3 +51,7 @@ No Lane C skill-benchmark run was archived for `cli-external-orchestration` befo
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
+<!-- readme-check
+allow-ref /deep:skill-benchmark | names the retired command the retired-lane note says was removed
+-->
+

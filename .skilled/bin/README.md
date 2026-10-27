@@ -256,5 +256,5 @@ Expected result: each `.cjs` module loads without throwing. each CLI shim lists 
 - [`system-skill-advisor runtime package`](../skills/system-skill-advisor/runtime/)
 
 <!-- readme-check
-allow-count three shell scripts | the scripts the smoke block above checks with bash -n, not the folder total
+allow-count three shell scripts | refers back to the three `bash -n` lines in the block above: worktree-session.sh, worktree-reaper.sh and fsmonitor-daemon-reaper.sh
 -->

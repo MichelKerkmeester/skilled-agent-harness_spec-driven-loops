@@ -67,3 +67,7 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/syst
 - [`../README.md`](../README.md)
 - [`../../lib/skill-graph/README.md`](../../lib/skill-graph/README.md)
 - [`../embedders/README.md`](../embedders/README.md)
+
+<!-- readme-check
+allow-count multiple suites | says when to share a fixture, not how many suites exist
+-->

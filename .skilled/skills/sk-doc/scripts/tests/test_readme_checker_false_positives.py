@@ -46,11 +46,18 @@ def write(path: Path, text: str = "") -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def track(path: Path) -> None:
+    """Stage every file under the checkout holding ``path``, since both checkers read tracked files only."""
+    subprocess.run(["git", "-c", "core.fsmonitor=false", "-C", str(path), "add", "-A"], check=True)
+    references.clear_caches()
+    counts.clear_caches()
+
+
 @pytest.fixture()
 def repo(tmp_path: Path) -> Path:
     """A small checkout holding one example of every file a reference can name."""
     subprocess.run(["git", "-c", "core.fsmonitor=false", "init", "-q", str(tmp_path)], check=True)
-    write(tmp_path / ".gitignore", ".claude/settings.local.json\n")
+    write(tmp_path / ".gitignore", ".claude/settings.local.json\noperator-notes.json\ntools/gen/modes.json\n")
     write(
         tmp_path / ".skilled" / "commands" / "create" / "changelog.md",
         '---\nargument-hint: "<target> [:auto|:confirm]"\n---\n# changelog\n',
@@ -60,6 +67,8 @@ def repo(tmp_path: Path) -> Path:
     write(tmp_path / "src" / "tool.ts", "export {};\n")
     write(tmp_path / "templates" / "phase-parent.spec.md.tmpl", "# template\n")
     write(tmp_path / "pkg" / "run.sh", "#!/usr/bin/env bash\n")
+    write(tmp_path / "other" / "lib" / "modes.json", "{}\n")
+    track(tmp_path)
     return tmp_path
 
 
@@ -67,6 +76,7 @@ def resolve(repo: Path, body: str) -> dict[str, object]:
     """Check a README holding ``body`` and map each reference to its resolution."""
     readme = repo / "pkg" / "README.md"
     write(readme, body)
+    references.clear_caches()
     resolutions, missing = references.check_readme(str(readme))
     assert missing is None
     return {item.reference.raw: item for item in resolutions}
@@ -77,16 +87,17 @@ REFERENCE_CLASSES = [
     ("bare filename", "See `guide.md`.\n", "guide.md", False),
     ("partial path", "See `docs/guide.md`.\n", "docs/guide.md", False),
     ("gitignored path", "Edit `.claude/settings.local.json`.\n", ".claude/settings.local.json", True),
-    ("bare gitignored filename", "Edit `settings.local.json`.\n", "settings.local.json", True),
+    ("bare name a slash-free ignore pattern names", "Edit `operator-notes.json`.\n", "operator-notes.json", True),
     ("home-directory path", "Add it to `~/.zshrc`.\n", "~/.zshrc", True),
     ("absolute path outside the checkout", "Run `/opt/elsewhere/run.sh`.\n", "/opt/elsewhere/run.sh", True),
     ("filename with a space", "Read `REPO RULES.md`.\n", "REPO RULES.md", False),
     ("compiled script with a TypeScript source", "Run `tool.js`.\n", "tool.js", False),
-    ("shell assignment value", "Set `CONFIG=docs/guide.md`.\n", "docs/guide.md", False),
+    ("anchored shell assignment value", "Set `CONFIG=docs/guide.md`.\n", "docs/guide.md", False),
     ("path/to placeholder", "Run `path/to/document.md`.\n", "path/to/document.md", True),
     ("bracketed placeholder segment", "Not `[spec]/memory/*.md`.\n", "[spec]/memory/*.md", True),
     ("spec doc shipped as a template", "Use `phase-parent.spec.md`.\n", "phase-parent.spec.md", False),
     ("config a doctor command creates", "Edit `.sk-git/` rules.\n", ".sk-git/", True),
+    ("quality config a doctor command creates", "Edit `.sk-code/quality.json`.\n", ".sk-code/quality.json", True),
 ]
 
 
@@ -218,6 +229,7 @@ COUNT_NON_CLAIMS = [
     ("threshold", "The hook blocks a push that deletes more than 100 tracked files at once.\n"),
     ("compound adjective", "A 9-step workflow covers the work.\n"),
     ("number inside an assignment", "Set `PLUGIN_DISABLED=1` for the OpenCode plugin alone.\n"),
+    ("rate or limit", "Active cache management (max 300 files/session, 7-day TTL).\n"),
 ]
 
 
@@ -231,6 +243,7 @@ def count_readme(folder: Path, sentence: str) -> tuple[list, list]:
     write(folder / "beta.ts")
     readme = folder / "README.md"
     write(readme, f"{sentence}\n\n| File | Role |\n|---|---|\n| `alpha.ts` | A |\n| `beta.ts` | B |\n")
+    track(folder)
     claims, failures, missing = counts.check_readme(str(readme))
     assert missing is None
     return claims, failures
@@ -250,6 +263,7 @@ def test_wrong_count_still_fails(repo: Path) -> None:
 def verdicts(readme: Path, body: str) -> list[tuple[int | None, str, str]]:
     """Write ``body`` to ``readme`` and return (value, term, verdict) for each claim."""
     write(readme, body)
+    track(readme.parent)
     report = counts.classify_readme(str(readme))
     assert report.missing is None
     return [(item.claim.value, item.claim.term, item.verdict) for item in report.judgements]
@@ -278,7 +292,8 @@ def test_named_folder_wrong_count_fails(named: Path) -> None:
     assert found == [(4, "scripts", "fail")]
 
 
-def test_claim_without_a_folder_is_unverified_not_failed(named: Path) -> None:
+def test_claim_without_a_folder_is_unverified_and_fails(named: Path) -> None:
+    # Unverified stays its own verdict for diagnosis, but no number proves it, so it fails.
     found = verdicts(
         named / "README.md",
         "Two example files list them.\n\n"
@@ -286,18 +301,30 @@ def test_claim_without_a_folder_is_unverified_not_failed(named: Path) -> None:
     )
     assert found == [(2, "files", "unverified"), (2, "files", "unverified")]
     claims, failures, missing = counts.check_readme(str(named / "README.md"))
-    assert missing is None and len(claims) == 2 and failures == []
+    assert missing is None and len(claims) == 2 and len(failures) == 2
 
 
-def test_strict_fails_an_unverified_claim(named: Path) -> None:
+def test_allow_count_covers_a_deliberate_unverified_claim(named: Path) -> None:
+    found = verdicts(
+        named / "README.md",
+        "Two example files list them. The two files differ.\n\n"
+        "<!-- readme-check\nallow-count two example files | the next two bullets name both files\n-->\n",
+    )
+    assert found == [(2, "files", "pass"), (2, "files", "unverified")]
+    claims, failures, missing = counts.check_readme(str(named / "README.md"))
+    assert missing is None and [claim.text for claim in failures] == ["Two example files list them. The two files differ."]
+
+
+def test_unverified_claim_fails_by_default_and_strict_is_an_alias(named: Path) -> None:
     readme = named / "README.md"
     write(readme, "Two example files list them.\n")
     script = SCRIPTS / "check_derived_readme_counts.py"
-    lenient = subprocess.run([sys.executable, str(script), str(readme)], capture_output=True, text=True)
+    default = subprocess.run([sys.executable, str(script), str(readme)], capture_output=True, text=True)
     strict = subprocess.run([sys.executable, str(script), "--strict", str(readme)], capture_output=True, text=True)
-    assert lenient.returncode == 0, lenient.stdout
-    assert "unverified=1" in lenient.stdout
+    assert default.returncode == 1, default.stdout
+    assert "unverified=1" in default.stdout
     assert strict.returncode == 1, strict.stdout
+    assert "unverified=1" in strict.stdout
 
 
 def test_tree_line_counts_its_folder(repo: Path) -> None:
@@ -314,3 +341,214 @@ def test_tree_line_counts_its_folder(repo: Path) -> None:
         "```\n",
     )
     assert found == [(4, "files", "pass"), (2, "files", "pass"), (3, "files", "fail")]
+
+
+def test_mid_word_hash_does_not_open_a_fence_comment(repo: Path) -> None:
+    # The shell reads `build#12` as one word, so the path after it is still a command argument.
+    found = resolve(repo, "```bash\necho build#12 .skilled/missing/gone.md\n```\n")
+    assert_fails(found, ".skilled/missing/gone.md")
+
+
+def test_fence_comment_still_checks_anchored_paths(repo: Path) -> None:
+    found = resolve(
+        repo,
+        "```text\n"
+        "run.sh   # wraps .skilled/missing/gone.sh\n"
+        "run.sh   # reads docs/guide.md and docs/absent.md, writes out/report.md\n"
+        "```\n",
+    )
+    assert_fails(found, ".skilled/missing/gone.sh")
+    assert found["docs/guide.md"].resolved and not found["docs/guide.md"].skipped
+    assert_fails(found, "docs/absent.md")
+    # `out/` exists nowhere, so the comment names no anchored path there.
+    assert "out/report.md" not in found
+
+
+def test_on_demand_config_matches_exact_tokens_only(repo: Path) -> None:
+    found = resolve(repo, "Edit `.sk-code/qualty.json` or `.sk-git/hooks.json`.\n")
+    assert_fails(found, ".sk-code/qualty.json")
+    assert_fails(found, ".sk-git/hooks.json")
+
+
+def test_untracked_file_does_not_resolve_a_bare_name(repo: Path) -> None:
+    write(repo / "notes" / "local-only.json", "{}\n")
+    found = resolve(repo, "Read `local-only.json`.\n")
+    assert_fails(found, "local-only.json")
+
+
+def test_ignore_pattern_with_a_slash_does_not_skip_its_basename(repo: Path) -> None:
+    # `tools/gen/modes.json` ignores one path; a tracked `modes.json` elsewhere is unrelated.
+    found = resolve(repo, "Edit `tools/gen/modes.json`, not `modes.json` or `gone-modes.json`.\n")
+    assert found["tools/gen/modes.json"].skipped, found["tools/gen/modes.json"].detail
+    assert found["modes.json"].resolved and not found["modes.json"].skipped, found["modes.json"].detail
+    assert_fails(found, "gone-modes.json")
+    assert "modes.json" not in references.gitignored_names(repo.resolve())
+
+
+def test_anchored_label_of_a_working_link_is_checked(repo: Path) -> None:
+    found = resolve(
+        repo,
+        "[`../old/guide.md`](../docs/guide.md) and [`../docs/guide.md`](../docs/guide.md)\n",
+    )
+    assert_fails(found, "../old/guide.md")
+    assert found["../docs/guide.md"].resolved
+
+
+def test_html_comment_tokens_are_not_references(repo: Path) -> None:
+    found = resolve(
+        repo,
+        "Close with `<!-- /ANCHOR:id -->`.\n"
+        "<!-- see `gone.md` and /ANCHOR:other -->\n"
+        "<!--\n`also-gone.md` and [link](./gone-too.md)\n-->\n"
+        "A quoted `<!--` opens nothing, so `docs/missing.md` is still read.\n"
+        "Legacy `old-ns/` stays allowed.\n\n"
+        "<!-- readme-check\nallow-ref old-ns/ | a git branch namespace, not a folder\n-->\n",
+    )
+    for raw in ("/ANCHOR:id", "/ANCHOR:other", "gone.md", "also-gone.md", "./gone-too.md"):
+        assert raw not in found, f"{raw!r} inside an HTML comment was extracted"
+    assert_fails(found, "docs/missing.md")
+    assert found["old-ns/"].resolved and found["old-ns/"].detail.startswith("allowed: ")
+
+
+def test_shell_assignment_value_is_checked_only_when_anchored(repo: Path) -> None:
+    found = resolve(
+        repo,
+        "```bash\n"
+        'NOTE_PATH="Daily/2026-08-02.md" bash run.sh\n'
+        "CONFIG=docs/missing.md DATA=.skilled/gone.json bash run.sh\n"
+        "```\n",
+    )
+    assert "Daily/2026-08-02.md" not in found
+    assert_fails(found, "docs/missing.md")
+    assert_fails(found, ".skilled/gone.json")
+
+
+def test_quality_control_readme_needs_no_slash_command_allowance() -> None:
+    # The skill has no slash command, so its README must not need an allowance to mention one.
+    readme = TESTS.parents[1] / "sk-create-quality-control" / "README.md"
+    references.clear_caches()
+    resolutions, missing = references.check_readme(str(readme))
+    assert missing is None
+    assert [item.reference.raw for item in resolutions if not item.resolved] == []
+    assert [item.reference.raw for item in resolutions if item.detail.startswith("allowed: ")] == []
+    assert "/doc:quality" not in {item.reference.raw for item in resolutions}
+
+
+def test_plain_text_tree_line_counts_its_folder(repo: Path) -> None:
+    folder = repo / "pkg" / "ascii"
+    for name in ("tests/s1.test.ts", "tests/s2.test.ts", "tests/deep/s3.test.ts", "lib/a.sh"):
+        write(folder / name)
+    found = verdicts(
+        folder / "README.md",
+        "```text\n"
+        "ascii/\n"
+        "+-- tests/    # 3 vitest suites\n"
+        "|   `-- deep/ # 1 vitest suite\n"
+        "`-- lib/      # 2 scripts\n"
+        "```\n",
+    )
+    assert found == [(3, "suites", "pass"), (1, "suite", "pass"), (2, "scripts", "fail")]
+
+
+def test_untracked_file_does_not_change_a_count(named: Path) -> None:
+    found = verdicts(named / "README.md", "Three files sit in `tools/`.\n")
+    assert found == [(3, "files", "pass")]
+    # A local file another checkout lacks must not turn the same README red here.
+    write(named / "tools" / "scratch.sh")
+    counts.clear_caches()
+    report = counts.classify_readme(str(named / "README.md"))
+    assert [item.verdict for item in report.judgements] == ["pass"]
+
+
+def test_tracked_files_are_listed_once_per_run(named: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    readme = named / "README.md"
+    write(readme, "Two scripts sit under `tools/`. Three files sit in `tools/`. Two scripts again in `tools/`.\n")
+    track(readme.parent)
+    calls: list[list[str]] = []
+    real_run = subprocess.run
+
+    def counting_run(command, *args, **kwargs):
+        if "ls-files" in command:
+            calls.append(command)
+        return real_run(command, *args, **kwargs)
+
+    monkeypatch.setattr(counts.subprocess, "run", counting_run)
+    report = counts.classify_readme(str(readme))
+    assert [item.verdict for item in report.judgements] == ["pass", "pass", "pass"]
+    assert len(calls) == 1, calls
+
+
+def test_tree_entry_description_without_a_hash_counts_its_folder(repo: Path) -> None:
+    folder = repo / "pkg" / "described"
+    for name in ("tests/a.test.cjs", "tests/b.test.cjs", "tests/fixtures/payload.json"):
+        write(folder / name)
+    found = verdicts(
+        folder / "README.md",
+        "```text\n"
+        "described/\n"
+        "+-- tests/ two Node test files plus payload fixtures\n"
+        "`-- tests/ nine Node test files plus payload fixtures\n"
+        "```\n",
+    )
+    assert found == [(2, "test", "pass"), (9, "test", "fail")]
+
+
+def test_named_folder_is_not_judged_by_the_readme_folder_inventory(repo: Path) -> None:
+    # The README-folder categories are lenient on purpose; a folder the claim names
+    # must match its own filtered count, so three notes are not three scripts.
+    folder = repo / "pkg" / "lenient"
+    for name in ("docs/a.md", "docs/b.md", "docs/c.md"):
+        write(folder / name)
+    found = verdicts(folder / "README.md", "Three scripts live in `docs/`. Three files live in `docs/`.\n")
+    assert found == [(3, "scripts", "fail"), (3, "files", "pass")]
+
+
+def test_code_label_with_an_existing_first_segment_is_checked(repo: Path) -> None:
+    # `docs/` exists, so the label names one place, and that place holds no `old.md`.
+    found = resolve(repo, "[`docs/old.md`](../docs/guide.md) and [`docs/guide.md`](../docs/guide.md)\n")
+    assert_fails(found, "docs/old.md")
+    assert found["docs/guide.md"].resolved and not found["docs/guide.md"].skipped
+
+
+def test_nested_gitignore_name_applies_only_below_its_folder(repo: Path) -> None:
+    # A nested ignore file speaks for its own subtree; elsewhere the name is an ordinary missing path.
+    write(repo / "sub" / ".gitignore", "only-local.json\n")
+    write(repo / "sub" / "keep.md")
+    track(repo)
+    elsewhere = resolve(repo, "Edit `only-local.json`.\n")
+    assert_fails(elsewhere, "only-local.json")
+    below = repo / "sub" / "deep" / "README.md"
+    write(below, "Edit `only-local.json`.\n")
+    references.clear_caches()
+    resolutions, missing = references.check_readme(str(below))
+    assert missing is None
+    found = {item.reference.raw: item for item in resolutions}
+    assert found["only-local.json"].skipped, found["only-local.json"].detail
+
+
+@pytest.mark.parametrize(
+    "names",
+    [("a.test.mjs", "b.test.mjs"), ("test_a.py", "test_b.py"), ("a.test.sh", "test-b.sh")],
+    ids=["node test module", "pytest module", "shell test script"],
+)
+def test_test_file_forms_count_as_tests(repo: Path, names: tuple[str, str]) -> None:
+    folder = repo / "pkg" / "forms"
+    for name in names + ("helper.mjs", "conftest.py", "util.sh"):
+        write(folder / "suite" / name)
+    found = verdicts(folder / "README.md", "Two tests live in `suite/`.\n")
+    assert found == [(2, "tests", "pass")]
+
+
+def test_tracked_paths_are_listed_once_per_reference_run(repo: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[list[str]] = []
+    real_run = subprocess.run
+
+    def counting_run(command, *args, **kwargs):
+        if "ls-files" in command:
+            calls.append(command)
+        return real_run(command, *args, **kwargs)
+
+    monkeypatch.setattr(references.subprocess, "run", counting_run)
+    found = resolve(repo, "Read `guide.md`, `REPO RULES.md` and `tool/scripts/x.py`, run `docs/guide.md`.\n")
+    assert found["guide.md"].resolved
+    assert len(calls) == 1, calls

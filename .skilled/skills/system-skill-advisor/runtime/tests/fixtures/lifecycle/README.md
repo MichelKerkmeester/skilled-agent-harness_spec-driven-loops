@@ -60,3 +60,7 @@ Expected result: exit code 0.
 - [Parent: Fixtures](../README.md)
 - [Tests: tests/](../../README.md)
 - [Scorer Fixtures](../../scorer/fixtures/README.md)
+
+<!-- readme-check
+allow-count two test suites | the sentence names both, lifecycle-derived-metadata.vitest.ts and native-scorer.vitest.ts, which sit in different folders
+-->

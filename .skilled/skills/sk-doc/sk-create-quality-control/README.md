@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doc:quality"
   - "score this document"
   - "human voice"
-version: 1.0.0.16
+version: 1.0.1.0
 ---
 
 # create-quality-control
@@ -34,7 +34,7 @@ A document either reads well to the person who wrote it or it does not. A self-a
 
 ### What It Does
 
-`create-quality-control` reads a markdown file and runs it through structure extraction to get a Document Quality Index score with its quality band. It classifies what it finds into blocking/warning/recommendation tiers before applying Human Voice Rules on top. `/doc:quality` is report-only by default: it tells you where the document stands and why. Only when edits are explicitly requested does it touch the file, staying scoped to that one document. It never creates a new artifact. For that, route to the matching creation packet (`create-readme`, `create-skill` and the rest).
+`create-quality-control` reads a markdown file and runs it through structure extraction to get a Document Quality Index score with its quality band. It classifies what it finds into blocking/warning/recommendation tiers before applying Human Voice Rules on top. The audit is report-only by default: it tells you where the document stands and why. Only when edits are explicitly requested does it touch the file, staying scoped to that one document. It never creates a new artifact. For that, route to the matching creation packet (`create-readme`, `create-skill` and the rest).
 
 ---
 
@@ -62,7 +62,7 @@ Expected: zero blocking issues before the document counts as ready.
 
 ## 4. HOW IT WORKS
 
-Confirm the target file and pick one execution mode: report-only audit (the default for `/doc:quality`), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it. Classify findings in order, blocking structural failures first, then warnings, then recommendations and only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
+Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it. Classify findings in order, blocking structural failures first, then warnings, then recommendations and only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
 
 ### Key Concept: DQI Is Read, Never Guessed
 
@@ -104,7 +104,7 @@ Reach for this packet when a document needs to clear a real quality gate before 
 
 ## 7. FAQ
 
-**Q: Why is `/doc:quality` report-only by default?**
+**Q: Why is the audit report-only by default?**
 
 A: An unrequested edit risks changing product claims or policy text without a real decision behind it. Edits happen only when explicitly asked for.
 

@@ -43,9 +43,9 @@ measured from something real shows that.
 
 ## 3. ADDING ANOTHER
 
-A second language is a sibling directory with the same four files. Nothing else moves: the forms do
-not change, and neither does the checker, because a form is painted at delivery time rather than
-committed in a second skin.
+A second language is a sibling directory holding the same four files as `harness-diagram/`. Nothing
+else moves: the forms do not change, and neither does the checker, because a form is painted at
+delivery time rather than committed in a second skin.
 
 To paint with one, point the applicator at its `DESIGN.md`. The full contract, including what each
 role selects from and what happens when a reference cannot fill one, is in

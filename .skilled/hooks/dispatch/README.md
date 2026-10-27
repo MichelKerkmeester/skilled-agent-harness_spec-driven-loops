@@ -44,7 +44,7 @@ The 28 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 | `stdin-redirect-required` | A headless dispatch (`opencode run`, `pi -p`, `claude -p`, `codex exec`, `devin -p`, `cursor-agent -p`, `hermes chat`, `hermes -z`) closes or redirects stdin (`</dev/null`, heredoc, herestring, a pipe feeding the CLI, or `--query-file` on `hermes chat`); every dispatch in a chain needs its own, and a redirect inside a quoted prompt does not count |
 | `explicit-model-required` | An `opencode run` command passes `-m`/`--model`; every dispatch in a chain needs its own, and a flag inside a quoted prompt does not count |
 | `no-bare-agent-general` | No bare top-level `--agent general` (opencode rejects it at runtime) |
-| `command-flag-for-slash-prompt` | A slash-command-shaped prompt (`/family:name ...`) is paired with `--command` |
+| `command-flag-for-slash-prompt` | A slash-command-shaped prompt (`/<family>:<name> ...`) is paired with `--command` |
 | `v2-slash-prompt-route` | No slash-command-shaped prompt is handed to an OpenCode v2 `run`, which does not expand it |
 | `share-requires-confirmation` | No `--share` flag present (a deprecated no-op on OpenCode 1.19.3, absent on OpenCode 2) |
 | `pi-offline-required` | A non-interactive `pi -p` command passes `--offline` |
@@ -192,3 +192,9 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../injection-contract.md`](../injection-contract.md): the advisory's exact injected text and its visibility to the operator.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
+
+<!-- readme-check
+allow-ref ../lib/ | an import specifier relative to an adapter folder, resolving to this folder's lib/
+allow-ref ../../shared/hook-flags.mjs | an import specifier relative to an adapter folder, resolving to .skilled/hooks/shared/hook-flags.mjs
+allow-ref ../../.skilled/hooks/shared/hook-flags.mjs | the Pi adapters' specifier, written for their .pi/extensions/ symlink
+-->

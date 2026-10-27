@@ -145,3 +145,7 @@ node --test .skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.c
 
 Archived folders stay frozen. A folder written by an earlier template, or written by hand, fails `--check` by design, and the storage rule above gives a changed result a new folder rather than an edit to an old one.
 
+<!-- readme-check
+allow-ref /deep:skill-benchmark | names the retired command the retired-lane note says was removed
+-->
+

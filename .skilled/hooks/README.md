@@ -159,7 +159,7 @@ hooks/
 |   +-- pi/session-relaunch.ts, session-relaunch.test.ts
 |   +-- opencode/session-relaunch.js (browsability symlink -> .skilled/plugins/session-relaunch.js)
 |   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs
-|   `-- tests/ nine Node test files plus payload fixtures
+|   `-- tests/ fifteen Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- lib/goal-slice.cjs, goal-slice.test.cjs   # packet goal.md projections shared with the OpenCode plugin

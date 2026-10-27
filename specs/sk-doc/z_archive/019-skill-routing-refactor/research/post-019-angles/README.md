@@ -49,3 +49,7 @@ these are quicker to *fix* than to loop:
 
 Two SOL agents, ~530k tokens each, isolated read-only run in a git worktree; neither modified any repo file.
 The reports are the agents' verbatim output; the confirmed-drift section above was verified separately.
+
+<!-- readme-check
+allow-ref /deep:alignment | an archived record of a command that existed when this research ran
+-->
