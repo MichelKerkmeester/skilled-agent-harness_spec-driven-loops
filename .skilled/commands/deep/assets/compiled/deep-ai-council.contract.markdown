@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "965203f1be6f5c56aa583c9a80ca38f2423126dbebfef1834da21864bea7d50a",
+      "sha256": "6ca3073aa4e17edbd600887458ab9805beb319022ebc89cceb5550e1bba5fdd7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "b8a1fa5751dccadeccebf2e68cfb65632ae9e8334048329676b6c308e5a4d972",
+      "sha256": "db4ebd5ecb39210f1d59850217e4f4c6431599c2a9cd4bc855eeab92cf4f155b",
       "section": "full"
     },
     {
