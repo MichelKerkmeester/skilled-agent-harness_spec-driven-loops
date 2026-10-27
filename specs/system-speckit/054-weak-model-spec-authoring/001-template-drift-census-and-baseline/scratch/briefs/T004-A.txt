@@ -1,0 +1,71 @@
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a read-only auditor. You read files, run read-only commands and write two
+result files. Your output is checked line by line by a script.
+
+ALLOWED WRITE PATHS:
+  specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.jsonl
+  specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read.txt
+
+BANNED OPERATIONS: git commit, git push, git checkout, git switch, git branch, git reset,
+git stash, rm, mv, create.sh outside the task's stated command, generate-context.js,
+/speckit:save, and any edit to a file not listed under ALLOWED WRITE PATHS.
+
+TASK: You audit lane A. Read every file under .skilled/skills/system-spec-kit/templates/ except its examples/ folder. Lane B owns the examples/ folder; do not audit it. Find defects of the eight classes listed below. For each defect, append one line of JSON to specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.jsonl. Each line is one object with exactly these ten string fields: id, lane, file, locator, defect_class, observed, expected_text, owner_phase, evidence_cmd, evidence_expect.
+
+FIELD RULES
+- id: L-A-001, L-A-002 and so on.
+- file: the path from the repository root.
+- locator: text copied exactly from the file that occurs exactly once in it. Check it with
+  grep -cF -- '<locator>' <file>, which must print 1. Pick a locator with no single quote.
+- observed: one sentence saying what is wrong.
+- expected_text: the exact finished text that should replace the locator. Write OWNED BY
+  PHASE when owner_phase is 003, 004 or 005. Write DELETE FILE for a dead file.
+- owner_phase: the owner given for the class below.
+- evidence_cmd: one read-only command, run from the repository root, that shows the defect.
+  Prefer grep -cF -- '<locator>' <file>. Never use >, rm, mv, cp, git, tee, bash or sh.
+- evidence_expect: the exact text, or the count, that evidence_cmd prints while the defect
+  exists. Never leave it empty.
+
+CLASSES (run each command from the repository root, S=.skilled/skills/system-spec-kit)
+For every command below that takes PATHS, use .skilled/skills/system-spec-kit/templates/
+with examples/ excluded, for example by adding --glob '!**/examples/**'. Do not audit
+.skilled/skills/system-spec-kit/templates/examples/.
+
+1. leaked-description, owner 002: rg -n -e '^description: "Note ' -e '^description: "Level 3,' -e '^description: "[a-z]' -e '^description: ".*-->' PATHS
+   A description that starts lowercase or holds the end of an HTML comment.
+2. stale-reference, owner 002: rg -n -i 'checklist\.md' PATHS, and
+   rg -o --no-filename '\.skilled/[A-Za-z0-9_./+-]+' PATHS | sort -u | while read p; do test -e "$p" || echo "MISSING $p"; done
+3. unresolved-placeholder, owner 002, or 041-006 when the file is
+   spec-folder-write-recipe.md: rg -n '<spec-folder>|<path>|<track>' PATHS
+   Report it only on a prose line or a command a reader would copy, not where the text
+   defines the placeholder.
+4. self-contradiction, owner 002: two lines in the same file that state opposite rules
+   for the same thing. Use grep -cF on one of the two lines as evidence_cmd.
+5. dead-file, owner 002: a non-markdown file that nothing references. For each one,
+   rg -l --hidden '<its basename>' .skilled --glob '!<its path>' | wc -l prints 0.
+6. gate-anchor-crossing, owner 004, lane A only: for each .tmpl file run
+   awk 'BEGIN{d=0} /<!-- IF /{d++} /<!-- \/IF -->/{d--} /<!-- ANCHOR:/{match($0,/ANCHOR:[a-z0-9-]+/); a[substr($0,RSTART+7,RLENGTH-7)]=d} /<!-- \/ANCHOR:/{match($0,/ANCHOR:[a-z0-9-]+/); n=substr($0,RSTART+7,RLENGTH-7); if (a[n]!=d) print FILENAME":"NR": anchor "n" opens at "a[n]" closes at "d}' <file>
+   Find the .tmpl files with: find .skilled/skills/system-spec-kit/templates -name '*.tmpl' -not -path '*/examples/*'
+7. unenforced-hint, owner 003, lane A only: rg -c '\[[A-Za-z][^]\[]{2,}\]' $S/templates/core/
+   One row per file with a count above 0.
+8. doc-code-mismatch, owner 003: rg -n '\[PLACEHOLDER\]' PATHS, and any sentence that
+   names a validator rule or behavior you can show does not exist.
+
+ALSO WRITE specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read.txt with one line per file you opened.
+
+If you are unsure whether something is a defect, still write the row. A script keeps only
+rows whose evidence_cmd prints evidence_expect.
+
+VERIFY before you finish: jq -c . specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.jsonl > /dev/null && echo JSON_OK
+RETURN exactly one line: [T004-A] DONE - <number of rows> rows

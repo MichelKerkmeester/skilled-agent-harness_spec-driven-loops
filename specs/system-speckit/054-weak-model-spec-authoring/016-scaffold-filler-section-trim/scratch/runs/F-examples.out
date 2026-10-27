@@ -1,0 +1,31 @@
+All six edits are on disk and both brief verification commands print nothing.
+
+## Changes
+
+| File:line | Before | After |
+|---|---|---|
+| `.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:114` | `- [ ] Tests passing (if applicable)` | `- [ ] Test suite passes for the affected code` |
+| `.skilled/skills/system-spec-kit/templates/examples/level-1/plan.md:52` | `- [x] Tests passing (if applicable)` | ``- [x] `npm test -- auth` passes`` |
+| `.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md:156` | `Phase 1.5 (Schema) ───┘` | `Schema (Prisma) ──────┘` |
+| `.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md:347` | `- Rollback: See plan.md L2: Enhanced Rollback section` | `- Rollback: See plan.md section 7 ROLLBACK PLAN` |
+| `.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:128` | `GOOD: Flag over config file: ...` | `GOOD: Option over environment variable: one run can pick a different count without editing config.` |
+| `.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl:95` | `GOOD: Run `bash -x` and confirm one `rm` on the `--keep` path.` | `GOOD: Run `bash -x` and confirm the run deletes exactly 7 of the 10 archives.` |
+
+Diagram check: the level-2 phase-deps fence now reads `Phase 1 (Setup) ──────┐` / junction / `Schema (Prisma) ──────┘`, all three connector rows at the same column (37/72/37 bytes). The real heading in that example's `plan.md:192` is `## 7. ROLLBACK PLAN`, which the pointer now names. No em dash was added (the one at `handover.md.tmpl:90` is pre-existing).
+
+## Verification (both print nothing, exit 1 = clean no-hit)
+
+```
+$ rg -n 'Phase 1.5|Feature flag configured|External service failure|Tests passing \(if applicable\)|Technical Lead' .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl .skilled/skills/system-spec-kit/templates/examples
+exit=1
+
+$ rg -n 'Enhanced Rollback' .skilled/skills/system-spec-kit/templates/examples
+exit=1
+```
+
+Extra checks: anchors balanced in all six edited files (7/7, 8/8, 6/6, 7/7, 8/8, 6/6), no IF blocks touched, and no artifact ids in the new comment text.
+
+## Out of scope, reported not fixed
+
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` fails with `level-3/spec.md: missing_anchor edge-cases`. That file is not in this brief and has no `ANCHOR:edge-cases`; the failure comes from the spec example restructure, not from these text edits.
+- `runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` still carries the old `Flag over config file` line in 4 places, because it snapshots the template I edited. Regeneration belongs to the packet's snapshot step, not to this brief's named files.

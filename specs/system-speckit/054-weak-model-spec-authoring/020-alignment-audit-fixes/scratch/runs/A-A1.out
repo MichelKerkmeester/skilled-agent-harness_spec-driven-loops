@@ -1,0 +1,15 @@
+Done.
+
+**Edited:** `.skilled/skills/system-spec-kit/runtime/cli/evals/import-policy-allowlist.json`
+- Lines 172-175 replaced by 14 lines: the previous last entry's closing `}` now carries a comma, and one new exception was appended to the `exceptions` array (new entry spans lines 174-183).
+- Entry added: `cli/tests/draft-auto-repair.vitest.ts` importing `../../lib/validation/orchestrator.js`, owner `spec-kit-maintainers`, reason "Test pins the CLI-only Draft auto-repair refusal logic, which has no public api surface", removeWhen "draftAutoRepairRefusal gains an api export or the test moves beside the module", createdAt/lastReviewedAt `2026-10-26`, expiresAt `2027-04-26`. Two-space indentation preserved; nothing else touched.
+
+**Verify** (from `.skilled/skills/system-spec-kit/runtime/cli`):
+```
+AST import policy check passed: no prohibited @spec-kit/runtime/{lib,core,handlers} internal imports found.
+EXIT=0
+```
+
+Supplementary check: the file parses as JSON, `exceptions` now holds 18 entries (was 17), and the last entry is the new one.
+
+Nothing is required from you; no git commands were run.

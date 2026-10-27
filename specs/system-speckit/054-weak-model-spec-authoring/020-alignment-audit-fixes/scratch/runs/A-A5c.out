@@ -1,0 +1,39 @@
+Done. One file, one edit, nothing else touched.
+
+**File:** `.skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts`
+
+- `:1` `// ───...───` (67 × U+2500, verified: line length 70, prefix `// `, box count 67)
+- `:2` `// MODULE: Template Fill Guidance Tests`
+- `:3` `// ───...───` (same 67 × U+2500)
+- `:4` `import fs from 'node:fs';` (unchanged, was line 1)
+
+Insert was performed by a guard-checked prepend that asserted the original first line was `import fs from 'node:fs';` before writing, and would have no-opped if the header were already present. No ADR/REQ/task ids or spec paths in the comment, so the comment-hygiene block is satisfied.
+
+**Verify — part 1 (brief's exact command):**
+```
+head -4 ...                    → three header lines then the import, exactly as specified
+cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/template-fill-guidance.vitest.ts
+```
+```
+RUN  v4.1.11 .../.skilled/skills/system-spec-kit
+No test files found, exiting with code 1
+filter: tests/template-fill-guidance.vitest.ts
+include: runtime/tests/**/*.{vitest,test}.ts, ../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts
+exclude:  runtime/cli/**
+```
+
+**This is a config-resolution miss, not a test failure.** From `runtime/cli`, vitest picks the nearest config, `.skilled/skills/system-spec-kit/runtime/vitest.config.ts`, whose include set excludes `runtime/cli/**`. The CLI suite is instead a separate project (`name: 'cli'`, `root: runtime/cli`) declared in `.skilled/skills/system-spec-kit/vitest.config.ts:56-72`.
+
+**Verify — part 2 (equivalent invocation, exit 0):**
+```
+cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../vitest.config.ts --project cli tests/template-fill-guidance.vitest.ts
+```
+```
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Duration  92ms
+```
+
+The brief's verify command should be amended to the `--config ../vitest.config.ts --project cli` form, otherwise it reports "No test files found" for every file under `runtime/cli/tests/`.
+
+Operator action: none required, unless you want that verify line in the brief template fixed.

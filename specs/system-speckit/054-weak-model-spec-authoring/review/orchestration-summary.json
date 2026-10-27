@@ -1,8 +1,8 @@
 {
-  "run_id": "1792949481267-fym7sk",
+  "run_id": "1793081281038-z2aj1o",
   "loop_type": "review",
   "spec_folder": "specs/system-speckit/054-weak-model-spec-authoring",
-  "base_artifact_dir": "specs/system-speckit/054-weak-model-spec-authoring/review",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/review",
   "total_cli_lineages": 2,
   "orphaned_lineages": [],
   "total": 2,
@@ -23,29 +23,5 @@
     "projection_refusal": 0,
     "unattributed_state_log": 0,
     "needs_input": 0
-  },
-  "timestamp_anomalies": [
-    {
-      "label": "luna",
-      "state_log": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/luna/deep-review-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-10-25T17:31:21.275Z",
-        "end_at_iso": "2026-10-25T18:28:08.568Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 1,
-        "untimestamped": 0,
-        "unparseable": 1,
-        "total": 20
-      },
-      "sample": [
-        {
-          "index": 9,
-          "reason": "unparseable",
-          "timestamp": "2026-10-25T18:06:14 UTC:00Z"
-        }
-      ]
-    }
-  ]
+  }
 }

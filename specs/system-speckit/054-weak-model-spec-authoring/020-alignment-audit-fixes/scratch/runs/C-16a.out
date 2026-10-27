@@ -1,0 +1,19 @@
+All 8 replacements applied to `.skilled/commands/speckit/README.txt`; no other file touched.
+
+Changes (file:line):
+- `README.txt:49` — `no mode suffix: \`save\` routes` (was em dash + space)
+- `README.txt:181` — `combines research, plan and implement` (removed serial comma) and `inside it. Either can run at any point.` (sentence break instead of dash)
+- `README.txt:194` — `No delegation: routes directly to \`generate-context.js\``
+- `README.txt:195` — `No delegation: routes directly to the trigger-index lookup`
+- `README.txt:196` — `No delegation: writes the note`
+- `README.txt:268` — `which is the point: you can check`
+- `README.txt:355` — `it walks the continuity ladder (\`handover.md\`, then \`_memory.continuity\`, then canonical spec docs) and falls back`
+
+Verification output:
+```
+python3 -c "t=open('.skilled/commands/speckit/README.txt',encoding='utf-8').read();print(t.count(chr(0x2014)), t.count('plan, and implement'))"
+0 0
+```
+Matches the expected `0 0`: zero em dashes remain and the old comma form is gone.
+
+Nothing is the operator's to do here; the next step (staging/commit) is outside this brief and I ran no git commands.

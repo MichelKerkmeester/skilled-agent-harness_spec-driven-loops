@@ -1,0 +1,16 @@
+Done.
+
+**Change** (`edit_lines`, hash-anchored to the `1e762f9e` line):
+- `.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md:3` — YAML `description:` rewritten to the NEW string. Removed "filled with boilerplate" (→ "models padded"), collapsed the "..., and a Draft packet's..." comma into "rule and a Draft packet's", and dropped the trailing sentence "No existing packet changes verdict." Nothing else touched: 1 line replaced, 1 line added, frontmatter second line (`title:`) and all following content byte-identical.
+
+**Verification** — ran the exact command:
+```
+python3 -c "import re;t=open(...).read();m=re.search(r'^description: \"(.*)\"$',t,re.M);print(len(m.group(1)))"
+```
+Output: `221`
+- 221 == expected 221, and 221 <= 250, so the length constraint holds.
+- Observed, not inferred: the regex matched the line (it would have raised `AttributeError` on `None` had the `description:` key not parsed), so the frontmatter line is syntactically intact under that pattern.
+
+No git commands run, no other files read or written.
+
+**Your one thing:** none — this brief is complete as specified.

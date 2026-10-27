@@ -1,0 +1,13 @@
+Both replacements applied in the single in-scope file, both verification commands read and green.
+
+**Changes** — `.skilled/skills/default? no: `.skilled/skills/sk…` → `./code` browser; actual path `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`:
+- Line 147 (§9 VALIDATE): the `GENERATED_METADATA_DRIFT` / `GENERATED_METADATA_INTEGRITY` paragraph is replaced with the rule keyed on the full output ending with a `repair-derived.cjs ... --apply` command, followed by re-running `--quiet`, and naming generated metadata, frontmatter packet pointers and the Spec Folder row as the rewritten surface while prose is preserved.
+- Line 150: `Verify: that line is the last validator output you saw.` → `Verify: the last `--quiet` run printed `RESULT: PASSED`.` (now consistent with the line 149 Acceptance, which is already `RESULT: PASSED`).
+
+**Verification (observed, both exit 0):**
+1. `sed -n '135,155p' …spec-authoring-card.md` → prints §9 with the new paragraph at 147 and the new Verify line at 150; exit 0.
+2. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | tail -1` → `CARD SYNC OK`, producer exit 0.
+
+No other lines touched, no new behavior introduced, no em dash in the replacement text, no git command run.
+
+One thing for you to note, not an action I took: the paragraph above line 147 (line 145) still describes the three-round `FAILED` loop, so §9 now has two adjacent escalation clauses. That reading is judgment on my part from the same `135,155` window, not from a second lens; if the intent is for the repair clause to supersede the round loop for generated-metadata failures, line 145 is where the next brief would go.

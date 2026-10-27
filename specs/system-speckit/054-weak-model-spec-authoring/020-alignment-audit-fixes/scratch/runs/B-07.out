@@ -1,0 +1,15 @@
+Done.
+
+**Change**
+- `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md:63` — replaced `` (`/memory:save`) `` with `` (`/speckit:save`) `` in the line "The save command (...) updated to document the JSON-primary posture." No other text touched.
+
+**Verification** (ran in the worktree root)
+```
+grep -c 'memory:save' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md
+0
+grep -c '(`/speckit:save`)' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md
+1
+```
+Printed `0` then `1` as required, and the re-read confirms line 63 now carries the new reference.
+
+No git commands were run, no other files were modified, and nothing is outstanding on your side.

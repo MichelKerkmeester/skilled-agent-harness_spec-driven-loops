@@ -1,0 +1,28 @@
+.skilled/skills/system-spec-kit/templates/README.md - read in full (226 lines); trees, key files, entrypoints, validation
+.skilled/skills/system-spec-kit/templates/CONTRACT.md - read in full (110 lines); manifest contract and entrypoints
+.skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md - read in full (88 lines); document-type extension and version policy
+.skilled/skills/system-spec-kit/templates/MIGRATION.md - read in full (62 lines); legacy marker and sunset policy
+.skilled/skills/system-spec-kit/templates/changelog/README.md - read in full (102 lines); packet changelog templates
+.skilled/skills/system-spec-kit/templates/changelog/root.md - read in full (43 lines); root changelog skeleton
+.skilled/skills/system-spec-kit/templates/changelog/phase.md - read in full (44 lines); phase changelog skeleton
+.skilled/skills/system-spec-kit/templates/scratch/README.md - read in full (65 lines); scratch folder contract
+.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl - read in full (430 lines); gates, anchors, sections 1-16
+.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl - read in full (411 lines); gates, addendum, L2/L3 blocks
+.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl - read in full (283 lines); phases, verification checklist
+.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl - read in full (154 lines); continuity defaults
+.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl - read in full (88 lines); closure gate
+.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl - read in full (104 lines); directive and completion criteria
+.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl - read in full (154 lines); session handover
+.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl - read in full (138 lines); delegation report
+.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl - read in full (204 lines); path ledger and category precedence
+.skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl - read in full (73 lines); change record
+.skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl - read in full (49 lines); chronology record
+.skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl - read in full (59 lines); now/next/later plan
+.skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl - read in full (130 lines); ADR shape
+.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl - partial (lines 1-339 read, full structural map via grep; 946 lines)
+.skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl - read in full (134 lines); phase parent contract
+.skilled/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl - read in full (98 lines); review record
+.skilled/skills/system-spec-kit/templates/packet-types/review-report.md.tmpl - read in full (89 lines); nine-section report
+.skilled/skills/system-spec-kit/templates/packet-types/research.spec.md.tmpl - read in full (86 lines); research record
+.skilled/skills/system-spec-kit/templates/spec-kit-docs.json - inspected structurally (documents, versions, per-level section gates); 45 KB, not line-read
+.skilled/skills/system-spec-kit/templates/.hashes - read in full (9 lines); integrity manifest

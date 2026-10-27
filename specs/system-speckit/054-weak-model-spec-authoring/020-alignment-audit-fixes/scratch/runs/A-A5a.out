@@ -1,0 +1,46 @@
+Edit landed and verified.
+
+**Edited file (one file, three lines inserted at the top):**
+`.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts:1-3`
+
+```
+1: // ───────────────────────────────────────────────────────────────────
+2: // MODULE: Card Sync Tests
+3: // ───────────────────────────────────────────────────────────────────
+```
+
+The pre-existing first line, `import { execFileSync, spawnSync } from 'node:child_process';`, is unchanged and is now line 4. Nothing else in the file was touched (143 newlines vs 140 before, delta exactly the three inserted lines; `src` was preserved verbatim in the write). Each rule line measured 70 characters / 67 × U+2500 exactly (`'// '` + 67 box chars). No ids, paths, or other labels in the comment (comment hygiene respected).
+
+**Verify output, part 1 (as specified):**
+
+```
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Card Sync Tests
+// ───────────────────────────────────────────────────────────────────
+import { execFileSync, spawnSync } from 'node:child_process';
+```
+
+**Verify output, part 2 — deviation, flagged:** the brief's test command run literally from `runtime/cli` does not collect the file, and this is a pre-existing config fact, not a result of my edit:
+
+```
+filter: tests/card-sync.vitest.ts
+include: runtime/tests/**/*.{vitest,test}.ts, ../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts
+exclude:  runtime/cli/**
+No test files found, exiting with code 1
+```
+
+Cause: vitest discovers the nearest config walking up from `runtime/cli`, which is `.skilled/skills/system-spec-kit/runtime/vitest.config.ts`, and that config excludes `runtime/cli/**`. The CLI suite is instead defined as the `cli` project inside `.skilled/skills/system-spec-kit/vitest.config.ts` (root `runtime/cli`, include `tests/**/*.vitest.ts`). Running the same file through that project:
+
+```
+cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/card-sync.vitest.ts
+```
+
+```
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Duration  527ms
+```
+
+SKILL ROUTING: sk-code (test-file header comment; advisor 0.91, artifact trigger) → no additional skill packet applied, edit limited to the three-line MODULE header.
+
+Nothing is left for you to do on this task beyond deciding whether the brief's verify snippet should be corrected to pass `--config ../../vitest.config.ts --project cli`; I did not modify it since it is outside this brief's scope.

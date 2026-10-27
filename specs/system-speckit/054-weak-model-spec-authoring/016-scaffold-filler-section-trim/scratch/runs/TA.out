@@ -1,0 +1,48 @@
+All six files done and verified.
+
+## Changes (all under `…/016-scaffold-filler-section-trim/scratch/staging/templates/addons/`)
+
+**handover.md.tmpl** (4 swaps)
+- `:38` `The flag shipped.` → `` `--keep` shipped. ``
+- `:51` `` Branch `feat/quiet` `` → `` Branch `feat/keep` ``
+- `:108` `` `--quiet` line count, default line count and the suite `` → `` The `ls logs/archive | wc -l` count after `--keep 3` and after a plain run, then the suite ``
+- `:122` `The quiet branch must return before the report block.` → `` The `--keep` branch must validate its value before it deletes. ``
+
+**debug-delegation.md.tmpl** (4 swaps)
+- `:44` `--quiet prints 3 lines. Expected 1.` → `` `--keep 3` leaves 6 archives. Expected 3. ``
+- `:61` `Moved the exit after the print. Still 3 lines.` → `Moved the delete after the count. Still 6 archives.`
+- `:79` `` File `recommend-level.sh` line 510. Command `--quiet`. Output 3 lines. `` → `` File `scripts/rotate-logs.sh`, the delete loop. Command `--keep 3`. Output 6 archives. `` (no invented line number: `scripts/rotate-logs.sh` does not exist)
+- `:95` `` confirm one `echo` on the quiet path `` → `` confirm one `rm` on the `--keep` path ``
+
+**goal.md.tmpl** (3 swaps)
+- `:39` `Print one parseable level line on request.` → `Keep only the newest n archives on request.`
+- `:79` `` `--quiet` prints 1 line and exits 0. `` → `` `--keep 3` leaves 3 archives in `logs/archive` and exits 0. ``
+- `:90` `` `rg -n quiet` printed line 510 `` → `` `ls logs/archive | wc -l` printed 3 ``
+
+**acceptance-criteria.md.tmpl** (2 swaps + stamp)
+- `:31` `acceptance-criteria | v2.3` → `acceptance-criteria | v2.4`
+- `:42` `` `004-recommend-level-quiet` `` → `` `004-rotate-logs-keep` `` (matches the spelling already used at `core/implementation-summary.md.tmpl:86`)
+- `:54` `` When `--quiet` runs, Then `wc -l` prints 1. `` → `` When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. ``
+
+**timeline.md.tmpl** (2 swaps)
+- `:36` `` flag merged. `rg -n quiet` printed line 510 `` → `` `--keep` merged. `ls logs/archive | wc -l` printed 3 ``
+- `:49` `M1 passed. One line printed.` → `M1 passed. 3 archives left.`
+
+**decision-record.md.tmpl** (1 swap)
+- `:36` `ADR-001: a flag, because callers already pass flags. WEAK: We decided on a flag.` → `` ADR-001: a `--keep` option, because the script already parses options. WEAK: We decided on an option. ``
+
+Every instruction clause and the `GOOD: … WEAK: …` shape is intact, WEAK examples stayed vague, no new behaviour, no em dash introduced.
+
+## Verification (repo root)
+
+```
+$ rg -c -e '--quiet' -e 'recommend-level' -e '17-line' <the six files>
+(no output, EXIT=1)
+
+$ rg -c '\| v2.4 -->' …/addons/acceptance-criteria.md.tmpl
+1        EXIT=0
+```
+
+Extra checks I ran: `<!-- IF` vs `<!-- /IF -->` balanced per file (handover 1/1, debug-delegation 1/1, goal 2/2, acceptance-criteria 1/1, timeline 0/0, decision-record 0/0); every `FILL:` line still matches `GOOD: … WEAK: …`; a wider old-story sweep (`quiet|recommend-level|17-line|prints 1 and 17|40 ms|report block|level line|the report`) over the six files returns nothing; the live `.skilled/.../templates/addons/` copies still hold v2.3 and the old story, so nothing outside the staging tree was written. Only per-file line-for-line replacements were made, so line numbers are unchanged.
+
+One thing that is the conductor's to decide: `handover.md.tmpl:90` still carries an em dash inside a token hint (`1. file → 2. file → 3. file — the minimal numbered path to context`). It is byte-identical to the untouched live copy, so pre-existing and outside this brief's example-swap scope, left as-is.

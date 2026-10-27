@@ -1,0 +1,17 @@
+Done.
+
+**Change**: `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:722` — sentence tail replaced.
+
+- Old: `, and the fill guidance test prints \`24 passed\`.`
+- New: `, and the fill guidance test fails when a section lacks that line.`
+
+Nothing else in the file was touched; surrounding lines 720-724 are unchanged and the file is still 1032 lines.
+
+**Verification** (`grep -c` pair, run from repo root):
+```
+0
+1
+```
+0 for `24 passed`, 1 for the new clause — matches the required outcome.
+
+Notes: no git commands run, no other files edited, no em dashes introduced. SKILL ROUTING: advisor returned sk-doc 0.91 vs sk-code 0.85 with 0.09 vs 0.04 margin, which is above the 0.8 invoke bar but the margin between them is inside the ambiguity band; the edit was a single prose sentence in a catalog doc, so I applied the change directly per the brief rather than loading a workflow.

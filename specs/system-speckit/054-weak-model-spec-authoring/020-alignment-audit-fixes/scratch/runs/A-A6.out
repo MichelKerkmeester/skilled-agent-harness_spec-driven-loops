@@ -1,0 +1,16 @@
+Done.
+
+**File:** `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1485` — inserted one TSDoc line directly above `writeRepairHint`. Nothing else touched; function unchanged in place.
+
+**Verify output:**
+```
+1485-/** Prints the repair-derived.cjs --apply command when the report holds a recomputable error or warning, and nothing otherwise. */
+1486:export function writeRepairHint(report: ValidationReport): void {
+
+> @spec-kit/runtime@1.8.0 typecheck
+> tsc --noEmit --composite false -p tsconfig.json
+
+EXIT=0
+```
+
+Comment carries the durable behavior (prints only when a recomputable error/warn is present), no artifact labels or spec paths. Nothing is left for the operator.

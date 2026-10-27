@@ -1,0 +1,33 @@
+Done. Task TR complete.
+
+**File:** `specs/.../016-scaffold-filler-section-trim/scratch/staging/templates/addons/research.md.tmpl` (966 lines, unchanged count; live `.skilled/` copy untouched).
+
+All 17 SWEEP lines swapped from the `--quiet` on `recommend-level.sh` story to the `--keep <n>` on `scripts/rotate-logs.sh` story. Instruction text and `GOOD: ... WEAK: ...` shape kept on every note; 20 FILL / 20 GOOD / 20 WEAK before and after; `<!-- IF -->` blocks balanced (2/2). No stamp change (file has no `SPECKIT_TEMPLATE_SOURCE` line).
+
+| Line | New GOOD example |
+|---|---|
+| 22 | An option fits because the nightly job already passes options. |
+| 83 | Read the script, ran both forms, counted the archives. |
+| 111 | An option fits. The nightly job already passes options. An env var adds a hidden input. |
+| 157 | One script and one cleanup step. |
+| 226 | `--keep <n>`: one integer value, no other arguments. |
+| 302 | Bash 3.2 must run `scripts/rotate-logs.sh`. |
+| 337 | The nightly job runs it and checks the archive count. |
+| 403 | 1. Read the `-k` value. 2. Delete all but the newest n archives. |
+| 490 | `scripts/rotate-logs.sh --keep 3` leaves 3 of 10 archives. |
+| 559 | `ls logs/archive \| wc -l` prints 10, then 3. |
+| 621 | The new check adds under 5 ms. |
+| 670 | The option takes one integer and no paths. |
+| 727 | Keep the `logs/archive/` path fixed. |
+| 777 | `--keep <n>`: keeps the newest n. `--dry-run`: lists what it would delete. |
+| 843 | `--keep` with no value exited 2: the parser never checked the next word. |
+| 905 | The script author and the first archive listing. |
+| 924 | `keep`: the count of archives to retain. |
+
+**Verify (repo root):**
+- `rg -c -e '--quiet' -e 'recommend-level' -e '17-line' .../research.md.tmpl` → printed nothing, exit 1.
+- Wider `rg -i` for `quiet|recommend-level|Recommended Level|40 ms|1 and 17|17-line` → printed nothing, exit 1.
+- Em dash count → printed nothing, exit 1.
+- Live `.skilled/.../templates/addons/research.md.tmpl` grep for `rotate-logs` → nothing, exit 1 (staged-only edit, as required).
+
+One judgment call to flag: line 777's good example pairs `--keep <n>` with `--dry-run`, an invented companion flag, mirroring how the original paired `--quiet` with `--json`. Nothing was left ambiguous for the operator; the conductor's copy-back of `ST` is the remaining step and it is yours.

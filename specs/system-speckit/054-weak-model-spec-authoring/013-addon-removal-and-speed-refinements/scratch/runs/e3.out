@@ -1,0 +1,64 @@
+All four fixes applied and verified.
+
+## Changes
+
+**1. `S/runtime/lib/validation/spec-doc-structure.ts:229-230`** (S = `.skilled/skills/system-spec-kit`)
+Comment reflowed so the sentence reads cleanly:
+```
+ * deep loops write it without a continuity block; goal.md is absent because its
+ * template does.
+```
+Comment only; no code touched.
+
+**2. `S/references/workflows/spec-authoring-card.md:143`** (§9 VALIDATE)
+```
+It prints one `RESULT:` line per packet; the first line is the folder you named, and that line decides. `RESULT: PASSED (errors=0 ...)` is the pass. Do not run it again to re-check a pass.
+```
+
+**3. `S/references/workflows/spec-authoring-card.md:147`** (§9 VALIDATE)
+`When the full output ends with a ...` → `When the full output contains a `repair-derived.cjs ... --apply` command, run that command, ...`; remainder of the line unchanged.
+
+**4. `S/runtime/cli/tests/repo-era.vitest.ts:258-259`** (4-space indent retained)
+```
+    // No resource-map template ships, so no resource-map stamp is current. The deep loops still stamp their maps
+    // `resource-map | v1.1`, so the era report counts every loop map as legacy.
+```
+I checked the claim before writing it: `runtime/cli/resource-map/extract-from-evidence.cjs:135` stamps `<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->`, so the added sentence is true.
+
+## Verification (run from `S`)
+
+```
+$ sed -n 139,152p references/workflows/spec-authoring-card.md
+```bash
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict --quiet
+```
+
+It prints one `RESULT:` line per packet; the first line is the folder you named, and that line decides. `RESULT: PASSED (errors=0 ...)` is the pass. Do not run it again to re-check a pass.
+
+When it prints `FAILED`, run the same command once without `--quiet` and read every failing rule. Fix all of them in one pass, then run the `--quiet` command again. That is one round. Stop after three rounds and write the rules and their errors in the packet's `goal.md`.
+
+When the full output contains a `repair-derived.cjs ... --apply` command, run that command, then run the `--quiet` command again. It rewrites generated metadata, frontmatter packet pointers and the Spec Folder row, never your prose.
+
+Acceptance: the `--quiet` command prints `RESULT: PASSED`.
+Verify: the last `--quiet` run printed `RESULT: PASSED`.
+
+## 10. CLOSE
+```
+
+```
+$ bash runtime/cli/spec/check-card-sync.sh | tail -1
+CARD SYNC OK
+```
+
+```
+$ ./node_modules/.bin/vitest run runtime/cli/tests/repo-era.vitest.ts --config vitest.config.ts 2>&1 | tail -4
+      Tests  7 passed (7)
+   Start at  11:13:28
+   Duration  274ms (transform 30ms, setup 13ms, import 28ms, tests 158ms, environment 0ms)
+
+EXIT=0
+```
+
+No `npm build` run, no git commands run, no files touched outside the four locations named. No em dashes and no artifact ids or spec paths in any comment added. Card length still under the 260-line limit (check-card-sync's `card-exists` check passed, which carries the line count).
+
+Nothing is left for the operator on this brief; the only remaining judgement is whether the card wording at line 143 matches how the validator's multi-packet output actually reads, which the brief asserted and I did not independently execute against a multi-folder argument.

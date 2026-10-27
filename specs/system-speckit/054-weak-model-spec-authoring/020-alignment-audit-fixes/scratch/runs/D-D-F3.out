@@ -1,0 +1,28 @@
+Done.
+
+**Scope of change:** exactly the two sentence fragments, in the same single line per file. No other text touched.
+
+| File | Line | Changes |
+|---|---|---|
+| `.skilled/commands/speckit/plan.md` | 107 | both fragments |
+| `.skilled/commands/speckit/implement.md` | 93 | both fragments |
+| `.skilled/commands/speckit/complete.md` | 102 | both fragments |
+
+**What changed on that line, per file:**
+1. `now include two warn-only rules, and neither fails the run:` → `now include three warn-only rules, and none fails the run:`
+2. `of packets created after 2026-10-04. The command also runs` → `of packets created after 2026-10-04, and \`MEASURED_BEHAVIOR\` warns when a \`spec.md\` stamped v2.4 or later has a \`measured-behavior\` anchor holding neither command output nor a reasoned \`N/A:\`. The command also runs`
+
+**Verification output** (`rg -c "three warn-only rules, and none fails the run|MEASURED_BEHAVIOR. warns when" ...`):
+
+```
+.skilled/commands/speckit/complete.md:1
+.skilled/commands/speckit/plan.md:1
+.skilled/commands/speckit/implement.md:1
+exit=0
+```
+
+Each file reports 1, matching the expectation that both strings sit on the same line.
+
+**Extra confirmation:** re-grepping the two old fragments returns zero hits (exit 1, clean no-match), so no stale copy of either old sentence survives in the three files.
+
+Nothing is outstanding on my side; no git commands were run.

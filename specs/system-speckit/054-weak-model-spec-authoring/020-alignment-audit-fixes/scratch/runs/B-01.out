@@ -1,0 +1,40 @@
+Done. Four occurrences changed in one file, nothing else altered.
+
+## Changes
+
+`.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md`
+
+| Line | Before | After |
+|---|---|---|
+| 29 | `rewrite every v2.3 stamp to v2.2` | `rewrite every v2.4 stamp to v2.2` |
+| 61 | `perl -pi -e 's/\| v2\.3 -->/| v2.2 -->/g'` | `perl -pi -e 's/\| v2\.4 -->/| v2.2 -->/g'` (backslashes preserved) |
+| 97 | `A document keeps a v2.3 stamp` | `A document keeps a v2.4 stamp` |
+| 101 | `still saw v2.3 somewhere` | `still saw v2.4 somewhere` |
+
+Scope proof: diffing the current file against a reconstruction of its pre-edit state yields exactly 4 removed and 4 added lines, at 29, 61, 97, 101. File is still 121 lines. The `v2.2` legacy references in the title, description, contract and Pass row are untouched, as intended.
+
+## Verification: the brief's expected `0 then 4` does not hold, and the brief was already wrong before my edit
+
+The literal command prints `0` then `3`:
+
+```
+grep -c 'v2\.3' <file>  ->  0
+grep -c 'v2\.4' <file>  ->  3
+```
+
+Cause: line 61 stores the perl-escaped form `v2\.4`, whose literal bytes include a backslash between `2` and `.`. The pattern `v2\.4` matches the text `v2.4` with no backslash, so line 61 is invisible to it. This is pre-existing, not introduced by me: I reconstructed the pre-edit file and ran the same pair of greps against it, which printed `3` and `0`. So the brief's `4` was unreachable at both ends, and `3` before and `3` after is the correct invariant for that pattern.
+
+The pattern that actually spans both forms prints the intended numbers:
+
+```
+grep -cE 'v2\\?\.3' <file>  ->  0
+grep -cE 'v2\\?\.4' <file>  ->  4
+```
+
+Same result by occurrence count: `grep -oE 'v2\\?\.4' | wc -l` gives 4, and `grep -cE 'v2\\?\.3'` gives 0.
+
+No git command was run; the comparison used a temp-dir copy and `diff -u`.
+
+## Your call
+
+If that verify line will be reused for the remaining stamp bumps, change it to `grep -cE 'v2\\?\.4'`, otherwise every run of a file with a perl-escaped stamp reports one short of the truth.

@@ -1,0 +1,23 @@
+Done.
+
+**Changes**
+
+| File | Line | Change |
+|---|---|---|
+| `.skilled/agents/orchestrate.md` | 461 | `(e.g., "copied from level_contract_spec.md")` → `(e.g., "scaffolded from templates/core/spec.md.tmpl")` |
+| `.claude/agents/orchestrate.md` | 449 | same replacement |
+
+**Verification** (`rg -n "Verify template source cited" ...`, exit 0):
+
+```
+.claude/agents/orchestrate.md:449:   - Verify template source cited (e.g., "scaffolded from templates/core/spec.md.tmpl")
+.skilled/agents/orchestrate.md:461:   - Verify template source cited (e.g., "scaffolded from templates/core/spec.md.tmpl")
+```
+
+Exactly two lines, both carrying the new text. A residual grep for the old string returned no matches, so no stale copy remains in either file.
+
+**Scope discipline:** only these two files were touched, via exact string replacement. No other file was read or edited, no git command was run, no em dash introduced.
+
+**Gates:** `REPO RULES: none in this repository` (no root `REPO RULES.md` exists in this worktree). Gate 3 was pre-resolved by the child-dispatch exemption (`AI_SESSION_CHILD=1`), as stated in the brief, so it was not asked.
+
+**Our call, if you want it:** the same `level_contract_spec.md` phrasing may exist in other agent mirrors or skill docs outside this brief's frozen file list. I did not go looking, since scope excluded it.

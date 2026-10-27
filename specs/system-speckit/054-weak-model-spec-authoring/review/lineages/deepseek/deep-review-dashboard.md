@@ -16,13 +16,13 @@ Reducer-generated observability surface for the active review packet.
 <!-- ANCHOR:status -->
 ## 2. STATUS
 - Review Target: specs/system-speckit/054-weak-model-spec-authoring (spec-folder)
-- Started: 2026-10-25T17:32:51Z
+- Started: 2026-10-27T06:08:02Z
 - Status: COMPLETE
-- Iteration: 10 of 10
+- Iteration: 3 of 3
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: false
 - hasAdvisories: false
-- Session ID: fanout-deepseek-1792949481267-fym7sk
+- Session ID: fanout-deepseek-1793081281038-z2aj1o
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
@@ -46,8 +46,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 4 |
-| P2 (Suggestions) | 18 |
+| P1 (Required) | 1 |
+| P2 (Suggestions) | 6 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -56,16 +56,9 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | correctness | correctness | 1.00 | 0/0/3 | complete |
-| 2 | security | security | 0.67 | 0/1/4 | complete |
-| 3 | traceability | traceability | 0.25 | 0/1/7 | complete |
-| 4 | maintainability | maintainability | 0.14 | 0/1/9 | complete |
-| 5 | correctness | correctness | 0.30 | 0/2/10 | complete |
-| 6 | traceability | traceability | 0.05 | 0/2/11 | complete |
-| 7 | maintainability | maintainability | 0.09 | 0/2/13 | complete |
-| 8 | correctness | correctness | 0.19 | 0/3/14 | complete |
-| 9 | traceability | traceability | 0.18 | 0/4/16 | complete |
-| 10 | synthesis | correctness/traceability | 0.05 | 0/4/18 | complete |
+| 1 | correctness | correctness | 1.00 | 0/1/3 | complete |
+| 2 | security | security | 0.11 | 0/0/1 | complete |
+| 3 | traceability | traceability | 0.18 | 0/0/2 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -73,10 +66,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 9 |
-| security | covered | 2 |
-| traceability | covered | 7 |
-| maintainability | covered | 4 |
+| correctness | covered | 4 |
+| security | covered | 1 |
+| traceability | covered | 2 |
+| maintainability | pending | 0 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -93,9 +86,9 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.19 -> 0.18 -> 0.05
-- convergenceScore: 0.95
-- openFindings: 22
+- Last 3 ratios: 1.00 -> 0.11 -> 0.18
+- convergenceScore: 0.82
+- openFindings: 7
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -108,17 +101,48 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:corruption-warnings -->
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
-- No search-depth state captured (legacy v1 record).
-- graphCoverageMode: none
+- graphCoverageMode: graphless_fallback
+- candidateCoverage: covered=6, ruledOut=10, deferred=0, blocked=0
+
+### Search Debt
+[None yet]
+
+### Ruled-Out Candidates
+- iteration 1 boundary_condition (ruled_out): stamp comparison includes every later version; evidence=.skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh:92
+- iteration 1 boundary_condition (ruled_out): no match on the benchmark vocabulary; evidence=.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:111
+- iteration 1 gate_bypass (ruled_out): pattern cannot match a packet folder that merely contains scratch; evidence=.github/workflows/changed-packet-validation.yml:91
+- iteration 2 symlink_escape (ruled_out): link refusal plus realpath containment; evidence=.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:323
+- iteration 2 path_traversal (ruled_out): candidate filter plus symlink-parent refusal; evidence=.skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:157
+- iteration 2 command_injection (ruled_out): argv array spawns with quoted variables; evidence=.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:414
+- iteration 2 command_injection (ruled_out): no attacker-controlled string reaches the script body; evidence=.github/workflows/changed-packet-validation.yml:74
+- iteration 2 fail_open (ruled_out): fail-closed precondition check; evidence=.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:40
+- iteration 3 generated_artifact_drift (ruled_out): changed list empty and exit 0; evidence=.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+- iteration 3 generated_artifact_drift (ruled_out): same counts and no drift as recorded; evidence=.skilled/commands/doctor/scripts/route-validate.sh
+- iteration 3 stale_claim (ruled_out): block state machine treats an empty block as empty; evidence=.skilled/skills/system-spec-kit/runtime/cli/rules/check-measured-behavior.sh:64
+- iteration 3 stale_claim (ruled_out): current text matches the registry; evidence=README.md:372
+
+### Clean Search Proof
+- iteration 1 boundary_condition (ruled_out): stamp comparison includes every later version; evidence=.skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh:92
+- iteration 1 boundary_condition (ruled_out): no match on the benchmark vocabulary; evidence=.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:111
+- iteration 1 gate_bypass (ruled_out): pattern cannot match a packet folder that merely contains scratch; evidence=.github/workflows/changed-packet-validation.yml:91
+- iteration 2 symlink_escape (ruled_out): link refusal plus realpath containment; evidence=.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:323
+- iteration 2 path_traversal (ruled_out): candidate filter plus symlink-parent refusal; evidence=.skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:157
+- iteration 2 command_injection (ruled_out): argv array spawns with quoted variables; evidence=.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:414
+- iteration 2 command_injection (ruled_out): no attacker-controlled string reaches the script body; evidence=.github/workflows/changed-packet-validation.yml:74
+- iteration 2 fail_open (ruled_out): fail-closed precondition check; evidence=.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:40
+- iteration 3 generated_artifact_drift (ruled_out): changed list empty and exit 0; evidence=.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+- iteration 3 generated_artifact_drift (ruled_out): same counts and no drift as recorded; evidence=.skilled/commands/doctor/scripts/route-validate.sh
+- iteration 3 stale_claim (ruled_out): block state machine treats an empty block as empty; evidence=.skilled/skills/system-spec-kit/runtime/cli/rules/check-measured-behavior.sh:64
+- iteration 3 stale_claim (ruled_out): current text matches the registry; evidence=README.md:372
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Synthesis. Compile the review report from the 20 active findings, recompute the verdict (P1 present, no P0, so CONDITIONAL), and record the terminal synthesis event with `stopReason: maxIterationsReached`. Review verdict: PASS
+maintainability
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 4 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 1 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 
 <!-- /ANCHOR:active-risks -->

@@ -159,7 +159,7 @@ A check left open is recorded with its reason on its own line, never ticked.
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Done for the one path match: the scratch-copy and scratch-named rows run beside the existing hostile-name and spaced-name rows.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Done: one axis, where `scratch` sits in the path (whole segment or inside a name), two rows.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Done: the test reads `CHANGED_PACKET_WORKFLOW_PATH`, and the run with it pointed at the old workflow fails as expected (T006).
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Not done: the work is uncommitted, and this closeout makes no git write. The replay is pinned to `b51a341a07^2..b51a341a07`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Done: the fix is commit `4b15bdcc11`, and the replay is pinned to `b51a341a07^2..b51a341a07`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -203,10 +203,10 @@ A check left open is recorded with its reason on its own line, never ticked.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 11/13 |
+| P1 Items | 13 | 12/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-26. No P0 is open. Two P1 checks stay open with reasons: CHK-FIX-007 (uncommitted, no SHA) and CHK-051 (scratch kept as evidence).
+**Verification Date**: 2026-10-26, updated 2026-10-27 when CHK-FIX-007 closed on commit `4b15bdcc11`. No P0 is open. One P1 check stays open with its reason: CHK-051 (scratch kept as evidence).
 <!-- /ANCHOR:summary -->
 
 ---

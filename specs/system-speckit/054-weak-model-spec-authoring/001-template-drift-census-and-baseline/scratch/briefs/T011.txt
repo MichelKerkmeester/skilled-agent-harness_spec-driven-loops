@@ -1,0 +1,25 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+You are a read-only reviewer. Do not edit, create or delete any file.
+Read specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl
+and dropped.jsonl in the same folder. For each ledger row, open the named file and check:
+(1) the defect is real, (2) expected_text is correct finished text, (3) owner_phase is right.
+For each dropped row, check whether it is a real defect that was described badly.
+Then read the files under .skilled/skills/system-spec-kit/templates/,
+references/templates/ and references/workflows/ once more for defects the ledger misses.
+Return one line per finding in this form, and nothing else:
+P0|P1|P2 <ledger id or NEW> <file>:<line> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

@@ -1,0 +1,38 @@
+Done. Three files changed under `.skilled/skills/system-spec-kit/templates/examples/level-3+/`.
+
+## Changes
+
+**1. `.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md:65-77`** — added the filled Measured Behavior block directly after `<!-- /ANCHOR:problem -->` (line 63), before the `---` divider now at line 78:
+- `:65` `<!-- ANCHOR:measured-behavior -->`, `:66` `### Measured Behavior` (H3, no H2, outside every other anchor)
+- `:68-73` fenced `text` block: `curl -si -X POST localhost:3000/auth/login ...` → `HTTP/1.1 404 Not Found`, `Content-Type: text/html; charset=utf-8`, `Content-Length: 148`
+- `:75` one sentence naming the number and the spec line it backs: "The `404` status line is the number the Problem Statement quotes when it says the application has no user authentication: no login route is registered, so every credential pair gets the same response."
+- `:77` `<!-- /ANCHOR:measured-behavior -->`
+
+**2. `.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md:221-223`** — removed both sections whole, each with its anchor pair, heading, table/text and its own `---`: `<!-- ANCHOR:effort -->` / `## L2: EFFORT ESTIMATION` / `<!-- /ANCHOR:effort -->`, and `<!-- ANCHOR:enhanced-rollback -->` / `## L2: ENHANCED ROLLBACK` / `<!-- /ANCHOR:enhanced-rollback -->`. One divider remains at `:221`, between `<!-- /ANCHOR:phase-deps -->` (`:220`) and `<!-- ANCHOR:dependency-graph -->` (`:223`). `phase-deps` (`:201-220`) is untouched and still filled with its diagram and table.
+
+**3. `.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md:351`** — `## Fix Completeness` → `## FIX ADDENDUM: FIX COMPLETENESS`; the `fix-completeness` anchor and CHK-FIX-001..007 rows are unchanged.
+
+**No change needed:**
+- spec.md edge cases (item 4): every row is example-specific (database connection failure, duplicate email, invalid token, expired token). No generic external-service, network-timeout or session-expiry placeholder rows exist, so nothing qualified for removal.
+- tasks.md sign-off (item 3, second clause): the example has no sign-off section (`rg 'Sign-Off|Technical Lead'` finds nothing), so the conditional did not apply and nothing was added.
+
+## Verification
+
+```
+$ rg -c 'ANCHOR:measured-behavior' .skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+2
+exit=0
+
+$ rg -n 'ANCHOR:effort|ANCHOR:enhanced-rollback' .skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
+exit=1 (1 = no match, no output)
+```
+
+Additional reads I ran (read-only, `check-example-drift.sh` itself was **not** run, per the brief):
+- `check-measured-behavior.sh`'s own functions sourced against the example: `state: filled`, `applicability: skip (spec.md is not stamped from spec-core)`. The example's `SPECKIT_TEMPLATE_SOURCE: spec | v2.2` was left alone because the brief names no stamp change for this file.
+- `template-structure.js compare 3+ plan.md ... anchors`: zero `missing_/out_of_order_/extra_` lines.
+- `template-structure.js compare 3+ spec.md ... anchors`: exactly one line, `extra_anchor measured-behavior`, which clears when the spec template lands the same anchor at copy-back (the drift guard greps anchors only, so the tasks.md header rename is not in its scope).
+- Anchor pairs balanced per file: spec 18/18, plan 15/15, tasks 19/19; fences even in spec (2) and plan (10); no `<!-- IF -->` blocks in these files; no em dash added.
+
+`description.json` and the other four files in the folder keep their previous mtimes.
+
+Nothing is the operator's to do for this brief: the conductor copies the staged templates back and then runs `check-example-drift.sh`.

@@ -1,0 +1,16 @@
+Done. One line changed, nothing else.
+
+**Change**
+- `.skilled/skills/system-spec-kit/changelog/v2.11.0.0.md:17` — `> Spec folder:` → `> Spec folders:`, and appended `` and `014-removed-template-reality-sweep` `` before the existing ` (Level 2)`.
+
+**Verification (run, output read)**
+```
+$ grep -c "and \`014-removed-template-reality-sweep\` (Level 2)" .skilled/skills/system-spec-kit/changelog/v2.11.0.0.md; ls -d specs/.../014-removed-template-reality-sweep
+1
+specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep
+```
+Expected `1` then the folder path; both matched. Line 17 re-read and confirmed to contain the new text exactly.
+
+**Deviation, recorded:** my first `edit_lines` call passed `line_count: 56`, read off the "56 more lines" tail notice of a 15-line window rather than the file total, and was refused before touching disk. I recovered by reading `wc -l` (79 newline-terminated, 80 counted lines), then re-applied with `line_count: 80`. No content was written by the refused call, and no git command was run.
+
+Nothing is yours to do; the brief's verification gate passed.

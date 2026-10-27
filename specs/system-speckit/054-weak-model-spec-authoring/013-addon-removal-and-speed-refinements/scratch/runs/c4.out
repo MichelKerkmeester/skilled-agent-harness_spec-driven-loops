@@ -1,0 +1,53 @@
+Done. Single file changed: `.skilled/skills/system-spec-kit/runtime/cli/tests/repo-era.vitest.ts`.
+
+## Edits
+
+**1. Fixture inside `normalizes drifting headers…` — `tests/repo-era.vitest.ts:230-232`**
+
+Replaced the two resource-map stamps with a template that still ships (`handover.md.tmpl` is `v1.0` in `templates/spec-kit-docs.json`), and kept a single resource-map document:
+
+```ts
+        'handover-current.md': 'handover | v1.0',
+        'handover-legacy.md': 'handover | v0.9',
+        'resource-map-old.md': 'resource-map | v1.1',
+```
+
+**2. Variable renames + third lookup — `tests/repo-era.vitest.ts:244-249`**
+
+```ts
+    const currentHandover = packet?.documents
+      .find((document) => document.name === 'handover-current.md')?.templateMarker.status;
+    const legacyHandover = packet?.documents
+      .find((document) => document.name === 'handover-legacy.md')?.templateMarker.status;
+    const legacyResourceMap = packet?.documents
+      .find((document) => document.name === 'resource-map-old.md')?.templateMarker.status;
+```
+
+**3. Assertions — `tests/repo-era.vitest.ts:256-259`**
+
+```ts
+    expect(currentHandover).toBe('new');
+    expect(legacyHandover).toBe('legacy');
+    // No resource-map template ships, so no resource-map stamp is current.
+    expect(legacyResourceMap).toBe('legacy');
+```
+
+`new` for `handover | v1.0` holds by exact manifest match in `isCurrentTemplateStamp` (`repo-era.mjs:332-334`); `handover | v0.9` is below the v2.2 floor, and `resource-map | v1.1` has no `resource-map.md.tmpl` entry, so `currentVersion` is null and the stamp is `legacy`.
+
+**Task 2:** the packet-8 fixture at `tests/repo-era.vitest.ts:135-136` is untouched. Its only reader is the first test (`repo-era.vitest.ts:107`), which asserts aggregate counts (`new`/`legacy`/`none` > 0, totals = per-signal sums), not per-document status. It passed unchanged, and both of those documents still count as `legacy`, so no replacement was needed. No other file was modified.
+
+## Verification
+
+From `.skilled/skills/system-spec-kit`:
+
+```
+$ ./node_modules/.bin/vitest run runtime/cli/tests/repo-era.vitest.ts --config vitest.config.ts
+ RUN  v4.1.11 /Users/.../.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  10:54:18
+   Duration  340ms
+```
+
+Baseline before the edit was `1 failed | 6 passed`, failing at `expect(currentResourceMap).toBe('new')` with `Received: "legacy"` — exactly the reported symptom; now 7/7 pass.

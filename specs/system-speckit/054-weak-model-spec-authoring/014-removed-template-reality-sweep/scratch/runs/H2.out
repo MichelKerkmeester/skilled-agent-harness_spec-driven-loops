@@ -1,0 +1,74 @@
+Done. All three files edited, verification run.
+
+## Changes
+
+**`.skilled/skills/system-spec-kit/references/templates/level-specifications.md`**
+- `26-34` (fence preserved): flat `templates/` tree replaced with the real layout: `spec-kit-docs.json`, `core/`, `addons/` (acceptance-criteria, debug-delegation, decision-record, goal, handover, research, timeline), `packet-types/` (phase-parent.spec, research.spec, review-report, review.spec), `examples/`, plus `README.md`. Every entry verified against `ls templates/`; nothing listed that does not exist. `CONTRACT.md`, `EXTENSION-GUIDE.md`, `MIGRATION.md`, `changelog/`, `scratch/` also exist but were left out: the tree documents the document-bearing layout, and the brief named only `README.md` as the additional entry. Say the word if you want them in.
+- `293`: heading is now `### Required Files (Level 2 file set)`.
+- `299-300`: required list ends at `implementation-summary.md`; `decision-record.md` moved out.
+- `303`: `decision-record.md - Architecture Decision Records (lazy add-on: --with-lazy-addons or on request)` in the Level 3 Optional Files list, matching `assets/template-mapping.md:55/178` wording.
+- `318`: `**Enforcement:** none; an absent decision-record.md is skipped.`
+- `377-387`: Level 3+ required list drops the carried `decision-record.md`; it now sits at `387` in that section's Optional Files with the same add-on wording.
+
+**`.skilled/skills/system-spec-kit/assets/level-decision-matrix.md`**
+- `46`: Level 3 Required Files is `Level 2 file set; decision-record.md on request` (table padding re-aligned to the neighbouring rows; the pre-existing overflow on row 45 left untouched).
+- `55`: `Level 3 (Full): Level 2 + optional decision-record.md + optional research/research.md`.
+- `220`: FILE_EXISTS details now read `Level 3 adds no required file`.
+
+**`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md`**
+- `36`: `Level 3 (Full): Level 2 + optional decision-record.md + optional research`.
+- `53`: required cell `L2 file set`; optional cell `decision-record.md, research/research.md, timeline.md`.
+- `180`, `447`, `567`: `Level 3: Level 2 file set (decision-record.md on request)`.
+
+## Verification
+
+```
+### rg decision-record
+references/templates/level-specifications.md:30:├── addons/  # acceptance-criteria, debug-delegation, decision-record, goal, handover, research, timeline
+references/templates/level-specifications.md:303:- `decision-record.md` - Architecture Decision Records (lazy add-on: `--with-lazy-addons` or on request)
+references/templates/level-specifications.md:311:**decision-record.md required sections:**
+references/templates/level-specifications.md:318:**Enforcement:** none; an absent `decision-record.md` is skipped.
+references/templates/level-specifications.md:387:- `decision-record.md` (from Level 3) - Architecture Decision Records (lazy add-on: `--with-lazy-addons` or on request)
+references/templates/level-specifications.md:540:| L2 → L3 | +Arch   | `decision-record.md` + addendum sections             |
++ 8 further pre-existing mentions (template sources, migration, phase children, links)
+assets/level-decision-matrix.md:46:| **3: Full** | ≥500 | Level 2 file set; `decision-record.md` on request | ADR + optional research | Complex/architectural changes |
+assets/level-decision-matrix.md:55:Level 3 (Full):         Level 2 + optional decision-record.md + optional research/research.md
+assets/level-decision-matrix.md:120/121/212/244/263/271/296: untouched pre-existing mentions
+references/workflows/quick-reference.md:36:Level 3 (Full):         Level 2 + optional decision-record.md + optional research
+references/workflows/quick-reference.md:53:| Complex/architectural | 3 | L2 file set | decision-record.md, research/research.md, timeline.md |
+references/workflows/quick-reference.md:180:  - [ ] Level 3: Level 2 file set (decision-record.md on request)
+references/workflows/quick-reference.md:447:  - [ ] Level 3: Level 2 file set (decision-record.md on request)
+references/workflows/quick-reference.md:567:  - Level 3: Level 2 file set (decision-record.md on request)
+(full output of the command is in the transcript above; this is the same list, trimmed of the long untouched lines)
+
+### sed -n 22,36p references/templates/level-specifications.md
+### Template Architecture: Manifest-Backed Level Contracts
+
+Templates use a manifest-backed model where `templates/spec-kit-docs.json` selects rendered `*.md.tmpl` documents for each Level:
+
+```
+templates/
+├── spec-kit-docs.json       # Level contract and document membership
+├── core/                    # spec, plan, tasks, implementation-summary
+├── addons/                  # acceptance-criteria, debug-delegation, decision-record, goal, handover, research, timeline
+├── packet-types/            # phase-parent.spec, research.spec, review-report, review.spec
+├── examples/                # Rendered examples by Level
+└── README.md                # Folder layout and maintainer guidance
+```
+
+### Template Paths - Quick Reference
+
+### check-markdown-links tail -2
+check-markdown-links: 7629 files, 13779 links checked, 0 broken
+OK — 0 broken markdown links.        (exit 0)
+```
+
+One caveat on that last command: my **first** run (before the final state) reported `13780 links checked, 1 broken`, the break being `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md  ](./definitely-missing-link-target-for-guard-verification.md)`. That file was mid-scenario: its mtime is 26 seconds before that run, and it now contains the injected/reverted pair of scan outputs, whose documented clean baseline is exactly `7629 files, 13779 links, 0 broken`, which is what my final run reproduces. So that break was a transient injected state in a file I did not touch, not something my three edits introduced. I did not diff it (no git here), so trust the mtime plus the baseline match, not my word.
+
+## What is left, and it is not mine to do
+
+`bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep --strict` ends `RESULT: FAILED`, 3 errors, none in the files this brief names:
+- `PLACEHOLDER_FILLED`: 6 unfilled `YOUR_VALUE_HERE` markers in the packet's `implementation-summary.md` (lines 50, 61, 70, 81, 92, 101).
+- `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT`: `graph-metadata.json` fingerprint stale, `description.json` `description`/`causal_summary` drifted.
+
+Those are packet-doc writes, outside my brief's scope lock, so I left them. The operator's next action is the repair command validate points at: `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep --apply`, then fill the `implementation-summary.md` placeholders by hand (repair-derived never edits prose). No em dashes were written.

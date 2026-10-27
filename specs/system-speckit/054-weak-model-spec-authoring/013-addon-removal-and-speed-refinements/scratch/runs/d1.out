@@ -1,0 +1,55 @@
+All ten files updated. The exact verification command returns no rows at all, so the per-hit notes below cover the wider `resource-map` sweep.
+
+## Edits
+
+**`src` shorthand: S = `.skilled/skills/system-spec-kit`**
+
+| File:line | Change |
+|---|---|
+| S/templates/README.md:111-112 | addons tree now lists the seven real templates and ends `├── research.md.tmpl` / `└── timeline.md.tmpl`; removed `resource-map.md.tmpl`, `before-after.md.tmpl`, `roadmap.md.tmpl` |
+| S/templates/README.md:144-145 | dropped the `addons/resource-map.md.tmpl` row from KEY FILES; `addons/goal.md.tmpl` now closes the add-on rows |
+| S/templates/EXTENSION-GUIDE.md:49 | "`--with-lazy-addons` scaffolds four of them" → "scaffolds two of them", matching `create.sh:281` ("Add timeline.md and decision-record.md") |
+| S/references/structure/folder-structure.md:41 | addons tree trimmed to seven, ends `└── timeline.md.tmpl` |
+| S/references/templates/template-guide.md:187 | flag sentence rewritten to "scaffold `timeline.md` and `decision-record.md`" |
+| S/references/templates/template-guide.md:189-196 | Optional Templates bash block keeps only the `research.md.tmpl` render; the `resource-map.md.tmpl` render command is gone |
+| S/references/templates/template-guide.md:755 | `resource-map.md` dropped from the non-research no-ToC artifact list |
+| S/references/templates/template-style-guide.md:42 | lazy add-on row now lists the six `lazyAddonDocs` entries: decision-record, timeline, goal, handover, debug-delegation, research/research |
+| S/references/templates/level-specifications.md:38 | flat template list ends `└── research.md.tmpl`; `resource-map.md.tmpl` line removed |
+| S/references/templates/level-specifications.md:101, 192, 392 | Level 1, 2 and 3+ "Optional Files" bullet reworded to `timeline.md` (real lazy add-on at every level) instead of `resource-map.md` |
+| S/references/templates/level-specifications.md:307 | Level 3 "Optional Files" keeps only `research/research.md` |
+| S/references/templates/level-specifications.md:738 | `resource-map.md` row removed from Summary Templates table |
+| S/references/templates/level-specifications.md:741 | `- templates/addons/resource-map.md.tmpl` removed from Template Sources |
+| S/references/templates/level-specifications.md:836 | `resource-map.md.tmpl` link removed from Session Management Templates |
+| S/references/workflows/quick-reference.md:51-54 | Optional Templates column now `timeline.md (any level)` / `research/research.md, timeline.md` |
+| S/references/workflows/quick-reference.md:185, 448 | checklist parentheticals now "timeline.md at any level" |
+| S/references/workflows/quick-reference.md:722 | `resource-map.md.tmpl` link removed; section ends at debug-delegation |
+| S/assets/template-mapping.md:114-115 | `resource-map.md` row removed from OPTIONAL TEMPLATES table |
+| S/assets/template-mapping.md:119 | "`resource-map.md` is level-agnostic and pairs well..." note deleted |
+| S/assets/template-mapping.md:172 | Level 3 folder tree ends `└── research/research.md`; resource-map line removed |
+| S/runtime/cli/resource-map/README.md:63 | removed the link to `templates/addons/resource-map.md.tmpl`; the extractor section itself is untouched |
+
+## Verification output
+
+```
+$ rg -n -i 'before-after|roadmap\.md|resource-map\.md\.tmpl|resource-map template|resource map template' \
+    S/templates/README.md S/templates/EXTENSION-GUIDE.md S/references \
+    S/assets/template-mapping.md S/runtime/cli/README.md S/runtime/cli/resource-map/README.md
+exit=1
+```
+
+Zero rows, no output: rg exit 1 with no rows is a clean no-hit, and I re-ran it after all edits, not before.
+
+Because that pattern is deliberately narrow, I ran one wider sweep (`resource-map|resource map`) over the same file set. Every survivor is deep-loop output or unrelated wording:
+
+- `S/runtime/cli/resource-map/README.md:1,3,9,28,52` — the CommonJS extractor module that turns review/research evidence into a `resource-map.md` ledger (loop output), not a template offer.
+- `S/runtime/cli/README.md:81` — CLI directory tree line: `resource-map/ # Deep review/research evidence to resource-map.md ledger` (loop output).
+- `S/references/retrieval/retrieval-conventions.md:62` — "Resource maps | A static generated path catalog. It is not a dynamic graph" in the "What This Does Not Replace" boundary table; a declared retrieval loss, no template offered.
+- `S/references/cli/shared-smart-router.md:9` — the trigger phrase "resource map scoring"; unrelated wording (router scoring), no document named.
+- `S/references/workflows/rename-pattern.md:62,137` — `scratch/resource-map.md`, an ad-hoc scratch file in the rename workflow; unrelated to packet add-ons.
+
+## Other checks run
+
+- `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` → `7631 files, 13785 links checked, 0 broken`, `exit=0`. Confirms the nine deleted link rows left no dangling targets.
+- `validate.sh --strict` on `specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements` → `RESULT: FAILED`, Errors: 3. None come from these files: the failures are `implementation-summary.md` unfilled `[YOUR_VALUE_HERE: ...]` tokens (lines 50-101), stale derived metadata in `graph-metadata.json`/`description.json` whose "source_fingerprint does not match a re-derive", and malformed evidence citations `AC-001`..`AC-009`. All of that is packet closeout state I did not write and am not authorized to edit.
+
+One thing is the operator's: the packet's validator failure needs its own closeout pass (`repair-derived.cjs --apply` plus the implementation-summary fill), which this brief excluded.

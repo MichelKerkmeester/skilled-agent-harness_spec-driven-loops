@@ -1,0 +1,32 @@
+Card edited in place. All four checks pass.
+
+## Changes
+
+**`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`** (only file touched)
+
+1. `:91` to `:102` section 6 plan shape. Removed the `### Step` block and its `rg -c '^### Step '` verify. Now: a plan names its 3 or 4 phases, one line each, under `## 4. IMPLEMENTATION PHASES`, matching `plan.md.tmpl:124`'s fill note; the acceptance line and verify command for each task live on the tasks.md task lines (section 7). Section 6 keeps exactly one Acceptance line (`:101`) and one Verify command (`:102`, `rg -n '^## 4' <packet folder>/plan.md` prints one line).
+2. `:96` and `:98` SWEEP line 97 and its example body. The fence now shows the phase heading plus the rotate-logs one-liner ("Setup reads the current archive count. Implementation adds `--keep <n>`. Verification checks that ten archives become three."), so the old flag-parser example and its `--quiet` acceptance/verify lines are gone.
+3. `:109` SWEEP line 111, the section 7 task-line example. Now `- [ ] T001 Add the `--keep <n>` option to the archive rotation (`scripts/rotate-logs.sh`). Verify: with ten archives, `ls logs/archive | wc -l` prints 3 after `--keep 3`, and `--keep` with no value exits 2.` It still carries one action, one file in parentheses and one `Verify:` clause.
+4. `:172` section 11 bullet. "more than 4 plan steps" now reads "more than 4 phases".
+5. `:82` section 5. Added one sentence: `spec.md`'s `Measured Behavior` block holds one command and its verbatim output, and every number the packet states about current behavior quotes that block.
+6. `:147` section 9. Added one sentence: on `Status: Draft`, the validate run applies `repair-derived.cjs --apply` once, prints what it rewrote and validates again, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns the repair off.
+
+Kept as real instructions, not examples: `:35` (`recommend-level.sh` helper) and the `validate.sh --quiet` lines (`:138`, `:143`, `:145`, `:149`, `:150`, `:159`). Remaining "step" occurrences (`:7`, `:16`, `:176`) describe the card's own steps, not plan steps. No em dash added; check-card-sync's checklist naming (`:164`) untouched.
+
+## Verification output (repo root)
+
+```
+$ rg -n '### Step|plan steps' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+(exit 1, no output)
+
+$ rg -c -e 'rotate-logs' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+1
+
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | tail -1
+CARD SYNC OK
+
+$ wc -l < .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+176
+```
+
+Card is 176 lines against the 260 limit, and `CARD SYNC OK` came from the final file state read by the guard itself, not a stale run. The card is not read by the validator, so no staged template, packet doc or `.hermes` copy was touched here; the live template tree was left alone for the conductor's staging copy-back, and nothing was committed (git commands are banned in this dispatch).

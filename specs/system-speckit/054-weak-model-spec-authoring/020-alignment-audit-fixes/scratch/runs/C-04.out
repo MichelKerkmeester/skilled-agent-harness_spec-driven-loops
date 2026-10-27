@@ -1,0 +1,18 @@
+Done.
+
+**Change:** `specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-017-measured-behavior-and-draft-metadata.md:51`
+
+- Old: `- The commit SHA is pinned after the commit.`
+- New: `` - The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs). ``
+
+Nothing else in the file was touched; no other file was read or modified, and no git command was run.
+
+**Verification output** (the two greps plus a line read to confirm placement):
+
+```
+1
+0
+- The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs).
+```
+
+Expected was 1 then 0, and both match. The second `grep -c` exiting 1 (no match) is the intended result, not a failure; the following `sed` ran on the same shell line and printed line 51 as shown, so the line is present exactly once and in the right place.

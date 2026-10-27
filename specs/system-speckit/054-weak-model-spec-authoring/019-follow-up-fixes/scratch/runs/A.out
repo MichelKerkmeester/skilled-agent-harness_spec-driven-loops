@@ -1,0 +1,34 @@
+Done: both git calls in the manifest checker now pass `-c core.fsmonitor=false`, and all three verification commands pass.
+
+Changes in `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh`, the only file touched:
+
+1. `check-goal-file-manifest.sh:18` — `rev-parse --show-toplevel` now runs `"$GIT_BIN" -c core.fsmonitor=false -C "$SCRIPT_DIR" rev-parse ...`.
+2. `check-goal-file-manifest.sh:24` — added the comment `# fsmonitor off: an index read can block for minutes on the fsmonitor hook.`
+3. `check-goal-file-manifest.sh:25` — `ls-files` now runs `"$GIT_BIN" -c core.fsmonitor=false -C "$REPO_ROOT" ls-files ...`.
+
+Everything else is byte for byte, including all four `fail_closed` messages. The file grew from 44 to 45 lines; line numbers after 24 shifted by one.
+
+Verification output, verbatim:
+
+```
+bash -n specs/.../check-goal-file-manifest.sh ; echo rc=$?
+rc=0
+```
+```
+rg -c 'core.fsmonitor=false' specs/.../check-goal-file-manifest.sh
+2
+```
+```
+cd .skilled/skills/system-spec-kit && npx vitest run --config vitest.config.ts --project cli tests/recursive-child-manifest.vitest.ts
+ RUN  v4.1.11 /Users/michelkerkmeester/.../217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  19:11:57
+   Duration  750ms
+rc=0
+```
+
+Two notes on how I read the brief. I did not execute the script itself, because the brief bans git commands and the script's first action is a git call; the syntax check plus the passing manifest test are the evidence I ran. I also found no `REPO RULES.md` at this worktree root, so no repo rule trigger table applied, and the trigger-index lookup returned no rows.
+
+Nothing is yours to do unless you want the actual runtime hang confirmed, which would need one run of the script from a caller that tolerates the wait.

@@ -1,0 +1,495 @@
+{
+  "sessionId": "fanout-sol-1793081281038-z2aj1o",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "SOL-001",
+      "severity": "P1",
+      "title": "Symlinked track writes a new packet outside specs",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1138,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Phase requirement specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/spec.md:139; implementation .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1138; current test .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-containment.vitest.ts:118.",
+      "affectedSurfaceHints": [
+        "create.sh --track",
+        "create-track-containment test",
+        "phase 010 acceptance"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-002",
+      "severity": "P1",
+      "title": "Mixed fence markers hide a later unfilled value token",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 814,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Orchestrator .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:814 and shell helper .skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:74 share the toggle; the phase 003/010 token guarantee covers both.",
+      "affectedSurfaceHints": [
+        "orchestrator placeholder rule",
+        "shell placeholder rule",
+        "placeholder token matrix"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-003",
+      "severity": "P1",
+      "title": "Existing symlink at an explicit scaffold target bypasses repo containment",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1240,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "The --path resolver at .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1240 checks only the parent; the first writes are at .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2103; template rendering is rooted in that destination at .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh:181.",
+      "affectedSurfaceHints": [
+        "create.sh --path",
+        "template-utils destination check",
+        "explicit-path tests"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-004",
+      "severity": "P2",
+      "title": "Parent scope and completion metadata still describe the earlier phase set",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+      "line": 47,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Parent goal specs/system-speckit/054-weak-model-spec-authoring/goal.md:47 and binding specs/system-speckit/054-weak-model-spec-authoring/goal.md:79; parent spec handoff specs/system-speckit/054-weak-model-spec-authoring/spec.md:57 and phase map specs/system-speckit/054-weak-model-spec-authoring/spec.md:152. A 22-phase inventory found each phase spec and implementation summary, with all phase statuses Complete.",
+      "affectedSurfaceHints": [
+        "parent goal directive and binding",
+        "parent spec metadata",
+        "phase closeout"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9375,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "final_component_symlink",
+      "marker_visibility",
+      "parent_scope_drift",
+      "path_containment"
+    ],
+    "ruledOut": [
+      "ci_annotation_injection",
+      "missing_shipped_surface",
+      "obsolete_addon_claim",
+      "private_command_link",
+      "repair_symlink"
+    ],
+    "deferred": [],
+    "blocked": [
+      "dynamic_routing_proof"
+    ],
+    "byBugClass": {
+      "path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "marker_visibility": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "final_component_symlink": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repair_symlink": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "ci_annotation_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "private_command_link": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "parent_scope_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "missing_shipped_surface": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "obsolete_addon_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dynamic_routing_proof": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SOL-SL3-4",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "dynamic_routing_proof",
+      "disposition": "blocked",
+      "rationale": "Cannot verify dynamic ranking under write boundary",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/spec.md:139",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:536"
+      ],
+      "reason": "Live advisor or test execution may write caches outside the assigned lineage"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SOL-SL2-2",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:653"
+      ],
+      "bugClass": "repair_symlink",
+      "disposition": "ruled_out",
+      "rationale": "Narrow targeted guard exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:653"
+      ],
+      "reason": "realpath containment and per-input symlink refusal are present"
+    },
+    {
+      "iteration": 2,
+      "id": "SOL-SL2-3",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml:117"
+      ],
+      "bugClass": "ci_annotation_injection",
+      "disposition": "ruled_out",
+      "rationale": "Narrow targeted guard exists",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:117"
+      ],
+      "reason": "targeted output paths escape workflow syntax"
+    },
+    {
+      "iteration": 2,
+      "id": "SOL-SL2-4",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:622"
+      ],
+      "bugClass": "private_command_link",
+      "disposition": "ruled_out",
+      "rationale": "Narrow targeted guard exists",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:622"
+      ],
+      "reason": "existing destinations are skipped"
+    },
+    {
+      "iteration": 3,
+      "id": "SOL-SL3-2",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates"
+      ],
+      "bugClass": "missing_shipped_surface",
+      "disposition": "ruled_out",
+      "rationale": "Presence inventory, not behavioral proof",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:1",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1"
+      ],
+      "reason": "selected required paths present"
+    },
+    {
+      "iteration": 3,
+      "id": "SOL-SL3-3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/addons"
+      ],
+      "bugClass": "obsolete_addon_claim",
+      "disposition": "ruled_out",
+      "rationale": "Source presence matches phase 013 claim",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/acceptance-criteria.md:56"
+      ],
+      "reason": "source directory matches seven-template set"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SOL-SL2-2",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:653"
+      ],
+      "bugClass": "repair_symlink",
+      "disposition": "ruled_out",
+      "rationale": "Narrow targeted guard exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:653"
+      ],
+      "proof": "realpath containment and per-input symlink refusal are present"
+    },
+    {
+      "iteration": 2,
+      "id": "SOL-SL2-3",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/changed-packet-validation.yml:117"
+      ],
+      "bugClass": "ci_annotation_injection",
+      "disposition": "ruled_out",
+      "rationale": "Narrow targeted guard exists",
+      "evidenceRefs": [
+        ".github/workflows/changed-packet-validation.yml:117"
+      ],
+      "proof": "targeted output paths escape workflow syntax"
+    },
+    {
+      "iteration": 2,
+      "id": "SOL-SL2-4",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:622"
+      ],
+      "bugClass": "private_command_link",
+      "disposition": "ruled_out",
+      "rationale": "Narrow targeted guard exists",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:622"
+      ],
+      "proof": "existing destinations are skipped"
+    },
+    {
+      "iteration": 3,
+      "id": "SOL-SL3-2",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates"
+      ],
+      "bugClass": "missing_shipped_surface",
+      "disposition": "ruled_out",
+      "rationale": "Presence inventory, not behavioral proof",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:1",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh:1"
+      ],
+      "proof": "selected required paths present"
+    },
+    {
+      "iteration": 3,
+      "id": "SOL-SL3-3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/templates/addons"
+      ],
+      "bugClass": "obsolete_addon_claim",
+      "disposition": "ruled_out",
+      "rationale": "Source presence matches phase 013 claim",
+      "evidenceRefs": [
+        "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/acceptance-criteria.md:56"
+      ],
+      "proof": "source directory matches seven-template set"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "parent_scope_drift",
+      "missing_shipped_surface",
+      "obsolete_addon_claim",
+      "dynamic_routing_proof"
+    ],
+    "covered": [
+      "parent_scope_drift"
+    ],
+    "ruledOut": [
+      "missing_shipped_surface",
+      "obsolete_addon_claim"
+    ],
+    "deferred": [],
+    "blocked": [
+      "dynamic_routing_proof"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,20 @@
+X7 is done. The `--help` text now advertises Level 2 as accepting optional acceptance criteria.
+
+Changed, one line, `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:86`:
+
+```
+LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+acceptance-criteria (optional), 3=+architecture guidance
+```
+
+Verification, run from the final state:
+
+1. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --help | rg -n LEVELS` printed `70:LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+acceptance-criteria (optional), 3=+architecture guidance`, help exit 0, rg exit 0.
+2. `bash -n` on the script returned 0, so the heredoc still parses.
+3. Before the edit the same command printed the old text with `2=+checklist`, so the check distinguishes the two states rather than passing either way.
+4. `rg "2=\+checklist"` over that file now returns no match, exit 1.
+
+Nothing else changed. No test or doc in `.skilled/skills/system-spec-kit` references that line, so nothing else asserts on it.
+
+Residual risk: none known. The work is edited on disk and uncommitted, per the ban on git commands in this brief.
+
+Nothing is blocked on you.

@@ -131,7 +131,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
 - **Trigger**: a real packet stops being graded, or a sk-doc or deep-loop prompt changes its top skill.
-- **Procedure**: the work is uncommitted, so revert the named file in the working tree. For X2, restore the old phrase in `graph-metadata.json` and recompile `skill-graph.json`.
+- **Procedure**: revert commit `4b15bdcc11`, or the named file from it. For X2, restore the old phrase in `graph-metadata.json` and recompile `skill-graph.json`.
 <!-- /ANCHOR:rollback -->
 
 ---

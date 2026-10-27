@@ -1,0 +1,13 @@
+Done.
+
+**Change made:** `README.md:373` — "Seven of them only warn and never fail a run" → "Eight of them only warn and never fail a run". Nothing else on the line or in the file was touched.
+
+**Verification:**
+```
+$ grep -c "Eight of them only warn and never fail a run" README.md; grep -c "Seven of them only warn" README.md
+1
+0
+```
+Matches expected (1 then 0). The command exited 1 only because the second `grep -c` selected zero lines, which is the desired result for the old string.
+
+No other files read or edited; no git commands run.

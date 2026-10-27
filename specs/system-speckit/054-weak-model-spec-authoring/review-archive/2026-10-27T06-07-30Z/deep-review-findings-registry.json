@@ -1,0 +1,3791 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna",
+    "pi-deepseek-1",
+    "pi-deepseek-2"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "pi-deepseek-1": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    },
+    "pi-deepseek-2": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001--d774fb5f22e9",
+      "severity": "P1",
+      "title": "--track can route scaffold writes above the repository root",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1291,
+      "description": "Resolve the track and final scaffold destination before the first mkdir, then fail unless the canonical destination remains beneath REPO_ROOT/specs.",
+      "findingClass": "path-containment",
+      "deltaStatus": null,
+      "scopeProof": "The phase 005 card explicitly invokes create.sh with --track and sets the authoring write boundary to the packet and scratch folders. This is the command implementation used by that in-scope card.",
+      "affectedSurfaceHints": [
+        "authoring-card scaffold path",
+        "specs tree containment",
+        "template writes"
+      ],
+      "contentHash": "sha256:336ae62f2f5b06a32b55b93621b45062d3012053cb6e9c540cad09a7d6cce27e",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R3-P1-001",
+      "_conflict_id": "R3-P1-001--d774fb5f22e9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P1-001",
+          "peerId": "R3-P1-001--bdd21853d6fd",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--af4668355886",
+      "severity": "P2",
+      "title": "A [template:...] title token in spec.md is invisible to the production scaffold-marker rule",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-scaffold-never-touched.sh",
+      "line": 34,
+      "description": "",
+      "findingClass": "gate-coverage-gap",
+      "deltaStatus": null,
+      "scopeProof": "File list and title scan read at check-scaffold-never-touched.sh:34,79-88.",
+      "affectedSurfaceHints": [
+        "scaffold-never-touched rule",
+        "placeholder rule",
+        "spec template title"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--af4668355886",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--5dd4a94b0381",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--93ef17f39a2e",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--8d7286136415",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P1-001--48168418bbe1",
+      "severity": "P1",
+      "title": "A line whose first token is inline code hides a later unfilled token in both implementations",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 734,
+      "description": "",
+      "findingClass": "gate-false-negative",
+      "deltaStatus": null,
+      "scopeProof": "Both line loops read end to end; the regex has no g flag; the shell reports one line number per line.",
+      "affectedSurfaceHints": [
+        "orchestrator placeholder rule",
+        "shell mirror",
+        "authoring card inline-code guidance"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R8-P1-001",
+      "_conflict_id": "R8-P1-001--48168418bbe1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P1-001",
+          "peerId": "R8-P1-001--753e7f731d2a",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--b85bdc671bb8",
+      "severity": "P2",
+      "title": "Benchmark report subject line still names swe-2-max although the deciding set ran on DeepSeek",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--b85bdc671bb8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--49a694e80845",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--c1499aa6e098",
+      "severity": "P2",
+      "title": "Both guard wrappers in the suite assert only that today's tree passes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts",
+      "line": 8,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--c1499aa6e098",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--e6168a1a2e9c",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--b0d09be02df8",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--b030ddab2aff",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P1-001--18e483ad4361",
+      "severity": "P1",
+      "title": "Both new guards depend on rg without a preflight or declaration, and the drift guard prints EXAMPLE_DRIFT_OK on a drifted tree when rg is absent",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 31,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R5-P1-001",
+      "_conflict_id": "R5-P1-001--18e483ad4361",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P1-001",
+          "peerId": "R5-P1-001--6adc15a48844",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--e6168a1a2e9c",
+      "severity": "P2",
+      "title": "Card sync checks its fourth surface only negatively, so a checklist that names no example passes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--e6168a1a2e9c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--c1499aa6e098",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--b0d09be02df8",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--b030ddab2aff",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--ae4f031c1c52",
+      "severity": "P2",
+      "title": "Catalog leaf asserts a parity the code does not have",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md",
+      "line": 36,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--ae4f031c1c52",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--6939a04e7602",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--757384f02d3b",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002--fa25461bc8df",
+      "severity": "P2",
+      "title": "check-card-sync.sh asks jq -e a per-mode question and reads only the last answer",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 98,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R1-P2-002",
+      "_conflict_id": "R1-P2-002--fa25461bc8df",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--45ad103dfe73",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--a748f24f796d",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R10-P2-001--114d288c18dc",
+      "severity": "P2",
+      "title": "Continuity frontmatter was never refreshed when seven phase documents closed and the parent still sends a reader to phase 001",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/acceptance-criteria.md",
+      "line": 22,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R10-P2-001",
+      "_conflict_id": "R10-P2-001--114d288c18dc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R10-P2-001",
+          "peerId": "R10-P2-001--1309ccdcd819",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R10-P2-001",
+          "peerId": "R10-P2-001--f40677973b83",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R10-P1-001",
+      "severity": "P1",
+      "title": "Criterion 7's evidence no longer reproduces: every packet commit is contained in origin/main",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+      "line": 96,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--3d7fe0280f6d",
+      "severity": "P2",
+      "title": "Fence detection differs between the orchestrator and the shell mirror, and a second fence helper in the same file recognises tilde fences the gate does not",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 729,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--3d7fe0280f6d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--62122c40f9cf",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--6939a04e7602",
+      "severity": "P2",
+      "title": "graph-metadata.json derived.status says in_progress while the parent reads Complete and last_active_child_id is still phase 004",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "line": 47,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--6939a04e7602",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--ae4f031c1c52",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--757384f02d3b",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--5dd4a94b0381",
+      "severity": "P2",
+      "title": "Indented fenced examples can diverge between the two checks",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+      "line": 115,
+      "description": "The shell mirror only recognizes fences at column one while the orchestrator accepts leading whitespace, so a fenced token can produce different rule results.",
+      "findingClass": "cross-implementation-contract",
+      "deltaStatus": "active",
+      "scopeProof": "Phase 003 REQ-002 requires the shell rule and orchestrator to agree; both implementation paths are in the declared target scope.",
+      "affectedSurfaceHints": [
+        "PLACEHOLDER_FILLED verdict",
+        "isolated shell-rule harness",
+        "fenced examples in spec documents"
+      ],
+      "contentHash": "sha256:85f72ee18210f9b1bf370f49888f5161c077e5d3c8bd232ce96acc3289f2c94e",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--5dd4a94b0381",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--af4668355886",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--93ef17f39a2e",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--8d7286136415",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Obsolete /spec_kit: command prefix survives in the shipped phase-parent template and five reference docs, and no ledger row ever owned it",
+      "file": ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+      "line": 108,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R7-P2-001--6734d8c96b94",
+      "severity": "P2",
+      "title": "One acceptance row's command needs a variable the row never defines",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R7-P2-001",
+      "_conflict_id": "R7-P2-001--6734d8c96b94",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-001",
+          "peerId": "R7-P2-001--7dca48327b16",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-001",
+          "peerId": "R7-P2-001--be5a816c0e5f",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-001--6a1d07225a02",
+      "severity": "P2",
+      "title": "Only the first Status row decides Draft, so a later Complete claim is invisible to every status rule",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh",
+      "line": 68,
+      "description": "",
+      "findingClass": "status-ambiguity",
+      "deltaStatus": null,
+      "scopeProof": "Both readers and the cross-doc rule read; each stops at the first Status row.",
+      "affectedSurfaceHints": [
+        "status classifier",
+        "placeholder gate",
+        "status cross-doc rule"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R8-P2-001",
+      "_conflict_id": "R8-P2-001--6a1d07225a02",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--741032de9a69",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--98ae7a701f0a",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--4f833638ddfe",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002--45ad103dfe73",
+      "severity": "P2",
+      "title": "Parent Branch metadata reads main while every phase ran on the worktree branch",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 52,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R1-P2-002",
+      "_conflict_id": "R1-P2-002--45ad103dfe73",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--fa25461bc8df",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--a748f24f796d",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--62122c40f9cf",
+      "severity": "P2",
+      "title": "Parent graph metadata still reports the packet as in progress",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "line": 47,
+      "description": "",
+      "findingClass": "derived-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "Status line and spec status row read directly; all nine child status rows read.",
+      "affectedSurfaceHints": [
+        "parent graph metadata",
+        "parent spec status",
+        "resume and retrieval surfaces"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--62122c40f9cf",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--3d7fe0280f6d",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "Parent graph metadata's last-active pointer still names phase 004",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "line": 183,
+      "description": "",
+      "findingClass": "derived-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "Pointer and timestamp read directly; phase 009 close record and commit sequence show later activity.",
+      "affectedSurfaceHints": [
+        "parent graph metadata",
+        "parent spec Related Documents",
+        "child navigation"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Parent spec launch precondition names swe-2-max as the benchmark subject, contradicting its own Out of Scope section and frozen decision D8",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 117,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--87eecbd1074c",
+      "severity": "P2",
+      "title": "Parent spec still names swe-2-max as the benchmark subject in launch precondition 4",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 117,
+      "description": "",
+      "findingClass": "documentation-contract-drift",
+      "deltaStatus": null,
+      "scopeProof": "Three parent-spec statements and goal D8 read directly; benchmark report names the DeepSeek subject.",
+      "affectedSurfaceHints": [
+        "parent spec launch preconditions",
+        "parent goal D8",
+        "benchmark report"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--87eecbd1074c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--60358a864764",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--f3548e1e1a8c",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--2d06c94f3de3",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002--a748f24f796d",
+      "severity": "P2",
+      "title": "Parity test pins four cells and none of the divergent shapes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts",
+      "line": 91,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R1-P2-002",
+      "_conflict_id": "R1-P2-002--a748f24f796d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--fa25461bc8df",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--45ad103dfe73",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-001--06d1a3f34085",
+      "severity": "P2",
+      "title": "Phase 005's closure statement still reports two findings as open after they were applied",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+      "line": 89,
+      "description": "",
+      "findingClass": "stale-closure-record",
+      "deltaStatus": null,
+      "scopeProof": "Closure paragraph, amendment row, card step 2 and step 3 read directly.",
+      "affectedSurfaceHints": [
+        "phase 005 acceptance criteria closure",
+        "phase 005 goal log",
+        "authoring card"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R6-P2-001",
+      "_conflict_id": "R6-P2-001--06d1a3f34085",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--767420310a83",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--f44d0192b643",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-001--767420310a83",
+      "severity": "P2",
+      "title": "Phase 006 summary attributes the card and the filled example to four agent definitions but three carry neither",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md",
+      "line": 68,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R6-P2-001",
+      "_conflict_id": "R6-P2-001--767420310a83",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--06d1a3f34085",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--f44d0192b643",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-001--f5f19eb007bb",
+      "severity": "P2",
+      "title": "Phase 006's summary says four agents were changed for the card and example; only one names the card",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md",
+      "line": 68,
+      "description": "",
+      "findingClass": "record-overstatement",
+      "deltaStatus": null,
+      "scopeProof": "All four agent files grepped for the card, example path and checklist.md.",
+      "affectedSurfaceHints": [
+        "phase 006 implementation summary",
+        "four agent files"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R9-P2-001",
+      "_conflict_id": "R9-P2-001--f5f19eb007bb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--0eb414425e24",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--59e6fa674586",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--e4ff9407b33b",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--93ef17f39a2e",
+      "severity": "P2",
+      "title": "Phase 009 acceptance rows carry the benchmark on the superseded first set, so the deciding set has no acceptance row",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+      "line": 55,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--93ef17f39a2e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--af4668355886",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--5dd4a94b0381",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--8d7286136415",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P1-001--bdd21853d6fd",
+      "severity": "P1",
+      "title": "Phase 009's completion gate names the run set that failed, not the one that decided it",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md",
+      "line": 43,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R3-P1-001",
+      "_conflict_id": "R3-P1-001--bdd21853d6fd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P1-001",
+          "peerId": "R3-P1-001--d774fb5f22e9",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--60358a864764",
+      "severity": "P2",
+      "title": "Placeholder marker sets diverge: the orchestrator flags the legacy angle-bracket form and the shell mirror never sees it",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "line": 665,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--60358a864764",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--87eecbd1074c",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--f3548e1e1a8c",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--2d06c94f3de3",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Scenario 483 runs a gate-disabled writer in dangerous mode and never checks containment",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md",
+      "line": 92,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ]
+    },
+    {
+      "findingId": "R9-P1-001",
+      "severity": "P1",
+      "title": "speckit-implement.yaml describes spec-doc authoring but names neither the card nor the v2.3 token rule",
+      "file": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      "line": 288,
+      "description": "",
+      "findingClass": "incomplete-alignment",
+      "deltaStatus": null,
+      "scopeProof": "Three YAML assets compared key by key; rg returns 0 for v2.3/placeholder/card in implement.yaml.",
+      "affectedSurfaceHints": [
+        "implement workflow asset",
+        "implement command entry point",
+        "phase 006 handoff criterion"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R8-P1-001--753e7f731d2a",
+      "severity": "P1",
+      "title": "Strict validation can pass with a required task anchor missing",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R8-P1-001",
+      "_conflict_id": "R8-P1-001--753e7f731d2a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P1-001",
+          "peerId": "R8-P1-001--48168418bbe1",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P2-001--7dca48327b16",
+      "severity": "P2",
+      "title": "template-mapping.md states decision-record.md is required while the contract makes it optional and this packet omits it in all nine phases",
+      "file": ".skilled/skills/system-spec-kit/assets/template-mapping.md",
+      "line": 283,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R7-P2-001",
+      "_conflict_id": "R7-P2-001--7dca48327b16",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-001",
+          "peerId": "R7-P2-001--6734d8c96b94",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-001",
+          "peerId": "R7-P2-001--be5a816c0e5f",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "template-mapping.md still teaches [PLACEHOLDER] as the marker to replace and no validator detects it",
+      "file": ".skilled/skills/system-spec-kit/assets/template-mapping.md",
+      "line": 233,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--362b25835317",
+      "severity": "P2",
+      "title": "The 61 addon fill lines have no regression guard",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+      "line": 49,
+      "description": "",
+      "findingClass": "test-coverage-gap",
+      "deltaStatus": null,
+      "scopeProof": "DOCS loop and drift-guard compare call read directly; addon counts re-run and match AC-002.",
+      "affectedSurfaceHints": [
+        "fill-guidance test",
+        "example drift guard",
+        "ten addon templates"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--362b25835317",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--cc382f8acc63",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--d16dddd23461",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--8d7286136415",
+      "severity": "P2",
+      "title": "The acceptance evidence for the removal row was assembled by hand, not produced by the command it cites",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--8d7286136415",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--af4668355886",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--5dd4a94b0381",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--93ef17f39a2e",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-001--f44d0192b643",
+      "severity": "P2",
+      "title": "The anchor rule script counts anchors instead of identifying them, while the criterion it certifies is written as identity",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R6-P2-001",
+      "_conflict_id": "R6-P2-001--f44d0192b643",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--06d1a3f34085",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--767420310a83",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--f3548e1e1a8c",
+      "severity": "P2",
+      "title": "The authoring card omits the tracked scaffold metadata write",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 20,
+      "description": "State the script-managed track-root metadata update as an explicit scaffold exception in the card, or adjust the scaffold flow so its writes match the card boundary.",
+      "findingClass": "contract-implementation-mismatch",
+      "deltaStatus": null,
+      "scopeProof": "The phase 005 target creates the card, and the card itself defines the authoring write boundary for the tracked create.sh command.",
+      "affectedSurfaceHints": [
+        "authoring-card write boundary",
+        "track-root graph-metadata.json",
+        "scaffold command effects"
+      ],
+      "contentHash": "sha256:7d15bc305a5016180bb30833220ffcd608cee5a86309e1383c86b2194b812c2e",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--f3548e1e1a8c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--87eecbd1074c",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--60358a864764",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--2d06c94f3de3",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-003--465d7fd0401a",
+      "severity": "P2",
+      "title": "The authoring card's token count covers three documents, the gate covers six",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 133,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R1-P2-003",
+      "_conflict_id": "R1-P2-003--465d7fd0401a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-003",
+          "peerId": "R1-P2-003--30f0855832f7",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-003",
+          "peerId": "R1-P2-003--b4265b5d00b7",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-002--9bab83c2334b",
+      "severity": "P2",
+      "title": "The baseline and the final set compute out_of_scope_writes with different exclusion lists",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/run-fresh2.sh",
+      "line": 82,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R6-P2-002",
+      "_conflict_id": "R6-P2-002--9bab83c2334b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-002",
+          "peerId": "R6-P2-002--20fcb3ada6e7",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R10-P2-002",
+      "severity": "P2",
+      "title": "The benchmark report says it holds three final sets while documenting four",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+      "line": 11,
+      "description": "",
+      "findingClass": "report-count-drift",
+      "deltaStatus": null,
+      "scopeProof": "Headline, fourth-set paragraph and diagnostic paragraph read directly.",
+      "affectedSurfaceHints": [
+        "benchmark report headline",
+        "benchmark report diagnostic",
+        "phase 009 evidence"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--cc382f8acc63",
+      "severity": "P2",
+      "title": "The card and the checklist describe different authoring surfaces, and the guard compares one sentence",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 150,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--cc382f8acc63",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--362b25835317",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--d16dddd23461",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--902675ff743a",
+      "severity": "P2",
+      "title": "The card points at a long guide it never sends the reader to",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 18,
+      "description": "",
+      "findingClass": "followability-gap",
+      "deltaStatus": null,
+      "scopeProof": "Whole card read; rg for template-guide returns only line 18; router ON_DEMAND entry read.",
+      "affectedSurfaceHints": [
+        "authoring card",
+        "template guide",
+        "skill router ON_DEMAND tier"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--902675ff743a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--06220ba61942",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--b0d09be02df8",
+      "severity": "P2",
+      "title": "The card's task acceptance command fails a correctly completed packet",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "line": 122,
+      "description": "",
+      "findingClass": "acceptance-command-error",
+      "deltaStatus": null,
+      "scopeProof": "Card step 7 rules and command read; tasks template notation read.",
+      "affectedSurfaceHints": [
+        "authoring card step 7",
+        "tasks template notation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--b0d09be02df8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--c1499aa6e098",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--e6168a1a2e9c",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--b030ddab2aff",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P2-001--be5a816c0e5f",
+      "severity": "P2",
+      "title": "The card-sync guard is described as failing on the first disagreement; it runs every check",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md",
+      "line": 30,
+      "description": "",
+      "findingClass": "documentation-contract-drift",
+      "deltaStatus": null,
+      "scopeProof": "Guard failure path read end to end; three doc lines read directly.",
+      "affectedSurfaceHints": [
+        "card-sync catalog leaf",
+        "card-sync playbook scenario",
+        "guard header comment"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R7-P2-001",
+      "_conflict_id": "R7-P2-001--be5a816c0e5f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-001",
+          "peerId": "R7-P2-001--6734d8c96b94",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-001",
+          "peerId": "R7-P2-001--7dca48327b16",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "The checklist check proves only that the old sentence is gone",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 110,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ]
+    },
+    {
+      "findingId": "R10-P2-001--1309ccdcd819",
+      "severity": "P2",
+      "title": "The checklist sync guard does not require a valid example route",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "line": 109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R10-P2-001",
+      "_conflict_id": "R10-P2-001--1309ccdcd819",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R10-P2-001",
+          "peerId": "R10-P2-001--114d288c18dc",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R10-P2-001",
+          "peerId": "R10-P2-001--f40677973b83",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--d16dddd23461",
+      "severity": "P2",
+      "title": "The code-block exclusion skips only fence delimiter lines, so fenced example content is still scanned",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "line": 137,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--d16dddd23461",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--362b25835317",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--cc382f8acc63",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-001--741032de9a69",
+      "severity": "P2",
+      "title": "The deciding anchor-score rule is missing from the benchmark recipe",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R8-P2-001",
+      "_conflict_id": "R8-P2-001--741032de9a69",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--6a1d07225a02",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--98ae7a701f0a",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--4f833638ddfe",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-002",
+      "severity": "P2",
+      "title": "The deciding delta.json carries arithmetic with no experiment identity",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/delta.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--757384f02d3b",
+      "severity": "P2",
+      "title": "The drift guard discards out_of_order_anchor, so a reordered example passes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--757384f02d3b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--ae4f031c1c52",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--6939a04e7602",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The drift guard has no coverage floor over the example tree, so an empty level directory fails with a misleading description message",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 18,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R1-P2-003--30f0855832f7",
+      "severity": "P2",
+      "title": "The drift guard reports success when rg is not installed",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R1-P2-003",
+      "_conflict_id": "R1-P2-003--30f0855832f7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-003",
+          "peerId": "R1-P2-003--465d7fd0401a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-003",
+          "peerId": "R1-P2-003--b4265b5d00b7",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--06220ba61942",
+      "severity": "P2",
+      "title": "The end-to-end card scenario leaves its own state behind and still reports cleanup",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--06220ba61942",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--902675ff743a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P1-001--6adc15a48844",
+      "severity": "P1",
+      "title": "The example the card tells a weak model to imitate uses the task format the card forbids",
+      "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+      "line": 32,
+      "description": "",
+      "findingClass": "followability-contradiction",
+      "deltaStatus": null,
+      "scopeProof": "All four example task files read; template format at tasks.md.tmpl:53; card step 4 and step 7 read; phase 005 Out of Scope names the deferral.",
+      "affectedSurfaceHints": [
+        "authoring card step 4 and step 7",
+        "four example task files",
+        "tasks template format"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R5-P1-001",
+      "_conflict_id": "R5-P1-001--6adc15a48844",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P1-001",
+          "peerId": "R5-P1-001--18e483ad4361",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-001--0eb414425e24",
+      "severity": "P2",
+      "title": "The fill-guidance regression test omits add-on templates",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R9-P2-001",
+      "_conflict_id": "R9-P2-001--0eb414425e24",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--f5f19eb007bb",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--59e6fa674586",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--e4ff9407b33b",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-001--59e6fa674586",
+      "severity": "P2",
+      "title": "The L3+ clarifier reaches all six tasks.md sections and none of the three plan.md sections with the same heading",
+      "file": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      "line": 330,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R9-P2-001",
+      "_conflict_id": "R9-P2-001--59e6fa674586",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--f5f19eb007bb",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--0eb414425e24",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--e4ff9407b33b",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-001--e4ff9407b33b",
+      "severity": "P2",
+      "title": "The only agent that names the card names neither the token rule nor the guards",
+      "file": ".skilled/agents/markdown.md",
+      "line": 208,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R9-P2-001",
+      "_conflict_id": "R9-P2-001--e4ff9407b33b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--f5f19eb007bb",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--0eb414425e24",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R9-P2-001",
+          "peerId": "R9-P2-001--59e6fa674586",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R10-P2-001--f40677973b83",
+      "severity": "P2",
+      "title": "The parent spec and goal continuity blocks still point at pre-execution next actions",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 16,
+      "description": "",
+      "findingClass": "continuity-metadata-drift",
+      "deltaStatus": null,
+      "scopeProof": "Both frontmatter blocks and the goal log close rows read directly.",
+      "affectedSurfaceHints": [
+        "parent spec continuity",
+        "parent goal continuity",
+        "resume surface"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R10-P2-001",
+      "_conflict_id": "R10-P2-001--f40677973b83",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R10-P2-001",
+          "peerId": "R10-P2-001--114d288c18dc",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R10-P2-001",
+          "peerId": "R10-P2-001--1309ccdcd819",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-002",
+      "severity": "P2",
+      "title": "The parent spec still lists doctor speckit entries as modified by phase 006",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 104,
+      "description": "",
+      "findingClass": "stale-scope-table",
+      "deltaStatus": null,
+      "scopeProof": "Table row, operator decision row and phase 006 summary read directly.",
+      "affectedSurfaceHints": [
+        "parent spec Files to Change",
+        "parent goal log",
+        "phase 006 audit"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R6-P2-002--20fcb3ada6e7",
+      "severity": "P2",
+      "title": "The plan asset describes authoring and names the guard scripts but neither the card nor the v2.3 token form",
+      "file": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      "line": 313,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R6-P2-002",
+      "_conflict_id": "R6-P2-002--20fcb3ada6e7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-002",
+          "peerId": "R6-P2-002--9bab83c2334b",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "The post-edit hook placeholder scan cannot see the colon token form the v2.3 templates now emit",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "line": 99,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R8-P2-001--98ae7a701f0a",
+      "severity": "P2",
+      "title": "The release notes promise a good and a weak example in every core section, and two sections carry neither",
+      "file": ".skilled/skills/system-spec-kit/changelog/v2.9.0.0.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R8-P2-001",
+      "_conflict_id": "R8-P2-001--98ae7a701f0a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--6a1d07225a02",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--741032de9a69",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--4f833638ddfe",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P1-001--259535612c4a",
+      "severity": "P1",
+      "title": "The removal block deletes the branch without the branch-tip condition its operator approved",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md",
+      "line": 868,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R2-P1-001",
+      "_conflict_id": "R2-P1-001--259535612c4a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P1-001",
+          "peerId": "R2-P1-001--e4b6ded7e9ed",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--b030ddab2aff",
+      "severity": "P2",
+      "title": "The S8 playbook overrides the card's current scaffold command",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md",
+      "line": 559,
+      "description": "Add --with-goal to the S8 scaffold command, or narrow the S8 coverage claim to the card steps the scenario actually exercises.",
+      "findingClass": "playbook-card-alignment",
+      "deltaStatus": null,
+      "scopeProof": "The phase 005 card is a named input to phase 008 S8, whose plan and implementation summary claim a Level 1 packet was authored from that card.",
+      "affectedSurfaceHints": [
+        "S8 command brief",
+        "goal.md scaffold path",
+        "authoring-card conformance evidence"
+      ],
+      "contentHash": "sha256:7f065b9f60eb2bf2878ede4a92598db8cb4d563b36ab4b55622d1fc820bd3b2e",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--b030ddab2aff",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--c1499aa6e098",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--e6168a1a2e9c",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--b0d09be02df8",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P1-001--e4b6ded7e9ed",
+      "severity": "P1",
+      "title": "The scaffold command accepts a traversing track and creates it outside the repository",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1291,
+      "description": "",
+      "findingClass": "path-traversal",
+      "deltaStatus": null,
+      "scopeProof": "Assignment and mkdir read at create.sh:1291-1295; validated sibling at create.sh:1223; card command at spec-authoring-card.md:47.",
+      "affectedSurfaceHints": [
+        "create.sh argument parsing",
+        "scaffold destination",
+        "authoring card step 3",
+        "BOUNDS write contract"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R2-P1-001",
+      "_conflict_id": "R2-P1-001--e4b6ded7e9ed",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P1-001",
+          "peerId": "R2-P1-001--259535612c4a",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P1-002",
+      "severity": "P1",
+      "title": "The scan exits 1 on 55 legitimate bracketed matches in this strict-passing packet, so the hook blocks its own packet",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "line": 149,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--49a694e80845",
+      "severity": "P2",
+      "title": "The shell-only title provenance check lacks orchestrator parity",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+      "line": 149,
+      "description": "The shell rule flags title provenance tokens that are absent from the orchestrator marker set, so the paired checks can return different results.",
+      "findingClass": "cross-implementation-contract",
+      "deltaStatus": "active",
+      "scopeProof": "Phase 003 calls this shell script a mirror and REQ-002 requires the paired implementations to agree.",
+      "affectedSurfaceHints": [
+        "PLACEHOLDER_FILLED verdict",
+        "title provenance cleanup",
+        "isolated shell-rule harness"
+      ],
+      "contentHash": "sha256:a23144da3c19acaf630fb3627a8af621e6c088114fecb6da3efab4692513f38d",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--49a694e80845",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--b85bdc671bb8",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P2-002--6aa89224b293",
+      "severity": "P2",
+      "title": "The two new catalog sections are linked from the playbook but carry no verification marker",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "line": 218,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R7-P2-002",
+      "_conflict_id": "R7-P2-002--6aa89224b293",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-002",
+          "peerId": "R7-P2-002--70423f1d3f55",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--2d06c94f3de3",
+      "severity": "P2",
+      "title": "Two child descriptions carry the previous child's phase number",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/description.json",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-1"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--2d06c94f3de3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--87eecbd1074c",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--60358a864764",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--f3548e1e1a8c",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-003--b4265b5d00b7",
+      "severity": "P2",
+      "title": "Two parent-spec pointers dangle: Parent Spec ../spec.md and the phase 003 decision record",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R1-P2-003",
+      "_conflict_id": "R1-P2-003--b4265b5d00b7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-003",
+          "peerId": "R1-P2-003--465d7fd0401a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-003",
+          "peerId": "R1-P2-003--30f0855832f7",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-001--4f833638ddfe",
+      "severity": "P2",
+      "title": "Two run-set files are named baseline.json while neither holds a baseline",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh2/baseline.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "pi-deepseek-2"
+      ],
+      "_conflictOf": "R8-P2-001",
+      "_conflict_id": "R8-P2-001--4f833638ddfe",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--6a1d07225a02",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--741032de9a69",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R8-P2-001",
+          "peerId": "R8-P2-001--98ae7a701f0a",
+          "peerLineages": [
+            "pi-deepseek-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P2-002--70423f1d3f55",
+      "severity": "P2",
+      "title": "Two scenarios omit awk and rg from the tools their command blocks use",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md",
+      "line": 28,
+      "description": "",
+      "findingClass": "precondition-drift",
+      "deltaStatus": null,
+      "scopeProof": "Both preconditions and both guard scripts read; phase 008 limitation names the forwarded note.",
+      "affectedSurfaceHints": [
+        "playbook scenarios 479 and 482",
+        "example drift guard",
+        "card sync guard"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "R7-P2-002",
+      "_conflict_id": "R7-P2-002--70423f1d3f55",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R7-P2-002",
+          "peerId": "R7-P2-002--6aa89224b293",
+          "peerLineages": [
+            "pi-deepseek-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 16,
+    "P2": 57
+  },
+  "openFindingsCount": 73,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 16,
+  "activeP2": 57
+}

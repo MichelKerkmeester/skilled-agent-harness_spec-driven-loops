@@ -1,0 +1,17 @@
+Done. One sentence replaced, nothing else touched.
+
+**Change:** `.skilled/skills/system-spec-kit/SKILL.md:483`
+
+- Before: `... `SPECKIT_DRAFT_AUTO_REPAIR` is `0`, `false` or `off`. The read-only tools that run the validator as a child (`repair-derived.cjs`, `upgrade-legacy.mjs`, `quality-audit.sh`, `progressive-validate.sh` and the strict-pass freshness sweep) set it to `0`, so they stay read-only. A `spec.md` stamped v2.4 ...`
+- After: `... `SPECKIT_DRAFT_AUTO_REPAIR` is `0`, `false` or `off`. Child validator runs inside read-only tools set it to `0`. A `spec.md` stamped v2.4 ...`
+
+The preceding sentence (Draft packet self-repair during `--strict`) and the following sentence (`A `spec.md` stamped v2.4 ...`) are byte-identical, separated by single spaces. No other file or line was modified.
+
+**Verification (observed, exit 0):**
+
+```
+grep -c 'The read-only tools that run the validator' .skilled/skills/system-spec-kit/SKILL.md   → 0
+grep -c 'Child validator runs inside read-only tools set it to `0`. A `spec.md` stamped' ...      → 1
+```
+
+Nothing is the operator's to do here; the file is written and the verification command has been run.

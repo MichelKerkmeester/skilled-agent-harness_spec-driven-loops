@@ -1,0 +1,2 @@
+ M specs/system-speckit/054-weak-model-spec-authoring/goal.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`changed-packet-validation.yml` grades every changed packet, including the benchmark-result copies under `scratch/`, whose `description.json` names a `zz-bench-authoring/...` sandbox, so they fail `METADATADISKPATHCONSISTENCY` and CI run 40380947180 on `b51a341a07` failed with 81 \"New packet does not validate\" errors (Measured Behavior below)",
     "created_at": "2026-10-26T22:13:57Z",
-    "last_save_at": "2026-10-27T05:32:29.720Z",
+    "last_save_at": "2026-10-27T07:32:37.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:068c2760bc5eb2c750140ce25ab3e4acad778aba149807f157ae521c37c68d9a",
+    "source_fingerprint": "sha256:7d7d1c5e32a77e0f0e139460a5cf3250191910fa0563c5145b7560178e3bb9ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb7f3a3dace0e5f7055b4463d051dcc6e7e4cb59a8d763a90b3f3ff5c3602b91",
-      "plan.md": "88e2913a24dfd203908db941e53663600bc9d3c39caf139355103a84604c9284",
-      "tasks.md": "dc4f4e1014932a2d51884cbc3b068c43575c354456f8ca2c2b16bd9ab937d86a",
-      "implementation-summary.md": "6ee87f0ab29ee1bd77bbdc0e5f5c0abef3507b22ade601f26a0263142b03f3da"
+      "plan.md": "625ae098d0770b5551b546a04d55cedd77a48892a2a3c09b5ea41b3ec7915c8c",
+      "tasks.md": "f3a944910ce0543baae6e8fc9e9023ccc8337487665b725865148be37e5a5afc",
+      "implementation-summary.md": "3b90d5dcb9acde5b75e931e958bcd72395fd3ff807053d353bcc433cad8a76f0"
     },
     "last_active_at": null
   }

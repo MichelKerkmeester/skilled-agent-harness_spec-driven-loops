@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.5.0
+version: 2.7.6.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -846,7 +846,7 @@ Cut in the order section 3 of `sk-create-goal`'s [budget-and-handoff.md](../../.
 
 A Draft packet can repair its own generated metadata instead of failing on it. When a `validate.sh --strict` run finds that every error comes from a derived-metadata rule that `repair-derived.cjs` can fix, it runs `repair-derived.cjs --folder <packet> --apply` once, prints each file it rewrote, and validates again. The repair rewrites generated metadata (`description.json`, `graph-metadata.json`), frontmatter packet pointers and the Spec Folder row, and never any other body text.
 
-It runs only when `spec.md` Status is Draft and every error is a derived-metadata one. It never runs for any other status, when any content rule fails, without `--strict`, when `SPECKIT_RULES` names a subset of rules, or when `CI` is set: a check in CI reads a committed tree and must not rewrite it. The last three keep "every error is derived" honest, since a narrowed or non-strict run never ran some content rules. `SPECKIT_DRAFT_AUTO_REPAIR=0` turns it off, as do `false` and `off`. Tools that run `validate.sh` as a child to read or audit a packet set the switch to `0`, so only a person or model running the validator directly gets the repair. `validateFolder` called as a library never writes.
+It runs only when `spec.md` Status is Draft and every error is a derived-metadata one. It never runs for any other status, when any content rule fails, without `--strict`, when `SPECKIT_RULES` names a subset of rules, or when `CI` is set: a check in CI reads a committed tree and must not rewrite it. The last three keep "every error is derived" honest, since a narrowed or non-strict run never ran some content rules. `SPECKIT_DRAFT_AUTO_REPAIR=0` turns it off, as do `false` and `off`. Tools that run `validate.sh` as a child to read or audit a packet set the switch to `0`, so only a person or model running the validator directly gets the repair. A recursive run, including the one `validate.sh` starts by itself on a phase parent, validates each child as its own packet, so every Draft child whose errors are all derived gets its own repair, and each rewrite is printed. Set the switch to `0` to check a phase parent without writing. `validateFolder` called as a library never writes.
 
 ### Usage Examples
 

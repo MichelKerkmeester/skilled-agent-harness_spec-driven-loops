@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"sol","sessionId":"sol"},"data":{"mode":"review","totalIterations":3,"activeP0":0,"activeP1":3,"activeP2":1,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

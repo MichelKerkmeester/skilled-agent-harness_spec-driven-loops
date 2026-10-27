@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phases 001 to 012 and one child under `041-write-recipe-fixes`. Authoring logic lives in system-spec-kit, never sk-prompt. |
+| D1 | Phases 001 to 023 and one child under `041-write-recipe-fixes`. Authoring logic lives in system-spec-kit, never sk-prompt. |
 | D2 | Every gate this packet adds applies only to new docs, via the v2.3 marker. No existing or external packet gets a new failure. |
 | D3 | At most 3 parallel lanes, never two on a file. |
 | D4 | Phases close on scripted gates plus read-only reviews by cli-devin and cli-codex luna. One review pass may cover several phases. |
@@ -61,22 +61,8 @@ Frozen choices. Changing one is an amendment.
 ## 2. BINDING
 
 **Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
-
-| Phase | Goal |
-|-------|------|
-| 1 | `001-template-drift-census-and-baseline/goal.md` |
-| 2 | `002-template-and-example-defect-repair/goal.md` |
-| 3 | `003-versioned-placeholder-gate/goal.md` |
-| 4 | `004-template-section-fill-guidance/goal.md` |
-| 5 | `005-weak-model-authoring-card/goal.md` |
-| 6 | `006-speckit-command-and-agent-alignment/goal.md` |
-| 7 | `007-playbook-catalog-readme-alignment/goal.md` |
-| 8 | `008-playbook-run-in-worktree/goal.md` |
-| 9 | `009-authoring-benchmark-and-closeout/goal.md` |
-| 10 | `010-deep-review-finding-fixes/goal.md` |
-| 11 | `011-authoring-speed-research/goal.md` |
-| 12 | `012-authoring-speed-fixes-and-alignment/goal.md` |
+phase and binds as if written here. Each phase folder, `001-*` to `023-*`,
+holds its own `goal.md`; the parent `spec.md` phase map names every folder.
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -171,6 +157,8 @@ and findings belong here.
 | 021 ci gate regressions | Done | scratch skip: replay 7 graded, 0 scratch (was 111, 104); ratchet 9/9; comparison 17/17; v2.12.2.0, Hermes PASS 67 |
 | 022 advisor routing and local install | Done | advisor suite 150/150 (was 1 failed); 5 probes live+local; graph bound + suffix strip, each test fails without its fix; sk-git link step 171/0, sk-git 1.9.6.0; strict 23/23 |
 | 022 rebase onto main | Done | main shipped sk-git 1.9.6.0 and the same doctor lead phrase first; this phase's release is sk-git 1.9.7.0 and adds no route change |
+| 023 deep review remediation | Done | 2 P1 + 9 P2 from the review and 1 P1 + 7 P2 from the code review fixed, each code fix failing first; suite 301 files, 3600 tests, 0 failed; system-spec-kit 2.12.4.0; parent Complete |
+| 023 rebase onto main | Done | main shipped an unrelated system-spec-kit 2.12.4.0 first; this phase's release is 2.12.5.0 |
 
 ### Deviations and findings
 

@@ -1,0 +1,37 @@
+All four items applied. Verification outputs:
+
+```
+$ rg -c 'ANCHOR:measured-behavior' .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+2
+
+$ rg -n 'ANCHOR:effort|ANCHOR:enhanced-rollback' .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+(no output, exit 1)
+```
+
+## Changes
+
+**`spec.md`**
+- `spec.md:50-59` added the filled `measured-behavior` block directly after the line that closes the `problem` anchor (`:48`), outside every other anchor and with no H2: `### Measured Behavior`, a `text` fence holding `curl -si -X POST localhost:3000/auth/login ... | head -1` and its verbatim `HTTP/1.1 200 OK`, then one sentence naming that status as the line the spec quotes (REQ-002, SC-001).
+- Edge cases (`:165-181`): kept unchanged. Every row carries an example-specific outcome (exact cap, exact message, exact redirect), so none is a generic external-service, timeout or session-expiry placeholder.
+
+**`plan.md`**
+- Removed the entire effort-estimation section (old anchor pair `:171-184`) and the entire enhanced-rollback section (old `:186-207`), headings and their `---` dividers, leaving one divider between `phase-deps` and the trailing outline comment (`:167-168`).
+- `plan.md:3` description no longer advertises the two removed sections: now "adding a phase dependency section to the Level 1 sections".
+- `plan.md:17-18` EXAMPLE note trimmed to the surviving L2 addition.
+- `plan.md:173` trailing outline bullet now reads `- Phase dependencies between the four phases` (the two removed bullets are gone).
+- `phase-deps` (`:151-167`) left as filled content, unchanged.
+
+**`tasks.md`**
+- `tasks.md:184` header renamed `## Fix Completeness` to `## FIX ADDENDUM: FIX COMPLETENESS`; its seven `CHK-FIX-*` rows kept. No sign-off section exists in this level (sign-off is L3+), so that clause did not apply.
+
+## Extra checks I ran
+```
+state=filled                      (sourced check-measured-behavior.sh, measured_behavior_block_state on the example spec)
+anchor balance                    spec.md 10/10, plan.md 8/8, tasks.md 15/15 open/close
+fence balance                     spec.md 2, plan.md 2, tasks.md 0 (all even)
+em dash scan                      rg -n '—' spec.md plan.md tasks.md -> no output
+```
+
+The three description/comment edits in `plan.md` go beyond the literal item list: removing the sections made those sentences name sections that no longer exist, and they sit in the same file. Everything else stayed in the four scoped files, and `description.json` is untouched. I did not run `check-example-drift.sh`, per the brief.
+
+Operator's step: copy the staged tree back and run the drift guard; this example's new anchor is `extra_anchor` against the live template until the template worker's `measured-behavior` anchor lands.

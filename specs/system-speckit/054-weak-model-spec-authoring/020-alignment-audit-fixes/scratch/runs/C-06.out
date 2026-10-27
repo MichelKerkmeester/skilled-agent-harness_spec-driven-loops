@@ -1,0 +1,12 @@
+Changed one table cell; nothing else touched.
+
+- `specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-006-speckit-command-and-agent-alignment.md:58` — third column of the `.skilled/agents/...` row replaced with `Card and filled example in markdown.md only; retired checklist doc dropped in all four`. File-path cell and table formatting unchanged.
+
+Verification:
+```
+$ grep -c "Card and filled example in markdown.md only; retired checklist doc dropped in all four |" specs/.../changelog-054-006-speckit-command-and-agent-alignment.md
+1
+```
+Expected 1, got 1. Line 58 printed in full to confirm the cell boundary (`... in all four |`) and the surrounding cells are intact.
+
+Nothing is the operator's to do on this file; the change is textual only, no further gate applies.

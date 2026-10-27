@@ -1,0 +1,12 @@
+Change complete.
+
+**Edit** (one cell, one file):
+- `.skilled/skills/system-spec-kit/assets/complexity-decision-matrix.md:44` — replaced `| dep-graph (ASCII), effort-est |` with `| dep-graph (ASCII)             |` (Level 3 row, dependency-graph column).
+
+**Verification output** (`rg -n "effort-est|dep-graph \(ASCII\)" ...`):
+```
+44:| 56-79       | 3     | Full         | Level 2 + decision-record                   | dep-graph (ASCII)             |
+```
+Single match, `effort-est` gone, cell padded to the original column width before the trailing pipe. Exit status 0 (a hit, as expected).
+
+No other lines, files, or git state touched.

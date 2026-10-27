@@ -8,7 +8,7 @@
     "maintainability"
   ],
   "specFolder": "specs/system-speckit/054-weak-model-spec-authoring",
-  "maxIterations": 10,
+  "maxIterations": 6,
   "convergenceThreshold": 0.1,
   "antiConvergence": {
     "convergenceMode": "default",
@@ -16,7 +16,8 @@
   },
   "stopPolicy": "max-iterations",
   "executionMode": "auto",
-  "lineageMode": "auto",
+  "lineageMode": "restart",
+  "reviewFocus": "All work packet 054 shipped in phases 001-022, now on main at 558570a83e: the spec-kit templates, validator, authoring card, CLI scripts and their tests, the advisor scorer and its phrases, the sk-git provisioning step, the docs and the phase records. Check the shipped code and docs against what each phase spec claims.",
   "resource_map": {
     "emit": true
   },
@@ -24,24 +25,25 @@
     "fanout": {
       "executors": [
         {
+          "kind": "cli-pi",
+          "model": "deepseek-v4.1-flash-1017",
+          "reasoningEffort": "max",
+          "timeoutSeconds": 1800,
+          "label": "deepseek",
+          "iterations": 3
+        },
+        {
           "kind": "cli-codex",
-          "model": "gpt-6-luna",
+          "model": "gpt-6-sol",
           "reasoningEffort": "max",
           "serviceTier": "fast",
           "timeoutSeconds": 1800,
-          "label": "luna",
-          "iterations": 10
-        },
-        {
-          "kind": "cli-devin",
-          "model": "deepseek-v4-1-flash-max",
-          "timeoutSeconds": 1800,
-          "label": "deepseek",
-          "iterations": 10
+          "label": "sol",
+          "iterations": 3
         }
       ],
       "concurrency": 2
     }
   },
-  "status": "complete"
+  "status": "initialized"
 }

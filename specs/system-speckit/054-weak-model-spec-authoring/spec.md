@@ -47,14 +47,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring`, where every phase ran. The branch reached `main` on 2026-10-25 |
 | **Parent Spec** | None. The track folder `specs/system-speckit/` holds no `spec.md` |
 | **Parent Packet** | system-speckit/054-weak-model-spec-authoring |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | All nine phases are Complete, `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`, and phase 009 reports a measured before and after for the five authoring metrics |
+| **Handoff Criteria** | Every phase in the phase map is Complete, `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`, and phase 009 reports a measured before and after for the five authoring metrics |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -92,6 +92,7 @@ Make the templates, the examples, the validator and the authoring docs good enou
 - Measuring models other than cli-devin deepseek-v4-1-flash-1017-max for the deciding benchmark. The first final set ran on swe-2-max and is history.
 - Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
   - Correction 2026-10-25: after phase 009 the operator directed a push, and the worktree branch reached `main` at `10e8df7d25`. This line records that operator-directed push. Later commits stay local until the operator asks for the next push.
+  - Correction 2026-10-27: the operator directed later pushes too. The latest reached `main` at `558570a83e`, carrying phases 021 and 022.
 
 ### Files to Change
 
@@ -150,6 +151,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 20 | 020-alignment-audit-fixes/ | Fix every misalignment a four-lane audit found in the files 054 touched: code, skill docs, playbooks, catalog, READMEs, changelogs, routing, advisor, commands and agents | Complete |
 | 21 | 021-ci-gate-regressions/ | Clear the two CI gates an alignment run found failing on main: stop changed-packet validation grading benchmark packets under `scratch/`, and stop the advisor sending `/deep:research :auto` prompts to spec-kit; then fix the run's in-range P1 and P2 findings | Complete |
 | 22 | 022-advisor-routing-and-local-install/ | Close the four items left open after phase 21: the `/doctor:git hooks` routing test, the live `/deep:research :auto` near-tie, prompts naming the draft auto-repair, and a provision step that links private `local-*` commands into new worktrees | Complete |
+| 23 | 023-deep-review-remediation/ | Fix every finding of the 2026-10-27 two-lineage deep review: the placeholder fence and `--path` symlink P1s, the `--track` requirement wording, the recursive auto-repair doc gap, and the P2 record, doc and code findings | Complete |
 
 ### Phase Transition Rules
 
@@ -183,6 +185,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 019-follow-up-fixes | 020-alignment-audit-fixes | The operator asked on 2026-10-26 for a check that everything 054 touched aligns with its standards | `020-alignment-audit-fixes/scratch/audit/findings.json` holds the 46 findings |
 | 020-alignment-audit-fixes | 021-ci-gate-regressions | A local alignment audit run's completeness critic found changed-packet validation and the Routing Registry Drift ratchet failing on main | CI run 40380947180 on `b51a341a07` reads `failure` with 81 `New packet does not validate` annotations, and the divergence ratchet now prints `Tests 9 passed (9)` |
 | 021-ci-gate-regressions | 022-advisor-routing-and-local-install | The operator asked on 2026-10-27 to fix the four items phase 21's closeout left open | The advisor suite's one failing case, doctor-a-08, predates this packet and is recorded in the phase 21 closeout |
+| 022-advisor-routing-and-local-install | 023-deep-review-remediation | The operator asked on 2026-10-27 to fix every finding of the deep review run after phase 22 | `review/review-report.md` holds the adjudicated findings: 2 P1 and 9 P2 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,47 @@
+Task TT complete. One file changed, inside the staging tree only.
+
+## Changes: `specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch/staging/templates/core/tasks.md.tmpl`
+
+**A. Example swap** (all 10 SWEEP lines for this file, old `--quiet` story to the `--keep <n>` / `scripts/rotate-logs.sh` / `logs/archive/` story):
+
+| Line | Fill note now reads |
+|---|---|
+| :44 | `GOOD: R is scripts/rotate-logs.sh. A is logs/archive/.` |
+| :60 | setup task confirms 10 archives, `ls logs/archive \| wc -l` prints 10 |
+| :71 | `T002 Add the --keep <n> branch. Verify: --keep 3 leaves 3 archives.` |
+| :83 | `T003 Run both invocations. Verify: ls logs/archive \| wc -l prints 3 and 10.` |
+| :94 | completion artifact: `--keep 3` leaves 3 archives and the suite passes |
+| :143 | `CHK-010 [P0] bash -n scripts/rotate-logs.sh exits 0.` |
+| :155 | `CHK-020 [P0] --keep 3 leaves 3 archives.` |
+| :182 | `CHK-030 [P0] scripts/rotate-logs.sh reads no credential.` |
+| :193 | `CHK-040 [P1] spec.md and tasks.md both name --keep <n>.` |
+| :242 | `CHK-110 [P1] --keep 3 finishes in under 5 ms.` |
+
+Every note kept its instruction and its GOOD-then-WEAK shape; WEAK stayed vague; nothing outside the example text moved.
+
+**Structural edits**
+- :166 header renamed `## Fix Completeness` to `## FIX ADDENDUM: FIX COMPLETENESS`, :167 fill note now "Write this section when the packet fixes a reported finding. Delete it otherwise." with the existing GOOD/WEAK pair kept. Section sits inside `<!-- IF level:3,3+ -->` as before.
+- :232 CHK-100 now reads "...documented in `plan.md`'s ARCHITECTURE DECISION RECORD section, or in `decision-record.md` when the packet has one". `plan.md.tmpl:304` confirms that H2 exists.
+- :295 the three named rows (`Technical Lead`, `Product Owner`, `QA Lead`) became one token row: `| [YOUR_VALUE_HERE: Name] | [YOUR_VALUE_HERE: Role] | [ ] Approved | |`.
+
+**B. Stamp** :38 `tasks-core | v2.3` to `v2.4`.
+
+## Verification (repo root, paste of output)
+
+```
+$ rg -n 'Technical Lead|Product Owner|QA Lead' .../core/tasks.md.tmpl
+(no output, exit 1)
+
+$ rg -n '^## FIX ADDENDUM: FIX COMPLETENESS' .../core/tasks.md.tmpl
+166:## FIX ADDENDUM: FIX COMPLETENESS
+
+$ rg -c -e '--quiet' -e 'recommend-level' -e '17-line' .../core/tasks.md.tmpl
+(no output, exit 1)
+
+$ rg -c '\| v2.4 -->' .../core/tasks.md.tmpl
+1
+```
+
+Extra checks I ran: `every level requires it` gone (exit 1); no other old-story wording (`40 ms`, `Recommended Level`, `callers already pass flags`, `quiet`, `--json`) in the file; `<!-- IF -->`/`<!-- /IF -->` balanced at 12 and 12 with correct nesting depth at every open; `ANCHOR`/`/ANCHOR` balanced at 21; FILL/GOOD/WEAK balanced at 22/22/22; no em dash. Line count 305 to 303, entirely from the two removed sign-off rows.
+
+Nothing is left that is the operator's to do in this shard; the conductor still owns copying ST back over the live templates and regenerating the golden snapshots.

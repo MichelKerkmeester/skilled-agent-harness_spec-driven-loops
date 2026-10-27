@@ -1,0 +1,54 @@
+## Edits
+
+**Files deleted**
+- `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md`
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/resource-map-template.md`
+
+**`README.md`**
+- `README.md:254` (was 254): dropped the `resource-map.md` tree line; tree now runs `implementation-summary.md` → `graph-metadata.json` → `scratch/`.
+- `README.md:258` (was 259-263): replaced the lazy-add-on paragraph and its two render bullets with one line that keeps the deep-loop output: "`resource-map.md` is not a packet add-on. The deep-research and deep-review loops write their own evidence ledger of that name, extracted from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root."
+- Add-on list: removed the `before-after.md` entry and the `resource-map.md` plus `roadmap.md` entries. Section now `##### Lazy Add-ons` at `README.md:287` with `**\`decision-record.md\`**` 291, `**\`goal.md\`**` 295, `**\`timeline.md\`**` 299. That matches `--lazy-addons` = decision + timeline, plus `--with-goal`.
+
+**`.skilled/skills/system-spec-kit/SKILL.md`**
+- 952 → `## 9. CONTEXT RESEARCH`... correction: `feature-catalog.md:952` now reads `### Session relaunch session` - no. Precisely: `feature-catalog.md:942` is `## 9. CONTEXT PRESERVATION` at line 950 and `### Session relaunch loop` now at `feature-catalog.md:952`. The 17-line "Resource map template" section (old 952–968, through the `---` and blank before the next `###`) is gone.
+- `playbook.md`... precisely `manual-testing-playbook.md:334` row `| 270 | Resource map template | ... |` removed; §7.8 table now ends at `manual-testing-playbook.md:333`.
+- `session-relaunch-loop.md:171`: removed `- [Resource map template](resource-map-template.md)`; `Related references:` at 170 now opens with the Claude scenarios entry.
+- `SKILL.md:61`, `:65`: see below.
+  - `SKILL.md:61`: `resource-map.md`, `before-after.md`, `roadmap.md` removed from the authored-docs list, and `(the last six optional)` → `(the last three optional)`. The list is now 11 names and its last three are `debug-delegation.md`, `goal.md`, `timeline.md`, exactly the optional tail that survives.
+  - `SKILL.md:65`: replaced with `- The deep loops write their own \`resource-map.md\` evidence ledger into their artifact directory; it is not a packet add-on.`
+  - `SKILL.md:528`: `resource-map.md` kept. That list is about ToC headings in spec artifacts, not packet add-ons.
+
+**Regeneration**
+- `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` → `Wrote 1 of 67 Hermes skill copies; pruned 0`
+- Propagated to `.hermes/skills/system-spec-kit/SKILL.md:66` (list, `the last three optional`) and `:70` (the deep-loop bullet). Lines 60-70 of the source and 65-75 of the copy are identical.
+
+## Verification output
+
+```
+$ rg -n -i 'resource-map-template|before-after\.md|roadmap\.md|resource-map\.md\.tmpl' \
+    README.md S/SKILL.md S/feature-catalog S/manual-testing-playbook .hermes/skills/system-spec-kit/SKILL.md
+$ echo $?
+1
+```
+No output, exit 1, clean no-hit across all five paths including the regenerated Hermes copy.
+
+```
+$ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 67 Hermes skill copies in sync
+$ echo $?
+0
+```
+
+Deletions confirmed absent (`No such file or directory` for both). Line-count delta checks: README 1665→1648 (-17 = -1 tree, -4 paragraph, -4 before-after, -8 resource-map+roadmap), `feature-catalog.md` 1048→1032 (-16), `manual-testing-playbook.md` 361→360, `session-relaunch-loop.md` 174→173, `SKILL.md` unchanged at 587 (1-for-1 replacements).
+
+## Remaining hits to note
+
+The scan pattern cannot match a bare `resource-map.md`, so I ran a wider pass. Nothing live in the five verified paths. Five things sit outside the files this brief names:
+
+1. `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-composition-system.md:31` still lists `resource-map.md` as a lazy support document rendered from template source. This is the closest live leftover: it is the same wrong claim the brief removed elsewhere, and it is in the feature-catalog.
+2. `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:139` maps `['resource-map.md', 'addons/resource-map.md.tmpl']`, and that template is now gone.
+3. Generated data still lists the two deleted files: `runtime/data/trigger-index.json:2330`, `runtime/cli/retrieval/fixtures/corpus-manifest.json:7918` and `:7981`, `runtime/cli/retrieval/fixtures/generation-diagnostics.json:33802`. These need their own generator run, which the brief did not name.
+4. `README.md:263` still says "Eighteen templates ship". It was already stale before this change (16 `.tmpl` files exist on disk) and is now further off (13 are enumerated in that section). I left it because no defensible number follows from the brief's edits.
+5. Intentional keeps, as instructed: `README.md:258`, `SKILL.md:65` and `.hermes/.../SKILL.md:70` (deep-loop output), `SKILL.md:528` and `.hermes/.../SKILL.md:533` (ToC headings).
+
+Nothing here needs an operator action to make the two verification commands pass. Items 1 through 4 need a scope decision, since each is a file or generated artifact this brief did not open.

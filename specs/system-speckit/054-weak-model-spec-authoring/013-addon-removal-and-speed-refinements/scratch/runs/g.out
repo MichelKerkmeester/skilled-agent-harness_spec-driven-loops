@@ -1,0 +1,45 @@
+Done. Both templates edited, snapshots regenerated, all checks pass.
+
+## Edits
+
+**1. `.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:136`** — inserted the plain line directly under the `## 4. REQUIREMENTS` FILL note (line 134 heading, 135 FILL unchanged, blank separator retained):
+```
+REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
+```
+
+**2. `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:56`** — appended to the existing "One row per criterion…" line:
+```
+… supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
+```
+
+**3. `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:84`** — section 3 CLOSURE STATEMENT FILL replaced with the id-only/no-count wording (`GOOD: No. AC-002 is unmet.` / `WEAK: All eight criteria AC-001 to AC-008 are met.`).
+
+**4. `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:88`** — the bracketed paragraph below `**Closeable:**` (was lines 88-89, two lines) replaced with one line:
+```
+[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+```
+
+**5. Golden snapshot regenerated** (not hand-edited): `runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap`, 4 snapshots updated, now carrying the new REQ-id line at the four rendered level positions (lines 571, 1089, 1873, 2852).
+
+## Verification
+
+```
+$ ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts -u
+  Snapshots  4 updated
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+```
+
+```
+$ ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts
+ Test Files  2 passed (2)
+      Tests  36 passed (36)
+```
+
+```
+$ bash runtime/cli/spec/check-example-drift.sh; echo "exit=$?"
+EXAMPLE_DRIFT_OK
+exit=0
+```
+
+Notes on constraints checked: the new spec line is prose, not a comment and not a second `FILL`, so every `## ` section still holds exactly one FILL note (that is what `template-fill-guidance` asserts); the new addon FILL note ends with a period and carries both a GOOD and a WEAK example; no count or id range is introduced into guidance text. I ran no git commands and touched no files outside the two templates plus the regenerated snapshot.

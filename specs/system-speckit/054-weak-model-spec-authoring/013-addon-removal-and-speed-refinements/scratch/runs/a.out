@@ -1,0 +1,81 @@
+All edits applied and verified. Note: the two stray `cd /Users/joelkokowicz/dev/redline-platform` calls in the transcript were not mine and touched nothing here; everything below is inside `.skilled/skills/system-spec-kit` (S).
+
+## Edits
+
+**Deleted**
+- `S/templates/addons/before-after.md.tmpl`
+- `S/templates/addons/roadmap.md.tmpl`
+
+**`S/templates/spec-kit-docs.json`** (rewritten at identical `JSON.stringify(o,null,2)` formatting, removals only)
+- `versions`: removed `before-after.md.tmpl`, `roadmap.md.tmpl` (were 16, 18)
+- `documents`: removed the `before-after.md` and `roadmap.md` entries (were 78-81, 86-89); the surviving neighbours now sit at 76-84
+- `levels.*.lazyAddonDocs` (all 7 levels: `1`, `2`, `3`, `3+`, `phase`, `review`, `research`): removed both names; e.g. level 1 now reads `timeline.md` (114), `decision-record.md` (115)
+- `levels.*.sectionGates` (6 levels; `research` had none): removed both blocks, 12 blocks total; level 1's deletion point is `spec-kit-docs.json:284` (timeline) and `:304` (decision-record)
+- post-state per level: `missing requested: none` for `['timeline.md','decision-record.md']`, and every `documents.*.template` still resolves to a file that exists
+
+**`S/runtime/cli/spec/create.sh`**
+- `create.sh:281` help text now `"  --with-lazy-addons  Add timeline.md and decision-record.md"`
+- removed the `before_after_template_default_phrases` array (was 507-512)
+- removed the `roadmap_template_default_phrases` array (was 519-524)
+- `create.sh:691` seeds only `timeline.md` (the `before-after.md` and `roadmap.md` seed calls are gone)
+- `create.sh:702` `const requested = ['timeline.md', 'decision-record.md'];` (was 716)
+- `create.sh:2268` `"    5. Lazy add-ons: timeline.md, decision-record.md"` (was 2282)
+
+**`S/runtime/cli/spec/template-phrase-census.mjs`**
+- removed `beforeAfter: 'addons/before-after.md.tmpl'` and `roadmap: 'addons/roadmap.md.tmpl'` from `TEMPLATE_FILES` (was 41, 43; `timeline:` is now 41)
+- removed `'before-after.md': 'beforeAfter'` and `'roadmap.md': 'roadmap'` from `DOCUMENT_KINDS` (was 59, 61; `'timeline.md'` is now 57)
+- `COUNT_KINDS` slices still partition correctly because both removals were below index 5
+
+**`S/runtime/cli/spec/template-phrase-cleanup.mjs`**
+- removed `beforeAfter: 'before after'` and `roadmap: 'roadmap'` from `SEED_PHRASE_SUFFIXES` (was 46, 48; `timeline:` is now 46)
+
+**`S/runtime/cli/utils/template-structure.js`**
+- removed `'before-after.md'` and `'roadmap.md'` from `DOC_TEMPLATE_NAMES` (was 76, 78; `'timeline.md'` is now 76)
+- `:210` `AUTHOR_SCAFFOLDED_LAZY_DOCS = ['timeline.md', 'decision-record.md', 'goal.md', 'resource-map.md']`
+
+**`S/runtime/lib/validation/spec-doc-structure.ts`**
+- removed `'before-after.md'` and `'roadmap.md'` from `OPTIONAL_CONTINUITY_DOCS` (was 240, 242; `'timeline.md'` is now 240)
+- `:246` `const LAZY_DOCS_WITH_STATIC_ANCHORS = new Set(['timeline.md', 'goal.md']);`
+- its leading comment lost the now-false count: `like the three author add-ons` reads `like the author add-ons` (`:243`)
+
+No behavior added; resource-map, tests, snapshots, fixtures and docs untouched.
+
+## Verify outputs
+
+```
+$ rg -n 'before-after|roadmap' S/templates/spec-kit-docs.json S/runtime/cli/spec/create.sh \
+    S/runtime/cli/spec/template-phrase-census.mjs S/runtime/cli/spec/template-phrase-cleanup.mjs \
+    S/runtime/cli/utils/template-structure.js S/runtime/lib/validation/spec-doc-structure.ts
+### 1. rg
+rg exit=1
+```
+(no matches — clean)
+
+```
+### 2. json
+json ok
+```
+
+```
+### 3. bash
+bash ok
+```
+
+```
+### 4. files
+agenda: (ls .skilled/skills/system-spec-kit/templates/addons/)
+acceptance-criteria.md.tmpl
+debug-delegation.md.tmpl
+decision-record.md.tmpl
+goal.md.tmpl
+handover.md.tmpl
+research.md.tmpl
+resource-map.md.tmpl
+timeline.md.tmpl
+```
+
+Extra checks run beyond the brief: `node --check` on the two `.mjs` and the `.js` files passes, and a JSON invariant sweep confirms every level's `lazyAddonDocs` still contains the `create.sh` requested list (so the manifest/request agreement that exits 3 holds) and every `documents.*.template` names a file that exists.
+
+## Status
+
+Done: two templates deleted, six files updated, four named verifications pass with output pasted. `git status` could not be run (no `timeout` binary, and the first attempt was killed), so the "no unrelated file changed" check rests on my own edit record plus the four files' current contents, not on git. Nothing is left for you here; the resource-map, test and doc follow-ups are the later briefs' scope.

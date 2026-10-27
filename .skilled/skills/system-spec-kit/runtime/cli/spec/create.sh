@@ -1239,15 +1239,37 @@ resolve_and_validate_create_target() {
     fi
     resolved_target="$resolved_parent/$(basename "$candidate")"
 
+    # mkdir and the template renderer write through an existing link, so a
+    # target that already exists is judged by where it really points. A
+    # dangling link has no real path to judge and is refused. The path as
+    # named is still what is returned, because the packet takes its number
+    # and name from that, not from the link's target.
+    local real_target="$resolved_target"
+    if [[ -L "$resolved_target" || -e "$resolved_target" ]]; then
+        if [[ ! -d "$resolved_target" ]]; then
+            echo "Error: --path exists but is not a directory, or is a broken symlink: $raw_path" >&2
+            exit 1
+        fi
+        if ! real_target="$(cd "$resolved_target" >/dev/null 2>&1 && pwd -P)"; then
+            echo "Error: Unable to resolve --path: $raw_path" >&2
+            exit 1
+        fi
+    fi
+
+    if [[ "$real_target" == "$REPO_ROOT" ]]; then
+        echo "Error: --path '$raw_path' names the repository root, which is not a packet folder." >&2
+        exit 1
+    fi
+
     for tmp_resolved in /tmp "${TMPDIR:-}"; do
         [[ -n "$tmp_resolved" ]] || continue
-        if tmp_resolved="$(cd "$tmp_resolved" >/dev/null 2>&1 && pwd -P)" && is_path_within "$resolved_target" "$tmp_resolved"; then
+        if tmp_resolved="$(cd "$tmp_resolved" >/dev/null 2>&1 && pwd -P)" && is_path_within "$real_target" "$tmp_resolved"; then
             printf '%s\n' "$resolved_target"
             return 0
         fi
     done
 
-    if ! is_path_within "$resolved_target" "$REPO_ROOT"; then
+    if ! is_path_within "$real_target" "$REPO_ROOT"; then
         reject_explicit_path_outside_repo "$raw_path"
     fi
 

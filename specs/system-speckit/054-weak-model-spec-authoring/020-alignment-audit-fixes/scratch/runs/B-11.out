@@ -1,0 +1,10 @@
+Done.
+
+**Change**
+- `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:38` — sentence now reads: "...removes every token, and runs `validate.sh --strict --quiet`, reading the full report only on `FAILED` and stopping after three rounds." The trailing clause ("Three smoke runs measure the path...") is unchanged, and no other line was touched.
+
+**Verification** (ran from the worktree root, output + exit status read)
+- `grep -c 'runs \`validate.sh --strict --quiet\`, reading the full report only on \`FAILED\` and stopping after three rounds\.' .../spec-authoring-card.md` → `1`, exit 0.
+- `sed -n '38p'` confirms the replacement sits inside the original sentence with surrounding text intact.
+
+No other files edited, no git commands run. Nothing is yours to do here.

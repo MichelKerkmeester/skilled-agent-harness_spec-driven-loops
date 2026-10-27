@@ -1,0 +1,25 @@
+**Change applied in one file, two lines, nothing else touched.**
+
+`.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md`
+
+| Line | Before | After |
+|---|---|---|
+| 30 | `The stamp line ends with \`v2.3 -->\`.` | `The stamp line ends with \`v2.4 -->\`.` |
+| 76 | `a stamp line that ends with \`v2.3 -->\`` | `a stamp line that ends with \`v2.4 -->\`` |
+
+**Verification** (the exact command from the brief, run from the worktree root):
+
+```
+grep -c 'v2\.3 -->' <file>   →  0
+grep -c 'v2\.4 -->' <file>   →  2
+```
+
+Printed `0` then `2` as required. Note the `grep -c` exit status is `1` on the zero-count line: that is `grep` reporting "no lines matched", which is the intended result, not a failure. The second invocation exited `0`.
+
+**Supporting checks:** the anchors matched the current file at lines 30 and 76 with no stale-anchor retry needed. File byte size is unchanged at 5365 bytes across 110 lines, which is what a `3` to `4` digit swap on two lines produces, and the trailing newline is intact. No other line content changed.
+
+`SKILL ROUTING: advisor ambiguous (sk-code 0.85/0.12 vs sk-doc 0.95/0.12) → sk-doc`, the `.md` owner. Disclosed as judgment: the edit is a fully prescribed string substitution with no authoring latitude, so no sk-doc contract rule bore on the outcome.
+
+No git command was run. No file outside the named one was written.
+
+Nothing is left for you to do on this task.

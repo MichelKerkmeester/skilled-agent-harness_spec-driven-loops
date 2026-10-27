@@ -139,7 +139,7 @@ Every required finding is fixed at its source with a check that failed before th
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `create.sh` exits non-zero before any `mkdir` when `--track` holds a `..` segment or resolves outside `specs/`, and a valid track still creates its folder under `specs/<track>/` (P1-01). |
+| REQ-001 | `create.sh` exits non-zero before any `mkdir` when `--track` is absolute or holds a `..`, `.` or empty segment, and a valid track still creates its folder under `specs/<track>/` (P1-01). The track is checked as written and never resolved, so a track that already exists as a symlink keeps working (amended 2026-10-27; the earlier wording also said "resolves outside `specs/`", which the shipped code and its test deliberately do not do). |
 | REQ-002 | `PLACEHOLDER_FILLED` and `rules/check-placeholders.sh` flag an unfilled token that follows a backticked example on the same line and still skip the backticked one (P1-02). |
 | REQ-003 | `spec/check-placeholders.sh` flags `[YOUR_VALUE_HERE: ...]` and reports 0 placeholders on packet 054, which passes recursive strict validation (P1-03 and P1-04). |
 | REQ-004 | Strict validation fails a v2.3 doc that is missing a section its level's `sectionGates` require, and a v2.2 doc validates as it did before (P1-05). |

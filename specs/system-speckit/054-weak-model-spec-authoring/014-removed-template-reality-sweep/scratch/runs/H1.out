@@ -1,0 +1,51 @@
+Work complete. All eight items are on disk and every verification command was run.
+
+## Changes
+
+| # | File:line | Change |
+|---|---|---|
+| 1 | `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:722` | "the ten addon templates" to "the seven add-on templates", `16 passed` to `24 passed` |
+| 2 | `.../feature-catalog/tooling-and-scripts/template-section-fill-guidance.md:18` | "the ten addon templates" to "the seven add-on templates". The file states no `16 passed` count. Its "all 16 level and document pairs" claim on line 26 is a different figure and stays: `ANCHOR_COUNTS` in the test holds 16 entries |
+| 3 | `.../manual-testing-playbook/template-authoring/golden-render-all-levels.md:24,30,63,76,86` | five fill-guidance counts to `24 passed` / `Tests  24 passed (24)`, grep to `grep -E '^ *Tests +24 passed'`. Both `12 passed` golden counts untouched |
+| 4 | `.../templates/README.md:223` | `Tests  16 passed (16)` to `Tests  24 passed (24)` |
+| 5 | `.../templates/README.md:145-147` | three add-on rows added after the `goal.md.tmpl` row, byte-identical to the brief and padded to the table's existing 41/82 column widths |
+| 6 | `.../references/structure/folder-structure.md:43-47` | packet-types tree now lists all four, `review.spec.md.tmpl` last with `└──`. No trailing comments existed to keep |
+| 7 | `.../runtime/cli/spec/README.md:105` | "the 18 template document kinds" to "the 15 template document kinds" |
+| 8 | `.../runtime/cli/tests/upgrade-legacy.vitest.ts:486` | comment now begins "resource-map.md is a legacy packet-root document...". Lines 487-488 unchanged |
+| 9 | `.../manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md:52,56-57,85-89,96-97` | recorded baseline, injected and reverted blocks replaced with the live output |
+
+## Verification output
+
+```
+### verify 1
+rg -n 'ten addon|16 passed|18 template document' ...
+exit=1                      (no rows)
+### verify 2
+43:├── packet-types/                   # Non-level packet shapes
+44-│   ├── phase-parent.spec.md.tmpl
+45-│   ├── research.spec.md.tmpl
+46-│   ├── review-report.md.tmpl
+47-│   └── review.spec.md.tmpl
+### verify 3
+    // resource-map.md is a legacy packet-root document the spec-doc set does not hold and no template
+    // maps, so the fill passes it over; the whole-file comparison below is what
+    // pins that rather than a rewritten key.
+```
+
+Authoritative runs, read with their output and exit status:
+- `template-fill-guidance.vitest.ts` → `Tests  24 passed (24)`, `Test Files  1 passed (1)`
+- `scaffold-golden-snapshots.vitest.ts` → `Tests  12 passed (12)`, `Test Files  1 passed (1)`
+- `check-markdown-links.cjs` after all edits → `7629 files, 13779 links checked, 0 broken`, exit 0
+- `spec-kit-docs.json` holds 15 documents, `templates/addons` holds 7 files, `templates/packet-types` holds 4
+
+## Three things you should rule on
+
+1. **Item 9 date.** This doc has no date field. It records `Observed exit code:` lines and no capture date, so there was nothing to set to 2026-10-26 and I added no new date line. Say the word if you want one appended.
+2. **Item 9 em dash.** The clean-run console line is `OK` plus an em dash plus `0 broken markdown links.` Your brief bans writing an em dash, so that one line is omitted from both clean blocks. Everything else in those blocks is verbatim, and the framing sentence at line 52 now states the tree is link-clean with an empty broken set. Restoring full verbatim output means accepting that one em dash.
+3. **Item 8 rewrap.** The mandated prefix makes line 486 102 characters against neighbours of 82, so it is longer than them either way. No rewrap can shorten it and no word moved across the break, so lines 487-488 stay as they were.
+
+Also worth knowing: the deletion of the six pre-existing broken links made two other lines in item 9 unstale-able. Line 52's "six pre-existing broken links survive, so the baseline is exit 1" and the `[plus the same six pre-existing broken links ...]` line in the injected block both asserted a non-clean tree, so both changed. That is beyond the literal line range and inside the file the brief named.
+
+Adjacent, untouched, out of scope: `manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md:85` still reads `16 passed, 0 failed`, an unrelated coverage figure.
+
+Nothing else to hand off. The one decision that is yours is point 2.

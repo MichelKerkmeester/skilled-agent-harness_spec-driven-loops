@@ -1,0 +1,52 @@
+Done. One file edited: the staged `templates/core/spec.md.tmpl` (465 → 456 lines). Live `.skilled/.../templates` copy untouched.
+
+**A. Example swap (21 SWEEP lines, `--quiet`/recommend-level story → `--keep <n>` on `scripts/rotate-logs.sh`)**
+
+| Line (was → now) | Fill note |
+|---|---|
+| 59 → 59 | EXECUTIVE SUMMARY: archive growth, `--keep <n>`, `wc -l` prints 3 vs 10 |
+| 74 → 74 | METADATA: branch `feat/rotate-logs-keep` |
+| 100 → 100 | PROBLEM: script never deletes archives, copying host fills its disk |
+| 113 → 121 | SCOPE: add `--keep <n>` deleting all but the newest n in `logs/archive/` |
+| 135 → 143 | REQUIREMENTS: `--keep 3` exits 0 and leaves 3; WEAK now says "option" |
+| 172 → 180 | SUCCESS CRITERIA: 10 archives, `--keep 3` leaves 3 |
+| 182 → 190 | RISKS: missing value could delete every archive, mitigate with exit 2 |
+| 199 → 207, 204 → 212 | NFR (L2 and L3+): same run over 10,000 archives in under one second |
+| 245 → 253, 250 → 258 | EDGE CASES notes: maximum is `--keep 3` over 10,000 archives |
+| 278 → 270, 282 → 274 | COMPLEXITY: `Scope 6/25: one option in scripts/rotate-logs.sh` |
+| 318 → 310, 423 → 415, 433 → 425 | OPEN QUESTIONS (L2, L3+, L3): `--keep 0` exits 2 rather than delete everything |
+| 328 → 320 | OPEN QUESTIONS (L1): missing `--keep` value exits 2 |
+| 336 → 328 | RISK MATRIX: R1 missing value, mitigation a test pins exit 2 |
+| 345 → 337 | USER STORIES: backup host wants `--keep 3`; WEAK no longer says "quiet mode" |
+| 384 → 376 | COMPLIANCE: "the option reads no user data and opens no socket" |
+| 412 → 404 | CHANGE LOG: `added `--keep <n>`` |
+
+Every note kept its instruction and `GOOD: ... WEAK: ...` shape (25 pairs present, unchanged count).
+
+**Structural (016 T009, T012 spec.md part, 017 T007, stamp)**
+
+- `262-263` (was 253-271): eight category rows plus the `### Data Boundaries`, `### Error Scenarios`, `### State Transitions` subheads that only grouped them, replaced by three token lines: `261 - Empty input:`, `262 - Maximum input:`, `263 - Failure path:`. The H2s and the `edge-cases` anchor are untouched, so Level 3 still renders `## 8. EDGE CASES`. Removing the subheads was required by the row count: three lines cannot fill three category headings.
+- `437`: related-docs fill note now "Leave the three links in place. Add `decision-record.md` when the packet has one." `441`: the always-present `- **Decision Records**: See decision-record.md` line is gone. The fill-note edit is the one in plan.md §3 ("its fill note at `:445` says to add `decision-record.md` only when the packet has one"); left as "four links" it would have been stale. Flagging it because the brief named only the link line.
+- `109-115`: the `measured-behavior` block sits immediately after `<!-- /ANCHOR:problem -->` (107) and before `---` / `<!-- ANCHOR:scope -->` (119), at top level, outside every other anchor, and in no `IF` block, so every level renders it. Heading is `###`, no H2, fill note and text fence exactly as briefed.
+- `36`, `39`, `43`: the three `SPECKIT_TEMPLATE_SOURCE ... | v2.3` stamps are now `v2.4`.
+
+**Verification (repo root, verbatim)**
+
+```
+$ rg -c -e '--quiet' -e 'recommend-level' -e '17-line' <staged>/core/spec.md.tmpl
+(no output)   exit=1
+$ rg -c 'ANCHOR:measured-behavior' <staged>/core/spec.md.tmpl
+2             exit=0
+$ rg -n 'External service failure|Network timeout|Session expiry' <staged>/core/spec.md.tmpl
+(no output)   exit=1
+$ rg -c '\| v2.4 -->' <staged>/core/spec.md.tmpl
+3             exit=0
+```
+
+**Additional checks I ran**
+
+- `diff -u live/templates/core/spec.md.tmpl staged/.../spec.md.tmpl` shows exactly the change set above and nothing else (no collateral line loss).
+- IF blocks balanced 62 open / 62 close (live 65/65; the three removed pairs belonged to the deleted rows). Anchors balanced 36 lines = 18 pairs (live 34 = 17, plus `measured-behavior`), and the anchor sequence confirms 109 opens and 115 closes with no overlap.
+- No em dash in the file (`rg -n '—'` exits 1).
+
+Not run by me: `create.sh` scaffold render, golden snapshot regeneration (017 T017), `check-example-drift.sh` (016 T013), and the censuses, since all of them read the live skill tree rather than the staged copy.

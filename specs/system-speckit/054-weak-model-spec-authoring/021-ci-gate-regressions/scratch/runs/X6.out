@@ -1,0 +1,21 @@
+Done. Two substring replacements in one file, nothing else touched.
+
+**Changes**
+- `.skilled/commands/speckit/assets/speckit-complete.yaml:470` — `sk-code/sk-code-skilled/assets/checklists/{matching_target}_authoring.md` → `{matching_target}-authoring.md`
+- `.skilled/commands/speckit/assets/speckit-complete.yaml:1123` — `(assets/opencode/checklists/{skill,agent,command,mcp_server}_authoring.md)` → `(sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md)`
+
+Indentation and all surrounding text on both lines preserved. Line numbers are unchanged after the edit, which is consistent with line-local replacements only.
+
+**Verification**
+- `python3 -c "import yaml;yaml.safe_load(...)"` → `YAML OK`, exit 0.
+- `rg -n "_authoring|assets/opencode" <file>` → **one hit remains**, so this check as written does not come back empty:
+
+```
+465:  cross_skill_authoring_load:
+```
+
+**Deviation to flag (brief vs. reality):** the second verification cannot pass as stated. Line 465 is the YAML key `agent_dispatch.cross_skill_authoring_load:`, matched only because `_authoring` is a literal substring of the key name. It is not a checklist path and contains no `assets/opencode`. Your brief scopes me to lines 470 and 1123 and says change nothing else in the file, so I left it. If the intent of that check is "no stale checklist path shape remains", the correct assertion is `rg -n "_authoring\.md|assets/opencode"` (which now prints only line 468's prose list of the unchanged, still-valid hyphens-checklists) or `rg -n "assets/opencode|_authoring\.md\""`; renaming the key to something like `cross_skill_authoring_load` → `write_time_authoring_load` is a separate, unapproved change.
+
+**Grounding for the new path shape:** every checklist the edited strings resolve to exists under the new prefix — `agent-authoring.md`, `command-authoring.md`, `mcp-server-authoring.md`, `skill-authoring.md` are all present in `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.
+
+Nothing actionable on your side unless you want the line 465 key renamed or the verification command corrected.

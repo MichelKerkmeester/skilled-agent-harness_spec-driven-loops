@@ -1,0 +1,21 @@
+Change applied to both files.
+
+| File | Line |
+|---|---|
+| `.skilled/agents/orchestrate.md` | 403 |
+| `.claude/agents/orchestrate.md` | 391 |
+
+Both now read:
+```
+   - Confirm validation printed RESULT: PASSED (exit code 0; 1 is a bad invocation, 2 a validation error, 3 a system error)
+```
+
+Verification output (`rg -n "Confirm validation"` on both paths), exit 0:
+```
+.skilled/agents/orchestrate.md:403:   - Confirm validation printed RESULT: PASSED (exit code 0; 1 is a bad invocation, 2 a validation error, 3 a system error)
+.claude/agents/orchestrate.md:391:   - Confirm validation printed RESULT: PASSED (exit code 0; 1 is a bad invocation, 2 a validation error, 3 a system error)
+```
+
+Exactly two lines, both new text, no duplicate old text remaining.
+
+No other files touched, no git commands run. Nothing is left for the operator on this task.

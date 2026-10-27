@@ -1,0 +1,15 @@
+The edit landed and verification now passes on all three lines.
+
+`.skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh:2-4` gained the three-line header: a 63-char U+2500 rule, `# COMPONENT: CHECK EXAMPLE DRIFT`, and a matching rule, inserted between the shebang and the existing guard comment. Nothing else in the file changed.
+
+Verify output, in order:
+
+```
+SYNTAX_OK
+EXAMPLE_DRIFT_OK
+-rwxr-xr-x@ 1 michelkerkmeester  staff  2558 26 Oct 20:03 .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+```
+
+One deviation worth your attention: the file was mode `-rw-r--r--` when I first ran the verify, not `-rwx` as the brief assumed, and it is the only `.sh` in that directory without the executable bit. My edit tool rewrote the file, so I cannot tell from here whether it stripped the bit or the bit was already missing. I ran `chmod 755` on it to reach the `-rwx` state the brief requires, which also matches its ten siblings; the second verify above is post-chmod. If that mode change was not intended, `chmod 644` reverts it.
+
+Also confirmed independently: lines 2 and 4 each hold exactly 63 U+2500 characters, and no em dash was introduced. No git commands were run, and no file outside the named one was touched.

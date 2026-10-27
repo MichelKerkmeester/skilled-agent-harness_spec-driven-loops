@@ -1,0 +1,16 @@
+.skilled/skills/system-spec-kit/references/templates/level-selection-guide.md
+.skilled/skills/system-spec-kit/references/templates/level-specifications.md
+.skilled/skills/system-spec-kit/references/templates/template-guide.md
+.skilled/skills/system-spec-kit/references/templates/template-style-guide.md
+.skilled/skills/system-spec-kit/references/workflows/agent-io-contract.md
+.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md
+.skilled/skills/system-spec-kit/references/workflows/execution-methods.md
+.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md
+.skilled/skills/system-spec-kit/references/workflows/intake-contract.md
+.skilled/skills/system-spec-kit/references/workflows/nested-changelog.md
+.skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+.skilled/skills/system-spec-kit/references/workflows/rename-pattern.md
+.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md
+.skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+.skilled/skills/system-spec-kit/SKILL.md

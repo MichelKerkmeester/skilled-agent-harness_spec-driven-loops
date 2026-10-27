@@ -1,0 +1,47 @@
+Done. Three edits landed in `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`, and the card-sync guard passes with `exit=0`.
+
+What changed, at final line numbers:
+
+- `spec-authoring-card.md:135-150` section 9 VALIDATE replaced with the single `--strict --quiet` run, the FAILED escalation with one round and a three-round stop, the GENERATED_METADATA rule repair via `repair-derived.cjs`, and the new Acceptance and Verify lines.
+- `spec-authoring-card.md:162` section 10 verify line now points at the sections 7 and 8 checks plus the section 9 pass.
+- `spec-authoring-card.md:171` section 11 bullet now reads "the validator still fails after three rounds".
+- The line at `:164` naming `spec-folder-authoring-checklist.md` is untouched.
+
+The section 9 block matches the brief byte for byte. I checked it with `diff` against a heredoc of the specified text and got `SECTION9_BLOCK_EXACT=yes`. The two one-line edits each occur exactly once, confirmed with `grep -Fxc` returning `1`. Nothing else in the card was edited, and the file holds no em dash and no semicolon.
+
+Two claims in the new text are real, not assumed. `validate.sh:97` parses `--quiet|-q`, and `.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs` exists.
+
+Verification outputs:
+
+```
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh; echo "exit=$?"
+PASS card-exists (176 lines)
+PASS intent-PLAN
+PASS intent-IMPLEMENT
+PASS intent-INTAKE
+PASS intent-TEMPLATE_AUTHORING
+PASS guide-on-demand-only
+PASS leaf-manifest
+PASS leaf-aliases
+PASS checklist
+PASS card-names-checklist
+CARD SYNC OK
+exit=0
+```
+
+```
+$ wc -l .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+     176 .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+```
+
+```
+$ rg -n 'validate.sh|once more|same rule' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+140:bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict --quiet
+159:- `validate.sh --strict` prints `RESULT: PASSED`
+```
+
+The two surviving hits are the intended ones. "once more" and "same rule" are gone, and the line count stays under the guard's 260-line limit at 176.
+
+Not run: `validate.sh` against a real packet, so the new section 9 instruction is verified as present and consistent with the script's flags, not as executed end to end. Residual risk: none known beyond that.
+
+Nothing is blocked on you. The change sits uncommitted in this worktree, as your brief required.

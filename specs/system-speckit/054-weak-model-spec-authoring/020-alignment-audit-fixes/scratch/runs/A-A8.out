@@ -1,0 +1,31 @@
+Build and verification complete. No files were edited by hand; only the gitignored `dist/` output changed.
+
+## BUILD_EXIT=0
+
+Last lines of build output:
+
+```
+> @spec-kit/cli@1.7.2 record-build
+> node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry is-phase-parent
+
+@spec-kit/cli dist build attestation recorded
+@spec-kit/cli dist build attestation recorded
+BUILD_EXIT=0
+```
+
+Full build chain that preceded those lines: `prepare-build` (two freshness preparation recordings, `default` and `is-phase-parent`), `tsc --build` (no TypeScript errors emitted), then `record-build`. Build log referenced `@spec-kit/cli@1.7.2`.
+
+## Verify output
+
+```
+@spec-kit/cli dist is fresh
+FRESH_EXIT=0
+0
+```
+
+- Freshness check: `@spec-kit/cli dist is fresh` (does not say "stale"), `FRESH_EXIT=0`.
+- Grep count for `resource-map.md.tmpl` in `dist/lib/frontmatter-migration.js`: `0`.
+
+Note on the shell status: the combined command exited 1, and that is from `grep -c` alone, which returns 1 when the match count is zero. Here zero is the required result, so the status is the expected one for a passing gate, not a failure. The `FRESH_EXIT=0` echoed before it is the freshness check's own status and was read separately.
+
+Nothing is left for the operator on this task: the dist rebuild is attested fresh by the package's own freshness check and the stale template reference is gone from the build output.

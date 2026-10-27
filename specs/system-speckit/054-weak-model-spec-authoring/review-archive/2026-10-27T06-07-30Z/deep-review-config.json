@@ -1,0 +1,47 @@
+{
+  "reviewTarget": "specs/system-speckit/054-weak-model-spec-authoring",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "specFolder": "specs/system-speckit/054-weak-model-spec-authoring",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-codex",
+          "model": "gpt-6-luna",
+          "reasoningEffort": "max",
+          "serviceTier": "fast",
+          "timeoutSeconds": 1800,
+          "label": "luna",
+          "iterations": 10
+        },
+        {
+          "kind": "cli-devin",
+          "model": "deepseek-v4-1-flash-max",
+          "timeoutSeconds": 1800,
+          "label": "deepseek",
+          "iterations": 10
+        }
+      ],
+      "concurrency": 2
+    }
+  },
+  "status": "complete"
+}

@@ -1,0 +1,28 @@
+All four replacements applied. Nothing else changed.
+
+**Changes — `.skilled/skills/system-spec-kit/changelog/v2.11.0.0.md`**
+
+| Line | Change |
+|---|---|
+| 32 | `...; the dry run is` to `.... The dry run is` |
+| 49 | `the templates tree, and the docs` to `the templates tree and the docs` |
+| 65 | `That is one round; after three rounds` to `That is one round. After three rounds` |
+| 79 | `defines its values; the file is left as written.` to `defines its values. The file is left as written.` |
+
+**Verification**
+
+```
+$ grep -c ";" .../v2.11.0.0.md; grep -c "templates tree, and" .../v2.11.0.0.md
+5
+0
+$ grep -n ";" .../v2.11.0.0.md
+19:&nbsp;
+25:&nbsp;
+35:&nbsp;
+55:&nbsp;
+75:&nbsp;
+```
+
+Both expectations hold: the semicolon count is 5 and every one sits on an `&nbsp;` line (19, 25, 35, 55, 75), so lines 32, 65 and 79 no longer contain one; the `templates tree, and` count is 0. I re-printed lines 32, 49, 65 and 79 and each reads with the new punctuation and no other wording drift.
+
+No other file was touched, and no git command was run.

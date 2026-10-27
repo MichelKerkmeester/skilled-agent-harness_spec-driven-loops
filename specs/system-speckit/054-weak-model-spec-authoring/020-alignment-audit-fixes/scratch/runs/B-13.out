@@ -1,0 +1,17 @@
+Done. One file changed.
+
+**Change:** `.skilled/skills/system-spec-kit/templates/README.md` — inside the `## 4. DIRECTORY TREE` block, inserted three tree entries directly after `├── README.md`:
+
+- `.skilled/skills/system-spec-kit/templates/README.md:99` → `├── CONTRACT.md`
+- `.skilled/skills/system-spec-kit/templates/README.md:100` → `├── EXTENSION-GUIDE.md`
+- `.skilled/skills/system-spec-kit/templates/README.md:101` → `├── MIGRATION.md`
+
+`├── spec-kit-docs.json` shifted from 99 to 102; no other text touched.
+
+**Verification:** `grep -n '^├── \(CONTRACT\|EXTENSION-GUIDE\|MIGRATION\)\.md$'` prints exactly lines `99`, `100`, `101` (exit 0).
+
+**Untouched confirmed:** the `## 3. PACKAGE TOPOLOGY` tree is still byte-identical at lines 61-73, with its pre-existing `CONTRACT.md` description row at line 69.
+
+One note worth flagging: the first `edit_lines` attempt was refused because the file's line count changed between my read and the write (`236` vs `237`). I re-read, then applied the change via exact-string replacement rather than hash anchors. The final state is verified above; if another process is writing this same file concurrently, that would explain the shift.
+
+Nothing is pending on your side.

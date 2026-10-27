@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "zz-bench-authoring/001-recommend-level-quiet-flag",
+  "description": "The level recommendation arrives inside a multi-line text report, so a caller that only wants the level has to parse prose",
+  "keywords": [
+    "level",
+    "recommendation",
+    "arrives",
+    "inside",
+    "multi-line",
+    "text",
+    "report",
+    "caller",
+    "only",
+    "wants",
+    "parse",
+    "prose"
+  ],
+  "lastUpdated": "2026-10-23T20:34:19.735Z",
+  "specId": "001",
+  "folderSlug": "recommend-level-quiet-flag",
+  "parentChain": [
+    "zz-bench-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

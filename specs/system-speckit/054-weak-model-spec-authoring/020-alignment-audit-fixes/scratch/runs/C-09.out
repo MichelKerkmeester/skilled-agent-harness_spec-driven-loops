@@ -1,0 +1,37 @@
+Done.
+
+## Change
+
+**File:** `.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md`
+
+- Deleted the frontmatter list item `  - "template v2.4"` (was line 9).
+- The first pass left an empty line where the item had been, which broke the "those two lines must be adjacent" clause, so I removed that blank line too. Net effect is exactly one line gone: the file went from 72 to 71 lines, no other text touched, no reformatting.
+
+Current frontmatter region, `file:line`:
+
+- `.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md:4` → `trigger_phrases:`
+- `.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md:8` → `  - "draft auto-repair"` (now the last list item)
+- `.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md:9` → `importance_tier: "normal"` (directly adjacent, as required)
+
+## Verification output
+
+```
+$ grep -c "template v2.4" .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+0
+$ sed -n 1,12p .skilled/skills/system-spec-kit/changelog/v2.12.0.0.md
+---
+title: "system-spec-kit v2.12.0.0, neutral examples, leaner scaffolds and measured behavior"
+description: "Template examples no longer echo a real task, the scaffold drops sections models padded, spec.md gains a Measured Behavior block with a warn-only rule and a Draft packet's strict validate repairs its own derived metadata."
+trigger_phrases:
+  - "system-spec-kit v2.12.0.0"
+  - "system-spec-kit 2.12.0.0"
+  - "measured behavior block"
+  - "draft auto-repair"
+importance_tier: "normal"
+contextType: "general"
+version: 2.12.0.0
+```
+
+Matches the expected shape: `0`, then a `trigger_phrases` list ending at `"draft auto-repair"` with `importance_tier` on the next line.
+
+One note on evidence scope: the `grep -c` exit status is 1 when the count is 0, so the `0` here is read from the printed count, not from the exit code. I did not run any git command, and no file outside the named path was read or written. Nothing is left for you to do on this task.

@@ -1,0 +1,45 @@
+B-01 is done and verified. Report below.
+
+## Status
+
+**What ran, and what it returned**
+
+- `edit_lines` on `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`: 10 heading lines replaced, 30 lines added, net +20 (176 lines to 196).
+- `rg -c '^---$' <card>` printed `12`, exit 0, which is the 2 frontmatter fences plus the 10 separators.
+- A shape check over every separator confirmed all 10 sit as blank line, `---`, blank line, target heading:
+  - `:30` before `## 2. PICK THE LEVEL` at `:32`
+  - `:51` before `## 3. SCAFFOLD` at `:53`
+  - `:66` before `## 4. READ BEFORE YOU WRITE` at `:68`
+  - `:79` before `## 5. ONE ACTION PER SECTION` at `:81`
+  - `:97` before `## 6. THE PLAN SHAPE` at `:99`
+  - `:114` before `## 7. TASK LINES` at `:116`
+  - `:134` before `## 8. FILL EVERY TOKEN` at `:136`
+  - `:147` before `## 9. VALIDATE` at `:149`
+  - `:168` before `## 10. CLOSE` at `:170`
+  - `:184` before `## 11. WHEN TO STOP AND ASK` at `:186`
+- Nothing else changed. The heading count stayed at 12 and the line arithmetic is add-only, so no wording, heading text or frontmatter shifted. `## 1. BOUNDS` has no separator above it, as instructed.
+- Blast radius check: this card has a sync guard and a test. Both pass.
+  - `check-card-sync.sh` exit 0, ten `PASS` lines including `card-exists (196 lines)` against its 260 line limit.
+  - `tests/card-sync.vitest.ts` exit 0 with 10 of 10 tests passed, run via `--config ../../vitest.config.ts --project cli`.
+  - `check-example-drift.sh` printed `EXAMPLE_DRIFT_OK`, exit 0.
+- One honest correction to the record: my first vitest call used a bare file filter and returned "No test files found" with exit 1. That was a filter miss because the package config excludes `runtime/cli/**`, not a test failure. The project-config run above is the authoritative one.
+
+**What is inferred**
+
+That a renderer treats each new `---` as a horizontal rule rather than a setext underline, because a blank line separates it from the prose above. Would be confirmed by rendering the file.
+
+**What only you can verify**
+
+Whether the separators read well against headings 10 and 11 in your publishing pipeline. I applied the brief mechanically and formed no view on that.
+
+**State of the work**
+
+One file edited and dirty, uncommitted. No git command was run, per the brief.
+
+**Residual risk**
+
+None known for the change itself. One out-of-scope observation: `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106` holds a second `## 4. IMPLEMENTATION PHASES` heading inside a fenced markdown example. It is not one of the ten headings, so I left it untouched, and its duplicate number predates this change.
+
+**Next action**
+
+Stage `spec-authoring-card.md` and let your pre-commit gate run on it, since the brief barred me from committing. Nothing else is blocked on you.

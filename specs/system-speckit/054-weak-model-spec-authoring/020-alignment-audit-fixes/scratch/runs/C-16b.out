@@ -1,0 +1,18 @@
+Done. One replacement, one file.
+
+**Change**
+- `.skilled/commands/README.txt:80` — `# Component creation commands — see create/README.txt for the` → `# Component creation commands, see create/README.txt for the`. The surrounding tree drawing (`├── create/` column alignment) and everything else in the file were untouched; the byte-length change is 3 characters shorter (space + 3-byte U+2014 + space → comma + space), which is inside a comment so no column alignment was affected.
+
+**Verification**
+```
+$ python3 -c "t=open('.skilled/commands/README.txt',encoding='utf-8').read();print(t.count(chr(0x2014)), t.count('Component creation commands, see create/README.txt'))"
+0 1
+```
+Matches expected `0 1`: no U+2014 remains in the file, and the replacement string occurs exactly once.
+
+**Line 80 as it now reads on disk**
+```
+├── create/                   # Component creation commands, see create/README.txt for the
+```
+
+No temp files created, no other file read or written, no git commands run. Nothing is outstanding on your side.

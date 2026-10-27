@@ -1,0 +1,43 @@
+Done. Both files changed, build rebuilt, both verification commands green.
+
+## Edits
+
+**`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`**
+
+- `:1485` — `function writeRepairHint(...)` → `export function writeRepairHint(...)`, so a test can call it directly. `RECOMPUTABLE_RULES` (`:1477-1483`) and the `hit` check (`:1486-1489`) are untouched.
+- `:1493-1502` — the three `process.stdout.write` calls after `const target = ...` (was `:1493-1497`, the `preview`/`apply` pair) replaced with the apply-first block: header line "Fix them with:", the copyable `repair-derived.cjs ... --apply` command, the one-paragraph explanation of what it rewrites and does not touch, and then `Optional: run it without --apply first to preview the changes.`
+
+**`.skilled/skills/system-spec-kit/runtime/tests/repair-hint-order.vitest.ts`** (new, 46 lines)
+
+- `:5-7` — import style copied from `validation-orchestrator-bridge.vitest.ts` (`../lib/validation/orchestrator.js`, named + `import type`).
+- `:9-22` — `hintOutput()` builds the minimal report `{ folder, entries }` (cast, since the hint reads only those) and captures `process.stdout.write` via `vi.spyOn(...).mockReturnValue(true)`, restoring in `finally`.
+- `:24-38` — asserts the first line containing `repair-derived.cjs` also contains `--apply`, and that it precedes the line containing `Optional`.
+- `:40-42` — asserts a report whose only entry is `pass` prints nothing (`''`).
+
+## Verification
+
+```
+$ npm --prefix .skilled/skills/system-spec-kit/runtime run build
+> @spec-kit/runtime@1.8.0 build
+> npm run prepare-build && tsc --build && node scripts/finalize-dist.mjs
+> node cli/lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime --entry default && ... --entry validation-orchestrator
+@spec-kit/runtime dist build preparation recorded
+@spec-kit/runtime dist build preparation recorded
+```
+
+```
+$ ./node_modules/.bin/vitest run runtime/tests/repair-hint-order.vitest.ts --config vitest.config.ts
+ RUN  v4.1.11 /Users/.../.skilled/skills/system-spec-kit
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  10:27:17
+   Duration  198ms (transform 90ms, setup 14ms, import 119ms, tests 2ms, environment 0ms)
+```
+
+```
+$ rg -n 'Optional: run it without --apply' runtime/dist/lib/validation/orchestrator.js
+1363:    process.stdout.write('  Optional: run it without --apply first to preview the changes.\n');
+```
+
+The dist read confirms the emitted order: `:1357-1358` the "Fix them with:" header and the `--apply` command, `:1359-1361` the explanation, `:1362` the `Optional` preview line. Nothing is outstanding on my side; the pushed commit is yours to make.

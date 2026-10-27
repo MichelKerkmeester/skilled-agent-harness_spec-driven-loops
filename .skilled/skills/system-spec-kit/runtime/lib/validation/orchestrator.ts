@@ -9,6 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
@@ -722,7 +723,6 @@ function validateFileExists(folder: string, level: SpecKitLevel): ValidationEntr
 // is intentionally NOT included: it is not the canonical spec-doc placeholder
 // syntax and legit spec-doc content uses it, so flagging it false-positives.
 const PLACEHOLDER_MARKER_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLARIFICATION:|\[NEEDS CLARIFICATION:/u;
-const CLARIFICATION_MARKER_RE = /\[NEEDS[_ ]CLARIFICATION:/u;
 
 // A doc stamped with this template version or a later one ships every authoring
 // hint as a value token, so a token still in it is work not yet done rather than
@@ -791,7 +791,17 @@ function specStatusIsDraft(folder: string): boolean {
 // title. Both implementations of the rule read a v2.3 doc this way.
 const PLACEHOLDER_MARKERS_ALL_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLARIFICATION:|\[NEEDS CLARIFICATION:/gu;
 const TEMPLATE_TITLE_RE = /^\s*title:.*\[template:/u;
-const TOKEN_GATE_FENCE_RE = /^\s*(```|~~~)/u;
+// A fence opens on a run of three or more backticks or tildes. It closes only on
+// a run of the same character, at least as long, with nothing after it but
+// whitespace, so a ``` line quoted inside a ~~~ block does not end the block.
+// Only spaces and tabs count as that whitespace, as in the shell rule's awk.
+const TOKEN_GATE_FENCE_OPEN_RE = /^[ \t]*(`{3,}|~{3,})/u;
+const TOKEN_GATE_FENCE_CLOSE_RE = /^[ \t]*(`{3,}|~{3,})[ \t]*$/u;
+
+function closesTokenGateFence(line: string, opener: string): boolean {
+  const run = TOKEN_GATE_FENCE_CLOSE_RE.exec(line)?.[1];
+  return run !== undefined && run[0] === opener[0] && run.length >= opener.length;
+}
 
 function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
   const findings: string[] = [];
@@ -804,18 +814,24 @@ function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEn
     if (!content) continue;
     const tokenGated = carriesTokenGateStamp(content);
     const lines = content.split(/\r?\n/u);
-    // Track fenced code blocks: a line starting with ``` toggles in_code and is
-    // itself skipped, matching check-placeholders.sh awk behavior.
+    // A pre-v2.3 doc tracks fences the old way: a line starting with ```
+    // toggles in_code and is itself skipped, as the shell rule's awk does.
     let inCode = false;
+    // The run that opened the current v2.3 fence; empty outside one.
+    let fenceOpener = '';
     lines.forEach((line, index) => {
       if (tokenGated) {
         // A v2.3 doc: a fence opens with ``` or ~~~ at any indent, a marker in
         // inline code is an example, and every marker on the line counts.
-        if (TOKEN_GATE_FENCE_RE.test(line)) {
-          inCode = !inCode;
+        if (fenceOpener) {
+          if (closesTokenGateFence(line, fenceOpener)) fenceOpener = '';
           return;
         }
-        if (inCode) return;
+        const opened = TOKEN_GATE_FENCE_OPEN_RE.exec(line)?.[1];
+        if (opened) {
+          fenceOpener = opened;
+          return;
+        }
         const visible = stripInlineCode(line);
         const markers = [...visible.matchAll(PLACEHOLDER_MARKERS_ALL_RE)].map((found) => found[0]);
         const title = TEMPLATE_TITLE_RE.test(visible);
@@ -839,14 +855,7 @@ function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEn
       // immediately preceded by a backtick on this line, it is escaped content
       // (parity with the shell rule's grep -v of backtick-wrapped cases).
       if (match.index > 0 && line.charAt(match.index - 1) === '`') return;
-      const finding = `${docName}:${index + 1}: ${line.trim().slice(0, 120)}`;
-      // Only a value token is deferred. An open question stays an error in
-      // every packet, because it names a decision nobody has made.
-      if (tokenGated && draftPacket && match[0] === '[YOUR_VALUE_HERE:' && !CLARIFICATION_MARKER_RE.test(line)) {
-        draftTokens.push(finding);
-        return;
-      }
-      findings.push(finding);
+      findings.push(`${docName}:${index + 1}: ${line.trim().slice(0, 120)}`);
     });
   }
   if (findings.length > 0) {
@@ -1590,14 +1599,20 @@ export function draftAutoRepairRefusal(
   return null;
 }
 
-// The packet's own top-level files, by content. The repair writes only these,
-// so comparing two snapshots names every file it rewrote, whatever it reports.
-function snapshotPacketFiles(folder: string): Map<string, Buffer> {
-  const snapshot = new Map<string, Buffer>();
+// The packet's own top-level .md and .json files, by sha256 digest. The repair
+// writes only files of those two types at the packet root, so comparing two
+// snapshots names every file it rewrote, whatever it reports. A digest, not the
+// bytes, is kept so a large evidence file beside the docs costs nothing to hold.
+const REPAIR_WRITABLE_EXTENSIONS = new Set(['.md', '.json']);
+
+function snapshotPacketFiles(folder: string): Map<string, string> {
+  const snapshot = new Map<string, string>();
   for (const entryItem of fs.readdirSync(folder, { withFileTypes: true })) {
     if (!entryItem.isFile()) continue;
+    if (!REPAIR_WRITABLE_EXTENSIONS.has(path.extname(entryItem.name).toLowerCase())) continue;
     try {
-      snapshot.set(entryItem.name, fs.readFileSync(path.join(folder, entryItem.name)));
+      const digest = createHash('sha256').update(fs.readFileSync(path.join(folder, entryItem.name))).digest('hex');
+      snapshot.set(entryItem.name, digest);
     } catch {
       // A file that cannot be read cannot be compared; the repair skips it too.
     }
@@ -1605,13 +1620,9 @@ function snapshotPacketFiles(folder: string): Map<string, Buffer> {
   return snapshot;
 }
 
-function changedPacketFiles(before: Map<string, Buffer>, after: Map<string, Buffer>): string[] {
+function changedPacketFiles(before: Map<string, string>, after: Map<string, string>): string[] {
   const names = new Set([...before.keys(), ...after.keys()]);
-  return [...names].filter((name) => {
-    const old = before.get(name);
-    const current = after.get(name);
-    return !old || !current || !old.equals(current);
-  }).sort();
+  return [...names].filter((name) => before.get(name) !== after.get(name)).sort();
 }
 
 function repairFailureReason(child: ReturnType<typeof spawnSync>): string {

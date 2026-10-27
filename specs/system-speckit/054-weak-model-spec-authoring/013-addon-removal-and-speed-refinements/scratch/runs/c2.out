@@ -1,0 +1,49 @@
+All three edits applied and verified. No git commands run.
+
+## Edits
+
+| File | Line | Change |
+|---|---|---|
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts` | 139 (removed) | Deleted `['resource-map.md', 'addons/resource-map.md.tmpl'],` from `TEMPLATE_DOC_FILES`; map now closes after the `acceptance-criteria.md` entry at line 138 |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs` | 42 (removed) | Deleted `  resourceMap: 'resource map',` from `SEED_PHRASE_SUFFIXES` |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/level-contract-resolver.vitest.ts` | 24, 47, 63, 73 (removed) | Removed the `'resource-map.md',` entry from all four expected lazy-add-on lists (Level 1, the 1/2/3/3+ loop, phase, review); file went 119 to 115 lines |
+
+Premise checks before editing:
+- `rg -n 'resourceMap|SEED_PHRASE_SUFFIXES' template-phrase-cleanup.mjs` returned only line 42 (the key itself) and the dynamic lookup `SEED_PHRASE_SUFFIXES[kind]` at lines 185-186. `documentKindForPath` in `template-phrase-census.mjs:45-58` (`DOCUMENT_CASE_TABLE`) has no `resource-map` entry, so `kind` can never be `'resource-map'`/`resourceMap`; the key was unreachable.
+- `templates/addons/` contains no `resource-map.md.tmpl`, and `templates/spec-kit-docs.json` lists no `resource-map.md` in any level's `lazyAddonDocs`, so the test expectations match the manifest after removal.
+- Comment hygiene: no comments added or changed, so no ids or spec paths introduced.
+
+## Verification outputs (from `.skilled/skills/system-spec-kit`)
+
+1. `./node_modules/.bin/vitest run runtime/cli/tests/level-contract-resolver.vitest.ts runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts runtime/cli/tests/template-phrase-integration.vitest.ts --config vitest.config.ts` (run twice, before and after the dist build):
+```
+ Test Files  3 passed (3)
+      Tests  11 passed (11)
+   Duration  1.90s   (second run: 1.94s)
+```
+
+2. `rg -n 'frontmatter' -l runtime/cli/tests | head -20` (bounded to names containing frontmatter): `check-frontmatter-values.vitest.ts`, `frontmatter-template-literals.vitest.ts`, `backfill-frontmatter.vitest.ts`, `test-frontmatter-backfill.js`.
+```
+ Test Files  3 passed (3)
+      Tests  11 passed (11)
+   Duration  673ms
+```
+`test-frontmatter-backfill.js` is a standalone node runner, not collected by vitest:
+```
+Summary: pass=15, fail=0
+EXIT=0
+```
+
+3. `npm --prefix runtime run build 2>&1 | tail -3`:
+```
+@spec-kit/runtime dist build preparation recorded
+@spec-kit/runtime dist build preparation recorded
+BUILD_EXIT=0
+```
+
+4. `rg -n 'resource-map.md.tmpl|resourceMap' runtime/cli`:
+```
+(no matches, RG_EXIT=1)
+```
+
+Remaining `resource-map` references in `runtime/cli` are outside this brief's three files and are the runtime name lists the context says stay: `utils/template-structure.js:210`, `spec/repair-derived.cjs:258`, `spec/repo-era.mjs:86-87`, and the `runtime/cli/resource-map/` tool itself. Nothing outstanding on my side.

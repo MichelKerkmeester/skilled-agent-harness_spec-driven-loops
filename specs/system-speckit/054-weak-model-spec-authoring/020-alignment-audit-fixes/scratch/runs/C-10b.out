@@ -1,0 +1,17 @@
+Done. One punctuation change, nothing else.
+
+**Changed**
+- `.skilled/skills/system-spec-kit/changelog/v2.12.0.0.md:45` — `...are three token lines per level; the Level 3 edge-case block...` → `...are three token lines per level. The Level 3 edge-case block...`
+
+**Verification output** (run from `.skilled/skills/system-spec-kit/changelog`)
+```
+grep -c "per level; the" v2.12.0.0.md        → 0
+grep -c "per level. The Level 3" v2.12.0.0.md → 1
+```
+Matches the expected `0` then `1`. Post-edit read of line 45 confirms the sentence now reads correctly and the surrounding paragraph is unchanged.
+
+**Two notes on the brief**
+- The OLD string was on line 45, not 46. The anchor text was unique and matched exactly, so I applied the edit and recorded the drift rather than halting; per the child-dispatch exemption, halt conditions are record-and-continue.
+- `REPO RULES.md` is absent at this repository root, so Gate 5 loaded nothing; this session is governed by the framework document alone.
+
+No git command was run. No file outside the named one was touched.

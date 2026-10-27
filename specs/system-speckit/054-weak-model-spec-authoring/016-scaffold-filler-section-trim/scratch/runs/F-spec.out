@@ -1,0 +1,45 @@
+All five F-spec items are on disk in `.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl`, and both verify commands pass.
+
+SKILL ROUTING: advisor ambiguous (sk-code 0.91 / system-spec-kit 0.95) → system-spec-kit owns this template asset, brief followed.
+
+**Changes (final line numbers)**
+
+- `spec.md.tmpl:410` — GOOD example now closes the code span: ``added `--keep <n>`.``
+- `spec.md.tmpl:207` and `:212` — NFR GOOD example is the single timing claim: ``The option adds under 5 ms to a run.`` The "adds no measurable time" / "under one second" pair is gone.
+- `spec.md.tmpl:253` (L2) and `:263` (L3/3+) — GOOD example now reads: empty `logs/archive/` deletes nothing and exits 0, `--keep 3` over 10,000 archives keeps the newest 3, a missing `--keep` value exits 2 with usage.
+- `spec.md.tmpl:316`, `:421`, `:431` — the three open-question notes now ask the missing-value question, so all four open-question notes in the file agree with `:326`.
+- `spec.md.tmpl:251-258` and `:261-268` — the edge-cases region now carries one `edge-cases` anchor per level branch, each wrapping heading, fill note and the three token lines at `:255-257` and `:265-267`. The orphan trio at old `:261-263` is gone.
+
+**Verification (observed output, repo root)**
+
+```
+$ rg -n -e '--keep <n`' -e '--keep 0' -e 'no measurable time' .../spec.md.tmpl
+exit=1                      (no matches)
+$ for f in spec plan tasks; do printf "%s %s %s\n" ...
+spec 62 62
+plan 25 25
+tasks 12 12
+```
+
+anchors in spec.md.tmpl: 19 open / 19 close (was 18/18, one pair added). IF nesting never goes negative and ends at depth 0.
+
+Rendered proof, using `runtime/cli/templates/inline-gate-renderer.sh`:
+
+```
+level 2:  heading=1 fill=1 empty=1 max=1 fail=1  anchor pair=1, lines inside it
+level 3:  heading=1 fill=1 empty=1 max=1 fail=1  anchor pair=1, lines inside it
+level 3+: heading=1 fill=1 empty=1 max=1 fail=1  anchor pair=1
+level 1:  no edge-cases section (unchanged shape)
+```
+
+Anchor well-ordering check over all four renders: 0 nested, 0 unclosed.
+
+**Not done, and why**
+
+`.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` still holds the pre-edit text, so `scaffold-golden-snapshots.vitest.ts` now reports 4 failed / 8 passed, and each failure is `N-spec.md` (Level 1, 2, 3, 3+), which is exactly this file's rendered output. That snapshot is outside the files my brief names, so I did not touch it. The anchor assertion at `scaffold-golden-snapshots.vitest.ts:92` passes for every level; only the `toMatchSnapshot` at `:94` mismatches.
+
+One of those four failures is not mine: the Level 1 run dies first on `1-plan.md`, because `plan.md.tmpl:67` holds newer text than the snapshot. I did not edit `plan.md.tmpl`.
+
+Residual risk: none known beyond the stale snapshot. Nothing was committed (git commands are barred in this checkout).
+
+Operator action: regenerate the golden snapshot with `cd .skilled/skills/system-spec-kit/runtime/cli && ../../node_modules/.bin/vitest run tests/scaffold-golden-snapshots.vitest.ts -u --config ../../vitest.config.ts --root .`, which will also absorb the outstanding `plan.md.tmpl` delta.

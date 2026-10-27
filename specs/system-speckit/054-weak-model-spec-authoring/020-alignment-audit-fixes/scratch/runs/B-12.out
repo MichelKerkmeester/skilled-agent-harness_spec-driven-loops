@@ -1,0 +1,11 @@
+VERIFY passed (printed `0` and `1`).
+
+**Changed**
+- `.skilled/skills/system-spec-kit/templates/README.md:197` — entrypoint table cell `` `examples/level_*` `` → `` `examples/level-*` ``. Column padding left untouched; no other text modified.
+
+**Evidence**
+- `grep -c 'level_\*'` → `0`
+- `grep -c '`examples/level-\*`'` → `1`
+- `grep -n 'examples/level'` → `197:| \`examples/level-*\`                          | Reference folders | Show expected rendered output by Level.                  |`
+
+Nothing is the operator's to do for this task.

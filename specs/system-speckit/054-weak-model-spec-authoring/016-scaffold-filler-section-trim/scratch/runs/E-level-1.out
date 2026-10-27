@@ -1,0 +1,40 @@
+Done. Only one file was edited.
+
+## Change
+
+**`.skilled/skills/system-spec-kit/templates/examples/level-1/spec.md`** (the "Add User Authentication" filled example)
+
+| file:line | Change |
+|---|---|
+| spec.md:49 | blank line inserted after `<!-- /ANCHOR:problem -->` (line 48) |
+| spec.md:50 | opening anchor `<!-- ANCHOR:measured-behavior -->` |
+| spec.md:51 | heading `### Measured Behavior` (H3, no H2) |
+| spec.md:53-57 | fenced `text` block: `$ curl -si -X POST localhost:3000/auth/login` plus verbatim `HTTP/1.1 404 Not Found` and `Content-Type: text/html; charset=utf-8` |
+| spec.md:59 | one sentence naming the quoted line: `HTTP/1.1 404` is the Problem Statement's evidence |
+| spec.md:61 | closing anchor `<!-- /ANCHOR:measured-behavior -->` |
+
+The block sits directly after the `problem` anchor closes and is not nested inside any other anchor. Story, content, frontmatter, `description.json`, `plan.md`, `tasks.md`, and `implementation-summary.md` are untouched (`ls -l` mtimes unchanged; only spec.md is new).
+
+## Verification (run from repo root)
+
+```
+$ rg -c 'ANCHOR:measured-behavior' .skilled/skills/system-spec-kit/templates/examples/level-1/spec.md
+2
+```
+
+```
+$ rg -n 'ANCHOR:effort|ANCHOR:enhanced-rollback' .skilled/skills/system-spec-kit/templates/examples/level-1/plan.md
+(nothing printed, exit 1)
+```
+
+Extra self-checks: the rule's own state parser (`check-measured-behavior.sh` sourced, `measured_behavior_block_state`) returns `filled`. Fence lines: 2 (balanced). All anchors balanced (open and close sets diff clean). Em dashes: 0. CRLF: 0. Trailing whitespace: 0. File is 152 lines.
+
+No git command was run, and no file outside the example folder was touched.
+
+## One thing for the conductor
+
+Reading `runtime/cli/spec/check-example-drift.sh` together with `runtime/cli/utils/template-structure.js` (`CUSTOM_ALLOWED_ANCHOR_PATTERNS` at line 55 and the extras filter at lines 867-880), `measured-behavior` is not yet an allowed or required anchor of the spec contract: neither the live `templates/core/spec.md.tmpl` (still `spec-core | v2.4`-less, stamped v2.3 at line 36) nor the staged `016` copy carries it. So `check-example-drift.sh` will print `FAIL ...: extra_anchor measured-behavior` for `level-1/spec.md` until the template-side block lands. Nothing in my brief allows me to touch templates, so I left it; the drift run needs the template copy that introduces the anchor.
+
+## Operator action
+
+Nothing outstanding from me. The next step is the template-side addition to `templates/core/spec.md.tmpl` before `check-example-drift.sh` is run.

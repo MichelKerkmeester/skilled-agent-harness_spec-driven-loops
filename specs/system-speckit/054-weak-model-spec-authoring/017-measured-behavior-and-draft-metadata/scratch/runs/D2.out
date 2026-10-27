@@ -1,0 +1,39 @@
+Done. Three files changed, all inside the authorized set.
+
+## What changed
+
+**1. `.skilled/skills/system-spec-kit/references/validation/validation-rules.md`**
+
+- `:67` RULE SUMMARY row, appended after `SOURCE_TAGS` in the existing four-column shape: `` `MEASURED_BEHAVIOR` | WARNING | spec.md stamped v2.4+ | ... ``.
+- `:132-151` new `### MEASURED_BEHAVIOR` subsection in §2 beside the `FRONTMATTER_VALUES` and `SOURCE_TAGS` entries, using their field shape (`Rule ID`, `Scope`, `The anchor`, `Purpose`, a `| Result | Meaning |` table, `How to fix`). States WARNING severity, never fails a run including `--strict`, the v2.4 stamp scope, the `### Measured Behavior` anchor after the problem section, the command-output-or-reasoned-`N/A:` requirement, and that every number the spec states about current behavior quotes that block.
+- `:845-849` new `### Draft Auto-Repair` subsection in §13, directly under the environment-variable table and the `validate.sh` delegation paragraph: one `repair-derived.cjs --folder <packet> --apply` run when every error is a fixable derived-metadata rule, the printed rewritten files, the revalidation, the metadata-and-frontmatter-pointers-never-body-text boundary, and the four conditions that disable it (other status, any content-rule failure, `CI`, `SPECKIT_DRAFT_AUTO_REPAIR=0`/`false`/`off`).
+
+**2. `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`**
+
+- `:207` new row in the §3 validation table, after `SPECKIT_SKIP_VALIDATION`: default `true`, boolean, effect as above, `0`/`false`/`off` disables, ignored when `CI` is set, reader `cli/spec/validate.sh`.
+- `:36` count recount, 188 → 189 and 192 → 193. The line itself instructs "Recount with that method when adding rows", so leaving it stale would have made the document false. I verified the method rather than doing arithmetic: a parser over every table gave 189 variable-column names and 193 in union with the four governing-only names, both before and after.
+
+**3. `.skilled/skills/system-spec-kit/SKILL.md`**
+
+- `:483` one added paragraph, two sentences, in §3 `Validation and Recovery` right after the `validate.sh --strict` paragraph: the Draft self-repair with `CI` and `SPECKIT_DRAFT_AUTO_REPAIR=0`, and the `MEASURED_BEHAVIOR` warning for a v2.4 `spec.md`. Growth is +2 lines (587 → 589), under the 4-line cap.
+
+No em dash was written. The 14 em dashes `rg` still finds in these files are all on pre-existing lines (`SKILL.md:95,468`; `validation-rules.md:34,79,85-92,220,747`), none in added text. No body text, table, or section was rewritten.
+
+## Verification (from repository root)
+
+```
+$ rg -l 'SPECKIT_DRAFT_AUTO_REPAIR' .skilled/skills/system-spec-kit/SKILL.md .skilled/skills/system-spec-kit/references/validation/validation-rules.md .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+.skilled/skills/system-spec-kit/SKILL.md
+.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+.skilled/skills/system-spec-kit/references/validation/validation-rules.md
+
+$ rg -c 'MEASURED_BEHAVIOR' .skilled/skills/system-spec-kit/references/validation/validation-rules.md
+4
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs 2>&1 | tail -1
+OK — 0 broken markdown links.
+```
+
+Extra checks I ran because they cover these files: `check-card-sync.sh` prints `CARD SYNC OK` (all 11 checks PASS), and sk-doc's `validate_document.py` reports 0 issues on `validation-rules.md` and `SKILL.md`. `ENV-REFERENCE.md` reports 2 warnings that are pre-existing and untouched by this change (its section list jumps from `## 7.` to `## 9.`, and the README rule set is a fallback for that filename).
+
+One thing is yours to do: `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` now prints `DRIFT system-spec-kit` and exits 1, because `.hermes/skills/system-spec-kit/SKILL.md` is generated from the `SKILL.md` body and every other difference between the two is a rendering transform. Regenerating writes a file this brief does not name, so I left it alone. Run that script without `--check` once the packet's SKILL.md edits are final, before the REQ-008 closeout gate.

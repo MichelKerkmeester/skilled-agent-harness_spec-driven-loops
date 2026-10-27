@@ -3,7 +3,16 @@
 # COMPONENT: CHECK-PLACEHOLDERS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh and compatible with strict mode.
+# Who runs this file: validate.sh does not. The validator registry still lists it,
+# but the orchestrator runs a native PLACEHOLDER_FILLED and skips any registry shell
+# rule whose id it runs natively, so the native rule alone decides the verdict and
+# an edit to run_check here changes no validate.sh result. Three callers source it:
+#   - spec/check-placeholders.sh, the post-edit scan, which calls only
+#     placeholder_marker_lines, so an edit to that helper changes what the scan reports;
+#   - tests/test-validation-extended.sh, whose isolated rule tests call run_check;
+#   - tests/placeholder-token-gate.vitest.ts, whose parity matrix calls run_check
+#     beside the orchestrator and requires the same verdict for a v2.3 doc.
+# Compatible with strict mode.
 set -euo pipefail
 
 _placeholder_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -19,10 +28,11 @@ source "${_placeholder_rule_dir}/../lib/status-classifier.sh"
 #   [YOUR_VALUE_HERE: ...] token. While spec.md has the Status Draft, an unfilled token in such a doc is a
 #   warning. At any other status it is an error. A doc with an older stamp, or none, keeps the error it
 #   always had. [NEEDS_CLARIFICATION:] is an error in every packet.
-# Parity: mirrors the runtime orchestrator validatePlaceholders for a doc stamped v2.3 or later.
-# An older doc keeps the scan this rule always ran, which differs from the orchestrator on an
-# indented fence, the <YOUR_VALUE_HERE: form and a [template: title; production runs
-# only the orchestrator. Mustache {{...}} is NOT flagged (not canonical spec-doc placeholder
+# Parity: mirrors the runtime orchestrator validatePlaceholders for a doc stamped v2.3 or later,
+# which the parity matrix above checks; that mirror is kept by hand and nothing in validate.sh
+# enforces it. An older doc keeps the scan this rule always ran, which differs from the
+# orchestrator on an indented fence, the <YOUR_VALUE_HERE: form and a [template: title.
+# Mustache {{...}} is NOT flagged (not canonical spec-doc placeholder
 # syntax; legit spec-doc content uses it).
 # spec/check-placeholders.sh, the post-edit scan, reads its markers through
 # placeholder_marker_lines below so it reports what strict validation flags.
@@ -36,7 +46,9 @@ source "${_placeholder_rule_dir}/../lib/status-classifier.sh"
 # on the line is a [YOUR_VALUE_HERE: value token, "marker" when any other marker
 # is present, and "title" for a [template: token left in a title line.
 # Mode "v23", for a doc stamped v2.3 or later, skips fences opened by ``` or ~~~
-# at any indent and inline code spans, reads every marker on a line and checks
+# at any indent and inline code spans. Such a fence closes only on a run of the
+# same character, at least as long as the opener, with nothing after it but
+# whitespace, so a ``` line quoted inside a ~~~ block does not end the block. It reads every marker on a line and checks
 # the title. Any other mode reads only the first marker on a line, skips it when
 # a backtick sits right before it, and knows only ``` fences.
 placeholder_marker_lines() {
@@ -68,10 +80,26 @@ placeholder_marker_lines() {
             }
             return out
         }
-        BEGIN { in_code = 0; marker = "<YOUR_VALUE_HERE:|\\[YOUR_VALUE_HERE:|\\[NEEDS[_ ]CLARIFICATION:" }
+        BEGIN { in_code = 0; fence = ""; marker = "<YOUR_VALUE_HERE:|\\[YOUR_VALUE_HERE:|\\[NEEDS[_ ]CLARIFICATION:" }
         {
+            # A CRLF doc keeps its carriage return in awk; drop it so a closing
+            # fence matches exactly as the orchestrator, which splits on \r?\n.
+            sub(/\r$/, "")
             if (mode == "v23") {
-                if ($0 ~ /^[ \t]*(```|~~~)/) { in_code = !in_code; next }
+                if (fence != "") {
+                    if (match($0, /^[ \t]*(```+|~~~+)[ \t]*$/)) {
+                        run = $0
+                        sub(/^[ \t]+/, "", run)
+                        sub(/[ \t]+$/, "", run)
+                        if (substr(run, 1, 1) == substr(fence, 1, 1) && length(run) >= length(fence)) fence = ""
+                    }
+                    next
+                }
+                if (match($0, /^[ \t]*(```+|~~~+)/)) {
+                    fence = substr($0, RSTART, RLENGTH)
+                    sub(/^[ \t]+/, "", fence)
+                    next
+                }
             } else if ($0 ~ /^[ \t]*```/) { in_code = !in_code; next }
             if (in_code) next
             if (mode == "v23") {
@@ -183,17 +211,12 @@ run_check() {
         ' "$filepath" 2>/dev/null)
         
         # Pattern 1: [YOUR_VALUE_HERE:] (skip inline backticks)
-        # A token in a Draft packet is deferred to a warning when the doc carries
-        # the token-gate stamp and the line holds no open question.
+        # Only a doc without the token-gate stamp reaches this scan, so a token
+        # here is an error at every status.
         while IFS= read -r match; do
             if [[ -n "$match" ]]; then
                 local linenum="${match%%:*}"
-                if [[ "$token_gated" == true && "$draft_packet" == true ]] && \
-                   ! printf '%s' "$match" | grep -qE '\[NEEDS[_ ]CLARIFICATION:'; then
-                    draft_tokens+=("$file:$linenum")
-                else
-                    found_placeholders+=("$file:$linenum")
-                fi
+                found_placeholders+=("$file:$linenum")
             fi
         done < <(echo "$filtered" | grep -E '\[YOUR_VALUE_HERE:' 2>/dev/null | \
                  grep -v '`\[YOUR_VALUE_HERE:' | \

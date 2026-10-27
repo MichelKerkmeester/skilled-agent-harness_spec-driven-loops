@@ -1,0 +1,32 @@
+All edits applied and verified. Report:
+
+## Changes (all inside `.skilled/skills/system-spec-kit/templates/examples/level-3/`)
+
+**1. `spec.md:62-86`** — filled Measured Behavior block, inserted immediately after the line that closes the `problem` anchor (`spec.md:60`), not nested in any other anchor:
+- `spec.md:62` `<!-- ANCHOR:measured-behavior -->`, `spec.md:63` `### Measured Behavior` (H3, no H2)
+- `spec.md:67-83` fenced `text` block: `curl -si -X POST localhost:3000/auth/login` → `HTTP/1.1 404 Not Found` plus the verbatim Express 404 page (`<pre>Cannot POST /auth/login</pre>`)
+- `spec.md:85` names the quoted value: the `404 Not Found` status line is the baseline SC-001's 30-second flow is timed against
+- `spec.md:86` `<!-- /ANCHOR:measured-behavior -->`
+
+**2. `plan.md`** — removed both sections with their anchor pairs, headings and dividers:
+- effort section (was `plan.md:227-242`: `<!-- ANCHOR:effort -->` … `<!-- /ANCHOR:effort -->` and its `---`)
+- enhanced-rollback section (was `plan.md:244-265`: `<!-- ANCHOR:enhanced-rollback -->` … `<!-- /ANCHOR:enhanced-rollback -->` and its `---`)
+- Result: one divider remains between the neighbours — `plan.md:224` `<!-- /ANCHOR:phase-deps -->`, `plan.md:225` `---`, `plan.md:226` blank, `plan.md:227` `<!-- ANCHOR:dependency-graph -->`. Phase-deps kept fully filled (`plan.md:205-224`).
+
+**3. `tasks.md:252`** — header renamed `## Fix Completeness` → `## FIX ADDENDUM: FIX COMPLETENESS`; the seven CHK-FIX rows below it (`tasks.md:254-260`) are unchanged. No sign-off section naming Technical Lead / Product Owner / QA Lead exists in this `tasks.md`, so that half of the instruction had nothing to act on.
+
+**4. `spec.md` edge cases (`spec.md:203-216`)** — untouched. Every row is filled and example-specific here (the duplicate-email message, token/session handling, DB-failure wording), so none qualified as a generic placeholder.
+
+Not touched: `description.json`, the live `.skilled/.../templates` copy, any file outside this example folder. No stamp change — this brief does not ask for one, and the example is stamped `| v2.2 -->`. No em or en dashes added (grep over all three files returns nothing). Anchors balanced 8/8, 11/11, 18/18; code fences even.
+
+## Verification output (repo root)
+
+```
+$ rg -c 'ANCHOR:measured-behavior' .skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
+2
+
+$ rg -n 'ANCHOR:effort|ANCHOR:enhanced-rollback' .skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
+(no output, exit 1)
+```
+
+`check-example-drift.sh` was not run, per the brief. One thing for you to sequence: I confirmed with a throwaway copy that the level-3 `spec.md` now reports `extra_anchor measured-behavior` against the *live* template tree, because `templates/core/spec.md.tmpl` does not carry that anchor yet. `brief-TS` adds it to the staged template, so the drift check will pass after the copy-back and fail if it is run before.

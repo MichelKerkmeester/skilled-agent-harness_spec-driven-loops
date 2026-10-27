@@ -1,0 +1,58 @@
+All three changes are in and verified.
+
+## Edits
+
+**1. `.skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:210`**
+```js
+const AUTHOR_SCAFFOLDED_LAZY_DOCS = ['timeline.md', 'decision-record.md', 'goal.md'];
+```
+`'resource-map.md'` removed; the `:214` filter against `contract.lazyAddonDocs` was already dropping it.
+
+**2. `.skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:228-229`** — reason only, code untouched:
+```
+ * cannot get two verdicts from two copies. resource-map.md is here because the
+ * deep loops write it without a continuity block; goal.md is absent because its
+ * does.
+```
+
+**3. `runtime/cli/tests/upgrade-legacy.tests/upgrade-legacy.spec.ts` → `runtime/cli/tests/upgrade-legacy.vitest.ts`**
+- `:471-476` — fixture restored (title "Authored Handover" untouched; the new block is `:486-491`): authored block `title: "Authored Resource Map"`, `description: "An authored resource map."`, `importance_tier: "critical"`, no `contextType`, body `# Resource Map\n\nLegacy map written before v4.\n`, written to `<folder>/resource-map.md`.
+- `:581-589` — assertions: authored block kept (`startsWith`), `importance_tier: "critical"` exactly once, body unchanged (`endsWith`), no `contextType` present, and the whole file byte-identical to what was written.
+
+## What upgrade-legacy now does to `resource-map.md`
+
+Nothing. The fill's eligibility gate (`runtime/cli/lib/frontmatter-migration.ts:943-945`) tests `SPEC_DOC_BASENAMES` or `TEMPLATE_DOC_FILES`; `resource-map.md` is in neither (the basename set ends at `handover.md`, and the template map has no entry since the addon template was deleted), so the file is skipped and returns byte-identical. Confirmed by the first observation run (byte-identity assertion passed) and re-asserted after hardening. Resulting frontmatter, quoted verbatim from the file:
+
+```
+---
+title: "Authored Resource Map"
+description: "An authored resource map."
+importance_tier: "critical"
+---
+# Resource Map
+
+Legacy map written before v4.
+```
+
+No `contextType` is added, no `_memory` block is added, and the tier is not duplicated.
+
+## Outputs (from `.skilled/skills/system-spec-kit`)
+
+```
+$ ./node_modules/.bin/vitest run runtime/cli/tests/upgrade-legacy.vitest.ts runtime/cli/tests/template-structure*.vitest.ts --config vitest.config.ts
+ Test Files  2 passed (2)
+      Tests  75 passed (75)
+   Start at  10:39:18
+   Duration  403.64s (transform 180ms, setup 30ms, import 216ms, tests 403.17s, environment 0ms)
+```
+
+```
+$ npm --prefix runtime run build 2>&1 | tail -2
+@spec-kit/runtime dist build preparation recorded
+@spec-kit/runtime dist build preparation recorded
+```
+Re-run with exit status captured (same command, redirected): `exit=0`, `tsc --build` emitted no diagnostics; the two lines above are the trailing `prepare-build` records.
+
+Intermediate observation run: `-t "fills missing frontmatter keys"` → `1 passed`, which is what showed the file is untouched rather than refilled.
+
+Nothing is left for you beyond reviewing the diff; no cleanup remains, and I ran no git command.

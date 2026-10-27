@@ -1,0 +1,19 @@
+Done. One line inserted, nothing else touched.
+
+**Change**
+- `.env.example:180` — added `# SPECKIT_DRAFT_AUTO_REPAIR=true        # Graduated ON: a strict full-rule validate on a Draft packet repairs derived metadata once; 0/false/off keeps it read-only`, directly after `.env.example:179` (`# SPECKIT_RULES= ...`), which is unchanged.
+
+**Verification** — `rg -n -A1 "^# SPECKIT_RULES=" .env.example` (exit 0):
+```
+179:# SPECKIT_RULES=                        # Comma-separated subset of rules to run
+180:# SPECKIT_DRAFT_AUTO_REPAIR=true        # Graduated ON: a strict full-rule validate on a Draft packet repairs derived metadata once; 0/false/off keeps it read-only
+```
+Confirmed as expected: the rules line, then the new line immediately below.
+
+**Scope/integrity evidence**
+- Single-block substitution reported by the edit tool; `rg -c "SPECKIT_DRAFT_AUTO_REPAIR"` = 1 (no duplicate) and the file's line total rose by exactly one (read-level count 634 → 635); the tail (`# End of template.`) is intact and the file still ends with a newline.
+- No git command run, no file outside `.env.example` written.
+
+**Deviation, named:** the dispatch brief restricted reads to the target file, so I did not load `.skilled/repo-rules/*` under the reply-rules gate; the only file read beyond the edit anchor was the target itself, and the brief's exact-line contract plus the `rg` verification carried the check.
+
+Nothing is yours to do on this deliverable.

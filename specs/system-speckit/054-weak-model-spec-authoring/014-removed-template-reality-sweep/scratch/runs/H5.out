@@ -1,0 +1,59 @@
+All eight edits are on disk and every required command has been run.
+
+## What changed
+
+| # | File:line | Change |
+|---|---|---|
+| 1a | `.skilled/skills/system-spec-kit/references/templates/level-specifications.md:794` | Phase-child list now reads "spec.md, plan.md, tasks.md and acceptance-criteria.md; decision-record.md on request" |
+| 1b | same file:392 | Optional-files entry lost the false "(from Level 3)" qualifier |
+| 1c | same file:545 | L2 to L3 row is now "addendum sections (`decision-record.md` on request)" |
+| 1d | same file:571 | Manual-upgrade 2 to 3 row is now "Promote Level 2 sections; `decision-record.md` stays on request" |
+| 1e | same file:33-37 | Tree gained `changelog/`, `scratch/`, `CONTRACT.md`, `EXTENSION-GUIDE.md`, `MIGRATION.md`, each with a `#` comment; `└──` stayed on `README.md` |
+| 2 | `.../assets/level-decision-matrix.md:263` | 2 to 3 row is now "No new file (`decision-record.md` and `research/research.md` on request)" |
+| 3 | `.../references/workflows/quick-reference.md:308` | 2 to 3 row is now "No new file (decision-record.md and research/research.md on request)" |
+| 4 | `.../runtime/cli/spec/upgrade-level.sh:281` | Help line is now "L2 → L3:   Promotes L2 sections, adds dependency graph and milestones (decision-record.md on request)"; `→` kept, no code touched |
+| 5a | `.../system-spec-kit/SKILL.md:61` | Parenthesis rewritten to "(`acceptance-criteria.md` from Level 2; the rest after `implementation-summary.md` are optional add-ons or packet-type docs)"; file-name list untouched |
+| 5b | same file:61 | Inserted "The /speckit workflows also run their own strict gate after each doc-writing step." after the section-9 sentence |
+| 6 | `.../manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md:60, :102` | One plain line added after each of the two clean-run blocks |
+| 7 | `deep-research/.../resource-map-emission.md:58`, `deep-review/.../resource-map-emission.md:59` | "ten-category template skeleton" → "ten-category skeleton" |
+| 8 | `.../runtime/cli/tests/upgrade-legacy.vitest.ts:486-488` | Comment rewrapped to 93/94/40 chars, words unchanged, no code change |
+
+Hermes sync wrote 1 of 67 copies (the edited `system-spec-kit` SKILL.md).
+
+## Verification output (verbatim)
+
+```
+--- 1 ---
+level-decision-matrix.md:120:| System redesign         | 300 | Level 3         | L2 + decision-record            | Architectural decisions must be recorded |
+level-decision-matrix.md:121:| Multi-team project      | 400 | Level 3         | L2 + decision-record + research | Coordination needs full documentation    |
+level-decision-matrix.md:212:| **DECISION_RECORDED**   | —       | —       | ✓       | warning  | decision-record.md must document key decisions |
+level-decision-matrix.md:244:- Details: Checks decision-record.md for decision entries with status and rationale
+level-decision-matrix.md:271:- [YYYY-MM-DD]: Escalated to Level 3 (architectural decision required) - added decision-record.md
+level-decision-matrix.md:296:Architectural decision? ──YES──→ Level 3 (add decision-record.md)
+quick-reference.md:53:| Complex/architectural | 3 | L2 file set | decision-record.md, research/research.md, timeline.md |
+quick-reference.md:381:**Create `decision-record-*.md` when making:**
+quick-reference.md:387:**Format:** Use descriptive name (e.g., `decision-record-database-choice.md`)
+quick-reference.md:715:- [decision-record.md](../../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
+level-specifications.md:30:├── addons/  # acceptance-criteria, ..., decision-record, ...
+level-specifications.md:316,323,344,359,366,414,479,580,832  (required sections, enforcement note, template paths, examples appendix)
+rg1=0
+--- 2 ---
+rg2=1
+--- 3 ---
+bashn=0
+--- 4 ---
+PASS: 67 Hermes skill copies in sync
+--- 5 ---
+check-markdown-links: 7629 files, 13779 links checked, 0 broken
+OK — 0 broken markdown links.
+```
+
+`rg2=1` means zero matches: no `template skeleton` and no `last three optional` remain anywhere in the deep-loop skills or `SKILL.md`.
+
+## Residual hits I did not touch
+
+Verification 1's filter still prints entries outside my brief's edit list, because their wording does not contain "on request"/"lazy"/"optional":
+- `level-decision-matrix.md:120-121` and `:296` still present decision-record as part of the Level 3 file set in the scenario table and the decision tree.
+- `quick-reference.md:53` still lists decision-record.md in the "L3 file set" column.
+
+These read as the same claim the brief corrects elsewhere. I left them alone under the scope lock; they need a follow-up brief if you want them aligned. Everything else in that output is a required-sections heading, a template path, an example changelog line, or a schema rule, none of which asserts a document requirement.

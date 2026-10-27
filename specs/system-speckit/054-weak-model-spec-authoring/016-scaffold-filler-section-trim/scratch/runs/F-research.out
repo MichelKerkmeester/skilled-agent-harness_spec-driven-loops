@@ -1,0 +1,30 @@
+All four changes applied to `.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl`, one line each, line numbers unchanged.
+
+**Changes**
+
+| Line | Before → After |
+|---|---|
+| `.../addons/research.md.tmpl:403` | `Read the `-k` value.` → `Read the `--keep` value.` (drops the invented short option) |
+| `.../addons/research.md.tmpl:621` | `The new check adds under 5 ms.` → `The new check adds under 5 ms to a run.` |
+| `.../addons/research.md.tmpl:777` | `--dry-run`: lists what it would delete.` → `No option: an environment variable instead would add a hidden input.` (matches the rejected alternative at `:111`) |
+| `.../addons/research.md.tmpl:843` | `--keep with no value exited 2: the parser never checked the next word.` → `--keep 3 kept 4 archives: the sort compared modification times in whole seconds and two archives tied. The fix breaks the tie on the archive number.` (intended exit 2 is no longer the bug) |
+
+**Verification output** (repo root, exits 1 = no match, prints nothing):
+
+```
+$ rg -n -e '-k`' -e 'dry-run' -e 'never checked the next word' .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
+(no output)
+exit=1
+```
+
+**Structural checks on the same file**
+
+```
+lines=     966        (unchanged)
+em dashes= 0
+IF open=2   close=2
+ANCHOR open=20 close=20
+FILL=      20        (count unchanged; every note keeps instruction + GOOD/WEAK)
+```
+
+No `exited 2` failure story remains in this file, no new feature names, no edits outside the named file, and no git command was run.

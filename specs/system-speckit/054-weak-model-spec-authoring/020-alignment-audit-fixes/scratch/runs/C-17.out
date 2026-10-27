@@ -1,0 +1,20 @@
+Done. Both replacements applied to one file, nothing else touched.
+
+**File:** `.skilled/skills/system-spec-kit/README.md`
+
+| Line | Old | New |
+|---|---|---|
+| 432 | `│   ├── core/                   # Core library (28 modules)` | `│   ├── core/                   # Core library (27 modules)` |
+| 434 | `│   ├── utils/                  # Utility modules (18 utilities)` | `│   ├── utils/                  # Utility modules (17 utilities)` |
+
+Column alignment preserved by padding the changed digits in place; tree glyphs unchanged.
+
+**Verification output (exit 0):**
+```
+2
+```
+- `grep -c "Core library (27 modules)\|Utility modules (17 utilities)"` → `2` (expected 2)
+- Stale-string check `grep -c "Core library (28 modules)\|Utility modules (18 utilities)"` → `0`
+- Re-read of lines 432/434 confirms both new counts at their original positions
+
+Two files were read/written in total: this README plus the verification grep over the same file. No git commands run, no commits, no further edits. Nothing is left for the operator here.

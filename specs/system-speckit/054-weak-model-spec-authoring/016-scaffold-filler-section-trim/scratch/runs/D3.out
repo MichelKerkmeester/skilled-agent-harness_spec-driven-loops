@@ -1,0 +1,26 @@
+All four edits applied and verified. Summary:
+
+| File | Line | Change |
+|---|---|---|
+| `.skilled/skills/system-spec-kit/assets/level-decision-matrix.md` | 264 | `3 → 3+` row last cell now reads "Approval workflow in spec.md, sign-off section in tasks.md + multi-agent coordination patterns" |
+| `.skilled/skills/system-spec-kit/assets/template-mapping.md` | 400 | Now reads "The closure-gate template; the approval workflow renders in spec.md and the sign-off section in tasks.md" |
+| `.skilled/skills/system-spec-kit/references/templates/level-specifications.md` | 387 | Now reads "the closure-gate criteria; the sign-off section lives in tasks.md" |
+| `.skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md` | 156 | Heading renamed to `### tasks.md checklist (Level 2 and above)`; table kept |
+| same file | 171-175 | Added `### acceptance-criteria.md (\`# Acceptance Criteria: [Title]\`)` with the real anchors `metadata -> ## 1. METADATA`, `criteria -> ## 2. CRITERIA`, `closure -> ## 3. CLOSURE STATEMENT`, read from `templates/addons/acceptance-criteria.md.tmpl:41,53,83` |
+
+Baseline facts I verified before editing rather than taking on report: `spec.md.tmpl:356` holds the `approval-workflow` anchor; `tasks.md.tmpl:289-290` holds `sign-off` under `## L3+: Sign-Off`; `acceptance-criteria.md.tmpl` anchors are `metadata`, `criteria`, `closure` only; and the contract file had no acceptance-criteria anchor table anywhere (the `metadata` rows at 59, 115, 96, 175 belong to spec.md and implementation-summary.md).
+
+Verification output from the repo root:
+
+```
+$ rg -n 'Sign-off section in spec.md|sign-offs and compliance render inside spec.md|extended criteria with a sign-off' .skilled/skills/system-spec-kit
+(no output, rg exit 1)
+
+$ rg -n '^### tasks.md checklist' .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md
+156:### tasks.md checklist (Level 2 and above)
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs 2>&1 | tail -1
+OK — 0 broken markdown links.
+```
+
+The `fix-completeness` addendum note stays with the tasks.md checklist table it describes, so the new acceptance-criteria section follows it. No em dash written in any edit; the three em dashes remaining in those files are pre-existing at lines 211, 212 (level-decision-matrix.md) and 559 (level-specifications.md), outside my edited lines. No git command was run; only the four briefed files were touched.

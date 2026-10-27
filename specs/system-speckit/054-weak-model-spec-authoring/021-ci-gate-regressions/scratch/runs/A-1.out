@@ -1,0 +1,16 @@
+TASK A-1 complete.
+
+**Change made**
+- `.skilled/skills/system-spec-kit/runtime/eslint.config.mjs:10` — ignore glob `'dist/**'` → `'**/dist/**'`, so build output nested under package roots (e.g. `runtime/eslint.config.mjs` linting from `system-spec-kit/`) is excluded, not just a top-level `dist/`. No other line touched; single-line replacement confirmed by re-read (identical hashes on lines 1–9 and 11+ before/after).
+
+**Verification run**
+```
+$ rg -n "ignores:" .skilled/skills/system-spec-kit/runtime/eslint.config.mjs
+10:    ignores: ['**/dist/**', 'node_modules/**', 'tmp-test-fixtures/**'],
+EXIT=0
+```
+Line 10 now carries `'**/dist/**'` as required.
+
+**Not done (per brief)**: no ESLint run, no git commands, no writes outside the one named file.
+
+Nothing outstanding for the operator on this task.

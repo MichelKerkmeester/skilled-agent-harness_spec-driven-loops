@@ -1,0 +1,40 @@
+Done. All three live files changed, no staging copies touched.
+
+## Changes
+
+**`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl`**
+- `:242` — perf fill note timing claim is now `GOOD: CHK-110 [P1] \`--keep 3\` adds under 5 ms to a run.`
+- `:257` — CHK-121 and CHK-122 (feature flag, monitoring) replaced with one token row: `- [ ] CHK-121 [P1] [YOUR_VALUE_HERE: one deployment check this packet needs, or delete this row]`. CHK-120 (`:256`), CHK-123 (`:258`), CHK-124 (`:259`) kept as-is.
+- `:290` — Sign-Off fill note now says name the real approver, add a row only for a second approver, write `N/A` or delete; GOOD `Operator, merges the commit.`, WEAK `Signed off.`
+
+**`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl`**
+- `:67` — Definition of Ready example is now checkable before work: ``GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts.``
+
+**`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`**
+- `:91` — section 6 now says the plan names its three phases, Setup, Implementation and Verification, one line each; "more than three phases" means the feature needs more than one packet.
+- `:101` — acceptance line says `plan.md` holds its three phases in one line each.
+- `:172` — section 11 bullet is now `the feature needs more than one packet's three phases`.
+
+## Verification (repo root)
+
+```
+$ rg -n 'Phase 1.5|Feature flag configured|External service failure|Tests passing \(if applicable\)|Technical Lead' .skilled/skills/system-spec-kit/templates
+.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:114:- [ ] Tests passing (if applicable)
+.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md:156:Phase 1.5 (Schema) ───┘
+.skilled/skills/system-spec-kit/templates/examples/level-1/plan.md:52:- [x] Tests passing (if applicable)
+```
+`Feature flag configured`, `External service failure`, and `Technical Lead` are gone; the three remaining hits are the TASK F-examples set (add-on and examples).
+
+```
+$ rg -n '3 or 4 phases' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+(no output, exit 1)
+```
+
+```
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | tail -1
+CARD SYNC OK
+```
+
+Balance and hygiene checks: tasks.md.tmpl IF 12/12, ANCHOR 21/21; plan.md.tmpl IF 25/25, ANCHOR 15/15. No em dash written by these edits (the three `N/A —` lines in plan.md.tmpl at `:136`, `:154`, `:170` are pre-existing and untouched). Card stays at 177 lines, under its 260-line guard.
+
+Nothing is the operator's to do; the change is complete in the working tree and no commit was made.

@@ -1,0 +1,60 @@
+All edits applied, all syncs run, all three verification commands pass.
+
+## What changed
+
+**1. `.skilled/skills/system-spec-kit/SKILL.md:61`** (Distributed Governance Rule)
+- `validate.sh <spec-folder> --strict` after authored spec-doc writes → `validate.sh <spec-folder> --strict --quiet` **once after the last** authored spec-doc write, plus the pointer "as section 9 of `references/workflows/spec-authoring-card.md` sets out"
+- "is exempt from that generic per-write rule" → "is exempt from that rule"
+- Mirror regenerated: `.hermes/skills/system-spec-kit/SKILL.md:66`
+
+**2. `.skilled/agents/orchestrate.md:400`** `validate.sh --strict --quiet` MUST run once after the last doc write (spec-authoring-card.md section 9)
+**`.skilled/agents/orchestrate.md:429`** Rule 5 Action: runs `validate.sh --strict --quiet` once after the last doc write
+
+**3. `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md`** (worker brief inside the heredoc)
+- `:80` step 4 → `--strict --quiet`
+- `:81` step 5 → section 9 round rules, stop after three rounds
+- `:83` RETURN → the first RESULT line of the last `--quiet` run
+- Dependent lines aligned (they echoed the old "last RESULT line" instruction of the worker brief): `:127` expected signals "the worker's first `RESULT` line from its last `--quiet` run", `:132` evidence "the worker's first `RESULT` line". Line 138 pass criteria and the harness's own validate call at `:100-107` are untouched: those check the harness run, not the worker instruction.
+
+## Sync output (last lines)
+
+```
+sync-skills-hermes.cjs          Wrote 2 of 67 Hermes skill copies; pruned 0          exit=0
+  --check                       PASS: 67 Hermes skill copies in sync                 exit=0
+sync-runtime-mirrors.cjs        Linked 0, removed 0, of 194 expected mirrors.       exit=0
+  --check                       PASS: 194 mirrors across 8 trees are in sync.        exit=0
+sync-agents.cjs                 Wrote 1 of 11 generated agents.                      exit=0
+  --check                       PASS: 11 agents are in sync.                         exit=0
+sync-agents-pi.cjs              Wrote 1 of 11 generated agents.                      exit=0
+  --check                       PASS: 11 agents are in sync.                         exit=0
+```
+
+## Verification output
+
+```
+$ rg -n 'after each doc write|per-write rule' .skilled/agents .claude/agents .codex/agents .pi/agents .hermes/agents S/SKILL.md .hermes/skills/system-spec-kit/SKILL.md
+rg1_exit=1          # clean no-hit, no output
+
+$ rg -c 'once after the last doc write' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md .codex/agents/orchestrate.toml .pi/agents/orchestrate.md .hermes/agents/orchestrate.md
+.skilled/agents/orchestrate.md:2
+.hermes/agents/orchestrate.md:2
+.claude/agents/orchestrate.md:2
+.pi/agents/orchestrate.md:2
+.codex/agents/orchestrate.toml:2
+rg2_exit=0
+
+$ node S/runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 67 Hermes skill copies in sync
+exit=0
+```
+
+## One deviation, named
+
+**`.claude/agents/orchestrate.md:388` and `:417` were edited** (same two replacements). Not in the named file list, but the brief's own verify command requires zero `after each doc write` hits in `.claude/agents`, and the agent text cannot be synced there by any of the three named commands because `.claude/agents` is an authored tree, not a generated one (`sync-runtime-mirrors.cjs:37-39`). The repository gate proved it was required: `check-agent-mirror-sync.cjs --all` returned `DRIFT orchestrate [claude] missing=["--quiet","spec-authoring-card.md"]` with `exit=1`; after the edit it returns `11 agent(s) checked — all mirrors in sync — OK`, `exit=0`. No other file in that tree was touched.
+
+## Two residues I did not touch (out of scope, reporting only)
+
+- `spec-authoring-card.md:159` (section 10 CLOSE) still reads "`validate.sh --strict` prints `RESULT: PASSED`". Harmless as written, since `--quiet` changes verbosity only, but it is the last bare `--strict` in the card.
+- `SKILL.md:481` still reads "Run `validate.sh <spec-folder> --strict` before completion claims". It makes no per-write claim, so the brief did not name it.
+
+Nothing is left for you to do on this task; the two residues above are yours to accept or queue as a follow-up.

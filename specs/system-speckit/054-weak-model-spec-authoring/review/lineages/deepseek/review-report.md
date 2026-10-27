@@ -1,290 +1,150 @@
-# Deep Review Report - 054-weak-model-spec-authoring (deepseek lineage)
+# Deep Review Report — 054-weak-model-spec-authoring (lineage deepseek)
 
-**Session**: `fanout-deepseek-1792949481267-fym7sk` | **Generation**: 1 | **Lineage mode**: new
-**Review target**: `specs/system-speckit/054-weak-model-spec-authoring` (spec-folder)
-**Iterations**: 10 of 10 | **Stop reason**: `maxIterationsReached`
-**Executor**: cli-devin `deepseek-v4-1-flash-max`
+- Run: `fanout-deepseek-1793081281038-z2aj1o` · lineage `deepseek` · generation 1 · lineageMode `new`
+- Target: `specs/system-speckit/054-weak-model-spec-authoring` at `main` `558570a83e`
+- Iterations: 3 of 3 · Stop reason: `maxIterationsReached` · Converged: no (the ceiling bound)
 
----
+## Executive Summary
 
-## 1. Executive Summary
+- **Overall verdict: CONDITIONAL**
+- hasAdvisories: false (advisories apply only to a PASS)
+- Active findings: **P0 = 0, P1 = 1, P2 = 6**
+- Review scope: the 22 phase records of packet 054 and the shipped files they name — the versioned placeholder gate and its shell rule, the authoring card and its sync guard, the example drift guard, the draft metadata auto-repair and its write path, the measured-behavior rule, the `local-*` provisioning link step, the advisor's mode-suffix strip and slash-command bound, the changed-packet CI gate, and the generated command-bridge and skill-graph artifacts.
+- Operator review focus: All work packet 054 shipped in phases 001-022, now on main at 558570a83e: the spec-kit templates, validator, authoring card, CLI scripts and their tests, the advisor scorer and its phrases, the sk-git provisioning step, the docs and the phase records. Check the shipped code and docs against what each phase spec claims.
 
-**Overall verdict: CONDITIONAL**
+The packet holds up. Fourteen of the fifteen phase claims re-checked reproduce exactly, including the three checks the packet says it ran and that were run again here: `check-card-sync.sh` prints `CARD SYNC OK`, `check-example-drift.sh` prints `EXAMPLE_DRIFT_OK`, `derive-command-bridges.cjs --check` prints `"changed": []`, `route-validate.sh` prints `18 routes validated, 2 warnings`, and `skill-graph-freshness.cjs` prints `SIGNAL DRIFT compiled vs disk: none`. The one P1 is a scope gap rather than a broken feature: the draft metadata auto-repair is reachable from a recursive validation run, so a command operators treat as a check can rewrite derived metadata in several Draft children at once. The six P2s are two internal contradictions in the placeholder rule's own documentation, one changelog-tense sentence repeated in three command docs, one unbounded snapshot read on the repair path, and two stale or unverifiable phase records.
 
-| Severity | Active |
-|----------|-------:|
-| P0 (Blockers) | 0 |
-| P1 (Required) | 4 |
-| P2 (Suggestions) | 18 |
+## Planning Trigger
 
-`hasAdvisories`: false (the verdict is CONDITIONAL, not PASS).
-
-The packet's core deliverables hold up under a line-by-line audit. All nine child phases read Complete, all 84 acceptance rows read Met with artifacts that still exist, both drift guards exit 0 on the final tree, the version carriers agree at 2.9.0.0, and the benchmark report keeps its three failed sets on record beside the passing fourth set. Four P1 findings keep the verdict conditional:
-
-1. The scaffold command the authoring card prescribes accepts a traversing `--track` and creates the directory outside the repository.
-2. The examples the card tells a weak model to imitate use a task format that contradicts the card's own `Verify:` rule.
-3. Both placeholder implementations inspect only the first token position on a line, so an inline-code example token hides a later unfilled token.
-4. The implement workflow describes spec-doc authoring but names neither the authoring card nor the v2.3 token rule that the phase 006 handoff criterion requires.
-
-The 18 P2 findings cluster into parity and test-coverage gaps around the placeholder gate, stale parent and generated metadata, documentation claims that outrun their code, and one report whose set count is stale.
-
-**Review scope**: the parent `spec.md`/`goal.md`, nine child phase folders (spec, plan, tasks, acceptance criteria, implementation summary), the parent and child generated metadata, the four core templates, the ten addon templates, the four catalog leaves, eight playbook scenarios, both benchmark reports, the changelog and version carriers, and the command and agent surfaces phase 006 edited.
-
----
-
-## 2. Planning Trigger
-
-`/speckit:plan` is required: the verdict is CONDITIONAL and four P1 findings need remediation. `/create:changelog` is not the next step until the P1 set is fixed or accepted.
+`/speckit:plan` is required for the P1 and remains optional for the P2 advisories.
 
 ```json
 {
   "triggered": true,
   "verdict": "CONDITIONAL",
   "hasAdvisories": false,
-  "activeFindings": {
-    "P0": [],
-    "P1": ["R2-P1-001", "R5-P1-001", "R8-P1-001", "R9-P1-001"],
-    "P2": ["R1-P2-001", "R1-P2-002", "R1-P2-003", "R2-P2-001", "R3-P2-001", "R3-P2-002", "R3-P2-003", "R4-P2-001", "R4-P2-002", "R5-P2-001", "R6-P2-001", "R7-P2-001", "R7-P2-002", "R8-P2-001", "R9-P2-001", "R9-P2-002", "R10-P2-001", "R10-P2-002"]
-  },
+  "activeFindings": ["F1-P1-001", "F1-P2-002", "F1-P2-003", "F1-P2-004", "F2-P2-001", "F3-P2-001", "F3-P2-002"],
   "remediationWorkstreams": [
-    { "order": 1, "name": "Gate correctness", "findings": ["R8-P1-001", "R8-P2-001", "R1-P2-001", "R1-P2-002", "R2-P2-001"] },
-    { "order": 2, "name": "Authoring path safety", "findings": ["R2-P1-001"] },
-    { "order": 3, "name": "Card followability", "findings": ["R5-P1-001", "R5-P2-001", "R1-P2-003", "R4-P2-002"] },
-    { "order": 4, "name": "Command and agent alignment", "findings": ["R9-P1-001", "R9-P2-001", "R9-P2-002"] },
-    { "order": 5, "name": "Record and metadata hygiene", "findings": ["R3-P2-001", "R3-P2-002", "R3-P2-003", "R6-P2-001", "R10-P2-001", "R10-P2-002", "R4-P2-001", "R7-P2-001", "R7-P2-002"] }
+    "W1 close the recursive repair path",
+    "W2 correct the placeholder rule's two internal contradictions",
+    "W3 restate the warn-rule sentence in the three speckit command docs",
+    "W4 bound the repair snapshot",
+    "W5 refresh the two stale phase records and give the audit artifact a disposition field"
   ],
-  "specSeed": [
-    "Add a track-slug and containment rule to create.sh's --track argument, with a traversal regression test.",
-    "Amend the authoring card's step 4 to say the examples are for section shape, and update the four example Task Format lines to the Verify: form.",
-    "Make both placeholder implementations iterate every token on a line, and add the divergent shapes to the parity test.",
-    "Add the v2.3 placeholder rule and the authoring card to speckit-implement.yaml and implement.md.",
-    "Refresh the parent continuity blocks and generated metadata at closeout, and correct the two stale parent spec rows."
+  "specSeed": "Add a recursion refusal to the draft auto-repair contract and state the recursive behavior in validation-rules.md; restate the warn-rule sentence without a time reference; record an audit disposition field.",
+  "planSeed": "T001 refuse the repair under --recursive and prove it with a two-child fixture; T002 remove the unreachable branch and fix the header; T003 rewrite the three command-doc sentences; T004 cap the repair snapshot to REWRITE_TARGETS; T005 add a disposition field to the phase 020 audit findings and refresh phase 021's commit row.",
+  "findingClasses": ["missing-case", "instance-only"],
+  "affectedSurfacesSeed": [
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+    ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+    ".skilled/commands/speckit/{plan,implement,complete}.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/scratch/audit/findings.json"
   ],
-  "planSeed": [
-    "T001 create.sh: validate --track with the same containment rule as --path; add a traversal test.",
-    "T002 examples: replace the four Task Format lines with the Verify: form, or narrow the card's step 4 wording.",
-    "T003 orchestrator and shell: iterate matches per line; extend placeholder-token-gate.vitest.ts with the doc-set, angle, template-token, indented-fence and mixed-line shapes.",
-    "T004 implement.yaml/implement.md: add the placeholder-upgrade rule and the card reference.",
-    "T005 docs: correct the catalog leaf parity and first-disagreement claims, the scenario tool lists, and the benchmark report set count.",
-    "T006 metadata: regenerate parent graph-metadata after the status flip and refresh both continuity blocks."
-  ],
-  "findingClasses": ["path-traversal", "followability-contradiction", "gate-false-negative", "incomplete-alignment", "documentation-contract-drift", "test-coverage-gap", "derived-metadata-drift", "continuity-metadata-drift", "stale-closure-record", "stale-scope-table", "record-overstatement", "acceptance-command-error", "precondition-drift", "status-ambiguity", "report-count-drift", "followability-gap", "gate-coverage-gap"],
-  "affectedSurfacesSeed": ["create.sh argument parsing", "authoring card", "four example task files", "orchestrator placeholder rule", "shell mirror", "placeholder parity test", "speckit-implement.yaml", "parent spec and goal continuity", "parent graph metadata", "catalog leaves", "playbook scenarios 479 and 482", "benchmark report README"],
   "fixCompletenessRequired": true
 }
 ```
 
----
+## Active Finding Registry
 
-## 3. Active Finding Registry
+| ID | Severity | Dimension | Location | Title | Disposition |
+|---|---|---|---|---|---|
+| `F1-P1-001` | P1 | correctness | `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:414` | Recursive validation auto-repairs every Draft child, so a read-only audit mutates packets it was not asked to touch | open — fix in the next plan |
+| `F1-P2-002` | P2 | correctness | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:6` | The placeholder rule's header describes a call path that no longer exists | open — advisory |
+| `F1-P2-003` | P2 | correctness | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:191` | The legacy scan keeps a Draft-token branch that its own `continue` makes unreachable | open — advisory |
+| `F1-P2-004` | P2 | correctness | `.skilled/commands/speckit/plan.md:107` (also `implement.md:93`, `complete.md:102`) | Three durable command docs describe the rule set in changelog tense | open — advisory |
+| `F2-P2-001` | P2 | security | `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1595` | The repair's before/after snapshot reads every top-level packet file whole, twice, with no size guard | open — advisory |
+| `F3-P2-001` | P2 | traceability | `specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/implementation-summary.md:41` | Phase 021's record says its work is uncommitted, and the repository says otherwise | open — advisory |
+| `F3-P2-002` | P2 | traceability | `specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes/scratch/audit/findings.json:1` | The phase 020 audit cannot be closed from its own artifact | open — advisory |
 
-### P1 - Required
+Evidence, impact and fix recommendation for each finding are in the iteration narrative that raised it (`iterations/iteration-001.md`, `iteration-002.md`, `iteration-003.md`), which is the canonical artifact; `contentHash` is `UNKNOWN` for every entry because the deltas name the finding rather than hash it, and the reducer records the null faithfully.
 
-| ID | Dimension | Title | File:line | Evidence | Fix | Class | Disposition |
-|----|-----------|-------|-----------|----------|-----|-------|-------------|
-| R2-P1-001 | security | Scaffold command accepts a traversing track and creates it outside the repository | `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1291` | `SPECS_DIR="$SPECS_DIR/$TRACK"` then `mkdir -p` runs before validation; `--path` has a containment validator at 1223 | Validate `--track` with the same rule and add a traversal test | path-traversal | active |
-| R5-P1-001 | correctness | Example task format contradicts the card's Verify rule | `.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md:32` | All four examples declare `T### ... [effort]` and carry no `Verify:`; the card step 4 says they are safe to imitate and step 7 requires `Verify:` | Narrow step 4 to section shape and update the example format lines | followability-contradiction | active |
-| R8-P1-001 | correctness | First token position only; an inline-code token hides a later real token | `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:734` | `exec` once per line and `return` on a backticked first match; shell `grep -v` drops the whole line | Iterate every match and skip only backticked ones | gate-false-negative | active |
-| R9-P1-001 | traceability | Implement workflow describes authoring but omits the card and token rule | `.skilled/commands/speckit/assets/speckit-implement.yaml:288` | The asset writes tasks.md/implementation-summary.md from an inline scaffold; `v2.3`, `placeholder` and `spec-authoring-card` return 0 matches | Add the rule and card pointer to the asset and entry point | incomplete-alignment | active |
+## Remediation Workstreams
 
-### P2 - Suggestions
+**W1 — Close the recursive repair path (P1, `F1-P1-001`).**
+1. Add a recursion signal to the auto-repair decision: the orchestrator already knows the folder it validates; the caller that loops over phase children (`validate.sh:414`) can pass `SPECKIT_DRAFT_AUTO_REPAIR=0` to its children the same way the five sibling tools do, or answer a `--no-auto-repair` flag. The first keeps the change inside `validate.sh`; the second makes the refusal visible in `--help`.
+2. Add the two-child fixture: one Draft child with a stale `graph-metadata.json`, one Complete child; assert the parent run leaves the Draft child's bytes unchanged under the new rule.
+3. State the behavior in `references/validation/validation-rules.md` §auto-repair beside the existing refusal list, and in the card's section 9.
 
-| ID | Dimension | Title | File:line | Fix | Class |
-|----|-----------|-------|-----------|-----|-------|
-| R1-P2-001 | correctness | Catalog leaf asserts a parity the code does not have | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md:36` | Qualify the leaf or align the mirror's doc set and markers | documentation-contract-drift |
-| R1-P2-002 | correctness | Parity test pins four cells and none of the divergent shapes | `.skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts:91` | Add a table-driven parity test over the five divergent shapes | test-coverage-gap |
-| R1-P2-003 | correctness | Card token count covers three documents, the gate covers six | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:133` | Extend the count command or name the validator as authoritative | followability-gap |
-| R2-P2-001 | security | `[template:...]` title token in spec.md is invisible to the production scaffold-marker rule | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-scaffold-never-touched.sh:34` | Add spec.md to the scanned list or move the check into the placeholder rule | gate-coverage-gap |
-| R3-P2-001 | traceability | Parent spec still names swe-2-max as the benchmark subject | `specs/system-speckit/054-weak-model-spec-authoring/spec.md:117` | Rewrite precondition 4 or point to goal D8 | documentation-contract-drift |
-| R3-P2-002 | traceability | Parent graph metadata still reports in progress | `specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json:47` | Regenerate after the status flip | derived-metadata-drift |
-| R3-P2-003 | traceability | Last-active pointer still names phase 004 | `specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json:183` | Update the pointer at closeout | derived-metadata-drift |
-| R4-P2-001 | maintainability | The 61 addon fill lines have no regression guard | `.skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts:49` | Render the addon templates in the fill test or extend the drift guard | test-coverage-gap |
-| R4-P2-002 | maintainability | Card points at a long guide it never sends the reader to | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:18` | Name the routing condition or drop the sentence | followability-gap |
-| R5-P2-001 | correctness | Card task acceptance command fails a completed packet | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:122` | Count all task lines, not pending only | acceptance-command-error |
-| R6-P2-001 | traceability | Phase 005 closure still reports two findings as open | `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md:89` | Record the amendment as applied | stale-closure-record |
-| R7-P2-001 | maintainability | Card-sync guard described as failing on the first disagreement | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:30` | Say it reports every failed check | documentation-contract-drift |
-| R7-P2-002 | maintainability | Scenarios 479 and 482 omit awk and rg from their tool lists | `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md:28` | Add both tools to both precondition lines | precondition-drift |
-| R8-P2-001 | correctness | First Status row decides Draft; a later Complete claim is invisible | `.skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh:68` | Fail on contradictory Status rows | status-ambiguity |
-| R9-P2-001 | traceability | Phase 006 summary says four agents changed for the card; only one names it | `specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md:68` | Split the row by actual change | record-overstatement |
-| R9-P2-002 | traceability | Parent spec still lists doctor entries as modified by phase 006 | `specs/system-speckit/054-weak-model-spec-authoring/spec.md:104` | Mark the row audited-no-change | stale-scope-table |
-| R10-P2-001 | traceability | Parent spec and goal continuity blocks point at pre-execution actions | `specs/system-speckit/054-weak-model-spec-authoring/spec.md:16` | Refresh both blocks at close | continuity-metadata-drift |
-| R10-P2-002 | traceability | Benchmark report says three final sets while documenting four | `.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:11` | Update both counts | report-count-drift |
+**W2 — Correct the placeholder rule's two internal contradictions (P2, `F1-P2-002`, `F1-P2-003`).**
+1. Replace "Sourced by validate.sh and compatible with strict mode" with the mechanism that exists: "Spawned by the validation orchestrator through `runtime/cli/lib/validator-registry.json`; skipped when the orchestrator answers the same rule natively."
+2. Delete the unreachable `token_gated && draft_packet` branch at `check-placeholders.sh:191` and its comment, so the legacy path reads as what it is.
 
----
+**W3 — Restate the warn-rule sentence (P2, `F1-P2-004`).** Replace "now include three warn-only rules" in `plan.md`, `implement.md`, `complete.md` and their three YAML assets with a statement that does not depend on when the rules were added, and either name all eight warn rules or say "three authored-template rules among the eight that warn".
 
-## 4. Remediation Workstreams
+**W4 — Bound the repair snapshot (P2, `F2-P2-001`).** Snapshot only `REWRITE_TARGETS` instead of every top-level file. The repair can only write those, so the diff stays exact and the read stops being proportional to whatever else the packet holds.
 
-### Workstream 1 - Gate correctness (P1 first)
+**W5 — Refresh the two records (P2, `F3-P2-001`, `F3-P2-002`).** Update the phase 021 Completed row to name its commit, extend the parent spec's push correction past `10e8df7d25`, and add a `disposition` field (`fixed`, `deferred`, `instance-only`) to the 46 entries in the phase 020 audit.
 
-- **R8-P1-001**: make both implementations scan every token on a line, skipping only the backticked match. Add the mixed-line case to the parity test.
-- **R8-P2-001**: reject a document with contradictory Status rows, or read the metadata table by position.
-- **R1-P2-001**: align the shell mirror's document set and marker set with the orchestrator, or qualify the catalog leaf to name the orchestrator as authoritative.
-- **R1-P2-002**: extend `placeholder-token-gate.vitest.ts` to the doc-set, angle-bracket, `[template:`, indented-fence and mixed-line shapes.
-- **R2-P2-001**: include `spec.md` in the scaffold-marker rule or move the title-token check into the placeholder rule.
+## Spec Seed
 
-### Workstream 2 - Authoring path safety
+- A recursive validation run is a check. Say so, and make the auto-repair refuse under it — the packet's own closeout tools already do this, so recursion is the last gap in a rule the docs already state.
+- When a rule is implemented twice (orchestrator plus shell), the header must name the one that runs, and the one that does not must say it is a parity copy.
+- Durable command docs describe the current contract, not the moment the contract changed.
+- An audit artifact is a record only when it carries a disposition per finding; a count in prose is not a closure.
+- A repair that rewrites derived metadata must state its refusal set, and recursion belongs in that set.
 
-- **R2-P1-001**: validate `--track` with the same containment rule as `--path`; add a traversal regression test. This is the only security-sensitive finding, so `fixCompletenessRequired` is true and the fix needs a closed-gate replay.
+## Plan Seed
 
-### Workstream 3 - Card followability
+- T001 Refuse the draft auto-repair for a recursive child (`validate.sh:396-417`). Verify: two-child fixture, Draft child bytes unchanged, Complete child still validated, `Tests N passed`.
+- T002 Add the regression test for T001 that fails on the current code. Verify: red then green in one run.
+- T003 Remove the unreachable branch and rewrite the header (`check-placeholders.sh:6`, `:185-196`). Verify: `placeholder-token-gate.vitest.ts` passes and `validate.sh --strict` on a v2.4 Draft fixture still warns.
+- T004 Rewrite the warn-rule sentence in three command docs and three YAML assets. Verify: `rg -c 'now include three warn-only rules'` prints 0 across the six files.
+- T005 Cap `snapshotPacketFiles` to `REWRITE_TARGETS`. Verify: the existing `draft-auto-repair.vitest.ts` suite passes and a packet with an unrelated large root file no longer reads it.
+- T006 Add `disposition` to the phase 020 audit entries and a closure line to its summary. Verify: every entry carries one of the three values.
+- T007 Refresh the phase 021 commit row and the parent spec's push correction. Verify: `git log --oneline -1 -- <phase folder>` names the SHA the record carries.
 
-- **R5-P1-001**: narrow the card's step 4 to section shape, then update the four example Task Format lines to the `Verify:` form.
-- **R5-P2-001**: change the step 7 acceptance command to compare `Verify:` lines with all `T###` lines, not pending ones.
-- **R1-P2-003**: extend the step 8 token count to all six scanned documents.
-- **R4-P2-002**: name the condition that sends a reader to the long guide, or drop the sentence.
+## Traceability Status
 
-### Workstream 4 - Command and agent alignment
+- **`spec_code` (core): partial.** Fourteen of fifteen phase claims reproduce. Two record claims are stale (`F3-P2-001`, `F3-P2-002`); the shipped behavior behind them holds.
+- **`checklist_evidence` (core): partial.** Phase 020's artifact carries no disposition field, so its checklist cannot be replayed. Every other phase read carries a verification table naming a `scratch/` artifact or a command and its output.
+- **`skill_agent` (overlay): pass.** `speckit-plan.yaml:310`, `speckit-implement.yaml:285` and `speckit-complete.yaml:347` each set `guard_scripts_command` for both guards, and the three command docs name them in prose.
+- **`agent_cross_runtime` (overlay): pass, habitability not fully re-verified.** Phase 022's `sk-git` changelog `v1.9.7.0.md` exists and rule 8 names the link step; the runtime mirrors were not diffed in this run.
+- **`feature_catalog_code` (overlay): pass.** `feature-catalog/tooling-and-scripts/draft-auto-repair.md` and `spec-validation-rule-engine.md` exist; both manual-testing-playbook scenarios named by `B-05` exist.
+- **`playbook_capability` (overlay): partial.** The two scenarios cover the single-packet repair and the measured-behavior rule; no scenario covers the recursive path (see `F1-P1-001`).
+- **`AC_COVERAGE`: exempt.** The target is a phase parent with no `acceptance-criteria.md` at its root; its children carry their own, and this lineage validated none of them.
 
-- **R9-P1-001**: add the v2.3 placeholder rule and the card reference to `speckit-implement.yaml` and `implement.md`.
-- **R9-P2-001**: split the phase 006 agent row into the card change and the checklist removals.
-- **R9-P2-002**: mark the parent's doctor row as audited-no-change.
+## Deferred Items
 
-### Workstream 5 - Record and metadata hygiene
+- **Maintainability as its own pass.** The dimension queue held four dimensions and the ceiling was three iterations. Maintainability was touched by three documentation findings and is not covered as a dedicated pass; a later run should start there.
+- **Phase scratch evidence for 001-009 and 011-019.** Read through their verification tables only; the `scratch/` bodies were not opened.
+- **Runtime mirrors.** `.claude`, `.codex`, `.pi` and `.hermes` copies of the touched skills were not diffed against their canonical sources.
+- **`check-placeholders.sh` fail-open on an unreadable document.** `placeholder_marker_lines` runs with `2>/dev/null || true`, so an awk failure reads as a clean scan. The orchestrator's native rule shadows this script, so nothing in production depends on it; recorded as an observation, not a finding.
 
-- **R3-P2-001**, **R3-P2-002**, **R3-P2-003**, **R10-P2-001**: correct the parent spec's benchmark subject, refresh the generated status and last-active pointer, and refresh both continuity blocks.
-- **R6-P2-001**: update phase 005's closure statement to record the applied amendment.
-- **R4-P2-001**: guard the addon fill lines.
-- **R7-P2-001**, **R7-P2-002**: correct the catalog leaf and the two scenario tool lists.
-- **R10-P2-002**: update the benchmark report's set count.
+## Dimension Expansion Map
 
-### P2 advisories (no blocking order)
+- Completed pivots: none. This lineage is a single run at the iteration ceiling, with no pivot branch.
+- Failed pivots: none.
+- Audited overrides: none.
+- Council artifact references: none.
+- Selected review directions: correctness (iteration 1), security (iteration 2), traceability (iteration 3).
+- Saturated directions: none — three iterations against 22 phases leaves breadth, not saturation.
+- Remaining frontier: maintainability as a dedicated pass; phase `scratch/` evidence for 001-009 and 011-019; runtime mirror parity.
 
-The 18 P2 findings are advisory. Fix them in the same pass where they sit, or record a reason for deferral; none blocks the verdict on its own.
+## Search Ledger
 
----
+- `searchCoverage.requiredBugClasses`: `state_transition`, `boundary_condition`, `dead_code`, `stale_documentation`, `gate_bypass` (correctness); `path_traversal`, `symlink_escape`, `command_injection`, `fail_open`, `resource_exhaustion` (security); `stale_claim`, `unverifiable_evidence`, `missing_artifact`, `generated_artifact_drift` (traceability).
+- Covered: `dead_code`, `stale_documentation`, `resource_exhaustion`, `stale_claim`, `unverifiable_evidence`.
+- Ruled out: `state_transition` (the token-gate stamp covers every later version), `boundary_condition` (template example sweep clean), `gate_bypass` (the CI scratch skip matches a whole segment only), `path_traversal` (citation candidates filtered), `symlink_escape` (three refusals), `command_injection` (argv spawns, PR text is an enum and hex SHAs), `fail_open` (guards exit 2 without `rg`), `missing_artifact` (every artifact a claim names exists), `generated_artifact_drift` (bridges fresh, graph and routes match).
+- Deferred: phase `scratch/` evidence for 001-009 and 011-019.
+- Blocked: none.
+- Search debt: none recorded by the reducer (`searchDebtCount: 0`).
+- Clean search proof: `corruptionCount: 0`, `strategyWarning: null` from the reducer after the final iteration.
 
-## 5. Spec Seed
+## Audit Appendix
 
-- Add a `--track` containment requirement to the spec's scaffold contract, mirroring the existing `--path` rule.
-- State that examples are imitated for section shape only, and that the `Verify:` task format is the v2.3 contract.
-- State that the placeholder gate is line-complete: every token on a line is evaluated.
-- State that every command whose workflow writes a spec doc must name the card and the v2.3 token rule.
-- State that the closeout refreshes continuity blocks and generated metadata before the parent reads Complete.
+**Convergence summary.** Three iterations, stop reason `maxIterationsReached`, final convergence score 0.82. Convergence was never claimed: the stop policy was `max-iterations` from init, so the score is telemetry, and the remaining iterations were spent broadening to a new angle rather than re-reading the same surfaces.
 
----
+**Coverage summary.** 3 of 4 dimensions covered (correctness, security, traceability); maintainability partial. Each iteration also carried the operator's review focus and named how it did so.
 
-## 6. Plan Seed
+**Ruled-out claims (consolidated).**
+Placeholder gate reachable only for v2.3 docs; `implementation-summary.md` scanned by the shell rule but not the orchestrator; `check-example-drift.sh` aborting on a clean example; template fill notes naming the benchmark task; `recommend-level --quiet` surviving under `templates/`; a symlink diverting a repair write; command injection through a packet folder name; workflow command injection through a packet name; the measured-behavior rule accepting an empty block; a burned-in version trigger phrase in the advisor's graph; stale root changelog and README warn-rule counts; generated command-bridge, route and graph drift.
 
-- T001: `create.sh` track validation plus a traversal test.
-- T002: example task-format repair and card step 4 wording.
-- T003: per-line token iteration in both implementations, with the parity matrix expanded.
-- T004: implement command/asset alignment.
-- T005: catalog, scenario and report text corrections.
-- T006: parent metadata and continuity refresh at closeout.
+**Sources reviewed.** 22 phase `spec.md` and `implementation-summary.md` files; the parent `spec.md`; `changelog/changelog-054-root.md`; `020-alignment-audit-fixes/scratch/audit/findings.json`; `018-benchmark-redesign-and-remeasure/scratch/`; the shipped files listed in each iteration's Files Reviewed section; five claim checks executed read-only (`check-card-sync.sh`, `check-example-drift.sh`, `derive-command-bridges.cjs --check`, `route-validate.sh`, `skill-graph-freshness.cjs`).
 
----
+**Core protocols.** `spec_code` partial, `checklist_evidence` partial (above).
 
-## 7. Traceability Status
+**Overlay protocols.** `skill_agent` pass, `agent_cross_runtime` pass, `feature_catalog_code` pass, `playbook_capability` partial (above).
 
-### Core Protocols
-
-| Protocol | Status | Gate | Evidence | Notes |
-|----------|--------|------|----------|-------|
-| `spec_code` | partial | hard | `spec.md:117`; `graph-metadata.json:47,183`; `spec-authoring-card.md:30`; `speckit-implement.yaml:288` | Parent and command claims are partly stale; the four lifecycle cells and the guard behavior are correct. |
-| `checklist_evidence` | partial | hard | 84 AC rows across nine children; `criteria.txt` C1-C7 | 84 of 84 rows read Met; one phase 005 closure note is stale. |
-
-`AC_COVERAGE`: **exempt**. The parent is a Level 2 phase parent with no `acceptance-criteria.md` and no `implementation-summary.md`, so the lifecycle predicate is not active.
-
-### Overlay Protocols
-
-| Protocol | Status | Gate | Evidence | Notes |
-|----------|--------|------|----------|-------|
-| `skill_agent` | partial | advisory | `SKILL.md:173-290`; `spec-authoring-card.md:18` | Four authoring intents load the card; the guide pointer is dangling. |
-| `agent_cross_runtime` | partial | advisory | `006.../implementation-summary.md:68`; four agent files | The summary overstates the change; `.claude` mirrors match. |
-| `feature_catalog_code` | fail | advisory | `spec-authoring-card.md:30,50`; `versioned-placeholder-gate.md:36` | Two leaves misstate their code. |
-| `playbook_capability` | fail | advisory | `authoring-card-sync-guard.md:12,28`; `example-drift-guard-catches-leak.md:28` | Two scenarios carry a wrong tool list or a wrong guard behavior. |
-
----
-
-## 8. Deferred Items
-
-- The coverage graph is empty for this lineage: `upsert.cjs` and `convergence.cjs` write to the shared graph database outside the lineage write authority, so graph convergence was recorded as read-only telemetry rather than a persisted snapshot.
-- `step_fanout_merge` is owned by the parent fan-out runner, not this lineage; no merge was attempted here.
-- Phase continuity was not saved through `generate-context.js`; the dispatched lineage is forbidden to write outside its directory, and the parent runner owns the canonical save.
-- The resource-map coverage gate is skipped: `resource_map_present` was false at init. `resource-map.md` was still emitted by the reducer's `--emit-resource-map` pass for the merge to read.
-- Phase 009's open follow-up (strict validation does not enforce required anchors) stays with the packet; this review did not re-open it.
-
----
-
-## 9. Dimension Expansion Map
-
-- Completed pivots: 0
-- Failed pivots: 0
-- Audited overrides: 0
-- Swept: none yet
-- Pivot lineage: none yet
-- Remaining frontier: none recorded
-
-The ten iterations covered all four dimensions plus both traceability protocols: correctness (1, 5, 8), security (2), traceability (3, 6, 9), maintainability (4, 7), and a synthesis pass (10).
-
----
-
-## 10. Search Ledger
-
-`searchCoverage`: correctness, security, traceability, maintainability, spec_code, checklist_evidence, feature_catalog_code, playbook_capability all covered; no deferred or blocked classes.
-
-`candidateCoverage`: the parent and nine child folders, the four core and ten addon templates, the four catalog leaves, eight scenarios, both benchmark reports, the changelog and version carriers, the three speckit workflow assets and entry points, four agents, and the placeholder, status, drift and card-sync rules.
-
-`searchDebt`: none.
-
-`ruledOutCandidates`:
-- A blanket-error reading of the v2.3 gate (the census keeps existing packets fixed).
-- Mustache `{{...}}` as a placeholder source (neither implementation matches it).
-- A stamp-window bypass (a stamp past line 70 is stricter, not weaker).
-- A CRLF bypass (both readers handle CRLF).
-- A lowercase-token bypass (not a marker by design).
-- A missing `041-006` child (it exists and reads Complete).
-- A wrong README `references/` count (42 matches the tree).
-
-`cleanSearchProof`: every claim above was read in the cited file; the two guards were executed read-only on the final tree (`EXAMPLE_DRIFT_OK`, `CARD SYNC OK`, exit 0 both).
-
----
-
-## 11. Audit Appendix
-
-### Convergence summary
-
-| Iteration | Focus | Ratio | P0/P1/P2 (active) |
-|-----------|-------|-------|-------------------|
-| 1 | correctness | 1.00 | 0/0/3 |
-| 2 | security | 0.67 | 0/1/4 |
-| 3 | traceability | 0.25 | 0/1/7 |
-| 4 | maintainability | 0.14 | 0/1/9 |
-| 5 | correctness | 0.30 | 0/2/10 |
-| 6 | traceability | 0.05 | 0/2/11 |
-| 7 | maintainability | 0.09 | 0/2/13 |
-| 8 | correctness | 0.19 | 0/3/14 |
-| 9 | traceability | 0.18 | 0/4/16 |
-| 10 | synthesis | 0.05 | 0/4/18 |
-
-Stop reason: `maxIterationsReached`. Convergence was treated as telemetry under `stopPolicy: max-iterations`; the ratio fell to the no-progress threshold twice, and each time the next iteration broadened its angle instead of stopping.
-
-### Adversarial self-check on P1
-
-- **R2-P1-001**: re-read the assignment and `mkdir`; no track validator exists. The `--path` sibling validates. Kept P1; the command runs with caller privileges but violates the card's own write bound.
-- **R5-P1-001**: re-read all four example task files and the card's steps 4 and 7. Kept P1; phase 005's own review rated it P2, and that rating is recorded rather than silently overridden.
-- **R8-P1-001**: re-read both line loops. Kept P1; no other rule owns the marker.
-- **R9-P1-001**: re-read the implement asset and the plan/complete assets. Kept P1; the asset explicitly writes spec docs.
-
-No P1 was downgraded and no new P0 was found.
-
-### Coverage summary
-
-- Dimensions: 4 of 4.
-- Core protocols: 2 of 2 executed.
-- Overlay protocols: 4 of 4 assessed.
-- Iteration files: 10.
-- Delta files: 10.
-- Findings: 22 active (4 P1, 18 P2), 0 resolved.
-
-### Sources reviewed
-
-Parent `spec.md`, `goal.md`, `graph-metadata.json`, `description.json`; nine child `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md` (as cited per iteration); four core and ten addon templates; four catalog leaves; eight playbook scenarios; both benchmark reports; `criteria.txt`; the global and nested changelogs; `SKILL.md` and the Hermes mirror; the placeholder orchestrator and shell rule; the status classifier and cross-doc rule; the scaffold-marker rule; `create.sh`; the card-sync and example-drift guards; the three speckit workflow assets and entry points; four agent definitions.
-
-### Resource Map Coverage Gate
-
-Skipped: `resource_map_present` was false at init, so the three-bullet coverage gate is not emitted. The reducer's `--emit-resource-map` pass still wrote `resource-map.md` for the merge.
-
----
-
-*Compiled by the deepseek lineage at iteration 10. This report is the lineage's synthesis; the cross-lineage merge remains the authoritative rollup.*
+**Lineage note.** This report is the `deepseek` lineage's own synthesis. The cross-lineage merge, not this file, is the authoritative verdict rollup, and it applies strongest restriction across lineages.

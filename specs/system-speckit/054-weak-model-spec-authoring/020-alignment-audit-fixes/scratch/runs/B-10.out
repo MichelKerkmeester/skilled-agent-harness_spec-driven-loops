@@ -1,0 +1,17 @@
+All five replacements landed, and the verification prints `0 0 0 2 1 2` exactly as required.
+
+Changed lines (file:line):
+
+- `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:798` now says `warning while a v2.3-or-later packet is Draft`
+- `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:802` now says `warns in a v2.3-or-later packet while`
+- `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md:3` now says `warning while a v2.3-or-later packet is Draft`
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md:3` now says `the same v2.4 packet fails`
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md:24` now says `Prove that a v2.4 packet with`
+
+Proof, read from output: the three `v2.3 packet` counts dropped to zero, and the new-phrase counts came back 2, 1 and 2. Baseline before the edits was 2, 1 and 2 for the old phrase and zero for both new phrases, so the counters moved in exactly the direction the change predicts. Line counts are unchanged at 1032, 75 and 117 newlines, which matches a pure word substitution rather than a structural edit. No em dash appears on any changed line, and no file outside the three named was touched.
+
+Inferred, not observed: that nothing else in the three files or the repository quotes the old wording. My greps covered the three named files and the two new phrases only, so a stale mention elsewhere would not have shown up. The repository has pre-existing em dashes at `feature-catalog.md:382` and `feature-catalog.md:870`, which I left alone as out of scope.
+
+Only the operator can verify that the new wording matches the intended snapshot semantics, meaning v2.4 is the packet version where the failing half of the scenario starts.
+
+Nothing is blocked on you.

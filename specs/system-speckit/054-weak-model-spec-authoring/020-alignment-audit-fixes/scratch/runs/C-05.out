@@ -1,0 +1,13 @@
+Done. One replacement, one file.
+
+**Change**
+- `specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-012-authoring-speed-fixes-and-alignment.md:62` — follow-up bullet replaced: the "ranks 4 to 8 and 10 to 12 ... wait for the 2026-10-26 timing run" line is now "The 2026-10-26 speed loop timed this tree against 054: all runs strict PASS, time difference INCONCLUSIVE, so the wording edits stand on clarity, not speed."
+
+**Verification output**
+```
+1        # grep -c "speed loop timed this tree against 054"
+0        # grep -c "wait for the 2026-10-26 timing run"
+```
+Expected `1` then `0`; observed exactly that. Line 62 confirmed by `awk 'NR==62'` to hold the new text, and it is the only occurrence of the new phrase.
+
+Nothing else touched; no other file read, no git command run.

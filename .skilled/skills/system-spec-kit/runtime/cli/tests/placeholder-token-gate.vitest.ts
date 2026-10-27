@@ -168,6 +168,48 @@ const SHAPES: Shape[] = [
   },
   { name: 'a backtick fence', line: ['```text', `Owner: ${TOKEN}`, '```'].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'pass', shell: 'pass' } },
   { name: 'a tilde fence', line: ['~~~text', `Owner: ${TOKEN}`, '~~~'].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'error', shell: 'error' } },
+  // A v2.3 fence closes only on its own marker character, at least as long as
+  // the opener, with nothing after it. A v2.2 doc keeps the bare ``` toggle.
+  {
+    name: 'a tilde fence quoting a backtick line, then a token in prose',
+    line: ['~~~md', '```', '~~~', `Owner: ${TOKEN}`].join('\n'),
+    v23: { Draft: 'warn', Complete: 'error' },
+    v22: { orchestrator: 'pass', shell: 'pass' },
+  },
+  {
+    name: 'a tilde fence quoting a backtick line, with the token inside',
+    line: ['~~~md', '```', `Owner: ${TOKEN}`, '~~~'].join('\n'),
+    v23: { Draft: 'pass', Complete: 'pass' },
+    v22: { orchestrator: 'pass', shell: 'pass' },
+  },
+  {
+    name: 'a four-backtick fence quoting a three-backtick line, then a token in prose',
+    line: ['````md', '```', '````', `Owner: ${TOKEN}`].join('\n'),
+    v23: { Draft: 'warn', Complete: 'error' },
+    v22: { orchestrator: 'pass', shell: 'pass' },
+  },
+  {
+    name: 'a backtick fence whose inner line carries text after the markers',
+    line: ['```text', '```not-a-close', `Owner: ${TOKEN}`, '```'].join('\n'),
+    v23: { Draft: 'pass', Complete: 'pass' },
+    v22: { orchestrator: 'error', shell: 'error' },
+  },
+  // awk keeps a CRLF line's carriage return and JavaScript splits it off, so
+  // both must still see the closing fence.
+  {
+    name: 'a CRLF fence, then a token in prose',
+    line: ['```text', 'x', '```', `Owner: ${TOKEN}`].join('\r\n'),
+    v23: { Draft: 'warn', Complete: 'error' },
+    v22: { orchestrator: 'error', shell: 'error' },
+  },
+  // Only a space or a tab may trail a closing fence, in both implementations.
+  {
+    name: 'a closing fence followed by a non-breaking space',
+    line: ['```text', 'x', '``` ', `Owner: ${TOKEN}`].join('\n'),
+    v23: { Draft: 'pass', Complete: 'pass' },
+    v22: { orchestrator: 'error', shell: 'error' },
+  },
+  { name: 'a fence never closed', line: ['```text', `Owner: ${TOKEN}`].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'pass', shell: 'pass' } },
   { name: 'an indented fence', line: ['   ```text', `   Owner: ${TOKEN}`, '   ```'].join('\n'), v23: { Draft: 'pass', Complete: 'pass' }, v22: { orchestrator: 'pass', shell: 'error' } },
   { name: 'the angle-bracket form', line: 'Owner: <YOUR_VALUE_HERE: owner name>', v23: { Draft: 'error', Complete: 'error' }, v22: { orchestrator: 'error', shell: 'pass' } },
   {

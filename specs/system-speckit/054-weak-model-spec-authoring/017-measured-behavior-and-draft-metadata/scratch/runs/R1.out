@@ -1,0 +1,50 @@
+Done. All five lines updated, both verification commands run from the final state.
+
+## What changed
+
+`.skilled/skills/system-spec-kit/ARCHITECTURE.md:185`
+`the 41 rules` → `the 42 rules`, and `(22 authored-template, 14 operational-runtime and 6 structural)` → `(23 authored-template, 13 operational-runtime and 6 structural)`.
+
+`README.md:148` (inside the ASCII box)
+`41 rules` → `42 rules`.
+
+`README.md:373`
+`runs 41 rules` → `runs 42 rules`.
+
+`README.md:378`
+`run 41 validation rules` → `run 42 validation rules`.
+
+`README.md:738`
+`41 validation rules` → `42 validation rules`.
+
+## Verification, check 1 (expected no output)
+
+```
+$ rg -n -i '\b41 (rules|validation rules)|22 authored-template|14 operational' README.md .skilled/skills/system-spec-kit/ARCHITECTURE.md
+exit=1
+```
+No output. Baseline before the edits was 5 matching lines, so the check could have failed and did not.
+
+## Verification, check 2 (expected 5 lines)
+
+```
+$ rg -n '42 (rules|validation rules)|23 authored-template' README.md .skilled/skills/system-spec-kit/ARCHITECTURE.md
+README.md:148:         │  4 levels - template set - 42 rules      │
+README.md:373:`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Seven of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
+README.md:378:- **`validate.sh`** - run 42 validation rules. Use `--recursive` for phase folders
+README.md:738:- Manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
+.skilled/skills/system-spec-kit/ARCHITECTURE.md:185:**Spec folder validation.** `runtime/cli/spec/validate.sh` hands the folder to the compiled engine orchestrator, which dispatches the 42 rules registered in `runtime/cli/lib/validator-registry.json` (23 authored-template, 13 operational-runtime and 6 structural) across required files, anchor structure, frontmatter shape, template source markers, continuity freshness and phase-parent detection. Strict mode decides which rules run, and a folder passes when no rule reports an error, so a warning never fails it.
+exit=0
+```
+
+## Supporting checks
+
+The registry numbers in the brief hold at source: 42 entries, `authored_template` 23, `operational_runtime` 13, `structural` 6, read from `runtime/cli/lib/validator-registry.json`.
+
+Box alignment preserved: README lines 146 to 150 are 53 characters each before and after, so the right border on line 148 stays in its column.
+
+Neither file gained or lost a line (README 1648, ARCHITECTURE.md 212), and a strict `\b41\b` search over both files returns nothing.
+
+## Out of scope, raised not touched
+
+A wider search finds `41 rules` in historical records under `specs/sk-code/011-sk-code-poinytail-based-refinement/` (review ledgers, research iterations, `implementation-summary.md`). Those are frozen packet records of past states, not live claims, and the brief named five lines in two files, so I left them alone. Say the word if any of them should be refreshed.

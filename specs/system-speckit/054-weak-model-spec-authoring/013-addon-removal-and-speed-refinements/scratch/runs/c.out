@@ -1,0 +1,56 @@
+Done. All four verification commands pass, with two findings the brief did not cover (below).
+
+## Edits
+
+1. Deleted `.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl` (whole file).
+2. `.skilled/skills/system-spec-kit/templates/spec-kit-docs.json:11-12` version key removed, `review.spec.md.tmpl` now flows to `handover.md.tmpl`. `:59-60` document entry removed, `research.spec.md` now flows to `handover.md`. Seven `lazyAddonDocs` entries removed, so those arrays now end at `:111`, `:433`, `:867`, `:1361`, `:1859` (`"goal.md"`) and `:1966`, `:2050` (`"decision-record.md"`).
+3. `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:482` the `resource_map_template_default_phrases` list is gone, `research_spec` now flows straight into `handover`. `:679` the `seed_template_document "$folder_path/resource-map.md" ...` call is gone, `decision-record.md` now seeds into `handover.md`. No help text named the add-on, so none changed.
+4. `.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:36-37` `resourceMap` entry removed from `TEMPLATE_FILES`, and `:52` the `'resource-map.md': 'resourceMap'` entry removed from `DOCUMENT_KINDS`. That second line is a coupled requirement: leaving the kind without its template makes `runCensus` read `defaults['resourceMap']` as undefined and throw on any `resource-map.md` under `specs/`.
+5. `.skilled/commands/speckit/assets/speckit-plan.yaml:305-306`, `speckit-implement.yaml:280-281`, `speckit-complete.yaml:342-343` the `shared.resource_map` template path removed. All three still parse as YAML.
+6. Tests: `.skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts:411-412` the `resource-map.md` recipe pin removed. `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:470-474` the `resourceAuthored`/`resourceBody` fixture and its write removed, `:505` `resourceDefaults` removed, `:553-554` the four `resourceMap` assertions removed. Each file keeps its other cases.
+
+`template-version-parity.vitest.ts` and `template-phrase-cleanup-hardening.vitest.ts` needed no edit: both iterate the manifest generically. `rg -n 'resource' ` over those two files returns nothing.
+
+## Verification
+
+```
+$ rg -n 'resource-map.md.tmpl|resourceMap' .skilled/skills/system-spec-kit .skilled/commands
+.skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:139:  ['resource-map.md', 'addons/resource-map.md.tmpl'],
+.skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:42:  resourceMap: 'resource map',
+```
+The full `.skilled` run returns 132 lines across 16 files, the other 14 being `resourceMap` variables in `system-deep-loop` (`reduce-state.cjs`, sealed-artifact code, tests), `sk-code` and `sk-doc` router scripts, all of which the brief protects. No `resource-map.md.tmpl` string remains anywhere in `.skilled` except `frontmatter-migration.ts:139`.
+
+```
+$ node -e "JSON.parse(...spec-kit-docs.json...); console.log('json ok')"
+json ok
+
+$ bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh && echo 'bash ok'
+bash ok
+
+$ ./node_modules/.bin/vitest run runtime/cli/tests/create-root-numbering.vitest.ts runtime/cli/tests/template-version-parity.vitest.ts runtime/cli/tests/template-phrase-cleanup-hardening.vitest.ts runtime/cli/tests/upgrade-legacy.vitest.ts --config vitest.config.ts
+ Test Files  4 passed (4)
+      Tests  91 passed (91)
+   Start at  10:27:31
+   Duration  332.10s
+```
+
+## Two things to know
+
+`runtime/cli/tests/level-contract-resolver.vitest.ts` is a fifth affected test that the brief did not name, and it now fails, 4 of 7:
+
+```
+ FAIL  tests/level-contract-resolver.vitest.ts > resolveLevelContract > keeps review lazy add-ons opt-in
+- Expected  + Received
+  [
+    "handover.md",
+    "timeline.md",
+    "decision-record.md",
+-   "resource-map.md",
+  ]
+```
+
+It pins `'resource-map.md'` in the real manifest's lazy lists at lines 24, 47, 63, 73. I did not edit it because edits outside the named files are banned here. Either someone adds the four pins to a follow-up or that file goes back to the dispatcher.
+
+Two leftovers are dead rather than broken. `frontmatter-migration.ts:139` still names the deleted template, but `readTemplateLiterals` wraps the read in `try/catch` and returns `{}` on failure, so a fill falls back to the document-class tables. `template-phrase-cleanup.mjs:42` keeps a `resourceMap` suffix that can no longer be reached, since no document class maps to that kind now.
+
+Also, this worktree was being written by something else while I worked. `SKILL.md`, `README.md`, `references/`, `assets/`, `templates/README.md`, `feature-catalog`, `manual-testing-playbook` and `runtime/lib/validation/orchestrator.ts` all have 10:27 to 10:33 mtimes, and the doc references to `resource-map.md.tmpl` I found at the start were gone by my final grep without my touching them. I claim only the ten files listed above.

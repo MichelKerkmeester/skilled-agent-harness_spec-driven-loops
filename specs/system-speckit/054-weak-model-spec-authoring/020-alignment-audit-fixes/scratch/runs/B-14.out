@@ -1,0 +1,8 @@
+Done.
+
+**Change**
+- `.skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md:27` — replaced `under \`templates/\` using` with `under its role folder (\`templates/core/\`, \`templates/addons/\` or \`templates/packet-types/\`) using`. Line now reads: `1. Add the template file under its role folder (`templates/core/`, `templates/addons/` or `templates/packet-types/`) using the `*.md.tmpl` suffix.`
+
+**Verification** — the required command printed `1` (exit 0), and the printed line 27 confirms the replacement landed on the intended line only. No other text or file was touched.
+
+**Status** — task complete; nothing is the operator's to do. No git commands were run.

@@ -1,0 +1,42 @@
+**Edited:** `.skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts`
+
+Three lines inserted above the first import (now lines 1-3), original line 1 moved to line 4 unchanged:
+
+- `example-drift.vitest.ts:1` — `// ` + 67 x U+2500 (verified: 70 chars, 67 box-drawing chars)
+- `example-drift.vitest.ts:2` — `// MODULE: Example Drift Tests`
+- `example-drift.vitest.ts:3` — `// ` + 67 x U+2500 (verified: 70 chars, 67 box-drawing chars)
+- `example-drift.vitest.ts:4` — pre-existing `import { execFileSync, spawnSync } from 'node:child_process';`
+
+No other file touched; one edit call total.
+
+**Verify, as given:** head output correct:
+
+```
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Example Drift Tests
+// ───────────────────────────────────────────────────────────────────
+import { execFileSync, spawnSync } from 'node:child_process';
+```
+
+The vitest half of the literal command does not select the file, and this is a config fact, not an edit failure:
+
+```
+ RUN  v4.1.11 .../.skilled/skills/system-spec-kit
+No test files found, exiting with code 1
+filter: tests/example-drift.vitest.ts
+include: runtime/tests/**/*.{vitest,test}.ts, ../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts
+exclude:  runtime/cli/**
+```
+
+That run walks up to `runtime/vitest.config.ts`, whose `exclude` drops `runtime/cli/**`, so no filter can match from that root. The repo's own script for this package (`cli/package.json` `test`) passes `--project cli` with that config, which is the authoritative gate. Re-run that way:
+
+```
+npx vitest run tests/example-drift.vitest.ts --config ../vitest.config.ts --root . --project cli
+
+ RUN  v4.1.11 .../system-spec-kit/runtime/cli
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Duration  4.10s
+```
+
+Status: change complete, file present on disk, tests for the file pass (6/6). Your move: none, unless you want the verify recipe in the brief corrected to the `--config ../vitest.config.ts --root . --project cli` form so it stops landing on the `runtime/cli/**` exclusion.

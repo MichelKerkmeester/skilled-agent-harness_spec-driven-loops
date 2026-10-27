@@ -1,0 +1,37 @@
+Done. One deviation from the brief's expected output, explained below.
+
+## Change made
+
+`.skilled/skills/system-spec-kit/README.md` — five numeric edits, nothing else:
+
+- `:63` `| **Validation** | the 42-rule registry with three strict-only rules gated behind `--strict` |`
+- `:136` `The default validation set runs the non-strict rules from the 42-rule registry. ...`
+- `:463` `run the validation set from the 42-rule registry on any spec folder`
+- `:618` `run the validation set from the 42-rule registry, `--strict` for strict-only rules, ...`
+- `:669` `validation rule reference, the 42-rule registry is authoritative`
+
+File is still 699 lines; no other line touched.
+
+## Verification (repository root)
+
+```
+=== CMD1 (expect no output) ===
+rg -n '41-rule registry' .skilled/skills/system-spec-kit --glob '!**/node_modules/**'
+(no output, exit 1 = clean no-hit)          <- matches brief: "prints nothing"
+
+=== CMD2 (brief expects 4) ===
+rg -c '42-rule registry' .skilled/skills/system-spec-kit/README.md
+5                                            <- brief said 4
+```
+
+## Deviations, stated rather than absorbed
+
+1. **The brief undercounted by one line.** Brief D1 says *"Replace every "41-rule registry" with "42-rule registry" (lines 63, 136, 463 and 618 today)"* and expects `rg -c` to print **4**. The phrase also sits on **line 669** (`validation rule reference, the 41-rule registry is authoritative`). The two verification commands cannot both hold: leaving 669 would make CMD1 print a line instead of nothing, and would leave a stale count in the very row that names the registry as authoritative. I followed the operative *"every"* clause, so CMD1 passes as written and CMD2 prints 5. The `(prints 4)` figure is the stale part, and it derives from the same stale line list.
+
+2. **Two facts I did not change, because they are outside my file scope.** Both still say 41 and will be stale once the registry itself gains the rule:
+   - `.skilled/skills/system-spec-kit/ARCHITECTURE.md:185` — *"dispatches the 41 rules registered in `runtime/cli/lib/validator-registry.json` (22 authored-template, 14 operational-runtime and 6 structural)"*. That parenthetical breakdown needs a fourth number too, not just the total.
+   - `.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` — observed `entries: 41`, `has MEASURED_BEHAVIOR: false`. This is T010's job (`tasks.md:55`), not mine; I only read it to confirm the README's new figure is the intended one. The packet agrees: `spec.md:96` says *"41 rules become 42"*.
+
+Nothing else was run or modified, and no git command was issued.
+
+One thing for the operator: route the `ARCHITECTURE.md:185` count (and its three-way breakdown) to whichever brief owns architecture docs, since no brief I was given covers it.

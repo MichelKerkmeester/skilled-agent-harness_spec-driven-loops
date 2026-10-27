@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 021-ci-gate-regressions |
 | **Status** | Complete |
-| **Completed** | 2026-10-26, uncommitted on `worktrees/217-weak-model-spec-authoring` |
+| **Completed** | 2026-10-26; committed 2026-10-27 as `4b15bdcc11` on `worktrees/217-weak-model-spec-authoring` and pushed to `main` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

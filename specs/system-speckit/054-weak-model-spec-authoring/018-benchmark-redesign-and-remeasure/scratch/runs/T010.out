@@ -1,0 +1,33 @@
+All three checks pass, and the only file touched is `scratch/speed-loop/summarize.py`.
+
+What changed, by line:
+
+1. `summarize.py:132` adds the sentence about the tok_out rule to the explanation paragraph.
+2. `summarize.py:133-136` extends the header with `tok_out pairs` and `tok_out verdict`, and raises the separator to `"---|" * 17`.
+3. `summarize.py:148-150` builds `tdiffs` from `tok_out` with an explicit `is not None` filter on both sides, since `num()` returns `None` for a missing or non-numeric cell and subtracting it would raise.
+4. `summarize.py:157-162` sets `tok_verdict`: `REAL (more)` at 4 or more pairs with a positive minimum, `REAL (fewer)` at 4 or more pairs with a negative maximum, else `INCONCLUSIVE`.
+5. `summarize.py:174` appends `len(tdiffs)` and `tok_verdict` to every printed pair row.
+6. `summarize.py:176` appends `NA | INCONCLUSIVE` to the no-baseline row, so it also holds 17 cells.
+
+Verification output, run from the repository root:
+
+```
+$ python3 -m py_compile .../scratch/speed-loop/summarize.py; echo rc=$?
+rc=0
+```
+
+```
+$ python3 -I .../summarize.py .../results/20261026T140632Z-79914/results.tsv | rg -c 'tok_out verdict'
+2
+```
+
+```
+$ python3 -I .../summarize.py .../results/20261026T140632Z-79914/results.tsv | rg '^\| author \| refined \| now054'
+| author | refined | now054 | refinement effect | 3 | -64 | 227 | 57 | INCONCLUSIVE | 57 | 10849 | -0.3 | 3/3 | 3/3 | 1 | 3 | INCONCLUSIVE |
+```
+
+I also counted cells across the whole paired table, header and separator included: every row reports 17, so no row is short a column.
+
+Observed: the three commands above, their output and exit status. Inferred: the `NA` row is correct by cell count only, because this results file has baselines and never prints that row. No residual risk beyond that unexercised branch. Nothing was written outside the one file, and no git command ran.
+
+Nothing is blocked on you. The change waits on the packet's next task or your review.

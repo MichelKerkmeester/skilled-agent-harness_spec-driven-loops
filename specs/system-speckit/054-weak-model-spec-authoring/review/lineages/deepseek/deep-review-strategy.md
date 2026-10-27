@@ -1,52 +1,47 @@
 ---
-title: Deep Review Strategy - 054-weak-model-spec-authoring
-description: Review strategy for the phase parent plus nine child phases of the weak-model spec authoring packet.
-trigger_phrases:
-  - "054 review strategy"
-  - "weak model spec authoring review"
-importance_tier: normal
-contextType: planning
+title: Deep Review Strategy - 054-weak-model-spec-authoring (lineage deepseek)
+description: Review strategy for the 054 packet: shipped spec-kit templates, validator, authoring card, CLI guards and phase records checked against what each phase spec claims.
 ---
 
 # Deep Review Strategy - 054-weak-model-spec-authoring
 
-## 1. OVERVIEW
+## 1. REVIEW CHARTER
 
-### Purpose
-
-Persistent review brain for the deepseek fan-out lineage. Records dimension coverage, findings, approaches tried, and next focus across ten iterations.
-
-### Usage
-
-- Session: `fanout-deepseek-1792949481267-fym7sk`, generation 1, lineage mode `new`.
-- Stop policy: `max-iterations` with a cap of 10. Convergence is telemetry only; every iteration broadens the review angle instead of synthesizing early.
+- Target: `specs/system-speckit/054-weak-model-spec-authoring` (spec-folder, phased parent with children 001-022), shipped on `main` at `558570a83e`
+- Target type: spec-folder
+- Dimensions: correctness, security, traceability, maintainability
+- Review focus (operator): All work packet 054 shipped in phases 001-022: the spec-kit templates, validator, authoring card, CLI scripts and their tests, the advisor scorer and its phrases, the sk-git provisioning step, the docs and the phase records. Check the shipped code and docs against what each phase spec claims.
+- Stop conditions: `stopPolicy=max-iterations`; convergence is telemetry until the 3-iteration ceiling
+- Success criteria: every phase claim checked against shipped code or explicitly recorded as unverified; every finding cites `file:line`
 
 ---
 
 ## 2. TOPIC
+[Review target description from config -- set during initialization]
 
-Review of `specs/system-speckit/054-weak-model-spec-authoring`, a phase parent with nine child phases (001-009) all marked Complete, plus the system-spec-kit implementation surfaces those phases claim to have changed.
+Review of the 054 phase parent and its 22 child phases: do the shipped templates, validator, guards, card, advisor routes and provisioning step do what each phase spec says they do, and did the closeout claims survive contact with the code on main?
 
 ---
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-[All dimensions complete]
+- [ ] maintainability
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
 
-- No implementation fixes: findings only, remediation is a separate step.
-- No review of `sk-prompt`; the packet freezes system-spec-kit as the only logic home.
-- No benchmark rerun: the review checks the reported numbers against the artifacts, it does not re-execute the benchmark.
+- Re-litigating decisions the packet already records (add-on removal, benchmark subject changes) unless a shipped file contradicts them
+- Benchmark numbers themselves (phase 018/009 measurement machinery is in scope, the statistical argument is not)
+- Re-running repo tooling (`validate.sh`, generated context). Verification is by reading shipped code and specs
+- Style-only preferences with no behavioral consequence
 
 ---
 
 ## 5. STOP CONDITIONS
 
-- Hard stop at iteration 10 (`stopPolicy: max-iterations`).
-- Convergence signals recorded as telemetry; they do not end the loop early.
-- Escalate a security-sensitive blocker immediately rather than deferring it to synthesis.
+- Hard ceiling: 3 iterations (`maxIterations`)
+- Any confirmed active P0 forces `Review verdict: FAIL`
+- Convergence below threshold before the ceiling is treated as telemetry; the remaining iterations broaden to a new angle
 
 ---
 
@@ -55,184 +50,95 @@ Review of `specs/system-speckit/054-weak-model-spec-authoring`, a phase parent w
 - [x] correctness
 - [x] security
 - [x] traceability
-- [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 4
-- P2 (Suggestions): 18
+- P1 (Required): 1
+- P2 (Suggestions): 6
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
 
-- Reading the orchestrator rule and the shell mirror side by side, then checking each difference against the catalog leaf's claim: surfaced three parity divergences and the doc-set contradiction in one pass (iteration 1).
-- Following the card's own step 3 command into `create.sh` and comparing its argument validation with the sibling `--path` validator: found the unvalidated track that escapes the repository (iteration 2).
-- Reading the frozen parent spec against the volatile goal log and the generated metadata: separated superseded history from live contradictions and found three stale carriers (iteration 3).
-- Counting the 131 fill lines per template and checking which of them the test and the drift guard actually render: found the 61 addon lines unguarded (iteration 4).
-- Running the card's own acceptance commands against the examples it points at: found the example task format contradicts the Verify rule and the acceptance command fails a finished packet (iteration 5).
-- Tallying all 84 acceptance rows and checking each cited artifact against the final tree: confirmed the checklist evidence is real, with one stale closure note (iteration 6).
-- Reading the catalog leaves and playbook preconditions against the guard scripts: found a repeated false failure-ordering claim and two incomplete tool lists (iteration 7).
-- Walking adversarial document shapes through both placeholder implementations: found the first-match-per-line false negative and the first-Status-row ambiguity (iteration 8).
-- Comparing the three speckit workflow assets key by key against the phase 006 handoff criterion: found implement missing the card and the token rule (iteration 9).
-- Running both guards read-only and reading the continuity blocks a resume reads first: confirmed the closing artifacts and found two stale carriers (iteration 10).
+- Reading each phase `implementation-summary.md` file list first, then opening the shipped file, gives claim and evidence in the same pass (iteration 1)
+- Grepping the shipped guard scripts for their exit codes reveals whether a CI wiring claim is real faster than reading the phase closeout (iteration 1)
 
 ---
 
 ## 9. WHAT FAILED
 
-- Treating the phase 003 verification table as proof of parity: the table records four cells, and the divergences sit outside them (iteration 1).
+- Assuming a phase's "Complete" status implies its named guard script is wired into any gate; two guards are standalone-only (iteration 1)
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### A blanket error on every bare hint: ruled out by the phase scope and the census, which keeps existing packets' verdicts fixed. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: A blanket error on every bare hint: ruled out by the phase scope and the census, which keeps existing packets' verdicts fixed.
+### **`check-example-drift.sh` aborting on a clean example**: with `set -euo pipefail`, `printf | rg -q ... && status=1` is an AND-OR list whose failing first command is exempt. Ruled out by reading, not by execution. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`check-example-drift.sh` aborting on a clean example**: with `set -euo pipefail`, `printf | rg -q ... && status=1` is an AND-OR list whose failing first command is exempt. Ruled out by reading, not by execution.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A blanket error on every bare hint: ruled out by the phase scope and the census, which keeps existing packets' verdicts fixed.
+- Do NOT retry: **`check-example-drift.sh` aborting on a clean example**: with `set -euo pipefail`, `printf | rg -q ... && status=1` is an AND-OR list whose failing first command is exempt. Ruled out by reading, not by execution.
 
-### A CRLF bypass: ruled out; both readers handle CRLF. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: A CRLF bypass: ruled out; both readers handle CRLF.
+### **`implementation-summary.md` scanned by the shell rule but not the orchestrator**: `FREEFORM_WORKFLOW_DOCS` holds only `review/review-report.md` and `research/research.md`, and `validationDocsForLevel` includes lifecycle and addon docs. Ruled out. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`implementation-summary.md` scanned by the shell rule but not the orchestrator**: `FREEFORM_WORKFLOW_DOCS` holds only `review/review-report.md` and `research/research.md`, and `validationDocsForLevel` includes lifecycle and addon docs. Ruled out.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A CRLF bypass: ruled out; both readers handle CRLF.
+- Do NOT retry: **`implementation-summary.md` scanned by the shell rule but not the orchestrator**: `FREEFORM_WORKFLOW_DOCS` holds only `review/review-report.md` and `research/research.md`, and `validationDocsForLevel` includes lifecycle and addon docs. Ruled out.
 
-### A cross-runtime agent mismatch: ruled out; the mirrors match the canonical bodies. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A cross-runtime agent mismatch: ruled out; the mirrors match the canonical bodies.
+### **`route-validate.sh` warnings hiding a broken route**: the two warnings are the pre-existing `--dry-run` notes the phase recorded. Ruled out. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **`route-validate.sh` warnings hiding a broken route**: the two warnings are the pre-existing `--dry-run` notes the phase recorded. Ruled out.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A cross-runtime agent mismatch: ruled out; the mirrors match the canonical bodies.
+- Do NOT retry: **`route-validate.sh` warnings hiding a broken route**: the two warnings are the pre-existing `--dry-run` notes the phase recorded. Ruled out.
 
-### A doctor authoring gap: ruled out; the re-audit found none. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A doctor authoring gap: ruled out; the re-audit found none.
+### **A symlink planted inside a packet diverting a repair write outside it**: refused at three layers (`REWRITE_TARGETS`, `linkedRederiveInputs`, `insideSpecs`). -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A symlink planted inside a packet diverting a repair write outside it**: refused at three layers (`REWRITE_TARGETS`, `linkedRederiveInputs`, `insideSpecs`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A doctor authoring gap: ruled out; the re-audit found none.
+- Do NOT retry: **A symlink planted inside a packet diverting a repair write outside it**: refused at three layers (`REWRITE_TARGETS`, `linkedRederiveInputs`, `insideSpecs`).
 
-### A false C7 claim: ruled out; the post-closeout merge is operator activity, and the swarm's close evidence is intact. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: A false C7 claim: ruled out; the post-closeout merge is operator activity, and the swarm's close evidence is intact.
+### **A symlinked `description.json` being rewritten through its target**: `readIfPresent` returns null for a link and `linkedRewriteTargets` reports the packet as refused. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A symlinked `description.json` being rewritten through its target**: `readIfPresent` returns null for a link and `linkedRewriteTargets` reports the packet as refused.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A false C7 claim: ruled out; the post-closeout merge is operator activity, and the swarm's close evidence is intact.
+- Do NOT retry: **A symlinked `description.json` being rewritten through its target**: `readIfPresent` returns null for a link and `linkedRewriteTargets` reports the packet as refused.
 
-### A false Complete on a child: ruled out; each child's spec Status, AC closure and implementation summary agree. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A false Complete on a child: ruled out; each child's spec Status, AC closure and implementation summary agree.
+### **Command injection through a crafted packet folder name**: every spawn is an argv array (see Confirmed-Clean). -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **Command injection through a crafted packet folder name**: every spawn is an argv array (see Confirmed-Clean).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A false Complete on a child: ruled out; each child's spec Status, AC closure and implementation summary agree.
+- Do NOT retry: **Command injection through a crafted packet folder name**: every spawn is an argv array (see Confirmed-Clean).
 
-### A false Complete on the parent: ruled out; the recursive strict claim is backed by `criteria.txt` C1 and the child records. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A false Complete on the parent: ruled out; the recursive strict claim is backed by `criteria.txt` C1 and the child records.
+### **Phase 015's neutralization missing a rendered example**: no match under `templates/`. Ruled out. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **Phase 015's neutralization missing a rendered example**: no match under `templates/`. Ruled out.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A false Complete on the parent: ruled out; the recursive strict claim is backed by `criteria.txt` C1 and the child records.
+- Do NOT retry: **Phase 015's neutralization missing a rendered example**: no match under `templates/`. Ruled out.
 
-### A false positive from mustache `{{...}}`: ruled out; neither implementation matches it. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: A false positive from mustache `{{...}}`: ruled out; neither implementation matches it.
+### **Phase 017's block detection accepting an empty block**: `measured_behavior_block_state` requires a non-empty fenced line or an `N/A:` line with a reason after the colon, and it treats a bare value token as unfilled. Ruled out. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **Phase 017's block detection accepting an empty block**: `measured_behavior_block_state` requires a non-empty fenced line or an `N/A:` line with a reason after the colon, and it treats a bare value token as unfilled. Ruled out.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A false positive from mustache `{{...}}`: ruled out; neither implementation matches it.
+- Do NOT retry: **Phase 017's block detection accepting an empty block**: `measured_behavior_block_state` requires a non-empty fenced line or an `N/A:` line with a reason after the colon, and it treats a bare value token as unfilled. Ruled out.
 
-### A lowercase-token bypass: ruled out by design, not a defect. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: A lowercase-token bypass: ruled out by design, not a defect.
+### **Placeholder gate reachable only for v2.3 docs while templates stamp v2.4**: `speckit_carries_token_gate_stamp` compares major/minor against 2.3, so v2.4 is gated. Ruled out. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **Placeholder gate reachable only for v2.3 docs while templates stamp v2.4**: `speckit_carries_token_gate_stamp` compares major/minor against 2.3, so v2.4 is gated. Ruled out.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A lowercase-token bypass: ruled out by design, not a defect.
+- Do NOT retry: **Placeholder gate reachable only for v2.3 docs while templates stamp v2.4**: `speckit_carries_token_gate_stamp` compares major/minor against 2.3, so v2.4 is gated. Ruled out.
 
-### A mismatch between the card's validator strings and the real output: ruled out at `orchestrator.ts:1353-1354`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A mismatch between the card's validator strings and the real output: ruled out at `orchestrator.ts:1353-1354`.
+### **Registry rule output forging a pass**: an exit-status mismatch is promoted to an error. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **Registry rule output forging a pass**: an exit-status mismatch is promoted to an error.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A mismatch between the card's validator strings and the real output: ruled out at `orchestrator.ts:1353-1354`.
+- Do NOT retry: **Registry rule output forging a pass**: an exit-status mismatch is promoted to an error.
 
-### A missing `scratch/` directory after `create.sh`: ruled out; both scaffold paths create it. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A missing `scratch/` directory after `create.sh`: ruled out; both scaffold paths create it.
+### **Template fill-note examples naming the benchmark task**: the sweep prints no match under `templates/`. Ruled out. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **Template fill-note examples naming the benchmark task**: the sweep prints no match under `templates/`. Ruled out.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing `scratch/` directory after `create.sh`: ruled out; both scaffold paths create it.
+- Do NOT retry: **Template fill-note examples naming the benchmark task**: the sweep prints no match under `templates/`. Ruled out.
 
-### A missing 041-006 child: ruled out; the folder exists and reads Complete. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A missing 041-006 child: ruled out; the folder exists and reads Complete.
+### **The `check-measured-behavior.sh` header repeating the "Sourced by validate.sh" mistake**: it does carry the same header line, but unlike the placeholder rule it has no native orchestrator twin, so the registry does run it — the header is merely imprecise about the mechanism, and the claim it describes is true. Folded into `F1-P2-002` rather than re-raised. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **The `check-measured-behavior.sh` header repeating the "Sourced by validate.sh" mistake**: it does carry the same header line, but unlike the placeholder rule it has no native orchestrator twin, so the registry does run it — the header is merely imprecise about the mechanism, and the claim it describes is true. Folded into `F1-P2-002` rather than re-raised.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing 041-006 child: ruled out; the folder exists and reads Complete.
+- Do NOT retry: **The `check-measured-behavior.sh` header repeating the "Sourced by validate.sh" mistake**: it does carry the same header line, but unlike the placeholder rule it has no native orchestrator twin, so the registry does run it — the header is merely imprecise about the mechanism, and the claim it describes is true. Folded into `F1-P2-002` rather than re-raised.
 
-### A missing acceptance row: ruled out; the nine files total 84 rows, all Met. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A missing acceptance row: ruled out; the nine files total 84 rows, all Met.
+### **Workflow command injection through a packet name**: names are escaped for `::` and line breaks before they reach an annotation. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **Workflow command injection through a packet name**: names are escaped for `::` and line breaks before they reach an annotation.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing acceptance row: ruled out; the nine files total 84 rows, all Met.
-
-### A missing benchmark report: ruled out; both report folders and their outcome/results files exist. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: A missing benchmark report: ruled out; both report folders and their outcome/results files exist.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing benchmark report: ruled out; both report folders and their outcome/results files exist.
-
-### A missing catalog root entry: ruled out; all four leaves are listed. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A missing catalog root entry: ruled out; all four leaves are listed.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing catalog root entry: ruled out; all four leaves are listed.
-
-### A missing changelog or version carrier: ruled out; all files exist and agree. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: A missing changelog or version carrier: ruled out; all files exist and agree.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing changelog or version carrier: ruled out; all files exist and agree.
-
-### A missing good/weak pair as a general defect: ruled out by phase 004's applicability table, which scopes the pair to sections where a contrast is meaningful. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: A missing good/weak pair as a general defect: ruled out by phase 004's applicability table, which scopes the pair to sections where a contrast is meaningful.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing good/weak pair as a general defect: ruled out by phase 004's applicability table, which scopes the pair to sections where a contrast is meaningful.
-
-### A missing guard-script reference in any speckit command: ruled out; all three carry the pair. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A missing guard-script reference in any speckit command: ruled out; all three carry the pair.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing guard-script reference in any speckit command: ruled out; all three carry the pair.
-
-### A phantom evidence file: ruled out; every cited artifact that should still exist was checked and is present. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A phantom evidence file: ruled out; every cited artifact that should still exist was checked and is present.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A phantom evidence file: ruled out; every cited artifact that should still exist was checked and is present.
-
-### A scenario that cannot run because a script is absent: ruled out; every named script exists. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A scenario that cannot run because a script is absent: ruled out; every named script exists.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A scenario that cannot run because a script is absent: ruled out; every named script exists.
-
-### A stamp-window bypass: ruled out; a stamp past line 70 makes the doc stricter, not weaker. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: A stamp-window bypass: ruled out; a stamp past line 70 makes the doc stricter, not weaker.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A stamp-window bypass: ruled out; a stamp past line 70 makes the doc stricter, not weaker.
-
-### A wrong level mapping in the card: ruled out; `recommend-level.sh` documents Level 0 and the card's fallback is deliberate. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A wrong level mapping in the card: ruled out; `recommend-level.sh` documents Level 0 and the card's fallback is deliberate.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A wrong level mapping in the card: ruled out; `recommend-level.sh` documents Level 0 and the card's fallback is deliberate.
-
-### A wrong README count: ruled out; the count matches. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A wrong README count: ruled out; the count matches.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A wrong README count: ruled out; the count matches.
-
-### Command injection through a document line: ruled out; every scanner passes text through `grep`/`sed` arguments, never `eval`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Command injection through a document line: ruled out; every scanner passes text through `grep`/`sed` arguments, never `eval`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Command injection through a document line: ruled out; every scanner passes text through `grep`/`sed` arguments, never `eval`.
-
-### Credential exposure in the new files: ruled out; no keys, tokens or environment values are read or printed. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Credential exposure in the new files: ruled out; no keys, tokens or environment values are read or printed.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Credential exposure in the new files: ruled out; no keys, tokens or environment values are read or printed.
-
-### Rewritten history: ruled out; the three failed final sets are kept as labelled history in both the report and `criteria.txt`. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Rewritten history: ruled out; the three failed final sets are kept as labelled history in both the report and `criteria.txt`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Rewritten history: ruled out; the three failed final sets are kept as labelled history in both the report and `criteria.txt`.
-
-### Symlink escape through the broad scanner: ruled out as a gate issue; `find -type f` skips symlinks, and the orchestrator reads named docs directly, so a symlinked doc cannot hide a token from `validate.sh`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Symlink escape through the broad scanner: ruled out as a gate issue; `find -type f` skips symlinks, and the orchestrator reads named docs directly, so a symlinked doc cannot hide a token from `validate.sh`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Symlink escape through the broad scanner: ruled out as a gate issue; `find -type f` skips symlinks, and the orchestrator reads named docs directly, so a symlinked doc cannot hide a token from `validate.sh`.
-
-### The card being too long: ruled out; 172 lines is under the 260-line guard. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The card being too long: ruled out; 172 lines is under the 260-line guard.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The card being too long: ruled out; 172 lines is under the 260-line guard.
-
-### The checklist contradicting the card: ruled out; it sends readers to a rendered example or scaffold, matching the card's step 4. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The checklist contradicting the card: ruled out; it sends readers to a rendered example or scaffold, matching the card's step 4.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The checklist contradicting the card: ruled out; it sends readers to a rendered example or scaffold, matching the card's step 4.
+- Do NOT retry: **Workflow command injection through a packet name**: names are escaped for `::` and line breaks before they reach an annotation.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -245,25 +151,23 @@ Review of `specs/system-speckit/054-weak-model-spec-authoring`, a phase parent w
 
 ## 11. RULED OUT DIRECTIONS
 
-- Blanket-error reading of the gate: ruled out; the census and the v2.3 stamp keep existing packets on their old rule (iteration 1, evidence: `003-versioned-placeholder-gate/spec.md:140`).
-- Mustache `{{...}}` as a placeholder source: ruled out; neither implementation matches it (iteration 1, evidence: `orchestrator.ts:661-665`).
+- Placeholder-gate bypass through fenced code blocks: the gate strips fenced blocks before matching, so a token inside a fence is not counted (iteration 1, evidence: `check-placeholders.sh` fence-strip pass)
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Synthesis. Compile the review report from the 20 active findings, recompute the verdict (P1 present, no P0, so CONDITIONAL), and record the terminal synthesis event with `stopReason: maxIterationsReached`. Review verdict: PASS
+maintainability
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: parent `spec.md` and `goal.md`; child phases `001-` through `009-` (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`); implementation surfaces named in the parent Files to Change table (templates/core, references, runtime/cli rules and guards, SKILL.md and leaf manifests, speckit and doctor commands, doc-authoring agents, playbook, feature catalog, READMEs, benchmark reports, `041-write-recipe-fixes/006`).
-- Behavior claims to verify: unfilled `[YOUR_VALUE_HERE: ...]` tokens become a Draft warning and a later error for v2.3 docs only; every core template section carries one fill instruction with a good and a weak example; the authoring card exists and the skill router loads it; the placeholder gate leaves existing packets' verdicts unchanged; the benchmark reports a measured before and after on the pinned subject.
-- Reuse and conventions: Level 2/3 packet layout from `system-spec-kit`; three-tier P0/P1/P2 severity; evidence must be `[SOURCE: path:line]`; acceptance criteria are the closure gate.
-- Review risks and gaps: nine child `implementation-summary.md` files may claim completion that the code does not support; benchmark claims may rest on report files rather than reproducible commands; the coverage graph is empty for this lineage because graph writes fall outside the lineage write authority.
-- Out-of-scope: `sk-prompt`, external repositories, and any packet outside `specs/system-speckit/054-weak-model-spec-authoring` except the `041-006` child named by the parent.
+- Target pointers: phase children `001-022` under the packet, their `spec.md`/`plan.md`/`tasks.md`/`implementation-summary.md`, and the shipped surfaces they name: `templates/core/*.md.tmpl`, `runtime/cli/rules/check-placeholders.sh`, `runtime/cli/spec/check-example-drift.sh`, `runtime/cli/spec/check-card-sync.sh`, `runtime/lib/validation/orchestrator.ts`, `references/workflows/spec-authoring-card.md`, the four `runtime/cli/tests/*.vitest.ts` files, the advisor scorer and `sk-git` provisioning assets
+- Behavior claims to verify: v2.3 placeholder token gate is Draft-warn / later-error and v2.3-only; every core template section carries one fill instruction plus a good and a weak example; the card exists and the router loads it; both guard scripts exit non-zero on drift; draft metadata is repaired while a packet is Draft
+- Reuse and conventions: `validate.sh` rule taxonomy in `references/validation/validation-rules.md`; the phase parent's Phase Documentation Map as the claim index
+- Review risks and gaps: 22 phases exceed three iterations, so coverage is claim-sampled per phase with the shipped file as the deciding evidence; no repo tooling runs during review; the packet's own `review/` folder is another lineage's write surface and is out of scope
 
 ---
 
@@ -271,12 +175,12 @@ Synthesis. Compile the review report from the 20 active findings, recompute the 
 <!-- MACHINE-OWNED: START -->
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pending | - | - |
-| `checklist_evidence` | core | pending | - | - |
-| `skill_agent` | overlay | pending | - | - |
-| `agent_cross_runtime` | overlay | pending | - | - |
-| `feature_catalog_code` | overlay | pending | - | - |
-| `playbook_capability` | overlay | pending | - | - |
+| `spec_code` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
+| `checklist_evidence` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
+| `skill_agent` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `feature_catalog_code` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `playbook_capability` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -285,26 +189,24 @@ Synthesis. Compile the review report from the 20 active findings, recompute the 
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `specs/system-speckit/054-weak-model-spec-authoring/**` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.skilled/skills/system-spec-kit/**` (changed surfaces) | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.skilled/commands/{speckit,doctor}/**` and `.skilled/agents/*.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| [path/to/file] | [D1, D3] | [N] | [0 P0, 1 P1, 2 P2] | [partial/complete] |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
-- Max iterations: 10
-- Convergence threshold: 0.1 (telemetry only under `max-iterations`)
+- Max iterations: 3
+- Convergence threshold: 0.1
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-1792949481267-fym7sk, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-1793081281038-z2aj1o, parentSessionId=null, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 12 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
-- Cross-reference checks: core=spec_code, checklist_evidence; overlay=skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
-- Started: 2026-10-25T17:33:11Z
+- Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
+- Started: 2026-10-27T06:08:02Z
 <!-- MACHINE-OWNED: END -->
