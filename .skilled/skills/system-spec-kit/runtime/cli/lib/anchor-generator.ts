@@ -211,7 +211,7 @@ function wrapSectionsWithAnchors(
   const collisions: string[] = [];
   
   let anchorsAdded = 0;
-  let anchorsPreserved = existingAnchors.length;
+  const anchorsPreserved = existingAnchors.length;
   
   const result: string[] = [];
   let i = 0;

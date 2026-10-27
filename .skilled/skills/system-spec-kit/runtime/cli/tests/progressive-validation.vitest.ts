@@ -6,7 +6,7 @@
 // Validates progressive-validate.sh stage behavior and compatibility
 // Against validate.sh baselines, auto-fix reporting, and JSON contract outputs.
 // Progressive validation pipeline conformance suite
-import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, test, expect, afterEach, vi } from 'vitest';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as os from 'os';

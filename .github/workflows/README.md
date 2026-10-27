@@ -50,7 +50,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
 | `sk-doc-script-tests.yml` | Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository. |
 | `sk-git-script-tests.yml` | Runs the sk-git worktree naming, allocation and provisioning suite. |
-| `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else. |
+| `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else, then scans the skill graph and runs the advisor's default suite, which includes the Python compatibility suite. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
 | `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Downloads the previous successful run's report as its baseline, which needs `actions: read`. A first run with no baseline records one instead of failing. Does not gate. |
@@ -63,7 +63,7 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | Workflow | Push | Pull request | Why |
 |---|---|---|---|
 | `advisory-checks.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
-| `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
+| `naming-standard-guard.yml` | `main` and release lines | yes | Runs on `main` and `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
 | `chart-corpus.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed and blocks only when head fails a rule the base did not. On push it diffs against the previous tip |

@@ -17,6 +17,11 @@ export default tseslint.config(
         ...globals.node,
       },
     },
+  },
+  {
+    // ESLint lints every JavaScript flavour too, and those files mark a deliberately
+    // unused binding the same way, so the `^_` convention holds for all of them.
+    files: ['**/*.ts', '**/*.js', '**/*.cjs', '**/*.mjs'],
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',

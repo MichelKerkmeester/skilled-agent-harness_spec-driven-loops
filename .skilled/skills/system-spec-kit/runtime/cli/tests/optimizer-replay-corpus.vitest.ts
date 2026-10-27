@@ -14,6 +14,19 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
 const require = createRequire(import.meta.url);
 
+/** A replay-corpus entry, typed for the fields these cases assert on. */
+interface CorpusEntry {
+  metadata: {
+    extractedAt: string;
+    hasWaveMetrics?: boolean;
+    skippedLines?: unknown[];
+    validationErrors?: string[];
+    [field: string]: unknown;
+  };
+  stopOutcome: { stopReason: string; [field: string]: unknown };
+  [field: string]: unknown;
+}
+
 const replayCorpus = require(path.join(
   WORKSPACE_ROOT,
   '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
@@ -23,9 +36,14 @@ const replayCorpus = require(path.join(
   buildCorpus: (
     packetFamily: string,
     options?: { fixturesDir?: string; jsonlContent?: string; sourceRunId?: string; timestamp?: string },
-  ) => { corpus: Array<Record<string, any>>; errors: string[]; warnings: string[]; familyInfo: object | null };
+  ) => {
+    corpus: CorpusEntry[];
+    errors: string[];
+    warnings: string[];
+    familyInfo: { role: string; required: boolean; compatibilityGrade: string } | null;
+  };
   validateCorpusEntry: (entry: object) => { valid: boolean; errors: string[] };
-  extractCorpusEntry: (records: object[], packetFamily: string, sourceRunId: string, options?: { timestamp?: string }) => Record<string, any>;
+  extractCorpusEntry: (records: object[], packetFamily: string, sourceRunId: string, options?: { timestamp?: string }) => CorpusEntry;
   parseJSONL: (content: string) => { records: object[]; skippedLines: Array<{ lineNumber: number; content: string; error: string }>; totalLines: number };
   saveCorpus: (corpus: object[], outputPath: string) => void;
   loadCorpus: (corpusPath: string) => object[];
@@ -115,7 +133,7 @@ describe('Replay Corpus Builder (T001)', () => {
     });
 
     it('should reject null input', () => {
-      const result = replayCorpus.validateCorpusEntry(null as any);
+      const result = replayCorpus.validateCorpusEntry(null as unknown as object);
       expect(result.valid).toBe(false);
     });
 
@@ -205,7 +223,7 @@ describe('Replay Corpus Builder (T001)', () => {
       });
       expect(result.errors).toHaveLength(0);
       expect(result.corpus).toHaveLength(1);
-      const entry = result.corpus[0] as Record<string, any>;
+      const entry = result.corpus[0];
       expect(entry.id).toBe('040-test-run-1');
     });
 
@@ -231,7 +249,7 @@ describe('Replay Corpus Builder (T001)', () => {
       });
 
       expect(result.errors).toHaveLength(0);
-      const entry = result.corpus[0] as Record<string, any>;
+      const entry = result.corpus[0];
       expect(entry.graphMetrics).toBeNull();
       expect(entry.waveMetrics).toEqual({ convergenceScore: 0.62 });
       expect(entry.metadata.hasWaveMetrics).toBe(true);

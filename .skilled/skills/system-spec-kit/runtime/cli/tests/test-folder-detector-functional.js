@@ -22,7 +22,6 @@ const os = require('os');
 */
 
 const SCRIPTS_DIR = path.join(__dirname, '..', 'dist');
-const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..'); // actual project root
 const PRIORITY_COMPARISON_OFFSET_MS = 60000;
 const ONE_SECOND_MS = 1000;
 const MTIME_SMALL_SKEW_MS = 300000;

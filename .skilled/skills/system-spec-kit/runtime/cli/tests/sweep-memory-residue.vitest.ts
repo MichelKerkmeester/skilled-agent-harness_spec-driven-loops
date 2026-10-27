@@ -20,6 +20,9 @@ import {
   sweep,
 } from '../retrieval/sweep-memory-residue.mjs';
 
+/** The two fields of a sweep report record these cases key on. */
+type SweepRecord = { path: string; class: string };
+
 const SCRIPT_PATH = fileURLToPath(new URL('../retrieval/sweep-memory-residue.mjs', import.meta.url));
 
 const tempRoots = new Set<string>();
@@ -179,7 +182,7 @@ describe('sweep', () => {
     const { allowlistPath, root } = makeFixtureTree();
     const report = await sweep({ allowlistPath, root });
 
-    const byPath = new Map(report.records.map((record: any) => [record.path, record]));
+    const byPath = new Map(report.records.map((record: SweepRecord) => [record.path, record]));
 
     expect(byPath.get('.skilled/commands/demo/run.md')).toMatchObject({
       allowlistReason: null,
@@ -221,7 +224,7 @@ describe('sweep CLI', () => {
     expect(run.status).toBe(1);
     const report = JSON.parse(run.stdout);
     expect(report.counts.live).toBe(2);
-    expect(report.records.map((record: any) => record.class).sort()).toEqual(['allowlisted', 'historical', 'live', 'live']);
+    expect(report.records.map((record: SweepRecord) => record.class).sort()).toEqual(['allowlisted', 'historical', 'live', 'live']);
   });
 
   it('exits 0 once nothing live remains and writes the report where asked', () => {

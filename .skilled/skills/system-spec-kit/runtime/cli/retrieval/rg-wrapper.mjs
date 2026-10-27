@@ -35,7 +35,6 @@
 
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import { stableStringify } from './lib/artifact.mjs';
 import { normalizeTriggerText } from './lib/normalize.mjs';

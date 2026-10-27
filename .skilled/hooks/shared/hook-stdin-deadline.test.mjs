@@ -111,16 +111,28 @@ function runWithPayload(file, payload, env) {
   });
 }
 
+// The flagged rule applies to OpenCode v1 only, so the host's own opencode would decide
+// whether the preflight reports it. A stub that prints a v1 version, placed first on PATH,
+// pins the family the hook's version probe reads.
+function pinnedV1Env(t, extra = {}) {
+  const binDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hook-stdin-opencode-v1-'));
+  t.after(() => fs.rmSync(binDir, { recursive: true, force: true }));
+  const stub = path.join(binDir, 'opencode');
+  fs.writeFileSync(stub, "#!/bin/sh\nprintf '%s\\n' '1.19.3'\n");
+  fs.chmodSync(stub, 0o755);
+  return { ...extra, PATH: [binDir, process.env.PATH].filter(Boolean).join(path.delimiter) };
+}
+
 function recordedAuditLine(projectDir) {
   const logPath = path.join(projectDir, '.skilled', 'logs', 'cli-dispatch-audit.log');
   return JSON.parse(fs.readFileSync(logPath, 'utf8').trim().split('\n').pop());
 }
 
-test('the Claude and Devin preflight lints still flag a dispatch sent on a normal payload', () => {
+test('the Claude and Devin preflight lints still flag a dispatch sent on a normal payload', (t) => {
   const claude = runWithPayload(
     'dispatch/claude/dispatch-preflight-lint.mjs',
     { tool_name: 'Bash', cwd: REPO_ROOT, tool_input: { command: FLAGGED_DISPATCH } },
-    { CLAUDE_PROJECT_DIR: REPO_ROOT },
+    pinnedV1Env(t, { CLAUDE_PROJECT_DIR: REPO_ROOT }),
   );
   assert.equal(claude.status, 0, claude.stderr);
   assert.equal(JSON.parse(claude.stdout).hookSpecificOutput.hookEventName, 'PreToolUse');
@@ -129,6 +141,7 @@ test('the Claude and Devin preflight lints still flag a dispatch sent on a norma
   const devin = runWithPayload(
     'dispatch/devin/dispatch-preflight-lint.mjs',
     { tool_name: 'exec', cwd: REPO_ROOT, tool_input: { command: FLAGGED_DISPATCH } },
+    pinnedV1Env(t),
   );
   assert.equal(devin.status, 0, devin.stderr);
   assert.equal(JSON.parse(devin.stdout).hookSpecificOutput.hookEventName, 'PreToolUse');
@@ -155,12 +168,12 @@ test('the Claude and Devin dispatch audits still record a dispatch sent on a nor
   }
 });
 
-test('the Cursor preflight, MCP route and Task guards still answer a normal payload', () => {
+test('the Cursor preflight, MCP route and Task guards still answer a normal payload', (t) => {
   const lint = runWithPayload('dispatch/cursor/dispatch-preflight-lint.mjs', {
     tool_name: 'Shell',
     workspace_roots: [REPO_ROOT],
     tool_input: { command: FLAGGED_DISPATCH },
-  });
+  }, pinnedV1Env(t));
   assert.equal(lint.status, 0, lint.stderr);
   assert.equal(JSON.parse(lint.stdout).permission, 'allow');
   assert.ok(JSON.parse(lint.stdout).agent_message.includes(RULE_ID));

@@ -30,7 +30,7 @@ import { deriveMemoryDescription } from '../lib/memory-frontmatter.js';
 import {
   isAllowlistedShortProductName,
 } from '../lib/trigger-phrase-sanitizer.js';
-import { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data.js';
+import { collectSessionData } from '../extractors/collect-session-data.js';
 import type { CollectedDataFull } from '../extractors/collect-session-data.js';
 import type { SemanticFileInfo } from '../extractors/file-extractor.js';
 import { filterContamination, getContaminationPatternLabels, SEVERITY_RANK, type ContaminationSeverity } from '../extractors/contamination-filter.js';
@@ -39,7 +39,6 @@ import {
   type ValidationSignal,
 } from '../extractors/quality-scorer.js';
 import {
-  determineValidationDisposition,
   validateMemoryQualityContent,
 } from '../lib/validate-memory-quality.js';
 import { extractSpecFolderContext } from '../extractors/spec-folder-extractor.js';
@@ -49,17 +48,13 @@ import { createFilterPipeline } from '../lib/content-filter.js';
 import type { FilterStats, ContaminationAuditRecord } from '../lib/content-filter.js';
 import {
   generateImplementationSummary,
-  buildWeightedEmbeddingSections,
   formatSummaryAsMarkdown,
   extractFileChanges,
 } from '../lib/semantic-summarizer.js';
 import {
   evaluateMemorySufficiency,
 } from '@spec-kit/shared/parsing/memory-sufficiency';
-import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
-import { evaluateSpecDocHealth } from '@spec-kit/shared/parsing/spec-doc-health';
 import { scrubSecretsDetailed } from '@spec-kit/shared/parsing/secret-scrubber';
-import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import * as simFactory from '../lib/simulation-factory.js';
 import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader.js';
 import { applyTreeThinning } from './tree-thinning.js';
@@ -74,7 +69,7 @@ import type { RawInputData } from '../utils/input-normalizer.js';
 import { resolveSaveMode, SaveMode } from '../types/save-mode.js';
 
 // Extracted modules
-import { stripWorkflowHtmlOutsideCodeFences, escapeLiteralAnchorExamples } from './content-cleaner.js';
+import { escapeLiteralAnchorExamples } from './content-cleaner.js';
 import {
   buildMemoryTitle,
   extractSpecTitle,
@@ -84,14 +79,9 @@ import {
 } from './workflow-path-utils.js';
 import {
   readExplicitMemoryText,
-  resolveParentSpec,
   stampCompletionFingerprintIfNeeded,
 } from './memory-metadata.js';
-import {
-  injectQualityMetadata,
-  injectSpecDocHealthMetadata,
-} from './frontmatter-editor.js';
-import { shouldIndexMemory, formatSufficiencyAbort } from './quality-gates.js';
+import { formatSufficiencyAbort } from './quality-gates.js';
 import { summarizeAuditCounts } from './workflow-accessors.js';
 import {
   resolveAlignmentTargets,
@@ -178,22 +168,6 @@ function filterTriggerPhrases(
   return filtered;
 }
 
-/**
- * Insert content after YAML frontmatter, preserving frontmatter at byte 0.
- * Frontmatter is a block delimited by `---\n` at position 0 and a closing `---\n`.
- * If no frontmatter is found, prepends the content (original behavior).
- */
-function insertAfterFrontmatter(content: string, insertion: string): string {
-  const parsed = parseFrontmatter(content);
-  if (parsed.raw === null) {
-    return insertion + content;
-  }
-  // The body starts right after the closing fence line, so the insertion
-  // point is exactly bodyStart — one shared definition of "end of frontmatter".
-  const insertionPoint = content.length - parsed.body.length;
-  return content.slice(0, insertionPoint) + insertion + content.slice(insertionPoint);
-}
-
 type WorkflowScrubWarn = (message: string) => void;
 
 type WorkflowSavePayloadTextFields = {
@@ -252,7 +226,9 @@ function scrubWorkflowSavePayloadTextFields(
  * Shared helper for dynamic runtime API imports with consistent degradation.
  * All call sites log warnings on failure and return the provided fallback.
  */
-async function tryImportRuntimeApi(specifier: string): Promise<any | null> {
+async function tryImportRuntimeApi(
+  specifier: '@spec-kit/runtime/api',
+): Promise<typeof import('@spec-kit/runtime/api') | null> {
   try {
     return await import(specifier);
   } catch (err: unknown) {
@@ -1980,7 +1956,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // Step 11: Semantic memory indexing
   log('Step 11: Indexing semantic memory...');
 
-  let memoryId: number | null = null;
+  const memoryId: number | null = null;
   log('   Skipping retired legacy memory indexing');
 
   // Retrieval is source-owned: the trigger index is a generated artifact, not a

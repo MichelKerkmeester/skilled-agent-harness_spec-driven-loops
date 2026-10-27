@@ -89,6 +89,9 @@ LOCKFILE_NAMES = frozenset(
         "yarn.lock",
     }
 )
+# Names a runtime writes on its own. The deep-loop runtime emits this marker when a
+# lineage's synthesis closes, so renaming the tracked copies would not stop new ones.
+RUNTIME_GENERATED_NAMES = frozenset({"synthesis_complete.json"})
 GENERATED_SUFFIXES = (".tsbuildinfo",)
 CODEX_GENERATED_ROOTS = (
     PurePosixPath(".codex/agents"),
@@ -261,6 +264,8 @@ def _is_name_exempt(repo_root: Path, path: PurePosixPath, is_dir: bool) -> bool:
     """Return whether the path's own basename has an exact-name exemption."""
     name = path.name
     if name in TOOL_MANDATED_NAMES or name in LOCKFILE_NAMES:
+        return True
+    if not is_dir and name in RUNTIME_GENERATED_NAMES:
         return True
     if name.endswith(GENERATED_SUFFIXES):
         return True

@@ -8,7 +8,7 @@ trigger_phrases:
   - "sha pinned actions"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CI Workflow Standards - Rule Index
@@ -38,7 +38,7 @@ A row says **machine gate** when a script or workflow fails on a violation. It s
 | README row per workflow | Every file in `.github/workflows/` has one row in the contents table of the workflow README, and a trigger row in the push versus pull-request table | 32 of 32 | `.github/workflows/README.md:26-57` (contents) and `.github/workflows/README.md:72` (the push versus pull-request row for `message-contract.yml`) | Honour-system |
 | `set -euo pipefail` | A multi-line `run:` block starts with `set -euo pipefail`. A report-only step that must keep going on a failure uses `set -uo pipefail` and says why | 29 of the 30 workflow files with a multi-line `run:` carry `set -euo pipefail`. Eight steps are deliberately `-uo`: `.github/workflows/advisory-checks.yml:39`, `:53` and `:70` (report-only steps), `.github/workflows/spec-kit-check.yml:143-144` (two background vitest processes, each wait collected into `status`), `.github/workflows/strict-pass-freshness-report.yml:60` and `:110` (baseline fetch and sweep keep going to record a report), `.github/workflows/trigger-index-rebuild.yml:74` and `:283` (commit and push steps handle their own exit codes) | `.github/workflows/message-contract.yml:81` (`set -euo pipefail`), `.github/workflows/advisory-checks.yml:39` | Honour-system here. The shell doctrine is owned by `sk-code-skilled` |
 | Fork and secret safety | No `pull_request_target` trigger. A free-text event field (branch name, body, title, commit message) reaches a script only through `env:`, never interpolated into `run:`. Only hex SHAs and numbers are interpolated in a script | Yes. No workflow uses `pull_request_target` | `.github/workflows/message-contract.yml:72-79` (head ref and body passed through `env:`) | Honour-system |
-| Matrix and `fail-fast` | A matrix whose entries report independently sets `fail-fast: false`, so one failing entry does not cancel the others | Both matrix workflows set it | `.github/workflows/pi-extension-tests.yml:57` and `.github/workflows/opencode-dual-version.yml:91` | Honour-system |
+| Matrix and `fail-fast` | A matrix whose entries report independently sets `fail-fast: false`, so one failing entry does not cancel the others | Both matrix workflows set it | `.github/workflows/pi-extension-tests.yml:61` and `.github/workflows/opencode-dual-version.yml:92` | Honour-system |
 | Trigger and filter shape | Generated-path rules are push-only, a rebuild commit skips the downstream workflows and one trigger is a recorded exception | Yes | `references/trigger-and-filter-rules.md` | Mixed. See that file |
 | Job shape | Timeouts, least-privilege permissions, the concurrency template, the composite setup action and the switch condition | Partly. Each row in `references/job-shape-rules.md` states its own count | `references/job-shape-rules.md` | Honour-system |
 | Protected workflows | A workflow protected by function is never edited or switched off without a second named confirmation | Yes | `references/protected-set.md` | Honour-system |

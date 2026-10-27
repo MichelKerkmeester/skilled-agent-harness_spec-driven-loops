@@ -31,7 +31,6 @@ const SCRIPTS_DIR = path.join(ROOT, 'runtime', 'cli');
 const RULES_DIR = path.join(SCRIPTS_DIR, 'rules');
 const FIXTURES_DIR = path.join(SCRIPTS_DIR, 'test-fixtures');
 const VALIDATOR_SCRIPT = path.join(SCRIPTS_DIR, 'spec', 'validate.sh');
-const TEMPLATES_DIR = path.join(ROOT, 'templates');
 const COMPLIANT_FIXTURE_NAME = '053-template-compliant-level2';
 
 // Test workspace for creating temporary fixtures
@@ -176,7 +175,6 @@ function createTestSpecFolder(name, level = 1, options = {}) {
     specContent = null,
     planContent = null,
     tasksContent = null,
-    checklistContent = null,
     decisionRecordContent = null,
     implSummaryContent = null,
     memoryFiles = {},
@@ -225,21 +223,6 @@ Test implementation steps.
 
 - [ ] Task 1
 - [ ] Task 2
-`;
-
-  const defaultChecklist = `# Checklist
-
-## P0 - Critical
-
-- [ ] Critical item
-
-## P1 - Required
-
-- [ ] Required item
-
-## P2 - Optional
-
-- [ ] Optional item
 `;
 
   const defaultDecisionRecord = `# Decision Record
@@ -923,13 +906,6 @@ async function testExitCodeBehavior() {
   startSuite('Exit Code Behavior');
 
   try {
-    // Exit code definitions
-    const exitCodes = {
-      PASS: 0,      // No errors or warnings
-      WARN: 1,      // Warnings only
-      ERROR: 2,     // Errors (validation failures)
-    };
-
     pass('Exit code 0 = PASS', 'No errors or warnings');
     pass('Exit code 1 = WARN', 'Warnings but no errors');
     pass('Exit code 2 = ERROR', 'Validation failures');
@@ -1043,7 +1019,7 @@ async function testJsonOutputMode() {
     let parsedJson = null;
     try {
       parsedJson = JSON.parse(jsonResult.stdout);
-    } catch (e) {
+    } catch {
       // Try extracting JSON from output
       const jsonMatch = jsonResult.stdout.match(/\{[\s\S]*\}/);
       if (jsonMatch) {

@@ -78,13 +78,6 @@ function loadContract() {
   return families;
 }
 
-// Concrete per-command discriminator baked into asset filenames.
-// Every family names assets `<family>_<command>_<kind>` EXCEPT memory, whose
-// direct-dispatch assets drop the family prefix (`<command>_<kind>`).
-function assetDiscriminator(family, command) {
-  return family === 'continuity' ? command : `${family}_${command}`;
-}
-
 // Expand the single `<...>` placeholder in a contract asset-path template into a
 // concrete per-command path. create's placeholder spans the whole discriminator
 // (`<name>` -> `create_readme`); the other families carry a literal family

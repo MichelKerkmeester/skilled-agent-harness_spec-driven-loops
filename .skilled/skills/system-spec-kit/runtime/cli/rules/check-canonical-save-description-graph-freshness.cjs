@@ -5,8 +5,7 @@
 
 'use strict';
 
-const fs = require('fs');
-const { CANONICAL_SAVE_CUTOFF, CANONICAL_SAVE_FRESHNESS_SLACK_MS, normalizePacketId, readContinuityPacketPointer, runRule } = require('./check-canonical-save-shared.cjs');
+const { CANONICAL_SAVE_FRESHNESS_SLACK_MS, runRule } = require('./check-canonical-save-shared.cjs');
 
 runRule('CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS', (context, emit) => {
   const descriptionTimestamp = context.description?.lastUpdated;

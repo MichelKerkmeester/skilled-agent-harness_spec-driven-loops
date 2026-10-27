@@ -127,7 +127,7 @@ interface CanonicalSourceEntry {
 }
 
 /** Full collected session payload used by downstream extractors. */
-export interface CollectedDataFull extends CollectedDataBase {}
+export type CollectedDataFull = CollectedDataBase;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. PREFLIGHT/POSTFLIGHT UTILITIES

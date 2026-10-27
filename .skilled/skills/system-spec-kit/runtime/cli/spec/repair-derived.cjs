@@ -348,7 +348,7 @@ function writeAtomic(file, text) {
   }
 }
 
-function fixDescriptionLevel(folder, report) {
+function fixDescriptionLevel(folder) {
   const file = path.join(folder, 'description.json');
   const text = readIfPresent(file);
   if (text === null) return null;
@@ -511,7 +511,7 @@ async function repairFolder(folder, apply) {
   if (authored.length === rules.size) return { folder, planned: [], authored };
 
   const edits = [];
-  const levelFix = fixDescriptionLevel(folder, report);
+  const levelFix = fixDescriptionLevel(folder);
   if (levelFix) edits.push(levelFix);
   edits.push(...fixRecordedLocation(folder));
 

@@ -3,6 +3,10 @@ name: Skill Advisor Stress Tests
 # The advisor's stress suite only runs when SPECKIT_RUN_STRESS is set, and no
 # workflow set it, so two of its tests failed for months against code that had
 # moved on before anyone ran the suite. It takes about half a minute.
+#
+# The default suite ran nowhere either, and it carries the Python compatibility
+# suite (tests/compat/python-compat.vitest.ts spawns tests/python/test_skill_advisor.py).
+# It shares this job's install and build, so it adds only its own run time.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -42,10 +46,13 @@ concurrency:
 
 jobs:
   skill-advisor-stress:
-    name: Skill advisor stress suite
+    name: Skill advisor stress and default suites
     if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Sized before the job has its own run history: the stress-only job's p100 was
+    # 6.4 minutes over 63 successful runs, and the default suite takes about 2.7
+    # minutes locally. Resize from measured runs once 40 exist.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -69,3 +76,15 @@ jobs:
       - name: Run the stress suite
         working-directory: .opencode/skills/system-skill-advisor/runtime
         run: npm run test:stress -- --config vitest.stress.config.ts
+
+      # Several default-suite tests read the runtime's skill-graph database, which a
+      # fresh checkout does not have, so one scan builds it first. The stress suite
+      # runs before this so it keeps the fresh state it has always run against.
+      - name: Build the skill-graph database the default suite reads
+        run: |
+          set -euo pipefail
+          node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format text
+
+      - name: Run the default suite
+        working-directory: .opencode/skills/system-skill-advisor/runtime
+        run: npm test

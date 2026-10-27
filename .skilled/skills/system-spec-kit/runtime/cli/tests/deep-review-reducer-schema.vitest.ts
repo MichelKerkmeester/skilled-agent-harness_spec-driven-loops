@@ -16,14 +16,31 @@ function readWorkspaceFile(relativePath: string): string {
   return fs.readFileSync(path.join(WORKSPACE_ROOT, relativePath), 'utf8');
 }
 
+/** The parts of the review-mode contract asset this suite pins. */
+interface ReviewModeContract {
+  contract: {
+    severities: Array<{ id: string; weight: number }>;
+    reducer: { enabled: boolean; inputs: string[]; outputs: string[]; idempotent: boolean };
+    releaseReadinessStates: Array<{ id: string }>;
+    outputs: Record<'config' | 'findingsRegistry' | 'pauseSentinel' | 'jsonl', { pathPattern: string }>;
+  };
+}
+
+/** The parts of the deep-review config asset this suite pins. */
+interface DeepReviewConfig {
+  releaseReadinessState: string;
+  reducer: { inputs: string[]; outputs: string[]; metrics: string[] };
+  fileProtection: Record<string, string>;
+}
+
 describe('deep-review reducer and schema contract', () => {
   it('keeps reducer, severity, and release-readiness schemas stable in the canonical assets', () => {
     const contract = yaml.load(
       readWorkspaceFile('.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml'),
-    ) as Record<string, any>;
+    ) as ReviewModeContract;
     const config = JSON.parse(
       readWorkspaceFile('.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json'),
-    ) as Record<string, any>;
+    ) as DeepReviewConfig;
 
     expect(contract.contract.severities.map((item: { id: string }) => item.id)).toEqual(['P0', 'P1', 'P2']);
     expect(contract.contract.severities.map((item: { weight: number }) => item.weight)).toEqual([10, 5, 1]);

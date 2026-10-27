@@ -135,28 +135,6 @@ function assertMatch(value, regex, testName) {
   }
 }
 
-function assertThrows(fn, testName) {
-  try {
-    fn();
-    fail(testName, 'Expected function to throw, but it did not');
-    return false;
-  } catch (e) {
-    pass(testName, `Threw: ${e.message.substring(0, 50)}`);
-    return true;
-  }
-}
-
-function assertDoesNotThrow(fn, testName) {
-  try {
-    fn();
-    pass(testName, 'Function executed without throwing');
-    return true;
-  } catch (e) {
-    fail(testName, `Unexpected throw: ${e.message}`);
-    return false;
-  }
-}
-
 /* ─────────────────────────────────────────────────────────────
    3. TEST DATA FIXTURES
 ────────────────────────────────────────────────────────────────
@@ -1243,7 +1221,6 @@ async function testOpencodeCapture() {
   skip('EXT-OC: Module removed', 'Recovery mode fully deprecated');
   return;
 
-  /* eslint-disable no-unreachable */
   try {
     const opencodeCapture = require(path.join(EXTRACTORS_DIR, 'opencode-capture'));
 

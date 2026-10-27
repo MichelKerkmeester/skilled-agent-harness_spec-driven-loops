@@ -8,7 +8,7 @@ trigger_phrases:
   - "intentional trigger exception"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Trigger and Filter Rules
@@ -37,7 +37,7 @@ Evidence:
 - `.github/scripts/check-gate-inputs.sh:112-124` holds the twin matcher. `function twin` at `:116` swaps `.opencode` for `.skilled` and the reverse.
 - `.github/scripts/check-gate-inputs.sh:339` fails a pathspec that has no twin with `twin-one`. The same verdict repeats at `:423` for path filters and `:478` for directories.
 - `.github/scripts/check-gate-inputs.sh:372-375` recognises the `paths:` and `paths-ignore:` keys, in block and inline form.
-- `.github/workflows/repo-rules-corpus.yml:9-11` records the inert `.opencode/repo-rules/**` twin, and `:20-22` repeats it for the `push:` filter.
+- `.github/workflows/repo-rules-corpus.yml:9-12` records the inert `.opencode/repo-rules/**` twin, and `:21-24` repeats it for the `push:` filter.
 
 ---
 

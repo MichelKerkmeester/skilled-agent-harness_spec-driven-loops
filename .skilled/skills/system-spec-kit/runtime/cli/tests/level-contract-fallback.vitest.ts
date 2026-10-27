@@ -30,7 +30,10 @@ function resolveThroughFallback(level: string) {
   });
 }
 
-function withManifest(mutate: (manifest: Record<string, any>) => void, run: () => void) {
+/** The level manifest as these cases corrupt it: each level row is open, since a case may write a malformed value. */
+type LevelManifest = { levels: Record<string, Record<string, unknown>> };
+
+function withManifest(mutate: (manifest: LevelManifest) => void, run: () => void) {
   const original = fs.readFileSync(MANIFEST_SOURCE, 'utf8');
   const manifest = JSON.parse(original);
   mutate(manifest);
@@ -92,13 +95,13 @@ describe('level contract fallback', () => {
   });
 
   it.each([
-    ['a missing level row', (m: Record<string, any>) => { delete m.levels['2']; }],
-    ['an empty required core list', (m: Record<string, any>) => { m.levels['2'].requiredCoreDocs = []; }],
-    ['a non-array addon list', (m: Record<string, any>) => { m.levels['2'].optionalAddonDocs = 'acceptance-criteria.md'; }],
-    ['a document name that climbs out', (m: Record<string, any>) => { m.levels['2'].optionalAddonDocs = ['../escape.md']; }],
-    ['a malformed lifecycle block', (m: Record<string, any>) => { m.levels['2'].lifecycleRequiredDocs = ['implementation-summary.md']; }],
-    ['an unknown section gate level', (m: Record<string, any>) => { m.levels['2'].sectionGates = { problem: ['9'] }; }],
-    ['a missing frontmatter marker level', (m: Record<string, any>) => { delete m.levels['2'].frontmatterMarkerLevel; }],
+    ['a missing level row', (m: LevelManifest) => { delete m.levels['2']; }],
+    ['an empty required core list', (m: LevelManifest) => { m.levels['2'].requiredCoreDocs = []; }],
+    ['a non-array addon list', (m: LevelManifest) => { m.levels['2'].optionalAddonDocs = 'acceptance-criteria.md'; }],
+    ['a document name that climbs out', (m: LevelManifest) => { m.levels['2'].optionalAddonDocs = ['../escape.md']; }],
+    ['a malformed lifecycle block', (m: LevelManifest) => { m.levels['2'].lifecycleRequiredDocs = ['implementation-summary.md']; }],
+    ['an unknown section gate level', (m: LevelManifest) => { m.levels['2'].sectionGates = { problem: ['9'] }; }],
+    ['a missing frontmatter marker level', (m: LevelManifest) => { delete m.levels['2'].frontmatterMarkerLevel; }],
   ])('rejects %s instead of printing a partial contract', (_name, mutate) => {
     withManifest(mutate, () => {
       const result = resolveThroughFallback('2');

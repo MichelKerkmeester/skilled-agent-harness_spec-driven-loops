@@ -5,8 +5,7 @@
 
 'use strict';
 
-const fs = require('fs');
-const { CANONICAL_SAVE_CUTOFF, CANONICAL_SAVE_FRESHNESS_SLACK_MS, normalizePacketId, readContinuityPacketPointer, runRule } = require('./check-canonical-save-shared.cjs');
+const { normalizePacketId, readContinuityPacketPointer, runRule } = require('./check-canonical-save-shared.cjs');
 
 runRule('CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED', (context, emit) => {
   const continuityPointer = readContinuityPacketPointer(context.folder);

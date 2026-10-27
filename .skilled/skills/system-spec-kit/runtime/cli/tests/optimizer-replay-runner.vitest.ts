@@ -19,13 +19,13 @@ const replayRunner = require(path.join(
 )) as {
   DEFAULT_CONFIG: Record<string, number | boolean>;
   evaluateConvergence: (
-    iteration: Record<string, any>,
-    config: Record<string, any>,
-    priorState: Record<string, any>,
-  ) => { converged: boolean; stuck: boolean; signals: Record<string, any> };
+    iteration: Record<string, unknown>,
+    config: Record<string, unknown>,
+    priorState: Record<string, unknown>,
+  ) => { converged: boolean; stuck: boolean; signals: Record<string, unknown> };
   replayRun: (
-    corpusEntry: Record<string, any>,
-    config: Record<string, any>,
+    corpusEntry: Record<string, unknown>,
+    config: Record<string, unknown>,
   ) => {
     iterationsUsed: number;
     maxIterations: number;
@@ -40,13 +40,13 @@ const replayRunner = require(path.join(
       graphBonus: number;
       finalSignals: object | null;
     };
-  extractReplayMetrics: (corpusEntry: Record<string, any>) => {
+  extractReplayMetrics: (corpusEntry: Record<string, unknown>) => {
     graphMetrics: { graphConvergence: number } | null;
     waveMetrics: { convergenceScore: number } | null;
   };
   compareResults: (
-    baseline: Record<string, any>,
-    candidate: Record<string, any>,
+    baseline: Record<string, unknown>,
+    candidate: Record<string, unknown>,
   ) => { improved: boolean; regressions: string[]; improvements: string[]; delta: Record<string, number> };
 };
 
@@ -54,18 +54,18 @@ const replayCorpus = require(path.join(
   WORKSPACE_ROOT,
   '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
 )) as {
-  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
+  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: unknown[] };
 };
 
 const FIXTURES_DIR = path.join(TEST_DIR, 'fixtures/deep-loop-optimizer');
 
-function loadSampleCorpusEntry(): Record<string, any> {
+function loadSampleCorpusEntry(): Record<string, unknown> {
   const content = fs.readFileSync(
     path.join(FIXTURES_DIR, 'sample-040-corpus.jsonl'),
     'utf8',
   );
   const result = replayCorpus.buildCorpus('040', { jsonlContent: content });
-  return result.corpus[0] as Record<string, any>;
+  return result.corpus[0] as Record<string, unknown>;
 }
 
 describe('Deterministic Replay Runner (T003)', () => {

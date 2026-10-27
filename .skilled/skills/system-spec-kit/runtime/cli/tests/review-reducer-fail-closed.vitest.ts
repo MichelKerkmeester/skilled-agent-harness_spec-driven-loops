@@ -14,11 +14,12 @@
 
 import fs from 'node:fs';
 import os from 'node:os';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+const require = createRequire(import.meta.url);
 const reducer = require('../../../../system-deep-loop/runtime/scripts/reduce-state.cjs') as {
   reduceReviewState: (specFolder: string, options?: {
     write?: boolean;

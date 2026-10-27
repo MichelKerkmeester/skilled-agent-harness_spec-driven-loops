@@ -112,6 +112,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30, superseded by 009 ADR-013) | Complete |
 | 10 | 010-review-remediation/ | Remediation: apply the confirmed deep-review findings to the CI routing vocabulary, the sk-code-ci references and templates, the `/doctor:ci` contract and the phase records | Complete |
 | 11 | 011-ci-health-followups/ | Follow-up: move both pi extensions to `@earendil-works/pi-coding-agent` 1.4.0 (the Dependabot 0.79.0 target raised `npm audit`), and fix the two flaky tests (goal-core `statePath` assertion, advisor watcher readiness) at their cause | Complete |
+| 12 | 012-alignment-fixes/ | Follow-up: correct four stale workflow citations, run the advisor default suite in CI, exempt the deep loop's synthesis marker in the naming guard and run it on `main`, pin two host-dependent hook tests and make the runtime lint check pass | Complete |
 | 13 | 013-killer-test-spawn-race/ | Follow-up: the session-relaunch killer test waited for the target's spawn event instead of its SIGTERM handler, so it failed once in 40 CI runs; targets now report readiness and the tests wait for it | Complete |
 
 ### Phase Transition Rules
@@ -133,6 +134,8 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 006, 007 | 009 | The `sk-code-ci` packet supplies its rule data and templates, and the six `vars.SKILLED_CI*` names exist in the workflows | `/doctor:ci report` lists every file `glob('.github/workflows/*.yml')` returns (32 today) with switch state; `route-validate.sh` and the bridge deriver pass |
 | 009 | 010 | The deep review's confirmed findings are listed with file, line and fix | `review/review-report.md` lists 5 P1 and 16 P2 confirmed findings; `010-review-remediation` passes `validate.sh --strict` |
 | 010 | 011 | The three CI-health items are named with file and failure mode | Both extensions pass `npm test` and `npm audit` reports 0; the goal-core suite passes; the watcher suite passes 5 runs in a row; `011-ci-health-followups` passes `validate.sh --strict` |
+| 011 | 012 | The seven CI and test alignment findings are listed with file, line and evidence | The advisor default suite passes 150 of 150 files after a scan; the naming guard test passes 9 of 9; both hook test files pass 5 runs in a row; the runtime `npm run check` exits 0; `012-alignment-fixes` passes `validate.sh --strict` |
+| 011 | 013 | The killer test's one-in-40 CI failure is traced to the spawn event it waited on | With a 600 ms delay forced ahead of the handler the old file fails and the fixed file passes 64 of 64; ten unforced runs pass 64 of 64; `013-killer-test-spawn-race` passes `validate.sh --strict` |
 
 ### Recommendation Traceability
 

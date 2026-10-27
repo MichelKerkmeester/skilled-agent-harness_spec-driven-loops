@@ -72,7 +72,6 @@ async function readStdin() {
 // control-character-laden text", not deep content classification.
 function sanitizeForInjection(text) {
   if (typeof text !== 'string') return '';
-  // eslint-disable-next-line no-control-regex
   const stripped = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').trim();
   if (stripped.length === 0) return '';
   const buf = Buffer.from(stripped, 'utf8');

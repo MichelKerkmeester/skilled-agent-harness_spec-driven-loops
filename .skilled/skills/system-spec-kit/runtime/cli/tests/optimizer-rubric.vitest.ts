@@ -18,20 +18,20 @@ const rubric = require(path.join(
 )) as {
   DEFAULT_WEIGHTS: Record<string, number>;
   SCORE_RANGE: { min: number; max: number };
-  DIMENSION_SCORERS: Record<string, (results: any) => number>;
+  DIMENSION_SCORERS: Record<string, (results: unknown) => number>;
   defineRubric: (dimensions?: Record<string, number>) => { dimensions: Record<string, number>; totalWeight: number };
   scoreRun: (
     rubric: { dimensions: Record<string, number>; totalWeight: number },
-    replayResults: Record<string, any>,
+    replayResults: Record<string, unknown>,
   ) => {
     perDimension: Record<string, { score: number | null; weight: number; weighted: number; available: boolean }>;
     composite: number;
     unavailableDimensions: string[];
   };
-  scoreConvergenceEfficiency: (results: any) => number;
-  scoreRecoverySuccessRate: (results: any) => number;
-  scoreFindingAccuracy: (results: any) => number;
-  scoreSynthesisQuality: (results: any) => number;
+  scoreConvergenceEfficiency: (results: unknown) => number;
+  scoreRecoverySuccessRate: (results: unknown) => number;
+  scoreFindingAccuracy: (results: unknown) => number;
+  scoreSynthesisQuality: (results: unknown) => number;
   clampScore: (score: number) => number;
 };
 

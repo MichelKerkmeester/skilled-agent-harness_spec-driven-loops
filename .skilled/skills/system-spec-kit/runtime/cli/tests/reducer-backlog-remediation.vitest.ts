@@ -10,21 +10,40 @@
 //   LG-0033 additive required-field validation
 import fs from 'node:fs';
 import os from 'node:os';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/** A finding as the reducer collapses it across iterations and dimensions. */
+interface CollapsedFinding {
+  findingId: string;
+  dimensions: string[];
+  mergedFindingIds: string[];
+  firstSeen: number;
+  lastSeen: number;
+  scopeProof?: string;
+  [field: string]: unknown;
+}
+
+const require = createRequire(import.meta.url);
 const reducer = require('../../../../system-deep-loop/runtime/scripts/reduce-state.cjs') as {
   reduceReviewState: (specFolder: string, options?: { write?: boolean; lenient?: boolean }) => {
-    registry: Record<string, any>;
+    registry: {
+      openFindings: CollapsedFinding[];
+      traceability: { summary: Record<string, number> };
+      [field: string]: unknown;
+    };
     dashboard: string;
   };
-  deltaRecordToFinding: (record: Record<string, any>) => Record<string, any> | null;
-  deriveDashboardStatus: (config: any, records: any[], terminalStop: any) => string;
-  collapseFindingsByDedupKey: (entries: any[]) => any[];
-  buildTraceabilityRollup: (records: any[]) => { summary: Record<string, number>; results: any[] };
-  validateReviewRecordFields: (records: any[]) => Array<{ index: number; rule: string; detail: string }>;
+  deltaRecordToFinding: (record: Record<string, unknown>) => Record<string, unknown> | null;
+  deriveDashboardStatus: (config: unknown, records: unknown[], terminalStop: unknown) => string;
+  collapseFindingsByDedupKey: (entries: unknown[]) => CollapsedFinding[];
+  buildTraceabilityRollup: (records: unknown[]) => {
+    summary: Record<string, number>;
+    results: Array<{ status: string; [field: string]: unknown }>;
+  };
+  validateReviewRecordFields: (records: unknown[]) => Array<{ index: number; rule: string; detail: string }>;
 };
 
 const tempRoots: string[] = [];

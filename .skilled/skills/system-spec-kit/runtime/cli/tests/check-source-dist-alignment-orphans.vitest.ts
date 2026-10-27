@@ -48,12 +48,6 @@ function makeAlignedFile(distRoot: string, sourceRoot: string, relPath: string, 
   fs.writeFileSync(sourceAbs, '// ts placeholder\n', 'utf8');
 }
 
-function makeOrphan(distRoot: string, relPath: string, content: string): void {
-  const distAbs = path.join(distRoot, relPath);
-  fs.mkdirSync(path.dirname(distAbs), { recursive: true });
-  fs.writeFileSync(distAbs, content, 'utf8');
-}
-
 describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
   let workRoot: string;
 

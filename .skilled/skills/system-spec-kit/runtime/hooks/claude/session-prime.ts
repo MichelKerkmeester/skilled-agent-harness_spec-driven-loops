@@ -12,7 +12,6 @@ import {
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, SESSION_PRIME_TOKEN_BUDGET,
   calculatePressureAdjustedBudget, sanitizeRecoveredPayload, wrapRecoveredCompactPayload,
   getRequiredSessionId, forkCompactedRecently,
-  type HookInput,
   type OutputSection,
 } from './shared.js';
 import {

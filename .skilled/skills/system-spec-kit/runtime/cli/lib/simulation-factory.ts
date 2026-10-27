@@ -68,7 +68,7 @@ export interface FullSimulation {
 /** Collected data that might need simulation.
  * Extends CollectedDataBase (all fields optional via Partial) so the simulation
  * detector shares the same property types as the real pipeline. */
-export interface SimCollectedData extends Partial<CollectedDataBase> {}
+export type SimCollectedData = Partial<CollectedDataBase>;
 
 /** Simulation metadata */
 export interface SimulationMetadata {

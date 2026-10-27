@@ -107,7 +107,9 @@ export function isChildSession(env) {
 }
 
 const specGateGuardRequire = createRequire(import.meta.url);
-function specGateConcernDisabled(environment) {
+// Takes no environment on purpose: isHookEnabled given an env skips the saved hook-flags
+// file, so reading the process environment is what keeps a saved kill switch honoured.
+function specGateConcernDisabled() {
   try {
     const { isHookEnabled } = specGateGuardRequire(
       fileURLToPath(new URL('../../../../../../hooks/shared/hook-flags.cjs', import.meta.url)),
@@ -306,7 +308,7 @@ export function currentGate3LifecycleEpoch(sessionID) {
 }
 
 /** Advance lifecycle epoch for a session and clear its delivery shadow state. */
-export function advanceGate3LifecycleEpoch(sessionID, reason) {
+export function advanceGate3LifecycleEpoch(sessionID, _reason) {
   const session = normalizedGate3Session(sessionID);
   if (!session) return 0;
   clearGate3SessionDelivery(sessionID);
@@ -395,7 +397,7 @@ function gate3StateWithoutMarker(state) {
 }
 
 function gate3EmissionBlocked(environment) {
-  return environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment);
+  return environment[DISABLED_ENV] === '1' || specGateConcernDisabled();
 }
 
 /**
@@ -1619,7 +1621,7 @@ export function classifyIntent(request) {
   let sessionID;
   try {
     const environment = safeRequest.env || process.env;
-    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment)) return { status: 'closed', question: null };
+    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled()) return { status: 'closed', question: null };
     // A dispatched/child session is a complete no-op: it has no user turn to
     // answer Gate 3, so it must never open the gate, persist state, or receive
     // the question. Returning before any state read keeps it stateless.
@@ -1764,7 +1766,7 @@ export function evaluateMutation(request) {
 
   try {
     const environment = safeRequest.env || process.env;
-    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment)) return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
+    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled()) return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
     // A dispatched/child session short-circuits to a complete allow before any
     // state read or telemetry: it has no user turn to answer Gate 3, so it must
     // never be denied, advised, or recorded as a would-deny row.

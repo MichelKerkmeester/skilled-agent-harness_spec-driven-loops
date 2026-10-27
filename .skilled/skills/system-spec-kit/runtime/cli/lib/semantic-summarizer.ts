@@ -530,7 +530,7 @@ function generateImplementationSummary(messages: SemanticMessage[], observations
       for (const pattern of solutionPatterns) {
         const match: RegExpMatchArray | null = content.match(pattern);
         if (match && match[1]) {
-          let extracted: string = match[1].trim().replace(/[.,;:]+$/, '');
+          const extracted: string = match[1].trim().replace(/[.,;:]+$/, '');
           if (extracted.length >= 15 && !/^(a|the|some)\s/i.test(extracted)) {
             solution = extracted.charAt(0).toUpperCase() + extracted.slice(1);
             break;

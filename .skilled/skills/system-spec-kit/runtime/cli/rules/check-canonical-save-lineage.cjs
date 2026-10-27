@@ -5,8 +5,7 @@
 
 'use strict';
 
-const fs = require('fs');
-const { CANONICAL_SAVE_CUTOFF, CANONICAL_SAVE_FRESHNESS_SLACK_MS, normalizePacketId, readContinuityPacketPointer, runRule } = require('./check-canonical-save-shared.cjs');
+const { CANONICAL_SAVE_CUTOFF, runRule } = require('./check-canonical-save-shared.cjs');
 
 runRule('CANONICAL_SAVE_LINEAGE_REQUIRED', (context, emit) => {
   if (!context.graph?.derived?.last_save_at) {

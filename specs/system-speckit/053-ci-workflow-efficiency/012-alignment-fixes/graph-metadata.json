@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/012-alignment-fixes",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/012-alignment-fixes",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment fixes",
+      "phase 12 alignment fixes",
+      "advisor default suite in ci",
+      "synthesis marker naming exemption",
+      "runtime lint check passes",
+      "alignment fixes plan",
+      "alignment fixes tasks",
+      "alignment fixes acceptance criteria",
+      "alignment fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "phase",
+      "advisor",
+      "default",
+      "suite",
+      "synthesis",
+      "marker",
+      "naming",
+      "exemption",
+      "runtime",
+      "lint",
+      "check"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".github/workflows/skill-advisor-stress.yml",
+      ".github/workflows/naming-standard-guard.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/eslint.config.mjs",
+      "tests/hooks/spec-gate-devin.test.mjs",
+      ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "naming-standard-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/naming-standard-guard.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_new_snake_case.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_no_new_snake_case_guard.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "eslint.config.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/eslint.config.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-devin.test.mjs",
+        "kind": "file",
+        "path": "tests/hooks/spec-gate-devin.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-and-filter-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-workflow-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The alignment audit found seven places where CI or its tests disagreed with the tree",
+    "created_at": "2026-10-27T19:53:13Z",
+    "last_save_at": "2026-10-27T21:31:27.701Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d01cf112dce7e9e8905cb100bc942f4b772f47faef76608a3b4da1ab9d9604a1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "516227f33ab614747488e84c4ac5c7d71ec63dbc8a2da6c16af1c7f45f375e1b",
+      "plan.md": "c78c8fb43e8fadab53e57d271a9702bb4bd430cee970037dc0bb0f7e96112e3d",
+      "tasks.md": "656922d68bc4c6eb4afae610ccc2a763bdd26d6a7626170f349df9ba69a5f071",
+      "implementation-summary.md": "833accaa34521d00e70b51d6196dc393e28518bfc5b6eb207094100fae4c99c2"
+    },
+    "last_active_at": null
+  }
+}

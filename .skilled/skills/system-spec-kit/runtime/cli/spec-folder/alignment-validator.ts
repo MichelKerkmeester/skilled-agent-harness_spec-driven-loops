@@ -13,11 +13,8 @@ import * as path from 'path';
 
 // Internal modules
 import { promptUserChoice } from '../utils/prompt-utils.js';
-import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 import type { CollectedDataSubset } from '../types/session-types.js';
-
-const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -233,18 +230,6 @@ function formatTelemetrySchemaDocsDriftDiffs(diffs: TelemetrySchemaFieldDiff[]):
 function formatPathForMessage(filePath: string): string {
   const relative = path.relative(process.cwd(), filePath);
   return relative && !relative.startsWith('..') ? relative : filePath;
-}
-
-async function fileExists(filePath: string): Promise<boolean> {
-  try {
-    await fs.access(filePath);
-    return true;
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return false;
-    }
-    return false;
-  }
 }
 
 async function validateTelemetrySchemaDocsDrift(

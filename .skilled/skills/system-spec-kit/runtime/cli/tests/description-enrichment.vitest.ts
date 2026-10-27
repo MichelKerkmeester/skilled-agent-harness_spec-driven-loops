@@ -8,17 +8,6 @@ import { extractFilesFromData } from '../extractors/file-extractor';
 import { deriveModificationMagnitude } from '../extractors/git-context-extractor';
 import { validateDescription } from '../utils/file-helpers';
 
-function buildContent(title: string): string {
-  return [
-    '---',
-    `title: "${title}"`,
-    '---',
-    '',
-    `# ${title}`,
-    '',
-    ...Array.from({ length: 24 }, (_, index) => `Evidence line ${index + 1} for file-description quality scoring.`),
-  ].join('\n');
-}
 
 describe('description enrichment', () => {
   it('classifies placeholder stub patterns through the shared validator', () => {

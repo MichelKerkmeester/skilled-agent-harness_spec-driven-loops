@@ -13,6 +13,16 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
 const require = createRequire(import.meta.url);
 
+/** One audit-trail entry as the search records a candidate. */
+interface AuditRecord {
+  candidate: object;
+  score: { composite: number };
+  accepted: boolean;
+  timestamp: string;
+  reason: string;
+  [field: string]: unknown;
+}
+
 const search = require(path.join(
   WORKSPACE_ROOT,
   '.skilled/skills/system-spec-kit/runtime/cli/optimizer/search.cjs',
@@ -29,7 +39,7 @@ const search = require(path.join(
     accepted: boolean,
     comparison?: object,
     options?: { timestamp?: string },
-  ) => Record<string, any>;
+  ) => AuditRecord;
   randomSearch: (
     corpus: object[],
     rubric: object,
@@ -39,7 +49,7 @@ const search = require(path.join(
   ) => {
     bestCandidate: object | null;
     bestScore: object | null;
-    auditTrail: Array<Record<string, any>>;
+    auditTrail: AuditRecord[];
     baselineScore: object | null;
     iterations: number;
   };
@@ -49,8 +59,8 @@ const search = require(path.join(
     rubric: object,
   ) => { composite: number; perDimension: object; unavailableDimensions: string[] };
   compareScores: (
-    baseline: { composite: number; perDimension: Record<string, any> },
-    candidate: { composite: number; perDimension: Record<string, any> },
+    baseline: { composite: number; perDimension: Record<string, unknown> },
+    candidate: { composite: number; perDimension: Record<string, unknown> },
   ) => { improvements: string[]; regressions: string[] };
   countDecimals: (n: number) => number;
 };
@@ -59,7 +69,7 @@ const replayCorpus = require(path.join(
   WORKSPACE_ROOT,
   '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
 )) as {
-  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
+  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: object[] };
 };
 
 const rubricModule = require(path.join(
@@ -149,7 +159,7 @@ describe('Random Search Optimizer (T004)', () => {
         { convergenceThreshold: 0.05 },
         { composite: 0.8, perDimension: {}, unavailableDimensions: [] },
         true,
-      ) as Record<string, any>;
+      );
 
       expect(record.accepted).toBe(true);
       expect(record.candidate).toEqual({ convergenceThreshold: 0.05 });
@@ -164,7 +174,7 @@ describe('Random Search Optimizer (T004)', () => {
         { composite: 0.3, perDimension: {}, unavailableDimensions: [] },
         false,
         { regressions: ['Composite regressed'], improvements: [] },
-      ) as Record<string, any>;
+      ) as Record<string, unknown>;
 
       expect(record.accepted).toBe(false);
       expect(record.reason).toContain('Rejected');
@@ -180,7 +190,7 @@ describe('Random Search Optimizer (T004)', () => {
         { composite: 0.5, perDimension: {}, unavailableDimensions: [] },
         false,
         comparison,
-      ) as Record<string, any>;
+      ) as Record<string, unknown>;
 
       expect(record.comparison).toEqual(comparison);
     });
@@ -208,7 +218,8 @@ describe('Random Search Optimizer (T004)', () => {
       const result2 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
 
       expect(result1.bestCandidate).toEqual(result2.bestCandidate);
-      expect((result1.bestScore as any).composite).toBe((result2.bestScore as any).composite);
+      expect((result1.bestScore as { composite: number }).composite)
+        .toBe((result2.bestScore as { composite: number }).composite);
     });
 
     it('should record BOTH accepted and rejected candidates (REQ-008)', () => {

@@ -268,7 +268,7 @@ test('v2 slash-command fixture warns with session.command and never blocks', () 
     'the advisory did not name the session.command operation');
 });
 
-test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors', () => {
+test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors', async () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-bin-'));
   const previousPath = process.env.PATH;
   const previousBinary = process.env.OPENCODE_BIN;
@@ -281,6 +281,12 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
     process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
     delete process.env.OPENCODE_BIN;
     clearOpencodeVersionCache();
+    // This case is about which executable a command names, not about spawning it. A real
+    // probe on a loaded runner can outlast the probe timeout and turn the version unknown,
+    // so each stub's family is cached through the async resolver's probe seam, keyed on the
+    // same file identity the synchronous resolver inside evaluate reads.
+    assert.equal(await resolveOpencodeVersion('opencode2', { probe: () => 'opencode v2.0.32' }), 'v2');
+    assert.equal(await resolveOpencodeVersion('opencode', { probe: () => '1.19.3' }), 'v1');
 
     const v2Commands = [
       'opencode2 run -m p/m "/memory:search q" </dev/null',

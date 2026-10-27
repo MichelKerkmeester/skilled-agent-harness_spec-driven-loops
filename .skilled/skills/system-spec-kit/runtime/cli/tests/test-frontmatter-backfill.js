@@ -237,7 +237,7 @@ triggerPhrases: ["alpha, beta", "gamma"]
         [DIST_CLI, '--dry-run', '--roots', specsRoot, '--skip-templates', '--report', reportPath],
         { stdio: 'pipe' }
       );
-    } catch (error) {
+    } catch {
       exitedNonZero = true;
     }
 

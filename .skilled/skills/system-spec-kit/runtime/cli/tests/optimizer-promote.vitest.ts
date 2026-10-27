@@ -26,13 +26,13 @@ const promote = require(path.join(
     behavioralSuitesExist?: boolean;
   }) => { allMet: boolean; results: Record<string, boolean>; missing: string[] };
   checkManifestBoundary: (
-    candidate: Record<string, any>,
+    candidate: Record<string, unknown>,
     manifest: { tunableFields?: Array<{ name: string }>; lockedFields?: Array<{ name: string }> },
   ) => { valid: boolean; violations: string[] };
   evaluateCandidate: (
-    candidate: { config: Record<string, any>; score: Record<string, any> },
-    baselineScore: Record<string, any>,
-    options?: Record<string, any>,
+    candidate: { config: Record<string, unknown>; score: Record<string, unknown> },
+    baselineScore: Record<string, unknown>,
+    options?: Record<string, unknown>,
   ) => {
     decision: string;
     improved: boolean;
@@ -44,10 +44,10 @@ const promote = require(path.join(
   };
   generatePromotionReport: (
     candidate: object,
-    score: Record<string, any>,
+    score: Record<string, unknown>,
     decision: string,
-    options?: Record<string, any>,
-  ) => Record<string, any>;
+    options?: Record<string, unknown>,
+  ) => { nextSteps: string[]; [field: string]: unknown };
   savePromotionReport: (report: object, outputPath: string) => void;
 };
 

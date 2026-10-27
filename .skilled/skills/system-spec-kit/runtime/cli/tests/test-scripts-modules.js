@@ -19,7 +19,6 @@ const __dirname = path.dirname(__filename);
 */
 
 const SCRIPTS_DIR = path.join(__dirname, '..', 'dist');
-const ROOT = path.join(__dirname, '..', '..');
 
 // Test results tracking
 const results = {
@@ -746,7 +745,6 @@ async function testLibFlowchartGenerator() {
   try {
     const {
       generateWorkflowFlowchart,
-      generateConversationFlowchart,
       detectWorkflowPattern,
       classifyDiagramPattern,
       buildPhaseDetails,

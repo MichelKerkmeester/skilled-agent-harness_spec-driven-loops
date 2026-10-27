@@ -86,9 +86,12 @@ function generationPaths(root: string) {
   };
 }
 
+/** The trigger-index artifact fields these tests read or corrupt; a corrupting case may write any value. */
+type TriggerIndexArtifact = { paths: string[]; phrases: Record<string, unknown>; schemaVersion?: unknown };
+
 /** Resolves a phrase posting back to the document paths it names. */
-function ownersOf(index: any, phrase: string): string[] {
-  return index.phrases[phrase].map((id: number) => index.paths[id]);
+function ownersOf(index: TriggerIndexArtifact, phrase: string): string[] {
+  return (index.phrases[phrase] as number[]).map((id) => index.paths[id]);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -938,7 +941,7 @@ describe('lookup --scoring-only', () => {
 });
 
 describe('loadIndex fails closed on a malformed artifact', () => {
-  function corrupted(mutate: (index: any) => void): string {
+  function corrupted(mutate: (index: TriggerIndexArtifact) => void): string {
     const root = makeTempDir('speckit-trigger-corrupt-');
     writeDoc(root, 'specs/track/a.md', frontmatter(['shared phrase', 'only in a']));
     writeDoc(root, 'specs/track/b.md', frontmatter(['shared phrase']));

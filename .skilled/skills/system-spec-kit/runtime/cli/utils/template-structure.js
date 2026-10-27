@@ -678,66 +678,6 @@ function mergeTemplateContracts(baseContract, addendumContracts) {
   return merged;
 }
 
-function insertUniqueRulesAfter(rules, additions, afterNormalizedHeader) {
-  const keysToMove = new Set(additions.map((rule) => `${rule.raw}|${rule.normalized}|${rule.dynamic ? 'dynamic' : 'static'}`));
-  const filteredRules = rules.filter((rule) => !keysToMove.has(`${rule.raw}|${rule.normalized}|${rule.dynamic ? 'dynamic' : 'static'}`));
-
-  const dedupedAdditions = [];
-  const seenAdditionKeys = new Set();
-  for (const rule of additions) {
-    const key = `${rule.raw}|${rule.normalized}|${rule.dynamic ? 'dynamic' : 'static'}`;
-    if (seenAdditionKeys.has(key)) {
-      continue;
-    }
-    seenAdditionKeys.add(key);
-    dedupedAdditions.push(rule);
-  }
-
-  if (dedupedAdditions.length === 0) {
-    return rules;
-  }
-
-  const insertionIndex = filteredRules.findIndex((rule) => rule.normalized === afterNormalizedHeader);
-  if (insertionIndex === -1) {
-    return [...filteredRules, ...dedupedAdditions];
-  }
-
-  return [
-    ...filteredRules.slice(0, insertionIndex + 1),
-    ...dedupedAdditions,
-    ...filteredRules.slice(insertionIndex + 1),
-  ];
-}
-
-function insertUniqueAnchorsAfter(anchorIds, additions, afterAnchorId) {
-  const additionsSet = new Set(additions);
-  const filteredAnchors = anchorIds.filter((anchorId) => !additionsSet.has(anchorId));
-  const dedupedAdditions = [];
-  const seenAdditions = new Set();
-  for (const anchorId of additions) {
-    if (seenAdditions.has(anchorId)) {
-      continue;
-    }
-    seenAdditions.add(anchorId);
-    dedupedAdditions.push(anchorId);
-  }
-
-  if (dedupedAdditions.length === 0) {
-    return anchorIds;
-  }
-
-  const insertionIndex = filteredAnchors.indexOf(afterAnchorId);
-  if (insertionIndex === -1) {
-    return [...filteredAnchors, ...dedupedAdditions];
-  }
-
-  return [
-    ...filteredAnchors.slice(0, insertionIndex + 1),
-    ...dedupedAdditions,
-    ...filteredAnchors.slice(insertionIndex + 1),
-  ];
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────

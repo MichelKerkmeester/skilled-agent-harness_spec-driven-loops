@@ -52,7 +52,6 @@ const run = promisify(execFile);
 const SCRIPT = 'upgrade-legacy';
 const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const REPO = path.resolve(SKILL_ROOT, '../../..');
-const VALIDATE = path.join(SKILL_ROOT, 'runtime/cli/spec/validate.sh');
 // The TypeScript tools run from source through the tsx loader, as repair-derived does,
 // because a source module must not depend on a build that can be stale.
 const TSX_LOADER = path.join(SKILL_ROOT, 'node_modules/tsx/dist/loader.mjs');
@@ -66,11 +65,6 @@ const LIST_SCRIPT = [
   'const { collectSpecFolders } = await import(pathToFileURL(modulePath).href);',
   'process.stdout.write(JSON.stringify(collectSpecFolders(root, { activeOnly: false })));',
 ].join('\n');
-const FRONTMATTER_LIB = path.join(SKILL_ROOT, 'runtime/cli/lib/frontmatter-migration.ts');
-const TEMPLATES_ROOT = path.join(SKILL_ROOT, 'templates');
-const HEAL = path.join(SKILL_ROOT, 'runtime/cli/spec/heal-spec-docs.cjs');
-const REPAIR = path.join(SKILL_ROOT, 'runtime/cli/spec/repair-derived.cjs');
-const MIGRATE = path.join(SKILL_ROOT, 'runtime/cli/graph/migrate-generated-json.ts');
 
 // Each packet is validated in its own process and a worker spends most of its
 // life waiting on the validator's rule subprocesses, so the pool is worth

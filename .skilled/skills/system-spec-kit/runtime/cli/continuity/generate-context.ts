@@ -1057,7 +1057,7 @@ function validateArguments(): void {
         matches.forEach((m) => console.error(`  - ${m}`));
       } else {
         // --- Subfolder support: multi-level deep scan as fallback ---
-        let deepMatches: string[] = [];
+        const deepMatches: string[] = [];
         const targetBase = path.basename(specFolderArg);
 
         for (const topEntry of available) {

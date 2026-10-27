@@ -195,6 +195,20 @@ class NoNewSnakeCaseGuardTests(unittest.TestCase):
         whole_tree = self.repo.guard("--all")
         self.assertEqual(whole_tree.returncode, 0, whole_tree.stdout + whole_tree.stderr)
 
+    def test_runtime_generated_synthesis_marker_is_exempt_by_exact_name(self) -> None:
+        self.repo.write("docs/clean-name.md")
+        base = self.repo.commit("base")
+
+        self.repo.write("lineage/review/synthesis_complete.json", "{}\n")
+        accepted = self.repo.guard("--changed-since", base)
+        self.assertEqual(accepted.returncode, 0, accepted.stdout + accepted.stderr)
+
+        self.repo.write("lineage/review/synthesis_pending.json", "{}\n")
+        rejected = self.repo.guard("--changed-since", base)
+        self.assertEqual(rejected.returncode, 1, rejected.stdout + rejected.stderr)
+        self.assertIn("synthesis_pending.json", rejected.stdout)
+        self.assertNotIn("synthesis_complete.json", rejected.stdout)
+
     def test_all_enumerates_offenders_deterministically(self) -> None:
         self.repo.write_many(
             [

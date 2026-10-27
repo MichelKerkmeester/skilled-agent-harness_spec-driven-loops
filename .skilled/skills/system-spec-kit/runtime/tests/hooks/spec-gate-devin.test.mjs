@@ -77,14 +77,6 @@ function assertNoOutput(result) {
   assert.equal(result.stdout.trim(), '', 'expected no stdout output');
 }
 
-function assertHasAdditionalContext(result, eventName) {
-  assert.equal(result.status, 0, result.stderr);
-  const parsed = JSON.parse(result.stdout);
-  assert.equal(parsed.hookSpecificOutput.hookEventName, eventName);
-  assert.ok(typeof parsed.hookSpecificOutput.additionalContext === 'string');
-  return parsed;
-}
-
 function assertDeny(result) {
   assert.equal(result.status, 0, result.stderr);
   const parsed = JSON.parse(result.stdout);

@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Job Shape Rules
@@ -31,12 +31,13 @@ A job with no `timeout-minutes` runs until GitHub stops it at 360 minutes, so a 
 
 **Formula.** `max(<floor>, ceil(3 x job p50 minutes), ceil(2 x job p100 minutes))` with a floor of 10 minutes. Pull at least 40 recent runs of job-level timings (`gh run view --json jobs`), compute p50 and p100 per job and state the observed p100 next to the chosen value in the commit or the workflow comment. A successful job in the sample should never exceed half of its new timeout.
 
-**Today.** `44 of 44` jobs in the 32 workflows carry a timeout, on one job-level line each. `37` of them sit at the 10 minute floor. The other **7 jobs** sit above it.
+**Today.** `44 of 44` jobs in the 32 workflows carry a timeout, on one job-level line each. `36` of them sit at the 10 minute floor. The other **8 jobs** sit above it.
 
 | Workflow | Job | Line | Value |
 |---|---|---|---|
 | `skill-doc-frontmatter.yml` | `doc-version-raise` | `:69` | 15 |
 | `message-contract.yml` | `message-contract` | `:25` | 20 |
+| `skill-advisor-stress.yml` | `skill-advisor-stress` | `:55` | 25 |
 | `advisory-checks.yml` | `advisory` | `:29` | 28 |
 | `deep-loop-runtime.yml` | `deep-loop-runtime` | `:41` | 34 |
 | `routing-registry-drift.yml` | `golden-prompt-gate` | `:239` | 37 |

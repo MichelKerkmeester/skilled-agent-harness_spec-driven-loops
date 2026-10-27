@@ -15,6 +15,7 @@
     "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring",
     "system-speckit/053-ci-workflow-efficiency/010-review-remediation",
     "system-speckit/053-ci-workflow-efficiency/011-ci-health-followups",
+    "system-speckit/053-ci-workflow-efficiency/012-alignment-fixes",
     "system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race"
   ],
   "manual": {
@@ -48,7 +49,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -219,17 +220,17 @@
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-27T20:50:57.630Z",
+    "last_save_at": "2026-10-27T21:32:24.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:fb59635d30e375872b49d2cf1f61adfdd08c7feb4dd02e0c1ffa6efb3dda9411",
+    "source_fingerprint": "sha256:770bdce53bff404dee502484e52bd2ae91861e34d72d3ac2f8ee35f84ca02c92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0f5862db79e28dbd60913c3fad1ef3987dc56e817251a1d266395836687b564"
+      "spec.md": "c4da620e07666a6b48b690bbed71fcfdb8f20ab89359e84a6eae152639ffdadd"
     },
     "last_active_child_id": "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control",
     "last_active_at": "2026-10-25T13:24:41.420Z"
