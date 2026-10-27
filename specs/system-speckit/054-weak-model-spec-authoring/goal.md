@@ -161,6 +161,7 @@ and findings belong here.
 | 023 rebase onto main | Done | main shipped an unrelated system-spec-kit 2.12.4.0 first; this phase's release is 2.12.5.0 |
 | 024 typed-command ambiguity | Done | option (d) by DeepSeek: flags 110 to 78 of 261, correct 202 kept, 0 top changes; typed /deep:research :auto ambiguous false; suite 150/150, 1253 tests; advisor 0.17.6.0 |
 | 024 rebase onto main | Done | main shipped an unrelated system-skill-advisor 0.17.6.0 first; this phase's release is 0.17.7.0 |
+| Release notes gap fix | Done | skilled v4.0.0.15 roll-up for the whole packet; advisor 0.17.7.0 now also records the typed-command bound and mode-suffix strip; packet root changelog covers 020-024; validate_document 0 issues on all three |
 
 ### Deviations and findings
 
