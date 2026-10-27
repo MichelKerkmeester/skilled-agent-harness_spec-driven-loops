@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.3.0
+version: 1.13.4.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -160,6 +160,8 @@ This mode owns the author-side check and knows the three independent enforcement
 | Write-time warning | `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook for `Write` and `Edit` in `.claude/settings.json` | Warns during authoring when a comment carries ephemeral artifact labels. |
 | Pre-commit block | `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh` | Blocks commits with forbidden comment patterns across runtimes. |
 | CI block | `.github/workflows/comment-hygiene.yml` | Blocks pull requests with forbidden comment patterns. |
+
+A repository can switch named core hygiene rules off with `commentHygiene.disableRules` in its quality config, never a rule the shared `rule-overrides.json` fixes. The runner, the pre-commit block and the CI block all read that key through `scripts/lib/quality-config.cjs`, so a rule switched off for one is off for all three. The config's additions, such as a ticket prefix, reach the runner alone, so the pre-commit and CI blocks keep the core set minus the disabled rules, and `config.hygiene.disabled` in the verdict names what is off. The write-time warning still applies every core rule, and it never blocks. `references/quality-config.md` holds the key's rules.
 
 The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
 

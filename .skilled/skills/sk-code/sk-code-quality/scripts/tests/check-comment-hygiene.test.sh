@@ -253,6 +253,18 @@ run_cli 1 "shebang_without_extension" "[ADR reference]" python3 "$CHECKER" "$TMP
 printf '%s\n' "// see JIRA-12" > "$TMP_DIR/jira.js"
 run_cli 1 "ticket_prefix_added" "[issue or ticket reference]" python3 "$CHECKER" --ticket-prefix JIRA "$TMP_DIR/jira.js"
 run_cli 0 "ticket_prefix_absent" "" python3 "$CHECKER" "$TMP_DIR/jira.js"
+
+# A disabled core rule stops matching, written bare or with its class, and every other
+# rule still applies. A fixed id and an id that names no core rule are usage errors.
+printf '%s\n' "// Fixes #1234" "// See ADR-004" "// The T1000 model" > "$TMP_DIR/foreign.js"
+run_cli 1 "disable_rule_baseline" "[task ID reference]" python3 "$CHECKER" "$TMP_DIR/foreign.js"
+run_cli 0 "disable_rule_three" "" python3 "$CHECKER" --disable-rule issue --disable-rule hygiene.adr --disable-rule task "$TMP_DIR/foreign.js"
+run_cli 1 "disable_rule_others_stay" "[ADR reference]" python3 "$CHECKER" --disable-rule issue --disable-rule task "$TMP_DIR/foreign.js"
+run_cli 0 "disable_rule_json" '"disabled_rules": [' python3 "$CHECKER" --json --disable-rule issue --disable-rule adr --disable-rule task "$TMP_DIR/foreign.js"
+run_cli 3 "disable_rule_unknown" "names no core comment-hygiene rule" python3 "$CHECKER" --disable-rule tsak "$TMP_DIR/foreign.js"
+run_cli 3 "disable_rule_fixed_secret" "cannot be disabled" python3 "$CHECKER" --disable-rule secret.private-key "$TMP_DIR/foreign.js"
+run_cli 3 "disable_rule_fixed_conflict" "cannot be disabled" python3 "$CHECKER" --disable-rule conflict.markers "$TMP_DIR/foreign.js"
+run_cli 3 "disable_rule_needs_value" "--disable-rule needs a value" python3 "$CHECKER" --disable-rule
 printf '%s\n' "// see ADR-12" > "$TMP_DIR/lib.zig"
 run_cli 2 "extension_unknown" "" python3 "$CHECKER" "$TMP_DIR/lib.zig"
 # A file that cannot be opened is skipped when its extension names no language.

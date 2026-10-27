@@ -73,6 +73,44 @@ test('init dry run: prints the plan, writes nothing and leaves git status empty'
   assert.ok(!fs.existsSync(path.join(repo.root, TARGET)));
 }));
 
+test('init: without a specs/ folder it suggests the spec-kit hygiene rules, never writes them, and with one it suggests nothing', () => withRepo({
+  base: { 'package.json': PACKAGE },
+}, (repo) => {
+  const dry = assertSnapshotUnchanged(repo, () => doctor(repo, ['init', '--json']));
+  assert.equal(dry.status, 0);
+  const suggested = dry.payload.suggested_hygiene;
+  assert.equal(suggested.field, 'commentHygiene.disableRules');
+  assert.equal(suggested.applied, false);
+  assert.equal(suggested.rules.length, 15);
+  assert.ok(suggested.rules.includes('spec-path') && suggested.rules.includes('council-seat'));
+  for (const tracker of ['adr', 'req', 'rc', 'chk', 'task', 'issue']) assert.ok(!suggested.rules.includes(tracker), tracker);
+  assert.deepEqual(dry.payload.config.commentHygiene.disableRules, []);
+  assert.deepEqual(validateConfig({ schemaVersion: 1, commentHygiene: { disableRules: suggested.rules } }), []);
+  assert.match(doctor(repo, ['init']).stdout, /Suggested, not written: commentHygiene\.disableRules/);
+
+  const applied = doctor(repo, ['init', '--apply']);
+  assert.equal(applied.status, 0);
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(repo.root, TARGET), 'utf8')).commentHygiene.disableRules, []);
+  fs.rmSync(path.join(repo.root, '.sk-code'), { recursive: true });
+
+  fs.mkdirSync(path.join(repo.root, 'specs'));
+  const withSpecs = doctor(repo, ['init', '--json']);
+  assert.equal(withSpecs.status, 0);
+  assert.equal(withSpecs.payload.suggested_hygiene, null);
+  assert.doesNotMatch(doctor(repo, ['init']).stdout, /Suggested, not written/);
+}));
+
+test('status: names the hygiene rules the config disables, and says every core rule applies without the key', () => withRepo({
+  base: { [TARGET]: config({ commentHygiene: { disableRules: ['issue', 'hygiene.task'] } }) },
+}, (repo) => {
+  const result = doctor(repo, ['status', '--json']);
+  assert.equal(result.status, 0);
+  assert.deepEqual(result.payload.hygiene, { disabled: ['hygiene.issue', 'hygiene.task'] });
+  assert.match(doctor(repo, ['status']).stdout, /^Hygiene: disabled hygiene\.issue, hygiene\.task$/m);
+  repo.write({ [TARGET]: config({}) });
+  assert.match(doctor(repo, ['status']).stdout, /^Hygiene: every core rule applies$/m);
+}));
+
 test('init apply: creates the file once, and a second apply refuses with CONFIG_EXISTS and keeps it byte-identical', () => withRepo({
   base: { 'package.json': PACKAGE },
 }, (repo) => {

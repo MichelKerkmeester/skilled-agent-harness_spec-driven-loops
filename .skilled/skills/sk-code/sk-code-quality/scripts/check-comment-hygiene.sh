@@ -12,6 +12,9 @@ Options, each repeatable except --json:
   --ticket-prefix PREFIX    also flag tracker ids that start with PREFIX and a hyphen
   --extension EXT=FAMILY    check files ending in EXT with a comment family from the table
   --extra-pattern REGEX     also flag comment text that matches REGEX
+  --disable-rule ID         stop applying the core rule ID, written bare (task) or with its
+                            class (hygiene.task). An id the shared rule-override contract
+                            fixes, or one that names no core rule, is a usage error
 
 A file's language comes from a shebang that names a known interpreter, and from its
 extension otherwise. The comment families, extensions and interpreters live in
@@ -50,8 +53,14 @@ import re
 import sys
 
 SCHEMA = "comment-hygiene/v1"
-USAGE = "Usage: check-comment-hygiene.sh [--json] [--ticket-prefix P] [--extension EXT=FAMILY] [--extra-pattern REGEX] [--] <file> [<file>...]"
+USAGE = ("Usage: check-comment-hygiene.sh [--json] [--ticket-prefix P] [--extension EXT=FAMILY] "
+         "[--extra-pattern REGEX] [--disable-rule ID] [--] <file> [<file>...]")
 TABLE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "assets", "comment-syntax.json")
+# The shared rule-override contract names the rules no repository may switch off, so a
+# disabled id is checked against that one list rather than a copy kept here.
+CONTRACT_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "..", "shared", "references",
+                             "universal", "rule-overrides.json")
+RULE_CLASS = "hygiene"
 
 EXCLUDED_DIRS = ["/dist/", "/node_modules/", "/.git/"]
 SHEBANG_READ_BYTES = 512
@@ -845,8 +854,40 @@ def check_file(filepath, table, patterns, extra_extensions):
 # 4. ENTRY POINT
 # ─────────────────────────────────────────────────────────────────
 
+def load_fixed_ids(path):
+    """Read the ids the shared contract fixes. Raises ValueError on any defect."""
+    with open(path, "r", encoding="utf-8") as handle:
+        contract = json.load(handle)
+    fixed = contract.get("fixed") if isinstance(contract, dict) else None
+    if not isinstance(fixed, list) or not all(isinstance(entry, dict) and isinstance(entry.get("id"), str)
+                                              for entry in fixed):
+        raise ValueError("fixed must be a list of entries with an id")
+    return [entry["id"] for entry in fixed]
+
+
+def disabled_rule(value, fixed_ids):
+    """Return the core rule name a --disable-rule value names, or raise UsageError.
+
+    A value is a bare core rule name or the same name with its class in front. An id the
+    contract fixes, whole or through its class wildcard, is refused by name, because a
+    floor rule stays on in every repository. Anything else that names no core rule is
+    refused too, so a misspelled id never reads as a rule switched off.
+    """
+    known = [rule for rule, _, _ in VIOLATION_PATTERNS]
+    rule_class, dot, name = value.partition(".")
+    if not dot:
+        rule_class, name = RULE_CLASS, value
+    qualified = f"{rule_class}.{name}"
+    if qualified in fixed_ids or f"{rule_class}.*" in fixed_ids:
+        raise UsageError(f"--disable-rule {value} is fixed by the shared rule-override contract and cannot be disabled")
+    if rule_class != RULE_CLASS or name not in known:
+        raise UsageError(f"--disable-rule {value} names no core comment-hygiene rule (known: {', '.join(known)})")
+    return name
+
+
 def parse_args(argv, families):
-    options = {"json": False, "patterns": [], "extensions": {}, "files": []}
+    options = {"json": False, "patterns": [], "extensions": {}, "disabled": [], "files": []}
+    fixed_ids = None
     index = 0
     while index < len(argv):
         arg = argv[index]
@@ -855,12 +896,23 @@ def parse_args(argv, families):
             break
         if arg == "--json":
             options["json"] = True
-        elif arg in ("--ticket-prefix", "--extension", "--extra-pattern"):
+        elif arg in ("--ticket-prefix", "--extension", "--extra-pattern", "--disable-rule"):
             if index + 1 >= len(argv) or not argv[index + 1]:
                 raise UsageError(f"{arg} needs a value")
             value = argv[index + 1]
             index += 1
-            if arg == "--ticket-prefix":
+            if arg == "--disable-rule":
+                # The contract is read only when a rule is switched off, so a run that
+                # disables nothing never depends on it, and one that does fails closed.
+                if fixed_ids is None:
+                    try:
+                        fixed_ids = load_fixed_ids(CONTRACT_PATH)
+                    except (OSError, ValueError) as error:
+                        raise UsageError(f"--disable-rule cannot read the rule-override contract {CONTRACT_PATH}: {error}")
+                name = disabled_rule(value, fixed_ids)
+                if name not in options["disabled"]:
+                    options["disabled"].append(name)
+            elif arg == "--ticket-prefix":
                 pattern = re.compile(r"\b" + re.escape(value) + r"-[0-9][0-9A-Za-z]*\b")
                 options["patterns"].append(("ticket-prefix", pattern, "issue or ticket reference"))
             elif arg == "--extension":
@@ -906,11 +958,15 @@ def main(argv):
         print(USAGE, file=sys.stderr)
         return 3
 
-    patterns = VIOLATION_PATTERNS + options["patterns"]
+    core = [entry for entry in VIOLATION_PATTERNS if entry[0] not in options["disabled"]]
+    patterns = core + options["patterns"]
     records = [check_file(path, table, patterns, options["extensions"]) for path in options["files"]]
     code = exit_code_for(records)
     if options["json"]:
-        print(json.dumps({"schema": SCHEMA, "exit_code": code, "files": records}, indent=2))
+        document = {"schema": SCHEMA, "exit_code": code, "files": records}
+        if options["disabled"]:
+            document["disabled_rules"] = options["disabled"]
+        print(json.dumps(document, indent=2))
     else:
         for record in records:
             for finding in record["findings"]:

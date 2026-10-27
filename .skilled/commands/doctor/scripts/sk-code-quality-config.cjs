@@ -54,9 +54,10 @@ const USAGE_TEXT = [
   'Usage: sk-code-quality-config.cjs status|check|init [options]',
   '',
   'Modes:',
-  '  status            report the config source, its trust, its errors, each named tool and the hygiene layers',
+  '  status            report the config source, its trust, its errors, each named tool, the hygiene layers and the disabled hygiene rules',
   '  check             validate the config against the schema and report its errors and trust state, probing no tool',
-  '  init              show the config init would create, and write it only with --apply',
+  '  init              show the config init would create, and write it only with --apply. Without a specs/ folder it',
+  '                    also suggests the spec-kit hygiene rules for commentHygiene.disableRules, and never writes them',
   '',
   'Options:',
   '  --repo DIR        the repository to read, default the working directory',
@@ -183,6 +184,25 @@ function trustState(loaded, ctx) {
   return { ...trust, repair: trust.checks === 'untrusted' ? TRUST_REPAIR : null };
 }
 
+// The core hygiene rules the config switches off, named the way the gate's verdict names
+// them. A config that did not validate switches nothing off, because the gate refuses it.
+function disabledHygieneRules(loaded) {
+  return loaded.merged ? loaded.merged.commentHygiene.disableRules.map((rule) => `hygiene.${rule}`) : [];
+}
+
+// A repository with no specs/ folder has none of the planning artifacts the spec-kit
+// vocabulary rules point at, so init offers to switch them off. It only offers: the
+// config it writes keeps every rule on until someone adds the list.
+function hygieneSuggestion(root) {
+  if (fs.existsSync(path.join(root, 'specs'))) return null;
+  return {
+    field: 'commentHygiene.disableRules',
+    rules: [...qualityConfig.SPEC_KIT_HYGIENE_RULES],
+    reason: 'the repository has no specs/ folder, so the spec-kit vocabulary rules have nothing to point at',
+    applied: false,
+  };
+}
+
 function trustLine(trust) {
   return `Trust: ${trust.checks} (${trust.reason})${trust.repair ? ` (repair: ${trust.repair})` : ''}`;
 }
@@ -232,6 +252,8 @@ function status(ctx, opts) {
     lines.push(`  ${row.state.padEnd(8)} ${row.tool} (${names})${row.repair ? `: ${row.repair}` : ''}`);
   }
   lines.push(`Layers: pre-commit ${layers.pre_commit_hygiene}, ci ${layers.ci_hygiene}, post-edit ${layers.post_edit}`);
+  const hygiene = { disabled: disabledHygieneRules(loaded) };
+  lines.push(`Hygiene: ${hygiene.disabled.length > 0 ? `disabled ${hygiene.disabled.join(', ')}` : 'every core rule applies'}`);
   const failed = loaded.errors.length > 0;
   const state = failed ? 'FAIL' : tools.some((row) => row.state === 'DEGRADED') ? 'DEGRADED' : 'OK';
   const source = loaded.source || 'unknown';
@@ -240,6 +262,7 @@ function status(ctx, opts) {
     config: { source: loaded.source, path: loaded.display, bytes: loaded.bytes, errors: loaded.errors, trust },
     tools,
     layers,
+    hygiene,
   }, lines, `STATUS=${state} SOURCE="${source}" TRUST=${trust.checks}${failed ? ` ERROR=${errorCode(loaded)}` : ''}`);
   return failed ? 1 : 0;
 }
@@ -315,11 +338,16 @@ function init(ctx, opts) {
     exists,
     checks: suggestions.map((item) => ({ id: item.id, source: item.source, argv: item.entry.argv, required: false })),
     outranked,
+    suggested_hygiene: hygieneSuggestion(ctx.root),
     config,
   };
   const lines = [`Target: ${qualityConfig.REPO_CONFIG_FILE}`];
   if (plan.checks.length === 0) lines.push('Checks: none, no manifest at the root implies one');
   for (const item of plan.checks) lines.push(`  enable ${item.id} from ${item.source}, not required: ${item.argv.join(' ')}`);
+  if (plan.suggested_hygiene) {
+    lines.push(`Suggested, not written: ${plan.suggested_hygiene.field} ${JSON.stringify(plan.suggested_hygiene.rules)}`,
+      `  why: ${plan.suggested_hygiene.reason}. Add the list to the file to switch those rules off.`);
+  }
   if (outranked) lines.push(`Note: git config skcode.qualityConfig names ${outranked}, which outranks ${qualityConfig.REPO_CONFIG_FILE}. Unset it for the new file to take effect.`);
 
   if (exists) {

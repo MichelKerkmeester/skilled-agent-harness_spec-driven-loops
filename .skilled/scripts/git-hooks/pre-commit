@@ -177,10 +177,28 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
     fi
     HYGIENE_FILES+=("$file")
   done < <(git_bounded diff --cached --name-only -z --diff-filter=ACM)
+  # The repository's quality config can switch core rules off, and the quality runner
+  # already honors that list, so a rule switched off there must not block here. Its
+  # additions tighten the author gate only, so this gate keeps the core set otherwise.
+  # The helper reads the config through the runner's own loader. A config that does not
+  # validate leaves every core rule on, so a broken config never weakens the gate.
+  HYGIENE_FLAGS=()
+  HYGIENE_FLAG_HELPER="$(dirname "$COMMENT_CHECKER")/hygiene-config-flags.cjs"
+  if [[ "${#HYGIENE_FILES[@]}" -gt 0 && -f "$HYGIENE_FLAG_HELPER" ]] && command -v node >/dev/null 2>&1; then
+    # Outside the staged mirror, so no staged path can share the name.
+    HYGIENE_FLAG_FILE="$(mktemp "${TMPDIR:-/tmp}/hygiene-flags.XXXXXX")"
+    if node "$HYGIENE_FLAG_HELPER" --repo "$REPO_ROOT" > "$HYGIENE_FLAG_FILE" 2>"$HYGIENE_FLAG_FILE.err"; then
+      while IFS= read -r -d '' flag; do HYGIENE_FLAGS+=("$flag"); done < "$HYGIENE_FLAG_FILE"
+    else
+      echo "WARNING [gate:comment-hygiene]: the repository quality config did not validate, so every core rule applies." >&2
+      sed 's/^/  /' "$HYGIENE_FLAG_FILE.err" >&2
+    fi
+    rm -f "$HYGIENE_FLAG_FILE" "$HYGIENE_FLAG_FILE.err"
+  fi
   CHECKER_OUTPUT=""
   CHECKER_RC=0
   if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
-    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" -- "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
+    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" ${HYGIENE_FLAGS[@]+"${HYGIENE_FLAGS[@]}"} -- "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
   fi
   rm -rf "$HYGIENE_DIR"
   case "$CHECKER_RC" in

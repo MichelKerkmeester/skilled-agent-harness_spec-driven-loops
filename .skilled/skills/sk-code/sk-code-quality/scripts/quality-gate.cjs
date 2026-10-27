@@ -747,6 +747,9 @@ function configSummary(loaded, trust) {
     trust,
     errors: loaded.errors.map((entry) => ({ ...entry, repair: REPAIRS.CONFIG_INVALID })),
     warnings: [],
+    // The core hygiene rules the repository switched off, named the way a finding names
+    // its rule, so a reader can see which findings this run could not raise.
+    hygiene: { disabled: loaded.merged ? loaded.merged.commentHygiene.disableRules.map((rule) => `hygiene.${rule}`) : [] },
   };
 }
 
@@ -762,7 +765,7 @@ function readRepositoryConfig(options, realCwd, root, git, env, defaults) {
     if (!(error instanceof qualityConfig.ConfigError)) throw error;
     const failure = new GateError(error.code === 'CONFIG_PATH_MISSING' ? 'CONFIG_PATH_MISSING' : 'GIT_FAILED', error.message);
     failure.config = { source: error.source || null, path: error.path || null, bytes: null, defaults: DEFAULTS_FILE,
-      trust: noTrust('the config could not be read, so no configured check runs'), errors: [], warnings: [] };
+      trust: noTrust('the config could not be read, so no configured check runs'), errors: [], warnings: [], hygiene: { disabled: [] } };
     throw failure;
   }
   if (loaded.errors.length > 0) {
@@ -1443,25 +1446,22 @@ function runInProcessSyntax(plan) {
 // 9. SPAWNED CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The repository's additions reach the checker as its own flags, so the checker keeps
-// every core pattern and adds these on top. A value it refuses ends its run with a
+// The repository's hygiene policy reaches the checker as its own flags: additions on top
+// of the core patterns, and the core rules the repository switched off, which the checker
+// refuses for any rule the shared contract fixes. A value it refuses ends its run with a
 // usage error, which the row reports with the checker's own message. A refusal that
 // names one of these flags is a config fault instead, because only the field that
 // supplied the value can be repaired, so the gate reports that field the way a bad
 // config file is reported.
 function hygieneFlags(context) {
-  const { ticketPrefixes, extraPatterns, extensions } = context.merged.commentHygiene;
-  return [
-    ...ticketPrefixes.flatMap((prefix) => ['--ticket-prefix', prefix]),
-    ...Object.entries(extensions).flatMap(([ext, family]) => ['--extension', `${ext}=${family}`]),
-    ...extraPatterns.flatMap((pattern) => ['--extra-pattern', pattern]),
-  ];
+  return qualityConfig.hygieneCheckerFlags(context.merged.commentHygiene);
 }
 
 const HYGIENE_FLAG_FIELDS = Object.freeze({
   '--ticket-prefix': 'commentHygiene.ticketPrefixes',
   '--extension': 'commentHygiene.extensions',
   '--extra-pattern': 'commentHygiene.extraPatterns',
+  '--disable-rule': 'commentHygiene.disableRules',
 });
 
 // The checker marks its own refusal with ERROR, and the interpreter can print a warning
@@ -2214,7 +2214,8 @@ function emptyVerdict(options) {
     exit_code: GATE_EXIT.ERROR,
     scope: { mode: options ? options.scope : null, base: options ? options.base : null, merge_base: null,
       lines: options ? options.lines : 'changed', files: [] },
-    config: { source: null, path: null, bytes: null, defaults: DEFAULTS_FILE, trust: noTrust('the run stopped before it read a config'), errors: [], warnings: [] },
+    config: { source: null, path: null, bytes: null, defaults: DEFAULTS_FILE, trust: noTrust('the run stopped before it read a config'), errors: [], warnings: [],
+      hygiene: { disabled: [] } },
     resolved_surface: ['unknown'],
     surfaces: [],
     layers: { pre_commit_hygiene: 'unknown', ci_hygiene: 'unknown', post_edit: 'unknown' },
@@ -2647,6 +2648,8 @@ function renderText(verdict) {
   out.push(`layers: pre-commit ${verdict.layers.pre_commit_hygiene}, ci ${verdict.layers.ci_hygiene}, post-edit ${verdict.layers.post_edit}`);
   out.push(`config: ${verdict.config.source || 'not read'}${verdict.config.path ? ` ${verdict.config.path}` : ''}`);
   out.push(`trust: ${verdict.config.trust.checks} (${verdict.config.trust.reason})`);
+  const disabled = verdict.config.hygiene ? verdict.config.hygiene.disabled : [];
+  if (disabled.length > 0) out.push(`hygiene disabled: ${disabled.join(', ')}`);
   for (const error of verdict.errors.concat(verdict.config.errors)) out.push(`error ${error.code}: ${error.message} (repair: ${error.repair})`);
   for (const warning of verdict.config.warnings) out.push(`warning ${warning.code}: ${warning.message} (repair: ${warning.repair})`);
   out.push('checks:');

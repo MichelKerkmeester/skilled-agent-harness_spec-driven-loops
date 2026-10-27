@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Quality Runner Contract
@@ -136,7 +136,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | `schema`, `status` | `code-quality-run/v1` and `advisory`. `status` never holds another value |
 | `gate`, `exit_code` | One gate from section 2 and its exit code |
 | `scope` | `mode`, `base`, `merge_base`, `lines` and `files`, the repository-relative paths in scope |
-| `config` | `source` is `cli`, `git-config`, `repo` or `none`, or null when the run stopped before reading it. `path` and `bytes` describe the repository file, `defaults` names `quality-defaults.json`, `trust` holds `checks` (`trusted`, `untrusted` or `none`) and `reason`, the rule that decided it or why no configured check was read, `errors` holds config and checklist faults and `warnings` holds each checklist fault on a declaration that applies to no file in scope, which never changes the gate or the exit code |
+| `config` | `source` is `cli`, `git-config`, `repo` or `none`, or null when the run stopped before reading it. `path` and `bytes` describe the repository file, `defaults` names `quality-defaults.json`, `trust` holds `checks` (`trusted`, `untrusted` or `none`) and `reason`, the rule that decided it or why no configured check was read, `errors` holds config and checklist faults, `warnings` holds each checklist fault on a declaration that applies to no file in scope, which never changes the gate or the exit code, and `hygiene.disabled` lists the core hygiene rules the repository config switched off, as `hygiene.<rule>` |
 | `resolved_surface` | Every surface label any file resolved to, in detection order, or `["unknown"]` |
 | `surfaces` | One `{file, labels}` row per file that is not excluded. A file with no surface reads `["UNKNOWN"]` |
 | `layers` | `pre_commit_hygiene`, `ci_hygiene` and `post_edit`, each one layer state |
@@ -254,8 +254,9 @@ The runner reads these fields of `check-comment-hygiene.sh --json`, schema `comm
 | `files[].findings[].line` | Decides the finding's origin |
 | `files[].findings[].rule` | Becomes `hygiene.<rule>` |
 | `files[].findings[].reason`, `excerpt` | Copied to the finding |
+| `disabled_rules` | Present only when a rule is off: the core rule names `--disable-rule` switched off |
 
-The runner passes the repository config's `commentHygiene` values as the checker's own flags: `--ticket-prefix` per prefix, `--extension EXT=FAMILY` per mapped extension and `--extra-pattern` per pattern, before `--`. A file `commentHygiene.exclude` matches is left out of the call. Output that does not parse as this document makes the check `ERROR`, so a broken checker never reads as clean. When the checker refuses its arguments, a value the repository config supplied ends the run with `CONFIG_INVALID`, exit 3 and one `config.errors` row naming the field, where a refused flag the runner supplies itself leaves the row's `repair` carrying the checker's message. The runner reads `languages.<name>.extensions`, `shebangs` and `family` from `assets/comment-syntax.json`, the same table the checker reads.
+The runner passes the repository config's `commentHygiene` values as the checker's own flags: `--ticket-prefix` per prefix, `--extension EXT=FAMILY` per mapped extension, `--extra-pattern` per pattern and `--disable-rule` per rule `commentHygiene.disableRules` names, before `--`. `quality-config.cjs` builds that list in `hygieneCheckerFlags`. The pre-commit hook and the CI hygiene job take only the `--disable-rule` part, `hygieneDisableFlags`, from `scripts/hygiene-config-flags.cjs`, because the config's additions tighten the author gate alone. The checker refuses a `--disable-rule` id that names no core rule or that `rule-overrides.json` fixes. The verdict's `config.hygiene.disabled` lists each disabled rule as `hygiene.<rule>`, and it is empty when the key is absent. A file `commentHygiene.exclude` matches is left out of the call. Output that does not parse as this document makes the check `ERROR`, so a broken checker never reads as clean. When the checker refuses its arguments, a value the repository config supplied ends the run with `CONFIG_INVALID`, exit 3 and one `config.errors` row naming the field, where a refused flag the runner supplies itself leaves the row's `repair` carrying the checker's message. The runner reads `languages.<name>.extensions`, `shebangs` and `family` from `assets/comment-syntax.json`, the same table the checker reads.
 
 ---
 

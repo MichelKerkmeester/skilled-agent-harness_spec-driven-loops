@@ -18,6 +18,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const { runGit } = require('./run-check.cjs');
+const { loadContract } = require('../../../shared/scripts/check-rule-overrides.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -26,6 +27,7 @@ const { runGit } = require('./run-check.cjs');
 const QUALITY_ROOT = path.resolve(path.dirname(fs.realpathSync(__filename)), '..', '..');
 const SYNTAX_PATH = path.join(QUALITY_ROOT, 'assets', 'comment-syntax.json');
 const TEMPLATE_PATH = path.join(QUALITY_ROOT, 'assets', 'quality-config.template.json');
+const HYGIENE_CHECKER_PATH = path.join(QUALITY_ROOT, 'scripts', 'check-comment-hygiene.sh');
 
 const REPO_CONFIG_FILE = '.sk-code/quality.json';
 const GIT_CONFIG_KEY = 'skcode.qualityConfig';
@@ -36,7 +38,17 @@ const TOP_KEYS = Object.freeze(['schemaVersion', 'exclude', 'checks', 'checklist
 const CHECK_KEYS = Object.freeze(['id', 'argv', 'languages', 'paths', 'cwd', 'requires', 'severity', 'required', 'timeoutSec']);
 const GENERATED_KEYS = Object.freeze(['id', 'argv', 'paths', 'cwd', 'requires', 'severity', 'required', 'timeoutSec']);
 const CHECKLIST_KEYS = Object.freeze(['file', 'why', 'paths', 'extensions', 'contentMarkers']);
-const HYGIENE_KEYS = Object.freeze(['ticketPrefixes', 'extraPatterns', 'extensions', 'exclude']);
+const HYGIENE_KEYS = Object.freeze(['ticketPrefixes', 'extraPatterns', 'extensions', 'exclude', 'disableRules']);
+const HYGIENE_CLASS = 'hygiene';
+// The rules that point at this framework's own planning vocabulary. A repository with no
+// specs/ folder has nothing for them to point at, so init offers them as a suggestion. The
+// tracker-id rules (adr, req, rc, chk, task, issue) stay out, because any repository can
+// carry those ids.
+const SPEC_KIT_HYGIENE_RULES = Object.freeze([
+  'packet-slash', 'packet-number', 'packet-reversed', 'phase-number', 'phase-path', 'feature-catalog',
+  'generic-label', 'spec-path', 'worktree-session', 'deep-review', 'council-seat', 'review-finding',
+  'checklist-item', 'finding-id', 'finding-number',
+]);
 // An exact sensor can be narrowed but never switched off, because its findings block.
 const SENSOR_KINDS = Object.freeze({ conflictMarkers: 'exact', secrets: 'exact', debugLeftovers: 'heuristic' });
 const SEVERITIES = Object.freeze(['P0', 'P1', 'P2']);
@@ -365,6 +377,71 @@ function pythonRejectedConstruct(pattern) {
   return null;
 }
 
+// The checker owns its rule names, so they are read from its pattern table rather than
+// copied here, and a rule added to the checker can be disabled with no edit to this file.
+let hygieneRulesCache = null;
+/**
+ * Read the core rule names from the checker's VIOLATION_PATTERNS table, once per process.
+ *
+ * @returns {ReadonlyArray<string>} The rule names, in the checker's order.
+ * @throws {Error} When the checker cannot be read or holds no rule table.
+ */
+function readHygieneRules() {
+  if (hygieneRulesCache) return hygieneRulesCache;
+  const source = fs.readFileSync(HYGIENE_CHECKER_PATH, 'utf8');
+  const start = source.indexOf('\nVIOLATION_PATTERNS = [');
+  const end = start < 0 ? -1 : source.indexOf('\n]', start);
+  if (start < 0 || end < 0) throw new Error(`${HYGIENE_CHECKER_PATH} holds no VIOLATION_PATTERNS table`);
+  const rules = [...source.slice(start, end).matchAll(/^\s*\("([a-z0-9-]+)",\s*re\.compile/gm)].map((match) => match[1]);
+  if (rules.length === 0) throw new Error(`${HYGIENE_CHECKER_PATH} names no rule in its VIOLATION_PATTERNS table`);
+  hygieneRulesCache = Object.freeze(rules);
+  return hygieneRulesCache;
+}
+
+/**
+ * Name the core hygiene rule a disableRules entry switches off, or say why it cannot.
+ * An entry is a bare rule name or the same name with its class, the way a finding names
+ * it. An id the shared rule-override contract fixes is refused before anything else.
+ *
+ * @param {string} entry - One disableRules value.
+ * @param {string[]} rules - The checker's core rule names.
+ * @param {Array<{id:string}>} fixed - The contract's fixed entries.
+ * @returns {{name:string|null, error:string|null}} The bare rule name, or the refusal.
+ */
+function disabledHygieneRule(entry, rules, fixed) {
+  const dot = entry.indexOf('.');
+  const ruleClass = dot < 0 ? HYGIENE_CLASS : entry.slice(0, dot);
+  const name = dot < 0 ? entry : entry.slice(dot + 1);
+  const id = `${ruleClass}.${name}`;
+  if (fixed.some((row) => row.id === id || row.id === `${ruleClass}.*`)) {
+    return { name: null, error: `${JSON.stringify(entry)} is fixed by the shared rule-override contract (rule-overrides.json) and cannot be disabled` };
+  }
+  if (ruleClass !== HYGIENE_CLASS || !rules.includes(name)) {
+    return { name: null, error: `${JSON.stringify(entry)} names no core comment-hygiene rule (${rules.join(', ')})` };
+  }
+  return { name, error: null };
+}
+
+function validateDisableRules(value, errors) {
+  const field = 'commentHygiene.disableRules';
+  stringList(value, field, errors);
+  if (!Array.isArray(value)) return;
+  let rules;
+  let fixed;
+  try {
+    rules = readHygieneRules();
+    ({ fixed } = loadContract());
+  } catch (error) {
+    errors.push(issue(field, `cannot be checked: ${error.message}`));
+    return;
+  }
+  value.forEach((entry, index) => {
+    if (typeof entry !== 'string' || entry.trim() === '') return;
+    const { error } = disabledHygieneRule(entry, rules, fixed);
+    if (error) errors.push(issue(`${field}[${index}]`, error));
+  });
+}
+
 function validateHygiene(value, errors, table) {
   if (!isPlainObject(value)) {
     errors.push(issue('commentHygiene', 'must be an object'));
@@ -408,6 +485,7 @@ function validateHygiene(value, errors, table) {
     }
   }
   stringList(value.exclude, 'commentHygiene.exclude', errors);
+  if (value.disableRules !== undefined) validateDisableRules(value.disableRules, errors);
 }
 
 function validateSensors(value, errors) {
@@ -539,8 +617,42 @@ function mergeConfig(defaults, repo) {
       // The checker compares extensions in lower case, so the runner reads them the same way.
       extensions: Object.fromEntries(Object.entries(hygiene.extensions || {}).map(([ext, family]) => [ext.toLowerCase(), family])),
       exclude: [...(hygiene.exclude || [])],
+      // Written bare and once each, the form the checker's --disable-rule takes. A
+      // validated config names only core rules, so every entry resolves.
+      disableRules: [...new Set((hygiene.disableRules || []).map((entry) => entry.slice(entry.indexOf('.') + 1)))],
     },
   };
+}
+
+/**
+ * One --disable-rule per core rule the merged commentHygiene layer switches off. The
+ * pre-commit hook and the CI job take only these flags: the repository's additions
+ * tighten the author gate alone, and those layers keep the core set minus what the
+ * repository switched off, so a rule disabled here never blocks a commit.
+ *
+ * @param {Object} hygiene - The merged commentHygiene block.
+ * @returns {string[]} The arguments to place before the checker's --.
+ */
+function hygieneDisableFlags(hygiene) {
+  const { disableRules = [] } = hygiene || {};
+  return disableRules.flatMap((rule) => ['--disable-rule', rule]);
+}
+
+/**
+ * The checker flags the runner passes for a merged commentHygiene layer: the additions in
+ * the order the runner has always passed them, then the disabled rules.
+ *
+ * @param {Object} hygiene - The merged commentHygiene block.
+ * @returns {string[]} The arguments to place before the checker's --.
+ */
+function hygieneCheckerFlags(hygiene) {
+  const { ticketPrefixes = [], extraPatterns = [], extensions = {} } = hygiene || {};
+  return [
+    ...ticketPrefixes.flatMap((prefix) => ['--ticket-prefix', prefix]),
+    ...Object.entries(extensions).flatMap(([ext, family]) => ['--extension', `${ext}=${family}`]),
+    ...extraPatterns.flatMap((pattern) => ['--extra-pattern', pattern]),
+    ...hygieneDisableFlags(hygiene),
+  ];
 }
 
 /**
@@ -681,12 +793,17 @@ module.exports = {
   GIT_CONFIG_KEY,
   PACKAGE_MARKERS,
   REPO_CONFIG_FILE,
+  SPEC_KIT_HYGIENE_RULES,
   TEMPLATE_PATH,
   discoverConfig,
+  disabledHygieneRule,
   displayPath,
+  hygieneCheckerFlags,
+  hygieneDisableFlags,
   initialConfig,
   loadConfig,
   mergeConfig,
+  readHygieneRules,
   readSuggestions,
   validateConfig,
 };

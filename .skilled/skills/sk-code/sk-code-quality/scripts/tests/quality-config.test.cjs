@@ -19,7 +19,10 @@ const test = require('node:test');
 
 const { assertSnapshotUnchanged, buildRepo } = require('./fixtures.cjs');
 const { USAGE_TEXT } = require('../quality-gate.cjs');
-const { TEMPLATE_PATH, mergeConfig, validateConfig } = require('../lib/quality-config.cjs');
+const { resolveHygieneFlags } = require('../hygiene-config-flags.cjs');
+const {
+  SPEC_KIT_HYGIENE_RULES, TEMPLATE_PATH, hygieneCheckerFlags, mergeConfig, readHygieneRules, validateConfig,
+} = require('../lib/quality-config.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -344,6 +347,79 @@ test('extensions: a repository adds an extension the shipped table lacks, and a 
     assert.deepEqual(fields(verdict), ['commentHygiene.extensions..js']);
   });
 });
+
+// A foreign repository writes its own tracker ids and model names in comments, and the
+// core rules read them as planning labels. Each label is joined here, so this file never
+// carries one in its own text.
+const FOREIGN_COMMENTS = [
+  `// ${['Fixes', '#1234'].join(' ')}`,
+  `// See ${['ADR', '004'].join('-')}`,
+  `// The ${['T', '1000'].join('')} model reads this`,
+].join('\n');
+
+test('disableRules: a foreign repository that disables issue, adr and task is no longer blocked by its own ids', () => withRepo({
+  base: { 'app.js': 'const a = 1;\n' },
+  change: { 'app.js': `const a = 1;\n${FOREIGN_COMMENTS}\nconst b = 2;\n` },
+}, (repo) => {
+  const blocked = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(blocked.status, 1);
+  assert.deepEqual(hygieneFindings(blocked.verdict).map((entry) => entry.rule), ['hygiene.issue', 'hygiene.adr', 'hygiene.task']);
+  assert.deepEqual(blocked.verdict.config.hygiene, { disabled: [] });
+
+  repo.write({ '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { disableRules: ['issue', 'hygiene.adr', 'task'] } }) });
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 0);
+  assert.deepEqual(hygieneFindings(verdict), []);
+  assert.deepEqual(verdict.config.hygiene, { disabled: ['hygiene.issue', 'hygiene.adr', 'hygiene.task'] });
+  const hygiene = verdict.checks.find((entry) => entry.id === 'comment-hygiene');
+  assert.equal(hygiene.state, 'RAN_CLEAN');
+  assert.deepEqual(hygiene.argv.slice(hygiene.argv.indexOf('--json') + 1, -2),
+    ['--disable-rule', 'issue', '--disable-rule', 'adr', '--disable-rule', 'task']);
+}));
+
+test('disableRules: an unknown id and a fixed id are each CONFIG_INVALID, exit 3, before any check starts', () => {
+  const refused = validateConfig({ schemaVersion: 1, commentHygiene: { disableRules: ['issue', 'nope', 'secret.private-key', 'conflict.markers', 'floor.input-validation'] } });
+  assert.deepEqual(refused.map((entry) => entry.field), [
+    'commentHygiene.disableRules[1]', 'commentHygiene.disableRules[2]', 'commentHygiene.disableRules[3]', 'commentHygiene.disableRules[4]',
+  ]);
+  assert.match(refused[0].message, /names no core comment-hygiene rule/);
+  for (const entry of refused.slice(1)) assert.match(entry.message, /fixed by the shared rule-override contract/);
+  assert.deepEqual(validateConfig({ schemaVersion: 1, commentHygiene: { disableRules: 'issue' } }).map((entry) => entry.field), ['commentHygiene.disableRules']);
+  withRepo({
+    base: { 'app.js': 'const a = 1;\n' },
+    change: { 'app.js': `const a = 1;\n${FOREIGN_COMMENTS}\n`, '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { disableRules: ['tsak'] } }) },
+  }, (repo) => {
+    const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+    assert.equal(status, 3);
+    assert.equal(verdict.errors[0].code, 'CONFIG_INVALID');
+    assert.deepEqual(fields(verdict), ['commentHygiene.disableRules[0]']);
+    assert.deepEqual(verdict.checks, []);
+  });
+});
+
+test('disableRules: the rule list comes from the checker, and the spec-kit suggestion names fifteen of its rules', () => {
+  const rules = readHygieneRules();
+  assert.equal(rules.length, 21);
+  assert.equal(SPEC_KIT_HYGIENE_RULES.length, 15);
+  for (const rule of SPEC_KIT_HYGIENE_RULES) assert.ok(rules.includes(rule), rule);
+  assert.deepEqual(rules.filter((rule) => !SPEC_KIT_HYGIENE_RULES.includes(rule)).sort(), ['adr', 'chk', 'issue', 'rc', 'req', 'task']);
+  assert.deepEqual(hygieneCheckerFlags(mergeConfig(DEFAULTS, { schemaVersion: 1, commentHygiene: { disableRules: ['hygiene.task', 'task'] } }).commentHygiene),
+    ['--disable-rule', 'task']);
+});
+
+test('disableRules: the pre-commit and CI helper passes only the disabled rules, never the additions', () => withRepo({
+  base: {
+    'app.go': CLEAN_GO,
+    '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: {
+      ticketPrefixes: ['JIRA'], extraPatterns: ['(?<=a+)b'], extensions: { '.zig': 'c' }, disableRules: ['issue', 'hygiene.task'],
+    } }),
+  },
+}, (repo) => {
+  const result = resolveHygieneFlags({ root: repo.root, env: repo.env });
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.flags, ['--disable-rule', 'issue', '--disable-rule', 'task']);
+  assert.deepEqual(result.disabled, ['hygiene.issue', 'hygiene.task']);
+}));
 
 test('template: the shipped template parses and passes the schema', () => {
   const template = JSON.parse(fs.readFileSync(TEMPLATE_PATH, 'utf8'));

@@ -8,14 +8,14 @@ trigger_phrases:
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Repository Quality Config
 
 ## 1. OVERVIEW
 
-A repository names its own quality checks in one committed file, `.sk-code/quality.json`. The quality runner reads it on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through `scripts/lib/quality-config.cjs`, so they never disagree about what the file says. The file tightens the author gate only. The CI job and the pre-commit hook keep the core hygiene set at whole-file scope, so a ticket prefix the file adds can fail locally and pass on push.
+A repository names its own quality checks in one committed file, `.sk-code/quality.json`. The quality runner reads it on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through `scripts/lib/quality-config.cjs`, so they never disagree about what the file says. The file's additions tighten the author gate only. The CI job and the pre-commit hook keep the core hygiene set at whole-file scope, minus the rules `commentHygiene.disableRules` switches off, which they read through the same loader by way of `scripts/hygiene-config-flags.cjs`. So a rule the file switches off blocks nowhere, and a ticket prefix the file adds can fail locally and pass on push. A file that does not validate leaves both layers on every core rule.
 
 ---
 
@@ -52,7 +52,8 @@ The runner picks exactly one source, the most explicit first.
   ],
   "checklists": [{"file": ".sk-code/checklists/web.md", "paths": ["src/**"]}],
   "generated": [{"paths": ["dist/**"], "argv": ["npm", "run", "build:check"], "severity": "P1"}],
-  "commentHygiene": {"ticketPrefixes": ["JIRA"], "extraPatterns": [], "extensions": {".zig": "c"}, "exclude": ["fixtures/**"]},
+  "commentHygiene": {"ticketPrefixes": ["JIRA"], "extraPatterns": [], "extensions": {".zig": "c"}, "exclude": ["fixtures/**"],
+                     "disableRules": ["issue", "adr", "task"]},
   "sensors": {"secrets": {"exclude": ["test/fixtures/**"]}, "debugLeftovers": {"enabled": false}}
 }
 ```
@@ -75,6 +76,7 @@ The runner picks exactly one source, the most explicit first.
 | `commentHygiene.extraPatterns` | Each pattern compiles and holds at most 200 characters. The checker compiles a pattern with Python's `re`, so a `\p` or `\P` property escape, a `\k<name>` backreference or a `(?<name>` group is a config error, and Python spells its named group `(?P<name>)` |
 | `commentHygiene.extensions` | Maps an extension that starts with a dot to a family in `comment-syntax.json`. A mapped extension wins over the table, and a shebang wins over both, the checker's own order. A repository can only add an extension, so remapping one the shipped table already owns is a config error |
 | `commentHygiene.exclude` | Globs whose files the hygiene call skips. Every other check still reads them |
+| `commentHygiene.disableRules` | Core hygiene rules the checker stops applying, each written bare (`task`) or with its class (`hygiene.task`). The names are the checker's own, read from its pattern table. An id that names no core rule is a config error, and so is any id the shared rule-override contract fixes in `../../shared/references/universal/rule-overrides.json`, such as `secret.private-key` or `conflict.markers`. The secret and conflict-marker sensors are separate checks that no key switches off. The verdict lists what is off in `config.hygiene.disabled` |
 | `sensors` | `conflictMarkers` and `secrets` accept `exclude` only. `debugLeftovers` also accepts `enabled` |
 
 `assets/quality-config.template.json` holds every key with an empty value, and it passes the schema.
@@ -90,7 +92,7 @@ The shipped base layer, `assets/quality-defaults.json`, always loads first, and 
 | `checks` | Only the repository layer declares them. The base layer names no command |
 | `checklists`, `generated` | Rows append. A base-layer `generated` row names paths for the dist checker, and a repository row carries its own command |
 | `exclude` | Globs append |
-| `commentHygiene` | Lists append to the checker's core patterns, which stay. A single line still opts out with `hygiene-ok` |
+| `commentHygiene` | Lists append to the checker's core patterns. `disableRules` is the one way to drop a core pattern, and a dropped rule stays off for the runner, the pre-commit hook and the CI job alike. The other lists reach the runner alone. A single line still opts out with `hygiene-ok` |
 | `sensors` | Settings merge per sensor and `exclude` lists append. An exact sensor can be narrowed but never switched off, because its findings block, so `enabled` on `conflictMarkers` or `secrets` is a config error. A heuristic sensor may set `enabled: false` |
 
 ---
@@ -129,7 +131,7 @@ A script named `test`, `fix` or `format` is never suggested, and neither is a sc
 | Code | Where | Cause |
 | --- | --- | --- |
 | `CONFIG_PATH_MISSING` | `errors[]`, exit 3 | `--config` or `skcode.qualityConfig` names a path that does not exist |
-| `CONFIG_INVALID` | `errors[]` and one `config.errors` row per field, exit 3 | A parse fault, an empty file, a wrong `schemaVersion`, an unknown key, a malformed field, a reused check id or a committed file that resolves outside the repository. These stop the run before a check starts. A `commentHygiene` value the checker refuses is a cause too, found once the run starts, and its row names the field that supplied the value |
+| `CONFIG_INVALID` | `errors[]` and one `config.errors` row per field, exit 3 | A parse fault, an empty file, a wrong `schemaVersion`, an unknown key, a malformed field, a reused check id, a `disableRules` id that is unknown or fixed, or a committed file that resolves outside the repository. These stop the run before a check starts. A `commentHygiene` value the checker refuses is a cause too, found once the run starts, and its row names the field that supplied the value |
 | `CHECK_MUTATED_WORKSPACE` | `errors[]`, exit 3 | The workspace changed while a check ran. `check` and `paths` name what changed |
 | `GUARD_UNAVAILABLE` | the check row's `code`, state `ERROR` | A configured check outside git, where no snapshot can show a change. A required one makes the run UNVERIFIED |
 | `CONFIG_EXISTS` | the doctor's `init`, exit 1 | `.sk-code/quality.json` already exists, and init never overwrites it |
@@ -155,9 +157,9 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 
 | Mode | What it does |
 | --- | --- |
-| `status` | Reports the source and its errors, the config trust state (with the repair line when untrusted), probes each tool a check names as `PASS` (found) or `DEGRADED` (absent, with one repair line), lists a tool only a suggestion names as `SKIP` and reports the hygiene layers |
+| `status` | Reports the source and its errors, the config trust state (with the repair line when untrusted), probes each tool a check names as `PASS` (found) or `DEGRADED` (absent, with one repair line), lists a tool only a suggestion names as `SKIP`, reports the hygiene layers and names the core hygiene rules `disableRules` switches off, in `hygiene.disabled` |
 | `check` | Validates the discovered config, or the file `--config` names, and reports `config.errors` and the trust state with no tool probe |
-| `init` | Prints the template filled with the suggestions, each written as `required: false`, and writes nothing. `--apply` writes a temporary file and hard-links it to `.sk-code/quality.json`, so it creates the file once and refuses with `CONFIG_EXISTS` when one exists. A `.sk-code` folder that resolves outside the repository is refused |
+| `init` | Prints the template filled with the suggestions, each written as `required: false`, and writes nothing. `--apply` writes a temporary file and hard-links it to `.sk-code/quality.json`, so it creates the file once and refuses with `CONFIG_EXISTS` when one exists. A `.sk-code` folder that resolves outside the repository is refused. In a repository with no `specs/` folder, the plan also carries `suggested_hygiene`: the 15 spec-kit vocabulary rules (packet, phase, spec-path, worktree-session, council-seat and the like) offered for `commentHygiene.disableRules`. The six tracker-id rules stay out of it, and init never writes the suggestion |
 
 ---
 
@@ -166,4 +168,5 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 - **Regular expression cost.** A pattern is capped at 200 characters and must compile, which bounds what a reviewer must read. It does not bound run time: a pattern with nested repetition can still slow the checker on a long comment line.
 - **Two regex engines.** The config validator compiles each pattern as JavaScript, and the checker compiles it with Python's `re`. A pattern only Python accepts, such as `(?P<name>...)`, is a config error. The validator also refuses what Python rejects, a `\p` or `\P` property escape, a `\k<name>` backreference and a `(?<name>` group that is not a lookbehind, so the fault reads before a check starts. That list is not every JavaScript-only construct, so a value the checker still refuses once the run starts, when the repository config supplied it, ends the run with `CONFIG_INVALID`, exit 3 and one `config.errors` row naming the field, in place of an `ERROR` row and an `UNVERIFIED` run.
 - **Windows.** The process-group kill is POSIX behavior. Configured checks on Windows are not specified, and their behavior there is UNKNOWN.
+- **Hook config source.** The pre-commit hook reads the working-tree config, not the staged one, so a `disableRules` change applies to the commit that stages it. A layer that cannot start `node` runs every core rule.
 - **Argument length.** `{files}` passes every matching file of a group in one argv, so a very large change can pass the system's argument limit, and that run reads `ERROR`.

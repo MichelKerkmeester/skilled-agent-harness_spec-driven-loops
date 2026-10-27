@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/002-quality-hygiene-policy",
+  "spec_folder": "sk-code/017-portable-code-modes/002-quality-hygiene-policy",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality hygiene policy",
+      "commenthygiene disablerules",
+      "disable rule comment hygiene",
+      "phase 2 quality hygiene policy",
+      "quality hygiene policy plan",
+      "quality hygiene policy tasks",
+      "quality hygiene policy acceptance criteria",
+      "quality hygiene policy implementation summary"
+    ],
+    "key_topics": [
+      "quality",
+      "hygiene",
+      "policy",
+      "commenthygiene",
+      "disablerules",
+      "disable",
+      "rule",
+      "comment",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/hygiene-config-flags.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json",
+      ".github/workflows/comment-hygiene.yml",
+      ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
+      ".hermes/skills/sk-code-quality/SKILL.md",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hygiene-config-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/hygiene-config-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.template.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.13.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The checker holds 21 core rules (`scripts/check-comment-hygiene.sh:121-143`), and every one blocks at P0 in every repository",
+    "created_at": "2026-10-27T21:35:43Z",
+    "last_save_at": "2026-10-27T22:12:51.933Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0d3e6f72abc3ba6ce1712ee68fd885b1c377b1416524a531a41a75664e422ac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bed49bbb257a03d8e057a8377935203b5a4d0f21d2cbf94069cb934d2c0ab26c",
+      "plan.md": "a482d640d36960d880be4f9978e046e7eabdb3fda6d98580c0234650eba20ca7",
+      "tasks.md": "a099fdfee12a53af4449aa9c639a5b6cabc2a1c04590ddca2a43befb7aa418a5",
+      "implementation-summary.md": "a4099ebf3384653581c0250de3c0443c3645bc2041f3fc599021238f05155072"
+    },
+    "last_active_at": null
+  }
+}

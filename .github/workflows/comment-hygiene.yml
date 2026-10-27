@@ -42,6 +42,21 @@ jobs:
             echo "::error::Comment hygiene checker not found under .skilled/ or .opencode/, failing closed."
             exit 1
           fi
+          # The repository's quality config can switch core rules off, and the helper reads
+          # that list through the quality runner's loader. Its additions tighten the author
+          # gate only, so this job keeps the core set minus the disabled rules. A config
+          # that does not validate keeps every core rule.
+          HYGIENE_FLAGS=()
+          FLAG_HELPER="$(dirname "$CHECKER")/hygiene-config-flags.cjs"
+          if [ -f "$FLAG_HELPER" ]; then
+            FLAG_FILE="$(mktemp)"
+            if node "$FLAG_HELPER" > "$FLAG_FILE"; then
+              while IFS= read -r -d '' flag; do HYGIENE_FLAGS+=("$flag"); done < "$FLAG_FILE"
+            else
+              echo "::warning::The repository quality config did not validate, so every core hygiene rule applies."
+            fi
+            rm -f "$FLAG_FILE"
+          fi
           VIOLATIONS=0
           FAILURES=0
           BASE="$BASE_SHA"
@@ -55,7 +70,7 @@ jobs:
               # and each of those fails the job. The status reaches CHECKER_RC
               # instead of tripping errexit, so the loop checks every file.
               CHECKER_RC=0
-              python3 "$CHECKER" --json -- "$file" > "$REPORT" || CHECKER_RC=$?
+              python3 "$CHECKER" --json ${HYGIENE_FLAGS[@]+"${HYGIENE_FLAGS[@]}"} -- "$file" > "$REPORT" || CHECKER_RC=$?
               if [ "$CHECKER_RC" -eq 1 ]; then
                 VIOLATIONS=$((VIOLATIONS + 1))
                 # One annotation per finding, on its line, with the reason the checker gives.
