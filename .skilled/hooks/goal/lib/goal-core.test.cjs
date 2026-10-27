@@ -25,7 +25,7 @@ const {
   symlinkSync,
   writeFileSync,
 } = require('node:fs');
-const { join } = require('node:path');
+const { basename, join } = require('node:path');
 const { tmpdir } = require('node:os');
 
 const core = require('./goal-core.cjs');
@@ -168,7 +168,7 @@ test('scope paths hash canonical workspace, runtime, and session identity', () =
   assert.equal(scope.statePath, join(stateDir, `${scope.scopeKey}.json`));
   assert.equal(scope.statePath.includes(rawSessionId), false);
   assert.equal(scope.archiveDir.includes(rawSessionId), false);
-  assert.equal(scope.statePath.includes('pi'), false);
+  assert.equal(basename(scope.statePath).includes('pi'), false);
 });
 
 test('two sessions keep independent goals through lifecycle mutations', () => {

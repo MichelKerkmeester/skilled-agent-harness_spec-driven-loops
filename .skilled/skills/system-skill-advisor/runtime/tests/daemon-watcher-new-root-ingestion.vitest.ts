@@ -233,9 +233,16 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
     if (!realWatch) throw new Error('real chokidar unavailable for the integration case');
 
     const reindexed: string[] = [];
+    let probeSeen = false;
     const watcher = createSkillGraphWatcher({
       workspaceRoot: root,
-      watchFactory: (paths, watchOptions) => realWatch(paths, watchOptions),
+      watchFactory: (paths, watchOptions) => {
+        const fsWatcher = realWatch(paths, watchOptions);
+        fsWatcher.on('addDir', (dirPath: unknown) => {
+          if (typeof dirPath === 'string' && dirPath.includes('.armed-probe-')) probeSeen = true;
+        });
+        return fsWatcher;
+      },
       reindexSkill: async (request) => {
         reindexed.push(request.skillSlug);
         return { indexedFiles: 1 };
@@ -243,8 +250,18 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
       backpressure: { debounceMs: 30, stableWriteMs: 10 },
     });
 
-    // Give chokidar a beat to arm, then create the skill for real.
-    await new Promise((resolveDelay) => setTimeout(resolveDelay, 150));
+    // 'ready' only means chokidar finished its initial scan. On macOS the
+    // fs.watch stream behind it can still drop events for seconds, so prove
+    // delivery with hidden probe roots (ignored by the watcher) first.
+    await watcher.ready;
+    for (let probe = 0; !probeSeen && probe < 100; probe += 1) {
+      mkdirSync(skillDir(root, '.armed-probe-' + probe), { recursive: true });
+      const probeDeadline = Date.now() + 100;
+      while (!probeSeen && Date.now() < probeDeadline) {
+        await new Promise((resolveDelay) => setTimeout(resolveDelay, 10));
+      }
+    }
+    expect(probeSeen).toBe(true);
     writeSkill(root, 'newborn');
 
     const deadline = Date.now() + 5000;

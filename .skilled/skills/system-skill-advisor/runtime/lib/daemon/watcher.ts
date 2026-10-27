@@ -91,6 +91,9 @@ export interface SkillGraphFsWatcher {
 
 export interface SkillGraphWatcher {
   readonly targets: readonly WatchTarget[];
+  // Settles when the fs watcher emits 'ready' (initial scan done, watches
+  // armed). A watcher that never emits 'ready' leaves it pending.
+  readonly ready: Promise<void>;
   status: () => SkillGraphWatcherStatus;
   refreshTargets: () => void;
   // Drain any queued reindex work without closing the watcher.
@@ -453,6 +456,11 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     ignored: (targetPath: string) => TEMP_SUFFIX_PATTERN.test(targetPath),
   }) as SkillGraphFsWatcher;
 
+  // Registered before any other listener so a fast initial scan cannot
+  // emit 'ready' before anyone is listening.
+  const ready = new Promise<void>((resolveReady) => {
+    watcher.on('ready', () => resolveReady());
+  });
   const debounceMs = options.backpressure?.debounceMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_DEBOUNCE_MS', DEFAULT_DEBOUNCE_MS);
   const stormEventLimit = options.backpressure?.stormEventLimit ?? envPositiveInt('SPECKIT_SKILL_GRAPH_STORM_EVENT_LIMIT', DEFAULT_STORM_EVENT_LIMIT);
   const stormWindowMs = options.backpressure?.stormWindowMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_STORM_WINDOW_MS', DEFAULT_STORM_WINDOW_MS);
@@ -669,6 +677,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     get targets() {
       return targets;
     },
+    ready,
     status: () => {
       // Prepend a synthetic COUNTERS:... line so callers see the
       // long-tail aggregate even after the ring buffer has dropped the

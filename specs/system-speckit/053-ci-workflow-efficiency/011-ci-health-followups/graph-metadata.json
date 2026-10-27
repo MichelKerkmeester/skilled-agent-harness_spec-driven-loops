@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/011-ci-health-followups",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/011-ci-health-followups",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci health followups",
+      "phase 11 ci health followups",
+      "goal-core statepath flake",
+      "watcher chokidar ready flake",
+      "pi-coding-agent 0.79.0 bump",
+      "ci health followups plan",
+      "ci health followups tasks",
+      "ci health followups acceptance criteria",
+      "ci health followups implementation summary"
+    ],
+    "key_topics": [
+      "health",
+      "followups",
+      "phase",
+      "goal-core",
+      "statepath",
+      "flake",
+      "watcher",
+      "chokidar",
+      "ready",
+      "pi-coding-agent",
+      "bump",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/goal/lib/goal-core.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/daemon-watcher-new-root-ingestion.vitest.ts",
+      ".pi/extensions/pi-cache-optimizer/package-lock.json",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/package-lock.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "watcher.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-watcher-new-root-ingestion.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/daemon-watcher-new-root-ingestion.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".pi/extensions/pi-cache-optimizer/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The goal-core test `scope paths hash canonical workspace, runtime, and session identity` asserts that the whole state path holds no `pi`, but the path sits under a `mkdtemp` directory whose random suffix can contain `pi`, so it fails about one run in 750",
+    "created_at": "2026-10-27T06:21:04Z",
+    "last_save_at": "2026-10-27T07:12:26.545Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8637397060164bb5415da374d71f3655dea211f29f24e1284abb08768595ef9b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "344787668756e2111269785f6b95197dfc80deebcbe4d9a5ce44780852c3b980",
+      "plan.md": "5d5ebc992b3437c34a98cadd5f41b8f3433476cf3a4922f90ef147c02e2ebb8e",
+      "tasks.md": "a975c9668d6ee31b9c275be6077815a0590b1d1fae159a4213fe848b885e1890",
+      "implementation-summary.md": "6fc674c1453238e4f750b9ba68a6d8a7c191c630230f5c14d3d8c62fa9b92c76"
+    },
+    "last_active_at": null
+  }
+}

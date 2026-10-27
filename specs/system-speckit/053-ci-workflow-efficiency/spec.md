@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-25T22:10:00Z"
+    last_updated_at: "2026-10-27T08:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "All ten phases Complete; phase map synced"
-    next_safe_action: "None; the operator checks the calls made under the 2026-10-25 delegation"
+    recent_action: "Phase 011 flake fixes landed; the pi-coding-agent version waits on the operator"
+    next_safe_action: "Operator picks the pi-coding-agent version for 011 AC-003"
     blockers: []
     key_files:
       - "001-research/research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -111,6 +111,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 8 | 008-consolidation-decision/ | Implementation: re-measure the always-run workflows after phases 002 to 007 and merge them into one switch group only on an operator yes (R27) | Complete |
 | 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30, superseded by 009 ADR-013) | Complete |
 | 10 | 010-review-remediation/ | Remediation: apply the confirmed deep-review findings to the CI routing vocabulary, the sk-code-ci references and templates, the `/doctor:ci` contract and the phase records | Complete |
+| 11 | 011-ci-health-followups/ | Follow-up: apply the Dependabot `@earendil-works/pi-coding-agent` 0.79.0 bump to both pi extensions, and fix the two flaky tests (goal-core `statePath` assertion, advisor watcher readiness) at their cause | In Progress |
 
 ### Phase Transition Rules
 
@@ -130,6 +131,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 002-007 | 008 | A re-measured after snapshot exists for the nine always-run workflows, and D8 is answered | `008-consolidation-decision/scratch/consolidation-decision.md` carries the before and after numbers; under D8 = no the phase's `.github/workflows` diff is empty |
 | 006, 007 | 009 | The `sk-code-ci` packet supplies its rule data and templates, and the six `vars.SKILLED_CI*` names exist in the workflows | `/doctor:ci report` lists every file `glob('.github/workflows/*.yml')` returns (32 today) with switch state; `route-validate.sh` and the bridge deriver pass |
 | 009 | 010 | The deep review's confirmed findings are listed with file, line and fix | `review/review-report.md` lists 5 P1 and 16 P2 confirmed findings; `010-review-remediation` passes `validate.sh --strict` |
+| 010 | 011 | The three CI-health items are named with file and failure mode | Both extensions pass `npm test` and `npm audit` reports 0; the goal-core suite passes; the watcher suite passes 5 runs in a row; `011-ci-health-followups` passes `validate.sh --strict` |
 
 ### Recommendation Traceability
 
