@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy",
+  "spec_folder": "sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy",
+  "parent_id": "sk-doc/070-repo-doc-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "audit and validator accuracy",
+      "readme audit and changelog validator accuracy fixes",
+      "gitignored runtime path",
+      "audit and validator accuracy plan",
+      "audit and validator accuracy tasks",
+      "audit and validator accuracy acceptance criteria",
+      "audit and validator accuracy implementation summary"
+    ],
+    "key_topics": [
+      "audit",
+      "validator",
+      "accuracy",
+      "readme",
+      "changelog",
+      "gitignored",
+      "runtime",
+      "path",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_audit_readmes_accuracy.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/README.md",
+      ".skilled/skills/sk-doc/changelog/v2.3.17.0.md",
+      ".hermes/skills/sk-doc/SKILL.md",
+      "runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_audit_readmes_accuracy.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_audit_readmes_accuracy.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_changelog_validator.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.17.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.17.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Teach",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`auditreadmes.py` reports a link to a log, a state file or a build output as broken, although git ignores those paths and a clean checkout never holds them",
+    "created_at": "2026-10-27T08:28:22Z",
+    "last_save_at": "2026-10-27T09:52:28.039Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38b6381cd6748153c1ddad37fa2d4b46f3d342fb57133fa5784a3f8631452799",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4cbe82908b8b86f394a5e5c075076d739b46edcc0bad0c13b24991943bd0a826",
+      "plan.md": "f752a296aab6615df4a1ce05fd88506777d94b34be5e28bedd104d19388c56e4",
+      "tasks.md": "97c99ab1468b9a06638f12ec89848e85323a909acbf74bd4359378260ebdfbb8",
+      "implementation-summary.md": "f8a7d022f223927a08ac0755e7aea533b93f9da5c3ae7ccbe4842dc56eea2129"
+    },
+    "last_active_at": null
+  }
+}
