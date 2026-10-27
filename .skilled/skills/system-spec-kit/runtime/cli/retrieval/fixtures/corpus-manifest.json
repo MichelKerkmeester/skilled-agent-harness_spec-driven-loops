@@ -1,5 +1,5 @@
 {
-  "corpusHash": "202087020a088bc5eb6d8d8353bb1c0170a64a4c998ff75c78fbbae72451d2a2",
+  "corpusHash": "84440153d1e9e7a1635fa5487a6dd1a5cb13432d66547a079a889030b08dd135",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26428,
+  "includedPathCount": 26436,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7573,6 +7573,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.6.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.7.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -26422,6 +26423,12 @@
     "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26445,6 +26452,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-021-ci-gate-regressions.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-022-advisor-routing-and-local-install.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-023-deep-review-remediation.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-024-typed-command-ambiguity.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
@@ -26459,7 +26467,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5c9c83e61a4546b3827aaa5a2d964d39202f133783a2f1e9a776c21b07bb4779",
+  "manifestHash": "0fe0efa5cd9d168604afdafce2f70167385bdfeb6d479634aae1db256d718dd2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33775,6 +33783,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/scratch",
       "reason": "excluded directory"
     },
     {
