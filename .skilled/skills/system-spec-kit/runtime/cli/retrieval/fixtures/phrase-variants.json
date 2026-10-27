@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6039b8db2ba6da3bde1170573b9ce20aa35842cfe510f65425105d11c61f99ae",
+  "manifestHash": "614ba38d8efc54ac823f837879d71c3939d5e72497c685d3c27d94a05d83e63b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -54100,6 +54100,9 @@
     "ignored paths exemption task": [
       "ignored paths exemption task"
     ],
+    "ignored runtime folder reference": [
+      "ignored runtime folder reference"
+    ],
     "ignoredeprecations ts5103": [
       "ignoreDeprecations TS5103"
     ],
@@ -96879,6 +96882,9 @@
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
+    "sk doc 2 3 20 0": [
+      "sk-doc 2.3.20.0"
+    ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
     ],
@@ -97238,6 +97244,9 @@
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
+    ],
+    "sk doc v2 3 20 0": [
+      "sk-doc v2.3.20.0"
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
