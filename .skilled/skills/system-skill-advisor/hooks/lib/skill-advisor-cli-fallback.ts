@@ -331,6 +331,7 @@ function thresholdsFrom(data: CliRecommendData, options: SkillAdvisorCliFallback
 
 type CliAdvisorRecommendation = AdvisorRecommendation & {
   readonly ambiguousWith?: readonly string[];
+  readonly heldBelow?: string;
 };
 
 function recommendationFromCli(value: unknown, thresholds: { readonly confidenceThreshold: number; readonly uncertaintyThreshold: number }): CliAdvisorRecommendation | null {
@@ -348,6 +349,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     ...(Array.isArray(value.ambiguousWith)
       ? { ambiguousWith: value.ambiguousWith.filter((skill): skill is string => typeof skill === 'string') }
       : {}),
+    // The brief re-derives ambiguity from these fields, so the typed-command hold
+    // must survive the trip or a pair the command already ranked reads as a tie.
+    ...(typeof value.heldBelow === 'string' ? { heldBelow: value.heldBelow } : {}),
   };
 }
 

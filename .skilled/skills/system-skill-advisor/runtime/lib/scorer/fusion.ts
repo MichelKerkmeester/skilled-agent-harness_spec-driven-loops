@@ -8,7 +8,7 @@
 
 import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion.js';
 
-import { applyAmbiguity, isAmbiguousTopTwo } from './ambiguity.js';
+import { applyAmbiguity, isAmbiguousTopTwo, wideAmbiguityMembers } from './ambiguity.js';
 import { attributionReason, dominantLane, isDerivedDominant } from './attribution.js';
 import {
   ADVISOR_HOOK_FRESHNESS_VALUES,
@@ -422,21 +422,28 @@ function confidenceFor(args: {
   readOnlyRouteAllowed: boolean;
   derivedDominant: boolean;
   skillId: string;
-}): number {
+}): { value: number; floored: boolean } {
   const C = SCORING_CALIBRATION.confidence;
   // The advisor alias must never rank itself first on a read-only explainer;
   // floor its confidence. The canonical id is demoted separately by the audit
   // penalty in primaryIntentBonus, so this branch intentionally matches only
   // the alias id.
-  if (args.readOnlyExplainer && args.skillId === 'skill-advisor') return C.readOnlyExplainerFloor;
+  if (args.readOnlyExplainer && args.skillId === 'skill-advisor') {
+    return { value: C.readOnlyExplainerFloor, floored: false };
+  }
   const base = C.baseConstant
     + Math.min(1, args.liveNormalized * C.liveNormalizedRampGain) * C.liveNormalizedRampCoefficient;
-  if (args.readOnlyExplainer && !args.readOnlyRouteAllowed) return C.readOnlyExplainerFloor;
+  if (args.readOnlyExplainer && !args.readOnlyRouteAllowed) {
+    return { value: C.readOnlyExplainerFloor, floored: false };
+  }
   if (args.readOnlyRouteAllowed) {
-    return Number(Math.max(base, C.readOnlyRouteAllowedFloor).toFixed(4));
+    return {
+      value: Number(Math.max(base, C.readOnlyRouteAllowedFloor).toFixed(4)),
+      floored: C.readOnlyRouteAllowedFloor > base,
+    };
   }
   if (args.derivedDominant && args.directScore < C.derivedDominantDirectScoreCeiling) {
-    return C.derivedDominantConfidence;
+    return { value: C.derivedDominantConfidence, floored: false };
   }
   if (args.hasTaskIntent
     && (args.directScore >= C.taskIntentDirectScoreFloor
@@ -453,14 +460,20 @@ function confidenceFor(args: {
     const dispersionGuardTripped = args.liveNormalized >= 0.95
       && args.directScore < C.directScoreLiftThreshold;
     if (!dispersionGuardTripped) {
-      return Number(Math.max(base, C.taskIntentFloor).toFixed(4));
+      return {
+        value: Number(Math.max(base, C.taskIntentFloor).toFixed(4)),
+        floored: C.taskIntentFloor > base,
+      };
     }
   }
   if (args.directScore >= C.directScoreLiftThreshold) {
-    return Number(Math.max(base, C.directScoreFloor).toFixed(4));
+    return {
+      value: Number(Math.max(base, C.directScoreFloor).toFixed(4)),
+      floored: C.directScoreFloor > base,
+    };
   }
   const directBonus = args.directScore >= C.directScoreBonusThreshold ? C.directScoreBonus : 0;
-  return Number(Math.max(0, Math.min(C.hardCeiling, base + directBonus)).toFixed(4));
+  return { value: Number(Math.max(0, Math.min(C.hardCeiling, base + directBonus)).toFixed(4)), floored: false };
 }
 
 function uncertaintyFor(contributions: readonly LaneContribution[], confidence: number, ambiguousPressure: number): number {
@@ -540,8 +553,31 @@ export function boundGraphSupportBySeed(
   graphWeight: number,
   slashAnchoredSeeds: ReadonlySet<string>,
 ): Map<string, number> {
+  return boundGraphSupportBySeedWithHolders(
+    scores,
+    graphRawBySkill,
+    graphSupportBySeed,
+    graphWeight,
+    slashAnchoredSeeds,
+  ).scores;
+}
+
+export interface SeedBoundResult {
+  readonly scores: Map<string, number>;
+  // Target skill -> the typed-command seed whose ceiling actually lowered it.
+  readonly heldBelow: Map<string, string>;
+}
+
+export function boundGraphSupportBySeedWithHolders(
+  scores: ReadonlyMap<string, number>,
+  graphRawBySkill: ReadonlyMap<string, number>,
+  graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>,
+  graphWeight: number,
+  slashAnchoredSeeds: ReadonlySet<string>,
+): SeedBoundResult {
   const bounded = new Map(scores);
-  if (graphWeight <= 0) return bounded;
+  const heldBelow = new Map<string, string>();
+  if (graphWeight <= 0) return { scores: bounded, heldBelow };
   const lentBy = (lenderId: string, receiverId: string): number => {
     const support = graphSupportBySeed.get(receiverId)?.get(lenderId) ?? 0;
     const graphRaw = Math.max(0, graphRawBySkill.get(receiverId) ?? 0);
@@ -581,7 +617,24 @@ export function boundGraphSupportBySeed(
     }
     if (!moved) break;
   }
-  return bounded;
+  // Only a target the cap really lowered is marked, and only against the seed
+  // whose ceiling set its final score: a seed that merely could have held it
+  // ranked nothing, so the pair keeps its ordinary ambiguity check.
+  for (const [targetId, holders] of holdersByTarget) {
+    const final = bounded.get(targetId) ?? 0;
+    if (final >= (scores.get(targetId) ?? 0)) continue;
+    let binding: string | null = null;
+    let lowestSeed = Number.POSITIVE_INFINITY;
+    for (const seedId of holders) {
+      const seedScore = bounded.get(seedId) ?? 0;
+      if (seedScore < lowestSeed) {
+        lowestSeed = seedScore;
+        binding = seedId;
+      }
+    }
+    if (binding) heldBelow.set(targetId, binding);
+  }
+  return { scores: bounded, heldBelow };
 }
 
 function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], skillId: string): boolean {
@@ -949,9 +1002,9 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const graphLaneLive = isLiveScorerLane('graph_causal')
     && !disabled.has('graph_causal')
     && !runtimeDegradedLanes.has('graph_causal');
-  const seedBoundedScores = useRrfFusion || !graphLaneLive
+  const seedBound = useRrfFusion || !graphLaneLive
     ? null
-    : boundGraphSupportBySeed(
+    : boundGraphSupportBySeedWithHolders(
       new Map(candidates.map((candidate) => [candidate.skill.id, candidate.weightedScore])),
       new Map([...laneScoreIndexes.graph_causal].map(([skillId, entry]) => [skillId, entry.rawScore])),
       graphSupportBySeed,
@@ -965,7 +1018,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     const rrfScore = rrfFusion?.scoreBySkill.get(skill.id);
     const score = useRrfFusion
       ? rrfScore ?? 0
-      : seedBoundedScores?.get(skill.id) ?? weightedScore;
+      : seedBound?.scores.get(skill.id) ?? weightedScore;
+    const heldBelow = seedBound?.heldBelow.get(skill.id);
     if (score <= 0 && contributions.every((contribution) => contribution.rawScore <= 0)) continue;
     if (isSpeckitMetricsEnabled()) {
       for (const contribution of contributions) {
@@ -982,7 +1036,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     const derivedDominant = isDerivedDominant(contributions);
     const explicitSignal = hasExplicitWorkflowSignal(contributions, skill.id);
     const liveNormalized = score / liveTotal;
-    let confidence = confidenceFor({
+    const confidenceResult = confidenceFor({
       liveNormalized,
       directScore,
       readOnlyExplainer,
@@ -992,8 +1046,12 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       derivedDominant,
       skillId: skill.id,
     });
+    let confidence = confidenceResult.value;
+    let confidenceFloored = confidenceResult.floored;
     if ((skill.id === 'memory:save' || skill.id === 'command-memory-save') && isPlainFileSavePrompt(promptLower)) {
-      confidence = Math.min(confidence, 0.49);
+      const clamped = Math.min(confidence, 0.49);
+      if (clamped < confidence) confidenceFloored = false;
+      confidence = clamped;
     }
     recommendations.push({
       skill: skill.id,
@@ -1005,6 +1063,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       score: useRrfFusion ? score : Number(score.toFixed(6)),
       laneContributions: contributions,
       dominantLane: dominantLane(contributions),
+      ...(heldBelow ? { heldBelow } : {}),
+      ...(confidenceFloored ? { confidenceFloored: true } : {}),
       redirectTo: skill.redirectTo ?? undefined,
       redirectFrom: skill.redirectFrom,
       lifecycleStatus: skill.lifecycleStatus,
@@ -1090,8 +1150,10 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       && !hasTaskIntent
       && !promptLower.includes('/');
     if (lowInfoPrompt) {
+      // Use the wider set: a floor-only skill must not top an under-specified prompt.
+      const wideMembers = wideAmbiguityMembers(finished);
       const clusterMembers = finished.filter((recommendation) => (
-        (recommendation.ambiguousWith?.length ?? 0) > 0
+        wideMembers.has(recommendation.skill)
       ));
       // Only abstain when the cluster's lead is built from diffuse, shared
       // single-word keyword matches rather than a distinctive multi-word phrase
@@ -1112,7 +1174,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
           ?? DEFAULT_UNCERTAINTY_THRESHOLD;
         const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
         finished = finished.map((recommendation) => {
-          if ((recommendation.ambiguousWith?.length ?? 0) === 0) return recommendation;
+          if (!wideMembers.has(recommendation.skill)) return recommendation;
           const uncertainty = Math.max(recommendation.uncertainty, floor);
           return {
             ...recommendation,

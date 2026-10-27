@@ -8,7 +8,7 @@
 // and review-plus-write disambiguation.
 
 import { describe, expect, it } from 'vitest';
-import { applyAmbiguity, isAmbiguousTopTwo } from '../../lib/scorer/ambiguity.js';
+import { applyAmbiguity, isAmbiguousTopTwo, wideAmbiguityMembers } from '../../lib/scorer/ambiguity.js';
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { scoreGraphCausalLane } from '../../lib/scorer/lanes/graph-causal.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
@@ -281,6 +281,76 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
     ];
 
     expect(isAmbiguousTopTwo(recommendations)).toBe(false);
+  });
+
+  // A confidence floor pins many unrelated skills to the same confidence, so a
+  // member that only cleared the floor is no tie with a top that earned its own.
+  it('does not cluster a floor-only member when the top is not floored', () => {
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({ skill: 'top', score: 0.560, confidence: 0.8235, passes_threshold: true }),
+      recommendation({
+        skill: 'floored',
+        score: 0.200,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
+    expect(isAmbiguousTopTwo(recommendations)).toBe(false);
+  });
+
+  it('clusters the same pair when the top cleared a floor too', () => {
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({
+        skill: 'top',
+        score: 0.560,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+      recommendation({
+        skill: 'floored',
+        score: 0.200,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
+    expect(isAmbiguousTopTwo(recommendations)).toBe(true);
+  });
+
+  it('still clusters a floor-only member whose score is inside the score margin', () => {
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({ skill: 'top', score: 0.560, confidence: 0.8235, passes_threshold: true }),
+      recommendation({
+        skill: 'floored',
+        score: 0.530,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
+    expect(isAmbiguousTopTwo(recommendations)).toBe(true);
+  });
+
+  it('keeps the floor-only member in the wide ambiguity set', () => {
+    // The abstention path reads the wide set, so a member the floor exception
+    // dropped from the visible cluster must still be reported there.
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({ skill: 'top', score: 0.560, confidence: 0.8235, passes_threshold: true }),
+      recommendation({
+        skill: 'floored',
+        score: 0.200,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
+    expect(wideAmbiguityMembers(recommendations)).toEqual(new Set(['top', 'floored']));
   });
 });
 

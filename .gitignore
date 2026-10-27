@@ -324,6 +324,8 @@ tmp/
 # They point outside the repository, so committing one would publish a path that
 # exists on exactly one machine.
 /specs/*-wt[0-9]*
+# The operator's private spec tree, kept local by choice.
+/specs/other/
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Archive & testing fixtures

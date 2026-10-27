@@ -263,6 +263,7 @@ export const AdvisorRecommendationSchema = z.object({
   matchedDocs: z.array(z.string().min(1)).max(3).optional(),
   redirectFrom: z.array(z.string().min(1)).optional(),
   redirectTo: z.string().min(1).optional(),
+  heldBelow: z.string().min(1).optional(),
   status: z.enum(['active', 'deprecated', 'archived', 'future']).optional(),
   workflowMode: z.string().min(1).optional(),
   compiledRoute: z.record(z.string(), z.unknown()).optional(),

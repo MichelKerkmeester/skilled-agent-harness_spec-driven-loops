@@ -164,6 +164,14 @@ export interface AdvisorScoredRecommendation {
   readonly laneContributions: readonly LaneContribution[];
   readonly dominantLane: ScorerLane | null;
   readonly ambiguousWith?: readonly string[];
+  /**
+   * The typed slash-command skill whose lent graph support was capped so this
+   * skill sorts just below it. The cap already decided that order, so the
+   * ambiguity check does not cluster this skill with that one.
+   */
+  readonly heldBelow?: string;
+  /** True when a confidence floor, not the skill's own evidence, set this confidence. */
+  readonly confidenceFloored?: boolean;
   readonly redirectTo?: string;
   readonly redirectFrom?: readonly string[];
   readonly lifecycleStatus: SkillLifecycleStatus;

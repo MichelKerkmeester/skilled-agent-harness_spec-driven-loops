@@ -313,6 +313,7 @@ function publicRecommendation(
   const matchedDocs = matchedDocsFromContributions(recommendation);
   const redirectFrom = safeMany(recommendation.redirectFrom);
   const redirectTo = sanitizeSkillLabel(recommendation.redirectTo ?? '');
+  const heldBelow = sanitizeSkillLabel(recommendation.heldBelow ?? '');
   const sanitizedStatus = sanitizeSkillLabel(recommendation.lifecycleStatus);
   const status: PublicRecommendationStatus | undefined = sanitizedStatus === 'active'
     || sanitizedStatus === 'deprecated'
@@ -340,6 +341,9 @@ function publicRecommendation(
     ...(matchedDocs.length > 0 ? { matchedDocs } : {}),
     ...(redirectFrom.length > 0 ? { redirectFrom } : {}),
     ...(redirectTo ? { redirectTo } : {}),
+    // Hook briefs re-derive ambiguity from the public list, so a skill the typed
+    // command already ranked below its seed has to say so here.
+    ...(heldBelow ? { heldBelow } : {}),
     ...(status ? { status } : {}),
     ...(workflowMode ? { workflowMode } : {}),
   };

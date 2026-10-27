@@ -201,6 +201,9 @@ export function buildAdvisorHookResultFromRecommendations(args: {
   readonly startedAt?: number;
   readonly freshnessResult: AdvisorFreshnessResult;
   readonly recommendations: readonly AdvisorRecommendation[];
+  // The scorer's own verdict; omitted when the caller has none, which re-derives it
+  // from the recommendation set rather than assuming no ambiguity.
+  readonly ambiguous?: boolean;
   readonly thresholdConfig?: AdvisorThresholds;
   readonly maxTokens?: number;
   readonly diagnostics?: AdvisorHookDiagnostics | null;
@@ -220,7 +223,7 @@ export function buildAdvisorHookResultFromRecommendations(args: {
   }
 
   const filteredRecommendations = passingRecommendations(args.recommendations, args.thresholdConfig);
-  const tokenCap = clampTokenCap(args.maxTokens, hasAdvisorAmbiguitySignal(filteredRecommendations));
+  const tokenCap = clampTokenCap(args.maxTokens, hasAdvisorAmbiguitySignal(filteredRecommendations, args.ambiguous));
   const brief = renderSharedBrief(
     filteredRecommendations,
     freshness,

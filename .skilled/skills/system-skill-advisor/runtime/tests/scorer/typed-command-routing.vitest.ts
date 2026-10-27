@@ -10,6 +10,8 @@ import { describe, expect, it } from 'vitest';
 import { boundGraphSupportBySeed, scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { scoreLexicalLane } from '../../lib/scorer/lanes/lexical.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
+import { hasAdvisorAmbiguitySignal } from '../../lib/render.js';
+import { resultFromCliData } from '../../../hooks/lib/skill-advisor-cli-fallback.js';
 import type { SkillEdgeProjection, SkillProjection } from '../../lib/scorer/types.js';
 
 function skill(id: string, fields: Partial<SkillProjection> = {}): SkillProjection {
@@ -38,17 +40,20 @@ const LOAN_EDGES: SkillEdgeProjection[] = [
   { sourceId: 'loop-skill', targetId: 'dep-skill', edgeType: 'depends_on', weight: 1 },
 ];
 
-function rankFor(prompt: string, loopKeyword: string): string[] {
+function scoreFor(prompt: string, loopKeyword: string) {
   const projection = createFixtureProjection([
     skill('loop-skill', { keywords: [loopKeyword] }),
     skill('dep-skill', { keywords: ['packet'], domains: ['routing'] }),
   ], LOAN_EDGES);
-  const result = scoreAdvisorPrompt(prompt, {
+  return scoreAdvisorPrompt(prompt, {
     workspaceRoot: process.cwd(),
     projection,
     includeAllCandidates: true,
   });
-  return result.recommendations.map((recommendation) => recommendation.skill);
+}
+
+function rankFor(prompt: string, loopKeyword: string): string[] {
+  return scoreFor(prompt, loopKeyword).recommendations.map((recommendation) => recommendation.skill);
 }
 
 describe('graph support lent by a typed slash command', () => {
@@ -73,6 +78,51 @@ describe('graph support lent by a typed slash command', () => {
     );
     expect(bounded.get('second')).toBeLessThan(0.7);
     expect(bounded.get('third')).toBeLessThan(bounded.get('second') ?? 0);
+  });
+});
+
+// The bound already ranked the pair from the user's own command, so the
+// one-millionth gap it leaves must not read as two skills tied on evidence.
+describe('a typed command is not ambiguous with the neighbour it held down', () => {
+  it('reports no ambiguity between the command and the dependency it bounded', () => {
+    const result = scoreFor('run /fixture:loop on the routing packet', '/fixture:loop');
+    const [top, second] = result.recommendations;
+    expect(top?.skill).toBe('loop-skill');
+    expect(second?.skill).toBe('dep-skill');
+    expect(second?.heldBelow).toBe('loop-skill');
+    expect(top?.ambiguousWith ?? []).not.toContain('dep-skill');
+    expect(result.ambiguous).toBe(false);
+  });
+
+  it('keeps the plain-word pair ambiguous, since no command ranked it', () => {
+    const result = scoreFor('run fixture loop on the routing packet', 'fixture loop');
+    expect(result.recommendations.some((recommendation) => recommendation.heldBelow)).toBe(false);
+    expect(result.ambiguous).toBe(true);
+  });
+
+  it('keeps the held-below mark through the serialized brief paths', () => {
+    const tied = [
+      { skill: 'loop-skill', confidence: 0.82, uncertainty: 0.2, passes_threshold: true, score: 0.4896 },
+      { skill: 'dep-skill', confidence: 0.82, uncertainty: 0.2, passes_threshold: true, score: 0.489599 },
+    ];
+    expect(hasAdvisorAmbiguitySignal(tied)).toBe(true);
+    const held = [tied[0]!, { ...tied[1]!, heldBelow: 'loop-skill' }];
+    expect(hasAdvisorAmbiguitySignal(held)).toBe(false);
+
+    const fromCli = resultFromCliData({
+      data: {
+        freshness: 'live',
+        ambiguous: false,
+        recommendations: [
+          { skillId: 'loop-skill', score: 0.4896, confidence: 0.82, uncertainty: 0.2 },
+          { skillId: 'dep-skill', score: 0.489599, confidence: 0.82, uncertainty: 0.2, heldBelow: 'loop-skill' },
+        ],
+      } as never,
+      options: { maxTokens: 80 } as never,
+      startedAt: 0,
+      now: () => 1,
+    });
+    expect(hasAdvisorAmbiguitySignal(fromCli.recommendations)).toBe(false);
   });
 });
 

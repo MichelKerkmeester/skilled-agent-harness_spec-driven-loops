@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phases 001 to 023 and one child under `041-write-recipe-fixes`. Authoring logic lives in system-spec-kit, never sk-prompt. |
+| D1 | Phases 001 to 024 and one child under `041-write-recipe-fixes`. Authoring logic lives in system-spec-kit, never sk-prompt. |
 | D2 | Every gate this packet adds applies only to new docs, via the v2.3 marker. No existing or external packet gets a new failure. |
 | D3 | At most 3 parallel lanes, never two on a file. |
 | D4 | Phases close on scripted gates plus read-only reviews by cli-devin and cli-codex luna. One review pass may cover several phases. |
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 ## 2. BINDING
 
 **Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here. Each phase folder, `001-*` to `023-*`,
+phase and binds as if written here. Each phase folder, `001-*` to `024-*`,
 holds its own `goal.md`; the parent `spec.md` phase map names every folder.
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
@@ -159,6 +159,8 @@ and findings belong here.
 | 022 rebase onto main | Done | main shipped sk-git 1.9.6.0 and the same doctor lead phrase first; this phase's release is sk-git 1.9.7.0 and adds no route change |
 | 023 deep review remediation | Done | 2 P1 + 9 P2 from the review and 1 P1 + 7 P2 from the code review fixed, each code fix failing first; suite 301 files, 3600 tests, 0 failed; system-spec-kit 2.12.4.0; parent Complete |
 | 023 rebase onto main | Done | main shipped an unrelated system-spec-kit 2.12.4.0 first; this phase's release is 2.12.5.0 |
+| 024 typed-command ambiguity | Done | option (d) by DeepSeek: flags 110 to 78 of 261, correct 202 kept, 0 top changes; typed /deep:research :auto ambiguous false; suite 150/150, 1253 tests; advisor 0.17.6.0 |
+| 024 rebase onto main | Done | main shipped an unrelated system-skill-advisor 0.17.6.0 first; this phase's release is 0.17.7.0 |
 
 ### Deviations and findings
 

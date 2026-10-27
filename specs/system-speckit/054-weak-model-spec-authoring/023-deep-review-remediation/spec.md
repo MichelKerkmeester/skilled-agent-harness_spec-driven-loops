@@ -24,9 +24,9 @@ contextType: "implementation"
 | **Created** | 2026-10-27 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 23 of 23 |
+| **Phase** | 23 of 24 |
 | **Predecessor** | 022-advisor-routing-and-local-install |
-| **Successor** | None |
+| **Successor** | 024-typed-command-ambiguity |
 | **Handoff Criteria** | Every row of `acceptance-criteria.md` is Met and `validate.sh --strict --recursive` on packet 054 prints `RESULT: PASSED` for every folder |
 <!-- /ANCHOR:metadata -->
 

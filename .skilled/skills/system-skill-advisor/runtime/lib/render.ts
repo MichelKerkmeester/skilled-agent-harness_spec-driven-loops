@@ -223,6 +223,7 @@ function formatScore(value: number): string {
 type RenderableRecommendation = AdvisorRecommendation & {
   readonly score?: number;
   readonly ambiguousWith?: readonly string[];
+  readonly heldBelow?: string;
 };
 
 function toScoredRecommendation(recommendation: RenderableRecommendation): AdvisorScoredRecommendation {
@@ -240,16 +241,24 @@ function toScoredRecommendation(recommendation: RenderableRecommendation): Advis
     dominantLane: null,
     lifecycleStatus: 'active',
     ...(Array.isArray(recommendation.ambiguousWith) ? { ambiguousWith: recommendation.ambiguousWith } : {}),
+    ...(typeof recommendation.heldBelow === 'string' ? { heldBelow: recommendation.heldBelow } : {}),
   };
 }
 
-/** Detect whether the renderable recommendation set carries ambiguity evidence. */
+/**
+ * Detect whether the renderable recommendation set carries ambiguity evidence.
+ *
+ * `precomputedAmbiguous` carries the scorer's own verdict. It wins when defined: the
+ * scorer knows which skills a typed command held below the top and which only cleared
+ * a confidence floor, and serialized recommendations lose that context. Only when the
+ * caller has no verdict is ambiguity re-derived from the rendered fields.
+ */
 export function hasAdvisorAmbiguitySignal(
   recommendations: readonly AdvisorRecommendation[],
-  precomputedAmbiguous = false,
+  precomputedAmbiguous?: boolean,
 ): boolean {
-  if (precomputedAmbiguous) {
-    return true;
+  if (typeof precomputedAmbiguous === 'boolean') {
+    return precomputedAmbiguous;
   }
   return isAmbiguousTopTwo((recommendations as readonly RenderableRecommendation[]).map(toScoredRecommendation));
 }
@@ -504,19 +513,27 @@ export function renderAdvisorBrief(
     return `${capText(head, cap)}${companionFits ? companionText : ''}`;
   };
 
-  if (tokenCap > DEFAULT_TOKEN_CAP && second && hasAdvisorAmbiguitySignal(recommendations, result.ambiguous === true)) {
-    const secondLabel = recommendationLabel(second.skill);
-    if (!secondLabel && !isDoctorBridgeId(second.skill)) {
+  const precomputedAmbiguous = typeof result.ambiguous === 'boolean' ? result.ambiguous : undefined;
+  if (tokenCap > DEFAULT_TOKEN_CAP && second && hasAdvisorAmbiguitySignal(recommendations, precomputedAmbiguous)) {
+    // The scorer names its own tie partners, which can sit below the second passing
+    // entry, so prefer a named partner and fall back to the second entry.
+    const namedPartners = (top as RenderableRecommendation).ambiguousWith;
+    const ambiguousWith: readonly string[] = Array.isArray(namedPartners) ? namedPartners : [];
+    const vs = (ambiguousWith.length > 0
+      ? recommendations.find((recommendation) => ambiguousWith.includes(recommendation.skill))
+      : undefined) ?? second;
+    const vsLabel = recommendationLabel(vs.skill);
+    if (!vsLabel && !isDoctorBridgeId(vs.skill)) {
       observeAdvisorPolicy(null, options);
       return null;
     }
-    if (secondLabel) {
+    if (vsLabel) {
       const head = `Advisor: ${result.freshness}; ambiguous: ${topLabel} `
-        + `${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} `
-        + `${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`;
+        + `${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${vsLabel} `
+        + `${formatScore(vs.confidence)}/${formatScore(vs.uncertainty)} pass.`;
       const rendered = capWithCompanion(
         head,
-        companionLine(second.skill),
+        companionLine(vs.skill),
         Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
       ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
       observeAdvisorPolicy(rendered, options);
