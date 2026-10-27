@@ -8,7 +8,7 @@ trigger_phrases:
   - "sk-code surface detection"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.2.0.0
 ---
 
 # sk-code shared
@@ -23,7 +23,7 @@ version: 1.1.1.0
 
 This README is also the hub's zero-signal fallback. [`../hub-router.json`](../hub-router.json) names this file as `routerPolicy.defaultResource`, and the router offers it with the disambiguation checklist when a prompt scores no mode. A scored route never loads it.
 
-The folder ships reference files only, with no scripts, assets or graph metadata. Authoritative content lives in the linked files. This page only says what each one is for and who reads it.
+The folder ships reference files and one linter that both workflow modes will call, with no assets or graph metadata. Authoritative content lives in the linked files. This page only says what each one is for and who reads it.
 
 ---
 
@@ -32,14 +32,20 @@ The folder ships reference files only, with no scripts, assets or graph metadata
 ```text example
 shared/
 +-- README.md                          # this index and the hub's zero-signal fallback
-`-- references/
-    +-- stack-detection.md             # surface detection, the primary routing key
-    +-- phase-detection.md             # phase lifecycle and per-surface evidence
-    +-- workflow-implement.md          # implementation doctrine, symlinked into surfaces
-    +-- workflow-debug.md              # debugging doctrine, symlinked into surfaces
-    +-- workflow-verify.md             # verification doctrine, symlinked into surfaces
-    `-- universal/
-        `-- code-quality-standards.md  # severity model for the quality gate
++-- references/
+|   +-- stack-detection.md             # surface detection, the primary routing key
+|   +-- phase-detection.md             # phase lifecycle and per-surface evidence
+|   +-- workflow-implement.md          # implementation doctrine, symlinked into surfaces
+|   +-- workflow-debug.md              # debugging doctrine, symlinked into surfaces
+|   +-- workflow-verify.md             # verification doctrine, symlinked into surfaces
+|   `-- universal/
+|       +-- code-quality-standards.md  # severity model for the quality gate
+|       +-- rule-overrides.md          # how a repository drops or replaces a rule
+|       `-- rule-overrides.json        # the hard floor no override may name
+`-- scripts/
+    +-- check-rule-overrides.cjs       # linter for a checklist's Rule overrides section
+    `-- tests/
+        `-- check-rule-overrides.test.cjs  # node --test suite for the linter
 ```
 
 ---
@@ -85,6 +91,8 @@ Edit the file under [`./references/`](./references/). A symlink resolves to it, 
 | File | Purpose | Read by |
 |---|---|---|
 | [`references/universal/code-quality-standards.md`](./references/universal/code-quality-standards.md) | The stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate | `sk-code-quality` before any implementation-done claim, the `../ROUTER.md` preamble, the `sk-code-review` rule-copy check |
+| [`references/universal/rule-overrides.md`](./references/universal/rule-overrides.md) | The shared contract for a checklist's optional `## Rule overrides` section: row format, rule ids, the hard floor, precedence and how an override is recorded. The floor ids live once in [`references/universal/rule-overrides.json`](./references/universal/rule-overrides.json) | `sk-code-quality` and `sk-code-review` once each adopts it, and the linter below |
+| [`scripts/check-rule-overrides.cjs`](./scripts/check-rule-overrides.cjs) | Checks a checklist's override section, refuses any floor id and is the only path a mode reads a section through. Run `node --test .skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` for its suite | Authors of a checklist with an override section, and both workflow modes once each adopts the contract |
 
 The language-agnostic style guide, comment hygiene included, belongs to the quality mode at [`../sk-code-quality/references/code-style-guide.md`](../sk-code-quality/references/code-style-guide.md).
 
@@ -92,7 +100,7 @@ The language-agnostic style guide, comment hygiene included, belongs to the qual
 
 ## 6. WHAT BELONGS HERE
 
-A file belongs in `shared/` only when it is doctrine about the parent hub or about how its nested modes work together. Surface detection, the phase lifecycle, the cross-surface workflow doctrine and the cross-mode severity model pass that test.
+A file belongs in `shared/` only when it is doctrine about the parent hub or about how its nested modes work together. Surface detection, the phase lifecycle, the cross-surface workflow doctrine, the cross-mode severity model and the rule override contract both modes read pass that test.
 
 A file stays out of `shared/` when a single mode or surface owns it:
 

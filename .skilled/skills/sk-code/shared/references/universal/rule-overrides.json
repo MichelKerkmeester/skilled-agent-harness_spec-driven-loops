@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "description": "The fixed parts of the shared rule override contract. `fixed` lists the hard floor, the rule ids no `## Rule overrides` section may name, and an entry ending in `.*` fixes every id in that class. `machineCheckedClasses` lists the classes the runner checks itself, which take a `none` row but never a `replace:` row. rule-overrides.md explains the contract, and check-rule-overrides.cjs reads this file.",
+  "fixed": [
+    {
+      "id": "syntax.*",
+      "rule": "Parse failure: the file does not parse in its language"
+    },
+    {
+      "id": "conflict.*",
+      "rule": "Merge-conflict markers left in a text file"
+    },
+    {
+      "id": "secret.*",
+      "rule": "Credential signature: a private-key header or a token in a known format"
+    },
+    {
+      "id": "floor.hardcoded-secrets",
+      "rule": "No hardcoded secrets: credentials come from the environment or a secret store"
+    },
+    {
+      "id": "floor.input-validation",
+      "rule": "Input validation: every external input is validated at the boundary"
+    },
+    {
+      "id": "floor.silent-failures",
+      "rule": "No silent failures: an error reaches the caller or is logged with context"
+    },
+    {
+      "id": "floor.initialization-safety",
+      "rule": "Initialization safety: setup guards against double init, races and partial loads"
+    },
+    {
+      "id": "floor.resource-cleanup",
+      "rule": "Resource cleanup: handles, connections, subscriptions and timers close deterministically"
+    },
+    {
+      "id": "floor.accessibility",
+      "rule": "Accessibility for UI code: keyboard-operable, an accessible name and a visible focus state"
+    },
+    {
+      "id": "review.severity",
+      "rule": "The review severity ids P0, P1 and P2 and what each one means"
+    },
+    {
+      "id": "review.reach",
+      "rule": "The review reach rule: a P0 or P1 finding names an input or caller in reach"
+    },
+    {
+      "id": "review.security-minimums",
+      "rule": "Review security minimums: auth and authorization gaps, injection exposure, unsafe secrets handling and privilege misuse"
+    },
+    {
+      "id": "review.correctness-minimums",
+      "rule": "Review correctness minimums: regression risk, contract safety, spec mismatch, destructive side effects and boundary handling"
+    }
+  ],
+  "machineCheckedClasses": [
+    "hygiene",
+    "debug",
+    "dist"
+  ]
+}

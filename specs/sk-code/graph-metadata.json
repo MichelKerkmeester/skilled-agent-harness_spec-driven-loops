@@ -19,7 +19,8 @@
     "sk-code/013-private-surface-skills",
     "sk-code/014-code-modes-research",
     "sk-code/015-quality-agnostic-gate",
-    "sk-code/016-review-mode-followups"
+    "sk-code/016-review-mode-followups",
+    "sk-code/017-portable-code-modes"
   ],
   "manual": {
     "depends_on": [],

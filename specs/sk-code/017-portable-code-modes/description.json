@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-code/017-portable-code-modes",
+  "description": "Make sk-code quality, review and CI portable to any repository",
+  "keywords": [
+    "sk-code",
+    "quality",
+    "review",
+    "portable",
+    "repository"
+  ],
+  "lastUpdated": "2026-10-27T20:47:57.604Z",
+  "specId": "017",
+  "folderSlug": "portable-code-modes",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
