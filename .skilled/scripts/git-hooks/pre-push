@@ -86,6 +86,27 @@ if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_comm
 fi
 # <<< hook trust
 
+# Every git call below that reads the index or the working tree goes through
+# git_bounded: fsmonitor off and a wall-clock bound, so a wedged daemon cannot hang a
+# push. A timeout is recorded and the exit trap turns it into a refusal, whatever the
+# gate that made the call would have decided with an empty answer. Without the helper
+# the calls run unbounded, as before, with fsmonitor still off.
+_bounded_git_lib="$(cd "$(dirname "$_trust_self")" && pwd -P)/lib/bounded-git.sh"
+if [[ -r "$_bounded_git_lib" ]]; then
+  # shellcheck source=lib/bounded-git.sh
+  . "$_bounded_git_lib"
+  git_bound_arm
+else
+  echo "WARNING [gate:git-timeout]: $_bounded_git_lib is missing, so git calls here run without a time bound." >&2
+  git_bounded() { git -c core.fsmonitor=false "$@"; }
+  git_bound_finish() { exit "$1"; }
+fi
+_pre_push_exit() {
+  local rc=$?
+  git_bound_finish "$rc"
+}
+trap _pre_push_exit EXIT
+
 # Mass-deletion guard: source if present. The gate inside the loop checks that
 # its function actually loaded before using it, so a lib that fails to load means
 # the deletion ceiling is not enforced (fail-open). A lib missing from a checkout
@@ -239,7 +260,7 @@ while read -r _ local_sha remote_ref remote_sha; do
     fi
   fi
 
-  if [[ "$is_new" -eq 0 ]] && ! git -C "$REPO_ROOT" diff --quiet "$remote_sha" "$local_sha" -- .opencode/skills .skilled/skills 2>/dev/null; then
+  if [[ "$is_new" -eq 0 ]] && ! git_bounded -C "$REPO_ROOT" diff --quiet "$remote_sha" "$local_sha" -- .opencode/skills .skilled/skills 2>/dev/null; then
     SKILL_CHANGES_PUSHED=1
   fi
 
@@ -524,7 +545,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
   for pushed_sha in $PUSHED_SHAS; do
     [[ -f "$ROUTE_GUARD" && -n "$HEAD_SHA" && "$pushed_sha" == "$HEAD_SHA" ]] || continue
     git -C "$REPO_ROOT" cat-file -e "${pushed_sha}^{commit}" 2>/dev/null || continue
-    if ! git -C "$REPO_ROOT" diff --quiet "$pushed_sha" -- "${ROUTING_BYTES[@]}" 2>/dev/null; then
+    if ! git_bounded -C "$REPO_ROOT" diff --quiet "$pushed_sha" -- "${ROUTING_BYTES[@]}" 2>/dev/null; then
       {
         echo ""
         echo "BLOCKED [gate:routing-commit-parity]: the routing bytes you are pushing are"

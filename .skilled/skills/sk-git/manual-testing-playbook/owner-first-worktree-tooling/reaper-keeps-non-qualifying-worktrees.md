@@ -1,7 +1,7 @@
 ---
 title: "GIT-033 -- Keep human, detached, dirty, and marker-ambiguous worktrees"
 description: "This scenario validates report-only keep behavior for `GIT-033`. It focuses on prove the reaper leaves every non-qualifying worktree alone: human task, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar work/ branches."
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # GIT-033 -- Keep human, detached, dirty, and marker-ambiguous worktrees
@@ -61,8 +61,7 @@ Add a sixth fixture worktree on a `work/human` branch (missing the runtime/slug 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [worktree-reaper.md](../../feature-catalog/session-lifecycle/worktree-reaper.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

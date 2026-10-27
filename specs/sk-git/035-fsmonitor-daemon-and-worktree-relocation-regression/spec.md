@@ -56,7 +56,7 @@ _memory:
 | **Parent Packet** | sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression |
 | **Predecessor** | sk-git/026-worktree-hygiene-and-relocation |
 | **Successor** | None |
-| **Handoff Criteria** | All four phases validate under `--strict`, and no stray or wedged fsmonitor daemon survives a worktree removal |
+| **Handoff Criteria** | All six phases validate under `--strict`, and no stray or wedged fsmonitor daemon survives a worktree removal |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -83,6 +83,8 @@ Make an unanswered fsmonitor daemon cost seconds instead of half an hour, stop o
 - Persist the worktree base only when it was chosen on purpose, move the worktrees outside the checkout, and warn from the doctor when they drift back in (phase 002).
 - Add a daemon reaper that stops fsmonitor daemons whose worktree is gone, and a wedge probe that replaces a daemon that no longer answers (phase 003).
 - Give the pre-push gate's index-reading git calls and their close siblings a timeout and the `-c core.fsmonitor=false` opt-out (phase 004).
+- Close the reaper's open review gaps, sweep daemons of deleted repositories on request, and bound the shell hooks' and the launcher's index-reading git calls through one helper (phase 005).
+- Remove finished numbered worktrees from a throttled session-start sweep, with every reaper git call and process probe bounded and every doubt keeping the worktree (phase 006).
 
 ### Out of Scope
 - Patching git itself. The unbounded wait is upstream code, and release notes up to 2.53 carry no fix.
@@ -102,6 +104,11 @@ Make an unanswered fsmonitor daemon cost seconds instead of half an hour, stop o
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs` | Modify | 004 | Same pair on its `git check-ignore` |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | Modify | 004 | Same pair on its `git check-ignore` |
 | `.skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs` | Modify | 004 | Same pair on its `git status` |
+| `.skilled/bin/fsmonitor-daemon-reaper.sh` | Modify | 005 | Start-time recheck, single-owner stop, fresh worktree list for strays, `--orphans` |
+| `.skilled/scripts/git-hooks/lib/bounded-git.sh` | Create | 005 | Shared bounded git for the pre-commit and pre-push hooks and the launcher |
+| `.skilled/bin/worktree-reaper.sh` | Modify | 006 | Opt-in numbered lane, orphan report, bounded probe and git calls, refusal handling |
+| `.skilled/bin/worktree-guard.sh` | Modify | 006 | Throttled detached numbered sweep behind `SPECKIT_WORKTREE_AUTOREAP` |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Modify | 006 | Informational `numbered worktrees:` line |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,6 +124,8 @@ Make an unanswered fsmonitor daemon cost seconds instead of half an hour, stop o
 | 2 | 002-worktree-relocation-restore/ | Worktrees back outside the checkout, no silent re-pin of the in-checkout default | In Progress |
 | 3 | 003-fsmonitor-daemon-lifecycle/ | Reap daemons whose worktree is gone, and replace wedged daemons | Complete |
 | 4 | 004-push-gate-git-timeout/ | Timeout and fsmonitor opt-out on the pre-push gate's git calls | Complete |
+| 5 | 005-reaper-hardening/ | Reaper start-time, single-owner stop and mid-run registration guards, `--orphans` for deleted repositories, and one bounded-git helper for the hook and launch git calls | Complete |
+| 6 | 006-numbered-worktree-cleanup/ | Opt-in `--numbered` reaper lane for merged, idle sk-git worktrees, a throttled SessionStart sweep, bounded reaper git calls and process probe, and a doctor count | Complete |
 
 Phase 004 has no dependency on 002 or 003. It is the cheapest change and removes the push stall on its own, so it can ship first.
 
@@ -134,6 +143,8 @@ Phase 004 has no dependency on 002 or 003. It is the cheapest change and removes
 | 001-deep-research | 002-worktree-relocation-restore | All five research questions answered, fix design written per layer | `001-deep-research/research/research.md` sections 5 and 6 |
 | 002-worktree-relocation-restore | 003-fsmonitor-daemon-lifecycle | A launch without an explicit base leaves `speckit.worktreeBase` unchanged | `bash .skilled/bin/tests/worktree-session.test.sh` passes |
 | 003-fsmonitor-daemon-lifecycle | 004-push-gate-git-timeout | Removing a worktree leaves no daemon attributed to it | The reaper's dry-run lists no stray daemon after a removal |
+| 004-push-gate-git-timeout | 005-reaper-hardening | The pre-push skill gate ends within its bound with the daemon stopped | `005-reaper-hardening/acceptance-criteria.md` lists every row Met |
+| 005-reaper-hardening | 006-numbered-worktree-cleanup | `lib/bounded-git.sh` exists and the reaper suite passes | `bash .skilled/bin/tests/worktree-reaper.test.sh` prints `FAIL=0` and `006-numbered-worktree-cleanup/acceptance-criteria.md` lists every row Met |
 <!-- /ANCHOR:phase-map -->
 
 ---

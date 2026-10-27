@@ -91,6 +91,9 @@ const WORKTREE_WATCH_LIMIT = 3;
 // The daemon listing is one informational line, so a hung listing is cut short
 // rather than left to delay the whole battery.
 const FSMON_REAPER_TIMEOUT = 20000;
+// The numbered-worktree listing runs a dry run that reads each worktree's status, so it
+// gets a longer bound, and is just as informational.
+const NUMBERED_REAPER_TIMEOUT = 45000;
 const CONTRACT_REPAIR = '/doctor:git standards';
 const GATES_REPAIR = '/doctor:git hooks';
 const COMMIT_ID_REPAIR = `restore ${ownLabel('skills/sk-git/scripts/commit-id-naming.sh')}, or git config --local skilled.commitId false`;
@@ -702,6 +705,33 @@ function fsmonitorDaemonsDetail(ctx) {
     : summary;
 }
 
+// A dry run of the reaper's numbered lane counts the worktrees it would remove, the ones it
+// keeps, and the folders under the base that git does not know about. The line is
+// informational: removal is the sweep's job and the operator's call, and a worktree the
+// reaper keeps is not a fault.
+function numberedWorktreesDetail(ctx) {
+  const reaper = process.env.SPECKIT_WORKTREE_REAPER || path.join(OWN_ROOT, 'bin', 'worktree-reaper.sh');
+  const notChecked = (reason) => `numbered worktrees: not checked (${reason})`;
+  if (!fs.existsSync(reaper)) return notChecked('no reaper script');
+  if (BASH_BIN === null) return notChecked('cannot run bash');
+  const result = runCommand(ctx.repoRoot, BASH_BIN, [reaper, '--numbered', '--dry-run'], process.env, NUMBERED_REAPER_TIMEOUT);
+  if (result.error) {
+    return notChecked(result.error.code === 'ETIMEDOUT'
+      ? `timed out after ${NUMBERED_REAPER_TIMEOUT} ms`
+      : result.error.message);
+  }
+  if (result.status !== 0) return notChecked(`reaper exited ${result.status}`);
+  const counts = { reap: 0, keep: 0, orphan: 0 };
+  for (const line of result.stdout.split('\n')) {
+    const verdict = line.match(/^numbered verdict=(would-reap|keep) /);
+    if (verdict) counts[verdict[1] === 'keep' ? 'keep' : 'reap'] += 1;
+    else if (line.startsWith('orphan path=')) counts.orphan += 1;
+  }
+  const summary = `numbered worktrees: ${counts.reap} would reap, ${counts.keep} keep, ${counts.orphan} orphan folders`;
+  const reaperLabel = process.env.SPECKIT_WORKTREE_REAPER ? reaper : ownLabel(path.join('bin', 'worktree-reaper.sh'));
+  return counts.reap > 0 ? `${summary}; the launch sweep removes them, or run bash ${reaperLabel} --numbered` : summary;
+}
+
 // PASS requires the base itself to be a writable directory, or, when it does
 // not exist yet, its nearest existing ancestor to be a writable directory,
 // because the helper creates the base with mkdir -p. Each provision entry is
@@ -713,7 +743,11 @@ function fsmonitorDaemonsDetail(ctx) {
 function checkWorktrees(ctx) {
   const source = 'SPECKIT_WORKTREE_BASE | speckit.worktreeBase | .worktrees + worktree-provision-paths.txt';
   const base = resolveWorktreeBase(ctx.repoRoot);
-  const details = [`base: ${repoLabel(ctx.repoRoot, base.dir)} (from ${base.source})`, fsmonitorDaemonsDetail(ctx)];
+  const details = [
+    `base: ${repoLabel(ctx.repoRoot, base.dir)} (from ${base.source})`,
+    fsmonitorDaemonsDetail(ctx),
+    numberedWorktreesDetail(ctx),
+  ];
   const provisionFile = path.join(OWN_ROOT, 'skills', 'sk-git', 'scripts', 'worktree-provision-paths.txt');
   if (fs.existsSync(provisionFile)) {
     for (const { dir, output } of readProvisionEntries(provisionFile)) {

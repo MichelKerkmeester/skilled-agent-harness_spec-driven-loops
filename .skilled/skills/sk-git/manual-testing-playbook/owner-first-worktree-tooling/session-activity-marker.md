@@ -1,7 +1,7 @@
 ---
 title: "GIT-030 -- Session-activity marker recorded and read"
 description: "This scenario validates Session-activity marker recorded and read for `GIT-030`. It focuses on prove a launched top-level session records a PID marker under the common git dir that the reaper later uses to prove liveness or death."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GIT-030 -- Session-activity marker recorded and read
@@ -61,8 +61,7 @@ Delete the `worktree-sessions/` directory's write permission before launch to co
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [launch-wrapper-session-isolation.md](../../feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

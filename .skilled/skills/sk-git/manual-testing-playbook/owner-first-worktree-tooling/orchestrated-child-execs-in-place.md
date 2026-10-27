@@ -1,7 +1,7 @@
 ---
 title: "GIT-028 -- Orchestrated child execs in place"
 description: "This scenario validates Orchestrated child execs in place for `GIT-028`. It focuses on prove a dispatched child (AI_SESSION_CHILD=1) or a session already inside a linked worktree execs the runtime in place instead of allocating a second nested worktree."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # GIT-028 -- Orchestrated child execs in place
@@ -61,8 +61,7 @@ Confirm `SYSTEM_SPEC_GATE_ENFORCE=0` is exported before the in-place exec, so a 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [launch-wrapper-session-isolation.md](../../feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

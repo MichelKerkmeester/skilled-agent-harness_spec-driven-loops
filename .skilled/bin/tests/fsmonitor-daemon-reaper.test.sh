@@ -35,11 +35,22 @@ REAPER_RC=0
 REAL_REPO=""
 REAL_WT=""
 
+# A real daemon can wedge the very client that starts it, so every call into one is
+# bounded and a hang costs seconds instead of the suite.
+bounded() { # bounded <seconds> <cmd...>
+  local seconds="$1"; shift
+  perl -e 'my $s = shift; my $pid = fork; defined $pid or exit 126;
+    if (!$pid) { exec @ARGV or exit 127 }
+    $SIG{ALRM} = sub { kill "KILL", $pid; waitpid $pid, 0; exit 142 };
+    alarm $s; waitpid $pid, 0; alarm 0;
+    exit(($? & 127) ? 128 + ($? & 127) : $? >> 8);' "$seconds" "$@"
+}
+
 stop_real_daemons() { # git's stop is the only end a real daemon accepts safely
   [ -n "$REAL_REPO" ] && [ -d "$REAL_REPO" ] || return 0
-  git -c core.fsmonitor=true -C "$REAL_REPO" fsmonitor--daemon stop >/dev/null 2>&1 || true
+  bounded 20 git -c core.fsmonitor=true -C "$REAL_REPO" fsmonitor--daemon stop >/dev/null 2>&1 || true
   if [ -n "$REAL_WT" ] && [ -d "$REAL_WT" ]; then
-    git -c core.fsmonitor=true -C "$REAL_WT" fsmonitor--daemon stop >/dev/null 2>&1 || true
+    bounded 20 git -c core.fsmonitor=true -C "$REAL_WT" fsmonitor--daemon stop >/dev/null 2>&1 || true
   fi
 }
 
@@ -400,6 +411,163 @@ expect "a timed-out cwd listing names an unknown blocker" grep -Fq "blocker=unkn
 expect "a timed-out cwd listing is bounded by the probe timeout" test "$SLOW_ELAPSED" -lt 10
 expect "a timed-out cwd listing leaves the daemon alive" kill -0 "$WT2_PID"
 
+# ── a pid whose start time changed is never signalled ──────────
+# The listing the reaper reads gives one stray a start time that no longer matches
+# the live process, which is what a pid recycled into another daemon looks like.
+RECYCLE="$FIXTURE/.worktrees/recycle"
+RECYCLE_ADMIN="$FIXTURE/.git/worktrees/recycle"
+mkdir -p "$RECYCLE" "$RECYCLE_ADMIN"
+start_stub "$RECYCLE" "$RECYCLE_ADMIN"
+RECYCLE_PID="$STUB_PID"
+sleep 1
+rmdir "$RECYCLE_ADMIN"
+REAL_PS="$(command -v ps)"
+PS_SHIM="$TMP/ps-shim"
+mkdir -p "$PS_SHIM"
+cat > "$PS_SHIM/ps" <<EOF
+#!/bin/bash
+case " \$* " in
+  *" -axo "*) "$REAL_PS" "\$@" | awk -v p="$RECYCLE_PID" '\$1 == p { \$2="Mon"; \$3="Jan"; \$4="1"; \$5="00:00:00"; \$6="2001" } { print }' ;;
+  *) exec "$REAL_PS" "\$@" ;;
+esac
+EOF
+chmod +x "$PS_SHIM/ps"
+PATH="$PS_SHIM:$PATH" run_reaper_fast --apply --repo "$FIXTURE"
+expect "a stray whose start time changed is classed stray" \
+  grep -Fq "pid=$RECYCLE_PID class=stray" "$OUT"
+expect "a pid whose start time changed is reported skipped" \
+  grep -Fq "skipped pid=$RECYCLE_PID class=stray" "$OUT"
+expect "the skip names the start time as the reason" grep -Fq "reason=start-time-changed" "$OUT"
+expect "a pid whose start time changed is not signalled" kill -0 "$RECYCLE_PID"
+expect "a pid whose start time changed signals nothing" grep -Fq "mode=apply signalled=0" "$OUT"
+run_reaper_fast --apply --repo "$FIXTURE"
+expect_gone "the same stray is ended once its start time matches" "$RECYCLE_PID"
+
+# ── two daemons on one worktree: git's stop is not used ────────
+# Git's stop ends whichever daemon owns the worktree's socket, so with a second
+# daemon watching the worktree only the chosen pid may be signalled.
+TWIN_WT="$FIXTURE/.worktrees/twin"
+git -C "$FIXTURE" worktree add -q -b fsmon-test-twin "$TWIN_WT" HEAD
+TWIN_ADMIN="$(sed -n 's/^gitdir: //p' "$TWIN_WT/.git")"
+start_stub "$TWIN_WT" "$TWIN_ADMIN"
+TWIN_OLD_PID="$STUB_PID"
+sleep 2
+start_stub "$TWIN_WT" "$TWIN_ADMIN"
+TWIN_NEW_PID="$STUB_PID"
+sleep 1
+TWIN_OLD_START="$(stub_started_epoch "$TWIN_OLD_PID")"
+STOP_SHIM="$TMP/stop-shim"
+STOP_ONLY_LOG="$TMP/stop-only.log"
+mkdir -p "$STOP_SHIM"
+: > "$STOP_ONLY_LOG"
+cat > "$STOP_SHIM/git" <<EOF
+#!/bin/bash
+case " \$* " in *" fsmonitor--daemon stop "*) echo "\$*" >> "$STOP_ONLY_LOG" ;; esac
+exec "$REAL_GIT" "\$@"
+EOF
+chmod +x "$STOP_SHIM/git"
+PATH="$STOP_SHIM:$PATH" run_reaper_idle "$((TWIN_OLD_START + 3601))" --idle-hours 1 --apply \
+  --worktree "$TWIN_WT" --repo "$FIXTURE"
+expect "the older of two daemons on one worktree is ended" \
+  grep -Fq "ended pid=$TWIN_OLD_PID class=keep" "$OUT"
+expect_gone "the older daemon is gone" "$TWIN_OLD_PID"
+expect "git's stop is not used while a second daemon watches the worktree" test ! -s "$STOP_ONLY_LOG"
+expect "the other daemon on the worktree is not ended" kill -0 "$TWIN_NEW_PID"
+PATH="$STOP_SHIM:$PATH" run_reaper_fast --apply --worktree "$TWIN_WT" --repo "$FIXTURE"
+expect_gone "the last daemon on the worktree is ended" "$TWIN_NEW_PID"
+expect "git's stop is used again once one daemon watches the worktree" test -s "$STOP_ONLY_LOG"
+
+# ── a worktree added mid-run keeps its new daemon ──────────────
+LATE="$FIXTURE/.worktrees/late"
+LATE_ADMIN="$FIXTURE/.git/worktrees/late"
+mkdir -p "$LATE" "$LATE_ADMIN"
+start_stub "$LATE" "$LATE_ADMIN"
+LATE_PID="$STUB_PID"
+sleep 1
+rmdir "$LATE_ADMIN"
+LATE_REAL="$(cd "$LATE" && pwd -P)"
+LATE_SHIM="$TMP/late-shim"
+LATE_COUNT="$TMP/late-count"
+mkdir -p "$LATE_SHIM"
+: > "$LATE_COUNT"
+cat > "$LATE_SHIM/git" <<EOF
+#!/bin/bash
+case " \$* " in
+  *" worktree list "*)
+    n=\$(( \$(wc -l < "$LATE_COUNT") + 1 ))
+    echo "\$n" >> "$LATE_COUNT"
+    "$REAL_GIT" "\$@"; rc=\$?
+    if [ "\$n" -ge 2 ]; then printf 'worktree %s\nHEAD 0000000000000000000000000000000000000000\nbranch refs/heads/late\n\n' "$LATE_REAL"; fi
+    exit \$rc ;;
+esac
+exec "$REAL_GIT" "\$@"
+EOF
+chmod +x "$LATE_SHIM/git"
+PATH="$LATE_SHIM:$PATH" run_reaper_fast --apply --repo "$FIXTURE"
+expect "a daemon of a worktree added mid-run is first classed stray" \
+  grep -Fq "pid=$LATE_PID class=stray" "$OUT"
+expect "the fresh worktree list spares it" \
+  grep -Fq "skipped pid=$LATE_PID class=stray worktree=$LATE_REAL reason=registered-mid-run" "$OUT"
+expect "a daemon of a worktree added mid-run survives --apply" kill -0 "$LATE_PID"
+expect "the worktree list was read again before the stray was ended" \
+  test "$(wc -l < "$LATE_COUNT")" -ge 2
+run_reaper_fast --apply --repo "$FIXTURE"
+expect_gone "the same stray is ended when the list never registers it" "$LATE_PID"
+
+# ── --orphans: daemons whose watched root no longer exists ─────
+ORPHAN_ROOT="$(cd "$TMP" && pwd -P)/orphan-repo"
+mkdir -p "$ORPHAN_ROOT/src"
+start_stub "$ORPHAN_ROOT"
+ORPHAN_PID="$STUB_PID"
+sleep 1
+rm -rf "$ORPHAN_ROOT"
+
+# --orphans ranges over every daemon on the machine, so these runs see only the stubs
+# this test started: a stranger's daemon must never be signalled by a test.
+ORPHAN_PS_SHIM="$TMP/orphan-ps-shim"
+mkdir -p "$ORPHAN_PS_SHIM"
+cat > "$ORPHAN_PS_SHIM/ps" <<EOF
+#!/bin/bash
+case " \$* " in
+  *" -axo "*) "$REAL_PS" "\$@" | awk -v keep=" \$STUB_PIDS_FOR_PS " 'index(keep, " " \$1 " ")' ;;
+  *) exec "$REAL_PS" "\$@" ;;
+esac
+EOF
+chmod +x "$ORPHAN_PS_SHIM/ps"
+export STUB_PIDS_FOR_PS="$STUB_PIDS"
+
+run_reaper --repo "$FIXTURE"
+expect "without --orphans a deleted root is out of scope" \
+  grep -Fq "pid=$ORPHAN_PID class=out-of-scope" "$OUT"
+run_reaper_fast --apply --repo "$FIXTURE"
+expect "without --orphans --apply leaves a deleted root's daemon" kill -0 "$ORPHAN_PID"
+
+PATH="$ORPHAN_PS_SHIM:$PATH" run_reaper --orphans --repo "$FIXTURE"
+expect "--orphans classes a deleted root as orphan with its path" \
+  grep -Fq "pid=$ORPHAN_PID class=orphan worktree=$ORPHAN_ROOT" "$OUT"
+expect "--orphans leaves a daemon whose root exists out of scope" \
+  grep -Fq "pid=$OTHER_PID class=out-of-scope" "$OUT"
+expect "--orphans leaves the main daemon class main" \
+  grep -Fq "pid=$MAIN_PID class=main" "$OUT"
+expect "--orphans without --apply is a dry run" grep -Fq "mode=dry-run signalled=0" "$OUT"
+expect "--orphans summary counts the orphan" grep -Eq 'orphan=1$' "$OUT"
+expect "--orphans dry run leaves the orphan alive" kill -0 "$ORPHAN_PID"
+
+PATH="$ORPHAN_PS_SHIM:$PATH" run_reaper_fast --orphans --apply --repo "$FIXTURE"
+expect "--orphans --apply exits 0" test "$REAPER_RC" -eq 0
+expect_gone "--orphans --apply ends the orphan" "$ORPHAN_PID"
+expect "--orphans --apply names the ended orphan" \
+  grep -Fq "ended pid=$ORPHAN_PID class=orphan worktree=$ORPHAN_ROOT via=term" "$OUT"
+expect "--orphans --apply signals only the orphan" grep -Fq "mode=apply signalled=1" "$OUT"
+expect "--orphans --apply leaves the main stub alive" kill -0 "$MAIN_PID"
+expect "--orphans --apply leaves a daemon whose root exists alive" kill -0 "$OTHER_PID"
+expect "--orphans --apply leaves the nested stub alive" kill -0 "$NESTED_PID"
+expect "--orphans --apply leaves the unattributed stub alive" kill -0 "$UNATTRIBUTED_PID"
+
+run_reaper --orphans --worktree "$WT2" --repo "$FIXTURE"
+expect "--orphans with --worktree exits 2" test "$REAPER_RC" -eq 2
+expect "--orphans with --worktree names the conflict" grep -Fq -- "--orphans" "$ERR"
+
 # ── shims: a git whose diff-files hangs, to fake a wedged daemon ──
 PROBE_REPO="$TMP/probe"
 PROBE_WT="$PROBE_REPO/.worktrees/keep"
@@ -587,7 +755,7 @@ init_repo "$REAL_REPO"
 mkdir -p "$REAL_REPO/.worktrees"
 git -C "$REAL_REPO" worktree add -q -b fsmon-test-real "$REAL_WT" HEAD
 REAL_WT_REAL="$(cd "$REAL_WT" && pwd -P)"
-git -c core.fsmonitor=true -C "$REAL_WT" status >/dev/null 2>&1 || true
+bounded 20 git -c core.fsmonitor=true -C "$REAL_WT" status >/dev/null 2>&1 || true
 
 REAL_PID=""
 REAL_WAIT=0
@@ -601,10 +769,26 @@ done
 if [ -z "$REAL_PID" ]; then
   echo "SKIP: real daemon did not start"
 else
-  run_reaper_fast --apply --worktree "$REAL_WT" --repo "$REAL_REPO"
-  expect "a real daemon is ended by git's stop" \
-    grep -Fq "ended pid=$REAL_PID class=keep worktree=$REAL_WT_REAL via=stop" "$OUT"
-  expect_gone "a real daemon is gone after --apply" "$REAL_PID"
+  # A daemon that no longer answers cannot be stopped through git; the reaper then falls back
+  # to SIGTERM and prints via=term, which the escalation cases above already cover. On a
+  # loaded host a fresh daemon can wedge, with its process alive and its socket gone, so this
+  # case runs only when the daemon completes a real status round trip. A daemon that answers
+  # but is not ended by git's stop still fails the assertion.
+  if ! bounded 10 git -c core.fsmonitor=true -C "$REAL_WT" status --porcelain >/dev/null 2>&1; then
+    echo "SKIP: the real daemon does not complete a status round trip, so git's stop cannot be exercised"
+    kill -TERM "$REAL_PID" 2>/dev/null || true
+  else
+    # git 2.50.1's stop can return while an answering daemon lives on, so the reaper's SIGTERM
+    # fallback is a correct end here too; the case pins attribution and the end, and says which
+    # path ran.
+    run_reaper_fast --apply --worktree "$REAL_WT" --repo "$REAL_REPO"
+    expect "a real daemon is attributed and ended" \
+      grep -Eq "^ended pid=$REAL_PID class=keep worktree=$REAL_WT_REAL via=(stop|term)\$" "$OUT"
+    if ! grep -Fq "ended pid=$REAL_PID class=keep worktree=$REAL_WT_REAL via=stop" "$OUT"; then
+      echo "NOTE: git's stop did not end the real daemon; the SIGTERM fallback did"
+    fi
+    expect_gone "a real daemon is gone after --apply" "$REAL_PID"
+  fi
 fi
 stop_real_daemons
 

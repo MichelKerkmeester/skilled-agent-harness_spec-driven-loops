@@ -1,7 +1,7 @@
 ---
 title: "GIT-024 -- Slug/NNN/branch/pair grammar validation"
 description: "This scenario validates Slug/NNN/branch/pair grammar validation for `GIT-024`. It focuses on prove validate-slug, validate-nnn, validate-branch, validate-backup, and validate-pair accept every legal numbered form and reject every malformed one."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # GIT-024 -- Slug/NNN/branch/pair grammar validation
@@ -61,8 +61,7 @@ Run `validate-branch` against `work/opencode/20260101-1` and confirm it validate
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [owner-first-worktree-naming.md](../../feature-catalog/worktree-naming/owner-first-worktree-naming.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

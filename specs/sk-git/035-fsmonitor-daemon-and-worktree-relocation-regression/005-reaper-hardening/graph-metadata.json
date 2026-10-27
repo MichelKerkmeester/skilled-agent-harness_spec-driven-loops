@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening",
+  "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening",
+  "parent_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reaper hardening",
+      "phase 5 reaper hardening",
+      "reaper hardening plan",
+      "reaper hardening tasks",
+      "reaper hardening acceptance criteria",
+      "reaper hardening implementation summary"
+    ],
+    "key_topics": [
+      "reaper",
+      "hardening",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "checks",
+      "only",
+      "pid"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/fsmonitor-daemon-reaper.sh",
+      ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
+      ".skilled/scripts/git-hooks/lib/bounded-git.sh",
+      ".skilled/scripts/git-hooks/lib/mass-deletion-guard.sh",
+      ".skilled/bin/worktree-session.sh",
+      ".skilled/scripts/git-hooks/tests/bounded-git.test.sh",
+      ".skilled/bin/tests/worktree-session.test.sh",
+      ".skilled/skills/sk-git/feature-catalog/session-lifecycle/fsmonitor-daemon-reaper.md",
+      ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md",
+      "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/spec.md",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/scripts/git-hooks/tests/pre-push.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/fsmonitor-daemon-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "bounded-git.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/bounded-git.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mass-deletion-guard.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/mass-deletion-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "bounded-git.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/bounded-git.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-session.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/session-lifecycle/fsmonitor-daemon-reaper.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper-scope-and-refusal.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md",
+        "source": "derived"
+      },
+      {
+        "name": "reaper-dry-run-no-mutation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        "source": "derived"
+      },
+      {
+        "name": "prepush-remote-permission-gate.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reaper checks only a pid's command line before it signals, so a pid recycled into another daemon during one run is signalled",
+    "created_at": "2026-10-27T19:44:42Z",
+    "last_save_at": "2026-10-27T21:40:36.297Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20678895533450088a4f5f82f88f53ba6b8e3f8ddd153a7ded0629f0df796ee6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8cc5341db37c3c5e2ca569fa0b8c9ee461e56c6827caae147d8bd57f3c008d23",
+      "plan.md": "534ee9381c6a4e23627b34db71fa4ce652d7caf5a09ac22b0b69c9d9525ff031",
+      "tasks.md": "0f74a9e3a7ee950b75c8388e91bdc9df016adbf9ba292ce652444c06033fba9c",
+      "implementation-summary.md": "152a5894cfb8cfd55bc03130ece4b3f0a0f59b5788e4886d43d96eba6e2d6653"
+    },
+    "last_active_at": null
+  }
+}

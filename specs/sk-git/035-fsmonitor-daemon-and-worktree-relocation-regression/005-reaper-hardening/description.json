@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening",
+  "description": "Phase 5: reaper-hardening",
+  "keywords": [
+    "phase",
+    "reaper-hardening"
+  ],
+  "lastUpdated": "2026-10-27T19:44:43.789Z",
+  "specId": "005",
+  "folderSlug": "reaper-hardening",
+  "parentChain": [
+    "sk-git",
+    "035-fsmonitor-daemon-and-worktree-relocation-regression"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

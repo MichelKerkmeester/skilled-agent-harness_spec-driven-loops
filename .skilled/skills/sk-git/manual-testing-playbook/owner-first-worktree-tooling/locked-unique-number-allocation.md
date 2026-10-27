@@ -1,7 +1,7 @@
 ---
 title: "GIT-023 -- Locked unique number allocation"
 description: "This scenario validates Locked unique number allocation for `GIT-023`. It focuses on prove concurrent allocator calls each get a distinct, monotonically increasing 3-digit number seeded from every worktree, ref, and stored high-water mark already in use in the target namespace."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # GIT-023 -- Locked unique number allocation
@@ -61,8 +61,7 @@ Re-run the concurrent-allocation step with a deliberately stale lock directory (
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [owner-first-worktree-naming.md](../../feature-catalog/worktree-naming/owner-first-worktree-naming.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

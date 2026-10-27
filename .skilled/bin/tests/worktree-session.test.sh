@@ -573,5 +573,61 @@ done
 expect "dry-run launch succeeds" test "$F14_RC" -eq 0
 expect "dry-run launch never sweeps fsmonitor daemons" test "$F14_LEAKED" -eq 0
 
+# ── F15: the launch-time `worktree add` runs with fsmonitor off and under a bound ──
+# A git that hangs on `worktree add` stands in for a checkout stuck behind a wedged daemon.
+F15_REAL_GIT="$(command -v git)"
+F15_SHIM="$ROOT/f15-shim"
+F15_ARGV="$ROOT/f15.argv"
+mkdir -p "$F15_SHIM"
+cat > "$F15_SHIM/git" <<EOF
+#!/bin/bash
+echo "\$*" >> "$F15_ARGV"
+case " \$* " in *" worktree add "*) [ -z "\${F15_HANG:-}" ] || exec sleep 30 ;; esac
+exec "$F15_REAL_GIT" "\$@"
+EOF
+chmod +x "$F15_SHIM/git"
+
+F15_FIXTURE="$ROOT/f15"
+F15_BASE="$ROOT/f15-base"
+mkdir -p "$F15_FIXTURE" "$F15_BASE"
+make_fixture "$F15_FIXTURE"
+: > "$F15_ARGV"
+set +e
+(
+  cd "$F15_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+    PATH="$F15_SHIM:$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE="$F15_BASE" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f15.stderr"
+F15_RC=$?
+set -e
+expect "a launch with a healthy git succeeds" test "$F15_RC" -eq 0
+expect "worktree add runs with fsmonitor off" \
+  grep -Eq -- '-c core.fsmonitor=false .*worktree add ' "$F15_ARGV"
+
+F15H_FIXTURE="$ROOT/f15h"
+F15H_BASE="$ROOT/f15h-base"
+mkdir -p "$F15H_FIXTURE" "$F15H_BASE"
+make_fixture "$F15H_FIXTURE"
+F15H_START="$(date +%s)"
+set +e
+(
+  cd "$F15H_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+    PATH="$F15_SHIM:$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE="$F15H_BASE" \
+    SPECKIT_WORKTREE_ADD_TIMEOUT=1 \
+    F15_HANG=1 \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f15h.stderr"
+F15H_RC=$?
+set -e
+F15H_ELAPSED=$(( $(date +%s) - F15H_START ))
+expect "a hung worktree add fails the launch" test "$F15H_RC" -ne 0
+expect "a hung worktree add ends within the bound" test "$F15H_ELAPSED" -lt 15
+expect "a hung worktree add names the timeout" grep -Fq "git-timeout: git worktree" "$ROOT/f15h.stderr"
+expect "a hung worktree add says no session started" grep -Fq "no session was started" "$ROOT/f15h.stderr"
+
 echo "worktree-session tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

@@ -1,7 +1,7 @@
 ---
 title: "GIT-029 -- Runtime identity validation"
 description: "This scenario validates Runtime identity validation for `GIT-029`. It focuses on prove the wrapper rejects a path-bearing or non-conforming runtime identity before allocating any worktree, and accepts a normal runtime name found on PATH."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # GIT-029 -- Runtime identity validation
@@ -61,8 +61,7 @@ Repeat step 1 with an uppercase or symbol-laden identity (e.g. `MyRT`) to confir
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [launch-wrapper-session-isolation.md](../../feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

@@ -86,6 +86,28 @@ if _in_toolchain_repo && [[ -r "$_gate_config" ]]; then
   gate_config_apply pre-commit
 fi
 
+# Every git call below that reads the index or the working tree goes through
+# git_bounded: fsmonitor off and a wall-clock bound, so a wedged daemon cannot hang a
+# commit. A timeout is recorded and the exit trap turns it into a refusal, whatever
+# the gate that made the call would have decided with an empty answer. Without the
+# helper the calls run unbounded, as before, with fsmonitor still off.
+_bounded_git_lib="$(cd "$(dirname "$_trust_self")" && pwd -P)/lib/bounded-git.sh"
+if [[ -r "$_bounded_git_lib" ]]; then
+  # shellcheck source=lib/bounded-git.sh
+  . "$_bounded_git_lib"
+  git_bound_arm
+else
+  echo "WARNING [gate:git-timeout]: $_bounded_git_lib is missing, so git calls here run without a time bound." >&2
+  git_bounded() { git -c core.fsmonitor=false "$@"; }
+  git_bound_finish() { exit "$1"; }
+fi
+_pre_commit_exit() {
+  local rc=$?
+  rm -rf "${HYGIENE_DIR:-}"
+  git_bound_finish "$rc"
+}
+trap _pre_commit_exit EXIT
+
 # Mass-deletion guard: retained at pre-push only. A local commit is reversible with
 # git reset; a push reaches other machines and the live-branch autosync.
 
@@ -112,7 +134,7 @@ while IFS= read -r -d '' PRIVATE_PATH; do
   if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE || "$PRIVATE_PATH" =~ $PRIVATE_COMMAND_RE ]]; then
     PRIVATE_STAGED+=("$PRIVATE_PATH")
   fi
-done < <(git diff --cached --name-only -z --diff-filter=ACMRT)
+done < <(git_bounded diff --cached --name-only -z --diff-filter=ACMRT)
 if [[ "${#PRIVATE_STAGED[@]}" -gt 0 ]]; then
   echo "BLOCKED [gate:private-skill]: a private skill or command is staged and would be published:" >&2
   for PRIVATE_PATH in "${PRIVATE_STAGED[@]}"; do
@@ -144,18 +166,17 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   # goes to one checker run, which reports each finding as <path>:<line>. The -- ends
   # the checker's options, so a staged path that starts with -- is checked as a file.
   HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
-  trap 'rm -rf "$HYGIENE_DIR"' EXIT
   HYGIENE_FILES=()
   while IFS= read -r -d '' file; do
     mkdir -p "$HYGIENE_DIR/$(dirname "$file")"
-    if ! git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null; then
+    if ! git_bounded show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null; then
       # A submodule entry has no blob to read. Any other unreadable file must not pass unchecked.
-      [[ "$(git ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
+      [[ "$(git_bounded ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
       echo "BLOCKED [gate:comment-hygiene]: could not read the staged content of $file" >&2
       exit 1
     fi
     HYGIENE_FILES+=("$file")
-  done < <(git diff --cached --name-only -z --diff-filter=ACM)
+  done < <(git_bounded diff --cached --name-only -z --diff-filter=ACM)
   CHECKER_OUTPUT=""
   CHECKER_RC=0
   if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
@@ -207,7 +228,7 @@ MIRROR_CHECKER="$SOURCE_ROOT/bin/check-agent-mirror-sync.cjs"
 STAGED_AGENTS=()
 while IFS= read -r file; do
   [[ -n "$file" ]] && STAGED_AGENTS+=("$file")
-done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
+done < <(git_bounded diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
 
 if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   if [[ ! -f "$MIRROR_CHECKER" ]] && _in_toolchain_repo; then
@@ -279,9 +300,9 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
     .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors
     .skilled/skills/system-spec-kit/runtime/cli/codex
   )
-  UNSTAGED_MIRROR="$( { git diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json' '.skilled/commands/*/README.txt' '.skilled/skills/*/command-metadata.json'; git ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
+  UNSTAGED_MIRROR="$( { git_bounded diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json' '.skilled/commands/*/README.txt' '.skilled/skills/*/command-metadata.json'; git_bounded ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
   if [[ -n "$UNSTAGED_MIRROR" ]]; then
-    STAGED_MIRROR_RELATED="$(git diff --cached --name-only -- "${MIRROR_OUTPUTS[@]}" "${MIRROR_SOURCES[@]}" '.opencode/skills/*/command-metadata.json' '.skilled/skills/*/command-metadata.json' 2>/dev/null)"
+    STAGED_MIRROR_RELATED="$(git_bounded diff --cached --name-only -- "${MIRROR_OUTPUTS[@]}" "${MIRROR_SOURCES[@]}" '.opencode/skills/*/command-metadata.json' '.skilled/skills/*/command-metadata.json' 2>/dev/null)"
     if [[ -n "$STAGED_MIRROR_RELATED" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged:" >&2
@@ -370,7 +391,7 @@ if [[ "${SPECKIT_SKIP_SKILL_AUTHORING:-0}" != "1" ]] && _in_toolchain_repo; then
     # renamed or deleted file lands on the same skill a modified one does. A file
     # sitting directly under skills/ has no skill segment and belongs to no skill root.
     SKILLS_REL="${SOURCE_ROOT#"$REPO_ROOT"/}/skills"
-    SKILLS_STAGED="$(git diff --cached --name-only --diff-filter=ACMRD -- "$SKILLS_REL/" 2>/dev/null || true)"
+    SKILLS_STAGED="$(git_bounded diff --cached --name-only --diff-filter=ACMRD -- "$SKILLS_REL/" 2>/dev/null || true)"
     SKILL_NAMES="$(
       while IFS= read -r path; do
         if [[ -z "$path" ]]; then
@@ -437,7 +458,7 @@ if [[ "${SPECKIT_SKIP_SKILL_AUTHORING:-0}" != "1" ]] && _in_toolchain_repo; then
       # a regenerated fix left unstaged would ship the copy they found stale.
       for DERIVED_NAME in leaf-manifest.json graph-metadata.json; do
         DERIVED_REL="$SKILLS_REL/$SKILL_NAME/$DERIVED_NAME"
-        if ! git diff --quiet -- "$DERIVED_REL" 2>/dev/null; then
+        if ! git_bounded diff --quiet -- "$DERIVED_REL" 2>/dev/null; then
           echo "" >&2
           echo "BLOCKED [gate:skill-authoring]: $SKILL_NAME $DERIVED_REL has unstaged changes; the commit would ship the staged copy" >&2
           echo "Fix: git add $DERIVED_REL" >&2
@@ -459,7 +480,7 @@ fi
 # Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ...
 if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
   CARD_GUARD="${SOURCE_ROOT}/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh"
-  if git diff --cached --name-only --diff-filter=ACM \
+  if git_bounded diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.(opencode|skilled)/skills/(cli-external-orchestration/cli-[a-z-]+/(SKILL\.md|assets/prompt-quality-card\.md)|sk-prompt/(assets/cli-prompt-quality-card\.md|references/patterns-evaluation\.md))'; then
     if [[ ! -f "$CARD_GUARD" ]]; then
       if _in_toolchain_repo; then
@@ -489,7 +510,7 @@ fi
 # Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ...
 if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   MUTCLASS_GUARD="${SOURCE_ROOT}/commands/doctor/scripts/check-mcp-mutation-class.sh"
-  if git diff --cached --name-only --diff-filter=ACM \
+  if git_bounded diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.(opencode|skilled)/(skills/(mcp-tooling/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/(doctor-mcp-install|mcp-mutation-class-manifest)\.yaml)$'; then
     if [[ ! -f "$MUTCLASS_GUARD" ]]; then
       if _in_toolchain_repo; then
@@ -536,7 +557,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   # A repository that does not ship the toolchain has skill trees of its own but no
   # route modules, and nothing to re-mint, so it passes. Inside one that ships the
   # toolchain a missing module still blocks below, naming the module.
-  if [[ -n "$(git diff --cached --name-only --diff-filter=ACMR -- \
+  if [[ -n "$(git_bounded diff --cached --name-only --diff-filter=ACMR -- \
         '.opencode/skills/*/SKILL.md' '.opencode/skills/*/*/SKILL.md' \
         '.opencode/skills/*/hub-router.json' '.opencode/skills/*/mode-registry.json' \
         '.skilled/skills/*/SKILL.md' '.skilled/skills/*/*/SKILL.md' \
@@ -606,7 +627,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       ".skilled/skills/$ROUTE_HUB/mode-registry.json"
       ".skilled/skills/$ROUTE_HUB/*/SKILL.md"
     )
-    ROUTE_STAGED="$(git diff --cached --name-only --diff-filter=ACMR -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
+    ROUTE_STAGED="$(git_bounded diff --cached --name-only --diff-filter=ACMR -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
     [[ -z "$ROUTE_STAGED" ]] && continue
 
     # git runs this hook against a throwaway index when a pathspec narrows the commit
@@ -631,7 +652,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     # Minting reads the working tree, not the index. If an input is only half staged
     # the manifest would describe content this commit does not carry, which is a
     # quieter version of the drift this gate exists to remove. Refuse instead.
-    ROUTE_DIRTY="$(git diff --name-only -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
+    ROUTE_DIRTY="$(git_bounded diff --name-only -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
     if [[ -n "$ROUTE_DIRTY" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: $ROUTE_HUB has routing inputs staged and unstaged at once:" >&2
@@ -677,7 +698,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
-    git add -- "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE"
+    git_bounded add -- "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE"
 
     # Prove it. An add that silently did nothing leaves the commit carrying a stale
     # manifest, and no later local gate can see that, so confirm both paths are in
@@ -692,8 +713,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     # passed, which is precisely the case this check exists to catch.
     ROUTE_CONFIRM=0
     for ROUTE_MANIFEST in "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE"; do
-      if git ls-files --error-unmatch -- "$ROUTE_MANIFEST" >/dev/null 2>&1 \
-         && git diff --quiet -- "$ROUTE_MANIFEST" 2>/dev/null; then
+      if git_bounded ls-files --error-unmatch -- "$ROUTE_MANIFEST" >/dev/null 2>&1 \
+         && git_bounded diff --quiet -- "$ROUTE_MANIFEST" 2>/dev/null; then
         ROUTE_CONFIRM=$((ROUTE_CONFIRM + 1))
       fi
     done
@@ -724,7 +745,7 @@ fi
 if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
   # scratch/ holds working files that are not packet documents, and z_archive/ is
   # retired history nothing should re-derive.
-  SPEC_STAGED_DOCS="$(git diff --cached --name-only --diff-filter=ACMR -- 'specs/**/*.md' 2>/dev/null \
+  SPEC_STAGED_DOCS="$(git_bounded diff --cached --name-only --diff-filter=ACMR -- 'specs/**/*.md' 2>/dev/null \
     | grep -v '/scratch/' | grep -v '/z_archive/' || true)"
 
   if [[ -n "$SPEC_STAGED_DOCS" ]]; then
@@ -778,7 +799,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
       # set -u. The guard above guarantees at least one packet, so this is belt
       # and braces rather than a live path, and it costs nothing.
       for SPEC_PACKET in $SPEC_PACKETS; do
-        SPEC_DIRTY="$(git diff --name-only -- "$SPEC_PACKET" 2>/dev/null | grep -v '/scratch/' || true)"
+        SPEC_DIRTY="$(git_bounded diff --name-only -- "$SPEC_PACKET" 2>/dev/null | grep -v '/scratch/' || true)"
         # Only a half-staged INPUT is a problem: re-deriving reads the working tree,
         # so the gate's own derived outputs (graph-metadata.json, description.json)
         # are outputs, not inputs, and a packet dirty only in those re-derives
@@ -823,10 +844,10 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
       SPEC_WROTE=()
       for SPEC_PACKET in $SPEC_PACKETS; do
         SPEC_PAIR=("$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json")
-        SPEC_CHANGED="$(git diff --name-only -- "${SPEC_PAIR[@]}" 2>/dev/null || true)"
+        SPEC_CHANGED="$(git_bounded diff --name-only -- "${SPEC_PAIR[@]}" 2>/dev/null || true)"
         [[ -z "$SPEC_CHANGED" ]] && continue
         SPEC_WROTE+=("$SPEC_PACKET")
-        git add -- "${SPEC_PAIR[@]}" 2>/dev/null || true
+        git_bounded add -- "${SPEC_PAIR[@]}" 2>/dev/null || true
       done
 
       if [[ "$SPEC_RC" -ne 0 ]]; then
@@ -848,7 +869,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
 
         # Prove it. An add that silently did nothing leaves the commit carrying stale
         # metadata, and no later local gate can see that.
-        SPEC_LEFT="$(git diff --name-only -- "${SPEC_PAIR[@]}" 2>/dev/null || true)"
+        SPEC_LEFT="$(git_bounded diff --name-only -- "${SPEC_PAIR[@]}" 2>/dev/null || true)"
         if [[ -n "$SPEC_LEFT" ]]; then
           echo "" >&2
           echo "BLOCKED [gate:spec-remint]: re-derived $SPEC_PACKET but this did not reach the index:" >&2
@@ -875,7 +896,7 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
    && git rev-parse --verify -q HEAD >/dev/null 2>&1; then
   # Git-only pre-filter, so a commit with no staged skill doc never starts node. SKILL.md
   # carries the skill edition and a changelog entry its release, so neither counts here.
-  DOCV_STAGED="$(git diff --cached --name-only --diff-filter=AMR -- \
+  DOCV_STAGED="$(git_bounded diff --cached --name-only --diff-filter=AMR -- \
       '.skilled/skills/**/*.md' '.opencode/skills/**/*.md' 2>/dev/null \
     | grep -v '/changelog/' | grep -v '/SKILL\.md$' || true)"
   DOCV_ENGINE="$SOURCE_ROOT/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
@@ -930,10 +951,10 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
         DOCV_LEFT=""
         while IFS= read -r DOCV_PATH; do
           [[ -z "$DOCV_PATH" ]] && continue
-          git add -- "$DOCV_PATH" 2>/dev/null || true
+          git_bounded add -- "$DOCV_PATH" 2>/dev/null || true
           # Prove it. A raise that missed the index leaves the commit carrying the old
           # version, and no later local gate can see that.
-          git diff --quiet -- "$DOCV_PATH" 2>/dev/null || DOCV_LEFT+="$DOCV_PATH"$'\n'
+          git_bounded diff --quiet -- "$DOCV_PATH" 2>/dev/null || DOCV_LEFT+="$DOCV_PATH"$'\n'
         done <<< "$DOCV_RAISED"
         if [[ -n "$DOCV_LEFT" ]]; then
           echo "" >&2

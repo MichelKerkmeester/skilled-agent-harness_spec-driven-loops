@@ -1,7 +1,7 @@
 ---
 title: "GIT-026 -- Wrapper-lane exemption vs backup-lane recognition"
 description: "This scenario validates Wrapper-lane exemption vs backup-lane recognition for `GIT-026`. It focuses on prove is_wrapper_branch and is_backup_branch recognize the exempt machine-owned lanes as legal-but-non-task branches while create still rejects a malformed slug before touching the repository."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # GIT-026 -- Wrapper-lane exemption vs backup-lane recognition
@@ -61,8 +61,7 @@ Re-run step 1 against a non-wrapper-shaped `work/human` branch (no runtime/slug 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [owner-first-worktree-naming.md](../../feature-catalog/worktree-naming/owner-first-worktree-naming.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

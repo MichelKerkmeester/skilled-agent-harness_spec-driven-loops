@@ -11,7 +11,9 @@
 # $HOME/.spk-wt-sock and must never be allowed to see the operator's real
 # home directory. The reaper ends only the fsmonitor daemon of a worktree it
 # removes, and one assertion holds it to that so a broader kill path cannot
-# return unnoticed.
+# return unnoticed. A second fixture repo covers the opt-in numbered lane: one
+# worktree per keep rule plus one that qualifies, and a stub lsof and a stub git
+# prove the process check and every git call fail toward keeping.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
@@ -48,6 +50,8 @@ expect_no_daemon_ended() { # expect_no_daemon_ended <desc> <worktree>  -- no dae
 FAKE_HOME="$(mktemp -d)"
 FIXTURE="$(mktemp -d)"
 CUSTOM_BASE="$(mktemp -d)"
+NUM_REPO="$(mktemp -d)"
+SHIM_DIR="$(mktemp -d)"
 STUB_PIDS=""
 cleanup() {
   local pid
@@ -56,7 +60,8 @@ cleanup() {
   done
   wait 2>/dev/null || true
   git -C "$FIXTURE" worktree prune >/dev/null 2>&1 || true
-  rm -rf "$FIXTURE" "$FAKE_HOME" "$CUSTOM_BASE"
+  git -C "$NUM_REPO" worktree prune >/dev/null 2>&1 || true
+  rm -rf "$FIXTURE" "$FAKE_HOME" "$CUSTOM_BASE" "$NUM_REPO" "$SHIM_DIR"
 }
 trap cleanup EXIT
 
@@ -162,6 +167,18 @@ BUSY_PID=$!
 STUB_PIDS="$STUB_PIDS $BUSY_PID"
 sleep 0.5
 
+# ── a process listing that comes back empty is never proof of an idle worktree ──
+# The wrapper rt-a qualifies for removal (dead marker, clean, merged), so only the
+# empty listing keeps it. The shim stands in for an lsof that timed out or failed.
+mkdir -p "$SHIM_DIR/empty-lsof"
+printf '#!/bin/sh\nexit 0\n' > "$SHIM_DIR/empty-lsof/lsof"
+chmod +x "$SHIM_DIR/empty-lsof/lsof"
+EMPTY_LSOF_OUT="$FIXTURE/.reaper-empty-lsof.out"
+( cd "$FIXTURE" && PATH="$SHIM_DIR/empty-lsof:$PATH" bash "$REAPER" ) >"$EMPTY_LSOF_OUT" 2>&1 || true
+expect "wrapper with an empty process listing: dir kept" test -d "$FIXTURE/.worktrees/rt-a"
+expect "wrapper with an empty process listing: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/a
+expect "wrapper with an empty process listing: reaper says why" grep -F "live process inside; pid unknown" "$EMPTY_LSOF_OUT"
+
 # ── run the REAL reaper (not dry-run) inside the fixture ────────
 REAPER_OUT="$FIXTURE/.reaper.out"
 if ( cd "$FIXTURE" && bash "$REAPER" ) >"$REAPER_OUT" 2>&1; then
@@ -224,6 +241,190 @@ expect_no_daemon_ended "(h) live child: daemon reaper ended nothing for it" \
 kill "$BUSY_PID" 2>/dev/null || true
 wait "$BUSY_PID" 2>/dev/null || true
 
+# ═══ the opt-in numbered lane ═══════════════════════════════════
+# One worktree per rule. Every worktree is merged into the primary checkout's HEAD and
+# aged to 2020 unless its case says otherwise, so the single rule under test is the only
+# reason it stays. 002-ok is the one that qualifies; 001-lockref qualifies too, but a
+# ref lock file makes `branch -d` refuse, and it sorts first so a run that aborted on the
+# refusal would leave 002-ok behind.
+git -C "$NUM_REPO" init -q
+mkdir -p "$NUM_REPO/.nohooks" "$NUM_REPO/specs/a"
+git -C "$NUM_REPO" config core.hooksPath "$NUM_REPO/.nohooks"
+git -C "$NUM_REPO" config user.email t@t.t
+git -C "$NUM_REPO" config user.name t
+printf 'node_modules/\ndist/\n.pytest_cache/\n*.log\nlocal-*\n.nohooks/\n' > "$NUM_REPO/.gitignore"
+printf 'readme\n' > "$NUM_REPO/README"
+printf 'spec\n' > "$NUM_REPO/specs/a/spec.md"
+git -C "$NUM_REPO" add .gitignore README specs
+git -C "$NUM_REPO" commit -q -m init
+NUM_REPO_REAL="$(cd "$NUM_REPO" && pwd -P)"
+NUM_COMMON="$NUM_REPO_REAL/.git"
+
+num_add() { # num_add <NNN-slug>  -- a worktree on worktrees/<NNN-slug>
+  git -C "$NUM_REPO" worktree add -q -b "worktrees/$1" "$NUM_REPO/.worktrees/$1" HEAD
+}
+num_age() { # num_age <NNN-slug>  -- backdate the three activity times the reaper reads
+  local name="$1" admin
+  admin="$NUM_COMMON/worktrees/$name"
+  touch -t 202001010000 "$NUM_COMMON/logs/refs/heads/worktrees/$name" "$admin/logs/HEAD" "$admin/index"
+}
+
+num_add 001-lockref
+num_add 002-ok
+mkdir -p "$NUM_REPO/.worktrees/002-ok/node_modules/pkg" "$NUM_REPO/.worktrees/002-ok/dist" "$NUM_REPO/.worktrees/002-ok/.pytest_cache"
+printf 'x\n' > "$NUM_REPO/.worktrees/002-ok/node_modules/pkg/index.js"
+printf 'x\n' > "$NUM_REPO/.worktrees/002-ok/dist/out.js"
+printf 'x\n' > "$NUM_REPO/.worktrees/002-ok/.pytest_cache/v"
+ln -s "$NUM_REPO_REAL/README" "$NUM_REPO/.worktrees/002-ok/local-link"
+mkdir -p "$NUM_REPO/.worktrees/002-ok/local-dir"
+ln -s "$NUM_REPO_REAL/README" "$NUM_REPO/.worktrees/002-ok/local-dir/entry"
+num_add 003-fresh
+num_add 004-specs-log
+mkdir -p "$NUM_REPO/.worktrees/004-specs-log/specs/a"
+printf 'log\n' > "$NUM_REPO/.worktrees/004-specs-log/specs/a/x.log"
+num_add 005-untracked
+printf 'new\n' > "$NUM_REPO/.worktrees/005-untracked/new.txt"
+num_add 006-unpushed
+git -C "$NUM_REPO/.worktrees/006-unpushed" commit -q --allow-empty -m "unmerged work"
+num_add 007-process
+num_add 008-locked
+git -C "$NUM_REPO" worktree lock "$NUM_REPO/.worktrees/008-locked"
+num_add 009-stash
+printf 'changed\n' > "$NUM_REPO/.worktrees/009-stash/README"
+git -C "$NUM_REPO/.worktrees/009-stash" stash push -q -m "keep me"
+# A branch of another pattern, and a numbered branch whose folder does not match it.
+git -C "$NUM_REPO" worktree add -q -b other/010-human "$NUM_REPO/.worktrees/010-human" HEAD
+git -C "$NUM_REPO" worktree add -q -b worktrees/011-mismatch "$NUM_REPO/.worktrees/011-folder" HEAD
+git -C "$NUM_REPO" worktree add -q --detach "$NUM_REPO/.worktrees/012-detached" HEAD
+num_add 013-ignored
+printf 'private\n' > "$NUM_REPO/.worktrees/013-ignored/local-note.txt"
+# A folder git does not know about.
+mkdir -p "$NUM_REPO/.worktrees/099-orphan"
+printf 'precious\n' > "$NUM_REPO/.worktrees/099-orphan/notes.txt"
+( cd "$NUM_REPO/.worktrees/007-process" && exec sleep 120 ) &
+NUM_BUSY_PID=$!
+STUB_PIDS="$STUB_PIDS $NUM_BUSY_PID"
+sleep 0.5
+for n in 001-lockref 002-ok 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 013-ignored; do
+  num_age "$n"
+done
+# 003-fresh keeps its creation times; 011-mismatch is aged under its branch's name.
+touch -t 202001010000 "$NUM_COMMON/logs/refs/heads/worktrees/011-mismatch"
+# git refuses to delete a branch whose ref file is locked.
+: > "$NUM_COMMON/refs/heads/worktrees/001-lockref.lock"
+
+list_state() { # list_state  -- worktree folders and branches, to compare before and after
+  ( cd "$NUM_REPO/.worktrees" && ls -1 ) | sort
+  git -C "$NUM_REPO" for-each-ref --format='%(refname)' refs/heads | sort
+}
+NUM_STATE_BEFORE="$(list_state)"
+
+NUM_FSMON_LOG="$SHIM_DIR/fsmon-reaper.log"
+printf '#!/bin/sh\nprintf "%%s\\n" "$*" >> "%s"\n' "$NUM_FSMON_LOG" > "$SHIM_DIR/fsmon-reaper-stub.sh"
+run_num() { # run_num <out> [reaper args...]  -- inside the numbered fixture repo
+  local out="$1"; shift
+  NUM_RC=0
+  ( cd "$NUM_REPO" && SPECKIT_FSMON_REAPER="$SHIM_DIR/fsmon-reaper-stub.sh" bash "$REAPER" "$@" ) >"$out" 2>&1 || NUM_RC=$?
+}
+
+# Without the flag the lane is off: nothing numbered is touched.
+NUM_OFF_OUT="$SHIM_DIR/num-off.out"
+run_num "$NUM_OFF_OUT"
+expect "numbered lane off by default: 002-ok kept" test -d "$NUM_REPO/.worktrees/002-ok"
+expect "numbered lane off by default: state unchanged" test "$NUM_STATE_BEFORE" = "$(list_state)"
+
+# --dry-run changes nothing and says what it would do.
+NUM_DRY_OUT="$SHIM_DIR/num-dry.out"
+run_num "$NUM_DRY_OUT" --numbered --dry-run
+expect "numbered dry-run exits 0" test "$NUM_RC" -eq 0
+expect "numbered dry-run: state unchanged" test "$NUM_STATE_BEFORE" = "$(list_state)"
+expect "numbered dry-run: names 002-ok as would-reap" grep -Eq "^numbered verdict=would-reap worktree=.*/002-ok " "$NUM_DRY_OUT"
+expect "numbered dry-run: starts no fsmonitor reaper" test ! -e "$NUM_FSMON_LOG"
+expect "numbered dry-run: reports the orphan folder" grep -Eq "^orphan path=.*/099-orphan$" "$NUM_DRY_OUT"
+
+# An empty process listing keeps even the worktree that qualifies.
+NUM_LSOF_OUT="$SHIM_DIR/num-lsof.out"
+( cd "$NUM_REPO" && PATH="$SHIM_DIR/empty-lsof:$PATH" SPECKIT_FSMON_REAPER="$SHIM_DIR/fsmon-reaper-stub.sh" bash "$REAPER" --numbered ) >"$NUM_LSOF_OUT" 2>&1 || true
+expect "empty process listing: 002-ok kept" test -d "$NUM_REPO/.worktrees/002-ok"
+expect "empty process listing: reason recorded" grep -Eq "^numbered verdict=keep worktree=.*/002-ok .*reason=process listing unavailable" "$NUM_LSOF_OUT"
+
+# A wedged git status costs one bound, then the worktree is kept.
+mkdir -p "$SHIM_DIR/wedged-git"
+REAL_GIT="$(command -v git)"
+GIT_SHIM_LOG="$SHIM_DIR/git-calls.log"
+cat > "$SHIM_DIR/wedged-git/git" <<SHIM
+#!/bin/sh
+printf '%s\n' "\$*" >> "$GIT_SHIM_LOG"
+for a in "\$@"; do
+  [ "\$a" = status ] && exec sleep 60
+done
+exec "$REAL_GIT" "\$@"
+SHIM
+chmod +x "$SHIM_DIR/wedged-git/git"
+NUM_WEDGE_OUT="$SHIM_DIR/num-wedge.out"
+WEDGE_START="$(date +%s)"
+( cd "$NUM_REPO" && PATH="$SHIM_DIR/wedged-git:$PATH" SPECKIT_GIT_TIMEOUT=2 SPECKIT_FSMON_REAPER="$SHIM_DIR/fsmon-reaper-stub.sh" bash "$REAPER" --numbered ) >"$NUM_WEDGE_OUT" 2>&1 || true
+WEDGE_ELAPSED=$(( $(date +%s) - WEDGE_START ))
+expect "wedged git status: run ends within a few bounds" test "$WEDGE_ELAPSED" -lt 55
+expect "wedged git status: 002-ok kept" test -d "$NUM_REPO/.worktrees/002-ok"
+expect "wedged git status: timeout recorded as the reason" grep -Eq "^numbered verdict=keep worktree=.*/002-ok .*reason=git status timed out" "$NUM_WEDGE_OUT"
+expect "git calls that read a tree run with fsmonitor off" \
+  test -z "$(grep -E ' (status|ls-files|merge-base|branch|stash|prune|remove)( |$)' "$GIT_SHIM_LOG" | grep -v 'core.fsmonitor=false' || true)"
+expect "the shim saw the reaper's status calls" grep -Eq 'core.fsmonitor=false .*status' "$GIT_SHIM_LOG"
+
+# The real sweep.
+NUM_OUT="$SHIM_DIR/num-real.out"
+run_num "$NUM_OUT" --numbered
+expect "numbered sweep exits 0 although git refused a branch delete" test "$NUM_RC" -eq 0
+expect "002-ok: folder removed" test ! -d "$NUM_REPO/.worktrees/002-ok"
+expect "002-ok: branch removed" test ! -e "$NUM_COMMON/refs/heads/worktrees/002-ok"
+expect "002-ok: fsmonitor reaper ran first" grep -Fq "002-ok" "$NUM_FSMON_LOG"
+expect "001-lockref: folder removed" test ! -d "$NUM_REPO/.worktrees/001-lockref"
+expect "001-lockref: branch kept after git refused -d" test -e "$NUM_COMMON/refs/heads/worktrees/001-lockref"
+expect "001-lockref: refusal logged as keep" grep -F "git refused to delete" "$NUM_OUT"
+for n in 003-fresh 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 010-human 011-folder 012-detached 013-ignored; do
+  expect "$n: folder kept" test -d "$NUM_REPO/.worktrees/$n"
+done
+for b in worktrees/003-fresh worktrees/004-specs-log worktrees/005-untracked worktrees/006-unpushed worktrees/007-process worktrees/008-locked worktrees/009-stash other/010-human worktrees/011-mismatch worktrees/013-ignored; do
+  expect "$b: branch kept" git -C "$NUM_REPO" show-ref --verify --quiet "refs/heads/$b"
+done
+expect "003-fresh: kept for recent activity" grep -Eq "^numbered verdict=keep worktree=.*/003-fresh .*reason=active within" "$NUM_OUT"
+expect "004-specs-log: kept for the ignored spec file" grep -Eq "^numbered verdict=keep worktree=.*/004-specs-log .*reason=ignored path is not regenerable: specs/a/x.log" "$NUM_OUT"
+expect "005-untracked: kept for the untracked file" grep -Eq "^numbered verdict=keep worktree=.*/005-untracked .*reason=uncommitted or untracked" "$NUM_OUT"
+expect "006-unpushed: kept as unmerged" grep -Eq "^numbered verdict=keep worktree=.*/006-unpushed .*reason=branch is not merged" "$NUM_OUT"
+expect "007-process: kept for the live process, naming it" grep -Eq "^numbered verdict=keep worktree=.*/007-process .*reason=live process inside; pid $NUM_BUSY_PID" "$NUM_OUT"
+expect "008-locked: kept as locked" grep -Eq "^numbered verdict=keep worktree=.*/008-locked .*reason=locked" "$NUM_OUT"
+expect "009-stash: kept for its stash entry" grep -Eq "^numbered verdict=keep worktree=.*/009-stash .*reason=a stash entry belongs" "$NUM_OUT"
+expect "011-folder: kept as a mismatched pair" grep -Eq "^numbered verdict=keep worktree=.*/011-folder .*reason=not a numbered branch and folder pair" "$NUM_OUT"
+expect "013-ignored: kept for the ignored file that is no provisioned link" grep -Eq "^numbered verdict=keep worktree=.*/013-ignored .*reason=ignored path is not regenerable: local-note.txt" "$NUM_OUT"
+expect "orphan folder: untouched" test -f "$NUM_REPO/.worktrees/099-orphan/notes.txt"
+expect "orphan folder: reported" grep -Eq "^orphan path=.*/099-orphan$" "$NUM_OUT"
+expect "the registered folders are never reported as orphans" test -z "$(grep -E '^orphan path=.*/(00[1-9]|01[0-3])-' "$NUM_OUT" || true)"
+expect "the stash entry survives the sweep" test -n "$(git -C "$NUM_REPO" stash list)"
+expect "main checkout untouched" test -f "$NUM_REPO/README"
+expect_not "numbered lane never forces a removal" grep -Eq 'worktree remove (-f|--force)|branch -D' "$REAPER"
+
+# The idle clock is injectable, and --idle-hours sets the threshold.
+NUM_LATE_OUT="$SHIM_DIR/num-late.out"
+WORKTREE_REAPER_NOW="$(( $(date +%s) + 72 * 3600 ))" run_num "$NUM_LATE_OUT" --numbered --dry-run
+expect "a later clock makes 003-fresh idle" grep -Eq "^numbered verdict=would-reap worktree=.*/003-fresh " "$NUM_LATE_OUT"
+NUM_LONG_OUT="$SHIM_DIR/num-long.out"
+WORKTREE_REAPER_NOW="$(( $(date +%s) + 72 * 3600 ))" run_num "$NUM_LONG_OUT" --numbered --dry-run --idle-hours 200
+expect "--idle-hours 200 keeps 003-fresh again" grep -Eq "^numbered verdict=keep worktree=.*/003-fresh .*reason=active within the last 200 hours" "$NUM_LONG_OUT"
+run_num "$SHIM_DIR/num-bad.out" --numbered --idle-hours soon
+expect "a non-numeric --idle-hours exits 2" test "$NUM_RC" -eq 2
+
+kill "$NUM_BUSY_PID" 2>/dev/null || true
+wait "$NUM_BUSY_PID" 2>/dev/null || true
+rm -f "$NUM_COMMON/refs/heads/worktrees/001-lockref.lock"
+
+if [ "$FAIL" -ne 0 ]; then
+  for f in "$SHIM_DIR"/num-*.out; do
+    [ -f "$f" ] || continue
+    echo "--- $(basename "$f") ---"
+    cat "$f"
+  done
+fi
 if [ "$FAIL" -ne 0 ]; then
   echo "--- reaper output (rc=$REAPER_RC) ---"
   cat "$REAPER_OUT"

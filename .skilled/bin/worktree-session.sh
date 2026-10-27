@@ -69,6 +69,17 @@ fi
 
 log() { echo "[worktree-session] $*" >&2; }
 
+# The one launch-time call that reads and writes a working tree, `worktree add`, runs
+# under a wall-clock bound with fsmonitor off, so a wedged daemon cannot hang a launch.
+# Without the helper the call runs unbounded, as before, with fsmonitor still off.
+_BOUNDED_GIT_LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)/../scripts/git-hooks/lib/bounded-git.sh"
+if [ -r "$_BOUNDED_GIT_LIB" ]; then
+  # shellcheck source=../scripts/git-hooks/lib/bounded-git.sh
+  . "$_BOUNDED_GIT_LIB"
+else
+  git_bounded() { git -c core.fsmonitor=false "$@"; }
+fi
+
 # Absolute common git dir (shared across every worktree of a clone) — the stable
 # place to keep per-session state that must not live inside any worktree.
 _abs_common() {
@@ -308,7 +319,13 @@ if [ "$WT_BASE_SOURCE" = "default" ]; then
 fi
 
 log "allocating worktree $WT_REL on branch $BRANCH (base: $WT_BASE)"
-git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2
+ADD_RC=0
+GIT_BOUND_SECONDS="${SPECKIT_WORKTREE_ADD_TIMEOUT:-60}" \
+  git_bounded -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2 || ADD_RC=$?
+if [ "$ADD_RC" -ne 0 ]; then
+  log "git worktree add failed (exit $ADD_RC); no session was started"
+  exit "$ADD_RC"
+fi
 
 # An fsmonitor daemon never exits on its own while its worktree exists, so daemons of idle
 # worktrees accumulate; each top-level launch sweeps them, plus any orphaned ones. Detached

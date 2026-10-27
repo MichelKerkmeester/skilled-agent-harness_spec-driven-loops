@@ -1197,6 +1197,54 @@ test('a stray fsmonitor daemon leaves the worktrees verdict PASS', (t) => {
   assert.equal(row.repair, null);
 });
 
+test('worktrees reports what a numbered-lane dry run would reap, keep and find orphaned', (t) => {
+  const f = fixture(t);
+  const stub = path.join(f.dir, 'numbered-reaper.sh');
+  const argsFile = path.join(f.dir, 'numbered-args.txt');
+  fs.writeFileSync(stub, [
+    '#!/bin/sh',
+    `printf '%s\\n' "$*" > ${JSON.stringify(argsFile)}`,
+    'echo "numbered verdict=would-reap worktree=/w/001-a branch=worktrees/001-a reason=idle"',
+    'echo "numbered verdict=would-reap worktree=/w/002-b branch=worktrees/002-b reason=idle"',
+    'echo "numbered verdict=keep worktree=/w/003-c branch=worktrees/003-c reason=locked"',
+    'echo "orphan path=/w/099-gone"',
+    'echo "DRY_RUN would: git worktree prune"',
+    'exit 0',
+    '',
+  ].join('\n'));
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_REAPER: stub })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  const line = row.details.find((detail) => detail.startsWith('numbered worktrees: '));
+  assert.ok(line, row.details.join(' | '));
+  assert.ok(line.startsWith('numbered worktrees: 2 would reap, 1 keep, 1 orphan folders'), line);
+  assert.ok(line.includes(`bash ${stub} --numbered`), line);
+  assert.equal(fs.readFileSync(argsFile, 'utf8').trim(), '--numbered --dry-run', 'the doctor only ever asks for a dry run');
+});
+
+test('worktrees reports the numbered lane as not checked when the reaper fails, and the verdict stays PASS', (t) => {
+  const f = fixture(t);
+  const stub = path.join(f.dir, 'numbered-reaper.sh');
+  fs.writeFileSync(stub, '#!/bin/sh\nexit 5\n');
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_REAPER: stub })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  assert.ok(
+    row.details.includes('numbered worktrees: not checked (reaper exited 5)'),
+    row.details.join(' | '),
+  );
+  assert.equal(row.repair, null);
+});
+
+test('worktrees with nothing to reap reports zero counts without a hint', (t) => {
+  const f = fixture(t);
+  const stub = path.join(f.dir, 'numbered-reaper.sh');
+  fs.writeFileSync(stub, '#!/bin/sh\necho "numbered verdict=keep worktree=/w/001-a branch=worktrees/001-a reason=locked"\nexit 0\n');
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_REAPER: stub })), 'worktrees');
+  assert.ok(row.details.includes('numbered worktrees: 0 would reap, 1 keep, 0 orphan folders'), row.details.join(' | '));
+});
+
 test('ai-tool-hooks reads only the hooks section and Claude\'s local settings', (t) => {
   const f = fixture(t);
   const claudeDir = path.join(f.repo, '.claude');

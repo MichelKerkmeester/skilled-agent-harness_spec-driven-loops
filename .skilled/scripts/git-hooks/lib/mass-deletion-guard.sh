@@ -20,6 +20,19 @@
 # Tuning:  SPECKIT_MASS_DELETION_THRESHOLD  max tracked-file deletions (default 100)
 # Bypass:  SPECKIT_ALLOW_MASS_DELETION=1    authorize this one operation
 
+# The two counts below read the index and the commit graph, so they go through the
+# bounded helper. A caller that loaded it already keeps its timeout record; a caller
+# that did not gets the helper from beside this file, or plain git with fsmonitor off.
+if ! declare -F git_bounded >/dev/null 2>&1; then
+  _mdg_lib_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P || true)"
+  if [[ -n "$_mdg_lib_dir" && -r "$_mdg_lib_dir/bounded-git.sh" ]]; then
+    # shellcheck source=bounded-git.sh
+    . "$_mdg_lib_dir/bounded-git.sh"
+  else
+    git_bounded() { git -c core.fsmonitor=false "$@"; }
+  fi
+fi
+
 # Effective threshold, defaulting on any non-numeric/empty value.
 _mdg_threshold() {
   local t="${SPECKIT_MASS_DELETION_THRESHOLD:-100}"
@@ -40,13 +53,13 @@ _mdg_count() {
 
 # Count staged tracked-file deletions (the pre-commit surface).
 mass_deletion_staged_count() {
-  _mdg_count git diff --cached --name-only --diff-filter=D
+  _mdg_count git_bounded diff --cached --name-only --diff-filter=D
 }
 
 # Count tracked-file deletions a range would introduce (the pre-push surface).
 # Args: <base_sha> <tip_sha>
 mass_deletion_range_count() {
-  _mdg_count git diff --name-only --diff-filter=D "$1" "$2"
+  _mdg_count git_bounded diff --name-only --diff-filter=D "$1" "$2"
 }
 
 # Verdict: return 0 to ALLOW, 1 to BLOCK. Fail-open on any oddity.

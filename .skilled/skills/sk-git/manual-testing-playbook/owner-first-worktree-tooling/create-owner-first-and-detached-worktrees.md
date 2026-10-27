@@ -1,7 +1,7 @@
 ---
 title: "GIT-025 -- Create numbered and detached worktrees"
 description: "This scenario validates Create numbered and detached worktrees for `GIT-025`. It focuses on prove create and create-detached allocate a number, create the matching branch/directory pair or a detached numbered directory, and refuse an invalid slug before touching the repository."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # GIT-025 -- Create numbered and detached worktrees
@@ -61,8 +61,7 @@ Create a dedicated branch with `create-branch <slug>` and confirm it emits only 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [owner-first-worktree-naming.md](../../feature-catalog/worktree-naming/owner-first-worktree-naming.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

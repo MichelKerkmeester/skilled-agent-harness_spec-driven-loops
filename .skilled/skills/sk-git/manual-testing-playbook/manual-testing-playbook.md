@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -983,6 +983,7 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Worktree naming allocator | `scripts/worktree-naming.sh` | Automated: `scripts/tests/worktree-naming.test.sh` |
 | Launch-wrapper session | `../../../bin/worktree-session.sh` | Automated: `../../../bin/tests/worktree-session.test.sh` |
 | Worktree reaper | `../../../bin/worktree-reaper.sh` | Automated: `../../../bin/tests/worktree-reaper.test.sh` |
+| Session-start numbered sweep | `../../../bin/worktree-guard.sh` | Automated: `../../../bin/tests/worktree-guard.test.sh` |
 | fsmonitor daemon reaper | `../../../bin/fsmonitor-daemon-reaper.sh` | Automated: `../../../bin/tests/fsmonitor-daemon-reaper.test.sh` |
 | Pre-push naming gate | `../../../scripts/git-hooks/pre-push` | Automated: `../../../scripts/git-hooks/tests/pre-push.test.sh` |
 

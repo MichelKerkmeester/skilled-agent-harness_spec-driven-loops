@@ -1,7 +1,7 @@
 ---
 title: "GIT-043 -- Pre-push remote-permission gate on creation and update"
 description: "This scenario validates the remote-permission gate for `GIT-043`. It focuses on prove that publishing a branch to origin is an explicit decision: a creation is refused unless the branch is named in the approval, an update needs a blanket approval, and the release lane and allowlist are the only standing exemptions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GIT-043 -- Pre-push remote-permission gate on creation and update
@@ -60,8 +60,7 @@ Add a pattern to `.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt` an
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [feature-catalog.md](../../feature-catalog/feature-catalog.md) | Matching feature catalog entry, the section "Pre-push remote-push-permission gate" |
 
 ### Implementation Anchors
 

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup",
+  "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup",
+  "parent_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "numbered worktree cleanup",
+      "phase 6 numbered worktree cleanup",
+      "numbered worktree cleanup plan",
+      "numbered worktree cleanup tasks",
+      "numbered worktree cleanup acceptance criteria",
+      "numbered worktree cleanup implementation summary"
+    ],
+    "key_topics": [
+      "numbered",
+      "worktree",
+      "cleanup",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "reaper",
+      "only"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/worktree-reaper.sh",
+      ".skilled/bin/tests/worktree-reaper.test.sh",
+      ".skilled/bin/worktree-guard.sh",
+      ".skilled/bin/tests/worktree-guard.test.sh",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/README.md",
+      "feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/bin/README.md",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/scripts/git-hooks/lib/README.md",
+      ".skilled/scripts/git-hooks/tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-guard.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reaper only removes launch-wrapper worktrees",
+    "created_at": "2026-10-27T20:29:24Z",
+    "last_save_at": "2026-10-27T21:27:26.741Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1909342f594dfee66b3bd3459dcf61d60b4492edabbc52ab0036d7436301f53",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e795ec2db2bd300984b6b0a527344ab47d5fb975c64f681bd5aedbc3c2cd77ff",
+      "plan.md": "6159e2eee6790fc2159f7d97e3aef20829480486bb5a811048b46d6bdf05bc5b",
+      "tasks.md": "4e074120f7e94c8a1254a76ab2aa081e351cec2e0c4ae408d949949dfb2f7b5a",
+      "implementation-summary.md": "10c8b44e0a287a4a721f62d9b22ae86a17fae35f83f0436be875ab078853f283"
+    },
+    "last_active_at": null
+  }
+}

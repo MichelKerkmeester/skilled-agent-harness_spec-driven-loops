@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.11.0
+version: 1.8.12.0
 ---
 
 # sk-git
@@ -54,7 +54,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 | **Ask-first workspace rule** | Never picks worktree vs current branch on its own. Holds your choice for the session |
 | **Launch-wrapper isolation** | An operator opt-in that places each top-level session in its own worktree and branch, with isolated MCP databases |
 | **Continuous-integration autosync** | Publishes each commit to one shared live branch so the operator's IDE stays current |
-| **Worktree reaper** | Auto-reaps qualifying wrapper worktrees, keeps and reports the rest, and signals no process other than the fsmonitor daemon of a worktree it removes |
+| **Worktree reaper** | Auto-reaps qualifying wrapper worktrees and, with `--numbered`, finished numbered worktrees that are clean, merged, idle and hold nothing unrecoverable. Keeps and reports the rest, and signals no process other than the fsmonitor daemon of a worktree it removes |
 | **Deterministic commits** | The same diff and metadata always produce the same Conventional Commit subject |
 | **Safety refusals** | Blocks no-verify bypasses, secrets in a diff, amending published commits and force-pushing main |
 | **Preflight advisory** | Evaluates every git command against 17 state-gated rules across all seven AI runtimes and prints the matching rule before it runs. Advisory only, never blocking (see `scripts/hooks/README.md`) |
@@ -294,3 +294,10 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
 | [`references/github-mcp-integration.md`](./references/github-mcp-integration.md) | Remote PR, issue and CI operations through Code Mode |
 | [`references/gitkraken-mcp-integration.md`](./references/gitkraken-mcp-integration.md) | GitKraken MCP GitLens AI and cross-provider operations |
 | [`assets/pr-template.md`](./assets/pr-template.md) | The structure every PR description follows |
+
+<!-- readme-check
+allow-ref worktrees/ | a git branch namespace, not a folder
+allow-ref branches/ | a git branch namespace, not a folder
+allow-ref work/ | the launch wrapper's git branch namespace, not a folder
+allow-count zero files | a symptom of a no-op run, not an inventory
+-->

@@ -10,9 +10,12 @@
 # Without --apply every flag is parsed and validated, the plan is printed, and
 # no process is signalled. With --apply the strays are ended and --worktree
 # ends the one daemon watching the named worktree, escalating from git's stop
-# command to SIGTERM to SIGKILL and rechecking the command line before each
-# step. A worktree that still has a live process inside it is never touched,
-# unless its daemon is wedged.
+# command to SIGTERM to SIGKILL and rechecking the command line and the start
+# time before each step, so a pid recycled during the run is never signalled.
+# Git's stop ends whichever daemon owns a worktree's socket, so it is used only
+# when no other daemon watches that worktree; otherwise the exact pid is
+# signalled. A worktree that still has a live process inside it is never
+# touched, unless its daemon is wedged.
 #
 # --idle-hours N selects kept daemons started more than N hours ago whose
 # worktree no live process is using; with --apply they are ended beside the
@@ -21,6 +24,14 @@
 # --probe asks every attributed main or kept daemon to answer one diff-files
 # read with fsmonitor enabled. Only the probe alarm firing marks the daemon
 # wedged; probing alone signals nothing, and --probe --apply ends the wedged.
+#
+# --orphans classes a daemon whose watched root no longer exists on disk at all
+# (a repository deleted with rm -rf) as an orphan; with --apply it is ended by
+# signal, since git cannot reach a directory that is gone. A daemon whose root
+# still exists is never an orphan.
+#
+# A stray is confirmed against a fresh worktree list before it is ended, so a
+# worktree added while the run was in flight keeps its new daemon.
 #
 # Exit codes: 0 = done, including a refusal, which prints a `refused` line;
 # 1 = the repository could not be read, or a daemon survived every step;
@@ -48,6 +59,8 @@ Report the fsmonitor daemons of one repository and, with --apply, end them.
   --idle-hours <n>   Select kept daemons started more than n hours ago with no
                      live process inside their worktree; with --apply end them,
                      and with --worktree consider that worktree only
+  --orphans          Report daemons whose watched root no longer exists on disk;
+                     with --apply end them. Cannot be combined with --worktree
   --repo <path>      Repository to inspect (default: the current toplevel)
   --help             Show this help
 EOF
@@ -60,11 +73,13 @@ IDLE_HOURS=""
 REPO=""
 APPLY=0
 PROBE=0
+ORPHANS=0
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --apply) APPLY=1 ;;
     --probe) PROBE=1 ;;
+    --orphans) ORPHANS=1 ;;
     --worktree)
       if [ "$#" -lt 2 ]; then usage >&2; exit 2; fi
       WORKTREE="$2"
@@ -92,6 +107,12 @@ while [ "$#" -gt 0 ]; do
   esac
   shift
 done
+
+if [ "$ORPHANS" = "1" ] && [ -n "$WORKTREE" ]; then
+  log "--orphans cannot be combined with --worktree"
+  usage >&2
+  exit 2
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 2. HELPER FUNCTIONS
@@ -214,17 +235,76 @@ _is_daemon_pid() {
   printf '%s\n' "$command" | LC_ALL=C grep -Eq '^([^ ]*/)?git fsmonitor--daemon run( |$)'
 }
 
-# Poll for at most the given number of seconds; true once the daemon is gone.
+# The start time of one live process as five single-spaced fields, the shape
+# _daemon_rows records. Empty when the pid is gone.
+_process_started() {
+  local dow mon day clock year
+  read -r dow mon day clock year <<< "$(LC_ALL=C ps -o lstart= -p "$1" 2>/dev/null || true)"
+  [ -n "$year" ] || return 0
+  printf '%s %s %s %s %s\n' "$dow" "$mon" "$day" "$clock" "$year"
+}
+
+# Whether the pid is still the daemon the run listed: live when the command and
+# the start time both match, changed when the pid now runs another daemon, gone
+# when it no longer runs one. A command line alone cannot tell a recycled pid
+# from the original, because every daemon runs the same command.
+_daemon_state() {
+  local pid="$1" started="$2"
+  if ! _is_daemon_pid "$pid"; then
+    printf 'gone\n'
+  elif [ "$(_process_started "$pid")" = "$started" ]; then
+    printf 'live\n'
+  else
+    printf 'changed\n'
+  fi
+}
+
+# Poll for at most the given number of seconds; true once the listed daemon is
+# no longer live.
 _wait_gone() {
-  local pid="$1" seconds="$2" elapsed=0
+  local pid="$1" seconds="$2" started="$3" elapsed=0
   while [ "$elapsed" -lt "$seconds" ]; do
-    if ! _is_daemon_pid "$pid"; then
+    if [ "$(_daemon_state "$pid" "$started")" != "live" ]; then
       return 0
     fi
     sleep 1
     elapsed=$((elapsed+1))
   done
-  ! _is_daemon_pid "$pid"
+  [ "$(_daemon_state "$pid" "$started")" != "live" ]
+}
+
+# The watched root of one daemon: its lowest-numbered DIR descriptor, resolved
+# to a real path unless the directory is gone. Empty when lsof shows none.
+_watched_root() {
+  local fd name root="" root_fd=""
+  while IFS="$TAB" read -r fd name; do
+    [ -n "$fd" ] || continue
+    case "$name" in
+      *" (deleted)") name="${name% (deleted)}" ;;
+    esac
+    if [ -z "$root_fd" ] || [ "$fd" -lt "$root_fd" ]; then
+      root_fd="$fd"
+      root="$name"
+    fi
+  done <<< "$(_lsof_dir_rows "$1" 2>/dev/null || true)"
+  [ -n "$root" ] || return 0
+  _real_path "$root"
+}
+
+# True when a daemon other than the given pid also watches the worktree. Git's
+# stop ends whichever daemon owns the worktree's socket, so with two daemons on
+# one worktree it could end the one that was not chosen. The daemon list is read
+# fresh, since the run's own listing may be seconds old.
+_other_daemon_watches() {
+  local pid="$1" worktree="$2" other started
+  while IFS="$TAB" read -r other started; do
+    [ -n "$other" ] || continue
+    [ "$other" != "$pid" ] || continue
+    if [ "$(_watched_root "$other")" = "$worktree" ]; then
+      return 0
+    fi
+  done <<< "$(_daemon_rows || true)"
+  return 1
 }
 
 # Every process cwd as p<pid> and n<path> rows, from one bounded lsof call. A
@@ -294,45 +374,52 @@ _idle_age_hours() {
 }
 
 # End one daemon, escalating git stop -> SIGTERM -> SIGKILL and rechecking the
-# command line before every step. Prints the step that ended it and returns 0;
-# 1 when it survives every step; 2 when it was already gone. The git stop step
-# runs only for a registered worktree with its own .git file: for any other
-# path, git -C walks up to the enclosing repository and would stop that
-# repository's daemon instead.
+# command line and the start time before every step. Prints the step that ended
+# it and returns 0; 1 when it survives every step; 2 when it was already gone;
+# 3 when its pid now runs a different daemon, which is left alone. The git stop
+# step runs only for a registered worktree with its own .git file, and only when
+# no other daemon watches it: for any other path, git -C walks up to the
+# enclosing repository and would stop that repository's daemon instead, and with
+# two daemons on one worktree git ends whichever owns the socket.
 _end_daemon() {
-  local pid="$1" worktree="$2" registered="$3" via=""
+  local pid="$1" worktree="$2" registered="$3" started="$4" via="" state
 
-  _is_daemon_pid "$pid" || return 2
+  state="$(_daemon_state "$pid" "$started")"
+  [ "$state" != "gone" ] || return 2
+  [ "$state" != "changed" ] || return 3
 
-  if [ "$registered" = "1" ] && [ -f "$worktree/.git" ]; then
-    run_bounded "$FSMON_STOP_TIMEOUT" git -c core.fsmonitor=false -C "$worktree" \
-      fsmonitor--daemon stop >/dev/null 2>&1 || true
-    via="stop"
-    if _wait_gone "$pid" 1; then
-      printf '%s\n' "$via"
-      return 0
+  if [ "$registered" = "1" ] && [ -f "$worktree/.git" ] \
+    && ! _other_daemon_watches "$pid" "$worktree"; then
+    if [ "$(_daemon_state "$pid" "$started")" = "live" ]; then
+      run_bounded "$FSMON_STOP_TIMEOUT" git -c core.fsmonitor=false -C "$worktree" \
+        fsmonitor--daemon stop >/dev/null 2>&1 || true
+      via="stop"
+      if _wait_gone "$pid" 1 "$started"; then
+        printf '%s\n' "$via"
+        return 0
+      fi
     fi
   fi
 
-  if _is_daemon_pid "$pid"; then
+  if [ "$(_daemon_state "$pid" "$started")" = "live" ]; then
     kill -TERM "$pid" 2>/dev/null || true
     via="term"
-    if _wait_gone "$pid" "$FSMON_TERM_WAIT"; then
+    if _wait_gone "$pid" "$FSMON_TERM_WAIT" "$started"; then
       printf '%s\n' "$via"
       return 0
     fi
   fi
 
-  if _is_daemon_pid "$pid"; then
+  if [ "$(_daemon_state "$pid" "$started")" = "live" ]; then
     kill -KILL "$pid" 2>/dev/null || true
     via="kill"
-    if _wait_gone "$pid" "$FSMON_KILL_WAIT"; then
+    if _wait_gone "$pid" "$FSMON_KILL_WAIT" "$started"; then
       printf '%s\n' "$via"
       return 0
     fi
   fi
 
-  if [ -n "$via" ] && ! _is_daemon_pid "$pid"; then
+  if [ -n "$via" ] && [ "$(_daemon_state "$pid" "$started")" != "live" ]; then
     printf '%s\n' "$via"
     return 0
   fi
@@ -436,6 +523,7 @@ fi
 
 TOTAL=0
 STRAYS=0
+ORPHAN_COUNT=0
 SIGNALLED=0
 SURVIVED=0
 REFUSED=0
@@ -486,6 +574,9 @@ while IFS="$TAB" read -r pid started; do
     elif [ "$admin_row" = "1" ]; then
       class="stray"
       worktree_field="$root"
+    elif [ "$ORPHANS" = "1" ] && { [ "$root_deleted" = "1" ] || [ ! -d "$root" ]; }; then
+      class="orphan"
+      worktree_field="$root"
     else
       class="out-of-scope"
       worktree_field="-"
@@ -495,6 +586,9 @@ while IFS="$TAB" read -r pid started; do
   TOTAL=$((TOTAL+1))
   if [ "$class" = "stray" ]; then
     STRAYS=$((STRAYS+1))
+  fi
+  if [ "$class" = "orphan" ]; then
+    ORPHAN_COUNT=$((ORPHAN_COUNT+1))
   fi
   printf 'pid=%s class=%s worktree=%s started=%s\n' \
     "$pid" "$class" "$worktree_field" "$started"
@@ -551,7 +645,7 @@ while IFS="$TAB" read -r pid started; do
           action="end"
         fi
       fi
-    elif [ "$class" = "stray" ] || [ "$idle" = "1" ]; then
+    elif [ "$class" = "stray" ] || [ "$class" = "orphan" ] || [ "$idle" = "1" ]; then
       action="end"
     fi
     [ "$probe_result" = "wedged" ] && action="end"
@@ -569,10 +663,30 @@ while IFS="$TAB" read -r pid started; do
       fi
     fi
     if [ "$REFUSED" = "0" ]; then
+      skip_reason=""
+      if [ "$class" = "stray" ]; then
+        # The list was read when the run began. A worktree added since then is
+        # registered now, and its new daemon is not a stray.
+        if ! fresh_list="$(git_bounded "$REPO" worktree list --porcelain 2>/dev/null)"; then
+          skip_reason="worktree-list-unreadable"
+        else
+          REGISTERED="$fresh_list"
+          if _registered_path "$worktree_field" >/dev/null; then
+            skip_reason="registered-mid-run"
+          fi
+        fi
+      elif [ "$class" = "orphan" ] && [ -d "$worktree_field" ]; then
+        skip_reason="root-exists"
+      fi
+      if [ -n "$skip_reason" ]; then
+        printf 'skipped pid=%s class=%s worktree=%s reason=%s\n' \
+          "$pid" "$class" "$worktree_field" "$skip_reason"
+        continue
+      fi
       end_rc=0
       registered_target=0
       [ "$class" = "keep" ] && registered_target=1
-      via="$(_end_daemon "$pid" "$worktree_field" "$registered_target")" || end_rc=$?
+      via="$(_end_daemon "$pid" "$worktree_field" "$registered_target" "$started")" || end_rc=$?
       case "$end_rc" in
         0)
           SIGNALLED=$((SIGNALLED+1))
@@ -584,13 +698,21 @@ while IFS="$TAB" read -r pid started; do
           printf 'survived pid=%s class=%s worktree=%s\n' \
             "$pid" "$class" "$worktree_field"
           ;;
+        3)
+          printf 'skipped pid=%s class=%s worktree=%s reason=start-time-changed\n' \
+            "$pid" "$class" "$worktree_field"
+          ;;
       esac
     fi
   fi
 done <<< "$DAEMON_ROWS"
 
-printf 'mode=%s signalled=%s total=%s stray=%s\n' \
+printf 'mode=%s signalled=%s total=%s stray=%s' \
   "$MODE" "$SIGNALLED" "$TOTAL" "$STRAYS"
+if [ "$ORPHANS" = "1" ]; then
+  printf ' orphan=%s' "$ORPHAN_COUNT"
+fi
+printf '\n'
 
 if [ "$SURVIVED" -gt 0 ]; then
   exit 1

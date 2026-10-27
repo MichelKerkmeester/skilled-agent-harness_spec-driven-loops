@@ -1,7 +1,7 @@
 ---
 title: "GIT-031 -- Shared-artifact symlinks stay contained to the worktree"
 description: "This scenario validates Shared-artifact symlink containment for `GIT-031`. It focuses on prove the wrapper's shared-path symlinking refuses any path that would traverse outside the new worktree or outside the main checkout."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # GIT-031 -- Shared-artifact symlinks stay contained to the worktree
@@ -61,8 +61,7 @@ Repeat with an absolute shared-path entry (leading `/`) to confirm the wrapper's
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [launch-wrapper-session-isolation.md](../../feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

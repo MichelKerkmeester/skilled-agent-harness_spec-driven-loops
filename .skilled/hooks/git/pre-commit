@@ -29,6 +29,24 @@ if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   hook_enabled git-commit-hooks || exit 0
 fi
 
+# Every git call below that reads the index goes through git_bounded: fsmonitor off and a
+# wall-clock bound. A timeout is recorded and the exit trap turns it into a refusal.
+_bounded_git_lib="$SOURCE_ROOT/scripts/git-hooks/lib/bounded-git.sh"
+if [[ -r "$_bounded_git_lib" ]]; then
+  # shellcheck source=/dev/null
+  . "$_bounded_git_lib"
+  git_bound_arm
+else
+  git_bounded() { git -c core.fsmonitor=false "$@"; }
+  git_bound_finish() { exit "$1"; }
+fi
+_pre_commit_exit() {
+  local rc=$?
+  rm -rf "${HYGIENE_DIR:-}"
+  git_bound_finish "$rc"
+}
+trap _pre_commit_exit EXIT
+
 CHECKER_PATH="$SOURCE_ROOT/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 
 if [[ ! -x "$CHECKER_PATH" ]]; then
@@ -44,18 +62,17 @@ fi
 # unstaged cannot hide a violation and a path with non-ASCII bytes is not skipped.
 # The -- ends the checker's options, so a staged path that starts with -- is a file.
 HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
-trap 'rm -rf "$HYGIENE_DIR"' EXIT
 HYGIENE_FILES=()
 while IFS= read -r -d '' file; do
   mkdir -p "$HYGIENE_DIR/$(dirname "$file")"
-  if ! git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null; then
+  if ! git_bounded show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null; then
     # A submodule entry has no blob to read. Any other unreadable file must not pass unchecked.
-    [[ "$(git ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
+    [[ "$(git_bounded ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
     echo "BLOCKED [gate:comment-hygiene]: could not read the staged content of $file" >&2
     exit 1
   fi
   HYGIENE_FILES+=("$file")
-done < <(git diff --cached --name-only -z --diff-filter=ACM)
+done < <(git_bounded diff --cached --name-only -z --diff-filter=ACM)
 CHECKER_RC=0
 if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
   (cd "$HYGIENE_DIR" && "$CHECKER_PATH" -- "${HYGIENE_FILES[@]}" 2>/dev/null) || CHECKER_RC=$?
@@ -88,7 +105,7 @@ MIRROR_CHECKER="$SOURCE_ROOT/bin/check-agent-mirror-sync.cjs"
 STAGED_AGENTS=()
 while IFS= read -r file; do
   [[ -n "$file" ]] && STAGED_AGENTS+=("$file")
-done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
+done < <(git_bounded diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
 
 if [[ ${#STAGED_AGENTS[@]} -gt 0 ]]; then
   if [[ ! -f "$MIRROR_CHECKER" ]] && _in_toolchain_repo; then

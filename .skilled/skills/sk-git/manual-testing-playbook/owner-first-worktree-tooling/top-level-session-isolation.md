@@ -1,7 +1,7 @@
 ---
 title: "GIT-027 -- Top-level session isolates into its own worktree, branch, and databases"
 description: "This scenario validates Top-level session isolation for `GIT-027`. It focuses on prove a top-level launch of worktree-session.sh allocates a brand-new worktree, a work/<runtime>/<slug> branch, and per-session MCP database and socket directories distinct from the main checkout."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GIT-027 -- Top-level session isolates into its own worktree, branch, and databases
@@ -61,8 +61,7 @@ Re-run with `SPECKIT_AUTOSYNC=0` and confirm the printed plan reflects the opera
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-
-No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md` §14 for the direct-anchor exception.
+| [launch-wrapper-session-isolation.md](../../feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md) | Matching feature catalog entry |
 
 ### Implementation Anchors
 

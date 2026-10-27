@@ -1,7 +1,7 @@
 ---
 title: "GIT-047 -- fsmonitor daemon reaper stays inside its scope"
 description: "This scenario validates the fsmonitor daemon reaper for `GIT-047`. It focuses on prove the dry run ends nothing, --apply --worktree refuses while a live process is inside the worktree and another repository's daemon is never touched."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GIT-047 -- fsmonitor daemon reaper stays inside its scope
@@ -53,6 +53,10 @@ Run every command from the repository root, in one shell so `$S` persists. Every
 ### Optional Supplemental Checks
 
 Before step 8, end the parked process with `kill <blocker-pid>` and rerun step 6. The run then prints `ended pid=<keep pid> class=keep worktree=$S/a-wt via=stop`, which shows the refusal was the only thing holding the daemon.
+
+**Orphans (`--orphans`).** A healthy daemon ends itself within a second of its repository being deleted, so the check freezes one first, as a wedged daemon is. Before step 8, start a daemon in a third scratch repository and note its pid: `bash: git init -q "$S/c" && git -c user.name=t -c user.email=t@t.t -C "$S/c" commit -q --allow-empty -m init && git -c core.fsmonitor=true -C "$S/c" fsmonitor--daemon start`, then find the pid of the `git fsmonitor--daemon run` process that holds `$S/c` with `lsof -nP -p <pid> -Fn`. Run `kill -STOP <c-pid>; rm -rf "$S/c"`. Then run `bash .skilled/bin/fsmonitor-daemon-reaper.sh --repo "$S/a" --orphans; echo "exit=$?"`. The run prints the third daemon as `class=orphan worktree=$S/c`, keeps `class=out-of-scope worktree=-` for the second repository's daemon, and ends with `mode=dry-run signalled=0` and an `orphan=<n>` count, then `exit=0`. Without `--orphans` the same daemon is `class=out-of-scope`. `--orphans --apply` ends every orphan on the machine, not just yours, so run it only when the dry run lists no orphan but `$S/c`. It then prints `ended pid=<c-pid> class=orphan worktree=$S/c via=kill`, because a stopped process holds SIGTERM pending and the reaper escalates after its 5 second wait, and the second repository's daemon still runs. `--orphans --worktree "$S/a-wt"` exits 2 with a message naming the conflict.
+
+**Stale-state guards.** The unit suite covers three guards a scratch run cannot stage deterministically: a pid whose start time no longer matches the listing is printed as `skipped ... reason=start-time-changed` and not signalled, git's stop is skipped while a second daemon watches the same worktree, and a worktree added after the run began is printed as `skipped ... reason=registered-mid-run` and keeps its daemon. Run `bash .skilled/bin/tests/fsmonitor-daemon-reaper.test.sh` and expect `FAIL=0`.
 
 ---
 
