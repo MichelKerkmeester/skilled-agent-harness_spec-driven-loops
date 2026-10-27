@@ -10,7 +10,8 @@
     "system-deep-loop/039-deprecate-improvement-modes",
     "system-deep-loop/040-cli-pi-worktree-extension-clash",
     "system-deep-loop/041-writer-lock-stale-reclaim-race",
-    "system-deep-loop/042-fanout-review-focus"
+    "system-deep-loop/042-fanout-review-focus",
+    "system-deep-loop/043-fanout-resume-and-containment"
   ],
   "manual": {
     "depends_on": [],
