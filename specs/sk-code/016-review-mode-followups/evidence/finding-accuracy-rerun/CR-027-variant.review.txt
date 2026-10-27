@@ -1,0 +1,75 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 8 lines changed — new file `<scratch>/fa-variant/fixtures/clamp.js` (scope source: explicit file list from the dispatch)
+**Overall assessment**: COMMENTED
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+None. The security pass over the changed lines found no injection sink, no hardcoded secret, no authn/authz boundary, no sensitive-value logging and no trust-boundary input: the function consumes three numeric primitives and touches no I/O, network, filesystem or persisted state.
+
+### P1 - High
+None. For every input the stated contract allows — `value`, `min` and `max` numeric with `min <= max` — `Math.min(Math.max(value, min), max)` returns a member of `[min, max]`, including `value < min`, `value > max`, and `min === max`.
+
+### P2 - Suggestion
+
+1. [fixtures/clamp.js:5] Inverted bounds silently return `max` instead of failing or disclosing the precondition
+   - Case: `clamp(5, 100, 0)` → `Math.max(5, 100)` is `100`, `Math.min(100, 0)` is `0`; the call returns `0`, the caller's `max`. Once `min > max`, `Math.max(value, min)` is always greater than `max`, so the result is `max` for *every* `value`, while the line-3 comment's "closed range [min, max]" is empty. Neither a guard, a thrown error nor a doc line claims to reject this input class, and no caller in scope sends it, so reach is unnamed and severity is capped at P2.
+   - Risk: bounds derived from config, env parsing or upstream data can arrive reversed; the function answers with a plausible number instead of a signal that the range itself is broken.
+   - User impact: if deferred, a reversed range becomes a silently clamped wrong value that surfaces far from its cause — a page size pinned to the wrong end, a limit persisted at the wrong number — with no error trace pointing at the bad bound.
+   - Finding class: instance-only
+   - Scope proof: `ls fa-variant` lists `fixtures/` alone and `ls fa-variant/fixtures` lists `clamp.js` alone, so the reviewed subtree is a single file with no second clamp implementation and no consumer to fix alongside it; a scratchpad-wide `grep -n "clamp"` returned only `clamp.js:4` (definition) and `clamp.js:8` (export) under `fa-variant/`, and that grep hit its 100-match cap, so the `ls` results are the dispositive evidence.
+   - affectedSurfaceHints: ["clamp utility", "callers parsing numeric bounds"]
+   - riskScore: 3 (advisory only)
+   - Recommended fix: add the invariant above the return — `if (min > max) throw new RangeError('min must not exceed max');` — or, if silent clamping is deliberate, say so at line 3 so the comment states the real behavior.
+
+2. [fixtures/clamp.js:5] Non-numeric and omitted operands propagate `NaN` out of the function instead of failing
+   - Case: `clamp(5, Number.NaN, 100)` returns `NaN` — `Math.max` yields `NaN` for any `NaN` operand and `Math.min` then propagates it — and `clamp(5, 0)` with `max` omitted returns `NaN` by the same route (`Number(undefined)` is `NaN`). The doc comment says "a number", so both inputs sit outside the stated contract, and no line in the file claims to reject them.
+   - Risk: `NaN` satisfies `typeof x === 'number'`, so it passes the type check a caller is most likely to write and then poisons every downstream arithmetic result.
+   - User impact: if deferred, a `NaN` bound silently empties an array slice, blanks a rendered numeric value, or nulls a persisted limit after a JSON round-trip — with no error raised where the bad bound entered.
+   - Finding class: instance-only
+   - Scope proof: same single-file subtree as finding 1 (`ls fa-variant/fixtures` → `clamp.js` only), so there is no sibling validation site and no caller that already guards its own bounds.
+   - affectedSurfaceHints: ["clamp utility", "bounds validation"]
+   - riskScore: 2 (advisory only)
+   - Recommended fix: reject non-numeric bounds in the same guard, e.g. `if (Number.isNaN(min) || Number.isNaN(max) || min > max) throw new RangeError(...)`. Do not widen to `Number.isFinite` — `±Infinity` is a legitimate clamp bound and `clamp(1e308, 0, Infinity)` must keep working.
+
+3. [fixtures/clamp.js:3] The comment is this module's only contract and omits the preconditions findings 1 and 2 turn on
+   - Case: a reader has line 3 plus the parameter names as the whole spec — no `@param` types, no defaults, no separate doc — so passing `min > max`, `NaN`, or omitting `max` reads as allowed and returns `max` or `NaN` with no warning.
+   - Risk: an unstated precondition in the only available spec is read as "permitted"; the author of the next caller has nothing to check their bounds against.
+   - User impact: if deferred, findings 1 and 2 stay invisible to callers rather than merely unguarded, which is what turns them from a defensive gap into a recurring support cost.
+   - Finding class: instance-only
+   - Scope proof: `fa-variant/` is one file, so there is no README, `.d.ts` or JSDoc consumer that could carry the missing precondition elsewhere.
+   - affectedSurfaceHints: ["clamp utility", "module doc comment"]
+   - riskScore: 2 (advisory only)
+   - Recommended fix: state it at line 3, e.g. `// Limits a number to the closed range [min, max]. Precondition: min <= max, both numbers.` — or take the guards from findings 1 and 2, which makes the existing sentence true without qualification and makes this finding moot.
+
+4. [fixtures/clamp.js:4] No test asserts the exported `clamp`, including the boundary cases that define it
+   - Case: `ls fa-variant/fixtures` shows `clamp.js` only and `find "**/package.json"` over the scratchpad returns no manifest under `fa-variant/`, so nothing in scope wires a runner or asserts `value < min`, `value > max` and `min === max`. A later edit to line 5 has nothing to fail against.
+   - Risk: the entire behavior is one expression; swapping the `Math.min`/`Math.max` order or dropping a bound changes semantics for every caller and no check would notice.
+   - User impact: if deferred, the first regression here ships silently and is found by a downstream consumer rather than by the change that caused it.
+   - Finding class: instance-only
+   - Scope proof: single-file subtree (`ls fa-variant` → `fixtures/` only) with no manifest, runner config or test file anywhere inside it.
+   - affectedSurfaceHints: ["clamp utility", "test coverage"]
+   - riskScore: 2 (advisory only)
+   - Recommended fix: add `clamp.test.js` beside the file covering below-`min`, above-`max`, in-range, `min === max`, and whichever out-of-contract behavior findings 1–3 land on.
+
+## Removal/Iteration Plan
+
+No removal candidates — all eight lines are load-bearing: line 1 opts module scope into strict semantics, line 3 is the only contract statement, lines 4–6 are the implementation, line 8 the only export. There is no dead code, no unreachable branch, no TODO/FIXME/HACK, and no speculative parameter (YAGNI clean: `min` and `max` are both used). The comment-hygiene gate is clean — line 3 carries no spec path, no ADR/REQ/task/finding id and no other ephemeral artifact label, and it states durable meaning (which range) rather than restating the call. Other positives worth recording: `'use strict'` is present, the named CommonJS export matches what a `const { clamp } = require(...)` consumer expects, and no line duplicates a standard-library primitive (JS ships no `Math.clamp`).
+
+Iteration, not removal: findings 1 and 2 are one input-contract decision (reject vs document); findings 3 and 4 are the documentation and test halves of that same decision. Settle the decision first and all four resolve together.
+
+## Next Steps
+
+1. Choose the input contract for out-of-contract bounds: reject with `RangeError`, or accept silently and document it at line 3. Findings 1, 2 and 3 all resolve from that one choice.
+2. Adopt the chosen guard or the chosen wording at `fixtures/clamp.js:3-5`, keeping the concrete cases from findings 1 and 2 as the stated boundary.
+3. Add `clamp.test.js` (finding 4) matching the decision from step 1, and assert the four in-contract boundaries regardless of which way step 1 goes.
+4. Nothing above blocks the commit: all four findings are P2 and advisory. This review's `COMMENTED` status records that advisory notes are attached, not that a fix is required before committing.
+5. One input to step 1, not a finding: a sibling copy at `fa-run/fixtures/clamp.js` (a different fixture, out of scope and not reviewed) carries a `min > max` `RangeError` guard. If that copy is the intended shape of this file, rejecting is the answer — confirm provenance before adopting it.
+
+Not checked: caller reach for every finding, because no caller of `clamp` exists in the reviewed subtree (`fa-variant/` is a single file) so each reach is unproven and severity is capped at P2; execution evidence, because this read-only session exposes no shell tool, so the `NaN` and inverted-range outcomes are derived from ECMA-262 `Math.max`/`Math.min` semantics rather than observed from a run; surface standards evidence, because surface detection resolves `UNKNOWN` (the path sits outside the sk hub, and the variant root holds no manifest or framework marker) so only the baseline security/correctness minimums were applied and any project style convention went unverified; the sibling guarded copy at `fa-run/fixtures/clamp.js`, a different fixture outside the requested scope; and imports, which the dispatch placed out of scope and which the file does not have (zero `require` calls).
+
+Review status: COMMENTED

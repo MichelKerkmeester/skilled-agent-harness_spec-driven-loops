@@ -1,0 +1,64 @@
+Loading note: `sk-code-review` mode + `review-core.md` + registry `javascript-checklist.md` (`.js` extension). No shell tool in this dispatch, so verification is read-based; disclosed in `Not checked:`.
+
+SKILL ROUTING: User directed → `sk-code` (`sk-code-review` mode, per dispatch) | ARTIFACT: none (read-only)
+
+## Code Review Summary
+
+**Files reviewed**: 1 file, 11 lines changed (new file at `<scratch>/fa-run/fixtures/clamp.js`)
+**Overall assessment**: APPROVED
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN — `clamp.js` matches no specific surface and does not match the `SKILLED` fallback (its file markers are `.ts/.tsx/.cjs/.mjs/.py/.sh/.rs`, and the path is outside `.skilled/`/`.opencode/`); the JavaScript checklist was applied as the `.js` extension evidence the registry assigns
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None found. Security review performed on the whole file: no I/O, no filesystem or network access, no shell or query construction, no secrets, no serialization of untrusted data, and no auth surface — the trust-boundary family is not present here. `'use strict'` is present at line 1, there is no commented-out code, and no module-level state is shared across calls.
+
+### P1 - High
+
+None found. For every finite numeric triple the function returns a value inside `[min, max]`: the `min > max` guard at line 5 rejects the inverted range that line 8 would otherwise silently satisfy as `max`, `Math.max(value, min)` cannot fall below `min`, and `Math.min(..., max)` cannot exceed it. `module.exports = { clamp }` at line 11 is the checklist's correct CommonJS utility form, and no guard-clause or naming deviation applies.
+
+### P2 - Suggestions
+
+1. [clamp.js:8] Non-numeric or missing arguments return `NaN` silently instead of failing at the source
+   - Case: `clamp(NaN, 0, 10)` returns `NaN`; so do `clamp(5)` (missing `min`/`max`) and `clamp(5, NaN, 10)` — `min > max` at line 5 is false for any `NaN` operand, so the guard passes and `NaN` propagates through both `Math` calls at line 8.
+   - Risk: no performance concern; the cost is a wrong value travelling onward unflagged at every call site.
+   - User impact: a caller that passes an unparsed or absent numeric field receives `NaN` and continues, so the defect surfaces later as a `NaN` in output or UI, far from the line that caused it.
+   - Finding class: class-of-bug — all three parameters share the gap and any fix must cover all three.
+   - Scope proof: `rg -n "clamp|require\("` over the fixtures directory returns only the definitions in `clamp.js` plus an unrelated `require('./db')` in `users.js`, so no caller exists in this tree. Line 3 promises "a number", which places `NaN` outside the stated contract, so this stays advisory per the reach rule rather than a correctness blocker.
+   - affectedSurfaceHints: ["clamp", "numeric input parsing", "call sites passing NaN"]
+   - riskScore: 3 (advisory only)
+   - Recommended fix: keep the range guard and add an explicit number check on all three parameters before the comparison, throwing `TypeError` for non-numbers and `RangeError` for non-finite values, so the failure names the argument that was wrong.
+
+2. [clamp.js:6] The throwing contract is invisible to callers — the message carries no operand values and the comment never mentions the throw
+   - Case: a reader of the only comment (line 3) learns that the value is clamped but not that an inverted range throws; and when `clamp(5, 10, 0)` throws `RangeError: min must not exceed max`, the message omits `10` and `0`, so a caller with several clamp sites cannot tell which call inverted the range without adding temporary logging.
+   - Risk: debuggability only; the thrown value itself is correct.
+   - User impact: an avoidable crash investigation, and a public contract that must be learned by reading the body.
+   - Finding class: instance-only — one throw site at line 6, one comment at line 3, no other message or contract statement in the file.
+   - Scope proof: full-file read; the file contains exactly one `throw` and one comment, so no same-class site elsewhere is silently unfixed.
+   - riskScore: 2 (advisory only)
+   - Recommended fix: extend line 3 into a doc line stating the closed-range result and the `RangeError` on `min > max`, and interpolate both operands into the message.
+
+3. [clamp.js:1] Missing `// MODULE:` box header, which the project's JavaScript checklist treats as commit-blocking for files that join the `.js` tree
+   - Case: the file opens directly with `'use strict';` at line 1 with no `MODULE:` divider header; if it is added to the project's JavaScript tree, the checklist's Box Header item (its P0 section, "must fix before commit") blocks it.
+   - Risk: style and process only; no behavioural effect.
+   - User impact: none at runtime; a lint or review gate rejection if the file is committed as project code.
+   - Finding class: instance-only — applicability is a fact about this file's destination, not a pattern to sweep.
+   - Scope proof: the checklist scopes itself to "JavaScript code in the OpenCode development environment" and this file sits in a temp scratchpad fixture directory with no `package.json` or repository context, so the rule's applicability is unproven; that unproven scope is why it is advisory here instead of a blocker.
+   - Recommended fix: if the fixture is intended to enter the repo's `.js` tree, add the 67-character `// MODULE: ...` divider header above the `'use strict'` line; if it remains fixture data, take no action.
+
+## Removal/Iteration Plan
+
+Nothing to remove. The file holds no dead code, no commented-out blocks, no unused parameters, no scaffolding, and no fallback path — the single guard and single return are the whole implementation, and the export list at line 11 exposes exactly one function.
+
+## Next Steps
+
+1. Decide whether findings 1 and 2 are worth folding in; both are cheap and neither blocks this file.
+2. Confirm the destination of the fixture — if it is meant to become repository code, apply finding 3 before commit.
+3. Run `node --check clamp.js` and a two-assertion smoke test (`clamp(5, 0, 3) === 3`, `clamp(5, 10, 0)` throws `RangeError`) on a machine with a shell, to replace this read-only verification with observed evidence.
+
+Not checked: `node --check` and any executed behaviour — this dispatch has no shell tool, so syntax and semantics were verified by reading only; there is no caller or test for `clamp` in the fixture tree and no `package.json` or README to establish its runtime surface, so the `NaN` and inverted-range paths were traced from the source rather than observed; `users.js`'s `require('./db')` is out of scope per dispatch.
+
+Review status: APPROVED

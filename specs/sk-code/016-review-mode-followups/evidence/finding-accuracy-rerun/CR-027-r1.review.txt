@@ -1,0 +1,56 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 11 lines of code (new file; no baseline diff — reviewed at final content)
+**Overall assessment**: COMMENTED
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN — generic Node/CommonJS with no declared surface markers in scope, and the file sits outside any repository tree (`fa-run/` holds only `fixtures/`, with no manifest). Baseline security/correctness minimums only; no surface style or build conventions were available to discipline the style calls.
+**Quality gate evidence**: absent
+**Score**: 93/100 — correctness 26/30, security 25/25, patterns 19/20, maintainability 13/15, performance 10/10 (EXCELLENT band, gate PASS at threshold 70)
+
+## Findings
+
+### P0 - Critical
+
+None.
+
+### P1 - High
+
+None. I checked the whole in-contract input space before settling this: for `value ≤ min`, `min < value < max`, `value ≥ max`, `value = ±Infinity`, `min === max`, and negative ranges, `Math.min(Math.max(value, min), max)` returns the correct member of the closed range, and the guard at `clamp.js:5` already rejects every inverted range. No in-contract failure exists, so nothing reaches P1.
+
+### P2 - Suggestion
+
+1. [fixtures/clamp.js:8] Non-numeric input returns `NaN` or a silently coerced value instead of throwing
+   - Case: `clamp(NaN, 0, 10)` returns `NaN`, and `clamp(null, 0, 10)` returns `0`. The guard at `clamp.js:5-7` cannot catch either, because `NaN > max` is `false`, so no throw fires and the caller receives a value that looks like a successful clamp.
+   - Risk: not a performance finding; no workload assumption is needed.
+   - User impact: a caller that pipes user or config input through this helper gets `NaN` or a coerced number back and carries it into arithmetic downstream, where the failure surfaces far from the boundary that let it in.
+   - Finding class: class-of-bug. Phase 3's default applies: the callers are outside the dispatched scope, so no producer/consumer inventory proves instance-only.
+   - Scope proof: `rg -n "clamp"` over `fa-run/` returns only `fixtures/clamp.js:4` and `filestures/clamp.js:11` — the export and its definition, no sibling helper repeating the coercion and no caller inside the reviewed tree. I could not widen past it (scope).
+   - Reach: `NaN`, `null`, `undefined` and strings are outside the stated contract ("Limits a number to the closed range"), and a guard claims only the class it checks — review-core §2 names `min > max` explicitly as an ordering check that does not claim its operands are numbers. Reach not namable, so P2 hardening, not P1.
+   - Recommended fix: guard the inputs before the ordering check, e.g. `if (!Number.isFinite(value) || !Number.isFinite(min) || !Number.isFinite(max)) throw new TypeError('clamp requires finite numeric arguments');`. Decide deliberately whether `±Infinity` belongs in the contract; if it does, use `typeof x !== 'number' || Number.isNaN(x)` instead.
+   - affectedSurfaceHints: ["numeric helper", "input boundary"]
+   - riskScore: 2 (advisory only)
+
+2. [fixtures/clamp.js:6] `RangeError` message omits the offending bounds
+   - Case: a caller that computes its bounds, e.g. `clamp(5, upper, lower)` from a swapped config pair, gets `RangeError: min must not exceed max`. The message states the rule but not `min = 10, max = 0`, so the throw site is the helper frame and the actual argument values must be recovered with a debugger or a temporary log.
+   - Risk: not a performance finding; no workload assumption is needed.
+   - User impact: every inverted-range bug costs an extra debugging round trip, on the one path the function deliberately makes loud.
+   - Finding class: instance-only. It is not security, path, auth, persistence, schema or public-response behavior; the fix is one line; verification is a single assertion on the thrown message. The same error-message habit may exist elsewhere in the codebase, which the proof below cannot see.
+   - Scope proof: `rg -n "throw new|RangeError|typeof|Number\\.is"` over `fa-run/` returns exactly one hit, `fixtures/clamp.js:6`, so this is the only error site inside the reviewed tree. Consumers are out of scope, so class coverage stops at the fixture boundary.
+   - Recommended fix: interpolate the values, e.g. ``throw new RangeError(`min (${min}) must not exceed max (${max})`)``.
+   - affectedSurfaceHints: ["numeric helper", "error surface"]
+   - riskScore: 1 (advisory only)
+
+## Removal/Iteration Plan
+
+No removal candidates. All 11 lines are reachable, the single comment carries durable meaning (the closed-range contract, no artifact ids), and the branching is one guard plus one expression. `clamp` is exported but called by nothing inside the reviewed tree, which is a fixture boundary rather than dead code — I cannot classify it as unused without an inventory of its consumers. Iteration on this file is the two P2 fixes above, both instance-sized and safe to apply in one pass.
+
+## Next Steps
+
+1. Commit readiness: **yes**. No P0 or P1 finding exists, and P2 is advisory and never blocks a merge, so this file can go in as-is; the two findings are follow-ups, not conditions.
+2. If findings are accepted, apply #1 and #2 in one pass and add one focused test per finding: an `NaN` argument, a `null` argument, and an inverted-range assertion that matches the new message.
+3. No implementation work has started — this review is report-only.
+4. Notable strengths: the closed-range formula is the correct static clamp for every in-contract input including `±Infinity`, the inverted range is rejected loudly rather than silently swapped, `'use strict'` is declared, the helper is a single-purpose pure function with no hidden state, and the one comment states the contract rather than narrating the code.
+
+Not checked: callers and consumers of `clamp` (declared out of scope for this dispatch) and any test coverage for it (the reviewed tree carries no test file, package manifest, or test convention to measure against), so the reach and class judgments in findings 1 and 2 rest on the signature, the comment, and the guard alone.
+
+Review status: COMMENTED

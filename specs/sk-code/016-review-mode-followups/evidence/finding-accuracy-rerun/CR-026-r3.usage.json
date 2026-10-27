@@ -1,0 +1,12 @@
+{
+ "input": 27308,
+ "output": 9933,
+ "reasoning": 7805,
+ "cacheRead": 208000,
+ "totalTokens": 245241,
+ "cost": 0.01068,
+ "turns": 7,
+ "seconds": 51,
+ "model": "deepseek-v4.1-flash-1017",
+ "provider": "llmgateway"
+}

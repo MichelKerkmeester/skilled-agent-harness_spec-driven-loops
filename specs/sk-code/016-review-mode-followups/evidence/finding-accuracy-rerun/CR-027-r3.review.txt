@@ -1,0 +1,55 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 11 lines (new file, all lines added)
+**Overall assessment**: APPROVED
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None. No security surface exists in this file: it takes numbers, returns a number, performs no I/O, holds no secrets, and has no trust boundary to cross.
+
+### P1 - High
+
+None. The clamp identity holds for every input the stated contract allows: for numeric `value`, `min <= max`, line 8 returns a value in `[min, max]`, and that includes `±Infinity` bounds. The failure modes below all sit outside that contract, which is why they are advisory rather than required.
+
+### P2 - Suggestion
+
+1. [fixtures/clamp.js:5] The range guard does not reject non-numeric bounds, so an invalid range silently returns `NaN`
+   - Case: `clamp(5, NaN, 100)` reaches line 5, where `NaN > 100` evaluates to `false`, so the guard never fires; line 8 then computes `Math.max(5, NaN)` → `NaN` and returns `NaN`, a value outside `[min, max]` with no error, while the equally invalid `clamp(5, 100, 0)` throws at line 6. The same path serves `clamp(5, 0, NaN)`, and string bounds produce the mirror-image failure: `clamp(5, '9', '10')` makes line 5 compare lexicographically (`'9' > '10'` is `true`) and throws for a numerically valid range.
+   - Risk: severity is P2 by reach calibration, not by impact. `NaN` where the contract says a number, and a wrong type, are out-of-contract inputs, and review-core §2 holds that the `min > max` guard claims only the ordering class, not that its operands are numbers. If this helper is meant to be the bounds-validation point for callers, that decision belongs in the contract and the guard; it is not a P1 gap in the current stated contract.
+   - User impact: if deferred, a caller treating the `RangeError` as its invalid-bounds signal instead receives `NaN` and no trace — a rendered value disappears, `array.slice(0, clamp(n, NaN, max))` returns empty, a persisted limit serializes to `null`.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "require\(.*clamp|from ['\"].*clamp"` across `fa-run` returns no matches, so no consumer exists to check; `fa-run/fixtures` holds only `clamp.js`, `paginate.js` and `users.js`, with no test file and no second guard, so one site covers the class.
+   - affectedSurfaceHints: ["clamp utility", "bounds validation", "callers parsing numeric config"]
+   - riskScore: 3 (advisory only)
+   - Recommended fix: widen the existing guard rather than adding a second check, e.g. `if (typeof min !== 'number' || typeof max !== 'number' || Number.isNaN(min) || Number.isNaN(max) || min > max) throw new RangeError('min and max must be numbers and min must not exceed max');`. Do not substitute `Number.isFinite`: `clamp(5, -Infinity, Infinity)` currently returns `5` correctly, and `isFinite` would reject that legitimate range. If NaN pass-through is intended instead, say so in the line 3 comment.
+
+2. [fixtures/clamp.js:3] The only contract statement describes the range and leaves the throwing precondition undisclosed
+   - Case: a caller reads line 3, the file's single statement of intent, and calls `clamp(value, 10, 0)`; the return described there is never produced because line 6 throws `RangeError`, and the comment names no precondition and no exception.
+   - Risk: advisory only. The throw itself is the safer behavior — throwing beats silently clamping to `max` — and it is reachable only for an inverted range the code already rejects. The defect is that a documented return-only contract terminates in a documented-nowhere throw.
+   - User impact: an uncaught `RangeError` escapes callers who coded against the comment, surfacing at a call site far from the bad bound rather than at review time.
+   - Finding class: instance-only
+   - Scope proof: line 3 is the file's only comment and the only documentation surface; `rg -n "clamp"` over the scratchpad returns only the definition at line 4 and the export at line 11 for this file, so one edit closes the gap.
+   - affectedSurfaceHints: ["clamp doc comment", "callers relying on the documented contract"]
+   - riskScore: 2 (advisory only)
+   - Recommended fix: state both halves of the contract in the same comment, e.g. `// Clamps a number to the closed range [min, max]. Throws RangeError when min > max.` — keep it to the durable behavior, with no artifact ids or paths.
+
+## Removal/Iteration Plan
+
+No removal candidates. All 11 lines are load-bearing: no dead code, no commented-out code, no duplicated logic, no defensive fallback the contract does not need. Comment hygiene is clean — line 3 carries no artifact ids, packet numbers, or spec paths, so the pre-commit comment-hygiene gate passes and neither finding above requires rewriting it for that reason.
+
+Positives worth recording: `'use strict'` is present; the CommonJS named export at line 11 matches the module's own shape; the guard at lines 5-7 fails loudly instead of silently coercing an inverted range; and line 8 handles `±Infinity` bounds correctly, which is precisely the constraint that rules out the obvious `Number.isFinite` fix.
+
+## Next Steps
+
+1. Decide finding 1 at `fixtures/clamp.js:5`: widen the guard to reject non-numeric bounds, or document the `NaN` pass-through as intended behavior.
+2. Apply finding 2 at `fixtures/clamp.js:3` once that decision is made, so the comment and the guard state the same contract.
+3. No fixes were applied here — this review is read-only. Approve implementation explicitly before any edit lands.
+
+Not checked: runtime behavior was not executed, since this read-only runtime exposes no shell, so the `NaN` propagation at line 8 and the lexicographic comparison at line 5 are derived from ECMAScript `Math.min`/`Math.max` and relational-operator semantics rather than observed output; no caller or test exists to confirm reach (`rg` finds no `require`/`import` of `clamp` anywhere under `fa-run`, and `fa-run/fixtures` contains only the three fixture files), and `git status`/`git diff` could not be run, so "new file, all lines added" is taken from the dispatch rather than from a diff.
+
+Review status: APPROVED

@@ -1,0 +1,62 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 9 lines
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`) 1.9.3.0 + `references/review-core.md` 1.5.4.0
+**Surface evidence used**: UNKNOWN — no surface markers in the fixture tree (no `package.json`, `tsconfig.json` or README under `fa-run/`), so baseline security/correctness minimums only; style/verification guidance is disclosed as unverified rather than invented.
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None. No trust boundary, secret handling, injection path or data-destructive side effect is reachable from this module.
+
+### P1 - High
+
+1. [`fixtures/paginate.js:5`] Documented 1-based page contradicts 0-based offset math — every caller-visible page is off by one
+   - Case: `pageItems([1,2,3,4,5,6,7,8,9,10], 1, 10)` — the first page under the line-3 contract "Returns the items on a 1-based page" — computes `start = 1 * 10 = 10` and returns `[]`. With 25 items, the same call returns elements 11–20, and the true last page (`page = 3`) also returns `[]`.
+   - Risk: not performance-related; deterministic on every call.
+   - User impact: while deferred, every consumer that paginates per the documented contract shows the wrong slice on all pages except the accidental `page = 0`, and an empty tail page on the last real page. Silent wrong data, no error raised.
+   - Finding class: instance-only
+   - Scope proof: `grep -n "page|pageSize|slice\(" **/*.js` over `fa-run/` returns hits only in `fixtures/paginate.js`; `grep -n "pageItems"` over the tree returns only the definition (line 4) and the export (line 9). No sibling pagination site exists to fix.
+   - affectedSurfaceHints: ["pageItems", "module exports", "consumers of fixtures/paginate.js"]
+   - Recommended fix: make the two agree in one change. If 1-based is intended (the stated contract), use `const start = (page - 1) * pageSize;`. If 0-based is intended, rewrite the line-3 comment to say "0-based page, 0 = first page". Do not change both — pick one truth.
+
+### P2 - Suggestion
+
+2. [`fixtures/paginate.js:5-6`] No numeric domain validation on `page`/`pageSize`; out-of-domain values silently return a wrong or empty page
+   - Case: `pageItems(items, 1.5, 10)` → `start = 15`, skips 10 items with no signal; `pageItems(items, NaN, 10)` and `pageItems(items, 1, NaN)` → `start = NaN`, `slice(NaN, NaN)` coerces to `slice(0, 0)` → `[]`; `pageItems(items, 1, -5)` → `slice(-5, -10)` → `[]`. All succeed silently.
+   - Risk: n/a (no workload dependency).
+   - User impact: callers passing a computed non-integer or `NaN` page get an empty or shifted page instead of a diagnosable failure; the cost is a debugging session, not data corruption.
+   - Finding class: instance-only
+   - Scope proof: same grep as finding 1 — this is the only pagination implementation in the tree, and no caller exists to normalize these values upstream.
+   - Recommended fix: hardening only, outside the stated contract — reject or floor non-integers and non-positive `pageSize` (for example `Number.isInteger(page) && page >= 1` guard, or `Math.trunc` plus a `pageSize > 0` check). Note that a non-array `items` throws a loud `TypeError` at line 6 and is therefore not reported.
+
+3. [`fixtures/paginate.js:4`] New exported function has no covering test
+   - Case: `grep -n "pageItems"` over `fa-run/` finds only the definition and the export — no test file, harness or assertion exercises `pageItems` at any page boundary, which is why finding 1 passed unnoticed.
+   - Risk: n/a.
+   - User impact: none at runtime; the cost is that the off-by-one and the silent-empty tail page have no regression guard.
+   - Finding class: instance-only
+   - Scope proof: the tree listing is `fixtures/clamp.js`, `fixtures/paginate.js`, `fixtures/users.js` — no test directory or `*test*` file exists to extend.
+   - Recommended fix: one focused test asserting the first page, a middle page and the last page under whichever page base finding 1 settles on.
+
+| Finding | Hunter Severity | Skeptic Challenge | Referee Verdict | Final Severity |
+| ------- | --------------- | ----------------- | --------------- | -------------- |
+| 1 — page base vs. doc contract | P1 | "Maybe the code is intentionally 0-based and only the comment is stale" | Confirmed — either side may be wrong, but the shipped artifact's stated contract and behavior disagree, and the reach is a caller passing `page = 1` as documented | P1 |
+| 2 — no numeric domain validation | P1 | "Inputs like `NaN`, `1.5` and `-5` are outside the stated contract, and the code claims no validation" | Downgraded to P2 hardening per reach calibration | P2 |
+
+## Removal/Iteration Plan
+
+Nothing to remove. The file is 9 lines with no dead code, no unused export, and no leftover scaffolding; the only iteration is the one-line base change in finding 1 (or its one-line comment counterpart) plus the guard on line 5-6.
+
+## Next Steps
+
+1. Settle the page base at `fixtures/paginate.js:5` — `(page - 1) * pageSize` or a corrected line-3 comment — then confirm which choice the fixture's intended consumer expects.
+2. Add the integer/positive guard for `page`/`pageSize` at `fixtures/paginate.js:5` (P2, optional for merge).
+3. Add the one focused pagination test (P2, optional for merge).
+4. Review made no edits by design; request explicit approval before any implementation follow-up.
+
+Not checked: `git diff` / staged-file state, because this runtime exposes no shell — the "new file" framing comes from the dispatch, not from git metadata; and any consumer of this module outside `fa-run/`, since the fixture tree contains neither a caller nor an import of `pageItems`.
+
+Review status: REQUESTED_CHANGES

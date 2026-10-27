@@ -62,6 +62,7 @@ SKILL.md:532 and references/pr-state-dedup.md:47 only: no code computes the key,
 - Add the `Quality gate evidence: present|absent` header line, the no-remote cache-key fallback and pathspec scope, and the user-authored mode review contract to the mode docs.
 - Add four playbook scenarios, three for live finding accuracy and one for a user surface through both routing stages, and run the finding-accuracy three live.
 - Reword repository-bound examples, align the review agent, bump versions and write changelogs.
+- Reopened: add a reach calibration to the severity rules so a P0 or P1 must name an input the code's stated contract allows or a real caller, keep every restatement in step, let the clean control allow a NaN hardening note at P2, and rerun the finding-accuracy scenarios three times each.
 
 ### Out of Scope
 - Ranks 1, 3 and 5 (repo review profile, profile surface evidence, extensible never-skip list) - the operator closed them.
@@ -82,6 +83,8 @@ SKILL.md:532 and references/pr-state-dedup.md:47 only: no code computes the key,
 | `.skilled/skills/sk-code/sk-code-review/benchmark/reports/**` | Create/Modify | Live finding-accuracy run folder and index row |
 | `.skilled/agents/review.md` and runtime mirrors | Modify | Summary agreement paragraph |
 | Version carriers and changelogs for sk-code-review and the sk-code hub | Modify/Create | Patch releases |
+| `.skilled/skills/sk-code/sk-code-review/references/review-core.md`, `SKILL.md`, `README.md`, `.skilled/agents/review.md` and runtime copies | Modify | Reach calibration and its restatements |
+| `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md`, `benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/` | Modify/Create | Allowed P2 note and the rerun report |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -107,6 +110,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | Live finding-accuracy scenarios exist and a live run records executor, model, duration and tokens, and the playbook scenario count is reconciled. |
 | REQ-007 | `SKILL.md` and `scripts/README.md` hold no `.skilled/` path. |
 | REQ-008 | The agents and commands that consume the review mode are checked and aligned, with mirrors regenerated. |
+| REQ-009 | `references/review-core.md` section 2 requires a P0 or P1 to name its reach, holds out-of-contract input at P2 unless the code claims to validate it, and limits the low-confidence escalation rule to findings whose reach is named. SKILL.md, README.md and the review agent with its runtime copies restate it in agreement. |
+| REQ-010 | The clean-control scenario states that a NaN or non-number hardening note is an allowed P2, and the playbook validator passes. |
+| REQ-011 | The three finding-accuracy scenarios run live three times each on the first run's executor, plus one supplemental run without the range guard, and a new report folder records per-run verdict, duration and tokens. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -175,7 +181,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- The clean-control scenario drew a P1 false positive in its first live run. Whether the review mode should change, or the scenario's gold should, is open for a later packet.
+- None. The clean-control false positive was settled in favour of the scenario: the severity rules now require a reachable input for a blocker, and the clean control allows the NaN note at P2.
 <!-- /ANCHOR:questions -->
 
 ---

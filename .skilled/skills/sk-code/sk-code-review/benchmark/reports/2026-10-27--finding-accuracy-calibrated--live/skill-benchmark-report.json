@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "live-finding-accuracy",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "sk-code-review",
+    "root": ".skilled/skills/sk-code/sk-code-review"
+  },
+  "executor": "pi (print mode, read-only tools read, grep, find, ls)",
+  "model": "llmgateway/deepseek-v4.1-flash-1017 (thinking max)",
+  "verdict": "PASS",
+  "aggregateScore": "D4 only: 100/100",
+  "corpus": "sk-code-review/manual-testing-playbook/finding-accuracy/ (CR-025, CR-026, CR-027), clean control at version 1.0.2.0",
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "not in this run"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": null,
+      "status": "not in this run"
+    },
+    "D2": {
+      "points": 20,
+      "score": null,
+      "status": "not in this run"
+    },
+    "D3": {
+      "points": 15,
+      "score": null,
+      "status": "not in this run"
+    },
+    "D4": {
+      "points": 25,
+      "score": 100
+    },
+    "D5": {
+      "points": 15,
+      "score": null,
+      "status": "not in this run",
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D1intra",
+    "D2",
+    "D3",
+    "D5"
+  ],
+  "coverage": {
+    "scored": 9,
+    "routedOut": 0,
+    "routing": 0,
+    "advisor": 0,
+    "browser": 0
+  },
+  "funnel": {
+    "passed": 9,
+    "failed": 0
+  },
+  "bottlenecks": [
+    {
+      "severity": "P2",
+      "class": "severity calibration",
+      "locus": "CR-027 supplemental",
+      "detail": "With the min > max guard removed the review still flagged the inverted-range defect, but graded it P2 under the reach rule, so the supplemental shows detection, not blocking"
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "CR-025 run 1",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 1",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "P0 SQL injection at users.js:5 with a parameterized-query fix; P1 none; final-line check passed"
+    },
+    {
+      "scenarioId": "CR-025 run 2",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 2",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "P0 SQL injection at users.js:5 with a parameterized-query fix; P1 none; final-line check passed"
+    },
+    {
+      "scenarioId": "CR-025 run 3",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 3",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "P0 SQL injection at users.js:5 with a parameterized-query fix; P1 none; final-line check passed"
+    },
+    {
+      "scenarioId": "CR-026 run 1",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 1",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "P1 off-by-one at paginate.js:5 (start should be (page - 1) * pageSize); final-line check passed"
+    },
+    {
+      "scenarioId": "CR-026 run 2",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 2",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "P1 off-by-one at paginate.js:5 (start should be (page - 1) * pageSize); final-line check passed"
+    },
+    {
+      "scenarioId": "CR-026 run 3",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 3",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "P1 off-by-one at paginate.js:5 (start should be (page - 1) * pageSize); final-line check passed"
+    },
+    {
+      "scenarioId": "CR-027 run 1",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 1",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "no P0 or P1; NaN and non-number input held at P2; status COMMENTED; final-line check passed"
+    },
+    {
+      "scenarioId": "CR-027 run 2",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 2",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "no P0 or P1; NaN and non-number input held at P2; status APPROVED; final-line check passed"
+    },
+    {
+      "scenarioId": "CR-027 run 3",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "run 3",
+      "modeAScore": 100,
+      "met": true,
+      "reason": "no P0 or P1; NaN bounds held at P2; status APPROVED; final-line check passed"
+    },
+    {
+      "scenarioId": "CR-027 supplemental (guard removed)",
+      "classKind": "finding-accuracy",
+      "tier": "live",
+      "providerModel": "llmgateway/deepseek-v4.1-flash-1017",
+      "variant": "min > max guard removed",
+      "met": null,
+      "reason": "raised a finding at clamp.js:5 that inverted bounds silently return max, graded P2 because no guard, doc line or caller puts the input in reach; status COMMENTED; final-line check passed"
+    }
+  ],
+  "measures": [
+    {
+      "name": "CR-025 run 1 duration",
+      "result": "41 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-025 run 1 tokens",
+      "result": "327951 total (39054 input, 11201 output, 277696 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-025 run 2 duration",
+      "result": "54 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-025 run 2 tokens",
+      "result": "205734 total (29748 input, 9138 output, 166848 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-025 run 3 duration",
+      "result": "51 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-025 run 3 tokens",
+      "result": "343266 total (40086 input, 8588 output, 294592 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-026 run 1 duration",
+      "result": "31 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-026 run 1 tokens",
+      "result": "125129 total (19964 input, 8269 output, 96896 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-026 run 2 duration",
+      "result": "41 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-026 run 2 tokens",
+      "result": "160801 total (21441 input, 7264 output, 132096 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-026 run 3 duration",
+      "result": "51 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-026 run 3 tokens",
+      "result": "245241 total (27308 input, 9933 output, 208000 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 run 1 duration",
+      "result": "57 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 run 1 tokens",
+      "result": "151091 total (32745 input, 10634 output, 107712 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 run 2 duration",
+      "result": "64 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 run 2 tokens",
+      "result": "253801 total (31527 input, 12546 output, 209728 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 run 3 duration",
+      "result": "46 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 run 3 tokens",
+      "result": "152551 total (32342 input, 11409 output, 108800 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 supplemental duration",
+      "result": "71 s",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-027 supplemental tokens",
+      "result": "168063 total (42778 input, 17765 output, 107520 cache read)",
+      "target": "recorded"
+    },
+    {
+      "name": "CR-025 pass rate",
+      "result": "3 of 3 runs met gold",
+      "target": "3 of 3"
+    },
+    {
+      "name": "CR-026 pass rate",
+      "result": "3 of 3 runs met gold",
+      "target": "3 of 3"
+    },
+    {
+      "name": "CR-027 pass rate",
+      "result": "3 of 3 runs met gold",
+      "target": "3 of 3"
+    },
+    {
+      "name": "D4 finding accuracy",
+      "result": "100/100 (9 of 9 primary runs met gold)",
+      "target": "100/100"
+    }
+  ],
+  "runQuality": {
+    "note": "Three live reviews per scenario plus one supplemental run on 2026-10-27, after the reach calibration was added to the review mode. Same executor, model, flags and prompt builder as the first live run that day; fixtures sat in a folder holding only the three fixture files. Each run was scored by hand against its scenario gold and checked with check-review-final-line.js. Raw review outputs, final-line results and per-run usage live in specs/sk-code/016-review-mode-followups/evidence/finding-accuracy-rerun/. Three runs per scenario is a small sample, not a stable rate.",
+    "scenarioCount": 3
+  }
+}

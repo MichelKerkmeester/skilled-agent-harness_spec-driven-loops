@@ -1,0 +1,62 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 10 lines (new file: `fixtures/users.js`)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN — no `package.json` anywhere in `fa-run/` and no declared surface path marker matches a bare CommonJS file in a scratchpad tree, so baseline security/correctness minimums apply with no surface standards evidence
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+1. [fixtures/users.js:5] SQL text built by string concatenation of the `email` argument (SQL injection)
+   - Case: `findUserByEmail("x' OR '1'='1")` produces `SELECT id, email, role FROM users WHERE email = 'x' OR '1'='1'`, whose predicate is always true, so line 7 returns the first row of `users` whatever address the caller asked for. `findUserByEmail("'; DELETE FROM users; --")` closes the literal the same way; whether the second statement executes depends on the driver, which is out of scope. Both inputs are ordinary strings, so they sit inside the function's stated contract and inside the trust boundary (an email address is user-supplied at every plausible caller).
+   - Risk: read of any account row including `role`; write or destroy of `users` if `./db` permits stacked statements. Reach is the module's sole exported entry point, and no guard in the file rejects or escapes the value.
+   - User impact: an attacker passing a crafted address at a login, reset or admin lookup receives another account's identity and role, so authorization decisions land on the wrong user and account takeover follows; the whole table is readable in one call.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "db\.query\(" fixtures/` returns exactly one call site (`users.js:6`) and `rg -n "SELECT |\?|\$\d" fixtures/` finds no other SQL and no in-scope parameterized helper, so this is the only instance in the reviewed tree while every future call site copied from this shape inherits the defect.
+   - affectedSurfaceHints: ["users data accessor", "caller request handler", "db.query driver"]
+   - riskScore: 9 (advisory only)
+   - Recommended fix: bind the value instead of interpolating it — `db.query('SELECT id, email, role FROM users WHERE email = ?', [email])` — using the placeholder syntax the `./db` driver actually supports, and never concatenate a caller value into SQL text.
+
+### P1 - High
+
+None. The validation gap at item 2 is reach-limited to inputs outside the function's stated contract, which the severity contract places at P2.
+
+### P2 - Suggestion
+
+2. [fixtures/users.js:4] Argument contract unenforced; a non-string `email` is coerced and returns `null` silently
+   - Case: `findUserByEmail()` or `findUserByEmail(undefined)` renders `WHERE email = 'undefined'` and returns `null`; `findUserByEmail({ address: 'a@b.c' })` renders `'[object Object]'` and returns `null`. The result is identical to a genuine "no such user", so the caller cannot tell a misuse from a negative lookup.
+   - Risk: a caller-side defect (dropped argument, wrong property name, wrong type) is silently converted into a legitimate negative result and never surfaces except in a database log. Inputs are outside the stated contract, so this is hardening rather than a P1.
+   - User impact: a login or reset path fails closed with no diagnostic, so a real defect looks like an unknown user and is expensive to trace in production.
+   - Finding class: instance-only
+   - Scope proof: single exported entry point in the tree (`rg -n "module\.exports" fixtures/` → `users.js:10` only); verification is one local change plus one focused assertion.
+   - affectedSurfaceHints: ["users data accessor"]
+   - Recommended fix: reject or explicitly normalize non-string input before building the query (`typeof email !== 'string'` → throw `TypeError`, or a documented sentinel) and record the accepted type in the function's doc shape.
+
+3. [fixtures/users.js:6] Every matching row is fetched to return only the first
+   - Case: a `users` table where the address is not unique — a missing unique index, a legacy import, or a soft-merge that leaves two active rows — returns all of them to JavaScript while line 7 keeps `rows[0]` and discards the rest; which row wins then depends on the driver's row order.
+   - Risk: the workload is one query returning n rows where n is the number of rows sharing that address (n is 1 in the normal case, so the waste is small and grows only with duplicates); the sharper cost is that a data-integrity signal (several accounts on one address) is swallowed.
+   - User impact: modest transfer waste, plus a non-deterministic "which duplicate is this user" result that can present the wrong account record.
+   - Finding class: instance-only
+   - Scope proof: one query site (`rg -n "db\.query\(" fixtures/` → `users.js:6`); fix is local to this statement.
+   - affectedSurfaceHints: ["users data accessor", "users schema"]
+   - Recommended fix: add `LIMIT 1` to match the single-row intent of `rows[0]`, or, if duplicate addresses are legitimate, choose and document the canonical row (and enforce uniqueness in the schema).
+
+## Removal/Iteration Plan
+
+Nothing to remove: no dead code, no unused exports, no stale comments (the file carries no comments, so no comment-hygiene issue applies).
+
+Iteration order, if fixes are accepted: (1) item 1 first — it is the blocker and the other changes are cosmetic beside it; (2) item 2 and item 3 in either order, both local to `users.js`.
+
+## Next Steps
+
+1. Await approval before any implementation follow-up; this review is read-only and made no edits.
+2. On approval, replace the concatenated statement at `fixtures/users.js:5` with a bound-parameter call, matching the placeholder syntax the out-of-scope `./db` driver exposes.
+3. Add the focused case `findUserByEmail("x' OR '1'='1")` returning `null` as the regression proof for item 1.
+4. Decide items 2 and 3 explicitly rather than by default — either accept them or schedule them.
+
+Not checked: the `./db` module (driver API, placeholder syntax, multi-statement support, and whether `query` accepts a parameter array) is excluded by the dispatch's import scope, and the fixture tree holds no callers, no tests and no `users` schema, so caller reach beyond the function's stated contract and the duplicate-address case could not be confirmed from code.
+
+Review status: REQUESTED_CHANGES

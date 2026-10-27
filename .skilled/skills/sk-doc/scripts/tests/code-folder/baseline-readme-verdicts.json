@@ -1,5 +1,5 @@
 {
-  "count": 982,
+  "count": 983,
   "mode": "readme",
   "results": [
     {
@@ -5132,6 +5132,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

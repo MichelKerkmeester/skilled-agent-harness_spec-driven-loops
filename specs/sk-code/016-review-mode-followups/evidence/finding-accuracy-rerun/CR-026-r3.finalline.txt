@@ -1,0 +1,2 @@
+OK: review output ends on the exact status line
+finalline_rc=0

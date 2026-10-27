@@ -1,0 +1,63 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 9 lines added (`fixtures/paginate.js`, whole file)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN — CommonJS Node fixture with no surface-specific markers in the reviewed file; baseline security/correctness minimums applied, no surface style claims made
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None. The function performs pure in-memory list selection — no auth, injection, secret, filesystem, or network surface. I found no path to an exploit in this file and am not inventing one.
+
+### P1 - High
+
+1. [fixtures/paginate.js:5] Documented 1-based paging implemented as 0-based, shifting every page by one
+   - Case: `pageItems(['a','b','c','d','e','f'], 1, 3)` — the module's own contract (line 3, "Returns the items on a **1-based** page") promises the first page `['a','b','c']`; `start = page * pageSize` computes `3`, so the caller receives `['d','e','f']`. No input outside the stated contract is needed: a caller passing the documented first page number gets the wrong page.
+   - Evidence: line 5 uses `page * pageSize`; a 1-based contract requires `(page - 1) * pageSize`. The two are disjoint — the first page is only reachable by passing `page = 0`, a value the comment excludes. The comment is the only stated contract here (no callers, no tests; see Scope proof), so the signature, name, and doc comment disagree with the body.
+   - User impact: every consumer paginating by the documented convention silently drops the first `pageSize` items and returns an extra empty trailing page; a UI listing would appear to start at record N+1 while reporting full coverage.
+   - Finding class: class-of-bug — the base convention is wrong for all inputs, not for one instance.
+   - Scope proof: `grep -n "pageItems" fa-run/` returns only `fixtures/paginate.js:4` (definition) and `:9` (export); nothing in the tree pins the intended base, so no consumer disagrees with the comment and the comment cannot be dismissed as stale. Sibling fixtures (`clamp.js`, `users.js`) are not referenced and not in scope.
+   - affectedSurfaceHints: ["pageItems caller contract", "doc comment on line 3"]
+   - riskScore: 6 (advisory only)
+   - Recommended fix: settle the base in one place. If 1-based is intended, `const start = (page - 1) * pageSize;`. If 0-based is intended, correct line 3 and rename the parameter so the contract is legible at the call site. Do not leave the two in disagreement. The surviving comment should state the durable convention ("page 1 is the first page"), not restate the arithmetic.
+
+### P2 - Suggestions
+
+2. [fixtures/paginate.js:5-6] No guard on `page`/`pageSize`, so invalid values return silently wrong data instead of failing
+   - Case: `pageItems(items, -2, 10)` on a 100-item array yields `items.slice(-20, -10)` → `items[80..90)`. `Array.prototype.slice` reads a negative index as an offset from the end, so an out-of-range page returns a slice from the *tail* of the list with no error. `pageSize = 0` returns `[]`; a fractional `pageSize` truncates toward zero and produces overlapping windows.
+   - Evidence: lines 5-6 pass both operands straight into `slice`; `slice` never throws for these inputs, so the failure is a wrong-but-plausible result.
+   - User impact: a bad page number upstream is reported as an empty or wrong page rather than as an error, which is harder to diagnose than a throw.
+   - Finding class: instance-only (single call site, no producer/consumer of these params in the tree).
+   - Scope proof: same `grep` as finding 1 — `pageItems` is referenced nowhere else, so the guard is a one-function change.
+   - affectedSurfaceHints: ["pageItems argument validation"]
+   - riskScore: 3 (advisory only)
+   - Recommended fix: after the base in finding 1 is settled, reject non-integer or out-of-range arguments with a `RangeError` (`Number.isInteger(page) && page >= <base>`, `Number.isInteger(pageSize) && pageSize >= 1`). This is hardening, not a contract violation: the current comment does not claim to validate its inputs.
+
+3. [fixtures/paginate.js:4-7] No test pins the paging contract, which is why finding 1 survived
+   - Case: a later edit flips the base or drops a boundary guard and nothing fails; the off-by-one is undetectable from the module alone.
+   - Evidence: `grep -n "pageItems" fa-run/` finds no test, assertion, or fixture exercising the export.
+   - User impact: the behavior of this fixture is unpinned, so consumers cannot rely on either convention surviving a change.
+   - Finding class: test-isolation
+   - Scope proof: the grep above covers the whole `fa-run` tree; no coverage exists inside it.
+   - affectedSurfaceHints: ["fixtures test suite"]
+   - riskScore: 3 (advisory only)
+   - Recommended fix: one focused test over a 7-item array with `pageSize = 3` asserting the first page, a middle page, the final partial page, and one out-of-range page — plus, once finding 2 is addressed, one rejection case.
+
+## Removal/Iteration Plan
+
+- **Safe now**: line 3's comment is the defect in finding 1; it is one line and its repair or correction ships with that fix.
+- **Deferred**: nothing removal-worthy. The file has no dead code, no unreachable branch, and no duplicated logic.
+- **Considered and dropped** (Hunter candidates disproved on inspection, so they are not reported as findings): non-array `items` (works identically for strings via `slice`, and the contract does not claim array-only input — no named reach); missing `'use strict'` (line 1 already has it); performance of `slice` (one O(pageSize) copy, no workload justifies a change); naming (`pageItems` is adequate for the file's scope).
+
+## Next Steps
+
+1. Fix findings in order: 1 first, since 2's guard depends on which base wins. Result is commit-ready once 1 is resolved and 2 is either applied or consciously deferred as hardening.
+2. Confirm the intended base with whoever owns the calling convention, if that is not already settled — the review cannot choose it for them.
+3. Add the test in finding 3 in the same change, so the convention cannot silently drift back.
+
+Not checked: runtime behavior of `pageItems` (this read-only session exposes no execution tool, so the `slice` negative-index and truncation semantics in findings 2 and 3 are traced from ECMA-262, not observed output) and callers or tests outside `fa-run/` (`grep -n "pageItems" fa-run` finds only the definition and export), so real-caller impact is unproven and finding 1's reach rests on the module's own doc comment rather than an observed consumer.
+
+Review status: REQUESTED_CHANGES

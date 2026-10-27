@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 782,
+  "derived_count": 783,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -384,6 +384,7 @@
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live",
     ".skilled/skills/sk-code/sk-code-review/scripts",
     ".skilled/skills/sk-code/sk-code-skilled",
     ".skilled/skills/sk-code/sk-code-skilled/assets/scripts",

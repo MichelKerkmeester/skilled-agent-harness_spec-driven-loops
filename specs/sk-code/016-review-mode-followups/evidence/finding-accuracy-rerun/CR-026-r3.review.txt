@@ -1,0 +1,46 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 9 lines changed (new file, read in full: `<scratch>/fa-run/fixtures/paginate.js`, referred to below as `paginate.js`)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN (the only declared surfaces are `SKILLED`, whose markers are `.skilled/` `/`.opencode/` paths plus a fileMarker list that contains no `.js`, and `sk-code-ci`, which declares no detection block; neither matches a scratchpad `.js` file)
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None. The function is a pure read-only selector: no trust boundary, no secrets, no state mutation.
+
+### P1 - High
+
+1. [paginate.js:5] Page arithmetic uses a 0-based base while the only stated contract says the page is 1-based, so every contract-following caller reads the wrong page
+   - Case: `pageItems([1,2,3,4,5], 1, 10)` returns `[]`. Page 1 is the first valid page per the comment on line 3 and the collection holds exactly one page, but `start = 1 * 10 = 10` and `slice(10, 20)` is empty. For any `pageSize`, `page = N` returns the rows the contract assigns to page `N + 1`, and the true last page is unreachable by its own number: 25 items at `pageSize` 10 gives page 1 → items 11–20, page 2 → items 21–25, page 3 → `[]`.
+   - User impact: Every caller paging with the documented 1-based numbers drops the first page and gets a silently empty final page, so an export, list endpoint or UI grid loses its first page of records while the read reports success.
+   - Finding class: instance-only
+   - Scope proof: `rg -n "pageItems|paginate"` over `.../fa-run` matches only the definition at line 4 and the export at line 9, and `fa-run/` contains nothing but `fixtures/`, so there is no in-scope consumer and the single expression at line 5 is the whole defect surface.
+   - affectedSurfaceHints: ["pageItems caller", "paging contract"]
+   - Recommended fix: Pick the intended base and make both sides agree. For 1-based, use `const start = (page - 1) * pageSize;`. For 0-based, keep line 5 and change line 3 to state 0-based. Line 3 is this function's only specification, so it should also state the accepted page range in one sentence instead of leaving callers to infer it.
+
+### P2 - Suggestions
+
+2. [paginate.js:5] A missing or fractional `pageSize` degrades into a silent empty or misaligned page instead of failing fast
+   - Case: `pageItems([1,2,3], 1)` passes `pageSize` as `undefined`, making `start` `NaN`; `slice(NaN, NaN)` coerces both bounds to `0` and returns `[]` for a 3-item collection. `pageItems(items, 1, 2.5)` computes `start = 2.5`, which `slice` truncates to `2`, returning 3 rows for a size of 2.5.
+   - User impact: A caller who omits or miscalculates the size gets a plausible empty page instead of an error, so the mistake surfaces as missing data downstream rather than at the call site.
+   - Finding class: instance-only
+   - Scope proof: Same grep as finding 1 — no other definition or consumer exists, so a guard belongs at line 4 and nowhere else.
+   - Recommended fix: Validate before computing (integers; `page >= 1`, or `>= 0` if the 0-based reading wins in finding 1; `pageSize >= 1`) and throw a `RangeError` naming the offending argument. This is hardening beyond the current stated contract, which makes no validation claim.
+
+## Removal/Iteration Plan
+
+None. Nine lines with no dead code, no unreachable branch and no removable surface; the only iteration is the one-expression change in finding 1.
+
+## Next Steps
+
+1. Decide the intended page base, then apply the matching half of finding 1 — that is the author's call, not a reviewer's guess.
+2. Add the finding 2 guard at the same call boundary, since both changes touch line 5.
+3. Add a fixture test asserting `pageItems(items, 1, pageSize)` returns the first page: that is the case failing today.
+
+Not checked: no caller, test, README or package manifest exists in `fa-run/` (it holds only `fixtures/`), so no runtime consumer could be checked; the behavior above is derived by reading lines 4–6 against ECMAScript `slice` bound coercion, not executed, because this read-only runtime exposes no shell.
+
+Review status: REQUESTED_CHANGES

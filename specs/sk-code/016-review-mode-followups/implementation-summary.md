@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "sk-code/016-review-mode-followups"
     last_updated_at: "2026-10-27T09:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Shipped the six review-mode follow-ups and aligned the review agent"
+    recent_action: "Added the severity reach calibration and reran finding accuracy three times per scenario"
     next_safe_action: "Orchestrator lands the lane commits"
     blockers: []
     key_files:
@@ -22,8 +22,7 @@ _memory:
       session_id: "lane-d-review-mode-followups"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Should the clean-control false positive change the mode or the scenario gold?"
+    open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
@@ -63,6 +62,21 @@ Agents and commands checked against the mode:
 - `/doctor:sk-code`: no change. It holds no review-mode reference.
 - `.skilled/commands/doctor/scripts/parent-skill-check.cjs`: no change. Its one match is a comment example, and it passes on the hub.
 
+### Severity reach calibration (reopened)
+
+The first live run failed the clean control: the review raised a P1 because `clamp(5, NaN, 10)` returns `NaN`, though only a broken caller sends a `NaN` bound, the file had no callers and its comment states a number contract. The severity rules never asked whether the failing input could arrive. `references/review-core.md` section 2 now carries a Reach Calibration: a P0 or P1 names an input the stated contract allows or a real caller that sends it, out-of-contract input is P2 hardening unless the code claims to validate it, a guard claims only the class it checks, and data crossing a trust boundary is always in reach. The escalation rule now raises only a finding whose reach is named, so the two cannot contradict.
+
+Restatements kept in step: `SKILL.md` Phase 3, the `README.md` severity taxonomy, and `.skilled/agents/review.md` (severity table note and a Skeptic-pass question) with its `.claude` copy by hand and the codex, pi and hermes copies regenerated. `.opencode/agents` and `.hermes/agents` are directory links to `.skilled/agents`. `deep-review.md` and the deep-review prompt pack load `review-core.md` directly, so they take the rule without an edit. The clean control now names the `NaN` note as an allowed P2.
+
+The rerun, three live reviews per scenario plus one with the range guard removed, is in `benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/`, raw outputs in `evidence/finding-accuracy-rerun/`:
+
+| Scenario | Runs met gold | Durations | Total tokens |
+|----------|---------------|-----------|--------------|
+| CR-025 seeded injection | 3 of 3, P0 at users.js:5 each time | 41, 54, 51 s | 327951, 205734, 343266 |
+| CR-026 seeded off-by-one | 3 of 3, P1 at paginate.js:5 each time | 31, 41, 51 s | 125129, 160801, 245241 |
+| CR-027 clean control | 3 of 3, no P0 or P1, NaN note held at P2 | 57, 64, 46 s | 151091, 253801, 152551 |
+| CR-027 guard removed | Finding raised at clamp.js:5, graded P2 | 71 s | 168063 |
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -99,6 +113,7 @@ DeepSeek V4.1 Flash workers made each edit from a one-change brief, through pi a
 | Accept the quality path prompt moving from a bundle to `single` | Its own scenario expects `single`, and the quality gate already attaches the CI checklist by path. |
 | Score the clean control as FAIL | Its gold allows no P0 or P1, and the review raised a P1. Recording it keeps the D4 number honest. |
 | Keep raw run evidence in `evidence/` as `.txt` | The gates would otherwise treat model output and fixtures as authored docs and code. |
+| Hold out-of-contract input at P2 rather than change the clean-control gold | The scenario was right: a NaN bound needs a broken caller. A rule about reach fixes every review, where a gold change would fix one fixture. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -117,6 +132,10 @@ DeepSeek V4.1 Flash workers made each edit from a one-change brief, through pi a
 | `sync-runtime-mirrors.cjs --check` | FAIL on `.cursor/commands/local-skilled-alignment.md` EXTRA, present in the baseline and outside this packet |
 | `validate_document.py` on changed docs | VALID, except the three review-output fixtures, which were INVALID before this packet too |
 | Live finding accuracy | CR-025 PASS, CR-026 PASS, CR-027 FAIL, D4 67/100 |
+| Mirror checks after the reach rule (agent sync, codex, pi, runtime mirrors, roster, hermes) | PASS, runtime mirrors 194 across 8 trees |
+| Playbook validator `--strict` | PASS, `sk-code/sk-code-review` 34 scenarios, 0 violations |
+| Live finding accuracy, rerun | CR-025 3/3, CR-026 3/3, CR-027 3/3, D4 100/100; guard-removed variant drew a P2 finding |
+| `test_readme_manifest.py` and `test_readme_verdict_parity.py` after `--write` | PASS against an index that includes the new report folder (783 directories, 983 README verdicts). Against the working index the manifest test fails until the new folder is staged, because discovery counts tracked files only |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -124,8 +143,8 @@ DeepSeek V4.1 Flash workers made each edit from a one-change brief, through pi a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **One sample per scenario.** The live run is one review each, so D4 67/100 is a single observation, not a rate. Rerun the three scenarios to see the spread.
-2. **The clean control drew a P1.** The review flagged `NaN` bounds in `clamp.js` as P1. Whether the mode should hold that at P2 or the gold should accept it is open.
+1. **Three samples per scenario.** The rerun is three reviews each on one model, so 100/100 is a small sample, not a stable rate.
+2. **The guard-removed variant was flagged at P2, not as a blocker.** With the `min > max` guard gone, the review named the inverted-range defect but held it at P2, reasoning that no guard, doc line or caller put an inverted range in reach. The supplemental check asks only that a finding is raised, which it was. Whether an inverted range under a "closed range [min, max]" comment should count as in-contract is not settled by this run.
 3. **CR-028 is not recorded in a benchmark folder.** Its commands were run and matched, but no report folder holds that run.
 <!-- /ANCHOR:limitations -->
 

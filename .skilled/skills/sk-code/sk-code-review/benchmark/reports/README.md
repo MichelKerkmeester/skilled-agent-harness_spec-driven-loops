@@ -24,6 +24,7 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-27 | [`2026-10-27--finding-accuracy-calibrated--live/`](./2026-10-27--finding-accuracy-calibrated--live/) | live | 9 PASS, 1 RECORDED | **PASS** D4 100/100 | `specs/sk-code/016-review-mode-followups` |
 | 2026-10-27 | [`2026-10-27--finding-accuracy--live/`](./2026-10-27--finding-accuracy--live/) | live | 2 PASS, 1 FAIL | **FAIL** D4 67/100 | `specs/sk-code/016-review-mode-followups` |
 | 2026-07-10 | [`2026-07-10--router-mode-a--router/`](./2026-07-10--router-mode-a--router/) | router | 7 PASS | **PASS** 100/100 | not recorded |
 | 2026-07-10 | [`2026-07-10--live-mode-b--live/`](./2026-07-10--live-mode-b--live/) | live | 7 PASS | **PASS** 100/100 | not recorded |

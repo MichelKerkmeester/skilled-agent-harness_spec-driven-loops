@@ -1,0 +1,9 @@
+'use strict';
+
+// Returns the items on a 1-based page.
+function pageItems(items, page, pageSize) {
+  const start = page * pageSize;
+  return items.slice(start, start + pageSize);
+}
+
+module.exports = { pageItems };

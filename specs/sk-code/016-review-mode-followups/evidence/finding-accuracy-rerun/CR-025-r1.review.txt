@@ -1,0 +1,57 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 10 lines changed (`fa-run/fixtures/users.js`, absolute path under `<scratch>/`)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+1. [fixtures/users.js:5] SQL injection: the email argument is concatenated into the query text
+   - Case: a caller forwards a submitted email of `admin@example.com' OR '1'='1` and line 5 builds `SELECT id, email, role FROM users WHERE email = 'admin@example.com' OR '1'='1'`, which matches every row, so line 7 returns an arbitrary account the caller never looked up. The same concatenation accepts `' UNION SELECT id, password_hash, role FROM users --`, which makes `rows[0]` carry attacker-chosen columns from any table the database account can read. Email values are user-supplied wherever this helper serves a login or signup path, and the function applies no validation of its own, so the input class is in reach under the trust boundary rule.
+   - Risk: arbitrary SQL text runs with the application's database grants. Read access to `users` is certain, writes are conditional on the driver permitting multiple statements.
+   - User impact: whichever caller treats a returned row as proof that the submitted address belongs to an existing account answers yes for an address that does not exist, and password hashes or other column data can be surfaced through the returned row. The file sits under `fixtures/`, so shipped blast radius is limited unless the pattern is copied into a real data-access module or backed by a live database.
+   - Finding class: instance-only
+   - Scope proof: `rg -n "\.query\(" fixtures` returns line 6 only, which passes the already-built `sql`, and `rg -n "WHERE [A-Za-z_.]+ = ?['\"]?\s*['\"]\s*\+" --glob '*.js'` over the worktree returns no other string-built query, so this is the only construction site in the reviewed inventory.
+   - affectedSurfaceHints: ["users lookup", "db.query adapter"]
+   - riskScore: 9 (advisory only)
+   - Recommended fix: bind the value instead of concatenating it, `db.query('SELECT id, email, role FROM users WHERE email = ?', [email])`, and confirm the placeholder syntax against `./db`, which is out of scope here. Add a type guard on the argument in the same edit so `undefined` and non-string values are rejected rather than coerced to `'undefined'` and quietly matching nothing. If no caller needs `role`, drop it from the projection.
+
+### P1 - High
+
+None. No caller exists in the reviewed tree, so the `null` return at line 7 breaks no existing contract.
+
+### P2 - Suggestion
+
+2. [fixtures/users.js:5] Exact-match comparison misses mixed-case addresses
+   - Case: a user registers `Foo@Example.com` and later submits `foo@example.com`. On a case-sensitive column, as Postgres `text` is by default, `WHERE email = 'foo@example.com'` matches nothing, so line 7 returns `null` and the lookup fails for the real account. A caller that also checks for an existing row before insert can create a second account for the same mailbox.
+   - Risk: this depends on the column collation, which lives in the schema I could not read. On a `_ci` collation it does not fire.
+   - User impact: login and duplicate-account failures for users who type their address in a different case, a class that is common and not adversarial.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "findUserByEmail" fa-run` returns the declaration and the export only, so this is the sole lookup path in the tree and any account-lookup caller inherits it.
+   - Recommended fix: normalize once at the boundary, `const normalized = String(email).trim().toLowerCase()`, and compare against a normalized column, or the schema's case-insensitive type. Confirm the schema first, since a normalization write path must match the read path or lookups break the other way.
+
+3. [fixtures/] No test covers the new module
+   - Case: the parameterization fix for finding 1 lands with no assertion that a quoted address stays a value rather than SQL text. A later edit reintroduces concatenation and the suite stays green.
+   - Risk: regression coverage, not runtime behavior. Medium likelihood on a security-relevant helper.
+   - User impact: users bear whatever the reintroduced defect does, with no signal until production.
+   - Finding class: test-isolation
+   - Scope proof: `ls fa-run/fixtures` lists `clamp.js`, `paginate.js` and `users.js` with no test file or runner in the tree, so nothing in scope exercises this module.
+   - Recommended fix: add one test asserting that a lookup for `a' OR '1'='1` returns `null` against a stubbed `db.query` and that the bound parameter carries the raw string.
+
+## Removal/Iteration Plan
+
+Nothing to remove. The module is 10 lines with one purpose. The `role` column in the projection is the only candidate, and it becomes removable only once a caller inventory shows no consumer needs it.
+
+## Next Steps
+
+1. Parameterize the query at `fixtures/users.js:5` and add the argument type guard, then re-run this review.
+2. Confirm the `./db` placeholder syntax and the `users.email` collation, since both change what the fixes look like.
+3. Add the regression test from finding 3 in the same commit.
+
+Not checked: the `./db` adapter (declared out of scope, so whether `db.query` accepts bind parameters, which placeholder dialect it uses, and whether it can resolve a non-array is unverified); the `users` schema and collation (decides whether finding 2 is a live failure, and no migration or schema file exists in the reviewed tree); callers of `findUserByEmail` (none exist in the reviewed tree, so whether the returned `role` reaches a response or feeds an authorization decision is unverified); test runners elsewhere in the parent project that might cover this fixture.
+
+Review status: REQUESTED_CHANGES

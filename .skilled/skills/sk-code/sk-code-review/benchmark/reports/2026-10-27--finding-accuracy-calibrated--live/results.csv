@@ -1,0 +1,12 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CR-025 run 1,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 1,100,PASS,P0 SQL injection at users.js:5 with a parameterized-query fix; P1 none; final-line check passed
+CR-025 run 2,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 2,100,PASS,P0 SQL injection at users.js:5 with a parameterized-query fix; P1 none; final-line check passed
+CR-025 run 3,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 3,100,PASS,P0 SQL injection at users.js:5 with a parameterized-query fix; P1 none; final-line check passed
+CR-026 run 1,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 1,100,PASS,P1 off-by-one at paginate.js:5 (start should be (page - 1) * pageSize); final-line check passed
+CR-026 run 2,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 2,100,PASS,P1 off-by-one at paginate.js:5 (start should be (page - 1) * pageSize); final-line check passed
+CR-026 run 3,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 3,100,PASS,P1 off-by-one at paginate.js:5 (start should be (page - 1) * pageSize); final-line check passed
+CR-027 run 1,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 1,100,PASS,no P0 or P1; NaN and non-number input held at P2; status COMMENTED; final-line check passed
+CR-027 run 2,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 2,100,PASS,no P0 or P1; NaN and non-number input held at P2; status APPROVED; final-line check passed
+CR-027 run 3,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,run 3,100,PASS,no P0 or P1; NaN bounds held at P2; status APPROVED; final-line check passed
+CR-027 supplemental (guard removed),sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,min > max guard removed,,RECORDED,"raised a finding at clamp.js:5 that inverted bounds silently return max, graded P2 because no guard, doc line or caller puts the input in reach; status COMMENTED; final-line check passed"

@@ -1,0 +1,53 @@
+Contracts and connected code are read. Surface detection is confirmed **UNKNOWN** by evidence (`stack-detection.md:164` — "Root `package.json` with no `.skilled/` target → UNKNOWN; no declared surface owns generic Node.js"; the file's `.js` extension is absent from SKILLED's `fileMarkers` and its path is outside `.skilled/`), so this review runs on the baseline security/correctness minimums with that uncertainty disclosed.
+
+## Code Review Summary
+
+**Files reviewed**: 1 file, 10 lines changed (new file)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+1. [fixtures/users.js:5] SQL injection via string concatenation of an unescaped parameter
+   - Case: a caller passes `findUserByEmail("x' OR '1'='1")` and the executed statement becomes `SELECT id, email, role FROM users WHERE email = 'x' OR '1'='1'`; the `WHERE` clause is always true, so the function returns the first row in `users` — typically the oldest account — instead of the row matching `x`. Passing `findUserByEmail("' OR role='admin' --")` selects an attacker-chosen row outright.
+   - Risk: no workload assumption needed; the statement changes shape on the first crafted input, not after any scale threshold.
+   - User impact: the exported lookup at `fixtures/users.js:10` is the identity path its name advertises, and its output is a `role` column. Any consumer that treats the returned row as "the account that owns this email" can be steered to a different account, which is an authentication/authorization bypass for the caller, not merely a data read. Deferring the fix also leaves the raw payload reachable if the query error text ever surfaces, because a syntax error from a crafted value echoes it to the caller.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "SELECT|db\.query|\$\{|escaped|prepare"` over `fa-run/` returns only `fixtures/users.js:5` and `:6`, so this tree holds no second construction site; that inventory covers 3 scratchpad fixtures only and does not prove the wider codebase clean, so the class stays `class-of-bug` rather than `instance-only`. The finding survives any behavior of `./db`: once the payload is concatenated into the string, the value and the SQL are indistinguishable, so escaping at a lower layer cannot recover the boundary — the interpolation point is the only place it can be fixed.
+   - affectedSurfaceHints: ["email lookup query", "db.query caller", "account identity resolution"]
+   - riskScore: 9 (advisory only)
+   - Recommended fix: build the statement with a bound parameter and pass `email` in the values array, in whatever form `db.query` supports (positional `?`/`$1` or a named-parameter object); confirm that capability against `./db` before writing the call, since its contract was outside this review. Keep the existing narrow projection (`id, email, role`) — it correctly avoids selecting credential material.
+
+### P1 - High
+
+None.
+
+### P2 - Suggestion
+
+2. [fixtures/users.js:5-7] Duplicate-email ambiguity is resolved silently and non-deterministically
+   - Case: two rows in `users` carry the same `email`; the query has no `LIMIT` and no `ORDER BY`, so `return rows[0] || null` at `:7` hands the caller whichever row the storage engine happens to emit first, and the second account is unreachable through this function.
+   - Risk: two-row case only; no performance dimension.
+   - User impact: a caller that resolves identity through this function can act on one of two accounts with no signal that the ambiguity exists. The impact is real but the precondition is unproven — it depends on `users.email` lacking a unique index, and the schema lives in the out-of-scope `./db`, so this is hardening, not a demonstrated defect.
+   - Finding class: instance-only
+   - Scope proof: the single query at `:5` is the only row-selection site in this tree (`rg` above), and the fix is one statement plus one stated assumption.
+   - Recommended fix: state the assumption the code already relies on — either reference the unique index on `users.email`, or add an explicit `ORDER BY id` with a comment recording that the first match is the intended semantic. Prefer documenting the constraint over adding a `LIMIT 1`, which hides the ambiguity instead of resolving it.
+
+## Removal/Iteration Plan
+
+- No dead code, unused exports, or superseded branches to remove; the file is a single function with one export.
+- The file sits under a scratchpad `fixtures/` tree in a temp directory, not in a shipped path. If it exists to demonstrate the vulnerable shape, keep it out of any tree that ships and pair it with a parameterized counterpart so the contrast is the fixture's point; if it is a starting point for real code, fix finding 1 before it is copied anywhere.
+- `fixtures/users.js:2` is left untouched per the scope exclusion on imports. Note for the owner: there is no sibling `db.js` in `fixtures/`, so this module does not resolve as it stands.
+
+## Next Steps
+
+1. Rewrite `fixtures/users.js:5` to bind `email` as a query parameter, after reading `./db` to learn which parameter form it accepts.
+2. Record the duplicate-email assumption at `fixtures/users.js:5-7`, via the unique-index reference or an explicit `ORDER BY` (finding 2).
+3. Add one regression test asserting that `findUserByEmail("x' OR '1'='1")` resolves to `null` rather than a row; the tree currently contains no test files at all (`rg -n "describe\(|it\(|test\(|assert"` returned no matches), so nothing guards this fix.
+
+Not checked: the `./db` module (imports excluded from scope, and no `db.js` exists in `fixtures/`), the `users` table schema, and any real caller of `findUserByEmail` (`rg` found none in the tree), so parameter-binding support, email uniqueness, and caller-side handling of the returned `role` could not be verified.
+
+Review status: REQUESTED_CHANGES

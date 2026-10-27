@@ -54,6 +54,11 @@ contextType: "general"
 - [x] T011 Reword repository-bound examples (`SKILL.md`, `scripts/README.md`). Verify: `grep -c '\.skilled/'` prints 0 in both.
 - [x] T012 Align the review agent and regenerate its mirrors (`.skilled/agents/review.md`, `.claude`, `.codex`, `.pi`, `.hermes`). Verify: `check-agent-mirror-sync.cjs --all` OK.
 - [x] T013 Raise versions and write changelogs (sk-code-review v1.9.2.0, sk-code v3.9.2.0). Verify: both changelogs VALID as `--type changelog`.
+- [x] T017 Add the reach calibration and reconcile the escalation rule (`references/review-core.md` section 2). Verify: `validate_document.py` VALID and `grep -n "Reach Calibration"` prints one heading.
+- [x] T018 [P] Restate the rule in `SKILL.md`, `README.md` and `.skilled/agents/review.md` with its `.claude` copy, then regenerate the codex, pi and hermes copies. Verify: `check-agent-mirror-sync.cjs --all` OK, codex, pi, roster, runtime-mirror and hermes checks PASS.
+- [x] T019 [P] Allow the NaN hardening note at P2 in the clean control (`manual-testing-playbook/finding-accuracy/clean-control.md`). Verify: the playbook validator reports `PASS package=sk-code/sk-code-review` with 0 violations.
+- [x] T020 Rerun the three finding-accuracy scenarios three times each and the guard-removed variant once, and render the report (`benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/`, `evidence/finding-accuracy-rerun/`). Verify: `render-report.cjs --check` matches all 7 files.
+- [x] T021 Raise versions and write changelogs (sk-code-review v1.9.3.0, sk-code v3.9.4.0). Verify: both changelogs VALID.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,6 +70,7 @@ contextType: "general"
 - [x] T014 Rerun the lane gate set from the final state (scratchpad `gates-lane-d.sh`). Verify: every leg rc=0 except the pre-existing `.cursor` mirror EXTRA.
 - [x] T015 Reconcile the playbook scenario count (`manual-testing-playbook.md`). Verify: the playbook validator is VALID and the count is derived from the section 18 index, which lists 34 scenarios.
 - [x] T016 Validate the packet (`validate.sh --strict`). Verify: `RESULT: PASSED`.
+- [x] T022 Rerun the README manifest and verdict parity tests after `--write`, and validate the packet. Verify: both tests pass and `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
