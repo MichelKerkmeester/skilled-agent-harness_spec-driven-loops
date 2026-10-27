@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15702,
+    "ok": 15707,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26588,
+  "documentsScanned": 26593,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b78e3f44caa0f8219d27ebf230d12f187abe7514fc8d3a404d0e35c6894e7556",
+  "manifestHash": "152a39afa1fbca300a38774f77eb408a1957511c4304a36d172f5411c2a113dc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38620,
+      "ok": 38633,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -76209,6 +76209,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b78e3f44caa0f8219d27ebf230d12f187abe7514fc8d3a404d0e35c6894e7556",
+  "manifestHash": "152a39afa1fbca300a38774f77eb408a1957511c4304a36d172f5411c2a113dc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35972,6 +35972,9 @@
     "dependabot alerts": [
       "dependabot alerts"
     ],
+    "dependabot deepmerge alert": [
+      "dependabot deepmerge alert"
+    ],
     "dependabot remediation plan": [
       "dependabot remediation plan"
     ],
@@ -39804,6 +39807,9 @@
     ],
     "documented model choices": [
       "documented model choices"
+    ],
+    "documented output folder": [
+      "documented output folder"
     ],
     "documented provider prefixes": [
       "documented provider prefixes"
@@ -62289,6 +62295,9 @@
     "md generator ispass docs": [
       "md-generator isPass docs"
     ],
+    "md generator output path policy": [
+      "md generator output path policy"
+    ],
     "md generator procedure card inventory": [
       "md-generator procedure card inventory"
     ],
@@ -62297,6 +62306,9 @@
     ],
     "md generator smoke lane": [
       "md-generator smoke lane"
+    ],
+    "md generator stealth dependency": [
+      "md generator stealth dependency"
     ],
     "md generator tests": [
       "md-generator tests"
@@ -73735,6 +73747,9 @@
     ],
     "phase 14 tasks": [
       "phase 14 tasks"
+    ],
+    "phase 14 unused dependency removal": [
+      "phase 14 unused dependency removal"
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
@@ -97375,6 +97390,9 @@
     "sk design md generator 1 1 4 0": [
       "sk-design-md-generator 1.1.4.0"
     ],
+    "sk design md generator 1 1 6 0": [
+      "sk-design-md-generator 1.1.6.0"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
@@ -97392,6 +97410,9 @@
     ],
     "sk design md generator v1 1 4 0": [
       "sk-design-md-generator v1.1.4.0"
+    ],
+    "sk design md generator v1 1 6 0": [
+      "sk-design-md-generator v1.1.6.0"
     ],
     "sk design mode rename": [
       "sk-design mode rename"
@@ -105467,6 +105488,9 @@
     "stdio transport survival": [
       "stdio transport survival"
     ],
+    "stealth plugin removal": [
+      "stealth plugin removal"
+    ],
     "stealth union alpha": [
       "stealth union alpha"
     ],
@@ -112489,6 +112513,21 @@
     ],
     "untrusted repo hook source root": [
       "untrusted repo hook source root"
+    ],
+    "unused backend dependencies": [
+      "unused backend dependencies"
+    ],
+    "unused dependency removal": [
+      "unused dependency removal"
+    ],
+    "unused dependency removal implementation summary": [
+      "unused dependency removal implementation summary"
+    ],
+    "unused dependency removal plan": [
+      "unused dependency removal plan"
+    ],
+    "unused dependency removal tasks": [
+      "unused dependency removal tasks"
     ],
     "unused mcp response type removed": [
       "unused mcp response type removed"

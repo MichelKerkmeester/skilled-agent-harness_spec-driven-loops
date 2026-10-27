@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0545b084c7c0b1d28b8d7fc49dcdade9c82084a12ed356ece188bc61131c84ad",
+  "corpusHash": "1a2ddb84318eadf5e9594253025361530d494d47ec864686ba258e12f2bf9aab",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26588,
+  "includedPathCount": 26593,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3341,6 +3341,7 @@
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.4.0.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.6.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/extract/extract.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md",
@@ -26431,6 +26432,10 @@
     "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
@@ -26619,7 +26624,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b78e3f44caa0f8219d27ebf230d12f187abe7514fc8d3a404d0e35c6894e7556",
+  "manifestHash": "152a39afa1fbca300a38774f77eb408a1957511c4304a36d172f5411c2a113dc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33919,6 +33924,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/scratch",
       "reason": "excluded directory"
     },
     {
