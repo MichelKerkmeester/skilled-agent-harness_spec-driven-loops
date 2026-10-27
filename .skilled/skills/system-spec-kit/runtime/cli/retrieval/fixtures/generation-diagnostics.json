@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7335,
-    "ok": 15585,
+    "missing-frontmatter": 7336,
+    "ok": 15591,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26468,
+  "documentsScanned": 26475,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d9659be18c406e6479479437e8073959a7c368b40a1543c95d9b9d24b8289d68",
+  "manifestHash": "2b5a8a14149bd2178efc858f3faf0db804256715630881e4cf3052e48f962ac2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38379,
+      "ok": 38398,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -29727,6 +29727,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

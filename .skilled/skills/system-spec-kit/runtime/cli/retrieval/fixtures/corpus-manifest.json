@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9aca5a66b2c0014b20c78a1f63344a4fb206234b7d1a54ad205e2c048ed63246",
+  "corpusHash": "3c8d2c4c7f19e58d51c33a9a9ecdd1d539f641f9263f7f19dbcd2686080bfd8b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26468,
+  "includedPathCount": 26475,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3003,6 +3003,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.3.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.4.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6480,6 +6481,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.6.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.7.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.8.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.9.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -6557,6 +6559,7 @@
     ".skilled/skills/sk-git/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.1.2.1.md",
     ".skilled/skills/sk-git/changelog/v1.1.3.0.md",
+    ".skilled/skills/sk-git/changelog/v1.10.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.1.0.md",
@@ -6588,6 +6591,7 @@
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md",
+    ".skilled/skills/sk-git/feature-catalog/session-lifecycle/fsmonitor-daemon-reaper.md",
     ".skilled/skills/sk-git/feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md",
     ".skilled/skills/sk-git/feature-catalog/session-lifecycle/worktree-reaper.md",
     ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
@@ -6622,6 +6626,7 @@
     ".skilled/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-merge-to-main.md",
     ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md",
+    ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md",
     ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/locked-unique-number-allocation.md",
     ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/orchestrated-child-execs-in-place.md",
     ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/owner-slug-branch-pair-validation.md",
@@ -6901,6 +6906,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.1.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.10.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.11.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.12.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
@@ -7352,6 +7358,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.1.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.10.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.11.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.12.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.2.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
@@ -26499,7 +26506,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d9659be18c406e6479479437e8073959a7c368b40a1543c95d9b9d24b8289d68",
+  "manifestHash": "2b5a8a14149bd2178efc858f3faf0db804256715630881e4cf3052e48f962ac2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

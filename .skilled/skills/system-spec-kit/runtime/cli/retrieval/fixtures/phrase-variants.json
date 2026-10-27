@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d9659be18c406e6479479437e8073959a7c368b40a1543c95d9b9d24b8289d68",
+  "manifestHash": "2b5a8a14149bd2178efc858f3faf0db804256715630881e4cf3052e48f962ac2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13457,6 +13457,9 @@
     ],
     "behavior benchmark framework": [
       "behavior benchmark framework"
+    ],
+    "behavior benchmark git status timeout": [
+      "behavior benchmark git status timeout"
     ],
     "behavior benchmark index template": [
       "behavior benchmark index template"
@@ -33243,6 +33246,9 @@
     "deep loop runtime 1 9 11 0": [
       "deep-loop-runtime 1.9.11.0"
     ],
+    "deep loop runtime 1 9 12 0": [
+      "deep-loop-runtime 1.9.12.0"
+    ],
     "deep loop runtime 1 9 2 0": [
       "deep-loop-runtime 1.9.2.0"
     ],
@@ -33353,6 +33359,9 @@
     ],
     "deep loop runtime v1 9 11 0": [
       "deep-loop-runtime v1.9.11.0"
+    ],
+    "deep loop runtime v1 9 12 0": [
+      "deep-loop-runtime v1.9.12.0"
     ],
     "deep loop runtime v1 9 2 0": [
       "deep-loop-runtime v1.9.2.0"
@@ -41534,6 +41543,9 @@
     "enablement receipt": [
       "enablement receipt"
     ],
+    "end stray fsmonitor daemons": [
+      "end stray fsmonitor daemons"
+    ],
     "end time tracking": [
       "end time tracking"
     ],
@@ -47684,6 +47696,12 @@
     "fsmonitor daemon pile up": [
       "fsmonitor daemon pile-up"
     ],
+    "fsmonitor daemon reaper": [
+      "fsmonitor daemon reaper"
+    ],
+    "fsmonitor daemon reaper sh": [
+      "fsmonitor-daemon-reaper.sh"
+    ],
     "fsmonitor daemon research": [
       "fsmonitor daemon research"
     ],
@@ -50570,6 +50588,9 @@
     ],
     "gpt 5 6 to gpt 6": [
       "gpt-5.6 to gpt-6"
+    ],
+    "gpt 6 1 terra fan out allowlist": [
+      "gpt-6.1-terra fan-out allowlist"
     ],
     "gpt 6 1 terra on codex": [
       "gpt-6.1 terra on codex"
@@ -54115,6 +54136,9 @@
     "idf debounced": [
       "idf debounced"
     ],
+    "idle worktree daemon sweep": [
+      "idle worktree daemon sweep"
+    ],
     "ignore and commit guard": [
       "ignore and commit guard"
     ],
@@ -57396,6 +57420,9 @@
     ],
     "leaf manifest generator": [
       "leaf manifest generator"
+    ],
+    "leaf manifest git timeout": [
+      "leaf manifest git timeout"
     ],
     "leaf manifest regeneration": [
       "leaf manifest regeneration"
@@ -88242,6 +88269,9 @@
     "router sync baseline tasks": [
       "router-sync baseline tasks"
     ],
+    "router sync git timeout": [
+      "router sync git timeout"
+    ],
     "router sync guard": [
       "router sync guard",
       "router-sync guard"
@@ -95385,6 +95415,9 @@
     "sk code skilled 2 1 3 0": [
       "sk-code-skilled 2.1.3.0"
     ],
+    "sk code skilled 2 1 4 0": [
+      "sk-code-skilled 2.1.4.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -95495,6 +95528,9 @@
     ],
     "sk code skilled v2 1 3 0": [
       "sk-code-skilled v2.1.3.0"
+    ],
+    "sk code skilled v2 1 4 0": [
+      "sk-code-skilled v2.1.4.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -96381,6 +96417,9 @@
     "sk create skill 1 5 8 0": [
       "sk-create-skill 1.5.8.0"
     ],
+    "sk create skill 1 5 9 0": [
+      "sk-create-skill 1.5.9.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -96428,6 +96467,9 @@
     ],
     "sk create skill v1 5 8 0": [
       "sk-create-skill v1.5.8.0"
+    ],
+    "sk create skill v1 5 9 0": [
+      "sk-create-skill v1.5.9.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -97431,6 +97473,9 @@
     "sk git 1 1 3 0": [
       "sk-git 1.1.3.0"
     ],
+    "sk git 1 10 0 0": [
+      "sk-git 1.10.0.0"
+    ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
     ],
@@ -97646,6 +97691,9 @@
     ],
     "sk git v1 1 3 0": [
       "sk-git v1.1.3.0"
+    ],
+    "sk git v1 10 0 0": [
+      "sk-git v1.10.0.0"
     ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
@@ -106437,6 +106485,9 @@
     "system deep loop 1 6 11 0": [
       "system-deep-loop 1.6.11.0"
     ],
+    "system deep loop 1 6 12 0": [
+      "system-deep-loop 1.6.12.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -106595,6 +106646,9 @@
     ],
     "system deep loop v1 6 11 0": [
       "system-deep-loop v1.6.11.0"
+    ],
+    "system deep loop v1 6 12 0": [
+      "system-deep-loop v1.6.12.0"
     ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
@@ -114696,6 +114750,9 @@
     ],
     "wedged daemon self heal": [
       "wedged daemon self heal"
+    ],
+    "wedged fsmonitor daemon": [
+      "wedged fsmonitor daemon"
     ],
     "wedged loading cooldown implementation plan": [
       "wedged loading cooldown implementation plan"
