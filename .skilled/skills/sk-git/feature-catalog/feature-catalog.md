@@ -6,8 +6,8 @@ trigger_phrases:
   - "git workflow capabilities"
   - "worktree naming allocator"
   - "sk-git capability inventory"
-last_updated: "2026-10-01"
-version: 1.2.2.0
+last_updated: "2026-10-27"
+version: 1.2.3.0
 ---
 
 # sk-git: Feature Catalog
@@ -82,11 +82,27 @@ A companion script that prunes finished launch-wrapper worktrees and their lefto
 
 #### Current Reality
 
-`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree with a missing or unreadable marker are always report-only. The reaper never signals a process.
+`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree with a missing or unreadable marker are always report-only. The reaper signals no process other than the fsmonitor daemon of a worktree it removes, which it ends through `fsmonitor-daemon-reaper.sh` first.
 
 #### Source Files
 
 See [`session-lifecycle/worktree-reaper.md`](session-lifecycle/worktree-reaper.md) for full implementation and test file listings.
+
+---
+
+### fsmonitor daemon reaper
+
+#### Description
+
+A companion script that lists the git fsmonitor daemons of one repository by the worktree each watches, and ends the strays, the idle and the wedged without ever touching another repository's daemon.
+
+#### Current Reality
+
+`fsmonitor-daemon-reaper.sh` classifies each daemon as main, keep, stray or out-of-scope and, without `--apply`, signals nothing. `--apply` ends strays, `--worktree` ends one worktree's daemon, `--idle-hours N` ends daemons of worktrees no process has used for N hours and `--probe` ends a daemon that misses a bounded index read. It ends a daemon through git's own stop, then SIGTERM, then SIGKILL, and refuses a named worktree while a live process is inside it unless the daemon is wedged. Each top-level launch starts a detached 12-hour idle sweep, and the worktree reaper and the finish workflow both end a worktree's daemon before removing it.
+
+#### Source Files
+
+See [`session-lifecycle/fsmonitor-daemon-reaper.md`](session-lifecycle/fsmonitor-daemon-reaper.md) for full implementation and test file listings.
 
 ---
 

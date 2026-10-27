@@ -13,28 +13,28 @@ Entries are sorted alphabetically by package name.
 
 ---
 
-#### @juicesharp/rpiv-ask-user-question (v2.10.0)
+#### @juicesharp/rpiv-ask-user-question (v2.15.0)
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-ask-user-question](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-ask-user-question)
 
 A structured questionnaire the model can put to you when it would otherwise guess — typed options instead of free-form replies
 
 ---
 
-#### @juicesharp/rpiv-todo (v2.10.0)
+#### @juicesharp/rpiv-todo (v2.15.0)
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)
 
 A todo list for the model, rendered as a live overlay that survives /reload and conversation compaction
 
 ---
 
-#### pi-blackhole (v0.5.3)
+#### pi-blackhole (v0.5.16)
 [github.com/k0valik/pi-blackhole](https://github.com/k0valik/pi-blackhole)
 
 Unified compaction + observational memory — compresses conversation context while preserving durable observations and reflections
 
 ---
 
-#### pi-btw (v0.4.1)
+#### pi-btw (v0.8.0)
 [github.com/dbachelder/pi-btw](https://github.com/dbachelder/pi-btw)
 
 A pi extension for parallel side conversations with /btw
@@ -65,6 +65,19 @@ in `auth.json` / `models-store.json`. The file is a symlinked canonical
 
 ---
 
+#### pi-claude-code-ui (v1.0.102)
+[github.com/FammasMaz/pi-cc-tools](https://github.com/FammasMaz/pi-cc-tools)
+
+Claude Code style UI for pi: one-line tool groups, syntax-highlighted diffs, an activity spinner and colors from your terminal theme
+
+**Terminal theme off (`"terminalTheme": false`).** By default the package switches Pi
+to its built-in `system` theme, which takes its colors from the terminal's palette.
+This repo's `.pi/settings.json` sets `terminalTheme` to `false`, so Pi keeps the
+`dark` theme named in the same file. The package still takes the colors of its
+diffs, connectors and spinner from whichever theme is active.
+
+---
+
 #### pi-fast-mode-w-subagent-support (v0.3.0)
 Local fork at `.pi/extensions/pi-fast-mode-w-subagent-support` — based on [pi-openai-fast-mode](https://github.com/johncmunson/pi-openai-fast-mode) commit `9b28456`
 
@@ -72,7 +85,7 @@ Toggles OpenAI / OpenAI-Codex priority `service_tier` for the configured GPT-5.4
 
 ---
 
-#### pi-plan-build (v0.1.25)
+#### pi-plan-build (v0.1.120)
 [github.com/janvitos/pi-plan-build](https://github.com/janvitos/pi-plan-build)
 
 Plan safely, approve explicitly, then implement here or in a clean session.
@@ -86,7 +99,7 @@ Claude Code-compatible command-driven statusline extension
 
 ---
 
-#### pi-web-access (v0.29.0)
+#### pi-web-access (v0.45.0)
 [github.com/nicobailon/pi-web-access](https://github.com/nicobailon/pi-web-access)
 
 Web search, URL fetching, GitHub repo cloning, PDF extraction, YouTube video understanding, and local video analysis — zero-config Exa search plus many provider backends

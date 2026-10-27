@@ -694,8 +694,11 @@ function fsmonitorDaemonsDetail(ctx) {
     if (match) counts[match[1]] += 1;
   }
   const summary = `fsmonitor daemons: ${counts.main} main, ${counts.keep} worktree, ${counts.stray} stray`;
+  // The hint names the reaper this run used and the repository it inspected, so
+  // it ends the right strays from any working directory.
+  const reaperLabel = process.env.SPECKIT_FSMON_REAPER ? reaper : ownLabel(path.join('bin', 'fsmonitor-daemon-reaper.sh'));
   return counts.stray > 0
-    ? `${summary}; end strays with bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply`
+    ? `${summary}; end strays with bash ${reaperLabel} --apply --repo ${ctx.repoRoot}`
     : summary;
 }
 

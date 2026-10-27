@@ -1,7 +1,7 @@
 ---
 title: "GIT-015 -- Branch cleanup after merge"
 description: "This scenario validates Branch cleanup after merge for `GIT-015`. It focuses on verify worktree and branch cleanup happens after successful merge."
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # GIT-015 -- Branch cleanup after merge
@@ -27,8 +27,8 @@ Operators run the exact prompt and command sequence for `GIT-015` and confirm th
 - Objective: verify worktree and branch cleanup happens after successful merge.
 - Real user request: `The PR merged. Clean up the local worktree and merged branches safely.`
 - Prompt: `Clean up the merged PR worktree and branches only after merge confirmation, then report cleanup evidence.`
-- Expected execution process: Confirm merged state, remove worktree, delete local branch safely, delete remote branch if appropriate, and verify no stale references remain.
-- Expected signals: Only merged branches are deleted; worktree list no longer includes removed path; remote delete is explicit.
+- Expected execution process: Confirm merged state, move the shell to the main checkout, end the worktree's fsmonitor daemon with the reaper, remove the worktree, check that no daemon still watches it, delete the local branch safely, delete the remote branch if appropriate, and verify no stale references remain.
+- Expected signals: Only merged branches are deleted. When a daemon watches the worktree, the reaper prints an `ended ... via=stop` line for it, or a `refused` line that does not stop the removal. The worktree list no longer includes the removed path. The leftover-daemon check prints nothing. The remote delete is explicit.
 - Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no authorized remote is configured to verify remote-branch deletion.
 - Pass/fail: PASS if cleanup follows `SKILL.md §4` ALWAYS rule 6 and `references/finish-workflows.md §3` Step 5 without force-deleting unmerged work. FAIL if unmerged branches are force-deleted, worktree removal runs with dirty changes, or stale entries remain untriaged.
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `GIT-015` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-015 | Branch cleanup after merge | verify worktree and branch cleanup happens after successful merge. | `Clean up the merged PR worktree and branches only after merge confirmation, then report cleanup evidence.` | 1. `bash: git branch --merged main` -> 2. `bash: git worktree list` -> 3. `bash: git worktree remove .worktrees/example` -> 4. `bash: git branch -d feature/example` -> 5. `bash: git push origin --delete feature/example` -> 6. `bash: git worktree prune` | Only merged branches are deleted; worktree list no longer includes removed path; remote delete is explicit. | Merged-branch list, cleanup command transcript, final worktree list, and branch list. | PASS if cleanup follows `SKILL.md §4` ALWAYS rule 6 and `references/finish-workflows.md §3` Step 5 without force-deleting unmerged work. FAIL if unmerged branches are force-deleted, worktree removal runs with dirty changes, or stale entries remain untriaged. | Check `references/finish-workflows.md §7` worktree cleanup troubleshooting and `references/shared-patterns.md §6` stale worktree pattern. |
+| GIT-015 | Branch cleanup after merge | verify worktree and branch cleanup happens after successful merge. | `Clean up the merged PR worktree and branches only after merge confirmation, then report cleanup evidence.` | 1. `bash: git branch --merged main` -> 2. `bash: git worktree list` -> 3. `bash: cd "$(git worktree list --porcelain \| sed -n '1s/^worktree //p')"` -> 4. `bash: bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply --worktree <worktree-path>` -> 5. `bash: git worktree remove <worktree-path>` -> 6. `bash: sleep 5; bash .skilled/bin/fsmonitor-daemon-reaper.sh \| grep -F "worktree=<worktree-path> "` -> 7. `bash: git branch -d feature/example` -> 8. `bash: git push origin --delete feature/example` -> 9. `bash: git worktree prune` | Only merged branches are deleted. When a daemon watches the worktree, step 4 prints an `ended ... via=stop` line or a `refused` line, and the removal still runs. The worktree list no longer includes the removed path. Step 6 prints nothing. The remote delete is explicit. | Merged-branch list, cleanup command transcript including the reaper output, final worktree list, and branch list. | PASS if cleanup follows `SKILL.md §4` ALWAYS rule 6 and `references/finish-workflows.md §3` Step 5 without force-deleting unmerged work. FAIL if unmerged branches are force-deleted, worktree removal runs with dirty changes, or stale entries remain untriaged. | Check `references/finish-workflows.md §7` worktree cleanup troubleshooting and `references/shared-patterns.md §6` stale worktree pattern. |
 
 ### Optional Supplemental Checks
 
@@ -72,6 +72,7 @@ Re-run the scenario in a disposable scratch repository when the operator needs p
 | `../../references/worktree-workflows.md` | Worktree setup and workspace-choice policy |
 | `../../references/commit-workflows.md` | Commit analysis, staging, and message workflow |
 | `../../references/finish-workflows.md` | Finish, merge, PR, and cleanup workflow |
+| `../../../../bin/fsmonitor-daemon-reaper.sh` | Ends the worktree's fsmonitor daemon before removal and finds a leftover one after |
 | `../../references/shared-patterns.md` | Recovery, branch, and command patterns |
 | `../../assets/commit-message-template.md` | Conventional Commit message rules |
 | `../../assets/pr-template.md` | Pull request body and title expectations |

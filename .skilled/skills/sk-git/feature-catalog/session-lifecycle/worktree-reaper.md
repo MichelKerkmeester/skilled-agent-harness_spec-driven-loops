@@ -7,7 +7,7 @@ trigger_phrases:
   - "reap only proven inactive worktrees"
   - "stale worktree socket cleanup"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Worktree reaper (worktree-reaper.sh)
@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 The reaper is the cleanup companion to launch-wrapper session isolation: it keeps `.worktrees/` bounded over time without ever removing a worktree it cannot prove is both finished and inactive.
 
-It only ever touches worktrees under `<repo>/.worktrees/`, never the main checkout, and never signals a process. Every behavior is a safe default, and `--dry-run` is the only flag.
+It only ever touches worktrees under `<repo>/.worktrees/`, never the main checkout, and signals no process other than the fsmonitor daemon of a worktree it removes, which it ends through `fsmonitor-daemon-reaper.sh` before the removal. Every behavior is a safe default, and `--dry-run` is the only flag.
 
 ---
 
@@ -34,6 +34,10 @@ Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper
 
 The reaper also prunes the short per-session socket directories under `~/.spk-wt-sock/` and the session marker files under the common git directory once their corresponding worktree no longer exists, so neither accumulates indefinitely alongside the worktrees they were created for.
 
+### fsmonitor Daemon End Before Removal
+
+Before it removes a qualifying wrapper worktree, the reaper runs `fsmonitor-daemon-reaper.sh --apply --worktree <path> --repo <main checkout>`, so the worktree's daemon ends through git's own stop while the worktree still exists. A failure there is logged and the removal continues. `--dry-run` prints the planned reaper call as a `DRY_RUN would:` line beside the planned removal. `SPECKIT_FSMON_REAPER` overrides the script path.
+
 ---
 
 ## 3. SOURCE FILES
@@ -43,6 +47,7 @@ The reaper also prunes the short per-session socket directories under `~/.spk-wt
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/bin/worktree-reaper.sh` | Script | Worktree pruning gate, socket/marker cleanup |
+| `.skilled/bin/fsmonitor-daemon-reaper.sh` | Script | Ends a removed worktree's fsmonitor daemon before the removal |
 
 ### Validation And Tests
 
@@ -61,3 +66,4 @@ The reaper also prunes the short per-session socket directories under `~/.spk-wt
 Related references:
 - [launch-wrapper-session-isolation.md](launch-wrapper-session-isolation.md) — Launch-wrapper session isolation
 - [continuous-integration-autosync.md](continuous-integration-autosync.md) — Continuous integration autosync
+- [fsmonitor-daemon-reaper.md](fsmonitor-daemon-reaper.md): fsmonitor daemon reaper

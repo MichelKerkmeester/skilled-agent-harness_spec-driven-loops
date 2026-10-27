@@ -1168,10 +1168,10 @@ test('worktrees reports the fsmonitor daemons a dry run finds, strays included',
 
   const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_FSMON_REAPER: stub })), 'worktrees');
   assert.equal(row.result, 'PASS', row.details.join(' | '));
-  assert.ok(
-    row.details.includes('fsmonitor daemons: 1 main, 0 worktree, 1 stray; end strays with bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply'),
-    row.details.join(' | '),
-  );
+  const line = row.details.find((detail) => detail.startsWith('fsmonitor daemons: 1 main, 0 worktree, 1 stray; end strays with '));
+  assert.ok(line, row.details.join(' | '));
+  assert.ok(line.includes(`bash ${stub} --apply --repo `), line);
+  assert.ok(line.endsWith(path.basename(f.repo)), line);
 });
 
 test('worktrees reports fsmonitor daemons as not checked when the reaper fails', (t) => {

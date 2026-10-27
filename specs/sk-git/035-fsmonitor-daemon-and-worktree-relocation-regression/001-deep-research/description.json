@@ -1,19 +1,22 @@
 {
   "level": "2",
   "specFolder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research",
-  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "A `git push` stalled for about 30 minutes because a `git check-ignore` waited on an fsmonitor daemon that never answered",
   "keywords": [
-    "yourvaluehere",
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "git",
+    "push",
+    "stalled",
+    "about",
+    "minutes",
+    "because",
+    "check-ignore",
+    "waited",
+    "fsmonitor",
+    "daemon",
+    "never",
+    "answered"
   ],
-  "lastUpdated": "2026-10-27T10:23:40.488Z",
+  "lastUpdated": "2026-10-27T12:09:20.216Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [

@@ -1013,7 +1013,7 @@ Other entries in `.pi/extensions/`:
 
 - **`pi-fast-mode-w-subagent-support`** - fast mode with subagent support
 - **Guard bridges:** symlinked entries that run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch
-- **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`
+- **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`
 
 &nbsp;
 #### Hermes Plugin

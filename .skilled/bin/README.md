@@ -73,6 +73,7 @@ bin/
 +-- hf-model-server.cjs            # Local HTTP/UDS HuggingFace embedding server
 +-- worktree-session.sh            # Launch an AI session in an isolated git worktree + branch + DBs
 +-- worktree-reaper.sh             # Prune merged/clean per-session worktrees + stale socket dirs
++-- fsmonitor-daemon-reaper.sh     # Report and end git fsmonitor daemons by the worktree each watches
 +-- worktree-guard.sh              # SessionStart detect-and-warn when a top-level session is on shared main
 +-- worktree-status.sh             # Reports worktree, branch and sync state
 +-- git-sync.sh                    # Autosync helper for the git continuous-integration workflow
@@ -164,7 +165,7 @@ Main flow:
 | `node .skilled/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
 | `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
 | `assertLoopbackBindAllowed` | Function | Refuse non-loopback binds unless remote bind plus auth token are set. |
-| `bash .skilled/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
+| `bash .skilled/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. Each top-level launch also starts a detached 12-hour idle sweep through `fsmonitor-daemon-reaper.sh --apply --idle-hours 12`, so the sweep never delays the launch. `SPECKIT_FSMON_REAPER` overrides the reaper path. |
 | `bash .skilled/bin/worktree-reaper.sh [--dry-run]` | CLI | Prune merged + clean per-session worktrees, stale socket dirs and session markers. ends only the fsmonitor daemon of a worktree it removes. Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). |
 | `bash .skilled/bin/fsmonitor-daemon-reaper.sh [--apply] [--worktree <path>] [--idle-hours N] [--probe] [--repo <path>]` | CLI | List git fsmonitor daemons by the worktree they watch: main, kept, stray (worktree gone) or out of scope. Dry run by default. `--apply` ends strays, `--worktree` ends one worktree's daemon, `--idle-hours N` also ends daemons of worktrees nobody has used for N hours, and `--probe` ends a daemon that does not answer within 15 seconds. Never touches another repository's daemons. |
 | `bash .skilled/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0). silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
@@ -207,6 +208,8 @@ Full env-var detail lives in the spec-kit runtime's [`ENV-REFERENCE.md`](../skil
 
 To isolate a runtime by default, alias its launch through the wrapper, e.g. `alias claude='bash /abs/path/.skilled/bin/worktree-session.sh claude'`. See [`sk-git`](../skills/sk-git/SKILL.md) §3 for how this relates to the in-session worktree ask-first rule.
 
+**fsmonitor daemon sweep.** A git fsmonitor daemon never exits while its worktree exists, so each top-level launch starts a detached `fsmonitor-daemon-reaper.sh --apply --idle-hours 12` sweep against the main checkout. It ends stray daemons and the daemons of worktrees no live process has used for 12 hours, and a slow or failing sweep never delays the launch. Set `SPECKIT_FSMON_REAPER` to point the wrapper at another reaper script. A child that execs in place starts no sweep.
+
 **Backstop warning.** For sessions that still start directly (no alias), add `worktree-guard.sh` as a SessionStart hook step so the operator is warned when a top-level session lands on shared `main`. It is detect-and-warn only, it never relocates or blocks the session.
 
 ---
@@ -234,10 +237,11 @@ node .skilled/bin/tests/compiled-route-manifest.test.cjs       # publication lif
 # Vitest suites for this folder, run from .skilled
 npx vitest run --config vitest.config.bin.ts
 bash -n .skilled/bin/worktree-reaper.sh
+bash -n .skilled/bin/fsmonitor-daemon-reaper.sh
 AI_SESSION_CHILD=1 bash .skilled/bin/worktree-session.sh --dry-run claude   # must report exec-in-place, no worktree
 ```
 
-Expected result: each `.cjs` module loads without throwing. each CLI shim lists tool names offline and exits 0. both daemon-free smokes pass (offline tool counts + the failure-contract exit taxonomy). both shell scripts pass `bash -n`. the child dry-run reports it would exec in place without creating a worktree.
+Expected result: each `.cjs` module loads without throwing. each CLI shim lists tool names offline and exits 0. both daemon-free smokes pass (offline tool counts + the failure-contract exit taxonomy). the three shell scripts pass `bash -n`. the child dry-run reports it would exec in place without creating a worktree.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CX-002 -- gpt-5.5 default model + Luna/Terra/Sol roster"
 description: "This scenario validates the gpt-5.5 default pin for `CX-002` and confirms the documented Luna / Terra / Sol model roster is callable via --model."
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # CX-002 -- gpt-5.5 default model + Luna/Terra/Sol roster
@@ -28,9 +28,9 @@ Operators run the exact prompt and command sequence for `CX-002` and confirm the
 - Real user request: `Confirm gpt-5.5 is still the default and that the Luna, Terra and Sol models we document actually respond.`
 - Prompt: `Confirm the cli-codex gpt-5.5 default pin works and the documented Luna/Terra/Sol roster is callable.`
 - Expected execution process: Operator confirms `references/providers-and-models.md` §2 lists `gpt-5.5` (default) plus `gpt-6-luna` / `gpt-5.6-terra` / `gpt-6.1-terra` / `gpt-6-sol` -> dispatches a small doc-style task with `--model gpt-5.5` explicit -> smoke-dispatches each Luna, Terra and Sol model with a trivial prompt -> captures the dispatched command lines and stdout -> records the roster confirmation in evidence.
-- Expected signals: The `gpt-5.5` dispatch exits 0 with `--model gpt-5.5` explicitly passed and returns coherent prose. Each Luna/Terra/Sol smoke dispatch exits 0 and returns a reply. The skill reference (`references/cli-reference.md` §5) lists all five models with per-model reasoning-effort ceilings.
+- Expected signals: The `gpt-5.5` dispatch exits 0 with `--model gpt-5.5` explicitly passed and returns coherent prose. Each Luna/Terra/Sol smoke dispatch exits 0 and returns a reply. The skill reference (`references/providers-and-models.md` §2) lists all five models with per-model reasoning-effort ceilings.
 - Desired user-visible outcome: Confirmation that the documented default works and every documented roster model is genuinely callable — no phantom model IDs in the docs.
-- Pass/fail: PASS if the `gpt-5.5` dispatch exits 0 with the explicit pin, each roster smoke dispatch exits 0, AND `references/cli-reference.md` §5 lists all five models. FAIL if any documented model fails to dispatch or the doc lists a model the CLI rejects.
+- Pass/fail: PASS if the `gpt-5.5` dispatch exits 0 with the explicit pin, each roster smoke dispatch exits 0, AND `references/providers-and-models.md` §2 lists all five models. FAIL if any documented model fails to dispatch or the doc lists a model the CLI rejects.
 
 ---
 

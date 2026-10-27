@@ -525,6 +525,13 @@ expect "an 11-hour keep daemon stays under the idle threshold" \
 expect "an 11-hour idle run signals nothing" grep -Fq "mode=apply signalled=0" "$OUT"
 expect "an 11-hour keep daemon survives" kill -0 "$IDLE_KEEP_PID"
 
+# A leading zero must not switch the threshold to octal.
+run_reaper_idle "$((IDLE_KEEP_START + 11 * 3600))" --idle-hours 012 --repo "$IDLE_REPO"
+expect "--idle-hours 012 reads as twelve, not octal ten" \
+  test -z "$(grep -F "idle pid=$IDLE_KEEP_PID" "$OUT" || true)"
+run_reaper_idle "$((IDLE_KEEP_START + 11 * 3600))" --idle-hours 08 --repo "$IDLE_REPO"
+expect "--idle-hours 08 is accepted as eight" grep -Fq "idle pid=$IDLE_KEEP_PID" "$OUT"
+
 run_reaper_idle "$((IDLE_KEEP_START + 13 * 3600))" --idle-hours 12 --apply --repo "$IDLE_REPO"
 expect "a keep daemon past the threshold is printed idle" \
   grep -Fq "idle pid=$IDLE_KEEP_PID worktree=$IDLE_WT_REAL age_hours=13" "$OUT"

@@ -76,7 +76,7 @@ On the operator's request the same session checked every CLI for a newer release
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The model id came from the Codex catalog and was then dispatched once on each CLI. The roster tests were changed first and failed for the expected reason, an allowlist without the id. The allowlist edit turned them green, and the full deep-loop runtime suite ran last. Nothing is committed.
+The model id came from the Codex catalog and was then dispatched once on each CLI. The roster tests were changed first and failed for the expected reason, an allowlist without the id. The allowlist edit turned them green, and the full deep-loop runtime suite ran last. The work landed in `4b3b046da2` (fan-out allowlist) and `ac27f18a24` (rosters).
 <!-- /ANCHOR:how-delivered -->
 
 ---

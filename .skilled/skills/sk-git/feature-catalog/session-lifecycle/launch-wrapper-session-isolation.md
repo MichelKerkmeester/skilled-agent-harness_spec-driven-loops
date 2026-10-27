@@ -7,7 +7,7 @@ trigger_phrases:
   - "per-session isolated MCP databases"
   - "top-level session worktree wrapper"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Launch-wrapper session isolation (worktree-session.sh)
@@ -38,6 +38,14 @@ Shared build artifacts (`node_modules`, compiled `dist` output) are symlinked fr
 
 A PID-stamped marker file is written under the shared common git directory (never inside the worktree, so it cannot dirty the tree) before the session's runtime is exec'd; the reaper later reads this marker to prove a wrapper session is truly finished rather than merely idle. When a live branch was resolved, the wrapper also exports `SPECKIT_LIVE_BRANCH` and `SPECKIT_AUTOSYNC` so the session's commits publish automatically — see the continuous-integration autosync feature. A `--dry-run` flag previews the full allocation plan (paths, branch, DB dirs, socket-length check) without creating anything.
 
+### fsmonitor Daemon Sweep
+
+Each top-level launch starts a detached `fsmonitor-daemon-reaper.sh --apply --idle-hours 12` sweep against the main checkout. It ends stray daemons and the daemons of worktrees no live process has used for 12 hours, and because it runs detached a slow or failing sweep never delays the launch. `SPECKIT_FSMON_REAPER` overrides the script path. A child that execs in place starts no sweep.
+
+### Worktree Base Persistence
+
+The wrapper writes `speckit.worktreeBase` into git config only when `SPECKIT_WORKTREE_BASE` set the base and the key is still unset. A launch that falls back to the in-checkout default writes nothing and logs how to move worktrees out of the checkout, so one launch without the variable no longer pins every later worktree inside the main checkout.
+
 ---
 
 ## 3. SOURCE FILES
@@ -47,6 +55,7 @@ A PID-stamped marker file is written under the shared common git directory (neve
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/bin/worktree-session.sh` | Script | Child detection, worktree allocation, dependency symlinking, DB/socket isolation, session-marker write, continuous-integration env wiring |
+| `.skilled/bin/fsmonitor-daemon-reaper.sh` | Script | The idle-daemon sweep each top-level launch starts |
 
 ### Validation And Tests
 
@@ -65,3 +74,4 @@ A PID-stamped marker file is written under the shared common git directory (neve
 Related references:
 - [worktree-reaper.md](worktree-reaper.md) — Worktree reaper
 - [continuous-integration-autosync.md](continuous-integration-autosync.md) — Continuous integration autosync
+- [fsmonitor-daemon-reaper.md](fsmonitor-daemon-reaper.md): fsmonitor daemon reaper

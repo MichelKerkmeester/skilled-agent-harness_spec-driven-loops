@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -33,7 +33,7 @@ Canonical package artifacts:
 
 This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-15 and cross-referenced in section 17. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory. No separate count is maintained here.
 
-Coverage note (2026-10-01): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, the template-driven commit contract and its missing bypass, deterministic scope inference, mixed-concern split warnings, commit lookup by packet and identifier, the refused attribution footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
+Coverage note (2026-10-27): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, the template-driven commit contract and its missing bypass, deterministic scope inference, mixed-concern split warnings, commit lookup by packet and identifier, the refused attribution footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), fsmonitor daemon reaping (a dry run that ends nothing, refusal for an occupied worktree, another repository's daemon left alone), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
 ### Realistic Test Model
 
@@ -159,7 +159,7 @@ This section records wave planning and capacity guidance for running the full sc
 | 2 | Safety Refusals | GIT-008..GIT-011 | Isolate dangerous commands and exact refusal strings |
 | 3 | Integration + Recovery | GIT-012..GIT-019 | Requires scratch repos and branch-state evidence |
 | 4 | Cross-CLI | GIT-020..GIT-022 | Advisory handback validation after policy baseline is trusted |
-| 5 | Numbered Worktree Tooling | GIT-023..GIT-034, GIT-043 | Hermetic fixture repos per script. Run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
+| 5 | Numbered Worktree Tooling | GIT-023..GIT-034, GIT-043, GIT-047 | Hermetic fixture repos per script. Run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
 | 6 | Git Preflight Advisory | GIT-042 | Disposable repository with tracked and untracked files. Verify advisory, ordinary-commit silence and suppression |
 | 7 | Doctor Commands | DOC-369..DOC-374, DOC-384 | Disposable repository, because the hooks target writes git config and the standards target writes `.sk-git/` |
 
@@ -469,7 +469,7 @@ Verify worktree and branch cleanup happens after successful merge.
 
 Prompt: `Clean up the merged PR worktree and branches only after merge confirmation, then report cleanup evidence.`
 
-Expected signals: Only merged branches are deleted. Worktree list no longer includes removed path. Remote delete is explicit.
+Expected signals: Only merged branches are deleted. The worktree's fsmonitor daemon is ended, or the reaper's refusal is recorded, before the removal. Worktree list no longer includes removed path. Remote delete is explicit.
 
 #### Test Execution
 
@@ -601,9 +601,9 @@ Expected signals: External response is advisory. Final command plan is filtered 
 
 ---
 
-## 13. NUMBERED WORKTREE TOOLING (`GIT-023..GIT-034, GIT-043`)
+## 13. NUMBERED WORKTREE TOOLING (`GIT-023..GIT-034, GIT-043, GIT-047`)
 
-This category covers 13 scenarios. The linked per-feature files remain the canonical execution contract. It validates the safety contract of the four numbered-worktree tools: the allocator (`worktree-naming.sh`), the launch-wrapper session (`worktree-session.sh`), the reaper (`worktree-reaper.sh`), and the pre-push naming gate.
+This category covers 14 scenarios. The linked per-feature files remain the canonical execution contract. It validates the safety contract of the five numbered-worktree tools: the allocator (`worktree-naming.sh`), the launch-wrapper session (`worktree-session.sh`), the reaper (`worktree-reaper.sh`), the fsmonitor daemon reaper (`fsmonitor-daemon-reaper.sh`) and the pre-push naming gate.
 
 ### GIT-023 | Locked unique number allocation
 
@@ -791,7 +791,7 @@ Prove `--dry-run` prints the exact prune, remove, and branch-delete actions it w
 
 Prompt: `Run the worktree reaper in --dry-run mode against a fixture with one reapable wrapper pair, confirm the plan names that pair, and confirm nothing on disk or in refs actually changed.`
 
-Expected signals: `DRY_RUN would:` lines naming the qualifying pair. Repository state unchanged afterward.
+Expected signals: `DRY_RUN would:` lines naming the qualifying pair, with the planned `fsmonitor-daemon-reaper.sh --apply --worktree` call before the remove. Repository state unchanged afterward.
 
 #### Test Execution
 
@@ -812,6 +812,22 @@ Expected signals: the unapproved creation is blocked, a bare approval still cann
 #### Test Execution
 
 > **Feature File:** [GIT-043](owner-first-worktree-tooling/prepush-remote-permission-gate.md)
+
+### GIT-047 | fsmonitor daemon reaper stays inside its scope
+
+#### Description
+
+Prove the fsmonitor daemon reaper's dry run ends nothing, `--apply --worktree` refuses while a live process is inside the worktree, and a daemon that belongs to another repository is reported out of scope and keeps running.
+
+#### Scenario Contract
+
+Prompt: `Run the fsmonitor daemon reaper against scratch repositories only, show that its dry run ends nothing, that it refuses to end a worktree's daemon while a process is inside that worktree and that another repository's daemon is left alone.`
+
+Expected signals: the dry run prints `mode=dry-run signalled=0`. The occupied run prints a `refused worktree=` line and `signalled=0`. The other repository's daemon is classed `out-of-scope` and its pid survives both runs.
+
+#### Test Execution
+
+> **Feature File:** [GIT-047](owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md)
 
 ---
 
@@ -967,6 +983,7 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Worktree naming allocator | `scripts/worktree-naming.sh` | Automated: `scripts/tests/worktree-naming.test.sh` |
 | Launch-wrapper session | `../../../bin/worktree-session.sh` | Automated: `../../../bin/tests/worktree-session.test.sh` |
 | Worktree reaper | `../../../bin/worktree-reaper.sh` | Automated: `../../../bin/tests/worktree-reaper.test.sh` |
+| fsmonitor daemon reaper | `../../../bin/fsmonitor-daemon-reaper.sh` | Automated: `../../../bin/tests/fsmonitor-daemon-reaper.test.sh` |
 | Pre-push naming gate | `../../../scripts/git-hooks/pre-push` | Automated: `../../../scripts/git-hooks/tests/pre-push.test.sh` |
 
 ---
@@ -1015,6 +1032,7 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Numbered Worktree Tooling | GIT-033 | `owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md` | Yes |
 | Numbered Worktree Tooling | GIT-034 | `owner-first-worktree-tooling/reaper-dry-run-no-mutation.md` | No |
 | Numbered Worktree Tooling | GIT-043 | `owner-first-worktree-tooling/prepush-remote-permission-gate.md` | Yes |
+| Numbered Worktree Tooling | GIT-047 | `owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md` | Yes |
 | Git Preflight Advisory | GIT-042 | `git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Yes |
 | Doctor Commands | DOC-369 | `doctor-commands/doctor-git-hooks-list.md` | No |
 | Doctor Commands | DOC-370 | `doctor-commands/doctor-git-hooks-switch-gate.md` | No |

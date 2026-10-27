@@ -246,7 +246,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, model selection, and command examples
-- [providers-and-models.md](./references/providers-and-models.md) - Authenticated provider/model roster, the `--thinking` effort scale, and the GPT-5.6 ceiling cross-map
+- [providers-and-models.md](./references/providers-and-models.md) - Authenticated provider/model roster, the `--thinking` effort scale, and the GPT-6 and GPT-6.1 Terra ceiling cross-map
 - [pi-tools.md](./references/pi-tools.md) - Pi capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor/executor patterns, cross-validation, and anti-patterns
 - [agent-delegation.md](./references/agent-delegation.md) - Pi's built-in tool surface and the delegation boundary

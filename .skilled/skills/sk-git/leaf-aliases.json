@@ -31,6 +31,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/session-lifecycle/fsmonitor-daemon-reaper.md",
+    "diskPath": "feature-catalog/session-lifecycle/fsmonitor-daemon-reaper.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md",
     "diskPath": "feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md"
   },
@@ -193,6 +198,11 @@
     "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md",
     "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md"
   },
   {
     "workflowMode": "sk-git",

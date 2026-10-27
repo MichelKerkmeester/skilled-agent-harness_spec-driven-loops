@@ -46,7 +46,7 @@ _memory:
 | **Completed** | 2026-10-27 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Fix commit** | `8730c91ecb`, review fixes in the commit after `03a12a8747` |
+| **Fix commit** | `8730c91ecb`, review fixes in `5d28020655` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -67,7 +67,7 @@ Three callers use it. `worktree-session.sh` starts a detached `--apply --idle-ho
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/bin/fsmonitor-daemon-reaper.sh` | Created | The reaper: attribution, classes, `--apply`, `--worktree`, `--idle-hours`, `--probe` |
-| `.skilled/bin/tests/fsmonitor-daemon-reaper.test.sh` | Created | Stub daemons and a git shim, 107 assertions |
+| `.skilled/bin/tests/fsmonitor-daemon-reaper.test.sh` | Created | Stub daemons and a git shim, 126 assertions |
 | `.skilled/bin/worktree-session.sh` | Modified | Detached 12-hour sweep on each top-level launch |
 | `.skilled/bin/tests/worktree-session.test.sh` | Modified | A blocking stub reaper does not delay the launch; children and dry runs never sweep |
 | `.skilled/bin/worktree-reaper.sh` | Modified | Ends a worktree's daemon before removing it |
@@ -90,6 +90,8 @@ It corrected six defects. The stray rule was too broad. Git's `stop` could reach
 Then it ended the wedged daemon of the 231 worktree on this checkout, ran the dry run on this checkout, removed a worktree end to end in a scratch repository, and ran the real cite-drift gate with fsmonitor on.
 
 A fresh Opus review at high effort then found two P1 gaps and several P2 items. `keep` needed no proof of ownership, so a stale registration could claim another repository's daemon. `lsof` trapped the timeout alarm and exited 1, the status the code ignored, so a partial listing passed the occupancy guard. A further builder unit (3.8) fixed both and two P2 items: paths with repeated spaces, and a daemon match that any process could satisfy through an argument. It also added a case with a real git daemon. The orchestrator fixed the finish-step snippet, confirmed that the new tests fail against the old reaper (11 failures), and reran every suite.
+
+A `/local-skilled-alignment` run over the nine commits of this session then found no P0 the commits caused, six P1 doc gaps and 23 P2 items. The sk-git catalog, playbook, README and changelog had never been updated for the reaper, and three docs still said the worktree reaper never signals a process. The follow-up added the sk-git catalog entry, playbook scenario GIT-047 and changelog v1.10.0.0, made `--idle-hours` read a leading zero as decimal, named `--repo` in the doctor's stray-daemon hint, and listed the reaper's variables in `.env.example`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -114,7 +116,7 @@ A fresh Opus review at high effort then found two P1 gaps and several P2 items. 
 
 | Check | Result |
 |-------|--------|
-| `/bin/bash .skilled/bin/tests/fsmonitor-daemon-reaper.test.sh` under bash 3.2.57 | PASS, `PASS=124 FAIL=0`, exit 0, in three runs after the review fixes, with the real-daemon case run each time. Against the old reaper the same suite fails 11 assertions |
+| `/bin/bash .skilled/bin/tests/fsmonitor-daemon-reaper.test.sh` under bash 3.2.57 | PASS, `PASS=124 FAIL=0`, exit 0, in three runs after the review fixes, with the real-daemon case run each time. Against the old reaper the same suite fails 11 assertions. After the alignment follow-up `PASS=126 FAIL=0`, and the reaper before it fails the two new leading-zero cases |
 | `bash .skilled/bin/tests/worktree-session.test.sh` | PASS, `PASS=70 FAIL=0`, up from 63 |
 | `bash .skilled/bin/tests/worktree-reaper.test.sh` | PASS, `PASS=26 FAIL=0`, up from 24 |
 | Doctor tests, TAP reporter | PASS, `# pass 74`, `# fail 0`, up from 71 |

@@ -362,6 +362,8 @@ if [ -n "$IDLE_HOURS" ]; then
       exit 2
       ;;
   esac
+  # Force base 10 so a leading zero is not read as octal by the age arithmetic.
+  IDLE_HOURS=$((10#$IDLE_HOURS))
 fi
 
 if [ -n "$REPO" ]; then

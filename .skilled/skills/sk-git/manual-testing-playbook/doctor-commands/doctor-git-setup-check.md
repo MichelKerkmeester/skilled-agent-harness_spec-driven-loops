@@ -1,7 +1,7 @@
 ---
 title: "DOC-384 -- Doctor git setup check"
 description: "Manual scenario validating that /doctor:git setup reports all eleven setup checks with a result and source each, names a repair for every failing check, and writes nothing."
-version: 1.0.4.0
+version: 1.0.5.0
 id: doctor-commands-doctor-git-setup-check
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -26,7 +26,7 @@ The route runs each check in its check-only form and prints repair commands inst
 - Preconditions: A working copy of this repository with the hooks installed (`bash .skilled/scripts/install-git-hooks.sh`) and the Claude adapter registered in `.claude/settings.json`, run from Claude Code. From another runtime, run the battery with that runtime's `--tool` and read its adapter row instead of Claude's. The run is read-only and safe in the live working copy.
 - Expected execution process: Record the starting state, run `/doctor:git setup` through the real runtime, capture the result table and the `DOCTOR DIAGNOSTIC RESULT` block, run the battery directly in human and JSON form, confirm the usage exit for an unknown tool, and compare the starting state.
 - Expected signals: The rendered table has one row per check in this order: install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. Each row carries a result of PASS, FAIL, SKIP, UNKNOWN or DEGRADED plus the source it read.
-  On this repository's own checkout, every row reads PASS when the preconditions are met, all optional gates are on and no suppression switch is active. The trust row passes when the inspected repository's installed hooks point into its own tree. The advisory-rules row reads the inspected repository's `.skilled/skills/sk-git/hard-rules.json` file and is DEGRADED when the file is missing. The suppression row is DEGRADED when the advisory's own switches mute it.
+  On this repository's own checkout, every row reads PASS when the preconditions are met, all optional gates are on, no suppression switch is active and either the worktree base is outside the checkout or the repository has no more than three linked worktrees. The trust row passes when the inspected repository's installed hooks point into its own tree. The advisory-rules row reads the inspected repository's `.skilled/skills/sk-git/hard-rules.json` file and is DEGRADED when the file is missing. The suppression row is DEGRADED when the advisory's own switches mute it. The worktrees row carries an informational `fsmonitor daemons: <n> main, <n> worktree, <n> stray` line, or `fsmonitor daemons: not checked (<reason>)`, and that line never changes the row's result. The worktrees row is DEGRADED, with the repair `git config speckit.worktreeBase <dir>`, when the worktree base sits inside the main checkout and more than three linked worktrees exist.
   `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` exits 0 and ends `STATUS=OK checks=11`. A failing check exits 1, ends `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>` and prints a `repair:` line for the failing row. A run with no failing row and at least one UNKNOWN or DEGRADED row exits 3 and ends `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>`. The `--json` run prints one JSON object with a `checks` array of eleven rows, each with id, result, source, details and repair. `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool nope` exits 2 with a usage line. Through `/doctor:git setup`, the result block reads `Target: setup` and `Changed: none`. The step 1 and step 7 outputs match.
 - Desired user-visible outcome: One row per check with its result and source, the repair line for anything failing, and a result that shows the run changed nothing.
 - Pass/fail: PASS if all eleven checks appear with a result and source, every FAIL carries a repair, the exit codes match (0 OK, 3 DEGRADED, 1 FAIL, 2 usage), and no git config value and no repository file changes.
@@ -58,6 +58,8 @@ Run every command from the repository root.
 
 Every check in the battery appears with a result and the source it read, in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks. A failing check names its repair in the printed `repair:` line, and an unknown tool is a usage error rather than a partial run.
 
+The worktrees row lists `fsmonitor daemons: <n> main, <n> worktree, <n> stray` among its details. The counts are informational: a stray daemon adds a hint to end it but leaves the row's result alone. The row reads DEGRADED only when the worktree base is inside the main checkout and more than three linked worktrees exist, and then its repair is `git config speckit.worktreeBase <dir>`.
+
 The run writes no git config value and no repository file, so the config listing and the working tree are identical afterwards. Through `/doctor:git setup`, the result block reads `Target: setup` with `Changed: none`.
 
 ### Evidence
@@ -65,6 +67,7 @@ The run writes no git config value and no repository file, so the config listing
 - The rendered result table with its eleven rows and the source line per row.
 - The `DOCTOR DIAGNOSTIC RESULT` block with `Target: setup` and `Changed: none`, on the slash-command path.
 - The step 4 exit code and final `STATUS=` line.
+- The worktrees row's `fsmonitor daemons:` line, its result and, when it reads DEGRADED, the worktree base and linked-worktree count it names.
 - The parsed `--json` payload with its `checks` array of eleven rows, each showing id, result, source, details and repair.
 - The `--tool nope` exit code and usage line.
 - The step 1 and step 7 status and config outputs.
@@ -76,7 +79,7 @@ The run writes no git config value and no repository file, so the config listing
 
 ### Failure Triage
 
-A missing row points at the `CHECKS` list in `git-setup-check.cjs`, which is the source of the battery order. An unexpected FAIL is real setup drift, so run the printed repair and rerun the battery. A changed file or git config value is a defect in the battery and blocks release, because the route is declared read-only in `_routes.yaml`.
+A missing row points at the `CHECKS` list in `git-setup-check.cjs`, which is the source of the battery order. A worktrees row whose result moves with the daemon counts points at `checkWorktrees` in the same file, because only the base location and the linked-worktree count may decide DEGRADED there. An unexpected FAIL is real setup drift, so run the printed repair and rerun the battery. A changed file or git config value is a defect in the battery and blocks release, because the route is declared read-only in `_routes.yaml`.
 
 ---
 
@@ -88,6 +91,7 @@ A missing row points at the `CHECKS` list in `git-setup-check.cjs`, which is the
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-git-presentation.txt](../../../../commands/doctor/assets/doctor-git-presentation.txt)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
 - Setup battery: [.skilled/commands/doctor/scripts/git-setup-check.cjs](../../../../commands/doctor/scripts/git-setup-check.cjs)
+- Daemon listing behind the worktrees row: [.skilled/bin/fsmonitor-daemon-reaper.sh](../../../../bin/fsmonitor-daemon-reaper.sh)
 
 Provenance: manual only - /doctor:git
 

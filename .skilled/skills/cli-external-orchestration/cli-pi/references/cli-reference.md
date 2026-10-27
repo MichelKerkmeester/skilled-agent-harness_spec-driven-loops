@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi api key"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.8
+version: 1.5.1.0
 ---
 
 # Pi CLI - Complete Command Reference
@@ -228,4 +228,4 @@ Pi is a multi-provider passthrough with no enforced allowlist at this layer and 
 
 Reasoning effort is a first-class flag independent of the model id: `--thinking off|minimal|low|medium|high|xhigh|max` (installed help, confirmed live). Unlike `cli-cursor`/`cli-devin`, no effort tier is baked into any model id. Codex's config-level `-c model_reasoning_effort=...` and `-c service_tier=...` forms are Codex-specific syntax and must NOT be copied into a Pi invocation; Pi has no confirmed service-tier control surface.
 
-**Full authenticated provider/model roster, the `--thinking` scale, and the GPT-5.6 ceiling cross-map → [providers-and-models.md](./providers-and-models.md).**
+**Full authenticated provider/model roster, the `--thinking` scale, and the GPT-6 and GPT-6.1 Terra ceiling cross-map → [providers-and-models.md](./providers-and-models.md).**

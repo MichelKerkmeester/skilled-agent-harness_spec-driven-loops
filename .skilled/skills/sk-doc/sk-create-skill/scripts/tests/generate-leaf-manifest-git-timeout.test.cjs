@@ -184,3 +184,30 @@ test('a timed-out write stays off disk and leaves the committed bytes alone', ()
   assert.match(stderr, /check-ignore/);
   assert.deepEqual(fs.readFileSync(manifestPath), committed);
 });
+
+test('a timed-out check names the timeout, not a stale manifest', () => {
+  const repoRoot = makeTmpDir('check-refused');
+  const skillDir = path.join(repoRoot, 'skill');
+  writeStandaloneSkill(skillDir);
+  writeFile(skillDir, 'references/keep.md', '# keep\n');
+  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), '{"modes":[]}\n');
+
+  const generator = loadGenerator((command, args) => {
+    if (args[0] === 'rev-parse') return revParseTop(repoRoot);
+    return timedOut();
+  });
+
+  let stderr = '';
+  const originalWrite = process.stderr.write;
+  process.stderr.write = (chunk) => { stderr += chunk; return true; };
+  let code = null;
+  try {
+    code = generator.runCheck(skillDir);
+  } finally {
+    process.stderr.write = originalWrite;
+  }
+
+  assert.equal(code, 1, stderr);
+  assert.match(stderr, /git call timed out/);
+  assert.doesNotMatch(stderr, /stale|--write/);
+});

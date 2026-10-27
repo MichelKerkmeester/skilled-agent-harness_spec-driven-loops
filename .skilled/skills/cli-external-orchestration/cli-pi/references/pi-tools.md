@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Pi CLI Unique Capabilities
@@ -172,7 +172,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 
 ### When to Reach for a Custom-Provider Model
 
-- The task specifically needs a GPT-6 tier (`gpt-6-luna`/`sol`) — dispatch through the built-in `openai` provider per the authenticated roster in `cli-reference.md` §13
+- The task specifically needs a GPT-6 tier (`gpt-6-luna`/`sol`) or GPT-6.1 Terra (`gpt-6.1-terra`) — dispatch through the built-in `openai` provider per the authenticated roster in `cli-reference.md` §13
 - When the task has no model-specific requirement, name `llmgateway/deepseek-v4.1-flash-1017`, the repository default in `.pi/settings.json`, explicitly. Pi's builtin `google` default has no authenticated model here
 
 **Avoid for:** Any model or provider not named in the authenticated roster — Pi's own documentation-only provider breadth is not a license to guess at an unconfirmed model id.

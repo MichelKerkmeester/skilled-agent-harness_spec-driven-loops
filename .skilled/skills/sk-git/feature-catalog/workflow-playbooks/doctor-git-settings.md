@@ -7,7 +7,7 @@ trigger_phrases:
   - "hook gate settings"
   - "change commit rules"
 importance_tier: "important"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Repository settings and setup check (/doctor:git)
@@ -30,6 +30,8 @@ A repository adapts sk-git through git config and a `.sk-git/` folder, never by 
 
 The trust row passes when the inspected repository's installed hooks point into its own tree. The advisory-rules row reads the inspected repository's `.skilled/skills/sk-git/hard-rules.json` file and is DEGRADED when the file is missing. The suppression row is DEGRADED when the advisory's own switches mute it.
 
+The worktrees row runs a dry run of `fsmonitor-daemon-reaper.sh` and adds the line `fsmonitor daemons: <n> main, <n> worktree, <n> stray`, with the command that ends strays when any exist. The line is informational and never changes the verdict. A listing that cannot run reads `fsmonitor daemons: not checked (<reason>)`. The row is DEGRADED when the worktree base sits inside the main checkout and more than three linked worktrees exist, because the main checkout's file watcher then sees every file in them. Its repair is `git config speckit.worktreeBase <dir>`.
+
 The run exits 0 when every row passes or skips, 3 when no row fails and at least one row is UNKNOWN or DEGRADED, 1 when a row fails and 2 on a usage error or crash. Its last line is the status with counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`. `--json` prints one object for scripts.
 
 The check never writes and never runs code from the repository it inspects. It loads every helper from its own install and reads hook links in process instead of calling the installer. At the start of each run, it sets `core.fsmonitor=false` and `log.showSignature=false` in its own process environment and drops `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_COMMON_DIR`. In-process helpers and every child process see those settings, so the inspected repository's config cannot make a helper start a program.
@@ -51,6 +53,7 @@ The check never writes and never runs code from the repository it inspects. It l
 | `.skilled/commands/doctor/scripts/git-hook-gates.cjs` | Script | Lists and sets the hook gates |
 | `.skilled/commands/doctor/scripts/git-standards.cjs` | Script | Reads and changes the `.sk-git/` rule copies |
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Script | The read-only setup battery |
+| `.skilled/bin/fsmonitor-daemon-reaper.sh` | Script | The dry run behind the worktrees row's daemon-count line |
 
 ### Validation And Tests
 

@@ -584,6 +584,12 @@ function runCheck(skillDir) {
   }
   const committed = fs.readFileSync(manifestPath);
   const fresh = buildManifestBytes(skillDir);
+  if (gitFailure !== null && gitFailure.error.code === 'ETIMEDOUT') {
+    // Without git's ignore answer the fresh bytes may list ignored leaves, so a
+    // diff would blame a correct manifest and advise a --write that refuses too.
+    process.stderr.write(`generate-leaf-manifest: git call timed out (${gitFailure.command}); leaf-manifest.json not checked under ${skillDir}\n`);
+    return 1;
+  }
   if (Buffer.compare(committed, fresh) === 0) {
     process.stdout.write(`leaf-manifest.json OK (${contract.digestManifestBytes(fresh)})\n`);
     return 0;
