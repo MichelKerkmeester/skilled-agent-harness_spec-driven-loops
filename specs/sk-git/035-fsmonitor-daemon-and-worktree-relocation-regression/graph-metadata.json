@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "parent_id": null,
+  "children_ids": [
+    "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research",
+    "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore",
+    "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
+    "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fsmonitor daemon and worktree relocation regression phase parent spec",
+      "fsmonitor daemon pile-up",
+      "pre-push hook stall"
+    ],
+    "key_topics": [
+      "fsmonitor",
+      "daemon",
+      "worktree",
+      "relocation",
+      "regression",
+      "phase",
+      "parent",
+      "spec",
+      "pile-up",
+      "pre-push",
+      "hook",
+      "stall"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "scratch/findings.md",
+      "001-deep-research/research/research.md",
+      ".skilled/bin/worktree-session.sh",
+      ".skilled/bin/tests/worktree-session.test.sh",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-session.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "regenerate-skill-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-10-27 a `git push` sat in the pre-push hook for about 30 minutes",
+    "created_at": "2026-10-27T08:12:30Z",
+    "last_save_at": "2026-10-27T11:17:15.553Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:066b67c3bda310e83d3f2ede57e4541050a9db9086421a057b19de4af8c83e82",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0a3524fc4605792f8dfa347b9add9de055953128932a06578568c85c04dcca26"
+    },
+    "last_active_child_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
+    "last_active_at": "2026-10-27T11:17:15.553Z"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "1793094321851-ufzori",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research",
+  "base_artifact_dir": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  }
+}

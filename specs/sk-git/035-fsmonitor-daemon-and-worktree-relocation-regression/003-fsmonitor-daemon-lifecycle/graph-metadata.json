@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
+  "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
+  "parent_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fsmonitor daemon lifecycle",
+      "phase 3 fsmonitor daemon lifecycle",
+      "fsmonitor daemon lifecycle plan",
+      "fsmonitor daemon lifecycle tasks",
+      "fsmonitor daemon lifecycle acceptance criteria",
+      "fsmonitor daemon lifecycle implementation summary"
+    ],
+    "key_topics": [
+      "fsmonitor",
+      "daemon",
+      "lifecycle",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "git",
+      "worktree"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/README.md",
+      ".skilled/bin/worktree-reaper.sh",
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/bin/worktree-session.sh",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Choices",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each git worktree that reads its index starts its own `git fsmonitor--daemon`, and macOS never retires one on its own",
+    "created_at": "2026-10-27T08:12:32Z",
+    "last_save_at": "2026-10-27T10:54:07.918Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f3da814e98d5d7c694609031eade74b3634c04e9c0cdb8cd13bddc5fd5b28555",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "39d965e1bcf6e9a2116a5e947e99ec2e0ae516c1f67926bc6d9fea88568bfc82",
+      "plan.md": "10b4389353ceb97cccce4f99e6af530a6c13869a3e3321ba5623fbeda7841bd7",
+      "tasks.md": "9e137d5fb98e63555cd212fd87ab49c8fe7ef86c8f731f4e5219153a31139e10",
+      "implementation-summary.md": "7aae52e6316c115838365cebaed5483e7825f47ff3cdf7ae4eaa155969a5c734"
+    },
+    "last_active_at": null
+  }
+}

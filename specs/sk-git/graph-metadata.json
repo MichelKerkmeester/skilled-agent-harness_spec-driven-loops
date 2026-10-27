@@ -18,7 +18,8 @@
     "sk-git/031-fix-broad-staging-in-examples",
     "sk-git/032-template-driven-message-enforcement",
     "sk-git/033-git-setup-customization",
-    "sk-git/034-standards-template-round-trip"
+    "sk-git/034-standards-template-round-trip",
+    "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression"
   ],
   "manual": {
     "depends_on": [],

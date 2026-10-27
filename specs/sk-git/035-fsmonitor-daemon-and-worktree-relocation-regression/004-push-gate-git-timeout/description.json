@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
+  "description": "Phase 4: push-gate-git-timeout",
+  "keywords": [
+    "phase",
+    "push-gate-git-timeout"
+  ],
+  "lastUpdated": "2026-10-27T11:17:15.534Z",
+  "specId": "004",
+  "folderSlug": "push-gate-git-timeout",
+  "parentChain": [
+    "sk-git",
+    "035-fsmonitor-daemon-and-worktree-relocation-regression"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-10-26_12-17__five-deepseek-units-bounded-seven-git-calls.md"
+  ]
+}

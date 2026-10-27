@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
+  "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
+  "parent_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "push gate git timeout",
+      "phase 4 push gate git timeout",
+      "push gate git timeout plan",
+      "push gate git timeout tasks",
+      "push gate git timeout acceptance criteria",
+      "push gate git timeout implementation summary"
+    ],
+    "key_topics": [
+      "push",
+      "gate",
+      "git",
+      "timeout",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "pre-push"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".skilled/skills/sk-git/scripts/validate-message.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-git-timeout.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/regenerate-skill-derived-git-timeout.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync-git-timeout.test.cjs",
+      ".skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run-git-timeout.test.cjs",
+      ".skilled/skills/sk-git/scripts/tests/validate-message-git-timeout.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "regenerate-skill-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-message.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/validate-message.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest-git-timeout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-git-timeout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "regenerate-skill-derived-git-timeout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/regenerate-skill-derived-git-timeout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync-git-timeout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync-git-timeout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run-git-timeout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run-git-timeout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-message-git-timeout.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/tests/validate-message-git-timeout.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The pre-push skill gate runs `git check-ignore` with no time limit and no opt-out from the file system monitor",
+    "created_at": "2026-10-27T08:12:33Z",
+    "last_save_at": "2026-10-27T11:17:15.534Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f3a524f6e58f919127682278232d10e5a79cd1fb6ac06f5a6cdd302a421d8ce5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "91a5a2c512c37f320fa546643abf13fab0d81705ff7d958551f0743b8b7bc145",
+      "plan.md": "6e8f46d8a23ea5bf00be122350bf706cd0ae20ec1d218267352f6e0283adf1c3",
+      "tasks.md": "d0d937119cb017da9b3e0534e923cd9f60b957febdf9d86423d04b0f67617715",
+      "implementation-summary.md": "e97eec796fb414fbe31c755c2ba5d8e38da1e7c4dda22be2a0104b7ec923e613"
+    },
+    "last_active_at": null
+  }
+}

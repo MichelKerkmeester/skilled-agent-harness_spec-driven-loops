@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore",
+  "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore",
+  "parent_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree relocation restore",
+      "phase 2 worktree relocation restore",
+      "worktree relocation restore plan",
+      "worktree relocation restore tasks",
+      "worktree relocation restore acceptance criteria",
+      "worktree relocation restore implementation summary"
+    ],
+    "key_topics": [
+      "worktree",
+      "relocation",
+      "restore",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "worktrees",
+      "checkout"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/worktree-session.sh",
+      ".skilled/bin/tests/worktree-session.test.sh",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/bin/worktree-reaper.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-session.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Explicit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The worktrees for this checkout sit under `.worktrees/`, inside the checkout",
+    "created_at": "2026-10-27T08:12:31Z",
+    "last_save_at": "2026-10-27T10:54:05.790Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3270b254e4ffd93761edf76a44a123fcb5918e35a63f58623df96a001877c657",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b4bac7302e5eb4b3698d134dbd25274bf098263913169b49a2c421ef0f3ebc77",
+      "plan.md": "9fd6e94862219e193bb12e0a481a3dc092336982932d1e1bd92a2a247620985e",
+      "tasks.md": "9dd80fdd1e925eabe0e8b316ac4c9fdeae6f17c1831ade56f5bac0afcbe3b396",
+      "implementation-summary.md": "3380d376477a7fb50ef12f11a0455045711c12558a4930f66bf3b34750b2621e"
+    },
+    "last_active_at": null
+  }
+}

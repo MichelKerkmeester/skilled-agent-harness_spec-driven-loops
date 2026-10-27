@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-10-27T10:23:40.488Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "sk-git",
+    "035-fsmonitor-daemon-and-worktree-relocation-regression"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-10-26_11-23__three-lanes-produced-7-iterations-opencode-go.md"
+  ]
+}

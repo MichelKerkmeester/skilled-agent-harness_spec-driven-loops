@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore",
+  "description": "Phase 2: worktree-relocation-restore",
+  "keywords": [
+    "phase",
+    "worktree-relocation-restore"
+  ],
+  "lastUpdated": "2026-10-27T08:12:32.360Z",
+  "specId": "002",
+  "folderSlug": "worktree-relocation-restore",
+  "parentChain": [
+    "sk-git",
+    "035-fsmonitor-daemon-and-worktree-relocation-regression"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
