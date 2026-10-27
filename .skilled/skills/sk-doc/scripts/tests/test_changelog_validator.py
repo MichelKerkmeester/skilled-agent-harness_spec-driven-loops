@@ -126,6 +126,13 @@ def test_spec_folder_blockquote_and_clean_prose_are_not_warned(tmp_path: Path) -
     assert not [warning for warning in _warnings(entry) if warning.startswith("changelog_")]
 
 
+def test_id_quoted_in_a_code_span_is_not_warned(tmp_path: Path) -> None:
+    text = COMPLETE_ENTRY + "\nThe checker now rejects `// WEBFLOW: see ADR-004` comments.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", text)
+
+    assert "changelog_internal_id" not in _warnings(entry)
+
+
 def test_install_guides_and_fixture_trees_keep_their_handling() -> None:
     assert detect_document_type(".skilled/skills/example-skill/INSTALL-GUIDE.md", "", load_rules()) == "install_guide"
     assert should_exclude_path(".skilled/skills/example-skill/tests/fixtures/sample.md")[0] is True

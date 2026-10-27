@@ -653,6 +653,9 @@
           "intentSignals": [
             "/doctor:git hooks"
           ],
+          "leadPhrases": [
+            "disable comment hygiene gate"
+          ],
           "domains": [
             "doctor",
             "command"
@@ -666,6 +669,9 @@
           "description": "",
           "slashMarkers": [
             "/doctor:git hooks"
+          ],
+          "leadPhrases": [
+            "disable comment hygiene gate"
           ]
         }
       }

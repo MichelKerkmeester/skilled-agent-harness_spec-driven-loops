@@ -281,6 +281,8 @@ routes:
       - "disable comment hygiene gate"
       - "pre-commit gate keeps blocking"
       - "git hook settings"
+    lead_phrases:
+      - "disable comment hygiene gate"
 
   - command: /doctor:git
     target: standards

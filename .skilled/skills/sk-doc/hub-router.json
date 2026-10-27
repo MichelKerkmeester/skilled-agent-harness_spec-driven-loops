@@ -1,6 +1,6 @@
 {
   "skill": "sk-doc",
-  "version": "2.3.14.0",
+  "version": "2.3.15.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,

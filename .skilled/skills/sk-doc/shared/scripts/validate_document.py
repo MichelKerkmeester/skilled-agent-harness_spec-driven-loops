@@ -1617,6 +1617,8 @@ def validate_changelog_frontmatter(
 # Released entries already carry some, so the check advises rather than blocks.
 CHANGELOG_INTERNAL_ID = re.compile(r'\b[A-Z]{2,4}-\d{3}\b')
 CHANGELOG_TEST_COUNT = re.compile(r'\b\d+\s+(?:cases|tests|PASS lines)\b')
+# An inline code span quotes a literal, such as the comment a fix stopped accepting.
+CHANGELOG_CODE_SPAN = re.compile(r'`[^`\n]*`')
 
 
 def validate_changelog_omissions(content: str, file_path: str) -> List[Dict[str, Any]]:
@@ -1640,8 +1642,9 @@ def validate_changelog_omissions(content: str, file_path: str) -> List[Dict[str,
     for line in body.split('\n'):
         if line.lstrip().startswith('>'):
             continue
-        ids.extend(CHANGELOG_INTERNAL_ID.findall(line))
-        counts.extend(CHANGELOG_TEST_COUNT.findall(line))
+        prose = CHANGELOG_CODE_SPAN.sub('', line)
+        ids.extend(CHANGELOG_INTERNAL_ID.findall(prose))
+        counts.extend(CHANGELOG_TEST_COUNT.findall(prose))
 
     errors: List[Dict[str, Any]] = []
     if ids:

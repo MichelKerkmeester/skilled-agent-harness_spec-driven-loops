@@ -247,6 +247,24 @@ function hasPlainMention(text: string, phrase: string): boolean {
   return false;
 }
 
+const SLASH_TARGET_PHRASE = /^\/\S+\s+\S/;
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// A typed `<command> <target>` names that target, so the bare command inside it must not also
+// match the command's default target. Each known command-and-target phrase is blanked before a
+// bare slash command is tested, which leaves a bare command typed alone, or before another word,
+// still matching.
+function maskSlashTargets(text: string, targetPhrases: readonly string[]): string {
+  let masked = text;
+  for (const phrase of targetPhrases) {
+    masked = masked.replace(new RegExp(`${escapeRegExp(phrase)}(?!\\w)`, 'g'), (match) => ' '.repeat(match.length));
+  }
+  return masked;
+}
+
 function targetsOwnDocFile(text: string, skillId: string): boolean {
   if (!WRITE_VERBS.test(text)) return false;
   for (const variant of skillNameVariants(skillId)) {
@@ -331,6 +349,11 @@ export function scoreExplicitLane(
     push(scores, 'system-deep-loop', 0.45, 'ambiguous-code-problem');
   }
 
+  const slashTargetPhrases = [...new Set(projection.skills.flatMap((skill) => [...skill.intentSignals, ...skill.keywords])
+    .map((phrase) => phrase.trim().toLowerCase())
+    .filter((phrase) => SLASH_TARGET_PHRASE.test(phrase)))];
+  const slashMasked = slashTargetPhrases.length > 0 ? maskSlashTargets(lower, slashTargetPhrases) : lower;
+
   for (const skill of projection.skills) {
     const skillId: unknown = skill.id;
     if (typeof skillId !== 'string' || skillId.trim().length === 0) continue;
@@ -343,7 +366,9 @@ export function scoreExplicitLane(
     }
     if (docTarget) continue;
     for (const phrase of [...skill.intentSignals, ...skill.keywords]) {
-      if (hasPlainMention(lower, phrase)) {
+      const normalized = phrase.trim().toLowerCase();
+      const bareSlash = normalized.startsWith('/') && !/\s/.test(normalized);
+      if (hasPlainMention(bareSlash ? slashMasked : lower, phrase)) {
         push(
           scores,
           skillId,

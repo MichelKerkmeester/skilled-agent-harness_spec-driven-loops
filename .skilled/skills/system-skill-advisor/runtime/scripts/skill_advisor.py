@@ -2551,6 +2551,7 @@ GENERATED_COMMAND_BRIDGES = {
     "command-doctor-git-hooks": {
         "description": "",
         "slash_markers": ["/doctor:git hooks"],
+        "lead_phrases": ["disable comment hygiene gate"],
         "inventory_id": "command-doctor-git-hooks",
         "command": "/doctor:git",
         "skill_id": "sk-git",

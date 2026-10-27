@@ -288,6 +288,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['turn off a git hook check', 'disable comment hygiene gate', 'pre-commit gate keeps blocking', 'git hook settings'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:git hooks'],
+    leadPhrases: ['disable comment hygiene gate'],
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
