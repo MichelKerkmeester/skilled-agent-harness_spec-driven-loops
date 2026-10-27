@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1429d22f7ddea7367433c20df08b190904ee7100b495a9ec65865345c1a8ed8a",
+  "corpusHash": "0545b084c7c0b1d28b8d7fc49dcdade9c82084a12ed356ece188bc61131c84ad",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26580,
+  "includedPathCount": 26588,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2759,6 +2759,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.6.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.7.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.8.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.9.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md",
     ".skilled/skills/sk-code/feature-catalog/doctor-commands/sk-code-setup-and-quality-doctor.md",
@@ -2821,9 +2822,6 @@
     ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
     ".skilled/skills/sk-code/sk-code-quality/README.md",
     ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md",
-    ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md",
-    ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/findings-and-recommendations.md",
@@ -2853,6 +2851,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.5.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -2977,6 +2976,9 @@
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
@@ -3022,6 +3024,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.4.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.5.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.6.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.7.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -12536,6 +12539,11 @@
     "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/plan.md",
     "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/spec.md",
     "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/tasks.md",
+    "specs/sk-code/017-portable-code-modes/003-quality-floor-and-style-split/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/003-quality-floor-and-style-split/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/003-quality-floor-and-style-split/plan.md",
+    "specs/sk-code/017-portable-code-modes/003-quality-floor-and-style-split/spec.md",
+    "specs/sk-code/017-portable-code-modes/003-quality-floor-and-style-split/tasks.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/plan.md",
@@ -26611,7 +26619,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8999abc67d69dbdd80f717a7241e7310ffc5b8cf549f1bb06cf69507327debca",
+  "manifestHash": "b78e3f44caa0f8219d27ebf230d12f187abe7514fc8d3a404d0e35c6894e7556",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29463,6 +29471,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/003-quality-floor-and-style-split/scratch",
       "reason": "excluded directory"
     },
     {

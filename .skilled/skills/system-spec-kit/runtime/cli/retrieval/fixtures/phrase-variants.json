@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8999abc67d69dbdd80f717a7241e7310ffc5b8cf549f1bb06cf69507327debca",
+  "manifestHash": "b78e3f44caa0f8219d27ebf230d12f187abe7514fc8d3a404d0e35c6894e7556",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -46332,6 +46332,9 @@
     "fixed length goal state key": [
       "fixed length goal state key"
     ],
+    "fixed or overridable floor rule": [
+      "fixed or overridable floor rule"
+    ],
     "fixed rate overrun accounting": [
       "fixed-rate overrun accounting"
     ],
@@ -55783,6 +55786,9 @@
     ],
     "javascript checklist module header": [
       "javascript checklist module header"
+    ],
+    "javascript css checklists retired": [
+      "javascript css checklists retired"
     ],
     "javascript css overlay naming": [
       "javascript css overlay naming"
@@ -74198,6 +74204,9 @@
     "phase 3 playbook root and stale refs": [
       "phase 3 playbook root and stale refs"
     ],
+    "phase 3 quality floor rule ids": [
+      "phase 3 quality floor rule ids"
+    ],
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
@@ -79705,6 +79714,9 @@
     "quality checklist declarations": [
       "quality checklist declarations"
     ],
+    "quality checklist map": [
+      "quality checklist map"
+    ],
     "quality config routing keywords": [
       "quality config routing keywords"
     ],
@@ -79716,6 +79728,21 @@
     ],
     "quality fallback fts5 bm25 grep plan": [
       "quality fallback fts5 bm25 grep plan"
+    ],
+    "quality floor and style split": [
+      "quality floor and style split"
+    ],
+    "quality floor and style split acceptance criteria": [
+      "quality floor and style split acceptance criteria"
+    ],
+    "quality floor and style split implementation summary": [
+      "quality floor and style split implementation summary"
+    ],
+    "quality floor and style split plan": [
+      "quality floor and style split plan"
+    ],
+    "quality floor and style split tasks": [
+      "quality floor and style split tasks"
     ],
     "quality floor split": [
       "quality floor split"
@@ -94687,6 +94714,9 @@
     "sk code 3 9 8 0": [
       "sk-code 3.9.8.0"
     ],
+    "sk code 3 9 9 0": [
+      "sk-code 3.9.9.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -95407,6 +95437,9 @@
     "sk code quality 1 13 4 0": [
       "sk-code-quality 1.13.4.0"
     ],
+    "sk code quality 1 13 5 0": [
+      "sk-code-quality 1.13.5.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -95502,6 +95535,9 @@
     ],
     "sk code quality v1 13 4 0": [
       "sk-code-quality v1.13.4.0"
+    ],
+    "sk code quality v1 13 5 0": [
+      "sk-code-quality v1.13.5.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -95896,6 +95932,9 @@
     "sk code skilled 2 1 6 0": [
       "sk-code-skilled 2.1.6.0"
     ],
+    "sk code skilled 2 1 7 0": [
+      "sk-code-skilled 2.1.7.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -96015,6 +96054,9 @@
     ],
     "sk code skilled v2 1 6 0": [
       "sk-code-skilled v2.1.6.0"
+    ],
+    "sk code skilled v2 1 7 0": [
+      "sk-code-skilled v2.1.7.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -96201,6 +96243,9 @@
     ],
     "sk code v3 9 8 0": [
       "sk-code v3.9.8.0"
+    ],
+    "sk code v3 9 9 0": [
+      "sk-code v3.9.9.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -101046,6 +101091,9 @@
     "skilled house code quality checklist": [
       "skilled house code quality checklist"
     ],
+    "skilled house style": [
+      "skilled house style"
+    ],
     "skilled layout options": [
       "skilled layout options"
     ],
@@ -101240,6 +101288,9 @@
     ],
     "skilled source root move goal": [
       "skilled source root move goal"
+    ],
+    "skilled style split": [
+      "skilled style split"
     ],
     "skilled tree move results": [
       "skilled tree move results"
@@ -112240,6 +112291,9 @@
     ],
     "universal debugging methodology": [
       "universal debugging methodology"
+    ],
+    "universal floor rule ids": [
+      "universal floor rule ids"
     ],
     "universal formatting principles": [
       "universal formatting principles"
