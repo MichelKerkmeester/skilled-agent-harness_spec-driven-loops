@@ -16,6 +16,7 @@ import contextlib
 import io
 import json
 import os
+import re
 import sqlite3
 import sys
 import tempfile
@@ -1357,6 +1358,32 @@ description: Fixture helper for routing tests
             "T243-SA-026: doc-file and path plainness forms match the native rules",
             str(exc),
         )
+
+    # A mode suffix after a typed slash command picks how the command runs, so
+    # it must not match skills as the word "auto"; with no command, it still can.
+    name = "T243-SA-029: command mode suffixes are not content tokens"
+    try:
+        auto_term = re.compile(r"(?:^|[\s,])auto(?:~|\(name\))?(?=,|\s|$)")
+
+        def matched_terms(prompt):
+            return [
+                record.get("skill")
+                for record in advisor.analyze_request(prompt)
+                if auto_term.search(record.get("reason", "").split("[")[0])
+            ]
+
+        with_command = matched_terms("Run `/deep:research :auto --max-iterations=8` on the routing packet.")
+        attached = matched_terms("run /speckit:plan:auto on the routing packet")
+        without_command = matched_terms("the draft auto-repair rewrote my files")
+        if not with_command and not attached and without_command:
+            ok(name, f"plain-prompt auto matches={without_command[:2]}")
+        else:
+            fail_test(
+                name,
+                f"with_command={with_command} attached={attached} without_command={without_command}",
+            )
+    except Exception as exc:
+        fail_test(name, str(exc))
 
 
 # ───────────────────────────────────────────────────────────────

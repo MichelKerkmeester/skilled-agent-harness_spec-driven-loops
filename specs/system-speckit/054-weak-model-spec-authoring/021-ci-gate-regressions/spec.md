@@ -25,9 +25,9 @@ contextType: "general"
 | **Created** | 2026-10-26 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 21 of 21 |
+| **Phase** | 21 of 22 |
 | **Predecessor** | 020-alignment-audit-fixes |
-| **Successor** | None |
+| **Successor** | 022-advisor-routing-and-local-install |
 | **Handoff Criteria** | The changed-packet selection replay grades no `scratch/` packet, the divergence ratchet passes 9 of 9, and `validate.sh` on this folder prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 

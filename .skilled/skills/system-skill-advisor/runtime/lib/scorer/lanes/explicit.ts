@@ -6,7 +6,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
-import { phraseSpecificity, skillNameVariants, tokenize } from '../text.js';
+import { phraseSpecificity, skillNameVariants, tokenizePrompt } from '../text.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -289,7 +289,7 @@ export function scoreExplicitLane(
   options: ExplicitLaneOptions = {},
 ): LaneMatch[] {
   const lower = prompt.toLowerCase();
-  const tokens = tokenize(prompt, true);
+  const tokens = tokenizePrompt(prompt, true);
   const scores = new Map<string, ExplicitScoreEntry>();
 
   for (const [phrase, boosts] of Object.entries(PHRASE_BOOSTS)) {

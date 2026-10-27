@@ -752,6 +752,56 @@ expect_eq "failed provision create stdout" "worktrees/001-demo $FAILED_CREATE_DI
 expect_rc "failed provision create stderr" 0 grep -q "provisioning failed" "$FAILED_CREATE/stderr"
 rm -rf "$FAILED_CREATE"
 
+# ── provision links private local-* commands from the primary checkout ──
+LOCAL_CMD="$TMP/local-cmd"
+mkdir -p "$LOCAL_CMD/repo"
+(
+  cd "$LOCAL_CMD/repo" || exit 1
+  export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false
+  git init -q -b main
+  git config core.hooksPath "$TMP/.nohooks"
+  git config user.email t@t
+  git config user.name t
+  # assets/ is left untracked, as in the real repository, so the worktree starts without it.
+  mkdir -p .pi/prompts .skilled/commands .skilled/skills
+  printf '/.skilled/commands/local-*\n/.skilled/commands/assets/local-*\n/.pi/prompts/local-*\n/.skilled/skills/local-*\n' > .gitignore
+  : > .skilled/commands/README.md
+  : > .pi/prompts/README.md
+  : > .skilled/skills/README.md
+  git add .gitignore .skilled .pi
+  git commit -q -m init
+  git worktree add -q -b worktrees/001-demo "$LOCAL_CMD/wt" main
+  printf 'router\n' > .skilled/commands/local-demo.md
+  mkdir -p .skilled/commands/assets/local-demo .skilled/skills/local-private
+  : > .skilled/commands/assets/local-demo/run.cjs
+  printf 'primary prompt\n' > .pi/prompts/local-demo.md
+)
+LOCAL_PRIMARY="$(cd "$LOCAL_CMD/repo" && pwd -P)"
+LOCAL_WT="$(cd "$LOCAL_CMD/wt" && pwd -P)"
+# A real file already in the worktree is the operator's and must survive.
+printf 'worktree prompt\n' > "$LOCAL_WT/.pi/prompts/local-demo.md"
+run_local_link() {
+  (
+    export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false
+    source "$NAMING"
+    _wn_link_local_commands "$1"
+  )
+}
+expect_rc "local command link exits 0" 0 run_local_link "$LOCAL_WT"
+expect_eq "local command router is linked to the primary copy" \
+  "$LOCAL_PRIMARY/.skilled/commands/local-demo.md" "$(readlink "$LOCAL_WT/.skilled/commands/local-demo.md")"
+expect_eq "local command assets folder is linked" \
+  "$LOCAL_PRIMARY/.skilled/commands/assets/local-demo" "$(readlink "$LOCAL_WT/.skilled/commands/assets/local-demo")"
+expect_eq "an existing worktree file is never replaced" "worktree prompt" "$(cat "$LOCAL_WT/.pi/prompts/local-demo.md")"
+expect_rc "a local skill is not linked" 1 test -e "$LOCAL_WT/.skilled/skills/local-private"
+expect_rc "a second run exits 0" 0 run_local_link "$LOCAL_WT"
+expect_eq "the linked entries stay out of git status" "" \
+  "$(git -C "$LOCAL_WT" status --porcelain --untracked-files=all -- .skilled .pi)"
+expect_rc "the primary checkout links nothing into itself" 0 run_local_link "$LOCAL_PRIMARY"
+expect_rc "the primary router stays a real file" 1 test -L "$LOCAL_PRIMARY/.skilled/commands/local-demo.md"
+git -C "$LOCAL_PRIMARY" worktree remove --force "$LOCAL_WT" >/dev/null 2>&1 || :
+rm -rf "$LOCAL_CMD"
+
 # ── report ─────────────────────────────────────────────────────
 echo "worktree-naming tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

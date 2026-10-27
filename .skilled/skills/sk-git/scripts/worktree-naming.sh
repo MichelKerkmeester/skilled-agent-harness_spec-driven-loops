@@ -611,6 +611,41 @@ _wn_record_build() {
   printf '%s\n' "$fingerprint" > "$stamp"
 }
 
+# _wn_link_local_commands <dir> -- link the operator's private local-* commands
+# from the primary checkout into a linked worktree. They are git-ignored, so a new
+# worktree starts without them and the command is unusable there. The ignore rules
+# already name every directory a private command or its mirror lives in, so they
+# are read here rather than repeated, and a new mirror needs no change to this
+# function. A link keeps one copy, so an edit made in any worktree reaches every
+# other. An existing path is never replaced, and a checkout with no private command
+# is the common case, so nothing here can fail provisioning.
+_wn_link_local_commands() {
+  local dir="$1" common primary rule parent src name linked=0
+  common="$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" || return 0
+  # Only a standard clone has a primary checkout beside its git directory.
+  [ "$(basename "$common")" = ".git" ] || return 0
+  primary="$(cd "$(dirname "$common")" 2>/dev/null && pwd -P)" || return 0
+  [ "$primary" != "$dir" ] || return 0
+  [ -f "$dir/.gitignore" ] || return 0
+  while IFS= read -r rule; do
+    parent="${rule#/}"
+    parent="${parent%/local-\*}"
+    [ -d "$primary/$parent" ] || continue
+    for src in "$primary/$parent"/local-*; do
+      [ -e "$src" ] || [ -L "$src" ] || continue
+      name="$(basename "$src")"
+      if [ -e "$dir/$parent/$name" ] || [ -L "$dir/$parent/$name" ]; then continue; fi
+      # A folder that holds only private entries is untracked, so a new worktree lacks it.
+      mkdir -p "$dir/$parent" 2>/dev/null || continue
+      if ln -s "$src" "$dir/$parent/$name" 2>/dev/null; then linked=$((linked + 1)); fi
+    done
+  done < <(grep -E '^/\.[A-Za-z0-9_-]+/(commands(/assets)?|prompts)/local-\*$' "$dir/.gitignore" || true)
+  if [ "$linked" -gt 0 ]; then
+    echo "  linked $linked private local-* command entries from $primary" >&2
+  fi
+  return 0
+}
+
 # provision_worktree [dir] -- install missing dependencies and build listed outputs.
 # Idempotent: existing dependencies are skipped, a listed output is built when it is
 # missing, and rebuilt when the tracked sources its list line names changed since
@@ -728,6 +763,7 @@ provision_worktree() {
     fi
   done < "$list"
 
+  _wn_link_local_commands "$dir"
   echo "provisioned: $installed installed, $built built, $skipped already present, $failed failed" >&2
   [ "$failed" -eq 0 ]
 }
@@ -751,7 +787,8 @@ worktree-naming.sh <command> [args]
   validate-remote-allowlist <branch>  Check the remote-push-permission allowlist.
   create          <slug> [base] [--no-provision]  Returns 3 when the worktree was created but provisioning failed.
                                     Create a worktrees/NNN-slug worktree and install its deps.
-  provision       [dir]             Install the dependency trees a worktree needs and build the outputs the list names (idempotent).
+  provision       [dir]             Install the dependency trees a worktree needs, build the outputs the list names and link
+                                    private local-* commands from the primary checkout (idempotent).
   create-branch   <slug> [base]     Create a branches/NNN-slug branch (no worktree).
   create-detached <slug> [base]     Create a numbered detached worktree.
 USAGE

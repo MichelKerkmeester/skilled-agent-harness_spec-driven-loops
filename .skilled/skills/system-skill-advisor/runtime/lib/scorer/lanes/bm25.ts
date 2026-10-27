@@ -6,7 +6,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, SkillProjection } from '../types.js';
-import { tokenize } from '../text.js';
+import { tokenize, tokenizePrompt } from '../text.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -289,7 +289,7 @@ export class AdvisorPackedBm25Index {
   }
 
   search(prompt: string, options: AdvisorBm25SearchOptions = {}): AdvisorBm25Match[] {
-    const queryTerms = [...new Set(tokenize(prompt))];
+    const queryTerms = [...new Set(tokenizePrompt(prompt))];
     if (queryTerms.length === 0 || this.documents.size === 0) return [];
 
     const weights = resolveFieldWeights(options.fieldWeights);

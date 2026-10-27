@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import type { AdvisorProjection, LaneMatch } from '../types.js';
-import { matchesPhraseBoundary, scoreTokenOverlap, tokenize } from '../text.js';
+import { matchesPhraseBoundary, scoreTokenOverlap, tokenizePrompt } from '../text.js';
 import { scoreBm25LexicalShadowLane, type AdvisorBm25Match } from './bm25.js';
 
 const SYNONYMS: Readonly<Record<string, readonly string[]>> = {
@@ -45,7 +45,7 @@ export function isBm25LexicalShadowEnabled(): boolean {
 }
 
 function expandedTokens(prompt: string): string[] {
-  const tokens = tokenize(prompt);
+  const tokens = tokenizePrompt(prompt);
   const expanded = new Set(tokens);
   for (const token of tokens) {
     for (const synonym of SYNONYMS[token] ?? []) {
@@ -60,7 +60,7 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
   const tokens = expandedTokens(prompt);
   // Normalize against the un-expanded prompt length so injected synonyms only add
   // recall and never enlarge the denominator against a literally-matching skill.
-  const originalTokenCount = tokenize(prompt).length;
+  const originalTokenCount = tokenizePrompt(prompt).length;
   const matches: LaneMatch[] = [];
 
   for (const skill of projection.skills) {

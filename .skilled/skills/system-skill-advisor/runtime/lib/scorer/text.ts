@@ -33,6 +33,26 @@ export function tokenize(value: string, includeStopWords = false): string[] {
     : tokens.filter((token) => token.length > 1 && !STOP_WORDS.has(token));
 }
 
+// A typed slash command such as "/deep:research" or "/speckit:plan".
+const SLASH_COMMAND = /(?:^|[^\w/])\/[a-z][\w-]*:[\w-]+/i;
+// The execution-mode suffixes the command docs accept after a slash command,
+// either attached ("/speckit:plan:auto") or as its own argument (":auto").
+// They choose how the command runs, not what it is about, so they are not
+// prompt content. The ":with-*" modifiers are left alone: their words name
+// extra work (research, phases) and can carry intent.
+const COMMAND_MODE_SUFFIX = /:(?:auto|confirm|autopilot|unattended)(?![\w-])/gi;
+
+export function stripCommandModeSuffixes(prompt: string): string {
+  const command = SLASH_COMMAND.exec(prompt);
+  if (!command) return prompt;
+  return prompt.slice(0, command.index) + prompt.slice(command.index).replace(COMMAND_MODE_SUFFIX, ' ');
+}
+
+// Tokenize a user prompt. Skill-side text goes through tokenize() unchanged.
+export function tokenizePrompt(prompt: string, includeStopWords = false): string[] {
+  return tokenize(stripCommandModeSuffixes(prompt), includeStopWords);
+}
+
 export function unique<T>(values: readonly T[]): T[] {
   return [...new Set(values)];
 }

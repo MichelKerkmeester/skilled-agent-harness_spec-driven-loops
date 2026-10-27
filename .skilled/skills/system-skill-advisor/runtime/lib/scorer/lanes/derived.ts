@@ -9,7 +9,7 @@
 import { applyAgeHaircutToLane } from '../age-policy.js';
 import type { NormalizedAffordance } from '../../affordance-normalizer.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
-import { matchesPhraseBoundary, phraseSpecificity, scoreTokenOverlap, tokenize } from '../text.js';
+import { matchesPhraseBoundary, phraseSpecificity, scoreTokenOverlap, tokenizePrompt } from '../text.js';
 
 function affordancesForSkill(
   affordances: readonly NormalizedAffordance[],
@@ -55,7 +55,7 @@ export function scoreDerivedLane(
   affordances: readonly NormalizedAffordance[] = [],
 ): LaneMatch[] {
   const lower = prompt.toLowerCase();
-  const tokens = tokenize(prompt);
+  const tokens = tokenizePrompt(prompt);
   const matches: LaneMatch[] = [];
 
   for (const skill of projection.skills) {

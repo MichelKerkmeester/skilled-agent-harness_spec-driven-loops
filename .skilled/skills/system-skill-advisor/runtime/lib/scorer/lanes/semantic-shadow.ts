@@ -8,7 +8,7 @@
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
 import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
-import { scoreTokenOverlap, tokenize } from '../text.js';
+import { scoreTokenOverlap, tokenizePrompt } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -252,7 +252,7 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
   }
 
   if (!activePromptEmbedding && process.env.VITEST === 'true') {
-    const tokens = tokenize(prompt);
+    const tokens = tokenizePrompt(prompt);
     return projection.skills
       .map((skill) => ({
         skillId: skill.id,

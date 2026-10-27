@@ -149,6 +149,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 19 | 019-follow-up-fixes/ | Turn fsmonitor off in the goal-file manifest check, and rebuild a dirty speed-loop sandbox between rounds instead of dropping its variant | Complete |
 | 20 | 020-alignment-audit-fixes/ | Fix every misalignment a four-lane audit found in the files 054 touched: code, skill docs, playbooks, catalog, READMEs, changelogs, routing, advisor, commands and agents | Complete |
 | 21 | 021-ci-gate-regressions/ | Clear the two CI gates an alignment run found failing on main: stop changed-packet validation grading benchmark packets under `scratch/`, and stop the advisor sending `/deep:research :auto` prompts to spec-kit; then fix the run's in-range P1 and P2 findings | Complete |
+| 22 | 022-advisor-routing-and-local-install/ | Close the four items left open after phase 21: the `/doctor:git hooks` routing test, the live `/deep:research :auto` near-tie, prompts naming the draft auto-repair, and a provision step that links private `local-*` commands into new worktrees | Complete |
 
 ### Phase Transition Rules
 
@@ -181,6 +182,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 018-benchmark-redesign-and-remeasure | 019-follow-up-fixes | The closeout named two follow-ups: the manifest test hung on fsmonitor, and one dirty sandbox dropped main-no054 for rounds 3 to 5 | `018-benchmark-redesign-and-remeasure/scratch/report.md` records the dropped rounds and the top-up |
 | 019-follow-up-fixes | 020-alignment-audit-fixes | The operator asked on 2026-10-26 for a check that everything 054 touched aligns with its standards | `020-alignment-audit-fixes/scratch/audit/findings.json` holds the 46 findings |
 | 020-alignment-audit-fixes | 021-ci-gate-regressions | A local alignment audit run's completeness critic found changed-packet validation and the Routing Registry Drift ratchet failing on main | CI run 40380947180 on `b51a341a07` reads `failure` with 81 `New packet does not validate` annotations, and the divergence ratchet now prints `Tests 9 passed (9)` |
+| 021-ci-gate-regressions | 022-advisor-routing-and-local-install | The operator asked on 2026-10-27 to fix the four items phase 21's closeout left open | The advisor suite's one failing case, doctor-a-08, predates this packet and is recorded in the phase 21 closeout |
 <!-- /ANCHOR:phase-map -->
 
 ---

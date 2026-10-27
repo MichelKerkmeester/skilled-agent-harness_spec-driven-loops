@@ -2958,6 +2958,27 @@ def _build_variants(skill_name: str) -> Set[str]:
     }
 
 
+# A typed slash command such as "/deep:research" or "/speckit:plan".
+_SLASH_COMMAND_RE = re.compile(r"(?:^|[^\w/])/[a-z][\w-]*:[\w-]+", re.IGNORECASE)
+# The execution-mode suffixes the command docs accept after a slash command,
+# attached ("/speckit:plan:auto") or as their own argument (":auto"). They
+# choose how the command runs, not what it is about, so they are not prompt
+# content. The ":with-*" modifiers stay: their words name extra work.
+_COMMAND_MODE_SUFFIX_RE = re.compile(r":(?:auto|confirm|autopilot|unattended)(?![\w-])", re.IGNORECASE)
+
+
+def _strip_command_mode_suffixes(prompt: str) -> str:
+    """Drop command mode suffixes that follow a typed slash command.
+
+    Mirrors stripCommandModeSuffixes in the TypeScript scorer's text module.
+    """
+    command = _SLASH_COMMAND_RE.search(prompt)
+    if command is None:
+        return prompt
+    start = command.start()
+    return prompt[:start] + _COMMAND_MODE_SUFFIX_RE.sub(" ", prompt[start:])
+
+
 @lru_cache(maxsize=None)
 def _phrase_boundary_pattern(phrase: str) -> re.Pattern:
     """Compile the boundary matcher once per metadata phrase."""
@@ -4589,7 +4610,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         return []
 
     prompt_lower = prompt.lower()
-    all_tokens = re.findall(r'\b\w+\b', prompt_lower)
+    all_tokens = re.findall(r'\b\w+\b', _strip_command_mode_suffixes(prompt_lower))
     skills = get_skills()
     explicit_command_intent = detect_explicit_command_intent(prompt_lower)
 

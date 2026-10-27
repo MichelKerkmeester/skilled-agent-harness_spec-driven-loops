@@ -22,6 +22,12 @@ export interface GraphCausalLaneSplit {
   readonly combinedMatches: LaneMatch[];
   readonly positiveMatches: LaneMatch[];
   readonly conflictMatches: LaneMatch[];
+  /**
+   * Positive support each target received, keyed by target then by the seed
+   * whose propagation produced it. Fusion uses it to tell support a target
+   * earned from its own evidence apart from support lent to it by a seed.
+   */
+  readonly positiveSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>;
 }
 
 interface GraphCausalScoreEntry {
@@ -31,6 +37,7 @@ interface GraphCausalScoreEntry {
   readonly evidence: readonly string[];
   readonly positiveEvidence: readonly string[];
   readonly conflictEvidence: readonly string[];
+  readonly positiveBySeed: ReadonlyMap<string, number>;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -89,6 +96,7 @@ function buildGraphCausalScores(
     evidence: string[];
     positiveEvidence: string[];
     conflictEvidence: string[];
+    positiveBySeed: Map<string, number>;
   }>();
   for (const [seedId, seedScore] of seedScores) {
     // Best positive strength discovered per target; also the visited/expansion ledger.
@@ -119,6 +127,7 @@ function buildGraphCausalScores(
           evidence: [],
           positiveEvidence: [],
           conflictEvidence: [],
+          positiveBySeed: new Map<string, number>(),
         };
         const evidence = `edge:${current.id}->${edge.targetId}:${edge.edgeType}`;
         entry.combinedScore += signed;
@@ -126,6 +135,7 @@ function buildGraphCausalScores(
         if (signed > 0) {
           entry.positiveScore += signed;
           entry.positiveEvidence.push(evidence);
+          entry.positiveBySeed.set(seedId, (entry.positiveBySeed.get(seedId) ?? 0) + signed);
         } else {
           entry.conflictScore += signed;
           entry.conflictEvidence.push(evidence);
@@ -176,10 +186,15 @@ export function scoreGraphCausalLaneSplit(
   affordances: readonly NormalizedAffordance[] = [],
 ): GraphCausalLaneSplit {
   const scores = buildGraphCausalScores(seedMatches, projection, options, affordances);
+  const positiveSupportBySeed = new Map<string, ReadonlyMap<string, number>>();
+  for (const [skillId, entry] of scores) {
+    if (entry.positiveBySeed.size > 0) positiveSupportBySeed.set(skillId, entry.positiveBySeed);
+  }
   return {
     combinedMatches: toLaneMatches(scores, 'combinedScore', 'evidence'),
     positiveMatches: toLaneMatches(scores, 'positiveScore', 'positiveEvidence'),
     conflictMatches: toLaneMatches(scores, 'conflictScore', 'conflictEvidence'),
+    positiveSupportBySeed,
   };
 }
 

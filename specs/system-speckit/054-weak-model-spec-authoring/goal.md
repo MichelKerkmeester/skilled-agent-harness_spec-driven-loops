@@ -169,6 +169,8 @@ and findings belong here.
 | 019 follow-up fixes | Done | manifest test 2/2 with fsmonitor off; dirty sandbox re-prepared between rounds, refusal final; review P1 fixed |
 | 020 alignment audit fixes | Done | 46 findings (1 P0 CI import gate) fixed across 4 lanes; verifiers PASS; system-spec-kit 2.12.1.0 |
 | 021 ci gate regressions | Done | scratch skip: replay 7 graded, 0 scratch (was 111, 104); ratchet 9/9; comparison 17/17; v2.12.2.0, Hermes PASS 67 |
+| 022 advisor routing and local install | Done | advisor suite 150/150 (was 1 failed); 5 probes live+local; graph bound + suffix strip, each test fails without its fix; sk-git link step 171/0, sk-git 1.9.6.0; strict 23/23 |
+| 022 rebase onto main | Done | main shipped sk-git 1.9.6.0 and the same doctor lead phrase first; this phase's release is sk-git 1.9.7.0 and adds no route change |
 
 ### Deviations and findings
 

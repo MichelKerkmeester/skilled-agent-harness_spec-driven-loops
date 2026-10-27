@@ -95,6 +95,7 @@ type MutableLaneScores = {
 interface LaneScoreBundle {
   readonly laneScores: LaneScores;
   readonly graphConflictMatches: readonly LaneMatch[];
+  readonly graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>;
 }
 
 interface AdvisorRrfFusion {
@@ -493,6 +494,7 @@ function buildLaneScores(
   if (!disabled.has('derived_generated')) scores.derived_generated = scoreDerivedLane(prompt, projection, new Date(), affordances);
   if (!disabled.has('semantic_shadow')) scores.semantic_shadow = scoreSemanticShadowLane(prompt, projection);
   let graphConflictMatches: readonly LaneMatch[] = [];
+  let graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>> = new Map();
   if (!disabled.has('graph_causal')) {
     const graphSplit = scoreGraphCausalLaneSplit([
       ...scores.explicit_author,
@@ -501,13 +503,90 @@ function buildLaneScores(
     ], projection, {}, affordances);
     scores.graph_causal = useRrfFusion ? graphSplit.positiveMatches : graphSplit.combinedMatches;
     graphConflictMatches = graphSplit.conflictMatches;
+    graphSupportBySeed = graphSplit.positiveSupportBySeed;
   }
-  return { laneScores: scores, graphConflictMatches };
+  return { laneScores: scores, graphConflictMatches, graphSupportBySeed };
+}
+
+// Smallest gap the rounded weighted score can still express, so a bounded
+// target sorts strictly below its seed instead of tying with it.
+const SEED_BOUND_GAP = 0.000001;
+
+// Below this explicit-lane score a match is a side mention, not a request.
+const EXPLICIT_WORKFLOW_SIGNAL_FLOOR = 0.55;
+
+// Explicit-lane evidence that a typed slash command named this skill.
+const SLASH_COMMAND_EVIDENCE = /^(phrase|author|explicit):\//;
+
+export function hasSlashCommandAnchor(rawScore: number, evidence: readonly string[]): boolean {
+  return rawScore >= EXPLICIT_WORKFLOW_SIGNAL_FLOOR
+    && evidence.some((entry) => SLASH_COMMAND_EVIDENCE.test(entry));
+}
+
+// Graph support is lent: a seed's own evidence propagates to its neighbours so
+// related skills surface beside it. When the seed was invoked by a typed slash
+// command, the user has named it outright, so support it lends may lift a
+// target up to it but never past it; otherwise the command's own match is what
+// buries the command (a typed "/deep:research" handing its dependency enough
+// support to win). Seeds matched only on loose tokens keep ordinary graph
+// lending, since there the neighbour may well be the better route. Two skills
+// often lend to each other, so the pair is compared on what each holds once
+// the other's loan is taken back: a target whose own evidence still beats the
+// seed's own evidence keeps its score.
+export function boundGraphSupportBySeed(
+  scores: ReadonlyMap<string, number>,
+  graphRawBySkill: ReadonlyMap<string, number>,
+  graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>,
+  graphWeight: number,
+  slashAnchoredSeeds: ReadonlySet<string>,
+): Map<string, number> {
+  const bounded = new Map(scores);
+  if (graphWeight <= 0) return bounded;
+  const lentBy = (lenderId: string, receiverId: string): number => {
+    const support = graphSupportBySeed.get(receiverId)?.get(lenderId) ?? 0;
+    const graphRaw = Math.max(0, graphRawBySkill.get(receiverId) ?? 0);
+    return Math.min(support, graphRaw) * graphWeight;
+  };
+  // Which seed holds which target down is decided once, on the unbounded
+  // scores, so the evidence comparison never sees a cap.
+  const holdersByTarget = new Map<string, string[]>();
+  for (const [targetId, supportBySeed] of graphSupportBySeed) {
+    const targetScore = scores.get(targetId);
+    if (targetScore === undefined) continue;
+    const holders: string[] = [];
+    for (const seedId of supportBySeed.keys()) {
+      if (seedId === targetId || !slashAnchoredSeeds.has(seedId)) continue;
+      const seedScore = scores.get(seedId);
+      if (seedScore === undefined) continue;
+      const targetOwn = targetScore - lentBy(seedId, targetId);
+      const seedOwn = seedScore - lentBy(targetId, seedId);
+      if (targetOwn < seedOwn) holders.push(seedId);
+    }
+    if (holders.length > 0) holdersByTarget.set(targetId, holders);
+  }
+  // A held seed can itself be held by another typed command, so each ceiling
+  // follows the seed's bounded score and the caps repeat until nothing moves.
+  // Caps only ever lower a score, and each pass settles at least one more link
+  // of a chain, so one pass per held target is enough.
+  for (let pass = 0; pass <= holdersByTarget.size; pass += 1) {
+    let moved = false;
+    for (const [targetId, holders] of holdersByTarget) {
+      const current = bounded.get(targetId) ?? 0;
+      let ceiling = current;
+      for (const seedId of holders) ceiling = Math.min(ceiling, (bounded.get(seedId) ?? 0) - SEED_BOUND_GAP);
+      if (ceiling < current) {
+        bounded.set(targetId, Math.max(0, ceiling));
+        moved = true;
+      }
+    }
+    if (!moved) break;
+  }
+  return bounded;
 }
 
 function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], skillId: string): boolean {
   const explicit = contributions.find((contribution) => contribution.lane === 'explicit_author');
-  if (!explicit || explicit.rawScore < 0.55) return false;
+  if (!explicit || explicit.rawScore < EXPLICIT_WORKFLOW_SIGNAL_FLOOR) return false;
   return explicit.evidence.some((entry) => (
     entry.startsWith('phrase:')
     || entry.startsWith('explicit:')
@@ -809,7 +888,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
   const useExactSemanticRerank = useRrfFusion && isAdvisorExactSemanticRerankEnabled();
-  const { laneScores, graphConflictMatches } = buildLaneScores(
+  const { laneScores, graphConflictMatches, graphSupportBySeed } = buildLaneScores(
     prompt,
     projection,
     disabled,
@@ -845,25 +924,48 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const hasTaskIntent = TASK_INTENT.test(promptLower);
   const recommendations: AdvisorScoredRecommendation[] = [];
 
-  for (const skill of projection.skills) {
-    if (!isDefaultRoutable(promptLower, skill)) continue;
-    const contributions: LaneContribution[] = SCORER_LANES.map((lane) => {
-      const laneMatch = laneScoreIndexes[lane].get(skill.id);
-      const rawScore = laneMatch?.rawScore ?? 0;
-      const shadowOnly = !isLiveScorerLane(lane);
-      const runtimeDegraded = runtimeDegradedLanes.has(lane);
-      return {
-        lane,
-        rawScore,
-        weightedScore: shadowOnly || disabled.has(lane) || runtimeDegraded ? 0 : rawScore * weights[lane],
-        weight: disabled.has(lane) || runtimeDegraded ? 0 : weights[lane],
-        evidence: laneMatch?.evidence ?? [],
-        shadowOnly,
-      };
+  const candidates = projection.skills
+    .filter((skill) => isDefaultRoutable(promptLower, skill))
+    .map((skill) => {
+      const contributions: LaneContribution[] = SCORER_LANES.map((lane) => {
+        const laneMatch = laneScoreIndexes[lane].get(skill.id);
+        const rawScore = laneMatch?.rawScore ?? 0;
+        const shadowOnly = !isLiveScorerLane(lane);
+        const runtimeDegraded = runtimeDegradedLanes.has(lane);
+        return {
+          lane,
+          rawScore,
+          weightedScore: shadowOnly || disabled.has(lane) || runtimeDegraded ? 0 : rawScore * weights[lane],
+          weight: disabled.has(lane) || runtimeDegraded ? 0 : weights[lane],
+          evidence: laneMatch?.evidence ?? [],
+          shadowOnly,
+        };
+      });
+      const weightedScore = contributions.reduce((total, contribution) => total + contribution.weightedScore, 0);
+      return { skill, contributions, weightedScore };
     });
-    const weightedScore = contributions.reduce((total, contribution) => total + contribution.weightedScore, 0);
+  // Rank fusion scores by lane position, so a lent-support amount has no
+  // meaning there; the bound applies to the weighted sum only.
+  const graphLaneLive = isLiveScorerLane('graph_causal')
+    && !disabled.has('graph_causal')
+    && !runtimeDegradedLanes.has('graph_causal');
+  const seedBoundedScores = useRrfFusion || !graphLaneLive
+    ? null
+    : boundGraphSupportBySeed(
+      new Map(candidates.map((candidate) => [candidate.skill.id, candidate.weightedScore])),
+      new Map([...laneScoreIndexes.graph_causal].map(([skillId, entry]) => [skillId, entry.rawScore])),
+      graphSupportBySeed,
+      weights.graph_causal,
+      new Set([...laneScoreIndexes.explicit_author]
+        .filter(([, entry]) => hasSlashCommandAnchor(entry.rawScore, entry.evidence))
+        .map(([skillId]) => skillId)),
+    );
+
+  for (const { skill, contributions, weightedScore } of candidates) {
     const rrfScore = rrfFusion?.scoreBySkill.get(skill.id);
-    const score = useRrfFusion ? rrfScore ?? 0 : weightedScore;
+    const score = useRrfFusion
+      ? rrfScore ?? 0
+      : seedBoundedScores?.get(skill.id) ?? weightedScore;
     if (score <= 0 && contributions.every((contribution) => contribution.rawScore <= 0)) continue;
     if (isSpeckitMetricsEnabled()) {
       for (const contribution of contributions) {

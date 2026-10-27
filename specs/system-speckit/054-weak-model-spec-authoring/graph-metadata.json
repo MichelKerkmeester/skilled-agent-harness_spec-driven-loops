@@ -24,7 +24,8 @@
     "system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure",
     "system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes",
     "system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes",
-    "system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions"
+    "system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions",
+    "system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install"
   ],
   "manual": {
     "depends_on": [],
@@ -197,17 +198,17 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-26T22:42:46.880Z",
+    "last_save_at": "2026-10-27T06:05:23.714Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:47f65a7e3e5a5cadb42fd2898e9e133b3e3ce12a9f022819eb778aa4556b46b6",
+    "source_fingerprint": "sha256:2bbb6d82ed18d127163ba6c55aac51792fa1a1d8857b289487bdd94c9f6a4d15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15c06985121bf1e7d55c13a65de42d766d72fc6d471c2b1a9de0d93d3f2f5212"
+      "spec.md": "8295f369d1aa4987adf7b2b2105741ae6d438d00f43fdf853a5fc96f5fb808ec"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
     "last_active_at": "2026-10-25T21:42:09.493Z"
