@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d5c062d4416fcdbb5ab0cfcc5264d423e27b32bfef9c08ab29a289531bc5d336",
+  "manifestHash": "cdd93ad471a0993c65a7e91aa1c47537adbc425ec1f62d3e1d9c82729db7ceff",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17924,6 +17924,21 @@
     ],
     "ci gate regressions tasks": [
       "ci gate regressions tasks"
+    ],
+    "ci health followups": [
+      "ci health followups"
+    ],
+    "ci health followups acceptance criteria": [
+      "ci health followups acceptance criteria"
+    ],
+    "ci health followups implementation summary": [
+      "ci health followups implementation summary"
+    ],
+    "ci health followups plan": [
+      "ci health followups plan"
+    ],
+    "ci health followups tasks": [
+      "ci health followups tasks"
     ],
     "ci lanes wired": [
       "ci lanes wired"
@@ -45344,6 +45359,9 @@
     "findadvisorworkspaceroot strict sentinel": [
       "findAdvisorWorkspaceRoot strict sentinel"
     ],
+    "finding accuracy benchmark": [
+      "finding accuracy benchmark"
+    ],
     "finding authority digest binding": [
       "finding authority digest binding"
     ],
@@ -49184,6 +49202,9 @@
     ],
     "goal core state resolver": [
       "goal-core state resolver"
+    ],
+    "goal core statepath flake": [
+      "goal-core statepath flake"
     ],
     "goal core tasks": [
       "goal core tasks"
@@ -70682,6 +70703,12 @@
     "over prompting emphatic caps": [
       "over-prompting emphatic caps"
     ],
+    "overall assessment check": [
+      "overall assessment check"
+    ],
+    "overall assessment contradicts status line": [
+      "overall assessment contradicts status line"
+    ],
     "overall sealed preliminary authoritative": [
       "overall.sealed preliminary authoritative"
     ],
@@ -71877,6 +71904,9 @@
     "path includes specs substring": [
       "path includes specs substring"
     ],
+    "path only workflow review routing": [
+      "path-only workflow review routing"
+    ],
     "path references": [
       "path references"
     ],
@@ -73020,6 +73050,9 @@
     ],
     "phase 11 authoring speed research": [
       "phase 11 authoring speed research"
+    ],
+    "phase 11 ci health followups": [
+      "phase 11 ci health followups"
     ],
     "phase 11 gateway enforcement": [
       "phase 11 gateway enforcement"
@@ -75034,6 +75067,9 @@
     ],
     "pi coding agent": [
       "pi coding agent"
+    ],
+    "pi coding agent 1 4 0 bump": [
+      "pi-coding-agent 1.4.0 bump"
     ],
     "pi compaction dedup reset": [
       "pi compaction dedup reset"
@@ -86273,6 +86309,9 @@
     "review blocked stop": [
       "review blocked stop"
     ],
+    "review cache fallback": [
+      "review cache fallback"
+    ],
     "review canary evidence floors": [
       "review canary evidence floors"
     ],
@@ -86572,6 +86611,21 @@
     ],
     "review mode contract": [
       "review-mode contract"
+    ],
+    "review mode followups": [
+      "review mode followups"
+    ],
+    "review mode followups acceptance criteria": [
+      "review mode followups acceptance criteria"
+    ],
+    "review mode followups implementation summary": [
+      "review mode followups implementation summary"
+    ],
+    "review mode followups plan": [
+      "review mode followups plan"
+    ],
+    "review mode followups tasks": [
+      "review mode followups tasks"
     ],
     "review mode implementation summary": [
       "review mode implementation summary"
@@ -93756,6 +93810,9 @@
     "sk code 3 9 1 0": [
       "sk-code 3.9.1.0"
     ],
+    "sk code 3 9 2 0": [
+      "sk-code 3.9.2.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -94653,6 +94710,9 @@
     "sk code review 1 9 1 0": [
       "sk-code-review 1.9.1.0"
     ],
+    "sk code review 1 9 2 0": [
+      "sk-code-review 1.9.2.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -94667,6 +94727,9 @@
     ],
     "sk code review fold in": [
       "sk-code-review fold-in"
+    ],
+    "sk code review follow ups cache key fallback": [
+      "sk code review follow ups cache key fallback"
     ],
     "sk code review frontmatter alignment": [
       "sk-code-review frontmatter alignment"
@@ -94739,6 +94802,9 @@
     ],
     "sk code review v1 9 1 0": [
       "sk-code-review v1.9.1.0"
+    ],
+    "sk code review v1 9 2 0": [
+      "sk-code-review v1.9.2.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -95156,6 +95222,9 @@
     ],
     "sk code v3 9 1 0": [
       "sk-code v3.9.1.0"
+    ],
+    "sk code v3 9 2 0": [
+      "sk-code v3.9.2.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -113686,6 +113755,9 @@
     "watched crash test result": [
       "watched crash test result"
     ],
+    "watcher chokidar ready flake": [
+      "watcher chokidar ready flake"
+    ],
     "watcher mutex": [
       "watcher mutex"
     ],
@@ -114492,6 +114564,9 @@
     ],
     "workflow path filters": [
       "workflow path filters"
+    ],
+    "workflow path review routing": [
+      "workflow path review routing"
     ],
     "workflow permissions": [
       "workflow permissions"

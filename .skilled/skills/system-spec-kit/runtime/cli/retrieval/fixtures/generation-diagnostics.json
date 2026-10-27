@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7316,
-    "ok": 15450,
+    "missing-frontmatter": 7326,
+    "ok": 15462,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26314,
+  "documentsScanned": 26336,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d5c062d4416fcdbb5ab0cfcc5264d423e27b32bfef9c08ab29a289531bc5d336",
+  "manifestHash": "cdd93ad471a0993c65a7e91aa1c47537adbc425ec1f62d3e1d9c82729db7ceff",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38120,
+      "ok": 38145,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -11136,6 +11136,36 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -11198,6 +11228,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/unrequested-code-removal.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/seeded-off-by-one.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/seeded-sql-injection.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11323,6 +11371,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/user-authored-modes/user-security-surface-two-stage.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11348,6 +11402,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -71608,6 +71668,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/016-review-mode-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
       "reason": "excluded directory"
     },
@@ -75957,6 +76021,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/scratch",
       "reason": "excluded directory"
     },
     {

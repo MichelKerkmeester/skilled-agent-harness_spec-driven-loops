@@ -1,5 +1,5 @@
 {
-  "corpusHash": "37b682a87042da5d4672f2669c619e874437d3254fd2fdb03e995f8d7387c1a1",
+  "corpusHash": "1c2d61bb095328a29f452d7558930f155f112d9822bfc2eea41001c124f33a0d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26314,
+  "includedPathCount": 26336,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2737,6 +2737,7 @@
     ".skilled/skills/sk-code/changelog/v3.8.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.1.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2865,6 +2866,11 @@
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/findings-and-recommendations.md",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/README.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/failed-runs.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/findings-and-recommendations.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/skill-benchmark-report.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/source.md",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.1.0.0.md",
@@ -2878,6 +2884,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2889,6 +2896,9 @@
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/review-depth-alias.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/rule-invariant-canary.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/unrequested-code-removal.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/seeded-off-by-one.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/seeded-sql-injection.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/dry.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/kiss.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/quality.md",
@@ -2909,6 +2919,7 @@
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/cross-consumer-affected-surface.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/user-authored-modes/user-security-surface-two-stage.md",
     ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
     ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
     ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
@@ -2918,6 +2929,7 @@
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
     ".skilled/skills/sk-code/sk-code-skilled/README.md",
     ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md",
@@ -12396,6 +12408,11 @@
     "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-010-alignment-audit.md",
     "specs/sk-code/015-quality-agnostic-gate/goal.md",
     "specs/sk-code/015-quality-agnostic-gate/spec.md",
+    "specs/sk-code/016-review-mode-followups/acceptance-criteria.md",
+    "specs/sk-code/016-review-mode-followups/implementation-summary.md",
+    "specs/sk-code/016-review-mode-followups/plan.md",
+    "specs/sk-code/016-review-mode-followups/spec.md",
+    "specs/sk-code/016-review-mode-followups/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -26173,6 +26190,11 @@
     "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
@@ -26345,7 +26367,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d5c062d4416fcdbb5ab0cfcc5264d423e27b32bfef9c08ab29a289531bc5d336",
+  "manifestHash": "cdd93ad471a0993c65a7e91aa1c47537adbc425ec1f62d3e1d9c82729db7ceff",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29173,6 +29195,10 @@
     },
     {
       "path": "specs/sk-code/015-quality-agnostic-gate/010-alignment-audit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/016-review-mode-followups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33525,6 +33551,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/010-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/scratch",
       "reason": "excluded directory"
     },
     {
