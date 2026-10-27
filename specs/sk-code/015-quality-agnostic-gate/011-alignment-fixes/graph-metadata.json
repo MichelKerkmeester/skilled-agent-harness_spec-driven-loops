@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/015-quality-agnostic-gate/011-alignment-fixes",
+  "spec_folder": "sk-code/015-quality-agnostic-gate/011-alignment-fixes",
+  "parent_id": "sk-code/015-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment fixes",
+      "phase 11 alignment fixes",
+      "typed doctor target containing marker",
+      "sk-code ci cost aliases",
+      "alignment fixes plan",
+      "alignment fixes tasks",
+      "alignment fixes acceptance criteria",
+      "alignment fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "phase",
+      "typed",
+      "doctor",
+      "target",
+      "containing",
+      "marker",
+      "sk-code",
+      "cost",
+      "aliases",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-git/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/tagged-release-intent.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/read-only-explainer.vitest.ts",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-002-builtin-runner.md",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/skills/sk-git/changelog/v1.10.1.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "text.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "tagged-release-intent.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/tagged-release-intent.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ordering.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "read-only-explainer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/read-only-explainer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-015-002-builtin-runner.md",
+        "kind": "doc",
+        "path": "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-002-builtin-runner.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v1.10.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.10.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On the advisor's Python path a bare default marker such as `/doctor:ci` matched before its sibling `/doctor:ci toggle`, because the matcher returned the first substring hit",
+    "created_at": "2026-10-27T19:57:35Z",
+    "last_save_at": "2026-10-27T21:34:18.440Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e6c532bde5c83059843d0d0773b7e4d4f771a7db208a8cce2f8417dcb4d908d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d518202fd08b76a53a52ac5165964dd5e44ece43645df4cd2e1c09520db2fd68",
+      "plan.md": "a33dc8aaa426c32b808771091f63c483a5570eafc7dfd4ccc57cb51b8c311545",
+      "tasks.md": "c0b0b77eb479712d4a7a849b6d102d3f3f634861f284d50dfe89bd1acc727624",
+      "implementation-summary.md": "4df4037bd0863a908a3bf4f0d8b5818158cf2f6b633196fb6ca77ebceeba2b38"
+    },
+    "last_active_at": null
+  }
+}

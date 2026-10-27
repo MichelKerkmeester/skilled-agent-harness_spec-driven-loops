@@ -1251,7 +1251,7 @@ Eleven commands check and repair the setup, one per area.
 
 **`/doctor:sk-code [setup|quality] [--prompt=<text>] [--dry-run]`** - the read-only sk-code setup battery, plus the `quality` target, which reports the repository quality config and creates `.sk-code/quality.json` once after approval
 
-- `setup` runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
+- `setup` runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness, route-probe and quality checks and names the repair command for each failing leg
 - `quality` shows which quality config the gate reads and checks it, and when there is none it creates `.sk-code/quality.json` once after your yes
 
 **`/doctor:ci [report|scaffold|toggle]`** - GitHub Actions workflows and their on/off switches

@@ -2286,9 +2286,11 @@ HAND_AUTHORED_COMMAND_BRIDGES = {
     # Previously all /speckit:* subcommands collapsed to `command-spec-kit`
     # at `kind_priority=2`, so `/deep:research` lost its owning-skill
     # signal (should route to `deep-research`, not `command-spec-kit`).
-    # Dict insertion order IS iteration order in Python 3.7+, so the specific
-    # subcommand markers MUST appear BEFORE the deprecated generic bridge —
-    # `detect_explicit_command_intent()` returns on the first marker match.
+    # `detect_explicit_command_intent()` lets a matching marker replace the
+    # current best only when it contains it, so a specific subcommand marker
+    # beats the deprecated generic bridge it contains. Keep the specific
+    # markers BEFORE the generic bridge anyway: for markers that do not contain
+    # each other, dict insertion order decides.
     # Execution-mode suffixes (:auto, :confirm, :with-phases, :with-research)
     # are substring-matched inside each bridge and do NOT need separate entries.
     # ─────────────────────────────────────────────────────────────────
@@ -3132,18 +3134,33 @@ def expand_query(prompt_tokens: List[str]) -> List[str]:
     return list(expanded)
 
 
+_RELEASE_ACTION = re.compile(r"\b(?:cut|tag|publish|ship)\s+(?:a|an|the)?\s*(?:new\s+)?release\b(?!\s+(?:notes?|blog|post|party|announcement|newsletter))")
+_TAG_CONTEXT = re.compile(r"\b(?:git\s+tag|(?:push|create)\s+(?:the\s+|a\s+|an\s+(?:annotated\s+)?)?tags?|tag\s+(?:it|the\s+(?:version|release|commit))|v\d+(?:\.\d+)+|tagged|tagging)\b")
+
+
 def detect_explicit_command_intent(prompt_lower: str) -> Optional[str]:
     """Return targeted command bridge when explicit slash markers are present."""
     doctor_command_typed = _find_typed_doctor_command_text(prompt_lower) is not None
+    # A matching marker replaces the current best only when it contains it,
+    # because a bare default-target marker such as `/doctor:ci` is a substring
+    # of its sibling `/doctor:ci toggle`. Two separate commands in one prompt
+    # keep bridge insertion order, so the first bridge that matched still wins.
+    best_command: Optional[str] = None
+    best_marker: Optional[str] = None
     for command_name, command_config in COMMAND_BRIDGES.items():
         if command_config.get("routing_enabled") is False:
             continue
         if command_name.startswith("command-doctor-") and not doctor_command_typed:
             continue
         for marker in command_config.get("slash_markers", []):
-            if marker and marker in prompt_lower:
-                return COMMAND_BRIDGE_EXPLICIT_ALIASES.get(command_name, command_name)
-    return None
+            if not marker or marker not in prompt_lower:
+                continue
+            if best_marker is None or (best_marker in marker and len(marker) > len(best_marker)):
+                best_command = command_name
+                best_marker = marker
+    if best_command is None:
+        return None
+    return COMMAND_BRIDGE_EXPLICIT_ALIASES.get(best_command, best_command)
 
 
 def _command_bridge_references(command_name: str) -> Set[str]:
@@ -4680,6 +4697,12 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         ):
             skill_boosts[skill] = skill_boosts.get(skill, 0.0) + boost
             boost_reasons.setdefault(skill, []).append("!memory-preservation-session-intent")
+
+    # A release request is git work only when the prompt also names a tag, so
+    # the bare word `release` stays out of sk-git's vocabulary.
+    if _RELEASE_ACTION.search(prompt_lower) and _TAG_CONTEXT.search(prompt_lower):
+        skill_boosts["sk-git"] = skill_boosts.get("sk-git", 0.0) + 1.2
+        boost_reasons.setdefault("sk-git", []).append("!tagged-release-intent")
 
     if _is_ambiguous_code_problem(prompt_lower):
         for skill, boost in (

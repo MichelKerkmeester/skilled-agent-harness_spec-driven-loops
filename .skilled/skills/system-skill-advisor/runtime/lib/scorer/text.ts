@@ -132,6 +132,6 @@ export function isReadOnlyExplainer(promptLower: string): boolean {
     && !/\b(then|and)\s+(add|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|save|start|update|write)\b/.test(promptLower)) {
     return true;
   }
-  const write = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|save|update|write)\b/.test(promptLower);
+  const write = /\b(add|build|change|configure|create|disable[sd]?|edit|enable[sd]?|execute|fix|generate|implement|modify|patch|refactor|rename|re-?run|run|save|switch (?:on|off)|turn (?:on|off)|update|write)\b/.test(promptLower);
   return readOnly && !write && !skillSurface;
 }

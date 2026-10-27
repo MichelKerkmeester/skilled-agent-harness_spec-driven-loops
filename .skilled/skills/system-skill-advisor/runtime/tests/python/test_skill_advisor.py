@@ -1205,6 +1205,71 @@ description: Fixture helper for routing tests
             str(exc),
         )
 
+    # A bare default-target marker such as `/doctor:ci` is a prefix of its
+    # sibling targets, so the typed target must win on the longest marker.
+    sibling_target_name = "typed doctor sibling target beats its bare default marker"
+    try:
+        expected_targets = {
+            "/doctor:ci toggle": "command-doctor-ci-toggle",
+            "/doctor:ci scaffold": "command-doctor-ci-scaffold",
+            "/doctor:git standards": "command-doctor-git-standards",
+            "/doctor:sk-code quality": "command-doctor-sk-code-quality",
+        }
+        mismatches = []
+        for prompt, expected in expected_targets.items():
+            intent = advisor.detect_explicit_command_intent(prompt)
+            ranked = [r["skill"] for r in advisor.analyze_request(prompt)]
+            if intent != expected or ranked[:1] != [expected]:
+                mismatches.append(f"{prompt}: intent={intent} top={ranked[:2]}")
+        bare_intent = advisor.detect_explicit_command_intent("/doctor:ci")
+        if bare_intent != "command-doctor-ci-report":
+            mismatches.append(f"/doctor:ci: intent={bare_intent}")
+        # Two separate commands do not contain each other, so the longer one
+        # must not displace the bridge that matched first.
+        two_command = "/deep:review the diff, then /speckit:resume"
+        two_intent = advisor.detect_explicit_command_intent(two_command)
+        if two_intent != "command-spec-kit-deep-review":
+            mismatches.append(f"{two_command}: intent={two_intent}")
+        if mismatches:
+            fail_test(sibling_target_name, "; ".join(mismatches))
+        else:
+            ok(sibling_target_name)
+    except Exception as exc:
+        fail_test(sibling_target_name, str(exc))
+
+    # A release request anchors sk-git only when it also names a tag.
+    tagged_release_name = "tagged release request anchors sk-git"
+    try:
+        def sk_git_reasons(prompt):
+            return [r.get("reason", "") for r in advisor.analyze_request(prompt) if r["skill"] == "sk-git"]
+
+        anchored_prompts = [
+            "Cut a release: tag the version, push the tag and follow the release workflow",
+            "Ship a new release and tag it v2.3.0",
+        ]
+        unanchored_prompts = [
+            "Cut a new release of the package",
+            "Ship the release of the newsletter and tag the subscribers by segment",
+            "Publish the release blog post with tags for SEO",
+            "Publish the release notes for v2 and tag the maintainers in the announcement",
+        ]
+        problems = []
+        for prompt in anchored_prompts:
+            top = [r["skill"] for r in advisor.analyze_request(prompt)][:1]
+            reasons = sk_git_reasons(prompt)
+            if top != ["sk-git"] or not any("!tagged-release-intent" in x for x in reasons):
+                problems.append(f"anchored {prompt!r}: top={top} reasons={reasons}")
+        for prompt in unanchored_prompts:
+            reasons = sk_git_reasons(prompt)
+            if any("!tagged-release-intent" in x for x in reasons):
+                problems.append(f"unanchored {prompt!r}: reasons={reasons}")
+        if problems:
+            fail_test(tagged_release_name, "; ".join(problems))
+        else:
+            ok(tagged_release_name)
+    except Exception as exc:
+        fail_test(tagged_release_name, str(exc))
+
     # A stopped daemon publishes 'unavailable' even though the index hashes
     # still match disk; the one-shot bridge must fall back to that index
     # freshness instead of reporting the advisor unusable. The bridge is

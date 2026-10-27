@@ -72,7 +72,9 @@
     "hook trust",
     "hook gates",
     "cherry pick",
-    "squash commits"
+    "squash commits",
+    "git tag",
+    "tags and publishes"
   ],
   "derived": {
     "trigger_phrases": [

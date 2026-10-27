@@ -195,6 +195,12 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
 };
 
 const WRITE_VERBS = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|replace|run|update|write)\b/;
+// A release request is git work only when the prompt also names a tag. The bare
+// word `release` stays out of sk-git's vocabulary, because an update, a release
+// note or a dependency release is not a git release. A tag counts only as a git
+// tag, a tag push or a version number, never a label on subscribers or posts.
+const RELEASE_ACTION = /\b(?:cut|tag|publish|ship)\s+(?:a|an|the)?\s*(?:new\s+)?release\b(?!\s+(?:notes?|blog|post|party|announcement|newsletter))/;
+const TAG_CONTEXT = /\b(?:git\s+tag|(?:push|create)\s+(?:the\s+|a\s+|an\s+(?:annotated\s+)?)?tags?|tag\s+(?:it|the\s+(?:version|release|commit))|v\d+(?:\.\d+)+|tagged|tagging)\b/;
 const MEMORY_PRESERVATION_SESSION_INTENT = /\b(preserve|remember|capture|keep|store)\b.*\b(next|future|later)\s+session\b|\b(next|future|later)\s+session\b.*\b(lose|lost|preserve|remember|capture|keep|store)\b/;
 
 // ───────────────────────────────────────────────────────────────────
@@ -313,6 +319,9 @@ export function scoreExplicitLane(
   }
   if (WRITE_VERBS.test(lower) && /\b(error classes|trigger gap|reporter|mismatches?|bucket|gate 3)\b/.test(lower)) {
     push(scores, 'sk-code', 0.6, 'write-routing-tool-surface');
+  }
+  if (RELEASE_ACTION.test(lower) && TAG_CONTEXT.test(lower)) {
+    push(scores, 'sk-git', 0.9, 'tagged-release-intent');
   }
   if (MEMORY_PRESERVATION_SESSION_INTENT.test(lower)) {
     push(scores, 'memory:save', 1.2, 'memory-preservation-session-intent');

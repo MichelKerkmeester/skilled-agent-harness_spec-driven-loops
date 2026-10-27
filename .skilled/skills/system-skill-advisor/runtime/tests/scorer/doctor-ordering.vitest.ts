@@ -223,6 +223,27 @@ describe('doctor bridge ordering', () => {
     ]);
   });
 
+  it.each([
+    ['/doctor:ci toggle', 'command-doctor-ci-report', 'command-doctor-ci-toggle'],
+    ['/doctor:ci scaffold', 'command-doctor-ci-report', 'command-doctor-ci-scaffold'],
+    ['/doctor:git standards', 'command-doctor-git-setup', 'command-doctor-git-standards'],
+    ['/doctor:sk-code quality', 'command-doctor-sk-code-setup', 'command-doctor-sk-code-quality'],
+  ] as const)('puts the typed sibling target of %s ahead of its default target', (prompt, defaultTarget, typedTarget) => {
+    const ranked = [
+      rec(defaultTarget, 'command', true),
+      rec(typedTarget, 'command', true),
+      rec('sk-code', 'skill', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, prompt);
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      typedTarget,
+      defaultTarget,
+      'sk-code',
+    ]);
+  });
+
   it('keeps scored order when a typed command has no matching passing bridge', () => {
     const ranked = [
       rec('sk-code', 'skill', true),

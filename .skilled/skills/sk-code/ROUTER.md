@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.2.0
+version: 2.3.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -58,7 +58,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
 | LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
-| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `deploy workflow`, `release workflow`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
+| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `github actions release workflow`, `github actions deploy workflow`, `release workflow yaml`, `deploy workflow yaml`, `github actions minutes`, `actions minutes`, `actions runner minutes`, `runner minutes`, `ci workflow cost`, `ci cost`, `reduce ci costs`, `lower ci costs`, `cut ci costs`, `reduce our ci costs`, `lower our ci costs`, `ci spend`, `ci bill`, `ci minutes cost`, `cut the ci minutes`, `cut ci minutes`, `reduce ci minutes`, `ci pipeline cost`, `ci pipeline cheaper`, `ci pipelines cheaper`, `cheaper ci pipeline`, `ci runs cheaper`, `failing ci`, `failing ci pipeline`, `ci failure`, `ci failures`, `ci is failing`, `broken ci`, `debug the ci`, `debug ci`, `cost of our ci`, `make ci cheaper`, `github actions bill`, `github actions cost`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
 
 ### Scoring algorithm
 
@@ -249,7 +249,7 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
-    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "deploy workflow", "release workflow", "turn off the ci", "turn on the ci", "ci review workflow"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "github actions release workflow", "github actions deploy workflow", "release workflow yaml", "deploy workflow yaml", "github actions minutes", "actions minutes", "actions runner minutes", "runner minutes", "ci workflow cost", "ci cost", "reduce ci costs", "lower ci costs", "cut ci costs", "reduce our ci costs", "lower our ci costs", "ci spend", "ci bill", "ci minutes cost", "cut the ci minutes", "cut ci minutes", "reduce ci minutes", "ci pipeline cost", "ci pipeline cheaper", "ci pipelines cheaper", "cheaper ci pipeline", "ci runs cheaper", "failing ci", "failing ci pipeline", "ci failure", "ci failures", "ci is failing", "broken ci", "debug the ci", "debug ci", "cost of our ci", "make ci cheaper", "github actions bill", "github actions cost", "turn off the ci", "turn on the ci", "ci review workflow"]},
 }
 
 RESOURCE_MAP = {

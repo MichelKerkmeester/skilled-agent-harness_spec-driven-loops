@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-code/015-quality-agnostic-gate"
     last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 010, all ten phases Complete"
-    next_safe_action: "None; phase 010 closed T039, T040 and T041 on 2026-10-27"
+    recent_action: "Closed phase 011, all eleven phases Complete"
+    next_safe_action: "None; phase 011 closed the alignment fixes on 2026-10-27"
     blockers: []
     key_files:
       - "spec.md"
@@ -181,6 +181,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 8 | 008-runner-limit-closeout/ | The runner's own open items: proving the checker a hook names, a read-only dist path with declared generated files, one bounded workspace listing, the guard boundary and the corrected limitation list | Complete |
 | 9 | 009-review-closeout/ | The operator-accepted review items: outside-skill faults error only where they apply, a `skilled.trustRepoChecks` grant for configured checks, a bounded `node --check` pool with a five-run timing record, a `declaredSurfaces` parity test, the @code runner path and the record fixes | Complete |
 | 10 | 010-alignment-audit/ | The operator's ten alignment questions: four audit lanes over the 705 files this packet and packet 053 changed, 47 findings fixed or recorded across code, skill documents, playbooks, READMEs, routing, the advisor bridge, commands and agents, fifteen version bumps with changelog entries, the CI routing fix, and an audit of `AGENTS.md` and the repo rules | Complete |
+| 11 | 011-alignment-fixes/ | The routing, advisor and doc findings the audit left: the longest typed doctor marker wins, run requests leave the read-only floor, the sk-code-ci aliases anchor release work on GitHub Actions and catch CI cost, the router sync header, five feature-catalog entries, the README quality leg and the phase 002 changelog | Complete |
 
 ### Phase Transition Rules
 
@@ -203,6 +204,7 @@ This table is for the audit trail. Per-phase detail lives in each child's plan.m
 | 008-runner-limit-closeout | 006-measurement | The six requirements pass and the budget command prints five runs under two seconds | `node --test --test-reporter=tap .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` prints `# fail 0`, and the five timed runs each read under `2.00` |
 | 008-runner-limit-closeout | 009-review-closeout | Phases 001 to 008 are Complete and the operator accepted the review recommendations on 2026-10-26 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate/009-review-closeout --strict \| tail -1` prints `RESULT: PASSED` |
 | 009-review-closeout | 010-alignment-audit | Phase 9 is Complete and the operator asked the ten alignment questions on 2026-10-26 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate/010-alignment-audit --strict \| tail -1` prints `RESULT: PASSED`, and `rg -c '\| Met \|' specs/sk-code/015-quality-agnostic-gate/010-alignment-audit/acceptance-criteria.md` prints `18` |
+| 010-alignment-audit | 011-alignment-fixes | Phase 10 is Complete and recorded the findings this phase fixes | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/015-quality-agnostic-gate/011-alignment-fixes --strict \| tail -1` prints `RESULT: PASSED` |
 
 Phase 7 depends on phase 1 only. It builds in parallel with phases 3 and 4, and it must land before phase 6, which measures the final checker. Phase 6 therefore depends on phases 3, 4, 5, 7 and 8.
 <!-- /ANCHOR:phase-map -->

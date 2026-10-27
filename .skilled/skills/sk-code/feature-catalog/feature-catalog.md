@@ -1,13 +1,15 @@
 ---
 title: "sk-code: Feature Catalog"
-description: "Current-state inventory for the sk-code hub, covering its two-axis workflow/surface registry-driven routing and the default-on compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the sk-code hub, covering its two-axis registry-driven routing, the compiled-routing fast path, the quality gate and its repository config, the sk-code and CI doctors and review reach calibration."
 trigger_phrases:
   - "sk-code feature catalog"
   - "sk-code hub capabilities"
   - "two-axis registry routing"
   - "sk-code compiled routing"
-last_updated: "2026-10-25"
-version: 1.0.4.0
+  - "sk-code quality gate"
+  - "sk-code doctor commands"
+last_updated: "2026-10-27"
+version: 1.0.5.0
 ---
 
 # sk-code: Feature Catalog
@@ -18,7 +20,7 @@ This catalog inventories the live `sk-code` hub surface. The skill advisor route
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `sk-code` hub. The hub does not implement or debug code itself — it is a declarative router that hands the resolved workflow mode (plus bundled surface evidence) to the correct nested packet.
+Use this catalog as the current-state inventory for the `sk-code` hub. The hub does not implement or debug code itself. It is a declarative router that hands the resolved workflow mode (plus bundled surface evidence) to the correct nested packet. Sections 4 to 6 inventory the features the modes and their doctor commands ship: the quality gate and its repository config, the sk-code and CI doctors and the review reach rule.
 
 ---
 
@@ -55,3 +57,85 @@ The directive is on by default for `sk-code`, one of the seven activated hubs: w
 #### Source Files
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for resolution order, the tri-state flag, and serving-status anchors.
+
+---
+
+## 4. QUALITY GATE
+
+### Codebase-Agnostic Quality Gate
+
+#### Description
+
+One runner prints one machine verdict for a change in any repository, from built-in sensors, a comment-hygiene call, a parse floor and the checks the repository names.
+
+#### Current Reality
+
+`quality-gate.cjs` checks the worktree change, a base range or named files, writes no file and never reports a pass. Its exit code is the verdict: `NO_BLOCKER_FOUND`, `BLOCKED`, `NOTHING_CHECKED`, `ERROR` or `UNVERIFIED`.
+
+#### Source Files
+
+See [`quality-gate/codebase-agnostic-quality-gate.md`](quality-gate/codebase-agnostic-quality-gate.md) for the scopes, the exit codes and source anchors.
+
+### Repository Quality Config
+
+#### Description
+
+A committed .sk-code/quality.json names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for.
+
+#### Current Reality
+
+Discovery takes the first of `--config`, a stored `skcode.qualityConfig`, `.sk-code/quality.json` and none. A configured command runs as an argv array with no shell inside the workspace guard, and an untrusted config reads `SKIPPED_UNTRUSTED` with a repair line.
+
+#### Source Files
+
+See [`quality-gate/repository-quality-config.md`](quality-gate/repository-quality-config.md) for discovery, the schema, the trust boundary and source anchors.
+
+---
+
+## 5. DOCTOR COMMANDS
+
+### sk-code Setup And Quality Doctor
+
+#### Description
+
+/doctor:sk-code runs the read-only nine-leg setup battery by default, and its quality target shows, checks and once creates the repository quality config.
+
+#### Current Reality
+
+`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` writes `.sk-code/quality.json` only after approval and never over an existing file.
+
+#### Source Files
+
+See [`doctor-commands/sk-code-setup-and-quality-doctor.md`](doctor-commands/sk-code-setup-and-quality-doctor.md) for the legs, the quality modes and source anchors.
+
+### CI Workflow Doctor And Switches
+
+#### Description
+
+/doctor:ci reports every GitHub Actions workflow with its switch state, scaffolds a new workflow from the standards templates and toggles one documented CI switch after approval.
+
+#### Current Reality
+
+`report` is read-only and prints switch states, never variable values. `toggle` covers six switch variables and refuses the master and message-contract switches while the workflows README forbids switching them off.
+
+#### Source Files
+
+See [`doctor-commands/ci-workflow-doctor-and-switches.md`](doctor-commands/ci-workflow-doctor-and-switches.md) for the targets, the switches and source anchors.
+
+---
+
+## 6. REVIEW CALIBRATION
+
+### Review Reach Calibration
+
+#### Description
+
+A P0 or P1 review finding must name its reach, an input or caller the code's stated contract allows, and a finding that cannot name one is P2.
+
+#### Current Reality
+
+Out-of-contract input is P2 hardening unless the code claims to validate it, and data that crosses a trust boundary is always in reach. The escalation rule never lifts a finding with no reach.
+
+#### Source Files
+
+See [`review-calibration/review-reach-calibration.md`](review-calibration/review-reach-calibration.md) for the rule, its exceptions and source anchors.

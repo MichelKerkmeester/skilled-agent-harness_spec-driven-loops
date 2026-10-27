@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Router Sync Verifier
+// ───────────────────────────────────────────────────────────────────
 // Drift guard for the sk-code router. It restores the four checks of the retired
 // router-sync suite as one PASS or FAIL line per leg, and exits non-zero when a
 // selected leg fails.
