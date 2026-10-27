@@ -1,5 +1,5 @@
 {
-  "count": 975,
+  "count": 982,
   "mode": "readme",
   "results": [
     {
@@ -4659,19 +4659,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/mcp-tooling/mcp-mobbin/examples/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -5018,6 +5011,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/sk-code/sk-code-ci/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/sk-code/sk-code-quality/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -5039,6 +5042,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-10-26--quality-gate-fixtures--live/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -5109,6 +5122,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -5266,19 +5289,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-design/sk-design-diagram/assets/style-reference/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -5626,36 +5642,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-design/sk-design-md-generator/references/examples/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -5830,19 +5832,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -6710,16 +6705,9 @@
       "document_type": "readme",
       "file": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "line": "## 0. OVERVIEW",
-          "message": "Non-sequential section number: expected 1, found 0",
-          "severity": "warning",
-          "type": "non_sequential_numbering"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -6743,19 +6731,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-git/benchmark/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -9097,19 +9078,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -9147,6 +9121,26 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -11504,6 +11498,40 @@
       ],
       "document_type": "readme",
       "file": "specs/system-speckit/032-relocate-specs-folder/changelog/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch/analysis/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
