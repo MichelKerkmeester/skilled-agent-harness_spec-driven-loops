@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7328,
-    "ok": 15503,
+    "missing-frontmatter": 7333,
+    "ok": 15507,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26379,
+  "documentsScanned": 26388,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "845efce72dc89a121c8067fc9450eeabd08906d7bc94a85e7a299d8ecb90a9c6",
+  "manifestHash": "a47d8a0e0cf04770b97abe82235f9fe3fe63c8dddf47b134a8340470fa63bbf5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38217,
+      "ok": 38228,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -11162,6 +11162,36 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {

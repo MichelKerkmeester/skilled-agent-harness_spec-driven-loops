@@ -1,5 +1,5 @@
 {
-  "corpusHash": "49e9e53daca64d8e281f5bc7cefbb6c26c9965b417303ef00f275c1e3e761567",
+  "corpusHash": "8e1ead9fa246c1127edefdd1fa34206957196b727532be0c33578b2f5de2eb94",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26379,
+  "includedPathCount": 26388,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2744,6 +2744,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2877,6 +2878,11 @@
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/findings-and-recommendations.md",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/skill-benchmark-report.md",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy--live/source.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/README.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/failed-runs.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/findings-and-recommendations.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/skill-benchmark-report.md",
+    ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/source.md",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.1.0.0.md",
@@ -2891,6 +2897,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -6867,6 +6874,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.5.6.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.0.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.10.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
@@ -7164,6 +7172,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.5.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.6.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.7.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.8.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.1.0.md",
@@ -26410,7 +26419,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "845efce72dc89a121c8067fc9450eeabd08906d7bc94a85e7a299d8ecb90a9c6",
+  "manifestHash": "a47d8a0e0cf04770b97abe82235f9fe3fe63c8dddf47b134a8340470fa63bbf5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

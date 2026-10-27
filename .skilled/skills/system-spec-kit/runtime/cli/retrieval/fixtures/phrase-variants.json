@@ -1,5 +1,5 @@
 {
-  "manifestHash": "845efce72dc89a121c8067fc9450eeabd08906d7bc94a85e7a299d8ecb90a9c6",
+  "manifestHash": "a47d8a0e0cf04770b97abe82235f9fe3fe63c8dddf47b134a8340470fa63bbf5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33009,6 +33009,9 @@
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
     ],
+    "deep loop reach calibration": [
+      "deep loop reach calibration"
+    ],
     "deep loop read only mode": [
       "deep-loop read-only mode"
     ],
@@ -34363,6 +34366,9 @@
     "deep review 1 11 7 0": [
       "deep-review 1.11.7.0"
     ],
+    "deep review 1 11 8 0": [
+      "deep-review 1.11.8.0"
+    ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
     ],
@@ -34938,6 +34944,9 @@
     "deep review severity activation": [
       "deep review severity activation"
     ],
+    "deep review severity calibration": [
+      "deep review severity calibration"
+    ],
     "deep review shadow parity": [
       "Deep Review shadow parity"
     ],
@@ -35082,6 +35091,9 @@
     ],
     "deep review v1 11 7 0": [
       "deep-review v1.11.7.0"
+    ],
+    "deep review v1 11 8 0": [
+      "deep-review v1.11.8.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -87057,6 +87069,9 @@
     "review session tracking": [
       "review session tracking"
     ],
+    "review severity reach calibration": [
+      "review severity reach calibration"
+    ],
     "review severity weights": [
       "review severity weights"
     ],
@@ -93972,6 +93987,9 @@
     "sk code 3 9 3 0": [
       "sk-code 3.9.3.0"
     ],
+    "sk code 3 9 4 0": [
+      "sk-code 3.9.4.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -94872,6 +94890,9 @@
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
+    "sk code review 1 9 3 0": [
+      "sk-code-review 1.9.3.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -94964,6 +94985,9 @@
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
+    ],
+    "sk code review v1 9 3 0": [
+      "sk-code-review v1.9.3.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -95387,6 +95411,9 @@
     ],
     "sk code v3 9 3 0": [
       "sk-code v3.9.3.0"
+    ],
+    "sk code v3 9 4 0": [
+      "sk-code v3.9.4.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -106053,6 +106080,9 @@
     "system deep loop 1 6 1 0": [
       "system-deep-loop 1.6.1.0"
     ],
+    "system deep loop 1 6 10 0": [
+      "system-deep-loop 1.6.10.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -106205,6 +106235,9 @@
     ],
     "system deep loop v1 6 1 0": [
       "system-deep-loop v1.6.1.0"
+    ],
+    "system deep loop v1 6 10 0": [
+      "system-deep-loop v1.6.10.0"
     ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
