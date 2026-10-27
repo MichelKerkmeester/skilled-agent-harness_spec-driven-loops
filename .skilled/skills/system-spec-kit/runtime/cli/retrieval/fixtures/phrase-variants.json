@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0fe0efa5cd9d168604afdafce2f70167385bdfeb6d479634aae1db256d718dd2",
+  "manifestHash": "6039b8db2ba6da3bde1170573b9ce20aa35842cfe510f65425105d11c61f99ae",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -100712,6 +100712,9 @@
     "skilled v4 0 0 14": [
       "skilled v4.0.0.14"
     ],
+    "skilled v4 0 0 15": [
+      "skilled v4.0.0.15"
+    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -111067,6 +111070,9 @@
     "typed command ambiguity tasks": [
       "typed command ambiguity tasks"
     ],
+    "typed command routing": [
+      "typed command routing"
+    ],
     "typed council event reducer plan": [
       "typed council event reducer plan"
     ],
@@ -112392,6 +112398,9 @@
     ],
     "v4 0 0 14 release notes": [
       "v4.0.0.14 release notes"
+    ],
+    "v4 0 0 15 release notes": [
+      "v4.0.0.15 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
@@ -114375,6 +114384,9 @@
     ],
     "weak model loop adherence tasks": [
       "weak model loop adherence tasks"
+    ],
+    "weak model spec authoring": [
+      "weak model spec authoring"
     ],
     "weak model spec authoring addon removal and speed refinements changelog": [
       "weak model spec authoring addon removal and speed refinements changelog"
