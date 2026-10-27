@@ -569,6 +569,16 @@ echo '      - run: node .opencode/bin/other.cjs' >> "$TMP/repo/.github/workflows
 run_check; RC=$?
 expect "a missing path that is not ignored still fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/workflows/demo.yml:12 .opencode/bin/other.cjs resolves nowhere"
 
+# ── 57. a git call through the bounded wrapper is read as git ──
+setup_fixture
+echo 'git_bounded -C "$REPO_ROOT" diff --quiet "$a" "$b" -- .opencode/skills .skilled/skills' >> "$TMP/repo/.opencode/scripts/git-hooks/pre-push"
+run_check; RC=$?
+expect "a bounded git pathspec with both roots passes" 0 "$RC" "RESULT: PASSED"
+setup_fixture
+echo 'git_bounded -C "$REPO_ROOT" diff --quiet "$a" "$b" -- .opencode/skills' >> "$TMP/repo/.opencode/scripts/git-hooks/pre-push"
+run_check; RC=$?
+expect "a bounded git pathspec without its twin fails filter-twins" 1 "$RC" "FAIL filter-twins: .opencode/scripts/git-hooks/pre-push:2"
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

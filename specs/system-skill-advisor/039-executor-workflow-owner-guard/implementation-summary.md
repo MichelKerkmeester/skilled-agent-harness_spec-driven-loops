@@ -78,6 +78,7 @@ The skill-root inventory test failed because commit `c02124d0ff` added `outsideS
 | `.skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts`, `tests/legacy/advisor-corpus-parity.vitest.ts`, `tests/parity/python-ts-parity.vitest.ts`, `tests/parity/holdout-independent.vitest.ts`, `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` | Modified | Same private-skill hermetic setup |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Superseded by `cbf4aeb5cf` | Trusted-root rule for `local-*` links in `outsideSurfaces()` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` | Superseded by `cbf4aeb5cf` | File listed in `RULED` as `include` |
+| `.env.example` | Modified | Lists `SPECKIT_PRIVATE_SKILL_ROOTS`, which the launcher forwards but the file never named |
 <!-- /ANCHOR:what-built -->
 
 ---

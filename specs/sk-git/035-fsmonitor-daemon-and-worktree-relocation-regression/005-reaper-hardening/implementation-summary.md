@@ -76,6 +76,8 @@ The reaper now signals a pid only while it is still the daemon the run listed, a
 | `.skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md` | Modified | GIT-034: false line replaced by the catalog link |
 | `.skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md` | Modified | GIT-043: same |
 | `specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/spec.md` | Modified | Phase map row and handoff row for phase 5 |
+| `.github/scripts/check-gate-inputs.sh` | Modified | The CI gate-input parser reads a `git_bounded` call as git, so the bounded `pre-push` pathspec stops failing parser-miss |
+| `.github/scripts/tests/check-gate-inputs.test.sh` | Modified | Case 57: a bounded pathspec with both roots passes, and one without its twin fails filter-twins |
 <!-- /ANCHOR:what-built -->
 
 ---

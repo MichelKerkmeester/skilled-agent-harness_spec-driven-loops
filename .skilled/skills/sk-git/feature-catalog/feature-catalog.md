@@ -7,7 +7,7 @@ trigger_phrases:
   - "worktree naming allocator"
   - "sk-git capability inventory"
 last_updated: "2026-10-27"
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # sk-git: Feature Catalog
@@ -94,7 +94,7 @@ See [`session-lifecycle/worktree-reaper.md`](session-lifecycle/worktree-reaper.m
 
 #### Description
 
-A companion script that lists the git fsmonitor daemons of one repository by the worktree each watches, and ends the strays, the idle and the wedged without ever touching another repository's daemon.
+A companion script that lists the git fsmonitor daemons of one repository by the worktree each watches, and ends the strays, the idle, the wedged and, on request, the orphans of deleted repositories without ever touching another repository's daemon.
 
 #### Current Reality
 

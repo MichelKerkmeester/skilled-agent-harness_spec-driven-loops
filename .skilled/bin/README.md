@@ -241,7 +241,6 @@ node .skilled/bin/tests/compiled-route-manifest.test.cjs       # publication lif
 
 # Vitest suites for this folder, run from .skilled
 npx vitest run --config vitest.config.bin.ts
-bash -n .skilled/bin/worktree-reaper.sh
 bash -n .skilled/bin/fsmonitor-daemon-reaper.sh
 AI_SESSION_CHILD=1 bash .skilled/bin/worktree-session.sh --dry-run claude   # must report exec-in-place, no worktree
 ```
@@ -255,3 +254,7 @@ Expected result: each `.cjs` module loads without throwing. each CLI shim lists 
 - [`lib/`](lib/README.md)
 - [`system-spec-kit runtime engine`](../skills/system-spec-kit/runtime/)
 - [`system-skill-advisor runtime package`](../skills/system-skill-advisor/runtime/)
+
+<!-- readme-check
+allow-count three shell scripts | the scripts the smoke block above checks with bash -n, not the folder total
+-->

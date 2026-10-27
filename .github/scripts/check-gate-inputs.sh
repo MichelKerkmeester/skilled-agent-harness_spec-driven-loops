@@ -297,7 +297,8 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       path = part; sub(/^[^=]*="?/, "", path); sub(/"?[[:space:]]*$/, "", path); emit("repo", path)
       continue
     }
-    if (part ~ /(^|[^A-Za-z0-9_.-])git[[:space:]]/) spec = 1
+    # git_bounded is the time-limited git wrapper the hooks use, and it takes the same arguments as git.
+    if (part ~ /(^|[^A-Za-z0-9_.-])git(_bounded)?[[:space:]]/) spec = 1
     if (part ~ /\\\.(opencode|skilled)\// || part ~ /(\(|\|)(opencode|skilled)(\||\))/) emit("note", "regex")
     if (spec) {
       arrays(part)
