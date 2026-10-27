@@ -88,6 +88,9 @@ const WORKTREE_ENV_REPAIR = 'export SPECKIT_WORKTREE_BASE=<writable dir>, or uns
 // A base inside the main checkout puts every worktree's files on that one
 // fsmonitor, and past a handful of worktrees the load has wedged it.
 const WORKTREE_WATCH_LIMIT = 3;
+// The daemon listing is one informational line, so a hung listing is cut short
+// rather than left to delay the whole battery.
+const FSMON_REAPER_TIMEOUT = 20000;
 const CONTRACT_REPAIR = '/doctor:git standards';
 const GATES_REPAIR = '/doctor:git hooks';
 const COMMIT_ID_REPAIR = `restore ${ownLabel('skills/sk-git/scripts/commit-id-naming.sh')}, or git config --local skilled.commitId false`;
@@ -194,7 +197,7 @@ function narrowPath() {
 // Every child process runs from the inspected repository root and takes an argv
 // array, never a shell string, so a repository cannot influence a helper
 // through the working directory or through shell expansion.
-function runCommand(cwd, command, args, env = process.env) {
+function runCommand(cwd, command, args, env = process.env, timeout) {
   // A binary that was not found on an absolute PATH entry is reported the way
   // spawnSync reports a spawn failure, so callers that read .error treat it as
   // a tool the battery could not run.
@@ -212,6 +215,7 @@ function runCommand(cwd, command, args, env = process.env) {
     env,
     encoding: 'utf8',
     maxBuffer: MAX_BUFFER,
+    timeout,
   });
   return {
     status: typeof result.status === 'number' ? result.status : 1,
@@ -669,6 +673,32 @@ function readProvisionEntries(file) {
   return entries;
 }
 
+// A dry run of the reaper counts the fsmonitor daemons this repository's
+// worktrees keep alive. The line is informational: a stray daemon costs memory,
+// not correctness, and only the operator decides when to end one.
+function fsmonitorDaemonsDetail(ctx) {
+  const reaper = process.env.SPECKIT_FSMON_REAPER || path.join(OWN_ROOT, 'bin', 'fsmonitor-daemon-reaper.sh');
+  const notChecked = (reason) => `fsmonitor daemons: not checked (${reason})`;
+  if (!fs.existsSync(reaper)) return notChecked('no reaper script');
+  if (BASH_BIN === null) return notChecked('cannot run bash');
+  const result = runCommand(ctx.repoRoot, BASH_BIN, [reaper, '--repo', ctx.repoRoot], process.env, FSMON_REAPER_TIMEOUT);
+  if (result.error) {
+    return notChecked(result.error.code === 'ETIMEDOUT'
+      ? `timed out after ${FSMON_REAPER_TIMEOUT} ms`
+      : result.error.message);
+  }
+  if (result.status !== 0) return notChecked(`reaper exited ${result.status}`);
+  const counts = { main: 0, keep: 0, stray: 0 };
+  for (const line of result.stdout.split('\n')) {
+    const match = line.match(/^pid=\S+ class=(main|keep|stray) /);
+    if (match) counts[match[1]] += 1;
+  }
+  const summary = `fsmonitor daemons: ${counts.main} main, ${counts.keep} worktree, ${counts.stray} stray`;
+  return counts.stray > 0
+    ? `${summary}; end strays with bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply`
+    : summary;
+}
+
 // PASS requires the base itself to be a writable directory, or, when it does
 // not exist yet, its nearest existing ancestor to be a writable directory,
 // because the helper creates the base with mkdir -p. Each provision entry is
@@ -680,7 +710,7 @@ function readProvisionEntries(file) {
 function checkWorktrees(ctx) {
   const source = 'SPECKIT_WORKTREE_BASE | speckit.worktreeBase | .worktrees + worktree-provision-paths.txt';
   const base = resolveWorktreeBase(ctx.repoRoot);
-  const details = [`base: ${repoLabel(ctx.repoRoot, base.dir)} (from ${base.source})`];
+  const details = [`base: ${repoLabel(ctx.repoRoot, base.dir)} (from ${base.source})`, fsmonitorDaemonsDetail(ctx)];
   const provisionFile = path.join(OWN_ROOT, 'skills', 'sk-git', 'scripts', 'worktree-provision-paths.txt');
   if (fs.existsSync(provisionFile)) {
     for (const { dir, output } of readProvisionEntries(provisionFile)) {

@@ -310,6 +310,14 @@ fi
 log "allocating worktree $WT_REL on branch $BRANCH (base: $WT_BASE)"
 git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2
 
+# An fsmonitor daemon never exits on its own while its worktree exists, so daemons of idle
+# worktrees accumulate; each top-level launch sweeps them, plus any orphaned ones. Detached
+# so a slow or failing sweep never delays the launch.
+FSMON_REAPER="${SPECKIT_FSMON_REAPER:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)/fsmonitor-daemon-reaper.sh}"
+if [ -f "$FSMON_REAPER" ] && [ -r "$FSMON_REAPER" ]; then
+  ( nohup bash "$FSMON_REAPER" --apply --idle-hours 12 --repo "$MAIN_ROOT" </dev/null >/dev/null 2>&1 & ) || true
+fi
+
 # A base committed before the tree moved checks out under the other name than main's working
 # tree holds. Linking main's paths there would plant a second source tree beside the real
 # one, so the session starts with no shared links and says why.

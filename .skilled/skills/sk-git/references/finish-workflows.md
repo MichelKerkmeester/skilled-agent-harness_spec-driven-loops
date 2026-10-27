@@ -12,7 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.7.0.32
+version: 1.7.1.0
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -312,12 +312,21 @@ fi
 ```bash
 # Remove worktree
 if [ -n "$worktree_path" ] && [ "$worktree_path" != "$(git rev-parse --show-toplevel)" ]; then
+  # End the worktree's fsmonitor daemon first, through git's own stop while the worktree exists
+  bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply --worktree "$worktree_path" \
+    || echo "fsmonitor daemon for $worktree_path not ended; removing the worktree anyway"
   git worktree remove "$worktree_path"
   echo "Cleaned up worktree at $worktree_path"
+  # Confirm no daemon still watches the removed worktree
+  if bash .skilled/bin/fsmonitor-daemon-reaper.sh | grep -Fq "worktree=$worktree_path "; then
+    echo "a daemon still watches $worktree_path; rerun the reaper with --apply"
+  fi
 else
   echo "Not in a worktree (in main repository)"
 fi
 ```
+
+Run this from the main checkout: the reaper refuses to end a daemon while any process, including your shell, has its working directory inside the worktree, and the removal then continues without it.
 
 3. **If not in worktree**:
 ```bash

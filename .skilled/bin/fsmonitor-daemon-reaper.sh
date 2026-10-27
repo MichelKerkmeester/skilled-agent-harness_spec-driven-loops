@@ -1,0 +1,581 @@
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: fsmonitor Daemon Reaper
+# ───────────────────────────────────────────────────────────────
+# Report the fsmonitor daemons that belong to one repository and the worktree
+# each one watches. The watched root is the daemon's lowest-numbered DIR
+# descriptor (the cwd row is not it), which is the working-tree root git handed
+# to the daemon; a worktree daemon also holds its administrative directory.
+#
+# Without --apply every flag is parsed and validated, the plan is printed, and
+# no process is signalled. With --apply the strays are ended and --worktree
+# ends the one daemon watching the named worktree, escalating from git's stop
+# command to SIGTERM to SIGKILL and rechecking the command line before each
+# step. A worktree that still has a live process inside it is never touched,
+# unless its daemon is wedged.
+#
+# --idle-hours N selects kept daemons started more than N hours ago whose
+# worktree no live process is using; with --apply they are ended beside the
+# strays. The main checkout's daemon is never idle.
+#
+# --probe asks every attributed main or kept daemon to answer one diff-files
+# read with fsmonitor enabled. Only the probe alarm firing marks the daemon
+# wedged; probing alone signals nothing, and --probe --apply ends the wedged.
+#
+# Exit codes: 0 = done, including a refusal, which prints a `refused` line;
+# 1 = the repository could not be read, or a daemon survived every step;
+# 2 = bad invocation or a --worktree that is not a registered worktree.
+
+set -euo pipefail
+
+TAB="$(printf '\t')"
+
+# ───────────────────────────────────────────────────────────────
+# 1. ARGUMENT PARSING
+# ───────────────────────────────────────────────────────────────
+
+usage() {
+  cat <<'EOF'
+Usage: fsmonitor-daemon-reaper.sh [options]
+
+Report the fsmonitor daemons of one repository and, with --apply, end them.
+
+  --apply            End the selected daemons instead of only reporting
+  --worktree <path>  Restrict the run to one registered worktree; with --apply
+                     end that worktree's daemon
+  --probe            Probe main and keep daemons for a wedged index read; with
+                     --apply end the daemons that do not answer
+  --idle-hours <n>   Select kept daemons started more than n hours ago with no
+                     live process inside their worktree; with --apply end them,
+                     and with --worktree consider that worktree only
+  --repo <path>      Repository to inspect (default: the current toplevel)
+  --help             Show this help
+EOF
+}
+
+log() { echo "[fsmonitor-daemon-reaper] $*" >&2; }
+
+WORKTREE=""
+IDLE_HOURS=""
+REPO=""
+APPLY=0
+PROBE=0
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --apply) APPLY=1 ;;
+    --probe) PROBE=1 ;;
+    --worktree)
+      if [ "$#" -lt 2 ]; then usage >&2; exit 2; fi
+      WORKTREE="$2"
+      shift
+      ;;
+    --idle-hours)
+      if [ "$#" -lt 2 ]; then usage >&2; exit 2; fi
+      IDLE_HOURS="$2"
+      shift
+      ;;
+    --repo)
+      if [ "$#" -lt 2 ]; then usage >&2; exit 2; fi
+      REPO="$2"
+      shift
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      log "unknown flag: $1"
+      usage >&2
+      exit 2
+      ;;
+  esac
+  shift
+done
+
+# ───────────────────────────────────────────────────────────────
+# 2. HELPER FUNCTIONS
+# ───────────────────────────────────────────────────────────────
+
+_require_positive_int() {
+  local name="$1" value="$2"
+  case "$value" in
+    ''|*[!0-9]*)
+      log "$name must be a positive integer (got: $value)"
+      exit 2
+      ;;
+  esac
+  if [ "$value" -lt 1 ]; then
+    log "$name must be a positive integer (got: $value)"
+    exit 2
+  fi
+}
+
+# Run one command under a wall-clock bound. The alarm survives exec, so the
+# command itself is killed rather than a wrapper; SIGALRM surfaces as 142.
+run_bounded() {
+  local seconds="$1"
+  shift
+  perl -e 'alarm shift; exec @ARGV or exit 127' "$seconds" "$@"
+}
+
+git_bounded() {
+  local repo="$1"
+  shift
+  run_bounded "$FSMON_PROBE_TIMEOUT" git -c core.fsmonitor=false -C "$repo" "$@"
+}
+
+_real_path() {
+  local path="$1"
+  (cd "$path" 2>/dev/null && pwd -P) || printf '%s\n' "$path"
+}
+
+_under() {
+  case "$1" in
+    "$2"/*) return 0 ;;
+  esac
+  return 1
+}
+
+# True when the path is the root itself or lies below it on a `/` boundary.
+_inside() {
+  [ "$1" = "$2" ] || _under "$1" "$2"
+}
+
+_main_worktree() {
+  local line
+  while IFS= read -r line; do
+    case "$line" in
+      worktree\ *) printf '%s\n' "${line#worktree }"; return 0 ;;
+    esac
+  done <<< "$REGISTERED"
+  return 1
+}
+
+_registered_path() {
+  local probe="$1" line path canonical
+  while IFS= read -r line; do
+    case "$line" in
+      worktree\ *) ;;
+      *) continue ;;
+    esac
+    path="${line#worktree }"
+    canonical="$(_real_path "$path")"
+    if [ "$canonical" = "$probe" ]; then
+      printf '%s\n' "$canonical"
+      return 0
+    fi
+  done <<< "$REGISTERED"
+  return 1
+}
+
+_daemon_rows() {
+  LC_ALL=C ps -axo pid=,lstart=,command= 2>/dev/null | LC_ALL=C awk '
+    {
+      pid = $1
+      started = $2 " " $3 " " $4 " " $5 " " $6
+      command = $7
+      for (i = 8; i <= NF; i++) command = command " " $i
+      if (command ~ /(^|\/)git fsmonitor--daemon run( |$)/)
+        printf "%s\t%s\n", pid, started
+    }'
+}
+
+# Emit the DIR descriptors of one process as fd<TAB>path, cwd excluded. A
+# deleted directory keeps its lsof suffix; the caller strips and records it.
+_lsof_dir_rows() {
+  run_bounded "$FSMON_PROBE_TIMEOUT" lsof -nP -p "$1" 2>/dev/null | LC_ALL=C awk '
+    $4 == "cwd" { next }
+    $5 == "DIR" {
+      fd = $4
+      sub(/[^0-9].*$/, "", fd)
+      path = $9
+      for (i = 10; i <= NF; i++) path = path " " $i
+      printf "%s\t%s\n", fd, path
+    }'
+}
+
+# The command line of one live process, empty when the pid is gone.
+_process_command() {
+  LC_ALL=C ps -o command= -p "$1" 2>/dev/null || true
+}
+
+# True while the pid still runs the daemon command. A reaped or recycled pid
+# fails the match, so no escalation step ever trusts a stale pid.
+_is_daemon_pid() {
+  local command
+  command="$(_process_command "$1")"
+  [ -n "$command" ] || return 1
+  printf '%s\n' "$command" | LC_ALL=C grep -Eq '(^|/)git fsmonitor--daemon run( |$)'
+}
+
+# Poll for at most the given number of seconds; true once the daemon is gone.
+_wait_gone() {
+  local pid="$1" seconds="$2" elapsed=0
+  while [ "$elapsed" -lt "$seconds" ]; do
+    if ! _is_daemon_pid "$pid"; then
+      return 0
+    fi
+    sleep 1
+    elapsed=$((elapsed+1))
+  done
+  ! _is_daemon_pid "$pid"
+}
+
+# Every process cwd as p<pid> and n<path> rows, from one bounded lsof call. The
+# exit status is not used: lsof exits 1 whenever it cannot read some other
+# user's process, even after listing everything it can.
+_cwd_rows() {
+  run_bounded "$FSMON_PROBE_TIMEOUT" lsof -nP -d cwd -Fpn 2>/dev/null || true
+}
+
+# First live process other than the excluded pid whose cwd is the worktree or
+# below it. lsof's field mode emits a p row before that process's n row. An
+# empty or timed-out listing prints "unknown", so the caller refuses rather
+# than ending a daemon it could not prove idle.
+_cwd_intruder() {
+  local worktree="$1" exclude="$2" rows line pid name
+  rows="$(_cwd_rows)"
+  if [ -z "$rows" ]; then
+    printf 'unknown\n'
+    return 0
+  fi
+  pid=""
+  while IFS= read -r line; do
+    case "$line" in
+      p*) pid="${line#p}" ;;
+      n*)
+        name="${line#n}"
+        case "$name" in
+          *" (deleted)") name="${name% (deleted)}" ;;
+        esac
+        if [ -n "$pid" ] && [ "$pid" != "$exclude" ] && _inside "$name" "$worktree"; then
+          printf '%s\n' "$pid"
+          return 0
+        fi
+        ;;
+    esac
+  done <<< "$rows"
+  return 0
+}
+
+# Epoch seconds of one process's start time, empty when ps or the date parse
+# fails. A failed parse keeps a daemon out of the idle set.
+_started_epoch() {
+  local dow mon day clock year
+  read -r dow mon day clock year <<< "$(LC_ALL=C ps -o lstart= -p "$1" 2>/dev/null || true)"
+  [ -n "$year" ] || return 1
+  LC_ALL=C date -j -f '%a %b %d %T %Y' "$dow $mon $day $clock $year" +%s 2>/dev/null
+}
+
+# Idle hours of one kept daemon, empty unless it has run past the threshold and
+# no live process other than the daemon works inside its worktree.
+_idle_age_hours() {
+  local pid="$1" worktree="$2" now="$3" hours="$4" started age
+  started="$(_started_epoch "$pid")" || return 1
+  [ -n "$started" ] || return 1
+  age=$((now - started))
+  [ "$age" -gt $((hours * 3600)) ] || return 1
+  [ -z "$(_cwd_intruder "$worktree" "$pid")" ] || return 1
+  printf '%s\n' "$((age / 3600))"
+}
+
+# End one daemon, escalating git stop -> SIGTERM -> SIGKILL and rechecking the
+# command line before every step. Prints the step that ended it and returns 0;
+# 1 when it survives every step; 2 when it was already gone. The git stop step
+# runs only for a registered worktree with its own .git file: for any other
+# path, git -C walks up to the enclosing repository and would stop that
+# repository's daemon instead.
+_end_daemon() {
+  local pid="$1" worktree="$2" registered="$3" via=""
+
+  _is_daemon_pid "$pid" || return 2
+
+  if [ "$registered" = "1" ] && [ -f "$worktree/.git" ]; then
+    run_bounded "$FSMON_STOP_TIMEOUT" git -c core.fsmonitor=false -C "$worktree" \
+      fsmonitor--daemon stop >/dev/null 2>&1 || true
+    via="stop"
+    if _wait_gone "$pid" 1; then
+      printf '%s\n' "$via"
+      return 0
+    fi
+  fi
+
+  if _is_daemon_pid "$pid"; then
+    kill -TERM "$pid" 2>/dev/null || true
+    via="term"
+    if _wait_gone "$pid" "$FSMON_TERM_WAIT"; then
+      printf '%s\n' "$via"
+      return 0
+    fi
+  fi
+
+  if _is_daemon_pid "$pid"; then
+    kill -KILL "$pid" 2>/dev/null || true
+    via="kill"
+    if _wait_gone "$pid" "$FSMON_KILL_WAIT"; then
+      printf '%s\n' "$via"
+      return 0
+    fi
+  fi
+
+  if [ -n "$via" ] && ! _is_daemon_pid "$pid"; then
+    printf '%s\n' "$via"
+    return 0
+  fi
+  return 1
+}
+
+# ───────────────────────────────────────────────────────────────
+# 3. TIMING BOUNDS AND REPOSITORY RESOLUTION
+# ───────────────────────────────────────────────────────────────
+
+FSMON_PROBE_TIMEOUT="${FSMON_PROBE_TIMEOUT:-15}"
+FSMON_STOP_TIMEOUT="${FSMON_STOP_TIMEOUT:-5}"
+FSMON_TERM_WAIT="${FSMON_TERM_WAIT:-5}"
+FSMON_KILL_WAIT="${FSMON_KILL_WAIT:-3}"
+
+_require_positive_int FSMON_PROBE_TIMEOUT "$FSMON_PROBE_TIMEOUT"
+_require_positive_int FSMON_STOP_TIMEOUT "$FSMON_STOP_TIMEOUT"
+_require_positive_int FSMON_TERM_WAIT "$FSMON_TERM_WAIT"
+_require_positive_int FSMON_KILL_WAIT "$FSMON_KILL_WAIT"
+
+NOW="${FSMON_NOW:-$(date +%s)}"
+
+if [ -n "$IDLE_HOURS" ]; then
+  case "$IDLE_HOURS" in
+    *[!0-9]*)
+      log "--idle-hours must be a non-negative integer (got: $IDLE_HOURS)"
+      exit 2
+      ;;
+  esac
+fi
+
+if [ -n "$REPO" ]; then
+  if [ ! -d "$REPO" ]; then
+    log "--repo is not a directory: $REPO"
+    exit 2
+  fi
+  REPO="$(cd "$REPO" && pwd -P)"
+  if ! TOPLEVEL="$(git_bounded "$REPO" rev-parse --show-toplevel 2>/dev/null)"; then
+    log "not a git repository: $REPO"
+    exit 2
+  fi
+  REPO="$(cd "$TOPLEVEL" && pwd -P)"
+else
+  if ! TOPLEVEL="$(run_bounded "$FSMON_PROBE_TIMEOUT" git -c core.fsmonitor=false rev-parse --show-toplevel 2>/dev/null)"; then
+    log "not in a git repository; pass --repo"
+    exit 1
+  fi
+  REPO="$(cd "$TOPLEVEL" && pwd -P)"
+fi
+
+if ! COMMON="$(git_bounded "$REPO" rev-parse --git-common-dir 2>/dev/null)"; then
+  log "cannot resolve the common git directory for $REPO"
+  exit 1
+fi
+case "$COMMON" in
+  /*) : ;;
+  *) COMMON="$REPO/$COMMON" ;;
+esac
+COMMON="$(cd "$COMMON" && pwd -P)"
+
+if ! REGISTERED="$(git_bounded "$REPO" worktree list --porcelain 2>/dev/null)"; then
+  log "cannot list worktrees for $REPO"
+  exit 1
+fi
+
+if ! MAIN_TOPLEVEL="$(_main_worktree)"; then
+  log "no main worktree in $REPO"
+  exit 1
+fi
+MAIN_TOPLEVEL="$(_real_path "$MAIN_TOPLEVEL")"
+
+if [ -n "$WORKTREE" ]; then
+  if [ ! -d "$WORKTREE" ]; then
+    log "--worktree is not a directory: $WORKTREE"
+    exit 2
+  fi
+  WORKTREE="$(_real_path "$WORKTREE")"
+  if [ "$WORKTREE" = "$MAIN_TOPLEVEL" ]; then
+    log "--worktree names the main checkout: $WORKTREE"
+    exit 2
+  fi
+  if ! _registered_path "$WORKTREE" >/dev/null; then
+    log "--worktree is not a registered worktree: $WORKTREE"
+    exit 2
+  fi
+fi
+
+# ───────────────────────────────────────────────────────────────
+# 4. ATTRIBUTION AND CLASSIFICATION
+# ───────────────────────────────────────────────────────────────
+
+DAEMON_ROWS="$(_daemon_rows || true)"
+
+if [ "$APPLY" = "1" ]; then
+  MODE="apply"
+else
+  MODE="dry-run"
+fi
+
+TOTAL=0
+STRAYS=0
+SIGNALLED=0
+SURVIVED=0
+REFUSED=0
+while IFS="$TAB" read -r pid started; do
+  [ -n "$pid" ] || continue
+
+  DIR_ROWS="$(_lsof_dir_rows "$pid" 2>/dev/null || true)"
+
+  root=""
+  root_fd=""
+  root_deleted=0
+  admin_row=0
+  while IFS="$TAB" read -r fd name; do
+    [ -n "$fd" ] || continue
+    deleted=0
+    case "$name" in
+      *" (deleted)")
+        name="${name% (deleted)}"
+        deleted=1
+        ;;
+    esac
+    if _under "$name" "$COMMON/worktrees"; then
+      admin_row=1
+    fi
+    if [ -z "$root_fd" ] || [ "$fd" -lt "$root_fd" ]; then
+      root_fd="$fd"
+      root="$name"
+      root_deleted="$deleted"
+    fi
+  done <<< "$DIR_ROWS"
+
+  if [ -z "$root" ]; then
+    class="unattributed"
+    worktree_field="-"
+  else
+    [ "$root_deleted" = "1" ] || root="$(_real_path "$root")"
+    # Only a daemon holding this repository's worktree administrative directory
+    # is provably ours. A watched root under the checkout alone is not proof: a
+    # separate repository nested inside the checkout runs its own daemon there.
+    if [ "$root" = "$MAIN_TOPLEVEL" ]; then
+      class="main"
+      worktree_field="main"
+    elif [ "$root_deleted" = "0" ] && registered="$(_registered_path "$root")"; then
+      class="keep"
+      worktree_field="$registered"
+    elif [ "$admin_row" = "1" ]; then
+      class="stray"
+      worktree_field="$root"
+    else
+      class="out-of-scope"
+      worktree_field="-"
+    fi
+  fi
+
+  TOTAL=$((TOTAL+1))
+  if [ "$class" = "stray" ]; then
+    STRAYS=$((STRAYS+1))
+  fi
+  printf 'pid=%s class=%s worktree=%s started=%s\n' \
+    "$pid" "$class" "$worktree_field" "$started"
+
+  probe_worktree=""
+  probe_result=""
+  if [ "$PROBE" = "1" ]; then
+    if [ "$class" = "main" ]; then
+      probe_worktree="$MAIN_TOPLEVEL"
+    elif [ "$class" = "keep" ]; then
+      probe_worktree="$worktree_field"
+    fi
+    if [ -n "$WORKTREE" ] && [ "$probe_worktree" != "$WORKTREE" ]; then
+      probe_worktree=""
+    fi
+    if [ -n "$probe_worktree" ] && [ -d "$probe_worktree" ]; then
+      probe_rc=0
+      run_bounded "$FSMON_PROBE_TIMEOUT" git -c core.fsmonitor=true \
+        -C "$probe_worktree" --no-optional-locks diff-files --quiet >/dev/null 2>&1 \
+        || probe_rc=$?
+      if [ "$probe_rc" -eq 142 ]; then
+        probe_result="wedged"
+      else
+        probe_result="answered"
+      fi
+      printf 'probe pid=%s worktree=%s result=%s\n' \
+        "$pid" "$probe_worktree" "$probe_result"
+    fi
+  fi
+
+  idle=0
+  age_hours=""
+  if [ -n "$IDLE_HOURS" ] && [ "$class" = "keep" ]; then
+    if [ -z "$WORKTREE" ] || [ "$worktree_field" = "$WORKTREE" ]; then
+      if age_hours="$(_idle_age_hours "$pid" "$worktree_field" "$NOW" "$IDLE_HOURS")"; then
+        idle=1
+        printf 'idle pid=%s worktree=%s age_hours=%s\n' \
+          "$pid" "$worktree_field" "$age_hours"
+      fi
+    fi
+  fi
+
+  # The rules add up rather than override each other, so the launch sweep
+  # (--apply --idle-hours) still clears strays. --worktree narrows the run to one
+  # kept daemon; with --idle-hours or --probe, those then decide whether it ends.
+  # A wedged probe result always ends the daemon.
+  action=""
+  if [ "$APPLY" = "1" ]; then
+    if [ -n "$WORKTREE" ]; then
+      if [ "$class" = "keep" ] && [ "$worktree_field" = "$WORKTREE" ]; then
+        if [ -n "$IDLE_HOURS" ] || [ "$PROBE" = "1" ]; then
+          [ "$idle" = "1" ] && action="end"
+        else
+          action="end"
+        fi
+      fi
+    elif [ "$class" = "stray" ] || [ "$idle" = "1" ]; then
+      action="end"
+    fi
+    [ "$probe_result" = "wedged" ] && action="end"
+  fi
+
+  if [ "$action" = "end" ]; then
+    # Occupancy guards a worktree that is about to be removed. A wedged daemon
+    # ends regardless: git starts a fresh one on the next call, and the
+    # processes inside the worktree are the ones stuck waiting on it.
+    if [ -n "$WORKTREE" ] && [ "$REFUSED" = "0" ] && [ "$probe_result" != "wedged" ]; then
+      blocker="$(_cwd_intruder "$WORKTREE" "$pid")"
+      if [ -n "$blocker" ]; then
+        REFUSED=1
+        printf 'refused worktree=%s blocker=%s\n' "$WORKTREE" "$blocker"
+      fi
+    fi
+    if [ "$REFUSED" = "0" ]; then
+      end_rc=0
+      registered_target=0
+      [ "$class" = "keep" ] && registered_target=1
+      via="$(_end_daemon "$pid" "$worktree_field" "$registered_target")" || end_rc=$?
+      case "$end_rc" in
+        0)
+          SIGNALLED=$((SIGNALLED+1))
+          printf 'ended pid=%s class=%s worktree=%s via=%s\n' \
+            "$pid" "$class" "$worktree_field" "$via"
+          ;;
+        1)
+          SURVIVED=$((SURVIVED+1))
+          printf 'survived pid=%s class=%s worktree=%s\n' \
+            "$pid" "$class" "$worktree_field"
+          ;;
+      esac
+    fi
+  fi
+done <<< "$DAEMON_ROWS"
+
+printf 'mode=%s signalled=%s total=%s stray=%s\n' \
+  "$MODE" "$SIGNALLED" "$TOTAL" "$STRAYS"
+
+if [ "$SURVIVED" -gt 0 ]; then
+  exit 1
+fi
+exit 0

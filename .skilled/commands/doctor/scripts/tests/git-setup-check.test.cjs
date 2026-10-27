@@ -54,7 +54,7 @@ const RESULTS = ['PASS', 'FAIL', 'SKIP', 'UNKNOWN', 'DEGRADED'];
 // The child must not inherit the operator's git identity, repository redirection,
 // runtime detection or hook switches, or a setting outside the fixture would decide
 // a verdict this battery is supposed to report.
-const ISOLATED_DROP = /^(GIT_DIR|GIT_WORK_TREE|GIT_CONFIG_COUNT|GIT_CONFIG_KEY_[0-9]+|GIT_CONFIG_VALUE_[0-9]+|CLAUDECODE|SYSTEM_HOOKS_DISABLED|SYSTEM_GIT_COMMIT_HOOKS_DISABLED|MK_HOOKS_DISABLED|SK_GIT_PREFLIGHT_DISABLED|MK_GIT_PREFLIGHT_DISABLED|SKGIT_ADVISORY|SKGIT_ADVISORY_SKIP|SPECKIT_WORKTREE_BASE|HOOK_FLAGS_CONFIG)$/;
+const ISOLATED_DROP = /^(GIT_DIR|GIT_WORK_TREE|GIT_CONFIG_COUNT|GIT_CONFIG_KEY_[0-9]+|GIT_CONFIG_VALUE_[0-9]+|CLAUDECODE|SYSTEM_HOOKS_DISABLED|SYSTEM_GIT_COMMIT_HOOKS_DISABLED|MK_HOOKS_DISABLED|SK_GIT_PREFLIGHT_DISABLED|MK_GIT_PREFLIGHT_DISABLED|SKGIT_ADVISORY|SKGIT_ADVISORY_SKIP|SPECKIT_FSMON_REAPER|SPECKIT_WORKTREE_BASE|HOOK_FLAGS_CONFIG)$/;
 
 function isolatedEnv(dir) {
   const globalConfig = path.join(dir, 'global.gitconfig');
@@ -1159,6 +1159,42 @@ test('worktrees degrades a base that reaches the checkout through a symlink', (t
   const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: link })), 'worktrees');
   assert.equal(row.result, 'DEGRADED');
   assert.ok(row.details[0].includes('4 linked worktrees'), row.details.join(' | '));
+});
+
+test('worktrees reports the fsmonitor daemons a dry run finds, strays included', (t) => {
+  const f = fixture(t);
+  const stub = path.join(f.dir, 'reaper.sh');
+  fs.writeFileSync(stub, '#!/bin/sh\necho "pid=1 class=main worktree=main started=x"\necho "pid=2 class=stray worktree=/gone started=x"\nexit 0\n');
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_FSMON_REAPER: stub })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  assert.ok(
+    row.details.includes('fsmonitor daemons: 1 main, 0 worktree, 1 stray; end strays with bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply'),
+    row.details.join(' | '),
+  );
+});
+
+test('worktrees reports fsmonitor daemons as not checked when the reaper fails', (t) => {
+  const f = fixture(t);
+  const stub = path.join(f.dir, 'reaper.sh');
+  fs.writeFileSync(stub, '#!/bin/sh\nexit 3\n');
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_FSMON_REAPER: stub })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  assert.ok(
+    row.details.some((detail) => detail.startsWith('fsmonitor daemons: not checked')),
+    row.details.join(' | '),
+  );
+});
+
+test('a stray fsmonitor daemon leaves the worktrees verdict PASS', (t) => {
+  const f = fixture(t);
+  const stub = path.join(f.dir, 'reaper.sh');
+  fs.writeFileSync(stub, '#!/bin/sh\necho "pid=7 class=stray worktree=/gone started=x"\nexit 0\n');
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_FSMON_REAPER: stub })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  assert.equal(row.repair, null);
 });
 
 test('ai-tool-hooks reads only the hooks section and Claude\'s local settings', (t) => {

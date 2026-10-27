@@ -50,6 +50,11 @@ trap cleanup EXIT
 
 export HOME="$FAKE_HOME"
 mkdir -p "$BIN_DIR"
+# Every top-level launch now sweeps fsmonitor daemons; point the launcher at a no-op stub so
+# no case reaches the real reaper.
+printf '%s\n' '#!/usr/bin/env bash' 'exit 0' > "$BIN_DIR/reaper-stub"
+chmod +x "$BIN_DIR/reaper-stub"
+export SPECKIT_FSMON_REAPER="$BIN_DIR/reaper-stub"
 printf '%s\n' '#!/usr/bin/env bash' 'exit 0' > "$BIN_DIR/myrt"
 chmod +x "$BIN_DIR/myrt"
 
@@ -464,6 +469,109 @@ set +e
 set -e
 expect "descendant dry run names the exec in place" grep -F "would exec in place: myrt" "$ROOT/f11-dry.stdout"
 expect_not "dry run claims no enforce value when none is set" grep -F "SYSTEM_SPEC_GATE_ENFORCE=0" "$ROOT/f11-dry.stdout"
+
+# ── F12: a top-level launch sweeps fsmonitor daemons without waiting for the sweep ──
+# The sweep is detached: a reaper that blocks for half a minute must not delay the launch, and
+# it must receive the idle window and the main checkout it sweeps for.
+F12_FIXTURE="$ROOT/f12"
+F12_BASE="$ROOT/f12-base"
+F12_ARGS="$ROOT/f12.reaper.args"
+F12_PIDS="$ROOT/f12.reaper.pids"
+mkdir -p "$F12_FIXTURE" "$F12_BASE"
+make_fixture "$F12_FIXTURE"
+cat > "$BIN_DIR/slow-reaper" <<'EOF'
+#!/usr/bin/env bash
+printf '%s\n' "$$" > "$FSMON_PID_LOG"
+printf '%s\n' "$*" > "$FSMON_ARG_LOG"
+exec sleep 30
+EOF
+chmod +x "$BIN_DIR/slow-reaper"
+F12_START="$(date +%s)"
+set +e
+(
+  cd "$F12_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE="$F12_BASE" \
+    SPECKIT_FSMON_REAPER="$BIN_DIR/slow-reaper" \
+    FSMON_ARG_LOG="$F12_ARGS" FSMON_PID_LOG="$F12_PIDS" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f12.stderr"
+F12_RC=$?
+set -e
+F12_ELAPSED=$(( $(date +%s) - F12_START ))
+F12_TL="$(git -C "$F12_FIXTURE" rev-parse --show-toplevel)"
+F12_REAPED=0
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  if grep -Fqx -- "--apply --idle-hours 12 --repo $F12_TL" "$F12_ARGS" 2>/dev/null; then
+    F12_REAPED=1
+    break
+  fi
+  sleep 0.5
+done
+expect "slow sweep does not delay the launch" test "$F12_ELAPSED" -lt 10
+expect "top-level launch succeeds with a blocking reaper" test "$F12_RC" -eq 0
+expect "top-level launch sweeps the main checkout for idle daemons" test "$F12_REAPED" -eq 1
+if [ -f "$F12_PIDS" ]; then
+  while IFS= read -r reaper_pid; do
+    case "$reaper_pid" in ''|*[!0-9]*) continue ;; esac
+    kill "$reaper_pid" 2>/dev/null || true
+  done < "$F12_PIDS"
+fi
+
+# ── F13-F14: only a top-level launch that allocates a worktree sweeps ──
+# A dispatched child and a dry run must not reach the reaper at all.
+F13_FIXTURE="$ROOT/f13"
+F13_ARGS="$ROOT/f13.reaper.args"
+mkdir -p "$F13_FIXTURE"
+make_fixture "$F13_FIXTURE"
+cat > "$BIN_DIR/log-reaper" <<'EOF'
+#!/usr/bin/env bash
+printf '%s\n' "$*" > "$FSMON_ARG_LOG"
+EOF
+chmod +x "$BIN_DIR/log-reaper"
+set +e
+(
+  cd "$F13_FIXTURE" || exit 1
+  env -u SPECKIT_WORKTREE_SHARED_PATHS \
+    AI_SESSION_CHILD=1 \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_FSMON_REAPER="$BIN_DIR/log-reaper" \
+    FSMON_ARG_LOG="$F13_ARGS" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f13.stderr"
+F13_RC=$?
+set -e
+F13_LEAKED=0
+for _ in 1 2 3; do
+  [ ! -e "$F13_ARGS" ] || { F13_LEAKED=1; break; }
+  sleep 0.5
+done
+expect "child launch succeeds" test "$F13_RC" -eq 0
+expect "child launch never sweeps fsmonitor daemons" test "$F13_LEAKED" -eq 0
+
+F14_FIXTURE="$ROOT/f14"
+F14_ARGS="$ROOT/f14.reaper.args"
+mkdir -p "$F14_FIXTURE"
+make_fixture "$F14_FIXTURE"
+set +e
+(
+  cd "$F14_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_SHARED_PATHS \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_FSMON_REAPER="$BIN_DIR/log-reaper" \
+    FSMON_ARG_LOG="$F14_ARGS" \
+    bash "$WRAPPER" --dry-run myrt
+) >/dev/null 2>"$ROOT/f14.stderr"
+F14_RC=$?
+set -e
+F14_LEAKED=0
+for _ in 1 2 3; do
+  [ ! -e "$F14_ARGS" ] || { F14_LEAKED=1; break; }
+  sleep 0.5
+done
+expect "dry-run launch succeeds" test "$F14_RC" -eq 0
+expect "dry-run launch never sweeps fsmonitor daemons" test "$F14_LEAKED" -eq 0
 
 echo "worktree-session tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

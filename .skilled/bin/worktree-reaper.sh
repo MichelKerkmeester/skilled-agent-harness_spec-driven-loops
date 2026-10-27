@@ -12,6 +12,8 @@
 #   - Remove each registered wrapper worktree (branch work/<runtime>/<slug>) whose working
 #     tree is clean AND whose branch is fully merged into the live tip. A dirty or unmerged
 #     worktree is left alone, as is one that still has a live process working inside it.
+#   - Before removing a wrapper worktree, end its fsmonitor daemon through
+#     fsmonitor-daemon-reaper.sh; a failure there is logged and removal continues.
 #   - Prune per-session socket dirs and session markers whose worktree is no longer in
 #     git's worktree registry.
 #
@@ -19,7 +21,8 @@
 #   --dry-run        Print what would be pruned; change nothing.
 #
 # Safety: resolves worktrees from `git worktree list` (any base), never removes the main
-# checkout, never touches a worktree a live process is using, never signals a process.
+# checkout, never touches a worktree a live process is using, and signals no process other
+# than the fsmonitor daemon of a worktree it removes.
 
 set -euo pipefail
 
@@ -54,6 +57,11 @@ if [ -z "$MAIN_ROOT" ]; then log "not in a git repo"; exit 1; fi
 COMMON="$(git rev-parse --git-common-dir 2>/dev/null || true)"
 MAIN_TOPLEVEL="$(cd "$(dirname "$COMMON")" && pwd -P)"
 case "$COMMON" in /*) COMMON_ABS="$COMMON" ;; *) COMMON_ABS="$(cd "$COMMON" && pwd -P)" ;; esac
+
+# Sibling that ends one worktree's fsmonitor daemon. Removal ends it first, while git
+# can still stop it cleanly, rather than leaving the daemon to notice its tree vanish.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+FSMON_REAPER="${SPECKIT_FSMON_REAPER:-$SCRIPT_DIR/fsmonitor-daemon-reaper.sh}"
 
 # Worktree base (canonical resolver: sk-git worktree-naming.sh _wn_base_dir;
 # inlined to keep the reaper self-contained). Must agree with the allocator and
@@ -221,6 +229,11 @@ while IFS= read -r line; do
       continue
     fi
     log "prune (wrapper merged + clean + inactive): $wt_path [$branch]"
+    if [ -f "$FSMON_REAPER" ]; then
+      if ! act bash "$FSMON_REAPER" --apply --worktree "$wt_path" --repo "$MAIN_TOPLEVEL" >&2; then
+        log "fsmonitor daemon reaper failed for $wt_path; continuing with removal"
+      fi
+    fi
     act git -C "$MAIN_TOPLEVEL" worktree remove "$wt_path"
     act git -C "$MAIN_TOPLEVEL" branch -d "$branch"
     act rm -f "$MARKERS_DIR/$bn.pid"

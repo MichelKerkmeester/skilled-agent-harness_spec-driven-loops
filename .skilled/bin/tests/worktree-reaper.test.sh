@@ -9,8 +9,9 @@
 # the on-disk + ref-level outcome for each. HOME is redirected to a scratch
 # dir before the reaper ever runs, since the reaper reads/writes
 # $HOME/.spk-wt-sock and must never be allowed to see the operator's real
-# home directory. The reaper signals no process, and one assertion holds it
-# to that so a kill path cannot return unnoticed.
+# home directory. The reaper ends only the fsmonitor daemon of a worktree it
+# removes, and one assertion holds it to that so a broader kill path cannot
+# return unnoticed.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
@@ -25,12 +26,35 @@ expect_not() { # expect_not <desc> <cmd...>  -- PASS when cmd FAILS (rc != 0)
   local desc="$1"; shift
   if "$@" >/dev/null 2>&1; then FAIL=$((FAIL+1)); echo "FAIL: $desc"; else PASS=$((PASS+1)); fi
 }
+expect_gone() { # expect_gone <desc> <pid>  -- PASS once the pid stops within 10s
+  local desc="$1" pid="$2" elapsed=0
+  while [ "$elapsed" -lt 10 ]; do
+    if ! kill -0 "$pid" 2>/dev/null; then PASS=$((PASS+1)); return 0; fi
+    sleep 1
+    elapsed=$((elapsed+1))
+  done
+  FAIL=$((FAIL+1)); echo "FAIL: $desc"
+}
+expect_no_daemon_ended() { # expect_no_daemon_ended <desc> <worktree>  -- no daemon-end row names it
+  local desc="$1" wt="$2"
+  if grep -F "ended pid=" "$REAPER_OUT" | grep -Fq "worktree=$wt"; then
+    FAIL=$((FAIL+1)); echo "FAIL: $desc"
+  else
+    PASS=$((PASS+1))
+  fi
+}
 
 # ── isolated fixture repo + isolated HOME ──────────────────────
 FAKE_HOME="$(mktemp -d)"
 FIXTURE="$(mktemp -d)"
 CUSTOM_BASE="$(mktemp -d)"
+STUB_PIDS=""
 cleanup() {
+  local pid
+  for pid in $STUB_PIDS; do
+    kill "$pid" 2>/dev/null || true
+  done
+  wait 2>/dev/null || true
   git -C "$FIXTURE" worktree prune >/dev/null 2>&1 || true
   rm -rf "$FIXTURE" "$FAKE_HOME" "$CUSTOM_BASE"
 }
@@ -69,6 +93,17 @@ git -C "$FIXTURE" worktree add -q -b work/rt/a "$FIXTURE/.worktrees/rt-a" HEAD
 DEAD_PID=$!
 wait "$DEAD_PID" 2>/dev/null || true
 printf '%s\n' "$DEAD_PID" > "$MARKERS_DIR/rt-a.pid"
+# A stand-in for the worktree's fsmonitor daemon: it has the daemon's argv and the
+# DIR descriptors the sibling reaper attributes it by. Its cwd
+# stays outside the worktree so it does not mark the worktree as occupied.
+( cd "$FIXTURE" && exec -a "git fsmonitor--daemon run --detach" \
+    perl -e 'my @d; for (@ARGV) { opendir(my $h, $_) or die; push @d, $h } sleep 600' \
+    "$FIXTURE/.worktrees/rt-a" "$FIXTURE/.git/worktrees/rt-a" ) &
+FSMON_A_PID=$!
+STUB_PIDS="$STUB_PIDS $FSMON_A_PID"
+# Disown the stub so bash does not announce the sibling reaper terminating it.
+disown "$FSMON_A_PID" 2>/dev/null || true
+sleep 1
 
 # ── (b) WRAPPER + LIVE marker → expect kept ────────────────────
 git -C "$FIXTURE" worktree add -q -b work/rt/b "$FIXTURE/.worktrees/rt-b" HEAD
@@ -124,6 +159,7 @@ printf '%s\n' "$CHILD_MARKER_DEAD_PID" > "$MARKERS_DIR/rt-child.pid"
 mkdir -p "$FAKE_HOME/.spk-wt-sock/rt-child"
 ( cd "$FIXTURE/.worktrees/rt-child" && exec sleep 120 ) &
 BUSY_PID=$!
+STUB_PIDS="$STUB_PIDS $BUSY_PID"
 sleep 0.5
 
 # ── run the REAL reaper (not dry-run) inside the fixture ────────
@@ -135,7 +171,8 @@ else
 fi
 
 # ── assertions ───────────────────────────────────────────────────
-# (a) reaped: worktree dir gone AND branch deleted
+# (a) reaped: its fsmonitor daemon ended, the worktree dir gone AND branch deleted
+expect_gone "(a) wrapper+dead: fsmonitor daemon ended" "$FSMON_A_PID"
 expect_not "(a) wrapper+dead: dir removed"    test -d "$FIXTURE/.worktrees/rt-a"
 expect_not "(a) wrapper+dead: branch removed" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/a
 
@@ -162,8 +199,10 @@ expect "(d) human numbered: branch kept" git -C "$FIXTURE" show-ref --verify --q
 # (e) kept: detached worktree is report-only, never auto-reaped
 expect "(e) detached: dir kept" test -d "$FIXTURE/.worktrees/0002-detached"
 
-# The reaper prunes worktrees and their leftover state; it never signals a process.
-expect_not "reaper signals no process" grep -Fq 'kill -TERM' "$REAPER_OUT"
+# The reaper ends a removed worktree's fsmonitor daemon through the sibling script;
+# it never sends a signal itself. Its only `kill` is the `kill -0` liveness probe.
+expect_not "reaper itself never signals a process" \
+  grep -Eq '(^|[[:space:];&|(])kill[[:space:]]+(-([1-9][0-9]*|[A-Za-z]+)|[^[:space:]-])' "$REAPER"
 
 # (f) custom-base dirty wrapper: git's registry, not the base guess, protects live state
 expect "(f) custom-base dirty: worktree kept"   test -d "$CUSTOM_BASE/rt-custom-a"
@@ -180,6 +219,8 @@ expect "(h) live child: worktree kept" test -d "$FIXTURE/.worktrees/rt-child"
 expect "(h) live child: branch kept"   git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/child
 expect "(h) live child: reaper names the holding pid" grep -F "pid $BUSY_PID" "$REAPER_OUT"
 expect "(h) live child: reaper reports a live process inside" grep -F "live process inside" "$REAPER_OUT"
+expect_no_daemon_ended "(h) live child: daemon reaper ended nothing for it" \
+  "$(cd "$FIXTURE/.worktrees/rt-child" && pwd -P)"
 kill "$BUSY_PID" 2>/dev/null || true
 wait "$BUSY_PID" 2>/dev/null || true
 
