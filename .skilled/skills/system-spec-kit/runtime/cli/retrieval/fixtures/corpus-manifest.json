@@ -1,5 +1,5 @@
 {
-  "corpusHash": "76abf4d14590fe0def1380fd654b43bba45390a53a45f8c9b57b6559e7c9c4e6",
+  "corpusHash": "49e9e53daca64d8e281f5bc7cefbb6c26c9965b417303ef00f275c1e3e761567",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26369,
+  "includedPathCount": 26379,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7975,6 +7975,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -26366,6 +26367,12 @@
     "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26388,8 +26395,11 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-020-alignment-audit-fixes.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-021-ci-gate-regressions.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-022-advisor-routing-and-local-install.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-023-deep-review-remediation.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/review-report.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review/review-report.md",
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
@@ -26400,7 +26410,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "47568118562f59b1cf7ccacdb9d47feaefca7e433293239466da9aefba5151a6",
+  "manifestHash": "845efce72dc89a121c8067fc9450eeabd08906d7bc94a85e7a299d8ecb90a9c6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33700,6 +33710,14 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages",
       "reason": "excluded directory"
     },
     {

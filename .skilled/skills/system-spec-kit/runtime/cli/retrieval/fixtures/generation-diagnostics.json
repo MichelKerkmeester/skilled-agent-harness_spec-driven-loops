@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7326,
-    "ok": 15495,
+    "missing-frontmatter": 7328,
+    "ok": 15503,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26369,
+  "documentsScanned": 26379,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "47568118562f59b1cf7ccacdb9d47feaefca7e433293239466da9aefba5151a6",
+  "manifestHash": "845efce72dc89a121c8067fc9450eeabd08906d7bc94a85e7a299d8ecb90a9c6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38211,
+      "ok": 38217,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -68836,6 +68836,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -76137,6 +76149,14 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages",
       "reason": "excluded directory"
     },
     {

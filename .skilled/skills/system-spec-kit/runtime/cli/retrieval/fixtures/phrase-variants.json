@@ -1,5 +1,5 @@
 {
-  "manifestHash": "47568118562f59b1cf7ccacdb9d47feaefca7e433293239466da9aefba5151a6",
+  "manifestHash": "845efce72dc89a121c8067fc9450eeabd08906d7bc94a85e7a299d8ecb90a9c6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28968,6 +28968,9 @@
     ],
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
+    ],
+    "create sh path symlink": [
+      "create.sh path symlink"
     ],
     "create sh phase backfill tasks": [
       "create.sh --phase backfill tasks"
@@ -73600,6 +73603,9 @@
     "phase 22 tasks": [
       "phase 22 tasks"
     ],
+    "phase 23 deep review remediation": [
+      "phase 23 deep review remediation"
+    ],
     "phase 23 readme freshness research": [
       "phase 23 readme freshness research"
     ],
@@ -76011,6 +76017,9 @@
     ],
     "pipx editable repair plan": [
       "pipx editable repair plan"
+    ],
+    "placeholder fence matching": [
+      "placeholder fence matching"
     ],
     "placeholder fenced code exclusion": [
       "placeholder fenced code exclusion"
@@ -106812,6 +106821,9 @@
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
+    "system spec kit 2 12 5 0": [
+      "system-spec-kit 2.12.5.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -107264,6 +107276,9 @@
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
+    ],
+    "system spec kit v2 12 5 0": [
+      "system-spec-kit v2.12.5.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -114066,6 +114081,9 @@
     ],
     "weak model spec authoring deep review finding fixes changelog": [
       "weak model spec authoring deep review finding fixes changelog"
+    ],
+    "weak model spec authoring deep review remediation changelog": [
+      "weak model spec authoring deep review remediation changelog"
     ],
     "weak model spec authoring follow up fixes changelog": [
       "weak model spec authoring follow up fixes changelog"
