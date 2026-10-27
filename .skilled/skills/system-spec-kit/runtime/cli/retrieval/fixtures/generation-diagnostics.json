@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15656,
+    "ok": 15675,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26542,
+  "documentsScanned": 26561,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f4d70cdd1d4a4bc6fcda49e802dd8d709b148a1371baead96fb397ae7c7670af",
+  "manifestHash": "0b9c64f9c0b58fb81af2422001133f7c70df442f6d71ddcd598a2ad1360f6c60",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38536,
+      "ok": 38565,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72676,6 +72676,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/scratch",
       "reason": "excluded directory"
     },
@@ -76177,6 +76185,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {

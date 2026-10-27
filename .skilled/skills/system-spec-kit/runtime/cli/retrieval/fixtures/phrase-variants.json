@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f4d70cdd1d4a4bc6fcda49e802dd8d709b148a1371baead96fb397ae7c7670af",
+  "manifestHash": "0b9c64f9c0b58fb81af2422001133f7c70df442f6d71ddcd598a2ad1360f6c60",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8635,6 +8635,9 @@
     "advisor decoupling": [
       "advisor decoupling"
     ],
+    "advisor default suite in ci": [
+      "advisor default suite in ci"
+    ],
     "advisor defect fixes": [
       "advisor defect fixes"
     ],
@@ -8901,6 +8904,9 @@
     ],
     "advisor jev tie break tasks": [
       "advisor jev tie-break tasks"
+    ],
+    "advisor job timeout row": [
+      "advisor job timeout row"
     ],
     "advisor lane metadata scoring": [
       "advisor lane metadata scoring"
@@ -14288,6 +14294,9 @@
     ],
     "bounded council rollback window": [
       "bounded council rollback window"
+    ],
+    "bounded git hooks": [
+      "bounded git hooks"
     ],
     "bounded jsonl atomic trim": [
       "bounded jsonl atomic trim"
@@ -68276,6 +68285,21 @@
     "numbered worktree branches": [
       "numbered worktree branches"
     ],
+    "numbered worktree cleanup": [
+      "numbered worktree cleanup"
+    ],
+    "numbered worktree cleanup acceptance criteria": [
+      "numbered worktree cleanup acceptance criteria"
+    ],
+    "numbered worktree cleanup implementation summary": [
+      "numbered worktree cleanup implementation summary"
+    ],
+    "numbered worktree cleanup plan": [
+      "numbered worktree cleanup plan"
+    ],
+    "numbered worktree cleanup tasks": [
+      "numbered worktree cleanup tasks"
+    ],
     "numbered worktree naming": [
       "numbered worktree naming"
     ],
@@ -70807,6 +70831,9 @@
     ],
     "orphan files autoclean follow up": [
       "orphan files autoclean follow-up"
+    ],
+    "orphan fsmonitor daemon deleted repository": [
+      "orphan fsmonitor daemon deleted repository"
     ],
     "orphan gate implemented": [
       "orphan gate implemented"
@@ -73561,6 +73588,9 @@
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
     ],
+    "phase 12 alignment fixes": [
+      "phase 12 alignment fixes"
+    ],
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
     ],
@@ -74380,6 +74410,9 @@
     "phase 5 readme node floor": [
       "phase 5 readme node floor"
     ],
+    "phase 5 reaper hardening": [
+      "phase 5 reaper hardening"
+    ],
     "phase 5 review output additions": [
       "phase 5 review output additions"
     ],
@@ -74511,6 +74544,9 @@
     ],
     "phase 6 measurement": [
       "phase 6 measurement"
+    ],
+    "phase 6 numbered worktree cleanup": [
+      "phase 6 numbered worktree cleanup"
     ],
     "phase 6 plan": [
       "phase 6 plan"
@@ -81089,6 +81125,21 @@
     ],
     "reaper external mcp guard": [
       "reaper external MCP guard"
+    ],
+    "reaper hardening": [
+      "reaper hardening"
+    ],
+    "reaper hardening acceptance criteria": [
+      "reaper hardening acceptance criteria"
+    ],
+    "reaper hardening implementation summary": [
+      "reaper hardening implementation summary"
+    ],
+    "reaper hardening plan": [
+      "reaper hardening plan"
+    ],
+    "reaper hardening tasks": [
+      "reaper hardening tasks"
     ],
     "reaper integration smoke": [
       "reaper integration smoke"
@@ -89659,6 +89710,9 @@
     "runtime lifecycle tests": [
       "runtime lifecycle tests"
     ],
+    "runtime lint check passes": [
+      "runtime lint check passes"
+    ],
     "runtime loop type council": [
       "runtime/ --loop-type council"
     ],
@@ -94692,6 +94746,9 @@
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
+    "sk code ci 1 1 3 0": [
+      "sk-code-ci 1.1.3.0"
+    ],
     "sk code ci cost aliases": [
       "sk-code ci cost aliases"
     ],
@@ -94737,6 +94794,9 @@
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
+    ],
+    "sk code ci v1 1 3 0": [
+      "sk-code-ci v1.1.3.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -97365,6 +97425,9 @@
     "sk doc 2 3 21 0": [
       "sk-doc 2.3.21.0"
     ],
+    "sk doc 2 3 22 0": [
+      "sk-doc 2.3.22.0"
+    ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
     ],
@@ -97731,6 +97794,9 @@
     "sk doc v2 3 21 0": [
       "sk-doc v2.3.21.0"
     ],
+    "sk doc v2 3 22 0": [
+      "sk-doc v2.3.22.0"
+    ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
     ],
@@ -97820,6 +97886,9 @@
     ],
     "sk git 1 10 1 0": [
       "sk-git 1.10.1.0"
+    ],
+    "sk git 1 11 0 0": [
+      "sk-git 1.11.0.0"
     ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
@@ -98042,6 +98111,9 @@
     ],
     "sk git v1 10 1 0": [
       "sk-git v1.10.1.0"
+    ],
+    "sk git v1 11 0 0": [
+      "sk-git v1.11.0.0"
     ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
@@ -104779,6 +104851,9 @@
     "stale versus legitimate references": [
       "stale versus legitimate references"
     ],
+    "stale workflow line citations": [
+      "stale workflow line citations"
+    ],
     "stale worktree references": [
       "stale worktree references"
     ],
@@ -106704,6 +106779,9 @@
     "synthesis incomplete fan out merge": [
       "synthesis_incomplete fan-out merge"
     ],
+    "synthesis marker naming exemption": [
+      "synthesis marker naming exemption"
+    ],
     "synthesis presentation acceptance criteria": [
       "synthesis presentation acceptance criteria"
     ],
@@ -107661,6 +107739,9 @@
     "system spec kit 2 12 1 0": [
       "system-spec-kit 2.12.1.0"
     ],
+    "system spec kit 2 12 10 0": [
+      "system-spec-kit 2.12.10.0"
+    ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
     ],
@@ -108128,6 +108209,9 @@
     ],
     "system spec kit v2 12 1 0": [
       "system-spec-kit v2.12.1.0"
+    ],
+    "system spec kit v2 12 10 0": [
+      "system-spec-kit v2.12.10.0"
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"
@@ -115848,6 +115932,9 @@
     ],
     "worktree automation tasks": [
       "worktree automation tasks"
+    ],
+    "worktree autoreap": [
+      "worktree autoreap"
     ],
     "worktree base relocation": [
       "worktree base relocation"

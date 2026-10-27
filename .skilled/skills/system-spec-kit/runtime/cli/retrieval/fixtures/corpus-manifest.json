@@ -1,5 +1,5 @@
 {
-  "corpusHash": "55151f7545776fe9778a51c81326e3e08a7ba3f3b1f5f0a11f1a758f62c1a1c5",
+  "corpusHash": "5acb32a78d087e5e9d6c67480427e8bf7a25042140b7530c791a62b51327f983",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26542,
+  "includedPathCount": 26561,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2811,6 +2811,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
@@ -6060,6 +6061,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.20.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.22.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
@@ -6578,6 +6580,7 @@
     ".skilled/skills/sk-git/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.10.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.10.1.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.1.0.md",
@@ -8043,6 +8046,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.11.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.10.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -13840,6 +13844,16 @@
     "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/plan.md",
     "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/spec.md",
     "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/acceptance-criteria.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/implementation-summary.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/plan.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/spec.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/acceptance-criteria.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/implementation-summary.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/plan.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/spec.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/tasks.md",
     "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/spec.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
@@ -26381,6 +26395,11 @@
     "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/implementation-summary.md",
     "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/spec.md",
@@ -26573,7 +26592,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f4d70cdd1d4a4bc6fcda49e802dd8d709b148a1371baead96fb397ae7c7670af",
+  "manifestHash": "0b9c64f9c0b58fb81af2422001133f7c70df442f6d71ddcd598a2ad1360f6c60",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30340,6 +30359,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/scratch",
       "reason": "excluded directory"
     },
@@ -33841,6 +33868,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/012-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {
