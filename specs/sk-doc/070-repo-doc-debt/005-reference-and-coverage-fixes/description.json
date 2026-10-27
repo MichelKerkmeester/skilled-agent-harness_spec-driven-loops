@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes",
+  "description": "The README audit flags 96 broken references and 13 coverage gaps across 59 READMEs outside the generated benchmark reports",
+  "keywords": [
+    "repo",
+    "doc",
+    "debt",
+    "reference",
+    "coverage"
+  ],
+  "lastUpdated": "2026-10-27T08:30:41.039Z",
+  "specId": "005",
+  "folderSlug": "reference-and-coverage-fixes",
+  "parentChain": [
+    "sk-doc",
+    "070-repo-doc-debt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

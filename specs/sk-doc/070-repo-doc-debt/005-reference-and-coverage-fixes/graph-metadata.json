@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes",
+  "spec_folder": "sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes",
+  "parent_id": "sk-doc/070-repo-doc-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reference and coverage fixes",
+      "repo doc debt reference and coverage fixes",
+      "reference and coverage fixes plan",
+      "reference and coverage fixes tasks",
+      "reference and coverage fixes acceptance criteria",
+      "reference and coverage fixes implementation summary"
+    ],
+    "key_topics": [
+      "reference",
+      "coverage",
+      "repo",
+      "doc",
+      "debt",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "readme"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/commands/create/readme.md",
+      ".skilled/bin/lib/README.md",
+      ".skilled/package.json",
+      ".skilled/bin/README.md",
+      ".skilled/hooks/codex-watchdog/README.md",
+      ".skilled/hooks/completion/README.md",
+      ".skilled/skills/.state/completion-sentinel/advisory-dedup.json",
+      ".skilled/hooks/dispatch/README.md",
+      ".skilled/hooks/dist-freshness/README.md",
+      ".skilled/hooks/git-hooks-check/README.md",
+      ".skilled/hooks/git-live-follow/README.md",
+      ".skilled/hooks/git-primary-reconcile/README.md",
+      ".skilled/hooks/git-worktree-guard/README.md",
+      ".skilled/hooks/hook-install/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-dedup.json",
+        "kind": "config",
+        "path": ".skilled/skills/.state/completion-sentinel/advisory-dedup.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The README audit flags 96 broken references and 13 coverage gaps across 59 READMEs outside the generated benchmark reports",
+    "created_at": "2026-10-27T08:30:40Z",
+    "last_save_at": "2026-10-27T10:27:28.855Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5b235169287fb4848716335e030db747b874dd090560861ec7e20304d76a1a8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fb37cc8935cb74e9837eed0f87adcaade24254c8d15a8d3a9ee5bd3b2ba6db3f",
+      "plan.md": "cbebb12496414cb568889af68348f9392ed1e8507cae6e9872cfb91702f019bb",
+      "tasks.md": "3c27d8dd3e0c74b2bcb4fe10a2c1a703968ee63785c4a3535f773e4afca3230f",
+      "implementation-summary.md": "ff0e0c607473d662c2cf119e36c20d7d3ba3407d24e055cf07560b4cf629253e"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/070-repo-doc-debt/004-benchmark-report-readmes",
+  "spec_folder": "sk-doc/070-repo-doc-debt/004-benchmark-report-readmes",
+  "parent_id": "sk-doc/070-repo-doc-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "benchmark report readmes",
+      "benchmark report readmes restructure 235 legacy reports",
+      "benchmark report readmes plan",
+      "benchmark report readmes tasks",
+      "benchmark report readmes acceptance criteria",
+      "benchmark report readmes implementation summary"
+    ],
+    "key_topics": [
+      "benchmark",
+      "report",
+      "readmes",
+      "restructure",
+      "legacy",
+      "reports",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/commands/create/readme.md",
+      ".skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py",
+      ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_readme_manifest.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reading This Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "235 benchmark report READMEs, under 13 skills and 2 Pi extensions, were written in an older layout: a title, sometimes a derived-record line, a `>` line, a verdict line, then `## Run`, `## Files` and `## Reading This Folder`",
+    "created_at": "2026-10-27T08:26:07Z",
+    "last_save_at": "2026-10-27T08:45:20.791Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b112c72de20a725061ae41dd5acf0c06220050e6ade32b357193a0f13c9a5666",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ce2cc0bcbd8ff2c335446b3eb5a09ec7fa56c809a34c447737cf2c70a7d1e0b9",
+      "plan.md": "f929575ec270779456934af9677b82df975176aed9de7fa1345922f07b4751dc",
+      "tasks.md": "76197b8aa35c3f2423913758b3a343120875bd017365a1df80a29804b77407db",
+      "implementation-summary.md": "e0fa890e9b7f000cc5f6f024c56be478025650fcbac3af57aa34e4adddd3a41e"
+    },
+    "last_active_at": null
+  }
+}
