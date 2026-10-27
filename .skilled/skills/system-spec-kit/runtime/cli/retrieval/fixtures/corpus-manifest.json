@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1c2d61bb095328a29f452d7558930f155f112d9822bfc2eea41001c124f33a0d",
+  "corpusHash": "76abf4d14590fe0def1380fd654b43bba45390a53a45f8c9b57b6559e7c9c4e6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26336,
+  "includedPathCount": 26369,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -245,6 +245,7 @@
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.2.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.3.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.4.0.md",
+    ".skilled/skills/cli-external-orchestration/changelog/v1.7.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md",
@@ -591,6 +592,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.7.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.8.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/multi-ai-council-profile.md",
@@ -1461,6 +1463,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -1710,6 +1713,7 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.13.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.15.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.16.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
@@ -1940,6 +1944,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.1.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.2.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.3.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.4.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2738,6 +2743,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -3045,6 +3051,7 @@
     ".skilled/skills/sk-design/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.3.0.md",
+    ".skilled/skills/sk-design/changelog/v2.0.4.0.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md",
     ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
@@ -6010,6 +6017,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.13.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.15.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.16.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
@@ -6545,6 +6553,7 @@
     ".skilled/skills/sk-git/changelog/v1.9.5.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.6.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.7.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.8.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -6670,6 +6679,7 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.2.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.3.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.4.0.md",
+    ".skilled/skills/sk-prompt/changelog/v3.0.5.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
@@ -6864,6 +6874,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.6.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.7.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.8.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.9.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -7529,6 +7540,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -7962,6 +7974,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -9143,6 +9156,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/resource-map.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/review-report.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+    "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/plan.md",
+    "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/spec.md",
+    "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/tasks.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -13429,6 +13446,22 @@
     "specs/sk-doc/069-local-command-support/plan.md",
     "specs/sk-doc/069-local-command-support/spec.md",
     "specs/sk-doc/069-local-command-support/tasks.md",
+    "specs/sk-doc/070-repo-doc-debt/001-broken-references/acceptance-criteria.md",
+    "specs/sk-doc/070-repo-doc-debt/001-broken-references/implementation-summary.md",
+    "specs/sk-doc/070-repo-doc-debt/001-broken-references/plan.md",
+    "specs/sk-doc/070-repo-doc-debt/001-broken-references/spec.md",
+    "specs/sk-doc/070-repo-doc-debt/001-broken-references/tasks.md",
+    "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/acceptance-criteria.md",
+    "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/implementation-summary.md",
+    "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/plan.md",
+    "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/spec.md",
+    "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/tasks.md",
+    "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/acceptance-criteria.md",
+    "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/implementation-summary.md",
+    "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/plan.md",
+    "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/spec.md",
+    "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/tasks.md",
+    "specs/sk-doc/070-repo-doc-debt/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -26367,7 +26400,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cdd93ad471a0993c65a7e91aa1c47537adbc425ec1f62d3e1d9c82729db7ceff",
+  "manifestHash": "47568118562f59b1cf7ccacdb9d47feaefca7e433293239466da9aefba5151a6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27587,6 +27620,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29919,6 +29956,18 @@
     },
     {
       "path": "specs/sk-doc/069-local-command-support/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/001-broken-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7326,
-    "ok": 15462,
+    "ok": 15495,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26336,
+  "documentsScanned": 26369,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "cdd93ad471a0993c65a7e91aa1c47537adbc425ec1f62d3e1d9c82729db7ceff",
+  "manifestHash": "47568118562f59b1cf7ccacdb9d47feaefca7e433293239466da9aefba5151a6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38145,
+      "ok": 38211,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70060,6 +70060,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -72389,6 +72393,18 @@
     },
     {
       "path": "specs/sk-doc/069-local-command-support/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/001-broken-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/002-readme-template-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/scratch",
       "reason": "excluded directory"
     },
     {

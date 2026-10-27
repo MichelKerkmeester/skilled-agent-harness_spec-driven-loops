@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cdd93ad471a0993c65a7e91aa1c47537adbc425ec1f62d3e1d9c82729db7ceff",
+  "manifestHash": "47568118562f59b1cf7ccacdb9d47feaefca7e433293239466da9aefba5151a6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8027,6 +8027,9 @@
     "add goal md to a phase parent": [
       "add goal.md to a phase parent"
     ],
+    "add gpt 6 1 terra to cli codex": [
+      "add gpt 6 1 terra to cli codex"
+    ],
     "add iconic rule": [
       "add iconic rule"
     ],
@@ -8778,6 +8781,9 @@
     ],
     "advisor graph traversal": [
       "advisor graph traversal"
+    ],
+    "advisor guard case count dropped": [
+      "advisor guard case count dropped"
     ],
     "advisor health degraded": [
       "advisor health degraded"
@@ -13593,6 +13599,9 @@
     "benchmark re run mistake": [
       "benchmark re-run mistake"
     ],
+    "benchmark readme numbered sections": [
+      "benchmark readme numbered sections"
+    ],
     "benchmark redesign and remeasure": [
       "benchmark redesign and remeasure"
     ],
@@ -14381,6 +14390,21 @@
     ],
     "broken reference paths": [
       "broken reference paths"
+    ],
+    "broken references": [
+      "broken references"
+    ],
+    "broken references acceptance criteria": [
+      "broken references acceptance criteria"
+    ],
+    "broken references implementation summary": [
+      "broken references implementation summary"
+    ],
+    "broken references plan": [
+      "broken references plan"
+    ],
+    "broken references tasks": [
+      "broken references tasks"
     ],
     "brokenpipeerror double crash synthesis": [
       "BrokenPipeError double-crash synthesis"
@@ -16247,8 +16271,17 @@
     "changelog identity phrases": [
       "changelog identity phrases"
     ],
+    "changelog internal id cleanup": [
+      "changelog internal id cleanup"
+    ],
+    "changelog internal id reword": [
+      "changelog internal id reword"
+    ],
     "changelog internal id warning": [
       "changelog internal id warning"
+    ],
+    "changelog internal ids": [
+      "changelog internal ids"
     ],
     "changelog judgment lanes": [
       "changelog judgment lanes"
@@ -16270,6 +16303,21 @@
     ],
     "changelog omission rules": [
       "changelog omission rules"
+    ],
+    "changelog omissions": [
+      "changelog omissions"
+    ],
+    "changelog omissions acceptance criteria": [
+      "changelog omissions acceptance criteria"
+    ],
+    "changelog omissions implementation summary": [
+      "changelog omissions implementation summary"
+    ],
+    "changelog omissions plan": [
+      "changelog omissions plan"
+    ],
+    "changelog omissions tasks": [
+      "changelog omissions tasks"
     ],
     "changelog pilot results": [
       "changelog pilot results"
@@ -19467,6 +19515,9 @@
     "cli codex 1 9 7 0": [
       "cli-codex 1.9.7.0"
     ],
+    "cli codex 1 9 8 0": [
+      "cli-codex 1.9.8.0"
+    ],
     "cli codex adapter": [
       "cli-codex adapter"
     ],
@@ -19637,6 +19688,9 @@
     ],
     "cli codex v1 9 7 0": [
       "cli-codex v1.9.7.0"
+    ],
+    "cli codex v1 9 8 0": [
+      "cli-codex v1.9.8.0"
     ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
@@ -20157,6 +20211,9 @@
     "cli external orchestration 1 7 4 0": [
       "cli-external-orchestration 1.7.4.0"
     ],
+    "cli external orchestration 1 7 5 0": [
+      "cli-external-orchestration 1.7.5.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -20246,6 +20303,9 @@
     ],
     "cli external orchestration v1 7 4 0": [
       "cli-external-orchestration v1.7.4.0"
+    ],
+    "cli external orchestration v1 7 5 0": [
+      "cli-external-orchestration v1.7.5.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -20868,6 +20928,9 @@
     "cli opencode 1 5 1 0": [
       "cli-opencode 1.5.1.0"
     ],
+    "cli opencode 1 5 2 0": [
+      "cli-opencode 1.5.2.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -21075,6 +21138,9 @@
     "cli opencode v1 5 1 0": [
       "cli-opencode v1.5.1.0"
     ],
+    "cli opencode v1 5 2 0": [
+      "cli-opencode v1.5.2.0"
+    ],
     "cli opencode version detection": [
       "cli-opencode version detection"
     ],
@@ -21248,6 +21314,9 @@
     ],
     "cli pi 1 5 15 0": [
       "cli-pi 1.5.15.0"
+    ],
+    "cli pi 1 5 16 0": [
+      "cli-pi 1.5.16.0"
     ],
     "cli pi 1 5 2 0": [
       "cli-pi 1.5.2.0"
@@ -21423,6 +21492,9 @@
     ],
     "cli pi v1 5 15 0": [
       "cli-pi v1.5.15.0"
+    ],
+    "cli pi v1 5 16 0": [
+      "cli-pi v1.5.16.0"
     ],
     "cli pi v1 5 2 0": [
       "cli-pi v1.5.2.0"
@@ -24373,6 +24445,9 @@
     ],
     "codex gpt 5 6 terra": [
       "codex gpt-5.6 terra"
+    ],
+    "codex gpt 6 1 terra": [
+      "codex gpt-6.1 terra"
     ],
     "codex gpt 6 luna sol": [
       "codex gpt-6 luna sol"
@@ -32522,6 +32597,9 @@
     ],
     "deep loop certificate verification": [
       "deep-loop certificate verification"
+    ],
+    "deep loop changelog internal ids": [
+      "deep loop changelog internal ids"
     ],
     "deep loop cli executor parity group": [
       "deep-loop cli executor parity group"
@@ -50334,6 +50412,27 @@
     "gpt 5 6 to gpt 6": [
       "gpt-5.6 to gpt-6"
     ],
+    "gpt 6 1 terra on codex": [
+      "gpt-6.1 terra on codex"
+    ],
+    "gpt 6 1 terra on opencode": [
+      "gpt-6.1 terra on opencode"
+    ],
+    "gpt 6 1 terra on pi": [
+      "gpt-6.1 terra on pi"
+    ],
+    "gpt 6 1 terra roster": [
+      "gpt 6 1 terra roster"
+    ],
+    "gpt 6 1 terra roster implementation summary": [
+      "gpt 6 1 terra roster implementation summary"
+    ],
+    "gpt 6 1 terra roster plan": [
+      "gpt 6 1 terra roster plan"
+    ],
+    "gpt 6 1 terra roster tasks": [
+      "gpt 6 1 terra roster tasks"
+    ],
     "gpt 6 astra roster": [
       "gpt-6-astra roster"
     ],
@@ -61643,6 +61742,9 @@
     "mcp tooling 1 8 3 0": [
       "mcp-tooling 1.8.3.0"
     ],
+    "mcp tooling 1 8 4 0": [
+      "mcp-tooling 1.8.4.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -61669,6 +61771,9 @@
     ],
     "mcp tooling compiled routing": [
       "mcp-tooling compiled routing"
+    ],
+    "mcp tooling docs plain words": [
+      "mcp-tooling docs plain words"
     ],
     "mcp tooling feature catalog": [
       "mcp-tooling feature catalog"
@@ -61741,6 +61846,9 @@
     ],
     "mcp tooling v1 8 3 0": [
       "mcp-tooling v1.8.3.0"
+    ],
+    "mcp tooling v1 8 4 0": [
+      "mcp-tooling v1.8.4.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -72913,6 +73021,9 @@
     "phase 053 tasks": [
       "phase 053 tasks"
     ],
+    "phase 1 broken references": [
+      "phase 1 broken references"
+    ],
     "phase 1 clone path and messages": [
       "phase 1 clone path and messages"
     ],
@@ -73363,6 +73474,9 @@
     "phase 2 quality report listing": [
       "phase 2 quality report listing"
     ],
+    "phase 2 readme template conformance": [
+      "phase 2 readme template conformance"
+    ],
     "phase 2 rebuild fanout removal": [
       "phase 2 rebuild fanout removal"
     ],
@@ -73560,6 +73674,9 @@
     ],
     "phase 3 cache optimizer": [
       "phase 3 cache optimizer"
+    ],
+    "phase 3 changelog omissions": [
+      "phase 3 changelog omissions"
     ],
     "phase 3 codex mirror gate": [
       "phase 3 codex mirror gate"
@@ -76401,6 +76518,9 @@
     ],
     "playbook scenario links": [
       "playbook scenario links"
+    ],
+    "playbook scenario names": [
+      "playbook scenario names"
     ],
     "playbook scenario reclassification": [
       "playbook scenario reclassification"
@@ -80016,8 +80136,14 @@
     "readme architecture diagrams topology tasks": [
       "readme architecture diagrams topology tasks"
     ],
+    "readme audit debt": [
+      "readme audit debt"
+    ],
     "readme bloat removal": [
       "readme bloat removal"
+    ],
+    "readme broken reference fix": [
+      "readme broken reference fix"
     ],
     "readme capability sync": [
       "readme capability sync"
@@ -80223,6 +80349,9 @@
     "readme migration audit tasks": [
       "readme migration audit tasks"
     ],
+    "readme missing overview": [
+      "readme missing overview"
+    ],
     "readme model examples": [
       "readme model examples"
     ],
@@ -80348,6 +80477,21 @@
     ],
     "readme tasks": [
       "readme tasks"
+    ],
+    "readme template conformance": [
+      "readme template conformance"
+    ],
+    "readme template conformance acceptance criteria": [
+      "readme template conformance acceptance criteria"
+    ],
+    "readme template conformance implementation summary": [
+      "readme template conformance implementation summary"
+    ],
+    "readme template conformance plan": [
+      "readme template conformance plan"
+    ],
+    "readme template conformance tasks": [
+      "readme template conformance tasks"
     ],
     "readme template evidence": [
       "readme template evidence"
@@ -83736,6 +83880,9 @@
     ],
     "repo convention audit summary": [
       "repo convention audit summary"
+    ],
+    "repo doc debt phase parent spec": [
+      "repo doc debt phase parent spec"
     ],
     "repo era detection": [
       "repo era detection"
@@ -93813,6 +93960,9 @@
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
+    "sk code 3 9 3 0": [
+      "sk-code 3.9.3.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -95226,6 +95376,9 @@
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
     ],
+    "sk code v3 9 3 0": [
+      "sk-code v3.9.3.0"
+    ],
     "sk code verification workflow": [
       "sk-code verification workflow"
     ],
@@ -95994,6 +96147,9 @@
     "sk design 2 0 3 0": [
       "sk-design 2.0.3.0"
     ],
+    "sk design 2 0 4 0": [
+      "sk-design 2.0.4.0"
+    ],
     "sk design advisor identity": [
       "sk-design advisor identity"
     ],
@@ -96333,6 +96489,9 @@
     "sk design playbook run": [
       "sk-design playbook run"
     ],
+    "sk design readme paths": [
+      "sk-design readme paths"
+    ],
     "sk design rollout": [
       "sk-design rollout"
     ],
@@ -96402,6 +96561,9 @@
     "sk design v2 0 3 0": [
       "sk-design v2.0.3.0"
     ],
+    "sk design v2 0 4 0": [
+      "sk-design v2.0.4.0"
+    ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
     ],
@@ -96470,6 +96632,9 @@
     ],
     "sk doc 2 3 15 0": [
       "sk-doc 2.3.15.0"
+    ],
+    "sk doc 2 3 16 0": [
+      "sk-doc 2.3.16.0"
     ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
@@ -96819,6 +96984,9 @@
     "sk doc v2 3 15 0": [
       "sk-doc v2.3.15.0"
     ],
+    "sk doc v2 3 16 0": [
+      "sk-doc v2.3.16.0"
+    ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
     ],
@@ -96980,6 +97148,9 @@
     ],
     "sk git 1 9 7 0": [
       "sk-git 1.9.7.0"
+    ],
+    "sk git 1 9 8 0": [
+      "sk-git 1.9.8.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -97191,6 +97362,9 @@
     "sk git v1 9 7 0": [
       "sk-git v1.9.7.0"
     ],
+    "sk git v1 9 8 0": [
+      "sk-git v1.9.8.0"
+    ],
     "sk git workflow support": [
       "sk-git workflow support"
     ],
@@ -97253,6 +97427,9 @@
     ],
     "sk prompt 3 0 4 0": [
       "sk-prompt 3.0.4.0"
+    ],
+    "sk prompt 3 0 5 0": [
+      "sk-prompt 3.0.5.0"
     ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
@@ -97544,6 +97721,9 @@
     ],
     "sk prompt v3 0 4 0": [
       "sk-prompt v3.0.4.0"
+    ],
+    "sk prompt v3 0 5 0": [
+      "sk-prompt v3.0.5.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -105885,6 +106065,9 @@
     "system deep loop 1 6 8 0": [
       "system-deep-loop 1.6.8.0"
     ],
+    "system deep loop 1 6 9 0": [
+      "system-deep-loop 1.6.9.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -106035,6 +106218,9 @@
     "system deep loop v1 6 8 0": [
       "system-deep-loop v1.6.8.0"
     ],
+    "system deep loop v1 6 9 0": [
+      "system-deep-loop v1.6.9.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -106157,6 +106343,9 @@
     ],
     "system skill advisor 0 17 4 0": [
       "system-skill-advisor 0.17.4.0"
+    ],
+    "system skill advisor 0 17 5 0": [
+      "system-skill-advisor 0.17.5.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -106349,6 +106538,9 @@
     ],
     "system skill advisor v0 17 4 0": [
       "system-skill-advisor v0.17.4.0"
+    ],
+    "system skill advisor v0 17 5 0": [
+      "system-skill-advisor v0.17.5.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -106616,6 +106808,9 @@
     ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
+    ],
+    "system spec kit 2 12 4 0": [
+      "system-spec-kit 2.12.4.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
@@ -107066,6 +107261,9 @@
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
+    ],
+    "system spec kit v2 12 4 0": [
+      "system-spec-kit v2.12.4.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
