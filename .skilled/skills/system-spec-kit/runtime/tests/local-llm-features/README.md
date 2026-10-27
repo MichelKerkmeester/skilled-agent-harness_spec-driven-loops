@@ -2,7 +2,7 @@
 
 ## 1. OVERVIEW
 
-This suite validates the documented local embedding runtime behavior against executable Vitest checks. It covers default model/profile selection, profile-keyed sqlite filenames, prefix resolution, offline degradation, and benchmark harnesses for local embedding performance.
+This suite validates the documented local embedding runtime behavior against executable Vitest checks. It covers default model/profile selection, prefix resolution, health reporting and benchmark harnesses for local embedding performance.
 
 ## How To Run
 
@@ -27,8 +27,6 @@ SPECKIT_RUN_BENCHMARKS=true npx vitest bench runtime/tests/local-llm-features/pe
 | Default models | `default-model-selection.vitest.ts` | Checks provider-specific default model and dimension selection through startup profiles. |
 | Prefix system | `prefix-system.vitest.ts` | Validates model-keyed prefixes plus environment overrides. |
 | Health reporting | `health-reporting.vitest.ts` | Checks provider metadata, health-check behavior, and health payload shape. |
-| Profile DB filename | `profile-db-filename.vitest.ts` | Asserts profile-keyed database filenames for all providers. |
-| Offline degradation | `offline-degradation.vitest.ts` | Covers cache hits, keyword fallback, and retry backoff invariants. |
 | Embedding latency | `performance/embedding-latency.bench.ts` | Captures per-text-length latency summaries. |
 | Throughput | `performance/throughput.bench.ts` | Captures batch-size throughput summaries. |
 | Cold start | `performance/cold-start.bench.ts` | Captures provider creation to first embedding. |

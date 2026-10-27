@@ -100,6 +100,7 @@ Fix every finding that is real drift, keep every fact while doing it, and record
 | 4 | 004-benchmark-report-readmes/ | Give the 235 legacy benchmark-report READMEs an overview section without changing their content | Complete |
 | 5 | 005-reference-and-coverage-fixes/ | Fix every real broken reference and close every coverage finding in the hand-authored READMEs | Complete |
 | 6 | 006-audit-and-validator-accuracy/ | Fix the README audit and changelog check where they misjudge correct documents | Complete |
+| 7 | 007-alignment-fixes/ | Fix the document validator and the README reference and count checkers where they misjudge correct documents, and correct the README references and counts they report as broken | Complete |
 
 ### Phase Transition Rules
 
@@ -114,6 +115,7 @@ Fix every finding that is real drift, keep every fact while doing it, and record
 |------|-----|----------|--------------|
 | 001-broken-references | 002-readme-template-conformance | Every real broken reference fixed or its sentence rewritten | Audit rerun broken-reference count |
 | 002-readme-template-conformance | 003-changelog-omissions | Every hand-authored template failure fixed | `validate_document.py` on each changed README |
+| 006-audit-and-validator-accuracy | 007-alignment-fixes | The audit's path rules are settled, so the checkers can reuse them | Checker runs before and after over every tracked README |
 <!-- /ANCHOR:phase-map -->
 
 ---

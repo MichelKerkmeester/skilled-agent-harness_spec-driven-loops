@@ -43,9 +43,10 @@ Verdicts are read from each folder's rendered report.
 
 ```text
 benchmark/
-+-- router-final/          # Current deterministic run (router mode, the CI gate)
-+-- live-final/            # Current live run (cli-opencode dispatch)
-`-- compiled-routing/      # Compiled-routing parity archive (see section 6)
+`-- reports/
+    +-- README.md                              # Index of the runs below
+    +-- 2026-07-10--router-mode-a--router/     # Deterministic run (router mode)
+    `-- compiled-routing/                      # Compiled-routing parity archive (see section 6)
 ```
 
 ---
@@ -73,5 +74,5 @@ Start with the `.md` file for the verdict and the ranked bottlenecks; open the `
 
 ## 6. COMPILED-ROUTING ARCHIVE
 
-Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 

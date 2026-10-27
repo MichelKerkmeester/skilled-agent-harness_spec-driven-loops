@@ -7,7 +7,7 @@ trigger_phrases:
   - "extract.ts flags"
   - "design-system-extractor cli"
   - "ts-node design extraction"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Design System Extractor Backend
@@ -26,8 +26,8 @@ The pipeline is driven by the parent skill in [`../SKILL.md`](../SKILL.md), not 
 
 | Metric | Value |
 |---|---|
-| Pipeline modules | 20 TypeScript files in `scripts/` |
-| Test files | 7 vitest suites in `tests/` |
+| Pipeline modules | 28 TypeScript modules plus one type declaration in `scripts/` |
+| Test files | 20 vitest suites in `tests/` |
 | Pipeline phases | 3 core phases (extract, write, validate) plus an optional report phase |
 | Execution | Runs via `ts-node`, no required build step |
 | Bin name | `design-system-extractor` |
@@ -89,8 +89,8 @@ Expected result: `extract.ts` writes `tokens.json` into the `--output` directory
 
 ```text
 backend/
-+-- scripts/             # 20 pipeline modules (extract, build-write-prompt, validate, report and stages)
-+-- tests/               # 7 vitest suites
++-- scripts/             # 28 pipeline modules (extract, build-write-prompt, validate, report and stages)
++-- tests/               # 20 vitest suites
 +-- package.json         # dependencies, scripts and the design-system-extractor bin
 +-- tsconfig.json        # type-check config covering scripts/ and tests/
 +-- tsconfig.build.json  # emit config, scripts/ to dist/, tests excluded

@@ -3,17 +3,20 @@
 
 Usage: python3 check_derived_readme_counts.py [--self-test] README.md [...]
 
-Numeric counts are accepted only when a complete direct-file inventory in the
-README independently derives the claimed category. Dynamic shell derivations
-using ``find``, ``ls``, or ``wc`` are also accepted. Vague count words fail
-closed because they cannot be compared with the source directory.
+The checker can prove a count only from a folder listing, so it reads a number
+as a count claim only when it counts a plural term directly, as in "three
+files" or "12 shell scripts", with at most one word between them. Prose such as
+"in one file" counts nothing, and neither does a number after a label or bound
+word: ``Level 2 file set``, ``Gate 4``, ``more than 100 tracked files``.
 
-A claim is a number followed within three words, inside one clause, by a count
-term that agrees with it in grammatical number: ``13 rule files`` is a claim,
-while ``Level 2 file set`` (a label), ``five workflow modes`` (a singular noun
-used as a modifier), ``more than 100 tracked files`` (a threshold) and ``in one
-file`` (an article) are not. A claim whose line names a folder in a code span,
-such as ``.skilled/repo-rules/``, is derived from that folder instead.
+A count in a sentence that names another path, and does not also name the
+README's own folder, describes that path, so it is not a claim. Path detection
+uses audit_readmes.py's reference rules. A claim whose sentence names a folder
+in a code span, such as ``rules/``, is derived from that folder. Any other claim
+is accepted only when a complete direct-file inventory in the README derives the
+claimed category. Dynamic shell derivations using ``find``, ``ls``, or ``wc``
+are accepted. Vague count words fail closed because they cannot be compared with
+the folder.
 
 A correct claim the checker cannot derive, such as a count of guards one script
 runs, is named in the README-level ``readme-check`` block that
@@ -30,6 +33,7 @@ when it matches no failing claim::
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import subprocess
 import sys
@@ -38,7 +42,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "shared" / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+from audit_readmes import extract_references  # type: ignore  # noqa: E402
 
 
 NUMBER_WORDS = {
@@ -99,11 +105,19 @@ LABEL_WORDS = {
     "phase", "phases", "tier", "tiers", "than", "to", "least", "most",
 }
 CODE_SUFFIXES = {".js", ".cjs", ".mjs", ".ts"}
-CLAUSE_BREAK = re.compile(r"[.,;:|()]")
 FOLDER_SPAN = re.compile(r"`([^`\s]+/)`")
-TERM_WINDOW = 3
 NUMBER_PATTERN = re.compile(r"\b(?:\d+|" + "|".join(NUMBER_WORDS) + r")\b", re.IGNORECASE)
 WORD_PATTERN = re.compile(r"[A-Za-z][A-Za-z0-9_./*-]*")
+# A count names what it counts right after the number, with at most one word
+# between them ("three test files"). The number must stand alone, so "one-shot"
+# or "v2.1" never opens a count.
+COUNTED_TERM_PATTERN = re.compile(r"\s+([A-Za-z][\w-]*)(?:\s+([A-Za-z][\w-]*))?")
+# Only a plural counts the folder's contents. A singular after a number reads as
+# prose ("in one file", "one log file"), not as an inventory.
+PLURAL_COUNT_TERMS = {
+    term for term in COUNT_TERMS
+    if term[:-1] in COUNT_TERMS or (term.endswith("es") and term[:-2] in COUNT_TERMS)
+}
 MARKER_OPEN = re.compile(r"^\s*<!--\s*readme-check\s*$")
 
 
@@ -121,7 +135,7 @@ class CountClaim:
 def repository_root(readme: Path) -> Path:
     """Return the checkout root independently of the caller's CWD."""
     result = subprocess.run(
-        ["git", "-C", str(readme.parent), "rev-parse", "--show-toplevel"],
+        ["git", "-c", "core.fsmonitor=false", "-C", str(readme.parent), "rev-parse", "--show-toplevel"],
         check=True,
         capture_output=True,
         text=True,
@@ -177,14 +191,19 @@ def source_inventory_complete(text: str, folder: Path) -> bool:
     return all(path.name in text for path in direct_files(folder))
 
 
-def following_term(line: str, tokens: list[re.Match[str]], end: int) -> re.Match[str] | None:
-    """Return the count term token a number counts, read from the words after it."""
-    later = [token for token in tokens if token.start() >= end][:TERM_WINDOW]
-    for token in later:
-        if CLAUSE_BREAK.search(line[end:token.start()]):
+def counted_term(line: str, number_end: int) -> tuple[str, int] | None:
+    """Return the plural count term a number counts and where it ends, or None for prose."""
+    match = COUNTED_TERM_PATTERN.match(line, number_end)
+    if match is None:
+        return None
+    for index, word in enumerate(match.groups(), start=1):
+        if word is None:
             return None
-        if token.group(0).lower() in COUNT_TERMS:
-            return token
+        lower = word.lower()
+        if lower in PLURAL_COUNT_TERMS:
+            return lower, match.end(index)
+        if lower in COUNT_TERMS:
+            return None
     return None
 
 
@@ -221,15 +240,6 @@ def parse_markers(text: str) -> tuple[dict[str, tuple[int, str]], list[tuple[int
     return entries, errors, "\n".join(lines)
 
 
-def same_sentence_folder(line: str, folders: list[re.Match[str]], number: re.Match[str]) -> str:
-    """Return a folder span in the number's own sentence, so another sentence's folder is ignored."""
-    for folder in folders:
-        low, high = sorted((folder.start(), number.start()))
-        if not re.search(r"[.!?]\s", line[low:high]):
-            return folder.group(1)
-    return ""
-
-
 def is_label(line: str, tokens: list[re.Match[str]], start: int) -> bool:
     """Tell a label or bound such as ``Gate 4`` or ``more than 100`` from a count."""
     earlier = [token for token in tokens if token.end() <= start]
@@ -239,16 +249,67 @@ def is_label(line: str, tokens: list[re.Match[str]], start: int) -> bool:
     return previous.group(0).lower() in LABEL_WORDS and not line[previous.end():start].strip("* ")
 
 
-def agrees(value: int | None, term: str) -> bool:
-    """A count above one names a plural term; a singular term is a modifier."""
-    plural = term.endswith("s") and term not in {"harness"}
-    if value == 1:
-        return not plural
-    return plural
+def same_sentence_folder(line: str, folders: list[re.Match[str]], number: re.Match[str]) -> str:
+    """Return a folder span in the number's own sentence, so another sentence's folder is ignored."""
+    for folder in folders:
+        low, high = sorted((folder.start(), number.start()))
+        if not re.search(r"[.!?]\s", line[low:high]):
+            return folder.group(1)
+    return ""
 
 
-def line_claims(text: str) -> list[CountClaim]:
-    """Find numeric or vague count claims in prose and code output."""
+SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+(?=[A-Z`\[*(])")
+SPAN_OR_LINK = re.compile(r"`([^`]+)`|\]\(([^)\s]+)\)")
+
+
+def sentence_bounds(line: str, position: int) -> tuple[int, int]:
+    """Return the start and end of the sentence holding position."""
+    start, end = 0, len(line)
+    for brk in SENTENCE_BREAK.finditer(line):
+        if brk.end() <= position:
+            start = brk.end()
+        elif brk.start() >= position:
+            end = brk.start()
+            break
+    return start, end
+
+
+def names_own_folder(sentence: str, readme: Path, root: Path) -> bool:
+    """Return whether a sentence names the README's own folder, as in `.claude/hooks/` contains."""
+    for match in SPAN_OR_LINK.finditer(sentence):
+        token = (match.group(1) or match.group(2) or "").split("#", 1)[0].strip()
+        if not token or token.startswith(("http", "#")):
+            continue
+        for base in (readme.parent, root):
+            if Path(os.path.normpath(base / token)) == readme.parent:
+                return True
+    return False
+
+
+def names_other_path(sentence: str, readme: Path) -> bool:
+    """Return whether a sentence names a path other than a direct file of the README folder."""
+    for ref in extract_references(sentence):
+        # A direct file of the README folder, symlink or not, is the README's own.
+        literal = Path(os.path.normpath(readme.parent / ref))
+        if literal.parent == readme.parent and (literal.is_file() or literal.is_symlink()):
+            continue
+        return True
+    return False
+
+
+def describes_other_path(line: str, position: int, readme: Path, root: Path) -> bool:
+    """Return whether the sentence around position counts something outside the README folder.
+
+    Only the sentence that holds the number is read. It describes another path
+    when it names one and does not also name the README's own folder.
+    """
+    start, end = sentence_bounds(line, position)
+    sentence = line[start:end]
+    return names_other_path(sentence, readme) and not names_own_folder(sentence, readme, root)
+
+
+def line_claims(text: str, readme: Path | None = None, root: Path | None = None) -> list[CountClaim]:
+    """Find numeric or vague count claims about the README's own folder or a folder its sentence names."""
     claims: list[CountClaim] = []
     in_fence = False
     for line_number, line in enumerate(text.splitlines(), start=1):
@@ -257,25 +318,29 @@ def line_claims(text: str) -> list[CountClaim]:
             continue
         if re.match(r"^\s*#{1,6}\s+\d+\.", line):
             continue
-        words = [word.lower() for word in WORD_PATTERN.findall(line)]
-        if not words:
+        if not WORD_PATTERN.search(line):
             continue
         dynamic = in_fence and any(token in line for token in ("find ", "ls ", "wc", "glob"))
         tokens = list(WORD_PATTERN.finditer(line))
         folders = list(FOLDER_SPAN.finditer(line))
         for match in NUMBER_PATTERN.finditer(line):
+            # A number glued to other text ("LIVE=1", "one-shot", "v2.1") is not a count.
+            if match.start() > 0 and line[match.start() - 1] not in " \t(|*":
+                continue
+            if match.end() < len(line) and line[match.end()] in "-.":
+                continue
             value_token = match.group(0).lower()
             if value_token == "one":
                 continue
-            value = int(value_token) if value_token.isdigit() else NUMBER_WORDS[value_token]
             if is_label(line, tokens, match.start()):
                 continue
-            term_token = following_term(line, tokens, match.end())
-            term = term_token.group(0).lower() if term_token is not None else None
-            if term is None or not agrees(value, term):
+            counted = counted_term(line, match.end())
+            if counted is None:
                 continue
-            assert term_token is not None
-            folder = same_sentence_folder(line, folders, match)
+            term, term_end = counted
+            if readme is not None and root is not None and describes_other_path(line, match.start(), readme, root):
+                continue
+            value = int(value_token) if value_token.isdigit() else NUMBER_WORDS[value_token]
             claims.append(
                 CountClaim(
                     line_number,
@@ -283,23 +348,25 @@ def line_claims(text: str) -> list[CountClaim]:
                     term,
                     line.strip(),
                     "dynamic derivation" if dynamic else "numeric count",
-                    folder,
-                    normalize_phrase(line[match.start():term_token.end()]),
+                    same_sentence_folder(line, folders, match),
+                    normalize_phrase(line[match.start():term_end]),
                 )
             )
         for vague in VAGUE_TERMS:
-            if re.search(rf"\b{vague}\b", line, re.IGNORECASE):
-                vague_match = re.search(rf"\b{vague}\b", line, re.IGNORECASE)
-                assert vague_match is not None
-                term_token = following_term(line, tokens, vague_match.end())
-                term = term_token.group(0).lower() if term_token is not None else None
-                if term is not None and agrees(None, term):
-                    claims.append(CountClaim(line_number, None, term, line.strip(), "unparseable count"))
+            vague_match = re.search(rf"\b{vague}\b", line, re.IGNORECASE)
+            if vague_match is None:
+                continue
+            counted = counted_term(line, vague_match.end())
+            if counted is None:
+                continue
+            if readme is not None and root is not None and describes_other_path(line, vague_match.start(), readme, root):
+                continue
+            claims.append(CountClaim(line_number, None, counted[0], line.strip(), "unparseable count"))
     return claims
 
 
 def named_folder(claim: CountClaim, folder: Path, root: Path) -> Path | None:
-    """Resolve the folder a claim's line names, from the README or the repository root."""
+    """Resolve the folder a claim's sentence names, from the README or the repository root."""
     if not claim.folder:
         return None
     for base in (folder, root):
@@ -335,7 +402,7 @@ def check_readme(readme_arg: str) -> tuple[list[CountClaim], list[CountClaim], P
     except (OSError, subprocess.CalledProcessError):
         return [], [], readme
     allowed, errors, text = parse_markers(text)
-    claims = line_claims(text)
+    claims = line_claims(text, readme, root)
     failures: list[CountClaim] = []
     used: set[str] = set()
     for claim in claims:

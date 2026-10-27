@@ -110,7 +110,6 @@ runtime/cli/core/
 +-- memory-metadata.ts           # Memory classification and evidence snapshots
 +-- post-save-review.ts          # Post-save frontmatter drift review
 +-- quality-gates.ts             # Save and indexing gate decisions
-+-- quality-scorer.ts            # Artifact quality scoring
 +-- save-context-path.ts         # Save target path helpers
 +-- spec-root-canonical-resolver.ts     # Canonical-first spec-folder resolution (explicit paths preserved)
 +-- spec-root-collision-classifier.ts   # Fail-closed root/packet collision classifier

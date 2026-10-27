@@ -62,7 +62,6 @@ tests/
 ├── helpers/             # setEnv / restoreEnv / withFeatureFlag for env-driven suites
 ├── adversarial/         # Adversarial input handling
 ├── advisor-fixtures/    # Fixture inputs for advisor-facing suites
-├── archive/             # Retained suites kept out of the active areas
 ├── description/         # description.json generation and repair suites
 ├── embedders/           # Embedder-facing suites
 ├── fixtures/            # Shared document and data fixtures

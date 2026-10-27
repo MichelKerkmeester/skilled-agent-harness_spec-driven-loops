@@ -2,7 +2,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VALIDATOR="$SCRIPT_DIR/../validate-flowchart.sh"
+# The validator lives with the diagram skill that owns flowcharts.
+VALIDATOR="$SCRIPT_DIR/../../../sk-design/sk-design-diagram/scripts/validate-flowchart.sh"
 TMP_DIR="$(mktemp -d)"
 
 cleanup() {

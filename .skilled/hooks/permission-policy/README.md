@@ -111,7 +111,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Decision, not advisory | Emits a binding `approve` / `block` permission decision, not a warning. |
 | Composed, not reimplemented | Write-class delegates to `spec-gate-core.isExemptTargetPath`; exec-class delegates to `dispatch-rule-checks.evaluate`. Policy lives in those shared cores and the `cli-opencode` hard rules. |
 | Kill-switch is permissive | Disabling the kill-switch emits `allow`: the only way the policy broadens permissions. A missing resolver keeps the policy enabled (fail-closed). |
-| Imports | Node builtins only, plus `../lib/spec-gate/spec-gate-core.mjs`, `../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs`, and the shared `hook-flags.cjs` via `createRequire`. Nothing outside the repo. |
+| Imports | Node builtins only, plus `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`, `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, and the shared `hook-flags.cjs` via `createRequire`. Nothing outside the repo. |
 | Real code | Stays in `system-spec-kit`; the hub entry is a relative symlink. |
 
 ---

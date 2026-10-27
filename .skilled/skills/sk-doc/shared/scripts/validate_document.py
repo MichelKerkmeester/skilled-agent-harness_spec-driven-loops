@@ -152,6 +152,16 @@ FIXTURE_TREE_PATTERNS = [
     'sk-doc/scripts/tests/exclusions/',  # classification fixtures for the README audit
 ]
 
+# A benchmark run folder (benchmark/reports/<run>/) holds a README plus the companion
+# files the report contract names. Their shape belongs to that contract and to the
+# renderer that writes them, not to the README section conventions.
+BENCHMARK_COMPANION_NAMES = (
+    'failed-runs.md',
+    'source.md',
+    'skill-benchmark-report.md',
+    'findings-and-recommendations.md',
+)
+
 # A spec packet or phase folder name: three digits, an optional letter, then a
 # dash. Such a name can end in "fixtures" and still be a packet, not a fixture tree.
 SPEC_FOLDER_SEGMENT = re.compile(r'^\d{3}[a-z]?-')
@@ -202,9 +212,12 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     # suite names for a different reason than the literal segment "fixtures".
     # A numbered segment such as `001-shared-mode-contracts-and-fixtures` names a
     # spec packet or phase, and skipping it would hide that packet's documents.
+    # The singular "-fixture" folder name (review-output-fixture/) is the same kind
+    # of tree, so it is matched as a folder segment rather than a file name.
     normalized = path_str.replace('\\', '/')
-    if any(part.endswith('fixtures') and not SPEC_FOLDER_SEGMENT.match(part)
-           for part in normalized.split('/')):
+    folders = normalized.split('/')[:-1]
+    if any(part.endswith(('fixtures', 'fixture')) and not SPEC_FOLDER_SEGMENT.match(part)
+           for part in folders):
         return True, "Fixture tree: holds the shapes it exercises"
     for pattern in FIXTURE_TREE_PATTERNS:
         if pattern in normalized:
@@ -279,6 +292,11 @@ def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[
     # lowercase security.md reference or playbook leaf keeps its own type.
     if Path(str(file_path)).name == 'SECURITY.md':
         return 'security_policy', 'rule'
+    # A companion file sits in a run folder below benchmark/reports/, either directly
+    # (reports/<run>/) or under a grouping folder (reports/<group>/<run>/).
+    if (portable_path.name in BENCHMARK_COMPANION_NAMES
+            and '/benchmark/reports/' in f'/{portable_path.parent.parent.as_posix()}/'):
+        return 'benchmark_companion', 'rule'
     if path_lower.endswith('readme.md'):
         return 'readme', 'rule'
     if path_lower.endswith('skill.md'):
@@ -1945,7 +1963,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'security_policy', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog'],
+    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'security_policy', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog', 'benchmark_companion'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')

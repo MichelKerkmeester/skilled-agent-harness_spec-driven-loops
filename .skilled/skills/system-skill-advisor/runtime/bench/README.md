@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor Benchmarks: Latency And Calibration"
-description: "Benchmark suites and baselines for advisor latency, scorer calibration, hook signal quality and code-graph query behavior."
+description: "Benchmark suites and baselines for advisor latency, scorer calibration, watcher behavior and hook signal quality."
 trigger_phrases:
   - "skill advisor benchmarks"
   - "scorer calibration bench"
@@ -13,12 +13,12 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/bench/` contains benchmark suites and baseline data for advisor latency, scorer calibration, watcher behavior, hook brief signal quality and code-graph integration paths. These files are measurement assets, not production runtime modules.
+`skill_advisor/bench/` contains benchmark suites and baseline data for advisor latency, scorer calibration, watcher behavior, hook brief signal quality, plus a recorded code-graph query latency baseline. These files are measurement assets, not production runtime modules.
 
 Current state:
 
 - Tracks latency and calibration benchmarks for the advisor scorer.
-- Includes code-graph parsing and query latency benchmarks.
+- Keeps a recorded code-graph query latency baseline; its benchmark suite is no longer in this folder.
 - Stores baseline JSON used for regression comparison.
 
 ---
@@ -27,9 +27,7 @@ Current state:
 
 ```text
 bench/
-+-- code-graph-parse-latency.bench.ts       # Code graph parse benchmark
-+-- code-graph-query-latency.baseline.json  # Query latency baseline
-+-- code-graph-query-latency.bench.ts       # Query latency benchmark
++-- code-graph-query-latency.baseline.json  # Recorded code graph query latency baseline
 +-- hook-brief-signal-noise.bench.ts        # Hook brief signal benchmark
 +-- latency-bench.ts                        # Advisor latency benchmark
 +-- scorer-bench.ts                         # Scorer benchmark
@@ -49,7 +47,6 @@ bench/
 | `scorer-bench.ts` | Measures scorer performance. |
 | `scorer-calibration.bench.ts` | Measures scorer calibration against baseline expectations. |
 | `hook-brief-signal-noise.bench.ts` | Measures hook brief signal-to-noise behavior. |
-| `code-graph-query-latency.bench.ts` | Measures code graph query latency. |
 | `watcher-benchmark.ts` | Measures watcher behavior. |
 
 ---
@@ -58,7 +55,7 @@ bench/
 
 | Boundary | Rule |
 |---|---|
-| Imports | Benchmarks may import advisor, scorer and code-graph modules needed for measurement. |
+| Imports | Benchmarks may import advisor and scorer modules needed for measurement. |
 | Exports | Benchmark files export no production behavior. |
 | Ownership | Keep performance and calibration measurement here. Put correctness tests in `../tests/`. |
 
@@ -66,7 +63,7 @@ Main flow:
 
 ```text
 benchmark scenario
-  -> advisor, scorer or code-graph path
+  -> advisor or scorer path
   -> timing or calibration metric
   -> baseline comparison or report
 ```
@@ -79,7 +76,6 @@ benchmark scenario
 |---|---|---|
 | `latency-bench.ts` | Benchmark | Advisor latency measurement. |
 | `scorer-calibration.bench.ts` | Benchmark | Scorer calibration measurement. |
-| `code-graph-query-latency.bench.ts` | Benchmark | Code graph query latency measurement. |
 | `watcher-benchmark.ts` | Benchmark | Watcher measurement. |
 
 ---

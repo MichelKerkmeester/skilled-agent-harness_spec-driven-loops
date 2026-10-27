@@ -42,7 +42,7 @@ Two trace modes scored the same playbook corpus:
 | Tool | Checks | Use When |
 |---|---|---|
 | This benchmark | Whether the skill is routed, discovered, and useful in practice | Measuring real routing quality |
-| `validate.sh` | Document shape and required sections | Checking spec-folder structure |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Document shape and required sections | Checking spec-folder structure |
 | `manual_testing_playbook` | Described behavior per scenario | Authoring or hand-running scenarios |
 
 ---

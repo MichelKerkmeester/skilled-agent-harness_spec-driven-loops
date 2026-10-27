@@ -535,6 +535,18 @@
       "h2EmojiRequired": false,
       "h2UppercaseRequired": false
     },
+    "benchmark_companion": {
+      "description": "Benchmark report companion files (failed-runs.md, source.md, skill-benchmark-report.md, findings-and-recommendations.md) in a run folder below benchmark/reports/ (<run>/ or <group>/<run>/). Detected by name and position. The report contract and its renderer own their shape, so no section, divider or heading-case rule applies",
+      "requiredSections": [],
+      "recommendedSections": [],
+      "optionalSections": [],
+      "sectionEmojis": {},
+      "sectionAliases": {},
+      "tocRequired": false,
+      "h2DividerRequired": false,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": false
+    },
     "security_policy": {
       "description": "Repository security policy, SECURITY.md at the root or under .github/. Detected by filename. It opens with an Overview and must say how to report a vulnerability privately",
       "requiredSections": [

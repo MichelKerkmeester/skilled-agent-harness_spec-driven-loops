@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # sk-code-quality
@@ -129,7 +129,7 @@ Use it when a change is already written and needs standards enforcement before f
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
 | [`references/runner-contract.md`](./references/runner-contract.md) | The runner's CLI, exit codes, states, verdict, envelope grammar and rule ids |
 | [`scripts/quality-gate.cjs`](./scripts/quality-gate.cjs) | The quality runner, one verdict per change in any repository |
-| [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
+| [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
 | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Comment-hygiene checker, which the runner calls once per run |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |

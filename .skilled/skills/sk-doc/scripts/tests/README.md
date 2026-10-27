@@ -67,10 +67,13 @@ Run the owning package test command from the nearest package boundary.
 | Path | Purpose |
 |---|---|
 | `test_audit_readmes_accuracy.py` | Regression tests for README audit reference resolution, git-ignored runtime paths and README discovery. |
+| `test_benchmark_companion_typing.py` | Regression tests for the benchmark companion document type and the singular `-fixture` folder skip in `validate_document.py`. |
 | `test_changelog_validator.py` | Regression tests for changelog document-type detection and validation. |
+| `test_derived_readme_counts.py` | Regression tests for which numbers `check_derived_readme_counts.py` reads as count claims. |
+| `test_readme_reference_checker.py` | Regression tests for the audit-aligned path rules in `check_readme_references.py`. |
 | `test_extract_structure_regressions.py` | Regression tests for `extract_structure.py`. |
 | `test_feature_catalog_validation.py` | Unit test for the feature-catalog validation-table check. |
-| `test-flowchart-validator.sh` | Tests for `validate-flowchart.sh` (box alignment + labels). |
+| `test-flowchart-validator.sh` | Tests for sk-design-diagram's `validate-flowchart.sh` (box alignment + labels). |
 | `test-frontmatter-version.mjs` | Unit/integration tests for `frontmatter-version.mjs`. |
 | `test-cite-drift-scan.mjs` | Unit/integration tests for `cite-drift-scan.mjs` and its `classifier-cite-drift-scan.mjs` arm. |
 | `test_cite_drift_advisory.py` | Tests for the citation drift advisory at the end of `validate_document.py`'s human report. |

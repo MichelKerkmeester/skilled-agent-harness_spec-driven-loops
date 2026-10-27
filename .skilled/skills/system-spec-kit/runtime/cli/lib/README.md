@@ -61,7 +61,7 @@ runtime/cli/lib/
 +-- content-filter.ts                      # Content pre-processing helper
 +-- decision-tree-generator.ts             # Decision tree structures
 +-- esm-entry.ts                           # Main-module detection and dirname helpers for ESM
-+-- esm-entry.js                           # Plain-JS mirror of esm-entry.ts kept alongside the source
++-- esm-entry.mjs                          # Plain-JS mirror of esm-entry.ts kept alongside the source
 +-- flowchart-generator.ts                 # Flowchart output generation
 +-- frontmatter-migration.ts               # Frontmatter normalization helpers
 +-- memory-frontmatter.ts                  # Memory doc frontmatter handling

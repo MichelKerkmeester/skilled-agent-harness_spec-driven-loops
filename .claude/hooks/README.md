@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Claude hook scripts; 
 
 ## 1. OVERVIEW
 
-`.claude/hooks/` contains 25 symlinks to hook scripts owned under `.skilled/`. Most target their owning skill under `.skilled/skills/`. Nine cores target `.skilled/hooks/`: `classifier-injection-screen-posttooluse.mjs`, `claude-posttooluse.cjs`, `context-nudge.mjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `fable-subagent-guard.mjs`, `mcp-route-guard.cjs`, `stop-arm.mjs`, `task-dispatch-guard.cjs`. See [`hooks/README.md`](../../.skilled/hooks/README.md) for ownership details. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
+`.claude/hooks/` contains 27 symlinks to hook scripts owned under `.skilled/`. Ten target their owning skill under `.skilled/skills/`. Eleven cores target `.skilled/hooks/`: `classifier-injection-screen-posttooluse.mjs`, `claude-posttooluse.cjs`, `compact-pointer.mjs`, `context-nudge.mjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `fable-subagent-guard.mjs`, `mcp-route-guard.cjs`, `stop-arm.mjs`, `subagent-guard.mjs`, `task-dispatch-guard.cjs`. The other six target `.skilled/bin/` or `.skilled/scripts/`. See [`hooks/README.md`](../../.skilled/hooks/README.md) for ownership details. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
 
 Two compiled ESM entrypoints do not execute correctly through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Keep all runtime commands pointed at the real files.
 
@@ -20,7 +20,7 @@ Two compiled ESM entrypoints do not execute correctly through their symlink beca
 | ---------------------------| ----------------------------| --------------------------------|
 | `session-prime.js`        | No output                  | Full session context brief     |
 | `install-codex-hooks.mjs` | Different root resolution  | Authoritative check behavior   |
-| Other 23 scripts          | Matches real-path behavior | Authoritative runtime behavior |
+| Other 25 scripts          | Matches real-path behavior | Authoritative runtime behavior |
 
 Empty output can be a normal allow decision. Compare a mirror invocation with its real target before treating silence as failure.
 
@@ -35,7 +35,7 @@ Empty output can be a normal allow decision. Compare a mirror invocation with it
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `task-dispatch-guard.cjs`, `fable-subagent-guard.mjs`, `mcp-route-guard.cjs` |
 | Edit quality | `claude-posttooluse.cjs` |
 | Injection screen | `classifier-injection-screen-posttooluse.mjs` |
-| Session relaunch | `context-nudge.mjs`, `stop-arm.mjs` |
+| Session relaunch | `compact-pointer.mjs`, `context-nudge.mjs`, `stop-arm.mjs`, `subagent-guard.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
 
 ---

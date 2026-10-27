@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.17.0
+version: 2.7.18.0
 ---
 
 # System Spec Kit
@@ -445,7 +445,6 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   └── README.md               # Engine reference (API surface, build, validation)
 ├── shared/                     # Shared workspace (@spec-kit/shared)
 │   ├── algorithms/             # Fusion, reranking, lab algorithms
-│   ├── contracts/              # Typed trace/envelope contracts
 │   ├── embeddings/             # Provider implementations
 │   └── ...                     # Chunker, scoring, parsing, utilities
 ├── references/                 # Reference documentation (42 files)
@@ -647,8 +646,7 @@ TypeScript sources compile to `runtime/cli/dist/`.
 | Script | Purpose |
 |---|---|
 | `continuity-freshness.ts` | warn when `_memory.continuity.last_updated_at` lags `graph-metadata.json` |
-| `evidence-marker-audit.ts` | bracket-depth audit and optional rewrap pass for malformed `EVIDENCE` markers |
-| `evidence-marker-lint.ts` | strict wrapper that fails on malformed or unclosed markers |
+| `evidence-marker-audit.ts` | standalone CLI run on demand: a read-only bracket-depth report on `EVIDENCE` markers, and `--rewrap` to repair malformed closers. No validator calls it |
 
 The manual testing playbook runs every scenario behind these checks.
 
@@ -690,7 +688,7 @@ The manual testing playbook runs every scenario behind these checks.
 | Resource | Purpose |
 |---|---|
 | `AGENTS.md` (project root) | gate definitions, AI behavior framework and mandatory workflow rules |
-| `specs/` | all spec folders created by Spec Kit (`.opencode/specs` is a compat symlink to this same tree) |
+| `specs/` | all spec folders created by Spec Kit (the runtime still falls back to the legacy `.opencode/specs` root when a checkout has no top-level `specs/`) |
 | `.skilled/commands/speckit/` | speckit command definitions, including the continuity save and search commands |
 
 ### External Resources

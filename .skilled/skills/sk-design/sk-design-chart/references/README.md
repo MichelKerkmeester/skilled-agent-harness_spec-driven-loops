@@ -10,7 +10,7 @@ trigger_phrases:
   - "design-md theming"
 importance_tier: normal
 contextType: reference
-version: 0.23.0.11
+version: 0.23.1.0
 ---
 
 # sk-design-chart References
@@ -21,7 +21,7 @@ The reference set answers four questions in order: which chart form answers the 
 
 ## 1. OVERVIEW
 
-Three files sit here, each one a lookup or a contract rather than a guide to read end to end. Load the one the table names for the question in front of you.
+Four files sit here, each one a lookup or a contract rather than a guide to read end to end. Load the one the table names for the question in front of you.
 
 | Load | When |
 | --- | --- |

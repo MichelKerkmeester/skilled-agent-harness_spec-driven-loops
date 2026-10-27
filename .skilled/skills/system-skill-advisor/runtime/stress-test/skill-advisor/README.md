@@ -112,7 +112,7 @@ skill-advisor/
 |---|---|
 | Imports | Stress tests may import advisor handlers, library modules, scripts and fixtures needed for pressure scenarios. |
 | Exports | This folder exports no runtime code. |
-| Ownership | Put advisor pressure and integration stress here. Put ordinary advisor unit tests in `../../skill_advisor/tests/`. |
+| Ownership | Put advisor pressure and integration stress here. Put ordinary advisor unit tests in `../../tests/`. |
 
 Main flow:
 
@@ -150,5 +150,5 @@ Expected result: exit code `0`.
 
 ## 9. RELATED
 
-- [`../../skill_advisor/tests/README.md`](../../tests/README.md)
-- [`../../skill_advisor/lib/README.md`](../../lib/README.md)
+- [`../../tests/README.md`](../../tests/README.md)
+- [`../../lib/README.md`](../../lib/README.md)

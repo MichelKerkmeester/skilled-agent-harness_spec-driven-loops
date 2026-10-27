@@ -169,7 +169,6 @@ runtime/
 |   +-- index.ts
 |   `-- README.md
 +-- bench/                         # Benchmark suites and baselines
-|   +-- code-graph-parse-latency.bench.ts
 |   +-- scorer-bench.ts
 |   +-- scorer-calibration.bench.ts
 |   +-- watcher-benchmark.ts

@@ -18,7 +18,7 @@ trigger_phrases:
 
 Current state:
 
-- 7 test files, 68 tests, run by vitest.
+- 20 test files, 176 tests, run by vitest.
 - Every file imports its subject directly from `../scripts/` (for example `from '../scripts/cluster'`).
 - `cluster.test.ts` is the largest suite at 42 tests covering colour parsing, contrast, OKLCH delta-E, shadow classification and token merging.
 
@@ -35,6 +35,20 @@ tests/
 +-- build-write-prompt.test.ts # v3 pre-render, FACTS block, prose-only write prompt
 +-- a11y-extract.test.ts       # accessibility extraction, focus honest absence
 +-- parseargs.test.ts          # extract.ts flag parsing, order independence, --fast defaults
++-- corpus-baseline-v3.test.ts # corpus baseline through the retrieval manifest
++-- css-analyzer-transitions.test.ts # transition shorthand parsing with cubic-bezier commas
++-- design-boundary-detect.test.ts   # design boundary detection
++-- icon-detect.test.ts        # icon system detection
++-- motion-extract.test.ts     # motion token extraction
++-- output-policy.test.ts      # output path resolution and write guards
++-- render-safety.test.ts      # safe colour, length, line-height and weight rendering
++-- report-preview-overwrite.test.ts # report and preview overwrite guard
++-- schema-v3.test.ts          # v3 schema single-authority contract
++-- typography-role-v3.test.ts # semantic typography-role normalizer
++-- guided-run.test.ts         # guided-run wrapper
++-- typo-flags.test.ts         # long-option typo refusal in guided-run
++-- study-exemplars.test.ts    # bounded STUDY exemplar controls
++-- fixtures/                  # shared study case data
 `-- README.md
 ```
 
@@ -51,6 +65,20 @@ tests/
 | `build-write-prompt.test.ts` | Covers `buildWritePrompt`: the deterministic v3 pre-render, the FACTS block, the flat-elevation rule for zero shadows and focus-honesty wording driven by captured and consistent flags. |
 | `a11y-extract.test.ts` | Covers `extractA11y` focus-indicator honesty: `captured:false` and `consistent:false` on empty data, and a real captured outline style. |
 | `parseargs.test.ts` | Covers `parseArgs` from `extract.ts`: order-independent `--fast`, `--fast` defaults applied only without an explicit value, and interaction capture defaulting on. |
+| `corpus-baseline-v3.test.ts` | Covers `corpus-baseline-v3.ts`: the corpus baseline read through the retrieval manifest. |
+| `css-analyzer-transitions.test.ts` | Covers `parseTransitionShorthand` from `css-analyzer.ts`, including `cubic-bezier` arguments whose commas must not split the shorthand. |
+| `design-boundary-detect.test.ts` | Covers `detectBoundaries` from `design-boundary-detect.ts`. |
+| `icon-detect.test.ts` | Covers `detectIcons` from `icon-detect.ts`. |
+| `motion-extract.test.ts` | Covers `extractMotion` from `motion-extract.ts`. |
+| `output-policy.test.ts` | Covers `resolveOutputPath`, `requireOutputPath` and `ensureWritableFile` from `output-policy.ts`. |
+| `render-safety.test.ts` | Covers the `render-safety.ts` sanitizers, `safeColor`, `safeLength`, `safeLineHeight` and `safeFontWeight` among them. |
+| `report-preview-overwrite.test.ts` | Covers the overwrite guard shared by `report-gen.ts` and `preview-gen.ts`. |
+| `schema-v3.test.ts` | Covers the v3 schema as the single authority that `build-write-prompt.ts` and `formatters-v3.ts` read. |
+| `typography-role-v3.test.ts` | Covers the semantic typography-role normalizer in `typography-role-v3.ts`. |
+| `guided-run.test.ts` | Covers the `guided-run.ts` wrapper and its use of `output-policy.ts`. |
+| `typo-flags.test.ts` | Covers the refusal of misspelled long options by `guided-run.ts`. |
+| `study-exemplars.test.ts` | Covers the bounded STUDY exemplar controls across `build-write-prompt.ts`, `formatters-v3.ts` and `guided-run.ts`. |
+| `fixtures/` | Shared study case data. See [`fixtures/README.md`](fixtures/README.md). |
 
 ---
 
@@ -87,7 +115,7 @@ Main flow:
                   │
                   ▼
 ╭──────────────────────────────────────────╮
-│ 7 files, 68 tests, pass or fail report   │
+│ 20 files, 176 tests, pass or fail report │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -104,8 +132,8 @@ npm test
 Expected result:
 
 ```text
- Test Files  7 passed (7)
-      Tests  68 passed (68)
+ Test Files  20 passed (20)
+      Tests  176 passed (176)
 ```
 
 ---

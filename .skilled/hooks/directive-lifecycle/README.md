@@ -113,7 +113,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Fail-open | Missing identity, unconfirmed session, invalid transcript, clock mismatch, store-set failure, missing target, spawn failure, timeout, or non-zero exit all resolve to full delivery (decision) or a no-op (boundary). |
 | Bounded | Decision stdin 64 KiB; bridge child timeout 500 ms, stdio cap 64 KiB, `SIGKILL` on timeout; store bounded to 64 sessions with LRU eviction. |
 | State | File-backed durable store, schema version 2, process-local handle with cross-process persistence. A double-read clock check detects concurrent generation bumps. |
-| Imports | Adapters import Node builtins only, plus `../lib/directive-lifecycle.js` (canonical) and the shared `hook-flags.cjs` resolver via `createRequire`. Nothing outside the repo. |
+| Imports | Adapters import Node builtins only, plus the canonical `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`, imported by its compiled `.js` name and the shared `hook-flags.cjs` resolver via `createRequire`. Nothing outside the repo. |
 | Real code | Stays in `system-skill-advisor` and `system-spec-kit`; the hub entries are relative symlinks. |
 
 ---

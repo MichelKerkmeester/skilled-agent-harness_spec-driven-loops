@@ -5,7 +5,7 @@ trigger_phrases:
   - "create-diff scripts"
   - "diff engine"
   - "report validator"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-diff scripts
@@ -108,7 +108,7 @@ python3 scripts/test_create_diff.py
 Expected pass signal:
 
 ```text
-Ran 39 tests
+Ran 59 tests
 OK
 ```
 

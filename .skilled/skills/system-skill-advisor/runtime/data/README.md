@@ -48,7 +48,7 @@ data/
 |---|---|
 | Imports | JSON data files are read by advisor runtime code, not imported as modules. |
 | Exports | This folder exports no runtime code. |
-| Ownership | Track static JSON inputs here. Put runtime logs here only as ignored local state via `.skilled/.gitignore`. |
+| Ownership | Track static JSON inputs here. Put runtime logs here only as ignored local state; the repository root `.gitignore` ignores `*.log` files. |
 
 Main flow:
 

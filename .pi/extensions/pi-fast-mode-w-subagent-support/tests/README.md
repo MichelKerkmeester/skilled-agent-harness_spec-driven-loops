@@ -61,3 +61,7 @@ Run a single file with `npx vitest run tests/config.test.ts` from inside the pac
 
 - `../src/README.md` for the source layout each suite targets.
 - `../README.md` for install, usage, and the handoff contract.
+
+<!-- readme-check
+allow-count 81 tests | the test-case total of a vitest run, which a folder listing cannot count
+-->

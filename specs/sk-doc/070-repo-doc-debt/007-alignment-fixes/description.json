@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/070-repo-doc-debt/007-alignment-fixes",
+  "description": "Doc checker accuracy and README debt fixes: benchmark companion document type, audit-aligned README reference and count checkers, and the README reference and count debt they report.",
+  "keywords": [
+    "benchmark",
+    "companion",
+    "readme",
+    "reference",
+    "checker",
+    "count",
+    "fixture"
+  ],
+  "lastUpdated": "2026-10-27T20:01:07.146Z",
+  "specId": "007",
+  "folderSlug": "alignment-fixes",
+  "parentChain": [
+    "sk-doc",
+    "070-repo-doc-debt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

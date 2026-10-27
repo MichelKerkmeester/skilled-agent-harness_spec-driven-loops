@@ -45,8 +45,8 @@ The dispatch table rows, in priority order (`resolveDispatch` returns the first 
 
 | Priority | Label | Fires when | Checker | Surface rule |
 |---|---|---|---|---|
-| 1 | `comment-hygiene` | In-scope source file (`.ts`/`.tsx`/`.js`/`.mjs`/`.cjs`/`.py`/`.sh`/`.bash`/`.jsonc`) outside `dist`/`node_modules`/`.git` | `check-comment-hygiene.sh` | `exit1-with-stdout` (exit 1 AND non-empty stdout) |
-| 2 | `flowchart` | `.md` file whose name contains "flowchart" or lives under `sk-design-diagram/ascii-patterns/` | `validate-flowchart.sh` | `exit1` |
+| 1 | `comment-hygiene` | In-scope source file (`.ts`/`.tsx`/`.js`/`.mjs`/`.cjs`/`.py`/`.sh`/`.bash`/`.jsonc`) outside `dist`/`node_modules`/`.git` | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` | `exit1-with-stdout` (exit 1 AND non-empty stdout) |
+| 2 | `flowchart` | `.md` file whose name contains "flowchart" or lives under `sk-design-diagram/ascii-patterns/` | `.skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh` | `exit1` |
 | 3 | `frontmatter-versions` | A versioned doc under `.skilled/skills/`: every `.md` except changelog entries, test input (`tests/`, `fixtures/`), generated output (`runtime/`, `benchmark/`, `behavior-benchmark/` with no doc subtree above) and spec-doc examples. With `SPECKIT_VALIDATE_LINKS=true`, any of these but `SKILL.md` goes to `wikilinks` instead | `check-frontmatter-versions.sh --skill <name>` | `exit1` (deduped per skill per session) |
 | 4 | `placeholders` | Spec doc (`spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`decision-record.md`) under `specs/` | `check-placeholders.sh <dir>` | `exit1` |
 | 5 | `wikilinks` | `.md` under `.skilled/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `rules/check-links.sh <skill dir>` | `exit1` |

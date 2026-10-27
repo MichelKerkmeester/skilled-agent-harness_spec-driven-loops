@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/070-repo-doc-debt/007-alignment-fixes",
+  "spec_folder": "sk-doc/070-repo-doc-debt/007-alignment-fixes",
+  "parent_id": "sk-doc/070-repo-doc-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment fixes",
+      "doc checker accuracy fixes",
+      "benchmark companion document type",
+      "readme reference checker false positives",
+      "alignment fixes plan",
+      "alignment fixes tasks",
+      "alignment fixes acceptance criteria",
+      "alignment fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "doc",
+      "checker",
+      "accuracy",
+      "benchmark",
+      "companion",
+      "document",
+      "type",
+      "readme",
+      "reference",
+      "false",
+      "positives"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".claude/hooks/README.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_benchmark_companion_typing.py",
+      ".skilled/skills/sk-doc/scripts/tests/test-flowchart-validator.sh",
+      ".skilled/skills/sk-doc/scripts/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/sk-doc/scripts/tests/README.md",
+      ".skilled/bin/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/README.md",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".claude/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "check_readme_references.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_derived_readme_counts.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_benchmark_companion_typing.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_benchmark_companion_typing.py",
+        "source": "derived"
+      },
+      {
+        "name": "test-flowchart-validator.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-flowchart-validator.sh",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Give",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`validatedocument.py` finds no rule for benchmark report companion files or for files in a `review-output-fixture/` folder, falls back to README rules and fails them for a missing Overview",
+    "created_at": "2026-10-27T20:01:06Z",
+    "last_save_at": "2026-10-27T23:12:48.633Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3aef1ee47b297879b8a104943e273079a6edeec2ad444b39c150578c75fe4297",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d3b21d50ff5e5f522d116e12097cb79d127d5aab9a1faa04fc2b181a46b40d8d",
+      "plan.md": "895dc75ebe39794fbf5165313ecb1814fe8e8d5758345693ad9b227c59350fef",
+      "tasks.md": "81f999bb21f6f9f1603ada3eecc94449bdef1563ec858950889b4c691a9b6267",
+      "implementation-summary.md": "c4333f81cfa4e4a6b0f7a29d0f6d816e1493c667dc8b18a089c787fea1681dd1"
+    },
+    "last_active_at": null
+  }
+}

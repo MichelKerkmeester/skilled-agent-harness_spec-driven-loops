@@ -76,7 +76,6 @@ runtime/cli/
 +-- codex/                 # Codex CLI agent/prompt mirror generators and drift checks
 +-- pi/                    # Pi CLI agent/prompt mirror generators and drift checks
 +-- runtime-mirrors/       # Cross-runtime command/agent/hook mirror policy and synchronizer
-+-- metrics/               # Deep-loop behavioral efficiency scoring from opencode event logs
 +-- optimizer/             # Offline loop optimizer for deep research/review replay data
 +-- resource-map/          # Deep review/research evidence to resource-map.md ledger
 +-- sweep/                 # Strict-pass freshness sweep CI gate over every spec folder

@@ -289,7 +289,7 @@ def _tracked_files(repo_root: Path) -> Optional[Set[str]]:
     """Return tracked paths relative to repo_root, or None when git cannot list them."""
     try:
         proc = subprocess.run(
-            ['git', '-C', str(repo_root), 'ls-files', '-z'],
+            ['git', '-c', 'core.fsmonitor=false', '-C', str(repo_root), 'ls-files', '-z'],
             capture_output=True,
             check=False,
         )
@@ -645,7 +645,7 @@ def git_ignored_paths(repo_root: Path, relative_paths: Iterable[str]) -> Set[str
         return set()
     try:
         proc = subprocess.run(
-            ['git', '-C', str(repo_root), 'check-ignore', '-z', '--stdin'],
+            ['git', '-c', 'core.fsmonitor=false', '-C', str(repo_root), 'check-ignore', '-z', '--stdin'],
             input=('\0'.join(paths) + '\0').encode('utf-8', 'surrogateescape'),
             capture_output=True,
             check=False,

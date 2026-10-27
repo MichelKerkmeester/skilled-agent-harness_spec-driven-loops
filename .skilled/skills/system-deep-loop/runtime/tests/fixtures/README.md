@@ -22,8 +22,7 @@ The fixture surface is test-only. Each consumer suite owns the assertion that gi
 
 ```text
 fixtures/
-└── council-value/
-    └── data/
+└── council-value/      # Scenario fixtures: per-scenario modules, scenarios.cjs and seed helpers
 ```
 
 ---
@@ -32,7 +31,6 @@ fixtures/
 
 | File | Responsibility |
 |---|---|
-| `authorized-ledger-fenced-worker.ts` | Child-process worker fixture for fenced authorized-ledger writes. |
 | `authorized-ledger-fixtures.ts` | Builds fixture event registries, policy registries and authorized-ledger requests. |
 | `authorized-ledger-test-helper.ts` | Shared test helper for authorized-ledger setup and assertions. |
 | `authorized-ledger-worker.ts` | Child-process worker that appends a fixture event and prints its receipt. |
@@ -45,7 +43,7 @@ fixtures/
 | Surface | Entry |
 |---|---|
 | Ledger fixtures | `authorized-ledger-fixtures.ts` |
-| Worker fixtures | `authorized-ledger-worker.ts`, `authorized-ledger-fenced-worker.ts` |
+| Worker fixtures | `authorized-ledger-worker.ts` |
 | Event fixtures | `event-envelope-producers.ts` |
 | Scenario fixtures | [`council-value/README.md`](council-value/README.md) |
 

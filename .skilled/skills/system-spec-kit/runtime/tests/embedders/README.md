@@ -24,11 +24,15 @@ These tests belong to `runtime/lib/embedders/`. Shared provider contract tests b
 
 | File | Responsibility |
 |---|---|
-| `execution-router.vitest.ts` | Covers direct routing across local, Ollama, and cloud providers. |
 | `hf-local-client.vitest.ts` | Covers the hf-local HTTP client contract. |
+| `hf-local-model-identity.vitest.ts` | Covers the model identity the hf-local provider reports. |
 | `hf-model-server.vitest.ts` | Covers local model-server lifecycle and health behavior. |
-| `launcher-model-server.vitest.ts` | Covers launcher-supervised model-server behavior. |
-| `deep-review-remediation.vitest.ts` | Regression coverage from prior review findings. |
+| `hf-model-server-perimeter.vitest.ts` | Covers the loopback bind guard on the model server. |
+| `hf-model-server-shutdown.vitest.ts` | Covers the shutdown failsafe on a live model-server process. |
+| `model-server-perimeter.vitest.ts` | Covers the model-server socket perimeter. |
+| `launcher-model-server-idle-eviction.vitest.ts` | Covers idle eviction of a launcher-supervised model server. |
+| `launcher-model-server-live-two-launcher.vitest.ts` | Covers two launchers sharing one live model-server process. |
+| `launcher-model-server-single-writer-cluster.vitest.ts` | Covers single-writer supervision with no orphaned server. |
 
 ---
 

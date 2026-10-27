@@ -31,7 +31,6 @@ legacy/
 +-- advisor-fixtures/                       # Scenario JSON fixtures
 +-- advisor-graph-health.vitest.ts          # Graph health checks
 +-- advisor-prompt-policy.vitest.ts         # Prompt policy behavior
-+-- advisor-runtime-parity.vitest.ts        # Runtime parity coverage
 `-- README.md
 ```
 

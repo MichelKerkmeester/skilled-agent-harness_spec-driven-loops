@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/sk-doc/scripts."
 trigger_phrases:
   - "sk-doc scripts"
   - "code README"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk doc scripts
@@ -76,7 +76,6 @@ Run individual scripts from the repository root with the documented arguments.
 | `quick_validate.py` | Fast naming and frontmatter checks for pre-commit speed. |
 | `validate-doc-model-refs.js` | Detect docs that cite a non-canonical model name as default. |
 | `validate_document.py` | Validate a markdown doc against its type's required sections and frontmatter. |
-| `validate-flowchart.sh` | Validate ASCII flowchart box alignment and decision-branch labels. |
 | `tests/` | Test suite and fixtures for these scripts (see `tests/README.md`). |
 
 ---

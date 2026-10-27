@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.12.0
+version: 1.8.13.0
 ---
 
 # sk-git
@@ -298,6 +298,5 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
 <!-- readme-check
 allow-ref worktrees/ | a git branch namespace, not a folder
 allow-ref branches/ | a git branch namespace, not a folder
-allow-ref work/ | the launch wrapper's git branch namespace, not a folder
 allow-count zero files | a symptom of a no-op run, not an inventory
 -->

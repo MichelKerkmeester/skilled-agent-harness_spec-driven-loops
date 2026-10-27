@@ -54,12 +54,11 @@ python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_
 | `process-memory-harness.ts` | Process inventory, memory snapshot and exact-identity classification helper |
 | `process-sweep.ts` | Dry-run planner plus a report-only apply path; it signals nothing while no terminable class is registered |
 
-Arc 009 lifecycle helper map:
+Lifecycle helper map:
 
 | Surface | Helper |
 | --- | --- |
-| Deep loop runtime | `runtime//lib/deep-loop/loop-lock.ts`, `jsonl-repair.ts`, `atomic-state.ts` |
-| Spec Kit runtime | `runtime/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `runtime/lib/runtime/timer-registry.ts`, `shutdown-hooks.ts` |
+| Deep loop runtime | `system-deep-loop/runtime/lib/deep-loop/loop-lock.ts`, `system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts`, `system-deep-loop/runtime/lib/deep-loop/atomic-state.ts` |
 | Ops | `runtime/cli/ops/process-memory-harness.ts`, `runtime/cli/ops/process-sweep.ts` |
 
 ---

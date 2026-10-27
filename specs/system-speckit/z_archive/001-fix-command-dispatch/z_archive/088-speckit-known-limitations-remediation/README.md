@@ -224,3 +224,7 @@ diff specs/###-feature-name/checklist.md .opencode/skills/system-spec-kit/templa
 
 ---
 
+<!-- readme-check
+allow-count 5 template files | the Level 2 template set the table below lists, not the files of this folder
+-->
+

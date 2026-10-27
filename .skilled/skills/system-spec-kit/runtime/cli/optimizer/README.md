@@ -65,9 +65,10 @@ optimizer/
 +-- rubric.cjs               # Per-dimension scoring and weighted composite
 +-- search.cjs               # Seeded random search over manifest-bounded config space
 +-- promote.cjs              # Advisory promotion gate and report writer
-+-- audit/                   # Created on first promotion; promotion-reports/ is the report sink
 `-- README.md
 ```
+
+`promote.cjs` creates an `audit/` folder here on its first promotion, with `promotion-reports/` as the report sink.
 
 ---
 

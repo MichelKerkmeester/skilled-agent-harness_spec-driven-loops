@@ -5,7 +5,7 @@ trigger_phrases:
   - "mcp-tooling benchmark"
   - "hub routing benchmark"
   - "skill benchmark baseline"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-tooling. Skill Benchmark Runs
@@ -22,23 +22,24 @@ The retired deep-improvement Lane C skill-benchmark harness benchmarked `mcp-too
 
 | Run | Date | Mode | Verdict | Aggregate | Scenarios | Route gold |
 |---|---|---|---|---|---|---|
-| `after-routing-remediation/` | 2026-07-16 | Mode A router-replay | **PASS** | 98 | 13 | ENFORCED (auto), 13 rows, 13 matches, 0 violations |
-| `baseline/` | 2026-07-16 | Mode A router-replay | **PASS** | 95 | 13 | not scored (pre-gate harness; routeGoldRows 0) |
+| `reports/2026-08-03--playbook-validation--router/` | 2026-08-03 | Mode A router-replay | **PASS** | 98 | 16 | ENFORCED (auto), 16 rows, 16 matches, 0 violations |
+| `reports/2026-08-03--playbook-validation--live/` | 2026-08-03 | Live | **BLOCKED-BY-ROUTE-GOLD** | 42 | 16 | ENFORCED (auto), 16 rows, 0 matches, 16 violations |
+| `reports/baseline/` | 2026-07-16 | Mode A router-replay | **PASS** | 95 | 13 | not scored (pre-gate harness; routeGoldRows 0) |
 
 Baseline captured before mcp-obsidian was registered: six modes (three workflow + three transports), 6/6 hub_routing holdout coverage, and the post-expansion advisor index (generation 11998). The current hub has seven modes: four workflows plus three transports.
 
-`after-routing-remediation/` is the first run under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills): every scenario's `expected_intent` and `expected_resources` scored as hard gold under the fallback-only `defaultResource` contract, 13/13 conformant.
+The 2026-08-03 router run is the current deterministic result under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills). The live run of the same date fails that gate on every scenario.
 
 ---
 
 ## 3. STRUCTURE
 
-- `baseline/`: FROZEN before-snapshot; never regenerated.
-- `<run-label>/`: one sibling folder per subsequent run (e.g. `after_router_tuning/`).
+- `reports/baseline/`: FROZEN before-snapshot; never regenerated.
+- `reports/<run-label>/`: one sibling folder per subsequent run (e.g. `2026-08-03--playbook-validation--router/`).
 
 ---
 
 ## 4. COMPILED-ROUTING ARCHIVE
 
-Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 

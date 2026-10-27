@@ -54,3 +54,7 @@ Voice rules per `.opencode/skills/sk-doc/references/hvr_rules.md` apply througho
 - Multi-commit phases collapse into one entry with all commits listed in Files Changed
 - HVR rules are non-negotiable: no em-dashes, no semicolons, no Oxford commas in narrative prose
 - Review sub-phases use `Added: None - review-only phase`, `Changed: None - review-only phase`, `Fixed: None - review-only phase`
+
+<!-- readme-check
+allow-count 116 tests | the dated test total of phase 004/002, recorded in its changelog, not a folder count
+-->

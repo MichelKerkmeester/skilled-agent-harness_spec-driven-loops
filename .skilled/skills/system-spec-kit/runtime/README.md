@@ -62,7 +62,7 @@ Two consumers, and no third.
 └──────────────┘      └──────────────────┘      └─────────────────┘
 
 Dependency direction:
-scripts ───▶ api/ ───▶ lib/ ───▶ core/ and configs/
+scripts ───▶ api/ ───▶ lib/ ───▶ core/
 hooks/<runtime> ───▶ hooks/lib ───▶ filesystem and shared state
 handlers/ ───▶ filesystem discovery only
 ```
@@ -78,7 +78,6 @@ runtime/
 +-- handlers/     # Spec-document discovery and the save-path folder mutex
 +-- hooks/        # Per-runtime hook adapters and the runtime-neutral spec-gate core
 +-- core/         # Runtime path and config resolution
-+-- configs/      # Environment-validated cognitive config and ranking weight data
 +-- scripts/      # Build finalizer, metadata repair, and test runners
 +-- tests/        # Vitest suites
 +-- stress-test/  # Long-running Vitest suites under their own config
@@ -88,7 +87,7 @@ runtime/
 Allowed dependency direction:
 
 ```text
-api/ → lib/ → core/ → configs/
+api/ → lib/ → core/
 api/ → handlers/
 lib/ → lib/ (inward: domain modules depend on utils, config, parsing)
 hooks/<runtime>/ → hooks/lib/
@@ -99,7 +98,7 @@ Disallowed dependency direction:
 
 ```text
 lib/ → api/
-core/ or configs/ → lib/
+core/ → lib/
 external consumers → lib/, core/ or handlers/ without an allowlist entry
 dist/ → source imports
 ```
