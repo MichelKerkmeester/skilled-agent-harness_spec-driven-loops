@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore
 **Level:** 2
-**Status:** Draft
+**Status:** In Progress
 **Date:** 2026-10-27
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given neither `SPECKIT_WORKTREE_BASE` nor `speckit.worktreeBase` is set, When a wrapper launch runs in a fixture repository, Then `git -C "$FIXTURE" config --get speckit.worktreeBase; echo "exit=$?"` prints `exit=1` | `bash .skilled/bin/tests/worktree-session.test.sh` prints a summary ending `FAIL=0`, and its default-path case passes | Unmet | - |
-| AC-002 | REQ-002 | Given the same launch, When it allocates its worktree on the default base, Then `bash .skilled/bin/tests/worktree-session.test.sh` prints a summary ending `FAIL=0`, and the launch stderr contains `in-checkout default` | The default-path case greps the stderr for the log line | Unmet | - |
-| AC-003 | REQ-003 | Given `SPECKIT_WORKTREE_BASE` is set to a non-empty absolute path and the key is unset, When a wrapper launch runs, Then `git -C "$FIXTURE" config --get speckit.worktreeBase` prints that path | The env-base case (F4) in `bash .skilled/bin/tests/worktree-session.test.sh`, which ends `FAIL=0` | Unmet | - |
-| AC-004 | REQ-004 | Given the resolved base sits inside the checkout and four linked worktrees exist, When the doctor runs, Then `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` prints `# fail 0`, and the in-checkout case reports DEGRADED | The new in-checkout case in the doctor suite | Unmet | - |
-| AC-005 | REQ-004 | Given the resolved base sits outside the checkout, or three or fewer linked worktrees exist, When the doctor runs, Then `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` prints `# fail 0`, and the outside and at-threshold cases report PASS | The outside and at-threshold cases in the doctor suite | Unmet | - |
+| AC-001 | REQ-001 | Given neither `SPECKIT_WORKTREE_BASE` nor `speckit.worktreeBase` is set, When a wrapper launch runs in a fixture repository, Then `git -C "$FIXTURE" config --get speckit.worktreeBase; echo "exit=$?"` prints `exit=1` | Ran 2026-10-27: `PASS=63 FAIL=0`; assertion at `.skilled/bin/tests/worktree-session.test.sh:185`, guard at `.skilled/bin/worktree-session.sh:302` | Met | - |
+| AC-002 | REQ-002 | Given the same launch, When it allocates its worktree on the default base, Then `bash .skilled/bin/tests/worktree-session.test.sh` prints a summary ending `FAIL=0`, and the launch stderr contains `in-checkout default` | Ran 2026-10-27: assertion at `.skilled/bin/tests/worktree-session.test.sh:187`, log line at `.skilled/bin/worktree-session.sh:307` | Met | - |
+| AC-003 | REQ-003 | Given `SPECKIT_WORKTREE_BASE` is set to a non-empty absolute path and the key is unset, When a wrapper launch runs, Then `git -C "$FIXTURE" config --get speckit.worktreeBase` prints that path | Ran 2026-10-27: env-base case unchanged at `.skilled/bin/tests/worktree-session.test.sh:167`, suite `FAIL=0` | Met | - |
+| AC-004 | REQ-004 | Given the resolved base sits inside the checkout and four linked worktrees exist, When the doctor runs, Then `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` prints `# fail 0`, and the in-checkout case reports DEGRADED | Ran 2026-10-27: `# pass 71`, `# fail 0`; case at `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:1115`, check at `.skilled/commands/doctor/scripts/git-setup-check.cjs:744` | Met | - |
+| AC-005 | REQ-004 | Given the resolved base sits outside the checkout, or three or fewer linked worktrees exist, When the doctor runs, Then `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` prints `# fail 0`, and the outside and at-threshold cases report PASS | Ran 2026-10-27: cases at `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:1126`, `:1134` and `:1143` pass | Met | - |
 | AC-006 | REQ-005 | Given the operator has confirmed each idle worktree in writing and the key is set to `~/worktrees/public`, When each worktree is moved and repaired, Then `git worktree list --porcelain \| grep -c '^worktree .*/\.worktrees/'` prints `0` | The output is recorded in `implementation-summary.md` at closure, with the rollback snapshot from `tasks.md` T016 | Unmet | - |
 
 ### Status values
@@ -83,5 +83,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-No. AC-001 is unmet and blocks closure, and the operator confirmation for AC-006 is still open.
+No. AC-006 is unmet: the operator moves the worktrees out of the checkout.
 <!-- /ANCHOR:closure -->

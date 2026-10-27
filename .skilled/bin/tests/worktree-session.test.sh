@@ -166,6 +166,66 @@ expect "env-base launch succeeds" test "$F4_RC" -eq 0
 expect "env-base launch allocates under the env base" test -d "$F4_BASE"
 expect "env-base launch persists the base into repo config" test "$F4_CFG" = "$F4_BASE"
 
+# ── F4b-F4d: only an explicitly chosen base is persisted ──
+# A launch that falls back to the legacy in-checkout default must leave the repository config
+# untouched: recording that default would pin every later worktree inside the checkout.
+F4B_FIXTURE="$ROOT/f4b"
+mkdir -p "$F4B_FIXTURE"
+make_fixture "$F4B_FIXTURE"
+set +e
+(
+  cd "$F4B_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_BASE \
+    PATH="$BIN_DIR:$PATH" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f4b.stderr"
+F4B_RC=$?
+set -e
+expect "default-base launch succeeds" test "$F4B_RC" -eq 0
+expect_not "default-base launch records no base in repo config" \
+  git -C "$F4B_FIXTURE" config --get speckit.worktreeBase
+expect "default-base launch names the in-checkout default" \
+  grep -F "in-checkout default" "$ROOT/f4b.stderr"
+expect "default-base launch reports the resolved default path" \
+  grep -F "$F4B_FIXTURE/.worktrees" "$ROOT/f4b.stderr"
+
+F4C_FIXTURE="$ROOT/f4c"
+mkdir -p "$F4C_FIXTURE"
+make_fixture "$F4C_FIXTURE"
+set +e
+(
+  cd "$F4C_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE='' \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f4c.stderr"
+F4C_RC=$?
+set -e
+expect "empty env-base launch succeeds" test "$F4C_RC" -eq 0
+expect_not "empty env-base launch records no base in repo config" \
+  git -C "$F4C_FIXTURE" config --get speckit.worktreeBase
+expect "empty env-base launch names the in-checkout default" \
+  grep -F "in-checkout default" "$ROOT/f4c.stderr"
+
+F4D_FIXTURE="$ROOT/f4d"
+F4D_BASE="$ROOT/f4d-base"
+mkdir -p "$F4D_FIXTURE" "$F4D_BASE"
+make_fixture "$F4D_FIXTURE"
+git -C "$F4D_FIXTURE" config speckit.worktreeBase "$F4D_BASE"
+set +e
+(
+  cd "$F4D_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD -u SPECKIT_WORKTREE_BASE \
+    PATH="$BIN_DIR:$PATH" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f4d.stderr"
+F4D_RC=$?
+set -e
+F4D_CFG="$(git -C "$F4D_FIXTURE" config --get speckit.worktreeBase 2>/dev/null || true)"
+expect "config-base launch succeeds" test "$F4D_RC" -eq 0
+expect "config-base launch leaves the recorded base unchanged" test "$F4D_CFG" = "$F4D_BASE"
+
 
 # A dependency root holding a workspace package's own entry cannot be shared as one link: the
 # entry's relative text re-anchors through wherever the link sits, so the session silently

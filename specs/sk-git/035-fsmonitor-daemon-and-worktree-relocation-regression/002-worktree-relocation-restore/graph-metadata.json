@@ -33,7 +33,7 @@
       "checkout"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -135,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,12 +160,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The worktrees for this checkout sit under `.worktrees/`, inside the checkout",
     "created_at": "2026-10-27T08:12:31Z",
-    "last_save_at": "2026-10-27T10:54:05.790Z",
+    "last_save_at": "2026-10-27T11:31:49.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3270b254e4ffd93761edf76a44a123fcb5918e35a63f58623df96a001877c657",
+    "source_fingerprint": "sha256:bf02de7ac900d14a596952715c98a12d23b01e879939eba9d308125d7ef48294",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4bac7302e5eb4b3698d134dbd25274bf098263913169b49a2c421ef0f3ebc77",
+      "spec.md": "fde48e040c7043bbbe87d880d329754df15b46bffba1e9903af5af034d10df41",
       "plan.md": "9fd6e94862219e193bb12e0a481a3dc092336982932d1e1bd92a2a247620985e",
-      "tasks.md": "9dd80fdd1e925eabe0e8b316ac4c9fdeae6f17c1831ade56f5bac0afcbe3b396",
-      "implementation-summary.md": "3380d376477a7fb50ef12f11a0455045711c12558a4930f66bf3b34750b2621e"
+      "tasks.md": "4d2f08ba3897297a790bd3b42ac1a9bd923f7bb0b3d22741efa44df078274951",
+      "implementation-summary.md": "208edbc60d356649038332ded49d8ed7c5d219c1de0c11b747b75fdecae50490"
     },
     "last_active_at": null
   }

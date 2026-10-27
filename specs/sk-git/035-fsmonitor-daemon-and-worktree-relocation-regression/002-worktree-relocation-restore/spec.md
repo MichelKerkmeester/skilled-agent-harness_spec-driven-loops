@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -72,14 +72,14 @@ After this phase, a launch with no explicit base leaves the config key unset, an
 $ git config --get speckit.worktreeBase; echo "exit=$?"
 exit=1
 $ git worktree list --porcelain | grep -c '^worktree .*/\.worktrees/'; echo "exit=$?"
-11
+4
 exit=0
 $ ls -d ~/worktrees/public; echo "exit=$?"
 ls: /Users/michelkerkmeester/worktrees/public: No such file or directory
 exit=1
 ```
 
-Captured on 2026-10-27 on `main`. The key is unset, the target folder does not exist, and 11 linked worktrees sit under `.worktrees/`. research.md section 4.2 recorded 12 for the same layout, so the count has changed by one since that research.
+Re-captured on 2026-10-27 at the start of the build, on `main`. The key is unset, the target folder does not exist, and 4 linked worktrees sit under `.worktrees/`: `145-sk-code-surface-consistency-research`, `217-weak-model-spec-authoring`, `218-ci-efficiency-build` and `231-repo-doc-debt`. The planning capture earlier the same day counted 11, and research.md section 4.2 counted 12. Other sessions removed the rest in between.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -186,7 +186,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: EDGE CASES
 
 - Empty input: `SPECKIT_WORKTREE_BASE=""` counts as unset. The launch writes no config key and logs the in-checkout default.
-- Maximum input: 11 linked worktrees today. The doctor reports one DEGRADED row for the base, not one row per worktree.
+- Maximum input: 4 linked worktrees at the start of the build, 12 at the research peak. The doctor reports one DEGRADED row for the base, not one row per worktree.
 - Failure path: a config write that fails (for example, a read-only `.git/config`) leaves the key unset. The launch still succeeds, as it does today.
 <!-- /ANCHOR:edge-cases -->
 

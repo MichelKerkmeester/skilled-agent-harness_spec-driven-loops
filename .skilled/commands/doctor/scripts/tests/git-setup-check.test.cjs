@@ -90,6 +90,18 @@ function fixture(t) {
   return { dir, repo, env, run };
 }
 
+// A fixture with one commit and `count` linked worktrees, which is the state
+// `git worktree list` has to report for the worktrees row to count them.
+function worktreeFixture(t, count) {
+  const f = fixture(t);
+  const g = (args) => execFileSync('git', ['-C', f.repo, ...args], { env: f.env, encoding: 'utf8' });
+  g(['-c', 'user.email=a@b', '-c', 'user.name=a', 'commit', '-q', '--allow-empty', '-m', 'init']);
+  for (let i = 1; i <= count; i += 1) {
+    g(['worktree', 'add', '-q', '--detach', path.join(f.dir, 'linked', `wt-${i}`)]);
+  }
+  return f;
+}
+
 // A fake install root whose gate helper is a stub, so how the gates row reads a
 // helper failure and a report shape can be observed without the real registry.
 function fakeRoot(t, gateHelperSource) {
@@ -1098,6 +1110,55 @@ test('worktrees fails a dangling symlink at the base', (t) => {
   const row = rowOf(reportOf(f.run(['--json'])), 'worktrees');
   assert.equal(row.result, 'FAIL');
   assert.equal(row.details[0], `base is a dangling symlink: ${link}`);
+});
+
+test('worktrees degrades a base inside the checkout with four linked worktrees', (t) => {
+  const f = worktreeFixture(t, 4);
+  fs.mkdirSync(path.join(f.repo, '.worktrees'));
+
+  const row = rowOf(reportOf(f.run(['--json'])), 'worktrees');
+  assert.equal(row.result, 'DEGRADED');
+  assert.ok(row.details[0].includes('4 linked worktrees'), row.details.join(' | '));
+  assert.ok(row.details[0].includes('file watcher sees every file in them'), row.details.join(' | '));
+  assert.equal(row.repair, 'git config speckit.worktreeBase <dir>');
+});
+
+test('worktrees passes a base inside the checkout with three linked worktrees', (t) => {
+  const f = worktreeFixture(t, 3);
+  fs.mkdirSync(path.join(f.repo, '.worktrees'));
+
+  const row = rowOf(reportOf(f.run(['--json'])), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+});
+
+test('worktrees passes a base outside the checkout with four linked worktrees', (t) => {
+  const f = worktreeFixture(t, 4);
+  const base = path.join(f.dir, 'base-outside');
+  fs.mkdirSync(base);
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: base })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+});
+
+test('worktrees passes a sibling base whose name starts with the checkout folder name', (t) => {
+  const f = worktreeFixture(t, 4);
+  const base = path.join(f.dir, 'repo-extra');
+  fs.mkdirSync(base);
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: base })), 'worktrees');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+});
+
+test('worktrees degrades a base that reaches the checkout through a symlink', (t) => {
+  const f = worktreeFixture(t, 4);
+  const target = path.join(f.repo, '.worktrees');
+  fs.mkdirSync(target);
+  const link = path.join(f.dir, 'base-link');
+  fs.symlinkSync(target, link);
+
+  const row = rowOf(reportOf(f.run(['--json'], { SPECKIT_WORKTREE_BASE: link })), 'worktrees');
+  assert.equal(row.result, 'DEGRADED');
+  assert.ok(row.details[0].includes('4 linked worktrees'), row.details.join(' | '));
 });
 
 test('ai-tool-hooks reads only the hooks section and Claude\'s local settings', (t) => {

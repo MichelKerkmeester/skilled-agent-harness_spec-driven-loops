@@ -85,6 +85,9 @@ const DETAIL_LIMIT = 10;
 
 const WORKTREE_REPAIR = 'git config speckit.worktreeBase <dir>';
 const WORKTREE_ENV_REPAIR = 'export SPECKIT_WORKTREE_BASE=<writable dir>, or unset SPECKIT_WORKTREE_BASE';
+// A base inside the main checkout puts every worktree's files on that one
+// fsmonitor, and past a handful of worktrees the load has wedged it.
+const WORKTREE_WATCH_LIMIT = 3;
 const CONTRACT_REPAIR = '/doctor:git standards';
 const GATES_REPAIR = '/doctor:git hooks';
 const COMMIT_ID_REPAIR = `restore ${ownLabel('skills/sk-git/scripts/commit-id-naming.sh')}, or git config --local skilled.commitId false`;
@@ -720,6 +723,35 @@ function checkWorktrees(ctx) {
   } catch {
     const message = nearest.dir === base.dir ? 'base not writable' : 'base parent not writable';
     return fail(source, [`${message}: ${label}`, ...details], repair);
+  }
+
+  // A base inside the main checkout hands that checkout's fsmonitor every file
+  // in every worktree. Both sides are compared as real paths, so a symlink into
+  // the checkout counts while a sibling whose name merely starts with the
+  // checkout's name does not.
+  let insideCheckout = false;
+  try {
+    const top = fs.realpathSync(mainTopFor(ctx.repoRoot));
+    const child = fs.realpathSync(nearest.dir);
+    insideCheckout = child === top || child.startsWith(top + path.sep);
+  } catch {
+    insideCheckout = false;
+  }
+  if (insideCheckout) {
+    const listed = git(ctx.repoRoot, ['worktree', 'list', '--porcelain']);
+    if (listed.status === 0) {
+      const linked = listed.stdout.split('\n').filter((line) => line.startsWith('worktree ')).length - 1;
+      if (linked > WORKTREE_WATCH_LIMIT) {
+        return degraded(
+          source,
+          [
+            `base is inside the main checkout with ${linked} linked worktrees: the main checkout's file watcher sees every file in them`,
+            ...details,
+          ],
+          WORKTREE_REPAIR,
+        );
+      }
+    }
   }
   return pass(source, details);
 }

@@ -217,7 +217,14 @@ SLUG="$(date +%Y%m%d-%H%M%S)-$$"
 # scanning every worktree's node_modules. Precedence: env > git config > legacy
 # in-checkout .worktrees.
 WT_BASE_DIR="${SPECKIT_WORKTREE_BASE:-$(git -C "$MAIN_ROOT" config --get speckit.worktreeBase 2>/dev/null || true)}"
-[ -n "$WT_BASE_DIR" ] || WT_BASE_DIR=".worktrees"
+if [ -n "${SPECKIT_WORKTREE_BASE:-}" ]; then
+  WT_BASE_SOURCE="env"
+elif [ -n "$WT_BASE_DIR" ]; then
+  WT_BASE_SOURCE="config"
+else
+  WT_BASE_SOURCE="default"
+  WT_BASE_DIR=".worktrees"
+fi
 case "$WT_BASE_DIR" in
   "~")   WT_BASE_DIR="$HOME" ;;
   \~/*) WT_BASE_DIR="$HOME/${WT_BASE_DIR#\~/}" ;;
@@ -285,13 +292,19 @@ fi
 # 6. WORKTREE CREATION
 # ───────────────────────────────────────────────────────────────
 
-# Record the chosen base in the repository config when it is unset. The base can arrive
-# only through this launch's environment, which no later process inherits (the reaper runs
-# on its own); without a durable record it falls back to the in-checkout default and
-# mistakes this live session's worktree for an absent one. Non-fatal: a session never
-# fails to launch over a config write.
-if ! git -C "$MAIN_ROOT" config --get speckit.worktreeBase >/dev/null 2>&1; then
+# An explicit base choice is recorded here because no later process inherits this launch's
+# environment: the reaper runs on its own and resolves the base from the repository config,
+# so without the record it falls back to the in-checkout default and mistakes this live
+# session's worktree for an absent one. The default itself is never recorded, because
+# pinning it into config silently moves every later worktree inside the checkout, where the
+# main checkout's file watchers see all of its files. Non-fatal: a session never fails to
+# launch over a config write.
+if [ "$WT_BASE_SOURCE" = "env" ] \
+  && ! git -C "$MAIN_ROOT" config --get speckit.worktreeBase >/dev/null 2>&1; then
   git -C "$MAIN_ROOT" config speckit.worktreeBase "$WT_BASE_DIR" >/dev/null 2>&1 || true
+fi
+if [ "$WT_BASE_SOURCE" = "default" ]; then
+  log "using the in-checkout default base $WT_BASE_DIR; set SPECKIT_WORKTREE_BASE or speckit.worktreeBase to move worktrees out of the checkout"
 fi
 
 log "allocating worktree $WT_REL on branch $BRANCH (base: $WT_BASE)"

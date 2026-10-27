@@ -135,16 +135,16 @@
     ],
     "causal_summary": "On 2026-10-27 a `git push` sat in the pre-push hook for about 30 minutes",
     "created_at": "2026-10-27T08:12:30Z",
-    "last_save_at": "2026-10-27T11:17:15.553Z",
+    "last_save_at": "2026-10-27T11:31:50.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:066b67c3bda310e83d3f2ede57e4541050a9db9086421a057b19de4af8c83e82",
+    "source_fingerprint": "sha256:27c5a72fa2f61c820e6fc8bbfac7a7fc2f7696662fd15fffcf1fc969e5ebb347",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0a3524fc4605792f8dfa347b9add9de055953128932a06578568c85c04dcca26"
+      "spec.md": "700ed9064ce0a1b65bd937c75a5a76957989aa7d5a0077745c140b7ebd2dd369"
     },
     "last_active_child_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
     "last_active_at": "2026-10-27T11:17:15.553Z"

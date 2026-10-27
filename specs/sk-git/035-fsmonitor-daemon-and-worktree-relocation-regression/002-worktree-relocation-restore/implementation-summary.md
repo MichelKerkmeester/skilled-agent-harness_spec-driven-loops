@@ -1,24 +1,27 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A launch without an explicit worktree base no longer pins the in-checkout default into config, and the doctor now warns when worktrees pile up inside the main checkout."
 trigger_phrases:
   - "worktree relocation restore implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore"
-    last_updated_at: "2026-10-27T08:12:32Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-10-27T13:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Shipped the explicit-only base write-back and the doctor in-checkout check"
+    next_safe_action: "Operator moves the worktrees out, tasks T015 to T020"
+    blockers:
+      - "Operator-run worktree move, AC-006"
+    key_files:
+      - ".skilled/bin/worktree-session.sh"
+      - ".skilled/commands/doctor/scripts/git-setup-check.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-002-worktree-relocation-restore"
+      session_id: "62098141-a640-42f2-be0a-f0b9b06d61df"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -32,75 +35,85 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-worktree-relocation-restore |
-| **Completed** | 2026-10-27 |
+| **Completed** | In progress, code shipped 2026-10-27 |
 | **Level** | 2 |
+| **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A session launch can no longer quietly move every future worktree back inside the main checkout. The doctor also now says so when that has already happened.
 
 ### Phase 2: worktree-relocation-restore
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`worktree-session.sh` used to write whatever base it resolved into `speckit.worktreeBase` whenever the key was unset. One launch without `SPECKIT_WORKTREE_BASE` therefore pinned the in-checkout default for good. That is how the relocation from sk-git/026 came undone. The wrapper now records where the base came from. It writes the key only when the base came from `SPECKIT_WORKTREE_BASE`. When it falls back to the default, it writes nothing and logs that the in-checkout default is in effect and how to move it.
+
+The doctor's `worktrees` row now compares the base with the main checkout as real paths. It reports DEGRADED when the base is inside the checkout and more than three linked worktrees exist, because the main checkout's fsmonitor then sees every file in them. Run against this checkout, it reports exactly that, for 4 worktrees.
+
+Moving the existing worktrees out (T015 to T020) is the operator's step and has not run yet.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/bin/worktree-session.sh` | Modified | Base source recorded, write-back limited to an explicit `SPECKIT_WORKTREE_BASE`, log line for the default |
+| `.skilled/bin/tests/worktree-session.test.sh` | Modified | Default, empty-variable and config-source cases beside the unchanged env-base case |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Modified | In-checkout check with a three-worktree limit |
+| `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | Modified | Five cases: four inside, three inside, outside, sibling prefix, symlink |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash 1017 at `max` built two units through `cli-opencode`, one at a time, with fsmonitor disabled for its git calls and with any `git config` write on this repository banned. The orchestrator read each diff, confirmed that `speckit.worktreeBase` was still unset in this repository after each unit, and ran the wrapper, reaper, naming and doctor suites. It then ran the doctor read-only against this checkout and searched CI for anything that fails on the doctor's exit code.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Persist only a base from `SPECKIT_WORKTREE_BASE` | The launch environment is the one explicit choice no later process can see, while a recorded default silently pins worktrees inside the checkout |
+| Degrade above three linked worktrees, confirmed by the operator | A few short-lived worktrees inside the checkout are tolerable, and the outage happened with eleven or more |
+| Compare real paths with a separator boundary | A symlink into the checkout must count as inside, and a sibling folder sharing the checkout's name prefix must not |
+| Leave the worktree move to the operator | Moving a worktree another session is using breaks that session |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `bash .skilled/bin/tests/worktree-session.test.sh` | PASS, `PASS=63 FAIL=0`, up from 54 |
+| `bash .skilled/bin/tests/worktree-reaper.test.sh` | PASS, `PASS=24 FAIL=0` |
+| `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | PASS, `PASS=171 FAIL=0`, unchanged |
+| `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | PASS, `# pass 71`, up from 66 |
+| Doctor on this checkout | DEGRADED on `worktrees` only, 4 linked worktrees, exit 3 |
+| `git config --get speckit.worktreeBase` after both units | exit 1, still unset |
+| CI reference to `git-setup-check` | None |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The worktrees are still inside the checkout.** Until the operator runs T015 to T020, the main daemon still watches the 4 remaining worktrees, and the doctor reports DEGRADED.
+2. **New sessions still default inside the checkout.** The default base is unchanged. Setting `speckit.worktreeBase` to `~/worktrees/public` (T018) is what moves new worktrees out.
+3. **What unset the key earlier is unknown.** The new guard stops the default from being written again, whatever caused it.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

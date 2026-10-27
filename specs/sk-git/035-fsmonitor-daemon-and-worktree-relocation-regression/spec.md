@@ -114,7 +114,7 @@ Make an unanswered fsmonitor daemon cost seconds instead of half an hour, stop o
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Root cause and four-layer fix design, from 7 DeepSeek V4.1 Flash iterations over three lanes | Complete |
-| 2 | 002-worktree-relocation-restore/ | Worktrees back outside the checkout, no silent re-pin of the in-checkout default | Draft |
+| 2 | 002-worktree-relocation-restore/ | Worktrees back outside the checkout, no silent re-pin of the in-checkout default | In Progress |
 | 3 | 003-fsmonitor-daemon-lifecycle/ | Reap daemons whose worktree is gone, and replace wedged daemons | Draft |
 | 4 | 004-push-gate-git-timeout/ | Timeout and fsmonitor opt-out on the pre-push gate's git calls | Complete |
 
