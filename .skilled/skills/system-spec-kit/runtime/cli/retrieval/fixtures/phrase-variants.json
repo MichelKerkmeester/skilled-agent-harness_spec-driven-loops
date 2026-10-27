@@ -1,5 +1,5 @@
 {
-  "manifestHash": "609060525eab06da75e59aa3e9c2bcd3c3e2ee2b41558a58a038f446d0f14b03",
+  "manifestHash": "5c9c83e61a4546b3827aaa5a2d964d39202f133783a2f1e9a776c21b07bb4779",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7954,6 +7954,9 @@
     "adapter playbook bijection validator": [
       "adapter playbook bijection validator"
     ],
+    "adapter readme names source file": [
+      "adapter readme names source file"
+    ],
     "adapter resident memory benchmark": [
       "adapter resident memory benchmark",
       "adapter-resident-memory-benchmark"
@@ -8065,6 +8068,9 @@
     ],
     "add union alpha": [
       "add union alpha"
+    ],
+    "add your own surface path": [
+      "add your own surface path"
     ],
     "adding new mcp server": [
       "adding new mcp server"
@@ -10178,6 +10184,9 @@
     ],
     "agent template critical important": [
       "agent template critical important"
+    ],
+    "agent validation example placeholder": [
+      "agent validation example placeholder"
     ],
     "agent vs skill vs command": [
       "agent vs skill vs command"
@@ -13652,6 +13661,27 @@
     ],
     "benchmark report promotion": [
       "benchmark report promotion"
+    ],
+    "benchmark report readme layout": [
+      "benchmark report readme layout"
+    ],
+    "benchmark report readmes": [
+      "benchmark report readmes"
+    ],
+    "benchmark report readmes acceptance criteria": [
+      "benchmark report readmes acceptance criteria"
+    ],
+    "benchmark report readmes implementation summary": [
+      "benchmark report readmes implementation summary"
+    ],
+    "benchmark report readmes plan": [
+      "benchmark report readmes plan"
+    ],
+    "benchmark report readmes restructure 235 legacy reports": [
+      "benchmark report readmes restructure 235 legacy reports"
+    ],
+    "benchmark report readmes tasks": [
+      "benchmark report readmes tasks"
     ],
     "benchmark report section pattern": [
       "benchmark report section pattern"
@@ -19335,6 +19365,9 @@
     "cli claude code 1 5 3 0": [
       "cli-claude-code 1.5.3.0"
     ],
+    "cli claude code 1 5 4 0": [
+      "cli-claude-code 1.5.4.0"
+    ],
     "cli claude code benchmark": [
       "cli-claude-code benchmark"
     ],
@@ -19437,6 +19470,9 @@
     "cli claude code v1 5 3 0": [
       "cli-claude-code v1.5.3.0"
     ],
+    "cli claude code v1 5 4 0": [
+      "cli-claude-code v1.5.4.0"
+    ],
     "cli codex 1 0 0 0": [
       "cli-codex 1.0.0.0"
     ],
@@ -19532,6 +19568,9 @@
     ],
     "cli codex 1 9 8 0": [
       "cli-codex 1.9.8.0"
+    ],
+    "cli codex 1 9 9 0": [
+      "cli-codex 1.9.9.0"
     ],
     "cli codex adapter": [
       "cli-codex adapter"
@@ -19707,6 +19746,9 @@
     "cli codex v1 9 8 0": [
       "cli-codex v1.9.8.0"
     ],
+    "cli codex v1 9 9 0": [
+      "cli-codex v1.9.9.0"
+    ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
     ],
@@ -19785,6 +19827,9 @@
     "cli cursor 1 5 3 0": [
       "cli-cursor 1.5.3.0"
     ],
+    "cli cursor 1 5 4 0": [
+      "cli-cursor 1.5.4.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -19847,6 +19892,9 @@
     ],
     "cli cursor v1 5 3 0": [
       "cli-cursor v1.5.3.0"
+    ],
+    "cli cursor v1 5 4 0": [
+      "cli-cursor v1.5.4.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -19955,6 +20003,9 @@
     ],
     "cli devin 1 4 7 0": [
       "cli-devin 1.4.7.0"
+    ],
+    "cli devin 1 4 8 0": [
+      "cli-devin 1.4.8.0"
     ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
@@ -20075,6 +20126,9 @@
     ],
     "cli devin v1 4 7 0": [
       "cli-devin v1.4.7.0"
+    ],
+    "cli devin v1 4 8 0": [
+      "cli-devin v1.4.8.0"
     ],
     "cli devin wiring plan": [
       "cli-devin wiring plan"
@@ -20946,6 +21000,9 @@
     "cli opencode 1 5 2 0": [
       "cli-opencode 1.5.2.0"
     ],
+    "cli opencode 1 5 3 0": [
+      "cli-opencode 1.5.3.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -21156,6 +21213,9 @@
     "cli opencode v1 5 2 0": [
       "cli-opencode v1.5.2.0"
     ],
+    "cli opencode v1 5 3 0": [
+      "cli-opencode v1.5.3.0"
+    ],
     "cli opencode version detection": [
       "cli-opencode version detection"
     ],
@@ -21332,6 +21392,9 @@
     ],
     "cli pi 1 5 16 0": [
       "cli-pi 1.5.16.0"
+    ],
+    "cli pi 1 5 17 0": [
+      "cli-pi 1.5.17.0"
     ],
     "cli pi 1 5 2 0": [
       "cli-pi 1.5.2.0"
@@ -21510,6 +21573,9 @@
     ],
     "cli pi v1 5 16 0": [
       "cli-pi v1.5.16.0"
+    ],
+    "cli pi v1 5 17 0": [
+      "cli-pi v1.5.17.0"
     ],
     "cli pi v1 5 2 0": [
       "cli-pi v1.5.2.0"
@@ -30128,6 +30194,9 @@
     "d4 r grader dim id mismatch": [
       "d4-r grader dim_id mismatch"
     ],
+    "d4r live report runner path": [
+      "d4r live report runner path"
+    ],
     "d7 supersession command names": [
       "D7 supersession command names"
     ],
@@ -33159,6 +33228,9 @@
     "deep loop runtime 1 9 1 0": [
       "deep-loop-runtime 1.9.1.0"
     ],
+    "deep loop runtime 1 9 10 0": [
+      "deep-loop-runtime 1.9.10.0"
+    ],
     "deep loop runtime 1 9 2 0": [
       "deep-loop-runtime 1.9.2.0"
     ],
@@ -33263,6 +33335,9 @@
     ],
     "deep loop runtime v1 9 1 0": [
       "deep-loop-runtime v1.9.1.0"
+    ],
+    "deep loop runtime v1 9 10 0": [
+      "deep-loop-runtime v1.9.10.0"
     ],
     "deep loop runtime v1 9 2 0": [
       "deep-loop-runtime v1.9.2.0"
@@ -42527,6 +42602,9 @@
     ],
     "example generation tasks": [
       "example generation tasks"
+    ],
+    "example output folder placeholders": [
+      "example output folder placeholders"
     ],
     "example skills directory structure": [
       "example skills directory structure"
@@ -52963,6 +53041,9 @@
     "hook path compiled route spawn": [
       "hook path compiled route spawn"
     ],
+    "hook paths from repository root": [
+      "hook paths from repository root"
+    ],
     "hook registration drift": [
       "hook registration drift"
     ],
@@ -60413,6 +60494,9 @@
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
+    "mcp aside devtools 1 1 3 0": [
+      "mcp-aside-devtools 1.1.3.0"
+    ],
     "mcp aside devtools v1 0 0 0": [
       "mcp-aside-devtools v1.0.0.0"
     ],
@@ -60424,6 +60508,9 @@
     ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
+    ],
+    "mcp aside devtools v1 1 3 0": [
+      "mcp-aside-devtools v1.1.3.0"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -61778,6 +61865,9 @@
     "mcp tooling 1 8 4 0": [
       "mcp-tooling 1.8.4.0"
     ],
+    "mcp tooling 1 8 5 0": [
+      "mcp-tooling 1.8.5.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -61882,6 +61972,9 @@
     ],
     "mcp tooling v1 8 4 0": [
       "mcp-tooling v1.8.4.0"
+    ],
+    "mcp tooling v1 8 5 0": [
+      "mcp-tooling v1.8.5.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -67385,6 +67478,9 @@
     ],
     "node preserve symlinks tsx loader": [
       "NODE_PRESERVE_SYMLINKS tsx loader"
+    ],
+    "node scripts dependency location": [
+      "node scripts dependency location"
     ],
     "node specifier normalisation plan": [
       "node specifier normalisation plan"
@@ -80418,6 +80514,9 @@
     "readme off switches shipped": [
       "readme off switches shipped"
     ],
+    "readme paths lead to real files": [
+      "readme paths lead to real files"
+    ],
     "readme plan": [
       "readme plan"
     ],
@@ -80576,6 +80675,9 @@
     ],
     "readme types nine section structure": [
       "readme types nine-section structure"
+    ],
+    "readme verdict baseline": [
+      "readme verdict baseline"
     ],
     "readme verdict baseline parity": [
       "readme verdict baseline parity"
@@ -81276,6 +81378,21 @@
     ],
     "reference and asset frontmatter": [
       "reference and asset frontmatter"
+    ],
+    "reference and coverage fixes": [
+      "reference and coverage fixes"
+    ],
+    "reference and coverage fixes acceptance criteria": [
+      "reference and coverage fixes acceptance criteria"
+    ],
+    "reference and coverage fixes implementation summary": [
+      "reference and coverage fixes implementation summary"
+    ],
+    "reference and coverage fixes plan": [
+      "reference and coverage fixes plan"
+    ],
+    "reference and coverage fixes tasks": [
+      "reference and coverage fixes tasks"
     ],
     "reference artifact verification": [
       "reference artifact verification"
@@ -83928,6 +84045,9 @@
     ],
     "repo doc debt phase parent spec": [
       "repo doc debt phase parent spec"
+    ],
+    "repo doc debt reference and coverage fixes": [
+      "repo doc debt reference and coverage fixes"
     ],
     "repo era detection": [
       "repo era detection"
@@ -89221,6 +89341,9 @@
     "runtime mirrors tasks": [
       "runtime mirrors tasks"
     ],
+    "runtime module source files": [
+      "runtime module source files"
+    ],
     "runtime module tests": [
       "runtime module tests"
     ],
@@ -90831,6 +90954,9 @@
     ],
     "scripts config barrel": [
       "scripts config barrel"
+    ],
+    "scripts diagram goal path placeholder": [
+      "scripts diagram goal path placeholder"
     ],
     "scripts freshness counted fixtures": [
       "scripts freshness counted fixtures"
@@ -94017,6 +94143,12 @@
     "sk code 3 9 4 0": [
       "sk-code 3.9.4.0"
     ],
+    "sk code 3 9 5 0": [
+      "sk-code 3.9.5.0"
+    ],
+    "sk code 3 9 6 0": [
+      "sk-code 3.9.6.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -95442,6 +95574,12 @@
     "sk code v3 9 4 0": [
       "sk-code v3.9.4.0"
     ],
+    "sk code v3 9 5 0": [
+      "sk-code v3.9.5.0"
+    ],
+    "sk code v3 9 6 0": [
+      "sk-code v3.9.6.0"
+    ],
     "sk code verification workflow": [
       "sk-code verification workflow"
     ],
@@ -95487,6 +95625,9 @@
     "sk create agent 1 0 1 2": [
       "sk-create-agent 1.0.1.2"
     ],
+    "sk create agent 1 0 2 0": [
+      "sk-create-agent 1.0.2.0"
+    ],
     "sk create agent playbook": [
       "sk-create-agent playbook"
     ],
@@ -95501,6 +95642,9 @@
     ],
     "sk create agent v1 0 1 2": [
       "sk-create-agent v1.0.1.2"
+    ],
+    "sk create agent v1 0 2 0": [
+      "sk-create-agent v1.0.2.0"
     ],
     "sk create benchmark 1 0 0 0": [
       "sk-create-benchmark 1.0.0.0"
@@ -95865,6 +96009,9 @@
     "sk create goal 1 4 2 0": [
       "sk-create-goal 1.4.2.0"
     ],
+    "sk create goal 1 4 3 0": [
+      "sk-create-goal 1.4.3.0"
+    ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
     ],
@@ -95942,6 +96089,9 @@
     ],
     "sk create goal v1 4 2 0": [
       "sk-create-goal v1.4.2.0"
+    ],
+    "sk create goal v1 4 3 0": [
+      "sk-create-goal v1.4.3.0"
     ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
@@ -96126,6 +96276,9 @@
     "sk create skill 1 5 7 0": [
       "sk-create-skill 1.5.7.0"
     ],
+    "sk create skill 1 5 8 0": [
+      "sk-create-skill 1.5.8.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -96170,6 +96323,9 @@
     ],
     "sk create skill v1 5 7 0": [
       "sk-create-skill v1.5.7.0"
+    ],
+    "sk create skill v1 5 8 0": [
+      "sk-create-skill v1.5.8.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -96441,6 +96597,9 @@
     "sk design diagram 1 2 3 0": [
       "sk-design-diagram 1.2.3.0"
     ],
+    "sk design diagram 1 2 4 0": [
+      "sk-design-diagram 1.2.4.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -96464,6 +96623,9 @@
     ],
     "sk design diagram v1 2 3 0": [
       "sk-design-diagram v1.2.3.0"
+    ],
+    "sk design diagram v1 2 4 0": [
+      "sk-design-diagram v1.2.4.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -96701,6 +96863,12 @@
     ],
     "sk doc 2 3 17 0": [
       "sk-doc 2.3.17.0"
+    ],
+    "sk doc 2 3 18 0": [
+      "sk-doc 2.3.18.0"
+    ],
+    "sk doc 2 3 19 0": [
+      "sk-doc 2.3.19.0"
     ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
@@ -97056,6 +97224,12 @@
     "sk doc v2 3 17 0": [
       "sk-doc v2.3.17.0"
     ],
+    "sk doc v2 3 18 0": [
+      "sk-doc v2.3.18.0"
+    ],
+    "sk doc v2 3 19 0": [
+      "sk-doc v2.3.19.0"
+    ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
     ],
@@ -97220,6 +97394,9 @@
     ],
     "sk git 1 9 8 0": [
       "sk-git 1.9.8.0"
+    ],
+    "sk git 1 9 9 0": [
+      "sk-git 1.9.9.0"
     ],
     "sk git benchmark": [
       "sk-git benchmark"
@@ -97434,6 +97611,9 @@
     "sk git v1 9 8 0": [
       "sk-git v1.9.8.0"
     ],
+    "sk git v1 9 9 0": [
+      "sk-git v1.9.9.0"
+    ],
     "sk git workflow support": [
       "sk-git workflow support"
     ],
@@ -97499,6 +97679,9 @@
     ],
     "sk prompt 3 0 5 0": [
       "sk-prompt 3.0.5.0"
+    ],
+    "sk prompt 3 0 6 0": [
+      "sk-prompt 3.0.6.0"
     ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
@@ -97794,6 +97977,9 @@
     "sk prompt v3 0 5 0": [
       "sk-prompt v3.0.5.0"
     ],
+    "sk prompt v3 0 6 0": [
+      "sk-prompt v3.0.6.0"
+    ],
     "sk vision": [
       "sk-vision"
     ],
@@ -97820,6 +98006,9 @@
     ],
     "sk vision 0 3 6 0": [
       "sk-vision 0.3.6.0"
+    ],
+    "sk vision 0 3 7 0": [
+      "sk-vision 0.3.7.0"
     ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
@@ -98438,6 +98627,9 @@
     ],
     "sk vision v0 3 6 0": [
       "sk-vision v0.3.6.0"
+    ],
+    "sk vision v0 3 7 0": [
+      "sk-vision v0.3.7.0"
     ],
     "sk vision v2 prompt hook": [
       "sk vision v2 prompt hook"
@@ -99564,6 +99756,9 @@
     "skill file scaffold": [
       "skill file scaffold"
     ],
+    "skill folder placeholder examples": [
+      "skill folder placeholder examples"
+    ],
     "skill frontmatter alignment": [
       "skill frontmatter alignment"
     ],
@@ -100018,6 +100213,9 @@
     ],
     "skill root metadata self heal": [
       "skill root metadata self heal"
+    ],
+    "skill root package manifest": [
+      "skill root package manifest"
     ],
     "skill routing council": [
       "skill routing council"
@@ -106116,6 +106314,9 @@
     "system deep loop 1 6 10 0": [
       "system-deep-loop 1.6.10.0"
     ],
+    "system deep loop 1 6 11 0": [
+      "system-deep-loop 1.6.11.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -106272,6 +106473,9 @@
     "system deep loop v1 6 10 0": [
       "system-deep-loop v1.6.10.0"
     ],
+    "system deep loop v1 6 11 0": [
+      "system-deep-loop v1.6.11.0"
+    ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
     ],
@@ -106421,6 +106625,9 @@
     ],
     "system skill advisor 0 17 5 0": [
       "system-skill-advisor 0.17.5.0"
+    ],
+    "system skill advisor 0 17 6 0": [
+      "system-skill-advisor 0.17.6.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -106616,6 +106823,9 @@
     ],
     "system skill advisor v0 17 5 0": [
       "system-skill-advisor v0.17.5.0"
+    ],
+    "system skill advisor v0 17 6 0": [
+      "system-skill-advisor v0.17.6.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -106889,6 +107099,12 @@
     ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
+    ],
+    "system spec kit 2 12 6 0": [
+      "system-spec-kit 2.12.6.0"
+    ],
+    "system spec kit 2 12 7 0": [
+      "system-spec-kit 2.12.7.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
@@ -107345,6 +107561,12 @@
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
+    ],
+    "system spec kit v2 12 6 0": [
+      "system-spec-kit v2.12.6.0"
+    ],
+    "system spec kit v2 12 7 0": [
+      "system-spec-kit v2.12.7.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"

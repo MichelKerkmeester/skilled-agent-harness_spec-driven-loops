@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7333,
-    "ok": 15513,
+    "ok": 15547,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26394,
+  "documentsScanned": 26428,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "609060525eab06da75e59aa3e9c2bcd3c3e2ee2b41558a58a038f446d0f14b03",
+  "manifestHash": "5c9c83e61a4546b3827aaa5a2d964d39202f133783a2f1e9a776c21b07bb4779",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38239,
+      "ok": 38313,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72447,6 +72447,14 @@
     },
     {
       "path": "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/004-benchmark-report-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes/scratch",
       "reason": "excluded directory"
     },
     {
