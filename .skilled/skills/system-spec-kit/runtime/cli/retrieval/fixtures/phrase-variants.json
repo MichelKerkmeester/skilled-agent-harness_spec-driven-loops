@@ -1,5 +1,5 @@
 {
-  "manifestHash": "709256ccbb113e9d57c14a1c5ad74e587ff7fa96191b6c97acb470e175927024",
+  "manifestHash": "c63e8be294e84b613d0480ee2bc31a77179626fa5db1b123e62850b79f61024a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18131,6 +18131,9 @@
     ],
     "ci rule set comparison tasks": [
       "ci rule set comparison tasks"
+    ],
+    "ci runner minutes": [
+      "ci runner minutes"
     ],
     "ci shared package resolution": [
       "ci shared package resolution"
@@ -78178,6 +78181,9 @@
     "private skill scan containment decision": [
       "private skill scan containment decision"
     ],
+    "private skill surfaces": [
+      "private skill surfaces"
+    ],
     "private surface skills": [
       "private surface skills"
     ],
@@ -100817,6 +100823,9 @@
     "skilled v4 0 0 15": [
       "skilled v4.0.0.15"
     ],
+    "skilled v4 0 0 16": [
+      "skilled v4.0.0.16"
+    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -112515,6 +112524,9 @@
     ],
     "v4 0 0 15 release notes": [
       "v4.0.0.15 release notes"
+    ],
+    "v4 0 0 16 release notes": [
+      "v4.0.0.16 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
