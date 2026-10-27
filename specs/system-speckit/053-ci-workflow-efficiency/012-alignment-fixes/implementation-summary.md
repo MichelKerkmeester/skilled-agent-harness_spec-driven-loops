@@ -58,7 +58,7 @@ The lint check failed on 239 errors. The `^_` unused-binding rule applied only t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.github/workflows/skill-advisor-stress.yml` | Modified | Scan, then the default suite, timeout 25 |
+| `.github/workflows/skill-advisor-stress.yml` | Modified | Scan, then the default suite, timeout 25; sk-doc's package installed so the parent-skill checker resolves the shared package |
 | `.github/workflows/naming-standard-guard.yml` | Modified | `main` added to the push branches |
 | `.github/workflows/README.md` | Modified | Rows for both workflows |
 | `.skilled/skills/sk-code/sk-code-ci/references/*.md` | Modified | Four citations and the timeout table |

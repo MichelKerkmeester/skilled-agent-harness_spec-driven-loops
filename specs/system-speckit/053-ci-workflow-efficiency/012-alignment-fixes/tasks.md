@@ -66,6 +66,7 @@ contextType: "general"
 - [x] T016 Replay the naming guard over the audited range (`G`). Verify: `--changed-since 583316d0833e` dropped from 18 names to 8, none of them a synthesis marker. `--changed-since HEAD` and `--changed-since origin/main` printed `PASS`.
 - [x] T017 Re-mint the sk-doc compiled-routing manifest after the version step. Verify: `node .skilled/bin/compiled-route-guard.cjs` printed `All hubs fresh or excused`.
 - [x] T018 Run the spec-gate suites after the signature change (`RT/tests/hooks/spec-gate-*.test.mjs`). Verify: `tests 155`, `pass 152`, `fail 0`.
+- [x] T020 Install sk-doc's package in the advisor job (`.github/workflows/skill-advisor-stress.yml`). The first CI run of the default suite failed 1 of 1309 tests: the parent-skill golden case could not load `@spec-kit/shared/frontmatter/parse-frontmatter.js`, which sk-doc's contract library resolves through `.skilled/skills/sk-doc/node_modules`, and a fresh checkout has no such install. Verify: `actionlint` exits 0 on the workflow, and the next push's `Skill Advisor Stress Tests` run reports success.
 <!-- /ANCHOR:phase-3 -->
 
 ---
