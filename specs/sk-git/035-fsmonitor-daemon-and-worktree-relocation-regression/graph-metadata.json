@@ -42,6 +42,7 @@
       "001-deep-research/research/research.md",
       ".skilled/bin/worktree-session.sh",
       ".skilled/bin/tests/worktree-session.test.sh",
+      ".skilled/bin/fsmonitor-daemon-reaper.sh",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
@@ -70,6 +71,12 @@
         "name": "worktree-session.test.sh",
         "kind": "script",
         "path": ".skilled/bin/tests/worktree-session.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/fsmonitor-daemon-reaper.sh",
         "source": "derived"
       },
       {
@@ -135,18 +142,18 @@
     ],
     "causal_summary": "On 2026-10-27 a `git push` sat in the pre-push hook for about 30 minutes",
     "created_at": "2026-10-27T08:12:30Z",
-    "last_save_at": "2026-10-27T11:31:50.995Z",
+    "last_save_at": "2026-10-27T12:50:37.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:27c5a72fa2f61c820e6fc8bbfac7a7fc2f7696662fd15fffcf1fc969e5ebb347",
+    "source_fingerprint": "sha256:a75753317fa8037ca5786805c2bacb4085911972dbbc4780befcfaf22180ad75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "700ed9064ce0a1b65bd937c75a5a76957989aa7d5a0077745c140b7ebd2dd369"
+      "spec.md": "89e670d1080fee4073f4f6e401520f1392778dc5afd156e9a420bd4ff15772ad"
     },
-    "last_active_child_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
-    "last_active_at": "2026-10-27T11:17:15.553Z"
+    "last_active_child_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
+    "last_active_at": "2026-10-27T12:50:37.449Z"
   }
 }

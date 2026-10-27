@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -234,9 +234,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 
 - Open question 1, answered: the operator's goal for this packet is to stop old daemons from running on, and the registry rule alone leaves all 11 current daemons running. The idle rule is in scope as REQ-011 and REQ-012. Ending a daemon drops only its cache, and git starts a new one on the next index read. The operator set the age to 12 hours.
-- Open question 2, answered: Option B. `worktree-reaper.sh` calls this script with `--apply --worktree` before each removal at line 224, and its README promise becomes "never signals a process itself". The reaper removes the most worktrees, so without this each merged worktree would leave a daemon behind. In scope as REQ-013.
+- Open question 2, answered: Option B. `worktree-reaper.sh` calls this script with `--apply --worktree` before each removal at line 224, and its README promise becomes "never signals a process itself". In scope as REQ-013. A later check corrected the reason first given for it. In a scratch repository, a worktree's daemon exited by itself within 5 seconds of `git worktree remove`, so removal alone leaves no daemon behind. The hand-off still ends the daemon through git's own `stop` while the worktree exists, so the reaper does not rely on the daemon noticing that its tree is gone.
 - Open question 3 (operator decision): the brief asks for a probe timeout of about 10 seconds. The research saw a cold daemon answer in about 10 seconds, so this plan uses 15 seconds. Answered 2026-10-27: 15 seconds.
-- Open question 4 (verification): does the cite-drift gate's temporary worktree (`.skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs:128`) start a daemon before its `worktree remove`? Task T022 answers it in a scratch clone.
+- Open question 4 (verification): does the cite-drift gate's temporary worktree (`.skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs:128`) start a daemon before its `worktree remove`? Answered 2026-10-27 (T022): yes, briefly. The real gate ran against a scratch repository with fsmonitor on. A daemon whose watched root was the `cite-drift-base-` worktree appeared for about 2 seconds, and none was left 8 seconds after the gate's `worktree remove --force`. The gate leaks no daemon. A scratch repository stood in for a clone, because a clone is 3.6 GB of history.
 <!-- /ANCHOR:questions -->
 
 ---

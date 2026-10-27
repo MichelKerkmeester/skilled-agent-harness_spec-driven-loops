@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression"
-    last_updated_at: "2026-10-27T11:30:00Z"
+    last_updated_at: "2026-10-27T13:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Finished the phase 001 research and planned phases 002 to 004"
-    next_safe_action: "Implement 004-push-gate-git-timeout first, the cheapest fix"
+    recent_action: "Shipped phases 002 code, 003 and 004; phase 002 waits on the operator's worktree move"
+    next_safe_action: "Operator moves the worktrees out of the checkout, phase 002 tasks T015 to T020"
     blockers: []
     key_files:
       - "scratch/findings.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "62098141-a640-42f2-be0a-f0b9b06d61df"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 75
     open_questions: []
     answered_questions: []
 ---
@@ -115,7 +115,7 @@ Make an unanswered fsmonitor daemon cost seconds instead of half an hour, stop o
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Root cause and four-layer fix design, from 7 DeepSeek V4.1 Flash iterations over three lanes | Complete |
 | 2 | 002-worktree-relocation-restore/ | Worktrees back outside the checkout, no silent re-pin of the in-checkout default | In Progress |
-| 3 | 003-fsmonitor-daemon-lifecycle/ | Reap daemons whose worktree is gone, and replace wedged daemons | Draft |
+| 3 | 003-fsmonitor-daemon-lifecycle/ | Reap daemons whose worktree is gone, and replace wedged daemons | Complete |
 | 4 | 004-push-gate-git-timeout/ | Timeout and fsmonitor opt-out on the pre-push gate's git calls | Complete |
 
 Phase 004 has no dependency on 002 or 003. It is the cheapest change and removes the push stall on its own, so it can ship first.
@@ -143,7 +143,7 @@ Phase 004 has no dependency on 002 or 003. It is the cheapest change and removes
 
 - After the worktrees move out, should the main checkout keep fsmonitor, or also opt out with `extensions.worktreeConfig` as a second safeguard? Decide in phase 002 once the relocation is measured.
 - What unset `speckit.worktreeBase`? UNKNOWN. The key is unversioned local config, so only a `.git/config` backup or shell history can answer it. Phase 002 removes the silent re-pin either way.
-- Is a lost cookie event under event load the actual trigger of the wedge? INFERRED. A `GIT_TRACE_FSMONITOR=1` run during a heavy install in a nested worktree would confirm it.
+- Is a lost cookie event under event load the actual trigger of the wedge? INFERRED. A `GIT_TRACE_FSMONITOR=1` run during a heavy install in a nested worktree would confirm it. Load is not required: on 2026-10-27 a `git commit` in a one-file scratch repository, started one second after its daemon, waited forever while later calls to that daemon answered.
 <!-- /ANCHOR:questions -->
 
 ---

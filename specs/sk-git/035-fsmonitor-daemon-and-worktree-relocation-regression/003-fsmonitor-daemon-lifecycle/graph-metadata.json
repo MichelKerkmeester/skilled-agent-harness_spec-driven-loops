@@ -33,19 +33,25 @@
       "worktree"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/bin/README.md",
-      ".skilled/bin/worktree-reaper.sh",
-      ".skilled/skills/sk-git/references/finish-workflows.md",
-      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/bin/fsmonitor-daemon-reaper.sh",
+      ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
       ".skilled/bin/worktree-session.sh",
-      ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs"
+      ".skilled/bin/tests/worktree-session.test.sh",
+      ".skilled/bin/worktree-reaper.sh",
+      ".skilled/bin/tests/worktree-reaper.test.sh",
+      ".skilled/bin/README.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -79,27 +85,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/bin/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-reaper.sh",
+        "name": "fsmonitor-daemon-reaper.sh",
         "kind": "script",
-        "path": ".skilled/bin/worktree-reaper.sh",
+        "path": ".skilled/bin/fsmonitor-daemon-reaper.sh",
         "source": "derived"
       },
       {
-        "name": "finish-workflows.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "git-setup-check.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "name": "fsmonitor-daemon-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
         "source": "derived"
       },
       {
@@ -109,9 +103,57 @@
         "source": "derived"
       },
       {
+        "name": "worktree-session.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-session.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
         "name": "cite-drift-gate.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -155,48 +197,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Design Choices",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each git worktree that reads its index starts its own `git fsmonitor--daemon`, and macOS never retires one on its own",
     "created_at": "2026-10-27T08:12:32Z",
-    "last_save_at": "2026-10-27T10:54:07.918Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-27T12:50:37.426Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3da814e98d5d7c694609031eade74b3634c04e9c0cdb8cd13bddc5fd5b28555",
+    "source_fingerprint": "sha256:6c0b68e54c89acc02ddc5bce75b521fae2a7fbd99ec01605711c0fe6f733dbc8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39d965e1bcf6e9a2116a5e947e99ec2e0ae516c1f67926bc6d9fea88568bfc82",
+      "spec.md": "45e2b4ac464fdae7130bdab7f08cd5491c2808bc66b76190743f6ac8eda6603d",
       "plan.md": "10b4389353ceb97cccce4f99e6af530a6c13869a3e3321ba5623fbeda7841bd7",
-      "tasks.md": "9e137d5fb98e63555cd212fd87ab49c8fe7ef86c8f731f4e5219153a31139e10",
-      "implementation-summary.md": "7aae52e6316c115838365cebaed5483e7825f47ff3cdf7ae4eaa155969a5c734"
+      "tasks.md": "83dbae47f91f70c60ba29ac0c797451a0706a72c5409f5d2ca7ae6cf646993e3",
+      "implementation-summary.md": "d8ca364820ec633a080fca0be208a3ee8b76f7412d9848b98efe3bf98173720d"
     },
     "last_active_at": null
   }

@@ -1,0 +1,3 @@
+ 1565 Tue Oct 27 12:32:18 2026     /Applications/Xcode.app/Contents/Developer/usr/libexec/git-core/git fsmonitor--daemon run --detach --ipc-threads=8
+83785 Mon Oct 19 08:37:59 2026     /Applications/Xcode.app/Contents/Developer/usr/libexec/git-core/git fsmonitor--daemon run --detach --ipc-threads=8
+95634 Tue Oct 27 08:56:30 2026     /Applications/Xcode.app/Contents/Developer/usr/libexec/git-core/git fsmonitor--daemon run --detach --ipc-threads=8
