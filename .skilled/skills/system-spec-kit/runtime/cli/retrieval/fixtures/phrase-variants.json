@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2b5a8a14149bd2178efc858f3faf0db804256715630881e4cf3052e48f962ac2",
+  "manifestHash": "e0b8a7b09f178e1da2a4fc9fc3b2a8592e2d9d3975919d66ce80bba63ca52cd4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71024,6 +71024,9 @@
     "overall assessment contradicts status line": [
       "overall assessment contradicts status line"
     ],
+    "overall assessment list item check": [
+      "overall assessment list item check"
+    ],
     "overall sealed preliminary authoritative": [
       "overall.sealed preliminary authoritative"
     ],
@@ -95178,6 +95181,9 @@
     "sk code review 1 9 3 0": [
       "sk-code-review 1.9.3.0"
     ],
+    "sk code review 1 9 4 0": [
+      "sk-code-review 1.9.4.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -95273,6 +95279,9 @@
     ],
     "sk code review v1 9 3 0": [
       "sk-code-review v1.9.3.0"
+    ],
+    "sk code review v1 9 4 0": [
+      "sk-code-review v1.9.4.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"

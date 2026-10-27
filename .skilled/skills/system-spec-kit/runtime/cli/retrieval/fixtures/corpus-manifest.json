@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3c8d2c4c7f19e58d51c33a9a9ecdd1d539f641f9263f7f19dbcd2686080bfd8b",
+  "corpusHash": "90c54f1eaf4115f30a3c8a43586b2c0a990cab24a6d604d8157b04ed90cbef29",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26475,
+  "includedPathCount": 26478,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2910,6 +2910,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2954,6 +2955,8 @@
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-bulleted.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-title-case.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
     ".skilled/skills/sk-code/sk-code-skilled/README.md",
     ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
@@ -26506,7 +26509,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2b5a8a14149bd2178efc858f3faf0db804256715630881e4cf3052e48f962ac2",
+  "manifestHash": "e0b8a7b09f178e1da2a4fc9fc3b2a8592e2d9d3975919d66ce80bba63ca52cd4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

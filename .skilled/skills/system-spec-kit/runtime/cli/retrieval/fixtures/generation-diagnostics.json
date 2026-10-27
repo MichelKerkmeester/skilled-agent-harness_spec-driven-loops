@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7336,
-    "ok": 15591,
+    "missing-frontmatter": 7338,
+    "ok": 15592,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26475,
+  "documentsScanned": 26478,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2b5a8a14149bd2178efc858f3faf0db804256715630881e4cf3052e48f962ac2",
+  "manifestHash": "e0b8a7b09f178e1da2a4fc9fc3b2a8592e2d9d3975919d66ce80bba63ca52cd4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38398,
+      "ok": 38401,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -11432,6 +11432,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-bulleted.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-title-case.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
