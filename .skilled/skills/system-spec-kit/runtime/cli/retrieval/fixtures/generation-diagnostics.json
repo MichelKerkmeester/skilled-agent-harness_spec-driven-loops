@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15707,
+    "ok": 15715,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26593,
+  "documentsScanned": 26601,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "152a39afa1fbca300a38774f77eb408a1957511c4304a36d172f5411c2a113dc",
+  "manifestHash": "f86e202000299f7b7ab7f0700011af543d6a51ec43f83301b1694488afbd51f1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38633,
+      "ok": 38647,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71777,6 +71777,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/scratch",
       "reason": "excluded directory"
     },
     {

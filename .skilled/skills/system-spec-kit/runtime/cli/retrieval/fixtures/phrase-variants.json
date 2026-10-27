@@ -1,5 +1,5 @@
 {
-  "manifestHash": "152a39afa1fbca300a38774f77eb408a1957511c4304a36d172f5411c2a113dc",
+  "manifestHash": "f86e202000299f7b7ab7f0700011af543d6a51ec43f83301b1694488afbd51f1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -70275,6 +70275,9 @@
     "operator label gate": [
       "operator label gate"
     ],
+    "operator local reach note": [
+      "operator-local reach note"
+    ],
     "operator pair labels": [
       "operator pair labels"
     ],
@@ -88609,8 +88612,29 @@
     "router promotion checklist": [
       "router promotion checklist"
     ],
+    "router reach check scores the shipped fleet": [
+      "router reach check scores the shipped fleet"
+    ],
     "router reach implementation summary": [
       "router reach implementation summary"
+    ],
+    "router reach local ties": [
+      "router reach local ties"
+    ],
+    "router reach local ties acceptance criteria": [
+      "router reach local ties acceptance criteria"
+    ],
+    "router reach local ties decision record": [
+      "router reach local ties decision record"
+    ],
+    "router reach local ties implementation summary": [
+      "router reach local ties implementation summary"
+    ],
+    "router reach local ties plan": [
+      "router reach local ties plan"
+    ],
+    "router reach local ties tasks": [
+      "router reach local ties tasks"
     ],
     "router reach misroutes": [
       "router reach misroutes"
@@ -88627,8 +88651,14 @@
     "router reach misroutes tasks": [
       "router reach misroutes tasks"
     ],
+    "router reach operator local note": [
+      "router reach operator-local note"
+    ],
     "router reach plan": [
       "router reach plan"
+    ],
+    "router reach shipped fleet": [
+      "router reach shipped fleet"
     ],
     "router reach tasks": [
       "router reach tasks"
@@ -96955,6 +96985,9 @@
     "sk create skill 1 5 10 0": [
       "sk-create-skill 1.5.10.0"
     ],
+    "sk create skill 1 5 11 0": [
+      "sk-create-skill 1.5.11.0"
+    ],
     "sk create skill 1 5 2 0": [
       "sk-create-skill 1.5.2.0"
     ],
@@ -97008,6 +97041,9 @@
     ],
     "sk create skill v1 5 10 0": [
       "sk-create-skill v1.5.10.0"
+    ],
+    "sk create skill v1 5 11 0": [
+      "sk-create-skill v1.5.11.0"
     ],
     "sk create skill v1 5 2 0": [
       "sk-create-skill v1.5.2.0"
@@ -107419,6 +107455,9 @@
     "system skill advisor 0 17 12 0": [
       "system-skill-advisor 0.17.12.0"
     ],
+    "system skill advisor 0 17 13 0": [
+      "system-skill-advisor 0.17.13.0"
+    ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
     ],
@@ -107634,6 +107673,9 @@
     ],
     "system skill advisor v0 17 12 0": [
       "system-skill-advisor v0.17.12.0"
+    ],
+    "system skill advisor v0 17 13 0": [
+      "system-skill-advisor v0.17.13.0"
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"

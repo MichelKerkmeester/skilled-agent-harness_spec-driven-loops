@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1a2ddb84318eadf5e9594253025361530d494d47ec864686ba258e12f2bf9aab",
+  "corpusHash": "ecd501bc4dc68121398f23156cbc6646e0b36089d301016c1101b2e96411afd1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26593,
+  "includedPathCount": 26601,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6500,6 +6500,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.10.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.11.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md",
@@ -7614,6 +7615,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.10.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.11.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.12.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.13.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -12560,6 +12562,12 @@
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/plan.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/spec.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/tasks.md",
+    "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/decision-record.md",
+    "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/plan.md",
+    "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/spec.md",
+    "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/tasks.md",
     "specs/sk-code/017-portable-code-modes/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
@@ -26624,7 +26632,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "152a39afa1fbca300a38774f77eb408a1957511c4304a36d172f5411c2a113dc",
+  "manifestHash": "f86e202000299f7b7ab7f0700011af543d6a51ec43f83301b1694488afbd51f1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29492,6 +29500,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/scratch",
       "reason": "excluded directory"
     },
     {
