@@ -76,16 +76,21 @@ class UsageError extends Error {}
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// This CLI runs inside the commit and push gates. A wedged fsmonitor daemon or a stuck git
+// process would otherwise hold the gate open forever, so each call is bounded. None of the calls
+// below read the index, so a timeout alone is what these gates need.
+const GIT_TIMEOUT_MS = 20000;
+
 function repoRootOf(dir) {
   try {
-    return execFileSync('git', ['-C', dir, 'rev-parse', '--show-toplevel'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    return execFileSync('git', ['-C', dir, 'rev-parse', '--show-toplevel'], { encoding: 'utf8', timeout: GIT_TIMEOUT_MS, stdio: ['ignore', 'pipe', 'ignore'] }).trim();
   } catch {
     return null;
   }
 }
 
 function git(repoRoot, args) {
-  return execFileSync('git', ['-C', repoRoot, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 256 * 1024 * 1024 });
+  return execFileSync('git', ['-C', repoRoot, ...args], { encoding: 'utf8', timeout: GIT_TIMEOUT_MS, stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 256 * 1024 * 1024 });
 }
 
 function readInput(file) {

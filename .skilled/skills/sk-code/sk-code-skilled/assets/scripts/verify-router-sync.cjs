@@ -165,9 +165,10 @@ function legOrphans() {
     }
   }
   // Ignore rules exclude local cache files from the routed documentation corpus.
-  const ignoreCheck = spawnSync('git', ['-C', SKCODE, 'check-ignore', '--stdin', '-z'], {
+  const ignoreCheck = spawnSync('git', ['-c', 'core.fsmonitor=false', '-C', SKCODE, 'check-ignore', '--stdin', '-z'], {
     input: docs.length > 0 ? `${docs.join('\0')}\0` : '',
     encoding: 'utf8',
+    timeout: 20000,
   });
   if (!ignoreCheck.error && (ignoreCheck.status === 0 || ignoreCheck.status === 1)) {
     const ignored = new Set((ignoreCheck.stdout || '').split('\0').filter(Boolean));

@@ -882,12 +882,14 @@ function extractPorcelainPath(line) {
 function gitStatusPaths(repoRoot) {
   let out;
   try {
-    out = execFileSync('git', ['-C', repoRoot, 'status', '--porcelain'], {
+    out = execFileSync('git', ['-c', 'core.fsmonitor=false', '-C', repoRoot, 'status', '--porcelain'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 20000,
     });
   } catch {
-    return [];
+    // Null, not [], so callers can tell "git never answered" from "no changes".
+    return null;
   }
   return out
     .split('\n')
@@ -898,6 +900,9 @@ function gitStatusPaths(repoRoot) {
 }
 
 function isolationViolations(beforeSet, afterPaths, fixtureDir, outDir, repoRoot) {
+  if (beforeSet === null || afterPaths === null) {
+    return ['git status unavailable: isolation could not be checked'];
+  }
   const violations = [];
   const fixAbs = fixtureDir ? path.resolve(fixtureDir) : null;
   const outAbs = outDir ? path.resolve(outDir) : null;
@@ -1172,7 +1177,8 @@ async function runOnce(args) {
 
   const beforeFixture = snapshotFixtureFiles(fixtureDir);
   const beforeFixtureHashes = snapshotFixtureContentHashes(fixtureDir);
-  const gitBefore = new Set(gitStatusPaths(repoRoot));
+  const gitBeforePaths = gitStatusPaths(repoRoot);
+  const gitBefore = gitBeforePaths === null ? null : new Set(gitBeforePaths);
 
   const [cmd, ...rest] = spawnArray;
   const child = spawn(cmd, rest, {
@@ -1496,6 +1502,8 @@ module.exports = {
   summarizeSampleStability,
   classifyVagueAsk,
   isVagueAskCell,
+  gitStatusPaths,
+  isolationViolations,
   LOCKED_MULTI_CAUSE_CELL_IDS,
   LEG_TABLE,
 };

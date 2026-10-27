@@ -106,10 +106,32 @@ function fallbackIgnored(rel) {
   return rel.split('/').some((segment) => FALLBACK_IGNORED_SEGMENTS.has(segment));
 }
 
+// A wedged git fsmonitor daemon can make a git call that reads the index wait
+// forever, so each call is bounded and the first failed call is latched: once git
+// cannot answer, the rest of the walk uses the name rules instead of paying the
+// timeout again.
+const GIT_TIMEOUT_MS = 20000;
+const GIT_NO_FSMONITOR = ['-c', 'core.fsmonitor=false'];
+
+let gitFailure = null;
+
+function recordGitFailure(command, res) {
+  if (gitFailure === null && res.error) gitFailure = { command, error: res.error };
+}
+
 // The repository root that holds packetRoot, or null when git cannot name one.
 function gitToplevel(cwd) {
-  const res = spawnSync('git', ['rev-parse', '--show-toplevel'], { cwd, encoding: 'utf8' });
-  if (res.error || res.status !== 0) return null;
+  if (gitFailure !== null) return null;
+  const res = spawnSync('git', ['rev-parse', '--show-toplevel'], {
+    cwd,
+    encoding: 'utf8',
+    timeout: GIT_TIMEOUT_MS,
+  });
+  if (res.error) {
+    recordGitFailure('git rev-parse --show-toplevel', res);
+    return null;
+  }
+  if (res.status !== 0) return null;
   return fs.realpathSync(res.stdout.trim());
 }
 
@@ -126,13 +148,15 @@ function dropGitIgnoredLeaves(packetRoot, rels) {
     const real = path.join(fs.realpathSync(path.dirname(abs)), path.basename(abs));
     return path.relative(top, real).split(path.sep).join('/');
   });
-  const res = spawnSync('git', ['check-ignore', '-z', '--stdin'], {
+  const res = spawnSync('git', [...GIT_NO_FSMONITOR, 'check-ignore', '-z', '--stdin'], {
     cwd: top,
     input: `${repoRels.join('\0')}\0`,
     encoding: 'utf8',
+    timeout: GIT_TIMEOUT_MS,
   });
+  if (res.error) recordGitFailure('git check-ignore -z --stdin', res);
   // Exit status 1 means nothing matched. Any other failure leaves git's answer unknown.
-  if (res.error || (res.status !== 0 && res.status !== 1)) {
+  if (res.error || gitFailure !== null || (res.status !== 0 && res.status !== 1)) {
     return rels.filter((rel) => !fallbackIgnored(rel));
   }
   const ignored = new Set(res.status === 0 ? res.stdout.split('\0').filter(Boolean) : []);
@@ -525,6 +549,13 @@ function runWrite(skillDir) {
     throw new Error(`leaf-manifest.json is a symbolic link, not followed: ${manifestPath}; remove the link and write the manifest again`);
   }
   const bytes = buildManifestBytes(skillDir);
+  if (gitFailure !== null && gitFailure.error.code === 'ETIMEDOUT') {
+    // git never answered the ignore question, and the name rules only drop
+    // generated noise, so the bytes may list leaves git ignores. Refuse to write
+    // rather than replace a correct manifest with a guessed one.
+    process.stderr.write(`generate-leaf-manifest: git call timed out (${gitFailure.command}); leaf-manifest.json not written under ${skillDir}\n`);
+    return 1;
+  }
   writeFileAtomic(manifestPath, bytes);
   process.stdout.write(`leaf-manifest.json written (${contract.digestManifestBytes(bytes)})\n`);
   return 0;

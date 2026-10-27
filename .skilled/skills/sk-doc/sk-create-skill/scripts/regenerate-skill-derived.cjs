@@ -66,11 +66,22 @@ function readJson(filePath) {
 // runner that has not built. Such a path is gitignored, not deleted; pruning it
 // would drop real routing signal and make the fleet's derived blocks diverge by
 // checkout state. Treat a gitignored path as valid so the outcome is stable
-// everywhere. Cached because the same paths are checked across roots.
+// everywhere. An unknown answer (spawn error or git timeout) keeps the
+// reference too, because pruning on a status we never got drops real signal.
+// Cached because the same paths are checked across roots.
+const GIT_TIMEOUT_MS = 20000;
+const GIT_NO_FSMONITOR = ['-c', 'core.fsmonitor=false'];
 const gitIgnoreCache = new Map();
+let gitCheckIgnoreFailed = false;
 function isGitIgnored(resolved) {
   if (gitIgnoreCache.has(resolved)) return gitIgnoreCache.get(resolved);
-  const result = spawnSync('git', ['-C', REPO_ROOT, 'check-ignore', '-q', resolved]);
+  if (gitCheckIgnoreFailed) return true;
+  const result = spawnSync('git', [...GIT_NO_FSMONITOR, '-C', REPO_ROOT, 'check-ignore', '-q', resolved], { timeout: GIT_TIMEOUT_MS });
+  if (result.error) {
+    gitCheckIgnoreFailed = true;
+    process.stderr.write(`regenerate-skill-derived: git check-ignore failed (${result.error.code || result.error.message}); references kept\n`);
+    return true;
+  }
   const ignored = result.status === 0;
   gitIgnoreCache.set(resolved, ignored);
   return ignored;
