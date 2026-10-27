@@ -7,6 +7,8 @@
     "sk-doc/070-repo-doc-debt/001-broken-references",
     "sk-doc/070-repo-doc-debt/002-readme-template-conformance",
     "sk-doc/070-repo-doc-debt/003-changelog-omissions",
+    "sk-doc/070-repo-doc-debt/004-benchmark-report-readmes",
+    "sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes",
     "sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy"
   ],
   "manual": {
@@ -99,16 +101,16 @@
     ],
     "causal_summary": "The README audit (`auditreadmes.py`) over this worktree reports 753 READMEs, 244 template-invalid, 119 broken references, 19 missing key artifacts and 1 warning",
     "created_at": "2026-10-27T06:53:10Z",
-    "last_save_at": "2026-10-27T10:23:08.453Z",
+    "last_save_at": "2026-10-27T10:35:48.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:373a36230fce7bc51b55c371c39079bac1da251600a0c150747fafaa6c552260",
+    "source_fingerprint": "sha256:812882d5469cc724c1e2178dfcd28223b437102b2188bd58e6bf5a6466b47f54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70ed971b2ef853b7b25be0910b2a8be02384ee2e4075bace02d9defcc2041d88"
+      "spec.md": "64bfc4a69d091947ab7c5f725a41832889e8ee9e46753b4e8ab1203e84e3ea86"
     },
     "last_active_at": null
   }

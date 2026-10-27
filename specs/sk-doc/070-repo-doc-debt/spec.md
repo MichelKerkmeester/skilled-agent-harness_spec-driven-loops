@@ -97,6 +97,8 @@ Fix every finding that is real drift, keep every fact while doing it, and record
 | 1 | 001-broken-references/ | Fix README references whose target moved or was removed | Complete |
 | 2 | 002-readme-template-conformance/ | Bring hand-authored READMEs to the template and close real inventory gaps | Complete |
 | 3 | 003-changelog-omissions/ | Reword changelog ids into words and drop test counts | Complete |
+| 4 | 004-benchmark-report-readmes/ | Give the 235 legacy benchmark-report READMEs an overview section without changing their content | Complete |
+| 5 | 005-reference-and-coverage-fixes/ | Fix every real broken reference and close every coverage finding in the hand-authored READMEs | Complete |
 | 6 | 006-audit-and-validator-accuracy/ | Fix the README audit and changelog check where they misjudge correct documents | Complete |
 
 ### Phase Transition Rules
