@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.1.0.0
 ---
 
 # SKILLED House Code Quality Checklist
@@ -125,13 +125,34 @@ These must be addressed or receive approval to defer.
 ### Consistent Naming
 
 ```markdown
-[ ] Naming follows language conventions
+[ ] Naming follows the SKILLED language conventions (the scheme the universal floor's `floor.naming` leaves to the surface)
     - JavaScript: camelCase functions, UPPER_SNAKE constants
     - TypeScript: camelCase functions, PascalCase interfaces/types/enums, UPPER_SNAKE constants
     - Python: snake_case functions, UPPER_SNAKE constants
     - Shell: snake_case functions, UPPER_SNAKE constants
     - Config: camelCase keys
 ```
+
+### Documentation Completeness
+
+```markdown
+[ ] Public APIs, exported types and complex algorithms carry docstrings or doc comments that explain WHY
+    - JavaScript: JSDoc on exported functions
+    - TypeScript: TSDoc on exported functions, classes and interfaces
+    - Python: docstrings on public functions and the module
+```
+
+The universal floor keeps only `floor.documentation` at P2 and leaves the doc-comment form to the surface. This is the SKILLED form, at P1.
+
+### Type Safety
+
+```markdown
+[ ] Types are enforced in the language's own terms
+    - TypeScript: strict mode, no `any`
+    - Python: public functions carry type hints, no `Any`
+```
+
+P1 when the type check fails, P2 otherwise. The universal floor rule `floor.type-safety` asks only that the repository's type check passes, so this strictness is the SKILLED house rule.
 
 ### WHY Comments (Manual Review)
 
@@ -229,6 +250,12 @@ These improve quality but can be deferred.
     - Public APIs have documentation
     - Complex algorithms explained
     - Not over-commented (target <= 3 comments per 10 LOC)
+```
+
+### Internal Helper Documentation
+
+```markdown
+[ ] Private and internal helpers are explained too, where the name alone does not carry the intent
 ```
 
 ### Code Organization

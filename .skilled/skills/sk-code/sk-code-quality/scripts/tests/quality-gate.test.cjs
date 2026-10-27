@@ -38,12 +38,12 @@ const DECLARED_PACKAGE = DECLARED_PATH.split('/dist/')[0];
 // The repository this hub lives in, which is the one the spec-folder checklist is scoped to.
 const REPO_ROOT = path.resolve(HUB_ROOT, '..', '..', '..');
 const SPEC_FOLDER_CHECKLIST = 'hub:system-spec-kit/references/workflows/spec-folder-authoring-checklist.md';
-// The three surface-neutral rows: they hold no framework-specific house style, so they keep
-// matching a .js file by its extension in any repository.
+// The JavaScript and CSS house-style rows belong to the SKILLED surface, so a .js file that
+// resolves to no surface in a foreign repository must never be handed them by its extension.
 const STYLE_CHECKLISTS = Object.freeze([
-  'hub:sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md',
-  'hub:sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md',
-  'hub:sk-code/sk-code-quality/assets/code-quality-checklist/verification-quick-reference-and-related.md',
+  'hub:sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md',
+  'hub:sk-code/sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md',
+  'hub:sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md',
 ]);
 const COMPILER = path.resolve(HUB_ROOT, '..', '..', 'bin', 'lib', 'compiled-routing', '009-parent-hub-rollout', '001-sk-code', 'lib', 'registry-compiler.cjs');
 // The freshness library the dist checker calls, read here so a case can ask for the
@@ -1146,9 +1146,9 @@ test('F20b declared generated path: a newer source reports stale and names the f
 
 // The spec-folder checklist is a framework-specific standard, so it is scoped to the repository
 // that owns this hub. A foreign repository with a specs/ folder would otherwise be handed a
-// standard the runner cannot check, while the surface-neutral .js rows stay because they carry
-// no house style.
-test('F21 foreign repository: a specs/ folder lists no spec-folder checklist', () => withRepo({
+// standard the runner cannot check. The JavaScript and CSS house style is SKILLED's, so a foreign
+// .js file is handed only the universal floor.
+test('F21 foreign repository: a specs/ folder lists no spec-folder checklist and no house style', () => withRepo({
   hub: 'real',
   change: {
     'specs/demo/spec.md': '# Demo\n\nA fixture specification.\n',
@@ -1160,8 +1160,64 @@ test('F21 foreign repository: a specs/ folder lists no spec-folder checklist', (
   assert.deepEqual(surfaceOf(verdict, 'specs/demo/notes.js'), ['UNKNOWN']);
   const files = checklistFiles(verdict);
   assert.ok(!files.includes(SPEC_FOLDER_CHECKLIST), 'a foreign repository was handed the spec-folder checklist');
-  for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a foreign .js file`);
+  for (const file of STYLE_CHECKLISTS) assert.ok(!files.includes(file), `${file} reached a foreign .js file`);
+  assert.deepEqual(files, ['hub:sk-code/shared/references/universal/code-quality-standards.md']);
 }));
+
+// The house style moved to the SKILLED surface rather than disappearing, so the hub's own
+// .js and .css files must keep every row the base layer used to hand them.
+test('F21a hub repository: a .js and a .css file under .skilled/ list the JavaScript and CSS house style', () => withRepo({
+  hub: 'inside',
+  change: {
+    '.skilled/tools/run.js': 'module.exports = 1;\n',
+    '.skilled/tools/look.css': '.a { opacity: 1; }\n',
+  },
+}, (repo) => {
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.skilled/tools/run.js', '.skilled/tools/look.css']));
+  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/run.js'), ['SKILLED']);
+  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/look.css'), ['SKILLED']);
+  const files = checklistFiles(verdict);
+  for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a SKILLED file`);
+}));
+
+// The hub's plugins folder is a link to a folder outside .skilled/. A plugin reached
+// through it is still the hub's own code, so it resolves to SKILLED and keeps the house style.
+test('F21b hub repository: a plugin behind the .skilled/plugins link resolves to SKILLED', () => withRepo({
+  hub: 'inside',
+  change: { '.opencode/plugins/a.js': 'module.exports = 1;\n' },
+  links: { '.skilled/plugins': '../.opencode/plugins' },
+}, (repo) => {
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/plugins/a.js']));
+  assert.deepEqual(surfaceOf(verdict, '.opencode/plugins/a.js'), ['SKILLED']);
+  const files = checklistFiles(verdict);
+  for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a linked plugin`);
+}));
+
+// A plugins link whose target holds the hub would make every file under it hub code, so a
+// target that is an ancestor of .skilled/ is not read as the plugins folder at all.
+for (const target of ['..', '../..']) {
+  test(`F21c hub repository: a .skilled/plugins link to ${target} claims no other file`, () => withRepo({
+    hub: 'inside',
+    change: { '.opencode/agents/b.js': 'module.exports = 1;\n', 'vendor/.opencode/d.js': 'module.exports = 1;\n' },
+    links: { '.skilled/plugins': target },
+  }, (repo) => {
+    const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/agents/b.js', 'vendor/.opencode/d.js']));
+    assert.deepEqual(surfaceOf(verdict, '.opencode/agents/b.js'), ['UNKNOWN']);
+    assert.deepEqual(surfaceOf(verdict, 'vendor/.opencode/d.js'), ['UNKNOWN']);
+  }));
+}
+
+// A plugins link that dangles or loops resolves to no folder of hub code, and the run
+// still reads every other file the way it would without the link.
+test('F21d hub repository: a dangling or looping .skilled/plugins link changes no surface', () => {
+  for (const links of [{ '.skilled/plugins': '../.opencode/missing' }, { '.skilled/plugins': 'plugins' }]) {
+    withRepo({ hub: 'inside', change: { '.opencode/agents/b.js': 'module.exports = 1;\n', '.skilled/tools/x.js': 'module.exports = 1;\n' }, links }, (repo) => {
+      const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/agents/b.js', '.skilled/tools/x.js']));
+      assert.deepEqual(surfaceOf(verdict, '.opencode/agents/b.js'), ['UNKNOWN']);
+      assert.deepEqual(surfaceOf(verdict, '.skilled/tools/x.js'), ['SKILLED']);
+    });
+  }
+});
 
 // The same row still lists for this repository's own spec docs, which resolve to no surface, so
 // the scope is the repository boundary and not the file's label.
@@ -2006,35 +2062,6 @@ test('unit: dist read-only', () => {
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
   }
-});
-
-test('unit: target map', () => {
-  const skill = fs.readFileSync(path.join(QUALITY_ROOT, 'SKILL.md'), 'utf8');
-  const section = (skill.split('### Target-Path Checklist Map')[1] || '').split(/\n#{2,3} /)[0];
-  assert.ok(section.includes('| Owner |'), 'the target map table is missing');
-  const rows = section.split('\n').filter((line) => line.startsWith('| ')).slice(2)
-    .map((line) => line.split('|').slice(1, -1).map((cell) => cell.trim()))
-    .map(([owner, applies, checklist]) => ({
-      owner,
-      selectors: [...applies.matchAll(/`([^`]+)`/g)].map((match) => match[1]),
-      checklist: checklist.replace(/`/g, ''),
-    }));
-  const tokens = (row) => ['paths', 'extensions', 'contentMarkers'].flatMap((key) => row[key] || []);
-  const skillsDir = path.dirname(HUB_ROOT);
-  const expected = [];
-  const defaults = JSON.parse(fs.readFileSync(path.join(QUALITY_ROOT, 'assets', 'quality-defaults.json'), 'utf8'));
-  for (const row of defaults.checklists) {
-    const file = path.join(skillsDir, row.file.slice('hub:'.length));
-    expected.push({ owner: 'quality defaults', selectors: tokens(row), checklist: path.relative(QUALITY_ROOT, file) });
-  }
-  const registry = JSON.parse(fs.readFileSync(path.join(HUB_ROOT, 'mode-registry.json'), 'utf8'));
-  for (const mode of registry.modes) {
-    const owner = mode.surfaceDetection ? mode.surfaceDetection.label.toUpperCase() : mode.workflowMode;
-    for (const row of (mode.quality && mode.quality.checklists) || []) {
-      expected.push({ owner, selectors: tokens(row), checklist: path.relative(QUALITY_ROOT, path.join(HUB_ROOT, row.file)) });
-    }
-  }
-  assert.deepEqual(rows, expected);
 });
 
 test('unit: secret redaction: a key on a line that fails to parse, or past the excerpt limit, never prints', () => withRepo({

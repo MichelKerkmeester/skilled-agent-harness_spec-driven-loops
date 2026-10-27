@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.4.0
+version: 1.13.5.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -93,7 +93,7 @@ Phase 1 Implementation writes or changes files
 
 ### Resource Domains
 
-- `assets/code-quality-checklist/overview-header-and-comments.md` and `assets/code-quality-checklist/naming-init-formatting-and-css.md` hold the few surface-neutral JavaScript and CSS checks no surface checklist states, loaded for `.js` or `.css` targets on top of the surface's own language checklist. They carry no surface house style: naming, header form, section dividers and init patterns come from the surface checklist. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target.
+- This mode ships no house-style checklist. The universal floor and the universal style guide apply on every surface, and each surface's own checklists carry its house style. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target, and the SKILLED JavaScript and CSS house checks sit under `../sk-code-skilled/assets/checklists/js-css-style/`.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 - `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file. The only commands it runs beyond its own are the ones a repository's committed `.sk-code/quality.json` names, each as an argv array under a deadline and the workspace guard, and only once the repository is trusted (`references/quality-config.md` section 8). A command a manifest implies is reported as a suggestion it never runs. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids, and `references/quality-config.md` holds the repository config: its schema, discovery order, merge rule and trust boundary.
 - `assets/quality-defaults.json` holds the runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns. It names no command.
@@ -114,7 +114,6 @@ Phase 1 Implementation writes or changes files
 | CONDITIONAL | The repository has or needs `.sk-code/quality.json`, or the verdict reports a configured check, a config error or a suggestion | `references/quality-config.md` |
 | CONDITIONAL | SKILLED is a resolved surface of the target | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
 | CONDITIONAL | A direct check on one file, outside a runner call | `scripts/check-comment-hygiene.sh` |
-| CONDITIONAL | `.js` or `.css` target, for the surface-neutral additions to the surface's own language checklist | `assets/code-quality-checklist/overview-header-and-comments.md`, `assets/code-quality-checklist/naming-init-formatting-and-css.md`, `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
 | CONDITIONAL | `.skilled/skills/` target | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
 | CONDITIONAL | `.skilled/agents/` target | `../sk-code-skilled/assets/checklists/agent-authoring.md` |
 | CONDITIONAL | `.skilled/commands/` target | `../sk-code-skilled/assets/checklists/command-authoring.md` |
@@ -127,33 +126,13 @@ Phase 1 Implementation writes or changes files
 
 ### Target-Path Checklist Map
 
-The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and the `unit: target map` case in `scripts/tests/quality-gate.test.cjs` fails when the two differ. A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. Applies to lists path globs and extensions. A row with several values matches on any of them. The MCP server checklist, `../sk-code-skilled/assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
-
-| Owner | Applies to | Checklist |
-| --- | --- | --- |
-| quality defaults | `**` | `../shared/references/universal/code-quality-standards.md` |
-| quality defaults | `.js`, `.css` | `assets/code-quality-checklist/overview-header-and-comments.md` |
-| quality defaults | `.js`, `.css` | `assets/code-quality-checklist/naming-init-formatting-and-css.md` |
-| quality defaults | `.js`, `.css` | `assets/code-quality-checklist/verification-quick-reference-and-related.md` |
-| quality defaults | `specs/**` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
-| SKILLED | `.skilled/**` | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
-| SKILLED | `.skilled/skills/**` | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
-| SKILLED | `.skilled/agents/**` | `../sk-code-skilled/assets/checklists/agent-authoring.md` |
-| SKILLED | `.skilled/commands/**` | `../sk-code-skilled/assets/checklists/command-authoring.md` |
-| SKILLED | `.js`, `.cjs`, `.mjs` | `../sk-code-skilled/assets/checklists/javascript-checklist.md` |
-| SKILLED | `.ts`, `.tsx`, `.mts`, `.cts` | `../sk-code-skilled/assets/checklists/typescript-checklist.md` |
-| SKILLED | `.py` | `../sk-code-skilled/assets/checklists/python-checklist.md` |
-| SKILLED | `.sh`, `.bash` | `../sk-code-skilled/assets/checklists/shell-checklist.md` |
-| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md` |
-| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md` |
-| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md` |
-| SKILLED | `.rs` | `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` |
-| SKILLED | `.json`, `.jsonc`, `.yaml`, `.yml` | `../sk-code-skilled/assets/checklists/config-checklist.md` |
-| sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
+The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, which are the universal floor and, in this hub's own repository, the spec-folder authoring checklist, and each surface's `quality.checklists` declaration. Ask the runner which checklists apply to a file, and why, with `node scripts/quality-gate.cjs --explain <path>`. Its `checklists[]` and each entry's `why` are the answer, in any repository. This repository's own map, the SKILLED rows among them, is rendered in `../sk-code-skilled/SKILL.md` under "Quality Checklist Map".
 
 ### Comment-Hygiene Enforcement Gates
 
-This mode owns the author-side check and knows the three independent enforcement layers. The table describes this repository's wiring. In any repository, the runner's `layers` field reports what a probe found for each one, `present`, `absent`, `untrusted`, `broken` or `unknown`, and a quality claim cites that field, never this table.
+This mode owns the author-side check and knows the three independent enforcement layers. In any repository, the runner's `layers` field reports what a probe found for each one, `present`, `absent`, `untrusted`, `broken` or `unknown`, and a quality claim cites that field, never this table.
+
+**This repository's wiring.** The table and the notes after it describe this hub's own repository. They are not universal: another repository may wire none of these layers, or wire them differently.
 
 | Gate | Where | Effect |
 | --- | --- | --- |
@@ -163,17 +142,17 @@ This mode owns the author-side check and knows the three independent enforcement
 
 A repository can switch named core hygiene rules off with `commentHygiene.disableRules` in its quality config, never a rule the shared `rule-overrides.json` fixes. The runner, the pre-commit block and the CI block all read that key through `scripts/lib/quality-config.cjs`, so a rule switched off for one is off for all three. The config's additions, such as a ticket prefix, reach the runner alone, so the pre-commit and CI blocks keep the core set minus the disabled rules, and `config.hygiene.disabled` in the verdict names what is off. The write-time warning still applies every core rule, and it never blocks. `references/quality-config.md` holds the key's rules.
 
-The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
+The write-time warning is one adapter of the shared router in `.skilled/hooks/post-edit-quality/`, which runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn. The pre-commit block can be bypassed for one commit with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`, and the CI block re-checks every PR to main, which `--no-verify` cannot skip. The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
 
 Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments. A finding on a changed line blocks. A finding on an unchanged line of a touched file blocks only when `layers` reports the pre-commit or CI layer `present`, because that layer scans whole files and would fail the change anyway. Otherwise it is P1 touched-file debt the change did not write.
 
 ### 2b. Machine-Readable Router (thin, Type-1 benchmark)
 
-sk-code-quality routes primarily by TARGET PATH (the surface and checklist map above), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
+sk-code-quality routes primarily by TARGET PATH (the checklists `--explain` names for a file), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
 
 ```python
 # Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
-# real routing is target-path-keyed (the checklist map above), and its parent
+# real routing is target-path-keyed (the checklists --explain names), and its parent
 # discoverability is the hub quality signal. This block only made the one asset
 # scoreable by the retired deterministic router-replay.
 DEFAULT_RESOURCE = [
@@ -188,9 +167,6 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "QUALITY": [
-        "assets/code-quality-checklist/overview-header-and-comments.md",
-        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
-        "assets/code-quality-checklist/verification-quick-reference-and-related.md",
         "references/quality-config.md",
     ],
 }
@@ -206,7 +182,7 @@ discover_markdown_resources()
     -> UNKNOWN_FALLBACK when no routable target path is available
 ```
 
-The declarations behind the target-path checklist map stay authoritative, and the runner reads them directly. The prompt-intent projection only makes the default quality resources scoreable.
+The declarations behind `--explain` stay authoritative, and the runner reads them directly. The prompt-intent projection only makes the default quality resources scoreable.
 
 ---
 
@@ -274,7 +250,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### ✅ ALWAYS
 
 1. Read target files before editing them.
-2. Run the runner, `node scripts/quality-gate.cjs`, before any implementation-done or quality-pass claim, and load every checklist its `checklists[]` names. The universal floor is always one of them, and the surface-neutral JavaScript and CSS additions join for a `.js` or `.css` target.
+2. Run the runner, `node scripts/quality-gate.cjs`, before any implementation-done or quality-pass claim, and load every checklist its `checklists[]` names. The universal floor is always one of them.
 3. Resolve surface identity through `../shared/references/stack-detection.md`; do not re-author surface detection in this packet.
 4. Load the SKILLED authoring checklist the verdict names before checking `.skilled/` work, and the MCP server checklist by judgment for MCP server source.
 5. Let the runner call `scripts/check-comment-hygiene.sh` over every modified comment-capable file, or run the checker directly on one file outside a runner call.
@@ -340,7 +316,6 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### Quality References And Assets
 
-- [`assets/code-quality-checklist/overview-header-and-comments.md`](../../../.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) - Surface-neutral JavaScript and CSS additions, loaded for `.js` or `.css` targets with the surface's own language checklist.
 - [`references/runner-contract.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
 - [`references/quality-config.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/quality-config.md) - The repository config `.sk-code/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
 - [`assets/quality-defaults.json`](../../../.skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.

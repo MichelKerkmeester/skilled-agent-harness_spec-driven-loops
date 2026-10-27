@@ -8,7 +8,7 @@ trigger_phrases:
   - "script directory structure"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.1.0.0
 ---
 
 # Directory & Test File Conventions
@@ -257,7 +257,14 @@ tests/
 └── vector-index.test.ts
 ```
 
-A test never sits beside its source, and no folder is named with double underscores. Both rules are universal: see [code-style-guide.md](../../../../sk-code-quality/references/code-style-guide.md) §3 "Folders and tests".
+### Folder Names and Test Location
+
+These two rules are SKILLED house rules. The universal style guide leaves folder and test layout to each surface, because some languages keep tests beside the source they cover.
+
+- **No double-underscore folder names.** A folder name never starts and ends with `__`: not `__tests__`, `__fixtures__`, `__helpers__`, `__shared__` or `__snapshots__`. Name the folder for what it holds, as `fixtures/` or `helpers/`. When a tool generates such a name by default, configure the tool rather than keep the name; for vitest snapshots that means setting `resolveSnapshotPath`.
+- **Test code lives under a `tests/` tree.** Tests, their fixtures and their helpers go under the package's top-level `tests/` folder. Keep that folder flat while the file names stay unique, and group by area only when a group holds several files. A test file never sits beside the source file it covers.
+
+`verify_alignment_drift.py --check-folders` flags both the name rule and code folders that lack a README.
 
 ### Test File Structure
 

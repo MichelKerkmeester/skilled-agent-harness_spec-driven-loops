@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.1.6.0
+version: 2.1.7.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -95,6 +95,9 @@ RESOURCE_MAP = {
     "CODE_QUALITY": [
         "assets/checklists/universal-checklist.md",
         "assets/checklists/javascript-checklist.md",
+        "assets/checklists/js-css-style/overview-header-and-comments.md",
+        "assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+        "assets/checklists/js-css-style/verification-quick-reference-and-related.md",
         "assets/checklists/typescript-checklist.md",
         "assets/checklists/python-checklist.md",
         "assets/checklists/shell-checklist.md",
@@ -191,3 +194,33 @@ Changelog directories (`changelog/`): real skill and packet changelog files are 
 Daemon IPC/socket wiring: daemon-backed CLIs and plugin bridges resolve runtime Unix socket paths such as `daemon-ipc.sock`; sockets are runtime artifacts, so checked-in evidence lives in launcher, bridge, and config files rather than in committed `.sock` files.
 
 Spec-folder authoring lives in system-spec-kit (`.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` + `spec-folder-authoring-checklist.md`), not in this surface. Checklists are pulled on demand by the active workflow phase.
+
+---
+
+## 5. QUALITY CHECKLIST MAP
+
+This is this repository's quality checklist map, not a universal one. The quality runner resolves checklists from two sources: the rows the quality mode owns in `../sk-code-quality/assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and `scripts/tests/quality-checklist-map.test.cjs` fails when the two differ. In any repository, `node ../sk-code-quality/scripts/quality-gate.cjs --explain <path>` names the checklists for one file and why.
+
+A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. The spec-folder row applies only inside this hub's own repository. Applies to lists path globs and extensions, and a row with several values matches on any of them. The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
+
+| Owner | Applies to | Checklist |
+| --- | --- | --- |
+| quality defaults | `**` | `../shared/references/universal/code-quality-standards.md` |
+| quality defaults | `specs/**` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` |
+| SKILLED | `.skilled/**` | `assets/checklists/universal-checklist.md` |
+| SKILLED | `.skilled/skills/**` | `assets/checklists/skill-authoring.md` |
+| SKILLED | `.skilled/agents/**` | `assets/checklists/agent-authoring.md` |
+| SKILLED | `.skilled/commands/**` | `assets/checklists/command-authoring.md` |
+| SKILLED | `.js`, `.cjs`, `.mjs` | `assets/checklists/javascript-checklist.md` |
+| SKILLED | `.js`, `.css` | `assets/checklists/js-css-style/overview-header-and-comments.md` |
+| SKILLED | `.js`, `.css` | `assets/checklists/js-css-style/naming-init-formatting-and-css.md` |
+| SKILLED | `.js`, `.css` | `assets/checklists/js-css-style/verification-quick-reference-and-related.md` |
+| SKILLED | `.ts`, `.tsx`, `.mts`, `.cts` | `assets/checklists/typescript-checklist.md` |
+| SKILLED | `.py` | `assets/checklists/python-checklist.md` |
+| SKILLED | `.sh`, `.bash` | `assets/checklists/shell-checklist.md` |
+| SKILLED | `.rs` | `assets/checklists/rust-checklist/overview-and-p0-parity.md` |
+| SKILLED | `.rs` | `assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md` |
+| SKILLED | `.rs` | `assets/checklists/rust-checklist/p1-required.md` |
+| SKILLED | `.rs` | `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` |
+| SKILLED | `.json`, `.jsonc`, `.yaml`, `.yml` | `assets/checklists/config-checklist.md` |
+| sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |

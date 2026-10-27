@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/quality-defaults.json
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # CQ-005: Private Surface Resolves Through Its Quality Declaration
@@ -175,7 +175,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | The target-path checklist map and the runner routing this scenario exercises |
+| [SKILL.md](../../SKILL.md) §2 | The checklist sources and the --explain pointer |
 | [quality-gate.cjs](../../scripts/quality-gate.cjs) | The outside-skill row reader, the folder label it builds and the envelope redaction |
 | [router-replay-lib.cjs](../../../sk-code-skilled/assets/scripts/router-replay-lib.cjs) | The outside-skill discovery that walks the hub's siblings and reads each declaration |
 | [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The F15 helper and cases this scenario replays, and the outside-row cases that prove both refusals |

@@ -9,7 +9,7 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.5.5.0
+version: 1.6.0.0
 ---
 
 # Universal Code Quality Standards
@@ -37,7 +37,8 @@ Severity tiers exist so reviewers and authors agree on what blocks "done". A rul
 
 ### Key Sources
 
-- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (the author-side overlay that sk-code-quality loads for the file types it names) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.
+- Surface checklists: the checklists each surface declares. For this repository's own code that is SKILLED, under `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.
+- Rule ids, the hard floor and overrides: [`rule-overrides.md`](./rule-overrides.md) and [`rule-overrides.json`](./rule-overrides.json).
 - Findings-first review baseline: the `sk-code-review` mode and its review output contract.
 
 ### Design Restraint Ladder (pre-write)
@@ -76,31 +77,42 @@ Review ranks findings on its own scale, so the review-severity column in section
 
 ## 3. P0 CATEGORIES (universal, apply across stacks)
 
-The universal floor is sections 3 to 5 of this file. Every surface gets it, UNKNOWN included, and a surface checklist adds rules to it without removing any.
+The universal floor is sections 3 to 5 of this file. Every surface gets it, UNKNOWN included. It holds only rules that hold in any codebase: house style, such as doc-comment forms, typing strictness and naming schemes, belongs to the surface that chose it.
+
+### Rule ids and overrides
+
+Every floor rule carries an id in the `<class>.<name>` grammar of the [rule overrides contract](./rule-overrides.md) section 3, and an Override mark:
+
+- **FIXED** rules are the hard floor in section 4 of that contract and in [`rule-overrides.json`](./rule-overrides.json). No source changes them, and a `## Rule overrides` section that names one is refused.
+- **overridable** rules are the default. A repository or surface may set one to `none` or replace it in a `## Rule overrides` section of a checklist file its declaration names, as section 6 of the contract allows. Without such a row the rule applies as written here.
+
+When more than one source speaks to the same rule, the contract's precedence in section 5 decides: the hard floor, then the repository checklist, then a specific surface, then the SKILLED fallback, then the rule as this file ships it. A surface checklist may still add rules of its own.
 
 ### Mechanical Floor (every surface)
 
 Three faults are P0 on every surface, because no other check can be trusted on a file that has one. The quality runner's built-in checks detect a parse failure in JSON, in JavaScript through both its CommonJS and ESM loaders, in Python, in shell, in YAML and in TOML. The YAML check parses through PyYAML and the TOML check through `tomllib`, and each runs only when the `python3` in use imports its parser. When one cannot, that check reads `SKIPPED_ABSENT` with a `repair` naming what to install, and the run stays verified because neither check is required. They also detect the conflict markers and the credential signature over every readable text file. A parse check for any language outside that list stays with the surface checklist or a configured `syntax-*` check, so no surface restates what the runner already covers.
 
-| Rule | Review severity |
-| --- | --- |
-| **Parse failure**: the file does not parse in its language, which a shebang decides before the extension. A finding in plain JavaScript is heuristic and does not block, because a `.js` file may hold JSX or Flow, and a finding in a `.json` file that parses only once its comments and trailing commas are stripped is heuristic too, because the tool that reads it may accept them. The agent confirms either finding first. | P1, once a heuristic finding is confirmed |
-| **Merge-conflict markers**: a text file holds the lines of an unresolved merge conflict. | P1 |
-| **Credential signature**: a file holds a private-key header or a token in a known credential format. | P0 |
+| Id | Override | Rule | Review severity |
+| --- | --- | --- | --- |
+| `syntax.*` | FIXED | **Parse failure**: the file does not parse in its language, which a shebang decides before the extension. A finding in plain JavaScript is heuristic and does not block, because a `.js` file may hold JSX or Flow, and a finding in a `.json` file that parses only once its comments and trailing commas are stripped is heuristic too, because the tool that reads it may accept them. The agent confirms either finding first. | P1, once a heuristic finding is confirmed |
+| `conflict.*` | FIXED | **Merge-conflict markers**: a text file holds the lines of an unresolved merge conflict. | P1 |
+| `secret.*` | FIXED | **Credential signature**: a file holds a private-key header or a token in a known credential format. | P0 |
 
 ### Categories
 
 P0 covers issues that have caused production incidents or reviewer-author confusion:
 
-| # | Rule | Review severity |
-| --- | --- | --- |
-| 1 | **Initialization safety**: code that sets up state guards against double initialization, race conditions and partial loads. | P1. P0 when the gap is exploitable or causes data loss |
-| 2 | **Input validation**: every external input (function parameters, API responses, file contents, env vars) is validated at the boundary. | P1. P0 when the gap is exploitable or causes data loss |
-| 3 | **No commented-out code**: delete it. Commented code rots and misleads readers. | P1 |
-| 4 | **No silent failures**: an exception either reaches the caller or is logged with enough context to debug it. | P1 |
-| 5 | **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store. | P0 |
-| 6 | **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4. | P1 |
-| 7 | **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state. | P1 |
+| Id | Override | Rule | Review severity |
+| --- | --- | --- | --- |
+| `floor.initialization-safety` | FIXED | **Initialization safety**: code that sets up state guards against double initialization, race conditions and partial loads. | P1. P0 when the gap is exploitable or causes data loss |
+| `floor.input-validation` | FIXED | **Input validation**: every external input (function parameters, API responses, file contents, env vars) is validated at the boundary. | P1. P0 when the gap is exploitable or causes data loss |
+| `floor.commented-out-code` | overridable | **No commented-out code**: delete it. Commented code rots and misleads readers. | P1 |
+| `floor.silent-failures` | FIXED | **No silent failures**: an exception either reaches the caller or is logged with enough context to debug it. | P1 |
+| `floor.hardcoded-secrets` | FIXED | **No hardcoded secrets**: credentials, API keys and tokens never sit inline. They come from env vars or a secret store. | P0 |
+| `floor.ephemeral-pointers` | overridable | **No ephemeral-artifact pointers in comments**: a comment never names a spec folder, a packet, phase, task, checklist or requirement id, a feature-catalog entry, an ADR id or a ticket id. Those get renamed or archived and leave a dangling pointer. Keep the durable WHY. The full contract is "No ephemeral-artifact pointers" in `code-style-guide.md` §4. | P1 |
+| `floor.accessibility` | FIXED | **Accessibility** (user-facing UI): interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state. | P1 |
+
+`floor.ephemeral-pointers` is the judgment half of a rule the runner also checks. Its machine half is the comment-hygiene checker, whose findings carry the `hygiene.*` ids of `runner-contract.md` section 5, such as `hygiene.issue`, `hygiene.task`, `hygiene.adr` and `hygiene.spec-path`. Under the contract's machine-checked rule, a `none` row for `floor.ephemeral-pointers` or for one `hygiene.*` id changes what the agent and review apply, and the runner's own check changes only through `commentHygiene.disableRules` in the repository's quality config. A `replace:` row never reaches the runner's check.
 
 ---
 
@@ -108,14 +120,13 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 
 P1 covers issues that degrade maintainability or reliability:
 
-| # | Rule | Review severity |
-| --- | --- | --- |
-| 1 | **Documentation completeness**: public APIs, exported types and complex algorithms carry docstrings or comments that explain WHY. | P2 |
-| 2 | **Test coverage at boundaries**: happy path plus at least one edge case per public surface. | P1 |
-| 3 | **Error message quality**: every error carries enough context for the operator to act. | P2 |
-| 4 | **Resource cleanup**: file handles, network connections, subscriptions, observers and timers close or cancel deterministically. | P1 |
-| 5 | **Type-safety enforcement**: in the language's own terms. TypeScript runs in strict mode without `any`. Python public functions carry type hints without `Any`. | P1 when the type check fails, P2 otherwise |
-| 6 | **Naming convention adherence**: names follow the surface convention, such as camelCase in JavaScript and TypeScript or snake_case in Python and Shell. | P2 |
+| Id | Override | Rule | Review severity |
+| --- | --- | --- | --- |
+| `floor.boundary-tests` | overridable | **Test coverage at boundaries**: happy path plus at least one edge case per public surface. | P1 |
+| `floor.error-messages` | overridable | **Error message quality**: every error carries enough context for the operator to act. | P2 |
+| `floor.resource-cleanup` | FIXED | **Resource cleanup**: file handles, network connections, subscriptions, observers and timers close or cancel deterministically. | P1 |
+| `floor.type-safety` | overridable | **Type checks pass**: where the repository runs a type checker, the change passes it. How strict the types must be is the surface's rule. | P1 when the type check fails, P2 otherwise |
+| `floor.naming` | overridable | **Naming convention adherence**: names follow the convention the repository or its surface declares. | P2 |
 
 ---
 
@@ -123,25 +134,25 @@ P1 covers issues that degrade maintainability or reliability:
 
 P2 covers issues that improve quality but do not affect correctness or maintainability:
 
-| # | Rule | Review severity |
-| --- | --- | --- |
-| 1 | **Idiomatic refinements**: code follows community style guides and project conventions. | P2 |
-| 2 | **Performance polish**: optimization beyond the NFR targets. | P2 |
-| 3 | **Test coverage beyond boundaries**: extra edge cases, fuzz tests and property tests. | P2 |
-| 4 | **Documentation completeness for internal helpers**: private functions get explained too. | P2 |
+| Id | Override | Rule | Review severity |
+| --- | --- | --- | --- |
+| `floor.documentation` | overridable | **Documentation where it earns its place**: a non-obvious contract or a complex algorithm carries a comment that explains WHY. Whether public APIs carry doc comments, and in which form, is the surface's rule. | P2 |
+| `floor.idiomatic` | overridable | **Idiomatic refinements**: code follows community style guides and project conventions. | P2 |
+| `floor.performance-polish` | overridable | **Performance polish**: optimization beyond the NFR targets. | P2 |
+| `floor.extra-tests` | overridable | **Test coverage beyond boundaries**: extra edge cases, fuzz tests and property tests. | P2 |
 
 ---
 
 ## 6. SURFACE-SPECIFIC CHECKLISTS
 
-Each surface adds its own rules to these universal tiers and gives each rule a tier. This file is the contract, and the surface checklists are the implementations.
+Each surface adds its own rules to these universal tiers and gives each rule a tier. This file is the contract, and the surface checklists are the implementations. A surface checklist may also carry a `## Rule overrides` section for an overridable floor id, under the precedence in section 3.
 
 | Surface | Phase 1.5 source | Notes |
 | ------- | ---------------- | ----- |
-| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | The fallback. The SKILLED house checklist, `universal-checklist.md`, plus one per touched language (JavaScript, TypeScript, Python, Shell, Rust, JSON/JSONC) and authoring checklists for agents, commands, skills and MCP servers |
+| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | The fallback. The SKILLED house checklist, `universal-checklist.md`, plus one per touched language (JavaScript, TypeScript, Python, Shell, Rust, JSON/JSONC), the JavaScript and CSS house style under `js-css-style/` and authoring checklists for agents, commands, skills and MCP servers. It carries the doc-comment, typing and naming detail this floor leaves to the surface |
 | CI | `.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md` | Rule index for GitHub Actions workflows |
 | Declared specific surface | The standards its skill ships | Declared through `surface_detection` in that skill's `graph-metadata.json`. Outranks SKILLED |
-| UNKNOWN | The universal floor in sections 3 to 5, the quality runner's built-in checks, the quality mode's own surface-neutral checklists that the runner lists (the JavaScript and CSS style checklists under `sk-code-quality/assets/code-quality-checklist/`) and the quality checks the repository's quality config names | sk-code does not own Go, React/Next.js, generic Node.js, React Native or Swift. Apply those, then ask for the surface and its commands. The spec-folder authoring checklist applies only where the SKILLED surface resolves, and no discovered command applies |
+| UNKNOWN | The universal floor in sections 3 to 5, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied | sk-code does not own Go, React/Next.js, generic Node.js, React Native or Swift. Apply those, then ask for the surface and its commands. The spec-folder authoring checklist applies only where the SKILLED surface resolves, and no discovered command applies |
 
 ---
 
@@ -156,10 +167,7 @@ At the Phase 1.5 Code Quality Gate:
    ```
    It reads the working-tree change by default, or `--files <path>...`, and prints one verdict. Its built-in checks cover the mechanical floor in §3, and the comment-hygiene checker is one of its sensors, so one run checks both. Zero blocking findings are required. `BLOCKED` stops completion until the finding is fixed, and `UNVERIFIED` or `NOTHING_CHECKED` never reads as clean. To suppress a known comment-hygiene false positive, put `hygiene-ok` on that comment line. The gate values and the verdict fields are in `.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md`.
 
-   Three gates also enforce comment hygiene, so the runner is early feedback, not the only safety net:
-   - **Write-time**: the shared router in `.skilled/hooks/post-edit-quality/` runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn.
-   - **Commit-time**: `.skilled/scripts/git-hooks/pre-commit`, installed by `.skilled/scripts/install-git-hooks.sh`, blocks any commit with violations. Bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`. The opt-in `.skilled/hooks/git/pre-commit` and the unregistered `sk-code-quality/scripts/hooks/claude-posttooluse.sh` are legacy, not default gates.
-   - **CI**: `.github/workflows/comment-hygiene.yml` re-checks every PR to main, and `--no-verify` cannot skip it.
+   A repository may also enforce comment hygiene outside the runner: at write time, at commit time and in CI. The verdict's `layers` field reports what a probe found for each of those layers, and a quality claim cites that field. This repository's own wiring is listed under "Comment-Hygiene Enforcement Gates" in `.skilled/skills/sk-code/sk-code-quality/SKILL.md`.
 
 3. Load the matching surface checklist from §6.
 4. Check every P0 item and fix each failure before going on.
@@ -190,6 +198,7 @@ Both modes rank against these tiers, so author evidence and review findings add 
 
 ## 9. RELATED RESOURCES
 
+- [`./rule-overrides.md`](./rule-overrides.md) - the override contract: the rule id grammar, the hard floor, precedence and how an override is recorded.
 - [`../../../sk-code-quality/references/code-style-guide.md`](../../../sk-code-quality/references/code-style-guide.md) - language-agnostic naming, formatting and structure principles.
 - [`../stack-detection.md`](../stack-detection.md) - surface detection order, with specific surfaces first and the SKILLED fallback last.
 - [`../workflow-implement.md`](../workflow-implement.md) - Phase 1, where the Design Restraint Ladder is applied.

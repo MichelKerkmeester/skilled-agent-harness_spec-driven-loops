@@ -1,6 +1,6 @@
 ---
 title: Universal Code Style Guide
-description: Language-agnostic naming, file structure, commenting, and formatting principles for the SKILLED code surface.
+description: Language-agnostic naming, file structure, commenting and formatting principles that hold on every surface, with house style left to each surface.
 trigger_phrases:
   - "universal code style guide"
   - "language agnostic naming"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.2.5.0
+version: 2.3.0.0
 ---
 
 # Universal Code Style Guide
 
-Language-agnostic style principles. Naming conventions and stack-specific enforcement live in each stack's standards doc; this file captures the universal rules.
+Language-agnostic style principles that hold in any repository. Identifier schemes, file-size limits, line length, folder and test layout, formatter picks and header forms are house style, so each surface states its own. This file keeps only the universal rules.
 
 ---
 
@@ -21,11 +21,11 @@ Language-agnostic style principles. Naming conventions and stack-specific enforc
 
 ### Purpose
 
-Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline, formatter use. The actual identifier convention is surface-specific and lives in each surface packet: `.skilled/skills/sk-code/sk-code-skilled/references/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
+Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline and formatter use. The concrete conventions are surface-specific and live in each surface packet. For this repository's own code that is SKILLED, under `.skilled/skills/sk-code/sk-code-skilled/references/shared/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
 
 ### Core Principle
 
-Names communicate intent. Files express one concept. Comments explain WHY (never WHAT). Formatters are not negotiable.
+Names communicate intent. Files express one concept. Comments explain WHY (never WHAT) and describe the code as it is now. Use the formatter the project picked.
 
 ### When to Use
 
@@ -36,7 +36,8 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 
 ### Key Sources
 
-- Surface style guides: the language folders under `.skilled/skills/sk-code/sk-code-skilled/references/`.
+- Surface style guides: the standards each surface ships. The SKILLED ones are the language folders under `.skilled/skills/sk-code/sk-code-skilled/references/`.
+- Rule ids and overrides: [`../../shared/references/universal/rule-overrides.md`](../../shared/references/universal/rule-overrides.md). A repository or surface may drop or replace a rule of this guide in a `## Rule overrides` section.
 - Project-level enforcement (banned phrases, voice rules): the repository's `AGENTS.md` is authoritative, when present.
 
 ---
@@ -51,14 +52,7 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 
 ### Surface-appropriate convention
 
-Each surface and language has a convention. Follow the surface convention; do not invent your own.
-
-| Surface              | Identifier convention                                                                                       |
-| -------------------- | ----------------------------------------------------------------------------------------------------------- |
-| SKILLED JS/TS       | `camelCase` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants             |
-| SKILLED Python/Shell | `snake_case` for variables/functions; `PascalCase` for classes; `UPPER_SNAKE` for constants                 |
-
-The surface code quality checklist (see `../../shared/references/universal/code-quality-standards.md` §6) enforces the convention.
+Each surface and language has a convention. Follow the convention the repository or its surface declares, and do not invent your own. The floor rule is `floor.naming` in `../../shared/references/universal/code-quality-standards.md` §4, and the surface checklist states the concrete scheme. The SKILLED scheme is in `../../sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` §2.
 
 ### Universal anti-patterns
 
@@ -79,26 +73,11 @@ The surface code quality checklist (see `../../shared/references/universal/code-
 
 ### Stable import / structure order
 
-Most communities have a conventional order. Follow it.
+Most communities have a conventional top-of-file and import order. Follow it, or the order the surface states. The SKILLED order is in `../../sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md` §2.
 
-| Surface     | Top-of-file order                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------------- |
-| SKILLED TS | Module header → imports (external → local) → types/interfaces → exports                                |
-| SKILLED Python | Shebang → module docstring → imports (stdlib → third-party → local) → constants → classes/functions |
+### File size, folders and tests
 
-### Keep files small
-
-- Hard to read beats hard to navigate. Split files when they exceed roughly 500 lines or contain three or more unrelated concepts.
-- Exception: data files (constants, fixtures) can be large; that is fine.
-
-### Folders and tests
-
-These two rules hold on every surface.
-
-- **No double-underscore folder names.** A folder name never starts and ends with `__`: not `__tests__`, `__fixtures__`, `__helpers__`, `__shared__` or `__snapshots__`. Name the folder for what it holds, as `fixtures/` or `helpers/`. When a tool generates such a name by default, configure the tool rather than keep the name; for vitest snapshots that means setting `resolveSnapshotPath`.
-- **Test code lives under a `tests/` tree.** Tests, their fixtures and their helpers go under the package's top-level `tests/` folder. Keep that folder flat while the file names stay unique, and group by area only when a group holds several files. A test file never sits beside the source file it covers.
-
-`verify_alignment_drift.py --check-folders` in sk-code-skilled flags both the name rule and code folders that lack a README.
+How long a file may grow, how folders are named and where tests live are house style. Follow the language's community convention and the surface's rules: some languages keep tests beside the source they cover, and others keep them in a separate tree. The SKILLED rules, a 500-line split point, no double-underscore folder names and a top-level `tests/` tree, are in `../../sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md` §2 and `../../sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` §3.
 
 ---
 
@@ -115,7 +94,7 @@ Well-named identifiers and clear structure self-document. Add a comment only whe
 
 ### Comment density
 
-This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Skilled surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`.
+This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. A repository that wants fewer comments, or more, says so in its own checklist. The Skilled surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`.
 
 ### Never comment what the code does
 
@@ -130,11 +109,15 @@ i += 1
 
 ### No commented-out code
 
-Delete it. Git history preserves it. Commented code is cognitive load with no payoff.
+Delete it. Git history preserves it. Commented code is cognitive load with no payoff. The floor rule is `floor.commented-out-code`.
+
+### Describe current behavior, not history
+
+**CHK-CMT-07 (P1):** each comment describes what the code does now, never how it got there, what it used to do or which change introduced it. A comment that narrates its own history is wrong the moment the next change lands. Before: `// this check used to live in the old loader`. After: `// skips blank lines so the count stays true`. This rule adds to the ephemeral-pointer rule below and never softens it.
 
 ### No ephemeral-artifact pointers
 
-Never name a specific instance of an ephemeral tracking artifact in a comment. Keep the durable WHY; drop the perishable label. This is the canonical rule for the SKILLED surface — surface guides point here rather than restating it.
+Never name a specific instance of an ephemeral tracking artifact in a comment. Keep the durable WHY; drop the perishable label. This is the canonical statement of the floor rule `floor.ephemeral-pointers`, and surface guides point here rather than restating it. The comment-hygiene checker enforces it through the `hygiene.*` rule ids, and a repository that tracks none of these artifacts can switch chosen ids off through `commentHygiene.disableRules` in its quality config.
 
 An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or deleted on its own schedule while the code lives on: a spec folder or its number (`specs/042-foo`, `Spec 031`), a packet / phase / task / checklist / requirement number (`Packet 117`, `Phase 005`, `T043`, `CHK-160`, `REQ-005`), a feature-catalog entry (`feature-catalog/scorer-fusion/...`), an ADR id (`ADR-004`), or a ticket / issue id (`#1234`, `CU-8abc`). When the artifact moves, the comment becomes a dangling pointer that sends the next reader chasing a dead reference — worse than no comment.
 
@@ -174,42 +157,21 @@ When a comment mixes a forbidden id with a stable standard, keep the standard: `
 
 ### Mark intentional simplifications
 
-When a simplification is deliberate — a known shortcut chosen on purpose, not an oversight — name it so it reads as intent, not ignorance. Use a neutral `ceiling:` prefix that names the shortcut, its known ceiling, and the upgrade path or trigger:
-
-```python
-# ceiling: global lock; switch to per-account locks if throughput matters
-```
-
-This is durable WHY (the constraint plus the decision), so it is allowed by the rule above — it names no tracking artifact. Two constraints:
-
-- Use a neutral prefix (`ceiling:` or `intentional-limit:`), never a tool or brand name — a brand prefix reads as a perishable, cargo-cult label.
-- Do NOT add `ceiling:` to the comment-hygiene checker's allowed-pattern list. It already passes (it contains no forbidden id), and allow-listing it would let a forbidden id on the same line slip through, because allowed patterns short-circuit violation detection.
-
-To list every marker in the tracked code and flag the ones whose trigger can never fire, run `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh`.
+When a simplification is deliberate, a known shortcut chosen on purpose and not an oversight, name it so it reads as intent and not ignorance: the shortcut, its known ceiling and the upgrade path or trigger. A surface MAY define a neutral marker for such comments so they can be listed and reviewed. Without one, a plain WHY comment does the job. The SKILLED surface defines the `ceiling:` marker in `../../sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` §3.
 
 ### Surface-specific commenting notes
 
-Some surfaces have additional commenting conventions (SKILLED TypeScript uses `MODULE:` headers where required). See the surface style guide.
+Header forms, doc-comment forms and comment prefixes are surface rules. See the surface style guide.
 
 ---
 
 ## 5. FORMATTING
 
-### Use the language's standard formatter
+### Use the project's formatter
 
-| Surface     | Formatter                       |
-| ----------- | ------------------------------- |
-| SKILLED JS/TS | Prettier or project formatter |
-| SKILLED Python | Black or Ruff                |
-| SKILLED Shell | `shfmt` where available       |
+When the project runs a formatter, don't fight it: configure it once at the project root and never overwrite its output by hand. Which formatter, and which line length, are the surface's choice. The SKILLED picks are in `../../sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md` §2.
 
-Don't fight the formatter. Configure once at the project root and never overwrite manually.
-
-### Line length
-
-- Soft limit roughly 100-120 characters (matches most modern editors at split-view).
-- Hard wrap only when it improves readability.
-- Don't wrap-for-wrap's-sake.
+Wrap a line only when it improves readability, never for wrapping's sake.
 
 ---
 
@@ -220,6 +182,7 @@ For the rules that ARE language-specific, see:
 | Surface  | Reference                                                                                  |
 | -------- | ------------------------------------------------------------------------------------------ |
 | SKILLED | `.skilled/skills/sk-code/sk-code-skilled/references/` language standards and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`               |
+| Any other surface | The standards and checklists its own skill declares, or the repository's quality config checklists |
 
 ---
 
@@ -228,4 +191,5 @@ For the rules that ARE language-specific, see:
 - [`../../shared/references/universal/code-quality-standards.md`](../../shared/references/universal/code-quality-standards.md) - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
 - [`../../shared/references/workflow-debug.md`](../../shared/references/workflow-debug.md) - debugging and command-failure recovery when a style violation cannot be auto-fixed.
 - Surface standards under `.skilled/skills/sk-code/sk-code-skilled/references/`.
-- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` - the surface checklists that operationalize this guide.
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` - the SKILLED checklists that operationalize this guide for this repository's own code.
+- [`../../shared/references/universal/rule-overrides.md`](../../shared/references/universal/rule-overrides.md) - how a repository or surface drops or replaces a rule.

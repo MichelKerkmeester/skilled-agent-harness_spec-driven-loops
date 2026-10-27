@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.8.0
+version: 2.2.9.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -29,7 +29,7 @@ Detect **where the work is happening** before deciding which standards apply. Th
 | --- | --- | --- |
 | Specific surfaces | The stack each one declares, such as an operator-private `local-*` skill or a surface packet another repository adds to the hub | Work that matches none of their markers |
 | SKILLED | The hub's own code under `.skilled/`: skills, agents, commands, MCP servers, plugins, scripts, tests and JSON or YAML config. It is the one fallback surface | A stack a specific surface declares |
-| UNKNOWN | The result when no declared surface matches | Any standard beyond the universal floor, the quality runner's built-in checks, the quality mode's surface-neutral checklists that the runner lists and the quality checks the repository's quality config names, until the operator names the surface and its commands. The spec-folder authoring checklist needs the SKILLED surface |
+| UNKNOWN | The result when no declared surface matches | Any standard beyond the universal floor, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied, until the operator names the surface and its commands. The spec-folder authoring checklist needs the SKILLED surface |
 
 `sk-code-ci` is a surface packet with no detection block. The hub bundles it from request vocabulary alone, so detection never returns it.
 
@@ -46,7 +46,7 @@ When a specific surface and SKILLED both match, the specific surface leads and S
 2. Specific surfaces that skills outside the hub declare, sorted by skill_id.
 3. SKILLED, the fallback. It leads only when no specific surface matched.
    Otherwise it follows them as second evidence and is never dropped.
-4. UNKNOWN when nothing matched. Apply the universal floor, the quality runner's built-in checks, the quality mode's surface-neutral checklists that the runner lists (the JavaScript and CSS style checklists under `sk-code-quality/assets/code-quality-checklist/`) and the quality checks the repository's quality config names. The spec-folder authoring checklist needs the SKILLED surface, no discovered command applies, and the operator is asked which surface and which commands apply.
+4. UNKNOWN when nothing matched. Apply the universal floor, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied under `universal/rule-overrides.md`. The spec-folder authoring checklist needs the SKILLED surface, no discovered command applies, and the operator is asked which surface and which commands apply.
 ```
 
 ### Why SKILLED Is Last
@@ -104,7 +104,7 @@ These rules apply to an external block:
 
 ### The Fallback and the Symlink Guard
 
-SKILLED is the hub's own code. On real file paths it holds only through its path markers, and only when the resolved path lands inside the hub's own `.skilled/` directory. Its file and content markers serve text-only detection, such as a router replay over request text that has no resolved paths. Without that limit, the `.ts` marker would make a TypeScript file in any repository SKILLED.
+SKILLED is the hub's own code. On real file paths it holds only through its path markers, and only when the resolved path lands inside the hub's own `.skilled/` folder, or inside the folder its plugins link resolves to when that folder is not an ancestor of the hub. Its file and content markers serve text-only detection, such as a router replay over request text that has no resolved paths. Without that limit, the `.ts` marker would make a TypeScript file in any repository SKILLED.
 
 Resolve symlinks before testing. A downstream plugin repository symlinks `.opencode`, `.claude`, `.codex`, `.cursor` and `.devin` at its root back to this hub. An operator's private `local-*` skills sit in the hub's `.skilled/skills/` folder as symlinks to another repository. A literal test for a `.skilled/` or `.opencode/` segment would therefore report SKILLED for work that never touches a hub file. After the paths resolve:
 
@@ -123,7 +123,7 @@ Each reader applies this contract to the input it has:
 | `detectWorkspaceSurface` in `.skilled/plugins/system-skill-advisor.js` | The resolved working directory | A path marker the directory holds or sits inside, or a file marker naming a file in it. Extension and content markers are skipped | The directory lying inside the hub's own `.skilled/` | The first match as the session's `--surface-hint`, or no hint |
 | `detect_surface_evidence` in `sk-code-review/SKILL.md` | Resolved workspace and changed files, plus the request text | Any path, file or content marker | Its path markers only | Every matching label in order, or `UNKNOWN` |
 | `detectSurfaces` in `sk-code-skilled/assets/scripts/router-replay-lib.cjs` | The request text only | Any marker found in the text | Any of its markers found in the text | Every matching label in order, with the first as the lead |
-| `fileLabels` in `sk-code-quality/scripts/quality-gate.cjs` | Each changed file's resolved real path, name and content | A path marker on a path segment, a file marker on the extension or exact name, or a content marker in the text | Its path markers, only when the real path lies inside the hub's own `.skilled/` | Each file's labels in order, or `UNKNOWN`, and their union for the run, or `unknown` |
+| `fileLabels` in `sk-code-quality/scripts/quality-gate.cjs` | Each changed file's resolved real path, name and content | A path marker on a path segment, a file marker on the extension or exact name, or a content marker in the text | Its path markers, only when the real path lies inside the hub's own `.skilled/` folder, or inside the folder its plugins link resolves to when that folder is not an ancestor of the hub | Each file's labels in order, or `UNKNOWN`, and their union for the run, or `unknown` |
 
 ---
 

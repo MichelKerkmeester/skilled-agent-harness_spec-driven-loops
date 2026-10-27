@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "3.9.8.0",
+  "version": "3.9.9.0",
   "resourceContractVersion": 1,
   "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-ci/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md, symlinked into the surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
@@ -17,7 +17,7 @@
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They bundle stack knowledge plus the workflow doctrine as read-only evidence; the acting agent applies it — the surface never executes the process itself.",
       "surfaces": ["sk-code-ci", "sk-code-skilled"],
-      "surfaceDetection": "A surface entry may carry a surfaceDetection block: label (the detected surface name), role ('specific' or 'fallback'), and pathMarkers, fileMarkers and contentMarkers. A skill outside the hub whose graph-metadata.json names family 'sk-code' can declare the same block as surface_detection, and it is always specific. Detection tries every specific surface first, hub entries in modes[] order and then outside skills by skill_id, then the single fallback, then UNKNOWN. When a specific surface and the fallback both match, the specific surface leads and the fallback comes along as second evidence. The fallback is the hub's own code, so its path markers count only when the resolved real path lands inside the hub's own .skilled/ directory. A surface reached from request vocabulary alone, such as sk-code-ci, declares no block. The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in routerPolicy.tieBreak."
+      "surfaceDetection": "A surface entry may carry a surfaceDetection block: label (the detected surface name), role ('specific' or 'fallback'), and pathMarkers, fileMarkers and contentMarkers. A skill outside the hub whose graph-metadata.json names family 'sk-code' can declare the same block as surface_detection, and it is always specific. Detection tries every specific surface first, hub entries in modes[] order and then outside skills by skill_id, then the single fallback, then UNKNOWN. When a specific surface and the fallback both match, the specific surface leads and the fallback comes along as second evidence. The fallback is the hub's own code, so its path markers count only when the resolved real path lands inside the hub's own .skilled/ folder, or inside the folder its plugins link resolves to when that folder is not an ancestor of the hub. A surface reached from request vocabulary alone, such as sk-code-ci, declares no block. The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in routerPolicy.tieBreak."
     }
   },
   "modes": [
@@ -89,6 +89,9 @@
           {"paths": [".skilled/agents/**"], "file": "sk-code-skilled/assets/checklists/agent-authoring.md"},
           {"paths": [".skilled/commands/**"], "file": "sk-code-skilled/assets/checklists/command-authoring.md"},
           {"extensions": [".js", ".cjs", ".mjs"], "file": "sk-code-skilled/assets/checklists/javascript-checklist.md"},
+          {"extensions": [".js", ".css"], "file": "sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md"},
+          {"extensions": [".js", ".css"], "file": "sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md"},
+          {"extensions": [".js", ".css"], "file": "sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md"},
           {"extensions": [".ts", ".tsx", ".mts", ".cts"], "file": "sk-code-skilled/assets/checklists/typescript-checklist.md"},
           {"extensions": [".py"], "file": "sk-code-skilled/assets/checklists/python-checklist.md"},
           {"extensions": [".sh", ".bash"], "file": "sk-code-skilled/assets/checklists/shell-checklist.md"},

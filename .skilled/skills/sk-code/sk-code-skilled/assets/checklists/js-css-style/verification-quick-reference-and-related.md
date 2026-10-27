@@ -1,6 +1,6 @@
 ---
 title: Verification Summary, Quick Reference & Related
-description: Validation checklist for JavaScript and CSS code quality and style compliance. — Verification Summary, Quick Reference & Related.
+description: Verification summary templates and pass criteria for the SKILLED JavaScript and CSS house-style checks.
 trigger_phrases:
   - "code quality verification summary"
   - "javascript pass criteria"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "quality gate resources"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.6.0.0
 ---
 
 # Verification Summary, Quick Reference & Related
 
-Templates, pass criteria, and source links for reporting JavaScript and CSS quality verification.
+Templates, pass criteria, and source links for reporting the SKILLED JavaScript and CSS house-style checks.
 
 ## 1. OVERVIEW
 
@@ -45,7 +45,6 @@ After completing validation, document the results using the appropriate template
 |----------|----|----|----|----|
 | File Header | X/0 | X/0 | X/1 | ✅/❌ |
 | Section Organization | X/0 | X/0 | X/1 | ✅/❌ |
-| Comment Quality | X/0 | X/1 | X/0 | ✅/❌ |
 | Formatting | X/0 | X/0 | X/1 | ✅/❌ |
 
 **P0 Status**: All passed? [YES/NO]
@@ -85,13 +84,12 @@ After completing validation, document the results using the appropriate template
 
 ### JavaScript Pass Criteria
 
-These checks add no JavaScript P0. The P0 items that gate a `.js` file come from the surface's own JavaScript checklist.
+These checks add no JavaScript P0. The P0 items that gate a `.js` file come from the SKILLED JavaScript checklist. CHK-CMT-07 is a universal rule in the code style guide and is reported with it.
 
 | Check Category | Minimum for PASS |
 |----------------|------------------|
 | File Header | CHK-HDR-06 recommended (P2) |
 | Section Organization | CHK-SEC-09 recommended (P2) |
-| Comment Quality | CHK-CMT-07 fixed or deferred with approval (P1) |
 | Formatting | CHK-FMT-05 recommended (P2) |
 
 ### CSS Pass Criteria
@@ -111,13 +109,14 @@ These checks add no JavaScript P0. The P0 items that gate a `.js` file come from
 
 ### Per-language source standards
 
-- [javascript-checklist.md](../../../sk-code-skilled/assets/checklists/javascript-checklist.md) - SKILLED JavaScript checks, including the header form and naming
-- [style-guide.md](../../../sk-code-skilled/references/javascript/style-guide.md) - SKILLED JavaScript style guide
+- [javascript-checklist.md](../javascript-checklist.md) - SKILLED JavaScript checks, including the header form and naming
+- [style-guide.md](../../../references/javascript/style-guide.md) - SKILLED JavaScript style guide
 
 ### Enforcement Reference
 
-- [check-comment-hygiene.sh](../../scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker
+- [check-comment-hygiene.sh](../../../../sk-code-quality/scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker
 
 ### Parent Skill
 
-- [SKILL.md](../../SKILL.md) - (Phase 1.5: Code Quality Gate)
+- [SKILL.md](../../../SKILL.md) - The SKILLED surface
+- [sk-code-quality SKILL.md](../../../../sk-code-quality/SKILL.md) - Phase 1.5: Code Quality Gate

@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.3.0
+version: 2.3.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -267,10 +267,14 @@ RESOURCE_MAP = {
     ],
     "CODE_QUALITY": [
         "shared/references/universal/code-quality-standards.md",
+        "shared/references/universal/rule-overrides.md",
         "sk-code-quality/references/code-style-guide.md",
         "sk-code-quality/references/runner-contract.md",
         "sk-code-skilled/assets/checklists/universal-checklist.md",  # SKILLED only: the house checklist loads when SKILLED resolves, never for a foreign surface
         "sk-code-skilled/assets/checklists/javascript-checklist.md",
+        "sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md",
+        "sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+        "sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md",
         "sk-code-skilled/assets/checklists/typescript-checklist.md",
         "sk-code-skilled/assets/checklists/python-checklist.md",
         "sk-code-skilled/assets/checklists/shell-checklist.md",
@@ -364,6 +368,7 @@ RESOURCE_MAP = {
 # control, so a guard that needs the control set reads these two lists.
 SHARED_CONTROL_RESOURCES = [
     "shared/references/universal/code-quality-standards.md",
+    "shared/references/universal/rule-overrides.md",
     "shared/references/workflow-debug.md",
     "shared/references/workflow-verify.md",
 ]

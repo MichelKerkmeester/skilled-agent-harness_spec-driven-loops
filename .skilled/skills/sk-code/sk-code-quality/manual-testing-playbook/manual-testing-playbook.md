@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -50,7 +50,7 @@ Coverage note: `sk-code-quality` routes primarily by target path, through the ch
 
 1. Working directory is the repository root.
 2. `.skilled/skills/sk-code/sk-code-quality/SKILL.md` resolves on disk.
-3. Every file under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` resolves on disk.
+3. Every file under `.skilled/skills/sk-code/sk-code-quality/references/` resolves on disk.
 4. The operator can run `sed`, `test` and `git status` without network access.
 5. No scenario in this playbook is destructive. Each one reads files and writes nothing.
 
@@ -99,7 +99,7 @@ For each executed scenario, check:
 Scenario verdict:
 - `PASS`: every path in `expected_resources` resolves under the skill root and the frontmatter `expected_intent` agrees with the root index
 - `FAIL`: a listed path is missing, or the frontmatter intent disagrees
-- `SKIP`: the `assets/code-quality-checklist/` directory is unavailable in the sandboxed checkout
+- `SKIP`: the `references/` directory is unavailable in the sandboxed checkout
 
 ### Feature Verdict Rules
 

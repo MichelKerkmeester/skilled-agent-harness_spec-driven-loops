@@ -1,6 +1,6 @@
 ---
 title: Naming, Initialization, Formatting & CSS Style Checks
-description: Surface-neutral JavaScript formatting and CSS checks that no surface language checklist states. — Naming, Initialization, Formatting & CSS Style Checks.
+description: SKILLED JavaScript formatting and CSS house checks that the SKILLED JavaScript checklist does not state.
 trigger_phrases:
   - "javascript naming checks"
   - "cdn safe initialization"
@@ -8,22 +8,22 @@ trigger_phrases:
   - "css style checks"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.6.0.0
 ---
 
 # Naming, Initialization, Formatting & CSS Style Checks
 
-Surface-neutral formatting and CSS checks, and where naming and initialization rules live instead.
+SKILLED house formatting and CSS checks, and where naming and initialization rules live instead.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Hold the JavaScript formatting and CSS checks that apply on every surface and that the surface's own checklist does not already carry. Naming and initialization are surface conventions, so this file points to their owners rather than restating them.
+Hold the JavaScript formatting and CSS checks the SKILLED surface applies on top of its JavaScript checklist. They are house style, not universal rules, so they load only when SKILLED resolves for a `.js` or `.css` target. Naming and initialization are surface conventions, so this file points to their owners rather than restating them.
 
 ### Usage
 
-Load this file with [overview-header-and-comments.md](./overview-header-and-comments.md) for a `.js` or `.css` target, after the surface's own language checklist. Apply each relevant check before reporting code-quality results.
+Load this file with [overview-header-and-comments.md](./overview-header-and-comments.md) for a SKILLED `.js` or `.css` target, after the SKILLED JavaScript checklist. Apply each relevant check before reporting code-quality results.
 
 ---
 
@@ -33,10 +33,10 @@ Load this file with [overview-header-and-comments.md](./overview-header-and-comm
 
 No checks here. Identifier naming follows the surface convention.
 
-- **SKILLED:** camelCase variables and functions, `PascalCase` classes, `UPPER_SNAKE_CASE` constants and `is`/`has`/`can` boolean prefixes, per `../../../sk-code-skilled/assets/checklists/javascript-checklist.md` and `../../../sk-code-skilled/references/javascript/style-guide.md` §5.
+- **SKILLED:** camelCase variables and functions, `PascalCase` classes, `UPPER_SNAKE_CASE` constants and `is`/`has`/`can` boolean prefixes, per `../javascript-checklist.md` and `../../../references/javascript/style-guide.md` §5.
 - **Webflow:** the `snake_case` names, semantic prefixes and the CDN-safe `INIT_FLAG` guard belong to an operator-private Webflow surface skill, which carries them.
 
-A naming defect is P1 under [code-quality-standards.md](../../../shared/references/universal/code-quality-standards.md) §4: it gets fixed but does not block completion the way a security or correctness defect does.
+A naming defect is P1 under [code-quality-standards.md](../../../../shared/references/universal/code-quality-standards.md) §4: it gets fixed but does not block completion the way a security or correctness defect does.
 
 ---
 

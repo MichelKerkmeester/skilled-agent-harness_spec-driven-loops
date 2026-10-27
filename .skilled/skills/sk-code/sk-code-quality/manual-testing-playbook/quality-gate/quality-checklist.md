@@ -2,13 +2,12 @@
 id: CQ-001
 category: quality_gate
 title: 'Quality gate routes to the sk-code-quality checklist'
-description: "This scenario validates QUALITY routing for `CQ-001`. It confirms a comment-hygiene and P0/P1/P2 quality-gate prompt resolves to the resource set sk-code-quality's router emits: the runner contract from `DEFAULT_RESOURCE` plus the mode's quality checklists."
+description: "This scenario validates QUALITY routing for `CQ-001`. It confirms a comment-hygiene and P0/P1/P2 quality-gate prompt resolves to the resource set sk-code-quality's router emits: the runner contract from `DEFAULT_RESOURCE` plus the repository config reference."
 expected_intent: QUALITY
 expected_resources:
   - references/runner-contract.md
-  - assets/code-quality-checklist/naming-init-formatting-and-css.md
-  - assets/code-quality-checklist/verification-quick-reference-and-related.md
-version: 1.1.3.0
+  - references/quality-config.md
+version: 1.2.0.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -20,11 +19,11 @@ This document captures the routing-recall contract, execution process, source an
 ## 1. OVERVIEW
 
 This scenario validates `QUALITY` routing for `CQ-001`. `sk-code-quality` is a thin, deliberately narrow
-Type-1 prompt-intent router: its real routing precision is target-path-keyed (the checklist map in
-`SKILL.md` §2), and its parent-to-child discoverability is the hub's
+Type-1 prompt-intent router: its real routing precision is target-path-keyed (the checklists
+`quality-gate.cjs --explain <path>` names), and its parent-to-child discoverability is the hub's
 `quality` signal. This scenario exercises the one prompt-intent route the deterministic router-replay can
 score. It confirms that a comment-hygiene or P0-P1-P2 quality-gate prompt classifies as `QUALITY` and
-loads the set `DEFAULT_RESOURCE` names: the runner contract, the universal floor and the style guide, beside the mode's quality checklists.
+loads the set `DEFAULT_RESOURCE` names: the runner contract, the universal floor and the style guide, beside the repository config reference. The mode ships no house-style checklist of its own, so `RESOURCE_MAP["QUALITY"]` holds only `references/quality-config.md`.
 
 ### Why This Matters
 
@@ -91,11 +90,11 @@ excerpt.
 
 ### Failure Triage
 
-1. Re-run step 3 for the specific path that failed and confirm whether the checklist file was renamed or
-   removed under `assets/code-quality-checklist/`.
+1. Re-run step 3 for the specific path that failed and confirm whether the file was renamed or
+   removed under `references/`.
 2. Diff this scenario's `expected_resources` against `SKILL.md`'s `RESOURCE_MAP["QUALITY"]` and
    `DEFAULT_RESOURCE` (§2b) to see whether the drift is a stale scenario file or a stale router map.
-   `RESOURCE_MAP["QUALITY"]` names the three surface-neutral JavaScript and CSS checklists, and
+   `RESOURCE_MAP["QUALITY"]` names the repository config reference, and
    `DEFAULT_RESOURCE` names the runner contract, the universal floor and the style guide. Step 3 tracks
    the `DEFAULT_RESOURCE` set, and `expected_resources` draws from both.
 

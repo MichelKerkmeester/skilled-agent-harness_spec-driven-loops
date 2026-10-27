@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.1.0.0
 ---
 
 # Universal Patterns - Cross-Language Code Standards
@@ -145,6 +145,17 @@ results    // what about results?
 proceed    // noun or verb?
 ```
 
+### SKILLED Identifier Convention
+
+The universal style guide asks each surface to state its identifier scheme. This is the SKILLED one:
+
+| Language | Identifier convention |
+| --- | --- |
+| JavaScript and TypeScript | `camelCase` for variables and functions, `PascalCase` for classes and types, `UPPER_SNAKE` for constants |
+| Python and Shell | `snake_case` for variables and functions, `PascalCase` for classes, `UPPER_SNAKE` for constants |
+
+The language checklists under `../../../assets/checklists/` enforce it.
+
 ### Plural Naming for Collections
 
 Arrays and collections use plural names:
@@ -214,6 +225,25 @@ if (!isValid) return null;
 | Security concern | YES | `// SEC: sanitize input to prevent stored XSS (CWE-79)` |
 | Self-explanatory code | NO | `const sum = a + b;` needs no comment |
 | Obvious loops | NO | `for (let i = 0; i < 10; i++)` needs no comment |
+
+### Header Markers
+
+SKILLED TypeScript files carry a `MODULE:` header where the TypeScript checklist requires one, and the alignment verifier checks that marker. Header forms for the other languages are in each language's style guide.
+
+### Intentional-Simplification Marker (`ceiling:`)
+
+The universal style guide lets a surface define a marker for a deliberate shortcut. SKILLED defines `ceiling:`. Use the neutral `ceiling:` prefix and name the shortcut, its known ceiling and the upgrade path or trigger:
+
+```python
+# ceiling: global lock; switch to per-account locks if throughput matters
+```
+
+This is durable WHY, the constraint plus the decision, so the ephemeral-pointer rule allows it: it names no tracking artifact. Two constraints:
+
+- Use a neutral prefix (`ceiling:` or `intentional-limit:`), never a tool or brand name. A brand prefix reads as a perishable, cargo-cult label.
+- Do NOT add `ceiling:` to the comment-hygiene checker's allowed-pattern list. It already passes, because it contains no forbidden id, and allow-listing it would let a forbidden id on the same line slip through, because allowed patterns short-circuit violation detection.
+
+To list every marker in the tracked code and flag the ones whose trigger can never fire, run `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh`.
 
 ### Comment Placement
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # sk-code-quality
@@ -64,7 +64,7 @@ node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format t
 
 The runner reads the change, by default the working tree against `HEAD`. It runs the conflict-marker, secret and debug-leftover sensors, one comment-hygiene call over the changed files and a parse floor, and probes which hooks and workflows enforce hygiene. It prints one verdict with a gate and an exit code from 0 to 4. No gate means pass: exit 0 says only that no blocker was found and that every required check produced evidence. [`references/runner-contract.md`](./references/runner-contract.md) documents every field. A committed `.sk-code/quality.json` runs its commands only in a trusted repository. Without a grant each configured check reads `SKIPPED_UNTRUSTED` with the repair `git config --local skilled.trustRepoChecks true`, and [section 8 of the quality config reference](./references/quality-config.md) names the grants.
 
-**Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface. For a `.js` or `.css` target the verdict also names the surface-neutral additions in [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) and its companions. For `.skilled/` targets it names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
+**Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface. On SKILLED it also names the JavaScript and CSS house checks for a `.js` or `.css` target, in [`js-css-style/`](../sk-code-skilled/assets/checklists/js-css-style/). For `.skilled/` targets it names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
 
 **Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Root-cause failures that need investigation to the surface debugging workflow (`workflow-debug.md`). Send final evidence to the surface verification workflow (`workflow-verify.md`).
 
@@ -84,7 +84,7 @@ The mode sits between implementation and verification. It runs the quality runne
 
 ### Target-Path Routing
 
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path>` names the checklists for any one file, and why.
 
 ### The Mutation Boundary
 
@@ -129,7 +129,6 @@ Use it when a change is already written and needs standards enforcement before f
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
 | [`references/runner-contract.md`](./references/runner-contract.md) | The runner's CLI, exit codes, states, verdict, envelope grammar and rule ids |
 | [`scripts/quality-gate.cjs`](./scripts/quality-gate.cjs) | The quality runner, one verdict per change in any repository |
-| [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) | Surface-neutral JavaScript and CSS additions, loaded for `.js` or `.css` targets with the surface's own language checklist |
 | [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
 | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Comment-hygiene checker, which the runner calls once per run |

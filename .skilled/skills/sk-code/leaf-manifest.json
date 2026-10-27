@@ -17,9 +17,6 @@
     },
     {
       "leaves": [
-        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
-        "assets/code-quality-checklist/overview-header-and-comments.md",
-        "assets/code-quality-checklist/verification-quick-reference-and-related.md",
         "assets/comment-syntax.json",
         "assets/quality-config.template.json",
         "assets/quality-defaults.json",
@@ -52,6 +49,9 @@
         "assets/checklists/command-authoring.md",
         "assets/checklists/config-checklist.md",
         "assets/checklists/javascript-checklist.md",
+        "assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+        "assets/checklists/js-css-style/overview-header-and-comments.md",
+        "assets/checklists/js-css-style/verification-quick-reference-and-related.md",
         "assets/checklists/mcp-server-authoring.md",
         "assets/checklists/python-checklist.md",
         "assets/checklists/rust-checklist/overview-and-p0-parity.md",

@@ -28,6 +28,7 @@ const { CONTRACT_PATH, lintOverrides, loadContract } = checkRuleOverrides;
 
 const LINTER = path.resolve(__dirname, '..', 'check-rule-overrides.cjs');
 const REFERENCE_PATH = path.resolve(__dirname, '..', '..', 'references', 'universal', 'rule-overrides.md');
+const STANDARDS_PATH = path.resolve(__dirname, '..', '..', 'references', 'universal', 'code-quality-standards.md');
 const HEADER = '| Rule | Action | Reason |\n| --- | --- | --- |\n';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -55,6 +56,16 @@ function referenceFloorIds() {
     .map((line) => /^\| `([^`]+)` \|/.exec(line))
     .filter(Boolean)
     .map((match) => match[1]);
+}
+
+// Reads the Id and Override cells of every rule table in the universal floor, sections 3 to 5.
+function standardsFloorRows() {
+  const text = fs.readFileSync(STANDARDS_PATH, 'utf8');
+  const floor = text.split(/^## 3\. /m)[1].split(/^## 6\. /m)[0];
+  return floor.split('\n')
+    .map((line) => /^\| `([^`]+)` \| ([A-Za-z]+) \|/.exec(line))
+    .filter(Boolean)
+    .map((match) => ({ id: match[1], mark: match[2] }));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -162,5 +173,24 @@ test('the reference floor table and the JSON floor list hold the same ids', () =
 
 test('the contract reference itself lints clean', () => {
   const run = spawnSync(process.execPath, [LINTER, REFERENCE_PATH], { encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stderr);
+});
+
+// The universal floor marks each rule FIXED or overridable. A FIXED mark the JSON floor
+// does not hold would promise a lock the linter never enforces, and a hard floor id the
+// standards left overridable would read as changeable to an author who never runs the linter.
+test('every universal floor rule carries an id, and its FIXED marks match the JSON floor', () => {
+  const rows = standardsFloorRows();
+  assert.ok(rows.length > 0, 'the universal floor tables carry no Id column');
+  for (const row of rows) {
+    assert.match(row.id, /^[a-z][a-z0-9-]*\.(?:\*|[a-z0-9][a-z0-9-]*)$/, `"${row.id}" is not a rule id`);
+    assert.ok(['FIXED', 'overridable'].includes(row.mark), `${row.id} is marked "${row.mark}"`);
+  }
+  const ids = rows.map((row) => row.id);
+  assert.equal(new Set(ids).size, ids.length, 'a floor id is listed twice');
+  const contract = loadContract(CONTRACT_PATH);
+  const floorFixed = contract.fixed.map((entry) => entry.id).filter((id) => !id.startsWith('review.'));
+  assert.deepEqual(rows.filter((row) => row.mark === 'FIXED').map((row) => row.id).sort(), [...floorFixed].sort());
+  const run = spawnSync(process.execPath, [LINTER, STANDARDS_PATH], { encoding: 'utf8' });
   assert.equal(run.status, 0, run.stderr);
 });

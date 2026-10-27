@@ -8,7 +8,7 @@ trigger_phrases:
   - "path traversal prevention"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.22
+version: 1.1.0.0
 ---
 
 # File Organization, Security & Copy-Paste Alignment Examples
@@ -52,6 +52,15 @@ Numbered code sections:
 6. Exports (module.exports, __all__)
 7. Main Entry Point (if script)
 ```
+
+### SKILLED Top-of-File Order
+
+The universal style guide asks each surface to state its top-of-file order. This is the SKILLED one:
+
+| Language | Top-of-file order |
+| --- | --- |
+| TypeScript | Module header, then imports (external, then local), then types and interfaces, then exports |
+| Python | Shebang, then the module docstring, then imports (stdlib, then third-party, then local), then constants, then classes and functions |
 
 ### Section Dividers
 
@@ -112,6 +121,18 @@ The first numbered divider that appears in code starts at `1`. If a file omits i
 | Handler/endpoint | 300 lines | Split by domain |
 | Main entry point | 400 lines | Extract modules |
 | Configuration | 100 lines | Split by concern |
+
+Split any file once it grows past roughly 500 lines or holds three or more unrelated concepts. Data files, such as constants and fixtures, may stay large.
+
+### Formatters and Line Length
+
+| Language | Formatter |
+| --- | --- |
+| JavaScript and TypeScript | Prettier or the project formatter |
+| Python | Black or Ruff |
+| Shell | `shfmt` where available |
+
+Configure the formatter once at the project root and never overwrite its output by hand. Keep lines to a soft limit of roughly 100 to 120 characters, which fits most editors in split view, and hard-wrap only when it improves readability.
 
 ---
 

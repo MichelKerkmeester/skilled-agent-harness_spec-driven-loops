@@ -792,6 +792,11 @@ function buildContext(options, cwd, env) {
   const trust = checkTrust({ git, root, env, source: loaded.source, scope: loaded.scope, value: loaded.value, configured: configuredCount(loaded.merged) });
   const known = [...CHECK_IDS, ...loaded.merged.checks.map((entry) => entry.id),
     ...loaded.merged.generated.filter((row) => row.layer === 'repo').map((row) => row.id)];
+  const skilledDir = realpathOrSelf(path.resolve(declHub, '..', '..'));
+  // The plugins link may reach outside .skilled/, and the files it reaches are still the
+  // hub's own code. A target that holds the hub would claim the whole repository, so it
+  // is not read as one.
+  const hubPlugins = realpathOrSelf(path.join(skilledDir, 'plugins'));
   return {
     options, env, table, defaults, declHub, git, root, cwd: realCwd,
     merged: loaded.merged,
@@ -800,7 +805,8 @@ function buildContext(options, cwd, env) {
     only: checkIdSet(options.only, known),
     skip: checkIdSet(options.skip, known) || new Set(),
     rootReal: realpathOrSelf(root),
-    skilledDir: realpathOrSelf(path.resolve(declHub, '..', '..')),
+    skilledDir,
+    hubPluginsDir: isInside(skilledDir, hubPlugins) ? null : hubPlugins,
     // spawnSync reads a deadline of 0 as none, so a tiny value rounds up to 1 ms.
     timeoutMs: Math.max(1, Math.round(options.timeoutSec * 1000)),
     python: findTool('python3', env),
@@ -985,7 +991,10 @@ function fileFacts(file, context) {
     excludedByRepo: false, hubLabels: new Set(), skillRoots: new Set(),
   };
   facts.real = realpathOrSelf(file.abs);
-  facts.insideHub = isInside(facts.real, context.skilledDir);
+  // The hub's plugins folder may be a link to a folder outside .skilled/, and the files
+  // it reaches are still the hub's own code.
+  facts.insideHub = isInside(facts.real, context.skilledDir)
+    || (context.hubPluginsDir !== null && isInside(facts.real, context.hubPluginsDir));
   facts.matchPath = matchPathFor(facts, context);
   if (matchesGlob(repositoryExclude(context), file.rel)) {
     facts.unchecked = 'excluded';
@@ -1065,7 +1074,8 @@ function declaredSurfaces(declHub) {
 
 // A specific surface matches on any of its markers. The fallback is the hub's own
 // code, so on a real file it holds only through a path marker and only when the
-// resolved path lies inside the hub's own .skilled/ folder. An outside surface records
+// resolved path lies inside the hub's own .skilled/ folder, or inside the folder its
+// plugins link resolves to when that folder is not an ancestor of the hub. An outside surface records
 // the folder of the skill that declared it, which stays unique where a skill id does
 // not, so a row belongs to the skill that shipped it rather than to a label or an id
 // it shares. A hub surface records its label, because a hub row is selected only by
