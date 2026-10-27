@@ -138,7 +138,7 @@ DeepSeek V4.1 Flash workers made each edit from a one-change brief, through pi a
 | `verify-router-sync.cjs`, `verify-doc-claims.cjs`, `parent-skill-check.cjs .skilled/skills/sk-code` | PASS 5/5, 4/4, 0 warnings |
 | `skill-graph-freshness.cjs --strict`, intent signals `--check` | PASS |
 | Agent mirrors (agent sync, codex, pi, roster, hermes) | PASS |
-| `sync-runtime-mirrors.cjs --check` | FAIL on `.cursor/commands/local-skilled-alignment.md` EXTRA, present in the baseline and outside this packet |
+| `sync-runtime-mirrors.cjs --check` | FAIL on an operator-local Cursor command file EXTRA, present in the baseline and outside this packet |
 | `validate_document.py` on changed docs | VALID, except the three review-output fixtures, which were INVALID before this packet too |
 | Live finding accuracy | CR-025 PASS, CR-026 PASS, CR-027 FAIL, D4 67/100 |
 | Mirror checks after the reach rule (agent sync, codex, pi, runtime mirrors, roster, hermes) | PASS, runtime mirrors 194 across 8 trees |

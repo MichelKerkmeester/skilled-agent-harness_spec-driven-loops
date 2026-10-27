@@ -54,9 +54,9 @@
       ".skilled/skills/sk-code/sk-code-review/SKILL.md",
       ".github/workflows/sk-code-script-tests.yml",
       ".hermes/skills/sk-code-review/SKILL.md",
-      ".cursor/commands/local-skilled-alignment.md",
       "specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md",
-      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md"
     ],
     "entities": [
       {
@@ -156,15 +156,15 @@
         "source": "derived"
       },
       {
-        "name": "local-skilled-alignment.md",
-        "kind": "doc",
-        "path": ".cursor/commands/local-skilled-alignment.md",
-        "source": "derived"
-      },
-      {
         "name": "pr-state-dedup.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-core.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The sk-code-review research left six recommendations open after the operator closed the repo review profile",
     "created_at": "2026-10-27T06:26:55Z",
-    "last_save_at": "2026-10-27T19:45:41.265Z",
+    "last_save_at": "2026-10-27T21:49:34.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cece16b79790fdf228066159b2b996129599785e3aeb5db47ac988a7637cd6ca",
+    "source_fingerprint": "sha256:8890c9d2906299337e4a6684ae4674cdf4cb960ce7bc57b839a6ee9f16ffc27f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce55f91176ed0360fd274ac8856690987994fdbf3d60205f694c7cd310d220dd",
       "plan.md": "42d253d0b512b00b2906560b66e04e3fa27d05bfe577b45bd8bf3aaad7201e2f",
       "tasks.md": "ce9799e1b179d2dda7e00537220d7f430f46b32fa2aa750f1aaae041ed602928",
-      "implementation-summary.md": "88b4fd5db692f9a816ea15ea1bef3430cce9cc03f4696b9c26461d34f7d2556c"
+      "implementation-summary.md": "069613f7b112c036c14636309086728d89188dbd74bd17175fe3ad35503f7659"
     },
     "last_active_at": null
   }

@@ -62,7 +62,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs | Cited | OK | Citations=1; Iterations=1 |
+| the operator-local alignment command's alignment-lib.cjs | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/commands/doctor/scripts/git-hook-gates.cjs | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/commands/doctor/scripts/release-update.cjs | Cited | OK | Citations=1; Iterations=1 |
 
