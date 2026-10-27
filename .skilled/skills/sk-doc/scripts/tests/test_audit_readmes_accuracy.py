@@ -62,6 +62,24 @@ def test_gitignored_runtime_path_is_resolved_with_evidence(tmp_path: Path) -> No
     assert resolved["./logs/run.log"]["path"] == "logs/run.log"
 
 
+def test_absent_ignored_folder_is_resolved_with_a_trailing_slash_reference(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    _write(root / "release" / ".gitignore", "runs/\n")
+    readme = _write(
+        root / "README.md",
+        "Runs land in `./release/runs/`. A typo stays broken: `./release/nope/`.\n",
+    )
+    per_file = _per_file(root, readme)
+    assert set(_broken(per_file[0])) == {"./release/runs/", "./release/nope/"}
+
+    audit_readmes.resolve_gitignored_references(root, per_file)
+
+    assert _broken(per_file[0]) == ["./release/nope/"]
+    resolved = {item["reference"]: item for item in per_file[0]["resolved_references"]}
+    assert set(resolved) == {"./release/runs/"}
+    assert resolved["./release/runs/"]["evidence"] == "gitignored_runtime_path"
+
+
 def test_path_outside_the_repo_is_never_cleared_by_gitignore(tmp_path: Path) -> None:
     root = _repo(tmp_path)
     _write(root / ".gitignore", "*.log\n")

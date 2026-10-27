@@ -677,12 +677,15 @@ def resolve_gitignored_references(repo_root: Path, per_file: List[Dict[str, Any]
                     continue
                 if rel not in ("", "."):
                     relative.append(rel)
+                    if broken["reference"].endswith("/"):
+                        relative.append(rel + "/")
             bases_by_ref[(index, broken["reference"])] = relative
 
-    # The parent is asked with a trailing slash, so a folder rule such as `logs/`
-    # matches it even when the folder is absent from this checkout.
+    # A folder reference and its parent are both asked with a trailing slash, so a
+    # folder rule such as `logs/` matches even when the folder is absent here.
     def parent_of(rel: str) -> str:
-        return rel.rsplit("/", 1)[0] + "/" if "/" in rel else ""
+        r = rel.rstrip("/")
+        return r.rsplit("/", 1)[0] + "/" if "/" in r else ""
 
     asked = {rel for rels in bases_by_ref.values() for rel in rels}
     asked |= {parent_of(rel) for rel in asked if parent_of(rel)}
