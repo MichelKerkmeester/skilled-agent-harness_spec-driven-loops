@@ -49,6 +49,7 @@ const ORIGINAL_ENV = new Map([
   ['SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED', process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED],
   ['SPECKIT_SKILL_ADVISOR_HOOK_DISABLED', process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED],
   ['SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP', process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP],
+  ['SPECKIT_PRIVATE_SKILL_ROOTS', process.env.SPECKIT_PRIVATE_SKILL_ROOTS],
 ]);
 // The dynamic route line kept when the constant directive block is dropped on a
 // same-content repeat within one lifecycle epoch.
@@ -180,6 +181,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
     delete process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED;
     delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
     delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+    delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
     const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     await resetHooks.event?.({
       event: {
@@ -720,13 +722,16 @@ describe('system-skill-advisor OpenCode plugin', () => {
 
   // An outside skill in the sk-code family declares its surface in graph-metadata.json,
   // and it sits in the hub's skills folder as a symlink, the shape an operator's private
-  // local skill takes. Its markers lead the hub's own SKILLED fallback when both match.
+  // local skill takes. Its markers lead the hub's own SKILLED fallback when both match,
+  // but only when the link's target lies inside a root the operator declared trusted.
   it.each([
-    ['a workspace holding the outside surface marker', ['src/2_javascript/'], 'marker', 'FIXTURE'],
-    ['a hub folder that also holds the outside surface marker', ['sk-code-skilled/'], 'hub', 'FIXTURE'],
-    ['the symlinked outside skill folder itself', ['src/2_javascript/'], 'link', undefined],
-  ])('passes the declared surface hint for %s', async (_name, pathMarkers, where, expected) => {
+    ['a workspace holding the outside surface marker', ['src/2_javascript/'], 'marker', true, 'FIXTURE'],
+    ['a hub folder that also holds the outside surface marker', ['sk-code-skilled/'], 'hub', true, 'FIXTURE'],
+    ['the symlinked outside skill folder itself', ['src/2_javascript/'], 'link', true, undefined],
+    ['a workspace holding the marker of an untrusted link', ['src/2_javascript/'], 'untrusted', false, undefined],
+  ])('passes the declared surface hint for %s', async (_name, pathMarkers, where, trusted, expected) => {
     const outside = mkdtempSync(join(tmpdir(), 'advisor-outside-surface-'));
+    if (trusted) process.env.SPECKIT_PRIVATE_SKILL_ROOTS = outside;
     const link = join(HUB_SKILLS_DIR, `local-surface-fixture-${process.pid}-${where}`);
     const workspace = mkdtempSync(join(tmpdir(), 'advisor-surface-marker-'));
     try {
@@ -737,7 +742,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
       }));
       symlinkSync(outside, link);
       mkdirSync(join(workspace, 'src', '2_javascript'), { recursive: true });
-      const directory = where === 'marker' ? workspace : where === 'hub' ? join(HUB_SKILLS_DIR, 'sk-code') : link;
+      const directory = where === 'hub' ? join(HUB_SKILLS_DIR, 'sk-code') : where === 'link' ? link : workspace;
       const hooks = await makePlugin({ cacheTTLMs: 5000 }, directory);
       await runPrompt(hooks, { sessionID: `s-surface-${where}`, prompt: 'implement feature Y' });
       const child = mockedBridge.spawn.mock.results[0]?.value as { stdin: { end: ReturnType<typeof vi.fn> } };

@@ -26,6 +26,7 @@ const HUB_SKILL_ROOT = path.resolve(__dirname, '..', '..', '..');
 const SKILLED_ROOT = path.resolve(HUB_SKILL_ROOT, '..', '..');
 const REPLAY_LIB = path.join(HUB_SKILL_ROOT, 'sk-code-skilled', 'assets', 'scripts', 'router-replay-lib.cjs');
 const PLUGIN_PATH = path.join(SKILLED_ROOT, 'plugins', 'system-skill-advisor.js');
+const PRIVATE_LINK_LIB = path.join(SKILLED_ROOT, 'skills', 'system-skill-advisor', 'runtime', 'lib', 'private-skill-target.cjs');
 
 const { declaredSurfaces: libraryDeclaredSurfaces } = require(REPLAY_LIB);
 
@@ -81,20 +82,24 @@ function extractStringConstant(source, name) {
   return match[0];
 }
 
-// The plugin reader leans on two helpers and one constant from its own file, so they come
+// The plugin reader leans on three helpers and one constant from its own file, so they come
 // from the same source. A hand-written stub would let the copy drift while the test passed.
+// Only the module loader is supplied here, because the plugin finds that module from its own
+// URL; it loads the same trusted-root module the plugin loads.
 const pluginDeclaredSurfaces = (() => {
   const source = fs.readFileSync(PLUGIN_PATH, 'utf8');
   const context = vm.createContext({
     join: path.join,
     readdirSync: fs.readdirSync,
     readFileSync: fs.readFileSync,
+    loadPrivateSkillTarget: () => require(PRIVATE_LINK_LIB),
   });
   vm.runInContext(
     [
       extractStringConstant(source, 'SK_CODE_HUB'),
       extractFunction(source, 'readJsonFile'),
       extractFunction(source, 'surfaceEntry'),
+      extractFunction(source, 'privateSkillLinkCheck'),
       extractFunction(source, 'declaredSurfaces'),
     ].join('\n\n'),
     context,
@@ -150,5 +155,47 @@ test('both readers follow the hub folder they are handed', (t) => {
   // Specific surfaces lead, hub entries before outside skills, and the fallback is last. A block
   // with no marker of any kind declares nothing, and one with content markers alone still counts.
   assert.deepEqual(surfacePairs(fromLibrary), ['specific:ALPHA', 'specific:GAMMA', 'specific:ZETA', 'fallback:OMEGA']);
+  assert.deepEqual(surfacePairs(fromPlugin), surfacePairs(fromLibrary));
+});
+
+// A private link in the skills root counts only when its real target sits inside a trusted
+// root. A link into an undeclared folder outside the tree would otherwise add a specific
+// surface that outranks the fallback, so neither reader may return it, while a link into a
+// declared root must still be read: a rule that failed to load would drop that one too.
+test('both readers keep a trusted private link and skip one outside every trusted root', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'declared-surfaces-link-'));
+  const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'declared-surfaces-outside-'));
+  const trustedRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'declared-surfaces-trusted-'));
+  const declared = process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
+  process.env.SPECKIT_PRIVATE_SKILL_ROOTS = trustedRoot;
+  t.after(() => {
+    fs.rmSync(root, { recursive: true, force: true });
+    fs.rmSync(outside, { recursive: true, force: true });
+    fs.rmSync(trustedRoot, { recursive: true, force: true });
+    if (declared === undefined) delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
+    else process.env.SPECKIT_PRIVATE_SKILL_ROOTS = declared;
+  });
+
+  writeJson(path.join(root, 'skills', 'sk-code', 'mode-registry.json'), {
+    skill: 'sk-code',
+    modes: [{ surfaceDetection: { label: 'omega', role: 'fallback', pathMarkers: ['.skilled/'] } }],
+  });
+  const linkedMeta = (skillId, label) => ({
+    skill_id: skillId,
+    family: 'sk-code',
+    surface_detection: { label, role: 'specific', pathMarkers: [`${label}/`] },
+  });
+  writeJson(path.join(outside, 'untrusted', 'graph-metadata.json'), linkedMeta('local-untrusted', 'untrusted'));
+  fs.symlinkSync(path.join(outside, 'untrusted'), path.join(root, 'skills', 'local-untrusted'), 'dir');
+  writeJson(path.join(root, 'skills', 'inside', 'graph-metadata.json'), linkedMeta('local-inside', 'inside'));
+  fs.symlinkSync(path.join(root, 'skills', 'inside'), path.join(root, 'skills', 'local-inside'), 'dir');
+  writeJson(path.join(trustedRoot, 'declared', 'graph-metadata.json'), linkedMeta('local-declared', 'declared'));
+  fs.symlinkSync(path.join(trustedRoot, 'declared'), path.join(root, 'skills', 'local-declared'), 'dir');
+
+  const fromLibrary = libraryDeclaredSurfaces(path.join(root, 'skills', 'sk-code'));
+  const fromPlugin = pluginDeclaredSurfaces(root);
+
+  // The link that stays inside the tree is read through the link and through its own folder.
+  assert.deepEqual(surfacePairs(fromLibrary), ['specific:DECLARED', 'specific:INSIDE', 'specific:INSIDE', 'fallback:OMEGA']);
   assert.deepEqual(surfacePairs(fromPlugin), surfacePairs(fromLibrary));
 });

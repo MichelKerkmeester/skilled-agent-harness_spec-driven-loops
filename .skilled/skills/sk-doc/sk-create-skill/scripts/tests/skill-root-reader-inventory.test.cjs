@@ -34,6 +34,7 @@ const RULED = {
   '.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts': 'include',
   '.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts': 'include',
   '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts': 'include',
+  '.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs': 'include',
   '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py': 'exclude',
   '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs': 'exclude',
   '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs': 'exclude',
@@ -57,8 +58,10 @@ const SCREENED = {
     'reads through Dirent.isDirectory(), which is false for a link, and writes only inside the skill it visits',
   '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs':
     'reads through Dirent.isDirectory() and only hubs that hold mode-registry.json and ROUTER.md',
+  // The plugin's sk-code surface reader applies the trusted-root rule itself; this reason
+  // covers only its cache-signature reader.
   '.opencode/plugins/system-skill-advisor.js':
-    'reads through Dirent.isDirectory() into a local cache signature that is never tracked',
+    'its cache-signature reader lists skills through Dirent.isDirectory(), which is false for a link, into a local signature that is never tracked',
 };
 
 const SOURCE_EXT = /\.(?:c|m)?[jt]s$|\.py$/;

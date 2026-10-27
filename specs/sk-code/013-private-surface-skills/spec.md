@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills"
     last_updated_at: "2026-10-25T20:35:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 008, the items phase 007 left out of scope"
-    next_safe_action: "None, all eight phases are Complete"
+    recent_action: "Closed phase 009, the alignment fixes for the private-skill guards"
+    next_safe_action: "None, all nine phases are Complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -142,10 +142,11 @@ Summary of the areas each phase touches; per-phase file detail lives in each chi
 | 6 | 006-review-remediation/ | Apply the confirmed deep-review findings: close the phase 002 and 003 records, widen the private-skill guard to type changes, give two more skills-root readers the `local-*` skip with an inventory test, and document the gate and the private-root variable. A second round closed the phase 003 P0 checklist rows, retired the two Webflow benchmark scenarios and gave the catalog mirror check the `local-*` skip. Phase 002 CHK-FIX-001 stays open, because two of its review findings were never recorded | Done |
 | 7 | 007-shared-references-and-detection-order/ | Trim `shared/references/` to hub and mode doctrine (four files deleted, the style guide moved to `sk-code-quality`), and make `sk-code-skilled` the one declared fallback surface that always ranks last, so a private or repo-added surface leads it | Done (c02124d0ff, fbfc4bfe22) |
 | 8 | 008-deferred-surface-items/ | Close the four items phase 007 left out of scope: field rules for an external `surface_detection` block, blocks in the two private skills, a public JavaScript and CSS overlay that matches the SKILLED naming rule, and the comment-hygiene allowlist decision, plus naming at P1 in the SKILLED language checklists | Done |
+| 9 | 009-alignment-fixes/ | Give the two sk-code surface readers the advisor's trusted-root rule so the reader inventory passes, test the mirror orphan skip, add advisor vocabulary for private skill roots and make `canary-router.cjs` plain text | Done |
 
 ### Phase Transition Rules
 
-- **The order is fixed: `001 -> 002 -> 003 -> 004 -> 005 -> 006 -> 007 -> 008`.** Phase 006 applies the deep review's confirmed findings after phase 005, phase 007 follows it, and phase 008 closes what phase 007 left out of scope. No phase starts before its predecessor is on `main`, and no phase runs in parallel with its neighbour.
+- **The order is fixed: `001 -> 002 -> 003 -> 004 -> 005 -> 006 -> 007 -> 008 -> 009`.** Phase 006 applies the deep review's confirmed findings after phase 005, phase 007 follows it, phase 008 closes what phase 007 left out of scope, and phase 009 fixes the alignment findings raised after phase 008. No phase starts before its predecessor is on `main`, and no phase runs in parallel with its neighbour.
 - **Phase 004 must not start before phase 003 is on `main`.** Until phase 003 lands, the advisor's compiler follows a `local-*` symlink and would export a private skill into the tracked fallback graph.
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - **Planning commit.** The parent's `spec.md`, `goal.md`, `description.json` and `graph-metadata.json` and all five children's planning documents (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `goal.md`, `implementation-summary.md` and their metadata) land on `main` in the single planning commit that ships this packet, before any phase runs. Each phase then commits only its own updates inside its own child folder
@@ -166,6 +167,7 @@ Run each block from the repository root of the worktree, except block 4, which r
 | 005-leak-and-routing-verification | 006-review-remediation | The review report lists every confirmed finding with its fix, and the recursive strict validation passes before the remediation starts | `review/review-report.md` |
 | 006-review-remediation | 007-shared-references-and-detection-order | Phase 006 is closed and its recursive strict validation passes before the shared references change | `validate.sh --recursive --strict` on this folder |
 | 007-shared-references-and-detection-order | 008-deferred-surface-items | Phase 007 is on `main`, and its Out of Scope list names the four items phase 008 takes | `validate.sh --recursive --strict` on this folder |
+| 008-deferred-surface-items | 009-alignment-fixes | Phase 008 is on `main`, and the skills-root reader inventory test is the failing gate phase 009 starts from | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` |
 
 #### Block 1 - 001 to 002
 

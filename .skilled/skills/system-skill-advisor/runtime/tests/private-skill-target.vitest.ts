@@ -2,20 +2,16 @@
 // MODULE: Private Skill Target Containment Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-// Wraps realpathSync so a test can count how often a path is resolved. Behavior is unchanged.
-vi.mock('node:fs', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('node:fs')>();
-  const realpathSync = Object.assign(
-    vi.fn((...args: Parameters<typeof actual.realpathSync>) => actual.realpathSync(...args)),
-    { native: actual.realpathSync.native },
-  );
-  return { ...actual, realpathSync };
-});
+// The rule is plain CommonJS and resolves paths through the shared `fs` module object,
+// so a spy on that object counts how often a path is resolved. Behavior is unchanged.
+const sharedFs = createRequire(import.meta.url)('node:fs') as typeof import('node:fs');
+const realpathSpy = vi.spyOn(sharedFs, 'realpathSync');
 
 import { createPrivateSkillLinkCheck, isTrustedPrivateSkillLink } from '../lib/private-skill-target.js';
 
@@ -168,11 +164,11 @@ describe('private skill link containment', () => {
     symlinkSync(inside, join(skills, 'local-in'));
     symlinkSync(outside, join(skills, 'local-out'));
     symlinkSync(inside, join(skills, 'local-again'));
-    const skillsRootResolutions = (): number => vi.mocked(realpathSync).mock.calls
+    const skillsRootResolutions = (): number => realpathSpy.mock.calls
       .filter(([target]) => target === skills).length;
 
     const check = createPrivateSkillLinkCheck(skills);
-    vi.mocked(realpathSync).mockClear();
+    realpathSpy.mockClear();
     expect(skillsRootResolutions()).toBe(0);
 
     expect(check(join(skills, 'local-in'))).toBe(true);
@@ -181,7 +177,7 @@ describe('private skill link containment', () => {
     expect(skillsRootResolutions()).toBe(1);
 
     // The per-link helper resolves the roots again each time, which is what the shared check avoids.
-    vi.mocked(realpathSync).mockClear();
+    realpathSpy.mockClear();
     isTrustedPrivateSkillLink(join(skills, 'local-in'), skills);
     isTrustedPrivateSkillLink(join(skills, 'local-out'), skills);
     expect(skillsRootResolutions()).toBe(2);

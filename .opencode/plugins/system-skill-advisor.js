@@ -747,6 +747,33 @@ function surfaceEntry(block) {
   return { label: block.label.toUpperCase(), role: block.role, markers };
 }
 
+// The trusted-root rule for a private link lives in the advisor runtime as plain
+// CommonJS, so both skills-root readers apply one copy of it on every supported Node
+// version. When the module cannot load, the check rejects every link, which keeps an
+// unverified target out of detection, and one stderr line records the lost rule.
+let privateSkillTarget;
+function loadPrivateSkillTarget() {
+  if (privateSkillTarget === undefined) {
+    try {
+      const hubRoot = resolveHubSkilledRoot();
+      privateSkillTarget = hubRoot
+        ? pluginRequire(join(hubRoot, ADVISOR_ROOT_RELATIVE_PATH, 'lib', 'private-skill-target.cjs'))
+        : null;
+    } catch (error) {
+      privateSkillTarget = null;
+      process.stderr.write(`[${PLUGIN_ID}] private-skill trusted-root rule failed to load, so every local-* link is skipped: ${error.message}\n`);
+    }
+  }
+  return privateSkillTarget;
+}
+
+function privateSkillLinkCheck(skillsDir) {
+  const lib = loadPrivateSkillTarget();
+  return lib && typeof lib.createPrivateSkillLinkCheck === 'function'
+    ? lib.createPrivateSkillLinkCheck(skillsDir)
+    : () => false;
+}
+
 function declaredSurfaces(hubRoot) {
   const skillsDir = join(hubRoot, 'skills');
   const registry = readJsonFile(join(skillsDir, SK_CODE_HUB, 'mode-registry.json'));
@@ -754,13 +781,22 @@ function declaredSurfaces(hubRoot) {
     .map((mode) => surfaceEntry(mode && mode.surfaceDetection))
     .filter(Boolean);
   const outside = [];
-  let names = [];
+  let entries = [];
   try {
-    names = readdirSync(skillsDir);
+    entries = readdirSync(skillsDir, { withFileTypes: true });
   } catch {
-    names = [];
+    entries = [];
   }
-  for (const name of names) {
+  // A skill is a real directory, or a `local-*` link whose real target the advisor's
+  // trusted-root rule accepts. Any other link is skipped, as the replay library skips it.
+  let isTrustedLink = null;
+  for (const dirent of entries) {
+    const name = dirent.name;
+    if (!dirent.isDirectory()) {
+      if (!name.startsWith('local-') || !dirent.isSymbolicLink()) continue;
+      isTrustedLink = isTrustedLink || privateSkillLinkCheck(skillsDir);
+      if (!isTrustedLink(join(skillsDir, name))) continue;
+    }
     const meta = readJsonFile(join(skillsDir, name, 'graph-metadata.json'));
     if (!meta || meta.family !== SK_CODE_HUB || meta.skill_id === SK_CODE_HUB) continue;
     const entry = surfaceEntry(meta.surface_detection);

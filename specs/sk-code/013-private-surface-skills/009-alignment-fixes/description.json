@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/013-private-surface-skills/009-alignment-fixes",
+  "description": "Alignment fixes for private-skill guards",
+  "keywords": [
+    "alignment",
+    "private-skill",
+    "guards"
+  ],
+  "lastUpdated": "2026-10-27T19:51:43.321Z",
+  "specId": "009",
+  "folderSlug": "alignment-fixes",
+  "parentChain": [
+    "sk-code",
+    "013-private-surface-skills"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

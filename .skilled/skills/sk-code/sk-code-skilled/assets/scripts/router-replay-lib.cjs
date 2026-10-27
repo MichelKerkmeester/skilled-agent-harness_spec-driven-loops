@@ -514,15 +514,53 @@ function surfaceEntry(block, extra) {
   return { label: block.label.toUpperCase(), role: block.role, markers, ...byKind, ...extra };
 }
 
-function outsideSurfaces(skillsDir, family) {
-  let names;
+// The advisor owns the rule for a private `local-*` link in the skills root: it is
+// followed only when its real target is a directory inside a trusted root. The rule
+// is loaded from the advisor's own plain CommonJS module, which loads on every
+// supported Node version, so the readers cannot drift apart. When it cannot load,
+// every such link is skipped rather than trusted, and one stderr line says so.
+const PRIVATE_LINK_LIB_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'system-skill-advisor', 'runtime', 'lib', 'private-skill-target.cjs');
+let cachedPrivateLinkLib;
+function loadPrivateLinkLib() {
+  if (cachedPrivateLinkLib !== undefined) return cachedPrivateLinkLib;
   try {
-    names = fs.readdirSync(skillsDir);
+    // eslint-disable-next-line global-require
+    cachedPrivateLinkLib = require(PRIVATE_LINK_LIB_PATH);
+  } catch (error) {
+    cachedPrivateLinkLib = null;
+    process.stderr.write(`[router-replay-lib] private-skill trusted-root rule failed to load, so every local-* link is skipped: ${error.message}\n`);
+  }
+  return cachedPrivateLinkLib;
+}
+
+function privateSkillLinkCheck(skillsDir) {
+  const lib = loadPrivateLinkLib();
+  return lib && typeof lib.createPrivateSkillLinkCheck === 'function'
+    ? lib.createPrivateSkillLinkCheck(skillsDir)
+    : () => false;
+}
+
+// A skill is a real directory, or a `local-*` link the trusted-root rule accepts.
+// Any other link is skipped, as the advisor's own skills-root readers skip it.
+function listedSkillNames(skillsDir) {
+  let entries;
+  try {
+    entries = fs.readdirSync(skillsDir, { withFileTypes: true });
   } catch {
     return [];
   }
+  let isTrustedLink = null;
+  return entries.filter((entry) => {
+    if (entry.isDirectory()) return true;
+    if (!entry.name.startsWith('local-') || !entry.isSymbolicLink()) return false;
+    isTrustedLink = isTrustedLink || privateSkillLinkCheck(skillsDir);
+    return isTrustedLink(path.join(skillsDir, entry.name));
+  }).map((entry) => entry.name);
+}
+
+function outsideSurfaces(skillsDir, family) {
   const out = [];
-  for (const name of names) {
+  for (const name of listedSkillNames(skillsDir)) {
     const meta = readJsonObject(path.join(skillsDir, name, 'graph-metadata.json'));
     if (!meta || meta.family !== family || meta.skill_id === family) continue;
     const skillRoot = path.join(skillsDir, name);

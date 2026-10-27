@@ -6,7 +6,7 @@ trigger_phrases:
   - "private skill roots"
   - "SPECKIT_PRIVATE_SKILL_ROOTS"
   - "local skill link discovery"
-version: 1.0.0.0
+version: 1.0.1.0
 id: AI-007
 category: auto_indexing
 stage: routing
@@ -131,7 +131,7 @@ rm -rf "$FIXTURE" && test ! -e "$FIXTURE" && echo CLEANED
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-003](../../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md), provenance fingerprints and trust lanes.
 - Feature [`feature-catalog/auto-indexing/private-skill-containment.md`](../../feature-catalog/auto-indexing/private-skill-containment.md).
-- Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py` (Python discovery) and `.skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts` (TypeScript containment).
+- Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py` (Python discovery) and `.skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.cjs` (the shared containment rule, re-exported with types by `private-skill-target.ts`).
 - Automated test: `.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts`.
 
 ---

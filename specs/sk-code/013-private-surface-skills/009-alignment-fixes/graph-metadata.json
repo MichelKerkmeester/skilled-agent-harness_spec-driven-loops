@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/013-private-surface-skills/009-alignment-fixes",
+  "spec_folder": "sk-code/013-private-surface-skills/009-alignment-fixes",
+  "parent_id": "sk-code/013-private-surface-skills",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment fixes",
+      "alignment fixes for private skill guards",
+      "private skill trusted root readers",
+      "alignment fixes plan",
+      "alignment fixes tasks",
+      "alignment fixes acceptance criteria",
+      "alignment fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "private",
+      "skill",
+      "guards",
+      "trusted",
+      "root",
+      "readers",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/declared-surfaces-parity.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+      ".skilled/skills/system-skill-advisor/graph-metadata.json",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "private-skill-target.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "private-skill-target.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        "source": "derived"
+      },
+      {
+        "name": "declared-surfaces-parity.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/declared-surfaces-parity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-plugin.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-reader-inventory.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "canary-router.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code surface readers in `router-replay-lib.cjs` (`outsideSurfaces`) and in the advisor plugin (`declaredSurfaces`) list the skills root and follow every entry, so an untrusted `local-` link into a folder outside the tree is returned as a specific surface that outranks the SKILLED fallback",
+    "created_at": "2026-10-27T19:51:43Z",
+    "last_save_at": "2026-10-27T20:19:41.594Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5f9ead0dfa036dd4739f80786fbdc8ec88a208534dfc66ddf9303e57b7c6062d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1133eb7542d5e6c032ca5a48b22b6d96ccc984e956ee235477ac56c9ab1d4d13",
+      "plan.md": "a6cba8ac31ae61adb01efab7227b215407353357476bec8fe59cda828d4939ff",
+      "tasks.md": "1961c4f137a2b88819fe859f8b83d750ff63251a7a9d80edda877104eb55b376",
+      "implementation-summary.md": "5321e2643e17496a69884e30e984d42c9ae1dcfa11aa9a509f8b5f8c8992f147"
+    },
+    "last_active_at": null
+  }
+}

@@ -188,7 +188,8 @@ function inspect(link) {
 }
 
 // A mirror with no canonical source keeps serving something the roster dropped.
-function findOrphans(expectedLinks) {
+// The root defaults to this checkout; a test passes a scratch tree instead.
+function findOrphans(expectedLinks, repoRoot = REPO_ROOT) {
   const expectedByDir = new Map();
   for (const link of expectedLinks) {
     const dir = path.posix.dirname(link.mirror);
@@ -198,7 +199,7 @@ function findOrphans(expectedLinks) {
 
   const orphans = [];
   for (const [dir, names] of expectedByDir) {
-    const absoluteDir = path.join(REPO_ROOT, dir);
+    const absoluteDir = path.join(repoRoot, dir);
     if (!fs.existsSync(absoluteDir)) continue;
     for (const entry of fs.readdirSync(absoluteDir, { withFileTypes: true })) {
       if (entry.name === 'README.md' || entry.name === 'README.txt' || entry.name.startsWith('.')) continue;
@@ -215,7 +216,7 @@ function findOrphans(expectedLinks) {
 
   // Devin nests each item in its own directory, so an orphan there is a whole dir.
   for (const parent of ['.devin/agents', '.devin/skills']) {
-    const absoluteParent = path.join(REPO_ROOT, parent);
+    const absoluteParent = path.join(repoRoot, parent);
     if (!fs.existsSync(absoluteParent)) continue;
     // A parent that is itself a symlink points at a canonical tree, not a mirror
     // tree; pruning through it would delete the canonical files.
@@ -325,9 +326,13 @@ function main() {
   writeMirrors(expectedLinks);
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(`[runtime-mirror-sync] ERROR: ${error.message}`);
-  process.exitCode = 1;
+if (require.main === module) {
+  try {
+    main();
+  } catch (error) {
+    console.error(`[runtime-mirror-sync] ERROR: ${error.message}`);
+    process.exitCode = 1;
+  }
 }
+
+module.exports = { findOrphans };

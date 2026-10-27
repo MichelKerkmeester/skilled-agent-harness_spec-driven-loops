@@ -3,51 +3,22 @@
 // ───────────────────────────────────────────────────────────────
 // A `local-*` skill may be linked into the skills tree from a private checkout.
 // Following the link is safe only when its resolved target stays inside a
-// directory the operator has declared trusted, so resolve the whole chain and
-// test containment instead of trusting the link's name.
+// directory the operator has declared trusted. The rule itself lives in the
+// plain CommonJS sibling, so readers outside this TypeScript runtime load the
+// same copy on every supported Node version; this module gives it types.
 
-import { existsSync, realpathSync, statSync } from 'node:fs';
-import { delimiter, isAbsolute, relative, resolve, sep } from 'node:path';
+import privateSkillTarget from './private-skill-target.cjs';
+
+interface PrivateSkillTargetRule {
+  PRIVATE_SKILL_ROOTS_ENV: string;
+  isTrustedPrivateSkillLink(entryPath: string, skillsRoot: string): boolean;
+  createPrivateSkillLinkCheck(skillsRoot: string): (entryPath: string) => boolean;
+}
+
+const rule: PrivateSkillTargetRule = privateSkillTarget;
 
 /** Environment variable naming extra trusted roots, joined by the platform path delimiter. */
-export const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
-
-interface TrustedRoot {
-  path: string;
-  // A link to the skills root itself would make the scan re-enter its own tree,
-  // so only a declared external root may be named by a link directly.
-  allowSelf: boolean;
-}
-
-function isInside(root: TrustedRoot, target: string): boolean {
-  const rel = relative(root.path, target);
-  if (rel === '') return root.allowSelf;
-  return rel !== '..' && !rel.startsWith(`..${sep}`) && !isAbsolute(rel);
-}
-
-function trustedRoots(skillsRoot: string): TrustedRoot[] {
-  const roots: TrustedRoot[] = [];
-  if (existsSync(skillsRoot)) roots.push({ path: realpathSync(skillsRoot), allowSelf: false });
-  const declared = process.env[PRIVATE_SKILL_ROOTS_ENV] ?? '';
-  for (const part of declared.split(delimiter)) {
-    const candidate = part.trim();
-    if (!candidate) continue;
-    const absolute = resolve(candidate);
-    if (existsSync(absolute)) roots.push({ path: realpathSync(absolute), allowSelf: true });
-  }
-  return roots;
-}
-
-function resolvesInside(entryPath: string, roots: TrustedRoot[]): boolean {
-  let target: string;
-  try {
-    target = realpathSync(entryPath);
-    if (!statSync(target).isDirectory()) return false;
-  } catch {
-    return false;
-  }
-  return roots.some((root) => isInside(root, target));
-}
+export const PRIVATE_SKILL_ROOTS_ENV: string = rule.PRIVATE_SKILL_ROOTS_ENV;
 
 /**
  * True when a top-level `local-*` entry resolves to a directory inside a trusted root.
@@ -56,7 +27,7 @@ function resolvesInside(entryPath: string, roots: TrustedRoot[]): boolean {
  * @returns Whether the entry's real target is a directory inside a trusted root.
  */
 export function isTrustedPrivateSkillLink(entryPath: string, skillsRoot: string): boolean {
-  return resolvesInside(entryPath, trustedRoots(skillsRoot));
+  return rule.isTrustedPrivateSkillLink(entryPath, skillsRoot);
 }
 
 /**
@@ -66,9 +37,5 @@ export function isTrustedPrivateSkillLink(entryPath: string, skillsRoot: string)
  * @returns A check that reports whether one entry resolves inside a trusted root.
  */
 export function createPrivateSkillLinkCheck(skillsRoot: string): (entryPath: string) => boolean {
-  let roots: TrustedRoot[] | null = null;
-  return (entryPath: string): boolean => {
-    roots ??= trustedRoots(skillsRoot);
-    return resolvesInside(entryPath, roots);
-  };
+  return rule.createPrivateSkillLinkCheck(skillsRoot);
 }

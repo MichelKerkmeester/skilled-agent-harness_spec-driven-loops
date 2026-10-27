@@ -73,7 +73,12 @@
     "skill discovery is wrong",
     "advisor recommend",
     "why did the advisor pick",
-    "skill routing confidence"
+    "skill routing confidence",
+    "private skill",
+    "git-ignored skill",
+    "private skills folder",
+    "index private skills",
+    "trusted skill root"
   ],
   "derived": {
     "trigger_phrases": [
@@ -86,7 +91,12 @@
       "skill discovery",
       "regression harness",
       "benchmark harness",
-      "graph compiler"
+      "graph compiler",
+      "private skill",
+      "git-ignored skill",
+      "private skills folder",
+      "index private skills",
+      "trusted skill root"
     ],
     "key_topics": [
       "routing",
@@ -98,7 +108,8 @@
       "regression",
       "benchmark",
       "compiler",
-      "discovery"
+      "discovery",
+      "private-skills"
     ],
     "key_files": [
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
