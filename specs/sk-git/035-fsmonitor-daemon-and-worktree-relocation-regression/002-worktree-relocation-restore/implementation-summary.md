@@ -57,7 +57,7 @@ A session launch can no longer quietly move every future worktree back inside th
 
 The doctor's `worktrees` row now compares the base with the main checkout as real paths. It reports DEGRADED when the base is inside the checkout and more than three linked worktrees exist, because the main checkout's fsmonitor then sees every file in them. Run against this checkout, it reports exactly that, for 4 worktrees.
 
-Moving the existing worktrees out (T015 to T020) is the operator's step and has not run yet.
+Moving the existing worktrees out (T015 to T020) is the operator's step. 145 moved on 2026-10-27, and 217 and 218 remain.
 
 ### Files Changed
 
@@ -102,6 +102,7 @@ DeepSeek V4.1 Flash 1017 at `max` built two units through `cli-opencode`, one at
 | `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | PASS, `PASS=171 FAIL=0`, unchanged |
 | `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | PASS, `# pass 71`, up from 66 |
 | Doctor on this checkout | DEGRADED on `worktrees` only, 4 linked worktrees, exit 3 |
+| Doctor after the 145 move | `worktrees` PASS, two linked worktrees left, `fsmonitor daemons: 1 main, 1 worktree, 0 stray` |
 | `git config --get speckit.worktreeBase` after both units | exit 1, still unset |
 | CI reference to `git-setup-check` | None |
 <!-- /ANCHOR:verification -->
@@ -111,7 +112,7 @@ DeepSeek V4.1 Flash 1017 at `max` built two units through `cli-opencode`, one at
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The worktrees are still inside the checkout.** Until the operator runs T015 to T020, the main daemon still watches the 4 remaining worktrees, and the doctor reports DEGRADED.
+1. **Two worktrees are still inside the checkout.** 145 moved out on 2026-10-27 and 231 was removed by its own session. Until 217 and 218 move, the main daemon still watches them. With two worktrees left, the doctor's three-worktree limit no longer reports DEGRADED.
 2. **New sessions still default inside the checkout.** The default base is unchanged. Setting `speckit.worktreeBase` to `~/worktrees/public` (T018) is what moves new worktrees out.
 3. **What unset the key earlier is unknown.** The new guard stops the default from being written again, whatever caused it.
 <!-- /ANCHOR:limitations -->

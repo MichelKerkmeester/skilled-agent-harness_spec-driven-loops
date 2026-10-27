@@ -111,12 +111,17 @@ _require_positive_int() {
   fi
 }
 
-# Run one command under a wall-clock bound. The alarm survives exec, so the
-# command itself is killed rather than a wrapper; SIGALRM surfaces as 142.
+# Run one command under a wall-clock bound. The child is a separate process, so
+# the alarm ends the command itself and a command that traps SIGALRM cannot
+# turn a timeout into a normal exit. Status 142 means the bound expired.
 run_bounded() {
   local seconds="$1"
   shift
-  perl -e 'alarm shift; exec @ARGV or exit 127' "$seconds" "$@"
+  perl -e 'my $s = shift; my $pid = fork; defined $pid or exit 126;
+    if (!$pid) { exec @ARGV or exit 127 }
+    $SIG{ALRM} = sub { kill "KILL", $pid; waitpid $pid, 0; exit 142 };
+    alarm $s; waitpid $pid, 0; alarm 0;
+    exit(($? & 127) ? 128 + ($? & 127) : $? >> 8);' "$seconds" "$@"
 }
 
 git_bounded() {
@@ -176,22 +181,22 @@ _daemon_rows() {
       started = $2 " " $3 " " $4 " " $5 " " $6
       command = $7
       for (i = 8; i <= NF; i++) command = command " " $i
-      if (command ~ /(^|\/)git fsmonitor--daemon run( |$)/)
+      if (command ~ /^([^ ]*\/)?git fsmonitor--daemon run( |$)/)
         printf "%s\t%s\n", pid, started
     }'
 }
 
-# Emit the DIR descriptors of one process as fd<TAB>path, cwd excluded. A
-# deleted directory keeps its lsof suffix; the caller strips and records it.
+# Emit the DIR descriptors of one process as fd<TAB>path, cwd excluded. Field
+# mode keeps a name with repeated spaces intact; space-split output would join
+# them. A deleted directory keeps its lsof suffix; the caller strips and
+# records it.
 _lsof_dir_rows() {
-  run_bounded "$FSMON_PROBE_TIMEOUT" lsof -nP -p "$1" 2>/dev/null | LC_ALL=C awk '
-    $4 == "cwd" { next }
-    $5 == "DIR" {
-      fd = $4
-      sub(/[^0-9].*$/, "", fd)
-      path = $9
-      for (i = 10; i <= NF; i++) path = path " " $i
-      printf "%s\t%s\n", fd, path
+  run_bounded "$FSMON_PROBE_TIMEOUT" lsof -nP -p "$1" -Fftn 2>/dev/null | LC_ALL=C awk '
+    /^f/ { fd = substr($0, 2); type = ""; next }
+    /^t/ { type = substr($0, 2); next }
+    /^n/ {
+      if (type == "DIR" && fd ~ /^[0-9]+$/) printf "%s\t%s\n", fd, substr($0, 2)
+      next
     }'
 }
 
@@ -206,7 +211,7 @@ _is_daemon_pid() {
   local command
   command="$(_process_command "$1")"
   [ -n "$command" ] || return 1
-  printf '%s\n' "$command" | LC_ALL=C grep -Eq '(^|/)git fsmonitor--daemon run( |$)'
+  printf '%s\n' "$command" | LC_ALL=C grep -Eq '^([^ ]*/)?git fsmonitor--daemon run( |$)'
 }
 
 # Poll for at most the given number of seconds; true once the daemon is gone.
@@ -222,17 +227,25 @@ _wait_gone() {
   ! _is_daemon_pid "$pid"
 }
 
-# Every process cwd as p<pid> and n<path> rows, from one bounded lsof call. The
-# exit status is not used: lsof exits 1 whenever it cannot read some other
-# user's process, even after listing everything it can.
+# Every process cwd as p<pid> and n<path> rows, from one bounded lsof call. A
+# timeout prints nothing, so a partial listing is never taken as proof that a
+# worktree is idle. Any other non-zero status is ignored: lsof exits 1 whenever
+# it cannot read some other user's process, even after listing everything it
+# can.
 _cwd_rows() {
-  run_bounded "$FSMON_PROBE_TIMEOUT" lsof -nP -d cwd -Fpn 2>/dev/null || true
+  local rc=0 rows
+  rows="$(run_bounded "$FSMON_PROBE_TIMEOUT" lsof -nP -d cwd -Fpn 2>/dev/null)" || rc=$?
+  if [ "$rc" -eq 142 ]; then
+    return 0
+  fi
+  [ -n "$rows" ] && printf '%s\n' "$rows"
+  return 0
 }
 
 # First live process other than the excluded pid whose cwd is the worktree or
 # below it. lsof's field mode emits a p row before that process's n row. An
-# empty or timed-out listing prints "unknown", so the caller refuses rather
-# than ending a daemon it could not prove idle.
+# empty listing, including one a timeout suppressed, prints "unknown", so the
+# caller refuses rather than ending a daemon it could not prove idle.
 _cwd_intruder() {
   local worktree="$1" exclude="$2" rows line pid name
   rows="$(_cwd_rows)"
@@ -458,12 +471,14 @@ while IFS="$TAB" read -r pid started; do
   else
     [ "$root_deleted" = "1" ] || root="$(_real_path "$root")"
     # Only a daemon holding this repository's worktree administrative directory
-    # is provably ours. A watched root under the checkout alone is not proof: a
-    # separate repository nested inside the checkout runs its own daemon there.
+    # is provably ours, so a kept daemon needs that row. A watched root under
+    # the checkout alone is not proof: a separate repository nested inside the
+    # checkout runs its own daemon there.
     if [ "$root" = "$MAIN_TOPLEVEL" ]; then
       class="main"
       worktree_field="main"
-    elif [ "$root_deleted" = "0" ] && registered="$(_registered_path "$root")"; then
+    elif [ "$admin_row" = "1" ] && [ "$root_deleted" = "0" ] \
+      && registered="$(_registered_path "$root")"; then
       class="keep"
       worktree_field="$registered"
     elif [ "$admin_row" = "1" ]; then

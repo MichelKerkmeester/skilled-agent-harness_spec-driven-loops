@@ -6,15 +6,16 @@
     "phase",
     "fsmonitor-daemon-lifecycle"
   ],
-  "lastUpdated": "2026-10-27T12:50:37.426Z",
+  "lastUpdated": "2026-10-27T13:42:51.499Z",
   "specId": "003",
   "folderSlug": "fsmonitor-daemon-lifecycle",
   "parentChain": [
     "sk-git",
     "035-fsmonitor-daemon-and-worktree-relocation-regression"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "27-10-26_13-50__built-and-shipped-the-fsmonitor-daemon-reaper-fix.md"
+    "27-10-26_13-50__built-and-shipped-the-fsmonitor-daemon-reaper-fix.md",
+    "27-10-26_14-42__a-fresh-opus-review-of-the-fsmonitor-daemon.md"
   ]
 }

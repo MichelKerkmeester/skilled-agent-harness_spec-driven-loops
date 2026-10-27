@@ -178,7 +178,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `lsof` attribution. A worktree daemon's socket row shows only `fsmonitor--daemon.ipc`, and its admin directory appears on a separate `DIR` row. | Worktree daemons go unattributed if only socket rows are read. | Read the `DIR` row under `<common>/worktrees/<name>`. A daemon with no such row is reported as unattributed and never signalled. |
-| Dependency | `perl` alarm as the timeout wrapper, because no `timeout` or `gtimeout` binary is installed here. | A bounded call would have no bound. | `perl -e 'alarm shift; exec @ARGV or exit 127'`. Verified on this host: exit 142 after a 1 second alarm, exit 0 for a call that finishes. |
+| Dependency | `perl` alarm as the timeout wrapper, because no `timeout` or `gtimeout` binary is installed here. | A bounded call would have no bound. | A perl fork-and-wait runner that kills the child with SIGKILL and exits 142 when the alarm fires. A first version exec'd the command under the alarm, but `lsof` traps SIGALRM and exited 1 with a partial listing, so the runner now times the child from outside it. |
 | Risk | A false wedge ends a healthy daemon. The research saw a cold daemon answer in about 10 seconds on this tree. | Medium. Git starts a new daemon on the next index read, so the cost is a cold start. | Probe timeout of 15 seconds (open question 3). The probe runs only with `--probe`. |
 | Risk | A daemon is ended while a live session works in its worktree. | High. | `--worktree` refuses on a live working directory (REQ-006). Every signal needs `--apply`. |
 | Risk | PID reuse between the process list and the signal. | Medium. | The identity recheck before each signal (REQ-005). |
@@ -210,9 +210,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-- Empty input: no fsmonitor daemon is running. The dry-run prints `fsmonitor-daemon: 0 daemons` and exits 0.
+- Empty input: no fsmonitor daemon is running. The dry-run prints `mode=dry-run signalled=0 total=0 stray=0` and exits 0.
 - Maximum input: 11 daemons on this checkout. The probe bound is 165 seconds, and `--worktree` takes one path per run.
-- Failure path: `lsof` or `perl` is missing, or the run is outside a git repository. The script exits 2 with a message and signals nothing. A daemon with no admin `DIR` row is reported as unattributed and left alone. A daemon that survives SIGKILL makes the run exit 1.
+- Failure path: outside a git repository, or with `perl` missing so no bounded git call can run, the script exits 1 with a message and signals nothing. With `lsof` missing, every daemon is reported as unattributed and left alone. A bad flag or `--worktree` value exits 2. A daemon with no admin `DIR` row is reported as unattributed and left alone. A daemon that survives SIGKILL makes the run exit 1.
 <!-- /ANCHOR:edge-cases -->
 
 ---

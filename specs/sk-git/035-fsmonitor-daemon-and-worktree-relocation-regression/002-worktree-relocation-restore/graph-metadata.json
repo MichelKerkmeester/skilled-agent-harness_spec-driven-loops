@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The worktrees for this checkout sit under `.worktrees/`, inside the checkout",
     "created_at": "2026-10-27T08:12:31Z",
-    "last_save_at": "2026-10-27T11:31:49.779Z",
+    "last_save_at": "2026-10-27T13:42:28.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf02de7ac900d14a596952715c98a12d23b01e879939eba9d308125d7ef48294",
+    "source_fingerprint": "sha256:6b66f79aee99f44fea11951512cf05c19d82214f735f08ae343da70edb9cd72a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fde48e040c7043bbbe87d880d329754df15b46bffba1e9903af5af034d10df41",
       "plan.md": "9fd6e94862219e193bb12e0a481a3dc092336982932d1e1bd92a2a247620985e",
-      "tasks.md": "4d2f08ba3897297a790bd3b42ac1a9bd923f7bb0b3d22741efa44df078274951",
-      "implementation-summary.md": "208edbc60d356649038332ded49d8ed7c5d219c1de0c11b747b75fdecae50490"
+      "tasks.md": "5a0dc799d6b06c6429fadd40eba00a68abf10bf8f57d641dd047155c8c115978",
+      "implementation-summary.md": "5032a76c2d96e64e7e2fb6349ac11c10dba3ac4e02dd0ed1e206569e2c56f5ef"
     },
     "last_active_at": null
   }

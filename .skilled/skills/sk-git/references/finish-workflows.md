@@ -12,7 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -310,14 +310,18 @@ fi
 
 2. **If worktree exists**:
 ```bash
-# Remove worktree
-if [ -n "$worktree_path" ] && [ "$worktree_path" != "$(git rev-parse --show-toplevel)" ]; then
-  # End the worktree's fsmonitor daemon first, through git's own stop while the worktree exists
+# Remove worktree. The first entry of `git worktree list` is always the main checkout.
+main_root=$(git worktree list --porcelain | sed -n '1s/^worktree //p')
+if [ -n "$worktree_path" ] && [ "$worktree_path" != "$main_root" ]; then
+  # Leave the worktree first: the reaper refuses while this shell is inside it
+  cd "$main_root"
+  # End the worktree's fsmonitor daemon through git's own stop while the worktree exists
   bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply --worktree "$worktree_path" \
     || echo "fsmonitor daemon for $worktree_path not ended; removing the worktree anyway"
   git worktree remove "$worktree_path"
   echo "Cleaned up worktree at $worktree_path"
-  # Confirm no daemon still watches the removed worktree
+  # A daemon the reaper refused exits by itself within a few seconds of the removal
+  sleep 5
   if bash .skilled/bin/fsmonitor-daemon-reaper.sh | grep -Fq "worktree=$worktree_path "; then
     echo "a daemon still watches $worktree_path; rerun the reaper with --apply"
   fi
@@ -326,7 +330,7 @@ else
 fi
 ```
 
-Run this from the main checkout: the reaper refuses to end a daemon while any process, including your shell, has its working directory inside the worktree, and the removal then continues without it.
+The block moves the shell to the main checkout before it calls the reaper, which refuses to end a daemon while any process, a shell included, has its working directory inside the worktree. A refusal prints a `refused` line, and the removal then continues without it.
 
 3. **If not in worktree**:
 ```bash

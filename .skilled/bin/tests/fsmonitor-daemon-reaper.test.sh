@@ -5,8 +5,9 @@
 # Hermetic test for fsmonitor-daemon-reaper.sh's attribution, classification and
 # apply contract. Builds throwaway fixture repositories, starts stub daemons
 # whose argv[0] is the daemon command and whose lowest DIR descriptor is the
-# directory under test, then runs the REAL reaper. The stubs this test starts are
-# the only processes signalled, either by the apply runs under test or at exit.
+# directory under test, then runs the REAL reaper. The stubs and the one real
+# daemon this test starts are the only processes signalled, either by the apply
+# runs under test or at exit.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
@@ -31,9 +32,20 @@ ERR="$TMP/reaper.err"
 STUB_PIDS=""
 STUB_PID=""
 REAPER_RC=0
+REAL_REPO=""
+REAL_WT=""
+
+stop_real_daemons() { # git's stop is the only end a real daemon accepts safely
+  [ -n "$REAL_REPO" ] && [ -d "$REAL_REPO" ] || return 0
+  git -c core.fsmonitor=true -C "$REAL_REPO" fsmonitor--daemon stop >/dev/null 2>&1 || true
+  if [ -n "$REAL_WT" ] && [ -d "$REAL_WT" ]; then
+    git -c core.fsmonitor=true -C "$REAL_WT" fsmonitor--daemon stop >/dev/null 2>&1 || true
+  fi
+}
 
 cleanup() {
   local pid
+  stop_real_daemons
   for pid in $STUB_PIDS; do
     kill "$pid" 2>/dev/null || true
   done
@@ -106,6 +118,18 @@ stub_started_epoch() { # stub_started_epoch <pid>  -- exact start second of a st
   LC_ALL=C date -j -f '%a %b %d %T %Y' "$dow $mon $day $clock $year" +%s
 }
 
+real_daemon_pid() { # real_daemon_pid <worktree>  -- a live daemon holding that worktree
+  local worktree="$1" pid
+  while IFS= read -r pid; do
+    [ -n "$pid" ] || continue
+    if "$REAL_LSOF" -nP -p "$pid" -Fftn 2>/dev/null | grep -Fqx "n$worktree"; then
+      printf '%s\n' "$pid"
+      return 0
+    fi
+  done <<< "$(pgrep -f 'fsmonitor--daemon run' 2>/dev/null || true)"
+  return 1
+}
+
 init_repo "$FIXTURE"
 init_repo "$OTHER"
 
@@ -119,18 +143,21 @@ NESTED="$FIXTURE/nested"
 mkdir -p "$FIXTURE/.worktrees"
 git -C "$FIXTURE" worktree add -q -b fsmon-test-keep "$WT" HEAD
 git -C "$FIXTURE" worktree add -q -b fsmon-test-second "$WT2" HEAD
+WT_ADMIN="$FIXTURE/.git/worktrees/keep"
+WT2_ADMIN="$FIXTURE/.git/worktrees/second"
 mkdir -p "$GHOST" "$GHOST_ADMIN"
 init_repo "$NESTED"
 
 WT_REAL="$(cd "$WT" && pwd -P)"
+WT2_REAL="$(cd "$WT2" && pwd -P)"
 
-start_stub "$FIXTURE";              MAIN_PID="$STUB_PID"
-start_stub "$WT";                   WT_PID="$STUB_PID"
-start_stub "$WT2";                  WT2_PID="$STUB_PID"
-start_stub "$GHOST" "$GHOST_ADMIN"; GHOST_PID="$STUB_PID"
-start_stub "$OTHER";                OTHER_PID="$STUB_PID"
-start_stub "$NESTED";               NESTED_PID="$STUB_PID"
-start_plain_stub;                   UNATTRIBUTED_PID="$STUB_PID"
+start_stub "$FIXTURE";                    MAIN_PID="$STUB_PID"
+start_stub "$WT" "$WT_ADMIN";             WT_PID="$STUB_PID"
+start_stub "$WT2" "$WT2_ADMIN";           WT2_PID="$STUB_PID"
+start_stub "$GHOST" "$GHOST_ADMIN";       GHOST_PID="$STUB_PID"
+start_stub "$OTHER";                      OTHER_PID="$STUB_PID"
+start_stub "$NESTED";                     NESTED_PID="$STUB_PID"
+start_plain_stub;                         UNATTRIBUTED_PID="$STUB_PID"
 sleep 1
 # A worktree removed while its daemon kept running leaves the daemon holding a
 # deleted administrative directory and no registration.
@@ -224,6 +251,59 @@ expect "--apply leaves the nested stub alive" kill -0 "$NESTED_PID"
 expect "--apply leaves the out-of-scope stub alive" kill -0 "$OTHER_PID"
 expect "--apply leaves the unattributed stub alive" kill -0 "$UNATTRIBUTED_PID"
 
+# ── a registered root alone is not proof the daemon is this repo's ──
+PLAIN_WT="$FIXTURE/.worktrees/plain"
+git -C "$FIXTURE" worktree add -q -b fsmon-test-plain "$PLAIN_WT" HEAD
+start_stub "$PLAIN_WT"
+PLAIN_PID="$STUB_PID"
+sleep 1
+
+run_reaper_fast --apply --repo "$FIXTURE"
+expect "a registered root without its admin folder is out of scope" \
+  grep -Fq "pid=$PLAIN_PID class=out-of-scope worktree=-" "$OUT"
+expect "a registered root without its admin folder survives --apply" kill -0 "$PLAIN_PID"
+expect "a registered root without its admin folder signals nothing" \
+  grep -Fq "mode=apply signalled=0" "$OUT"
+
+PLAIN_START="$(stub_started_epoch "$PLAIN_PID")"
+run_reaper_idle "$((PLAIN_START + 3600))" --idle-hours 0 --apply \
+  --worktree "$PLAIN_WT" --repo "$FIXTURE"
+expect "a registered root without its admin folder stays out of scope when idle" \
+  grep -Fq "pid=$PLAIN_PID class=out-of-scope" "$OUT"
+expect "a registered root without its admin folder survives --apply --idle-hours 0" \
+  kill -0 "$PLAIN_PID"
+expect "the idle run signals nothing" grep -Fq "mode=apply signalled=0" "$OUT"
+
+# ── a worktree path with repeated spaces keeps its exact name ──
+SPACE_WT="$FIXTURE/.worktrees/w  x"
+git -C "$FIXTURE" worktree add -q -b fsmon-test-spaces "$SPACE_WT" HEAD
+SPACE_ADMIN="$(sed -n 's/^gitdir: //p' "$SPACE_WT/.git")"
+SPACE_WT_REAL="$(cd "$SPACE_WT" && pwd -P)"
+start_stub "$SPACE_WT" "$SPACE_ADMIN"
+SPACE_PID="$STUB_PID"
+sleep 1
+
+run_reaper --repo "$FIXTURE"
+expect "a path with repeated spaces is classified keep" \
+  grep -Fq "pid=$SPACE_PID class=keep worktree=$SPACE_WT_REAL" "$OUT"
+run_reaper_fast --apply --repo "$FIXTURE"
+expect "a path with repeated spaces survives --apply" kill -0 "$SPACE_PID"
+expect "a path with repeated spaces is never ended" \
+  test -z "$(grep -F "ended pid=$SPACE_PID" "$OUT" || true)"
+
+# ── a non-git process with the daemon text in an argument is not a daemon ──
+( exec perl -e 'opendir(my $h, $ARGV[1]) or die; sleep 600' \
+    "/opt/git fsmonitor--daemon run" "$FIXTURE" ) &
+DECOY_PID=$!
+STUB_PIDS="$STUB_PIDS $DECOY_PID"
+sleep 1
+
+run_reaper --repo "$FIXTURE"
+expect "a command argument holding the daemon text is not listed" \
+  test -z "$(grep -F "pid=$DECOY_PID class=" "$OUT" || true)"
+run_reaper_fast --apply --repo "$FIXTURE"
+expect "a command argument holding the daemon text survives --apply" kill -0 "$DECOY_PID"
+
 # ── a daemon that ignores SIGTERM escalates to SIGKILL ─────────
 mkdir -p "$GHOST2" "$GHOST2_ADMIN"
 start_ignore_term_stub "$GHOST2" "$GHOST2_ADMIN"
@@ -301,6 +381,25 @@ expect "an empty cwd listing refuses" grep -Fq "refused worktree=" "$OUT"
 expect "an empty cwd listing names an unknown blocker" grep -Fq "blocker=unknown" "$OUT"
 expect "an empty cwd listing leaves the daemon alive" kill -0 "$WT2_PID"
 
+# ── a cwd listing that outlives its bound refuses, partial rows and all ──
+SLOW_SHIM="$TMP/slow-shim"
+mkdir -p "$SLOW_SHIM"
+cat > "$SLOW_SHIM/lsof" <<EOF
+#!/bin/bash
+case " \$* " in
+  *" -d cwd "*) printf 'p1\nn%s\n' "$TMP/unrelated"; exec sleep 30 ;;
+esac
+exec "$REAL_LSOF" "\$@"
+EOF
+chmod +x "$SLOW_SHIM/lsof"
+SLOW_STARTED="$(date +%s)"
+PATH="$SLOW_SHIM:$PATH" run_reaper_probe 2 --apply --worktree "$WT2" --repo "$FIXTURE"
+SLOW_ELAPSED=$(( $(date +%s) - SLOW_STARTED ))
+expect "a timed-out cwd listing refuses" grep -Fq "refused worktree=$WT2_REAL" "$OUT"
+expect "a timed-out cwd listing names an unknown blocker" grep -Fq "blocker=unknown" "$OUT"
+expect "a timed-out cwd listing is bounded by the probe timeout" test "$SLOW_ELAPSED" -lt 10
+expect "a timed-out cwd listing leaves the daemon alive" kill -0 "$WT2_PID"
+
 # ── shims: a git whose diff-files hangs, to fake a wedged daemon ──
 PROBE_REPO="$TMP/probe"
 PROBE_WT="$PROBE_REPO/.worktrees/keep"
@@ -308,6 +407,7 @@ init_repo "$PROBE_REPO"
 mkdir -p "$PROBE_REPO/.worktrees"
 git -C "$PROBE_REPO" worktree add -q -b fsmon-test-probe "$PROBE_WT" HEAD
 PROBE_WT_REAL="$(cd "$PROBE_WT" && pwd -P)"
+PROBE_ADMIN="$PROBE_REPO/.git/worktrees/keep"
 
 PROBE_SHIM="$TMP/probe-shim"
 PROBE_ARGV="$TMP/probe-argv.log"
@@ -331,7 +431,7 @@ EOF
 chmod +x "$PROBE_SHIM/git"
 
 # ── a wedged daemon: the probe hits its alarm and --apply ends it ──
-start_stub "$PROBE_WT"
+start_stub "$PROBE_WT" "$PROBE_ADMIN"
 PROBE_KEEP_PID="$STUB_PID"
 sleep 1
 PROBE_STARTED="$(date +%s)"
@@ -347,7 +447,7 @@ expect_gone "probe apply kills the wedged stub" "$PROBE_KEEP_PID"
 expect "a wedged probe is bounded by its timeout" test "$PROBE_ELAPSED" -lt 10
 
 # ── a daemon that answers is not wedged and keeps running ──────
-start_stub "$PROBE_WT"
+start_stub "$PROBE_WT" "$PROBE_ADMIN"
 PROBE_ANSWER_PID="$STUB_PID"
 sleep 1
 printf '1\n' > "$PROBE_DELAY"
@@ -401,11 +501,13 @@ mkdir -p "$IDLE_REPO/.worktrees"
 git -C "$IDLE_REPO" worktree add -q -b fsmon-test-idle "$IDLE_WT" HEAD
 git -C "$IDLE_REPO" worktree add -q -b fsmon-test-idle-busy "$IDLE_BUSY_WT" HEAD
 IDLE_WT_REAL="$(cd "$IDLE_WT" && pwd -P)"
+IDLE_WT_ADMIN="$IDLE_REPO/.git/worktrees/keep"
+IDLE_BUSY_ADMIN="$IDLE_REPO/.git/worktrees/busy"
 init_repo "$IDLE_MAIN_REPO"
 
-start_stub "$IDLE_WT"
+start_stub "$IDLE_WT" "$IDLE_WT_ADMIN"
 IDLE_KEEP_PID="$STUB_PID"
-start_stub "$IDLE_BUSY_WT"
+start_stub "$IDLE_BUSY_WT" "$IDLE_BUSY_ADMIN"
 IDLE_BUSY_PID="$STUB_PID"
 ( cd "$IDLE_BUSY_WT" && exec sleep 600 ) &
 IDLE_BLOCKER_PID=$!
@@ -441,7 +543,7 @@ expect "a main daemon is never idle" \
 expect "a main-only idle run signals nothing" grep -Fq "mode=apply signalled=0" "$OUT"
 expect "a main daemon survives the idle selection" kill -0 "$IDLE_MAIN_PID"
 
-start_stub "$IDLE_WT"
+start_stub "$IDLE_WT" "$IDLE_WT_ADMIN"
 IDLE_DRY_PID="$STUB_PID"
 sleep 1
 IDLE_DRY_START="$(stub_started_epoch "$IDLE_DRY_PID")"
@@ -470,6 +572,34 @@ rmdir "$IDLE_GHOST_ADMIN"
 run_reaper_idle "$((IDLE_DRY_START + 1 * 3600))" --idle-hours 12 --apply --repo "$IDLE_REPO"
 expect_gone "the idle sweep ends a stray however young" "$IDLE_GHOST_PID"
 expect "the idle sweep keeps a young keep daemon" kill -0 "$IDLE_DRY_PID"
+
+# ── one real daemon: attribution and git's stop, end to end ────
+REAL_REPO="$TMP/real"
+REAL_WT="$REAL_REPO/.worktrees/keep"
+init_repo "$REAL_REPO"
+mkdir -p "$REAL_REPO/.worktrees"
+git -C "$REAL_REPO" worktree add -q -b fsmon-test-real "$REAL_WT" HEAD
+REAL_WT_REAL="$(cd "$REAL_WT" && pwd -P)"
+git -c core.fsmonitor=true -C "$REAL_WT" status >/dev/null 2>&1 || true
+
+REAL_PID=""
+REAL_WAIT=0
+while [ "$REAL_WAIT" -lt 20 ]; do
+  REAL_PID="$(real_daemon_pid "$REAL_WT_REAL" || true)"
+  [ -n "$REAL_PID" ] && break
+  sleep 0.5
+  REAL_WAIT=$((REAL_WAIT+1))
+done
+
+if [ -z "$REAL_PID" ]; then
+  echo "SKIP: real daemon did not start"
+else
+  run_reaper_fast --apply --worktree "$REAL_WT" --repo "$REAL_REPO"
+  expect "a real daemon is ended by git's stop" \
+    grep -Fq "ended pid=$REAL_PID class=keep worktree=$REAL_WT_REAL via=stop" "$OUT"
+  expect_gone "a real daemon is gone after --apply" "$REAL_PID"
+fi
+stop_real_daemons
 
 if [ "$FAIL" -ne 0 ]; then
   echo "--- reaper output (rc=$REAPER_RC) ---"
