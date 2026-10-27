@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15601,
+    "ok": 15605,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26487,
+  "documentsScanned": 26491,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "12a5479e11b18ec6b6255098e053c3a0c6e7af8c8e519541fd2741685f88735a",
+  "manifestHash": "0a9a793f2a04eaf30091a6fbeabdf04ff8a407a9955d4a49caba0ae47b4701d1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38421,
+      "ok": 38428,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -76153,6 +76153,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/scratch",
       "reason": "excluded directory"
     },
     {

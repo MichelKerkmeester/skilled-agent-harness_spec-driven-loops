@@ -1,5 +1,5 @@
 {
-  "manifestHash": "12a5479e11b18ec6b6255098e053c3a0c6e7af8c8e519541fd2741685f88735a",
+  "manifestHash": "0a9a793f2a04eaf30091a6fbeabdf04ff8a407a9955d4a49caba0ae47b4701d1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -56503,6 +56503,18 @@
     "killer test harness": [
       "killer test harness"
     ],
+    "killer test spawn race": [
+      "killer test spawn race"
+    ],
+    "killer test spawn race implementation summary": [
+      "killer test spawn race implementation summary"
+    ],
+    "killer test spawn race plan": [
+      "killer test spawn race plan"
+    ],
+    "killer test spawn race tasks": [
+      "killer test spawn race tasks"
+    ],
     "kimi k2 6 24 scenario run": [
       "kimi-k2.6 24-- scenario run"
     ],
@@ -73473,6 +73485,9 @@
     ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
+    ],
+    "phase 13 killer test spawn race": [
+      "phase 13 killer test spawn race"
     ],
     "phase 13 live hop and notice reason": [
       "phase 13 live hop and notice reason"
@@ -92362,6 +92377,9 @@
     "session relaunch keep command": [
       "session relaunch keep command"
     ],
+    "session relaunch killer flake": [
+      "session relaunch killer flake"
+    ],
     "session relaunch known gaps": [
       "session relaunch known gaps"
     ],
@@ -108084,6 +108102,9 @@
     ],
     "target authority preamble": [
       "target authority preamble"
+    ],
+    "target signal enoent": [
+      "target-signal ENOENT"
     ],
     "target state reconciliation": [
       "target state reconciliation"

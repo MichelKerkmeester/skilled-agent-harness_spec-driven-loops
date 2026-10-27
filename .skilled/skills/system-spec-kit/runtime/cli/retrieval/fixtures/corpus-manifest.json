@@ -1,5 +1,5 @@
 {
-  "corpusHash": "21599331b33fca4389194ea1921a694bb771bca35d415e1510d91aee8b51d424",
+  "corpusHash": "480162873de686c6897437c6381546d904d3978805181ebf3ab6c86d72af6900",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26487,
+  "includedPathCount": 26491,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -26330,6 +26330,10 @@
     "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
@@ -26518,7 +26522,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "12a5479e11b18ec6b6255098e053c3a0c6e7af8c8e519541fd2741685f88735a",
+  "manifestHash": "0a9a793f2a04eaf30091a6fbeabdf04ff8a407a9955d4a49caba0ae47b4701d1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33762,6 +33766,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/011-ci-health-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race/scratch",
       "reason": "excluded directory"
     },
     {
