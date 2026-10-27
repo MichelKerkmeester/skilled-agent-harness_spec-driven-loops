@@ -3,7 +3,7 @@ title: "190 -- Session recovery via /speckit:resume"
 description: "This scenario validates interrupted-session recovery via /speckit:resume for `190`."
 audited_post_018: true
 phase_018_change: Removed CONTINUE_SESSION from the active ladder and aligned the recovery order to `handover.md -> _memory.continuity -> spec docs`.
-version: 2.0.0.0
+version: 2.0.1.0
 id: retrieval-session-recovery-spec-kit-resume
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -46,11 +46,11 @@ This scenario validates interrupted-session recovery via `/speckit:resume` for `
 4. If still thin, verify the free-text fallback is the ripgrep recipe from `references/retrieval/retrieval-conventions.md` §2.4, with the result ranked caller-side per §5
 5. If no clear candidate exists, verify prompt-to-packet routing through `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"`
 6. Invoke confirm mode or force an ambiguous case and confirm the workflow presents the detected session plus 2-3 alternatives
-7. Verify the final recovery response includes actionable state and next steps, then routes appropriately to continued `/speckit:resume` work or to a direct read of the packet's `changelog/` and `implementation-summary.md` depending on user need
+7. Verify the final recovery response includes actionable state and next steps, then routes appropriately to continued `/speckit:resume` work or to a direct read of `implementation-summary.md`, plus its `changelog/` when an older packet still has one, depending on user need
 
 ### Expected
 
-`handover.md` is primary after fresh handover handling; `_memory.continuity` and supporting spec docs follow; helper fallback paths activate correctly; confirm mode shows alternatives when needed; final response contains actionable continuation state and next-step routing
+`handover.md` is primary after fresh handover handling. `_memory.continuity` and supporting spec docs follow. Helper fallback paths activate correctly. Confirm mode shows alternatives when needed. The final response contains actionable continuation state and next-step routing, including a direct read of `implementation-summary.md`, plus its `changelog/` when an older packet still has one
 
 ### Evidence
 

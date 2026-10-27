@@ -5,7 +5,6 @@ trigger_phrases:
   - "changelog creation examples"
   - "global changelog example"
   - "v4 changelog example"
-  - "packet local changelog example"
   - "worked changelog entry"
   - "annotated changelog sample"
 importance_tier: normal

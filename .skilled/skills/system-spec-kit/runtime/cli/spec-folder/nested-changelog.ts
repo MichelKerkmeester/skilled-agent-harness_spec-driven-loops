@@ -2,6 +2,14 @@
 // MODULE: Nested Changelog Generator
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Re-renders packet changelogs that already exist on disk.
+ *
+ * @packageDocumentation
+ * @deprecated Spec folders no longer get changelogs. Use `/create:changelog`,
+ * which writes release notes to `.skilled/changelog/`.
+ */
+
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
@@ -85,7 +93,7 @@ Arguments:
 Options:
   --help, -h          Show this help message
   --json              Print the derived changelog payload as JSON
-  --write             Write the rendered changelog markdown to disk
+  --write             Re-render an existing changelog file (refuses a missing one)
   --mode <auto|root|phase>
                       Override automatic root/phase mode detection
   --output <path>     Override the default output file path
@@ -796,14 +804,27 @@ function generateNestedChangelogMarkdown(data: NestedChangelogData): string {
   }).trimEnd() + '\n';
 }
 
-/** Write a rendered packet-local changelog to its resolved output path. */
+/** Re-render an existing packet-local changelog at its resolved output path. */
 function writeNestedChangelog(data: NestedChangelogData): string {
   const absoluteOutputPath = path.resolve(CONFIG.PROJECT_ROOT, data.outputPath);
-  fs.mkdirSync(path.dirname(absoluteOutputPath), { recursive: true });
+  // The generator survives only so changelogs already on disk keep rendering.
+  // Creating one would hand a packet a file nothing reads, so a missing target
+  // is refused before any directory is made.
+  if (!fs.existsSync(absoluteOutputPath)) {
+    throw new Error(
+      `Refusing to create ${data.outputPath}: spec folders no longer get changelogs. `
+      + 'Write release notes with /create:changelog instead.',
+    );
+  }
   fs.writeFileSync(absoluteOutputPath, generateNestedChangelogMarkdown(data), 'utf8');
   return absoluteOutputPath;
 }
 
+/**
+ * Run the generator CLI: print a packet changelog, or re-render one with --write.
+ *
+ * @deprecated Spec folders no longer get changelogs. Use `/create:changelog`.
+ */
 function main(argv: string[] = process.argv.slice(2)): void {
   // The generator is kept only so changelogs already on disk still render. Every
   // run says so, --help and a rejected flag included, because a silent run reads

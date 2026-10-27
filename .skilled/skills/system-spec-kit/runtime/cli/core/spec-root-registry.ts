@@ -76,7 +76,7 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'membership-only',
   },
   {
-    file: 'runtime/cli/spec-folder/nested-changelog.ts:589',
+    file: 'runtime/cli/spec-folder/nested-changelog.ts:601',
     symbol: 'ensureApprovedSpecFolder',
     consumerOrEffect:
       'Changelog write-boundary validation accepts either approved root without selecting a target.',

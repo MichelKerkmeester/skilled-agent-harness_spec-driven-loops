@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -122,7 +122,7 @@ If the runtime does not surface command menus clearly, use this compact command 
 
 **Nested changelog generator (deprecated)**
 - Spec folders no longer get changelogs. Write new entries to `.skilled/changelog/` with `/create:changelog`.
-- `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - re-render an existing packet changelog only, with a deprecation notice on stderr
+- `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - re-render an existing packet changelog, with a deprecation notice on stderr. It refuses a packet that has no changelog and writes nothing
 
 ### Create Spec Folder
 
@@ -311,7 +311,7 @@ Then verify placeholders are fully resolved:
 
 **Always:**
 - Update `level:` field in metadata
-- Add changelog entry noting escalation
+- Record the escalation in `implementation-summary.md` or in the spec.md CHANGE LOG section at Level 3+
 - Keep existing documentation (progressive - don't delete)
 - Inform user of level change
 
@@ -345,7 +345,7 @@ Then verify placeholders are fully resolved:
 **Yes:**
 - Going up: Add additional files (see Level Migration table)
 - Going down: Keep existing docs (uncommon)
-- Always: Inform user why level changed, update changelog
+- Always: Inform user why level changed, record it in `implementation-summary.md`
 
 ---
 

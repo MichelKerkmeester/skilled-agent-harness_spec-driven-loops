@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-25"
-version: 2.1.14.0
+version: 2.1.15.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -347,7 +347,7 @@ See [`tooling-and-scripts/measured-behavior-block.md`](tooling-and-scripts/measu
 
 #### Description
 
-Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title.
+Deprecated. Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title.
 
 #### Current Reality
 

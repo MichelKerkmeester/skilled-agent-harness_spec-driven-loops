@@ -48,7 +48,7 @@ This is a nested workflow packet under `sk-doc` and owns changelog authoring onl
 
 ### Router Resilience
 
-The packet has one output mode, the global component entry (section 6). A packet-local request still routes here so it can be refused as deprecated. Its references are flat, so it uses no `references/<key>/` discovery.
+The packet has one output mode, the global component entry (section 6). The advisor does not guarantee that a packet-local request lands here. When one does, the router refuses it as deprecated and offers a global entry. Its references are flat, so it uses no `references/<key>/` discovery.
 
 - Load an optional resource only after resolving it under this packet and confirming it exists.
 - Treat `references/README.md` as the fallback route map when the topology or output mode is unclear.
@@ -57,7 +57,7 @@ The packet has one output mode, the global component entry (section 6). A packet
 
 ### Smart Router Pseudocode
 
-The resilient router discovers resources at call time, loads only what exists, scores the global intent against the deprecated packet-local one and returns a disambiguation checklist rather than loading nothing:
+The resilient router discovers resources at call time, loads only what exists, scores the global intent against the deprecated packet-local one, refuses a packet-local request without writing and returns a disambiguation checklist rather than loading nothing:
 
 ```python
 from pathlib import Path
@@ -69,7 +69,7 @@ DEFAULT_RESOURCE = "references/README.md"
 # Two intents, one output mode. Keywords come from this packet's activation triggers.
 INTENT_MODEL = {
     "global_component": {"weight": 4, "keywords": ["global changelog", "release notes", "component", "--release", "--bump"]},
-    # Deprecated: kept so a packet-local request reaches this packet, which refuses it and offers a global entry.
+    # Deprecated: kept so a packet-local request that lands here is refused and offered a global entry.
     "packet_local": {"weight": 4, "keywords": ["packet-local changelog", "nested changelog", "--nested"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -122,7 +122,14 @@ def route_changelog_request(request):
             "resources": loaded,
         }
 
-    output_mode = max(scores, key=scores.get)                # Tier 2: packet_local means refuse
+    output_mode = max(scores, key=scores.get)                # Tier 2: pick the intent
+    if output_mode == "packet_local":                        # Deprecated: refuse and write nothing
+        return {
+            "output_mode": "refused",
+            "writes": [],
+            "message": "Packet-local changelogs are deprecated. Spec folders no longer get changelogs.",
+            "offer": "Write a global component entry under .skilled/changelog/ instead (section 4)",
+        }
     # Flat resource topology: no references/<key>/ subdirectories. The mode selects the
     # generator target documented below, not a keyed subtree; load the flat refs that exist.
     for path in sorted(inventory):
@@ -245,7 +252,7 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
 
 1. **Analyze context.** Resolve the source type and read the source (section 6). Compile `work_context`: what changed for the reader, the change type, the level and the source.
 2. **Resolve output target.** Discover the folders, match paths and hints (section 6), choose the primary component, list secondary ones and verify `.skilled/changelog/{resolved_folder}/` exists.
-3. **Determine version.** List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on), lists the version entries on the upstream branch with `git ls-tree` (the branch's upstream, else `origin/main`), takes the highest of the local and upstream `vX.Y.Z.B` versions, chooses the bump (section 4) and calculates the next version, incrementing the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge. Without a reachable upstream it numbers locally and says so in the report.
+3. **Determine version.** List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on). List the version entries on the upstream branch with `git ls-tree` (the branch's upstream, else `origin/main`). Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version. Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge. Without a reachable upstream, number locally and say so in the report.
 4. **Generate content.** Read `assets/changelog-template.md`, then:
    - Write the frontmatter block per the Frontmatter Contract in section 5.
    - Choose the content before writing it (template section 3). List what changed, keep what the reader would notice, act on or decide differently about, merge items with the same effect and drop the housekeeping.
@@ -342,7 +349,7 @@ If validation fails, fix the blocking issues or report the exact blocker and com
 2. Overwrite an existing changelog or reuse an existing version.
 3. Guess a component folder, or create a missing one.
 4. Write an entry with an empty summary or an empty required section.
-5. Write a new packet-local changelog, or run the deprecated nested generator with `--write`.
+5. Write a new packet-local changelog, or use the deprecated nested generator to create one. Its `--write` only re-renders an existing packet changelog.
 6. Make the command router or YAML the only workflow contract.
 7. Hide a source-format conflict. Record it and follow the template.
 

@@ -1,7 +1,7 @@
 ---
 title: "CHG-003 -- Choose the four-part bump"
 description: "This scenario validates four-part bump selection for CHG-003. Major, minor, patch and build each map to a documented change type and auto detection follows the stated order."
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # CHG-003 -- Choose the four-part bump
@@ -60,11 +60,11 @@ Capture the prompt, rule text, four example mappings, precedence order and selec
 ### Pass / Fail
 
 - **Pass**: the selected bump follows the change intent and the stated precedence.
-- **Fail**: the run chooses major because the work is large, ignores an explicit bump or applies global rules to nested output.
+- **Fail**: the run chooses major because the work is large, ignores an explicit bump or targets a packet-local changelog instead of a global entry.
 
 ### Failure Triage
 
-1. Identify whether the output is global or nested.
+1. Confirm the target is a global component entry under `.skilled/changelog/`.
 2. Check explicit input first.
 3. Re-read the concrete bump examples and the major distinction.
 

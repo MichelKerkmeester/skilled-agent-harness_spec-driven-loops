@@ -6,7 +6,7 @@ trigger_phrases:
   - "packet changelog identity phrase"
   - "nested-changelog.js"
   - "packet-local changelog"
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Nested changelog generator (nested-changelog.js)
@@ -25,7 +25,7 @@ A packet that had phases, or a phase inside one, recorded its history in the pac
 
 ### Core Behavior
 
-The generator picks root or phase mode from the folder shape, or from `--mode`. A root entry is written to `changelog/changelog-<packet>-root.md` inside the packet, and a phase entry to `changelog/changelog-<packet>-<phase>.md` inside its parent. `--json` prints the derived payload without writing and `--write` renders and writes the entry. `--output` moves the target within the project root.
+The generator picks root or phase mode from the folder shape, or from `--mode`. A root entry is written to `changelog/changelog-<packet>-root.md` inside the packet, and a phase entry to `changelog/changelog-<packet>-<phase>.md` inside its parent. `--json` prints the derived payload without writing. `--write` re-renders an entry that already exists and refuses a packet that has no changelog, writing nothing. `--output` moves the target within the project root.
 
 ### Identity Phrase
 

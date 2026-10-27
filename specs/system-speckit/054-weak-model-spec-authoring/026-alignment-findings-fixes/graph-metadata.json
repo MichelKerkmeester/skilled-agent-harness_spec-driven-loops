@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment findings fixes",
+      "phase 26 alignment findings fixes",
+      "alignment findings fixes plan",
+      "alignment findings fixes tasks",
+      "alignment findings fixes acceptance criteria",
+      "alignment findings fixes goal",
+      "alignment findings fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "findings",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "two",
+      "runs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+      "runtime/cli/tests/nested-changelog.vitest.ts",
+      "runtime/cli/tests/create-root-numbering.vitest.ts",
+      "runtime/cli/core/spec-root-registry.ts",
+      "references/templates/template-guide.md",
+      "assets/template-mapping.md",
+      "feature-catalog/feature-catalog.md",
+      "feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
+      "changelog/v2.12.8.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
+      "scratch/after/cli-suite.txt",
+      "scratch/items.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/spec-root-registry.ts",
+      "manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-root-numbering.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-registry.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/spec-root-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-mapping.md",
+        "kind": "doc",
+        "path": "assets/template-mapping.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog-generator.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.8.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.12.8.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.21.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-suite.txt",
+        "kind": "file",
+        "path": "scratch/after/cli-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "items.md",
+        "kind": "doc",
+        "path": "scratch/items.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-recovery-spec-kit-resume.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two alignment runs on the phase 25 commit found 2 P1s and about 15 P2s",
+    "created_at": "2026-10-27T17:50:23Z",
+    "last_save_at": "2026-10-27T21:08:13.099Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0f4b8b17c80709b28f0e6da2bf75dd66489725ae250a98d150cd8e1a951f2324",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "85a99bce79099f1797f36fdfeb88d9c0e50c7df83c6ec0c92fc35c6c0e09afa5",
+      "plan.md": "c2d39214346ae1013bc418cb1a81ddb7a7dd91cbfad32593a4d49f72d0c5d9e9",
+      "tasks.md": "14ee6b43097b520fe83e5c959354ba79d1bfc28113f4ad65cedf16a908ad8d8e",
+      "implementation-summary.md": "10f73e3c20e3482fdd07fc1e4e5e26267f6734b7f743d1be88030e09288854b1"
+    },
+    "last_active_at": null
+  }
+}

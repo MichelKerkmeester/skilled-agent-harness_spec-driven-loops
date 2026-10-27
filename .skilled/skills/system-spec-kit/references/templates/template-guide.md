@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -727,7 +727,7 @@ Task tool -> @debug for specs/007-feature/
 5. **Use the canonical required filename** - `decision-record.md` (topic-specific ADR files are supplemental)
 6. **Keep sections relevant** - State "N/A" instead of deleting sections
 7. **Link sibling documents** - Cross-reference spec.md ↔ plan.md ↔ tasks.md
-8. **Document level changes** - Use `upgrade-level.sh` for level upgrades (recommended), then auto-populate placeholder content. Note changes in changelog
+8. **Document level changes** - Use `upgrade-level.sh` for level upgrades (recommended), then auto-populate placeholder content. Record the change in `implementation-summary.md` or in the spec.md CHANGE LOG section at Level 3+
 9. **Keep history immutable** - Append to history, don't rewrite
 10. **Validate before coding** - Complete pre-implementation checklist first
 11. **Apply ToC policy consistently** - Only `research/research.md` may include a Table of Contents section; keep standard spec artifacts ToC-free
@@ -889,7 +889,7 @@ spec.md and plan.md exist but don't reference each other
 **Solutions:**
 - Use closest template as starting point
 - Adapt structure to fit (add subsections if needed)
-- Document modifications in changelog
+- Document modifications in `implementation-summary.md`
 - Consider creating custom template for future use (consult user first)
 
 ### "Should I include this in spec or plan?"

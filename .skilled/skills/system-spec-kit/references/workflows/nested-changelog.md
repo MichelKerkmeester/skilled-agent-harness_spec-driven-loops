@@ -8,7 +8,7 @@ trigger_phrases:
   - "changelog evidence stack"
 importance_tier: normal
 contextType: implementation
-version: 2.1.3.0
+version: 2.1.4.0
 ---
 
 # Nested Changelog Workflow
@@ -29,7 +29,7 @@ Re-render the existing packet-local changelog files for spec roots and phase chi
 
 Do not use it for new work. Write new changelog entries with `/create:changelog`, which writes to `.skilled/changelog/`.
 
-- Re-render an existing packet changelog under `specs/**/changelog/` after its packet docs changed
+- Re-render an existing packet changelog under `specs/**/changelog/` after its packet docs changed. The generator refuses a packet that has no changelog
 
 ---
 
@@ -38,6 +38,8 @@ Do not use it for new work. Write new changelog entries with `/create:changelog`
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
+
+`--write` re-renders a changelog that already exists. When the resolved output file is missing it exits with an error that points at `/create:changelog` and writes nothing.
 
 ### Modes
 

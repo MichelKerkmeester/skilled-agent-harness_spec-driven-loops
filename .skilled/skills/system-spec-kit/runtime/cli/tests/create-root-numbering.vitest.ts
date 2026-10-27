@@ -133,6 +133,11 @@ describe('create.sh numbering of an appended phase', () => {
     const graphPath = path.join(workspace, parent, '003-third-step', 'graph-metadata.json');
     const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8')) as { derived: { causal_summary: string } };
     expect(graph.derived.causal_summary).toBe('Phase 3: third-step');
+
+    // Spec folders no longer get changelogs, so the phase context names no changelog to refresh.
+    const childSpec = fs.readFileSync(path.join(workspace, parent, '003-third-step', 'spec.md'), 'utf8');
+    expect(childSpec).toContain('**Deliverables**:');
+    expect(childSpec).not.toContain('**Changelog**:');
   });
 });
 

@@ -164,6 +164,7 @@ and findings belong here.
 | Release notes gap fix | Done | skilled v4.0.0.15 roll-up for the whole packet; advisor 0.17.7.0 now also records the typed-command bound and mode-suffix strip; packet root changelog covers 020-024; validate_document 0 issues on all three |
 | Phase 25 opened | In Progress | operator chose stop-generating on 2026-10-27; 64 packet changelogs, 3 workflow calls, 1 create.sh line |
 | Phase 25 closed | Complete | packet changelogs deprecated; suite 2241 passed 0 failed; AC Met |
+| Phase 26 closed | Complete | --write refuses a packet with no changelog, SKILL.md at 4982 words, suite 2242 passed and 0 failed, trigger index rebuilt after the rebase at push time |
 
 ### Deviations and findings
 

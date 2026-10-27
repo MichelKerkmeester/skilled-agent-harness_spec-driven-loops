@@ -8,7 +8,7 @@ trigger_phrases:
   - "required templates by level"
 importance_tier: normal
 contextType: planning
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Template Mapping - Level to File Assignments
@@ -279,7 +279,7 @@ Content that will be indexed...
 5. **Use canonical filenames** - a separate decision file is named `decision-record.md`. Topic-specific ADR files are supplemental artifacts, not replacements
 6. **Keep sections relevant** - State "N/A" instead of deleting sections
 7. **Link sibling documents** - Cross-reference spec.md ↔ plan.md ↔ tasks.md
-8. **Document level changes** - Note upgrades/downgrades in changelog
+8. **Document level changes** - Note upgrades/downgrades in `implementation-summary.md` or in the spec.md CHANGE LOG section at Level 3+
 9. **Keep history immutable** - Append to history, don't rewrite
 10. **Validate before coding** - Complete pre-implementation checklist first
 11. **Organize by priority** - Use P0/P1/P2 priority markers in checklists (P0=blocker, P1=must-do, P2=can-defer)

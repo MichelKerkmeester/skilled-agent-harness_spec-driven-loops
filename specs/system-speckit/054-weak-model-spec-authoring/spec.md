@@ -154,6 +154,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 23 | 023-deep-review-remediation/ | Fix every finding of the 2026-10-27 two-lineage deep review: the placeholder fence and `--path` symlink P1s, the `--track` requirement wording, the recursive auto-repair doc gap, and the P2 record, doc and code findings | Complete |
 | 24 | 024-typed-command-ambiguity/ | Stop the advisor reporting a typed command's owner as ambiguous with a skill the graph seed bound held below it, so `/deep:research :auto` prompts route without an ambiguity flag | Complete |
 | 25 | 025-deprecate-nested-changelogs/ | Stop writing changelogs inside spec folders: the closing workflows, the phase scaffold and `/create:changelog` no longer create one, and the generator prints a deprecation notice | Complete |
+| 26 | 026-alignment-findings-fixes/ | Fix the findings two alignment runs raised on phase 25: the generator's `--write` refuses a packet with no changelog, the system-spec-kit `SKILL.md` is back under its word cap, and the stale changelog wording, routing and workflow leftovers are gone | Complete |
 
 ### Phase Transition Rules
 
@@ -190,6 +191,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 022-advisor-routing-and-local-install | 023-deep-review-remediation | The operator asked on 2026-10-27 to fix every finding of the deep review run after phase 22 | `review/review-report.md` holds the adjudicated findings: 2 P1 and 9 P2 |
 | 023-deep-review-remediation | 024-typed-command-ambiguity | The operator asked on 2026-10-27 to act on the thin advisor margin once the live advisor showed `ambiguous: true` for the typed `/deep:research :auto` prompt | The live probe prints system-deep-loop 0.564694 and system-spec-kit 0.564693 with `ambiguous: true` |
 | 024-typed-command-ambiguity | 025-deprecate-nested-changelogs | The operator asked on 2026-10-27 to deprecate the changelogs inside spec folders, keeping release notes in `.skilled/changelog/` and the skills' own `changelog/` folders | 64 packet changelogs exist and both closing workflows call `nested-changelog.js --write` |
+| 025-deprecate-nested-changelogs | 026-alignment-findings-fixes | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -179,6 +179,8 @@ The generator can now resolve phase folders and derive packet-local changelog pa
 
     const inside = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: 'notes/changelog.md' });
     expect(inside.outputPath).toBe('notes/changelog.md');
+    // Only an existing changelog is re-rendered, so seed the target first.
+    writeFile(path.join(CONFIG.PROJECT_ROOT, 'notes', 'changelog.md'), 'stale\n');
     expect(writeNestedChangelog(inside)).toBe(path.join(CONFIG.PROJECT_ROOT, 'notes', 'changelog.md'));
   });
 
@@ -222,6 +224,8 @@ The review remediation phase aligned the bootstrap contract, tightened checklist
 - [ ] Save extra review notes`);
 
     const data = buildNestedChangelogData(phaseSpec, { mode: 'auto', outputPath: null });
+    // Only an existing changelog is re-rendered, so seed the target first.
+    writeFile(path.join(CONFIG.PROJECT_ROOT, data.outputPath), 'stale\n');
     const writtenPath = writeNestedChangelog(data);
     const markdown = fs.readFileSync(writtenPath, 'utf8');
     const relativeRootSpec = path.relative(CONFIG.PROJECT_ROOT, rootSpec).replace(/\\/g, '/');
@@ -231,6 +235,24 @@ The review remediation phase aligned the bootstrap contract, tightened checklist
     expect(markdown).toContain(`Parent packet: \`${relativeRootSpec}\``);
     expect(markdown).toContain('Ship schema fix');
     expect(markdown).toContain('Save extra review notes');
+  });
+
+  it('refuses --write for a packet with no changelog and writes nothing', () => {
+    const rootSpec = makeTempProjectRoot();
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: No Changelog Yet');
+    const stderrWrite = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    const stdoutWrite = vi.spyOn(process.stdout, 'write').mockImplementation(() => true);
+
+    try {
+      expect(() => main([rootSpec, '--write'])).toThrow(
+        /spec folders no longer get changelogs[\s\S]*\/create:changelog/,
+      );
+      expect(fs.existsSync(path.join(rootSpec, 'changelog'))).toBe(false);
+      expect(stdoutWrite).not.toHaveBeenCalled();
+    } finally {
+      stderrWrite.mockRestore();
+      stdoutWrite.mockRestore();
+    }
   });
 
   it('names a phase changelog by its packet and phase words', () => {
