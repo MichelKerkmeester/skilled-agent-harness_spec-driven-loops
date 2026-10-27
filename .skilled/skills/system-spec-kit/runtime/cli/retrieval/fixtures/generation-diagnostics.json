@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15620,
+    "ok": 15640,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26506,
+  "documentsScanned": 26526,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f96fb57ab556b33cd182491e621bef235261ec52d42ac3cde34bd270bc9dc072",
+  "manifestHash": "861da20154ae4ef3d93c6387d19ff93c6db2dca7394a22c850b4be5499b689e3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38463,
+      "ok": 38501,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72504,6 +72504,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/071-readme-reference-debt/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -73348,6 +73352,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/043-fanout-resume-and-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/z_archive",
       "reason": "excluded directory"
     },
@@ -73593,6 +73601,10 @@
     },
     {
       "path": "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/039-executor-workflow-owner-guard/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ffb58374305a1ea857e4058eb598c7bf65af0edec3b4b26bc3a4e1c28aa09a55",
+  "corpusHash": "958e08c918acc3fe7d49e97b098ac8360592828ad2cf1503cfdc0f316ce774ca",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26506,
+  "includedPathCount": 26526,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6052,6 +6052,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.19.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.20.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
@@ -6413,6 +6414,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
@@ -6915,6 +6917,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.10.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.11.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.12.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.13.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
@@ -7367,6 +7370,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.10.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.11.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.12.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.13.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.2.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
@@ -7590,6 +7594,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.10.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.11.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -13555,6 +13560,11 @@
     "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/spec.md",
     "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/tasks.md",
     "specs/sk-doc/070-repo-doc-debt/spec.md",
+    "specs/sk-doc/071-readme-reference-debt/acceptance-criteria.md",
+    "specs/sk-doc/071-readme-reference-debt/implementation-summary.md",
+    "specs/sk-doc/071-readme-reference-debt/plan.md",
+    "specs/sk-doc/071-readme-reference-debt/spec.md",
+    "specs/sk-doc/071-readme-reference-debt/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -15906,6 +15916,11 @@
     "specs/system-deep-loop/042-fanout-review-focus/plan.md",
     "specs/system-deep-loop/042-fanout-review-focus/spec.md",
     "specs/system-deep-loop/042-fanout-review-focus/tasks.md",
+    "specs/system-deep-loop/043-fanout-resume-and-containment/acceptance-criteria.md",
+    "specs/system-deep-loop/043-fanout-resume-and-containment/implementation-summary.md",
+    "specs/system-deep-loop/043-fanout-resume-and-containment/plan.md",
+    "specs/system-deep-loop/043-fanout-resume-and-containment/spec.md",
+    "specs/system-deep-loop/043-fanout-resume-and-containment/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -16473,6 +16488,11 @@
     "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/plan.md",
     "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/spec.md",
     "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/tasks.md",
+    "specs/system-skill-advisor/039-executor-workflow-owner-guard/acceptance-criteria.md",
+    "specs/system-skill-advisor/039-executor-workflow-owner-guard/implementation-summary.md",
+    "specs/system-skill-advisor/039-executor-workflow-owner-guard/plan.md",
+    "specs/system-skill-advisor/039-executor-workflow-owner-guard/spec.md",
+    "specs/system-skill-advisor/039-executor-workflow-owner-guard/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -26537,7 +26557,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f96fb57ab556b33cd182491e621bef235261ec52d42ac3cde34bd270bc9dc072",
+  "manifestHash": "861da20154ae4ef3d93c6387d19ff93c6db2dca7394a22c850b4be5499b689e3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30132,6 +30152,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/071-readme-reference-debt/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -30976,6 +31000,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/043-fanout-resume-and-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/z_archive",
       "reason": "excluded directory"
     },
@@ -31221,6 +31249,10 @@
     },
     {
       "path": "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/039-executor-workflow-owner-guard/scratch",
       "reason": "excluded directory"
     },
     {
