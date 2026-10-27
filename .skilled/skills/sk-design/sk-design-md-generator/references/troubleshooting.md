@@ -9,7 +9,7 @@ trigger_phrases:
   - "extract.ts not running"
 importance_tier: "normal"
 contextType: implementation
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # Troubleshooting
@@ -38,7 +38,7 @@ Resolve the failures that block an extraction run: missing browser binaries, uni
 
 ## 3. CRAWL FAILURES
 
-**Site blocks the crawl (403 / 429 / bot wall).** Empty or partial `tokens.json`, or the crawl errors on every page. The tool ships `playwright-extra` + stealth, but some sites still block automated browsers.
+**Site blocks the crawl (403 / 429 / bot wall).** Empty or partial `tokens.json`, or the crawl errors on every page. The tool crawls with plain Playwright and applies no stealth measures, so some sites block it as an automated browser.
 - Fix: do NOT fabricate tokens. Try `--max-pages 1` on a single accessible page, add `--wait-for css` for JS-heavy SPAs, or report that the site is not crawlable.
 
 **No dark-mode palette captured.** The site has a dark mode but `tokens.json` has no dark tokens. The extractor keys on a `prefers-color-scheme` media query; sites that toggle dark mode with a JS class may not be detected.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "preflight extract write prompt validate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Guided Run Wrapper
@@ -60,7 +60,7 @@ It can run:
 ## 4. NORMAL RUN SHAPE
 
 ```bash
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/DESIGN.md --fast
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output specs/<track>/<packet>/output --design-md specs/<track>/<packet>/output/DESIGN.md --fast
 ```
 
 Expected phases:

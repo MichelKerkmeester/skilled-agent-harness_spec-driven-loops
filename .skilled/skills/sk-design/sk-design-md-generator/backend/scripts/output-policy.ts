@@ -27,7 +27,9 @@ function findRepoRoot(startDir: string): string {
 }
 
 const REPO_ROOT = findRepoRoot(PACKAGE_ROOT);
-const SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
+const SPECS_ROOT = path.join(REPO_ROOT, 'specs');
+// Some repos keep their spec tree under .opencode, so it stays an allowed root.
+const OPENCODE_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 
 function isInsideOrEqual(target: string, root: string): boolean {
   const relative = path.relative(root, target);
@@ -57,7 +59,7 @@ export function resolveOutputPath(requestedPath: string, cwd: string = process.c
       reason: `refusing to write inside the skills directory (${SKILLS_ROOT})`,
     };
   }
-  if (isInsideOrEqual(resolvedPath, SPECS_ROOT)) {
+  if (isInsideOrEqual(resolvedPath, SPECS_ROOT) || isInsideOrEqual(resolvedPath, OPENCODE_SPECS_ROOT)) {
     return { ok: true, resolvedPath, boundary: 'spec-folder' };
   }
   if (resolvedPath.startsWith(SANDBOX_PREFIX)) {
@@ -67,7 +69,7 @@ export function resolveOutputPath(requestedPath: string, cwd: string = process.c
     ok: false,
     resolvedPath,
     boundary: null,
-    reason: `output path must be inside a spec folder (${SPECS_ROOT}) or an approved sandbox (${SANDBOX_PREFIX}*)`,
+    reason: `output path must be inside a spec folder (${SPECS_ROOT} or ${OPENCODE_SPECS_ROOT}) or an approved sandbox (${SANDBOX_PREFIX}*)`,
   };
 }
 
@@ -88,4 +90,4 @@ export function ensureWritableFile(filePath: string, options: { force?: boolean 
   }
 }
 
-export const outputPolicyRoots = { PACKAGE_ROOT, SKILLS_ROOT, REPO_ROOT, SPECS_ROOT, SANDBOX_PREFIX };
+export const outputPolicyRoots = { PACKAGE_ROOT, SKILLS_ROOT, REPO_ROOT, SPECS_ROOT, OPENCODE_SPECS_ROOT, SANDBOX_PREFIX };

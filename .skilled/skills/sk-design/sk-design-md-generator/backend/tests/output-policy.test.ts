@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as os from 'os';
 import { resolveOutputPath, requireOutputPath, ensureWritableFile, outputPolicyRoots } from '../scripts/output-policy';
 
-const { SKILLS_ROOT, SPECS_ROOT, SANDBOX_PREFIX } = outputPolicyRoots;
+const { REPO_ROOT, SKILLS_ROOT, SPECS_ROOT, SANDBOX_PREFIX } = outputPolicyRoots;
 
 describe('resolveOutputPath', () => {
   it('accepts an absolute path inside the spec-folder root', () => {
@@ -12,6 +12,19 @@ describe('resolveOutputPath', () => {
     expect(result.ok).toBe(true);
     expect(result.boundary).toBe('spec-folder');
     expect(result.resolvedPath).toBe(target);
+  });
+
+  it('accepts the repo-relative specs/<packet>/output path the README documents', () => {
+    const result = resolveOutputPath('specs/demo-packet/output', REPO_ROOT);
+    expect(result.ok).toBe(true);
+    expect(result.boundary).toBe('spec-folder');
+    expect(result.resolvedPath).toBe(path.join(REPO_ROOT, 'specs', 'demo-packet', 'output'));
+  });
+
+  it('still accepts a spec tree kept under .opencode', () => {
+    const result = resolveOutputPath('.opencode/specs/demo-packet/output', REPO_ROOT);
+    expect(result.ok).toBe(true);
+    expect(result.boundary).toBe('spec-folder');
   });
 
   it('accepts an approved sandbox path', () => {

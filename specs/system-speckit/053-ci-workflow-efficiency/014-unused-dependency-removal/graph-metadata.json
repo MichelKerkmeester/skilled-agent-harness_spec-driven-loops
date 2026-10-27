@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unused dependency removal",
+      "phase 14 unused dependency removal",
+      "dependabot deepmerge alert",
+      "md generator stealth dependency",
+      "md generator output path policy",
+      "unused dependency removal plan",
+      "unused dependency removal tasks",
+      "unused dependency removal implementation summary"
+    ],
+    "key_topics": [
+      "unused",
+      "dependency",
+      "removal",
+      "phase",
+      "dependabot",
+      "deepmerge",
+      "alert",
+      "generator",
+      "stealth",
+      "output",
+      "path",
+      "policy"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/package.json",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/package-lock.json",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/output-policy.ts",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/cli.ts",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/output-policy.test.ts",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/guided-run.test.ts",
+      ".skilled/skills/sk-design/sk-design-md-generator/INSTALL-GUIDE.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/troubleshooting.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/study/editorial-exemplar-study.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.6.0.md",
+      ".hermes/skills/sk-design-md-generator/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "output-policy.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/output-policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "output-policy.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/output-policy.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "guided-run.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/guided-run.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "extraction-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "editorial-exemplar-study.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/study/editorial-exemplar-study.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.6.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.6.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Dependabot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Dependabot alert 1410 (`deepmerge` 4.3.1 and older, prototype poisoning, low severity) has no patched version, so it cannot be cleared by an upgrade",
+    "created_at": "2026-10-27T22:05:08Z",
+    "last_save_at": "2026-10-27T22:28:51.319Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:60971da3e5e7a5e51f5f6a165dcf18d752cb2d8e1f333264520e447eac928169",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6ab40e5eb110882c6527d8db542264e89e8ef5263e892d50fd522ef1bb264f3f",
+      "plan.md": "73feeb20e764feb3b5b9ee22760ffdb014888e0adc06040554cbfd6486ee6b3d",
+      "tasks.md": "f46bb80aba4f7fb241218918f2cff510737052c0f809866aad8e136f58cec656",
+      "implementation-summary.md": "c324d86d6e969505d7ba7e1f6c704fd17ae29cba562e2bccbe9ee46ab2489737"
+    },
+    "last_active_at": null
+  }
+}

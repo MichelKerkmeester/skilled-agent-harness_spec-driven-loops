@@ -1,7 +1,7 @@
 ---
 title: "md-generator Installation Guide"
 description: "Setup for the embedded extraction tool: Node.js, Playwright, Chromium and a first extraction."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # INSTALL_GUIDE — md-generator
@@ -37,7 +37,7 @@ cd .skilled/skills/sk-design/sk-design-md-generator/backend
 npm install
 ```
 
-This installs the tool's runtime dependencies: `playwright`, `playwright-extra`, `puppeteer-extra-plugin-stealth`, `css-tree`, `culori`, and `ts-node`.
+This installs the tool's runtime dependencies: `playwright`, `css-tree` and `culori`. It also installs the dev dependencies, including `ts-node`, which runs the TypeScript scripts.
 
 **Step 2: Install Chromium.**
 
@@ -65,7 +65,7 @@ any `--output` that resolves inside the skill, so a relative spec-folder path on
 correctly from the repo root.
 
 ```bash
-npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output specs/<track>/<packet>/output
 ```
 
 Expected output:
@@ -77,7 +77,7 @@ Expected output:
 Validate a `DESIGN.md` against the extracted tokens (also from the repo root):
 
 ```bash
-npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected: zero hex mismatches, zero missing sections.
@@ -105,7 +105,7 @@ If the install fails, check your network connection and proxy settings. Playwrig
 **Fix:** Try adjusting the wait strategy (run from the repo root):
 
 ```bash
-npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output specs/<track>/<packet>/output
 ```
 
 If the site requires authentication, it is out of scope. The tool only works on publicly accessible URLs that render JavaScript.

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal",
+  "description": "unused dependency removal in the md-generator backend",
+  "keywords": [
+    "unused",
+    "dependency",
+    "removal",
+    "md-generator",
+    "backend"
+  ],
+  "lastUpdated": "2026-10-27T22:12:20.622Z",
+  "specId": "014",
+  "folderSlug": "unused-dependency-removal",
+  "parentChain": [
+    "system-speckit",
+    "053-ci-workflow-efficiency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

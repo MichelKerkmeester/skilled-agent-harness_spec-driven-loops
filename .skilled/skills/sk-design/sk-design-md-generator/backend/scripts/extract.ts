@@ -210,12 +210,12 @@ function parseArgs(argv: string[]): ExtractOptions {
 function printUsage(): void {
   console.log(`
 Usage (run from the repo root):
-  npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/extract.ts <url1> [url2] ...
+  npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url1> [url2] ...
 
 Options:
   --output <dir>         Output directory (REQUIRED; must resolve to a spec folder
                          outside the skill. Run from the repo root so a relative path
-                         like .opencode/specs/<track>/<packet>/output resolves correctly)
+                         like specs/<track>/<packet>/output resolves correctly)
   --concurrency <n>      Playwright concurrency (default: 5)
   --max-pages <n>        Max pages to crawl (default: 8)
   --extra-urls <file>    File with additional URLs (one per line)
@@ -264,14 +264,14 @@ async function extract(options: ExtractOptions): Promise<void> {
   // accept any other arbitrary path).
   if (!options.output) {
     console.error('Error: --output is required. Extraction output must live in a spec folder, not the skill.');
-    console.error('  Run from the repo root, e.g. --output .opencode/specs/<track>/<packet>/output');
+    console.error('  Run from the repo root, e.g. --output specs/<track>/<packet>/output');
     process.exit(1);
   }
   const outputPolicy = resolveOutputPath(options.output);
   if (!outputPolicy.ok) {
     console.error(`Error: ${outputPolicy.reason}`);
     console.error('  Run extract.ts from the repo root so a relative --output resolves correctly,');
-    console.error('  e.g. (from repo root) --output .opencode/specs/<track>/<packet>/output');
+    console.error('  e.g. (from repo root) --output specs/<track>/<packet>/output');
     process.exit(1);
   }
   // Downstream writes use the resolved absolute path so a caller that spawns
