@@ -120,6 +120,10 @@ export interface RoutingCalibration {
   // corpus/predictions/continuation/study-config intent
   readonly corpusStudySpecKitBonus: number;
   readonly corpusStudyOtherSkillsPenalty: number;
+  // a request to write a changelog that names its packet or spec folder only as
+  // the source: changelog authoring belongs to sk-doc, not the spec workflow
+  readonly changelogFromPacketSkDocBonus: number;
+  readonly changelogFromPacketSpecKitPenalty: number;
   // explicit slash-command bonuses
   readonly speckitResumeSpecKitBonus: number;
   readonly speckitResumeCommandPenalty: number;
@@ -217,6 +221,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     compareAuditCodeReviewBonus: 0.35,
     corpusStudySpecKitBonus: 0.35,
     corpusStudyOtherSkillsPenalty: -0.16,
+    changelogFromPacketSkDocBonus: 0.12,
+    changelogFromPacketSpecKitPenalty: -0.12,
     speckitResumeSpecKitBonus: 0.16,
     speckitResumeCommandPenalty: -0.12,
     speckitPlanCommandBonus: 0.5,

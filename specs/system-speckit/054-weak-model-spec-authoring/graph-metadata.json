@@ -29,7 +29,8 @@
     "system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation",
     "system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity",
     "system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs",
-    "system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes"
+    "system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes",
+    "system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps"
   ],
   "manual": {
     "depends_on": [],
@@ -73,6 +74,8 @@
       "011-authoring-speed-research/goal.md",
       "018-benchmark-redesign-and-remeasure/scratch/report.md",
       "020-alignment-audit-fixes/scratch/audit/findings.json",
+      "026-alignment-findings-fixes/scratch/items.md",
+      "027-alignment-preexisting-gaps/scratch/items.md",
       "spec/check-placeholders.sh"
     ],
     "entities": [
@@ -122,6 +125,12 @@
         "name": "findings.json",
         "kind": "config",
         "path": "020-alignment-audit-fixes/scratch/audit/findings.json",
+        "source": "derived"
+      },
+      {
+        "name": "items.md",
+        "kind": "doc",
+        "path": "026-alignment-findings-fixes/scratch/items.md",
         "source": "derived"
       },
       {
@@ -199,17 +208,17 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-27T18:18:11.854Z",
+    "last_save_at": "2026-10-27T21:08:17.675Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ccde375068b4f7fc94576fb5ec7990f448d260c8eb38aeda7d9b38b6339ac85b",
+    "source_fingerprint": "sha256:a92b47fdb8df56143ad10864cc9d99c81a2d5befd262f111edc3c069ee960bf6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37f18632f283bf8d2c87575688d0fb2b1a6a63c4026e43ad80ed7fbc5a8fd305"
+      "spec.md": "55b09782e1c120d2c16df445c51e4c18992604ac84d803ec4e08ebc09a736bc1"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
     "last_active_at": "2026-10-25T21:42:09.493Z"

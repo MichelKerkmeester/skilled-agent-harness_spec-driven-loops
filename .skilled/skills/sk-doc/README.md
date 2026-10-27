@@ -164,7 +164,7 @@ Skip sk-doc when the task belongs to a neighbor:
 
 **Q: When do I use sk-doc instead of system-spec-kit? Both touch markdown.**
 
-A: sk-doc judges document quality and creates components. system-spec-kit owns the spec-packet contract: Level 1 requires `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md`. Level 2 adds `acceptance-criteria.md`. Packet metadata also includes `description.json` and `graph-metadata.json` for phase parents and save/resume state. The two do not overlap. Use sk-doc for a README, a skill scaffold, a changelog or any markdown component. Use system-spec-kit when you start a spec-folder-tracked change.
+A: sk-doc judges document quality and creates components. system-spec-kit owns the spec-packet contract: Level 1 requires `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md`. Level 2 adds `acceptance-criteria.md` as the closure gate. Packet metadata also includes `description.json` and `graph-metadata.json` for phase parents and save/resume state. The two do not overlap. Use sk-doc for a README, a skill scaffold, a changelog or any markdown component. Use system-spec-kit when you start a spec-folder-tracked change.
 
 **Q: `validate_document.py` and `extract_structure.py`: which one do I run?**
 

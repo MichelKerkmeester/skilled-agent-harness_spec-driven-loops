@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment preexisting gaps",
+      "phase 27 alignment preexisting gaps",
+      "alignment preexisting gaps plan",
+      "alignment preexisting gaps tasks",
+      "alignment preexisting gaps acceptance criteria",
+      "alignment preexisting gaps goal",
+      "alignment preexisting gaps implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "preexisting",
+      "gaps",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_readme_checker_false_positives.py",
+      ".skilled/bin/README.md",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/README.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-doc/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl",
+      "scratch/after/advisor-suite.txt",
+      "scratch/items.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_readme_references.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_derived_readme_counts.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_readme_checker_false_positives.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_readme_checker_false_positives.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate2-golden-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-suite.txt",
+        "kind": "file",
+        "path": "scratch/after/advisor-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "items.md",
+        "kind": "doc",
+        "path": "scratch/items.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two alignment runs on the phase 25 commit exposed three gaps that predate phase 25",
+    "created_at": "2026-10-27T18:51:31Z",
+    "last_save_at": "2026-10-27T21:08:14.689Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:572b0304876bc6ce61239f7620e1f0ee0d832b1fe732d7f14921f581eeef0f15",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "97ac29c0c38a622a155f6fe3c5568db52455ac4bba68cf8917ee4afb896d927a",
+      "plan.md": "705b8411668883c02c2d46db215584c3bda6d5ca0a0c0e20b3aee020118cc68d",
+      "tasks.md": "a202ce2fe95428d86bb0e83b76a3a796bb46309659fbe0d5c045270a6be083a1",
+      "implementation-summary.md": "6b94aea6e1b3d5304825f3a2c73ad6e6868dd5e2a24c68452374d8daf1e1f603"
+    },
+    "last_active_at": null
+  }
+}

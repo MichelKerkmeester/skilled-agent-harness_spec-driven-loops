@@ -323,10 +323,10 @@ A different packet shape, not a level. All live in `packet-types/`.
 - A `phase` packet needs only `spec.md`.
 
 **`research.spec.md`**
-- Spec for a research packet, which also requires `research/research.md`.
+- Spec for a research packet, which also requires `[spec-folder]/research/research.md`.
 
 **`review.spec.md`**
-- Spec for a review packet, which also requires `review/review-report.md`.
+- Spec for a review packet, which also requires `[spec-folder]/review/review-report.md`.
 
 **`review-report.md`**
 - The verdict, active finding counts and audited scope a review packet must produce.
@@ -370,7 +370,7 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Scripts and Validation
 
-`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Eight of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in `sk-create-frontmatter/assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
+`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Eight of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
 
 **Spec management scripts** in `.skilled/skills/system-spec-kit/runtime/cli/spec/`:
 
@@ -395,7 +395,7 @@ specs/<track>/022-big-feature/     # Parent spec folder
 - `--recursive` validates a parent and all child phase folders
 - `validate.sh` implements no rules itself. It hands every rule decision to a single Node orchestrator
 - The default scaffold path skips post-create validation. Set `SPECKIT_POST_VALIDATE=1` to enable it for strict CI workflows
-- Path traversal inputs (e.g. `--path "../etc/passwd"`) are rejected before any filesystem write
+- Path traversal inputs (for example a `--path` value that climbs above the repository root) are rejected before any filesystem write
 - Concurrent `/speckit:save` writes to the same packet cannot interleave. The continuity writer holds a packet-level lock, and a second save fails fast while it is held
 
 **Continuity scripts** in `.skilled/skills/system-spec-kit/runtime/cli/continuity/`:
@@ -584,7 +584,7 @@ Investigates a question for you, one focused pass at a time, until the answers h
 - **Knows when it's done:** stops once findings stabilize, not after a fixed number of tries
 - **Won't quit early:** keeps going until the question is covered from enough angles and sources
 - **Remembers dead ends:** ruled-out directions are saved, so you never re-investigate them
-- **Builds a written answer:** results land in a growing `research/research.md` you can read as it works
+- **Builds a written answer:** results land in a growing `[spec-folder]/research/research.md` you can read as it works
 
 #### Deep Review
 
@@ -752,7 +752,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
 - Two surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
-- A quality runner, `sk-code-quality/scripts/quality-gate.cjs`, gives one verdict for a change in any repository. A committed `.sk-code/quality.json` runs its commands only after `git config --local skilled.trustRepoChecks true`. Without it each configured check reads `SKIPPED_UNTRUSTED`
+- A quality runner, `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`, gives one verdict for a change in any repository. A committed `.sk-code/quality.json` runs its commands only after `git config --local skilled.trustRepoChecks true`. Without it each configured check reads `SKIPPED_UNTRUSTED`
 - Reviews before you ship (`code-review` mode): security, correctness and design checklists always run first, then the surface evidence above, and findings come ranked P0, P1 or P2
 
 **`sk-git`** - one clean path from change to PR
@@ -1001,7 +1001,7 @@ Every plugin except the git message gate has an off switch, listed in the [hooks
 
 ##### ⭐ `pi-cache-optimizer` ("Cache Pi")
 
-Our custom extension, vendored in `.pi/extensions/` as the live runtime source. A fork of the upstream `jiangge/pi-cache-optimizer` (MIT), it improves provider-side KV / prompt cache hit rates for every model Pi can reach.
+Our custom extension, vendored in `.pi/extensions/` as the live runtime source. A fork of the upstream jiangge/pi-cache-optimizer repository (MIT), it improves provider-side KV / prompt cache hit rates for every model Pi can reach.
 
 - Reorders stable system-prompt content ahead of dynamic context so providers can cache the stable prefix
 - Compresses Pi skill listings and strips session-overview churn
@@ -1369,7 +1369,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 - The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. The follower starts with Claude Code, Codex, Cursor, Devin, OpenCode, Pi and Hermes sessions
 - `SYSTEM_LIVE_SYNC_DISABLED=1` disables the whole loop
 - `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for the reconcile step
-- See `sk-git/references/continuous-integration.md` for the full model
+- See `.skilled/skills/sk-git/references/continuous-integration.md` for the full model
 
 &nbsp;
 
@@ -1470,7 +1470,7 @@ The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack)
 &nbsp;
 ### Core Configuration Files
 
-- **`AGENTS.md`** - gate definitions, behavior rules, agent routing and capability reference. The canonical contract for all runtimes. Claude Code reads it directly, so the repository ships no `CLAUDE.md`, and Codex loads it as project instructions, so `.codex/` carries no copy either
+- **`AGENTS.md`** - gate definitions, behavior rules, agent routing and capability reference. The canonical contract for all runtimes. Claude Code reads it directly, so the repository ships no CLAUDE.md file, and Codex loads it as project instructions, so `.codex/` carries no copy either
 - **`opencode.json`** - permissions, the `code_mode` MCP binding and one experimental flag. Used by OpenCode
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only

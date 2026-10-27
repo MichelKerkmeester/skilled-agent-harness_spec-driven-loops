@@ -67,6 +67,14 @@ const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|co
 // study artifact: the thing asked for comes before the phrase it is written about, so a "deep review"
 // between the verb and the noun means the loop itself is the subject.
 const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]review)[^.?!]){0,60}?\b(?:helper|vitest|tests?)\b/;
+// Writing a changelog is sk-doc's changelog mode even when the prompt names a
+// packet or spec folder. That folder is only where the change history comes from.
+// The verb must govern the changelog itself: only articles and folder or scope
+// modifiers may sit between them, so "add a nested phase ... for the changelog
+// work" or "write the spec folder docs, including the changelog ..." stay
+// spec-folder work.
+const CHANGELOG_AUTHORING = /\b(?:add|create|draft|write)\s+(?:(?:a|an|the|new|nested|packet|packet-local|phase|global|release)\s+){0,4}changelog(?:\s+entry)?\b/;
+const CHANGELOG_PACKET_SOURCE = /\b(?:packet|nested|spec folder)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
 const MEMORY_SAVE_CONTEXT_ANCHOR = /\b(memory|context|conversation|session|handover|checkpoint|resume|preserve|remember|capture|store)\b|\/memory:save|memory:save/;
 // Class C breadth/multi-concern abstention gates. A broad greenfield build or a
@@ -721,7 +729,20 @@ function primaryIntentBonus(
   if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') return R.compareAuditCodeReviewBonus;
   }
-  if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower) && !AUTHORS_CODE.test(promptLower)) {
+  // A changelog request that names its packet or spec folder still asks for a
+  // changelog, so sk-doc must outrank the spec workflow that "spec folder" lifts.
+  // Only those two skills are adjusted here. Every other skill falls through so
+  // later rules such as save-context or /speckit:plan still apply to it.
+  const changelogFromPacket = CHANGELOG_AUTHORING.test(promptLower)
+    && CHANGELOG_PACKET_SOURCE.test(promptLower)
+    && !AUTHORS_CODE.test(promptLower);
+  if (changelogFromPacket) {
+    if (recommendation.skill === 'sk-doc') return R.changelogFromPacketSkDocBonus;
+    if (recommendation.skill === 'system-spec-kit') return R.changelogFromPacketSpecKitPenalty;
+  }
+  // The corpus-study rule reads "packet-local" as study vocabulary, so it must
+  // stay off a changelog request or it would pull the prompt to system-spec-kit.
+  if (!changelogFromPacket && /\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower) && !AUTHORS_CODE.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
     if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-tooling' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }

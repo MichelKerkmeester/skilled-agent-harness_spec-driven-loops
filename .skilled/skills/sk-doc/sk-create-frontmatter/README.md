@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.0.8
+version: 1.0.1.0
 ---
 
 # create-frontmatter
@@ -153,7 +153,7 @@ A: One of them is resolved by literal path from a post-edit hook outside this hu
 
 **Q: Where do the budget numbers actually live?**
 
-A: In `shared/assets/skill-contract.json` under `descriptionBudget`. `quick_validate.py` reads them through `skill_contract.py` at import time and falls back to matching literals only if that import fails, so editing the Python literals changes nothing while the import works. Change a budget there, and nowhere else. The field reference in `assets/` repeats the same numbers with the reasoning, the worked trim example and the class table, which is a doc-side copy rather than a second input. The validator's own docstring still calls its literals the single source of truth for the Python validators. The code below it disagrees, and the code wins.
+A: In `../shared/assets/skill-contract.json` under `descriptionBudget`. `quick_validate.py` reads them through `skill_contract.py` at import time and falls back to matching literals only if that import fails, so editing the Python literals changes nothing while the import works. Change a budget there, and nowhere else. The field reference in `assets/` repeats the same numbers with the reasoning, the worked trim example and the class table, which is a doc-side copy rather than a second input. The validator's own docstring still calls its literals the single source of truth for the Python validators. The code below it disagrees, and the code wins.
 
 **Q: Why is `version` four parts?**
 

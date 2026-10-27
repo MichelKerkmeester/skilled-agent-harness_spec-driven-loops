@@ -155,6 +155,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 24 | 024-typed-command-ambiguity/ | Stop the advisor reporting a typed command's owner as ambiguous with a skill the graph seed bound held below it, so `/deep:research :auto` prompts route without an ambiguity flag | Complete |
 | 25 | 025-deprecate-nested-changelogs/ | Stop writing changelogs inside spec folders: the closing workflows, the phase scaffold and `/create:changelog` no longer create one, and the generator prints a deprecation notice | Complete |
 | 26 | 026-alignment-findings-fixes/ | Fix the findings two alignment runs raised on phase 25: the generator's `--write` refuses a packet with no changelog, the system-spec-kit `SKILL.md` is back under its word cap, and the stale changelog wording, routing and workflow leftovers are gone | Complete |
+| 27 | 027-alignment-preexisting-gaps/ | Fix the gaps the alignment runs found that predate phase 25: the README checkers stop reporting false positives, packet-local changelog requests route to the changelog mode, and the alignment tool's aggregator applies critic overrides | In Progress |
 
 ### Phase Transition Rules
 
@@ -191,7 +192,8 @@ The operator meets all four before the first phase runs. The conductor records e
 | 022-advisor-routing-and-local-install | 023-deep-review-remediation | The operator asked on 2026-10-27 to fix every finding of the deep review run after phase 22 | `review/review-report.md` holds the adjudicated findings: 2 P1 and 9 P2 |
 | 023-deep-review-remediation | 024-typed-command-ambiguity | The operator asked on 2026-10-27 to act on the thin advisor margin once the live advisor showed `ambiguous: true` for the typed `/deep:research :auto` prompt | The live probe prints system-deep-loop 0.564694 and system-spec-kit 0.564693 with `ambiguous: true` |
 | 024-typed-command-ambiguity | 025-deprecate-nested-changelogs | The operator asked on 2026-10-27 to deprecate the changelogs inside spec folders, keeping release notes in `.skilled/changelog/` and the skills' own `changelog/` folders | 64 packet changelogs exist and both closing workflows call `nested-changelog.js --write` |
-| 025-deprecate-nested-changelogs | 026-alignment-findings-fixes | [Criteria TBD] | [Verification TBD] |
+| 025-deprecate-nested-changelogs | 026-alignment-findings-fixes | The operator asked on 2026-10-27 to fix the findings two alignment runs raised on the phase 25 commit `5b9509576a` | `026-alignment-findings-fixes/scratch/items.md` lists the 18 items F1 to F18 |
+| 026-alignment-findings-fixes | 027-alignment-preexisting-gaps | The operator asked on 2026-10-27 to fix the three gaps phase 26 recorded as pre-existing and out of its scope | `026-alignment-findings-fixes/scratch/items.md` records the three out-of-scope findings, and `027-alignment-preexisting-gaps/scratch/items.md` turns them into R1, R2, A1, T1 and T2 |
 <!-- /ANCHOR:phase-map -->
 
 ---

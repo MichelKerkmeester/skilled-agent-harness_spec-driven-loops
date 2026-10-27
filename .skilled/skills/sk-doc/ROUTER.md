@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.3.9.0
+version: 2.3.10.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -164,7 +164,7 @@ INTENT_SIGNALS = {
     "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook"]},
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc"]},
-    "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version"]},
+    "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog"]},
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "REPO_RULE": {"weight": 4, "keywords": ["repo rule", "repo-rules", "repo rules", "project rule", "repo rule file", "REPO RULES.md", "trigger table", "rule router", "retire a rule", "retire a repo rule", "revise a rule", "revise a repo rule", "add a repo rule", "always-loaded rule", "rule that binds"]},

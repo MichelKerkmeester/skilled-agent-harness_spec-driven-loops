@@ -263,7 +263,11 @@
     "full sk-doc toolkit",
     "all templates",
     "entire toolkit",
-    "everything sk-doc offers"
+    "everything sk-doc offers",
+    "changelog entry",
+    "nested changelog",
+    "packet changelog",
+    "packet-local changelog"
   ],
   "derived": {
     "trigger_phrases": [

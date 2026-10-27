@@ -1,0 +1,14 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-skill-advisor/runtime
+
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/system-skill-advisor-launcher-QWvZF5/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 49565 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=838764
+
+ Test Files  150 passed (150)
+      Tests  1263 passed | 8 skipped (1271)
+   Start at  20:43:36
+   Duration  176.45s (transform 1.54s, setup 497ms, import 7.43s, tests 157.19s, environment 6ms)
+
