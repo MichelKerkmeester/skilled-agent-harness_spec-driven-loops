@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/016-review-mode-followups"
-    last_updated_at: "2026-10-27T06:26:54Z"
+    last_updated_at: "2026-10-27T21:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Marked every criterion Met with observed evidence"
+    recent_action: "Added and met the reworded-verdict and CI-suite criteria with observed evidence"
     next_safe_action: "Orchestrator lands the lane commits"
     blockers: []
     key_files: []
@@ -64,6 +64,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-009 | REQ-009 | Given the severity rules, When a failure needs input outside the code's stated contract, Then review-core.md holds it at P2 unless the code claims to validate that input, the escalation rule raises only a finding whose reach is named, and every restatement agrees | `.skilled/skills/sk-code/sk-code-review/references/review-core.md:38`. `### Reach Calibration` in section 2; restated in `SKILL.md` Phase 3, `README.md` severity taxonomy and `.skilled/agents/review.md` severity table and Skeptic pass; `check-agent-mirror-sync.cjs --all` OK, codex, pi, runtime-mirror (194 mirrors), roster and hermes checks PASS | Met | - |
 | AC-010 | REQ-010 | Given the clean control, When it is read, Then it allows a NaN or non-number hardening note at P2 | `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md:34`. The Allowed P2 bullet; playbook validator `PASS package=sk-code/sk-code-review scenarios=34 violations=0 warnings=0` | Met | - |
 | AC-011 | REQ-011 | Given the calibrated rules, When CR-025, CR-026 and CR-027 run live three times each on pi with DeepSeek V4.1 Flash, Then each run records verdict, duration and tokens and the pass rate per scenario is reported | `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/README.md`. CR-025 3 of 3, CR-026 3 of 3, CR-027 3 of 3, D4 100/100; every final-line check rc=0; the guard-removed variant drew a P2 finding at clamp.js:5; `render-report.cjs --check` matches 7 files | Met | - |
+| AC-012 | REQ-012 | Given a report whose Overall assessment says `REQUESTED_CHANGES` as a list item or in title case and whose last line says `APPROVED`, When the final-line checker runs, Then it exits 1 naming the contradiction | `.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:20`. Both new fixtures exited 0 before the fix and exit 1 with `Overall assessment "REQUESTED_CHANGES" contradicts the final status line "Review status: APPROVED"` after it; the harness went from `4 rule-canary test case(s) failed` rc=1 to `All rule-canary test cases passed` rc=0 | Met | - |
+| AC-013 | REQ-013 | Given a change to the review mode or to `AGENTS.md`, When the sk-code script tests workflow runs, Then it runs `check-rule-copies.test.sh` under the existing switch condition | `.github/workflows/sk-code-script-tests.yml:95`. PyYAML parse lists the step and `AGENTS.md` in both filters, the job keeps `vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` and `contents: read`; `actionlint` rc=0; `check-gate-inputs.sh` `RESULT: PASSED` | Met | - |
 
 ### Status values
 

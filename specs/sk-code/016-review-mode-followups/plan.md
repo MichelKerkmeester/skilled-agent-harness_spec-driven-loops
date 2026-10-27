@@ -73,6 +73,8 @@ A prompt is scored per mode by keyword hits times weight. Modes within the ambig
 | `graph-metadata.json` intent signals | Stage-one hub vocabulary | Unchanged, the generator only adds | `generate-router-intent-signals.cjs --check` PASSED |
 | Quality prompt naming a workflow path | Consumer of the same scoring | Now `single` quality, matching its scenario | compiled-route replay |
 | `check-review-final-line.js` consumers (canary, harness, README examples) | Read the checker | Unchanged contract for agreeing reports | harness passes |
+| `OVERALL_ASSESSMENT` pattern in `check-review-final-line.js` | Finds the summary verdict line | Accepts a list marker and any letter case | Bulleted and title-case fixtures exit 1, the four valid fixtures still exit 0 |
+| `.github/workflows/sk-code-script-tests.yml` | Runs the sk-code suites on change | Runs the review mode's bash suite, triggers on `AGENTS.md` | YAML parses, `actionlint` exit 0, `check-gate-inputs.sh` `RESULT: PASSED` |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

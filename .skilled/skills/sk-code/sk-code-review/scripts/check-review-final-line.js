@@ -16,7 +16,8 @@ import { pathToFileURL } from 'node:url';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const EXACT_STATUS = /^Review status: (APPROVED|REQUESTED_CHANGES|COMMENTED)$/;
-const OVERALL_ASSESSMENT = /^\*{0,2}Overall assessment\*{0,2}:\s*(.*)$/;
+// A list marker and title case are accepted, so a reworded header line is still compared with the status line.
+const OVERALL_ASSESSMENT = /^\s*(?:[-*+]\s+)?\*{0,2}Overall assessment\*{0,2}:\s*(.*)$/i;
 const ASSESSMENT_STATUSES = new Set(['APPROVED', 'REQUESTED_CHANGES', 'COMMENTED']);
 const COMMENTED_SKIP_STATUS =
   /^Review status: COMMENTED \((no changes since last review at \S+|skipped: [^)]+)\)$/;

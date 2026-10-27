@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/016-review-mode-followups"
-    last_updated_at: "2026-10-27T09:00:00Z"
+    last_updated_at: "2026-10-27T21:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Added the severity reach calibration and reran finding accuracy three times per scenario"
+    recent_action: "Made the checker compare list-item and title-case verdict lines and ran the review suite in CI"
     next_safe_action: "Orchestrator lands the lane commits"
     blockers: []
     key_files:
@@ -77,6 +77,12 @@ The rerun, three live reviews per scenario plus one with the range guard removed
 | CR-027 clean control | 3 of 3, no P0 or P1, NaN note held at P2 | 57, 64, 46 s | 151091, 253801, 152551 |
 | CR-027 guard removed | Finding raised at clamp.js:5, graded P2 | 71 s | 168063 |
 
+### Reworded verdict lines and the suite in CI (reopened)
+
+The final-line checker matched an Overall assessment only at the start of a line and only as `Overall assessment`, so `- **Overall assessment**: REQUESTED_CHANGES` or `**Overall Assessment**: REQUESTED_CHANGES` above `Review status: APPROVED` passed, although `SKILL.md` says the checker fails any report whose two values disagree. The pattern now allows leading space, one list marker and any letter case. Two fixtures carry the contradiction in each form, and four harness cases pin the exit and the message.
+
+The review mode's own bash suite, which holds every final-line and findings-checker case, ran in no workflow: Rule Canary Sync runs only the canary on the live tree. `sk-code-script-tests.yml` now runs the suite after the quality suites, under the job's existing switch condition. Its path filters already covered the sk-code tree, and they now also name `AGENTS.md`, the one file the suite reads outside it. `AGENTS.md` sits at the repository root, so it has no `.opencode/` twin to pair with.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -92,6 +98,9 @@ The rerun, three live reviews per scenario plus one with the range guard removed
 | `.skilled/skills/sk-code/sk-code-review/benchmark/reports/` | Created/Modified | Live finding-accuracy run and index row |
 | `.skilled/agents/review.md` and runtime copies | Modified | Summary agreement |
 | Version carriers, `changelog/v1.9.2.0.md`, hub `changelog/v3.9.2.0.md`, `.hermes/skills/` copies | Modified/Created | Patch releases |
+| `scripts/check-review-final-line.js`, two `overall-contradicts-status-*.md` fixtures, `scripts/tests/check-rule-copies.test.sh`, `scripts/README.md` | Modified/Created | List-item and title-case Overall assessment comparison |
+| `.github/workflows/sk-code-script-tests.yml` | Modified | Review mode suite in CI, `AGENTS.md` trigger |
+| `sk-code-review/SKILL.md` version, `changelog/v1.9.4.0.md`, `.hermes/skills/sk-code-review/SKILL.md` | Modified/Created | Patch release v1.9.4.0 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -135,6 +144,11 @@ DeepSeek V4.1 Flash workers made each edit from a one-change brief, through pi a
 | Mirror checks after the reach rule (agent sync, codex, pi, runtime mirrors, roster, hermes) | PASS, runtime mirrors 194 across 8 trees |
 | Playbook validator `--strict` | PASS, `sk-code/sk-code-review` 34 scenarios, 0 violations |
 | Live finding accuracy, rerun | CR-025 3/3, CR-026 3/3, CR-027 3/3, D4 100/100; guard-removed variant drew a P2 finding |
+| Harness before the checker fix, with the four new cases | FAIL as expected, `4 rule-canary test case(s) failed`, rc=1 |
+| Harness after the checker fix | PASS, `All rule-canary test cases passed`, rc=0, 80 PASS lines |
+| `sk-code-script-tests.yml`: PyYAML parse, `actionlint`, `check-gate-inputs.sh` | PASS: step and `AGENTS.md` filters present, actionlint rc=0, `RESULT: PASSED` with 0 failures |
+| Comment hygiene on the changed checker, harness and workflow | PASS, rc=0 |
+| `changelog/v1.9.4.0.md` and `scripts/README.md` through `validate_document.py` | VALID, 0 issues |
 | `test_readme_manifest.py` and `test_readme_verdict_parity.py` after `--write` | PASS against an index that includes the new report folder (783 directories, 983 README verdicts). Against the working index the manifest test fails until the new folder is staged, because discovery counts tracked files only |
 <!-- /ANCHOR:verification -->
 
@@ -146,6 +160,7 @@ DeepSeek V4.1 Flash workers made each edit from a one-change brief, through pi a
 1. **Three samples per scenario.** The rerun is three reviews each on one model, so 100/100 is a small sample, not a stable rate.
 2. **The guard-removed variant was flagged at P2, not as a blocker.** With the `min > max` guard gone, the review named the inverted-range defect but held it at P2, reasoning that no guard, doc line or caller put an inverted range in reach. The supplemental check asks only that a finding is raised, which it was. Whether an inverted range under a "closed range [min, max]" comment should count as in-contract is not settled by this run.
 3. **CR-028 is not recorded in a benchmark folder.** Its commands were run and matched, but no report folder holds that run.
+4. **The new CI step has not run on GitHub yet.** It was checked by parse, `actionlint` and the gate-input check, and the suite passes locally. Its first hosted run comes with the next push that touches the sk-code tree or `AGENTS.md`.
 <!-- /ANCHOR:limitations -->
 
 ---

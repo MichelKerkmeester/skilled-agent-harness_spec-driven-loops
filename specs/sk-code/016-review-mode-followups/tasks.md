@@ -59,6 +59,9 @@ contextType: "general"
 - [x] T019 [P] Allow the NaN hardening note at P2 in the clean control (`manual-testing-playbook/finding-accuracy/clean-control.md`). Verify: the playbook validator reports `PASS package=sk-code/sk-code-review` with 0 violations.
 - [x] T020 Rerun the three finding-accuracy scenarios three times each and the guard-removed variant once, and render the report (`benchmark/reports/2026-10-27--finding-accuracy-calibrated--live/`, `evidence/finding-accuracy-rerun/`). Verify: `render-report.cjs --check` matches all 7 files.
 - [x] T021 Raise versions and write changelogs (sk-code-review v1.9.3.0, sk-code v3.9.4.0). Verify: both changelogs VALID.
+- [x] T023 Accept a list marker and title case in the Overall assessment pattern (`scripts/check-review-final-line.js`), add `overall-contradicts-status-bulleted.md` and `overall-contradicts-status-title-case.md` and four harness cases. Verify: before the fix the harness printed `4 rule-canary test case(s) failed` with rc=1, after it `All rule-canary test cases passed` with rc=0.
+- [x] T024 Run the review mode's bash suite in `.github/workflows/sk-code-script-tests.yml` and add `AGENTS.md` to both path filters. Verify: PyYAML parse shows the new step and `AGENTS.md` in both filters, `actionlint` rc=0, `check-gate-inputs.sh` prints `RESULT: PASSED`.
+- [x] T025 Raise the sk-code-review version and write its changelog (v1.9.4.0), then sync the Hermes copies. Verify: `validate_document.py` reports 0 issues, `sync-skills-hermes.cjs` wrote 1 of 67 copies.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,6 +74,7 @@ contextType: "general"
 - [x] T015 Reconcile the playbook scenario count (`manual-testing-playbook.md`). Verify: the playbook validator is VALID and the count is derived from the section 18 index, which lists 34 scenarios.
 - [x] T016 Validate the packet (`validate.sh --strict`). Verify: `RESULT: PASSED`.
 - [x] T022 Rerun the README manifest and verdict parity tests after `--write`, and validate the packet. Verify: both tests pass and `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T026 Rerun the harness, the comment hygiene check and the packet validation from the final state. Verify: harness `All rule-canary test cases passed`, hygiene rc=0, `validate.sh --recursive --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -143,6 +147,8 @@ contextType: "general"
 - [x] CHK-021 [P0] Manual testing complete Evidence: Three live reviews ran and CR-028's commands were run from the scenario file.
 - [x] CHK-022 [P1] Edge cases tested Evidence: Placeholder and backticked Overall assessment cases pass; quality and fix prompts on a workflow path replayed.
 - [x] CHK-023 [P1] Error scenarios validated Evidence: The contradictory fixture exits 1 with the named message.
+- [x] CHK-024 [P0] A reworded contradicting summary fails the checker Evidence: `overall-contradicts-status-bulleted.md` and `overall-contradicts-status-title-case.md` exit 1 with the contradiction message; both exited 0 before the fix.
+- [x] CHK-025 [P1] The review mode's suite runs in CI Evidence: `sk-code-script-tests.yml` step `Run the sk-code-review bash suite`; `actionlint` rc=0; `check-gate-inputs.sh` `RESULT: PASSED` with 0 failures.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -200,8 +206,8 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 17 | 17/17 |
-| P1 Items | 15 | 15/15 |
+| P0 Items | 18 | 18/18 |
+| P1 Items | 16 | 16/16 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-27

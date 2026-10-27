@@ -24,6 +24,8 @@ on:
       - '.opencode/skills/system-spec-kit/shared/workspace/**'
       - '.skilled/skills/system-spec-kit/package-lock.json'
       - '.opencode/skills/system-spec-kit/package-lock.json'
+      # The review mode's rule-canary suite reads AGENTS.md as one of its targets.
+      - 'AGENTS.md'
       - '.github/workflows/sk-code-script-tests.yml'
   push:
     branches: [main, 'skilled/**']
@@ -44,6 +46,8 @@ on:
       - '.opencode/skills/system-spec-kit/shared/workspace/**'
       - '.skilled/skills/system-spec-kit/package-lock.json'
       - '.opencode/skills/system-spec-kit/package-lock.json'
+      # The review mode's rule-canary suite reads AGENTS.md as one of its targets.
+      - 'AGENTS.md'
       - '.github/workflows/sk-code-script-tests.yml'
 
 permissions:
@@ -84,6 +88,12 @@ jobs:
           bash .skilled/skills/sk-code/sk-code-quality/scripts/tests/ceiling-report.test.sh
           bash .skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh
           bash .skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.test.sh
+
+      # The review mode's suite drives the rule canary and both review-output checkers
+      # against tampered copies and fixtures. Rule Canary Sync runs only the canary on
+      # the live tree, so a checker regression would otherwise reach main unseen.
+      - name: Run the sk-code-review bash suite
+        run: bash .skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh
 
       # The runner's dist check loads the spec-kit freshness library, which resolves
       # the shared workspace package through node_modules. Install scripts are skipped

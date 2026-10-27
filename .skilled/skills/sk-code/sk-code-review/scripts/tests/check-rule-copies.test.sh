@@ -249,6 +249,12 @@ expect_output 'finding numbers restart or skip: expected 2, found 1' "shape_find
 run_case 1 "shape_final_line_overall_contradicts_status" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/overall-contradicts-status.md"
 expect_output 'Overall assessment "REQUESTED_CHANGES" contradicts the final status line "Review status: APPROVED"' "shape_final_line_overall_contradicts_status_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/overall-contradicts-status.md"
 
+# FAIL: the same contradiction written as a list item or in title case, so a reworded header cannot slip past the comparison.
+for variant in bulleted title-case; do
+  run_case 1 "shape_final_line_overall_contradicts_status_$variant" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/overall-contradicts-status-$variant.md"
+  expect_output 'Overall assessment "REQUESTED_CHANGES" contradicts the final status line "Review status: APPROVED"' "shape_final_line_overall_contradicts_status_${variant}_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/overall-contradicts-status-$variant.md"
+done
+
 # PASS: a bold, backticked Overall assessment that agrees with the status line, and a template placeholder, are both accepted.
 FINAL_LINE_OVERALL_AGREES="$TMP_DIR/final_line_overall_agrees.md"
 printf '**Overall assessment**: `COMMENTED`\n\nNot checked: nothing material\n\nReview status: COMMENTED\n' > "$FINAL_LINE_OVERALL_AGREES"
