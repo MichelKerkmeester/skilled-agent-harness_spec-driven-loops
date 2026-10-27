@@ -14,6 +14,7 @@
   "enabledModels": [
     "llmgateway/deepseek-v4.1-flash-1017",
     "openai/gpt-6-luna",
+    "openai/gpt-6.1-terra",
     "llmgateway/gpt-6-luna",
     "opencode-go/deepseek-v4.1-flash",
     "llmgateway/glm-5.3-flash",
@@ -28,10 +29,12 @@
     "npm:pi-statusline",
     "npm:pi-web-access",
     "git:github.com/dbachelder/pi-btw",
-    "git:github.com/janvitos/pi-plan-build@main"
+    "git:github.com/janvitos/pi-plan-build@main",
+    "npm:pi-claude-code-ui"
   ],
   "extensions": [],
   "hideThinkingBlock": false,
+  "terminalTheme": false,
   "compaction": {
     "enabled": false
   },

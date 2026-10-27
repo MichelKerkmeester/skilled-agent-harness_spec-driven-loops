@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -54,12 +54,13 @@ OpenCode resolves models through configured providers. The model string passed t
 
 ### openai
 
-GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` on the OpenCode 1 fallback listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. OpenCode 2 lists no `openai` provider, so run `opencode models openai` on the OpenCode 1 fallback before dispatching any slug not in the table.
+GPT-6 via the `openai` provider: three personas (sol/luna/terra) × two speed tiers (base / fast) = 6 slugs. `gpt-6-sol` is the flagship default persona. Terra returns as GPT-6.1 Terra: on 2026-10-27 `opencode models openai --refresh` on the OpenCode 1 fallback listed `openai/gpt-6.1-terra` and `openai/gpt-6.1-terra-fast`, and a one-turn `opencode run` on the base slug replied `OK`. The older `gpt-5.6-terra` slugs stay off this roster. On 2026-09-23 `opencode models openai` on the OpenCode 1 fallback listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. OpenCode 2 lists no `openai` provider, so run `opencode models openai` on the OpenCode 1 fallback before dispatching any slug not in the table.
 
 | Persona | Base | Fast (low-latency) |
 |---------|------|--------------------|
 | sol | `openai/gpt-6-sol` | `openai/gpt-6-sol-fast` |
 | luna | `openai/gpt-6-luna` | `openai/gpt-6-luna-fast` |
+| terra | `openai/gpt-6.1-terra` | `openai/gpt-6.1-terra-fast` |
 
 ### opencode-go
 
@@ -132,7 +133,7 @@ cli-opencode expresses reasoning effort through the model id on OpenCode 2, the 
 |----------|----------------------|
 | `opencode-go` (`deepseek-v4.1-flash`) | on OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`, which needs its own opencode-go login on v2 (`opencode providers login opencode-go`); on the OpenCode 1 fallback it is a reasoning model pinned to `--variant max` (max thinking tier) by policy. The fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified, omitted by default. Confirm before relying |
-| `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**, with Pro tiers at `medium`/`high`/`xhigh`. The `-fast` slugs are the low-latency Fast tier with the same range |
+| `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**, with Pro tiers at `medium`/`high`/`xhigh`. The `-fast` slugs are the low-latency Fast tier with the same range. GPT-6.1 Terra's variant range on OpenCode is not yet measured, and the Codex catalog lists its efforts as `low` through `ultra` |
 | `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash-1017` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`, and the older `deepseek-v4.1-flash` release carries the same ladder. `glm-5.3-flash` carries the full ladder to `max`. Always pass the level explicitly here |
 
 ---

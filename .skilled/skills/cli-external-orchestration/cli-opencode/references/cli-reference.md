@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.24.0
+version: 1.4.25.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -176,7 +176,7 @@ On OpenCode 2 the working directory moves into the `cd`, and the `--variant max`
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `-m`, `--model` (OpenCode 2, recommended) | `llmgateway/deepseek-v4.1-flash-1017#max` | The DevPass LLM Gateway fronts the latency-optimized flash model, with max-tier effort as the `#max` suffix on the model id. The operator may override it (e.g. `opencode-go/glm-5.3-flash` on the OpenCode 1 fallback, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
+| `-m`, `--model` (OpenCode 2, recommended) | `llmgateway/deepseek-v4.1-flash-1017#max` | The DevPass LLM Gateway fronts the latency-optimized flash model, with max-tier effort as the `#max` suffix on the model id. The operator may override it (e.g. `opencode-go/glm-5.3-flash` on the OpenCode 1 fallback, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`, `openai/gpt-6.1-terra`, `openai/gpt-6.1-terra-fast`) |
 | `--model`, `--variant max` (OpenCode 1, fallback) | `llmgateway/deepseek-v4.1-flash-1017`, variant max | Same default model. The default is max-tier-pinned by policy, so a lower requested effort is upgraded automatically. On OpenCode 2 the effort rides on `-m` as `#max` |
 | `--agent` | per use case | Required for use case 1 / 3, optional for use case 2 |
 | `--format json` | json | Structured event stream is what external runtimes parse |

@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex session resume fork"
 importance_tier: important
 contextType: implementation
-version: 1.9.0.20
+version: 1.9.1.0
 ---
 
 # Codex CLI - Complete Command Reference
@@ -95,7 +95,7 @@ codex logout
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | `-m` | `gpt-5.5` | Model to use — `gpt-5.5` (default), `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6-sol` |
+| `--model` | `-m` | `gpt-5.5` | Model to use — `gpt-5.5` (default), `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra`, `gpt-6-sol` |
 | `--config` | `-c` | `key=value` | Override a config.toml value (e.g., `-c model_reasoning_effort="high"`) |
 | `--sandbox` | `-s` | `read-only`, `workspace-write`, `danger-full-access` | Sandbox mode controlling file/shell access |
 | `--ask-for-approval` | `-a` | `untrusted`, `on-request`, `never` | Top-level approval policy; place `-a` before `exec` when using the headless form |

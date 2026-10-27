@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.5.5.0
+version: 1.5.6.0
 ---
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly. The repository's `.pi/settings.json` does make `llmgateway/deepseek-v4.1-flash-1017` the default of a run that names no model, but that governs only such a run and never a dispatch.
@@ -48,12 +48,13 @@ The table below is the closed roster for cli-pi dispatch, sourced from the machi
 
 ### openai
 
-Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). Both GPT-6 ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms both resolve. Since 2026-10-22 the pi-blackhole worker model is `llmgateway/deepseek-v4.1-flash-1017` at `high`, and Pi's own default model is that same DevPass DeepSeek route.
+Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas and GPT-6.1 Terra. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). All three ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms they resolve. Pi's catalog gained `gpt-6.1-terra` only after `pi update --models` on 2026-10-27. Before that refresh, a dispatch warned `Model "gpt-6.1-terra" not found for provider "openai". Using custom model id.` and still answered. Since 2026-10-22 the pi-blackhole worker model is `llmgateway/deepseek-v4.1-flash-1017` at `high`, and Pi's own default model is that same DevPass DeepSeek route.
 
 | Model id | Notes |
 |----------|-------|
 | `gpt-6-sol` | GPT-6 Sol |
 | `gpt-6-luna` | GPT-6 Luna |
+| `gpt-6.1-terra` | GPT-6.1 Terra. Dispatch-verified 2026-10-27: `pi -p --offline --model openai/gpt-6.1-terra --thinking low` replied `OK` |
 
 ### minimax
 
@@ -147,6 +148,7 @@ The GPT-6 tiers are reachable through Pi's `openai` provider, but Pi's `--thinki
 |-------|---------------------------------|--------------------------------|
 | `gpt-6-sol` | `ultra` | Partially — Pi's `--thinking` scale stops at `max`; `ultra` has no Pi-side value |
 | `gpt-6-luna` | `max` | Yes — `max` is the top of Pi's own scale |
+| `gpt-6.1-terra` | `ultra` | Partially. Pi's `--thinking` scale stops at `max`, so `ultra` has no Pi-side value |
 
 Confirm the target model actually honors the requested tier before assuming it changes behavior — the contract pin did not exhaustively test every model/tier pairing.
 

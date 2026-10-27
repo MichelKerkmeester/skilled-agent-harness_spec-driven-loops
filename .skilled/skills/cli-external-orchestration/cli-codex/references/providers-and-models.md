@@ -8,10 +8,11 @@ trigger_phrases:
   - "codex default model gpt-5.5"
   - "codex gpt-6 luna sol"
   - "codex gpt-5.6 terra"
+  - "codex gpt-6.1 terra"
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
-version: 1.9.0.5
+version: 1.9.1.0
 ---
 
 # cli-codex Providers, Models & Invocation
@@ -23,7 +24,7 @@ The single catalog of the provider, model ids, defaults, `model_reasoning_effort
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which model, which effort, how to dispatch" for cli-codex. This mode is single-provider (OpenAI via ChatGPT OAuth) — the choice space is one provider, four models, and one effort ladder capped per model.
+One place to answer "which model, which effort, how to dispatch" for cli-codex. This mode is single-provider (OpenAI via ChatGPT OAuth) — the choice space is one provider, five models, and one effort ladder capped per model.
 
 ### When to Use
 - Choosing a `--model` for a `codex exec` dispatch
@@ -42,7 +43,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-cli-codex is backed by a single provider — **OpenAI**, authenticated through ChatGPT OAuth only (`codex login`; no API key). The model string passed to `--model` / `-m` is a bare OpenAI slug. All four models run on the `fast` service tier (`-c service_tier="fast"`); each caps at a different reasoning-effort ceiling.
+cli-codex is backed by a single provider — **OpenAI**, authenticated through ChatGPT OAuth only (`codex login`; no API key). The model string passed to `--model` / `-m` is a bare OpenAI slug. All five models run on the `fast` service tier (`-c service_tier="fast"`); each caps at a different reasoning-effort ceiling.
 
 ### OpenAI
 
@@ -51,6 +52,7 @@ cli-codex is backed by a single provider — **OpenAI**, authenticated through C
 | `gpt-5.5` | **Default** | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
 | `gpt-6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
 | `gpt-5.6-terra` | — | Ceiling `ultra`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
+| `gpt-6.1-terra` | — | Ceiling `ultra`. The newest Terra model, which the Codex catalog lists as GPT-6.1 Terra with efforts `low` through `ultra`. No dedicated config profile, so call it directly via `-m gpt-6.1-terra` |
 | `gpt-6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning; shares the `ultra` ceiling with Terra; the `sol-verify` profile pins `xhigh` |
 
 `--oss` (local Ollama models) exists as an escape hatch for local experimentation only — not a production dispatch target. See [cli-reference.md](./cli-reference.md) §4.
@@ -95,6 +97,7 @@ Per-model ceilings — set the effort within the chosen model's cap:
 | `gpt-5.5` | `xhigh` | Default effort `medium` |
 | `gpt-6-luna` | `max` | `luna-impl` profile pins `max` |
 | `gpt-5.6-terra` | `ultra` | Callable directly; no dedicated profile |
+| `gpt-6.1-terra` | `ultra` | Callable directly; no dedicated profile |
 | `gpt-6-sol` | `ultra` | `sol-verify` profile pins `xhigh` |
 
 Selection heuristic: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh` — `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort` — see [cli-reference.md](./cli-reference.md) §5.
