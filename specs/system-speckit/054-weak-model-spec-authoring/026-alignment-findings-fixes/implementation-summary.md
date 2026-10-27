@@ -64,7 +64,7 @@ The packet changelog generator can no longer create a changelog inside a spec fo
 | `runtime/cli/tests/nested-changelog.vitest.ts` and `runtime/cli/tests/create-root-numbering.vitest.ts` | Modified | Pin the refusal and the missing `**Changelog**:` line in a new phase child |
 | `runtime/cli/core/spec-root-registry.ts` | Modified | Point at `nested-changelog.ts:601`, the `ensureApprovedSpecFolder` line |
 | system-spec-kit `SKILL.md`, `references/workflows/{nested-changelog,quick-reference}.md`, `references/templates/template-guide.md` and `assets/template-mapping.md` | Modified | Word cap, router intent, level-change notes and `--write` wording |
-| system-spec-kit `feature-catalog/feature-catalog.md`, `feature-catalog/tooling-and-scripts/nested-changelog-generator.md`, the resume playbook and `changelog/v2.12.8.0.md` | Modified | Catalog root and leaf wording, playbook step 7 and the unreleased entry |
+| system-spec-kit `feature-catalog/feature-catalog.md`, `feature-catalog/tooling-and-scripts/nested-changelog-generator.md`, the resume playbook and `changelog/v2.12.10.0.md` | Modified | Catalog root and leaf wording, playbook step 7 and the unreleased entry |
 | `.skilled/skills/sk-doc/sk-create-changelog/{SKILL.md,references/worked-examples.md,changelog/v1.3.6.0.md}` and `choose-four-part-bump.md` | Modified | Voice, NEVER rule, refusal branch, routing claim, stale trigger and global-only output |
 | `.skilled/commands/create/assets/create-changelog-{auto,confirm}.yaml` | Modified | Drop `changelog_mode` and unwrap its guards |
 | `.skilled/skills/sk-doc/changelog/v2.3.21.0.md` and `.hermes/skills/**` | Modified | Soften the routing claim and regenerate the Hermes copies |

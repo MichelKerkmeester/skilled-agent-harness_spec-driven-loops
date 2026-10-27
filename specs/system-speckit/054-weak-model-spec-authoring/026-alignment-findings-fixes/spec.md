@@ -97,7 +97,7 @@ $ rg -n "function ensureApprovedSpecFolder|mkdirSync|writeFileSync" .skilled/ski
 | `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-registry.ts` | Modify | Point at the real `ensureApprovedSpecFolder` line (F3) |
 | An existing system-spec-kit phase-scaffold vitest | Modify | Assert no `**Changelog**:` line in a new phase child (F4) |
 | system-spec-kit `SKILL.md`, `references/workflows/{nested-changelog,quick-reference}.md`, `references/templates/template-guide.md`, `assets/template-mapping.md` | Modify | Word cap, router intent, level-change notes, `--write` wording (F5, F6, F7, F10) |
-| system-spec-kit `feature-catalog/feature-catalog.md`, `manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md`, `changelog/v2.12.8.0.md` | Modify | Catalog root entry, playbook step 7, unreleased entry (F8, F9, F11) |
+| system-spec-kit `feature-catalog/feature-catalog.md`, `manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md`, `changelog/v2.12.10.0.md` | Modify | Catalog root entry, playbook step 7, unreleased entry (F8, F9, F11) |
 | `.skilled/skills/sk-doc/sk-create-changelog/{SKILL.md,references/worked-examples.md,changelog/v1.3.6.0.md}` and its `choose-four-part-bump.md` playbook | Modify | Voice, NEVER rule, refusal branch, routing claim, stale trigger, nested output (F12, F13, F14, F16) |
 | `.skilled/commands/create/assets/create-changelog-{auto,confirm}.yaml` | Modify | Drop `changelog_mode` and unwrap its guards (F15) |
 | `.skilled/skills/sk-doc/changelog/v2.3.21.0.md` | Modify | Soften the routing claim (F16) |
@@ -127,7 +127,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | F7: the six level-change notes point at `implementation-summary.md` or a spec.md change-log section, and none at `/create:changelog`. |
 | REQ-007 | F8, F9: `validate_catalog_package.py --package system-spec-kit` reports no `root_leaf_description_mismatch`, and the resume playbook step 7 mirrors the catalog leaf wording. |
 | REQ-008 | F10, F12: every doc that describes `--write` says it re-renders an existing packet changelog and refuses a packet with none, and sk-create-changelog `SKILL.md` has one voice, no conflicting NEVER rule, a refusal branch in its router and no guaranteed-routing claim. |
-| REQ-009 | F11, F16: `changelog/v2.12.8.0.md` covers F1 and the doc fixes in its own voice, and `sk-doc/changelog/v2.3.21.0.md` and `sk-create-changelog/changelog/v1.3.6.0.md` make no guaranteed-routing claim. |
+| REQ-009 | F11, F16: `changelog/v2.12.10.0.md` covers F1 and the doc fixes in its own voice, and `sk-doc/changelog/v2.3.21.0.md` and `sk-create-changelog/changelog/v1.3.6.0.md` make no guaranteed-routing claim. |
 | REQ-010 | F13, F14: `worked-examples.md` no longer carries `packet local changelog example`, and `choose-four-part-bump.md` assumes global output only. |
 | REQ-011 | F15: `rg -n "changelog_mode" .skilled/commands/create/assets/` prints nothing and both YAMLs parse. |
 | REQ-012 | F17, F18: the trigger index `--check` passes, the Hermes mirror and hub check are clean, the CLI suite shows no new failure against the 025 baseline, strict recursive validation of 054 passes, and S1 to S4 rerun clean. |

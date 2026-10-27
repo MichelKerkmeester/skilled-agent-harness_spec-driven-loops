@@ -50,7 +50,7 @@
       "assets/template-mapping.md",
       "feature-catalog/feature-catalog.md",
       "feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
-      "changelog/v2.12.8.0.md",
+      "changelog/v2.12.10.0.md",
       ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
       "scratch/after/cli-suite.txt",
       "scratch/items.md",
@@ -143,9 +143,9 @@
         "source": "derived"
       },
       {
-        "name": "v2.12.8.0.md",
+        "name": "v2.12.10.0.md",
         "kind": "doc",
-        "path": "changelog/v2.12.8.0.md",
+        "path": "changelog/v2.12.10.0.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two alignment runs on the phase 25 commit found 2 P1s and about 15 P2s",
     "created_at": "2026-10-27T17:50:23Z",
-    "last_save_at": "2026-10-27T21:08:13.099Z",
+    "last_save_at": "2026-10-27T21:14:00.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f4b8b17c80709b28f0e6da2bf75dd66489725ae250a98d150cd8e1a951f2324",
+    "source_fingerprint": "sha256:66d318daf2a861d121c0ab2dafb2a35995caf48a6ef2f7182250f5294015a161",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85a99bce79099f1797f36fdfeb88d9c0e50c7df83c6ec0c92fc35c6c0e09afa5",
+      "spec.md": "81b592ec4a75a88701e94bd19506aa1af35ccbf93365242b805f32ba0cc917c0",
       "plan.md": "c2d39214346ae1013bc418cb1a81ddb7a7dd91cbfad32593a4d49f72d0c5d9e9",
-      "tasks.md": "14ee6b43097b520fe83e5c959354ba79d1bfc28113f4ad65cedf16a908ad8d8e",
-      "implementation-summary.md": "10f73e3c20e3482fdd07fc1e4e5e26267f6734b7f743d1be88030e09288854b1"
+      "tasks.md": "dc8bc2bcabe1bb7d992df25d8aab4d1866e7780e5d77de01435a3e0362e1a2d9",
+      "implementation-summary.md": "263ce4e90d2f168106a78bd5eda55e554546fe0fa4787478148e2046fb1b09c7"
     },
     "last_active_at": null
   }

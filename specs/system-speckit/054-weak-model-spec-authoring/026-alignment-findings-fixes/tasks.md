@@ -56,7 +56,7 @@ Lane 2: system-spec-kit docs.
 - [x] T009 [P] F8: match the catalog root entry to the leaf description (`$K/feature-catalog/feature-catalog.md`). Verify: `validate_catalog_package.py --package system-spec-kit` reports no `root_leaf_description_mismatch`. Evidence: `validate_catalog_package --package system-spec-kit` exits 0 with no `root_leaf_description_mismatch`.
 - [x] T010 [P] F9: mirror the catalog leaf wording in step 7 and its Expected line (`$K/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md`). Verify: `rg -n "plus its changelog/ when an older packet still has one"` on the file prints the step. Evidence: step 7 and its Expected line mirror the catalog leaf.
 - [x] T011 [P] F10: describe `--write` as re-rendering an existing packet changelog and refusing a packet with none (`$K/references/workflows/nested-changelog.md`, `$K/references/workflows/quick-reference.md`). Verify: `rg -n -- "--write"` on both files shows only the re-render and refuse wording. Evidence: both files describe `--write` as re-render-only with a refusal for a packet with none.
-- [x] T012 F11: after T006 to T011, update the unreleased entry for F1 and the doc fixes (`$K/changelog/v2.12.8.0.md`). Verify: the entry names the refusal, and a read of the added lines finds no em dash, semicolon or Oxford comma. Evidence: `v2.12.8.0.md` covers the refusal guard and the doc fixes.
+- [x] T012 F11: after T006 to T011, update the unreleased entry for F1 and the doc fixes (`$K/changelog/v2.12.10.0.md`). Verify: the entry names the refusal, and a read of the added lines finds no em dash, semicolon or Oxford comma. Evidence: `v2.12.10.0.md` covers the refusal guard and the doc fixes.
 
 Lane 3: sk-doc and the changelog command.
 
