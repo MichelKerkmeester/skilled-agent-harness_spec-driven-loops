@@ -1,5 +1,5 @@
 {
-  "manifestHash": "861da20154ae4ef3d93c6387d19ff93c6db2dca7394a22c850b4be5499b689e3",
+  "manifestHash": "f4d70cdd1d4a4bc6fcda49e802dd8d709b148a1371baead96fb397ae7c7670af",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18012,6 +18012,9 @@
     "ci cleanup pi proof": [
       "ci cleanup pi proof"
     ],
+    "ci cost routing": [
+      "ci cost routing"
+    ],
     "ci dependency hardening acceptance criteria": [
       "ci dependency hardening acceptance criteria"
     ],
@@ -18174,6 +18177,9 @@
     "ci surface precedence decision": [
       "ci surface precedence decision"
     ],
+    "ci switch": [
+      "ci switch"
+    ],
     "ci switch adr": [
       "ci switch adr"
     ],
@@ -18209,6 +18215,9 @@
     ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
+    ],
+    "ci workflow doctor and switches": [
+      "ci workflow doctor and switches"
     ],
     "ci workflow efficiency changelogs": [
       "ci workflow efficiency changelogs"
@@ -24364,6 +24373,9 @@
     ],
     "codeawaresplitter dispatch": [
       "CodeAwareSplitter dispatch"
+    ],
+    "codebase agnostic quality gate": [
+      "codebase-agnostic quality gate"
     ],
     "codebase agnostic standards contract": [
       "codebase-agnostic standards contract"
@@ -38393,6 +38405,9 @@
     "doctor check 5l": [
       "doctor check 5l"
     ],
+    "doctor ci": [
+      "/doctor:ci"
+    ],
     "doctor ci and sk code ci packet": [
       "doctor ci and sk-code-ci packet"
     ],
@@ -39248,6 +39263,9 @@
     ],
     "doctor signals summary": [
       "doctor signals summary"
+    ],
+    "doctor sk code": [
+      "/doctor:sk-code"
     ],
     "doctor sk code quality": [
       "doctor sk-code quality"
@@ -45655,6 +45673,9 @@
     ],
     "finding class classification": [
       "finding class classification"
+    ],
+    "finding reach": [
+      "finding reach"
     ],
     "finding remediation": [
       "finding remediation"
@@ -71018,6 +71039,9 @@
     "out of box embedder support matrix": [
       "out-of-box embedder support matrix"
     ],
+    "out of contract input": [
+      "out-of-contract input"
+    ],
     "out of scope cleanup": [
       "out of scope cleanup"
     ],
@@ -73497,6 +73521,9 @@
     ],
     "phase 10 verification and closeout": [
       "phase 10 verification and closeout"
+    ],
+    "phase 11 alignment fixes": [
+      "phase 11 alignment fixes"
     ],
     "phase 11 anchor repair mode": [
       "phase 11 anchor repair mode"
@@ -79536,6 +79563,12 @@
     "quality agnostic gate alignment audit changelog": [
       "quality agnostic gate alignment audit changelog"
     ],
+    "quality agnostic gate alignment fixes changelog": [
+      "quality agnostic gate alignment fixes changelog"
+    ],
+    "quality agnostic gate builtin runner changelog": [
+      "quality agnostic gate builtin runner changelog"
+    ],
     "quality agnostic gate checker debt closeout changelog": [
       "quality agnostic gate checker debt closeout changelog"
     ],
@@ -83415,6 +83448,9 @@
     "release readiness workflow": [
       "release-readiness workflow"
     ],
+    "release request routing": [
+      "release request routing"
+    ],
     "release review lineages": [
       "release review lineages"
     ],
@@ -84610,6 +84646,9 @@
     ],
     "repository era report": [
       "Repository era report"
+    ],
+    "repository quality config": [
+      "repository quality config"
     ],
     "repository root resolution": [
       "repository root resolution"
@@ -87318,6 +87357,9 @@
     "review quality gates": [
       "review quality gates"
     ],
+    "review reach calibration": [
+      "review reach calibration"
+    ],
     "review record fixture tasks": [
       "review-record fixture tasks"
     ],
@@ -87503,6 +87545,9 @@
     ],
     "review session tracking": [
       "review session tracking"
+    ],
+    "review severity calibration": [
+      "review severity calibration"
     ],
     "review severity reach calibration": [
       "review severity reach calibration"
@@ -88468,6 +88513,9 @@
     "router sync orphan check": [
       "router sync orphan check"
     ],
+    "router sync verifier header": [
+      "router sync verifier header"
+    ],
     "router template": [
       "router template"
     ],
@@ -89125,6 +89173,9 @@
     "run now requested": [
       "run_now_requested"
     ],
+    "run request read only floor": [
+      "run request read-only floor"
+    ],
     "run research on dirty tree": [
       "run research on dirty tree"
     ],
@@ -89136,6 +89187,9 @@
     ],
     "run tests mjs process group kill": [
       "run-tests.mjs process group kill"
+    ],
+    "run the quality gate": [
+      "run the quality gate"
     ],
     "run time overage accepted": [
       "run time overage accepted"
@@ -94488,6 +94542,9 @@
     "sk code 3 9 7 0": [
       "sk-code 3.9.7.0"
     ],
+    "sk code 3 9 8 0": [
+      "sk-code 3.9.8.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -94635,6 +94692,9 @@
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
+    "sk code ci cost aliases": [
+      "sk-code ci cost aliases"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -94780,6 +94840,9 @@
     "sk code doc contract evidence": [
       "sk-code doc contract evidence"
     ],
+    "sk code doctor commands": [
+      "sk-code doctor commands"
+    ],
     "sk code doctrine distribution plan": [
       "sk-code doctrine distribution plan"
     ],
@@ -94806,6 +94869,9 @@
     ],
     "sk code feature catalog": [
       "sk-code feature catalog"
+    ],
+    "sk code feature catalog quality gate": [
+      "sk-code feature catalog quality gate"
     ],
     "sk code five mode scaffold": [
       "sk-code five mode scaffold"
@@ -95214,6 +95280,9 @@
     "sk code quality config": [
       "sk-code quality config"
     ],
+    "sk code quality gate": [
+      "sk-code quality gate"
+    ],
     "sk code quality json": [
       ".sk-code/quality.json"
     ],
@@ -95571,6 +95640,12 @@
     "sk code script kebab names tasks": [
       "sk code script kebab names tasks"
     ],
+    "sk code setup and quality doctor": [
+      "sk-code setup and quality doctor"
+    ],
+    "sk code setup battery": [
+      "sk-code setup battery"
+    ],
     "sk code setup battery doctor": [
       "sk-code setup battery doctor"
     ],
@@ -95651,6 +95726,9 @@
     ],
     "sk code skilled 2 1 5 0": [
       "sk-code-skilled 2.1.5.0"
+    ],
+    "sk code skilled 2 1 6 0": [
+      "sk-code-skilled 2.1.6.0"
     ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
@@ -95768,6 +95846,9 @@
     ],
     "sk code skilled v2 1 5 0": [
       "sk-code-skilled v2.1.5.0"
+    ],
+    "sk code skilled v2 1 6 0": [
+      "sk-code-skilled v2.1.6.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -95951,6 +96032,9 @@
     ],
     "sk code v3 9 7 0": [
       "sk-code v3.9.7.0"
+    ],
+    "sk code v3 9 8 0": [
+      "sk-code v3.9.8.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -97734,6 +97818,9 @@
     "sk git 1 10 0 0": [
       "sk-git 1.10.0.0"
     ],
+    "sk git 1 10 1 0": [
+      "sk-git 1.10.1.0"
+    ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
     ],
@@ -97952,6 +98039,9 @@
     ],
     "sk git v1 10 0 0": [
       "sk-git v1.10.0.0"
+    ],
+    "sk git v1 10 1 0": [
+      "sk-git v1.10.1.0"
     ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
@@ -100975,6 +101065,9 @@
     ],
     "skilled tree move results": [
       "skilled tree move results"
+    ],
+    "skilled trustrepochecks": [
+      "skilled.trustRepoChecks"
     ],
     "skilled v1 0 0 0": [
       "skilled v1.0.0.0"
@@ -107064,6 +107157,9 @@
     "system skill advisor 0 17 11 0": [
       "system-skill-advisor 0.17.11.0"
     ],
+    "system skill advisor 0 17 12 0": [
+      "system-skill-advisor 0.17.12.0"
+    ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
     ],
@@ -107276,6 +107372,9 @@
     ],
     "system skill advisor v0 17 11 0": [
       "system-skill-advisor v0.17.11.0"
+    ],
+    "system skill advisor v0 17 12 0": [
+      "system-skill-advisor v0.17.12.0"
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"
@@ -111256,6 +111355,9 @@
     "turn close out": [
       "turn close-out"
     ],
+    "turn off the ci": [
+      "turn off the ci"
+    ],
     "turn on endless sessions": [
       "turn on endless sessions"
     ],
@@ -111558,6 +111660,9 @@
     ],
     "typed design evidence": [
       "typed design evidence"
+    ],
+    "typed doctor target containing marker": [
+      "typed doctor target containing marker"
     ],
     "typed doctor target routing": [
       "typed doctor target routing"
