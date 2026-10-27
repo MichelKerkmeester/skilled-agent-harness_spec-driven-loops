@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Quality Runner Contract
@@ -30,7 +30,7 @@ Scope takes one of four flags. Two scope flags in one call are a usage error.
 | `--worktree` | The default. Tracked changes against `HEAD`, or against the empty tree before the first commit, plus every untracked file that is not ignored |
 | `--base <ref>` | Changes from the merge base of `<ref>` and `HEAD` to the working tree, plus untracked files. No merge base exits 3 with `BASE_NOT_FOUND` |
 | `--files <path>...` | The named files only. A path after `--` may start with two dashes. Outside git this is the only scope that runs |
-| `--explain <path>` | Prints `code-quality-explain/v1` for one file and exits 2. It runs nothing |
+| `--explain <path>...` | Prints `code-quality-explain/v1` for each named file and exits 2. It runs nothing. List several paths after the flag, or repeat the flag once per path |
 
 | Option | Effect |
 | --- | --- |
@@ -155,7 +155,30 @@ A finding holds `rule`, `severity`, `confidence` (`exact` or `heuristic`), `file
 
 An unchecked reason is `excluded`, `size` (over 2 MB), `binary` (a NUL byte in the first 8 KB), `no comment family`, `not a regular file` or `unreadable`.
 
-`--explain` prints `code-quality-explain/v1` with `file`, `language`, `language_source` (`shebang`, `config` or `extension`), `unchecked`, `surfaces`, `config`, `checklists` with their `why` and `checks`, one `{id, applies, why}` row per built-in check and one `{id, origin, applies, why}` row per configured check. It always exits 2, because nothing ran.
+`--explain` prints `code-quality-explain/v1`. It always exits 2, because nothing ran. It starts no check and no configured command, and it writes no file. It reads each named file, the declarations and each listed checklist file. It is the one resolver for which surfaces and rule files apply to a file, so a caller such as review reads it instead of detecting surfaces itself.
+
+| Field | Content |
+| --- | --- |
+| `schema`, `status`, `exit_code` | `code-quality-explain/v1`, `advisory` and `2` |
+| `config` | The same block a run prints. Its `warnings` also hold each declaration fault that reaches no named file |
+| `files` | One per-file entry for each named file, in the order named, with duplicates dropped |
+| `errors` | `{code, message, repair}` rows for a declaration fault or a missing checklist that a named file reaches |
+| `note` | `nothing was run` |
+| `file`, `language`, `language_source`, `unchecked`, `surfaces`, `surface_skills`, `checklists`, `checks` | Present only when the named paths resolve to one file, duplicates dropped. They copy that file's entry from `files`, at the place a single-file caller has always read them |
+
+One resolution covers every named file, as one run does, so a fault is an error exactly when some named file reaches it. A path that is missing or outside the root stops the whole call with exit 3, as a single path does.
+
+| Per-file field | Content |
+| --- | --- |
+| `file`, `language`, `language_source`, `unchecked` | The repository-relative path, its language, how it was chosen (`shebang`, `config` or `extension`) and the unchecked reason or null |
+| `surfaces` | The labels the file resolves to, by the reader rules in section 6, or `["UNKNOWN"]` |
+| `surface_skills` | One `{label, owner, folder}` row per declared surface that detected the file. `owner` is `hub` for a surface the hub registry declares and `outside-skill` for one a skill's `graph-metadata.json` declares. `folder` is the absolute folder to load the surface from: the hub packet, or the outside skill's folder as the declared-surfaces reader listed it, a trusted `local-*` link included. A private surface with no `quality` block still names its folder. `folder` is null for a hub surface with no packet. An `UNKNOWN` file has none |
+| `checklists` | One `{file, path, why, source, sources, overrides}` row per checklist that applies to this file. `source` is the first seat that listed it for this file and `sources` every seat, in declaration order. A seat is `default` (the base layer in `quality-defaults.json`), `repo-config` (the repository config's `checklists`), `hub-surface` (a `quality` block in `mode-registry.json`) or `outside-skill` (a skill's `quality` block) |
+| `checks` | One `{id, applies, why}` row per built-in check and one `{id, origin, applies, why}` row per configured check |
+
+`overrides` is the checklist's `## Rule overrides` section, read through `lintOverrides` in `shared/scripts/check-rule-overrides.cjs`, the same reader both modes use. It holds `found`, `refused`, `rows` and `errors`. A row is `{line, id, action, text, reason}`, with `action` `none` or `replace`. An error is `{line, message}`, such as a floor rule that cannot be overridden. `refused` is true when `errors` holds anything: the contract applies a file's rows only when its error list is empty, so a caller then applies none of them. A file with no section reads `found: false` and `refused: false`. `overrides` is null when the checklist file is not a regular file, which `errors` already reports as `CHECKLIST_MISSING`.
+
+The explanation is runtime output. Its JSON prints a private skill folder in `folder`, `path` and `file`, as the run's JSON does, so a caller copies labels, never those paths, into a tracked file.
 
 `--format text` prints the same facts as lines for a reader, each `config.warnings` row included and labelled `warning`. It carries no field the JSON lacks.
 

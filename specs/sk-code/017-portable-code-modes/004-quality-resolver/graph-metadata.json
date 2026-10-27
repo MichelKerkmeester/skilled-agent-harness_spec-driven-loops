@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/004-quality-resolver",
+  "spec_folder": "sk-code/017-portable-code-modes/004-quality-resolver",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality resolver",
+      "quality resolver multi file explain with surface skill",
+      "explain surface skill folder",
+      "explain checklist seat overrides",
+      "quality resolver plan",
+      "quality resolver tasks",
+      "quality resolver acceptance criteria",
+      "quality resolver implementation summary"
+    ],
+    "key_topics": [
+      "quality",
+      "resolver",
+      "multi",
+      "file",
+      "explain",
+      "surface",
+      "skill",
+      "folder",
+      "checklist",
+      "seat",
+      "overrides",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".hermes/skills/sk-code-quality/SKILL.md",
+      ".github/workflows/advisory-checks.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.13.3.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Measured",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Named",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`quality-gate.cjs --explain` accepts exactly one path, so a caller with a ten-file change makes ten calls, and a second path is a `USAGE` error",
+    "created_at": "2026-10-27T21:19:05Z",
+    "last_save_at": "2026-10-27T21:36:19.678Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f202449d7a58578730b93442a8022f98226dd75a65a1a634851abe5f8f784662",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eb406a4714d7d78a408278b59054381390494d027066388195735c179516b420",
+      "plan.md": "2690cb431ba7f63ee3cc1de2de2d5f222a96ac1a5e089f53266076477e06dbf4",
+      "tasks.md": "eddbd86a9e2218e535a5dce2f835a6c75d355793d9eacc163c79693db3f62a61",
+      "implementation-summary.md": "4306be3f5862526ea50718a9486db60f7c2724e0beb0ec69dc0c547d690c8624"
+    },
+    "last_active_at": null
+  }
+}

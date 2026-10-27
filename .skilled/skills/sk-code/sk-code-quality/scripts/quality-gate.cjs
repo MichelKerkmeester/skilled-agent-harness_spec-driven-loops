@@ -43,6 +43,9 @@ const DEFAULTS_PATH = path.join(QUALITY_ROOT, 'assets', 'quality-defaults.json')
 const DEFAULTS_FILE = 'hub:sk-code/sk-code-quality/assets/quality-defaults.json';
 const REPLAY_LIB_PATH = path.join(HUB_ROOT, 'sk-code-skilled', 'assets', 'scripts', 'router-replay-lib.cjs');
 const HUB_OVERRIDE_ENV = 'SK_CODE_QUALITY_HUB_ROOT';
+// The linter is the runner's own hub code, like the checkers, so a moved declaration hub
+// never changes which grammar or floor reads an override section.
+const OVERRIDE_LINTER_PATH = path.join(HUB_ROOT, 'shared', 'scripts', 'check-rule-overrides.cjs');
 
 const RUN_SCHEMA = 'code-quality-run/v1';
 const ENVELOPE_SCHEMA = 'code-quality/v1';
@@ -223,7 +226,8 @@ const USAGE_TEXT = [
   '  --base REF              everything since the merge base of REF and HEAD',
   '  --files PATH...         exactly the named files, the only scope outside git',
   '  -- PATH...              the same as --files, for names that start with --',
-  '  --explain PATH          why each checklist and check applies to one file, run nothing',
+  '  --explain PATH...       why each surface, checklist and check applies to each named file,',
+  '                          run nothing; repeat the flag or list several paths after it',
   '',
   'Options:',
   '  --lines changed|file    report findings on changed lines only, or on the whole file',
@@ -589,7 +593,7 @@ function wantsHelp(argv) {
 function parseArgs(argv) {
   const options = {
     scope: null, base: null, files: [], lines: 'changed', noRun: false, only: null,
-    skip: null, timeoutSec: DEFAULT_TIMEOUT_SEC, format: 'json', explain: null, configPath: null,
+    skip: null, timeoutSec: DEFAULT_TIMEOUT_SEC, format: 'json', explain: [], configPath: null,
   };
   const setScope = (scope) => {
     if (options.scope && options.scope !== scope) throw usage('choose one of --worktree, --base, --files and --explain');
@@ -633,8 +637,11 @@ function parseArgs(argv) {
       options.format = value();
       if (!FORMATS.includes(options.format)) throw usage(`--format takes one of ${FORMATS.join(', ')}`);
     } else if (arg === '--explain') {
+      // The first path is required, as before, and the rest follow the --files form, so a
+      // caller can name every file at once or repeat the flag per file.
       setScope('explain');
-      options.explain = value();
+      options.explain.push(value());
+      while (index + 1 < argv.length && !argv[index + 1].startsWith('--')) options.explain.push(argv[(index += 1)]);
     } else {
       throw usage(`unknown argument ${arg}`);
     }
@@ -1168,6 +1175,7 @@ function checklistRows(context) {
   const rows = context.merged.checklists.map((row) => ({
     owner: null,
     skillRoot: null,
+    seat: row.layer === 'repo' ? 'repo-config' : 'default',
     file: row.file,
     path: row.file.startsWith('hub:') ? hubFile(row.file, path.dirname(HUB_ROOT)) : path.join(context.root, row.file),
     why: row.why || `${context.config.path}, ${describeSelectors(row)}`,
@@ -1185,6 +1193,7 @@ function checklistRows(context) {
       rows.push({
         owner,
         skillRoot: null,
+        seat: 'hub-surface',
         file: `hub:${hubName}/${row.file}`,
         path: path.join(context.declHub, row.file),
         why: `${owner ? `${owner} surface` : mode.workflowMode}, ${describeSelectors(row)}`,
@@ -1213,6 +1222,7 @@ function checklistRows(context) {
       rows.push({
         owner: surface.label,
         skillRoot: root,
+        seat: 'outside-skill',
         file: `hub:${folder}/${row.file}`,
         path: path.resolve(root, row.file),
         why: `${surface.label} surface, ${describeSelectors(row)}`,
@@ -1276,10 +1286,16 @@ function resolveChecklists(files, context) {
     else warnings.push(entry);
   }
   const sameRepository = sameRepositoryAsHub(context);
+  // The seats that listed each file stay beside the list rather than in it, so a run's
+  // checklist rows keep their shape and only an explanation reports where a row came from.
+  const seats = new Map();
   for (const row of declaredRows.rows) {
     if (row.selectors.hubRepo === true && !sameRepository) continue;
     const matched = scoped.filter((facts) => rowApplies(row, facts) && selectorsMatch(row.selectors, facts, context));
     if (matched.length === 0) continue;
+    const listedBy = seats.get(row.file) || [];
+    for (const facts of matched) listedBy.push({ seat: row.seat, file: facts.rel });
+    seats.set(row.file, listedBy);
     const existing = checklists.find((entry) => entry.file === row.file);
     if (existing) {
       for (const facts of matched) if (!existing.files.includes(facts.rel)) existing.files.push(facts.rel);
@@ -1290,7 +1306,7 @@ function resolveChecklists(files, context) {
       errors.push({ code: 'CHECKLIST_MISSING', message: `${row.file} is declared but ${row.path} is not a regular file`, repair: REPAIRS.CHECKLIST_MISSING });
     }
   }
-  return { checklists, errors, warnings };
+  return { checklists, errors, warnings, seats };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2465,12 +2481,51 @@ function runGate(context) {
   };
 }
 
-function explain(context) {
-  const [named] = namedFiles(context, [context.options.explain]);
-  const facts = fileFacts({ ...named, changed: new Set() }, context);
-  const surfaces = declaredSurfaces(context.declHub);
-  if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
-  const { checklists, errors, warnings } = resolveChecklists([facts], context);
+// The folder a caller loads a surface from. A hub surface lives in its packet, and an
+// outside surface in the skill folder the declared-surfaces reader listed, so a private
+// surface that declares no quality block can still be loaded by its folder. The test is
+// the one fileLabels recorded, which keeps a label an outside skill shares with the hub
+// from pointing at the wrong folder.
+function surfaceSkills(facts, surfaces, context) {
+  const owners = [];
+  for (const surface of surfaces) {
+    const outside = Boolean(surface.skillRoot);
+    const matched = outside ? facts.skillRoots.has(path.resolve(surface.skillRoot)) : facts.hubLabels.has(surface.label);
+    if (!matched) continue;
+    const folder = outside ? path.resolve(surface.skillRoot) : (surface.packet ? path.join(context.declHub, surface.packet) : null);
+    owners.push({ label: surface.label, owner: outside ? 'outside-skill' : 'hub', folder });
+  }
+  return owners;
+}
+
+// The override section is read only through the shared linter, so an explanation refuses
+// exactly what a mode refuses. A section with any error is refused whole, because the
+// contract applies a file's rows only when its error list is empty.
+function overridesReader() {
+  let lint = null;
+  let failure = null;
+  try {
+    const linter = require(OVERRIDE_LINTER_PATH);
+    const contract = linter.loadContract();
+    lint = (text) => linter.lintOverrides(text, contract);
+  } catch (error) {
+    failure = `the rule-override contract could not be read: ${error.message}`;
+  }
+  return (file) => {
+    if (!isRegularFile(file)) return null;
+    if (failure) return { found: false, refused: true, rows: [], errors: [{ line: null, message: failure }] };
+    let text;
+    try {
+      text = fs.readFileSync(file, 'utf8');
+    } catch (error) {
+      return { found: false, refused: true, rows: [], errors: [{ line: null, message: `cannot read the checklist: ${error.message}` }] };
+    }
+    const result = lint(text);
+    return { found: result.found, refused: result.errors.length > 0, rows: result.rows, errors: result.errors };
+  };
+}
+
+function explainFile(facts, resolved, context, readOverrides) {
   const reasons = applicability(facts, context, { explain: true });
   // A configured check an explanation lists as applying still starts nothing when no trust
   // rule vouched for the config, so the row says that beside the match it reports.
@@ -2482,23 +2537,54 @@ function explain(context) {
     return { id: entry.id, origin: entry.kind === 'generated' ? 'generated' : 'configured', applies,
       why: applies ? `matches ${selectors} in ${context.config.path}${untrusted}` : `does not match ${selectors}` };
   });
+  const checklists = resolved.checklists.filter((entry) => entry.files.includes(facts.rel)).map(({ file, path: where, why }) => {
+    const sources = [...new Set((resolved.seats.get(file) || []).filter((item) => item.file === facts.rel).map((item) => item.seat))];
+    return { file, path: where, why, source: sources[0] || null, sources, overrides: readOverrides(where) };
+  });
   return {
-    schema: EXPLAIN_SCHEMA,
-    status: 'advisory',
-    exit_code: GATE_EXIT.NOTHING_CHECKED,
     file: facts.rel,
     language: facts.language,
     language_source: facts.languageSource,
     unchecked: facts.unchecked,
     surfaces: facts.labels,
-    config: { ...context.config, warnings: [...context.config.warnings, ...warnings] },
-    checklists: checklists.map(({ file, path: where, why }) => ({ file, path: where, why })),
+    surface_skills: surfaceSkills(facts, resolved.surfaces, context),
+    checklists,
     checks: [...CHECKS.map((check) => ({
       id: check.id,
       applies: Boolean(reasons[check.id]),
       why: reasons[check.id] || (facts.unchecked ? `the file is unchecked: ${facts.unchecked}` : 'not this file\'s language or path'),
     })), ...repository],
-    errors,
+  };
+}
+
+// One resolution covers every named file, as one run does, so a declaration fault is an
+// error exactly when some named file reaches it. With one path the per-file fields also
+// stay at the top level, where a single-file caller has always read them.
+function explain(context) {
+  const named = namedFiles(context, context.options.explain);
+  const surfaces = declaredSurfaces(context.declHub);
+  const files = named.map((file) => fileFacts({ ...file, changed: new Set() }, context));
+  for (const facts of files) if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
+  const resolved = { ...resolveChecklists(files, context), surfaces };
+  const readOverrides = overridesReader();
+  const entries = files.map((facts) => explainFile(facts, resolved, context, readOverrides));
+  const single = entries.length === 1 ? entries[0] : null;
+  return {
+    schema: EXPLAIN_SCHEMA,
+    status: 'advisory',
+    exit_code: GATE_EXIT.NOTHING_CHECKED,
+    ...(single ? {
+      file: single.file,
+      language: single.language,
+      language_source: single.language_source,
+      unchecked: single.unchecked,
+      surfaces: single.surfaces,
+      surface_skills: single.surface_skills,
+    } : {}),
+    config: { ...context.config, warnings: [...context.config.warnings, ...resolved.warnings] },
+    ...(single ? { checklists: single.checklists, checks: single.checks } : {}),
+    files: entries,
+    errors: resolved.errors,
     note: 'nothing was run',
   };
 }

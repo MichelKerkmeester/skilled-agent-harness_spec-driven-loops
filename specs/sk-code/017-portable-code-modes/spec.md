@@ -127,7 +127,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 1 | 001-shared-rule-contract/ | The override section format, rule id grammar, hard floor, precedence and recording, as a shared reference, plus the `check-rule-overrides.cjs` linter both modes use | None | Complete |
 | 2 | 002-quality-hygiene-policy | `commentHygiene.disableRules` and `--disable-rule`, the verdict field and the doctor `init` suggestion | 001 | Planned |
 | 3 | 003-quality-floor-and-style-split | Floor rule ids with fixed or overridable marks, SKILLED style moved into `sk-code-skilled`, `ceiling:` opt-in, the three JavaScript and CSS default rows retired | 001 | Planned |
-| 4 | 004-quality-resolver | `quality-gate.cjs --explain` over several files, plus each surface's owning skill folder | 001 | Planned |
+| 4 | 004-quality-resolver/ | `quality-gate.cjs --explain` over several files, plus each surface's owning skill folder | 001 | Complete |
 | 5 | 005-review-floor-lens-overrides | Floor split from the default lens with ids, the wrong P0 hints fixed, review reads `--explain` and honors `## Rule overrides` | 001, 004 | Planned |
 | 6 | 006-review-agent-and-dispatch | `@review` verdict follows severity, one verdict vocabulary, the `CODE-REVIEW` marker added by the dispatchers | 005 | Planned |
 | 7 | 007-ci-repo-profile | The CI profile loader, report, scaffold and toggle reading `.sk-code/ci.json`, with this repository's profile committed | None (starts after the in-flight sk-code-ci lint lane lands) | Planned |

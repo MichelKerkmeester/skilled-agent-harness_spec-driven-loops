@@ -791,6 +791,189 @@ test('outside skill fault: --explain reports a fault whose surface reaches no fi
     ['SKILLED quality checklists must be a non-empty array']);
 }));
 
+// A repository checklist that a foreign file reaches by path, so an explanation of that file
+// lists a seat no hub declaration can supply.
+const FOREIGN_CONFIG = `${JSON.stringify({
+  schemaVersion: 1,
+  checklists: [
+    { file: 'checks/valid.md', paths: ['src/**'] },
+    { file: 'checks/floor.md', paths: ['src/**'] },
+  ],
+}, null, 2)}\n`;
+const VALID_OVERRIDES = [
+  '# Team checklist', '', '## Rule overrides', '',
+  '| Rule | Action | Reason |', '| --- | --- | --- |',
+  '| `review.function-length` | replace: A function stays under 60 lines | The team limit |',
+  '| `hygiene.task` | none | Tickets live in the tracker |', '',
+].join('\n');
+const FLOOR_OVERRIDES = [
+  '# Floor attempt', '', '## Rule overrides', '',
+  '| Rule | Action | Reason |', '| --- | --- | --- |',
+  '| `secret.aws-access-key` | none | Keys are fine here |', '',
+].join('\n');
+const EXPLAIN_TOP_KEYS = Object.freeze(['schema', 'status', 'exit_code', 'file', 'language', 'language_source', 'unchecked',
+  'surfaces', 'surface_skills', 'config', 'checklists', 'checks', 'files', 'errors', 'note']);
+const EXPLAIN_FILE_KEYS = Object.freeze(['file', 'language', 'language_source', 'unchecked', 'surfaces', 'surface_skills', 'checklists', 'checks']);
+
+function explainedFile(verdict, rel) {
+  return verdict.files.find((entry) => entry.file === rel);
+}
+
+test('explain several files: a SKILLED file and a foreign file each get their own surfaces and seats', () => withRepo({
+  hub: 'inside',
+  base: {
+    '.skilled/tools/x.js': 'module.exports = 1;\n',
+    'src/a.go': 'package a\n',
+    '.sk-code/quality.json': FOREIGN_CONFIG,
+    'checks/valid.md': VALID_OVERRIDES,
+    'checks/floor.md': FLOOR_OVERRIDES,
+  },
+}, (repo) => {
+  const listed = assertSnapshotUnchanged(repo, () => repo.run(['--explain', '.skilled/tools/x.js', 'src/a.go']));
+  const repeated = assertSnapshotUnchanged(repo, () => repo.run(['--explain', '.skilled/tools/x.js', '--explain', 'src/a.go']));
+  assert.equal(listed.status, 2);
+  assert.equal(listed.verdict.schema, 'code-quality-explain/v1');
+  assert.deepEqual(repeated.verdict.files, listed.verdict.files);
+  // Several files have no single top-level file, so the per-file fields live in files only.
+  assert.deepEqual(Object.keys(listed.verdict), ['schema', 'status', 'exit_code', 'config', 'files', 'errors', 'note']);
+  assert.deepEqual(listed.verdict.files.map((entry) => entry.file), ['.skilled/tools/x.js', 'src/a.go']);
+  for (const entry of listed.verdict.files) assert.deepEqual(Object.keys(entry), EXPLAIN_FILE_KEYS);
+
+  const skilled = explainedFile(listed.verdict, '.skilled/tools/x.js');
+  assert.deepEqual(skilled.surfaces, ['SKILLED']);
+  assert.deepEqual(skilled.surface_skills, [{ label: 'SKILLED', owner: 'hub', folder: path.join(repo.hub, 'sk-code-skilled') }]);
+  const house = skilled.checklists.find((entry) => entry.file === 'hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md');
+  assert.deepEqual([house.source, house.sources], ['hub-surface', ['hub-surface']]);
+  const floor = skilled.checklists.find((entry) => entry.file === 'hub:sk-code/shared/references/universal/code-quality-standards.md');
+  assert.deepEqual([floor.source, floor.sources], ['default', ['default']]);
+  assert.ok(!skilled.checklists.some((entry) => entry.file.startsWith('checks/')), 'a repository row for src/** reached a .skilled file');
+
+  const foreign = explainedFile(listed.verdict, 'src/a.go');
+  assert.deepEqual(foreign.surfaces, ['UNKNOWN']);
+  assert.deepEqual(foreign.surface_skills, []);
+  const team = foreign.checklists.find((entry) => entry.file === 'checks/valid.md');
+  assert.deepEqual([team.source, team.sources, team.path], ['repo-config', ['repo-config'], path.join(repo.root, 'checks', 'valid.md')]);
+  assert.ok(!foreign.checklists.some((entry) => entry.source === 'hub-surface'), 'a hub surface row reached a foreign file');
+  assert.deepEqual(listed.verdict.errors, []);
+}));
+
+test('explain overrides: a valid section is read and a floor override is refused with its error', () => withRepo({
+  base: {
+    'src/a.go': 'package a\n',
+    '.sk-code/quality.json': FOREIGN_CONFIG,
+    'checks/valid.md': VALID_OVERRIDES,
+    'checks/floor.md': FLOOR_OVERRIDES,
+  },
+}, (repo) => {
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'src/a.go']));
+  assert.equal(status, 2);
+  const byFile = Object.fromEntries(verdict.checklists.map((entry) => [entry.file, entry.overrides]));
+  assert.deepEqual(byFile['checks/valid.md'], {
+    found: true,
+    refused: false,
+    rows: [
+      { line: 7, id: 'review.function-length', action: 'replace', text: 'A function stays under 60 lines', reason: 'The team limit' },
+      { line: 8, id: 'hygiene.task', action: 'none', text: null, reason: 'Tickets live in the tracker' },
+    ],
+    errors: [],
+  });
+  const refused = byFile['checks/floor.md'];
+  assert.deepEqual([refused.found, refused.refused, refused.rows], [true, true, []]);
+  assert.equal(refused.errors.length, 1);
+  assert.equal(refused.errors[0].line, 7);
+  assert.match(refused.errors[0].message, /^`secret\.aws-access-key` is on the hard floor \(.+\) and cannot be overridden$/);
+  // A checklist with no section reads as found false, never as refused.
+  const plain = verdict.checklists.find((entry) => entry.source === 'default');
+  assert.deepEqual([plain.overrides.found, plain.overrides.refused, plain.overrides.rows], [false, false, []]);
+}));
+
+test('explain outside surface: a trusted private link with no quality block names its skill folder', {
+  skip: !SYMLINK_SUPPORT && 'symbolic links are unavailable',
+}, () => withRepo({
+  hub: 'sibling',
+  base: { 'xsrc/run.js': 'module.exports = 1;\n' },
+}, (repo) => {
+  const trusted = path.join(repo.parent, 'trusted');
+  const target = path.join(trusted, 'example');
+  fs.mkdirSync(target, { recursive: true });
+  // The declaration carries no quality block, so the folder is the only way a reader can
+  // reach the surface's own rules.
+  fs.writeFileSync(path.join(target, 'graph-metadata.json'), `${JSON.stringify({
+    schema_version: '1.0', skill_id: OUTSIDE_SKILL, family: 'sk-code', surface_detection: OUTSIDE_SURFACE,
+  }, null, 2)}\n`);
+  const link = path.join(path.dirname(repo.hub), OUTSIDE_SKILL);
+  fs.symlinkSync(target, link, 'dir');
+  const withRoot = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'xsrc/run.js'], { env: { SPECKIT_PRIVATE_SKILL_ROOTS: trusted } }));
+  assert.equal(withRoot.status, 2);
+  assert.deepEqual(withRoot.verdict.surfaces, ['EXAMPLE']);
+  assert.deepEqual(withRoot.verdict.surface_skills, [{ label: 'EXAMPLE', owner: 'outside-skill', folder: link }]);
+  assert.ok(!withRoot.verdict.checklists.some((entry) => entry.source === 'outside-skill'));
+  assert.deepEqual(withRoot.verdict.errors, []);
+  // The same link outside every trusted root is skipped by the shared rule, so no folder prints.
+  const untrusted = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'xsrc/run.js'], { env: { SPECKIT_PRIVATE_SKILL_ROOTS: undefined } }));
+  assert.deepEqual(untrusted.verdict.surfaces, ['UNKNOWN']);
+  assert.deepEqual(untrusted.verdict.surface_skills, []);
+}));
+
+test('explain outside surface with a quality block: its rows carry the outside-skill seat', () => withRepo({
+  hub: 'sibling',
+  base: { 'xsrc/run.js': 'module.exports = 1;\n' },
+}, (repo) => {
+  writeOutsideSkill(repo, OUTSIDE_SKILL, OUTSIDE_SURFACE, OUTSIDE_CHECKLISTS);
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'xsrc/run.js']));
+  const folder = path.join(path.dirname(repo.hub), OUTSIDE_SKILL);
+  assert.deepEqual(verdict.surface_skills, [{ label: 'EXAMPLE', owner: 'outside-skill', folder }]);
+  const row = verdict.checklists.find((entry) => entry.file === `hub:${OUTSIDE_SKILL}/${OUTSIDE_CHECKLIST}`);
+  assert.deepEqual([row.source, row.sources], ['outside-skill', ['outside-skill']]);
+  assert.deepEqual(row.overrides, { found: false, refused: false, rows: [], errors: [] });
+}));
+
+test('explain starts nothing: several files with a trusted command and a spy python write nothing', () => withRepo({
+  base: {
+    'a.go': 'package a\n',
+    'b.py': 'B = 1\n',
+    '.sk-code/quality.json': `${JSON.stringify({
+      schemaVersion: 1,
+      checks: [{ id: 'canary-check', argv: [process.execPath, '-e', 'require("fs").writeFileSync("canary", "ran")'], severity: 'P0' }],
+    }, null, 2)}\n`,
+  },
+}, (repo) => {
+  trustRepoChecks(repo);
+  const canary = path.join(repo.parent, 'spy-ran');
+  const spy = fakePython(repo.parent, `require("fs").writeFileSync(${JSON.stringify(canary)}, "ran");\n${HYGIENE_REPORT}`);
+  const explained = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'a.go', 'b.py'],
+    { env: { PATH: `${spy}${path.delimiter}${repo.env.PATH}` } }));
+  assert.equal(explained.status, 2);
+  assert.equal(explained.verdict.note, 'nothing was run');
+  for (const entry of explained.verdict.files) {
+    assert.equal(entry.checks.find((item) => item.id === 'canary-check').applies, true);
+  }
+  assert.ok(!fs.existsSync(canary), 'explain started python');
+  assert.ok(!fs.existsSync(path.join(repo.root, 'canary')), 'explain started the configured command');
+}));
+
+test('explain one file: the old fields keep their place and only the resolver fields are added', () => withRepo({
+  change: { 'app.go': 'package a\n' },
+}, (repo) => {
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'app.go']));
+  assert.equal(status, 2);
+  assert.deepEqual(Object.keys(verdict), EXPLAIN_TOP_KEYS);
+  assert.deepEqual([verdict.file, verdict.language, verdict.language_source, verdict.unchecked, verdict.surfaces],
+    ['app.go', 'go', 'extension', null, ['UNKNOWN']]);
+  for (const entry of verdict.checklists) assert.deepEqual(Object.keys(entry), ['file', 'path', 'why', 'source', 'sources', 'overrides']);
+  assert.ok(verdict.checks.every((entry) => ['id', 'applies', 'why'].every((key) => key in entry)));
+  // The one entry under files is the same explanation the top level carries.
+  assert.equal(verdict.files.length, 1);
+  for (const key of EXPLAIN_FILE_KEYS) assert.deepEqual(verdict.files[0][key], verdict[key], key);
+  // A path that is not there still refuses the whole call, as a single path always did.
+  const missing = repo.run(['--explain', 'app.go', 'missing.go']);
+  assert.equal(missing.status, 3);
+  assert.equal(missing.verdict.errors[0].code, 'FILE_NOT_FOUND');
+  const bare = repo.run(['--explain']);
+  assert.equal(bare.status, 3);
+  assert.equal(bare.verdict.errors[0].code, 'USAGE');
+}));
+
 test('F51 outside skill folder row: a row that names a folder is reported missing', () => withRepo({
   hub: 'sibling',
   change: { 'xsrc/run.js': 'module.exports = 1;\n' },
