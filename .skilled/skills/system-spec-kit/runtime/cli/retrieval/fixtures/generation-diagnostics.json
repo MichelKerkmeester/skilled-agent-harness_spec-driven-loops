@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15715,
+    "ok": 15732,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26601,
+  "documentsScanned": 26618,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f86e202000299f7b7ab7f0700011af543d6a51ec43f83301b1694488afbd51f1",
+  "manifestHash": "996fd1ddd0d1769eb242fe55d7aa857e06c10185742bcc951680370e209aab15",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38647,
+      "ok": 38684,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72525,6 +72525,10 @@
     },
     {
       "path": "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {

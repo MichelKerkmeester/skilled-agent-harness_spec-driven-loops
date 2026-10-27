@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ecd501bc4dc68121398f23156cbc6646e0b36089d301016c1101b2e96411afd1",
+  "corpusHash": "1c2c6ba26b5151b5fb004933f84453b09ad222cab7292b391c82a423ce29b101",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26601,
+  "includedPathCount": 26618,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1954,6 +1954,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.3.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.4.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.5.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.6.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2752,6 +2753,7 @@
     ".skilled/skills/sk-code/changelog/v3.8.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.1.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.10.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -2852,6 +2854,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.5.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.6.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -3118,6 +3121,7 @@
     ".skilled/skills/sk-design/sk-design-chart/changelog/v0.21.0.0.md",
     ".skilled/skills/sk-design/sk-design-chart/changelog/v0.22.0.0.md",
     ".skilled/skills/sk-design/sk-design-chart/changelog/v0.23.0.0.md",
+    ".skilled/skills/sk-design/sk-design-chart/changelog/v0.23.1.0.md",
     ".skilled/skills/sk-design/sk-design-chart/changelog/v0.3.0.0.md",
     ".skilled/skills/sk-design/sk-design-chart/changelog/v0.4.0.0.md",
     ".skilled/skills/sk-design/sk-design-chart/changelog/v0.5.0.0.md",
@@ -3342,6 +3346,7 @@
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.4.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.6.0.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.7.0.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/extract/extract.md",
     ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md",
@@ -6069,6 +6074,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.20.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.22.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.23.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
@@ -6278,6 +6284,7 @@
     ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.4.0.md",
+    ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.5.0.md",
     ".skilled/skills/sk-doc/sk-create-diff/feature-catalog/comparison-engine/deterministic-diffing.md",
     ".skilled/skills/sk-doc/sk-create-diff/feature-catalog/comparison-engine/multi-format-extraction.md",
     ".skilled/skills/sk-doc/sk-create-diff/feature-catalog/comparison-engine/self-contained-report.md",
@@ -6431,6 +6438,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.1.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
@@ -6745,6 +6753,7 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.4.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.5.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.6.0.md",
+    ".skilled/skills/sk-prompt/changelog/v3.0.7.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
@@ -6937,6 +6946,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.11.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.12.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.13.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.14.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
@@ -7616,6 +7626,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.11.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.12.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.13.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.14.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -8057,6 +8068,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.10.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.11.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.12.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -13615,6 +13627,11 @@
     "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/plan.md",
     "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/spec.md",
     "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/tasks.md",
+    "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/acceptance-criteria.md",
+    "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/implementation-summary.md",
+    "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/plan.md",
+    "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/spec.md",
+    "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/tasks.md",
     "specs/sk-doc/070-repo-doc-debt/spec.md",
     "specs/sk-doc/071-readme-reference-debt/acceptance-criteria.md",
     "specs/sk-doc/071-readme-reference-debt/implementation-summary.md",
@@ -26632,7 +26649,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f86e202000299f7b7ab7f0700011af543d6a51ec43f83301b1694488afbd51f1",
+  "manifestHash": "996fd1ddd0d1769eb242fe55d7aa857e06c10185742bcc951680370e209aab15",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30248,6 +30265,10 @@
     },
     {
       "path": "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/007-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {

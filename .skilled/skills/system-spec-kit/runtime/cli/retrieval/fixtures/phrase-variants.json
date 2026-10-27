@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f86e202000299f7b7ab7f0700011af543d6a51ec43f83301b1694488afbd51f1",
+  "manifestHash": "996fd1ddd0d1769eb242fe55d7aa857e06c10185742bcc951680370e209aab15",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12576,6 +12576,9 @@
     "authoring checklists asset template": [
       "authoring checklists asset template"
     ],
+    "authoring checklists link label": [
+      "authoring checklists link label"
+    ],
     "authoring metric definitions": [
       "authoring metric definitions"
     ],
@@ -13589,6 +13592,9 @@
     ],
     "benchmark case study": [
       "benchmark case study"
+    ],
+    "benchmark companion document type": [
+      "benchmark companion document type"
     ],
     "benchmark consolidation plan": [
       "benchmark consolidation plan"
@@ -17095,6 +17101,9 @@
     ],
     "chart references": [
       "chart references"
+    ],
+    "chart references readme count": [
+      "chart references readme count"
     ],
     "chart remediation criteria": [
       "chart remediation criteria"
@@ -28913,6 +28922,9 @@
     "create diff scripts": [
       "create-diff scripts"
     ],
+    "create diff scripts readme pass signal": [
+      "create diff scripts readme pass signal"
+    ],
     "create diff supported formats": [
       "create-diff supported formats"
     ],
@@ -32928,6 +32940,9 @@
     ],
     "deep loop five modes": [
       "deep-loop five modes"
+    ],
+    "deep loop fixtures readme": [
+      "deep-loop fixtures readme"
     ],
     "deep loop focus candidate selection": [
       "deep-loop focus candidate selection"
@@ -38050,6 +38065,9 @@
     ],
     "doc authoring resource map": [
       "doc authoring resource map"
+    ],
+    "doc checker accuracy fixes": [
+      "doc checker accuracy fixes"
     ],
     "doc claim checker": [
       "doc claim checker"
@@ -62130,11 +62148,17 @@
     "mcp tooling 1 8 5 0": [
       "mcp-tooling 1.8.5.0"
     ],
+    "mcp tooling 1 8 6 0": [
+      "mcp-tooling 1.8.6.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
     "mcp tooling benchmark index": [
       "mcp-tooling benchmark index"
+    ],
+    "mcp tooling benchmark readme paths": [
+      "mcp-tooling benchmark readme paths"
     ],
     "mcp tooling benchmark reports": [
       "mcp-tooling benchmark reports"
@@ -62238,6 +62262,9 @@
     "mcp tooling v1 8 5 0": [
       "mcp-tooling v1.8.5.0"
     ],
+    "mcp tooling v1 8 6 0": [
+      "mcp-tooling v1.8.6.0"
+    ],
     "mcp tools": [
       "mcp tools"
     ],
@@ -62285,6 +62312,9 @@
     ],
     "md generator as mode tasks": [
       "md generator as mode tasks"
+    ],
+    "md generator backend readme counts": [
+      "md-generator backend readme counts"
     ],
     "md generator gate option plan": [
       "md-generator gate option plan"
@@ -81022,6 +81052,9 @@
     "readme readability improvement": [
       "readme readability improvement"
     ],
+    "readme reference checker false positives": [
+      "readme reference checker false positives"
+    ],
     "readme reference debt": [
       "readme reference debt"
     ],
@@ -94738,6 +94771,9 @@
     "sk code 3 9 1 0": [
       "sk-code 3.9.1.0"
     ],
+    "sk code 3 9 10 0": [
+      "sk-code 3.9.10.0"
+    ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
@@ -94863,6 +94899,9 @@
     ],
     "sk code benchmark index": [
       "sk-code benchmark index"
+    ],
+    "sk code benchmark readme validator path": [
+      "sk-code benchmark readme validator path"
     ],
     "sk code benchmark reports": [
       "sk-code benchmark reports"
@@ -95485,6 +95524,9 @@
     "sk code quality 1 13 5 0": [
       "sk-code-quality 1.13.5.0"
     ],
+    "sk code quality 1 13 6 0": [
+      "sk-code-quality 1.13.6.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -95583,6 +95625,9 @@
     ],
     "sk code quality v1 13 5 0": [
       "sk-code-quality v1.13.5.0"
+    ],
+    "sk code quality v1 13 6 0": [
+      "sk-code-quality v1.13.6.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -96268,6 +96313,9 @@
     "sk code v3 9 1 0": [
       "sk-code v3.9.1.0"
     ],
+    "sk code v3 9 10 0": [
+      "sk-code v3.9.10.0"
+    ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
     ],
@@ -96598,6 +96646,9 @@
     "sk create diff 1 1 4 0": [
       "sk-create-diff 1.1.4.0"
     ],
+    "sk create diff 1 1 5 0": [
+      "sk-create-diff 1.1.5.0"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -96615,6 +96666,9 @@
     ],
     "sk create diff v1 1 4 0": [
       "sk-create-diff v1.1.4.0"
+    ],
+    "sk create diff v1 1 5 0": [
+      "sk-create-diff v1.1.5.0"
     ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
@@ -96895,6 +96949,9 @@
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
     ],
+    "sk create readme 1 3 3 0": [
+      "sk-create-readme 1.3.3.0"
+    ],
     "sk create readme lacks the writing style rules": [
       "sk create readme lacks the writing style rules"
     ],
@@ -96921,6 +96978,9 @@
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
+    ],
+    "sk create readme v1 3 3 0": [
+      "sk-create-readme v1.3.3.0"
     ],
     "sk create readme writing style": [
       "sk create readme writing style"
@@ -97207,6 +97267,9 @@
     "sk design chart 0 23 0 0": [
       "sk-design-chart 0.23.0.0"
     ],
+    "sk design chart 0 23 1 0": [
+      "sk-design-chart 0.23.1.0"
+    ],
     "sk design chart 0 3 0 0": [
       "sk-design-chart 0.3.0.0"
     ],
@@ -97278,6 +97341,9 @@
     ],
     "sk design chart v0 23 0 0": [
       "sk-design-chart v0.23.0.0"
+    ],
+    "sk design chart v0 23 1 0": [
+      "sk-design-chart v0.23.1.0"
     ],
     "sk design chart v0 3 0 0": [
       "sk-design-chart v0.3.0.0"
@@ -97429,6 +97495,9 @@
     "sk design md generator 1 1 6 0": [
       "sk-design-md-generator 1.1.6.0"
     ],
+    "sk design md generator 1 1 7 0": [
+      "sk-design-md-generator 1.1.7.0"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
@@ -97449,6 +97518,9 @@
     ],
     "sk design md generator v1 1 6 0": [
       "sk-design-md-generator v1.1.6.0"
+    ],
+    "sk design md generator v1 1 7 0": [
+      "sk-design-md-generator v1.1.7.0"
     ],
     "sk design mode rename": [
       "sk-design mode rename"
@@ -97635,6 +97707,9 @@
     ],
     "sk doc 2 3 22 0": [
       "sk-doc 2.3.22.0"
+    ],
+    "sk doc 2 3 23 0": [
+      "sk-doc 2.3.23.0"
     ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
@@ -98004,6 +98079,9 @@
     ],
     "sk doc v2 3 22 0": [
       "sk-doc v2.3.22.0"
+    ],
+    "sk doc v2 3 23 0": [
+      "sk-doc v2.3.23.0"
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
@@ -98473,6 +98551,9 @@
     "sk prompt 3 0 6 0": [
       "sk-prompt 3.0.6.0"
     ],
+    "sk prompt 3 0 7 0": [
+      "sk-prompt 3.0.7.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -98496,6 +98577,9 @@
     ],
     "sk prompt benchmark plan": [
       "sk-prompt benchmark plan"
+    ],
+    "sk prompt benchmark readme tree": [
+      "sk-prompt benchmark readme tree"
     ],
     "sk prompt benchmark reports": [
       "sk-prompt benchmark reports"
@@ -98769,6 +98853,9 @@
     ],
     "sk prompt v3 0 6 0": [
       "sk-prompt v3.0.6.0"
+    ],
+    "sk prompt v3 0 7 0": [
+      "sk-prompt v3.0.7.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -99909,6 +99996,9 @@
     ],
     "skill advisor runtime integration changelog": [
       "skill-advisor runtime integration changelog"
+    ],
+    "skill advisor runtime readme paths": [
+      "skill advisor runtime readme paths"
     ],
     "skill advisor runtime state": [
       "skill advisor runtime state"
@@ -103366,6 +103456,9 @@
     ],
     "spec kit runtime published": [
       "@spec-kit/runtime published"
+    ],
+    "spec kit runtime readme inventory": [
+      "spec kit runtime readme inventory"
     ],
     "spec kit runtime rename": [
       "spec kit runtime rename"
@@ -107143,6 +107236,9 @@
     "system deep loop 1 6 13 0": [
       "system-deep-loop 1.6.13.0"
     ],
+    "system deep loop 1 6 14 0": [
+      "system-deep-loop 1.6.14.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -107308,6 +107404,9 @@
     "system deep loop v1 6 13 0": [
       "system-deep-loop v1.6.13.0"
     ],
+    "system deep loop v1 6 14 0": [
+      "system-deep-loop v1.6.14.0"
+    ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
     ],
@@ -107457,6 +107556,9 @@
     ],
     "system skill advisor 0 17 13 0": [
       "system-skill-advisor 0.17.13.0"
+    ],
+    "system skill advisor 0 17 14 0": [
+      "system-skill-advisor 0.17.14.0"
     ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
@@ -107676,6 +107778,9 @@
     ],
     "system skill advisor v0 17 13 0": [
       "system-skill-advisor v0.17.13.0"
+    ],
+    "system skill advisor v0 17 14 0": [
+      "system-skill-advisor v0.17.14.0"
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"
@@ -107967,6 +108072,9 @@
     ],
     "system spec kit 2 12 11 0": [
       "system-spec-kit 2.12.11.0"
+    ],
+    "system spec kit 2 12 12 0": [
+      "system-spec-kit 2.12.12.0"
     ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
@@ -108441,6 +108549,9 @@
     ],
     "system spec kit v2 12 11 0": [
       "system-spec-kit v2.12.11.0"
+    ],
+    "system spec kit v2 12 12 0": [
+      "system-spec-kit v2.12.12.0"
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"
