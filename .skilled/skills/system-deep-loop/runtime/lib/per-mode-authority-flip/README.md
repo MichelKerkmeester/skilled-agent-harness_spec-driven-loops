@@ -44,7 +44,7 @@ The folder is flat, so every direct file is listed here.
 
 | Boundary | Rule |
 |---|---|
-| Imports | `../event-envelope/index.js` for canonical bytes and hashing, `../locks-and-fencing/durable-file.js` for atomic writes, `../authorized-ledger/index.js` for the authority state type |
+| Imports | `../event-envelope/index.ts` for canonical bytes and hashing, `../locks-and-fencing/durable-file.ts` for atomic writes, `../authorized-ledger/index.ts` for the authority state type |
 | Exports | Only the names re-exported from `index.ts` |
 | Ownership | Durable per-mode authority records and the route decision belong here. Ledger appends, cutover policy and mode adapters belong elsewhere |
 

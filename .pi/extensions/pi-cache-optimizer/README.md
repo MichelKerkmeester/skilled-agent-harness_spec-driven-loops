@@ -31,6 +31,7 @@ This package is a fork of `jiangge/pi-cache-optimizer` v2.8.0. The fork is publi
 - [For router / virtual-channel extension authors](#for-router--virtual-channel-extension-authors)
 - [Uninstall](#uninstall)
 - [Verify effect](#verify-effect)
+- [Development](#development)
 - [License](#license)
 
 ## What it does
@@ -484,6 +485,10 @@ Do not delete `models.json` during cleanup; it contains your Pi model/provider c
 2. Send several similar turns in the same Pi session.
 3. Watch the footer or run `/cache-optimizer stats`.
 4. For third-party proxies, also run `/cache-optimizer doctor` and confirm sticky routing / session affinity on the proxy side.
+
+## Development
+
+`package.json` holds the scripts. `npm test` runs the suites in `tests/` with `node --test` through the jiti loader, `npm run typecheck` runs `tsc --noEmit` against `tsconfig.json` (which covers `index.ts`, `tests/` and `types/`), and `npm run check` runs both plus the diff and pack checks.
 
 ## License
 

@@ -90,6 +90,7 @@ runtime/cli/
 +-- validate-command-tree-parity.sh # Policy-aware runtime mirror gate; explicit arbitrary trees use byte parity
 +-- test-council-matrix.sh # AI Council vitest + sk-doc + strict parent-spec validation in one pass
 +-- package.json           # ESM package manifest
++-- tsconfig.json          # TypeScript project: extends the skill-root config, emits to dist/
 `-- README.md
 ```
 
@@ -129,6 +130,7 @@ Disallowed direction:
 | `validate-command-tree-parity.sh` | Policy-aware runtime mirror gate run by the `command-tree-parity` GitHub workflow on every pull request; `spec/validate.sh` has no rule for it. Its default mode delegates to the generated mirror checker so runtime-exclusive commands stay excluded; explicit `--left`/`--right` trees retain byte-parity comparison and `--self-test` coverage. |
 | `test-council-matrix.sh` | Runs the AI Council runtime vitest suite, sk-doc validation for the deep-ai-council skill, and strict spec validation for the parent council skill package in one pass. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
+| `tsconfig.json` | Compiles the CLI TypeScript to `dist/`. It extends the skill-root `tsconfig.json` and references the shared and runtime projects. |
 
 ---
 

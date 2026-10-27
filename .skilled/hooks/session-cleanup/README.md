@@ -56,7 +56,7 @@ The plugin never writes stdout/stderr (OpenCode's TUI paints plugin console outp
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/session-cleanup.sh` (symlink → `../../../scripts/session-cleanup.sh`) | `SessionEnd` teardown | Kills proven session-descendant MCP helpers (TERM); bounded log; never uses PPID |
+| **Claude** | `claude/session-cleanup.sh` (symlink → `.skilled/scripts/session-cleanup.sh`) | `SessionEnd` teardown | Kills proven session-descendant MCP helpers (TERM); bounded log; never uses PPID |
 | **Codex** | `codex/session-cleanup.sh` (symlink) | Session teardown | Same |
 | **Cursor** | `cursor/session-cleanup.sh` (symlink) | Session teardown | Same |
 | **Devin** | `devin/session-cleanup.sh` (symlink) | Session teardown | Same |
@@ -72,11 +72,11 @@ The hub holds relative symlinks for the editor runtimes and a browsability symli
 ```text
 session-cleanup/
 +-- README.md
-+-- claude/   session-cleanup.sh (symlink -> ../../../scripts/session-cleanup.sh)
++-- claude/   session-cleanup.sh (symlink -> .skilled/scripts/session-cleanup.sh)
 +-- codex/    session-cleanup.sh (symlink)
 +-- cursor/   session-cleanup.sh (symlink)
 +-- devin/    session-cleanup.sh (symlink)
-`-- opencode/ session-cleanup.js (browsability symlink -> ../../../plugins/session-cleanup.js)
+`-- opencode/ session-cleanup.js (browsability symlink -> .skilled/plugins/session-cleanup.js)
 ```
 
 ---

@@ -4,7 +4,7 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.0.13
+version: 1.0.1.0
 ---
 
 # create-agent
@@ -59,7 +59,7 @@ You get the full frontmatter shape, the hard boundary section, the workflow and 
 **Step 3: Validate before you ship it.**
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/agents/agent-name.md --type agent
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/agents/<agent-name>.md --type agent
 ```
 
 A clean file reports `✅ VALID: <path>` with `Total issues: 0`.

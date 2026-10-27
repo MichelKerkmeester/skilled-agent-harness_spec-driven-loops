@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.16.0
+version: 2.7.17.0
 ---
 
 # System Spec Kit
@@ -50,6 +50,8 @@ Manual documentation is ad hoc and inconsistent. Basic RAG offers vector similar
 - TypeScript 5.0 or newer
 - Bash 4.0 or newer
 
+The skill root is an npm workspace. Its `package.json` declares the `shared`, `runtime` and `runtime/cli` workspaces and the build, typecheck and test scripts, and its `tsconfig.json` is the solution file whose project references build those three packages.
+
 Embeddings are local-first. The runtime probes Ollama first with the default `nomic-embed-text` model at 768 dimensions, falls through to the pure-Node hf-local tier and only escalates to OpenAI or Voyage when an API key is set and no local tier is available. The recommended new-user setup is installing Ollama and running `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects it, no API keys are required and all embeddings stay on-device.
 
 ### The Spec Folder System
@@ -87,7 +89,7 @@ When an AI assistant asks "Which spec folder?" at Gate 3, choose Option B (New):
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh 042-my-feature
 ```
 
-The script creates `specs/042-my-feature/` with the Level 1 starters, initializes `description.json` and prepares the packet docs plus a `scratch/` workspace:
+The script creates `specs/<NNN-name>/` with the Level 1 starters, initializes `description.json` and prepares the packet docs plus a `scratch/` workspace:
 
 - `spec.md`: what the feature is and why it exists
 - `plan.md`: how to implement it
@@ -105,7 +107,7 @@ Continuity no longer writes to `[spec]/memory/*.md`. Use `/speckit:save` to rout
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   --json '{"specFolder":"042-my-feature","user_prompts":["Implement login form validation"],"observations":["Added client-side validation for empty email and password"],"recent_context":["Touched auth form schema and submit handler"],"toolCalls":["npm test -- auth"],"exchanges":["Verified the error states render before submit"]}' \
-  specs/042-my-feature/
+  specs/<NNN-name>/
 ```
 
 The command updates the canonical continuity surfaces for the target folder, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json`. The `/speckit:save 042-my-feature` shorthand does the same. There is no second save lane: the continuity writer is the only path that touches those files, so a save either went through it or did not happen.
@@ -130,7 +132,7 @@ The system reads the question, classifies the task intent and routes to the righ
 
 ```bash
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-  specs/[project]/042-my-feature/
+  specs/<track>/<NNN-name>/
 ```
 
 The default validation set runs the non-strict rules from the 42-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error. `--quiet` prints the result line only. A `--strict` run on a Draft packet may first run `repair-derived.cjs --apply` to rewrite derived metadata, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns that off.
@@ -260,7 +262,7 @@ A folder is a phase parent when it has at least one direct child that matches `[
 When a feature is too large for a single spec folder, split it into a parent folder and child folders. The parent holds the overall specification. Each child holds one phase of the work.
 
 ```text
-specs/022-big-feature/             # Parent spec folder
+specs/<NNN-parent>/                # Parent spec folder
 ├── spec.md                        # Overall specification
 ├── 001-data-model/                # Phase 1 child
 │   ├── spec.md
@@ -509,9 +511,9 @@ The save runs but the payload is rejected by the sufficiency gate or the structu
 `validate.sh` reports missing files such as `spec.md` or `plan.md`. This happens when the folder was created manually without `create.sh` or when wrong level templates were applied.
 
 ```bash
-ls -la specs/[project]/NNN-feature/
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh specs/[project]/NNN-feature/
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
+ls -la specs/<track>/<NNN-name>/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh specs/<track>/<NNN-name>/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<track>/<NNN-name>/ [target-level]
 ```
 
 ### Retrieval Misses Content You Know Exists
@@ -542,8 +544,8 @@ There is no paraphrase matching to fall back to. Retrieval is lexical.
 ### Diagnostic Commands
 
 ```bash
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/[project]/NNN-feature/
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/[project]/NNN-feature/ --verbose
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/<track>/<NNN-name>/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track>/<NNN-name>/ --verbose
 bash .skilled/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
@@ -595,7 +597,7 @@ A: SKILL.md contains instructions for AI agents: when to activate, routing rules
 A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new value tokens that need filling.
 
 ```bash
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<track>/<NNN-name>/ 2
 ```
 
 ---

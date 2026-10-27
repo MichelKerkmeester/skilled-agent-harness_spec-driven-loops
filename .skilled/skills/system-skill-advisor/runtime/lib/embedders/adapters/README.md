@@ -46,9 +46,7 @@ trigger_phrases:
 
 `../index.ts` (`lib/embedders/index.ts`) imports this adapter:
 
-```text
-import { OllamaAdapter } from './adapters/ollama.js'
-```
+It imports `OllamaAdapter` from this folder's `ollama.ts`, with the `.js` extension on the specifier that the nodenext module setting requires.
 
 Compiled output belongs under `runtime/dist/runtime/lib/embedders/adapters/`.
 

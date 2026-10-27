@@ -64,7 +64,7 @@ Every outcome is recorded as a tab-separated line in `<common-dir>/git-primary-r
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/git-primary-reconcile.sh` (symlink → `../../../bin/git-primary-reconcile.sh`) | SessionStart hook chain | Stderr status lines (`ADVANCE` / `PUBLISH` / `BLOCK` / `SKIP`); log line in the common dir; always exits 0 |
+| **Claude** | `claude/git-primary-reconcile.sh` (symlink → `.skilled/bin/git-primary-reconcile.sh`) | SessionStart hook chain | Stderr status lines (`ADVANCE` / `PUBLISH` / `BLOCK` / `SKIP`); log line in the common dir; always exits 0 |
 | **Codex** | `codex/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
 | **Pi** | `pi/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
 | **Cursor** | `cursor/git-primary-reconcile.sh` (symlink) | SessionStart hook chain, detached in the background | Backgrounded with output discarded; log line in the common dir; always exits 0 |
@@ -80,7 +80,7 @@ One real file backs the wired runtimes; the per-runtime entries are symlinks int
 ```text
 git-primary-reconcile/
 +-- README.md
-+-- claude/   git-primary-reconcile.sh (symlink -> ../../../bin/git-primary-reconcile.sh)
++-- claude/   git-primary-reconcile.sh (symlink -> .skilled/bin/git-primary-reconcile.sh)
 +-- codex/    git-primary-reconcile.sh (symlink)
 +-- cursor/   git-primary-reconcile.sh (symlink)
 +-- devin/    git-primary-reconcile.sh (symlink)

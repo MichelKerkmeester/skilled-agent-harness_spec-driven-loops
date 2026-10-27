@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.5.0
+version: 2.3.6.0
 ---
 
 # sk-doc
@@ -121,7 +121,7 @@ The four bands tell you where you stand:
 
 ### Scripts Versus AI
 
-The scripts own the deterministic work. `extract_structure.py` parses, measures, checks and reports. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding.
+The scripts own the deterministic work. `extract_structure.py` parses, measures, checks and reports. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding. The Node scripts get their one dependency, `@spec-kit/shared`, from the `package.json` at the skill root, which sits there rather than under `scripts/` so that both `scripts/` and `shared/scripts/` can resolve it.
 
 ---
 

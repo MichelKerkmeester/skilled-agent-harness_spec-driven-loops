@@ -146,10 +146,10 @@ Autostash-guard flow:
 └──────────────────────────────────────────┘
                   │
                   ▼
-╭──────────────────────────────────────────╮
-│ recovery instructions printed and logged  │
-│ to .skilled/logs/autostash-orphan-alerts │
-╰──────────────────────────────────────────╯
+╭──────────────────────────────────────────────╮
+│ recovery instructions printed and logged     │
+│ to .skilled/logs/autostash-orphan-alerts.log │
+╰──────────────────────────────────────────────╯
 ```
 
 ---

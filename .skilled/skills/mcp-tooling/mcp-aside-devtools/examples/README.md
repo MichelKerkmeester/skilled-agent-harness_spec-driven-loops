@@ -5,7 +5,7 @@ trigger_phrases:
   - "aside examples"
   - "aside example scripts"
   - "aside workflow scripts"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Aside Devtools - Example Scripts
@@ -49,7 +49,7 @@ Each script is a working workflow and an honest capability boundary: it exercise
 
 ```bash
 ./repl-evidence-capture.sh                          # https://example.com → /tmp/aside-evidence
-./repl-evidence-capture.sh https://example.org ./my-evidence
+./repl-evidence-capture.sh https://example.org ./<evidence-dir>
 ```
 
 **What it verifies:**
@@ -69,7 +69,7 @@ Each script is a working workflow and an honest capability boundary: it exercise
 
 ```bash
 ./mcp-handshake-probe.sh                 # fixtures → /tmp/aside-mcp-probe
-./mcp-handshake-probe.sh ./fixtures
+./mcp-handshake-probe.sh ./<fixtures-dir>
 ```
 
 **What it does:**

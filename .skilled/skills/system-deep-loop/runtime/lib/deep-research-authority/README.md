@@ -35,7 +35,7 @@ Current state:
 
 | Boundary | Rule |
 |---|---|
-| Imports | Reads `AuthorityRegistry` and `selectAuthorityRoute` from `../per-mode-authority-flip/index.js`. |
+| Imports | Reads `AuthorityRegistry` and `selectAuthorityRoute` from `../per-mode-authority-flip/index.ts`. |
 | Exports | `admitCanonicalWrite` and the `DeepResearchAuthorityOptions` type through `index.ts`. |
 | Ownership | Owns the composition of the authority substrate into the serving path. The durable record and selector logic belong to the per-mode authority flip. |
 

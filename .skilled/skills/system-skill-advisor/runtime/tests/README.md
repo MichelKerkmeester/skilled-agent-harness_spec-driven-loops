@@ -130,6 +130,7 @@ tests/
 +-- skill-graph-handlers.vitest.ts
 +-- skill-graph-queries-parity.vitest.ts
 +-- sqlite-integrity.vitest.ts
++-- tsconfig.tests.json
 +-- embedders/
 +-- skill-graph/
 +-- scorer/
@@ -152,6 +153,7 @@ tests/
 | `prompt-policy-gold-replay.vitest.ts` | Replays the prompt gate over the labeled and golden corpora. |
 | `embedders/` | Covers embedder schema, registry and shared-factory parity. |
 | `skill-graph/` | Covers focused skill-graph refresh round trips. |
+| `tsconfig.tests.json` | Type-checks the CLI and launcher test files listed in its `include`, extending the runtime `tsconfig.json`, with no emit. |
 
 ---
 

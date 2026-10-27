@@ -79,14 +79,14 @@ OpenCode's real plugins cannot live in this tree because the loader globs `.open
 
 ```text
 completion/
-+-- claude/   completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/runtime/hooks/claude/)
-+-- codex/    completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/runtime/hooks/codex/)
-+-- devin/    completion-evidence-stop.cjs   (symlink -> ../../../skills/system-spec-kit/runtime/hooks/devin/)
-+-- cursor/   completion-evidence-response.mjs (symlink -> ../../../skills/system-spec-kit/runtime/hooks/cursor/)
-+-- pi/       completion-evidence.ts        (symlink -> ../../../skills/system-spec-kit/runtime/hooks/pi/)
++-- claude/   completion-evidence-stop.cjs   (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/claude/)
++-- codex/    completion-evidence-stop.cjs   (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/codex/)
++-- devin/    completion-evidence-stop.cjs   (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/devin/)
++-- cursor/   completion-evidence-response.mjs (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/cursor/)
++-- pi/       completion-evidence.ts        (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/pi/)
 `-- opencode/
-    +-- system-completion-sentinel.js       (symlink -> ../../../plugins/system-completion-sentinel.js)
-    `-- system-speckit-completion.js        (symlink -> ../../../plugins/system-speckit-completion.js)
+    +-- system-completion-sentinel.js       (symlink -> .skilled/plugins/system-completion-sentinel.js)
+    `-- system-speckit-completion.js        (symlink -> .skilled/plugins/system-speckit-completion.js)
 ```
 
 ---
@@ -129,7 +129,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | The core imports Node builtins, `node:child_process`, and `../../../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` (for `check-completion.sh` path + JSON-parse helper). Adapters import the core and `shared/hook-flags` (`.cjs`/`.mjs`/`.ts` flavor per runtime). |
+| Imports | The core imports Node builtins, `node:child_process`, and `.skilled/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` (for `check-completion.sh` path + JSON-parse helper). Adapters import the core and `shared/hook-flags` (`.cjs`/`.mjs`/`.ts` flavor per runtime). |
 | Decisions | `ok` or `advise`. Never `block`: the sentinel is advisory-only for the entire v1 rollout. A bug or false-positive can never force continuation. |
 | Evidence | The core checks recorded artifacts only: `check-completion.sh --json` output (checklist folders) or a `stat` of `implementation-summary.md` (Level 1 folders). It never runs a test, build, or `validate.sh`. |
 | Failure | Fail-open on every path: missing payload, missing spec folder, missing checklist, spawn failure, timeout, non-zero exit with no recoverable stdout, dedup persistence error, log write error, sweep error: all resolve to `{decision:'ok'}` or a no-op. |

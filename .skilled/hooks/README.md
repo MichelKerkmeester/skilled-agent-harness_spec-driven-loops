@@ -123,26 +123,26 @@ hooks/
 |   +-- devin/    (same pair)
 |   +-- codex/    (same pair)
 |   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> ../../../plugins/)
+|   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .skilled/plugins/)
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
 |   +-- cursor/   mcp-route-guard.mjs
 |   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ mcp-route-guard.js (browsability symlink -> ../../../plugins/)
+|   `-- opencode/ mcp-route-guard.js (browsability symlink -> .skilled/plugins/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
 |   +-- devin/    post-edit-quality.cjs
 |   +-- codex/    post-edit-quality.cjs
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> ../../../plugins/)
+|   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> .skilled/plugins/)
 +-- classifier-injection-screen/                # Jev screen of fetched web text for instructions aimed at an agent
 |   +-- lib/  classifier-injection-advisory.mjs, classifier-screen-fetched-text.mjs
 |   |           (+ a co-located test per module)
 |   +-- claude/   classifier-injection-screen-posttooluse.mjs (+ test)
 |   +-- devin/    classifier-injection-screen-posttooluse.mjs (+ test)
-|   +-- opencode/ classifier-injection-screen.js (browsability symlink -> ../../../plugins/)
+|   +-- opencode/ classifier-injection-screen.js (browsability symlink -> .skilled/plugins/)
 |   `-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` symlinks to it)
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
@@ -150,14 +150,14 @@ hooks/
 |   +-- devin/    task-dispatch-guard.cjs
 |   +-- cursor/   task-dispatch-guard.mjs
 |   +-- pi/       task-dispatch-guard.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/)
+|   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> .skilled/plugins/)
 +-- session-relaunch/              # Claude, Pi, OpenCode, Codex and Hermes context nudge and relaunch adapters
 |   +-- bin/session-relaunch.cjs
 |   +-- claude/compact-pointer.mjs, context-nudge.mjs, stop-arm.mjs
 |   +-- codex/context-nudge.mjs, prompt-seed.mjs, shared.mjs, stop-arm.mjs
 |   +-- hermes/context-nudge.mjs, session-end-arm.mjs
 |   +-- pi/session-relaunch.ts, session-relaunch.test.ts
-|   +-- opencode/session-relaunch.js (browsability symlink -> ../../../plugins/session-relaunch.js)
+|   +-- opencode/session-relaunch.js (browsability symlink -> .skilled/plugins/session-relaunch.js)
 |   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs
 |   `-- tests/ nine Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
@@ -167,7 +167,7 @@ hooks/
     +-- cursor/   goal-inject.mjs
     +-- devin/    goal-inject.mjs
     +-- pi/       goal-context.ts (real file; `.pi/extensions/` symlinks to it)
-    `-- opencode/ opencode-goal.js (browsability symlink -> ../../../plugins/)
+    `-- opencode/ opencode-goal.js (browsability symlink -> .skilled/plugins/)
 ```
 
 **Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill, as "Full index + kill-switches" above describes): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`. The same pattern covers the bin-backed concerns: `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/` and are indexed in the additional-hooks table below.

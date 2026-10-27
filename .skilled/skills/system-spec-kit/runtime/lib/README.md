@@ -161,11 +161,11 @@ There is no stable `lib/` barrel for external callers. External consumers import
 
 Examples:
 
-```ts
-import { validateFolder } from './validation/orchestrator.js';
-import { buildResumeLadder } from './resume/resume-ladder.js';
-import { getCanonicalPathKey } from './utils/canonical-path.js';
-```
+- `validateFolder` from `./validation/orchestrator.ts`
+- `buildResumeLadder` from `./resume/resume-ladder.ts`
+- `getCanonicalPathKey` from `./utils/canonical-path.ts`
+
+Importers spell each specifier with the `.js` extension, as the nodenext module setting requires.
 
 ---
 

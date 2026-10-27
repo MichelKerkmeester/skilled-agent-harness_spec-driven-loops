@@ -54,7 +54,7 @@ It always exits 0.
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/check-git-hooks.sh` (symlink → `../../../bin/check-git-hooks.sh`) | SessionStart hook chain (`bash /abs/path/.skilled/bin/check-git-hooks.sh`) | One stderr warning line on drift; always exits 0 |
+| **Claude** | `claude/check-git-hooks.sh` (symlink → `.skilled/bin/check-git-hooks.sh`) | SessionStart hook chain (`bash /abs/path/.skilled/bin/check-git-hooks.sh`) | One stderr warning line on drift; always exits 0 |
 | **Codex** | `codex/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **Cursor** | `cursor/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **Devin** | `devin/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
@@ -70,7 +70,7 @@ One real file backs all four runtimes; the per-runtime entries are symlinks into
 ```text
 git-hooks-check/
 +-- README.md
-+-- claude/   check-git-hooks.sh (symlink -> ../../../bin/check-git-hooks.sh)
++-- claude/   check-git-hooks.sh (symlink -> .skilled/bin/check-git-hooks.sh)
 +-- codex/    check-git-hooks.sh (symlink)
 +-- cursor/   check-git-hooks.sh (symlink)
 `-- devin/    check-git-hooks.sh (symlink)

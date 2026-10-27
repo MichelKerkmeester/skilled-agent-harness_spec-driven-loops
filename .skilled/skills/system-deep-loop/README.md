@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council"
   - "deep-loop hub routing"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # system-deep-loop
@@ -79,6 +79,7 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 | `SKILL.md` | The routing hub, with no per-mode logic. |
 | `mode-registry.json` | The single source of truth for the three-tier discriminator. |
 | `graph-metadata.json` | The one advisor identity for the whole skill. |
+| `package.json` | The skill-root manifest. It lets the mode packets' scripts outside `runtime/` depend on the spec-kit shared package instead of carrying their own parsers. |
 | `deep-research/`, `deep-review/`, `deep-ai-council/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
 | `shared/synthesis/` | Synthesis helpers shared across modes, such as resource-map emission. |
 

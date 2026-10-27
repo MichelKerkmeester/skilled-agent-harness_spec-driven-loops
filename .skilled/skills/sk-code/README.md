@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.31.0
+version: 2.2.32.0
 ---
 
 # sk-code
@@ -131,7 +131,7 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 ### Add Your Own Surface
 
 1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of `sk-code-skilled` in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l warns about a surface placed after it, and the registry compiler rejects a hub whose single fallback is not ranked last in `routerPolicy.tieBreak` (`SURFACE_FALLBACK_INVALID`).
-2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
+2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to the files of the same name in `.skilled/skills/sk-code/shared/references/` (link target `../../shared/references/<file>`).
 3. Add the packet's paths to the `ROUTER.md` maps and section 9, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks, such as "two surfaces", in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.

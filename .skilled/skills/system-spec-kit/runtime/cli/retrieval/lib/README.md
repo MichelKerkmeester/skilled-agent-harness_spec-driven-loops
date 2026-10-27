@@ -68,22 +68,22 @@ Bare names are scripts in `retrieval/`, `./` names are sibling modules in this f
 
 ## 5. VALIDATION
 
-Run from the CLI package (`.skilled/skills/system-spec-kit/runtime/cli`):
+Run from the skill root (`.skilled/skills/system-spec-kit`):
 
 ```bash
-npx vitest run --config ../../vitest.config.ts --project cli \
-  tests/trigger-index.vitest.ts \
-  tests/rg-wrapper-recipes.vitest.ts \
-  tests/grep-convention.vitest.ts \
-  tests/grep-convention-rule.vitest.ts \
-  tests/sweep-memory-residue.vitest.ts \
-  tests/retrofit-convention-pipeline.vitest.ts
+npx vitest run --config vitest.config.ts --project cli \
+  runtime/cli/tests/trigger-index.vitest.ts \
+  runtime/cli/tests/rg-wrapper-recipes.vitest.ts \
+  runtime/cli/tests/grep-convention.vitest.ts \
+  runtime/cli/tests/grep-convention-rule.vitest.ts \
+  runtime/cli/tests/sweep-memory-residue.vitest.ts \
+  runtime/cli/tests/retrofit-convention-pipeline.vitest.ts
 ```
 
 Expected result: all suites pass. These vitest files exercise every module in this folder, either directly or through the CLI script that imports it.
 
 ```bash
-node --check retrieval/lib/artifact.mjs
+node --check runtime/cli/retrieval/lib/artifact.mjs
 ```
 
 Expected result: exits `0`. Run for any module edited directly, since there is no build step between this source and what Node executes.

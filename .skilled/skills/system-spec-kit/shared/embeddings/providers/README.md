@@ -7,7 +7,7 @@ trigger_phrases:
   - "hf local provider"
   - "openai embeddings"
   - "voyage embeddings"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Embedding Providers
@@ -33,7 +33,7 @@ Ollama is the local-first default of the cascade in `../auto-select.ts`. Documen
 ```text
 providers/
 ├── README.md      # This file
-├── ollama.ts      # Ollama provider (default local); requests go through adapters/ollama.ts
+├── ollama.ts      # Ollama provider (default local); requests go through ../adapters/ollama.ts
 ├── hf-local.ts    # HuggingFace local ONNX provider (fallback)
 ├── openai.ts      # OpenAI embeddings provider
 └── voyage.ts      # Voyage AI embeddings provider

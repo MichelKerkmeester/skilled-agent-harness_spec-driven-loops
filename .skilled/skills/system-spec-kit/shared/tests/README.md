@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/` holds one suite per shared module. Each file imports its subject from a sibling source folder (`../frontmatter/`, `../parsing/`, `../utils/`, `../ipc/`, `../embeddings/`, `../predicates/`) or from a top-level module such as `../chunking.js`, and asserts the behavior that module promises today. The folder is flat, so there is no tree to walk.
+`tests/` holds one suite per shared module. Each file imports its subject from a sibling source folder (`../frontmatter/`, `../parsing/`, `../utils/`, `../ipc/`, `../embeddings/`, `../predicates/`) or from a top-level module such as `../chunking.ts`, and asserts the behavior that module promises today. The folder is flat, so there is no tree to walk.
 
 Current state:
 
@@ -28,21 +28,21 @@ Current state:
 
 | File | Coverage |
 |---|---|
-| `auto-select.test.ts` | `parseOllamaTags` and `providerResolutionFromAutoSelect` from `../embeddings/auto-select.js`, including missing and malformed tag payloads |
-| `boolean-expr.test.ts` | The predicate grammar in `../predicates/boolean-expr.js`: string parsing, object validation, `parseWhenField`, the evaluator and prose-bleed detection. Also reads `.skilled/commands/speckit/assets/speckit-complete.yaml` and checks `write_continuity` keeps prose timing under `after:` rather than `when:` |
-| `chunking.test.ts` | `semanticChunk` and `MAX_TEXT_LENGTH` from `../chunking.js`, on text under and over the limit |
+| `auto-select.test.ts` | `parseOllamaTags` and `providerResolutionFromAutoSelect` from `../embeddings/auto-select.ts`, including missing and malformed tag payloads |
+| `boolean-expr.test.ts` | The predicate grammar in `../predicates/boolean-expr.ts`: string parsing, object validation, `parseWhenField`, the evaluator and prose-bleed detection. Also reads `.skilled/commands/speckit/assets/speckit-complete.yaml` and checks `write_continuity` keeps prose timing under `after:` rather than `when:` |
+| `chunking.test.ts` | `semanticChunk` and `MAX_TEXT_LENGTH` from `../chunking.ts`, on text under and over the limit |
 | `config.test.ts` | The telemetry store directory from `config.ts`, read in a child process with `SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR` and `MEMORY_DB_PATH` removed. It asserts the directory sits under the skill root, not under the shared package |
-| `context-types.test.ts` | `resolveCanonicalContextType` and `isLegacyContextType` from `../context-types.js`, including the null result for an unknown value |
-| `jsonc-strip.test.ts` | `stripJsoncComments` from `../utils/jsonc-strip.js`, both comment forms and the comment markers that appear inside string values |
+| `context-types.test.ts` | `resolveCanonicalContextType` and `isLegacyContextType` from `../context-types.ts`, including the null result for an unknown value |
+| `jsonc-strip.test.ts` | `stripJsoncComments` from `../utils/jsonc-strip.ts`, both comment forms and the comment markers that appear inside string values |
 | `model-server-constants.test.ts` | The socket directory and owner-lease file literals that the hf-local client, `.skilled/bin/lib/model-server-supervision.cjs` and `.skilled/bin/system-skill-advisor-launcher.cjs` declare separately. Nothing imports across that boundary, so this test is what keeps the copies equal |
-| `parse-frontmatter.test.ts` | `parseFrontmatter` from `../frontmatter/parse-frontmatter.js`: no fence, CRLF endings, a fence that is not on line 1, inner `---` lines in the body and an unclosed fence |
+| `parse-frontmatter.test.ts` | `parseFrontmatter` from `../frontmatter/parse-frontmatter.ts`: no fence, CRLF endings, a fence that is not on line 1, inner `---` lines in the body and an unclosed fence |
 | `profile.test.ts` | `resolveActiveProfileModel` fallbacks across the four providers, env override precedence, and a source-text scan of `../embeddings/profile.ts` that rejects the retired model literals in the function body |
 | `readme-env-readers.test.ts` | `checkReadme()` from `../scripts/env-reader-table.mjs`, which proves the configuration table in `shared/README.md` still matches the environment reads in the code |
-| `registry.test.ts` | `MANIFESTS`, `listManifests` and `getCanonicalFallback` from `../embeddings/registry.js`, including the ban on the legacy model defaults |
-| `retry.test.ts` | `calculateBackoff`, `classifyError`, `getBackoffSequence`, `isPermanentError`, `isTransientError` and `retryWithBackoff` from `../utils/retry.js` |
-| `secret-scrubber.test.ts` | `scrubSecrets` and `scrubSecretsDetailed` from `../parsing/secret-scrubber.js`, with AWS and Anthropic key samples and prose that carries no credentials |
-| `socket-server.test.ts` | `parseMaxClients` and `SOCKET_FILE_NAME` from `../ipc/socket-server.js`. The second half reads `.skilled/bin/skill-advisor.cjs` and `.skilled/bin/system-skill-advisor-launcher.cjs`, which spell the socket file name as a literal because they run before the package is built |
-| `spec-doc-health.test.ts` | `evaluateSpecDocHealth` from `../parsing/spec-doc-health.js`, run against fixture documents written to temporary directories |
+| `registry.test.ts` | `MANIFESTS`, `listManifests` and `getCanonicalFallback` from `../embeddings/registry.ts`, including the ban on the legacy model defaults |
+| `retry.test.ts` | `calculateBackoff`, `classifyError`, `getBackoffSequence`, `isPermanentError`, `isTransientError` and `retryWithBackoff` from `../utils/retry.ts` |
+| `secret-scrubber.test.ts` | `scrubSecrets` and `scrubSecretsDetailed` from `../parsing/secret-scrubber.ts`, with AWS and Anthropic key samples and prose that carries no credentials |
+| `socket-server.test.ts` | `parseMaxClients` and `SOCKET_FILE_NAME` from `../ipc/socket-server.ts`. The second half reads `.skilled/bin/skill-advisor.cjs` and `.skilled/bin/system-skill-advisor-launcher.cjs`, which spell the socket file name as a literal because they run before the package is built |
+| `spec-doc-health.test.ts` | `evaluateSpecDocHealth` from `../parsing/spec-doc-health.ts`, run against fixture documents written to temporary directories |
 
 ---
 

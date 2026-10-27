@@ -77,11 +77,11 @@ OpenCode's real plugin cannot live in this tree because its loader globs `.openc
 ```text
 dist-freshness/
 +-- README.md
-+-- claude/   check-dist-staleness.sh  (symlink -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh)
++-- claude/   check-dist-staleness.sh  (symlink -> .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh)
 +-- codex/    check-dist-staleness.sh  (symlink)
 +-- cursor/   check-dist-staleness.sh  (symlink)
 +-- devin/    check-dist-staleness.sh  (symlink)
-`-- opencode/ system-dist-freshness-guard.js (browsability symlink -> ../../../plugins/system-dist-freshness-guard.js)
+`-- opencode/ system-dist-freshness-guard.js (browsability symlink -> .skilled/plugins/system-dist-freshness-guard.js)
 ```
 
 ---

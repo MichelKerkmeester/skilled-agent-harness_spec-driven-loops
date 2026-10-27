@@ -44,7 +44,7 @@ It always exits 0.
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/worktree-guard.sh` (symlink → `../../../bin/worktree-guard.sh`) | SessionStart hook chain (`bash /abs/path/.skilled/bin/worktree-guard.sh`) | One stderr warning line on the shared checkout; always exits 0 |
+| **Claude** | `claude/worktree-guard.sh` (symlink → `.skilled/bin/worktree-guard.sh`) | SessionStart hook chain (`bash /abs/path/.skilled/bin/worktree-guard.sh`) | One stderr warning line on the shared checkout; always exits 0 |
 | **Codex** | `codex/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **Cursor** | `cursor/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **Devin** | `devin/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
@@ -60,7 +60,7 @@ One real file backs all four runtimes; the per-runtime entries are symlinks into
 ```text
 git-worktree-guard/
 +-- README.md
-+-- claude/   worktree-guard.sh (symlink -> ../../../bin/worktree-guard.sh)
++-- claude/   worktree-guard.sh (symlink -> .skilled/bin/worktree-guard.sh)
 +-- codex/    worktree-guard.sh (symlink)
 +-- cursor/   worktree-guard.sh (symlink)
 `-- devin/    worktree-guard.sh (symlink)

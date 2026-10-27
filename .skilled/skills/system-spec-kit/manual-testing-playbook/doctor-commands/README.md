@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.3.4.0
+version: 2.3.5.0
 ---
 
 # Doctor Commands
@@ -67,7 +67,7 @@ The fixture's commits, in order:
 1. The current updater copied over the v4.0.0.0 tree, because the old tags ship only the legacy `doctor-update.yaml`.
 2. A local edit to `sk-code-webflow/SKILL.md`, and a new local packet `sk-code/sk-code-web-dev`.
 3. sk-git replaced by the 10-file Barter skill.
-4. `.skilled/release/base.json` recorded for `v4.0.0.0` with `--offline --trust-release`, so it reports `verified: false`.
+4. The release base record (`base.json` in the release folder) recorded for `v4.0.0.0` with `--offline --trust-release`, so it reports `verified: false`.
 5. The updater that reports a release path below a local symlink as a `symlink-parent` conflict, copied over the first one. An unscoped check therefore finishes, and `directory:changelog` reports `conflict` because v4.0.0.0 keeps `.skilled/changelog/sk-design` as a symlink.
 
 The local tag `v4.0.0.3-fixture` is `v4.0.0.2` with `sk-code/sk-code-obsidian` deleted.

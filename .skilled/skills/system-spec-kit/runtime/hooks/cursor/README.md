@@ -26,7 +26,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `sessionStart` | **Confirmed fires** | `session-start.ts` plus `spec-gate-prebind.mjs` | Primes context and initializes opt-in Gate-3 state. |
 | `preToolUse` | **Confirmed fires** | `spec-gate-enforce.mjs` (this folder) | Fires before every tool call (`Shell`, `Read`, `Grep`, `Write` all observed); the deny path (`permission:"deny"` + exit 2) was live-verified to actually block the tool call |
 | `postToolUse` | **Confirmed fires** | `post-tool-use.mjs` | Runs post-edit, graph-freshness, and dispatch-audit adapters. |
-| `sessionEnd` | **Confirmed fires** | `session-end.ts` → delegates to `../claude/session-stop.js` | Fires once per process with `reason`/`final_status` and a real `transcript_path` |
+| `sessionEnd` | **Confirmed fires** | `session-end.ts` → delegates to the compiled build of `../claude/session-stop.ts` | Fires once per process with `reason`/`final_status` and a real `transcript_path` |
 | `beforeShellExecution` / `afterShellExecution` | **Confirmed fires** | Covered by `preToolUse`/`postToolUse` instead (broader) | Not separately wired: `preToolUse` already gates shell calls |
 | `beforeReadFile` | **Confirmed fires** | Not wired (read-only, no mutation to gate) | — |
 | `afterFileEdit` | **Confirmed fires** | Not wired (post-hoc; `preToolUse` already gates the write before it happens) | — |

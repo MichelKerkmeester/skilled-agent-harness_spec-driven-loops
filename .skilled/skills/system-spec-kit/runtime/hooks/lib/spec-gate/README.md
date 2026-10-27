@@ -151,7 +151,7 @@ env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE node .skilled/plugins/tests/
 Expected result: 11 pass, 0 fail (OpenCode plugin, including the one-shot deferral relay and the session-key fallback).
 
 ```bash
-(cd .skilled/skills/system-spec-kit/runtime && npx vitest run --config ../vitest.config.ts --project root runtime/tests/spec-gate-pi-extension.vitest.ts)
+(cd .skilled/skills/system-spec-kit && npx vitest run --config vitest.config.ts --project root runtime/tests/spec-gate-pi-extension.vitest.ts)
 ```
 
 Expected result: the Pi extension suite passes (turn untouched, dialog at the first write, one-time block, repeat suppression, cancel fail-open).

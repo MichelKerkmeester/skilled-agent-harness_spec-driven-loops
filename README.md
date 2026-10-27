@@ -997,6 +997,8 @@ Every plugin except the git message gate has an off switch, listed in the [hooks
 
 `.pi/extensions/` holds Pi's discovery mirror: `*.ts` extension entries (relative symlinks into their owners' trees) plus two local extension packages.
 
+`tsconfig.pi.json` at the repository root type-checks three of those entries, `session-relaunch.ts`, `spec-gate-classify.ts` and `spec-gate-enforce.ts`, against the local Pi type stubs in `.pi/types/`, with no emit.
+
 ##### ⭐ `pi-cache-optimizer` ("Cache Pi")
 
 Our custom extension, vendored in `.pi/extensions/` as the live runtime source. A fork of the upstream `jiangge/pi-cache-optimizer` (MIT), it improves provider-side KV / prompt cache hit rates for every model Pi can reach.

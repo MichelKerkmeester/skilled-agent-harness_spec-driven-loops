@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Templates
@@ -209,7 +209,7 @@ Render flow:
 Run from the repository root.
 
 ```bash
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track>/<NNN-name> --strict
 ```
 
 Expected result for a real spec folder: the validator reads the manifest contract and reports no missing required docs or gated sections.

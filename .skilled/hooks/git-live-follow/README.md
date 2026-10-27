@@ -43,7 +43,7 @@ One real script backs the wired runtimes. Claude, Codex, Cursor, Devin, and Pi c
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/git-live-follow.sh` (symlink → `../../../bin/git-live-follow.sh`) | SessionStart hook chain, `--start` | One `[live-sync]` status line on stderr; the follower is detached and logs to the common dir; exits 0 in a git checkout (a missing `git` or a non-repo checkout exits 1 before any status line) |
+| **Claude** | `claude/git-live-follow.sh` (symlink → `.skilled/bin/git-live-follow.sh`) | SessionStart hook chain, `--start` | One `[live-sync]` status line on stderr; the follower is detached and logs to the common dir; exits 0 in a git checkout (a missing `git` or a non-repo checkout exits 1 before any status line) |
 | **Codex** | `codex/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
 | **Cursor** | `cursor/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
 | **Devin** | `devin/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
@@ -59,7 +59,7 @@ Hermes runs the same script as one of its session-start guards in the `repo-guar
 ```text
 git-live-follow/
 +-- README.md
-+-- claude/   git-live-follow.sh (symlink -> ../../../bin/git-live-follow.sh)
++-- claude/   git-live-follow.sh (symlink -> .skilled/bin/git-live-follow.sh)
 +-- codex/    git-live-follow.sh (symlink)
 +-- cursor/   git-live-follow.sh (symlink)
 +-- devin/    git-live-follow.sh (symlink)

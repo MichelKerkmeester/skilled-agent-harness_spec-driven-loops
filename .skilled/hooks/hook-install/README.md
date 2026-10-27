@@ -55,7 +55,7 @@ The installer treats hook **identity** as the first adapter path in a command (`
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/install-codex-hooks.mjs` (symlink → `../../../bin/install-codex-hooks.mjs`) | Explicitly invoked reconcile step | Removes repo copies from, or verifies, `~/.codex/hooks.json`; JSON report on stdout, drift on stderr |
+| **Claude** | `claude/install-codex-hooks.mjs` (symlink → `.skilled/bin/install-codex-hooks.mjs`) | Explicitly invoked reconcile step | Removes repo copies from, or verifies, `~/.codex/hooks.json`; JSON report on stdout, drift on stderr |
 | **Cursor** | `cursor/install-codex-hooks.mjs` (symlink) | Explicitly invoked reconcile step | Same |
 | **Devin** | `devin/install-codex-hooks.mjs` (symlink) | Explicitly invoked reconcile step | Same |
 | **Codex** | — | — | Not applicable. Codex reads the project's `.codex/hooks.json` and is the cleanup *target* (`~/.codex/hooks.json`), not an installer host; it carries no copy of the installer. |
@@ -71,7 +71,7 @@ One real installer backs the wired runtimes; the per-runtime entries are symlink
 ```text
 hook-install/
 +-- README.md
-+-- claude/   install-codex-hooks.mjs (symlink -> ../../../bin/install-codex-hooks.mjs)
++-- claude/   install-codex-hooks.mjs (symlink -> .skilled/bin/install-codex-hooks.mjs)
 +-- cursor/   install-codex-hooks.mjs (symlink)
 `-- devin/    install-codex-hooks.mjs (symlink)
 ```

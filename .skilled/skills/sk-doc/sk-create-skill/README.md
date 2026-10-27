@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.0.21
+version: 1.2.1.0
 ---
 
 # create-skill
@@ -59,7 +59,7 @@ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill --
 **Step 2: Fill in the real content, then validate.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/my-skill
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name>
 ```
 
 Expected output ends with `package_skill.py --check: PASS (exit 0)`.
@@ -67,7 +67,7 @@ Expected output ends with `package_skill.py --check: PASS (exit 0)`.
 **Step 3: Package only after validation passes.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/my-skill <output-directory>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/<skill-name> <output-directory>
 ```
 
 ---

@@ -16,7 +16,7 @@ trigger_phrases:
 
 `opencode/` holds one file, `system-spec-gate.js`. It is the OpenCode transport adapter over the runtime-neutral Gate-3 policy core, kept here so it sits beside the other per-runtime hook folders.
 
-The file is the same artifact as `.skilled/plugins/system-spec-gate.js`, which OpenCode loads. Its relative imports are therefore written against the plugins directory, not this folder: `../skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` for policy and `../hooks/shared/hook-flags.cjs` for the kill switches. The file is real ESM, so it reaches the CommonJS flag module through `createRequire`.
+The file is the same artifact as `.skilled/plugins/system-spec-gate.js`, which OpenCode loads. Its relative imports are therefore written against the plugins directory, not this folder, so they resolve to `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` for policy and `.skilled/hooks/shared/hook-flags.cjs` for the kill switches. The file is real ESM, so it reaches the CommonJS flag module through `createRequire`.
 
 | File | Responsibility |
 |---|---|

@@ -43,6 +43,7 @@ Generated dependencies under `node_modules/` and repository metadata directories
 | Domain modules | [`lib/README.md`](lib/README.md) |
 | CLI commands | [`scripts/README.md`](scripts/README.md) |
 | Runtime tests | [`tests/README.md`](tests/README.md) |
+| Package manifest | `package.json` (`@deep-loop/runtime`: its dependencies plus the `typecheck` and `test` scripts) |
 | TypeScript configuration | `tsconfig.json` |
 | Vitest configuration | `vitest.config.ts` |
 

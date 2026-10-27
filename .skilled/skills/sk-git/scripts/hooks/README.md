@@ -6,7 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters
@@ -176,7 +176,7 @@ Devin keeps events at the top level.
 ```text
 File: .opencode/plugins/sk-git-preflight-advisory.js
 Hook: tool.execute.before
-Import: ../skills/sk-git/scripts/lib/git-rule-checks.mjs
+Import: .skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs (specifier relative to the plugins folder)
 ```
 
 **Pi**: `.pi/extensions/git-preflight-advisory.ts`
@@ -218,7 +218,7 @@ hooks/  (sk-git/scripts/hooks/)
 +-- git-preflight-advisory.test.mjs   # node --test suite
 +-- opencode/
 |   +-- README.md
-|   +-- sk-git-message-gate.js        # symlink -> ../../../../../plugins/sk-git-message-gate.js
+|   +-- sk-git-message-gate.js        # symlink -> .skilled/plugins/sk-git-message-gate.js
 |   `-- sk-git-preflight-advisory.js  # symlink -> ../../../../../plugins/sk-git-preflight-advisory.js
 `-- pi/
     +-- README.md

@@ -105,36 +105,13 @@ Extract the owning spec folder (specs-root-relative)
 
 Spec-document and identity imports:
 
-```typescript
-import {
-  SPEC_DOCUMENT_FILENAMES,
-  GRAPH_METADATA_FILENAME,
-  canClassifyAsSpecDocument,
-  canClassifyAsGraphMetadataPath,
-  matchesSpecDocumentPath,
-  isGraphMetadataPath,
-  extractSpecFolderFromSpecDocumentPath,
-  extractSpecFolderFromGraphMetadataPath,
-  resolveSpecFolderIdentity,
-  SpecFolderIdentityError,
-} from './spec-doc-paths.js'
-
-import type { SpecFolderIdentity } from './spec-doc-paths.js'
-```
+`./spec-doc-paths.ts` exports `SPEC_DOCUMENT_FILENAMES`, `GRAPH_METADATA_FILENAME`, `canClassifyAsSpecDocument`, `canClassifyAsGraphMetadataPath`, `matchesSpecDocumentPath`, `isGraphMetadataPath`, `extractSpecFolderFromSpecDocumentPath`, `extractSpecFolderFromGraphMetadataPath`, `resolveSpecFolderIdentity`, `SpecFolderIdentityError` and the type `SpecFolderIdentity`.
 
 Capability-flag imports:
 
-```typescript
-import {
-  parseFlagTristate,
-  isIdentityMergeSafetyEnabled,
-  isGeneratedMetadataGrandfatherEnabled,
-  isGeneratedMetadataDriftGateEnabled,
-  isGeneratorHardeningEnabled,
-  isIdempotentDescriptionWritesEnabled,
-  isStatusCompletionConsistencyGateEnabled,
-} from './capability-flags.js'
-```
+`./capability-flags.ts` exports `parseFlagTristate`, `isIdentityMergeSafetyEnabled`, `isGeneratedMetadataGrandfatherEnabled`, `isGeneratedMetadataDriftGateEnabled`, `isGeneratorHardeningEnabled`, `isIdempotentDescriptionWritesEnabled`, `isStatusCompletionConsistencyGateEnabled`.
+
+Importers spell these specifiers with the `.js` extension, as the nodenext module setting requires.
 
 There is no `index.ts` in this folder. Import from the file that owns the needed surface.
 

@@ -29,13 +29,13 @@ Base-live on the same 5 was strong: aggregate 88, D2 100, D3 60; `assetRecall` 9
 
 ```bash
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high GRADER_MODEL=claude-sonnet-4-5 \
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode live \
+node <skill-benchmark runner> --skill sk-code --trace-mode live \
   --scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --d4 \
   --d4-scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --grader-mode real \
   --outputs-dir .opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live
 ```
 
-Paid + non-deterministic (15 gpt-5.5 dispatches + 10 grader calls; ~45–55 min). `--d4` requires `--trace-mode live`. Skill-OFF is an approximation (`SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` + preamble + a contamination guard that drops a pair if the skill leaked in), so scores are stamped `attribution: approximate`.
+The skill-benchmark runner this command called lived in the deep-improvement mode of system-deep-loop and has since been removed, so the command records how the run was made and no longer runs as written. Paid + non-deterministic (15 gpt-5.5 dispatches + 10 grader calls; ~45–55 min). `--d4` requires `--trace-mode live`. Skill-OFF is an approximation (`SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` + preamble + a contamination guard that drops a pair if the skill leaked in), so scores are stamped `attribution: approximate`.
 
 ## Files
 

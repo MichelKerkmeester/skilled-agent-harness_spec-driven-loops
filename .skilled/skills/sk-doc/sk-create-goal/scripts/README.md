@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal conformance checker"
   - "goal template parity test"
   - "goal criteria lint"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-create-goal scripts: goal checker and criteria lint
@@ -64,8 +64,8 @@ scripts/
 The checker imports only Node built-ins and `../../../../hooks/goal/lib/goal-slice.cjs`. It reads `goal.md` and the direct phase-child directories of the packet it is given, plus the three asset templates. It changes no file and no session state.
 
 ```text
-packet/goal.md ──▶ goal-slice.cjs (durable slice, budget) ──▶ five checks ──▶ findings + exit code
-../assets/goal-*-template.md ──▶ placeholder wording ──┘
+<packet>/goal.md ──▶ goal-slice.cjs (durable slice, budget) ──▶ five checks ──▶ findings + exit code
+../assets/goal-*-template.md ──▶ placeholder wording ────┘
 ```
 
 The lint imports the same `goal-slice.cjs` and nothing else outside Node. It makes no model call and spawns no process.

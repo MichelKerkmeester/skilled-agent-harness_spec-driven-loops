@@ -33,7 +33,7 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────────┐      ┌──────────────────────────┐
-│ specs/, .skilled/  │ ───▶ │ generate-trigger-index.mjs│ ──▶ runtime/data/trigger-index.json
+│ specs/, .skilled/  │ ───▶ │ generate-trigger-index.mjs│ ──▶ ../../data/trigger-index.json
 │ (trigger_phrases)   │      └──────────────────────────┘              │
 └─────────────────────┘                                                ▼
                                                             ┌──────────────────────────┐
@@ -101,7 +101,7 @@ Only a build that writes the committed index rewrites those three sidecars. When
 
 | Boundary | Rule |
 |---|---|
-| Index authority | `runtime/data/trigger-index.json` is generated only by `generate-trigger-index.mjs`. No script here hand-edits it. |
+| Index authority | `../../data/trigger-index.json` is generated only by `generate-trigger-index.mjs`. No script here hand-edits it. |
 | Scoring parity | `lookup-trigger-index.mjs` and `rg-wrapper.mjs` share normalization and ranking through `lib/normalize.mjs` and `lib/rg-lane.mjs` rather than each re-deriving it. |
 | No daemon, no MCP | Every script here runs as a plain Node process reading files or shelling out to `rg` directly; none of them talk to a daemon or an MCP transport. |
 

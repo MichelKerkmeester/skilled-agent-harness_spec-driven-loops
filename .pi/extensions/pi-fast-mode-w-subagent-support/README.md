@@ -104,7 +104,7 @@ Fork of [`pi-openai-fast-mode`](https://github.com/johncmunson/pi-openai-fast-mo
 
 ## 8. DEVELOPMENT
 
-Install dependencies and run the full check (typecheck plus tests):
+Install dependencies and run the full check (typecheck plus tests). `package.json` defines `npm run check` as `tsc --noEmit` against `tsconfig.json` followed by the vitest suite:
 
 ```bash
 npm install

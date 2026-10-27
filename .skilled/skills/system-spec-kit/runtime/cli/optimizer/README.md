@@ -46,7 +46,7 @@ Current state:
            │ best candidate + audit trail
            ▼
 ┌──────────────────────┐     ┌──────────────────────────┐
-│ promote.cjs          │ ──▶ │ audit/promotion-reports/ │
+│ promote.cjs          │ ──▶ │ promotion report folder  │
 │ evaluateCandidate()  │     │ advisory JSON reports    │
 └──────────────────────┘     └──────────────────────────┘
 
@@ -65,7 +65,7 @@ optimizer/
 +-- rubric.cjs               # Per-dimension scoring and weighted composite
 +-- search.cjs               # Seeded random search over manifest-bounded config space
 +-- promote.cjs              # Advisory promotion gate and report writer
-+-- audit/promotion-reports/ # Advisory promotion report output (canonical sink)
++-- audit/                   # Created on first promotion; promotion-reports/ is the report sink
 `-- README.md
 ```
 
