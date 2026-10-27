@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7333,
-    "ok": 15557,
+    "missing-frontmatter": 7335,
+    "ok": 15579,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26438,
+  "documentsScanned": 26462,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "614ba38d8efc54ac823f837879d71c3939d5e72497c685d3c27d94a05d83e63b",
+  "manifestHash": "5a9c230633033de4501eab6f0520e35456aa7521de0ebe3f86a6bc9fdc93b870",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38331,
+      "ok": 38356,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -41205,6 +41205,18 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 4,
       "path": "specs/sk-prompt/007-sk-prompt-parent/review/deep-review-dashboard.md",
@@ -72603,6 +72615,30 @@
     },
     {
       "path": "specs/sk-git/034-standards-template-round-trip/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/scratch",
       "reason": "excluded directory"
     },
     {

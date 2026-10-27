@@ -1,5 +1,5 @@
 {
-  "manifestHash": "614ba38d8efc54ac823f837879d71c3939d5e72497c685d3c27d94a05d83e63b",
+  "manifestHash": "5a9c230633033de4501eab6f0520e35456aa7521de0ebe3f86a6bc9fdc93b870",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -47645,6 +47645,36 @@
     "frozen substrate seal acceptance": [
       "frozen substrate seal acceptance"
     ],
+    "fsmonitor cookie infinite wait": [
+      "fsmonitor cookie infinite wait"
+    ],
+    "fsmonitor daemon and worktree relocation regression phase parent spec": [
+      "fsmonitor daemon and worktree relocation regression phase parent spec"
+    ],
+    "fsmonitor daemon lifecycle": [
+      "fsmonitor daemon lifecycle"
+    ],
+    "fsmonitor daemon lifecycle acceptance criteria": [
+      "fsmonitor daemon lifecycle acceptance criteria"
+    ],
+    "fsmonitor daemon lifecycle implementation summary": [
+      "fsmonitor daemon lifecycle implementation summary"
+    ],
+    "fsmonitor daemon lifecycle plan": [
+      "fsmonitor daemon lifecycle plan"
+    ],
+    "fsmonitor daemon lifecycle tasks": [
+      "fsmonitor daemon lifecycle tasks"
+    ],
+    "fsmonitor daemon pile up": [
+      "fsmonitor daemon pile-up"
+    ],
+    "fsmonitor daemon research": [
+      "fsmonitor daemon research"
+    ],
+    "fsmonitor daemon root cause": [
+      "fsmonitor daemon root cause"
+    ],
     "fsrs last review format": [
       "fsrs last_review format"
     ],
@@ -73660,6 +73690,9 @@
     "phase 2 webflow runtime and references": [
       "phase 2 webflow runtime and references"
     ],
+    "phase 2 worktree relocation restore": [
+      "phase 2 worktree relocation restore"
+    ],
     "phase 20 alignment audit fixes": [
       "phase 20 alignment audit fixes"
     ],
@@ -73849,6 +73882,9 @@
     "phase 3 feature catalog findings": [
       "phase 3 feature catalog findings"
     ],
+    "phase 3 fsmonitor daemon lifecycle": [
+      "phase 3 fsmonitor daemon lifecycle"
+    ],
     "phase 3 goal criteria": [
       "phase 3 goal criteria"
     ],
@@ -74022,6 +74058,9 @@
     ],
     "phase 4 private local skills": [
       "phase 4 private local skills"
+    ],
+    "phase 4 push gate git timeout": [
+      "phase 4 push gate git timeout"
     ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
@@ -77740,6 +77779,9 @@
     "pre platform tooling": [
       "pre platform tooling"
     ],
+    "pre push hook stall": [
+      "pre-push hook stall"
+    ],
     "pre push naming gate residue": [
       "pre-push naming gate residue"
     ],
@@ -79145,6 +79187,21 @@
     ],
     "push and create a pull request": [
       "push and create a pull request"
+    ],
+    "push gate git timeout": [
+      "push gate git timeout"
+    ],
+    "push gate git timeout acceptance criteria": [
+      "push gate git timeout acceptance criteria"
+    ],
+    "push gate git timeout implementation summary": [
+      "push gate git timeout implementation summary"
+    ],
+    "push gate git timeout plan": [
+      "push gate git timeout plan"
+    ],
+    "push gate git timeout tasks": [
+      "push gate git timeout tasks"
     ],
     "push tickets to clickup": [
       "push tickets to clickup"
@@ -115428,6 +115485,24 @@
     ],
     "worktree relocation plan": [
       "worktree relocation plan"
+    ],
+    "worktree relocation regression research": [
+      "worktree relocation regression research"
+    ],
+    "worktree relocation restore": [
+      "worktree relocation restore"
+    ],
+    "worktree relocation restore acceptance criteria": [
+      "worktree relocation restore acceptance criteria"
+    ],
+    "worktree relocation restore implementation summary": [
+      "worktree relocation restore implementation summary"
+    ],
+    "worktree relocation restore plan": [
+      "worktree relocation restore plan"
+    ],
+    "worktree relocation restore tasks": [
+      "worktree relocation restore tasks"
     ],
     "worktree relocation summary": [
       "worktree relocation summary"

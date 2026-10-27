@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6b69debda8a67fb78afdee8c66fde79750ffddf49ce63bdf281bda572bf34baa",
+  "corpusHash": "e3695511ca327efa08752dbd2436037f490c99736a91f58c69c7e01c4b934279",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26438,
+  "includedPathCount": 26462,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13751,6 +13751,30 @@
     "specs/sk-git/034-standards-template-round-trip/plan.md",
     "specs/sk-git/034-standards-template-round-trip/spec.md",
     "specs/sk-git/034-standards-template-round-trip/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/acceptance-criteria.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/implementation-summary.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/plan.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/fanout-attribution.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/research.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/resource-map.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/spec.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/acceptance-criteria.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/implementation-summary.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/plan.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/spec.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/acceptance-criteria.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/implementation-summary.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/plan.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/spec.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/acceptance-criteria.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/implementation-summary.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/plan.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/spec.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/tasks.md",
+    "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/spec.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -26469,7 +26493,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "614ba38d8efc54ac823f837879d71c3939d5e72497c685d3c27d94a05d83e63b",
+  "manifestHash": "5a9c230633033de4501eab6f0520e35456aa7521de0ebe3f86a6bc9fdc93b870",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30193,6 +30217,30 @@
     },
     {
       "path": "specs/sk-git/034-standards-template-round-trip/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/scratch",
       "reason": "excluded directory"
     },
     {
