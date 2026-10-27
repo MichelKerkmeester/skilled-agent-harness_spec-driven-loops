@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race",
+  "description": "killer test spawn race",
+  "keywords": [
+    "killer",
+    "test",
+    "spawn",
+    "race"
+  ],
+  "lastUpdated": "2026-10-27T20:22:18.238Z",
+  "specId": "013",
+  "folderSlug": "killer-test-spawn-race",
+  "parentChain": [
+    "system-speckit",
+    "053-ci-workflow-efficiency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

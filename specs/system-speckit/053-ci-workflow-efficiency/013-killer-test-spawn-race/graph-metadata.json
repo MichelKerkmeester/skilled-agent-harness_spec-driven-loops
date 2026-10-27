@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "killer test spawn race",
+      "phase 13 killer test spawn race",
+      "session relaunch killer flake",
+      "target-signal ENOENT",
+      "killer test spawn race plan",
+      "killer test spawn race tasks",
+      "killer test spawn race implementation summary"
+    ],
+    "key_topics": [
+      "killer",
+      "test",
+      "spawn",
+      "race",
+      "phase",
+      "session",
+      "relaunch",
+      "flake",
+      "target-signal",
+      "enoent",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Child",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdout",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`killer keeps the record armed when the target exits during its grace period` failed once in 40 CI runs (run 40571619125, Ubuntu) with `ENOENT: no such file or directory, open '/tmp/session-relaunch-killer-/target-signal'`",
+    "created_at": "2026-10-27T20:22:18Z",
+    "last_save_at": "2026-10-27T20:52:48.615Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac79745ef557bb98bb2e4bf9a5163d0e66e055befa8c0bcbbd5f33335c7e4fda",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b291afadddf38bb01c4aebf718b0cfc86b81b90b927fd9599b62c95381e56a0e",
+      "plan.md": "0c1322fb797f99bd47fe2f44da2db191c9c567f2ff9ff1eee206b2db2a320525",
+      "tasks.md": "aa994fb8dbc905f92ef07174fb46caa99ce9acb9756b17b6213148bc5eff3830",
+      "implementation-summary.md": "c4066bef8a349570245700c137d39ef6bf7cf95bf76fd0b1ff64a3bf0486f4f7"
+    },
+    "last_active_at": null
+  }
+}

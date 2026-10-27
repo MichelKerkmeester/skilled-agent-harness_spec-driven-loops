@@ -112,6 +112,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30, superseded by 009 ADR-013) | Complete |
 | 10 | 010-review-remediation/ | Remediation: apply the confirmed deep-review findings to the CI routing vocabulary, the sk-code-ci references and templates, the `/doctor:ci` contract and the phase records | Complete |
 | 11 | 011-ci-health-followups/ | Follow-up: move both pi extensions to `@earendil-works/pi-coding-agent` 1.4.0 (the Dependabot 0.79.0 target raised `npm audit`), and fix the two flaky tests (goal-core `statePath` assertion, advisor watcher readiness) at their cause | Complete |
+| 13 | 013-killer-test-spawn-race/ | Follow-up: the session-relaunch killer test waited for the target's spawn event instead of its SIGTERM handler, so it failed once in 40 CI runs; targets now report readiness and the tests wait for it | Complete |
 
 ### Phase Transition Rules
 

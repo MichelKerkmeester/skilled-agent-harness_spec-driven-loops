@@ -67,18 +67,58 @@ function createSandbox(t) {
   return { root, repoRoot, xdgRuntimeDir, home, env };
 }
 
+// A spawned target only exists as a process once `spawn` fires. Its SIGTERM handler is installed
+// later, when the `-e` script has run, and a signal that lands in between kills the target by
+// the default action and leaves no signal file. The target therefore reports readiness only
+// after the handler is registered, and the tests wait for that report instead of for `spawn`.
+const TARGET_READY_LINE = 'sigterm-handler-ready';
+const TARGET_READY_TIMEOUT_MS = 15000;
+
+function waitForTargetReady(child, timeoutMs = TARGET_READY_TIMEOUT_MS) {
+  return new Promise((resolve, reject) => {
+    let output = '';
+    const settle = (finish, value) => {
+      clearTimeout(timer);
+      child.stdout.off('data', onData);
+      child.off('exit', onExit);
+      child.off('error', onError);
+      finish(value);
+    };
+    const onData = (chunk) => {
+      output += chunk;
+      if (output.includes(TARGET_READY_LINE)) settle(resolve);
+    };
+    const onExit = (code, signal) => settle(reject, new Error(
+      `target ${child.pid} exited (code ${code}, signal ${signal}) before its SIGTERM handler was ready`,
+    ));
+    const onError = (error) => settle(reject, error);
+    // Most callers await this outside their cleanup block, so a target left
+    // running after a timeout would keep the test process alive.
+    const timer = setTimeout(() => {
+      child.kill('SIGKILL');
+      settle(reject, new Error(
+        `target ${child.pid} did not report its SIGTERM handler within ${timeoutMs}ms`,
+      ));
+    }, timeoutMs);
+    child.stdout.on('data', onData);
+    child.once('exit', onExit);
+    child.once('error', onError);
+  });
+}
+
 function startTarget(sandbox, signalPath, exitDelayMs = 0) {
   const script = `
     process.on('SIGTERM', () => {
       require('node:fs').writeFileSync(process.env.SIGNAL_PATH, 'SIGTERM');
       setTimeout(() => process.exit(0), ${exitDelayMs});
     });
+    process.stdout.write('${TARGET_READY_LINE}\\n');
     setInterval(() => {}, 1000);
   `;
   return spawn(process.execPath, ['-e', script], {
     cwd: sandbox.repoRoot,
     env: { ...sandbox.env, SIGNAL_PATH: signalPath },
-    stdio: 'ignore',
+    stdio: ['ignore', 'pipe', 'ignore'],
   });
 }
 
@@ -98,12 +138,13 @@ function startCountingTarget(sandbox, signalPath, exitDelayMs = 0) {
       require('node:fs').writeFileSync(process.env.SIGNAL_PATH, String(signals));
       setTimeout(() => process.exit(0), ${exitDelayMs});
     });
+    process.stdout.write('${TARGET_READY_LINE}\\n');
     setInterval(() => {}, 1000);
   `;
   return spawn(process.execPath, ['-e', script], {
     cwd: sandbox.repoRoot,
     env: { ...sandbox.env, SIGNAL_PATH: signalPath },
-    stdio: 'ignore',
+    stdio: ['ignore', 'pipe', 'ignore'],
   });
 }
 
@@ -581,7 +622,7 @@ test('killer signals an idle target and releases its lock', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
   try {
@@ -601,7 +642,7 @@ test('killer signals an idle armed target after --idle-ms without a transcript',
   const loopId = String(process.pid);
   const signalPath = path.join(sandbox.root, 'target-signal-no-transcript');
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100 });
   try {
@@ -674,7 +715,7 @@ test('killer does not signal when the relaunch record is missing', async (t) => 
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
   try {
     const result = await waitForExit(killer, 2000);
@@ -694,7 +735,7 @@ test('killer refuses loop id 1 and leaves the target alive', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   const killer = runKiller(sandbox, { loopId: '1', targetPid: target.pid, transcriptPath });
   try {
     const result = await waitForExit(killer, 2000);
@@ -715,7 +756,7 @@ test('killer keeps the record armed for a target that takes several seconds to e
   const loopId = String(process.pid);
   const signalPath = path.join(sandbox.root, 'target-signal');
   const target = startTarget(sandbox, signalPath, 6500);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100 });
   try {
@@ -737,7 +778,7 @@ test('killer keeps the record armed when the target exits during its grace perio
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath, 800);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const killer = runKiller(sandbox, {
     loopId,
@@ -769,7 +810,7 @@ test('killer treats an EPERM liveness probe as a target that is already gone', a
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   installLivenessEpermStub(sandbox, target.pid);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -795,7 +836,7 @@ test('killer times out on an active transcript, unarms and releases its lock', a
   const loopId = String(process.pid);
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, path.join(sandbox.root, 'target-signal'));
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const touchTimer = setInterval(() => {
     const now = new Date();
@@ -829,7 +870,7 @@ test('a second killer respects the lock held by the first killer', async (t) => 
   const transcriptPath = createTranscript(sandbox);
   const signalPath = path.join(sandbox.root, 'target-signal');
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const touchTimer = setInterval(() => {
     const now = new Date();
@@ -867,7 +908,7 @@ test('killer logs and respects a lock held by a live owner', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${process.pid} ${new Date().toISOString()}\n`);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -891,7 +932,7 @@ test('killer takes over a lock whose live owner recorded a past expiry', async (
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   // A killer killed with SIGKILL leaves this pid behind, and pid reuse can keep
   // it alive long after the lock stopped meaning anything.
@@ -1001,7 +1042,7 @@ test('killer holds an empty lock younger than five seconds', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), '');
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -1025,7 +1066,7 @@ test('killer holds a fresh directory at the lock path', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.mkdirSync(lockPath(sandbox, loopId));
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -1050,7 +1091,7 @@ test('killer takes over a stale directory at the lock path', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   // A directory at the lock path records no owner, and one older than the
   // creating window cannot belong to a killer mid-create, so it pins the loop
@@ -1080,7 +1121,7 @@ test('killer logs target-gone when SIGTERM races with target exit', async (t) =>
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   installSigtermEsrchStub(sandbox, target.pid);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -1104,7 +1145,7 @@ test('killer refuses to signal a disarmed record', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   core.unarm({ loopId, env: sandbox.env, reason: 'test-disarmed' });
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -1131,7 +1172,7 @@ test('killer unarms an armed record at the hop limit without signalling', async 
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId, 'claude', path.join(sandbox.repoRoot, 'handoff.md'), 2);
   sandbox.env.SESSION_RELAUNCH_MAX_HOPS = '2';
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -1162,7 +1203,7 @@ test('killer does not signal when an operator prompt withdraws the arm after its
   const loopId = String(process.pid);
   const signalPath = path.join(sandbox.root, 'target-signal');
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const preloadPath = path.join(sandbox.root, 'withdraw-after-freshness.cjs');
   fs.writeFileSync(preloadPath, `
@@ -1205,7 +1246,7 @@ test('killer still signals an armed record below the hop limit', async (t) => {
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId, 'claude', path.join(sandbox.repoRoot, 'handoff.md'), 1);
   sandbox.env.SESSION_RELAUNCH_MAX_HOPS = '2';
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -1230,7 +1271,7 @@ test('killer does not signal when a cancel lands after its freshness check', asy
   const loopId = String(process.pid);
   const signalPath = path.join(sandbox.root, 'target-signal');
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   // The preload runs inside the spawned killer: it cancels right after the freshness
   // guard has accepted the armed record.
@@ -1281,7 +1322,7 @@ test('killer logs a disarmed record before refusing a non-descendant target', as
       child.once('spawn', resolve);
       child.once('error', reject);
     });
-    await Promise.all([waitForSpawn(loopProcess), waitForSpawn(target)]);
+    await Promise.all([waitForSpawn(loopProcess), waitForTargetReady(target)]);
     const loopId = String(loopProcess.pid);
     createRelaunchRecord(sandbox, loopId);
     core.unarm({ loopId, env: sandbox.env, reason: 'test-disarmed' });
@@ -1323,7 +1364,7 @@ test('killer breaks a stale lock and proceeds', async (t) => {
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -2095,7 +2136,7 @@ test('killer records a timeout when the transcript vanishes while it waits', asy
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
   try {
@@ -2124,7 +2165,7 @@ test('killer survives one transient transcript stat failure and still signals', 
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = createTranscript(sandbox);
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   sandbox.env.SKILLED_LOOP_ID = loopId;
 
@@ -2172,7 +2213,7 @@ test('killer gives up when the transcript stays missing past the stat grace wind
   const signalPath = path.join(sandbox.root, 'target-signal');
   const transcriptPath = path.join(sandbox.repoRoot, 'transcript.jsonl');
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   sandbox.env.SKILLED_LOOP_ID = loopId;
 
@@ -2214,7 +2255,7 @@ test('two killers cannot both claim the same stale lock', async (t) => {
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startCountingTarget(sandbox, signalPath, 1500);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   sandbox.env.KILLER_LOCK_UNLINK_DELAY_MS = '400';
@@ -2251,7 +2292,7 @@ test('killer reclaims a takeover mutex whose recorded owner is dead', async (t) 
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2281,7 +2322,7 @@ test('killer leaves a takeover mutex to its live owner even when the directory i
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2312,7 +2353,7 @@ test('killer reclaims a takeover mutex whose live owner outlived the hold bound'
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2356,7 +2397,7 @@ test('killer sweeps old takeover and stale-lock leftovers but keeps a fresh one'
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const stalePrefix = `${lockPath(sandbox, loopId)}.takeover.stale-`;
@@ -2399,7 +2440,7 @@ test('killer reclaims a stale takeover directory that holds extra files', async 
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2431,7 +2472,7 @@ test('killer reclaims a stale takeover directory while its rename waits', async 
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2462,7 +2503,7 @@ test('killer releases a takeover directory that gained a stray file', async (t) 
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -2490,7 +2531,7 @@ test('killer leaves a takeover directory a contender replaced while it was held'
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2522,7 +2563,7 @@ test('killer leaves a replaced takeover directory even when its inode is reused'
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2554,7 +2595,7 @@ test('killer does not remove a takeover directory whose owner write lost the rac
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2587,7 +2628,7 @@ test('killer keeps a takeover directory a contender took over during an owner-wr
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2620,7 +2661,7 @@ test('killer restores a takeover directory swapped in after its ownership check'
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2651,7 +2692,7 @@ test('killer exits non-zero when the takeover owner cannot be read', async (t) =
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
@@ -2683,7 +2724,7 @@ test('killer keeps its result when the takeover removal throws', async (t) => {
   const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
   await new Promise((resolve) => deadOwner.once('exit', resolve));
   const target = startTarget(sandbox, signalPath);
-  await new Promise((resolve) => target.once('spawn', resolve));
+  await waitForTargetReady(target);
   createRelaunchRecord(sandbox, loopId);
   fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
@@ -2757,7 +2798,7 @@ for (const { label, ageMs } of [
     const signalPath = path.join(sandbox.root, 'target-signal');
     const transcriptPath = createTranscript(sandbox);
     const target = startTarget(sandbox, signalPath);
-    await new Promise((resolve) => target.once('spawn', resolve));
+    await waitForTargetReady(target);
     core.preparePending({
       loopId,
       handoffPath: path.join(sandbox.repoRoot, 'handoff.md'),
