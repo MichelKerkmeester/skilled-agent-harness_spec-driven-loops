@@ -76,6 +76,11 @@ DISPOSITION_PATH_CLASSES = (
     "equivalent_sync_orientation",
 )
 MANIFEST_EXCLUDED_SEGMENTS = {".git", ".opencode/specs"}
+# Discovery is case-sensitive: a lowercase readme.md is some other document, such
+# as the command file that creates READMEs.
+README_FILENAMES = ("README.md", "README.markdown")
+SPEC_FOLDER_SEGMENT = re.compile(r"^\d{3}-")
+GITIGNORED_RUNTIME_EVIDENCE = "gitignored_runtime_path"
 
 KEY_ARTIFACTS_FILES = ("package.json", "SKILL.md")
 KEY_ARTIFACTS_DIRS = ("scripts", "lib", "src", "handlers", "tools", "tests", "configs", "templates")
@@ -162,6 +167,24 @@ def _orientation_has_overview_and_inventory(path: Path) -> bool:
     return bool(content[body_start:body_end].strip())
 
 
+def _is_named_fixture_part(part: str) -> bool:
+    """A folder named for what it fixes up, such as `rule-experiment-fixture`, is test input.
+
+    A numbered segment such as `001-goals-fixture` names a spec packet or phase,
+    so it stays in scope.
+    """
+    lower = part.lower()
+    return lower.endswith('-fixture') and not SPEC_FOLDER_SEGMENT.match(lower)
+
+
+def _has_readme_file(directory: Path) -> bool:
+    """Match README names exactly; a case-insensitive filesystem would accept readme.md."""
+    try:
+        return any(name in README_FILENAMES for name in os.listdir(directory))
+    except OSError:
+        return False
+
+
 def classify_path(repo_root: Path, path: Path) -> Optional[str]:
     """Return a named exclusion class for a durable path, if one applies."""
     relative = _relative_path(repo_root, path)
@@ -203,7 +226,7 @@ def classify_path(repo_root: Path, path: Path) -> Optional[str]:
         return 'generated_compiled_routing'
     if 'runs-archive' in text:
         return 'generated_archive'
-    if 'fixtures' in parts or 'fixture' in parts:
+    if 'fixtures' in parts or 'fixture' in parts or any(_is_named_fixture_part(part) for part in parts):
         return 'fixture_payload'
     if 'seed' in parts:
         return 'benchmark_seed'
@@ -226,7 +249,7 @@ def classify_path(repo_root: Path, path: Path) -> Optional[str]:
 
 def _is_durable_file(name: str) -> bool:
     path = Path(name)
-    return path.name not in {'README.md', 'readme.md'} and (
+    return path.name not in README_FILENAMES and (
         path.suffix.lower() in DURABLE_FILE_EXTENSIONS
         or path.name in {'Dockerfile', 'Makefile', 'SKILL.md'}
     )
@@ -295,7 +318,7 @@ def build_durable_manifest(repo_root: Path) -> Dict[str, Any]:
             prefix = '' if str(relative) == '.' else relative.as_posix() + '/'
             filenames = [name for name in filenames if prefix + name in tracked]
         durable_files = [name for name in filenames if _is_durable_file(name)]
-        has_readme = any(name.lower() in ('readme.md', 'readme.markdown') for name in filenames)
+        has_readme = any(name in README_FILENAMES for name in filenames)
         if len(durable_files) >= 5 or has_readme:
             directories.add('.' if str(relative) == '.' else relative.as_posix())
 
@@ -359,8 +382,7 @@ def manifest_reproduction(repo_root: Path, manifest_path: Optional[Path] = None)
             })
     for directory in sorted(frozen_set):
         directory_path = repo_root / directory
-        readme_exists = any((directory_path / name).is_file() for name in ('README.md', 'readme.md', 'README.markdown', 'readme.markdown'))
-        if readme_exists:
+        if _has_readme_file(directory_path):
             continue
         exclusion = classify_path(repo_root, directory_path)
         if exclusion:
@@ -527,9 +549,40 @@ def extract_references(content: str) -> Set[str]:
     return refs
 
 
-def resolve_reference_candidates(readme_path: Path, repo_root: Path, ref: str) -> List[Path]:
+def nearest_package_root(start: Path, repo_root: Path) -> Optional[Path]:
+    """Return the closest folder at or above start that holds a package.json, up to the repo root."""
+    root = repo_root.resolve()
+    current = start.resolve()
+    while True:
+        if (current / "package.json").is_file():
+            return current
+        if current == root or root not in current.parents:
+            return None
+        current = current.parent
+
+
+def reference_bases(readme_path: Path, repo_root: Path, ref: str) -> List[Path]:
+    """Return the literal paths a reference can name, before extension and index expansion.
+
+    A bare token such as `lib/config/` is also read from the nearest package root,
+    since package docs name paths the way the package's own tooling sees them. A
+    token that opens with `./` or `../` names a path from the README itself.
+    """
     raw = ref.strip()
     p = Path(raw)
+    if p.is_absolute():
+        return [p]
+    bases = [(readme_path.parent / p).resolve()]
+    if not raw.startswith(("./", "../")):
+        package_root = nearest_package_root(readme_path.parent, repo_root)
+        if package_root is not None:
+            bases.append((package_root / p).resolve())
+    bases.append((repo_root / p).resolve())
+    return bases
+
+
+def resolve_reference_candidates(readme_path: Path, repo_root: Path, ref: str) -> List[Path]:
+    raw = ref.strip()
     candidates: List[Path] = []
 
     def add_with_expansions(base: Path, original: str) -> None:
@@ -549,19 +602,8 @@ def resolve_reference_candidates(readme_path: Path, repo_root: Path, ref: str) -
         for index in INDEX_FILES:
             candidates.append(base / index)
 
-    if p.is_absolute():
-        add_with_expansions(p, raw)
-        seen: Set[str] = set()
-        uniq: List[Path] = []
-        for candidate in candidates:
-            key = str(candidate)
-            if key not in seen:
-                seen.add(key)
-                uniq.append(candidate)
-        return uniq
-
-    add_with_expansions((readme_path.parent / p).resolve(), raw)
-    add_with_expansions((repo_root / p).resolve(), raw)
+    for base in reference_bases(readme_path, repo_root, raw):
+        add_with_expansions(base, raw)
 
     seen: Set[str] = set()
     uniq: List[Path] = []
@@ -592,6 +634,85 @@ def classify_reference_status(readme_path: Path, repo_root: Path, ref: str) -> T
     return False, [str(c) for c in candidates]
 
 
+def git_ignored_paths(repo_root: Path, relative_paths: Iterable[str]) -> Set[str]:
+    """Return the repo-relative paths git ignores, asked in one batch.
+
+    A git failure returns nothing, so every reference stays broken rather than
+    being cleared on a guess.
+    """
+    paths = sorted(set(relative_paths))
+    if not paths:
+        return set()
+    try:
+        proc = subprocess.run(
+            ['git', '-C', str(repo_root), 'check-ignore', '-z', '--stdin'],
+            input=('\0'.join(paths) + '\0').encode('utf-8', 'surrogateescape'),
+            capture_output=True,
+            check=False,
+        )
+    except OSError:
+        return set()
+    # Exit 1 means none of the paths is ignored; anything above 1 is a git error.
+    if proc.returncode not in (0, 1):
+        return set()
+    return {item for item in proc.stdout.decode('utf-8', 'surrogateescape').split('\0') if item}
+
+
+def resolve_gitignored_references(repo_root: Path, per_file: List[Dict[str, Any]]) -> None:
+    """Move broken references that name a git-ignored path inside the repo to resolved.
+
+    A git-ignored path is a runtime artifact, such as a log, a state file or a
+    build output: it is absent from a clean checkout by design, not broken.
+    """
+    root = repo_root.resolve()
+    bases_by_ref: Dict[Tuple[int, str], List[str]] = {}
+    for index, item in enumerate(per_file):
+        readme = root / item["file"]
+        for broken in item["broken_references"]:
+            relative: List[str] = []
+            for base in reference_bases(readme, root, broken["reference"]):
+                try:
+                    rel = base.resolve().relative_to(root).as_posix()
+                except ValueError:
+                    continue
+                if rel not in ("", "."):
+                    relative.append(rel)
+            bases_by_ref[(index, broken["reference"])] = relative
+
+    # The parent is asked with a trailing slash, so a folder rule such as `logs/`
+    # matches it even when the folder is absent from this checkout.
+    def parent_of(rel: str) -> str:
+        return rel.rsplit("/", 1)[0] + "/" if "/" in rel else ""
+
+    asked = {rel for rels in bases_by_ref.values() for rel in rels}
+    asked |= {parent_of(rel) for rel in asked if parent_of(rel)}
+    ignored = git_ignored_paths(root, asked)
+    if not ignored:
+        return
+
+    # A broad rule such as `lib/**/*.js` matches any missing path, typos included,
+    # so the folder holding the path must exist or be ignored itself.
+    def is_runtime_path(rel: str) -> bool:
+        if rel not in ignored:
+            return False
+        parent = parent_of(rel)
+        return (root / parent).is_dir() or parent in ignored
+
+    for index, item in enumerate(per_file):
+        remaining: List[Dict[str, Any]] = []
+        for broken in item["broken_references"]:
+            hit = next((rel for rel in bases_by_ref.get((index, broken["reference"]), []) if is_runtime_path(rel)), None)
+            if hit is None:
+                remaining.append(broken)
+                continue
+            item.setdefault("resolved_references", []).append({
+                "reference": broken["reference"],
+                "evidence": GITIGNORED_RUNTIME_EVIDENCE,
+                "path": hit,
+            })
+        item["broken_references"] = remaining
+
+
 def find_readmes(repo_root: Path) -> List[Path]:
     """Find README files below every durable root without following symlinks."""
     readmes_by_realpath: Dict[str, Path] = {}
@@ -602,7 +723,7 @@ def find_readmes(repo_root: Path) -> List[Path]:
         if classify_path(repo_root, directory):
             continue
         for filename in filenames:
-            if filename.lower() not in ('readme.md', 'readme.markdown'):
+            if filename not in README_FILENAMES:
                 continue
             path = directory / filename
             if not path.is_file() or path.is_symlink():
@@ -982,6 +1103,7 @@ def main() -> int:
         write_lines(Path(args.inventory_out).resolve(), [str(p.relative_to(repo_root)) for p in readmes])
 
     per_file = [audit_readme_file(repo_root, readme, validator, args.document_type) for readme in readmes]
+    resolve_gitignored_references(repo_root, per_file)
     findings = generate_findings(repo_root, per_file)
 
     summary = {
@@ -991,6 +1113,7 @@ def main() -> int:
         "template_blocking_errors": sum(len(x["blocking_errors"]) for x in per_file),
         "template_warnings": sum(len(x["warnings"]) for x in per_file),
         "broken_references": sum(len(x["broken_references"]) for x in per_file),
+        "gitignored_runtime_references": sum(len(x.get("resolved_references", [])) for x in per_file),
         "missing_key_artifacts": sum(len(x["missing_key_artifacts"]) for x in per_file),
         "findings_p1": sum(1 for f in findings if f.priority == "P1"),
         "findings_p2": sum(1 for f in findings if f.priority == "P2"),

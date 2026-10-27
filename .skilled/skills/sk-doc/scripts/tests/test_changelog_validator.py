@@ -133,6 +133,20 @@ def test_id_quoted_in_a_code_span_is_not_warned(tmp_path: Path) -> None:
     assert "changelog_internal_id" not in _warnings(entry)
 
 
+def test_algorithm_names_are_not_internal_ids(tmp_path: Path) -> None:
+    text = COMPLETE_ENTRY + "\nHashes move from SHA-1 to SHA-256 and SHA-512; secrets use AES-256.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", text)
+
+    assert "changelog_internal_id" not in _warnings(entry)
+
+
+def test_decision_requirement_and_task_ids_still_warn(tmp_path: Path) -> None:
+    for label in ("ADR-001", "REQ-002", "CR-027", "T039"):
+        entry = _entry(tmp_path / label, "v1.2.0.0.md", COMPLETE_ENTRY + f"\nThis release closes {label}.\n")
+
+        assert "changelog_internal_id" in _warnings(entry), label
+
+
 def test_install_guides_and_fixture_trees_keep_their_handling() -> None:
     assert detect_document_type(".skilled/skills/example-skill/INSTALL-GUIDE.md", "", load_rules()) == "install_guide"
     assert should_exclude_path(".skilled/skills/example-skill/tests/fixtures/sample.md")[0] is True

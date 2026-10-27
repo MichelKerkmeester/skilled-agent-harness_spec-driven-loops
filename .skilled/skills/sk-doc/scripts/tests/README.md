@@ -66,6 +66,7 @@ Run the owning package test command from the nearest package boundary.
 
 | Path | Purpose |
 |---|---|
+| `test_audit_readmes_accuracy.py` | Regression tests for README audit reference resolution, git-ignored runtime paths and README discovery. |
 | `test_changelog_validator.py` | Regression tests for changelog document-type detection and validation. |
 | `test_extract_structure_regressions.py` | Regression tests for `extract_structure.py`. |
 | `test_feature_catalog_validation.py` | Unit test for the feature-catalog validation-table check. |

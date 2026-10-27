@@ -1615,7 +1615,11 @@ def validate_changelog_frontmatter(
 
 # The changelog contract omits internal labels and test accounting from prose.
 # Released entries already carry some, so the check advises rather than blocks.
-CHANGELOG_INTERNAL_ID = re.compile(r'\b[A-Z]{2,4}-\d{3}\b')
+# Algorithm names such as SHA-256 and AES-256 share the letters-dash-digits shape
+# of a decision or requirement id, so they are carved out by prefix.
+CHANGELOG_INTERNAL_ID = re.compile(
+    r'\b(?!(?:SHA|AES|RSA|CRC|DES)-)(?:[A-Z]{2,4}-\d{3}|T\d{3})\b'
+)
 CHANGELOG_TEST_COUNT = re.compile(r'\b\d+\s+(?:cases|tests|PASS lines)\b')
 # An inline code span quotes a literal, such as the comment a fix stopped accepting.
 CHANGELOG_CODE_SPAN = re.compile(r'`[^`\n]*`')
