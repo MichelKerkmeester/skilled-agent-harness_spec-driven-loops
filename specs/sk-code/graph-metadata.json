@@ -18,7 +18,8 @@
     "sk-code/012-sk-code-skilled-rename",
     "sk-code/013-private-surface-skills",
     "sk-code/014-code-modes-research",
-    "sk-code/015-quality-agnostic-gate"
+    "sk-code/015-quality-agnostic-gate",
+    "sk-code/016-review-mode-followups"
   ],
   "manual": {
     "depends_on": [],

@@ -202,6 +202,9 @@ function findOrphans(expectedLinks) {
     if (!fs.existsSync(absoluteDir)) continue;
     for (const entry of fs.readdirSync(absoluteDir, { withFileTypes: true })) {
       if (entry.name === 'README.md' || entry.name === 'README.txt' || entry.name.startsWith('.')) continue;
+      // A local-* entry is private to one checkout and git-ignored, so it is neither
+      // drift nor an orphan to prune.
+      if (entry.name.startsWith('local-')) continue;
       // Nested trees (devin) hold one dir per item; flat trees hold files/symlinks.
       if (entry.isDirectory()) continue;
       // A runtime's own hand-authored native command is deliberately not a mirror.
