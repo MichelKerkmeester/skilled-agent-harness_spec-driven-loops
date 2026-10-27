@@ -1,34 +1,34 @@
 ---
-title: "CHG-002 -- Route a phase child to nested output"
-description: "This scenario validates phase-child topology for CHG-002. A phase child uses the packet-local nested generator and a deterministic changelog filename instead of global versioning."
-version: 1.0.0.3
+title: "CHG-002 -- Route a phase child to a global entry and refuse --nested"
+description: "This scenario validates phase-child topology for CHG-002. A phase-child source resolves to a global component entry, and a --nested request is refused because packet-local changelogs are deprecated."
+version: 1.0.1.0
 ---
 
-# CHG-002 -- Route a phase child to nested output
+# CHG-002 -- Route a phase child to a global entry and refuse --nested
 
-This document captures the operator contract for packet-local changelog placement.
+This document captures the operator contract for a phase-child source now that packet-local changelogs are deprecated.
 
 ## 1. OVERVIEW
 
-This scenario validates phase-child topology for `CHG-002`. It focuses on nested output and the exclusion of global version rules.
+This scenario validates phase-child topology for `CHG-002`. It focuses on resolving a phase child to a global component entry and on refusing `--nested`.
 
 ### Why This Matters
 
-A phase child is part of a larger packet. Its changelog records packet-local completion and must not look like a public component release. The nested generator selects a deterministic `changelog-<packet>-<phase>.md` path and uses spec-kit templates.
+Spec folders no longer get changelogs. A phase child used to route to a packet-local file under the phase parent's `changelog/` folder, which no reader looked at. Its work now belongs in the global entry for the component it touched, and a request for the old packet-local file must stop with a clear reason rather than write one.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `CHG-002` and confirm the nested route.
+Operators run the exact prompt and command sequence for `CHG-002` and confirm the global route and the refusal.
 
-- Objective: route a phase-child spec folder to packet-local nested output
-- Realistic user request: `Record the completed phase in its packet changelog. Do not make a global release for this phase.`
-- Prompt: `Create the packet-local changelog for this phase child. Detect the nested topology, use the spec-kit generator and report the deterministic output path. Do not calculate a global version.`
-- Expected execution process: the topology rules are read, the phase-child path is inspected, the nested generator is queried with `--json` and the phase template is used. The global component folder is not selected.
-- Expected signals: the output path is under the phase parent `changelog/` folder and uses the fixed `changelog-` prefix. No `vX.Y.Z.B` filename is proposed.
-- Desired user-visible outcome: a packet-local changelog at the path selected by the nested generator.
-- Pass/fail: PASS if nested mode and the deterministic path are evidenced. FAIL if global versioning is applied or the phase is written to a component folder.
+- Objective: route a phase-child spec folder to a global component entry and refuse `--nested`
+- Realistic user request: `Record the completed phase in its packet changelog.`
+- Prompt: `Create a changelog for this phase child with --nested. Report what the workflow does with --nested, then resolve the global component the phase touched and report the target path without writing it.`
+- Expected execution process: the topology rules are read, `--nested` is refused as deprecated, the phase child's changed paths are matched against `.skilled/changelog/` by whole path segment and the global target is reported. No file is written under `specs/**/changelog/`.
+- Expected signals: the run says packet-local changelogs are deprecated and offers a global entry. The proposed path is `.skilled/changelog/{component}/v{VERSION}.md` or a hub link such as `.skilled/changelog/sk-doc/create-frontmatter/`. The nested generator is not run with `--write`.
+- Desired user-visible outcome: a refusal of `--nested` and a resolved global target for the phase's work.
+- Pass/fail: PASS if `--nested` is refused, the target is a global component path and nothing is written under the spec folder. FAIL if a packet-local file is written or proposed, or the nested generator runs with `--write`.
 
 ---
 
@@ -36,37 +36,39 @@ Operators run the exact prompt and command sequence for `CHG-002` and confirm th
 
 ### Prompt
 
-- Prompt: `Create the packet-local changelog for this phase child. Detect the nested topology, use the spec-kit generator and report the deterministic output path. Do not calculate a global version.`
+- Prompt: `Create a changelog for this phase child with --nested. Report what the workflow does with --nested, then resolve the global component the phase touched and report the target path without writing it.`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CHG-002 | Route a phase child to nested output | Select nested mode and deterministic phase output | `Create the packet-local changelog for this phase child. Detect the nested topology, use the spec-kit generator and report the deterministic output path. Do not calculate a global version.` | 1. `agent: Read SKILL.md section 4 and references/topology-edge-cases.md` -> 2. `bash: test -d specs/sk-doc/001-authoring-surfaces` -> 3. `bash: node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js specs/sk-doc/001-authoring-surfaces --json` -> 4. `agent: State why no global version applies` | Step 1 names phase-child nested mode. Step 2 exits 0. Step 3 returns the generator's deterministic output path. Step 4 says nested output is not four-part versioned | Exact prompt, topology rule, target-directory output and exit status, generator JSON and exit status, nested-version explanation | PASS if the generator selects a packet-local path and global versioning is excluded. FAIL if a global component file or version is proposed | 1. Confirm the folder is a phase child. 2. Use the generator output as the path authority. 3. Remove any global version calculation |
+| CHG-002 | Route a phase child to a global entry and refuse --nested | Refuse `--nested` and resolve a global target for a phase child | `Create a changelog for this phase child with --nested. Report what the workflow does with --nested, then resolve the global component the phase touched and report the target path without writing it.` | 1. `agent: Read SKILL.md sections 3, 4 and 6 and references/topology-edge-cases.md` -> 2. `bash: test -d specs/sk-doc/049-sk-create-frontmatter/002-mode-scaffold` -> 3. `bash: ls -l .skilled/changelog/sk-doc/` -> 4. `bash: git status --porcelain` -> 5. `agent: State the refusal, the matched component and the global target path` -> 6. `bash: git status --porcelain` | Step 1 names the `--nested` refusal and global-only mode. Step 2 exits 0. Step 3 lists the hub links. Step 5 refuses `--nested` and names a `.skilled/changelog/` target. Step 6 matches step 4 | Exact prompt, the rules cited, the folder check exit status, the hub listing, the refusal text, the target path and both status snapshots | PASS if `--nested` is refused, the target is global and the status is unchanged. FAIL if a packet-local path is proposed or written, or the nested generator runs with `--write` | 1. Reread SKILL.md section 4 on deprecated packet-local changelogs. 2. Match changed paths by whole path segment. 3. Remove any `specs/**/changelog/` output the run created |
 
 ### Commands
 
-1. `agent: Read SKILL.md section 4 and references/topology-edge-cases.md`
-2. `bash: test -d specs/sk-doc/001-authoring-surfaces`
-3. `bash: node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js specs/sk-doc/001-authoring-surfaces --json`
-4. `agent: State why no global version applies`
+1. `agent: Read SKILL.md sections 3, 4 and 6 and references/topology-edge-cases.md`
+2. `bash: test -d specs/sk-doc/049-sk-create-frontmatter/002-mode-scaffold`
+3. `bash: ls -l .skilled/changelog/sk-doc/`
+4. `bash: git status --porcelain`
+5. `agent: State the refusal, the matched component and the global target path`
+6. `bash: git status --porcelain`
 
 ### Expected
 
-The phase-child topology selects nested mode. The generator resolves the packet-local output. The path uses the fixed `changelog-` prefix and phase suffix. The global `vX.Y.Z.B` contract is not used.
+The run refuses `--nested` and says packet-local changelogs are deprecated. The phase child resolves to the global component its changed paths touch, here the `sk-doc/create-frontmatter` link. No file is written under the spec folder, and the nested generator is not run with `--write`.
 
 ### Evidence
 
-Capture the prompt, topology references, target-directory output and exit status, generator JSON and exit status and the explanation for skipping global versioning.
+Capture the prompt, the rules cited, the folder check and its exit status, the hub listing, the refusal text, the target path and the git status before and after.
 
 ### Pass / Fail
 
-- **Pass**: nested mode is selected from the phase-child shape and the generator supplies the output path.
-- **Fail**: the run writes or proposes a global component version for the phase.
+- **Pass**: `--nested` is refused, the target is a global component path and the git status is unchanged.
+- **Fail**: the run writes or proposes a packet-local changelog for the phase.
 
 ### Failure Triage
 
-1. Confirm phase-child topology from the source path.
-2. Check the generator output instead of guessing a filename.
-3. Verify that no global version sequence was applied.
+1. Reread SKILL.md section 4 on deprecated packet-local changelogs.
+2. Match the phase's changed paths against `.skilled/changelog/` by whole path segment.
+3. Remove any file the run created under `specs/**/changelog/`.
 
 ---
 
@@ -83,9 +85,8 @@ Capture the prompt, topology references, target-directory output and exit status
 
 | File | Role |
 |---|---|
-| [`SKILL.md`](../../SKILL.md) | Nested mode detection and generator workflow |
-| [`references/topology-edge-cases.md`](../../references/topology-edge-cases.md) | Placement table and nested edge cases |
-| [`references/worked-examples.md`](../../references/worked-examples.md) | Packet-local entry shape |
+| [`SKILL.md`](../../SKILL.md) | The `--nested` refusal, the deprecation note and global target resolution |
+| [`references/topology-edge-cases.md`](../../references/topology-edge-cases.md) | Placement table with the deprecated packet-local rows |
 
 ---
 

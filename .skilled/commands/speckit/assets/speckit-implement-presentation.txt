@@ -106,7 +106,7 @@ Context refresh: [complete|pending]
 
 ```text
 SpecKit Implementation Complete - All 9 steps executed.
-Artifacts: tasks.md, implementation-summary.md, nested changelog when applicable, continuity refreshed in canonical spec docs
+Artifacts: tasks.md, implementation-summary.md, continuity refreshed in canonical spec docs
 STATUS=OK PATH=[spec-folder-path]
 ```
 

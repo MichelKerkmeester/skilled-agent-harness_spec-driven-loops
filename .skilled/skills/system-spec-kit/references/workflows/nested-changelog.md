@@ -1,6 +1,6 @@
 ---
 title: Nested Changelog Workflow
-description: Generate packet-local changelog files for spec roots and phase child folders.
+description: Deprecated packet-local changelog generator, kept to render the existing spec root and phase changelogs.
 trigger_phrases:
   - "nested changelog workflow"
   - "packet-local changelog"
@@ -8,26 +8,28 @@ trigger_phrases:
   - "changelog evidence stack"
 importance_tier: normal
 contextType: implementation
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # Nested Changelog Workflow
 
-Packet-local changelogs capture completion state inside a spec folder instead of the global `.skilled/changelog/` release stream.
+> **Deprecated.** Spec folders no longer get changelogs. `/speckit:implement` and `/speckit:complete` no longer write one, and `/create:changelog` writes only to `.skilled/changelog/`. The generator stays and prints a deprecation notice on stderr, so the existing packet changelogs can still be rendered. Those files stay and still validate. The rest of this page is reference for them and for the generator, not an instruction to write new ones.
+
+Packet-local changelogs captured completion state inside a spec folder instead of the global `.skilled/changelog/` release stream.
 
 ---
 
 ## 1. OVERVIEW
 
-Generate packet-local changelog files for spec roots and phase child folders.
+Re-render the existing packet-local changelog files for spec roots and phase child folders.
 
 ---
 
 ## 2. WHEN TO USE
 
-- A root spec folder needs a local changelog history beside `implementation-summary.md`
-- A phase child folder needs a packet-local changelog entry in the parent `changelog/` folder
-- `/speckit:complete` or `/speckit:implement` finishes work on a root packet or phase child
+Do not use it for new work. Write new changelog entries with `/create:changelog`, which writes to `.skilled/changelog/`.
+
+- Re-render an existing packet changelog under `specs/**/changelog/` after its packet docs changed
 
 ---
 
@@ -76,7 +78,7 @@ It does not read `acceptance-criteria.md` or `decision-record.md`. It derives su
 - `templates/changelog/root.md`
 - `templates/changelog/phase.md`
 
-Use these templates for packet-local changelog generation. Do not reuse the global `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md` for nested packet output.
+The deprecated generator renders existing packet changelogs from these templates. Do not reuse the global `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md` for nested packet output.
 
 ---
 

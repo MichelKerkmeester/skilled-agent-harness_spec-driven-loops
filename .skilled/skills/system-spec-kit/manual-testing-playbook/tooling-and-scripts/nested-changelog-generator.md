@@ -1,7 +1,7 @@
 ---
 title: "458 -- Nested changelog generator"
 description: "This scenario validates the nested changelog generator for `458`. It focuses on the identity phrase a phase entry carries, the lookup that finds it and frontmatter that parses for a quoted title."
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 # 458 -- Nested changelog generator
@@ -14,6 +14,8 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the nested changelog generator for `458`. It focuses on the identity phrase a phase entry carries, the lookup that finds it and frontmatter that parses for a quoted title.
 
+The generator is deprecated. Spec folders no longer get changelogs, and new entries go to `.skilled/changelog/` through `/create:changelog`. The generator stays so the existing packet changelogs can still be rendered, and every run prints a deprecation notice on stderr. This scenario checks that notice and that the render is otherwise unchanged.
+
 ### Why This Matters
 
 The identity phrase is the only trigger phrase a packet changelog carries, so it is how Gate 1 and `/speckit:search` find the entry. Frontmatter that fails to parse would stop the trigger index from publishing at all.
@@ -24,13 +26,13 @@ The identity phrase is the only trigger phrase a packet changelog carries, so it
 
 Operators run the exact prompt and command sequence for `458` and confirm the expected signals without contradictory evidence.
 
-- Objective: confirm that a phase entry's phrase names its packet and phase, that a lookup for it ranks the entry first and that a quoted title renders valid frontmatter
+- Objective: confirm that the generator prints its deprecation notice on stderr, that a phase entry's phrase names its packet and phase, that a lookup for it ranks the entry first and that a quoted title renders valid frontmatter
 - Real user request: `Is the changelog for phase 12 of the create-goal packet findable, and would a title with quotes in it break the file?`
 - Prompt: `Check the nested changelog for phase 012 of specs/sk-doc/060-create-goal-mode: derive it without writing, confirm its identity phrase matches the committed entry and ranks it first in a lookup, then run the generator tests.`
 - Expected execution process: the generator derives the phase payload with `--json`, the committed entry's frontmatter is read, the phrase is looked up in the trigger index and the vitest suite runs.
-- Expected signals: the payload's mode is `phase` and its phrase is `create goal mode goal send and dedupe changelog`. The committed entry declares that phrase, and the lookup returns the entry first with an exact match. The suite passes, including the case that renders a quoted title.
+- Expected signals: stderr carries the deprecation notice and stdout still parses as JSON. The payload's mode is `phase` and its phrase is `create goal mode goal send and dedupe changelog`. The committed entry declares that phrase, and the lookup returns the entry first with an exact match. The suite passes, including the case that renders a quoted title.
 - Desired user-visible outcome: a verdict that the entry is findable by its packet and phase, with the evidence.
-- Pass/fail: PASS if the phrase matches in the payload and the entry, the lookup ranks the entry first and the suite passes. FAIL if the phrase differs, the lookup misses the entry or a test fails.
+- Pass/fail: PASS if stderr carries the notice, the phrase matches in the payload and the entry, the lookup ranks the entry first and the suite passes. FAIL if the notice is missing or lands on stdout, the phrase differs, the lookup misses the entry or a test fails.
 
 ---
 
@@ -49,16 +51,16 @@ Operators run the exact prompt and command sequence for `458` and confirm the ex
 
 ### Expected
 
-Step 1 prints `"mode": "phase"`, the output path `specs/sk-doc/060-create-goal-mode/changelog/changelog-060-012-goal-send-and-dedupe.md` and the identity phrase `create goal mode goal send and dedupe changelog`, and writes nothing. Step 2 shows that phrase as the entry's only trigger phrase. Step 3 returns the entry first with `matchClass` `exact` and score 1. Step 4 passes every case, including `renders frontmatter that parses and pastes every value literally`.
+Step 1 writes the notice `nested-changelog.js is deprecated: spec folders no longer get changelogs.` and the pointer to `/create:changelog` on stderr. Its stdout is the same JSON payload as before the deprecation. It prints `"mode": "phase"`, the output path `specs/sk-doc/060-create-goal-mode/changelog/changelog-060-012-goal-send-and-dedupe.md` and the identity phrase `create goal mode goal send and dedupe changelog`, and writes nothing. Step 2 shows that phrase as the entry's only trigger phrase. Step 3 returns the entry first with `matchClass` `exact` and score 1. Step 4 passes every case, including `renders frontmatter that parses and pastes every value literally`.
 
 ### Evidence
 
-Capture the payload's mode, output path and phrase, the entry's frontmatter, the first lookup result and the suite's summary line with its exit status.
+Capture the stderr notice, the payload's mode, output path and phrase, the entry's frontmatter, the first lookup result and the suite's summary line with its exit status.
 
 ### Pass / Fail
 
-- **Pass**: the phrase matches in the payload and the entry, the lookup ranks the entry first and the suite passes.
-- **Fail**: the phrases differ, a test fails or the lookup misses the entry or ranks another document first.
+- **Pass**: stderr carries the deprecation notice, the phrase matches in the payload and the entry, the lookup ranks the entry first and the suite passes.
+- **Fail**: the notice is missing or lands on stdout, the phrases differ, a test fails or the lookup misses the entry or ranks another document first.
 
 ### Failure Triage
 

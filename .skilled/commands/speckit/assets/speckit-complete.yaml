@@ -1241,7 +1241,6 @@ workflow:
     - Validate tests pass and coverage meets requirements
     - Confirm implementation follows technical plan
     - Generate implementation-summary.md
-    - Generate packet-local nested changelog when the target is a spec root or phase child
     - Update all task status to completed
     - Verify staging if environment provided
     summary_document:
@@ -1250,21 +1249,6 @@ workflow:
       canonical_template: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
       inline_scaffold_key: implementation_summary_md
       writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
-    nested_changelog:
-      # Narrative preconditions, moved from `when:` because these are
-      # human-readable folder-shape criteria, not mechanical BooleanExpr predicates.
-      applies_when:
-      - "Spec folder is a spec root under specs/ or .opencode/specs/"
-      - "Spec folder is a phase child under a parent spec folder"
-      generator:
-        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
-        templates:
-        - .skilled/skills/system-spec-kit/templates/changelog/root.md
-        - .skilled/skills/system-spec-kit/templates/changelog/phase.md
-      evidence_sources: [implementation-summary.md, tasks.md, acceptance-criteria.md, decision-record.md, spec.md]
-      output_rules:
-        root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
-        phase: "[PARENT_SPEC_FOLDER]/changelog/changelog-<packet>-<phase-folder>.md"
     verification_summary:
       acceptance_verification:
         required: true
@@ -1280,7 +1264,7 @@ workflow:
     completion_checkpoint:
       enforcement: HARD_BLOCK
       before_marking_complete: |
-        VERIFY: implementation-summary.md exists with all required sections → IF packet-local changelog applies, write it via nested-changelog.js → THEN mark complete
+        VERIFY: implementation-summary.md exists with all required sections → THEN mark complete
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
       failure_action: "Create implementation-summary.md before proceeding"
     checkpoint:

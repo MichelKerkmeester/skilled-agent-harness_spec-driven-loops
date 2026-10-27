@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate nested changelogs",
+      "phase 25 deprecate nested changelogs",
+      "deprecate nested changelogs plan",
+      "deprecate nested changelogs tasks",
+      "deprecate nested changelogs acceptance criteria",
+      "deprecate nested changelogs goal",
+      "deprecate nested changelogs implementation summary"
+    ],
+    "key_topics": [
+      "deprecate",
+      "nested",
+      "changelogs",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "speckit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/commands/create/changelog.md",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+      "runtime/cli/tests/nested-changelog.vitest.ts",
+      "runtime/cli/spec-folder/README.md",
+      "scratch/baseline/cli-suite.txt",
+      "scratch/after/cli-suite.txt",
+      "runtime/data/trigger-index.json",
+      "runtime/cli/spec-folder/nested-changelog.ts",
+      "templates/README.md",
+      "templates/changelog/README.md",
+      "templates/CONTRACT.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "changelog.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec-folder/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-suite.txt",
+        "kind": "file",
+        "path": "scratch/baseline/cli-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "CONTRACT.md",
+        "kind": "doc",
+        "path": "templates/CONTRACT.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/speckit:implement` and `/speckit:complete` run `nested-changelog.js --write` when a packet closes, and `create.sh` writes a \"refresh the matching file in ../changelog/\" line into every phase child",
+    "created_at": "2026-10-27T12:15:04Z",
+    "last_save_at": "2026-10-27T14:33:58.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5db7d6abf02b0bf903e46848fa5f399ef0eca6f02a05d0145cd3e5643e0130d7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed1756e9abd2700604c2b25241d135aa55478d8ac584d6c36725602a63586d9b",
+      "plan.md": "736541cbe050dac6d1a2699a7fe4427ad13dcb833e1e7a212fb30825428b21d0",
+      "tasks.md": "8269dcc4a720cf83971d416bd018ea3ad010ea2179201a5e76678f0796ae3be0",
+      "implementation-summary.md": "ae62047ab396e3f4603c87815f32cd38ccbd96b36ebc8ca9323782883f176110"
+    },
+    "last_active_at": null
+  }
+}

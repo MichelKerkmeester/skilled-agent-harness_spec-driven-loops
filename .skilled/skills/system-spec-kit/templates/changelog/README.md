@@ -1,6 +1,6 @@
 ---
 title: "Packet Changelog Templates"
-description: "Packet-local changelog templates for root specs and phase child folders."
+description: "Deprecated packet-local changelog templates, kept to re-render the existing root and phase changelogs."
 trigger_phrases:
   - "packet changelog templates"
   - "nested changelog templates"
@@ -13,7 +13,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`templates/changelog/` contains packet-local changelog templates generated inside spec folders. These templates summarize canonical packet docs and are separate from global release-note templates under `.skilled/changelog/`.
+> **Deprecated.** Spec folders no longer get changelogs. These templates stay only so the deprecated nested changelog generator can render the existing packet changelogs. New entries go to `.skilled/changelog/` through `/create:changelog`.
+
+`templates/changelog/` contains the templates for the packet-local changelogs that were generated inside spec folders. Those changelogs summarize canonical packet docs and are separate from global release-note templates under `.skilled/changelog/`.
 
 Current state:
 
@@ -79,7 +81,7 @@ Generation flow:
 |---|---|
 | `root.md` | Root spec folder changelog generation. |
 | `phase.md` | Phase child changelog generation. |
-| Changelog generator script | Reads canonical packet docs and applies one template. |
+| Changelog generator script (deprecated) | Reads canonical packet docs and applies one template. Prints a deprecation notice on stderr. |
 
 ---
 

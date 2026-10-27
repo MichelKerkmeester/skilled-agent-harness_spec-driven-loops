@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-25"
-version: 2.1.13.0
+version: 2.1.14.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -351,7 +351,7 @@ Renders a packet-local changelog for a spec root or phase from the packet's own 
 
 #### Current Reality
 
-`.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` writes the entry to the packet's `changelog/` folder and backs `/create:changelog` in nested mode.
+Deprecated. Spec folders no longer get changelogs, and `/create:changelog` writes new entries to `.skilled/changelog/` only. `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` stays so the existing packet changelogs can still be rendered, and every run prints a deprecation notice on stderr.
 
 #### Source Files
 

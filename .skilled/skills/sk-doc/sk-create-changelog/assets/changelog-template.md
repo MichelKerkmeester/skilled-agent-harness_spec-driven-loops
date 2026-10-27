@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.1.0.29
+version: 1.1.1.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -24,7 +24,7 @@ Two narrative formats for global component changelogs and their GitHub release n
 
 ### Usage
 
-The `/create:changelog` workflow reads this template at step 4. Section 5 picks the format. Packet-local changelogs use the spec-kit templates instead (section 7).
+The `/create:changelog` workflow reads this template at step 4. Section 5 picks the format. Packet-local changelogs are deprecated and no longer written (section 7).
 
 ---
 
@@ -243,15 +243,11 @@ The release title is the tag, an em dash and the editorial title, `v{VERSION} â€
 
 ---
 
-## 7. NESTED PACKET-LOCAL CHANGELOGS
+## 7. NESTED PACKET-LOCAL CHANGELOGS (DEPRECATED)
 
-Nested packet-local changelogs are a separate output mode for spec folders and phase children. **Do not reuse this template for them.** Root spec folders write to `changelog/changelog-<packet>-root.md` and phase children to `../changelog/changelog-<packet>-<phase-folder>.md`, through the generator:
+Spec folders no longer get changelogs, so no workflow writes a new file under `specs/**/changelog/`. A change recorded in a spec folder goes into a global entry for the component it touched, written from this template.
 
-```bash
-node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
-```
-
-The canonical templates are `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `phase.md` beside it. The global versioning rules do not apply to nested changelogs.
+Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md` files stay and still validate. The spec-kit nested generator remains only to render them and prints a deprecation notice. Do not reuse this template for them.
 
 ---
 
@@ -261,4 +257,4 @@ The canonical templates are `.skilled/skills/system-spec-kit/templates/changelog
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
 - [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 - [worked-examples.md](../references/worked-examples.md) - a filled-in v4-style entry with annotations
-- [nested-changelog.md](../../../system-spec-kit/references/workflows/nested-changelog.md) - nested packet-local changelog workflow
+- [nested-changelog.md](../../../system-spec-kit/references/workflows/nested-changelog.md) - the deprecated nested packet-local changelog workflow

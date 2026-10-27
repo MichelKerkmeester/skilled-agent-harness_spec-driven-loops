@@ -291,10 +291,10 @@
   {
     "command": "/create:changelog",
     "ownerMode": "sk-create-changelog",
-    "description": "Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.",
-    "argumentHint": "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]",
+    "description": "Create a global changelog entry. Topology-aware, optional GitHub release. :auto/:confirm.",
+    "argumentHint": "<spec-folder-or-component> [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]",
     "userIntent": {
-      "job": "I want to create a global or packet-local changelog with release notes.",
+      "job": "I want to create a global component changelog with release notes.",
       "ownedSignals": [
         "write release notes",
         "create a packet changelog",

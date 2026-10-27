@@ -8,7 +8,7 @@ trigger_phrases:
   - "rename surface taxonomy"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Rename Pattern — mechanical refactor template
@@ -149,5 +149,4 @@ See `.opencode/specs/skilled-agent-orchestration/z_archive/114-small-ai-model-op
 - [ ] Historical-surface rg returns SAME count as baseline-before
 - [ ] `validate.sh --strict <spec-folder>` exit 0
 - [ ] Parent metadata reconciled via `generate-context.js`
-- [ ] Packet-local changelog generated via `nested-changelog.js`
 - [ ] `git log --follow` traces renamed file back to original

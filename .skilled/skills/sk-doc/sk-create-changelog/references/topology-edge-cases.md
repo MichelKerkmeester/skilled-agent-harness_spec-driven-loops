@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog back dating"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # Changelog Topology and Edge Cases
@@ -26,19 +26,19 @@ Mode detection and component resolution are authoritative in [../SKILL.md](../SK
 
 ## 2. OUTPUT-MODE PLACEMENT
 
-Choose the output mode before thinking about version numbers.
+Every new entry is global. The packet-local rows record where existing files sit, and no workflow writes a new one.
 
 | Output Mode | Where It Writes | Versioned? | Use For |
 |---|---|---|---|
 | Global component changelog | `.skilled/changelog/{component}/v{VERSION}.md` | Yes | Public component release notes |
-| Packet-local root changelog | `{spec-folder}/changelog/changelog-<packet>-root.md` | No | A root spec folder's summary |
-| Packet-local phase changelog | `{phase-parent}/changelog/changelog-<packet>-<phase-folder>.md` | No | A phase child's summary |
+| Packet-local root changelog (deprecated) | `{spec-folder}/changelog/changelog-<packet>-root.md` | No | Existing files only. `--nested` is refused |
+| Packet-local phase changelog (deprecated) | `{phase-parent}/changelog/changelog-<packet>-<phase-folder>.md` | No | Existing files only. `--nested` is refused |
 
 ---
 
 ## 3. HUB VERSUS PACKET PLACEMENT
 
-A changelog for the users of a component goes global. A changelog for a spec packet's own completion trail goes packet-local. The folders under `.skilled/changelog/` are plain component names, except `skilled`, the framework release line, which the workflow writes to only when the operator names it. For ties between components, or no match at all, follow the selection rules in SKILL.md section 6 rather than guessing a folder.
+A changelog for the users of a component goes global. Spec packets no longer get their own changelog, so a packet's completed work, a phase child included, goes into the global entry for the component it touched. The folders under `.skilled/changelog/` are plain component names, except `skilled`, the framework release line, which the workflow writes to only when the operator names it. For ties between components, or no match at all, follow the selection rules in SKILL.md section 6 rather than guessing a folder.
 
 ---
 
@@ -56,7 +56,7 @@ The template and the command YAMLs share the v4 narrative contract. If a source 
 
 ## 6. OPTIONAL GITHUB RELEASE FLOW
 
-SKILL.md section 8 describes the release step: `skilled` only, tag `v{next_version}`, `git tag -a`, `git push origin {release_tag}` and `gh release create` with no draft stage. A packet-local changelog never publishes, because it has no repo-wide version to tag. What the command surface adds:
+SKILL.md section 8 describes the release step: `skilled` only, tag `v{next_version}`, `git tag -a`, `git push origin {release_tag}` and `gh release create` with no draft stage. What the command surface adds:
 
 - `publish_release` defaults to `false` in auto setup.
 - The startup prompt asks whether to create a tag and GitHub release when `--release` is not supplied.
@@ -71,6 +71,6 @@ Use `--release` only after the changelog path, component and version are resolve
 ## 7. RELATED
 
 - [README.md](README.md) - reference route-map
-- [worked-examples.md](worked-examples.md) - filled-in global and packet-local entries
+- [worked-examples.md](worked-examples.md) - filled-in global entries
 - [version-bump-rules.md](version-bump-rules.md) - choosing and calculating the global four-part version
 - [../SKILL.md](../SKILL.md) - authoritative topology (section 6), format contract (section 5) and release notes (section 8)

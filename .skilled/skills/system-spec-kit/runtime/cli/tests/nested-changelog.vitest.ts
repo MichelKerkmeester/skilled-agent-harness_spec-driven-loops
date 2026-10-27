@@ -11,10 +11,16 @@ import os from 'node:os';
 import path from 'node:path';
 
 import yaml from 'js-yaml';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { CONFIG } from '../core';
-import { buildNestedChangelogData, generateNestedChangelogMarkdown, writeNestedChangelog } from '../spec-folder/nested-changelog';
+import {
+  NESTED_CHANGELOG_DEPRECATION,
+  buildNestedChangelogData,
+  generateNestedChangelogMarkdown,
+  main,
+  writeNestedChangelog,
+} from '../spec-folder/nested-changelog';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -65,6 +71,32 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('nested changelog generator', () => {
+  it('warns on stderr that it is deprecated and still prints usage on stdout', () => {
+    const stderrWrite = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    const stdoutWrite = vi.spyOn(process.stdout, 'write').mockImplementation(() => true);
+
+    try {
+      main(['--help']);
+      // Stdout stays parseable for --json callers, so the notice goes to stderr.
+      expect(stderrWrite).toHaveBeenCalledWith(`${NESTED_CHANGELOG_DEPRECATION}\n`);
+      expect(stdoutWrite.mock.calls.map(([chunk]) => String(chunk)).join('')).toContain('Usage:');
+    } finally {
+      stderrWrite.mockRestore();
+      stdoutWrite.mockRestore();
+    }
+  });
+
+  it('warns that it is deprecated even when an argument is rejected', () => {
+    const stderrWrite = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+
+    try {
+      expect(() => main(['--mode', 'bogus'])).toThrow('Expected --mode auto|root|phase');
+      expect(stderrWrite).toHaveBeenCalledWith(`${NESTED_CHANGELOG_DEPRECATION}\n`);
+    } finally {
+      stderrWrite.mockRestore();
+    }
+  });
+
   it('builds a root changelog with phase coverage rollup', () => {
     const rootSpec = makeTempProjectRoot();
     const phaseSpec = path.join(rootSpec, '001-generator-foundation');

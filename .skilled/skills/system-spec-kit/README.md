@@ -60,7 +60,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 |---|---|
 | **Documentation levels** | four levels matched to task complexity, from the Level 1 baseline up to the Level 3+ governance set |
 | **Phase parents** | lean parent folders with the control-file trio and named child phase folders |
-| **Packet-local changelogs** | `changelog/` history written beside packet roots and direct child phases at closeout |
+| **Packet-local changelogs (deprecated)** | spec folders no longer get changelogs, and entries go to `.skilled/changelog/` through `/create:changelog` |
 | **Goal documents** | an optional `goal.md` addon binding a session to a durable objective, gated by a character budget |
 | **Validation** | the 42-rule registry with three strict-only rules gated behind `--strict` |
 | **Authoring** | one short card as the default load for the four writing intents, a placeholder gate that warns while a packet is Draft, and two read-only guards for examples and card sync |
@@ -209,7 +209,6 @@ specs/<track>/<###-feature-name>/
 ├── decision-record.md           # Architecture decisions (Level 3+)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
 ├── handover.md                  # Operator-facing session handoff for /speckit:resume
-├── changelog/                   # Packet-local changelog history for packet roots and phase parents
 └── scratch/                     # Temporary workspace files (gitignored)
 ```
 
@@ -279,7 +278,7 @@ Use `create.sh --phase` to create a parent with its first child in one step. Run
 
 ### Packet-Local Changelogs
 
-The `/speckit:implement` and `/speckit:complete` commands plus the nested changelog workflow can write packet history into a local `changelog/` directory when the target is a packet root or a direct child phase, using the canonical root and phase naming rules. Packet-local changelogs are additive, not a replacement for `implementation-summary.md`.
+Packet-local changelogs are deprecated. Spec folders no longer get changelogs, and `/speckit:implement` and `/speckit:complete` no longer write one. Changelogs live in `.skilled/changelog/` and in each skill's own `changelog/` folder, and `/create:changelog` writes them. The existing `changelog/` folders inside spec folders stay and still validate. The nested changelog generator stays too, prints a deprecation notice and can still render those files.
 
 ### Template Rendering
 

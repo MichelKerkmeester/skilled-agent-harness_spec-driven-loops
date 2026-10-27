@@ -7,7 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
-version: 2.0.0.0
+version: 2.0.1.0
 ---
 
 # Session recovery via /speckit:resume
@@ -50,7 +50,7 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 
 - Quick "what was I doing?" answer: stop after the recovery summary
 - Structured spec work: continue directly inside `/speckit:resume`
-- Broader historical analysis: run the ripgrep recipes over the packet tree and read the packet's `changelog/` and `implementation-summary.md` directly
+- Broader historical analysis: run the ripgrep recipes over the packet tree and read the packet's `implementation-summary.md` directly, plus its `changelog/` when an older packet still has one
 
 ---
 

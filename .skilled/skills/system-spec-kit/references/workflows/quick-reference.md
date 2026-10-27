@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -120,8 +120,9 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/speckit:save` - write the current session context into the packet's continuity documents
 - `/speckit:search` - retrieve prior context, decisions, and analysis by ripgrep over spec and skill docs
 
-**Nested changelog generator**
-- `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child
+**Nested changelog generator (deprecated)**
+- Spec folders no longer get changelogs. Write new entries to `.skilled/changelog/` with `/create:changelog`.
+- `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - re-render an existing packet changelog only, with a deprecation notice on stderr
 
 ### Create Spec Folder
 
@@ -522,7 +523,6 @@ The pointer is maintained automatically by the generator: a save into a child po
 | `create.sh --phase --phases N --phase-names a,b,c <description>` | Create a phase parent and named child phase folders |
 | `create.sh --phase --parent <parent> --phases N --phase-names a,b <description>` | Add named child phases to an existing parent spec |
 | `validate.sh <parent> --recursive` | Validate parent and all child phase folders |
-| `node .../nested-changelog.js <spec-folder> --write` | Write a packet-local root or phase changelog into the parent packet `changelog/` folder |
 
 ### Phase Quick Reference
 
@@ -540,7 +540,6 @@ The pointer is maintained automatically by the generator: a save into a child po
 ```
 specs/###-parent/
 ├── spec.md           # Phase Documentation Map
-├── changelog/        # Root + phase changelog artifacts
 ├── 001-phase-one/    # Independent child spec folder
 ├── 002-phase-two/
 └── 003-phase-three/

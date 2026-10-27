@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.12
+version: 1.6.1.0
 ---
 
 # Phase Definitions
@@ -195,7 +195,6 @@ This back-reference enables:
 - Navigation from child to parent
 - Validation of parent-child link integrity
 - Phase-aware context loading
-- A stable parent-relative location for packet-local phase changelog files
 
 ---
 
@@ -224,7 +223,6 @@ Phase-decomposed specifications follow a structured lifecycle:
    └── Each child phase validated independently
        └── Parent validates all children complete
        └── Cross-phase integration verified
-       └── Parent changelog/ captures root and phase closeout entries as needed
 ```
 
 ### Phase Status Values

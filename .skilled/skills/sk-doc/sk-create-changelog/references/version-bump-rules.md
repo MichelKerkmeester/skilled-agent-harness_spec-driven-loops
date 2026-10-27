@@ -9,7 +9,7 @@ trigger_phrases:
   - "four part semantic version changelog"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Changelog Version Bump Rules
@@ -20,7 +20,7 @@ Concrete four-part version choices and edge distinctions for global component ch
 
 ## 1. OVERVIEW
 
-Version bumps apply only to global component changelogs. Packet-local nested changelogs use deterministic filenames and are never versioned this way. This file adds examples to the bump table and auto-detection order in [../SKILL.md](../SKILL.md) section 4, which stay authoritative.
+Version bumps apply only to global component changelogs. Packet-local nested changelogs are deprecated, and the existing ones were never versioned this way. This file adds examples to the bump table and auto-detection order in [../SKILL.md](../SKILL.md) section 4, which stay authoritative.
 
 ---
 
@@ -56,6 +56,6 @@ A global component folder that exists but holds no versions starts at `v1.0.0.0`
 ## 6. RELATED
 
 - [README.md](README.md) - reference route-map
-- [worked-examples.md](worked-examples.md) - filled-in global and packet-local entries
+- [worked-examples.md](worked-examples.md) - filled-in global entries
 - [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts and release edge cases
 - [../SKILL.md](../SKILL.md) section 4 - authoritative bump table and auto-detection order

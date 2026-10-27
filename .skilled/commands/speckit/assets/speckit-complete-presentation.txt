@@ -139,7 +139,6 @@ Continue with first child ([first_child_folder])? [Y/n/review]
 ```text
 WORKFLOW CLOSEOUT
 Implementation summary: [exists|missing]
-Nested changelog: [written|not applicable|missing]
 Validation: [pass|fail]
 Continuity: [refreshed|pending]
 End workflow or refresh continuity first? [done|memory-save]
@@ -151,7 +150,7 @@ End workflow or refresh continuity first? [done|memory-save]
 
 ```text
 All 14 steps executed successfully.
-Artifacts: spec.md, plan.md, tasks.md, acceptance-criteria.md when Level 2+, implementation-summary.md, nested changelog when applicable, graph-metadata.json refreshed, continuity refreshed in canonical spec docs
+Artifacts: spec.md, plan.md, tasks.md, acceptance-criteria.md when Level 2+, implementation-summary.md, graph-metadata.json refreshed, continuity refreshed in canonical spec docs
 STATUS=OK PATH=[spec-folder-path]
 ```
 

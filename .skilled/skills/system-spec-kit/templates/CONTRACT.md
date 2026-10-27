@@ -5,7 +5,7 @@ trigger_phrases:
   - "template manifest"
   - "level contract manifest"
   - "spec-kit-docs json"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Template Manifest
@@ -107,4 +107,4 @@ Rendered output should match the intended public Level contract and must not lea
 | Document | Role |
 |---|---|
 | [Templates README](../README.md) | Parent template package overview. |
-| [Changelog templates](changelog/README.md) | Packet-local changelog template notes. |
+| [Changelog templates](changelog/README.md) | Deprecated packet changelog template notes. New entries go to `.skilled/changelog/` through `/create:changelog`. |

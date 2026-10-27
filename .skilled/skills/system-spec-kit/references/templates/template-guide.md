@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -70,7 +70,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
 - Level 2: baseline + verification sections
 - Level 3: Level 2 + architecture sections
 - Level 3+: Level 3 + governance sections
-- Nested packet changelog templates live in `templates/changelog/` and are consumed directly by the generator, not by the composition pipeline.
+- Nested packet changelog templates live in `templates/changelog/` and are consumed directly by the generator, not by the composition pipeline. Packet changelogs are deprecated, so these templates only re-render the existing files.
 
 > **Note:** Maintainers should use `inline-gate-renderer --level N --out-dir DIR file...` after modifying manifest templates to inspect rendered output before running validation tests.
 
@@ -91,8 +91,6 @@ Omit `--out-dir` to print the level-rendered content to STDOUT. Do not open raw 
 ### Level 1: Baseline Documentation (LOC guidance: <100)
 
 **Required Templates:** `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`
-
-**Optional completion artifact:** packet-local changelog via `templates/changelog/root.md` when a durable spec-local history is useful
 
 **Scaffold command:**
 ```bash
@@ -175,8 +173,6 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path
 ### Level 3: Full Documentation (LOC guidance: >=500)
 
 **Templates:** the Level 2 set; `decision-record.md` is a lazy add-on here as at every level
-
-**Recommended completion artifact for phased work:** packet-local changelog files generated from `templates/changelog/root.md` or `templates/changelog/phase.md`
 
 **Scaffold command:**
 ```bash

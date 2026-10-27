@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.6.0
+version: 2.7.7.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -219,14 +219,14 @@ All spec folders require an implementation summary that captures what was built:
 
 **Note:** `create.sh` scaffolds `implementation-summary.md` for Level 1 and above. `check-files.sh` skips it in the base required-doc loop and only enforces it once implementation has started — i.e. when `tasks.md` shows completed `[x]` items. At that point a missing `implementation-summary.md` is an ERROR.
 
-### Nested Packet Changelog (Recommended for phased work)
+### Nested Packet Changelog (Deprecated)
 
-Packet-local changelogs are not part of the required FILE_EXISTS contract, but they are recommended whenever a spec root or phase child needs a durable packet history beside `implementation-summary.md`.
+Packet-local changelogs are deprecated and are not part of the required FILE_EXISTS contract. Completion no longer writes one, and new changelog entries go to `.skilled/changelog/` through `/create:changelog`. The existing files stay and still validate at these paths:
 
-| Artifact | Typical Path | Created When |
-| --- | --- | --- |
-| Root nested changelog | `changelog/changelog-<packet>-root.md` | End of root-packet completion |
-| Phase nested changelog | `../changelog/changelog-<packet>-<phase-folder>.md` | End of phase completion |
+| Artifact | Path |
+| --- | --- |
+| Root nested changelog | `changelog/changelog-<packet>-root.md` |
+| Phase nested changelog | `../changelog/changelog-<packet>-<phase-folder>.md` |
 
 ### Examples
 

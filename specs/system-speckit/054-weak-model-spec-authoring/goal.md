@@ -162,6 +162,8 @@ and findings belong here.
 | 024 typed-command ambiguity | Done | option (d) by DeepSeek: flags 110 to 78 of 261, correct 202 kept, 0 top changes; typed /deep:research :auto ambiguous false; suite 150/150, 1253 tests; advisor 0.17.6.0 |
 | 024 rebase onto main | Done | main shipped an unrelated system-skill-advisor 0.17.6.0 first; this phase's release is 0.17.7.0 |
 | Release notes gap fix | Done | skilled v4.0.0.15 roll-up for the whole packet; advisor 0.17.7.0 now also records the typed-command bound and mode-suffix strip; packet root changelog covers 020-024; validate_document 0 issues on all three |
+| Phase 25 opened | In Progress | operator chose stop-generating on 2026-10-27; 64 packet changelogs, 3 workflow calls, 1 create.sh line |
+| Phase 25 closed | Complete | packet changelogs deprecated; suite 2241 passed 0 failed; AC Met |
 
 ### Deviations and findings
 

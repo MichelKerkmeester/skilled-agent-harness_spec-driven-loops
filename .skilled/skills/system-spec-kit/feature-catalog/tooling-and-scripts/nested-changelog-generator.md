@@ -1,12 +1,12 @@
 ---
 title: "Nested changelog generator"
-description: "Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title."
+description: "Deprecated. Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title."
 trigger_phrases:
   - "nested changelog generator"
   - "packet changelog identity phrase"
   - "nested-changelog.js"
   - "packet-local changelog"
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 # Nested changelog generator (nested-changelog.js)
@@ -15,7 +15,9 @@ version: 2.1.0.0
 
 Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title.
 
-A packet that has phases, or a phase inside one, records its history in the packet's own `changelog/` folder rather than in a component release. The generator reads the packet's spec, implementation summary, tasks and checklist and fills the root or phase template, so every entry has the same shape. `/create:changelog` calls it in nested mode.
+> **Deprecated.** Spec folders no longer get changelogs. `/create:changelog` writes new entries to `.skilled/changelog/` and no longer calls this generator. The generator stays so the existing packet changelogs can still be rendered, and every run prints a deprecation notice on stderr.
+
+A packet that had phases, or a phase inside one, recorded its history in the packet's own `changelog/` folder rather than in a component release. The generator reads the packet's spec, implementation summary, tasks and checklist and fills the root or phase template, so every entry has the same shape.
 
 ---
 

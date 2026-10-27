@@ -1,0 +1,8 @@
+{"timestamp":"2026-10-27T14:32:57.640Z","level":"warn","message":"fact_coercion_drop","component":"test","fieldPath":"facts","droppedCount":2,"dropReasonCounts":{"nullish":2}}
+
+ Test Files  191 passed | 3 skipped (194)
+      Tests  2241 passed | 20 skipped (2261)
+   Start at  15:18:57
+   Duration  841.88s (transform 1.99s, setup 460ms, import 4.24s, tests 825.86s, environment 7ms)
+
+rc=0

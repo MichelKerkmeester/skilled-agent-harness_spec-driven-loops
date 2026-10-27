@@ -664,10 +664,10 @@ workflow:
     checkpoint_confirm: true
 
   step_7_completion:
-    purpose: Generate implementation summary and packet-local nested changelog when applicable
+    purpose: Generate implementation summary
     level_requirement: "All levels (MANDATORY - do not skip)"
     enforcement_note: "MANDATORY for all levels. implementation-summary.md is a required file created after implementation completes."
-    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Generate packet-local nested changelog when the target is a spec root or phase child, Update all task status]
+    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status]
     pre_completion_validation:
       enforcement: MANDATORY
       outcomes: { success: "continue", user_error: "STOP and fix invocation", validation_error: "STOP and fix", system_error: "STOP and diagnose tooling or file I/O" }
@@ -677,13 +677,6 @@ workflow:
       canonical_template: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
       inline_scaffold_key: implementation_summary_md
       writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
-    nested_changelog:
-      generator:
-        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
-      evidence_sources: [implementation-summary.md, tasks.md, acceptance-criteria.md, decision-record.md, spec.md]
-      output_rules:
-        root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
-        phase: "[PARENT_SPEC_FOLDER]/changelog/changelog-<packet>-<phase-folder>.md"
     verification_summary:
       acceptance_verification:
         required: true
@@ -697,7 +690,7 @@ workflow:
     validation: implementation_complete
     completion_checkpoint:
       enforcement: HARD_BLOCK
-      before_marking_complete: "Verify implementation-summary.md exists with all required sections. If packet-local changelog applies, generate it before proceeding."
+      before_marking_complete: "Verify implementation-summary.md exists with all required sections."
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
     checkpoint:
       applies_to: confirm

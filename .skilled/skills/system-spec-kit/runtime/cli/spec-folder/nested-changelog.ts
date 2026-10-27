@@ -72,8 +72,12 @@ interface NestedChangelogData {
 // 3. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
+const NESTED_CHANGELOG_DEPRECATION = 'nested-changelog.js is deprecated: spec folders no longer get changelogs. Write release notes with /create:changelog, which writes to .skilled/changelog/.';
+
 const HELP_TEXT = `
 Usage: node nested-changelog.js <spec-folder> [options]
+
+Deprecated: spec folders no longer get changelogs. Use /create:changelog.
 
 Arguments:
   <spec-folder>       Spec folder path, phase child path, or bare spec folder name
@@ -800,8 +804,14 @@ function writeNestedChangelog(data: NestedChangelogData): string {
   return absoluteOutputPath;
 }
 
-function main(): void {
-  const options = parseArgs(process.argv.slice(2));
+function main(argv: string[] = process.argv.slice(2)): void {
+  // The generator is kept only so changelogs already on disk still render. Every
+  // run says so, --help and a rejected flag included, because a silent run reads
+  // as permission to generate a changelog nothing reads any more. It prints before
+  // parsing so a bad argument cannot skip it. Stderr keeps --json parseable.
+  process.stderr.write(`${NESTED_CHANGELOG_DEPRECATION}\n`);
+
+  const options = parseArgs(argv);
 
   if (options.help) {
     process.stdout.write(HELP_TEXT);
@@ -847,7 +857,9 @@ if (isMainModule(import.meta.url)) {
 // ───────────────────────────────────────────────────────────────────
 
 export {
+  NESTED_CHANGELOG_DEPRECATION,
   buildNestedChangelogData,
   generateNestedChangelogMarkdown,
+  main,
   writeNestedChangelog,
 };

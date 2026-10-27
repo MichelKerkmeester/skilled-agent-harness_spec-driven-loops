@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs",
+  "description": "Phase 25: deprecate-nested-changelogs",
+  "keywords": [
+    "phase",
+    "deprecate-nested-changelogs"
+  ],
+  "lastUpdated": "2026-10-27T12:15:05.796Z",
+  "specId": "025",
+  "folderSlug": "deprecate-nested-changelogs",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

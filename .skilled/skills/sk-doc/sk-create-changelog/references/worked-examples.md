@@ -10,7 +10,7 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.8
+version: 1.1.1.0
 ---
 
 # Changelog Worked Examples
@@ -108,37 +108,11 @@ The spec, plan and task templates consolidated into one shared core with level-g
 
 ---
 
-## 4. PACKET-LOCAL ENTRY
+## 4. PACKET-LOCAL ENTRY (DEPRECATED)
 
-Packet-local changelogs skip the global version sequence. Nested mode writes through the spec-kit generator and its root or phase template, which own this shape.
+Packet-local changelogs are deprecated, so there is no new entry to model here. Record a spec folder's work in a global entry for the component it touched, shaped like section 2 or section 3.
 
-```markdown
-# Changelog - sk-doc parent root
-
-This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and records the work needed to keep changelog creation topology-aware.
-
-## Summary
-
-- Added a dedicated creation packet for changelog authoring.
-- Kept the packet `SKILL.md` focused on the primary workflow.
-- Moved longer examples and pitfalls into the `references/` route-map and its concern files.
-
-## Changed Files
-
-| File | Change |
-|---|---|
-| `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` | New packet contract |
-| `.skilled/skills/sk-doc/sk-create-changelog/references/` | Supplemental reference set |
-
-## Validation
-
-- Confirmed the reference set is grounded in the existing changelog template and command YAMLs.
-```
-
-**Annotations**:
-
-- The shape belongs to `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `phase.md`, written by `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
-- The filename is deterministic, such as `changelog-<packet>-root.md` or `changelog-<packet>-<phase-folder>.md`, never a `vX.Y.Z.W.md` name.
+Existing files such as `changelog-<packet>-root.md` stay and still validate. The spec-kit nested generator remains only to render them.
 
 ---
 

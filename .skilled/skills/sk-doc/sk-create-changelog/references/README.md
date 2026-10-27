@@ -9,7 +9,7 @@ trigger_phrases:
   - "github release changelog option"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.9
+version: 1.1.1.0
 ---
 
 # create-changelog References. Overflow Map
@@ -28,7 +28,7 @@ Open a reference here when the workflow is clear but you need a filled-in exampl
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Worked examples**: a lean compact entry, an expanded excerpt and a packet-local entry, each annotated | [worked-examples.md](worked-examples.md) | Modeling a real entry rather than the blank template |
+| **Worked examples**: a lean compact entry and an expanded excerpt, each annotated, plus a note on deprecated packet-local entries | [worked-examples.md](worked-examples.md) | Modeling a real entry rather than the blank template |
 | **Version-bump rules**: concrete bumps, real sk-doc release shapes, the first entry and "major means breaking, not large" | [version-bump-rules.md](version-bump-rules.md) | The SKILL.md bump table is not concrete enough |
 | **Topology and edge cases**: placement, hub versus packet, back-dating, source conflicts and the release flow | [topology-edge-cases.md](topology-edge-cases.md) | Deciding where a changelog belongs, or handling a release or back-dating case |
 
@@ -46,10 +46,8 @@ Open a reference here when the workflow is clear but you need a filled-in exampl
 - `.skilled/commands/create/assets/create-changelog-confirm.yaml` - checkpointed workflow source
 - `.skilled/commands/create/assets/create-changelog-presentation.txt` - setup fields, release prompt and result display
 
-### Packet-local (nested) output
-- `.skilled/skills/system-spec-kit/templates/changelog/root.md` - packet-local root template
-- `.skilled/skills/system-spec-kit/templates/changelog/phase.md` - packet-local phase template
-- `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - packet-local generator
+### Packet-local (nested) output, deprecated
+- `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - the deprecated generator, which only renders existing packet-local files. No workflow writes a new one
 
 ### Real entry to model
 - `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar for the v4 narrative style

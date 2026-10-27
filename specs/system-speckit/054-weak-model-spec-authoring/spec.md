@@ -153,6 +153,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 22 | 022-advisor-routing-and-local-install/ | Close the four items left open after phase 21: the `/doctor:git hooks` routing test, the live `/deep:research :auto` near-tie, prompts naming the draft auto-repair, and a provision step that links private `local-*` commands into new worktrees | Complete |
 | 23 | 023-deep-review-remediation/ | Fix every finding of the 2026-10-27 two-lineage deep review: the placeholder fence and `--path` symlink P1s, the `--track` requirement wording, the recursive auto-repair doc gap, and the P2 record, doc and code findings | Complete |
 | 24 | 024-typed-command-ambiguity/ | Stop the advisor reporting a typed command's owner as ambiguous with a skill the graph seed bound held below it, so `/deep:research :auto` prompts route without an ambiguity flag | Complete |
+| 25 | 025-deprecate-nested-changelogs/ | Stop writing changelogs inside spec folders: the closing workflows, the phase scaffold and `/create:changelog` no longer create one, and the generator prints a deprecation notice | Complete |
 
 ### Phase Transition Rules
 
@@ -188,6 +189,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 021-ci-gate-regressions | 022-advisor-routing-and-local-install | The operator asked on 2026-10-27 to fix the four items phase 21's closeout left open | The advisor suite's one failing case, doctor-a-08, predates this packet and is recorded in the phase 21 closeout |
 | 022-advisor-routing-and-local-install | 023-deep-review-remediation | The operator asked on 2026-10-27 to fix every finding of the deep review run after phase 22 | `review/review-report.md` holds the adjudicated findings: 2 P1 and 9 P2 |
 | 023-deep-review-remediation | 024-typed-command-ambiguity | The operator asked on 2026-10-27 to act on the thin advisor margin once the live advisor showed `ambiguous: true` for the typed `/deep:research :auto` prompt | The live probe prints system-deep-loop 0.564694 and system-spec-kit 0.564693 with `ambiguous: true` |
+| 024-typed-command-ambiguity | 025-deprecate-nested-changelogs | The operator asked on 2026-10-27 to deprecate the changelogs inside spec folders, keeping release notes in `.skilled/changelog/` and the skills' own `changelog/` folders | 64 packet changelogs exist and both closing workflows call `nested-changelog.js --write` |
 <!-- /ANCHOR:phase-map -->
 
 ---

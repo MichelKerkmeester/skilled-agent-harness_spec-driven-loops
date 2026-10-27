@@ -115,7 +115,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 |---------|------------|---------|
 | Agent | `/create:agent <agent_name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Benchmark | `/create:benchmark <skill-or-mode> <spec-packet> --family=<family>` | Author or update family-keyed benchmark packages |
-| Changelog | `/create:changelog <spec-folder-or-component>` | Create a global or packet-local changelog entry from recent work |
+| Changelog | `/create:changelog <spec-folder-or-component>` | Create a global changelog entry in `.skilled/changelog/` from recent work |
 | Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |

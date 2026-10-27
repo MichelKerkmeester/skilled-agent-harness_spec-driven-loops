@@ -1972,9 +1972,6 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
 
 **Deliverables**:
 - [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->"
 
             PHASE_CHILD_ROWS="$_child_metadata_rows" PHASE_CHILD_CONTEXT="$_child_phase_context" perl -0pi -e '

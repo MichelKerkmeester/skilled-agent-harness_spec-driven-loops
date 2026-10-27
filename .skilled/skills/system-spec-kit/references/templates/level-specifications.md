@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -30,7 +30,7 @@ templates/
 ├── addons/                  # acceptance-criteria, debug-delegation, decision-record, goal, handover, research, timeline
 ├── packet-types/            # phase-parent.spec, research.spec, review-report, review.spec
 ├── examples/                # Rendered examples by Level
-├── changelog/               # Root and phase child changelog templates
+├── changelog/               # Deprecated packet changelog templates, kept to re-render existing files
 ├── scratch/                 # Disposable scratch folder templates
 ├── CONTRACT.md              # Manifest contract for gated templates
 ├── EXTENSION-GUIDE.md       # Guide to adding manifest document types
