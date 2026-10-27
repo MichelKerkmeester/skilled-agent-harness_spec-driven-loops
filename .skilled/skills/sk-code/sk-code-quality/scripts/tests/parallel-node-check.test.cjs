@@ -32,8 +32,10 @@ const test = require('node:test');
 const HELPER = path.resolve(__dirname, '..', 'lib', 'parallel-node-check.cjs');
 const STDERR_LIMIT = 4096;
 // More source than the record may keep, so the budget is spent before the message arrives
-// and a record that dropped the end of the stream would lose it.
-const LONG_LINE_CHARS = 20000;
+// and a record that dropped the end of the stream would lose it. It is also more than the
+// 64 KiB a macOS stdio channel takes at once under Node 22 and later, so a helper that read
+// the report through a pipe loses the message under every Node, not only under Node 20.
+const LONG_LINE_CHARS = 100000;
 const MESSAGE = /^(?:SyntaxError|Error): (.*)$/m;
 const POSIX = process.platform !== 'win32';
 
@@ -126,11 +128,23 @@ test('unit: node pool helper: a long one-line file keeps its message inside the 
   try {
     const file = path.join(dir, 'long.js');
     fs.writeFileSync(file, `var a = 1;${'x'.repeat(LONG_LINE_CHARS)} function(\n`);
-    const direct = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
+    // The reference report goes to a file, because a node child that exits while an async
+    // stderr write is still queued loses what the parent-created channel could not take at
+    // once, 8 KiB under a Node 20 parent and 64 KiB under Node 22 and later on macOS, and
+    // that loss is the one the helper must not inherit.
+    const errorFile = path.join(dir, 'direct.stderr');
+    const fd = fs.openSync(errorFile, 'w');
+    let direct;
+    try {
+      direct = spawnSync(process.execPath, ['--check', file], { stdio: ['ignore', 'ignore', fd] });
+    } finally {
+      fs.closeSync(fd);
+    }
+    const directStderr = fs.readFileSync(errorFile, 'utf8');
     assert.equal(direct.status, 1, 'the file was meant to fail node --check');
-    const expected = MESSAGE.exec(direct.stderr);
+    const expected = MESSAGE.exec(directStderr);
     assert.ok(expected, 'the direct check reported no message');
-    assert.ok(direct.stderr.length > STDERR_LIMIT, 'the file was meant to write past the record budget');
+    assert.ok(directStderr.length > STDERR_LIMIT, 'the file was meant to write past the record budget');
     const run = spawnSync(process.execPath, [HELPER, process.execPath, '1', '60000'], {
       input: JSON.stringify([file]),
       encoding: 'utf8',

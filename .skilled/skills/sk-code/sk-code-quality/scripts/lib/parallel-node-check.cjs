@@ -26,6 +26,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const { spawn } = require('node:child_process');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -61,18 +64,48 @@ function readInput() {
 // An entry is added when the child starts and dropped once it has been reaped.
 const liveChildren = new Set();
 
+// Each child writes its stderr to a file of its own in one folder this run owns, and the
+// folder goes when the process does. A pipe would lose the message: a node child that
+// exits while an async stderr write is still queued loses what the stdio channel its
+// parent created could not take at once, 8 KiB under a Node 20 parent and 64 KiB under
+// Node 22 and later on macOS, so a minified file's report ended inside the quoted source
+// line, before the `SyntaxError:` line the parent reads. Linux writes to pipes and sockets
+// synchronously and should not lose it. A write to a file completes before the call
+// returns, so the whole report is on disk when the child exits.
+let stderrDir = null;
+let stderrCount = 0;
+
+function stderrFile() {
+  stderrDir ??= fs.mkdtempSync(path.join(os.tmpdir(), 'parallel-node-check-'));
+  stderrCount += 1;
+  return path.join(stderrDir, `${stderrCount}.stderr`);
+}
+
+function removeStderrDir() {
+  if (stderrDir === null) return;
+  try { fs.rmSync(stderrDir, { recursive: true, force: true }); } catch {}
+  stderrDir = null;
+}
+
 // A child leads its own process group, so a negative pid reaches anything it started, the
-// same way the runner stops a repository command. Only its stderr is piped, because that
-// is the one stream the parent reads. Windows has no process groups and gives a detached
-// child its own console window, so there the child stays attached and hidden, and
-// stopChild falls back to killing the child itself.
-function startChild(binary, file) {
-  const child = spawn(binary, ['--check', file], {
-    stdio: ['ignore', 'ignore', 'pipe'],
-    shell: false,
-    detached: process.platform !== 'win32',
-    windowsHide: true,
-  });
+// same way the runner stops a repository command. Only its stderr is kept, because that is
+// the one stream the parent reads. The parent's copy of the file descriptor is closed once
+// the child holds its own. Windows has no process groups and gives a detached child its
+// own console window, so there the child stays attached and hidden, and stopChild falls
+// back to killing the child itself.
+function startChild(binary, file, errorFile) {
+  const fd = fs.openSync(errorFile, 'w');
+  let child;
+  try {
+    child = spawn(binary, ['--check', file], {
+      stdio: ['ignore', 'ignore', fd],
+      shell: false,
+      detached: process.platform !== 'win32',
+      windowsHide: true,
+    });
+  } finally {
+    fs.closeSync(fd);
+  }
   liveChildren.add(child);
   child.on('close', () => liveChildren.delete(child));
   child.on('error', () => liveChildren.delete(child));
@@ -108,9 +141,12 @@ function leaveOn(signal, code) {
 }
 leaveOn('SIGTERM', 143);
 leaveOn('SIGINT', 130);
-process.on('exit', stopAllChildren);
+process.on('exit', () => {
+  stopAllChildren();
+  removeStderrDir();
+});
 
-// A child's stderr arrives in chunks and is kept inside the budget from the first byte,
+// A child's stderr is read back in chunks and kept inside the budget from the first byte,
 // so no single file can grow the record past it. The head holds the line and column line
 // and the tail holds the message and the frames after it, which are the only lines the
 // parent reads.
@@ -135,24 +171,37 @@ function stderrCapture() {
 // the deadline stopped it. Killing at the deadline keeps one hung file from holding the
 // pool past the check's own budget, because the parent's deadline covers the whole
 // check rather than one child.
+// The stderr file is read once the child has gone, through a streaming decoder so a
+// character split across two chunks still decodes, and removed after it has been read.
+function readStderr(errorFile) {
+  return new Promise((resolve) => {
+    const stderr = stderrCapture();
+    const done = () => {
+      fs.rm(errorFile, { force: true }, () => resolve(stderr.text()));
+    };
+    const stream = fs.createReadStream(errorFile, { encoding: 'utf8' });
+    stream.on('data', (chunk) => stderr.push(chunk));
+    stream.on('end', done);
+    stream.on('error', done);
+  });
+}
+
 function checkFile(binary, file, timeoutMs) {
   return new Promise((resolve) => {
-    const child = startChild(binary, file);
-    const stderr = stderrCapture();
+    const errorFile = stderrFile();
+    const child = startChild(binary, file, errorFile);
     let timedOut = false;
     let settled = false;
     const finish = (status, error) => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      resolve({ file, status, stderr: stderr.text(), timedOut, error });
+      readStderr(errorFile).then((stderr) => resolve({ file, status, stderr, timedOut, error }));
     };
     const timer = setTimeout(() => {
       timedOut = true;
       stopChild(child);
     }, timeoutMs);
-    child.stderr.setEncoding('utf8');
-    child.stderr.on('data', (chunk) => stderr.push(chunk));
     child.on('error', (error) => finish(null, error.message));
     child.on('close', (code, signal) => {
       if (timedOut) return finish(null, 'timed out');

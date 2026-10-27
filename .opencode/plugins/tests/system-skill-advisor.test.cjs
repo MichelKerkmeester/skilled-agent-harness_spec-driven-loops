@@ -9,7 +9,7 @@
 const assert = require('node:assert/strict');
 const { EventEmitter } = require('node:events');
 const fs = require('node:fs');
-const { registerHooks } = require('node:module');
+const { register, registerHooks } = require('node:module');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
@@ -54,24 +54,51 @@ const NO_MATCH_FALLBACK_CONTEXT = `Advisor: no skill matched.${FALLBACK_DIRECTIV
 const SKIPPED_FALLBACK_CONTEXT = `Advisor: prompt skipped.${FALLBACK_DIRECTIVES_BLOCK}`;
 const OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT = 'Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json \'{"prompt":"<request>"}\' --format json' + FALLBACK_DIRECTIVES_BLOCK;
 
-const MODULE_STUBS = new Map([
-  ['./lib/tool-identity.js', 'export const tool = (definition) => definition;'],
-  ['@modelcontextprotocol/sdk/client/index.js', 'export class Client {}'],
-  ['@modelcontextprotocol/sdk/client/stdio.js', 'export class StdioClientTransport {}'],
-]);
+// A stub replaces one import specifier with inline module source. A stub that names a
+// parentURL replaces the specifier only for imports made by that one module.
+function findModuleStub(stubs, specifier, parentURL) {
+  return stubs.find((stub) => stub.specifier === specifier
+    && (stub.parentURL === null || stub.parentURL === parentURL)) ?? null;
+}
 
-registerHooks({
-  resolve(specifier, context, nextResolve) {
-    const source = MODULE_STUBS.get(specifier);
-    if (source !== undefined) {
-      return {
-        url: `data:text/javascript,${encodeURIComponent(source)}`,
-        shortCircuit: true,
-      };
-    }
-    return nextResolve(specifier, context);
-  },
-});
+// The suite needs the same import stubs on every Node the advisor supports. The
+// synchronous in-thread hooks of `module.registerHooks` exist only from Node 22.15
+// and 23.5, so older releases get the same resolve rule through `module.register`,
+// whose hooks run off the main thread and therefore receive the stubs as data. The
+// stub modules themselves still evaluate on the main thread, so a stub that writes
+// to `globalThis` reaches the test either way.
+function stubModuleResolution(entries) {
+  const stubs = entries.map(({ specifier, parentURL = null, source }) => ({
+    specifier,
+    parentURL,
+    url: `data:text/javascript,${encodeURIComponent(source)}`,
+  }));
+  if (typeof registerHooks === 'function') {
+    registerHooks({
+      resolve(specifier, context, nextResolve) {
+        const stub = findModuleStub(stubs, specifier, context.parentURL);
+        return stub ? { url: stub.url, shortCircuit: true } : nextResolve(specifier, context);
+      },
+    });
+    return;
+  }
+  const hooksSource = `
+const findModuleStub = ${findModuleStub.toString()};
+let stubs = [];
+export function initialize(data) { stubs = data; }
+export async function resolve(specifier, context, nextResolve) {
+  const stub = findModuleStub(stubs, specifier, context.parentURL);
+  return stub ? { url: stub.url, shortCircuit: true } : nextResolve(specifier, context);
+}
+`;
+  register(`data:text/javascript,${encodeURIComponent(hooksSource)}`, { data: stubs });
+}
+
+stubModuleResolution([
+  { specifier: './lib/tool-identity.js', source: 'export const tool = (definition) => definition;' },
+  { specifier: '@modelcontextprotocol/sdk/client/index.js', source: 'export class Client {}' },
+  { specifier: '@modelcontextprotocol/sdk/client/stdio.js', source: 'export class StdioClientTransport {}' },
+]);
 
 let pluginModulePromise;
 
@@ -281,17 +308,7 @@ export const readdirSync = (...args) => fs.readdirSync(...args);
 export const realpathSync = (...args) => fs.realpathSync(...args);
 export const statSync = (...args) => fs.statSync(...args);
 `;
-    registerHooks({
-      resolve(specifier, context, nextResolve) {
-        if (specifier === 'node:fs' && context.parentURL === pluginUrl) {
-          return {
-            url: `data:text/javascript,${encodeURIComponent(stubSource)}`,
-            shortCircuit: true,
-          };
-        }
-        return nextResolve(specifier, context);
-      },
-    });
+    stubModuleResolution([{ specifier: 'node:fs', parentURL: pluginUrl, source: stubSource }]);
     return import(pluginUrl);
   })();
   return signatureProbePluginPromise;

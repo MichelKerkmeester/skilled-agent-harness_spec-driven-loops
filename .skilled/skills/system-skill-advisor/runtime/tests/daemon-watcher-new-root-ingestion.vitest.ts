@@ -237,7 +237,13 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
     const watcher = createSkillGraphWatcher({
       workspaceRoot: root,
       watchFactory: (paths, watchOptions) => {
-        const fsWatcher = realWatch(paths, watchOptions);
+        // FSEvents on macOS can lag several seconds while fseventsd is busy, longer than
+        // this case waits, while stat polling sees a new folder within a poll or two.
+        // Linux keeps the native watcher the daemon uses in production.
+        const fsWatcher = realWatch(
+          paths,
+          process.platform === 'darwin' ? { ...watchOptions, usePolling: true, interval: 50 } : watchOptions,
+        );
         fsWatcher.on('addDir', (dirPath: unknown) => {
           if (typeof dirPath === 'string' && dirPath.includes('.armed-probe-')) probeSeen = true;
         });
