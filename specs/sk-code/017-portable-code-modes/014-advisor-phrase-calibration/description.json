@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-code/017-portable-code-modes/014-advisor-phrase-calibration",
+  "description": "Advisor phrase calibration: an exact declared multi-word phrase beats repeated generic one-word hits",
+  "keywords": [
+    "advisor",
+    "phrase",
+    "calibration",
+    "exact",
+    "declared",
+    "multi-word",
+    "beats",
+    "repeated",
+    "generic",
+    "one-word",
+    "hits"
+  ],
+  "lastUpdated": "2026-10-27T22:30:26.710Z",
+  "specId": "014",
+  "folderSlug": "advisor-phrase-calibration",
+  "parentChain": [
+    "sk-code",
+    "017-portable-code-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

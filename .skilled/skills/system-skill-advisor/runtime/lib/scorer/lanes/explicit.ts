@@ -6,7 +6,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
-import { phraseSpecificity, skillNameVariants, tokenizePrompt } from '../text.js';
+import { phraseSpecificity, skillNameVariants, tokenize, tokenizePrompt } from '../text.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -374,8 +374,18 @@ export function scoreExplicitLane(
       }
     }
     if (docTarget) continue;
+    // A bare word declared both as an intent signal and as a keyword counts once.
+    // Scoring it once per field let a generic word such as `css` reach the lane
+    // cap and outrank a skill that declares the exact phrase the prompt typed.
+    // A multi-word phrase declared in both fields keeps both counts: it is
+    // specific, and shipped routes rest on that weight.
+    const scoredSingleWords = new Set<string>();
     for (const phrase of [...skill.intentSignals, ...skill.keywords]) {
       const normalized = phrase.trim().toLowerCase();
+      if (tokenize(normalized, true).length <= 1) {
+        if (scoredSingleWords.has(normalized)) continue;
+        scoredSingleWords.add(normalized);
+      }
       const bareSlash = normalized.startsWith('/') && !/\s/.test(normalized);
       if (hasPlainMention(bareSlash ? slashMasked : lower, phrase)) {
         push(

@@ -1634,6 +1634,11 @@ def _apply_family_affinity(
                     boost_reasons.setdefault(member, []).append(f"!graph:family({family_name})")
 
 
+def _phrase_tokens(phrase: str) -> Set[str]:
+    """Return the word tokens of a normalized phrase."""
+    return set(re.findall(r'\b\w+\b', phrase))
+
+
 def _signal_match_boost(signal_phrase: str) -> float:
     """Weight exact graph-signal matches by phrase specificity."""
     token_count = max(1, len(re.findall(r'\b\w+\b', signal_phrase)))
@@ -1644,11 +1649,16 @@ def _apply_signal_boosts(
     prompt_lower: str,
     skill_boosts: Dict[str, float],
     boost_reasons: Dict[str, List[str]],
-) -> None:
-    """Apply routing boosts from graph intent signals and trigger phrases."""
+) -> Dict[str, Set[str]]:
+    """Apply routing boosts from graph intent signals and trigger phrases.
+
+    Returns the normalized signals each skill matched, so the keyword pass can
+    skip a phrase the skill declares in both places.
+    """
+    matched_by_skill: Dict[str, Set[str]] = {}
     graph = _load_skill_graph()
     if not graph:
-        return
+        return matched_by_skill
 
     for skill_name, signal_phrases in (graph.get("signals") or {}).items():
         if not isinstance(signal_phrases, list):
@@ -1675,6 +1685,9 @@ def _apply_signal_boosts(
         reasons = boost_reasons.setdefault(skill_name, [])
         for matched_signal in matched_signals:
             reasons.append(f"!{matched_signal}(signal)")
+        matched_by_skill[skill_name] = set(matched_signals)
+
+    return matched_by_skill
 
 
 def _apply_graph_conflict_penalty(recommendations: List[Dict[str, Any]]) -> None:
@@ -4712,7 +4725,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
             skill_boosts[skill] = skill_boosts.get(skill, 0.0) + boost
             boost_reasons.setdefault(skill, []).append("!ambiguous-code-problem")
 
-    _apply_signal_boosts(prompt_lower, skill_boosts, boost_reasons)
+    matched_signals_by_skill = _apply_signal_boosts(prompt_lower, skill_boosts, boost_reasons)
 
     # Graph-derived boosts: transitive relationships and family affinity
     _apply_graph_boosts(skill_boosts, boost_reasons)
@@ -4746,6 +4759,17 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         for variant in matched_variants:
             boost_reasons[skill_name].append(f"!{variant}(explicit)")
 
+    # The words of every multi-word signal each skill matched in this prompt.
+    phrase_words_by_skill = {
+        skill_name: {
+            word
+            for signal in signals
+            if len(_phrase_tokens(signal)) > 1
+            for word in _phrase_tokens(signal)
+        }
+        for skill_name, signals in matched_signals_by_skill.items()
+    }
+
     for skill_name, config in skills.items():
         variants = set(config.get("variants", set())) or _build_variants(skill_name)
         # A write verb aimed at the skill's own doc file makes it the edit
@@ -4753,10 +4777,26 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         if _targets_own_doc_file(prompt_lower, variants):
             continue
         keyword_variants = set(config.get("keyword_variants", set()))
+        # A bare-word keyword the skill also declares as a graph signal already
+        # scored in the signal pass. When another skill matched an exact
+        # multi-word signal holding that word, boosting the repeat would let one
+        # generic word outrank the skill that declares the phrase the prompt
+        # typed, so it is skipped. A repeat with no such rival, and any
+        # multi-word repeat, keeps its boost: this scale is tuned on them.
+        already_scored = matched_signals_by_skill.get(skill_name, set())
+        rival_phrase_words: Set[str] = set().union(*(
+            words for other, words in phrase_words_by_skill.items() if other != skill_name
+        ))
+
+        def _repeats_word_of_rival_phrase(variant: str) -> bool:
+            words = _phrase_tokens(variant)
+            return variant in already_scored and len(words) == 1 and words <= rival_phrase_words
+
         matched_keywords = sorted({
             variant
             for variant in keyword_variants
-            if _has_plain_mention(prompt_lower, variant)
+            if not _repeats_word_of_rival_phrase(variant)
+            and _has_plain_mention(prompt_lower, variant)
         })
         if not matched_keywords:
             continue

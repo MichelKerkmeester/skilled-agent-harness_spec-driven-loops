@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scoringInstant": "2026-10-11T00:00:00Z",
+  "scoringInstant": "2026-10-27T00:00:00Z",
   "entries": [
     {
       "id": "harder:4798f04a4216",
@@ -770,6 +770,17 @@
       "nativeTop": "sk-code",
       "reason": "reviewed 2026-10-11: native now reads a request to write a test about a deep-review phrase as code work and reaches the sk-code gold; local still fires system-deep-loop on the phrase",
       "approvedAt": "2026-10-11"
+    },
+    {
+      "id": "harder:c2182871dbf3",
+      "corpus": "harder",
+      "prompt": "help me with markdown notes in this repo",
+      "gold": "mcp-tooling",
+      "promptHash": "sha256:c2182871dbf3469742409a781147d0bb8fcbbc72f3841261460c22dfef50e880",
+      "localTop": "none",
+      "nativeTop": "mcp-tooling",
+      "reason": "reviewed 2026-10-27: local abstains at strict thresholds (sk-doc 0.79 on markdown, mcp-tooling 0.78 on its declared phrase markdown notes) with or without the bare-word repeat skip; native routes to the declaring hub",
+      "approvedAt": "2026-10-27"
     }
   ]
 }

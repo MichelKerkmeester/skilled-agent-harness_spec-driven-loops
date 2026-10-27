@@ -2440,6 +2440,76 @@ def test_private_skill_discovery_trust():
             os.environ["SPECKIT_PRIVATE_SKILL_ROOTS"] = original_roots
 
 
+def test_declared_phrase_specificity():
+    """An exact declared phrase outranks a bare word one skill declares twice."""
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+    except Exception as exc:
+        fail_test("T243-SA-030: declared phrase specificity", f"load_failed:{exc}")
+        return
+
+    # The generic surface declares two bare words both as SKILL.md keywords and
+    # as graph intent signals, the shape an outside repository's surface often
+    # has. Each hub declares one exact two-word phrase and nothing else.
+    fixtures = (
+        ("fixture-generic-surface", "Fixture surface for front-end work.", ["browser", "css"], ["browser", "css"]),
+        ("fixture-automation-hub", "Fixture hub for automation work.", [], ["browser agent"]),
+        ("fixture-design-hub", "Fixture hub for style capture.", [], ["css extraction"]),
+    )
+    original_skills_dir = advisor.SKILLS_DIR
+    original_sqlite_path = advisor.SKILL_GRAPH_SQLITE_PATH
+    original_skill_graph = advisor._SKILL_GRAPH
+    original_skill_graph_source = advisor._SKILL_GRAPH_SOURCE
+    original_command_bridges = advisor.COMMAND_BRIDGES
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            for name, description, keywords, signals in fixtures:
+                directory = os.path.join(tmpdir, name)
+                os.makedirs(directory)
+                with open(os.path.join(directory, "SKILL.md"), "w", encoding="utf-8") as handle:
+                    handle.write(f"---\nname: {name}\ndescription: {description}\n---\n")
+                    if keywords:
+                        handle.write(f"<!-- Keywords: {', '.join(keywords)} -->\n")
+                    handle.write(f"\n# {name}\n")
+                with open(os.path.join(directory, "graph-metadata.json"), "w", encoding="utf-8") as handle:
+                    json.dump({"schema_version": 2, "skill_id": name, "intent_signals": signals}, handle)
+            advisor.SKILLS_DIR = tmpdir
+            advisor.SKILL_GRAPH_SQLITE_PATH = os.path.join(tmpdir, "absent.sqlite")
+            advisor._SKILL_GRAPH = {
+                "schema_version": 1,
+                "skill_count": len(fixtures),
+                "families": {"fixture": [name for name, _, _, _ in fixtures]},
+                "adjacency": {},
+                "signals": {name: signals for name, _, _, signals in fixtures},
+                "conflicts": [],
+                "topology_warnings": {},
+            }
+            advisor._SKILL_GRAPH_SOURCE = "json"
+            advisor.COMMAND_BRIDGES = {}
+            advisor.get_skills(force_refresh=True)
+
+            for case_id, prompt, hub in (
+                ("T243-SA-030a", "browser agent", "fixture-automation-hub"),
+                ("T243-SA-030b", "css extraction", "fixture-design-hub"),
+            ):
+                ranked = advisor.analyze_request(prompt)
+                top = ranked[0]["skill"] if ranked else None
+                summary = [(rec["skill"], rec["confidence"], rec["reason"]) for rec in ranked[:2]]
+                if top == hub:
+                    ok(f"{case_id}: an exact declared phrase outranks a bare word declared twice ({prompt})")
+                else:
+                    fail_test(f"{case_id}: an exact declared phrase outranks a bare word declared twice ({prompt})", f"ranked={summary}")
+    except Exception as exc:
+        fail_test("T243-SA-030: declared phrase specificity", str(exc))
+    finally:
+        advisor.SKILLS_DIR = original_skills_dir
+        advisor.SKILL_GRAPH_SQLITE_PATH = original_sqlite_path
+        advisor._SKILL_GRAPH = original_skill_graph
+        advisor._SKILL_GRAPH_SOURCE = original_skill_graph_source
+        advisor.COMMAND_BRIDGES = original_command_bridges
+        advisor.get_skills(force_refresh=True)
+
+
 # ───────────────────────────────────────────────────────────────
 # 6. MAIN
 # ───────────────────────────────────────────────────────────────
@@ -2456,6 +2526,7 @@ def main():
     test_private_skill_conflict_declarations()
     test_private_skill_link_trust()
     test_private_skill_discovery_trust()
+    test_declared_phrase_specificity()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

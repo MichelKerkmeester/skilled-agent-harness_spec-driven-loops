@@ -140,4 +140,28 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
     category: 'lexical-mis-route',
     reason: 'Design deliberation may match architecture/code planning; separate seats/convergence is council-owned.',
   },
+  {
+    prompt: 'delegate to opencode',
+    expectedSkill: 'cli-external-orchestration',
+    category: 'lexical-mis-route',
+    reason: 'sk-code declares the bare word opencode as both a keyword and a signal, while the executor hub declares the delegation phrase; the repeat must not outrank it.',
+  },
+  {
+    prompt: 'opencode cli',
+    expectedSkill: 'cli-external-orchestration',
+    category: 'lexical-mis-route',
+    reason: 'The bare word opencode repeats across sk-code fields, but the prompt names the OpenCode CLI executor.',
+  },
+  {
+    prompt: 'claude code review',
+    expectedSkill: 'cli-external-orchestration',
+    category: 'lexical-mis-route',
+    reason: 'Code review pulls toward sk-code, but Claude Code names the executor the review runs in.',
+  },
+  {
+    prompt: 'help me with markdown notes in this repo',
+    expectedSkill: 'mcp-tooling',
+    category: 'lexical-mis-route',
+    reason: 'Markdown pulls toward sk-doc, while mcp-tooling declares the exact phrase markdown notes in both fields.',
+  },
 ];
