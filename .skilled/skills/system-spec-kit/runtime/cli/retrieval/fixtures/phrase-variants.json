@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f862b54de4dc9cf215e6d9b85fcace571336f7bc497640a512b1b86d113dbda2",
+  "manifestHash": "4663df94b426f5d0631307fa13d4980734c6aad67f28129ce82e580fe660d5f2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16111,6 +16111,9 @@
     "changelog backfill tasks": [
       "changelog backfill tasks"
     ],
+    "changelog code span check": [
+      "changelog code span check"
+    ],
     "changelog corrections": [
       "changelog corrections"
     ],
@@ -25124,6 +25127,9 @@
     ],
     "comment hygiene durable why": [
       "comment hygiene durable why"
+    ],
+    "comment hygiene gate routing": [
+      "comment hygiene gate routing"
     ],
     "comment hygiene governance audit": [
       "comment hygiene governance audit"
@@ -54558,6 +54564,9 @@
     ],
     "injection selectivity": [
       "injection selectivity"
+    ],
+    "inline code omission": [
+      "inline code omission"
     ],
     "inline contradiction supersession warning": [
       "inline contradiction supersession warning"
@@ -96369,6 +96378,9 @@
     "sk doc 2 3 14 0": [
       "sk-doc 2.3.14.0"
     ],
+    "sk doc 2 3 15 0": [
+      "sk-doc 2.3.15.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -96713,6 +96725,9 @@
     ],
     "sk doc v2 3 14 0": [
       "sk-doc v2.3.14.0"
+    ],
+    "sk doc v2 3 15 0": [
+      "sk-doc v2.3.15.0"
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
@@ -106044,6 +106059,9 @@
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
+    "system skill advisor 0 17 4 0": [
+      "system-skill-advisor 0.17.4.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -106232,6 +106250,9 @@
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
+    ],
+    "system skill advisor v0 17 4 0": [
+      "system-skill-advisor v0.17.4.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -110424,6 +110445,9 @@
     ],
     "typed design evidence": [
       "typed design evidence"
+    ],
+    "typed doctor target routing": [
+      "typed doctor target routing"
     ],
     "typed error classes": [
       "typed error classes"
