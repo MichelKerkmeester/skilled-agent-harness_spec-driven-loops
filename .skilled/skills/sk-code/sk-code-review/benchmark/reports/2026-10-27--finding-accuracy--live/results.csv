@@ -1,0 +1,5 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CR-025,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,,100,PASS,P0 SQL injection found at users.js:5; final-line check passed
+CR-026,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,,100,PASS,P1 off-by-one found at paginate.js:5; final-line check passed
+CR-027,sk-code-review,live,,finding-accuracy,,llmgateway/deepseek-v4.1-flash-1017,,0,FAIL,first failing stage: clean control raised a P1 (NaN bounds at clamp.js:5) and ended REQUESTED_CHANGES

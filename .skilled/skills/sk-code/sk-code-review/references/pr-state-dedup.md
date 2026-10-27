@@ -9,7 +9,7 @@ trigger_phrases:
   - "commented no changes status"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.2
+version: 1.6.0.0
 ---
 
 # PR-State Content-Hash Dedup (M-1)
@@ -33,9 +33,10 @@ signature         = sha256(commit_subject + "\u001f" + diff_content_hash)
 
 ```bash
 BASE="origin/main"
-DIFF_HASH=$(git diff $BASE...HEAD | sha256sum | awk '{print $1}')
-SUBJECT=$(git log $BASE...HEAD --format=%s | head -1)
-SIGNATURE=$(echo -n "$SUBJECT"$'\x1f'"$DIFF_HASH" | sha256sum | awk '{print $1}')
+SCOPE=""   # optional pathspec, such as packages/api; empty means the whole repository
+DIFF_HASH=$(git diff $BASE...HEAD ${SCOPE:+-- "$SCOPE"} | sha256sum | awk '{print $1}')
+SUBJECT=$(git log $BASE...HEAD --format=%s ${SCOPE:+-- "$SCOPE"} | head -1)
+SIGNATURE=$(printf '%s\x1f%s' "$SUBJECT" "$DIFF_HASH" | sha256sum | awk '{print $1}')
 ```
 
 ## Cache Format
@@ -44,7 +45,8 @@ SIGNATURE=$(echo -n "$SUBJECT"$'\x1f'"$DIFF_HASH" | sha256sum | awk '{print $1}'
 
 The cache lives in the reviewing user's cache directory, outside every reviewed repository. Its one side effect is this file. The gate never creates a file or folder in the repository it reviews.
 
-- `<repo-ref>` = `sha256(git remote get-url origin).slice(0, 12)`
+- `<repo-ref>` = `sha256(<repo identity>).slice(0, 12)`, where `<repo identity>` is the output of `git remote get-url origin`. When the repository has no `origin` remote, `<repo identity>` falls back to `git rev-parse --show-toplevel`, the absolute path of the repository root, so a local-only repository still gets a stable key
+- With a pathspec scope, `<repo-ref>` = `sha256(<repo identity> + "\u001f" + <pathspec>).slice(0, 12)`, so each scoped package keeps its own cache file
 - One JSON object per line (JSONL format)
 - File is append-only with periodic pruning
 
@@ -53,6 +55,18 @@ The cache lives in the reviewing user's cache directory, outside every reviewed 
 ```json
 {"signature": "<sha256-hex-64>", "timestamp": "<ISO-8601>", "prev_sha": "<full-commit-sha>"}
 ```
+
+## Pathspec Scope
+
+The scope is optional. With no pathspec, the whole repository is one scope, which is the behavior every earlier cache entry was written under.
+
+When a review targets one package of a monorepo, pass that package path as the pathspec. The same pathspec then goes to every command the gate runs:
+
+- `git diff <base-ref>...HEAD -- <pathspec>` for `diff_content_hash`
+- `git log <base-ref>...HEAD --format=%s -- <pathspec>` for `commit_subject`
+- the `<repo-ref>` hash above
+
+A change outside the package then leaves that package's signature unchanged, and a change inside it no longer matches a whole-repository entry.
 
 ## Retention
 
@@ -82,3 +96,4 @@ After every **full review** that reaches the final status line, write the curren
 - The user cache directory sits outside every reviewed repository, so reviewing a foreign repository leaves no folder in it, and deleting the cache folder resets the gate
 - `<repo-ref>` deduplication supports multiple remotes / forks without collision
 - JSONL format allows line-level append and simple head/tail operations for retention
+- The root-path fallback changes when the repository folder moves or is cloned to a new path. The worst case is one cache miss and one full review, never a skipped review

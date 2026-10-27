@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.1.0
+version: 2.3.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -58,7 +58,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
 | LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
-| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `.github/workflows/`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `deploy workflow`, `release workflow`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
+| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `deploy workflow`, `release workflow`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
 
 ### Scoring algorithm
 
@@ -249,7 +249,7 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
-    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "deploy workflow", "release workflow", "turn off the ci", "turn on the ci", "ci review workflow"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "deploy workflow", "release workflow", "turn off the ci", "turn on the ci", "ci review workflow"]},
 }
 
 RESOURCE_MAP = {

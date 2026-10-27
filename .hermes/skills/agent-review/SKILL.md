@@ -264,6 +264,8 @@ When reviewer consistently scores agent output < 50:
 
 **Report order.** Every review, in any format in this section, runs in this order: the summary, the findings numbered once across the P0, P1 and P2 groups, the removal or iteration plan, the next steps, the optional `AGENT_IO_RESULT` block, the `Not checked:` line, one blank line, and last the `Review status:` line as the absolute final line.
 
+**Summary agreement.** When a `sk-code-quality` run verdict is handed to the review, treat it as input evidence only: report `Quality gate evidence: present` in the summary, or `absent` when none was given, and still run every baseline check. When a summary carries an `Overall assessment` line, its value names the same status as the final `Review status:` line, and the mode's final-line checker fails a report where the two disagree.
+
 All reports follow structured markdown. Key sections per format:
 
 ### PR Review Report

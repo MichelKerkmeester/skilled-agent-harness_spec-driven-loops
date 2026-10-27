@@ -193,6 +193,18 @@ test('a CI workflow prompt bundles the CI surface', () => {
   assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-ci']);
 });
 
+// The CI vocabulary must count a workflow path once. Counted twice, the CI
+// surface outscores the review mode by more than the ambiguity delta and a
+// path-only review drops the review mode.
+test('a path-only workflow review bundles the review mode with the CI surface', () => {
+  for (const prompt of ['review .github/workflows/ci.yml', 'review this GitHub Actions workflow']) {
+    const route = resolveRoute('sk-code', prompt);
+    assert.equal(route.action, 'route', prompt);
+    assert.equal(route.selectionKind, 'surfaceBundle', prompt);
+    assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-ci'], prompt);
+  }
+});
+
 // A matrix, a ruleset, a cache key, a fail-fast check, a concurrency group or a
 // workflow timeout also names non-CI code, so the CI surface keys on the GitHub
 // Actions form of each phrase and these prompts must stay off it.

@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.1.0
+version: 1.9.2.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -371,6 +371,7 @@ Required output contract:
 **Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]
 **Baseline used**: [sk-code (`sk-code-review`)]
 **Surface evidence used**: [detected surface labels in order, such as `<specific surface>, SKILLED` or `SKILLED` | UNKNOWN]
+**Quality gate evidence**: [present | absent]
 
 ## Findings
 
@@ -395,6 +396,10 @@ Required output contract:
 
 Not checked: [one line naming what mattered but could not be checked, and why, or "nothing material"]
 ```
+
+`Quality gate evidence` reads `present` when a `sk-code-quality` run verdict was handed to the review as input, and `absent` otherwise. Either value leaves every baseline check in place. The verdict is input evidence only, so no check is skipped because the gate already ran it, and no gate count renumbers a finding.
+
+The `Overall assessment` value names the same status as the final `Review status:` line. `scripts/check-review-final-line.js` fails a report whose two values disagree.
 
 After reporting findings, request explicit next action before any implementation follow-up.
 
@@ -503,9 +508,21 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 
 ## 7. INTEGRATION POINTS
 
-- Primary review baseline for `@review` agents in `.skilled/agents/review.md`.
+- Primary review baseline for the runtime's review agent (`@review`), wherever that runtime keeps its agent definitions.
 - Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
 - Complements, but does not replace, sibling ownership: the surface packets (`sk-code-skilled`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.
+
+### User-Authored Modes
+
+A repository can add its own mode to the sk-code hub, such as a security surface for its auth code. This is the review side of that mode.
+
+**What a security surface supplies.** It registers as a surface packet (`packetKind: "surface"`, `backendKind: "evidence-base"`) with its own `surfaceDetection` block, router vocabulary and a tie-break slot ahead of the fallback surface. It supplies read-only evidence: the standards and checklists to load, the markers that place a path inside it, and the verification commands for the code it owns. It never supplies a severity table, a status value or findings of its own.
+
+**What a consuming workflow may rely on.** When a request scores both this mode and the surface, the hub returns a surface bundle with this mode first and the surface after it. The review then names the surface's label in `Surface evidence used`, applies the surface's style, process and verification guidance under the precedence matrix in section 2, and keeps its own `P0`/`P1`/`P2` findings, report shape and final status line. A caller parses the report the same way whichever surface was loaded.
+
+**What it may not change.** The Extension Floors in section 4 bind every user mode. A surface may add checks beside a floor and may raise one, and it may never lower, skip or reword one.
+
+The playbook scenario `CR-028` replays a user security surface through both routing stages.
 
 ---
 
@@ -515,7 +532,7 @@ Start with `references/quick-reference.md`, then load task-specific doctrine, as
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md`, which applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
+Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with the sk-doc document validator in playbook mode, `validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`, where the playbook path is relative to this packet and the validator path is wherever sk-doc is installed. Playbook mode applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
 
 ---
 
@@ -534,7 +551,8 @@ Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=
 
 **Cache storage:**
 - Path: `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`, in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is this file, and deleting it resets the gate.
-- `<repo-ref>` is computed as `sha256(git remote get-url origin).slice(0, 12)`
+- `<repo-ref>` is computed as `sha256(<repo identity>).slice(0, 12)`, where `<repo identity>` is `git remote get-url origin`. A repository with no `origin` remote falls back to `git rev-parse --show-toplevel`, the repository root path, so a local-only repository still gets a stable key. A moved folder changes that key, and the worst case is one cache miss and a full review.
+- An optional pathspec scopes the gate to one monorepo package: the same pathspec goes to the `git diff` and `git log` calls above, and `<repo-ref>` becomes `sha256(<repo identity> + "\u001f" + <pathspec>).slice(0, 12)`, so each package keeps its own signature and cache file. With no pathspec the whole repository is one scope. [references/pr-state-dedup.md](../../../.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md) holds the commands.
 - Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
 - Retention: keep last **100 entries** per repo-ref, prune older entries on write
 

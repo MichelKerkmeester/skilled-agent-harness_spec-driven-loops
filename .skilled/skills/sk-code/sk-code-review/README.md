@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.4.0
+version: 1.7.5.0
 ---
 
 # sk-code-review mode
@@ -72,6 +72,7 @@ The advisor prints the recommended skill route when confidence lands at or above
 **Overall assessment**: REQUESTED_CHANGES
 **Baseline used**: sk-code (sk-code-review)
 **Surface evidence used**: SKILLED
+**Quality gate evidence**: absent
 
 ## Findings
 

@@ -1,7 +1,7 @@
 ---
 title: "review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
-version: 1.5.0.12
+version: 1.6.0.0
 ---
 
 # review: Manual Testing Playbook
@@ -29,14 +29,16 @@ Canonical package artifacts:
 - `cross-cli-orchestration/`
 - `efficiency-and-restraint/`
 - `intra-routing-recall/`
+- `finding-accuracy/`
+- `user-authored-modes/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 16 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 18 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, and a user-authored security surface replayed through both routing stages.
 
 ### Realistic Test Model
 
@@ -135,7 +137,7 @@ The release is cleared to ship only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`, both counted from the section 16 index).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`, both counted from the section 18 index).
 4. No unresolved blocking triage item remains.
 5. External CLI handbacks preserve review severity and evidence contracts.
 
@@ -149,7 +151,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-024 or CR-R01..CR-R07 (CR-019 is not assigned) |
+| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-028 or CR-R01..CR-R07 (CR-019 is not assigned) |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-opencode, cli-claude-code, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
@@ -164,7 +166,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks every file the section 16 index links.
+2. Per-feature structural sweep checks every file the section 18 index links.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
@@ -180,7 +182,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the review battery the section 16 index lists. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the review battery the section 18 index lists. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -743,7 +745,83 @@ Prompt: `Review this test suite for testing coverage, assertions, mocks, stubs, 
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. FINDING ACCURACY (CR-025..CR-027)
+
+This category covers 3 scenarios that review seeded files live and score whether the review finds the seeded defect at the right line and severity, or stays quiet on clean code. Each run records executor, model, duration and tokens.
+
+### CR-025 | Seeded SQL injection
+
+#### Description
+
+Live pre-commit review of a user lookup module that concatenates its email argument into SQL, which should surface the injection at the concatenation line.
+
+#### Scenario Contract
+
+Prompt: `Review this new user lookup module before I commit it.`
+
+Desired user-visible outcome: The review blocks the commit and tells the operator exactly which line interpolates untrusted input into SQL and how to fix it.
+
+#### Test Execution
+
+> **Feature File:** [CR-025](../manual-testing-playbook/finding-accuracy/seeded-sql-injection.md)
+
+### CR-026 | Seeded off-by-one
+
+#### Description
+
+Live review of a pagination helper whose start index ignores the documented 1-based page contract, which should surface the silently skipped first page.
+
+#### Scenario Contract
+
+Prompt: `Review this pagination helper before I commit it.`
+
+Desired user-visible outcome: The review blocks the commit and shows the operator which page silently loses rows and which expression fixes it.
+
+#### Test Execution
+
+> **Feature File:** [CR-026](../manual-testing-playbook/finding-accuracy/seeded-off-by-one.md)
+
+### CR-027 | Clean control
+
+#### Description
+
+Live review of a clamp helper with no seeded defect, which should stay quiet at blocking severity while P2 suggestions remain allowed.
+
+#### Scenario Contract
+
+Prompt: `Review this clamp helper before I commit it.`
+
+Desired user-visible outcome: The review lets the commit through, at most noting non-blocking polish, so the operator is not slowed by invented blockers.
+
+#### Test Execution
+
+> **Feature File:** [CR-027](../manual-testing-playbook/finding-accuracy/clean-control.md)
+
+---
+
+## 16. USER-AUTHORED MODES (CR-028)
+
+This category covers 1 scenario that adds a user security surface to an in-memory copy of the hub and replays a review request through both routing stages.
+
+### CR-028 | User security surface through both routing stages
+
+#### Description
+
+Two-stage routing check that a repository-added security surface reaches the review mode as supporting evidence while review stays primary, and reaches the surface alone for a non-review request.
+
+#### Scenario Contract
+
+Prompt: `Review the session token handler for security issues.`
+
+Desired user-visible outcome: A repository-added security surface reaches review as supporting evidence, and a non-review request reaches the surface on its own.
+
+#### Test Execution
+
+> **Feature File:** [CR-028](../manual-testing-playbook/user-authored-modes/user-security-surface-two-stage.md)
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `review/manual-testing-playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
@@ -757,7 +835,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -784,6 +862,10 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-022 | Ceiling-comment downgrade | EFFICIENCY AND RESTRAINT | [CR-022](../manual-testing-playbook/efficiency-and-restraint/ceiling-comment-downgrade.md) |
 | CR-023 | Review-depth alias | EFFICIENCY AND RESTRAINT | [CR-023](../manual-testing-playbook/efficiency-and-restraint/review-depth-alias.md) |
 | CR-024 | Rule-invariant canary | EFFICIENCY AND RESTRAINT | [CR-024](../manual-testing-playbook/efficiency-and-restraint/rule-invariant-canary.md) |
+| CR-025 | Seeded SQL injection | FINDING ACCURACY | [CR-025](../manual-testing-playbook/finding-accuracy/seeded-sql-injection.md) |
+| CR-026 | Seeded off-by-one | FINDING ACCURACY | [CR-026](../manual-testing-playbook/finding-accuracy/seeded-off-by-one.md) |
+| CR-027 | Clean control | FINDING ACCURACY | [CR-027](../manual-testing-playbook/finding-accuracy/clean-control.md) |
+| CR-028 | User security surface through both routing stages | USER-AUTHORED MODES | [CR-028](../manual-testing-playbook/user-authored-modes/user-security-surface-two-stage.md) |
 | CR-R01 | Security routing | INTRA ROUTING RECALL | [CR-R01](../manual-testing-playbook/intra-routing-recall/security.md) |
 | CR-R02 | Quality routing | INTRA ROUTING RECALL | [CR-R02](../manual-testing-playbook/intra-routing-recall/quality.md) |
 | CR-R03 | KISS routing | INTRA ROUTING RECALL | [CR-R03](../manual-testing-playbook/intra-routing-recall/kiss.md) |

@@ -16,6 +16,8 @@ import { pathToFileURL } from 'node:url';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const EXACT_STATUS = /^Review status: (APPROVED|REQUESTED_CHANGES|COMMENTED)$/;
+const OVERALL_ASSESSMENT = /^\*{0,2}Overall assessment\*{0,2}:\s*(.*)$/;
+const ASSESSMENT_STATUSES = new Set(['APPROVED', 'REQUESTED_CHANGES', 'COMMENTED']);
 const COMMENTED_SKIP_STATUS =
   /^Review status: COMMENTED \((no changes since last review at \S+|skipped: [^)]+)\)$/;
 const RESULT_BLOCK_HEADER = 'AGENT_IO_RESULT v1';
@@ -85,6 +87,20 @@ function checkReviewOutput(text) {
     const notCheckedCount = lines.filter((line) => line.startsWith('Not checked:')).length;
     if (notCheckedCount > 1) {
       failures.push('more than one "Not checked:" line in the output');
+    }
+    // A report whose summary and status line disagree hands automation and a human reader two different verdicts.
+    const finalStatus = finalLine.match(EXACT_STATUS)[1];
+    for (const line of lines) {
+      const assessment = line.match(OVERALL_ASSESSMENT);
+      if (assessment === null) {
+        continue;
+      }
+      const value = assessment[1].replace(/[*`]/g, '').trim();
+      if (ASSESSMENT_STATUSES.has(value) && value !== finalStatus) {
+        failures.push(
+          `Overall assessment "${value}" contradicts the final status line "Review status: ${finalStatus}"`
+        );
+      }
     }
     return failures;
   }

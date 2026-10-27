@@ -4,6 +4,7 @@
 **Overall assessment**: REQUESTED_CHANGES
 **Baseline used**: sk-code (sk-code-review)
 **Surface evidence used**: UNKNOWN
+**Quality gate evidence**: absent
 
 ## Findings
 
