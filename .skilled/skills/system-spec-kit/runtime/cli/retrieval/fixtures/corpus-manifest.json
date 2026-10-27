@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8e1ead9fa246c1127edefdd1fa34206957196b727532be0c33578b2f5de2eb94",
+  "corpusHash": "b049dc800b06e3e22f69e092dc46d3061648dbb0d695037998c456648da8cfba",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26388,
+  "includedPathCount": 26394,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6025,6 +6025,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.15.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.16.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.17.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
@@ -13471,6 +13472,11 @@
     "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/plan.md",
     "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/spec.md",
     "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/tasks.md",
+    "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/acceptance-criteria.md",
+    "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/implementation-summary.md",
+    "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/plan.md",
+    "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/spec.md",
+    "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/tasks.md",
     "specs/sk-doc/070-repo-doc-debt/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
@@ -26419,7 +26425,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a47d8a0e0cf04770b97abe82235f9fe3fe63c8dddf47b134a8340470fa63bbf5",
+  "manifestHash": "609060525eab06da75e59aa3e9c2bcd3c3e2ee2b41558a58a038f446d0f14b03",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29987,6 +29993,10 @@
     },
     {
       "path": "specs/sk-doc/070-repo-doc-debt/003-changelog-omissions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy/scratch",
       "reason": "excluded directory"
     },
     {

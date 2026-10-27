@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a47d8a0e0cf04770b97abe82235f9fe3fe63c8dddf47b134a8340470fa63bbf5",
+  "manifestHash": "609060525eab06da75e59aa3e9c2bcd3c3e2ee2b41558a58a038f446d0f14b03",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12353,6 +12353,21 @@
     ],
     "audit and remediation": [
       "audit-and-remediation"
+    ],
+    "audit and validator accuracy": [
+      "audit and validator accuracy"
+    ],
+    "audit and validator accuracy acceptance criteria": [
+      "audit and validator accuracy acceptance criteria"
+    ],
+    "audit and validator accuracy implementation summary": [
+      "audit and validator accuracy implementation summary"
+    ],
+    "audit and validator accuracy plan": [
+      "audit and validator accuracy plan"
+    ],
+    "audit and validator accuracy tasks": [
+      "audit and validator accuracy tasks"
     ],
     "audit artifact alignment": [
       "audit artifact alignment"
@@ -48930,6 +48945,9 @@
     "gitignored database snapshot": [
       "gitignored database snapshot"
     ],
+    "gitignored runtime path": [
+      "gitignored runtime path"
+    ],
     "gitkraken high cpu worktrees": [
       "gitkraken high cpu worktrees"
     ],
@@ -71133,6 +71151,9 @@
     "package json dependency repair": [
       "package.json dependency repair"
     ],
+    "package relative reference": [
+      "package-relative reference"
+    ],
     "package root markers": [
       "package root markers"
     ],
@@ -80156,6 +80177,9 @@
     ],
     "readme architecture diagrams topology tasks": [
       "readme architecture diagrams topology tasks"
+    ],
+    "readme audit and changelog validator accuracy fixes": [
+      "readme audit and changelog validator accuracy fixes"
     ],
     "readme audit debt": [
       "readme audit debt"
@@ -92393,6 +92417,9 @@
     "sgqs test runner": [
       "sgqs test runner"
     ],
+    "sha 256 internal id": [
+      "SHA-256 internal id"
+    ],
     "sha pinned actions": [
       "sha pinned actions"
     ],
@@ -96672,6 +96699,9 @@
     "sk doc 2 3 16 0": [
       "sk-doc 2.3.16.0"
     ],
+    "sk doc 2 3 17 0": [
+      "sk-doc 2.3.17.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -97022,6 +97052,9 @@
     ],
     "sk doc v2 3 16 0": [
       "sk-doc v2.3.16.0"
+    ],
+    "sk doc v2 3 17 0": [
+      "sk-doc v2.3.17.0"
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
