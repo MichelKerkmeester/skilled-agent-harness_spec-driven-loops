@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/system-deep-loop/deep-ai-co
 trigger_phrases:
   - "deep-ai-council scripts"
   - "code README"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # deep ai council scripts
@@ -67,6 +67,8 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
+| [`lib/`](./lib/README.md) | Shared helper modules for the scripts: audit trail, findings registry, artifact persistence and rollback. |
+| [`tests/`](./tests/README.md) | vitest suites for the scripts and the `lib/` modules, with the test inventory and run command. |
 | `advise-council-completion.cjs` | CJS source file in this folder. |
 | `orchestrate-session.cjs` | CJS source file in this folder. |
 | `orchestrate-topic.cjs` | CJS source file in this folder. |

@@ -10,7 +10,7 @@ trigger_phrases:
   - "figma cli"
   - "magicpath components"
   - "mcp tool bridge"
-version: 1.8.2.0
+version: 1.8.3.0
 ---
 
 # mcp-tooling
@@ -35,6 +35,8 @@ version: 1.8.2.0
 External tools do not share one setup story or one safety model. The hub gives them one advisor identity while keeping each provider's command surface, credential boundary, mutation policy, and recovery rules in a nested packet.
 
 The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
+
+[`SKILL.md`](./SKILL.md) is the hub's routing contract, the file an agent loads first, and it carries the mode table, the routing rules and the reference list while every per-mode detail stays in the packets.
 
 ---
 

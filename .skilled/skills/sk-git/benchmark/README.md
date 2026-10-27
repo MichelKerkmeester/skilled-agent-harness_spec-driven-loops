@@ -11,9 +11,17 @@ contextType: "general"
 
 # sk-git Skill-Benchmark Artifacts
 
-> Curated reports and supporting evidence for benchmark runs of the flat `sk-git` skill. Each run-label folder contains one run's archived outputs; this file indexes them.
+> Curated reports and supporting evidence for benchmark runs of the flat `sk-git` skill.
 
-## 1. RUN-LABEL INDEX
+---
+
+## 1. OVERVIEW
+
+Each run-label folder contains one run's archived outputs. This file indexes them.
+
+---
+
+## 2. RUN-LABEL INDEX
 
 Run labels are additive and immutable. Never overwrite or repurpose an existing run-label folder; archive each new run in a new sibling folder.
 
@@ -26,6 +34,6 @@ Each run folder has its own README, machine report, rendered report, CSV results
 
 ---
 
-## 2. ARCHIVE CONVENTION
+## 3. ARCHIVE CONVENTION
 
 Benchmark evidence is retained beside the skill it measures. A later execution must use a fresh run-label folder, preserving prior reports for comparison and audit. Existing run labels are never overwritten, renamed for a different execution, or repurposed.

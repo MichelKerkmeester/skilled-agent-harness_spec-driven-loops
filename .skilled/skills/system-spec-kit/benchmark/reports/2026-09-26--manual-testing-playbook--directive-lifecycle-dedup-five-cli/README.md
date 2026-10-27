@@ -2,11 +2,17 @@
 
 > system-spec-kit · manual-testing-playbook · five CLI dispatches · directive-lifecycle-dedup
 
+---
+
+## 1. OVERVIEW
+
 **Verdict: PASS**
 
 Scenario 457 step 6 asks for one outcome per runtime with its verdict, reason and evidence path. The persistence wrapper that wrote these was retired (MTP-005), so the orchestrator recorded them by hand. Raw evidence stays in the source packet.
 
-## Run
+---
+
+## 2. RUN
 
 | Field | Value |
 |---|---|
@@ -17,7 +23,9 @@ Scenario 457 step 6 asks for one outcome per runtime with its verdict, reason an
 | Outcome tally | 5 PASS |
 | Source packet | `specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/evidence/` |
 
-## Outcomes
+---
+
+## 3. OUTCOMES
 
 | Runtime | Dispatch model | Verdict | Evidence | Bytes | SHA-256 |
 |---|---|---|---|---|---|
@@ -34,7 +42,9 @@ Scenario 457 step 6 asks for one outcome per runtime with its verdict, reason an
 
 Reason, the same for every runtime: Steps 2 to 5 exit 0: the advisor lifecycle files pass 128 tests and the spec-kit adapter files pass 29 under shuffle seed 18018, the Pi dispatch suite passes 50 of 50, and the registered-adapter harness writes summary.json with passed true for claude, codex, cursor and devin.
 
-## Files
+---
+
+## 4. FILES
 
 | File | Contents |
 |---|---|

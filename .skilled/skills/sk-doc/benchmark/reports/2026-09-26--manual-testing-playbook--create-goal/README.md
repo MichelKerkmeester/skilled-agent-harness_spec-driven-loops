@@ -1,10 +1,16 @@
 # Manual Testing Playbook Run: sk-create-goal, 2026-09-26
 
+---
+
+## 1. OVERVIEW
+
 One full execution of the `sk-create-goal` manual testing playbook, eight scenarios in one
 category, run by one operator in index order. Each scenario ran in its own `mktemp -d` scratch
 workspace from the repository root and each workspace was removed at its last step.
 
-## Run metadata
+---
+
+## 2. RUN METADATA
 
 | Field | Value |
 |---|---|
@@ -16,7 +22,9 @@ workspace from the repository root and each workspace was removed at its last st
 | Run state | uncommitted worktree at commit `1ab166030e` |
 | Raw records | `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/` |
 
-## Totals
+---
+
+## 3. TOTALS
 
 | Verdict | Count |
 |---|---|
@@ -24,7 +32,9 @@ workspace from the repository root and each workspace was removed at its last st
 | FAIL | 0 |
 | SKIP | 0 |
 
-## Scenario results
+---
+
+## 4. SCENARIO RESULTS
 
 | ID | Name | Verdict | Reason | Evidence |
 |---|---|---|---|---|
@@ -37,7 +47,9 @@ workspace from the repository root and each workspace was removed at its last st
 | SCG-007 | Route a session goal away | PASS | The reply redirects the request to the goal hooks, no goal file and no session state appear. The packet report reads `PACKET_GOAL_NOT_FOUND` | [`SCG-007.md`](../../../../../../specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-007.md) |
 | SCG-008 | Resend the parent after a child change | PASS | The parent decision is amended before the child goal, the slice hash changes from H1 to H2, the chat slice carries the amended checksum decision and no session state is touched | [`SCG-008.md`](../../../../../../specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-008.md) |
 
-## Release verdict
+---
+
+## 5. RELEASE VERDICT
 
 **PASS. The release is acceptable on this run.**
 
@@ -47,7 +59,9 @@ behavior. All four passed, so the hard rule does not fire. The root's release re
 on all four of its conditions: no verdict is `FAIL`, every critical scenario passed, the run covers
 the full eight scenarios named by the root index and no blocking triage item remains open.
 
-## Fields not captured
+---
+
+## 6. FIELDS NOT CAPTURED
 
 The run records name every field they did not capture as not recorded. Nothing is filled in from
 inference. Those fields are the SCG-008 step 7 `chat_slice`, the SCG-004 step 10, step 12 and

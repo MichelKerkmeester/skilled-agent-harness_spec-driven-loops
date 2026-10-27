@@ -7,7 +7,7 @@ trigger_phrases:
   - "hvr_scan.py"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-create-with-human-voice Scripts
@@ -16,7 +16,7 @@ The mechanical pass of the voice workflow, the test that pins its masking contra
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 | File | Purpose |
 |---|---|
@@ -32,7 +32,7 @@ The mechanical pass of the voice workflow, the test that pins its masking contra
 
 ---
 
-## 1. USAGE
+## 2. USAGE
 
 ```bash
 python3 hvr_scan.py <file> [<file> ...]     # grouped report
@@ -48,7 +48,7 @@ or parsed and the run refuses to report a clean scan.
 
 ---
 
-## 2. WHAT IT COVERS
+## 3. WHAT IT COVERS
 
 The subset a machine can settle: the punctuation rows that forbid a mark, the hard blocker
 words, the phrase blockers and the soft deductions. Everything structural and every voice
@@ -57,7 +57,7 @@ confused.
 
 ---
 
-## 3. VERIFICATION
+## 4. VERIFICATION
 
 Run the test with `python3 tests/test_hvr_scan.py` from this directory. Exit 0 and
 `ALL PASS` mean the masking contract holds and both fixture controls still report their

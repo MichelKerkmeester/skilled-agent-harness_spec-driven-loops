@@ -4,7 +4,7 @@ description: "The isolated rollout-mode core for command injection in the deep-l
 trigger_phrases:
   - "command injection rollout"
   - "rollout mode"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Command Injection Rollout
@@ -18,6 +18,8 @@ This directory contains the isolated rollout-mode core for command injection.
 - `command-injection-rollout.json` maps command names to `fallback` or `fix`.
 - `resolve-injection-mode.cjs` resolves the effective mode from the environment override first, then the JSON map, then `fallback`.
 - `promotion-rule.md` defines the evidence required before flipping any command to `fix`.
+
+The [`tests/`](./tests/README.md) folder pins this behavior with two test files, which assert resolver precedence across the default, the JSON map and the environment override, and check that the rollout and its `fix` entries carry the evidence `validate-rollout.cjs` requires.
 
 ---
 

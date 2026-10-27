@@ -9,17 +9,21 @@ trigger_phrases:
   - "where do the colours come from"
   - "add a style reference"
 contextType: general
-version: 1.2.0.2
+version: 1.2.1.0
 ---
 
 # assets/style-reference
+
+---
+
+## 1. OVERVIEW
 
 One directory per visual language. Forms live next door and say what a diagram draws; a language
 here says what it looks like drawing it, and either can change without touching the other.
 
 ---
 
-## 1. THE BUNDLE
+## 2. THE BUNDLE
 
 A language is a directory, not a file. Each one carries everything needed to paint with it:
 
@@ -37,7 +41,7 @@ measured from something real shows that.
 
 ---
 
-## 2. ADDING ANOTHER
+## 3. ADDING ANOTHER
 
 A second language is a sibling directory with the same four files. Nothing else moves: the forms do
 not change, and neither does the checker, because a form is painted at delivery time rather than
@@ -49,7 +53,7 @@ role selects from and what happens when a reference cannot fill one, is in
 
 ---
 
-## 3. RELATED
+## 4. RELATED
 
 | Document | Purpose |
 |---|---|

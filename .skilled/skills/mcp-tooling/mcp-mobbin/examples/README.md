@@ -1,10 +1,14 @@
 ---
 title: "mcp-mobbin Examples"
 description: "Worked Code Mode walkthroughs for the mcp-mobbin transport: a limit-1 smoke search, a platform-filtered flow-pattern research pass, and an element-intent query, each opening with the mandatory tool_info confirmation of the discovery-confirmed callables (2026-07-16 fixture) and keeping the OAuth steps SKIP-valid with exact commands."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-mobbin Examples
+
+---
+
+## 1. OVERVIEW
 
 Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every example targets the live tool contract in [`../references/tool-surface.md`](../references/tool-surface.md): the only tool-surface authority these examples trace to.
 
@@ -12,7 +16,7 @@ Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every 
 
 ---
 
-## 1. THE WALKTHROUGHS
+## 2. THE WALKTHROUGHS
 
 | # | File | What it demonstrates | Live access needed |
 |---|---|---|---|
@@ -22,7 +26,7 @@ Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every 
 
 ---
 
-## 2. SHARED PREFLIGHT (EVERY EXAMPLE)
+## 3. SHARED PREFLIGHT (EVERY EXAMPLE)
 
 **Step A: wiring state (shell, read-only, always runnable):**
 
@@ -47,7 +51,7 @@ const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 
 ---
 
-## 3. SHARED RULES
+## 4. SHARED RULES
 
 - `query` comes from the user's actual words; `platform` is exactly `ios` or `web` (infer or ask); `limit` starts at 5 (`1` for smoke) and never exceeds ~15 without asking.
 - Cite every used reference by its `mobbin_url`; report `failed[]` and missing images as partial success.
@@ -57,7 +61,7 @@ const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 
 ---
 
-## 4. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 - [`../references/tool-surface.md`](../references/tool-surface.md) - the single-tool contract every example traces to.
 - [`../SKILL.md`](../SKILL.md) - the runtime rules the examples operate under.

@@ -6,7 +6,9 @@ Local design-token library extracted from [styles.refero.design](https://styles.
 Each `<slug>/` folder holds the four Extended tabs (`DESIGN.md`, `css-variables.css`, `tailwind-v4.css`,
 `design-tokens.json`) plus `<slug>-canonical.json` provenance and a `source.md` linking back to the
 original style. The extraction harness + crawl state live in [`scripts/`](scripts/) and
-[`library/bundles/crawl-manifest.json`](library/bundles/crawl-manifest.json).
+[`library/bundles/crawl-manifest.json`](library/bundles/crawl-manifest.json). The automated suites live in
+[`tests/`](./tests/README.md), which holds flat-file engine tests, SQLite database tests and the
+differential-parity oracle that proves the two retrieval paths agree.
 
 ---
 

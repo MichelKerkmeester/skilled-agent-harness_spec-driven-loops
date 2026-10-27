@@ -4,14 +4,20 @@ description: "Gold-standard DESIGN.md outputs and their writing notes, kept as l
 trigger_phrases:
   - "design md exemplars"
   - "style reference output examples"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Examples: Output Exemplars, Not Skill Reference Docs
 
+---
+
+## 1. OVERVIEW
+
 This directory holds gold-standard `DESIGN.md` outputs (`linear/`, `stripe/`, `supabase/`, `vercel/`) plus their `writing-notes.md` companions, and a separate authoring guide, `editorial-exemplar.md`.
 
-## Documented Exemption
+---
+
+## 2. DOCUMENTED EXEMPTION
 
 The four `{brand}/DESIGN.md` files and their `{brand}/writing-notes.md` companions are **literal exemplars of the v3 Style Reference output format**, not agent-facing workflow documentation. Each `DESIGN.md` intentionally mirrors the exact structure specified by [`../design-md-format.md`](../design-md-format.md), starting with `# <Brand>, Style Reference`, not an H1 + `## 1. OVERVIEW`: because that structure is the thing being demonstrated. Rewriting them to the `skill-reference-template.md` shape (numbered ALL-CAPS H2s, an `## 1. OVERVIEW` section) would destroy their purpose: they exist to be studied verbatim as what a passing DESIGN.md looks like. The paired `writing-notes.md` files are short editorial annotations on that specific example and inherit the same exemption for the same reason.
 
@@ -19,7 +25,9 @@ The four `{brand}/DESIGN.md` files and their `{brand}/writing-notes.md` companio
 
 `editorial-exemplar.md` is not part of this exemption. It is genuine agent guidance (how to study a non-SaaS site), not an output mockup, so it follows the reference template in full: numbered ALL-CAPS H2s starting with `## 1. OVERVIEW`.
 
-## Contents
+---
+
+## 3. CONTENTS
 
 | File | Role |
 |---|---|

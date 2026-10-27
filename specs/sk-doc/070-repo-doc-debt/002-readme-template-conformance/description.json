@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/070-repo-doc-debt/002-readme-template-conformance",
+  "description": "Phase 2: readme-template-conformance",
+  "keywords": [
+    "phase",
+    "readme-template-conformance"
+  ],
+  "lastUpdated": "2026-10-27T06:53:12.556Z",
+  "specId": "002",
+  "folderSlug": "readme-template-conformance",
+  "parentChain": [
+    "sk-doc",
+    "070-repo-doc-debt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
