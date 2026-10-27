@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T20:30:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Recorded three decisions and the choices still open"
-    next_safe_action: "Ask the operator about the two open routing prompts"
+    next_safe_action: "None; phase 010 closed T039, T040 and T041 on 2026-10-27"
     blockers: []
     key_files: []
     session_dedup:
@@ -182,7 +182,7 @@ Two released `sk-code-quality` entries name an internal scenario id and carry te
 - `v1.4.0.0.md` now prints `changelog_internal_id` and the validator suite holds a positive and a negative case, `12 passed`.
 
 **What it costs**:
-- The two released entries keep their text. Mitigation: an erratum entry is the operator's call (tasks T040).
+- The two released entries keep their facts. On 2026-10-27 their wording dropped the id and the counts (tasks T040).
 
 **Risks**:
 

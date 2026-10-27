@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded the CI routing fix and the repo-rules audit, all eighteen criteria Met"
-    next_safe_action: "None; T039, T040 and T041 are owner decisions"
+    next_safe_action: "None; phase 010 closed T039, T040 and T041 on 2026-10-27"
     blockers: []
     key_files:
       - ".skilled/skills/sk-code/hub-router.json"
@@ -128,13 +128,13 @@ Four read-only lanes audited first. A DeepSeek worker through the pi CLI did 20 
 ## Known Limitations
 
 1. **Router keywords match phrases.** A CI prompt that holds none of the `sk-code-ci` phrases still falls to another mode or defers, and a bare phrase can steal a neighbor's prompt, as `github actions` did before it was narrowed. The compiled-route suites cover the bundle cases.
-2. **A scorer design call is open.** The bare `/doctor:ci` keyword also matches other typed targets of the same command, so `/doctor:git hooks` returns the setup bridge second. The bridge README documents it. An exact-token match would remove it, and the advisor owner decides.
-3. **Two released changelog entries keep their text.** `sk-code-quality` v1.4.0.0 and v1.5.0.0 carry an internal id and test counts. They are released, so only an erratum entry would change them, and the new check now warns on the class.
+2. **The bare-command overlap is closed.** On 2026-10-27 the explicit lane began blanking each known `<command> <target>` phrase before it tests a bare slash command, so `/doctor:git hooks` no longer returns the setup bridge. The same pass gave the git-hooks route a lead phrase, which repaired routing-slice row `doctor-a-08`; CI does not run that suite, so it had been failing on main unnoticed.
+3. **Two released changelog entries were reworded.** `sk-code-quality` v1.4.0.0 now names its playbook scenario in words and v1.5.0.0 drops its suite counts, with no fact changed. The changelog check now ignores ids inside inline code spans, which quote literals.
 4. **Per-document editions were raised at commit, not in the phase.** The pre-commit gate raised them, and `bump --check --base 4b15bdcc11` on `8c760290ff` confirms every changed body.
 5. **Readings predate the commit.** They were taken on HEAD `6d6e82c269` plus the working tree. The commits above pin that tree, and the gate re-ran green after the rebase.
-6. **Folder READMEs are not a finding.** The verifier flags 15 in-scope code folders without a README and no contract line makes that a rule, so the operator decides.
+6. **Folder READMEs have a rule, and it passes.** `audit_readmes.py` derives every durable directory with its exemption classes, and a repo-wide run found 781 directories and 0 gaps, so none of the 15 folders the ad-hoc verifier flagged needs a README.
 7. **Two sibling test files stay beside their source.** `typo-flags.test.sh` and `hooks/claude-posttooluse.test.sh` were not in the scope list and these packets did not change them.
-8. **`AGENTS.md` lacks three governed-section pointers.** The amended contract makes the pointer a default, so this is an operator option, and `AGENTS.md` was not edited because it mirrors the operator's global `CLAUDE.md`.
+8. **`AGENTS.md` carries the three governed-section pointers.** They sit in section 10, because the rule canary keeps the Blast-Radius heading inside the 16,384-byte delivery prefix, and the operator's global `CLAUDE.md` was copied from it byte for byte.
 9. **The audit reads checks, not every line.** The lanes did not read all 405 code files for rules no checker covers, did not run a live model dispatch, and did not run the advisor scorer-eval ratchet.
 <!-- /ANCHOR:limitations -->
 

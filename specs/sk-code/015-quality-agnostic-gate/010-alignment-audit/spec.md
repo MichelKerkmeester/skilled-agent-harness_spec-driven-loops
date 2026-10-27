@@ -223,10 +223,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should `AGENTS.md` gain the three missing governed-section pointers? The amended `agents-md-integration.md` makes the pointer the default, not a requirement, so this is an option for the operator and not an open defect. `AGENTS.md` mirrors the operator's global `CLAUDE.md`, which is why this phase did not edit it.
-- Should the bare `/doctor:ci` keyword stop matching when a different target is typed? Today `/doctor:git hooks` returns the setup bridge second. That is a scorer design call for the advisor owner.
-- Should the two released `sk-code-quality` changelog entries get an erratum? They carry an internal id and test counts, and the released-changelog guard protects them from edits, so only a new entry can correct them.
-- Is a folder without a README a rule? The verifier flags 15 in-scope code folders, but no contract line states it as a rule.
+- Should `AGENTS.md` gain the three missing governed-section pointers? Resolved 2026-10-27: the operator asked for them, and section 10 now carries all three.
+- Should the bare `/doctor:ci` keyword stop matching when a different target is typed? Resolved 2026-10-27: yes, the longer typed `<command> <target>` phrase now wins in the explicit lane.
+- Should the two released `sk-code-quality` changelog entries get an erratum? Resolved 2026-10-27: they were reworded in place with no fact changed, since no CI check guards released entries.
+- Is a folder without a README a rule? Resolved 2026-10-27: `audit_readmes.py` is that rule, and it reports 0 gaps.
 - Should a framework-level `.skilled/changelog/skilled` entry record the CI efficiency work and `/doctor:ci`? The contract leaves that to the operator.
 <!-- /ANCHOR:questions -->
 
