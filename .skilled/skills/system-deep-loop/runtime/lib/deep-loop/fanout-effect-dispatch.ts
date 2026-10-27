@@ -24,6 +24,7 @@ import {
 import {
   createEvidenceControlEventRegistry,
   createSubprocessEffectAdapter,
+  EFFECT_INTENT_EVENT_TYPE,
   EffectRecoveryGateway,
 } from '../receipts-and-effect-recovery/index.js';
 import { resolveAuthorityRoot } from '../authority-root/index.js';
@@ -129,6 +130,7 @@ const EFFECT_ACTOR = 'fanout-effect-writer';
 const ADAPTER_ID = 'fanout-executor-subprocess';
 const ADAPTER_VERSION = '1';
 const PRODUCER = Object.freeze({ name: 'fanout-effect-dispatch', version: '1' });
+const REDISPATCH_MARKER = ':redispatch-';
 
 // Authority states under which a fan-out executor may durably record its
 // effect. These are the runtime write states: a mode that is mid-cutover,
@@ -219,6 +221,37 @@ function dispatchObservation(
       stdout_bytes: Buffer.byteLength(result.stdout ?? '', 'utf8'),
     }),
   });
+}
+
+/**
+ * How many dispatches this lineage already recorded under the same attempt number.
+ *
+ * The attempt number restarts at 1 every time the supervisor starts, and a lineage resumed under
+ * the session id its config already holds keeps its effect ledger. Without a count the resumed
+ * dispatch collides with the first one's logical effect: a confirmed one replays as idempotent
+ * and never reaches the executor, a different prompt reads as a conflicting identity, and one the
+ * supervisor lost before its confirmation stays unresolved and refuses any replay. Each recorded
+ * intent, confirmed or not, is a dispatch that already happened, so the next one is a new effect.
+ */
+async function countPriorDispatches(
+  writer: EffectGatewayWriter,
+  sessionId: string,
+  baseLogicalEffectId: string,
+): Promise<number> {
+  const events = await writer.readVerifiedEvents();
+  let count = 0;
+  for (const event of events) {
+    if (event.event.effective.envelope.event_type !== EFFECT_INTENT_EVENT_TYPE) continue;
+    const payload = event.event.effective.envelope.payload as { run_id?: unknown; logical_effect_id?: unknown };
+    if (payload.run_id !== sessionId || typeof payload.logical_effect_id !== 'string') continue;
+    if (
+      payload.logical_effect_id === baseLogicalEffectId
+      || payload.logical_effect_id.startsWith(`${baseLogicalEffectId}${REDISPATCH_MARKER}`)
+    ) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -418,15 +451,21 @@ export async function dispatchExecutorEffect(
   // confirmation), so the gateway's postcondition check binds the
   // confirmation to the same dispatch the intent committed.
   const expectedPostconditionDigest = sha256Bytes(canonicalBytes(canonicalInput));
+  const baseLogicalEffectId = `fanout-dispatch:${lineageLabel}:attempt-${attempt}`;
+  const priorDispatches = await countPriorDispatches(writer, sessionId, baseLogicalEffectId);
+  const logicalEffectId = priorDispatches === 0
+    ? baseLogicalEffectId
+    : `${baseLogicalEffectId}${REDISPATCH_MARKER}${priorDispatches}`;
   const replayFingerprint = sha256Bytes(canonicalBytes({
     replay_scope: canonicalMode,
     lineage_label: lineageLabel,
     attempt,
+    ...(priorDispatches === 0 ? {} : { redispatch: priorDispatches }),
   }));
 
   const executionInput: EffectExecutionInput<JsonObject> = {
     runId: sessionId,
-    logicalEffectId: `fanout-dispatch:${lineageLabel}:attempt-${attempt}`,
+    logicalEffectId,
     operation: 'dispatch-executor',
     targetIdentity,
     request: canonicalInput,

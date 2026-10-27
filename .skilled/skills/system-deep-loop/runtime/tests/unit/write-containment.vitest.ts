@@ -2088,10 +2088,9 @@ describe('write-containment — the quarantine record of what a guarded path wro
   it('marks a file over the per-file bound content_truncated with no bytes stored, and still records its patch', () => {
     const { root, artifactDir } = baselineRepo();
     const bigPath = join(root, 'big-outside.bin');
-    // Committed, then dirty at dispatch, at a size the capture bound refuses to copy.
+    // Committed and clean at dispatch, at a size the capture bound refuses to copy.
     writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x41));
     commitAll(root, 'test(containment): track an oversized file');
-    writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x42));
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
 
     // The lane then overwrites it, which is the write the quarantine has to record.
@@ -2652,5 +2651,151 @@ describe('write-containment — every component of a guarded path is contained, 
     expect(quarantine.dirPath).toBeNull();
     // Nothing landed on the other side of the link: no manifest, no bytes, no patch.
     expect(readdirSync(targetDir)).toEqual([]);
+  });
+});
+
+// A path someone was already editing before the dispatch began is the one place a second writer
+// is on record. git status cannot say who wrote its new bytes, so under the default remedy the
+// guard reports it as contested instead of filing it under the lane.
+describe('write-containment — a path that was already dirty and changed again is contested, not blamed on the lane', () => {
+  function operatorDraftBaseline(): {
+    root: string;
+    artifactDir: string;
+    preDispatch: DirtyPathEntry[];
+    baselineContentRoot: string;
+  } {
+    const { root, artifactDir } = baselineRepo();
+    // The operator's uncommitted edit, on disk before the lane is dispatched.
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_DRAFT_1\n');
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_1\n');
+    // The capture and the restore both resolve a baseline entry's path against the lane directory.
+    const baselineContentRoot = artifactDir;
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineContentRoot,
+    });
+    return { root, artifactDir, preDispatch, baselineContentRoot };
+  }
+
+  it('reports an operator edit made during the run as contested and leaves no record under the lane', () => {
+    const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
+
+    // A session that is not the lane keeps typing into both files while the lane runs.
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_DRAFT_2\n');
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_2\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot,
+      label: 'lane',
+    });
+
+    expect(result.contested.map((violation) => violation.path).sort()).toEqual(['operator-notes.md', 'tracked-outside.txt']);
+    expect(result.violations).toEqual([]);
+    expect(result.advisories).toEqual([]);
+    expect(result.event).toBeNull();
+    expect(result.recoveryHint).toBeNull();
+    expect(result.revertResult.reverted).toEqual([]);
+    // No quarantine copy and no patch: nothing here says the lane wrote it.
+    expect(result.quarantinePath).toBeNull();
+    expect(existsSync(join(artifactDir, 'containment', 'quarantine'))).toBe(false);
+    // Every byte the operator typed is still where they typed it.
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('OPERATOR_DRAFT_2\n');
+    expect(readFileSync(join(root, 'operator-notes.md'), 'utf8')).toBe('NOTES_DRAFT_2\n');
+    // The limit of the claim is stated in the guard's own output.
+    expect(result.contestedNote).toMatch(/not who wrote them/);
+    expect(result.contestedNote).toMatch(/Nothing was quarantined, patched or reverted/);
+  });
+
+  it('still catches a write the lane made to a path nobody had touched, in the same pass', () => {
+    const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
+
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_2\n');
+    // The lane's own stray edit to a tracked file that was clean when the dispatch began.
+    writeFileSync(join(root, 'deep/file.txt'), 'LANE_WROTE_THIS\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot,
+      label: 'lane',
+    });
+
+    expect(result.violations.map((violation) => violation.path)).toEqual(['deep/file.txt']);
+    expect(result.contested.map((violation) => violation.path)).toEqual(['operator-notes.md']);
+    // The quarantine record names the lane's path and only that one.
+    expect(result.quarantinePath).not.toBeNull();
+    const manifest = JSON.parse(
+      readFileSync(join(root, result.quarantinePath as string, 'manifest.json'), 'utf8'),
+    ) as { entries: Array<{ path: string }> };
+    expect(manifest.entries.map((entry) => entry.path)).toEqual(['deep/file.txt']);
+    expect(result.event?.violations.map((violation) => violation.path)).toEqual(['deep/file.txt']);
+  });
+
+  it('leaves an unchanged operator edit out of every field, as before', () => {
+    const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot,
+    });
+
+    expect(result.contested).toEqual([]);
+    expect(result.contestedNote).toBeNull();
+    expect(result.violations).toEqual([]);
+  });
+
+  it('keeps a path the lane itself left dirty on an earlier pass as the lane’s', () => {
+    const { root, artifactDir } = baselineRepo();
+    const firstBaseline = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'FIRST_PASS_WROTE_THIS\n');
+    const first = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: firstBaseline,
+      iteration: 1,
+    });
+    expect(first.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+
+    // The retry starts with the lane's own stray write already on disk, so the path is dirty at
+    // its baseline; that dirt is the lane's, and a second write to it is not a second writer.
+    const secondBaseline = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'SECOND_PASS_WROTE_THIS\n');
+    const second = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: secondBaseline,
+      iteration: 2,
+    });
+
+    expect(second.contested).toEqual([]);
+    expect(second.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+  });
+
+  it('keeps the single-owner reading under restore: the same path is still the lane’s', () => {
+    const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_DRAFT_2\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot,
+      mode: 'restore',
+    });
+
+    expect(result.contested).toEqual([]);
+    expect(result.contestedNote).toBeNull();
+    expect(result.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+    expect(result.revertResult.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'restored_from_baseline', ok: true },
+    ]);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('OPERATOR_DRAFT_1\n');
   });
 });

@@ -21,6 +21,15 @@
 // ║          owns the checkout; it returns a path to its pre-dispatch bytes,  ║
 // ║          never to HEAD, so work that was already in flight survives.      ║
 // ║                                                                           ║
+// ║          One path is the exception to blaming the lane: a path that was   ║
+// ║          already dirty when the dispatch began and changed again during   ║
+// ║          it. Someone was demonstrably editing it before the lane started, ║
+// ║          so its new bytes cannot be told from that editor's next save.    ║
+// ║          Under the default remedy it is reported as CONTESTED and gets    ║
+// ║          no quarantine copy, no patch and no revert; its pre-dispatch     ║
+// ║          bytes already sit in the baseline capture. Restore keeps the     ║
+// ║          older single-owner reading and still treats it as the lane's.    ║
+// ║                                                                           ║
 // ║          Pre-existing dirty paths are subtracted so unrelated in-flight   ║
 // ║          work is never counted against the lane. Fails OPEN: when it      ║
 // ║          cannot reason about git (no repo, no binary, artifact dir        ║
@@ -29,7 +38,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, closeSync, constants, fstatSync, lstatSync, mkdirSync, mkdtempSync, openSync, readFileSync, readlinkSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { appendFileSync, closeSync, constants, fstatSync, lstatSync, mkdirSync, mkdtempSync, openSync, readdirSync, readFileSync, readlinkSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
@@ -65,6 +74,14 @@ export interface ContainmentViolation {
    * restored copy is checked against.
    */
   baselineHash?: string;
+  /**
+   * Set when the path was already dirty in the pre-dispatch baseline and its bytes differ now.
+   *
+   * That is the one case where a second writer on this exact path is on record before the
+   * dispatch began, so the change cannot be shown to be the lane's. Absent on a path that was
+   * clean at the baseline and on a deletion.
+   */
+  baselineDirty?: true;
 }
 
 export interface ContainmentRevertAction {
@@ -267,6 +284,18 @@ export interface EnforceResult {
    * record an operator reads afterwards, and it exists under both remedies.
    */
   quarantinePath: string | null;
+  /**
+   * Paths that were already dirty before the dispatch and changed again during it, held out of
+   * every other field under the default remedy.
+   *
+   * Reported, never acted on: no quarantine copy, no patch, no revert, and they are neither a
+   * violation nor an advisory. git status shows that bytes changed, not who wrote them, and a
+   * path someone was already editing is the one place a second writer is on record. Always empty
+   * under 'restore', which is the caller's declaration that it owns the checkout alone.
+   */
+  contested: ContainmentViolation[];
+  /** Plain statement of what `contested` does and does not claim, or null when it is empty. */
+  contestedNote: string | null;
 }
 
 export interface QuarantineEntry {
@@ -1149,17 +1178,20 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
     if (isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, p)) continue;
     if (isUnattributable(p, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
     if (isContainmentCapturePath(p)) continue;
+    let baselineDirty = false;
     if (preMap.has(p)) {
       const preHash = preMap.get(p) || '';
       if (!preHash) continue;
       const curHash = gitHashObject(opts.repoRoot, p, opts.env);
       if (curHash && preHash && curHash === preHash) continue;
+      baselineDirty = true;
     }
     violations.push({
       path: p,
       absolutePath: resolve(opts.repoRoot, p),
       kind: classifyViolation(entry.status),
       status: entry.status,
+      ...(baselineDirty ? { baselineDirty: true as const } : {}),
     });
   }
   // The status pass can only see paths git still reports, and an untracked path the lane deleted
@@ -1791,6 +1823,46 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
 }
 
 /**
+ * Repo-relative POSIX paths an earlier pass of this lane already quarantined.
+ *
+ * A path is dirty at a later baseline either because someone else was editing it or because this
+ * lane left it that way last pass. Only the first reading is evidence of a second writer, and
+ * the quarantine manifests are the lane's own record of the second, so those paths stay the
+ * lane's. Unreadable or malformed manifests contribute nothing, which leaves a path contestable
+ * rather than hiding one.
+ */
+function readLaneQuarantinedPaths(artifactDir: string): Set<string> {
+  const paths = new Set<string>();
+  const root = join(artifactDir, PASS_QUARANTINE_DIR);
+  let passes: string[];
+  try {
+    passes = readdirSync(root);
+  } catch {
+    return paths;
+  }
+  for (const pass of passes) {
+    try {
+      const manifest = JSON.parse(readFileSync(join(root, pass, 'manifest.json'), 'utf8')) as {
+        entries?: Array<{ path?: unknown }>;
+      };
+      for (const entry of manifest.entries ?? []) {
+        if (typeof entry.path === 'string') paths.add(toPosix(entry.path));
+      }
+    } catch {
+      // A pass directory without a readable manifest records nothing about the lane.
+    }
+  }
+  return paths;
+}
+
+const CONTESTED_NOTE =
+  'These paths were already uncommitted before the dispatch began and changed again during it. '
+  + 'git status shows that the bytes changed, not who wrote them, so none of it is attributed to this '
+  + 'lane. Nothing was quarantined, patched or reverted and every file was left in place; its '
+  + 'pre-dispatch bytes are in the lane baseline capture. Compare them with the file before '
+  + 'trusting either writer. A lane write to one of these paths is reported only here.';
+
+/**
  * High-level post-dispatch guard: detect NEW out-of-scope violations, quarantine what each
  * guarded path left behind, save what a restore would undo as a patch, apply the remedy, and
  * (when stateLogPath is provided) append a containment_violation event. Returns the
@@ -1804,11 +1876,11 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
  * merge that makes any active P0 a merged FAIL.
  */
 export function enforceWriteContainment(input: EnforceInput): EnforceResult {
-  const detected = detectNewOutOfScopeViolations(input);
-  if (detected.length === 0) {
+  const allDetected = detectNewOutOfScopeViolations(input);
+  if (allDetected.length === 0) {
     return {
       violations: [], advisories: [], revertResult: { reverted: [] }, event: null, recoveryHint: null,
-      quarantinePath: null,
+      quarantinePath: null, contested: [], contestedNote: null,
     };
   }
   // detectNewOutOfScopeViolations above only returns non-empty once it has already resolved
@@ -1824,6 +1896,22 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   // controls, so an escape is held out of them and stays fatal.
   const escapesArtifactTree = (violation: ContainmentViolation): boolean =>
     scope !== null && isInsideArtifact(violation.path, scope.artifactRelPosix);
+  const laneQuarantined = input.mode === 'restore' ? new Set<string>() : readLaneQuarantinedPaths(input.artifactDir);
+  const isContested = (violation: ContainmentViolation): boolean =>
+    input.mode !== 'restore'
+    && violation.baselineDirty === true
+    && !laneQuarantined.has(violation.path)
+    && !escapesArtifactTree(violation)
+    && !isRegenerableRuntimeState(violation.path, artifactRelPosix);
+  const contested = allDetected.filter(isContested);
+  const detected = allDetected.filter((violation) => !isContested(violation));
+  const contestedNote = contested.length > 0 ? CONTESTED_NOTE : null;
+  if (detected.length === 0) {
+    return {
+      violations: [], advisories: [], revertResult: { reverted: [] }, event: null, recoveryHint: null,
+      quarantinePath: null, contested, contestedNote,
+    };
+  }
   const exempted = detected.filter(
     (violation) => !escapesArtifactTree(violation) && isRegenerableRuntimeState(violation.path, artifactRelPosix),
   );
@@ -1904,7 +1992,10 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     appendContainmentEvent(input.stateLogPath, event);
   }
   const recoveryHint = patch.path ? `recoverable patch: ${patch.path}` : null;
-  return { violations, advisories, revertResult, event, recoveryHint, quarantinePath: quarantine.dirPath };
+  return {
+    violations, advisories, revertResult, event, recoveryHint, quarantinePath: quarantine.dirPath,
+    contested, contestedNote,
+  };
 }
 
 // Exported for tests / diagnostics.

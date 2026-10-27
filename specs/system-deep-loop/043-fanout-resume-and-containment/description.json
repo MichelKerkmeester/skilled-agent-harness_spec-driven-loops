@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/043-fanout-resume-and-containment",
+  "description": "Fix the deep-loop fan-out's failed lineage resume and its containment guard quarantining a concurrent operator edit",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "failed",
+    "lineage",
+    "resume",
+    "containment",
+    "guard",
+    "quarantining",
+    "concurrent",
+    "operator",
+    "edit"
+  ],
+  "lastUpdated": "2026-10-27T19:44:36.285Z",
+  "specId": "043",
+  "folderSlug": "fanout-resume-and-containment",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

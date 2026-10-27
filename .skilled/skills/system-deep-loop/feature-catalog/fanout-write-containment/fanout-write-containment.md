@@ -6,7 +6,7 @@ trigger_phrases:
   - "preserve rather than revert out-of-scope writes"
   - "unattributed out-of-scope writes"
   - "shared checkout churn detection"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Fan-Out Write Containment (system-deep-loop)
@@ -31,6 +31,18 @@ success, which is why preservation is the default: the bytes stay, a copy is qua
 lineage directory, and the lane settles as completed with an advisory rather than failed. Restoring
 is opt-in per run and safe only where one operator owns the checkout; it returns a path to its
 pre-dispatch bytes rather than to HEAD, so work already in flight survives either way.
+
+One class of path is not filed under the lane at all. A path that was already dirty before the
+dispatch and changed again during it has a second writer on record, because someone was editing it
+before the lane started, so its new bytes cannot be told from that editor's next save. Under the
+default remedy the guard reports it as contested: a `containment_contested` ledger event and a
+`containmentContested` field on the lineage output carry the paths and a note saying that the tree
+shows the bytes changed, not who wrote them. No quarantine copy, patch or revert is made, the file
+stays where it is and its pre-dispatch bytes remain in the baseline capture. The trade-off is
+stated, not hidden: a lane write to a file an operator already had open is reported only as
+contested. A path the lane itself quarantined on an earlier pass stays the lane's, and restore keeps
+the single-owner reading. A brand-new file a second session creates mid-run cannot be told apart
+this way and is still reported as a preserved advisory.
 
 A churn detector watches for a burst of newly dirty paths between heartbeats. One writer's ordinary
 edits come and go; a burst is a second writer, and once that is proven the run latches preservation

@@ -3926,6 +3926,7 @@ async function main() {
       let containmentFindings = null;
       let containmentRecoveryHint = null;
       let containmentQuarantinePath = null;
+      let containmentContested = null;
       if (containmentEnabled) {
         const containment = enforceWriteContainment({
           repoRoot: containmentRepoRoot,
@@ -3943,6 +3944,28 @@ async function main() {
           label: lineage.label,
         });
         appendContainmentGitContentionWarnings();
+        // A path someone else already had dirty before the dispatch and that changed again is
+        // reported here and nowhere else: the tree cannot say whose bytes they are, so the lane
+        // is not charged with them and nothing is copied under its directory.
+        if (containment.contested.length > 0) {
+          containmentContested = {
+            paths: containment.contested.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
+            note: containment.contestedNote,
+          };
+          appendFanoutStatusLedger(ledgerPath, {
+            type: 'event',
+            event: 'containment_contested',
+            severity: 'warning',
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            iteration: attempt,
+            gauges: latestGauges,
+            ...containmentContested,
+          });
+        }
         if (containment.advisories.length > 0) {
           appendFanoutStatusLedger(ledgerPath, {
             type: 'event',
@@ -4125,6 +4148,7 @@ async function main() {
       }
 
       const output = { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
+      if (containmentContested !== null) output.containmentContested = containmentContested;
       if (containmentFindings !== null) {
         // Every artifact and stop-policy gate has passed by the time this output is built,
         // so an out-of-scope write found by the guard describes a COMPLETE lineage: report

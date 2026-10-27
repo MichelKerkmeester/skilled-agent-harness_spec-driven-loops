@@ -40,6 +40,7 @@ deep-loop/
 | `executor-audit.ts` | Records executor provenance and dispatch failure evidence. |
 | `executor-config.ts` | Parses executor configuration, kinds and sandbox mappings. |
 | `fallback-router.ts` | Routes execution to the configured fallback executor. |
+| `fanout-effect-dispatch.ts` | Routes each fan-out executor spawn through the effect gateway, recording an intent before the subprocess runs and a confirmation after. A resumed lineage gets a fresh `:redispatch-<n>` effect id, so it never collides with the first dispatch. |
 | `jsonl-repair.ts` | Repairs recoverable trailing corruption in state logs. |
 | `lifecycle-taxonomy.cjs` | Defines terminal lifecycle and session outcome values. |
 | `lineage-timestamp-window.ts` | Checks timestamp windows for lineage records. |
@@ -52,7 +53,7 @@ deep-loop/
 | `receipt-crypto.ts` | Derives, signs and verifies receipt keys and signatures. |
 | `runtime-capabilities.cjs` | Resolves the parameterized runtime capability matrix. |
 | `sleep.ts` | Provides the synchronous sleep primitive used by runtime coordination. |
-| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it; restoring is opt-in and targets the pre-dispatch baseline, never HEAD. |
+| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it; restoring is opt-in and targets the pre-dispatch baseline, never HEAD. A path already dirty at the baseline that changes again is reported as contested, with no quarantine copy or revert, because the tree cannot say who wrote it. |
 
 ---
 

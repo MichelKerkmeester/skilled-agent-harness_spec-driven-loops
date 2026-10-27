@@ -3736,6 +3736,110 @@ describe('fanout-run.cjs — an out-of-packet untracked write settles as an advi
   });
 });
 
+describe('fanout-run.cjs — a concurrent operator edit is reported as contested, not blamed on the lane', () => {
+  it('reports the operator edit as contested and still reports the lane’s own stray write as an advisory', async () => {
+    const hermetic = useHermeticEnv('containment-contested');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-contested-bin-');
+    const specFolder = 'specs/test-fanout-run-contested';
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+    const lineageDir = join(baseDir, 'lineages', 'contained');
+    const operatorPath = join(repoRoot, 'operator-notes.md');
+    const strayPath = join(repoRoot, 'stray-out-of-scope', 'leaf-escaped.txt');
+    const startedMarker = join(binDir, 'lane-started');
+    const releaseMarker = join(binDir, 'lane-release');
+
+    const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+      delete env[key];
+    }
+    expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+    spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+    mkdirSync(join(baseDir, 'lineages', 'contained'), { recursive: true });
+    // The operator's draft is on disk and uncommitted before the lane is dispatched.
+    writeFileSync(operatorPath, 'draft one\n');
+
+    // The lane announces itself, waits for the test to play the other session, then writes its
+    // artifacts and one stray file of its own.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
+        `: > ${shellQuote(startedMarker)}`,
+        `while [ ! -e ${shellQuote(releaseMarker)} ]; do sleep 0.1; done`,
+        `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
+        `echo escaped > ${shellQuote(strayPath)}`,
+        writeFanoutArtifactsShell(),
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const running = spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env, timeoutMs: 30_000 },
+    );
+    await waitForFile(startedMarker, 15_000);
+    // A second session, not the lane, saves another version of the file it was already editing.
+    writeFileSync(operatorPath, 'draft two, typed by another session\n');
+    writeFileSync(releaseMarker, '');
+    const result = await running;
+
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{
+        output?: { containmentContested?: { paths?: Array<{ path?: string }>; note?: string } };
+      }>;
+    };
+    const contested = payload.results?.[0]?.output?.containmentContested;
+    // The tsx loader's own cache files share the hermetic root, so the check is on the two named
+    // paths rather than on the whole list.
+    const contestedPaths = contested?.paths?.map((entry) => entry.path) ?? [];
+    expect(contestedPaths).toContain('operator-notes.md');
+    expect(contestedPaths).not.toContain('stray-out-of-scope/leaf-escaped.txt');
+    expect(contested?.note).toMatch(/not who wrote them/);
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const contestedEvents = ledgerLines.filter((event) => event.event === 'containment_contested');
+    expect(contestedEvents).toHaveLength(1);
+    const eventPaths = (contestedEvents[0].paths as Array<{ path?: string }>).map((entry) => entry.path);
+    expect(eventPaths).toContain('operator-notes.md');
+    expect(eventPaths).not.toContain('stray-out-of-scope/leaf-escaped.txt');
+    // The lane's own stray write is still caught, and the operator's file is not filed with it.
+    const advisoryEvents = ledgerLines.filter((event) => event.event === 'containment_advisory');
+    expect(advisoryEvents).toHaveLength(1);
+    const advisoryPaths = (advisoryEvents[0].violations as Array<{ path?: string }>).map((entry) => entry.path);
+    expect(advisoryPaths).toContain('stray-out-of-scope/leaf-escaped.txt');
+    expect(advisoryPaths).not.toContain('operator-notes.md');
+
+    // Nothing was destroyed, and nothing of the operator's was copied under the lane.
+    expect(readFileSync(operatorPath, 'utf8')).toBe('draft two, typed by another session\n');
+    expect(existsSync(strayPath)).toBe(true);
+    const quarantineDir = join(lineageDir, 'containment', 'quarantine');
+    const quarantined = existsSync(quarantineDir) ? (readdirSync(quarantineDir, { recursive: true }) as string[]) : [];
+    expect(quarantined.some((entry) => entry.includes('leaf-escaped.txt'))).toBe(true);
+    expect(quarantined.some((entry) => entry.includes('operator-notes.md'))).toBe(false);
+  });
+});
+
 describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
   it('lets the --containment-mode flag override the fan-out config value, and rejects an unknown value', async () => {
     // The config asks for 'restore' while the flag pins 'preserve', so the tracked
@@ -4947,6 +5051,53 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
 
     expect(stdout).toContain('session_id: dr-resumed-789');
     expect(stdout).not.toContain(`session_id: fanout-${label}-`);
+  });
+
+  it('dispatches an interrupted lineage again under its stored session id on every resume', async () => {
+    const label = 'interrupted';
+    const specFolder = 'specs/test-fanout-run-resume';
+    const binDir = makeTempDir('fanout-run-resume-bin-');
+    writeEchoStubBinary(binDir, 'opencode');
+    const hermetic = useHermeticEnv('resume-dispatch');
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    const lineageDir = join(baseDir, 'lineages', label);
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-config.json'),
+      JSON.stringify({ lineage: { sessionId: 'dr-interrupted-321' }, status: 'initialized' }),
+    );
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label, kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    // Every run after the first is a resume of the same lineage: same label, same stored session
+    // id, and the effect ledger of the earlier dispatch still on disk.
+    for (let run = 1; run <= 3; run += 1) {
+      const result = await spawnCjs(
+        fanoutRunScript,
+        [
+          '--spec-folder', specFolder,
+          '--loop-type', 'research',
+          '--fanout-config-json', fanoutConfig,
+          '--base-artifact-dir', baseDir,
+          '--no-metadata-refresh',
+        ],
+        { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+      );
+      expect(result.exitCode, `run ${run}`).toBe(0);
+      const stdout = readFileSync(join(lineageDir, 'logs', 'fanout-lineage.out'), 'utf8');
+      expect(stdout, `run ${run} reached the executor`).toContain('ARGV:');
+      expect(stdout).toContain('session_id: dr-interrupted-321');
+    }
+
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>)
+      .filter((event) => event.label === label);
+    expect(ledgerEvents.filter((event) => event.event === 'completed')).toHaveLength(3);
+    expect(ledgerEvents.filter((event) => event.event === 'failed')).toHaveLength(0);
   });
 });
 
