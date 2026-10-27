@@ -55,6 +55,30 @@
       "prompt": "delegate to codex",
       "expectedTop": "cli-external-orchestration",
       "branch": "direct-alias"
+    },
+    {
+      "id": "split-handoff-delegate-object-to-codex",
+      "prompt": "delegate this refactor to codex using gpt-6.1 terra",
+      "expectedTop": "cli-external-orchestration",
+      "branch": "split-handoff"
+    },
+    {
+      "id": "split-handoff-hand-object-off-to-opencode",
+      "prompt": "hand the whole sweep off to opencode",
+      "expectedTop": "cli-external-orchestration",
+      "branch": "split-handoff"
+    },
+    {
+      "id": "split-handoff-prose-delegate-to-team",
+      "prompt": "delegate the decision to the team",
+      "expectedTop": "none",
+      "branch": "split-handoff-prose"
+    },
+    {
+      "id": "split-handoff-prose-hand-off-to-qa",
+      "prompt": "hand off to QA",
+      "expectedTop": "none",
+      "branch": "split-handoff-prose"
     }
   ]
 }

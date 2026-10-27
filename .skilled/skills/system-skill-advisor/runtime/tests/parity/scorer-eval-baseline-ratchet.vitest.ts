@@ -92,6 +92,16 @@ function readJsonl<T>(path: string): T[] {
   return readFileSync(path, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line) as T);
 }
 
+// Private `local-*` skills linked in through this variable live outside the
+// checkout, so a pinned count measured on a clean checkout must not see them.
+const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
+const PREVIOUS_PRIVATE_SKILL_ROOTS = process.env[PRIVATE_SKILL_ROOTS_ENV];
+
+function restorePrivateSkillRoots(): void {
+  if (PREVIOUS_PRIVATE_SKILL_ROOTS === undefined) delete process.env[PRIVATE_SKILL_ROOTS_ENV];
+  else process.env[PRIVATE_SKILL_ROOTS_ENV] = PREVIOUS_PRIVATE_SKILL_ROOTS;
+}
+
 // Freeze scoring to the reproducible filesystem projection: an empty
 // SYSTEM_SKILL_ADVISOR_DB_DIR makes the SQLite loader return null (clean FS
 // projection from committed metadata), semantic embeddings are disabled, and
@@ -104,6 +114,7 @@ function freezeEvalEnv(): void {
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
+  delete process.env[PRIVATE_SKILL_ROOTS_ENV];
 }
 
 let scoreAdvisorPrompt: (prompt: string, options: AdvisorScoringOptions) => AdvisorScoringResult;
@@ -224,6 +235,7 @@ describe('scorer eval baseline ratchet (accuracy non-regression gate)', () => {
 
   afterAll(() => {
     vi.useRealTimers();
+    restorePrivateSkillRoots();
   });
 
   it('the baseline is well-formed', () => {

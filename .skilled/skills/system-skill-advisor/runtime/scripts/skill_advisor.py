@@ -3995,6 +3995,15 @@ REVIEW_PLUS_WRITE_RE = re.compile(r"\breview\b.{0,40}\b(update|edit|modify|fix|p
 EXECUTOR_DELEGATION_CUES_RE = re.compile(
     r"\b(use|delegate to|ask|run|invoke|dispatch|hand off to|second opinion|small[- ]model)\b"
 )
+# A handoff phrased around its object ("delegate this refactor to codex", "hand
+# the sweep off to opencode") never contains the contiguous cue above. The
+# executor must sit directly after the "to": at most six object words may
+# separate the verb from it, and sentence punctuation or another "to" ends the
+# object. That keeps "delegate the decision to the team" and "hand off to QA"
+# out, and an executor mentioned only inside the object out as well.
+_SPLIT_HANDOFF_OBJECT = r"(?:(?!to\s)[^\s.,;:!?]+\s+){1,6}?"
+_SPLIT_HANDOFF_TARGET_LEAD = r"(?:(?:the|an?)\s+)?"
+_SPLIT_HANDOFF_VERB_RE = re.compile(r"\b(?:delegate|hand)\b")
 # The negative guard forces NON-delegation: "opencode {standards|route|...}" and a
 # bare ".skilled/" path are the code hub's own opencode surface, not a handoff.
 EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
@@ -4217,11 +4226,21 @@ def _match_phrase_boundary(prompt_lower: str, phrase: str) -> bool:
     return re.search(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", prompt_lower) is not None
 
 
+def _matches_split_handoff(prompt_lower: str, noun: str) -> bool:
+    """True when "delegate <object> to <noun>" or "hand <object> off to <noun>" appears."""
+    if not _SPLIT_HANDOFF_VERB_RE.search(prompt_lower):
+        return False
+    target = _SPLIT_HANDOFF_TARGET_LEAD + re.escape(noun) + r"(?!\w)"
+    delegate = r"(?<!\w)delegate\s+" + _SPLIT_HANDOFF_OBJECT + r"to\s+" + target
+    hand_off = r"(?<!\w)hand\s+" + _SPLIT_HANDOFF_OBJECT + r"off\s+to\s+" + target
+    return re.search(delegate, prompt_lower) is not None or re.search(hand_off, prompt_lower) is not None
+
+
 def _resolve_executor_delegation(prompt_lower: str) -> Optional[tuple]:
     """Return (executor_id_or_None, action) or None. Mirror of the TS resolver.
 
     Precedence: negative guard -> suppressed(abstain) -> direct alias(route) ->
-    orchestrator noun + delegation cue(route).
+    orchestrator noun + delegation cue or split handoff(route).
     """
     if not prompt_lower:
         return None
@@ -4237,13 +4256,17 @@ def _resolve_executor_delegation(prompt_lower: str) -> Optional[tuple]:
             best_alias = (alias, executor_id)
     if best_alias is not None:
         return (best_alias[1], "route")
-    if EXECUTOR_DELEGATION_CUES_RE.search(prompt_lower):
-        best_noun: Optional[tuple] = None
-        for noun, executor_id in table["orchestrator"].items():
-            if _match_phrase_boundary(prompt_lower, noun) and (best_noun is None or len(noun) > len(best_noun[0])):
-                best_noun = (noun, executor_id)
-        if best_noun is not None:
-            return (best_noun[1], "route")
+    cue_hit = EXECUTOR_DELEGATION_CUES_RE.search(prompt_lower) is not None
+    best_noun: Optional[tuple] = None
+    for noun, executor_id in table["orchestrator"].items():
+        if not _match_phrase_boundary(prompt_lower, noun):
+            continue
+        if not (cue_hit or _matches_split_handoff(prompt_lower, noun)):
+            continue
+        if best_noun is None or len(noun) > len(best_noun[0]):
+            best_noun = (noun, executor_id)
+    if best_noun is not None:
+        return (best_noun[1], "route")
     return None
 
 

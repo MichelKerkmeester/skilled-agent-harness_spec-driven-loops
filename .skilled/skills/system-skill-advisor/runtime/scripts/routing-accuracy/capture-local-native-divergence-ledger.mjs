@@ -78,6 +78,10 @@ process.env.VITEST = 'true';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
+// Private `local-*` skills linked in from outside the checkout are not part of
+// the regime the ratchet replays; a capture that indexed them would record a
+// divergence set no clean checkout reproduces.
+delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
 
 // The derived lane discounts each skill by its age at scoring time. Scoring at
 // one fixed instant lets the ratchet replay this capture exactly on a later day.

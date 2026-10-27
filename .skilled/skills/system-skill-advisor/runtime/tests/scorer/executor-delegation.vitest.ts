@@ -166,6 +166,33 @@ describe('executor-delegation resolver (pure detector)', () => {
   it('does not fire on a bare opencode mention with no delegation cue', () => {
     expect(resolveExecutorDelegation('summarize what the opencode project does.', table)).toBeNull();
   });
+
+  const splitHandoffs: ReadonlyArray<readonly [string, string]> = [
+    ['delegate this refactor to codex using gpt-6.1 terra', 'cli-codex'],
+    ['delegate the migration script to the codex cli', 'cli-codex'],
+    ['hand this refactor off to claude code', 'cli-claude-code'],
+    ['hand the whole sweep off to opencode', 'cli-opencode'],
+    ['delegate the review of this file to pi', 'cli-pi'],
+  ];
+
+  it.each(splitHandoffs)('resolves a split handoff phrasing: %s', (prompt, executor) => {
+    const decision = resolveExecutorDelegation(prompt, table);
+    expect(decision?.action).toBe('route');
+    expect(decision?.executorSkillId).toBe(executor);
+  });
+
+  const proseHandoffs = [
+    'delegate the decision to the team',
+    'hand off to QA',
+    'hand the release notes off to the docs team',
+    'delegate the codex migration decision to the team',
+    'hand the opencode rollout off to QA',
+    'delegate this refactor to a contractor, codex is out of scope',
+  ];
+
+  it.each(proseHandoffs)('does not treat ordinary prose as an executor handoff: %s', (prompt) => {
+    expect(resolveExecutorDelegation(prompt, table)).toBeNull();
+  });
 });
 
 describe('executor-delegation shared fixture (TS native + Python parity)', () => {
@@ -223,4 +250,51 @@ describe('executor-delegation shared fixture (TS native + Python parity)', () =>
       `Executor-delegation TS/Python parity divergences:\n  ${divergences.join('\n  ')}`,
     ).toEqual([]);
   }, 60_000);
+});
+
+describe('executor delegation never overrides a workflow-owned route', () => {
+  freezeNativeEnv();
+  const options = { workspaceRoot: WORKSPACE_ROOT };
+
+  const workflowOwned: ReadonlyArray<readonly [string, string]> = [
+    ['run a deep research loop with the cli-pi executor', 'system-deep-loop'],
+    ['run a deep review with cli-codex as the executor', 'system-deep-loop'],
+  ];
+
+  it.each(workflowOwned)('keeps the workflow owner first and the CLI hub just below: %s', (prompt, owner) => {
+    const result = scoreAdvisorPrompt(prompt, options);
+    const [first, second] = result.recommendations;
+    expect(first?.skill).toBe(owner);
+    expect(second?.skill).toBe('cli-external-orchestration');
+    expect(second?.passes_threshold).toBe(true);
+    expect(second!.confidence).toBeLessThan(first!.confidence);
+    expect(second!.reason).toContain('[delegation:');
+  });
+
+  const pureDelegation = [
+    'delegate this refactor to codex using gpt-6.1 terra',
+    'run this task through opencode with gpt-6.1 terra',
+    'dispatch a pi agent on gpt-6.1 terra to review this file',
+  ];
+
+  it.each(pureDelegation)('still routes a plain delegation to the CLI hub first: %s', (prompt) => {
+    const result = scoreAdvisorPrompt(prompt, options);
+    expect(result.recommendations[0]?.skill).toBe('cli-external-orchestration');
+  });
+
+  it('lifts a split codex delegation to the route confidence', () => {
+    const result = scoreAdvisorPrompt('delegate this refactor to codex using gpt-6.1 terra', options);
+    const [first] = result.recommendations;
+    expect(first?.skill).toBe('cli-external-orchestration');
+    expect(first?.confidence).toBe(0.95);
+    expect(first?.reason).toContain('[delegation: executor-orchestrator:codex]');
+  });
+
+  it.each(['delegate the decision to the team', 'hand off to QA'])(
+    'leaves the CLI hub out of an ordinary prose handoff: %s',
+    (prompt) => {
+      const result = scoreAdvisorPrompt(prompt, options);
+      expect(result.recommendations.map((rec) => rec.skill)).not.toContain('cli-external-orchestration');
+    },
+  );
 });

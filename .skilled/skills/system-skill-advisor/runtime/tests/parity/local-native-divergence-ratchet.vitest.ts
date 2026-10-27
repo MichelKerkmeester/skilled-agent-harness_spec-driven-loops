@@ -37,6 +37,12 @@ import { HARDER_INTENT_PROMPT_CORPUS } from '../scorer/fixtures/harder-intent-pr
 // comparison stays apples-to-apples.
 const NONE = 'none';
 
+// A developer machine can link private `local-*` skills into the skills tree
+// through this variable. Those skills live outside the checkout, so they are not
+// part of the regime the committed ledger describes: indexed in, they shift both
+// scorers' decisions on this machine and on no CI runner.
+const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
+
 // Default: the Python step is required. This is a CI gate, not the opportunistic
 // CLI-parity skip — a missing interpreter must fail loudly. Set
 // SPECKIT_PARITY_REQUIRE_PYTHON=0 only in a genuinely python-less environment,
@@ -269,6 +275,7 @@ let LEDGER: Ledger = { schemaVersion: 1, entries: [] };
 let SCORING_INSTANT: Date | null = null;
 let FRESH_DB_DIR: string | null = null;
 const PREVIOUS_DB_DIR = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+const PREVIOUS_PRIVATE_SKILL_ROOTS = process.env[PRIVATE_SKILL_ROOTS_ENV];
 
 const SKIP_WITHOUT_PYTHON = !REQUIRE_PYTHON && !pythonReachable();
 
@@ -290,6 +297,7 @@ describe.skipIf(SKIP_WITHOUT_PYTHON)('local-vs-native routing divergence ratchet
     }
 
     freezeNativeEnv();
+    delete process.env[PRIVATE_SKILL_ROOTS_ENV];
     CORPUS = loadCorpus();
     CORPUS_IDS = new Set(CORPUS.map((entry) => entry.id));
     LEDGER = loadLedger();
@@ -343,6 +351,8 @@ describe.skipIf(SKIP_WITHOUT_PYTHON)('local-vs-native routing divergence ratchet
     if (FRESH_DB_DIR) rmSync(FRESH_DB_DIR, { recursive: true, force: true });
     if (PREVIOUS_DB_DIR === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     else process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = PREVIOUS_DB_DIR;
+    if (PREVIOUS_PRIVATE_SKILL_ROOTS === undefined) delete process.env[PRIVATE_SKILL_ROOTS_ENV];
+    else process.env[PRIVATE_SKILL_ROOTS_ENV] = PREVIOUS_PRIVATE_SKILL_ROOTS;
   });
 
   it('scores at the pinned ledger instant, not the wall clock', () => {

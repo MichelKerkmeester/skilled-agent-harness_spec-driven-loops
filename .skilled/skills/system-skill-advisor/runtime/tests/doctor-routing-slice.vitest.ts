@@ -43,6 +43,16 @@ function readJsonl<T>(path: string): T[] {
   return readFileSync(path, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line) as T);
 }
 
+// Private `local-*` skills linked in through this variable live outside the
+// checkout, so a pinned count measured on a clean checkout must not see them.
+const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
+const PREVIOUS_PRIVATE_SKILL_ROOTS = process.env[PRIVATE_SKILL_ROOTS_ENV];
+
+function restorePrivateSkillRoots(): void {
+  if (PREVIOUS_PRIVATE_SKILL_ROOTS === undefined) delete process.env[PRIVATE_SKILL_ROOTS_ENV];
+  else process.env[PRIVATE_SKILL_ROOTS_ENV] = PREVIOUS_PRIVATE_SKILL_ROOTS;
+}
+
 // Freeze scoring to the reproducible filesystem projection: an empty DB dir makes the
 // SQLite loader return null, semantic embeddings are disabled, and the native
 // lane-ranking overrides are cleared so the top-1 decision is deterministic.
@@ -53,6 +63,7 @@ function freezeEvalEnv(): void {
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
+  delete process.env[PRIVATE_SKILL_ROOTS_ENV];
 }
 
 function activeTypescriptBridgeIds(): Set<string> {
@@ -120,6 +131,7 @@ describe('doctor routing slice', () => {
 
   afterAll(() => {
     vi.useRealTimers();
+    restorePrivateSkillRoots();
   });
 
   it('reads a well-formed slice', () => {

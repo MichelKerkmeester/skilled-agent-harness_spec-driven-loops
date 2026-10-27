@@ -56,6 +56,18 @@ const ROUTE_CONFIDENCE = 0.95;
 const ROUTE_UNCERTAINTY = 0.2;
 const CODE_HUB_CONFIDENCE_CAP = 0.88;
 
+// The skills that own the workflows an executor CLI runs inside. The executor
+// is the HOW of such a workflow, so a prompt that names both never lets the CLI
+// hub take the route from its owner.
+const WORKFLOW_OWNER_SKILL_IDS: ReadonlySet<string> = new Set(['system-deep-loop', 'system-spec-kit']);
+
+// Below this explicit-lane score a match is a side mention, not a request.
+// Same floor the fusion scorer applies to its own explicit workflow signal.
+const WORKFLOW_OWNER_EXPLICIT_FLOOR = 0.55;
+
+// How far below its workflow owner the lifted CLI hub sits.
+const WORKFLOW_OWNER_CONFIDENCE_GAP = 0.001;
+
 // Generic single tokens that appear in executor metadata as domain/topic labels
 // rather than delegation cues. They would over-match general prompts, so they
 // are never treated as executor aliases.
@@ -78,6 +90,16 @@ const ALIAS_STOPLIST: ReadonlySet<string> = new Set([
 // Delegation cues pair with an orchestrator noun to catch non-literal framings
 // ("ask OpenCode …", "an OpenCode second opinion", "a small-model executor").
 const DELEGATION_CUES = /\b(use|delegate to|ask|run|invoke|dispatch|hand off to|second opinion|small[- ]model)\b/;
+
+// A handoff phrased around its object ("delegate this refactor to codex", "hand
+// the sweep off to opencode") never contains the contiguous cue above. The
+// executor must sit directly after the "to": at most six object words may
+// separate the verb from it, and sentence punctuation or another "to" ends the
+// object. That keeps "delegate the decision to the team" and "hand off to QA"
+// out, and an executor mentioned only inside the object ("delegate the codex
+// migration decision to the team") out as well.
+const SPLIT_HANDOFF_OBJECT = String.raw`(?:(?!to\s)[^\s.,;:!?]+\s+){1,6}?`;
+const SPLIT_HANDOFF_TARGET_LEAD = String.raw`(?:(?:the|an?)\s+)?`;
 
 // The negative guard forces NON-delegation. "opencode {standards|route|…}" and a
 // bare ".skilled/" path are the code hub's own opencode surface, not an
@@ -353,6 +375,20 @@ export function buildExecutorAliasTable(
   };
 }
 
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// True when "delegate <object> to <noun>" or "hand <object> off to <noun>"
+// appears, with the executor noun as the target of the "to".
+function matchesSplitHandoff(promptLower: string, noun: string): boolean {
+  if (!/\b(?:delegate|hand)\b/.test(promptLower)) return false;
+  const target = `${SPLIT_HANDOFF_TARGET_LEAD}${escapeRegExp(noun)}(?!\\w)`;
+  const delegate = new RegExp(String.raw`(?<!\w)delegate\s+${SPLIT_HANDOFF_OBJECT}to\s+${target}`);
+  const handOff = new RegExp(String.raw`(?<!\w)hand\s+${SPLIT_HANDOFF_OBJECT}off\s+to\s+${target}`);
+  return delegate.test(promptLower) || handOff.test(promptLower);
+}
+
 function longestPhraseMatch(promptLower: string, phrases: Iterable<[string, string]>): { phrase: string; value: string } | null {
   let best: { phrase: string; value: string } | null = null;
   for (const [phrase, value] of phrases) {
@@ -387,19 +423,36 @@ export function resolveExecutorDelegation(
     return { executorSkillId: directMatch.value, action: 'route', evidence: `executor-alias:${directMatch.phrase}` };
   }
 
-  // Otherwise an orchestrator noun co-occurring with a delegation cue routes.
-  if (table.delegationCues.test(promptLower)) {
-    const orchestratorMatch = longestPhraseMatch(promptLower, table.orchestratorNouns.entries());
-    if (orchestratorMatch) {
-      return {
-        executorSkillId: orchestratorMatch.value,
-        action: 'route',
-        evidence: `executor-orchestrator:${orchestratorMatch.phrase}`,
-      };
-    }
+  // Otherwise an orchestrator noun co-occurring with a delegation cue routes,
+  // and so does one that is the target of a split "delegate/hand ... to" handoff.
+  const cueHit = table.delegationCues.test(promptLower);
+  const nouns = Array.from(table.orchestratorNouns.entries())
+    .filter(([noun]) => cueHit || matchesSplitHandoff(promptLower, noun));
+  const orchestratorMatch = longestPhraseMatch(promptLower, nouns);
+  if (orchestratorMatch) {
+    return {
+      executorSkillId: orchestratorMatch.value,
+      action: 'route',
+      evidence: `executor-orchestrator:${orchestratorMatch.phrase}`,
+    };
   }
 
   return null;
+}
+
+// The explicit lane only counts as a workflow request when it carries phrase,
+// author or explicit evidence; a bare score can come from incidental tokens.
+function hasExplicitWorkflowMatch(rec: AdvisorScoredRecommendation): boolean {
+  const explicit = rec.laneContributions.find((contribution) => contribution.lane === 'explicit_author');
+  if (!explicit || explicit.rawScore < WORKFLOW_OWNER_EXPLICIT_FLOOR) return false;
+  return explicit.evidence.some((entry) => (
+    entry.startsWith('phrase:')
+    || entry.startsWith('explicit:')
+    || entry.startsWith('author:')
+    || entry.includes(rec.skill)
+    || entry.includes('loop')
+    || entry.includes('write-')
+  ));
 }
 
 function appendEvidence(reason: string, evidence: string): string {
@@ -471,6 +524,12 @@ export function applyExecutorDelegationOverride(
   // instead; the mode still reaches the caller, through the compiled target.
   const liftId = table.activeExecutorIds.has(executorId) ? CLI_HUB_SKILL_ID : executorId;
 
+  const workflowOwner = ranked.find((rec) => (
+    WORKFLOW_OWNER_SKILL_IDS.has(rec.skill)
+    && rec.passes_threshold
+    && hasExplicitWorkflowMatch(rec)
+  )) ?? null;
+
   const rest: AdvisorScoredRecommendation[] = [];
   let executorRec: AdvisorScoredRecommendation | null = null;
   for (const rec of ranked) {
@@ -484,6 +543,7 @@ export function applyExecutorDelegationOverride(
       };
       continue;
     }
+    if (rec === workflowOwner) continue;
     // Cap the code hub so it cannot out-rank or tie the resolved executor.
     rest.push(
       rec.skill === CODE_HUB_SKILL_ID
@@ -500,6 +560,18 @@ export function applyExecutorDelegationOverride(
       ...executorRec,
       passes_threshold: ROUTE_CONFIDENCE >= ctx.confidenceThreshold && ROUTE_UNCERTAINTY <= ctx.uncertaintyThreshold,
     };
+  }
+
+  if (workflowOwner !== null) {
+    // The workflow owner keeps the route; the executor hub stays reachable
+    // directly beneath it as the runner of that workflow.
+    const confidence = Math.min(executorRec.confidence, workflowOwner.confidence - WORKFLOW_OWNER_CONFIDENCE_GAP);
+    const hubBelowOwner: AdvisorScoredRecommendation = {
+      ...executorRec,
+      confidence,
+      passes_threshold: confidence >= ctx.confidenceThreshold && executorRec.uncertainty <= ctx.uncertaintyThreshold,
+    };
+    return [workflowOwner, hubBelowOwner, ...rest];
   }
 
   return [executorRec, ...rest];

@@ -22,7 +22,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { AdvisorScoringOptions, AdvisorScoringResult } from '../../lib/scorer/types.js';
 import { HARDER_INTENT_PROMPT_CORPUS } from '../scorer/fixtures/harder-intent-prompt-corpus.js';
 import { INTENT_PROMPT_CORPUS } from '../scorer/fixtures/intent-prompt-corpus.js';
@@ -291,6 +291,16 @@ function readsCorpus(file: string, corpus: CorpusId): boolean {
   return CORPUS_REFERENCE[corpus].test(readFileSync(join(RUNTIME_ROOT, file), 'utf8'));
 }
 
+// Private `local-*` skills linked in through this variable live outside the
+// checkout, so a pinned count measured on a clean checkout must not see them.
+const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
+const PREVIOUS_PRIVATE_SKILL_ROOTS = process.env[PRIVATE_SKILL_ROOTS_ENV];
+
+function restorePrivateSkillRoots(): void {
+  if (PREVIOUS_PRIVATE_SKILL_ROOTS === undefined) delete process.env[PRIVATE_SKILL_ROOTS_ENV];
+  else process.env[PRIVATE_SKILL_ROOTS_ENV] = PREVIOUS_PRIVATE_SKILL_ROOTS;
+}
+
 function freezeEvalEnv(): void {
   process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-holdout-'));
   process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
@@ -298,6 +308,7 @@ function freezeEvalEnv(): void {
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
+  delete process.env[PRIVATE_SKILL_ROOTS_ENV];
 }
 
 let scoreAdvisorPrompt: (prompt: string, options: AdvisorScoringOptions) => AdvisorScoringResult;
@@ -336,6 +347,8 @@ function surfaceOverlap(surface: ScoringSurface): Map<string, { sourceType: Sour
 }
 
 describe('independent holdout gate', () => {
+  afterAll(restorePrivateSkillRoots);
+
   beforeAll(async () => {
     freezeEvalEnv();
     const fusion = await import('../../lib/scorer/fusion.js');

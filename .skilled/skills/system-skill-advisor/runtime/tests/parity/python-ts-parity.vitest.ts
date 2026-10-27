@@ -11,6 +11,16 @@ import { spawnSync } from 'node:child_process';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
+// Private `local-*` skills linked in through this variable live outside the
+// checkout, so a pinned count measured on a clean checkout must not see them.
+const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
+const PREVIOUS_PRIVATE_SKILL_ROOTS = process.env[PRIVATE_SKILL_ROOTS_ENV];
+
+function restorePrivateSkillRoots(): void {
+  if (PREVIOUS_PRIVATE_SKILL_ROOTS === undefined) delete process.env[PRIVATE_SKILL_ROOTS_ENV];
+  else process.env[PRIVATE_SKILL_ROOTS_ENV] = PREVIOUS_PRIVATE_SKILL_ROOTS;
+}
+
 // Pinned force-local regime, set before the scorer import because the scorer
 // reads the database directory at module load. This is the regime CI runs in:
 // no skill-graph.sqlite, built-in semantic off. Without it the in-process
@@ -20,6 +30,7 @@ import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'python-ts-parity-'));
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
+delete process.env[PRIVATE_SKILL_ROOTS_ENV];
 
 const { runLaneAblation } = await import('../../lib/scorer/ablation.js');
 const { scoreAdvisorPrompt } = await import('../../lib/scorer/fusion.js');
@@ -156,6 +167,7 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
 
   afterAll(() => {
     vi.useRealTimers();
+    restorePrivateSkillRoots();
   });
 
   // drift: verified against shipped behavior during Unit H

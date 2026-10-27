@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/039-executor-workflow-owner-guard",
+  "spec_folder": "system-skill-advisor/039-executor-workflow-owner-guard",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "executor workflow owner guard",
+      "keep a workflow skill above the cli hub",
+      "executor workflow owner guard plan",
+      "executor workflow owner guard tasks",
+      "executor workflow owner guard acceptance criteria",
+      "executor workflow owner guard implementation summary"
+    ],
+    "key_topics": [
+      "executor",
+      "workflow",
+      "owner",
+      "guard",
+      "keep",
+      "skill",
+      "cli",
+      "hub",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.11.0.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/executor-delegation.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-capture-date.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.11.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.11.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/executor-delegation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation-cases.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-validate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "capture-scorer-eval-baseline.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline-capture-date.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-capture-date.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-divergence-ratchet.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capture-local-native-divergence-ledger.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-routing-slice.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-reader-inventory.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A prompt such as \"run a deep research loop with the cli-pi executor\" made the advisor rank `cli-external-orchestration` (confidence 0.95) above `system-deep-loop` (0.9248)",
+    "created_at": "2026-10-27T19:44:35Z",
+    "last_save_at": "2026-10-27T21:20:26.311Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2c5e94917eedd2b3e5a197bab1655984982ff8dee3acd2376b63aca2641884a2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4b287896c2eecaa4d2376cf4cbaa11a82e6f417244c8834211297e85e52a88d4",
+      "plan.md": "d215143e98facda8400e69f530423e5048da2193b8955b5847bef277e8df29e1",
+      "tasks.md": "4e9630f7c329ea37f6c951f7e995f7fd5e7617a42210fcc2637b3362641199be",
+      "implementation-summary.md": "ff108fecc86214aa8678d04bf3b50324cdf7b311c6b0393dccd2d97a2b9c805f"
+    },
+    "last_active_at": null
+  }
+}

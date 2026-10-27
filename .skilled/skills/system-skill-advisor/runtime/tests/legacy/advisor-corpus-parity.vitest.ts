@@ -95,6 +95,10 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
   it('preserves Python-correct top-1 decisions while allowing native improvements', async () => {
     const previousSemantic = process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
     process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
+    // Private `local-*` skills linked in from outside the checkout are not part of
+    // the corpus regime the pinned counts were measured in.
+    const previousPrivateRoots = process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
+    delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
 
     try {
       const rows = loadCorpus();
@@ -165,6 +169,11 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
         delete process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
       } else {
         process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = previousSemantic;
+      }
+      if (previousPrivateRoots === undefined) {
+        delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
+      } else {
+        process.env.SPECKIT_PRIVATE_SKILL_ROOTS = previousPrivateRoots;
       }
     }
   }, 240_000);

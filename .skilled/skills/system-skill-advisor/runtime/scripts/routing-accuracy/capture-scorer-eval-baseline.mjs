@@ -16,6 +16,8 @@
 // Usage:
 //   node capture-scorer-eval-baseline.mjs            # print JSON to stdout
 //   node capture-scorer-eval-baseline.mjs --write     # also write the baseline
+//   SPECKIT_EVAL_BASELINE_SCORING_DATE=YYYY-MM-DD node capture-scorer-eval-baseline.mjs --write
+//                                                     # move the pinned scoring date
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -59,11 +61,47 @@ process.env.VITEST = 'true';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
+// Private `local-*` skills linked in through this variable live outside the
+// checkout, so a baseline measured on a clean checkout must not see them.
+delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
 
-// The derived lane discounts each skill by its age at scoring time, so scores
-// drift with the calendar. Scoring at one fixed instant, midnight UTC of the
-// capture day, lets the ratchet replay this baseline exactly on any later day.
-const CAPTURED_AT = new Date().toISOString().slice(0, 10);
+// The derived lane halves each skill's score every 90 days of age, measured from
+// its derived.generated_at to the scoring clock (floored at 0.1), so scores move
+// with the calendar. The scoring date is therefore pinned and recorded, never
+// read from the wall clock: a recapture on any day replays the recorded date and
+// reproduces the same numbers. Moving the pin is a deliberate act, made by
+// exporting SPECKIT_EVAL_BASELINE_SCORING_DATE=YYYY-MM-DD for the capture run.
+// The baseline's `capturedAt` field holds this pinned scoring date, which the
+// ratchet and the other baseline readers replay at midnight UTC.
+const SCORING_DATE_ENV = 'SPECKIT_EVAL_BASELINE_SCORING_DATE';
+
+function isCalendarDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+
+function resolveScoringDate() {
+  const fromEnv = process.env[SCORING_DATE_ENV];
+  if (fromEnv !== undefined && fromEnv !== '') {
+    if (!isCalendarDate(fromEnv)) {
+      process.stderr.write(`capture-scorer-eval-baseline.mjs: ${SCORING_DATE_ENV} must be a calendar date (YYYY-MM-DD), got: ${fromEnv}\n`);
+      process.exit(2);
+    }
+    return fromEnv;
+  }
+  let recorded;
+  try {
+    recorded = JSON.parse(readFileSync(OUTPUT_JSON, 'utf8')).capturedAt;
+  } catch {
+    recorded = undefined;
+  }
+  if (typeof recorded === 'string' && isCalendarDate(recorded)) return recorded;
+  process.stderr.write(`capture-scorer-eval-baseline.mjs: no recorded scoring date in ${OUTPUT_JSON}; set ${SCORING_DATE_ENV}=YYYY-MM-DD\n`);
+  process.exit(2);
+}
+
+const CAPTURED_AT = resolveScoringDate();
 const SCORING_INSTANT = Date.parse(`${CAPTURED_AT}T00:00:00Z`);
 const RealDate = Date;
 globalThis.Date = class extends RealDate {
