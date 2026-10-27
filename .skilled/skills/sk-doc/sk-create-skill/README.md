@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # create-skill
@@ -170,3 +170,8 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |
 | [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) | Zero-call Stage-Two leaf-route replay, router-read recount and prose comparison |
+
+<!-- readme-check
+allow-ref my-skill/ | the example skill folder init_skill.py creates, not a repo path
+allow-ref benchmark/reports/ | a tree inside the example skill init_skill.py creates
+-->

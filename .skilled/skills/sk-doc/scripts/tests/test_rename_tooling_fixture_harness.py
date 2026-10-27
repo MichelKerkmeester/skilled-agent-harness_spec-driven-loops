@@ -18,6 +18,7 @@ SHARED_SCRIPTS = Path(__file__).resolve().parents[2] / "shared" / "scripts"
 HARNESS = SHARED_SCRIPTS / "rename_tooling_fixture_harness.py"
 sys.path.insert(0, str(SHARED_SCRIPTS))
 
+from git_env import scrub_git_env  # noqa: E402
 from rename_tooling_fixture_core import (  # noqa: E402
     DEFAULT_CORPUS,
     HarnessError,
@@ -28,18 +29,60 @@ from rename_tooling_fixture_core import (  # noqa: E402
 )
 
 
+def _sentinel_git(root: Path, *arguments: str) -> None:
+    """Run Git inside the sentinel repository with hooks, signing, and env redirects off."""
+    subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "-c",
+            "user.email=sentinel@example.invalid",
+            "-c",
+            "user.name=Protected Sentinel",
+            "-c",
+            "commit.gpgSign=false",
+            "-c",
+            "core.hooksPath=/dev/null",
+            *arguments,
+        ],
+        check=True,
+        capture_output=True,
+        env=scrub_git_env(),
+    )
+
+
+def _build_protected_sentinel(root: Path) -> None:
+    """Seed a small dirty Git worktree that stands in for the operator's checkout.
+
+    The live checkout is never the protected root: its unrelated uncommitted state
+    (another session's deletions, edits in flight) would decide whether this test
+    passes. The sentinel carries the dirty states the snapshot must cover, a
+    committed file, a modified tracked file, a tracked file deleted without a
+    commit, and an untracked file, so a harness write into the protected root
+    still moves its digest.
+    """
+    root.mkdir()
+    _sentinel_git(root, "init", "--quiet")
+    (root / "committed.md").write_text("committed baseline\n", encoding="utf-8")
+    (root / "modified.md").write_text("committed baseline\n", encoding="utf-8")
+    (root / "deleted.md").write_text("committed baseline\n", encoding="utf-8")
+    _sentinel_git(root, "add", "--", ".")
+    _sentinel_git(root, "commit", "--quiet", "-m", "protected sentinel baseline")
+    (root / "modified.md").write_text("uncommitted edit\n", encoding="utf-8")
+    (root / "deleted.md").unlink()
+    (root / "untracked.md").write_text("untracked operator note\n", encoding="utf-8")
+
+
 class RenameToolingFixtureHarnessTests(unittest.TestCase):
     """Prove corpus completeness, dry-run safety, apply isolation, and determinism."""
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        result = subprocess.run(
-            ["git", "rev-parse", "--show-toplevel"],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-        cls.protected_root = Path(result.stdout.strip()).resolve()
+    def setUp(self) -> None:
+        # One sentinel per test, so a write leaked by an earlier test cannot hide a later one.
+        sentinel_parent = tempfile.TemporaryDirectory(prefix="rename-harness-protected-")
+        self.addCleanup(sentinel_parent.cleanup)
+        self.protected_root = (Path(sentinel_parent.name) / "protected").resolve()
+        _build_protected_sentinel(self.protected_root)
 
     def test_corpus_declares_a_non_zero_explicit_scenario_matrix(self) -> None:
         """The corpus validator should accept the complete explicit coverage contract."""
@@ -123,6 +166,14 @@ class RenameToolingFixtureHarnessTests(unittest.TestCase):
         self.assertTrue(cas["executor_regenerated"])
         self.assertEqual(cas["executor_rollback_state"], "reverted")
         self.assertEqual(snapshot_git_worktree(self.protected_root), protected_before)
+
+    def test_snapshot_records_tracked_deletions_as_absent(self) -> None:
+        """A tracked file already missing is stable state; one removed during a run is a change."""
+        already_absent = snapshot_git_worktree(self.protected_root)
+        self.assertEqual(snapshot_git_worktree(self.protected_root), already_absent)
+
+        (self.protected_root / "committed.md").unlink()
+        self.assertNotEqual(snapshot_git_worktree(self.protected_root), already_absent)
 
     def test_boundary_and_flag_guards_fail_before_fixture_mutation(self) -> None:
         """Protected roots, outside roots, and rollback-only requests should be rejected."""

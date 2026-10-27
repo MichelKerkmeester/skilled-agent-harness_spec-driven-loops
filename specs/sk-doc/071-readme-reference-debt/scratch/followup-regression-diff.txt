@@ -1,0 +1,22 @@
+references: files=987 pass 597->615 failures 1864->1695 new_failing_lines=0 newly_failing_files=0
+  NEWLY PASS .pi/extensions/README.md
+  NEWLY PASS .skilled/bin/README.md
+  NEWLY PASS .skilled/skills/cli-external-orchestration/README.md
+  NEWLY PASS .skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+  NEWLY PASS .skilled/skills/cli-external-orchestration/cli-codex/README.md
+  NEWLY PASS .skilled/skills/cli-external-orchestration/cli-cursor/README.md
+  NEWLY PASS .skilled/skills/mcp-code-mode/README.md
+  NEWLY PASS .skilled/skills/mcp-code-mode/mcp-server/README.md
+  NEWLY PASS .skilled/skills/mcp-code-mode/scripts/README.md
+  NEWLY PASS .skilled/skills/sk-code/README.md
+  NEWLY PASS .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md
+  NEWLY PASS .skilled/skills/sk-git/README.md
+  NEWLY PASS .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/README.md
+  NEWLY PASS .skilled/skills/system-skill-advisor/runtime/database/README.md
+  NEWLY PASS .skilled/skills/system-skill-advisor/scripts/README.md
+  NEWLY PASS .skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md
+  NEWLY PASS .skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md
+  NEWLY PASS README.md
+counts: files=987 pass 914->916 failures 112->108 new_failing_lines=0 newly_failing_files=0
+  NEWLY PASS .skilled/skills/sk-git/README.md
+  NEWLY PASS README.md

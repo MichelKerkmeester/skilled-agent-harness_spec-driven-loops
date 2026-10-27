@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/071-readme-reference-debt",
+  "spec_folder": "sk-doc/071-readme-reference-debt",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme reference debt",
+      "triage and fix the readme reference and derived",
+      "check_readme_references false positives",
+      "check_derived_readme_counts false positives",
+      "readme reference debt plan",
+      "readme reference debt tasks",
+      "readme reference debt acceptance criteria",
+      "readme reference debt implementation summary"
+    ],
+    "key_topics": [
+      "readme",
+      "reference",
+      "debt",
+      "triage",
+      "derived",
+      "false",
+      "positives",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/README.md",
+      ".codex/hooks.json",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/.state/completion-sentinel/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py",
+      ".skilled/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+      ".skilled/skills/sk-git/README.md",
+      "scratch/followup-after-12.txt",
+      "scratch/followup-regression-diff.txt",
+      "scratch/followup-verification.txt",
+      "scratch/baseline-refs.txt",
+      "scratch/baseline-counts.txt",
+      "scratch/after-refs.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "check_readme_references.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_derived_readme_counts.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_rename_tooling_fixture_harness.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_core.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "followup-after-12.txt",
+        "kind": "file",
+        "path": "scratch/followup-after-12.txt",
+        "source": "derived"
+      },
+      {
+        "name": "followup-regression-diff.txt",
+        "kind": "file",
+        "path": "scratch/followup-regression-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "followup-verification.txt",
+        "kind": "file",
+        "path": "scratch/followup-verification.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-refs.txt",
+        "kind": "file",
+        "path": "scratch/baseline-refs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-counts.txt",
+        "kind": "file",
+        "path": "scratch/baseline-counts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-refs.txt",
+        "kind": "file",
+        "path": "scratch/after-refs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`checkreadmereferences.py` and `checkderivedreadmecounts.py` fail on all 12 root and hub READMEs",
+    "created_at": "2026-10-27T19:44:37Z",
+    "last_save_at": "2026-10-27T20:55:10.704Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:68e4fa14e0d588fa3565f04e60ea34a9b5f68a263536763ebddbaf565a464d2b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "660d537f8aa3f6fafe0e78f2cafb4d8344b1aca5fe6aa0e153c48e667e09970b",
+      "plan.md": "ad1ef5a8f898bd795dcb2943f3cdb2e830b4ef6f4f4d0f497f1f2d56b0dfd9cf",
+      "tasks.md": "41ade258ec933c2b7510e643cd3cf79c4453cab26dedbf6bafd045dc574bddb7",
+      "implementation-summary.md": "eb6cb5a754c26b6728f6331353e580dfadf016fc441305ee7ab2624ae7629149"
+    },
+    "last_active_at": null
+  }
+}

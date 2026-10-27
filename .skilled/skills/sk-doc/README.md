@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.6.0
+version: 2.3.7.0
 ---
 
 # sk-doc
@@ -79,7 +79,7 @@ The advisor prints a routing recommendation with a score. A score above the 0.8 
 **Step 2: Score a document.** `extract_structure.py` returns the DQI, the checklist results, every violation and the evaluation questions in JSON.
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/extract_structure.py path/to/document.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py <path/to/document.md>
 ```
 
 Success looks like a JSON object with `dqi.total`, `dqi.band` and `checklist.passed`. A band of "excellent" or "good" means the document is ready. A band of "needs_work" means the checklist output tells you exactly what to fix and in what order.
@@ -164,7 +164,7 @@ Skip sk-doc when the task belongs to a neighbor:
 
 **Q: When do I use sk-doc instead of system-spec-kit? Both touch markdown.**
 
-A: sk-doc judges document quality and creates components. system-spec-kit owns the spec-packet contract: Level 1 requires `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md`. Level 2 adds `checklist.md`. Packet metadata also includes `description.json` and `graph-metadata.json` for phase parents and save/resume state. The two do not overlap. Use sk-doc for a README, a skill scaffold, a changelog or any markdown component. Use system-spec-kit when you start a spec-folder-tracked change.
+A: sk-doc judges document quality and creates components. system-spec-kit owns the spec-packet contract: Level 1 requires `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md`. Level 2 adds `acceptance-criteria.md`. Packet metadata also includes `description.json` and `graph-metadata.json` for phase parents and save/resume state. The two do not overlap. Use sk-doc for a README, a skill scaffold, a changelog or any markdown component. Use system-spec-kit when you start a spec-folder-tracked change.
 
 **Q: `validate_document.py` and `extract_structure.py`: which one do I run?**
 
@@ -187,7 +187,7 @@ The skill ships the checks that prove a document is ready.
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` reports zero issues and exits 0 |
-| Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py document.md` returns the DQI, the checklist and the violations in JSON |
+| Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <document.md>` returns the DQI, the checklist and the violations in JSON |
 | Flowchart shape | `bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh` checks box alignment and label consistency |
 | Package gate | `python3 .skilled/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
 | Citation drift scan | `node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` prints per-skill and total citation counts with zero model calls by default, and `--jev` needs `--out <dir>` to run the measurement arm in `shared/scripts/classifier-cite-drift-scan.mjs`. `validate_document.py` runs that module's advisory on the document it validates when a Jev credential is stored, and `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips that |

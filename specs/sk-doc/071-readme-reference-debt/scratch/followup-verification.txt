@@ -1,0 +1,61 @@
+PASS self-test-positive: references=2 unresolved=0 examples=0 allowed=0
+  line 2: command './missing.sh': path does not exist
+FAIL self-test-negative: references=1 unresolved=1 examples=0 allowed=0
+PASS self-test-path-shaped-prose: references=9 unresolved=0 examples=0 allowed=0
+  line 1: inline 'nowhere-at-all.json': path does not exist
+FAIL self-test-untracked-bare-name: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline 'lib/missing.py': path does not exist
+FAIL self-test-unanchored-missing-file: references=1 unresolved=1 examples=0 allowed=0
+  line 3: tree 'pkg/gone.py': path does not exist
+FAIL self-test-missing-tree-entry: references=2 unresolved=1 examples=0 allowed=0
+  line 1: inline '/Users/someone/file.md': path does not exist
+FAIL self-test-machine-path: references=1 unresolved=1 examples=0 allowed=0
+  line 4: marker 'docs/': allow-ref matches no unresolved reference
+FAIL self-test-marker-unused: references=2 unresolved=1 examples=0 allowed=0
+  line 1: inline 'gone-ns/': path does not exist
+  line 4: marker 'readme-check': allow-ref entry needs '<token> | <reason>'
+FAIL self-test-marker-no-reason: references=2 unresolved=2 examples=0 allowed=0
+  line 4: marker 'readme-check': readme-check block is not closed with -->
+FAIL self-test-marker-unclosed: references=2 unresolved=1 examples=0 allowed=1
+PASS self-test-absent-by-design: references=5 unresolved=0 examples=0 allowed=0
+  line 1: inline 'refs/y.md': path does not exist
+FAIL self-test-class-not-every-mode: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline 'src/out.js': path does not exist
+FAIL self-test-class-not-ignored: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline 'other.js': path does not exist
+FAIL self-test-class-no-ts-source: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline '.sk-gitx/': path does not exist
+FAIL self-test-class-config-near-miss: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline 'out.txt': path does not exist
+FAIL self-test-class-not-output-flag: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline 'gone.md': path does not exist
+FAIL self-test-class-readme-reincluded-in-ignored-folder: references=1 unresolved=1 examples=0 allowed=0
+  line 1: inline 'gone.md': path does not exist
+FAIL self-test-class-readme-in-ignored-folder: references=1 unresolved=1 examples=0 allowed=0
+SELF-TEST PASS: positive, negative, example-fence, path-shaped prose, broken-path, marker and absent-by-design cases
+check_readme_references --self-test EXIT=0
+PASS self-test-positive: claims=1 failures=0
+  line 1: numeric count for 'files': Two files are listed, but only `alpha.ts` is documented.
+FAIL self-test-negative: claims=1 failures=1
+  line 1: unparseable count for 'files': Several files are present.
+FAIL self-test-unparseable: claims=1 failures=1
+PASS self-test-prose: claims=1 failures=0
+  line 1: numeric count for 'files': Four rule files live in `rules/`.
+FAIL self-test-stale-named-folder: claims=1 failures=1
+  line 4: unused marker for 'two example files': allow-count matches no failing claim
+FAIL self-test-marker-unused: claims=0 failures=1
+  line 1: numeric count for 'files': Two example files list them.
+  line 4: malformed marker for 'readme-check': allow-count entry needs '<phrase> | <reason>'
+FAIL self-test-marker-no-reason: claims=1 failures=2
+SELF-TEST PASS: derived, stale, unparseable, prose, named-folder and marker count cases
+check_derived_readme_counts --self-test EXIT=0
+
+✅ VALID: README.md
+Document type: readme
+Total issues: 0
+README.md validate EXIT=0
+
+✅ VALID: .skilled/skills/sk-git/README.md
+Document type: readme
+Total issues: 0
+.skilled/skills/sk-git/README.md validate EXIT=0

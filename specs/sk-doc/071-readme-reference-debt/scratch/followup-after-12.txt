@@ -1,0 +1,33 @@
+PASS README.md: references=276 unresolved=0 examples=0 allowed=7
+PASS .skilled/bin/README.md: references=123 unresolved=0 examples=0 allowed=0
+PASS .skilled/skills/cli-external-orchestration/README.md: references=55 unresolved=0 examples=0 allowed=0
+PASS .skilled/skills/cli-external-orchestration/cli-codex/README.md: references=56 unresolved=0 examples=0 allowed=0
+  line 114: inline 'storage/': path does not exist
+FAIL .skilled/skills/cli-external-orchestration/cli-opencode/README.md: references=103 unresolved=1 examples=0 allowed=0
+PASS .skilled/skills/cli-external-orchestration/cli-pi/README.md: references=42 unresolved=0 examples=0 allowed=0
+PASS .skilled/skills/sk-code/README.md: references=117 unresolved=0 examples=0 allowed=0
+PASS .skilled/skills/sk-code/sk-code-skilled/README.md: references=34 unresolved=0 examples=0 allowed=0
+PASS .skilled/skills/sk-doc/README.md: references=108 unresolved=0 examples=0 allowed=0
+  line 57: inline 'my-skill/': path does not exist
+  line 57: inline 'benchmark/reports/': path does not exist
+FAIL .skilled/skills/sk-doc/sk-create-skill/README.md: references=116 unresolved=2 examples=0 allowed=0
+PASS .skilled/skills/sk-git/README.md: references=76 unresolved=0 examples=0 allowed=8
+PASS .skilled/skills/system-deep-loop/README.md: references=36 unresolved=0 examples=0 allowed=0
+SUMMARY files=12 pass=10 fail=2
+REF_EXIT=1
+PASS README.md: claims=3 failures=0
+  line 244: numeric count for 'scripts': Expected result: each `.cjs` module loads without throwing. each CLI shim lists tool names offline and exits 0. both daemon-free smokes pass (offline tool counts + the failure-contract exit taxonomy). the three shell scripts pass `bash -n`. the child dry-run reports it would exec in place without creating a worktree.
+FAIL .skilled/bin/README.md: claims=1 failures=1
+PASS .skilled/skills/cli-external-orchestration/README.md: claims=0 failures=0
+PASS .skilled/skills/cli-external-orchestration/cli-codex/README.md: claims=0 failures=0
+PASS .skilled/skills/cli-external-orchestration/cli-opencode/README.md: claims=0 failures=0
+PASS .skilled/skills/cli-external-orchestration/cli-pi/README.md: claims=0 failures=0
+PASS .skilled/skills/sk-code/README.md: claims=0 failures=0
+  line 64: numeric count for 'guards': A clean exit means all four guards pass: the alignment verifier, the stack-folder verifier, the router-sync guard and the documentation claim guard. A non-zero exit reports a drift.
+FAIL .skilled/skills/sk-code/sk-code-skilled/README.md: claims=1 failures=1
+PASS .skilled/skills/sk-doc/README.md: claims=0 failures=0
+PASS .skilled/skills/sk-doc/sk-create-skill/README.md: claims=0 failures=0
+PASS .skilled/skills/sk-git/README.md: claims=1 failures=0
+PASS .skilled/skills/system-deep-loop/README.md: claims=0 failures=0
+SUMMARY files=12 pass=10 fail=2
+COUNT_EXIT=1

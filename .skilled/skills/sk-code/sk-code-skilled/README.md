@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # opencode
@@ -137,3 +137,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary. 
 | [`references/shared/alignment-verification-automation.md`](./references/shared/alignment-verification-automation.md) | The alignment-drift verifier |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate the surface |
 | [`changelog/`](./changelog/) | Release history for this surface |
+
+<!-- readme-check
+allow-count four guards | the four guards run-all-drift-guards.sh runs, named in the same sentence
+-->

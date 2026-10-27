@@ -1,0 +1,9 @@
+# old checker = HEAD copy, new = working tree; same tree; 977 tracked READMEs
+## references
+SUMMARY files=977 pass=419 fail=558
+SUMMARY files=977 pass=597 fail=380
+lines failing now on a line with no old failure: 0
+## counts
+SUMMARY files=977 pass=705 fail=272
+SUMMARY files=977 pass=905 fail=72
+lines failing now on a line with no old failure: 0

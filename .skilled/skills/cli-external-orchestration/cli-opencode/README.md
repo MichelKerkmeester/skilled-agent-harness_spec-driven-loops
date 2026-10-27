@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # cli-opencode
@@ -299,3 +299,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md) | The RM-8 incident and the four-layer prevention playbook |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Executor-specific model overrides and the CLEAR check |
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for each use case and agent |
+
+<!-- readme-check
+allow-ref storage/ | a folder inside the machine-local ~/.local/share/opencode/ database, not in this repo
+-->

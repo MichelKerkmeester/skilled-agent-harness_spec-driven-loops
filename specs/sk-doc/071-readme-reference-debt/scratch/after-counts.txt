@@ -1,0 +1,17 @@
+  line 1481: numeric count for 'files': Every setting has a default, so you can start without setting anything. Two example files list them, and no reader loads their values: copy a line into the place its reader looks, then uncomment it and change the value.
+FAIL README.md: claims=3 failures=1
+  line 244: numeric count for 'scripts': Expected result: each `.cjs` module loads without throwing. each CLI shim lists tool names offline and exits 0. both daemon-free smokes pass (offline tool counts + the failure-contract exit taxonomy). the three shell scripts pass `bash -n`. the child dry-run reports it would exec in place without creating a worktree.
+FAIL .skilled/bin/README.md: claims=1 failures=1
+PASS .skilled/skills/cli-external-orchestration/README.md: claims=0 failures=0
+PASS .skilled/skills/cli-external-orchestration/cli-codex/README.md: claims=0 failures=0
+PASS .skilled/skills/cli-external-orchestration/cli-opencode/README.md: claims=0 failures=0
+PASS .skilled/skills/cli-external-orchestration/cli-pi/README.md: claims=0 failures=0
+PASS .skilled/skills/sk-code/README.md: claims=0 failures=0
+  line 64: numeric count for 'guards': A clean exit means all four guards pass: the alignment verifier, the stack-folder verifier, the router-sync guard and the documentation claim guard. A non-zero exit reports a drift.
+FAIL .skilled/skills/sk-code/sk-code-skilled/README.md: claims=1 failures=1
+PASS .skilled/skills/sk-doc/README.md: claims=0 failures=0
+PASS .skilled/skills/sk-doc/sk-create-skill/README.md: claims=0 failures=0
+  line 233: numeric count for 'files': | A bare worktree's strict-validate looks green on zero files | The worktree lacks gitignored deps so the run is a silent no-op | Re-run the toolchain on `main` after merge, per `references/large-reorg-playbook.md` |
+FAIL .skilled/skills/sk-git/README.md: claims=1 failures=1
+PASS .skilled/skills/system-deep-loop/README.md: claims=0 failures=0
+SUMMARY files=12 pass=8 fail=4

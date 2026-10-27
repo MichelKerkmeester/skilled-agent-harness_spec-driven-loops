@@ -179,11 +179,16 @@ def _hash_physical_path(digest: Any, root: Path, relative_path: PurePosixPath) -
         digest.update(b"symlink\0")
         digest.update(os.readlink(physical).encode("utf-8", errors="surrogateescape"))
     else:
-        digest.update(b"file\0")
         try:
-            digest.update(physical.read_bytes())
-        except FileNotFoundError as error:
-            raise HarnessError(f"snapshot path disappeared: {relative_path}") from error
+            content = physical.read_bytes()
+        except FileNotFoundError:
+            # A tracked file deleted in the checkout is a legitimate worktree state, not a
+            # harness failure. Its own tag keeps it distinct from an empty file, so a file
+            # that goes missing during a run still changes the digest.
+            digest.update(b"absent\0")
+        else:
+            digest.update(b"file\0")
+            digest.update(content)
     digest.update(b"\0")
 
 

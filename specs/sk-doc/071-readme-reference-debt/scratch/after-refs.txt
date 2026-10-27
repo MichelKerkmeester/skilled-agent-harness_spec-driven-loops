@@ -1,0 +1,49 @@
+  line 326: inline 'research/research.md': path does not exist
+  line 329: inline 'review/review-report.md': path does not exist
+  line 398: inline '../etc/passwd': path does not exist
+  line 486: inline 'generate-context.js': path does not exist
+  line 587: inline 'research/research.md': path does not exist
+  line 755: inline '.sk-code/quality.json': path does not exist
+  line 1096: inline 'generate-context.js': path does not exist
+  line 1252: inline '.sk-code/quality.json': path does not exist
+  line 1255: inline '.sk-code/quality.json': path does not exist
+  line 1266: inline '.sk-git/': path does not exist
+  line 1285: inline 'settings.local.json': path does not exist
+  line 1460: inline '.sk-git/': path does not exist
+  line 1462: inline '.sk-git/': path does not exist
+  line 1473: inline 'CLAUDE.md': path does not exist
+  line 1495: inline 'settings.local.json': path does not exist
+  line 1512: inline '.sk-git/': path does not exist
+FAIL README.md: references=276 unresolved=16 examples=0
+  line 24: inline 'dist/': path does not exist
+  line 107: inline 'dist/': path does not exist
+  line 108: inline 'runtime/dist/runtime/skill-advisor-cli.js': path does not exist
+FAIL .skilled/bin/README.md: references=123 unresolved=3 examples=0
+  line 97: inline 'references/providers-and-models.md': path does not exist
+FAIL .skilled/skills/cli-external-orchestration/README.md: references=55 unresolved=1 examples=0
+  line 160: inline 'generate-context.js': path does not exist
+  line 239: inline 'file.txt': path does not exist
+FAIL .skilled/skills/cli-external-orchestration/cli-codex/README.md: references=57 unresolved=2 examples=0
+  line 114: inline 'storage/': path does not exist
+FAIL .skilled/skills/cli-external-orchestration/cli-opencode/README.md: references=103 unresolved=1 examples=0
+PASS .skilled/skills/cli-external-orchestration/cli-pi/README.md: references=42 unresolved=0 examples=0
+  line 163: inline '.sk-code/quality.json': path does not exist
+FAIL .skilled/skills/sk-code/README.md: references=117 unresolved=1 examples=0
+PASS .skilled/skills/sk-code/sk-code-skilled/README.md: references=34 unresolved=0 examples=0
+PASS .skilled/skills/sk-doc/README.md: references=108 unresolved=0 examples=0
+  line 57: inline 'my-skill/': path does not exist
+  line 57: inline 'benchmark/reports/': path does not exist
+FAIL .skilled/skills/sk-doc/sk-create-skill/README.md: references=116 unresolved=2 examples=0
+  line 53: inline 'worktrees/': path does not exist
+  line 53: inline 'branches/': path does not exist
+  line 113: command 'worktrees/': path does not exist
+  line 116: command 'branches/': path does not exist
+  line 118: command 'backup/': path does not exist
+  line 120: command 'work/': path does not exist
+  line 123: inline 'worktrees/': path does not exist
+  line 123: inline 'branches/': path does not exist
+  line 129: inline 'worktrees/': path does not exist
+  line 232: inline '.sk-git/': path does not exist
+FAIL .skilled/skills/sk-git/README.md: references=76 unresolved=10 examples=0
+PASS .skilled/skills/system-deep-loop/README.md: references=36 unresolved=0 examples=0
+SUMMARY files=12 pass=4 fail=8

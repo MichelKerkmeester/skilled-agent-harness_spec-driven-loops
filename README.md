@@ -349,7 +349,7 @@ How the gates read those priorities:
 
 Phase decomposition splits large features into a parent spec folder (overall specification) and child folders (one per phase).
 
-```text
+```text example
 specs/<track>/022-big-feature/     # Parent spec folder
 ├── spec.md                        # Overall specification
 ├── 001-data-model/                # Phase 1 child
@@ -370,7 +370,7 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Scripts and Validation
 
-`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Eight of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
+`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Eight of them only warn and never fail a run, among them these two: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in `sk-create-frontmatter/assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
 
 **Spec management scripts** in `.skilled/skills/system-spec-kit/runtime/cli/spec/`:
 
@@ -1652,3 +1652,12 @@ Everything is a file in your own repository.
 - **[→ Release Notes](.skilled/changelog/skilled/)** - every Skilled release, one entry per version
 - **[→ Spec Kit Changelog](.skilled/skills/system-spec-kit/changelog/)** - the version history of the system-spec-kit skill
 - **[→ Daemon CLI Reference](.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - the advisor's daemon-backed CLI front door, its warm-only policy and its exit codes
+
+<!-- readme-check
+allow-ref research/research.md | a research packet writes it inside its own spec folder
+allow-ref review/review-report.md | a review packet writes it inside its own spec folder
+allow-ref ../etc/passwd | an example of a path-traversal input the tools reject
+allow-ref settings.local.json | Claude Code's machine-local settings file, which git ignores
+allow-ref CLAUDE.md | the line says the repository ships none
+allow-count two example files | the next two bullets name .env.example and hook-flags.env.example
+-->
