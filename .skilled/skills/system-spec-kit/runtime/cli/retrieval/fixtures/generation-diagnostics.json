@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15688,
+    "ok": 15694,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26574,
+  "documentsScanned": 26580,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "289b6f3fa1d48a0b1c7eb38649a550fba2ff945b4c29b2d7208421a93c92c13a",
+  "manifestHash": "8999abc67d69dbdd80f717a7241e7310ffc5b8cf549f1bb06cf69507327debca",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38591,
+      "ok": 38602,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71757,6 +71757,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "109d1869bc7cfae95502181232d95558b85486534dcf4a2889f93b9520f7a7d6",
+  "corpusHash": "1429d22f7ddea7367433c20df08b190904ee7100b495a9ec65865345c1a8ed8a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26574,
+  "includedPathCount": 26580,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2852,6 +2852,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -12530,6 +12531,11 @@
     "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/plan.md",
     "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/spec.md",
     "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/tasks.md",
+    "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/plan.md",
+    "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/spec.md",
+    "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/tasks.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/plan.md",
@@ -26605,7 +26611,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "289b6f3fa1d48a0b1c7eb38649a550fba2ff945b4c29b2d7208421a93c92c13a",
+  "manifestHash": "8999abc67d69dbdd80f717a7241e7310ffc5b8cf549f1bb06cf69507327debca",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29453,6 +29459,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/002-quality-hygiene-policy/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "289b6f3fa1d48a0b1c7eb38649a550fba2ff945b4c29b2d7208421a93c92c13a",
+  "manifestHash": "8999abc67d69dbdd80f717a7241e7310ffc5b8cf549f1bb06cf69507327debca",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25461,6 +25461,10 @@
     "commented no changes status": [
       "commented no changes status"
     ],
+    "commenthygiene disablerules": [
+      "commentHygiene disableRules",
+      "commenthygiene disablerules"
+    ],
     "commenting philosophy why": [
       "commenting philosophy why"
     ],
@@ -37534,8 +37538,14 @@
     "dirty worktree stuck": [
       "dirty worktree stuck"
     ],
+    "disable a comment hygiene rule": [
+      "disable a comment hygiene rule"
+    ],
     "disable github ruleset admin push": [
       "disable github ruleset admin push"
+    ],
+    "disable rule comment hygiene": [
+      "disable rule comment hygiene"
     ],
     "disable sk doc validators": [
       "disable sk-doc validators"
@@ -73912,6 +73922,9 @@
     "phase 2 playbook path repair": [
       "phase 2 playbook path repair"
     ],
+    "phase 2 quality hygiene policy": [
+      "phase 2 quality hygiene policy"
+    ],
     "phase 2 quality report listing": [
       "phase 2 quality report listing"
     ],
@@ -79775,6 +79788,21 @@
     ],
     "quality guards": [
       "quality guards"
+    ],
+    "quality hygiene policy": [
+      "quality hygiene policy"
+    ],
+    "quality hygiene policy acceptance criteria": [
+      "quality hygiene policy acceptance criteria"
+    ],
+    "quality hygiene policy implementation summary": [
+      "quality hygiene policy implementation summary"
+    ],
+    "quality hygiene policy plan": [
+      "quality hygiene policy plan"
+    ],
+    "quality hygiene policy tasks": [
+      "quality hygiene policy tasks"
     ],
     "quality level tiers": [
       "quality level tiers"
@@ -95376,6 +95404,9 @@
     "sk code quality 1 13 3 0": [
       "sk-code-quality 1.13.3.0"
     ],
+    "sk code quality 1 13 4 0": [
+      "sk-code-quality 1.13.4.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -95468,6 +95499,9 @@
     ],
     "sk code quality v1 13 3 0": [
       "sk-code-quality v1.13.3.0"
+    ],
+    "sk code quality v1 13 4 0": [
+      "sk-code-quality v1.13.4.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
