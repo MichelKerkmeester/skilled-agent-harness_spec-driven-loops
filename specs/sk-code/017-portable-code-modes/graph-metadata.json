@@ -4,7 +4,8 @@
   "spec_folder": "sk-code/017-portable-code-modes",
   "parent_id": null,
   "children_ids": [
-    "sk-code/017-portable-code-modes/001-shared-rule-contract"
+    "sk-code/017-portable-code-modes/001-shared-rule-contract",
+    "sk-code/017-portable-code-modes/011-node20-test-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -106,16 +107,16 @@
     ],
     "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
     "created_at": "2026-10-27T20:47:57Z",
-    "last_save_at": "2026-10-27T21:12:11.467Z",
+    "last_save_at": "2026-10-27T21:14:05.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dd9147a1a57c9ed45a21952e3bb6588d88f9282b2ceb07ab5eb12567279fe90f",
+    "source_fingerprint": "sha256:8ba159bc898d46651ff4297ed9ad561cb421ef096553651f0a3513e395e3fdc1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03bf400022ff6a620bef77f94829815c3a0388b1529df00136cecedfe1ed9bb0"
+      "spec.md": "d3e42eaa3cf2a079f3fc91c6cbd7b87a736f7c140a93bae224ce5e3fc92d7d6f"
     },
     "last_active_at": null
   }

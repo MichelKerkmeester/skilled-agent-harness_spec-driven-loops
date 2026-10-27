@@ -134,7 +134,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 8 | 008-ci-drift-flags | The five YAML drift fixes | None (starts after the in-flight sk-code-ci lint lane lands) | Planned |
 | 9 | 009-integration-fixes | `@orchestrate` reads `@code`'s Quality Gate field, dashboard and doctor fixes, outside-repo surface discovery documented | 002 to 006 | Planned |
 | 10 | 010-docs-and-doctor-alignment | Every doctor command, README, guide, skill document, agent and mirror aligned with the new behavior | 002 to 009 | Planned |
-| 11 | 011-node20-test-fixes | The two tests that fail on Node 20 | None | Planned |
+| 11 | 011-node20-test-fixes | The two tests that fail on Node 20 | None | Complete |
 | 12 | 012-verification-and-release | End-to-end proof, this repository's `.sk-code/quality.json`, the framework changelog and release | All | Planned |
 
 ### Phase Transition Rules
