@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Flipped AC-006 to Met and added AC-017 and AC-018, all eighteen criteria Met"
-    next_safe_action: "Operator commits the working tree"
+    next_safe_action: "None; T039, T040 and T041 are owner decisions"
     blockers: []
     key_files: []
     session_dedup:
@@ -49,7 +49,7 @@ _memory:
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
-Commands run from the repository root. Set the variables from `tasks.md` (`H`, `Q`, `R`, `P`). A `\|` inside a table cell stands for a plain `|` in the command. Every reading is HEAD `6d6e82c269` plus the uncommitted working tree.
+Commands run from the repository root. Set the variables from `tasks.md` (`H`, `Q`, `R`, `P`). A `\|` inside a table cell stands for a plain `|` in the command. Every reading is HEAD `6d6e82c269` plus the working tree that landed on main as `7d6474c602` (this folder), `f431355ac2` (the fixes) and `554c8c8f78` (the version name), with the CI repairs `c1fe3ae9b4` and `8c760290ff`.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
@@ -97,5 +97,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All eighteen rows are `Met`. AC-006 closed on 2026-10-26 when the three CI prompts routed to `sk-code-ci`, and AC-017 and AC-018 record the repo-rules audit and the moved-test coverage. The items that stay open in `tasks.md` (T038, T039, T040, T041 and T045) are not acceptance criteria, and each carries its reason there.
+All eighteen rows are `Met`. AC-006 closed on 2026-10-26 when the three CI prompts routed to `sk-code-ci`, and AC-017 and AC-018 record the repo-rules audit and the moved-test coverage. The items that stay open in `tasks.md` (T039, T040 and T041) are not acceptance criteria, and each carries its reason there.
 <!-- /ANCHOR:closure -->

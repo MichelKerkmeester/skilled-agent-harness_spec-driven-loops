@@ -146,7 +146,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a gate that passed before the audit fails after a batch lands.
-- **Procedure**: nothing is committed yet, so `git diff` shows each batch's change. Revert one batch by restoring its files from `HEAD` once the operator approves, regenerate the mirrors and rerun section 4.
+- **Procedure**: the fixes landed as `f431355ac2`. Revert one batch by restoring its files from `f431355ac2^` once the operator approves, regenerate the mirrors and rerun section 4.
 <!-- /ANCHOR:rollback -->
 
 ---

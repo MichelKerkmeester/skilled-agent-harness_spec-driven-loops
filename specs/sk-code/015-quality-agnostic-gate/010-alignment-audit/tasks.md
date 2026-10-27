@@ -32,7 +32,7 @@ Shell variables for every command in this list. Run each command from the reposi
 - `R=specs/sk-code/015-quality-agnostic-gate`
 - `P=$R/010-alignment-audit`
 
-Evidence labels. "Re-run 2026-10-26" means this phase ran the command on the final tree. "Reported" means a fix batch or the re-audit recorded the output and no later command contradicts it. A row is ticked only where a re-run or the re-audit confirms it. Nothing is committed, so every reading is HEAD `6d6e82c269` plus the working tree.
+Evidence labels. "Re-run 2026-10-26" means this phase ran the command on the final tree. "Reported" means a fix batch or the re-audit recorded the output and no later command contradicts it. A row is ticked only where a re-run or the re-audit confirms it. Readings before the commit were taken on HEAD `6d6e82c269` plus the working tree, which landed on main as `7d6474c602` (this folder), `f431355ac2` (the fixes) and `554c8c8f78` (the version name), with the CI repairs `c1fe3ae9b4` and `8c760290ff`.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -116,7 +116,7 @@ Evidence labels. "Re-run 2026-10-26" means this phase ran the command on the fin
 - [x] T035 Write fifteen changelog entries and keep the symlinks (REQ-011). Reported by the release stage: all fifteen pass `validate_document.py --type changelog` and the voice scan with 0 hard blockers, the 15 `.skilled/changelog/` symlinks already resolved to the new files, and no released entry was touched. Re-run 2026-10-26: `git status --short --untracked-files=all | grep -c 'changelog/v'` printed `15`.
 - [x] T036 Run the generators in write mode (REQ-011). Reported by the release stage: the Hermes sync wrote 15 copies and the manifest refresh ran for four hubs. The runtime-mirror, codex agent and prompt, Hermes prompt and hook-registration syncs wrote 0 files. Re-run 2026-10-26: the Hermes, codex and pi `--check` runs and the guard all exited 0 (T030, T032, T033).
 - [x] T037 One extra fix: the toggle scenario's prompt did not route (REQ-003, REQ-006). The release stage changed `doctor-ci-toggle.md` to "Turn the SKILLED_CI_REPORTS CI switch off". Verify: `compiled-route-admission.cjs --all`. Re-run 2026-10-26: sk-code printed `13 pass, 0 drift`.
-- [ ] T038 Raise the per-document edition of every markdown file edited after the last staging (REQ-011). OPEN. `frontmatter-version.mjs bump` raises only staged documents and this phase cannot stage. Re-run 2026-10-26: `bump --check --base a506589406^` printed `207 changed docs | every changed body raised its version` and exited 0, but that compares committed history, and `bump --check --base HEAD` printed `0 changed docs` because the audit's edits are uncommitted, so it proves nothing about them. `frontmatter-version.mjs verify` printed `5517 files | ok=2920 skip-no-frontmatter=2597`. Close it by staging the files and running the pre-commit gate, or `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump` after staging.
+- [x] T038 Raise the per-document edition of every markdown file edited after the last staging (REQ-011). Closed 2026-10-27 at commit: the pre-commit gate raised each staged document, and `frontmatter-version.mjs bump --check --base 4b15bdcc11` on main `8c760290ff` printed `51 changed docs | every changed body raised its version` and exited 0. Before the commit: Re-run 2026-10-26: `bump --check --base a506589406^` printed `207 changed docs | every changed body raised its version` and exited 0, but that compares committed history, and `bump --check --base HEAD` printed `0 changed docs` because the audit's edits are uncommitted, so it proves nothing about them. `frontmatter-version.mjs verify` printed `5517 files | ok=2920 skip-no-frontmatter=2597`.
 <!-- /ANCHOR:phase-5 -->
 
 ---
@@ -130,7 +130,7 @@ Evidence labels. "Re-run 2026-10-26" means this phase ran the command on the fin
 - [x] T042 Re-run the code gates on the final tree (REQ-001). Re-run 2026-10-26: `quality-gate.cjs --lines file --format json --files <421 files>` exited 0 with gate `NO_BLOCKER_FOUND`, `p0_blocking 0`, `p1_open 0`, `p2_open 0` and 0 findings. `comment-hygiene` was `RAN_CLEAN` over 347 files, `secrets` and `debug-leftovers` over 406, `syntax-json` over 59, `syntax-cjs` over 42, `syntax-node` over 42, `syntax-python` over 11, `syntax-shell` over 9 and `syntax-yaml` over 64.
 - [x] T043 Re-run the suites on the final tree (all REQs). Re-run 2026-10-26: the quality suite printed `# tests 123`, `# pass 123`, `# fail 0`, the hook suite `# tests 13`, `# pass 13`, `# fail 0`, the sk-code-skilled suite `# tests 31`, `# pass 31`, `# fail 0` and the doctor suite `# tests 470`, `# pass 470`, `# fail 0`. `test-dist-freshness.sh` and `check-gate-inputs.test.sh` exited 0.
 - [x] T044 Re-run the document gate on the final tree (REQ-004, REQ-005). Re-run 2026-10-26: `validate_document.py --blocking-only` over 86 changed or new markdown files printed no `FAIL`, after skipping the `.hermes` copies, the agent mirrors and benchmark reports as the gate script does. `validate_document.py --type agent .skilled/agents/code.md` printed one `non_sequential_numbering` warning for the template's section 0, which the agent template allows.
-- [ ] T045 Commit the working tree. OPEN and the operator's. This phase made no git write, so every fix and this folder sit in the working tree, about 230 entries before the packet changelog is written. The command rules bar a commit here.
+- [x] T045 Commit the working tree. Landed 2026-10-27 on main as `7d6474c602` (this folder), `f431355ac2` (the fixes) and `554c8c8f78` (the version name), with the CI repairs `c1fe3ae9b4` and `8c760290ff`. The rebase onto `4b15bdcc11` renumbered the system-spec-kit patch to 2.12.3.0, and every CI run on `8c760290ff` passed (18 of 18).
 <!-- /ANCHOR:phase-6 -->
 
 ---
@@ -161,7 +161,7 @@ Evidence labels. "Re-run 2026-10-26" means this phase ran the command on the fin
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`. T038, T039, T040, T041 and T045 stay open as recorded items, none an acceptance criterion: T038 waits on staging, T039 is the advisor owner's scorer call, T040 is two released entries the released-changelog guard protects, T041 is the folder-README rule question, and T045 is the operator's commit.
+- [ ] All tasks marked `[x]`. T039, T040 and T041 stay open as recorded items, none an acceptance criterion: T039 is the advisor owner's scorer call, T040 is two released entries the released-changelog guard protects, and T041 is the folder-README rule question.
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed. The final-state gates pass, and the CI prompts from T025 route to `sk-code-ci`.
 <!-- /ANCHOR:completion -->
@@ -236,7 +236,7 @@ A row is ticked only where a command was run and its output read. A finding that
 - [x] CHK-FIX-004 [P0] The one parser-adjacent change, the changelog omission check, has a positive and a negative case. Evidence 2026-10-26: `pytest .skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py` printed `12 passed`, with one case that warns on an internal id and a test count and one that leaves a spec-folder blockquote and clean prose alone, and `v1.4.0.0.md` shows the live warning (T024).
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed. Evidence 2026-10-26: `plan.md` section FIX ADDENDUM lists three axes and 47 rows.
 - [x] CHK-FIX-006 [P1] N/A for the process-wide state variant. Evidence 2026-10-26: no change reads process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range. OPEN: nothing is committed, so every reading is HEAD `6d6e82c269` plus the working tree (T045).
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range. The working tree the readings were taken on landed as `7d6474c602` (this folder), `f431355ac2` (the fixes) and `554c8c8f78` (the version name), with the CI repairs `c1fe3ae9b4` and `8c760290ff`, and the phase gate re-ran green on the rebased tree before the push (T045).
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -279,7 +279,7 @@ A row is ticked only where a command was run and its output read. A finding that
 | P1 Items | 13 | 12/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-26, on HEAD `6d6e82c269` plus the uncommitted working tree. Open: CHK-FIX-007, which waits on the commit, plus tasks T038, T039, T040, T041 and T045, each with its reason above.
+**Verification Date**: 2026-10-26, on HEAD `6d6e82c269` plus the working tree, pinned 2026-10-27 to main `8c760290ff`. Open: tasks T039, T040 and T041, each with its reason above.
 <!-- /ANCHOR:summary -->
 
 ---

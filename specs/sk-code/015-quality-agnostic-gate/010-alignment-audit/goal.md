@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed AC-006 and recorded the repo-rules audit, 18 of 18 criteria Met"
-    next_safe_action: "Operator commits the working tree"
+    next_safe_action: "None; T039, T040 and T041 are owner decisions"
     blockers: []
     key_files: []
     session_dedup:
@@ -82,7 +82,7 @@ and findings belong here.
 | Final-state gates | Done | Re-run 2026-10-26: gate 0 findings over 421 files, guard and admission pass, four node suites pass |
 | CI routing fix | Done | Five CI keywords added and `github actions` narrowed to `github actions permissions`. Four CI prompts route to `sk-code-ci` and the compiled-route suites print `pass 94`, `fail 0` (T025) |
 | Repo-rules audit | Done | Two lenses and a refute pass kept 5 of 9 findings, four fixed and one resolved by a contract amendment. `check-repo-rules.cjs` printed `RESULT: PASSED (11/11 checks)` (T049 to T053) |
-| Open items | Recorded | `tasks.md` T038, T039, T040, T041 and T045, none an acceptance criterion |
+| Open items | Recorded | `tasks.md` T039, T040 and T041, none an acceptance criterion |
 
 ### Deviations and findings
 

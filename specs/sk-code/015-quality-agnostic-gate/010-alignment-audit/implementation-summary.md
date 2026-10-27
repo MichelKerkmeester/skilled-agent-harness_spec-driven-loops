@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded the CI routing fix and the repo-rules audit, all eighteen criteria Met"
-    next_safe_action: "Operator commits the working tree"
+    next_safe_action: "None; T039, T040 and T041 are owner decisions"
     blockers: []
     key_files:
       - ".skilled/skills/sk-code/hub-router.json"
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The phase's changes sit on HEAD `6d6e82c269` as an uncommitted change set of about 230 working-tree entries. `tasks.md` holds one task per fix group with its evidence, and `acceptance-criteria.md` holds the eighteen criteria.
+The phase's changes landed on main as `7d6474c602` (this folder), `f431355ac2` (the fixes) and `554c8c8f78` (the version name), with the CI repairs `c1fe3ae9b4` and `8c760290ff`. `tasks.md` holds one task per fix group with its evidence, and `acceptance-criteria.md` holds the eighteen criteria.
 
 ### Phase 10: alignment-audit
 
@@ -130,8 +130,8 @@ Four read-only lanes audited first. A DeepSeek worker through the pi CLI did 20 
 1. **Router keywords match phrases.** A CI prompt that holds none of the `sk-code-ci` phrases still falls to another mode or defers, and a bare phrase can steal a neighbor's prompt, as `github actions` did before it was narrowed. The compiled-route suites cover the bundle cases.
 2. **A scorer design call is open.** The bare `/doctor:ci` keyword also matches other typed targets of the same command, so `/doctor:git hooks` returns the setup bridge second. The bridge README documents it. An exact-token match would remove it, and the advisor owner decides.
 3. **Two released changelog entries keep their text.** `sk-code-quality` v1.4.0.0 and v1.5.0.0 carry an internal id and test counts. They are released, so only an erratum entry would change them, and the new check now warns on the class.
-4. **Per-document editions are not raised.** `frontmatter-version.mjs bump` raises staged documents only and this phase cannot stage. The pre-commit gate raises them, and `bump --check` against `HEAD` proves nothing about uncommitted edits.
-5. **Nothing is committed.** Every reading is HEAD `6d6e82c269` plus the working tree, so no fix SHA pins the evidence.
+4. **Per-document editions were raised at commit, not in the phase.** The pre-commit gate raised them, and `bump --check --base 4b15bdcc11` on `8c760290ff` confirms every changed body.
+5. **Readings predate the commit.** They were taken on HEAD `6d6e82c269` plus the working tree. The commits above pin that tree, and the gate re-ran green after the rebase.
 6. **Folder READMEs are not a finding.** The verifier flags 15 in-scope code folders without a README and no contract line makes that a rule, so the operator decides.
 7. **Two sibling test files stay beside their source.** `typo-flags.test.sh` and `hooks/claude-posttooluse.test.sh` were not in the scope list and these packets did not change them.
 8. **`AGENTS.md` lacks three governed-section pointers.** The amended contract makes the pointer a default, so this is an operator option, and `AGENTS.md` was not edited because it mirrors the operator's global `CLAUDE.md`.
