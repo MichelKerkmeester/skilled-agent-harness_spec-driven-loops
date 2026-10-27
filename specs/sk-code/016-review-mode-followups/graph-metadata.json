@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/016-review-mode-followups",
+  "spec_folder": "sk-code/016-review-mode-followups",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review mode followups",
+      "sk code review follow ups cache key fallback",
+      "overall assessment contradicts status line",
+      "path-only workflow review routing",
+      "review mode followups plan",
+      "review mode followups tasks",
+      "review mode followups acceptance criteria",
+      "review mode followups implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "mode",
+      "followups",
+      "code",
+      "follow",
+      "ups",
+      "cache",
+      "key",
+      "fallback",
+      "overall",
+      "assessment",
+      "contradicts"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/agents/review.md",
+      ".skilled/agents/deep-review.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".cursor/commands/local-skilled-alignment.md",
+      "specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md",
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-surface-hint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-final-line.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".cursor/commands/local-skilled-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-state-dedup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code-review research left six recommendations open after the operator closed the repo review profile",
+    "created_at": "2026-10-27T06:26:55Z",
+    "last_save_at": "2026-10-27T07:12:16.274Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:290ebc7efa3387fe0ce0099af6274554915bf7fa18accc95cbee384a3f83019f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "07bf79ef06078f827197fe1e6b666ae08748cfffecf3ec44c88f86ac0d64581e",
+      "plan.md": "fcf37dff17c8ce3156d6aa9a39e282ff9f44e056356bfdbd9bf359778c84cfcb",
+      "tasks.md": "894f0010735d19ddc3930b6edc091c31e1a73706ae88f00ee2a0425751b7b5be",
+      "implementation-summary.md": "6b73b421a3e5664b76a6e4950509afda426ba33d7b5ae01da3995f38b409d507"
+    },
+    "last_active_at": null
+  }
+}

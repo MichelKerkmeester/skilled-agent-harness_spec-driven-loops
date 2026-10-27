@@ -1,0 +1,50 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 9 lines added (new file: `fixtures/paginate.js`)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN — the path resolves outside the hub's `.skilled/`, so the SKILLED fallback's path markers do not match and no specific surface declares it; reviewed against baseline security/correctness minimums only
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None.
+
+### P1 - High
+
+1. [fixtures/paginate.js:5] Page offset is 0-based while the documented contract at line 3 is 1-based
+   - Case: `pageItems(['a','b','c','d'], 1, 2)` — a caller following line 3's "1-based page" contract on the first page expects `['a','b']` and receives `['c','d']`. Conversely `pageItems(['a','b','c','d'], 0, 2)` returns `['a','b']`, a page index the documented contract does not define, and the documented last page (`page = 2`) returns `[]`.
+   - Risk: every caller lands one page past what it requested, and the final documented page is unreachable.
+   - User impact: paginated output silently skips the first page and reports the tail as empty; nothing throws, so the caller cannot detect the shift.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "pageItems|paginate" lane-d-bench` returns only the definition and export inside paginate.js and no consumer in the fixtures directory, so the affected class is the page-coordinate convention itself rather than a caller list.
+   - affectedSurfaceHints: ["paginate", "callers outside fixtures/"]
+   - riskScore: 6 (advisory only)
+   - Recommended fix: settle the convention in one place. For a 1-based contract, `const start = (page - 1) * pageSize;` and reject `page < 1`; if 0-based is intended instead, correct line 3 to state "0-based page". Leave the comment and the arithmetic disagreeing and the next reader picks wrong.
+
+### P2 - Suggestions
+
+2. [fixtures/paginate.js:5-6] Non-integer, negative and zero arguments are silently coerced into a shifted or empty page
+   - Case: `pageItems([1,2,3], 0.5, 2)` gives `start = 1` and returns `[2,3]`; `pageItems([1,2,3], -1, 2)` gives `start = -2`, which `Array#slice` resolves to a start index past the `0` end, returning `[]`; `pageItems([1,2,3], 1, 0)` returns `[]`.
+   - Risk: an invalid argument yields a plausible-looking page or an empty array rather than an error, so a caller cannot tell an invalid argument apart from the off-by-one in finding 1.
+   - User impact: an empty page is rendered where an actionable failure would be, and diagnosing it needs a debugger.
+   - Finding class: class-of-bug
+   - Scope proof: the three call expressions above are the reproduction; the file contains no other validation path for `page` or `pageSize`.
+   - affectedSurfaceHints: ["paginate"]
+   - riskScore: 3 (advisory only)
+   - Recommended fix: validate before slicing — throw a `RangeError` for a non-integer or `< 1` page and a `pageSize < 1`, or clamp deliberately and document the clamp in the comment at line 3.
+
+## Removal/Iteration Plan
+
+Nothing to remove: the file has no dead code, no unused export and no redundant branch. Iteration is confined to the one-line offset fix in finding 1 plus the guard in finding 2. The comment at line 3 is not removable — it carries the contract, which is what makes finding 1 a correctness defect rather than a documentation nit.
+
+## Next Steps
+
+1. Decide the page convention at fixtures/paginate.js:3-5 (1-based per the comment, or 0-based per the multiplication) and make the comment and the arithmetic agree.
+2. Add the boundary guard at fixtures/paginate.js:5 covering the reproduction cases in finding 2.
+
+Not checked: callers, tests and documentation outside the lane-d-bench fixtures directory — the target is a scratchpad fixture with none present, so the consumer blast radius of the page-convention change in finding 1 is unknown.
+
+Review status: REQUESTED_CHANGES

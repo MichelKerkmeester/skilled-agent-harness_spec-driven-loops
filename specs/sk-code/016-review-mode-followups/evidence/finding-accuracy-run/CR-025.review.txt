@@ -1,0 +1,60 @@
+SKILL ROUTING: User directed → `sk-code` (`sk-code-review` mode) plus `references/review-core.md`; read-only turn, no artifact write.
+
+## Code Review Summary
+
+**Files reviewed**: 1 file, 10 lines changed (new file, so all 10 are additions; whole file in scope)
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: `sk-code` (`sk-code-review` v1.9.1.0), findings-first doctrine from `references/review-core.md`
+**Surface evidence used**: UNKNOWN. No `package.json`, `tsconfig.json`, or framework marker exists in this tree, so no declared surface matched and the review runs against the baseline security and correctness minimums with that uncertainty disclosed.
+**Quality gate evidence**: absent. No `sk-code-quality` run verdict was handed to this review, so every baseline check ran here.
+
+## Findings
+
+### P0 - Critical
+
+1. [fixtures/users.js:5] SQL injection: caller-controlled `email` is concatenated into the statement text
+   - Case: `findUserByEmail("' OR '1'='1")` produces `SELECT id, email, role FROM users WHERE email = '' OR '1'='1'`, which matches every row, so an input naming no user returns the first user's `id`, `email`, and `role`. A quote-bearing UNION form returns a row of the attacker's choosing. Both are ordinary strings a request body can carry.
+   - Risk: the exported helper turns any string argument into executable SQL. The value is concatenated rather than bound, so a single quote in `email` terminates the literal and everything after it is parsed as statement text.
+   - User impact: any consumer of `findUserByEmail` that passes request data becomes an injection sink, and because `role` is in the returned row, the read escalates to an auth-bypass path wherever a caller derives a privilege decision from that field.
+   - Finding class: class-of-bug. The class is "SQL text assembled by concatenation from a value", and the instance-only opt-out is closed to a P0 security finding.
+   - Scope proof: `rg -n "db\.query|SELECT|require\('\./db'\)" fixtures/` returns three hits, all in this file (lines 2, 5, 6), and line 5 is the only statement-construction site in the tree. The `./db` import target does not exist under `lane-d-bench`, so whether `db.query` also accepts a bind-argument array could not be read from its source; the fix below depends on that signature.
+   - affectedSurfaceHints: ["db.query caller signature", "findUserByEmail consumers", "request-to-lookup call sites"]
+   - riskScore: 9 (advisory only; the P0 severity is the gate)
+   - Recommended fix: bind the value instead of interpolating it, `db.query("SELECT id, email, role FROM users WHERE email = $1", [email])`, using whichever placeholder form the driver accepts (`$1`, `?`, or `:email`). If `db.query` has no bind form, add one at the `./db` boundary before this helper ships rather than escaping quotes here.
+
+### P1 - High
+
+None.
+
+### P2 - Suggestion
+
+2. [fixtures/users.js:4] The lookup contract does not constrain its input, so non-string and non-normalized values become silent misses
+   - Case: `findUserByEmail(req.body.email)` with a missing field passes `undefined`, and the statement becomes `WHERE email = 'undefined'`, which resolves to `null` and reads as "no such user" rather than a caller error; an object argument stringifies the same way. `findUserByEmail(" a@b.com ")` misses a stored `a@b.com` because the padding is never trimmed, and on a case-sensitive collation `Alice@Example.com` misses a stored `alice@example.com`.
+   - Risk: an absent or malformed upstream field is indistinguishable from a genuine not-found, so the defect surfaces as a support report instead of a failing call.
+   - User impact: a valid user can be reported as nonexistent, and a broken caller cannot tell the two apart from this layer.
+   - Finding class: matrix/evidence. The wrongness depends on states this review could not read, namely the engine with its collation and the call sites.
+   - Scope proof: `rg -n "findUserByEmail"` matches only lines 4 and 10 of this file, so no caller proves the reachable input domain and the finding stops at suggestion severity.
+   - Recommended fix: reject a non-string or empty `email` at entry, and normalize with `trim().toLowerCase()` on both the value and the stored column, or state the normalization contract next to the function so callers stop reinventing it.
+
+3. [fixtures/users.js:7] `rows[0]` silently picks one of several matching rows
+   - Case: if two rows share an email (stale duplicates, a re-registration, a case variant, or a schema without a unique constraint on `users.email`), the statement returns both rows and the function returns whichever the engine scanned first. There is no `ORDER BY`, so that choice is not stable across plan changes.
+   - Risk: the function returns a well-formed user object for the wrong user, carrying that user's `role`.
+   - User impact: identity confusion downstream. A caller that treats the result as the uniquely matching account acts on the wrong record, and nothing raises an error.
+   - Finding class: matrix/evidence. Uniqueness of `users.email` is a schema fact and the readable tree carries no schema, so the case is stated as the condition that produces the wrong result rather than as an observed defect.
+   - Scope proof: this is the only result-set read in the tree, and `rg` finds no schema, migration, or `db.js` to confirm or refute a unique index.
+   - Recommended fix: add `LIMIT 1` with a deterministic `ORDER BY` so the selected row is defined, and either assert uniqueness at the schema or expose the match count so a caller can detect the ambiguity.
+
+## Removal/Iteration Plan
+
+Nothing dead or deprecated in a 10-line file, and nothing to defer. The one removal is the interpolation on line 5: binding the value deletes the `sql` local and its concatenation outright, so finding 1 is a replacement rather than an addition. Findings 2 and 3 are additive guards on the same function and can land in one edit.
+
+## Next Steps
+
+1. Bind `email` on line 5, confirming the `db.query` signature first since `./db` is absent from the tree. Re-review the fix, because an open P0 keeps merge blocked until it is verified closed.
+2. Decide the input contract on line 4 and record it: reject non-strings, or normalize inside the function.
+3. Make the row selection on line 7 deterministic, and establish whether `users.email` is unique.
+4. Already correct and worth keeping: the select list is narrow (`id, email, role`, no credential columns), the function is single-purpose, and `rows[0] || null` hands callers one uniform miss value.
+
+Not checked: the `./db` import target, which does not exist under `lane-d-bench`, and therefore the driver and engine, its bind-argument support, and the `users` schema with its collation; no caller or test references `findUserByEmail` anywhere in the bench; no git repository or base-ref is reachable from this scratchpad path, so neither a diff-scoped change boundary nor the §9.1 cross-review dedup could run and this review is whole-file.
+
+Review status: REQUESTED_CHANGES

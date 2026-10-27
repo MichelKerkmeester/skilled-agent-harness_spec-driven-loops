@@ -1,0 +1,35 @@
+{
+  "specFolder": "sk-code/016-review-mode-followups",
+  "description": "sk-code-review follow-ups: cache-key fallback, quality-evidence header, user-mode review contract, final-line contradiction check, live finding-accura",
+  "keywords": [
+    "sk-code-review",
+    "follow-ups",
+    "cache-key",
+    "fallback",
+    "quality-evidence",
+    "header",
+    "user-mode",
+    "review",
+    "contract",
+    "final-line",
+    "contradiction",
+    "check",
+    "live",
+    "finding-accuracy",
+    "benchmark",
+    "repo-neutral",
+    "examples",
+    "path-only",
+    "workflow",
+    "routing"
+  ],
+  "lastUpdated": "2026-10-27T06:26:55.266Z",
+  "specId": "016",
+  "folderSlug": "review-mode-followups",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

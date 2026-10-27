@@ -1,0 +1,10 @@
+'use strict';
+const db = require('./db');
+
+async function findUserByEmail(email) {
+  const sql = "SELECT id, email, role FROM users WHERE email = '" + email + "'";
+  const rows = await db.query(sql);
+  return rows[0] || null;
+}
+
+module.exports = { findUserByEmail };

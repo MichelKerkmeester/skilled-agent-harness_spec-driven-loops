@@ -1,0 +1,52 @@
+## Code Review Summary
+
+**Files reviewed**: 1 file, 11 lines changed
+**Overall assessment**: REQUESTED_CHANGES
+**Baseline used**: sk-code (`sk-code-review`)
+**Surface evidence used**: UNKNOWN (no declared surface matches a standalone `.js` fixture with no `package.json`, and the path resolves outside the hub, so the SKILLED fallback does not hold; reviewed against baseline security/correctness minimums only)
+**Quality gate evidence**: absent
+
+## Findings
+
+### P0 - Critical
+
+None. No injection surface, no credentials, no I/O, no auth boundary: the file is one pure function plus a CommonJS export, so the security minimums are satisfied.
+
+### P1 - High
+
+1. [fixtures/clamp.js:5] The range guard misses non-numeric bounds, so an invalid range returns `NaN` instead of throwing
+   - Case: `clamp(5, Number.NaN, 100)` — the shape produced whenever a bound comes from `parseInt`/`Number` over unparsed config or env — returns `NaN` and no error. Symmetrically, `clamp(5, 0, NaN)` returns `NaN` while the equally invalid `clamp(5, 100, 0)` throws `RangeError` at line 6.
+   - Risk: `min > max` at line 5 evaluates to `false` for any comparison involving `NaN`, so the guard that line 6 exists to enforce never fires. Control then reaches line 8, where `Number::max`/`Number::min` return `NaN` for a `NaN` argument, so the poison value is returned as if it were a clamp result. Evidence is from the language semantics (no execution in this session, see `Not checked`), not from a run.
+   - User impact: a caller that treats the `RangeError` as its bounds-validation signal silently receives `NaN` instead — `array.slice(0, clamp(n, NaN, max))` yields an empty result, a rendered numeric value disappears, a persisted limit becomes `null` after JSON round-trip — all with no error trace to point at the bad bound.
+   - Finding class: instance-only
+   - Scope proof: `grep -n "clamp"` over `fixtures/` returns only the definition at line 4 and the export at line 11; no caller, no second guard, and no same-class validation in `paginate.js` or `users.js`, so this is not a cross-consumer fix.
+   - affectedSurfaceHints: ["clamp utility", "bounds validation", "callers parsing numeric config"]
+   - riskScore: 5 (advisory only)
+   - Severity note: retained at P1 after adversarial check. If pass-through of non-numeric bounds is the *intended* contract, this downgrades to P2 — but the contract must then be stated, because the throw at line 6 currently promises the opposite.
+   - Recommended fix: reject non-numeric bounds in the existing guard, e.g. `if (Number.isNaN(min) || Number.isNaN(max) || min > max) throw new RangeError('min must not exceed max');` (do not switch to `Number.isFinite`, since `±Infinity` bounds are a legitimate clamp range), or document that non-numeric bounds yield `NaN`.
+
+### P2 - Suggestions
+
+2. [fixtures/clamp.js:3] The doc comment describes only the range, leaving the throwing precondition undisclosed
+   - Case: a caller reading line 3 as the whole contract passes a reversed range expecting a number back, and receives a `RangeError` from line 6 instead.
+   - Risk: the only documented behavior is "limits a number to the closed range"; the function has a second, observable contract — an invalid range throws — and documentation that omits a throwing path is a contract mismatch for anyone reading the signature alone.
+   - User impact: caller friction and defensive wrappers written around a throw nobody was told about; low, advisory only.
+   - Finding class: instance-only
+   - Scope proof: the comment at line 3 is the file's only documentation; there is no README or JSDoc in `fixtures/` that could carry the precondition instead.
+   - affectedSurfaceHints: ["public utility contract"]
+   - riskScore: 1 (advisory only)
+   - Recommended fix: state the precondition and the throw in the line 3 comment, and keep it aligned with whichever resolution finding 1 takes.
+
+## Removal/Iteration Plan
+
+No removal candidates: every line is load-bearing, there is no dead code, and the file carries no artifact ids or spec paths in comments, so the comment-hygiene gate is clean. Positives worth recording: `'use strict'` is present, the CommonJS export matches the `require` convention the sibling fixtures use, the guard states its own invariant rather than clamping silently to `max`, and the line 3 comment explains meaning (`closed range`) rather than restating the call.
+
+## Next Steps
+
+1. Resolve finding 1 at fixtures/clamp.js:5 — either reject non-numeric bounds in the existing guard or document the pass-through contract.
+2. Align the line 3 comment with whichever contract finding 1 settles (finding 2).
+3. Re-review is a single-file, single-guard check; no regression surface exists until a caller lands.
+
+Not checked: runtime behavior was not executed — no shell tool in this session and no git worktree or test harness under `fixtures/` — so the guard-bypass case is cited from `Number::max`/`Number::min` semantics rather than observed, and sibling fixtures `paginate.js`/`users.js` were not reviewed (out of scope).
+
+Review status: REQUESTED_CHANGES
