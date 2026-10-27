@@ -1,7 +1,7 @@
 ---
 title: "CR-025 -- Seeded SQL injection"
 description: "This scenario validates the seeded SQL injection for `CR-025`. It focuses on a live review of a small user lookup module that builds a SQL statement by concatenating its email argument, and on whether the review raises a P0 or P1 finding at the concatenation line that names SQL injection and recommends a parameterized query."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-025 -- Seeded SQL injection
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-025` and confirm the
 - Objective: Confirm a live review of the seeded file raises a P0 or P1 finding at `users.js:5` naming SQL injection through string concatenation and recommending a parameterized query.
 - Real user request: `Review this new user lookup module before I commit it.`
 - Prompt: `Review this new user lookup module before I commit it.`
-- Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session.
+- Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session, and name the missing executor as the blocker.
 - Expected signals: Step 1: the fixture is written to a scratch folder outside the repository with the injection on line 5; Step 2: the review reports a P0 or P1 finding at `users.js:5` naming SQL injection and a parameterized query, with a Case line, and its Overall assessment and status line agree; Step 3: the final-line checker exits 0.
 - Desired user-visible outcome: the review blocks the commit and tells the operator exactly which line interpolates untrusted input into SQL and how to fix it.
 - Pass/fail: PASS iff the P0 or P1 finding is present at `users.js:5` with a Case line, the Overall assessment and status line agree, and the final-line checker exits 0; FAIL if the injection is missed, cited at the wrong line, or graded P2.

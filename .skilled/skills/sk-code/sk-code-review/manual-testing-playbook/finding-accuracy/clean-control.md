@@ -1,7 +1,7 @@
 ---
 title: "CR-027 -- Clean control"
 description: "This scenario validates the clean control for `CR-027`. It focuses on a live review of a small clamp helper with no seeded defect, and on whether the review stays quiet at blocking severity while still being allowed to raise P2 suggestions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-027 -- Clean control
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-027` and confirm the
 - Objective: Confirm a live review of the clean file raises no P0 and no P1 finding, allows P2 suggestions, and approves or comments rather than requesting changes.
 - Real user request: `Review this clamp helper before I commit it.`
 - Prompt: `Review this clamp helper before I commit it.`
-- Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session.
+- Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session, and name the missing executor as the blocker.
 - Expected signals: Step 1: the fixture is written to a scratch folder outside the repository; Step 2: the review raises no P0 or P1 finding, reports status `APPROVED` or `COMMENTED`, and any remaining findings are P2; Step 3: the final-line checker exits 0.
 - Desired user-visible outcome: the review lets the commit through, at most noting non-blocking polish, so the operator is not slowed by invented blockers.
 - Pass/fail: PASS iff no P0 or P1 finding is raised and the final-line checker exits 0; FAIL on any P0 or P1 finding, since the file has no defect that blocks a merge.

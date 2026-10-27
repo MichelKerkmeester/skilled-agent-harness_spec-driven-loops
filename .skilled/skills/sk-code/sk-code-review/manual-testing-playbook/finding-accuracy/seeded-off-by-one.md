@@ -1,7 +1,7 @@
 ---
 title: "CR-026 -- Seeded off-by-one"
 description: "This scenario validates the seeded off-by-one for `CR-026`. It focuses on a live review of a small pagination helper whose start index is computed as `page * pageSize`, and on whether the review raises a P1 or P0 finding at the index line explaining that page 1 skips the first `pageSize` items."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-026 -- Seeded off-by-one
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-026` and confirm the
 - Objective: Confirm a live review of the seeded file raises a P1 or P0 finding at `paginate.js:5` showing that page 1 skips the first `pageSize` items because the start index should be `(page - 1) * pageSize`.
 - Real user request: `Review this pagination helper before I commit it.`
 - Prompt: `Review this pagination helper before I commit it.`
-- Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session.
+- Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session, and name the missing executor as the blocker.
 - Expected signals: Step 1: the fixture is written to a scratch folder outside the repository with the start index on line 5; Step 2: the review reports a P1 or P0 finding at `paginate.js:5` naming the skipped first page and the `(page - 1) * pageSize` correction, with a Case line, and its summary and status line agree; Step 3: the final-line checker exits 0.
 - Desired user-visible outcome: the review blocks the commit and shows the operator which page silently loses rows and which expression fixes it.
 - Pass/fail: PASS iff the P1 or P0 finding is present at `paginate.js:5` with a Case line, the summary and status agree, and the final-line checker exits 0; FAIL if the off-by-one is missed or graded P2.
