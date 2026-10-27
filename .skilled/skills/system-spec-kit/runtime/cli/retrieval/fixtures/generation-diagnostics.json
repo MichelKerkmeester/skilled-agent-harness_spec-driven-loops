@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7316,
-    "ok": 15442,
+    "ok": 15450,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26306,
+  "documentsScanned": 26314,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "602f0f27f404f8252f0f1f8765deb4528214547875ccfaca4104ee1af23dc945",
+  "manifestHash": "d5c062d4416fcdbb5ab0cfcc5264d423e27b32bfef9c08ab29a289531bc5d336",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38109,
+      "ok": 38120,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -76049,6 +76049,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "602f0f27f404f8252f0f1f8765deb4528214547875ccfaca4104ee1af23dc945",
+  "manifestHash": "d5c062d4416fcdbb5ab0cfcc5264d423e27b32bfef9c08ab29a289531bc5d336",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9163,6 +9163,24 @@
     ],
     "advisor routes council prompts to skill": [
       "advisor routes council prompts to skill"
+    ],
+    "advisor routing and local install": [
+      "advisor routing and local install"
+    ],
+    "advisor routing and local install acceptance criteria": [
+      "advisor routing and local install acceptance criteria"
+    ],
+    "advisor routing and local install goal": [
+      "advisor routing and local install goal"
+    ],
+    "advisor routing and local install implementation summary": [
+      "advisor routing and local install implementation summary"
+    ],
+    "advisor routing and local install plan": [
+      "advisor routing and local install plan"
+    ],
+    "advisor routing and local install tasks": [
+      "advisor routing and local install tasks"
     ],
     "advisor routing calibration": [
       "advisor routing calibration"
@@ -73420,6 +73438,9 @@
     "phase 21 tasks": [
       "phase 21 tasks"
     ],
+    "phase 22 advisor routing and local install": [
+      "phase 22 advisor routing and local install"
+    ],
     "phase 22 collapse plan": [
       "phase 22 collapse plan"
     ],
@@ -96888,6 +96909,9 @@
     "sk git 1 9 6 0": [
       "sk-git 1.9.6.0"
     ],
+    "sk git 1 9 7 0": [
+      "sk-git 1.9.7.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -97094,6 +97118,9 @@
     ],
     "sk git v1 9 6 0": [
       "sk-git v1.9.6.0"
+    ],
+    "sk git v1 9 7 0": [
+      "sk-git v1.9.7.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -113749,6 +113776,9 @@
     "weak model spec authoring addon removal and speed refinements changelog": [
       "weak model spec authoring addon removal and speed refinements changelog"
     ],
+    "weak model spec authoring advisor routing and local install changelog": [
+      "weak model spec authoring advisor routing and local install changelog"
+    ],
     "weak model spec authoring alignment audit fixes changelog": [
       "weak model spec authoring alignment audit fixes changelog"
     ],
@@ -114699,6 +114729,9 @@
     ],
     "worktree portability verification": [
       "worktree portability verification"
+    ],
+    "worktree private local commands": [
+      "worktree private local commands"
     ],
     "worktree provision completeness": [
       "worktree provision completeness"

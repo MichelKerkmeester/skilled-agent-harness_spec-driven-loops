@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fab12ee2da82c9d22c363569becdecc119ea7ebf3cc877910e49f7f372aff838",
+  "corpusHash": "37b682a87042da5d4672f2669c619e874437d3254fd2fdb03e995f8d7387c1a1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26306,
+  "includedPathCount": 26314,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6532,6 +6532,7 @@
     ".skilled/skills/sk-git/changelog/v1.9.4.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.5.0.md",
     ".skilled/skills/sk-git/changelog/v1.9.6.0.md",
+    ".skilled/skills/sk-git/changelog/v1.9.7.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -26304,6 +26305,12 @@
     "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26325,6 +26332,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-019-follow-up-fixes.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-020-alignment-audit-fixes.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-021-ci-gate-regressions.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-022-advisor-routing-and-local-install.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
     "specs/system-speckit/054-weak-model-spec-authoring/review/fanout-attribution.md",
@@ -26337,7 +26345,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "602f0f27f404f8252f0f1f8765deb4528214547875ccfaca4104ee1af23dc945",
+  "manifestHash": "d5c062d4416fcdbb5ab0cfcc5264d423e27b32bfef9c08ab29a289531bc5d336",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33609,6 +33617,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install/scratch",
       "reason": "excluded directory"
     },
     {
