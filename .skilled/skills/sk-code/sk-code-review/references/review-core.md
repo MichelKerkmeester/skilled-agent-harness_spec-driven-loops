@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Review Core Doctrine
@@ -35,7 +35,16 @@ Shared findings-first review doctrine for both single-pass and deep-review workf
 | P1 | Required: correctness bug, spec mismatch, must-fix gate issue | Fix before merge |
 | P2 | Suggestion: non-blocking improvement, documentation polish, style or maintainability follow-up | Optional or schedule follow-up |
 
-Escalation rule: if confidence is low but impact is high, classify toward the higher severity and state the uncertainty explicitly.
+### Reach Calibration
+
+A `P0` or `P1` finding names its reach: an input or call path that the code's stated contract allows, or a real caller that sends the failing input. The stated contract is what the code promises through its signature, types, doc comment, name and the checks it already makes.
+
+- A failure that needs input outside the stated contract, such as `NaN` where the contract says a number, a wrong type, or an inverted range the code already rejects, is `P2` hardening.
+- The exception is input the code claims to validate. When a guard, a thrown error or a doc line promises to reject an input class and the promise fails for an input in that class, the gap is a correctness finding and keeps `P1` or higher. A guard claims only the class it checks: an ordering check such as `min > max` does not claim that its operands are numbers.
+- At a trust boundary (user input, network, files, environment, another service), every value the outside can send is in reach. The stated contract of internal code never narrows a security finding on data that crosses that boundary.
+- A finding that cannot name its reach is `P2`, however severe the failure would be.
+
+Escalation rule: if confidence is low but impact is high, classify toward the higher severity and state the uncertainty explicitly. The confidence is confidence that the reach exists. The rule raises a finding whose reach is named but not proven, such as a caller that probably sends the input. It never raises a finding with no reach, so it cannot lift an out-of-contract failure above `P2`.
 
 ### Numeric Severity Calibration
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.5.0
+version: 1.7.6.0
 ---
 
 # sk-code-review mode
@@ -51,6 +51,8 @@ Every finding carries one severity level from `references/review-core.md`, share
 | **P0 - Critical** | Blocks merge | Exploitable security issues, auth bypass and destructive data loss stop here |
 | **P1 - High** | Required before merge | Correctness bugs, spec mismatches and must-fix gate issues land here |
 | **P2 - Suggestion** | Optional | Non-blocking improvements and style follow-ups |
+
+A P0 or P1 finding must name its reach: an input or call path the code's stated contract allows, or a real caller that sends it. A failure that needs input outside that contract, such as `NaN` where the contract says a number, is P2 hardening unless the code claims to validate that input. Data that crosses a trust boundary is always in reach.
 
 ---
 

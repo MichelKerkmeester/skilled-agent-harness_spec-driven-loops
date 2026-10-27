@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.2.0
+version: 1.9.3.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -344,6 +344,10 @@ def route_review_resources(task, workspace_files=None, changed_files=None, read_
 4. Analyze removal opportunities with safe-now vs deferred classification.
 5. Produce findings ordered by severity (`P0`, `P1`, `P2`), numbered once across all three groups so the first `P1` finding continues after the last `P0` finding. A finding with no case is not reported.
 6. For every actionable finding, classify fix scope as `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. If unknown, default to class/cross-consumer until a producer/consumer inventory proves instance-only.
+
+#### Reach Calibration
+
+A `P0` or `P1` finding names its reach in its `Case:` line: an input or call path that the code's stated contract allows, or a real caller that sends it. A failure that needs input outside that contract, such as `NaN` where the contract says a number, a wrong type, or an inverted range the code already rejects, is `P2` hardening, unless the code claims to validate that input. Data that crosses a trust boundary is always in reach. The low-confidence escalation rule raises a finding only when its reach is named. The full rule is [`review-core.md`](../../../.skilled/skills/sk-code/sk-code-review/references/review-core.md) section 2.
 
 #### Numeric Severity Calibration
 

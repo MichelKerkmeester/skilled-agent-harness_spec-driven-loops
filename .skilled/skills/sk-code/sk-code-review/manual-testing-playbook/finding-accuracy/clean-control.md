@@ -1,7 +1,7 @@
 ---
 title: "CR-027 -- Clean control"
 description: "This scenario validates the clean control for `CR-027`. It focuses on a live review of a small clamp helper with no seeded defect, and on whether the review stays quiet at blocking severity while still being allowed to raise P2 suggestions."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-027 -- Clean control
@@ -31,6 +31,7 @@ Operators run the exact prompt and command sequence for `CR-027` and confirm the
 - Expected signals: Step 1: the fixture is written to a scratch folder outside the repository; Step 2: the review raises no P0 or P1 finding, reports status `APPROVED` or `COMMENTED`, and any remaining findings are P2; Step 3: the final-line checker exits 0.
 - Desired user-visible outcome: the review lets the commit through, at most noting non-blocking polish, so the operator is not slowed by invented blockers.
 - Pass/fail: PASS iff no P0 or P1 finding is raised and the final-line checker exits 0; FAIL on any P0 or P1 finding, since the file has no defect that blocks a merge.
+- Allowed P2: a hardening note that the function returns `NaN`, or misbehaves, when a bound or the value is `NaN` or not a number is an allowed P2 suggestion. The comment states a number contract, the guard checks order rather than type, and the file has no caller that sends such input, so that note is never a P0 or P1 under the reach calibration in `../../references/review-core.md` section 2. The scenario fails only when such a note is raised at P0 or P1.
 
 Fixture file (write it to a scratch folder as clamp.js):
 
@@ -57,7 +58,7 @@ module.exports = { clamp };
 1. Write the fixture to a scratch folder outside the repository and read it once to confirm it matches this contract verbatim.
 2. Run the exact prompt through the chosen review executor and save the full output beside the run record.
 3. Run `scripts/check-review-final-line.js` over the saved output and read its exit status.
-4. Compare the severity of every reported finding against this contract, treating P2 as allowed and any P0 or P1 as a failure.
+4. Compare the severity of every reported finding against this contract, treating P2 as allowed, including a `NaN` or non-number hardening note, and any P0 or P1 as a failure.
 5. Record executor, model, wall-clock duration, and total tokens with the verdict, then quote the invented blocker when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

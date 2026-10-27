@@ -140,6 +140,8 @@ The connected-code reads named in the mode's Phase 1 are planned reads. Their st
 | **P1**   | REQUIRED   | Logic error, pattern violation         | Must fix to pass |
 | **P2**   | SUGGESTION | Style improvement, minor optimization  | No impact        |
 
+**Reach rule.** A P0 or P1 finding names its reach in its Case line: an input or call path the code's stated contract allows, or a real caller that sends it. A failure that needs input outside that contract (`NaN` where the contract says a number, a wrong type, an inverted range the code already rejects) is P2 hardening, unless the code claims to validate that input. Data that crosses a trust boundary is always in reach. Low confidence raises severity only when the reach is named. The rule is owned by the review mode's `references/review-core.md` section 2.
+
 ### Dimension Rubrics
 
 | Dimension                | Full (max)                                | Good                        | Weak                                         | Critical                             |
@@ -404,6 +406,7 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 - Scoring mindset: +score for each disproved finding, -2x penalty for wrong dismissals
 - Challenge each Hunter finding: "Is there codebase context making this acceptable?"
 - Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
+- Ask: "Does the Case use an input the stated contract allows, or a caller that really sends it?" If not, downgrade the finding to P2 hardening.
 
 **Pass 3 — REFEREE** (neutral judgment)
 - Scoring mindset: +1 correct call, -1 wrong call

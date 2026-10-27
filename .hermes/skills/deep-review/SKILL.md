@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
-version: 1.11.7.0
+version: 1.11.8.0
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
 
@@ -328,6 +328,8 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 | **P0** | Correctness failure, security vulnerability, spec contradiction | Yes, blocks PASS verdict |
 | **P1** | Degraded behavior, incomplete implementation, missing validation | Conditional, triggers CONDITIONAL verdict |
 | **P2** | Style, naming, minor improvements, documentation gaps | No, PASS with advisories |
+
+P0 and P1 also follow the reach calibration in `sk-code-review`'s `references/review-core.md` §2: a blocking finding names an input or call path the code's stated contract allows, or a real caller that sends the failing input. "Missing validation" is P1 only when the unvalidated input is in reach; validation the code never claimed, for input outside its stated contract, is P2 hardening. At a trust boundary every value the outside can send is in reach.
 
 The scale has exactly three tiers; no fourth is reserved. A severity outside P0/P1/P2 -- a `P3` inherited from an older four-level convention, or any unlisted word -- is not a fourth tier: collapse it to the tier its impact actually matches (a `P3` becomes `P2`) and keep the original rating visible in the finding, so the rating is converted rather than lost. An unconverted out-of-scale severity reaches the cross-lineage merge unranked, where it sorts below every P2 and cannot raise the merged verdict.
 
