@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2c97583e052c53967779c942abf0ee5dc0d1cb47472295a9da28963b7bec0dff",
+  "manifestHash": "ba5879772c98a6d8683841db9aa125f072eeb4bc5093e56268a48853585a7df6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43099,6 +43099,12 @@
     "expected workflow mode omitted": [
       "expected workflow mode omitted"
     ],
+    "explain checklist seat overrides": [
+      "explain checklist seat overrides"
+    ],
+    "explain surface skill folder": [
+      "explain surface skill folder"
+    ],
     "explicit any ledger closure": [
       "explicit-any ledger closure"
     ],
@@ -66734,6 +66740,9 @@
     "multi file boundary dividers": [
       "Multi-file Boundary Dividers"
     ],
+    "multi file explain": [
+      "multi-file explain"
+    ],
     "multi file quality check": [
       "multi file quality check"
     ],
@@ -79808,6 +79817,27 @@
     ],
     "quality report listing tasks": [
       "quality report listing tasks"
+    ],
+    "quality resolver": [
+      "quality resolver"
+    ],
+    "quality resolver acceptance criteria": [
+      "quality resolver acceptance criteria"
+    ],
+    "quality resolver implementation summary": [
+      "quality resolver implementation summary"
+    ],
+    "quality resolver multi file explain with surface skill": [
+      "quality resolver multi file explain with surface skill"
+    ],
+    "quality resolver plan": [
+      "quality resolver plan"
+    ],
+    "quality resolver surface folder": [
+      "quality resolver surface folder"
+    ],
+    "quality resolver tasks": [
+      "quality resolver tasks"
     ],
     "quality review before indexing": [
       "quality review before indexing"
@@ -95307,6 +95337,9 @@
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
+    "sk code quality 1 13 3 0": [
+      "sk-code-quality 1.13.3.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -95396,6 +95429,9 @@
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
+    ],
+    "sk code quality v1 13 3 0": [
+      "sk-code-quality v1.13.3.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"

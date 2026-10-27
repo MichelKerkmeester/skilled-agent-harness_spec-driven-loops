@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4597bb19c768176ef87184b2c6170d52716f8d253023a7da7b84b6634f294516",
+  "corpusHash": "2ece9372a708967d5bc41a0cd1f3493a1d2e124e5c5aa584972933e33ed4a84c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26561,
+  "includedPathCount": 26567,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2850,6 +2850,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -12527,6 +12528,11 @@
     "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/plan.md",
     "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/spec.md",
     "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/tasks.md",
+    "specs/sk-code/017-portable-code-modes/004-quality-resolver/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/004-quality-resolver/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/004-quality-resolver/plan.md",
+    "specs/sk-code/017-portable-code-modes/004-quality-resolver/spec.md",
+    "specs/sk-code/017-portable-code-modes/004-quality-resolver/tasks.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/plan.md",
@@ -26592,7 +26598,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2c97583e052c53967779c942abf0ee5dc0d1cb47472295a9da28963b7bec0dff",
+  "manifestHash": "ba5879772c98a6d8683841db9aa125f072eeb4bc5093e56268a48853585a7df6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29440,6 +29446,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/004-quality-resolver/scratch",
       "reason": "excluded directory"
     },
     {
