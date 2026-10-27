@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0a9a793f2a04eaf30091a6fbeabdf04ff8a407a9955d4a49caba0ae47b4701d1",
+  "manifestHash": "f96fb57ab556b33cd182491e621bef235261ec52d42ac3cde34bd270bc9dc072",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17450,6 +17450,9 @@
     ],
     "check review convergence": [
       "check review convergence"
+    ],
+    "check rule overrides linter": [
+      "check rule overrides linter"
     ],
     "check running timer": [
       "check running timer"
@@ -40114,6 +40117,9 @@
     "drop old deepseek from pi tasks": [
       "drop old deepseek from pi tasks"
     ],
+    "drop or replace a quality rule": [
+      "drop or replace a quality rule"
+    ],
     "drop the injected dispatch mandate": [
       "drop the injected dispatch mandate"
     ],
@@ -51662,6 +51668,9 @@
     ],
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
+    ],
+    "hard floor rule ids": [
+      "hard floor rule ids"
     ],
     "hard plugins": [
       "hard plugins"
@@ -65198,6 +65207,9 @@
     "minideaobservations": [
       "minIdeaObservations"
     ],
+    "minified file syntax message": [
+      "minified file syntax message"
+    ],
     "minimal theme": [
       "minimal theme"
     ],
@@ -67542,6 +67554,9 @@
     "nocanonicalpathclaims": [
       "noCanonicalPathClaims"
     ],
+    "node 20 test fixes for the advisor plugin": [
+      "node 20 test fixes for the advisor plugin"
+    ],
     "node abi marker": [
       "node abi marker"
     ],
@@ -67607,6 +67622,21 @@
     ],
     "node type treatment": [
       "node type treatment"
+    ],
+    "node20 test fixes": [
+      "node20 test fixes"
+    ],
+    "node20 test fixes acceptance criteria": [
+      "node20 test fixes acceptance criteria"
+    ],
+    "node20 test fixes implementation summary": [
+      "node20 test fixes implementation summary"
+    ],
+    "node20 test fixes plan": [
+      "node20 test fixes plan"
+    ],
+    "node20 test fixes tasks": [
+      "node20 test fixes tasks"
     ],
     "noise dedupe quality thresholds": [
       "noise dedupe quality thresholds"
@@ -71111,6 +71141,9 @@
     "overloaded root summary": [
       "overloaded root summary"
     ],
+    "override a review rule": [
+      "override a review rule"
+    ],
     "override apply": [
       "override apply"
     ],
@@ -71720,6 +71753,9 @@
     ],
     "parallel syntax pool scenario": [
       "parallel syntax pool scenario"
+    ],
+    "parallel syntax pool stderr": [
+      "parallel syntax pool stderr"
     ],
     "parallel work streams": [
       "parallel work streams"
@@ -73335,6 +73371,9 @@
     ],
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
+    ],
+    "phase 1 shared rule contract": [
+      "phase 1 shared rule contract"
     ],
     "phase 1 sk code hub voice": [
       "phase 1 sk code hub voice"
@@ -77023,6 +77062,9 @@
     "plugin scanner readiness tasks": [
       "plugin scanner readiness tasks"
     ],
+    "plugin test node 20": [
+      "plugin test node 20"
+    ],
     "plugin tests ci and stale bundles": [
       "plugin tests ci and stale bundles"
     ],
@@ -77250,6 +77292,9 @@
     ],
     "portability repair tasks": [
       "portability repair tasks"
+    ],
+    "portable code modes phase parent spec": [
+      "portable code modes phase parent spec"
     ],
     "portable guard cores": [
       "portable guard cores"
@@ -82047,6 +82092,9 @@
     ],
     "registered tool no layer definition": [
       "registered tool no layer definition"
+    ],
+    "registerhooks is not a function": [
+      "registerHooks is not a function"
     ],
     "registration drift fix": [
       "registration drift fix"
@@ -88792,6 +88840,18 @@
     "rule loading research outcome": [
       "rule loading research outcome"
     ],
+    "rule overrides any repository": [
+      "rule overrides any repository"
+    ],
+    "rule overrides contract": [
+      "rule overrides contract"
+    ],
+    "rule overrides linter": [
+      "rule overrides linter"
+    ],
+    "rule overrides section": [
+      "rule overrides section"
+    ],
     "rule phrase count target": [
       "rule phrase count target"
     ],
@@ -93426,6 +93486,21 @@
     "shared rollback gate provenance limits": [
       "shared rollback gate provenance limits"
     ],
+    "shared rule contract": [
+      "shared rule contract"
+    ],
+    "shared rule contract acceptance criteria": [
+      "shared rule contract acceptance criteria"
+    ],
+    "shared rule contract implementation summary": [
+      "shared rule contract implementation summary"
+    ],
+    "shared rule contract plan": [
+      "shared rule contract plan"
+    ],
+    "shared rule contract tasks": [
+      "shared rule contract tasks"
+    ],
     "shared runtime dispatch": [
       "shared runtime dispatch"
     ],
@@ -94329,6 +94404,9 @@
     "sk code 3 9 6 0": [
       "sk-code 3.9.6.0"
     ],
+    "sk code 3 9 7 0": [
+      "sk-code 3.9.7.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -94699,6 +94777,9 @@
     "sk code hooks relocation decision": [
       "sk-code hooks relocation decision"
     ],
+    "sk code house style overrides": [
+      "sk-code house style overrides"
+    ],
     "sk code hub": [
       "sk-code hub"
     ],
@@ -94980,6 +95061,9 @@
     "sk code ponytail refinement research": [
       "sk-code ponytail refinement research"
     ],
+    "sk code portable quality review ci": [
+      "sk-code portable quality review ci"
+    ],
     "sk code post edit quality": [
       "sk-code-post-edit-quality"
     ],
@@ -95012,6 +95096,9 @@
     ],
     "sk code quality 1 13 1 0": [
       "sk-code-quality 1.13.1.0"
+    ],
+    "sk code quality 1 13 2 0": [
+      "sk-code-quality 1.13.2.0"
     ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
@@ -95096,6 +95183,9 @@
     ],
     "sk code quality v1 13 1 0": [
       "sk-code-quality v1.13.1.0"
+    ],
+    "sk code quality v1 13 2 0": [
+      "sk-code-quality v1.13.2.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -95777,6 +95867,9 @@
     ],
     "sk code v3 9 6 0": [
       "sk-code v3.9.6.0"
+    ],
+    "sk code v3 9 7 0": [
+      "sk-code v3.9.7.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -106863,6 +106956,9 @@
     "system skill advisor 0 17 1 0": [
       "system-skill-advisor 0.17.1.0"
     ],
+    "system skill advisor 0 17 10 0": [
+      "system-skill-advisor 0.17.10.0"
+    ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
     ],
@@ -107069,6 +107165,9 @@
     ],
     "system skill advisor v0 17 1 0": [
       "system-skill-advisor v0.17.1.0"
+    ],
+    "system skill advisor v0 17 10 0": [
+      "system-skill-advisor v0.17.10.0"
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"
@@ -109258,6 +109357,9 @@
     ],
     "the diagram corpus checker its mutation suite": [
       "the diagram corpus checker its mutation suite"
+    ],
+    "the direct check reported no message": [
+      "the direct check reported no message"
     ],
     "the dispatch preflight is the only surface": [
       "the dispatch preflight is the only surface"
@@ -114570,6 +114672,9 @@
     ],
     "watcher mutex": [
       "watcher mutex"
+    ],
+    "watcher newborn skill flake": [
+      "watcher newborn skill flake"
     ],
     "watcher orchestrator": [
       "watcher orchestrator"

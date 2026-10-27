@@ -1,5 +1,5 @@
 {
-  "corpusHash": "480162873de686c6897437c6381546d904d3978805181ebf3ab6c86d72af6900",
+  "corpusHash": "ffb58374305a1ea857e4058eb598c7bf65af0edec3b4b26bc3a4e1c28aa09a55",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26491,
+  "includedPathCount": 26506,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2757,6 +2757,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.5.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.6.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.7.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2794,6 +2795,7 @@
     ".skilled/skills/sk-code/shared/references/phase-detection.md",
     ".skilled/skills/sk-code/shared/references/stack-detection.md",
     ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md",
     ".skilled/skills/sk-code/shared/references/workflow-debug.md",
     ".skilled/skills/sk-code/shared/references/workflow-implement.md",
     ".skilled/skills/sk-code/shared/references/workflow-verify.md",
@@ -2840,6 +2842,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.12.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.1.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -7586,6 +7589,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.16.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.1.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.10.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -12493,6 +12497,17 @@
     "specs/sk-code/016-review-mode-followups/plan.md",
     "specs/sk-code/016-review-mode-followups/spec.md",
     "specs/sk-code/016-review-mode-followups/tasks.md",
+    "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/plan.md",
+    "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/spec.md",
+    "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/tasks.md",
+    "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/plan.md",
+    "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/spec.md",
+    "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/tasks.md",
+    "specs/sk-code/017-portable-code-modes/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -26522,7 +26537,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0a9a793f2a04eaf30091a6fbeabdf04ff8a407a9955d4a49caba0ae47b4701d1",
+  "manifestHash": "f96fb57ab556b33cd182491e621bef235261ec52d42ac3cde34bd270bc9dc072",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29362,6 +29377,14 @@
     },
     {
       "path": "specs/sk-code/016-review-mode-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/001-shared-rule-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/scratch",
       "reason": "excluded directory"
     },
     {
