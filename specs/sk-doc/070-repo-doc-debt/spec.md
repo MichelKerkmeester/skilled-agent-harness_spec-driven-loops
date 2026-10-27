@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/070-repo-doc-debt"
     last_updated_at: "2026-10-27T08:00:00Z"
     last_updated_by: "lane-e-conductor"
-    recent_action: "Measured the baseline and split the debt into three phase children"
-    next_safe_action: "Work each child phase and record its evidence"
+    recent_action: "Closed all three phases with before and after counts"
+    next_safe_action: "Operator decides how the 235 generated report READMEs should conform"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "lane-e-repo-doc-debt"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-27 |
 | **Branch** | `worktrees/231-repo-doc-debt` |
 | **Parent Spec** | None |
@@ -94,9 +94,9 @@ Fix every finding that is real drift, keep every fact while doing it, and record
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-broken-references/ | Fix README references whose target moved or was removed | In Progress |
-| 2 | 002-readme-template-conformance/ | Bring hand-authored READMEs to the template and close real inventory gaps | In Progress |
-| 3 | 003-changelog-omissions/ | Reword changelog ids into words and drop test counts | In Progress |
+| 1 | 001-broken-references/ | Fix README references whose target moved or was removed | Complete |
+| 2 | 002-readme-template-conformance/ | Bring hand-authored READMEs to the template and close real inventory gaps | Complete |
+| 3 | 003-changelog-omissions/ | Reword changelog ids into words and drop test counts | Complete |
 
 ### Phase Transition Rules
 
