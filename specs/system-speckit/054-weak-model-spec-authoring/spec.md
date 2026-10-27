@@ -155,7 +155,7 @@ The operator meets all four before the first phase runs. The conductor records e
 | 24 | 024-typed-command-ambiguity/ | Stop the advisor reporting a typed command's owner as ambiguous with a skill the graph seed bound held below it, so `/deep:research :auto` prompts route without an ambiguity flag | Complete |
 | 25 | 025-deprecate-nested-changelogs/ | Stop writing changelogs inside spec folders: the closing workflows, the phase scaffold and `/create:changelog` no longer create one, and the generator prints a deprecation notice | Complete |
 | 26 | 026-alignment-findings-fixes/ | Fix the findings two alignment runs raised on phase 25: the generator's `--write` refuses a packet with no changelog, the system-spec-kit `SKILL.md` is back under its word cap, and the stale changelog wording, routing and workflow leftovers are gone | Complete |
-| 27 | 027-alignment-preexisting-gaps/ | Fix the gaps the alignment runs found that predate phase 25: the README checkers stop reporting false positives, packet-local changelog requests route to the changelog mode, and the alignment tool's aggregator applies critic overrides | In Progress |
+| 27 | 027-alignment-preexisting-gaps/ | Fix the gaps the alignment runs found that predate phase 25: the README checkers stop reporting false positives, packet-local changelog requests route to the changelog mode, and the alignment tool's aggregator applies critic overrides | Complete |
 
 ### Phase Transition Rules
 

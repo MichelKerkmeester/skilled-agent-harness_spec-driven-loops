@@ -66,7 +66,7 @@ Closing a packet no longer writes a changelog inside its spec folder, and neithe
 | `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts`, `runtime/cli/tests/nested-changelog.vitest.ts` | Modified | Deprecation notice before argument parsing, two tests that pin it |
 | `.skilled/skills/sk-doc/sk-create-changelog/**`, `sk-doc/SKILL.md`, `command-metadata.json`, `sk-create-frontmatter/assets/frontmatter-templates.md` | Modified | Mark nested mode deprecated, drop `phase child` from the refusing intent |
 | `.skilled/skills/system-spec-kit/{SKILL.md,README.md}`, `references/**`, `templates/{README.md,CONTRACT.md,changelog/README.md}`, feature catalog and playbook entries, `runtime/cli/spec-folder/README.md` | Modified | Say packet changelogs are deprecated and where changelogs live now |
-| `system-spec-kit/changelog/v2.12.10.0.md`, `sk-create-changelog/changelog/v1.3.6.0.md`, `sk-doc/changelog/v2.3.21.0.md` and their version carriers, `.hermes/skills/**` | Created and modified | Release entries, version bumps and the regenerated Hermes copies |
+| `system-spec-kit/changelog/v2.12.13.0.md`, `sk-create-changelog/changelog/v1.3.6.0.md`, `sk-doc/changelog/v2.3.24.0.md` and their version carriers, `.hermes/skills/**` | Created and modified | Release entries, version bumps and the regenerated Hermes copies |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -34,7 +34,7 @@
       "two"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -54,8 +54,8 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl",
-      "scratch/after/advisor-suite.txt",
-      "scratch/items.md"
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/dispatch/README.md"
     ],
     "entities": [
       {
@@ -149,25 +149,7 @@
         "source": "derived"
       },
       {
-        "name": "advisor-suite.txt",
-        "kind": "file",
-        "path": "scratch/after/advisor-suite.txt",
-        "source": "derived"
-      },
-      {
-        "name": "items.md",
-        "kind": "doc",
-        "path": "scratch/items.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +179,25 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three Opus",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two alignment runs on the phase 25 commit exposed three gaps that predate phase 25",
     "created_at": "2026-10-27T18:51:31Z",
-    "last_save_at": "2026-10-27T21:08:14.689Z",
+    "last_save_at": "2026-10-28T00:45:13.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:572b0304876bc6ce61239f7620e1f0ee0d832b1fe732d7f14921f581eeef0f15",
+    "source_fingerprint": "sha256:6806e91e61935e1d4d90ab70ca3578da1b8ea9fbb1fffb3ab09978344c2c1835",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97ac29c0c38a622a155f6fe3c5568db52455ac4bba68cf8917ee4afb896d927a",
+      "spec.md": "65cd6ee04ae69603b15a163bfdc80813429daf936a280214b662549d74dbffe8",
       "plan.md": "705b8411668883c02c2d46db215584c3bda6d5ca0a0c0e20b3aee020118cc68d",
-      "tasks.md": "a202ce2fe95428d86bb0e83b76a3a796bb46309659fbe0d5c045270a6be083a1",
-      "implementation-summary.md": "6b94aea6e1b3d5304825f3a2c73ad6e6868dd5e2a24c68452374d8daf1e1f603"
+      "tasks.md": "c5a3b63915e68d9c58917aae36fd9c9c3fc9366d53e421571b4ef8ff1cffcbad",
+      "implementation-summary.md": "c88ad6448353f220e022d3ace8b6300bcdf944f12f0f85630edc4628f627cfbc"
     },
     "last_active_at": null
   }

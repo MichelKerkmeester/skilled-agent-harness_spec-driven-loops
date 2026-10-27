@@ -56,7 +56,7 @@ Lane 2: system-spec-kit docs.
 - [x] T009 [P] F8: match the catalog root entry to the leaf description (`$K/feature-catalog/feature-catalog.md`). Verify: `validate_catalog_package.py --package system-spec-kit` reports no `root_leaf_description_mismatch`. Evidence: `validate_catalog_package --package system-spec-kit` exits 0 with no `root_leaf_description_mismatch`.
 - [x] T010 [P] F9: mirror the catalog leaf wording in step 7 and its Expected line (`$K/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md`). Verify: `rg -n "plus its changelog/ when an older packet still has one"` on the file prints the step. Evidence: step 7 and its Expected line mirror the catalog leaf.
 - [x] T011 [P] F10: describe `--write` as re-rendering an existing packet changelog and refusing a packet with none (`$K/references/workflows/nested-changelog.md`, `$K/references/workflows/quick-reference.md`). Verify: `rg -n -- "--write"` on both files shows only the re-render and refuse wording. Evidence: both files describe `--write` as re-render-only with a refusal for a packet with none.
-- [x] T012 F11: after T006 to T011, update the unreleased entry for F1 and the doc fixes (`$K/changelog/v2.12.10.0.md`). Verify: the entry names the refusal, and a read of the added lines finds no em dash, semicolon or Oxford comma. Evidence: `v2.12.10.0.md` covers the refusal guard and the doc fixes.
+- [x] T012 F11: after T006 to T011, update the unreleased entry for F1 and the doc fixes (`$K/changelog/v2.12.13.0.md`). Verify: the entry names the refusal, and a read of the added lines finds no em dash, semicolon or Oxford comma. Evidence: `v2.12.13.0.md` covers the refusal guard and the doc fixes.
 
 Lane 3: sk-doc and the changelog command.
 
@@ -64,7 +64,7 @@ Lane 3: sk-doc and the changelog command.
 - [x] T014 [P] F13: remove the stale trigger phrase (`$C/references/worked-examples.md`). Verify: `rg -n "packet local changelog example" $C/references/worked-examples.md` prints nothing. Evidence: the trigger phrase is gone from `worked-examples.md`.
 - [x] T015 [P] F14: drop the nested-output assumption at lines 63 and 67 (`$C/manual-testing-playbook/version-and-format/choose-four-part-bump.md`). Verify: a read of both lines names only global output. Evidence: `choose-four-part-bump.md` names global output only.
 - [x] T016 [P] F15: drop `changelog_mode` and unwrap its guards (`.skilled/commands/create/assets/create-changelog-{auto,confirm}.yaml`). Verify: `rg -n "changelog_mode" .skilled/commands/create/assets/` prints nothing and both files load with a YAML parser. Evidence: `rg` finds no `changelog_mode` and both YAMLs parse.
-- [x] T017 F16: after T013, soften the routing claim and update the skill entry if T013 changed what it says (`.skilled/skills/sk-doc/changelog/v2.3.21.0.md`, `$C/changelog/v1.3.6.0.md`). Verify: a read of lines 3 and 24 shows no guaranteed-routing claim. Evidence: the `v2.3.21.0` and `v1.3.6.0` claims are softened. sk-doc `validate_skill_package`, `quick_validate`, the playbook package and `parent-skill-check` all exit 0.
+- [x] T017 F16: after T013, soften the routing claim and update the skill entry if T013 changed what it says (`.skilled/skills/sk-doc/changelog/v2.3.24.0.md`, `$C/changelog/v1.3.6.0.md`). Verify: a read of lines 3 and 24 shows no guaranteed-routing claim. Evidence: the `v2.3.24.0` and `v1.3.6.0` claims are softened. sk-doc `validate_skill_package`, `quick_validate`, the playbook package and `parent-skill-check` all exit 0.
 <!-- /ANCHOR:phase-2 -->
 
 ---

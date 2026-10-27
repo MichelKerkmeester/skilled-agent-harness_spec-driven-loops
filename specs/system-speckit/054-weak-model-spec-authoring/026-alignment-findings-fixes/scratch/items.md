@@ -29,7 +29,7 @@ Every item was confirmed by a command in at least one run. Line numbers are as o
 - F13 (P2, B-6): `references/worked-examples.md:8` keeps the trigger phrase `packet local changelog example` for an example that no longer exists. Remove it.
 - F14 (P2, B-4): `manual-testing-playbook/version-and-format/choose-four-part-bump.md:63,67` still assumes nested output.
 - F15 (P2, C-2 / CR-05): `.skilled/commands/create/assets/create-changelog-{auto,confirm}.yaml` keep `changelog_mode` (always global) and `IF changelog_mode = global:` guards. Drop the variable and unwrap the guards. Both files must still parse as YAML.
-- F16 (P2, D-1): `sk-doc/changelog/v2.3.21.0.md:3,24` makes the same routing claim as F12 line 51; soften it. Update `sk-create-changelog/changelog/v1.3.6.0.md` if F12 changes what it says.
+- F16 (P2, D-1): `sk-doc/changelog/v2.3.24.0.md:3,24` makes the same routing claim as F12 line 51; soften it. Update `sk-create-changelog/changelog/v1.3.6.0.md` if F12 changes what it says.
 
 ## Conductor
 

@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-27 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring` |
 | **Parent Spec** | ../spec.md |
@@ -99,6 +99,10 @@ The aggregator crash (`a.id.localeCompare is not a function`) and the overturned
 
 > **Amendment (2026-10-27):** The A1 metadata fix alone moved only 2 of the 4 packet-local changelog probes to sk-doc. The operator directed "fix not fixed items" and then "fix all", and the conductor approved one narrow scorer rule: a changelog-from-packet exception in `primaryIntentBonus` (`fusion.ts`) plus two constants in `scoring-constants.ts`. When a verb directly governs a changelog noun phrase and the prompt names a packet, a nested folder or a spec folder, sk-doc gets +0.12 and system-spec-kit gets -0.12. Other skills fall through to the later bonuses, and the corpus-study rule is skipped for these prompts. Separately, the operator's "fix all, perfect it" brought in the README lines the stricter reference checker exposed as real broken references or shorthand: a moved spec path, `checklist.md` changed to `acceptance-criteria.md`, the stale `shared/contracts/` and `evidence-marker-lint.ts` rows, example fences marked, shorthand paths written in full or as bracketed spec-folder placeholders, the false `.opencode/specs` compat-symlink claim removed, and three root README lines reworded so non-paths are not code-formatted. Every checker false positive is still fixed at the checker.
 
+### Scope Amendment: merge with sk-doc/071 (2026-10-27)
+
+> **Amendment (2026-10-27):** While this phase closed, main shipped `specs/sk-doc/071-readme-reference-debt`, an independent rewrite of the same two checkers built on `readme-check` marker blocks and built-in self-tests. The rebase conflicted on both scripts, and the operator chose "Merge both". The merged checkers keep every 071 rule, marker block and self-test, and add this phase's slash-command, bare-name, template and placeholder resolution and its folder-verified count claims. Where the two designs disagree on one input, 071's output format is kept and the stricter correct verdict wins. Three READMEs that name a removed command on purpose gained an `allow-ref` entry with its reason, the root README dropped five `allow-ref` lines that no longer match anything, and READMEs whose prose or counts the merged checkers proved wrong were corrected, each count the checkers cannot prove recorded in an `allow-count` entry with a checked reason. Two fresh Opus high reviews then drove two rounds of checker fixes. Main then shipped a third rewrite, `specs/sk-doc/070-repo-doc-debt/007-alignment-fixes`, which checks every link, inventory row and tree line and fixed README debt across the repository. A fresh Opus high compared the two on both test suites and a full README sweep and recommended adopting main's checkers and porting only what they lacked: slash-command checks, placeholder and shortened-label handling, more count claim shapes and test-file names, and a deleted tracked file failing. That port replaced this branch's merged checkers, a third fresh Opus high review drove one more fix round, and READMEs naming retired commands were reworded as prose. Main also took this branch's planned release numbers more than once, so the entries became spec-kit v2.12.13.0, sk-doc v2.3.24.0, sk-create-readme v1.3.4.0 and advisor v0.17.16.0.
+
 ### Files to Change
 
 | File Path | Change Type | Description |
@@ -113,6 +117,8 @@ The aggregator crash (`a.id.localeCompare is not a function`) and the overturned
 | The Hermes mirror | Regenerate | Conductor gate |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` and `scoring-constants.ts` | Modify | **Amended 2026-10-27:** the changelog-from-packet rule in `primaryIntentBonus` and its two constants |
 | `README.md`, `.skilled/bin/README.md`, `.skilled/skills/sk-doc/README.md`, `.skilled/skills/sk-doc/sk-create-frontmatter/README.md` and `.skilled/skills/system-spec-kit/README.md` | Modify | **Amended 2026-10-27:** the real broken references and shorthand the stricter checker exposed |
+| `.skilled/skills/cli-external-orchestration/benchmark/README.md`, `.skilled/skills/sk-code/benchmark/README.md` and `specs/sk-doc/z_archive/019-skill-routing-refactor/research/post-019-angles/README.md` | Modify | **Amended 2026-10-27 (merge):** an `allow-ref` entry for a removed command each README names on purpose |
+| The other READMEs the merged checkers flagged, listed in `implementation-summary.md` | Modify | **Amended 2026-10-27 (merge):** prose fixes for real defects, and `allow-count` or `allow-ref` entries with checked reasons for correct text no rule can prove |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -137,7 +143,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | Lane R tests and report: a test pins each fixed class plus one broken path and one wrong count, in a location `sk-doc-script-tests.yml` runs, and the lane reports before and after counts on the seven READMEs with every residual failure judged real or not. |
 | REQ-006 | T1: a lane file with numeric finding ids aggregates without a crash, each id coerced to a string and prefixed with the lane id when bare. |
 | REQ-007 | Conductor gates: the sk-doc script tests, the advisor gates listed in `scratch/items.md`, the system-spec-kit CLI suite only if spec-kit code changed, the Hermes sync, strict validation of this phase and a fresh Opus medium review all pass. |
-| REQ-008 | Closeout gates: strict recursive validation of packet 054 passes, the change is committed on the worktree branch, the branch is rebased onto main with this branch's system-spec-kit entry renumbered to v2.12.10.0, and the trigger index is rebuilt after the rebase. |
+| REQ-008 | Closeout gates: strict recursive validation of packet 054 passes, the change is committed on the worktree branch, the branch is rebased onto main with this branch's release entries renumbered past every version main has shipped, and the trigger index is rebuilt after the rebase. |
+| REQ-009 | **Added 2026-10-27 (merge):** the final checkers pass main's tests, their self-tests and this phase's tests, and no tracked README fails under them that passes under main's checkers. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

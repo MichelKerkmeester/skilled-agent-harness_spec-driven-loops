@@ -165,6 +165,7 @@ and findings belong here.
 | Phase 25 opened | In Progress | operator chose stop-generating on 2026-10-27; 64 packet changelogs, 3 workflow calls, 1 create.sh line |
 | Phase 25 closed | Complete | packet changelogs deprecated; suite 2241 passed 0 failed; AC Met |
 | Phase 26 closed | Complete | --write refuses a packet with no changelog, SKILL.md at 4982 words, suite 2242 passed and 0 failed, trigger index rebuilt after the rebase at push time |
+| 2026-10-27 phase 027 complete: README checkers merged with sk-doc/071 (63 tests, both self-tests, no README newly failing over 987), packet-changelog routing to sk-doc, aggregator overrides; rebase... | Done |  |
 
 ### Deviations and findings
 

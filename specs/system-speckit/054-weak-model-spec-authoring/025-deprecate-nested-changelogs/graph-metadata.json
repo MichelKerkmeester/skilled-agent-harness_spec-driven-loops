@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`/speckit:implement` and `/speckit:complete` run `nested-changelog.js --write` when a packet closes, and `create.sh` writes a \"refresh the matching file in ../changelog/\" line into every phase child",
     "created_at": "2026-10-27T12:15:04Z",
-    "last_save_at": "2026-10-27T21:13:57.970Z",
+    "last_save_at": "2026-10-28T00:19:34.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:372e548d0f730a8648d25eef5a6c62867d93b31f3fbe9b857258aa2acc2383e9",
+    "source_fingerprint": "sha256:c404ea2b55e9cc4748ec69dabf57b4bc7402744ef2fae1f6bf1e87830fe40857",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed1756e9abd2700604c2b25241d135aa55478d8ac584d6c36725602a63586d9b",
       "plan.md": "736541cbe050dac6d1a2699a7fe4427ad13dcb833e1e7a212fb30825428b21d0",
       "tasks.md": "8269dcc4a720cf83971d416bd018ea3ad010ea2179201a5e76678f0796ae3be0",
-      "implementation-summary.md": "1ac4d2d32cbc17c8f684b7b6df59c2b5c9783ebff0cb7eef1be54aa8da6c4771"
+      "implementation-summary.md": "6ab93dcaaf80f421abfa4697ec27d51d26ecb9e0dfa22f902094d65aa15490ff"
     },
     "last_active_at": null
   }
