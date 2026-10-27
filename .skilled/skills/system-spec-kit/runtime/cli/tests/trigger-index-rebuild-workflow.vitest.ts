@@ -46,7 +46,7 @@ const PUSH_IF = "needs.rebuild.outputs.committed == 'true'";
 const ARTIFACT_NAME = 'trigger-index-rebuild-bundle';
 const BUNDLE_FILE = 'rebuild.bundle';
 const CHECKOUT_USE = 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1';
-const UPLOAD_USE = 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a';
+const UPLOAD_USE = 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9';
 const REPOSITORY = 'trigger-index/fixture';
 const RUN_ID = '424242';
 const AUTH_GUIDANCE = 'set the TRIGGER_INDEX_PUSH_TOKEN secret';

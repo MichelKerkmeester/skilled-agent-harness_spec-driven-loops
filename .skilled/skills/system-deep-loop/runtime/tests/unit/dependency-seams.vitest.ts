@@ -28,7 +28,7 @@ const runtimeRequire = createRequire(resolve(runtimeRoot, 'lib', 'index.cjs'));
 // rather than degrading.
 const PINNED = {
   'better-sqlite3': '12.11.1',
-  zod: '4.4.3',
+  zod: '4.6.7',
   tsx: '4.22.4',
 } as const;
 
