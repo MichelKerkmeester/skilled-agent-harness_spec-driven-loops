@@ -6,7 +6,7 @@ trigger_phrases:
   - "phase 11 ci health followups"
   - "goal-core statepath flake"
   - "watcher chokidar ready flake"
-  - "pi-coding-agent 0.79.0 bump"
+  - "pi-coding-agent 1.4.0 bump"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-27 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 11 of 11 |
 | **Predecessor** | 010-review-remediation |
 | **Successor** | None |
-| **Handoff Criteria** | The goal-core suite and the watcher suite pass, and the pi-coding-agent version decision is recorded with its measured audit numbers |
+| **Handoff Criteria** | The goal-core suite and the watcher suite pass, and both extensions pass their CI steps at pi-coding-agent 1.4.0 with `npm audit` at 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -102,10 +102,10 @@ $ npm audit   # both extensions, lockfile at 0.75.3
 - Change the goal-core assertion to check `basename(scope.statePath)`, the part the code under test names.
 - Expose chokidar's `ready` event as a `ready` promise on the skill-graph watcher.
 - Make the real-chokidar test await `ready`, then prove delivery with hidden probe directories before it writes the skill.
-- Apply the pi-coding-agent bump to both extension lockfiles and run each extension's CI steps and `npm audit`.
+- Move both extension lockfiles to pi-coding-agent 1.4.0, add an `undici` `^8.12.2` override to pi-fast-mode-w-subagent-support, and run each extension's CI steps and `npm audit`.
 
 ### Out of Scope
-- Overrides or version choices beyond 0.79.0 - the brief names 0.79.0; other versions are measured and reported, not applied.
+- The `pi-coding-agent` `*` ranges in both `package.json` files - they stay as they are; only the lockfiles pin 1.4.0.
 - The watcher's production arming behavior - a daemon that misses a skill created within seconds of startup picks it up on the next event or restart.
 
 ### Files to Change
@@ -115,8 +115,9 @@ $ npm audit   # both extensions, lockfile at 0.75.3
 | `.skilled/hooks/goal/lib/goal-core.test.cjs` | Modify | Assert on the state file's basename |
 | `.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts` | Modify | Add the `ready` promise |
 | `.skilled/skills/system-skill-advisor/runtime/tests/daemon-watcher-new-root-ingestion.vitest.ts` | Modify | Await `ready` and the probe handshake instead of a fixed sleep |
-| `.pi/extensions/pi-cache-optimizer/package-lock.json` | Modify | pi-coding-agent 0.75.3 to 0.79.0 |
-| `.pi/extensions/pi-fast-mode-w-subagent-support/package-lock.json` | Modify | pi-coding-agent 0.75.3 to 0.79.0 |
+| `.pi/extensions/pi-cache-optimizer/package-lock.json` | Modify | pi-coding-agent 0.75.3 to 1.4.0 |
+| `.pi/extensions/pi-fast-mode-w-subagent-support/package-lock.json` | Modify | pi-coding-agent 0.75.3 to 1.4.0 |
+| `.pi/extensions/pi-fast-mode-w-subagent-support/package.json` | Modify | Add `"overrides": {"undici": "^8.12.2"}` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -136,7 +137,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-003 | Both extension lockfiles resolve pi-coding-agent 0.79.0, `npm test` and `npm run --if-present typecheck` pass, and `npm audit` reports 0 vulnerabilities |
+| REQ-003 | Both extension lockfiles resolve pi-coding-agent 1.4.0, the version the host `pi` runs, `npm test` and `npm run --if-present typecheck` pass, and `npm audit` reports 0 vulnerabilities |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -160,7 +161,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | npm advisory database | The audit result for a version can change after the bump is chosen | Record the audit output with the date it was taken |
-| Risk | pi-coding-agent 0.79.0 pins `undici` 8.3.0 exactly | High: the bump adds advisories instead of clearing them | Measure before landing; hold the lockfiles until the version is decided |
+| Risk | pi-coding-agent pins `undici` exactly (8.3.0 at 0.79.0, 8.10.2 at 1.4.0) | High: the bump can add advisories instead of clearing them | Measured 0.79.0 (6 vulnerabilities) and chose 1.4.0 with an `undici` override; `npm audit` prints 0 |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -198,7 +199,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 6/25 | 5 files, under 40 changed lines outside the lockfiles |
+| Scope | 6/25 | 6 files, under 45 changed lines outside the lockfiles |
 | Risk | 8/25 | One additive interface member; a dependency bump with audit impact |
 | Research | 8/20 | The watcher flake needed a trace to find its cause |
 | **Total** | **22/70** | **Level 2** |
@@ -209,7 +210,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which pi-coding-agent version should the extensions carry? 0.79.0 pins `undici` 8.3.0, `ws` 8.20.1, `zod` 3.25.76 and older `protobufjs` and `brace-expansion`, and `npm audit` reports 6 (5 high, 1 moderate) in each extension. 1.4.0 passes both extensions' tests and typecheck; it reports 0 in pi-cache-optimizer and 2 (1 high, 1 moderate, `undici` 8.10.2 pinned by 1.4.0) in pi-fast-mode-w-subagent-support, which lacks the `undici` override pi-cache-optimizer has. With an `undici` `^8.12.2` override added, a scratch copy of the fast-mode extension at 1.4.0 reports 0 and passes 81 tests.
+- None open. Which pi-coding-agent version should the extensions carry? Decision: 1.4.0, the version the host `pi` runs. 0.79.0 pins `undici` 8.3.0, `ws` 8.20.1, `zod` 3.25.76 and older `protobufjs` and `brace-expansion`, and `npm audit` reported 6 (5 high, 1 moderate) in each extension. 1.4.0 pins `undici` 8.10.2, so pi-fast-mode-w-subagent-support gets an `undici` `^8.12.2` override; pi-cache-optimizer's existing `^8.9.0` override already resolves 8.12.3.
 <!-- /ANCHOR:questions -->
 
 ---

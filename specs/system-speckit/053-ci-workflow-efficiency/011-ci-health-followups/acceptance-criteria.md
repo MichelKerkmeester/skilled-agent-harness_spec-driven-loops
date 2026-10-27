@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/011-ci-health-followups"
     last_updated_at: "2026-10-27T06:21:05Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "AC-001 and AC-002 met; AC-003 held on the measured audit regression"
-    next_safe_action: "Operator picks the pi-coding-agent version for AC-003"
+    recent_action: "All three criteria met; lockfiles at pi-coding-agent 1.4.0"
+    next_safe_action: "None; the orchestrator lands the commits"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-27-053-011-ci-health-followups"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `053-ci-workflow-efficiency/011-ci-health-followups`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-27
 <!-- /ANCHOR:metadata -->
 
@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given a temp directory whose path contains `pi`, When the goal-core suite runs, Then every test passes | `node --test .skilled/hooks/goal/lib/goal-core.test.cjs` printed `ℹ pass 98`, `ℹ fail 0`; with `TMPDIR=<scratch>/pi-tmp` the HEAD copy printed `fail 1` and the fixed file `pass 1` | Met | - |
 | AC-002 | REQ-002 | Given real chokidar, When the new-root ingestion suite runs 5 times in a row, Then each run passes with no fixed sleep before the skill write | `npx vitest run tests/daemon-watcher-new-root-ingestion.vitest.ts` printed `Tests  5 passed (5)` on 5 of 5 runs, exit 0 each; before the fix 2 of 3 runs failed | Met | - |
-| AC-003 | REQ-003 | Given both extension lockfiles at pi-coding-agent 0.79.0, When `npm test`, typecheck and `npm audit` run, Then tests pass and the audit prints `found 0 vulnerabilities` | Tests pass (118 and 81) and typecheck exits 0, but `npm audit` printed `6 vulnerabilities (1 moderate, 5 high)` in each, against `1 high` at 0.75.3 | Unmet | - |
+| AC-003 | REQ-003 | Given both extension lockfiles at pi-coding-agent 1.4.0, When the pi-extension-tests steps and `npm audit` run, Then tests pass and the audit prints `found 0 vulnerabilities` | `npm ci`, `npm test`, `npm run --if-present typecheck`, `npm run --if-present check:pack`, `npm audit` in each: pi-cache-optimizer pass 118 / fail 0, pi-fast-mode-w-subagent-support `Tests  81 passed (81)`, typecheck and check:pack exit 0, `found 0 vulnerabilities` in both; `npm ls undici` resolves 8.12.3. The criterion first named 0.79.0, which printed `6 vulnerabilities (1 moderate, 5 high)`; the operator chose 1.4.0, the host `pi` version | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-003 is unmet: 0.79.0 makes the audit worse, so the operator must choose the version before the lockfiles land.
+Every criterion is Met with observed command output.
 <!-- /ANCHOR:closure -->

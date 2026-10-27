@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 11: ci-health-followups"
-description: "Fix two flaky tests at their cause and measure the Dependabot pi-coding-agent bump. One test assertion, one additive watcher promise with a probe handshake in its test, and two lockfile updates held behind npm audit."
+description: "Fix two flaky tests at their cause and measure the Dependabot pi-coding-agent bump. One test assertion, one additive watcher promise with a probe handshake in its test, and two lockfile updates to pi-coding-agent 1.4.0 checked by npm audit."
 trigger_phrases:
   - "ci health followups plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Testing** | `node --test`, `npx vitest run`, `npm test`, `npm audit` |
 
 ### Overview
-The goal-core assertion moves from the full state path to its basename. The watcher gains a `ready` promise, and its real-chokidar test awaits it and then creates hidden probe directories until the watcher reports one, because chokidar's `ready` fires before macOS fs.watch delivers events. The lockfile bump is applied, tested and audited, and held when the audit gets worse.
+The goal-core assertion moves from the full state path to its basename. The watcher gains a `ready` promise, and its real-chokidar test awaits it and then creates hidden probe directories until the watcher reports one, because chokidar's `ready` fires before macOS fs.watch delivers events. The lockfiles move to pi-coding-agent 1.4.0, the host version, with an `undici` override in the fast-mode extension, and each extension runs its CI steps and `npm audit`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,7 +40,7 @@ The goal-core assertion moves from the full state path to its basename. The watc
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] `node --test .skilled/hooks/goal/lib/goal-core.test.cjs` prints `fail 0`; the watcher suite prints `Tests  5 passed (5)` five runs in a row
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -116,7 +116,7 @@ Follow the ordered tasks in `tasks.md`. Setup records the baselines, Implementat
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a watcher consumer fails on the new `ready` member, or a test regresses.
-- **Procedure**: revert the phase commit; the lockfiles are not in it.
+- **Procedure**: revert the flake-fix commit or the lockfile commit on its own; the two are independent.
 <!-- /ANCHOR:rollback -->
 
 ---

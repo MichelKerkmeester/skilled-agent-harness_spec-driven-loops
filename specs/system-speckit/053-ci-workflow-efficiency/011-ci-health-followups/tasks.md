@@ -47,7 +47,7 @@ contextType: "implementation"
 - [x] T004 Assert on `basename(scope.statePath)` (`.skilled/hooks/goal/lib/goal-core.test.cjs`). Verify: `node --test .skilled/hooks/goal/lib/goal-core.test.cjs`; observed `ℹ pass 98`, `ℹ fail 0`.
 - [x] T005 Add the `ready` promise (`runtime/lib/daemon/watcher.ts`). Verify: `npm run typecheck`; observed exit 0.
 - [x] T006 Replace the 150 ms sleep with `await watcher.ready` plus the probe handshake (`runtime/tests/daemon-watcher-new-root-ingestion.vitest.ts`). Verify: 5 runs; observed `Tests  5 passed (5)` each, exit 0.
-- [B] T007 Bump pi-coding-agent to 0.79.0 in both lockfiles (`.pi/extensions/*/package-lock.json`). Verify: lockfiles resolve 0.79.0, `npm test` and typecheck pass; observed `npm audit` prints `6 vulnerabilities (1 moderate, 5 high)` in each, against 1 high before. Held out of the commit until the version is decided.
+- [x] T007 Bump pi-coding-agent to 1.4.0 in both lockfiles and add `"overrides": {"undici": "^8.12.2"}` to pi-fast-mode-w-subagent-support (`.pi/extensions/*/package-lock.json`, fast-mode `package.json`). 0.79.0 was tried first: tests passed but `npm audit` printed `6 vulnerabilities (1 moderate, 5 high)`, because it pins `undici` 8.3.0 and older `ws`, `zod`, `protobufjs`, `brace-expansion`. 1.4.0 is the host `pi` version. Verify: `npm ci && npm test && npm run --if-present typecheck && npm run --if-present check:pack && npm audit` in each; observed lockfile 1.4.0, pass 118 / fail 0 and `Tests  81 passed (81)`, typecheck and check:pack exit 0, `found 0 vulnerabilities` in both.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,8 +67,8 @@ contextType: "implementation"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]` (T007 is open)
-- [ ] No `[B]` blocked tasks remaining (T007 waits on the version decision)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
@@ -127,7 +127,7 @@ contextType: "implementation"
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met: AC-003 is unmet
+- [x] CHK-020 [P0] All acceptance criteria met: AC-001, AC-002 and AC-003 are Met
 - [x] CHK-021 [P0] Manual testing complete
 - [x] CHK-022 [P1] Edge cases tested: `pi`-bearing `TMPDIR`
 - [x] CHK-023 [P1] Error scenarios validated: the traced failing run shows `ready` then no event
@@ -165,7 +165,7 @@ contextType: "implementation"
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized on the held lockfiles
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized on pi-coding-agent 1.4.0
 - [x] CHK-041 [P1] Code comments adequate: both new comments state why
 - [x] CHK-042 [P2] N/A: no README covers these tests
 <!-- /ANCHOR:docs -->
@@ -188,7 +188,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 

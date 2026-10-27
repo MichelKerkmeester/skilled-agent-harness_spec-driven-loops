@@ -47,7 +47,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -156,12 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -181,6 +175,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Cut",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -218,17 +218,17 @@
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-27T07:09:06.242Z",
+    "last_save_at": "2026-10-27T07:18:12.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8d7fb92da77675c4f51eced71eda1b3c75f7e199c56facf877e877ff0ba2a9ee",
+    "source_fingerprint": "sha256:2170621196a43e779b8e2a5ad7adb3f1ed0a4295eb79319006b12af10e1152e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6dc1681d8e1b09b770fea18eacd672620bc08269caac2a7d63ebbd459b4bd911"
+      "spec.md": "15c4b232d167e96e8e6f722a96a90b5ad0d70f25e7b70a9221d92976fdf35cec"
     },
     "last_active_child_id": "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control",
     "last_active_at": "2026-10-25T13:24:41.420Z"

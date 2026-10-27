@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
     last_updated_at: "2026-10-27T08:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Phase 011 flake fixes landed; the pi-coding-agent version waits on the operator"
-    next_safe_action: "Operator picks the pi-coding-agent version for 011 AC-003"
+    recent_action: "All eleven phases Complete; phase map synced"
+    next_safe_action: "None; the orchestrator lands the phase 011 commits"
     blockers: []
     key_files:
       - "001-research/research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -111,7 +111,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 8 | 008-consolidation-decision/ | Implementation: re-measure the always-run workflows after phases 002 to 007 and merge them into one switch group only on an operator yes (R27) | Complete |
 | 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30, superseded by 009 ADR-013) | Complete |
 | 10 | 010-review-remediation/ | Remediation: apply the confirmed deep-review findings to the CI routing vocabulary, the sk-code-ci references and templates, the `/doctor:ci` contract and the phase records | Complete |
-| 11 | 011-ci-health-followups/ | Follow-up: apply the Dependabot `@earendil-works/pi-coding-agent` 0.79.0 bump to both pi extensions, and fix the two flaky tests (goal-core `statePath` assertion, advisor watcher readiness) at their cause | In Progress |
+| 11 | 011-ci-health-followups/ | Follow-up: move both pi extensions to `@earendil-works/pi-coding-agent` 1.4.0 (the Dependabot 0.79.0 target raised `npm audit`), and fix the two flaky tests (goal-core `statePath` assertion, advisor watcher readiness) at their cause | Complete |
 
 ### Phase Transition Rules
 
