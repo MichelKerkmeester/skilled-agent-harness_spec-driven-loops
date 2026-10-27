@@ -23,7 +23,8 @@
     "sk-doc/066-feature-catalog-template-anchor-deprecation",
     "sk-doc/067-root-readme-section-spacing",
     "sk-doc/068-hub-repo-folder-exemption",
-    "sk-doc/069-local-command-support"
+    "sk-doc/069-local-command-support",
+    "sk-doc/070-repo-doc-debt"
   ],
   "manual": {
     "depends_on": [],
