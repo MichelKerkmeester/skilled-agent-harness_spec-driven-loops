@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Job Shape Rules
@@ -77,7 +77,7 @@ The recommended default cancels a superseded run on a pull request and never can
 
 A workflow whose runs must queue instead of cancel sets `cancel-in-progress: false` and says why. `.github/workflows/trigger-index-rebuild.yml:21-23` does, because a newer pending run replaces an older pending one and the run for the newest push is never dropped.
 
-Today 30 of 32 workflows carry a `concurrency:` block. Twenty-nine use the pull-request-only value above and the rebuild workflow uses `false`. `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml` carry none.
+Today 32 of 32 workflows carry a `concurrency:` block. Thirty use the pull-request-only value above. Two use `false`: the rebuild workflow, and `dependabot-auto-merge.yml`, because a cancelled run could stop before it turns auto-merge on.
 
 Enforcement: honour-system.
 

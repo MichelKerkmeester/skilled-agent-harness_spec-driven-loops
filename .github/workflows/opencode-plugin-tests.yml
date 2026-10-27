@@ -129,3 +129,14 @@ jobs:
       # Node 22 takes a glob here, not a directory.
       - name: Run the plugin suites
         run: node --test '.opencode/plugins/tests/*.test.cjs'
+
+      # The advisor's engines range admits Node 20 and this suite once failed only
+      # there, so it reruns on that major. The trees above stay as built: the suite
+      # loads no native module.
+      - name: Setup Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '20'
+
+      - name: Run the advisor plugin suite on Node 20
+        run: node --test .opencode/plugins/tests/system-skill-advisor.test.cjs

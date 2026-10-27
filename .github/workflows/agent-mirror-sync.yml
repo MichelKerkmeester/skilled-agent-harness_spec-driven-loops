@@ -44,6 +44,9 @@ jobs:
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
       - name: Check changed agent files for mirror drift
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
           CHECKER=".opencode/bin/check-agent-mirror-sync.cjs"
@@ -53,8 +56,8 @@ jobs:
             echo "::error::Agent mirror-sync checker not found at $CHECKER — failing closed."
             exit 1
           fi
-          BASE="${{ github.event.pull_request.base.sha }}"
-          HEAD="${{ github.event.pull_request.head.sha }}"
+          BASE="$BASE_SHA"
+          HEAD="$HEAD_SHA"
           CHANGED=()
           while IFS= read -r file; do
             [ -n "$file" ] && CHANGED+=("$file")

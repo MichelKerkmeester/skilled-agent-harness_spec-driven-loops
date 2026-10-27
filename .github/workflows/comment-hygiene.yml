@@ -21,6 +21,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check changed files for comment hygiene violations
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
           # Fail closed in CI: a required guard must exist. A PR that deletes or
@@ -41,8 +44,8 @@ jobs:
           fi
           VIOLATIONS=0
           FAILURES=0
-          BASE="${{ github.event.pull_request.base.sha }}"
-          HEAD="${{ github.event.pull_request.head.sha }}"
+          BASE="$BASE_SHA"
+          HEAD="$HEAD_SHA"
           REPORT="$(mktemp)"
           while IFS= read -r file; do
             if [ -f "$file" ]; then

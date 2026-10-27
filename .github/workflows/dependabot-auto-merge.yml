@@ -10,6 +10,12 @@ on:
 permissions:
   contents: read
 
+# Runs queue rather than cancel: a cancelled run could stop between reading the
+# metadata and enabling auto-merge, leaving a safe patch waiting for a person.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   metadata:
     name: Read the Dependabot update metadata

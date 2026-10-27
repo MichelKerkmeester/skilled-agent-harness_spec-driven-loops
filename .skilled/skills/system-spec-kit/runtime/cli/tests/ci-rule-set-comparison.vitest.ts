@@ -51,6 +51,7 @@ const BASH = 'bash';
 interface WorkflowStep {
   name?: string;
   run?: string;
+  env?: Record<string, string>;
 }
 
 interface WorkflowDocument {
@@ -93,6 +94,7 @@ const createdRoots: string[] = [];
 // the run is recorded, so a folder that already existed is never removed.
 const createdParents: string[] = [];
 let cachedRunBlock: string | null = null;
+let cachedStepEnv: Record<string, string> = {};
 
 function loadRunBlock(): string {
   if (cachedRunBlock !== null) return cachedRunBlock;
@@ -104,6 +106,7 @@ function loadRunBlock(): string {
     throw new Error(`Workflow step "${VALIDATION_STEP_NAME}" carries no run block`);
   }
   cachedRunBlock = step.run;
+  cachedStepEnv = step.env ?? {};
   return cachedRunBlock;
 }
 
@@ -218,6 +221,15 @@ function renderRunBlock(runBlock: string, fixture: FixtureRepo): string {
     .replaceAll('${{ github.sha }}', fixture.headSha);
 }
 
+// The step hands the event SHAs to its script through env: entries, so the
+// runner's expansion of those entries is reproduced with the same substitutions.
+function gateEnvFor(fixture: FixtureRepo): Record<string, string> {
+  loadRunBlock();
+  return Object.fromEntries(
+    Object.entries(cachedStepEnv).map(([name, value]) => [name, renderRunBlock(String(value), fixture)]),
+  );
+}
+
 function gateScriptFor(fixture: FixtureRepo): string {
   const rendered = renderRunBlock(loadRunBlock(), fixture);
   return BASH_SUPPORTS_ASSOCIATIVE_ARRAYS ? rendered : projectAssociativeArrays(rendered);
@@ -273,6 +285,7 @@ function runGate(scenario: GateScenario): GateOutcome {
     encoding: 'utf8',
     env: {
       ...process.env,
+      ...gateEnvFor(fixture),
       TMPDIR: fixture.tmpDir,
       PATH: `${fixture.binDir}:${process.env.PATH ?? ''}`,
       CI_STUB_HEAD_REPORT: scenario.headReport,

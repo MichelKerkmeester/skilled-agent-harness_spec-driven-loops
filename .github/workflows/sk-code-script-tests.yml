@@ -110,3 +110,14 @@ jobs:
       # wrote nothing, so a runner that starts writing fails here before any hook uses it.
       - name: Run the sk-code-quality runner tests
         run: node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs
+
+      # The spec-kit library the quality runner loads declares Node 20 support, and
+      # the pool helper's long-line case once failed only on a Node 20 parent, so
+      # that one suite reruns on that major.
+      - name: Setup Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '20'
+
+      - name: Run the parallel node check suite on Node 20
+        run: node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/parallel-node-check.test.cjs
