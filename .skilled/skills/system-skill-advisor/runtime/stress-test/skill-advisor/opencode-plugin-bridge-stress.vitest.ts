@@ -17,7 +17,7 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import skillAdvisorPlugin from '../../../../../plugins/system-skill-advisor.js';
+import skillAdvisorPlugin from '../../../../../../.opencode/plugins/system-skill-advisor.js';
 
 function cliResponse(recommendations: ReadonlyArray<Record<string, unknown>> = [
   { skillId: 'system-spec-kit', confidence: 0.91, uncertainty: 0.18 },

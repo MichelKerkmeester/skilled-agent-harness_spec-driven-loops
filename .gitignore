@@ -242,6 +242,10 @@ sweep-reports/
 # symlink reason as the skill rules above.
 /.skilled/commands/local-*
 /.skilled/commands/assets/local-*
+# The shared assets folder holds only private entries, so CI checks out no such
+# folder and the OpenCode per-entry link to it would point at nothing. Track it
+# again once a public entry lands there.
+/.opencode/commands/assets
 /.opencode/commands/local-*
 /.claude/commands/local-*
 /.cursor/commands/local-*

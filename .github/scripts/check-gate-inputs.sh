@@ -28,7 +28,10 @@
 #                    runs nothing
 #   filter-twins     every workflow or composite action path filter, negated or not,
 #                    dependabot directory, hook pathspec, array and regex that names
-#                    one root also names the other, within the same filter or command
+#                    one root also names the other, within the same filter or command.
+#                    The OpenCode-only surfaces, .opencode/plugins/ and
+#                    .opencode/commands/goal-opencode.md, exist under .opencode alone
+#                    and need no .skilled twin
 #   parser-miss      every command, array entry, filter or directory that names a root
 #                    outside a comment is read by one of these rules or recognized as a
 #                    message, a label or a path read through the link, so a shape the
@@ -121,11 +124,12 @@ function twin(tok) {
   else sub(/\.skilled/, ".opencode", tok)
   return tok
 }
+function opencode_only(tok) { return tok ~ /^!?\/?\.opencode\/(plugins(\/|$)|commands\/goal-opencode\.md$)/ }
 END {
   finish()
   for (i = 1; i <= nrec; i++) {
     tw = twin(rtok[i])
-    print rline[i] "\t" (((rgrp[i], tw) in have) ? "twin-ok" : "twin-one") "\t" rtok[i] "\t" tw
+    print rline[i] "\t" ((((rgrp[i], tw) in have) || opencode_only(rtok[i])) ? "twin-ok" : "twin-one") "\t" rtok[i] "\t" tw
   }
 }'
 

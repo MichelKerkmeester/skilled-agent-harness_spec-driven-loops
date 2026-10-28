@@ -25,7 +25,8 @@ const vm = require('node:vm');
 const HUB_SKILL_ROOT = path.resolve(__dirname, '..', '..', '..');
 const SKILLED_ROOT = path.resolve(HUB_SKILL_ROOT, '..', '..');
 const REPLAY_LIB = path.join(HUB_SKILL_ROOT, 'sk-code-skilled', 'assets', 'scripts', 'router-replay-lib.cjs');
-const PLUGIN_PATH = path.join(SKILLED_ROOT, 'plugins', 'system-skill-advisor.js');
+// The plugins are authored only in .opencode/plugins, beside .skilled and not inside it.
+const PLUGIN_PATH = path.join(SKILLED_ROOT, '..', '.opencode', 'plugins', 'system-skill-advisor.js');
 const PRIVATE_LINK_LIB = path.join(SKILLED_ROOT, 'skills', 'system-skill-advisor', 'runtime', 'lib', 'private-skill-target.cjs');
 
 const { declaredSurfaces: libraryDeclaredSurfaces } = require(REPLAY_LIB);

@@ -13,7 +13,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const mockedChild = vi.hoisted(() => ({ spawn: vi.fn() }));
 vi.mock('node:child_process', () => ({ spawn: mockedChild.spawn }));
 
-import skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
+import skillAdvisorPlugin from '../../../../../.opencode/plugins/system-skill-advisor.js';
 
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 

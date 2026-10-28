@@ -579,6 +579,19 @@ echo 'git_bounded -C "$REPO_ROOT" diff --quiet "$a" "$b" -- .opencode/skills' >>
 run_check; RC=$?
 expect "a bounded git pathspec without its twin fails filter-twins" 1 "$RC" "FAIL filter-twins: .opencode/scripts/git-hooks/pre-push:2"
 
+# ── 58. an OpenCode-only surface needs no .skilled twin ──
+setup_fixture
+mkdir -p "$TMP/repo/.opencode/plugins" "$TMP/repo/.opencode/commands"
+echo "plugin" > "$TMP/repo/.opencode/plugins/demo.js"
+echo "command" > "$TMP/repo/.opencode/commands/goal-opencode.md"
+sed -i.bak "s#      - '.skilled/skills/\*\*'#      - '.skilled/skills/**'\n      - '.opencode/plugins/**'\n      - '.opencode/commands/goal-opencode.md'#" "$TMP/repo/.github/workflows/demo.yml" && rm -f "$TMP/repo/.github/workflows/demo.yml.bak"
+run_check; RC=$?
+expect "an OpenCode-only path filter passes without a twin" 0 "$RC" "RESULT: PASSED"
+setup_fixture
+sed -i.bak "s#      - '.skilled/skills/\*\*'#      - '.skilled/skills/**'\n      - '.opencode/pluginsx/**'#" "$TMP/repo/.github/workflows/demo.yml" && rm -f "$TMP/repo/.github/workflows/demo.yml.bak"
+run_check; RC=$?
+expect "a near-miss of an OpenCode-only path still needs its twin" 1 "$RC" "path filter .opencode/pluginsx/** has no twin"
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

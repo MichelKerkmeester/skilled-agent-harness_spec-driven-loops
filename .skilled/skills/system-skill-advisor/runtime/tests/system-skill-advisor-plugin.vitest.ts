@@ -16,8 +16,8 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import * as skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
-import * as skillAdvisorRender from '../../../../plugins/lib/skill-advisor-render.js';
+import * as skillAdvisorPlugin from '../../../../../.opencode/plugins/system-skill-advisor.js';
+import * as skillAdvisorRender from '../../../../../.opencode/plugins/lib/skill-advisor-render.js';
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
 import { SETUP_WORDING as HOOK_SETUP_WORDING } from '../../hooks/claude/user-prompt-submit.js';
 
