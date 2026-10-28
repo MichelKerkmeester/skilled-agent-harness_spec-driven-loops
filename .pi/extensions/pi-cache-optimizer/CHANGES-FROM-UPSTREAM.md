@@ -65,6 +65,15 @@ The DeepSeek compat path treated `supportsLongCacheRetention` as a required/miss
 - Net effect: `/cache-optimizer fix` no longer auto-enables long retention for a DeepSeek model, and the startup warning and snippet stop recommending it unconditionally. Session affinity and the DeepSeek reasoning/thinking flags remain required and safe-fixable as before.
 - Updated the fix-command test to assert the corrected behavior (a pre-existing `supportsLongCacheRetention: false` override now survives the fix untouched) and added two tests locking the required-vs-optional split.
 
+### One Active Copy per Load (2026-10-28)
+
+A user-level link `~/.pi/agent/extensions/pi-cache-optimizer` makes the extension load in every project. Inside a git worktree, Pi then loads two copies at different real paths: the link, which resolves to the main checkout, and the worktree's own `.pi/extensions/pi-cache-optimizer`. Both registered `edit_lines`, and Pi refuses to start when two extension paths register one tool, so every Pi run in a worktree failed until it was started with `-ne`. The main checkout was unaffected because both copies resolve to one real path there.
+
+- The default export is now `createPiCacheOptimizerExtension()`, which also accepts a package root. The first copy in a load claims the package on Pi's shared event bus. A copy at another real path registers nothing, and two copies at one real path both register as before. A host with no event bus keeps its single copy.
+- The registration body moved unchanged into `registerPiCacheOptimizer(pi)`.
+- Added `tests/copy-claim.test.ts`, which covers a copy standing down and two copies at one real path both registering.
+- This is the same claim pattern `pi-fast-mode-w-subagent-support` uses for its `--fast` flag.
+
 ### Rationale
 
 `pi-cache-optimizer` previously ran unconditionally for DeepSeek's direct API, then ceded `deepseek/deepseek-v4-flash` and `deepseek/deepseek-v4-pro` to the sibling `deep-pi` extension through the carve-out above. That split ended on 2026-09-08, so this fork again runs for every model Pi can reach, including the two DeepSeek-direct models and DeepSeek-family IDs on other providers such as `opencode/deepseek-v4-flash-free`.
@@ -80,6 +89,7 @@ The DeepSeek compat path treated `supportsLongCacheRetention` as a required/miss
 - Current state (after the 2026-08-09 non-DeepSeek hardening pass): `npm test` passes 51 tests across 13 suites; `tsc --noEmit` remains clean. Beyond the automated suite, a standalone manual scenario run drove the real registered `before_provider_request`/`after_provider_response`/`message_end` hooks through realistic multi-turn sequences for K1, K2, and K5 (not test-runner mocks) — all 9 scenarios passed after fixing the K5 error-recording asymmetry above.
 - Current state (after the 2026-08-13 DeepSeek long-retention advice consistency fix): `npm test` passes 53 tests across 14 suites; `tsc --noEmit` remains clean. A standalone functional check confirmed the warning for a DeepSeek-on-proxy channel now lists only `sendSessionAffinityHeaders` as missing, keeps `supportsLongCacheRetention` out of the copyable snippet, and reports it as verify-first optional.
 - Current state (after the 2026-09-08 ownership revert): `npm run check` passes 40 tests across 12 suites with `tsc --noEmit` clean and a clean `npm pack --dry-run`. The suite is smaller than before because the tests that policed the ownership split were deleted with the split itself.
+- Current state (after the 2026-10-28 copy claim): `npm test` passes 120 tests and `tsc --noEmit` is clean. A Pi run from a worktree with a user-level link to a second guarded copy loads without an extension conflict, and the same run with the old code reproduces `Tool "edit_lines" conflicts with ...`.
 - Live Pi sessions confirmed that the guard fires only for the two exact DeepSeek-direct model IDs.
 - A non-DeepSeek session incremented statistics normally.
 - An `opencode/deepseek-v4-flash-free` session created a new statistics entry.

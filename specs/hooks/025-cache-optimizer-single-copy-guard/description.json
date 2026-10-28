@@ -1,0 +1,23 @@
+{
+  "specFolder": "hooks/025-cache-optimizer-single-copy-guard",
+  "description": "Let a second pi-cache-optimizer copy stand down so pi starts in git worktrees",
+  "keywords": [
+    "let",
+    "second",
+    "pi-cache-optimizer",
+    "copy",
+    "stand",
+    "starts",
+    "git",
+    "worktrees"
+  ],
+  "lastUpdated": "2026-10-28T09:01:08.949Z",
+  "specId": "025",
+  "folderSlug": "cache-optimizer-single-copy-guard",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

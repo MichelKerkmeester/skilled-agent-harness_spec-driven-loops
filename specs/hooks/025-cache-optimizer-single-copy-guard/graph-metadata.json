@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/025-cache-optimizer-single-copy-guard",
+  "spec_folder": "hooks/025-cache-optimizer-single-copy-guard",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cache optimizer single copy guard",
+      "let a second pi cache optimizer copy stand",
+      "edit_lines conflicts with",
+      "cache optimizer single copy guard plan",
+      "cache optimizer single copy guard tasks",
+      "cache optimizer single copy guard implementation summary"
+    ],
+    "key_topics": [
+      "cache",
+      "optimizer",
+      "single",
+      "copy",
+      "guard",
+      "let",
+      "second",
+      "stand",
+      "conflicts",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/copy-claim.test.ts",
+      ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "copy-claim.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/copy-claim.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGES-FROM-UPSTREAM.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Event",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Active Copy",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A user-level link `~/.pi/agent/extensions/pi-cache-optimizer`, added on 2026-10-28, loads the extension in every project and resolves to the main checkout's copy",
+    "created_at": "2026-10-28T09:01:08Z",
+    "last_save_at": "2026-10-28T09:05:21.942Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ddb4c1412998c55f6cfb281f5ead69655315ce66a00dba4b9809639c1d4a3293",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "27b34a566f208d1f1a13982886ab1f1e7317af807b58d697637f0b1c4092c2a5",
+      "plan.md": "65f238d01690c07a5fce1f0e3bf28cb88e8d92b5eccf39cd4bba4fdbb2b1aae8",
+      "tasks.md": "6845f5f1f76d3566d344c229de2f810e94e53250cf000f1dd3cd338b83e96e1c",
+      "implementation-summary.md": "d3e9cf0098dbfcd629db4c51b699db3e27a90c12f2132d989edab1d481208960"
+    },
+    "last_active_at": null
+  }
+}

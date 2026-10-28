@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash, randomUUID } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { copyFile, mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
@@ -8555,13 +8555,76 @@ export function registerHashVerifiedEdits(pi: ExtensionAPI): HashVerifiedEditSta
 // 12. HOOK REGISTRATION AND COMMANDS
 // ───────────────────────────────────────────────────────────────────
 
+/** Event-bus channel the copies of this package use to find one another in one load. */
+const COPY_CLAIM_CHANNEL = 'pi-cache-optimizer:copy-claim';
+
+/** The folder this copy of the package was loaded from. */
+const DEFAULT_PACKAGE_ROOT = __dirname;
+
+// Pi keeps every copy it loads and keys them by real path. Two copies at one
+// real path collapse into one entry, so both may register. A tool registered by
+// copies at two different real paths is a conflict that stops Pi before it
+// starts, so a worktree's own copy and a user-level link to another checkout
+// cannot both register `edit_lines`. Pi's pre-trust pass and its trusted pass
+// share one event bus and the earlier pass's listeners stay subscribed, so the
+// first copy to claim the package keeps it and a copy at another real path
+// stands down.
+function realPackageRoot(packageRoot: string): string {
+  try {
+    return realpathSync(packageRoot);
+  } catch {
+    return resolve(packageRoot);
+  }
+}
+
+/** The slice of Pi's shared event bus the copy claim uses. */
+interface CopyClaimBus {
+  emit(channel: string, data: unknown): void;
+  on(channel: string, handler: (data: unknown) => void): unknown;
+}
+
+function claimPackage(pi: ExtensionAPI, root: string): boolean {
+  const events = (pi as unknown as { events?: CopyClaimBus }).events;
+  // A host without an event bus can load only one copy, so that copy keeps the package.
+  if (!events) return true;
+
+  const probe: { claimedBy?: string } = {};
+  events.emit(COPY_CLAIM_CHANNEL, probe);
+  if (probe.claimedBy !== undefined && probe.claimedBy !== root) return false;
+
+  events.on(COPY_CLAIM_CHANNEL, (data: unknown) => {
+    if (typeof data === 'object' && data !== null) {
+      const claim = data as { claimedBy?: string };
+      claim.claimedBy ??= root;
+    }
+  });
+  return true;
+}
+
+/**
+ * Create the extension entry point for one copy of the package.
+ *
+ * @param packageRoot - Folder the copy was loaded from; defaults to this file's folder.
+ * @returns An entry point that registers everything, or nothing when another copy owns the package.
+ */
+export function createPiCacheOptimizerExtension(
+  packageRoot: string = DEFAULT_PACKAGE_ROOT,
+): (pi: ExtensionAPI) => void {
+  return function piCacheOptimizerExtension(pi: ExtensionAPI): void {
+    if (!claimPackage(pi, realPackageRoot(packageRoot))) return;
+    registerPiCacheOptimizer(pi);
+  };
+}
+
+export default createPiCacheOptimizerExtension();
+
 /**
  * Register Pi Cache Optimizer lifecycle hooks and the `/cache-optimizer` command.
  *
  * @param pi - Pi extension API used to register hooks and commands.
  * @returns Nothing; registration occurs as a side effect.
  */
-export default function (pi: ExtensionAPI): void {
+function registerPiCacheOptimizer(pi: ExtensionAPI): void {
   // Hash-verified editing (section 11) registers first: its tool_result
   // annotation hook and the retry-loop guard both listen to tool_result, and
   // hook-capture tests treat the first registration as the annotation hook.
