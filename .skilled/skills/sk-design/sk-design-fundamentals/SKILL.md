@@ -2,7 +2,7 @@
 name: sk-design-fundamentals
 description: "Designs, builds and reviews any laid-out surface from fixed value scales: screen UI, slide decks, printed and document layouts."
 allowed-tools: [Read, Write, Edit, Grep, Glob]
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 <!-- Keywords: ui design rules, what padding, how much padding, padding, margin, spacing between elements, spacing scale, what font size, font size, type scale, font weight, color palette, hsl shades, shade ramp, shadow elevation, box shadow, border radius, visual hierarchy, de-emphasize, ui looks off, looks amateur, feels cluttered, make this look better, design tokens, contrast ratio, wcag, wcag 4.5:1, a11y, accessibility, accessibility issues, accessibility review, accessibility audit, aria-label, alt text, screen reader, grey on color, em versus rem, breakpoint scaling, empty state, interaction guidelines, focus ring, focus outline, touch target, hit area, keyboard navigation, animation duration, transition duration, easing curve, spring animation, twelve principles of animation, review this component, design review, ui review, component states, dark mode palette, where do i start designing, grayscale first, how much white space, nothing draws the eye, primary secondary tertiary, destructive button, labels are a last resort, too many options, overwhelming, cognitive load, progressive disclosure, fitts law, hicks law, doherty threshold, chunking, concentric radius, layered shadows, button shadow anatomy, text-wrap balance, tabular nums, drop shadow, shadow, draws the eye, no visual hierarchy, everything looks the same, slide deck design, slide layout, presentation design, deck spacing, print layout, printed page design, margins for print, document layout, report layout, long-form layout, poster layout, how should this slide be laid out, type scale for print, laid out -->
@@ -153,7 +153,12 @@ Full construction method — base selection, saturation at the ends, hue rotatio
 
 Choose by asking *where on the z-axis does this sit?*, not *what shadow looks nice?*. Closer to the user means more attention. Shrinking a button's shadow on `:active` makes it feel pressed. Growing a list item's shadow when it is picked up for drag-to-reorder does the reverse — it reads as "now above its siblings" and doubles as the drag affordance.
 
-Every shadow in a project shares one offset direction, because there is one light source. [`references/depth-and-detail.md`](references/depth-and-detail.md) carries two refined alternatives — a **two-part** cast-plus-contact scale and a **layered** three-part set — plus the rule for tinting shadow color on non-white surfaces and the full six-layer button anatomy. The three systems are parallel and not compatible: pick one per project and never mix them, or elevation stops being readable.
+Every shadow in a project shares one offset direction, because there is one light source. [`references/depth-and-detail.md`](references/depth-and-detail.md) carries two refined alternatives:
+
+- a **two-part** cast-plus-contact scale
+- a **layered** three-part set
+
+It also carries the rule for tinting shadow color on non-white surfaces, and the full six-layer button anatomy. The three systems are parallel and not compatible. Pick one per project and never mix them, or elevation stops being readable.
 
 #### Line-height and line length
 
@@ -192,11 +197,25 @@ Full steps with their reasoning: [`references/build-procedure.md`](references/bu
 
 Everything on the surface sits in a pyramid: primary, secondary, tertiary. When everything competes, the surface reads as noise. This is the most surface-agnostic technique here: a slide with three competing headings fails the same way a screen does. This is what makes a design look designed, not styling.
 
-Four rules carry most of it: **size is not everything** (weight and color carry the emphasis, with sizes kept near the middle of the scale), **three text colors, maximum** (all three at 4.5:1), **emphasize by de-emphasizing** (soften the competition rather than amplifying the primary), and **style actions by hierarchy, not by semantics**. The full method — the destructive-action treatment, label suppression, the weight-versus-contrast trade, and why visual hierarchy may disagree with document hierarchy — is [`references/hierarchy.md`](references/hierarchy.md) Sections 2 through 7.
+Four rules carry most of it:
+
+- **size is not everything**: weight and color carry the emphasis, with sizes kept near the middle of the scale
+- **three text colors, maximum**: all three at 4.5:1
+- **emphasize by de-emphasizing**: soften the competition rather than amplifying the primary
+- **style actions by hierarchy, not by semantics**
+
+The full method is in [`references/hierarchy.md`](references/hierarchy.md) Sections 2 through 7. It covers the destructive-action treatment, label suppression, the weight-versus-contrast trade, and why visual hierarchy may disagree with document hierarchy.
 
 ### Beyond The Visual System
 
-Correct values do not make a screen behave correctly. Six references carry the behavior, each on its own intent: [`build-procedure.md`](references/build-procedure.md) Section 2, [`hierarchy.md`](references/hierarchy.md) Sections 1 and 3, [`interaction-craft.md`](references/interaction-craft.md) Sections 3 and 5, [`motion-principles.md`](references/motion-principles.md) Section 4, [`ux-laws.md`](references/ux-laws.md) Sections 2 to 5, [`review-checklist.md`](references/review-checklist.md) Sections 2 to 6.
+Correct values do not make a screen behave correctly. Six references carry the behavior, each on its own intent:
+
+- [`build-procedure.md`](references/build-procedure.md) Section 2
+- [`hierarchy.md`](references/hierarchy.md) Sections 1 and 3
+- [`interaction-craft.md`](references/interaction-craft.md) Sections 3 and 5
+- [`motion-principles.md`](references/motion-principles.md) Section 4
+- [`ux-laws.md`](references/ux-laws.md) Sections 2 to 5
+- [`review-checklist.md`](references/review-checklist.md) Sections 2 to 6
 
 ---
 
@@ -206,7 +225,9 @@ Correct values do not make a screen behave correctly. Six references carry the b
 
 1. **ALWAYS pick values from the scales in Section 3.** A value off the scale is the defect this skill exists to prevent; it is what makes a UI read as amateur even when nothing is individually wrong. Timing is a scale too.
 2. **ALWAYS put more space around a group than within it.** This is the fix for "which label belongs to which field", cramped bullet lists (the gap must exceed the line-height), and headings that look attached to the wrong paragraph. Ambiguous spacing is a functional bug, not only an ugly one.
-3. **ALWAYS meet 4.5:1 for normal text.** The 3:1 allowance applies only to *large* text, which WCAG defines as **24px regular or 18.66px bold** — not 18px. Separately, **3:1 applies to non-text** (WCAG 1.4.11): a border that is the only thing identifying a control, such as an input outline or a checkbox edge, needs 3:1 against its background. A hairline that merely divides content does not. Those are two different tokens.
+3. **ALWAYS meet 4.5:1 for normal text.** The 3:1 allowance applies only to *large* text, which WCAG defines as **24px regular or 18.66px bold**, not 18px.
+    - **3:1 applies to non-text** (WCAG 1.4.11). A border that is the only thing identifying a control, such as an input outline or a checkbox edge, needs 3:1 against its background.
+    - A hairline that merely divides content does not. Text and non-text are two different tokens.
 4. **ALWAYS give large elements a faster shrink rate across breakpoints than small ones.** A 2.5em headline over 14px mobile body copy computes to 35px, far too big; it wants 20 to 24px there. A button's padding should get proportionally tighter as the button shrinks, not scale with its font size.
 5. **ALWAYS add a second signal alongside color.** An icon, a shape or a text cue. For charts, distinguish series by *contrast* — light to dark shades of one color — rather than by hue, because colorblind users read lightness reliably and hue unreliably.
 6. **ALWAYS give interactive elements their full state set.** Hover, focus, active and disabled, plus loading and error where they apply. The `:active` state needs a scale transform, or the element feels unresponsive under a finger.

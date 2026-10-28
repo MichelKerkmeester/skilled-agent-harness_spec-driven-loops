@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI reference search via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.5.0
+version: 1.1.6.0
 user-invocable: true
 ---
 
@@ -11,9 +11,16 @@ user-invocable: true
 
 # Refero (mcp-refero)
 
-Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
+Search **Refero's library of real shipped UI**. The official repo reports 150,000+ app screens and 6,000+ user flows.
+An agent can use the **Refero MCP via Code Mode** to find styles for visual direction, screens for concrete UI patterns and flows for multi-step journeys.
+This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`). Every read and "write" happens against the external Refero service, never this repo. The packet is **never the taste authority**.
+Pair any design-affecting use with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
-> **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. **CONFIRMED by live discovery 2026-07-16** (`references/discovery-fixture-2026-07-16.json`): `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>` — pre-auth, no OAuth needed for discovery — and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Per-session `tool_info` re-confirmation stays mandatory: confirm, then call, and fail closed on drift.
+> **Naming trap (read first).** Refero tools inside `call_tool_chain` use a **DOUBLED prefix**. Their callable form is `refero.refero_refero_<tool>(...)`, for example `refero.refero_refero_search_styles`.
+> Code Mode's `{manual}.{manual}_{tool}` rule applies because these tools' names already begin with `refero_`.
+> **CONFIRMED by live discovery 2026-07-16** (`references/discovery-fixture-2026-07-16.json`). Pre-auth `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>`. Discovery needed no OAuth.
+> The fixture's `Access as:` line shows the TypeScript callable `refero.refero_refero_search_styles(args)`.
+> Per-session `tool_info` re-confirmation stays mandatory. Confirm, then call. Fail closed on drift.
 >
 > **Access trap.** Live MCP access is paid and authenticated. The Free plan has **no MCP access at all** (denial, not a reduced tool set). Pro is the first tier with MCP and carries a published quota of **8,000 tool calls per month**. Unauthenticated calls return HTTP 401.
 
@@ -77,7 +84,10 @@ const all = await list_tools();
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" });
 ```
 
-The doubled-prefix callable form (`refero.refero_refero_<tool>`) is **confirmed by live registry evidence** (2026-07-16 discovery fixture, `references/discovery-fixture-2026-07-16.json`): all eight tools were live-listed pre-auth as `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}`, resolving the research record's conflicting derivations — the single-prefix derivation is dead. Discovery is pre-auth; authenticated CALLS remain operator-gated. The per-session `tool_info` confirmation step is still not optional. If discovery shows the eight tools missing, renamed, or expanded, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
+The doubled-prefix callable form (`refero.refero_refero_<tool>`) is **confirmed by live registry evidence** from the 2026-07-16 discovery fixture (`references/discovery-fixture-2026-07-16.json`).
+Pre-auth discovery live-listed all eight tools as `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}`. This resolves the research record's conflicting derivations. The single-prefix derivation is dead.
+Discovery is pre-auth. Authenticated CALLS remain operator-gated. You must confirm with `tool_info` in each session.
+If discovery shows the eight tools missing, renamed or expanded, **fail closed**. Report the drift. A changed provider surface requires a reviewed packet update, not an improvised call.
 
 ### The 8-tool surface (three layers)
 
@@ -94,7 +104,12 @@ The expected contract (authoritative docs baseline; `tool_info` is the final liv
 | Flows | `refero_search_flows` | `query`, `platform: "web"\|"ios"` | Returns **numeric** flow IDs |
 | Flows | `refero_get_flow` | exactly one of `flow_id` \| `flow_ids[]` (numbers) | Ordered steps: goal, action, system response |
 
-Hard constraints: styles and screens use **UUID strings**, flows use **numeric IDs**; the two are not interchangeable. Search pagination uses `page`, never legacy `limit`/`offset`. There are **no** `search_apps`/`get_app`/`search_elements`/`get_element` tools; apps and elements are query facets, inspected through `site` and `ui_elements` in results. `response_format` is documented on the **seven text-returning tools** and must **never** be passed to `refero_get_screen_image`; treat per-tool availability as a `tool_info` runtime check. Preserve unknown response fields; the provider documents that fields can grow.
+Hard constraints:
+- Styles and screens use **UUID strings**. Flows use **numeric IDs**. The two are not interchangeable.
+- Search pagination uses `page`, never legacy `limit`/`offset`.
+- There are **no** `search_apps`/`get_app`/`search_elements`/`get_element` tools. Apps and elements are query facets that you inspect through `site` and `ui_elements` in results.
+- `response_format` is documented on the **seven text-returning tools**. Never pass it to `refero_get_screen_image`. Check per-tool availability with `tool_info` at runtime.
+- Preserve unknown response fields because the provider documents that fields can grow.
 
 ### Calling through Code Mode
 
@@ -128,7 +143,10 @@ Breadth is allowed during transport research; for design-affecting use, pair wit
 
 ### Auth, plans, and limits
 
-- **Auth**: with no custom header, first use triggers a **browser OAuth** flow (localhost callback, port 3334 by default, 30-second default timeout). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and is **operator-owned**: never inspect, clear, or repair it. A static `Authorization: Bearer` header is a documented env-backed alternative (see [`assets/utcp-refero-manual.md`](assets/utcp-refero-manual.md)), never part of the base manual. End-to-end OAuth through this bridge is **Inferred**, not verified: an unauthenticated probe observed HTTP 401 with OAuth metadata, but no operator has completed the flow in this repo's record.
+- **Auth**: Without a custom header, first use triggers **browser OAuth**. The default localhost callback port is 3334, and the default timeout is 30 seconds.
+  - Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and is **operator-owned**. Never inspect, clear or repair it.
+  - A static `Authorization: Bearer` header is a documented env-backed alternative (see [`assets/utcp-refero-manual.md`](assets/utcp-refero-manual.md)). It is never part of the base manual.
+  - End-to-end OAuth through this bridge is **Inferred**, not verified. An unauthenticated probe observed HTTP 401 with OAuth metadata, but no operator has completed the flow in this repo's record.
 - **Plans**: Free has **no MCP access** (denial, not degradation). Pro: **8,000 MCP tool calls per month**. Team inherits Pro. Business is custom volume. "Unlimited access" plan copy must not be read as unlimited MCP calls.
 - **Unknown limits**: no per-second, burst, concurrency, page-size, or `Retry-After` behavior is published. Never invent a QPS number or backoff guarantee; on 429, preserve the provider's message only.
 - **Local runtime**: Code Mode must run on **Node 24** (isolated-vm has no Node 25 build; `call_tool_chain` SIGSEGVs under Node 25). Local operational evidence, not a server property.

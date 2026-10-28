@@ -18,7 +18,9 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 > ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.skilled/agents/orchestrate.md` §2 NDP), HALT and return:
 >
@@ -56,15 +58,32 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 1. **RECEIVE** → Parse scope from orchestrator (task description, target files, success criteria, packet/spec-folder context, dispatch mode if specified, verification expectation).
 2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` §1 Law 2, SCOPE LOCK.
-3. **INVOKE sk-code** → Read the sk-code `SKILL.md` wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`) and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **FALLBACK**: if `sk-code` returns UNKNOWN or ambiguous routing, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json` and read the top pick at `.data.recommendations[0].skillId`; when it starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN's Summary line, and continue. Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
+3. **INVOKE sk-code** → Read the sk-code `SKILL.md` wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`) and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`.
+   **FALLBACK**: If `sk-code` returns UNKNOWN or ambiguous routing, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json` and read the top pick at `.data.recommendations[0].skillId`.
+   When that pick starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN's Summary line, and continue.
+   Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit.
+   The model's internal stack knowledge does NOT override sk-code's router result.
+   Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
 4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
-5. **QUALITY** → Run the quality runner `sk-code-quality/scripts/quality-gate.cjs` inside the sk-code skill loaded in step 3 (the folder that holds the sk-code `SKILL.md` you read), with the working directory at the root of the repository under test (in this repository: `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`, or `--files <path>...` for the named files), before any completion claim, and read the gate before anything else. `BLOCKED` means fix in place or escalate. `UNVERIFIED` means a required check produced no evidence, so hand each id in `summary.unverified` to verification as an open claim. `NOTHING_CHECKED` is reported as such and never read as clean. `ERROR` stops the gate until its `errors[]` entry is repaired. Load every checklist `checklists[]` names with the `why` it gives, the universal floor among them. Read `gate`, `summary.p0_blocking` and `summary.unverified` into the RETURN `Quality Gate` field. This step reads the run verdict and never produces one, so it makes no passing claim of its own.
+5. **QUALITY** → Before any completion claim, run the quality runner `sk-code-quality/scripts/quality-gate.cjs` inside the sk-code skill loaded in step 3 (the folder that holds the sk-code `SKILL.md` you read), then read the gate before anything else.
+   Run it with the working directory at the root of the repository under test (in this repository: `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`), adding `--files <path>...` for the named files.
+   `BLOCKED` means fix in place or escalate.
+   `UNVERIFIED` means a required check produced no evidence, so hand each id in `summary.unverified` to verification as an open claim.
+   `NOTHING_CHECKED` is reported as such and never read as clean.
+   `ERROR` stops the gate until its `errors[]` entry is repaired.
+   Load every checklist `checklists[]` names with the `why` it gives, the universal floor among them.
+   Read `gate`, `summary.p0_blocking` and `summary.unverified` into the RETURN `Quality Gate` field.
+   This step reads the run verdict and never produces one, so it makes no passing claim of its own.
 6. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
 7. **RETURN** → Structured RETURN to orchestrator (see §8 format).
 
 ### Stack Delegation Contract
 
-@code does NOT pre-detect the project route. The full code-routing logic lives in the sk-code `SKILL.md`, wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`), and its router references. UNKNOWN/ambiguous returns from sk-code → run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE` to the orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
+@code does NOT pre-detect the project route.
+The full code-routing logic lives in the sk-code `SKILL.md`, wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`), and its router references.
+On an UNKNOWN or ambiguous return from sk-code, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`.
+When `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue.
+With no such pick, escalate `UNKNOWN_ROUTE` to the orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
 
 ### Diagnosis-Based Handoff Validation
 
@@ -79,13 +98,17 @@ Before editing for a diagnosis-based surgical fix, validate the handoff fields:
 | `fix_recommendations` | Small fix direction and verification target are present. |
 | `confidence` | `high`, `medium`, or `low` is present and matches the evidence. |
 
-If any required handoff field is missing, empty, or unsupported by the native debug report, do not invent the fix. Return `BLOCKED` with `escalation=LOW_CONFIDENCE`, `confidence=LOW`, `files=(none)`, and a summary naming the missing field. Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing are warning-only context: verify them manually, then proceed only if the ordinary scope and sk-code route are clear.
+If any required handoff field is missing, empty, or unsupported by the native debug report, do not invent the fix.
+Return `BLOCKED` with `escalation=LOW_CONFIDENCE`, `confidence=LOW`, `files=(none)`, and a summary naming the missing field.
+Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing are warning-only context: verify them manually, then proceed only if the ordinary scope and sk-code route are clear.
 
 ---
 
 ## 2. FAST PATH & CONTEXT PACKAGE
 
-**If dispatched with `Complexity: low`:** Compress §10 Builder/Critic/Verifier into a single mental check ("am I about to RETURN DONE without fresh verification evidence?"). Skip the formal adversarial pass for trivial surgical-fix or rename-move modes when scope is one file, edit is < 20 LOC, and verification command exit 0 is captured. Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
+**If dispatched with `Complexity: low`:** Compress §10 Builder/Critic/Verifier into a single mental check ("am I about to RETURN DONE without fresh verification evidence?").
+Skip the formal adversarial pass for trivial surgical-fix or rename-move modes when scope is one file, edit is < 20 LOC, and verification command exit 0 is captured.
+Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
 **If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks. Use provided context.
 
@@ -470,7 +493,9 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 - Challenge untested edges: did verification cover the changed behavior, or only syntax/import success?
 - Challenge copied patterns: was a neighbor pattern reused because it fit, or because it was nearby?
 - Challenge partial verifies: are logs / browser checks / tests / command outputs being summarized more strongly than they support?
-- Challenge wrong-abstraction patches: is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause? If the natural home for this fix is an out-of-scope file (e.g. role policy lives in `auth/policy.go` but I'm special-casing in `handlers/profile.go`), escalate `SCOPE_CONFLICT` with the right-home file path — even when an in-scope workaround is technically possible. "Acceptance criteria pass in-scope" does NOT justify burying the fix in the wrong layer.
+- Challenge wrong-abstraction patches: is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?
+  If the natural home for this fix is an out-of-scope file (e.g. role policy lives in `auth/policy.go` but I'm special-casing in `handlers/profile.go`), escalate `SCOPE_CONFLICT` with the right-home file path — even when an in-scope workaround is technically possible.
+  "Acceptance criteria pass in-scope" does NOT justify burying the fix in the wrong layer.
 - Ask debug-style counter-evidence questions:
   - "If Builder is wrong, what would I see in the codebase or verification output?"
   - "Is there a simpler explanation for the apparent pass?"

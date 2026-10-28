@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -187,12 +187,12 @@ version: 1.0.0.0
 
 Use this skill when the request is [domain] work: [trigger 1], [trigger 2], or [trigger 3].
 The first signal is [project/stack/mode detection], because it picks the knowledge folder before any intent scoring.
-Load `references/[default].md` first on every run; it holds the baseline rules the other files assume.
+Load `references/[default].md` first on every run. It holds the baseline rules the other files assume.
 Then load what the matched intent maps to: [intent A] reads `references/[domain]/[a].md`, and [intent B] reads `assets/[domain]/[b].md`.
 Keep every path inside this skill folder, and load a file only when it exists.
 When two intents score close together, follow both in rank order.
 When nothing matches, report `UNKNOWN_FALLBACK` with the checklist from the machine router instead of guessing.
-The machine router is the final `## MACHINE ROUTER` section of this file; the pseudocode lives there, not here.
+The machine router is the final `## MACHINE ROUTER` section of this file. The pseudocode lives there, not here.
 
 ---
 
@@ -644,7 +644,7 @@ def route_[skill_name]_resources(user_request, task=None):
 | Mode packet | a packet folder inside a hub | what selects this packet, what it loads first, where the machine router is |
 | Standalone | neither hub file | the same as a mode packet, with the router inline |
 
-**The limit**: 12 non-blank lines and 180 words are the hard ceilings the check enforces; aim for 8 to 12 lines. A packet or standalone skill says three things: what selects it, what it loads first, and where the machine router is.
+**The limit**: 12 non-blank lines and 180 words are the hard ceilings the check enforces. Aim for 8 to 12 lines. A packet or standalone skill says three things: what selects it, what it loads first, and where the machine router is.
 
 **The appendix**: Put any machine router block in a final `## MACHINE ROUTER` section. It must be the last H2 in the file.
 Number it like every other H2, as the next section number. For example, use `## 8. MACHINE ROUTER`.
@@ -684,7 +684,7 @@ Remove an entry when the skill follows the canon.
 
 Use this skill for [domain] work: [trigger 1], [trigger 2], or [trigger 3].
 The first signal is [project/stack/mode detection], because it picks the knowledge folder before any intent scoring.
-Load `references/[default].md` first on every run; the other files assume it.
+Load `references/[default].md` first on every run. The other files assume it.
 Then load what the matched intent maps to: [intent A] reads `references/[domain]/[a].md`, and [intent B] reads `assets/[domain]/[b].md`.
 Keep every path inside this skill folder and load a file only when it exists.
 When two intents score close together, follow both in rank order.
@@ -713,7 +713,7 @@ The full resilience pattern (guarded paths, recursive discovery, routing keys) i
 **Writing Tips**:
 - Open Section 2 with the signal that actually picks this skill's files.
 - Name the first file to load, so a reader knows where to start.
-- Say where the machine router is; do not paste it into Section 2.
+- Say where the machine router is. Do not paste it into Section 2.
 - Keep `UNKNOWN_FALLBACK` as the named no-match outcome.
 - Edit `INTENT_MODEL` and `RESOURCE_MAP` in the appendix when the skill gains a domain.
 - Avoid duplicate lookup tables, static file inventories, and unguarded `load()` calls.
@@ -1090,7 +1090,7 @@ Quality:
 | **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
 | **Sections**          | 5 required + 3 recommended | Required: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (or combined `SMART ROUTING & REFERENCES`). Recommended: SUCCESS CRITERIA, INTEGRATION POINTS, REFERENCES AND RELATED RESOURCES |
-| **Router Appendix**   | Final `## MACHINE ROUTER` H2 | Last H2 in the file; the only place router pseudocode lives |
+| **Router Appendix**   | Final `## MACHINE ROUTER` H2 | Last H2 in the file and the only place router pseudocode lives |
 | **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
 | **Rules Format**      | ALWAYS, NEVER, ESCALATE IF | All caps headers, specific rules                                                                   |
 | **Examples**          | Concrete and realistic     | Show actual use cases                                                                              |

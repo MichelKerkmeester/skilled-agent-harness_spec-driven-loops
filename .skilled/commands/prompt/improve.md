@@ -79,4 +79,11 @@ The following content lives only in `.skilled/commands/prompt/assets/prompt_impr
 
 ## 6. WORKFLOW SUMMARY
 
-The YAML workflow verifies the orchestrating agent, resolves setup inputs, loads the `sk-prompt` skill, then runs the DEPTH pipeline for the resolved enhancement mode (inline, or dispatched to `@prompt-improver` when `--agent` or high complexity is resolved), scores the result with CLEAR, delivers the enhanced prompt with a transparency report, and optionally saves it into a spec folder's `prompts/` directory. The confirm workflow pauses at the Discover, Prototype, and Test phases; the auto workflow runs end to end and stops only if CLEAR stays below threshold after three iterations.
+The YAML workflow verifies the orchestrating agent and resolves setup inputs.
+It loads the `sk-prompt` skill.
+It runs the DEPTH pipeline for the resolved enhancement mode, either inline or dispatched to `@prompt-improver` when `--agent` or high complexity is resolved.
+It scores the result with CLEAR.
+It delivers the enhanced prompt with a transparency report.
+It optionally saves the prompt into a spec folder's `prompts/` directory.
+The confirm workflow pauses at the Discover phase, the Prototype phase and the Test phase.
+The auto workflow runs end to end and stops only if CLEAR stays below threshold after three iterations.

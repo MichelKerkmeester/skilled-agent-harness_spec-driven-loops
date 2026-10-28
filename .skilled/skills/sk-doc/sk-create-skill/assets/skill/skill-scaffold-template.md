@@ -2,7 +2,7 @@
 name: "{{SKILL_NAME}}"
 description: TODO one-line description of what this skill does and when to use it (verb + domain noun + trigger phrase)
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # {{SKILL_TITLE}}
@@ -32,7 +32,7 @@ Do not use this skill for:
 
 ## 2. SMART ROUTING
 
-[TODO: Name the request signal that selects a resource — the intent, the file type, or the
+[TODO: Name the request signal that selects a resource: the intent, the file type, or the
 trigger phrase a user says.]
 
 [TODO: Name what loads first when that signal matches, then the smaller resource set it
@@ -41,7 +41,7 @@ pulls in afterwards.]
 [TODO: Name the signal that looks related but belongs to another skill, so the router refuses
 it instead of loading a near-miss resource.]
 
-Resources live under `references/`, `assets/` and `scripts/`; the router selects from that
+Resources live under `references/`, `assets/` and `scripts/`. The router selects from that
 inventory and loads nothing before a signal matches.
 
 The machine router is the final MACHINE ROUTER section.
@@ -133,7 +133,7 @@ The task is complete when:
 
 ## 8. MACHINE ROUTER
 
-The router below selects the resources a request loads; it stays illustrative until the selection logic is authored.
+The router below selects the resources a request loads. It stays illustrative until the selection logic is authored.
 
 ```python
 from pathlib import Path

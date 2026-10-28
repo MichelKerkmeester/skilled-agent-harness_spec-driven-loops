@@ -63,5 +63,8 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-feature-catalog-auto.yaml` for `:auto`, `create-feature-catalog-confirm.yaml` for `:confirm` or an omitted mode) runs the feature-catalog workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch to create or update feature catalog packages. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-feature-catalog-auto.yaml` for `:auto`, `create-feature-catalog-confirm.yaml` for `:confirm` or an omitted mode) runs the feature-catalog workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch to create or update feature catalog packages.
+`:auto` executes autonomously.
+`:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 

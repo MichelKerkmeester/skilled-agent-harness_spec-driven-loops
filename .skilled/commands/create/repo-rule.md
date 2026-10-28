@@ -57,4 +57,7 @@ Startup questions, refusal wording, the decision-test report, success and failur
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-repo-rule-auto.yaml` for `:auto`, `create-repo-rule-confirm.yaml` for `:confirm` or an omitted mode) runs the repo-rule workflow step by step after Phase 0 verification and setup resolution. It runs the four decision tests first, stops on a refusal and names the failed test with its destination, and only reaches template filling, the creation standards and router wiring when all four pass. `:auto` executes autonomously except for an inferred `retire`, which always stays interactive (see section 3). All prompts, dashboards, refusal wording and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-repo-rule-auto.yaml` for `:auto`, `create-repo-rule-confirm.yaml` for `:confirm` or an omitted mode) runs the repo-rule workflow step by step after Phase 0 verification and setup resolution.
+It runs the four decision tests first, stops on a refusal and names the failed test with its destination, and only reaches template filling, the creation standards and router wiring when all four pass.
+`:auto` executes autonomously except for an inferred `retire`, which always stays interactive (see section 3).
+All prompts, dashboards, refusal wording and result display come from the presentation contract, not this router.

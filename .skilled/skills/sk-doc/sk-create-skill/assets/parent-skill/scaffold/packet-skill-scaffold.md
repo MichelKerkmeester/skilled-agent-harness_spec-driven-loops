@@ -2,7 +2,7 @@
 name: "{{PACKET_NAME}}"
 description: TODO — the primary workflow packet for the {{HUB_NAME}} hub (fill in ≤130 chars).
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # {{PACKET_TITLE}}
@@ -15,7 +15,7 @@ Primary workflow packet for the `{{HUB_NAME}}` routing hub.
 
 Use this packet when the parent hub selects the `primary` workflow mode.
 
-Do not invoke it as a separate advisor identity; routing belongs to the parent hub.
+Do not invoke it as a separate advisor identity. Routing belongs to the parent hub.
 
 ---
 
@@ -67,9 +67,9 @@ The machine router is the final MACHINE ROUTER section.
 
 ## 5. REFERENCES
 
-- `README.md` — packet overview.
-- `../mode-registry.json` — authoritative packet registration.
-- `../hub-router.json` — parent routing policy.
+- `README.md`: packet overview.
+- `../mode-registry.json`: authoritative packet registration.
+- `../hub-router.json`: parent routing policy.
 
 ---
 
@@ -90,7 +90,7 @@ The machine router is the final MACHINE ROUTER section.
 
 ## 8. MACHINE ROUTER
 
-The router below selects packet-local resources when the workflow grows; it stays illustrative until the selection logic is authored.
+The router below selects packet-local resources when the workflow grows. It stays illustrative until the selection logic is authored.
 
 ```python
 from pathlib import Path

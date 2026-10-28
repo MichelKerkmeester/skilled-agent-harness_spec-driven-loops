@@ -62,5 +62,8 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-readme-auto.yaml` for `:auto`, `create-readme-confirm.yaml` for `:confirm` or an omitted mode) runs the README workflow step by step after Phase 0 verification and setup resolution, creating folder READMEs with sk-doc quality standards. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-readme-auto.yaml` for `:auto`, `create-readme-confirm.yaml` for `:confirm` or an omitted mode) runs the README workflow step by step after Phase 0 verification and setup resolution, creating folder READMEs with sk-doc quality standards.
+`:auto` executes autonomously.
+`:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 

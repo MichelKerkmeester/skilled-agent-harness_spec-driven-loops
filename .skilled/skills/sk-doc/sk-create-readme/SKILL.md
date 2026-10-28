@@ -2,7 +2,7 @@
 name: sk-create-readme
 description: Author sk-doc folder, code-folder and skill/project READMEs from local evidence.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.8.0
+version: 1.3.9.0
 ---
 
 <!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, /create:readme, audit_readmes -->
@@ -170,7 +170,12 @@ Use this section model:
 | Validation | Tests or checks exist | Use commands that work from repo root |
 | Related | Nearby docs exist | Link parent, sibling and architecture docs |
 
-The general README format rules at `General README format rules:` above bind code-folder READMEs for numbered H2 headings, ALL-CAPS H2 casing, `---` separators, language-tagged fences, no Table of Contents and no anchor-comment navigation. The blockquote tagline is the exception. It does not bind code-folder READMEs. This is a cross-reference to the single authoritative rule block, not a second list.
+The general README format rules at `General README format rules:` above bind code-folder READMEs.
+That covers numbered H2 headings, ALL-CAPS H2 casing, `---` separators and language-tagged fences.
+It also covers no Table of Contents and no anchor-comment navigation.
+The blockquote tagline is the exception.
+It does not bind code-folder READMEs.
+This is a cross-reference to the single authoritative rule block, not a second list.
 
 The Directory Tree rule is shape-conditional and script-implementable:
 

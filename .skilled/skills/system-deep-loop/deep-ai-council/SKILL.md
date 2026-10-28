@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.8.6.0
+version: 1.8.7.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
@@ -17,9 +17,18 @@ Planning-only council deliberation with diverse seats, convergence checks, and p
 
 ## 1. OPERATIONAL MODES — IN-CLI (PRIMARY) + EXTERNAL-CLI (SECONDARY)
 
-The council is **primarily an IN-CLI capability**. When invoked from inside an active runtime (OpenCode, Claude Code, OpenCode), the council deliberates using THAT runtime's own models and reasoning lenses as seats. No external dispatch is required for the common case — the active CLI's own model bench (e.g. Opus + Sonnet + Haiku on Claude Code; gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on OpenCode; direct DeepSeek and OpenAI provider models plus GLM-5.3-Flash through LLM Gateway on OpenCode) supplies the seat diversity for a round.
+The council is **primarily an IN-CLI capability**.
+When you invoke it from inside an active runtime (OpenCode, Claude Code, OpenCode), the council deliberates using THAT runtime's own models and reasoning lenses as seats.
+No external dispatch is required for the common case.
+The active CLI's own model bench supplies the seat diversity for a round. For example:
 
-**External-CLI dispatch is a SECONDARY, optional mode** for cases where a different AI vantage adds value (e.g. DeepSeek/Kimi via cli-opencode from inside another runtime). The council resolver accepts `native`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and the `opencode` alias; it rejects `cli-codex` and `cli-claude-code`. External dispatch is invoked via the supported `cli-*` skill family, never directly from this skill.
+- Opus + Sonnet + Haiku on Claude Code.
+- gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on OpenCode.
+- Direct DeepSeek and OpenAI provider models plus GLM-5.3-Flash through LLM Gateway on OpenCode.
+
+**External-CLI dispatch is a SECONDARY, optional mode**, for cases where a different AI vantage adds value (e.g. DeepSeek/Kimi via cli-opencode from inside another runtime).
+The council resolver accepts `native`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi` and the `opencode` alias. It rejects `cli-codex` and `cli-claude-code`.
+External dispatch is invoked via the supported `cli-*` skill family, never directly from this skill.
 
 **Both modes obey the one-CLI-per-round invariant** (§5 ALWAYS rule 6):
 - In-CLI round: all seats use the current runtime's models.

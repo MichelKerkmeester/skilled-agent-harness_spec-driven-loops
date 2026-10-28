@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.7.0
+version: 1.1.8.0
 user-invocable: true
 ---
 
@@ -16,11 +16,16 @@ user-invocable: true
 
 # Figma (mcp-figma)
 
-Drive **Figma Desktop from the terminal** through the silships **figma-cli** (published as `figma-ds-cli`) so a coding agent can read, author, modify, and export designs, tokens, and components, and **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**. The CLI is the primary surface. The MCP is opt-in. Deep operational detail lives in [`references/figma-cli-reference.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md).
+Drive **Figma Desktop from the terminal** through the silships **figma-cli**, published as `figma-ds-cli`. A coding agent can read, author, modify and export designs, tokens and components through the CLI. It can also **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**.
+The CLI is the primary surface. The MCP is opt-in. Deep operational detail lives in [`references/figma-cli-reference.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md).
 
-> **Naming trap (read first).** The silships tool publishes to npm as **`figma-ds-cli`** (the unambiguous binary). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **never `npm i -g figma-cli`**. The `figma-cli` command only exists when installed from the silships repo (`main`, exposes both `figma-ds-cli` and `figma-cli`). This skill uses **`figma-ds-cli`** as the canonical command throughout.
+> **Naming trap (read first).** The silships tool publishes to npm as **`figma-ds-cli`**, the unambiguous binary.
+> The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`). Never run `npm i -g figma-cli`.
+> The `figma-cli` command exists only when installed from the silships repo's `main` branch. That branch exposes both `figma-ds-cli` and `figma-cli`. This skill uses **`figma-ds-cli`** as the canonical command throughout.
 >
-> **Version trap.** npm publishes only **`figma-ds-cli@1.0.0`**, a minimal build with **no `--safe`, no `daemon`, no `extract`** and ~12 commands. The full surface this skill documents (safe connect, daemon, extract/import, ~130 commands) is **1.2.0, available only from the silships repo**. Install via `scripts/install.sh` (`--source repo`, or `--source auto` which upgrades when npm is stale), then confirm `figma-ds-cli --version` is `>= 1.2.0`.
+> **Version trap.** npm publishes only **`figma-ds-cli@1.0.0`**, a minimal build with **no `--safe`, no `daemon`, no `extract`** and ~12 commands.
+> The full surface this skill documents includes safe connect, daemon, extract/import and ~130 commands. That surface is **1.2.0**, available only from the silships repo.
+> Install through `scripts/install.sh` with `--source repo` or `--source auto`. The latter upgrades when npm is stale. Then confirm `figma-ds-cli --version` is `>= 1.2.0`.
 
 ---
 
@@ -44,7 +49,9 @@ Drive **Figma Desktop from the terminal** through the silships **figma-cli** (pu
 
 **Inspect / export (CLI, read-only).** List/find nodes, get properties, `extract` a DESIGN.md, export assets/CSS/Tailwind/JSX/Storybook, run a11y audits, none of which change the Figma document.
 
-**Author / modify (CLI, gated).** Render JSX, create frames/components/icons, set properties, bind variables, generate variants. Every one changes the document and is gated, and every one is design-affecting: pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens) BEFORE authoring — this transport moves and renders, it does not produce the measured reference itself.
+**Author / modify (CLI, gated).** You can render JSX, create frames/components/icons, set properties, bind variables and generate variants.
+Every operation changes the document, is gated and is design-affecting. Before authoring, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens).
+This transport moves and renders designs. It does not produce the measured reference itself.
 
 **Design-system / tokens (CLI, gated).** Create token collections, import from Tailwind/CSS/tokens/Storybook, bind `var:name`. Ground token and variable choices in a measured reference: the `sk-design-md-generator` pairing (a measured Style Reference of extracted design tokens) applies before any token authoring, same as author/modify.
 
@@ -101,13 +108,18 @@ Figma Desktop must be **open with a file**, since figma-cli drives the live Desk
 
 The full per-command taxonomy lives in [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md). Summary:
 - **READ-ONLY** (safe default): `status`, `var list/find`, `get`, `find`, `inspect`, `node tree`, `extract`, `export*`, `export-jsx`, `export-storybook`, `analyze*`, `a11y*`, `files`, `--dry-run` variants. (Local exports still write files, so require an explicit output path, never silently overwrite.)
-- **MUTATING** (gate): all `create*`/`render*`/`tokens *`/`var create|bind|set|rename|visualize`, `bind *`, `set *`, layout verbs, `duplicate`, `use/theme`, `node to-component`, `slot/sizes/variants/combos`, `shadcn add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `gradient mesh`. App-level: `connect`, `unpatch`, `daemon start/stop/restart`, `config set`, `init-agent`. Design-affecting MUTATING verbs (authoring, tokens, binding, variants — everything except the app-level connection/daemon/config verbs) additionally carry the `sk-design-md-generator` pairing precondition: a measured Style Reference (extracted design tokens) grounds them first, then they are executed here.
+- **MUTATING (gate):** This class includes all `create*`/`render*`/`tokens *`/`var create|bind|set|rename|visualize`, `bind *`, `set *`, layout verbs, `duplicate`, `use/theme`, `node to-component`, `slot/sizes/variants/combos`, `shadcn add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url` and `gradient mesh`.
+  - App-level commands are `connect`, `unpatch`, `daemon start/stop/restart`, `config set` and `init-agent`.
+  - Design-affecting MUTATING verbs cover authoring, tokens, binding and variants. All MUTATING verbs except app-level connection, daemon and config verbs require the `sk-design-md-generator` pairing precondition. A measured Style Reference (extracted design tokens) grounds them before you execute them here.
 - **DESTRUCTIVE** (confirm + explicit target + rollback): `var delete-all`, `var delete-batch`, `delete/remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`.
 - **ARBITRARY** (treat as mutating, review first): `eval`, `raw`, `run`.
 
 ### Optional Figma MCP via Code Mode (opt-in)
 
-The skill works **fully with the CLI alone**. When the agent must pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token). Calls go through `call_tool_chain()` with naming `figma.figma_<tool>`. The token must be in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Always discover first with `search_tools()` / `tool_info()` before invoking. Full detail + the snippet: [`references/mcp-wiring.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md).
+The skill works **fully with the CLI alone**.
+When you need to pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token).
+Calls go through `call_tool_chain()` with the name `figma.figma_<tool>`. Store the token in `.env` as `figma_FIGMA_API_KEY`; Code Mode prefixes the manual name.
+Before invoking a tool, discover it with `search_tools()` or `tool_info()`. Find the full details and snippet in [`references/mcp-wiring.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md).
 
 ---
 
@@ -122,7 +134,10 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 5. **ALWAYS gate every DESTRUCTIVE verb** behind explicit user confirmation, an explicit target node/file, a command preview, and a one-line rollback (prefer duplicating the file/page/selection first).
 6. **ALWAYS treat `eval`, `raw`, and `run` as arbitrary mutation**, reviewing the code/command before running, even when the prompt sounds exploratory.
 7. **ALWAYS require an explicit output path for local exports** (`extract`/`export`/`export-jsx`) and never silently overwrite existing files.
-8. **ALWAYS pair with `sk-design-md-generator` BEFORE any design-affecting operation** — both directions: when a Figma read/export feeds a design decision, AND before every design-affecting authoring path (render, create frames/components/icons, bind variables, generate variants, token/variable work). The mandatory cross-hub pairing (hub ADR-002, `crossHubPairing`) makes a measured Style Reference (extracted design tokens) the precondition, not an afterthought: this skill owns the transport, and that skill produces the measured reference.
+8. **ALWAYS pair with `sk-design-md-generator` BEFORE any design-affecting operation.** Pair in both directions.
+   - Pair when a Figma read/export feeds a design decision.
+   - Pair before every design-affecting authoring path: render, create frames/components/icons, bind variables, generate variants and token/variable work.
+   The mandatory cross-hub pairing (hub ADR-002, `crossHubPairing`) makes a measured Style Reference (extracted design tokens) the precondition, not an afterthought. This skill owns the transport. The companion skill produces the measured reference.
 
 ### ⛔ NEVER
 
@@ -172,7 +187,10 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### Cross-Workflow Contracts
 
-- **`sk-design-md-generator`** produces a measured Style Reference (extracted design tokens) as a mandatory cross-hub pairing (hub ADR-002): applied whenever a Figma read/export feeds a design decision (grounding, token/type/layout choices) AND as the precondition before every design-affecting authoring path (render/create, variable binding, variants, token collections). This skill is the transport, and that skill produces the measured reference.
+- **`sk-design-md-generator`** produces a measured Style Reference (extracted design tokens) as a mandatory cross-hub pairing (hub ADR-002).
+  - Apply it whenever a Figma read/export feeds a design decision, including grounding and token, type or layout choices.
+  - Use it as a precondition before every design-affecting authoring path: render/create, variable binding, variants and token collections.
+  This skill is the transport. The companion skill produces the measured reference.
 - **`sk-code`** owns adapting extracted tokens / DESIGN.md / exported code into a real application, and verifying it.
 - **`mcp-chrome-devtools`** is used only for a last-mile browser preview of an implemented page, never to operate Figma.
 

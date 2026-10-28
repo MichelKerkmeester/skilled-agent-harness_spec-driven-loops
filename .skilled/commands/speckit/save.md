@@ -16,7 +16,11 @@ Inputs:
 
 Outputs:
 - Default response is a save plan: target route, proposed edits, blockers, advisories, and follow-up actions.
-- Explicit apply/full-auto runs `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` with AI-authored JSON. That script is the whole write. The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes; the field rules are in `save-workflow.md` under Continuity Fields. Every mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers, and `hybrid` behaves like the default `plan-only`.
+- Explicit apply/full-auto runs `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` with AI-authored JSON.
+  That script is the whole write.
+  The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes.
+  The field rules are in `save-workflow.md` under Continuity Fields.
+  Every mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers, and `hybrid` behaves like the default `plan-only`.
 - Retrieval freshness is a separate, optional step: regenerate the trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when the packet's `trigger_phrases` changed. There is no indexing handoff, no daemon to wait for and no launcher file to check.
 
 Guardrails:
@@ -58,7 +62,23 @@ Procedure:
 3. Extract session summary, key decisions, modified files, trigger phrases, technical context, tool calls, and notable exchanges.
 4. Choose one route category (listed under MODE ROUTING).
 5. In default mode, return the save plan without mutating.
-6. In explicit apply/full-auto mode, run the writer, inspect the post-save quality review, and patch HIGH metadata issues when practical. When the packet carries a `goal.md`, append one progress row to its log for what this session did. Always use the locked append: the goal command's log action on a bound session (`node .skilled/hooks/goal/bin/goal.cjs log "<item> | <state> | <evidence>" --runtime <runtime> --session <native session id> --workspace <repo root>`, or `opencode_goal({ action: "log", item, state, evidence })` on OpenCode), or the session-free `node .skilled/hooks/goal/bin/goal.cjs packet-log <spec-folder> "<item> | <state> | <evidence>" --workspace <repo root>` on a runtime without a management surface or for an unbound packet. Never hand-edit the table, and never touch the durable slice from a save. Canonical spec-doc content is authored in the packet documents themselves; the writer owns the continuity frontmatter and the generated metadata pair. Update continuity by putting its fields in the JSON, never by editing `_memory.continuity` by hand. A save targeted at a phase parent writes that continuity to the child its payload paths name, or to the child the parent's pointer names when no path does; when the paths span two children it writes no continuity and lists the candidates, so rerun with one of them as the target.
+6. In explicit apply/full-auto mode, you run the writer and inspect the post-save quality review.
+   You patch HIGH metadata issues when practical.
+   When the packet carries a `goal.md`, you append one progress row to its log for what this session did.
+   You always use the locked append.
+   On a bound session, use the goal command's log action: `node .skilled/hooks/goal/bin/goal.cjs log "<item> | <state> | <evidence>" --runtime <runtime> --session <native session id> --workspace <repo root>`.
+   On OpenCode with a bound session, use `opencode_goal({ action: "log", item, state, evidence })`.
+   On a runtime without a management surface or for an unbound packet, use the session-free `node .skilled/hooks/goal/bin/goal.cjs packet-log <spec-folder> "<item> | <state> | <evidence>" --workspace <repo root>`.
+   You never hand-edit the table.
+   You never touch the durable slice from a save.
+   Canonical spec-doc content is authored in the packet documents themselves.
+   The writer owns the continuity frontmatter and the generated metadata pair.
+   You update continuity by putting its fields in the JSON.
+   You never edit `_memory.continuity` by hand.
+   A save targeted at a phase parent writes that continuity to the child its payload paths name.
+   When no payload path does, it writes that continuity to the child the parent's pointer names.
+   When the paths span two children, it writes no continuity and lists the candidates.
+   You rerun with one of them as the target.
 7. Render the result using the presentation asset.
 
 Tool map:
@@ -87,7 +107,11 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh via `generate-context.js` (explicit apply/full-auto). That writer is the whole write: it needs no daemon, and there is no indexing handoff after it. Canonical spec-doc content is authored in the packet documents themselves. Every user-facing string renders through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
+The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh via `generate-context.js` (explicit apply/full-auto).
+That writer is the whole write: it needs no daemon, and there is no indexing handoff after it.
+Canonical spec-doc content is authored in the packet documents themselves.
+Every user-facing string renders through the presentation asset.
+It is a direct-dispatch command with no workflow YAML by design.
 
 Related commands: `/speckit:search` (lexical retrieval over spec docs and skill docs); `/speckit:resume` (session recovery and continuation).
 

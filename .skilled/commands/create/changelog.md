@@ -64,5 +64,7 @@ The router must not invent visible wording for those surfaces; it only selects t
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-changelog-auto.yaml` for `:auto`, `create-changelog-confirm.yaml` for `:confirm` or an omitted mode) runs the changelog workflow step by step after Phase 0 verification and setup resolution, producing global changelog entries with topology-aware release options. `:auto` executes autonomously, and `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, release-option display and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-changelog-auto.yaml` for `:auto`, `create-changelog-confirm.yaml` for `:confirm` or an omitted mode) runs the changelog workflow step by step after Phase 0 verification and setup resolution, producing global changelog entries with topology-aware release options.
+`:auto` executes autonomously, and `:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards, release-option display and result display come from the presentation contract, not this router.
 

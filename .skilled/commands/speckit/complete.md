@@ -99,4 +99,10 @@ The following content lives only in `.skilled/commands/speckit/assets/speckit-co
 
 The YAML workflow runs the full lifecycle from specification through implementation, validation, context refresh, and workflow closeout. Optional research, context, and phase-decomposition flows are routed through the selected workflow asset.
 
-Its `validate.sh --strict` calls also run warn-only rules, which never fail the run. Three of them check authoring: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04, and `MEASURED_BEHAVIOR` warns when a `spec.md` stamped v2.4 or later has a `measured-behavior` anchor holding neither command output nor a reasoned `N/A:`. The command also runs `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` after each strict validation, when both files exist.
+Its `validate.sh --strict` calls also run warn-only rules.
+Those rules never fail the run.
+Three rules check authoring.
+`FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`.
+`SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04.
+`MEASURED_BEHAVIOR` warns when a `spec.md` stamped v2.4 or later has a `measured-behavior` anchor holding neither command output nor a reasoned `N/A:`.
+The command also runs `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` after each strict validation when both files exist.

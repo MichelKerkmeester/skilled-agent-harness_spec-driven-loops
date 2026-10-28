@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.3.27.0
+version: 2.3.28.0
 metadata:
   family: sk-util
 ---
@@ -11,7 +11,10 @@ metadata:
 
 # Documentation Authoring Hub (sk-doc)
 
-One advisor identity, fifteen workflow modes across fourteen packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
+One advisor identity, fifteen workflow modes across fourteen packets, one shared sk-create-quality-control backbone.
+`sk-doc` is the parent hub for documentation and OpenCode-component authoring.
+It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder.
+The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
 
@@ -66,6 +69,21 @@ The directive, the fallback, the checklist and the rest of the routing detail li
 
 ## 3. HOW IT WORKS
 
+### Terms
+
+- **`workflowMode`**: the public packet key a request resolves to, such as `sk-create-skill`.
+- **`packetKind`**: `workflow` for every sk-doc packet, because this hub has no surface axis.
+- **`backendKind`**: `template-scaffold` for the create-* generators and `sk-create-quality-control` for the quality-control mode.
+- **packet**: a nested `sk-create-*` folder that keeps its own authoring contract, references, assets and scripts.
+- **`mode-registry.json`**: the registry that owns each packet's discriminator, aliases, command and `advisorRouting`.
+- **`hub-router.json`**: stage one's signals, vocabulary classes, default fallback resource and bundle rules.
+- **`vocabularyClasses`**: the one authored routing vocabulary that the registry aliases, the `Keyword triggers:` lines and the `ROUTER.md` intents are checked against.
+- **`ROUTER.md`**: stage two's `INTENT_SIGNALS` and `RESOURCE_MAP`, which map an authoring intent to the packet-local leaf resources its mode loads.
+- **leaf**: a canonical `(workflowMode, leafResourceId)` pair from `leaf-manifest.json` that a `RESOURCE_MAP` path converts to.
+- **`defer`**: the outcome that asks for disambiguation, which this hub reaches because `routerPolicy.defaultMode` is `null`.
+- **shared backbone**: the `shared/` copy of the sk-create-quality-control pipeline that every packet consumes.
+- **`graph-metadata.json`**: the one advisor identity for the whole skill, which no packet or `shared/` directory carries.
+
 ### Layout
 ```
 sk-doc/
@@ -88,7 +106,18 @@ sk-doc/
 Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, and moved `references/`/`assets/`/`scripts/`) and carries **no** `graph-metadata.json`, so the advisor discovers exactly one `sk-doc` identity.
 
 ### Shared backbone
-`shared/` holds the universal sk-create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/`), and shared templates (`shared/assets/`). The generic validator `shared/scripts/cite-drift-scan.mjs` counts and resolves the `<path>.<ext>:<line>` citations in every tracked skill doc and makes zero model calls by default, while `--jev` runs the backend and needs `--out <dir>` so every call is recorded; the Jev arm and the advisory live in the sibling `shared/scripts/classifier-cite-drift-scan.mjs`. `validate_document.py` runs the same check as a non-blocking advisory on the document it validates: it prints `cite-drift advisory:` lines only when a Jev credential is stored, never changes the exit code, and `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips it. The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
+`shared/` holds the universal sk-create-quality-control pipeline consumed by every packet:
+- Generic validator scripts in `shared/scripts/`.
+- Cross-cutting standards and vocabulary in `shared/references/`.
+- Shared templates in `shared/assets/`.
+
+The generic validator `shared/scripts/cite-drift-scan.mjs` counts and resolves the `<path>.<ext>:<line>` citations in every tracked skill doc.
+It makes zero model calls by default.
+`--jev` runs the backend and needs `--out <dir>`, so every call is recorded, and the Jev arm and the advisory live in the sibling `shared/scripts/classifier-cite-drift-scan.mjs`.
+`validate_document.py` runs the same check as a non-blocking advisory on the document it validates.
+It prints `cite-drift advisory:` lines only when a Jev credential is stored, never changes the exit code, and `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips it.
+The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve.
+There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
 
 ---
 
@@ -137,7 +166,13 @@ The hub's compiled-routing directive, its stage-two surface-router pointer, the 
 
 ### Surface Router — per-intent leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, packet goals, repo rules, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`.
+It defines three things:
+- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, packet goals, repo rules, and the explicit full-toolkit intent.
+- The machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse.
+- The how-to-read rules: a dominant intent gives one leaf set, near-tied intents give a deduped union, and no keyword match gives the hub UNKNOWN fallback, never a silent default.
+
+Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 The reason the root `ROUTER.md` stays a separate document from this file and from `hub-router.json` is in [the parent-skill reference](sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd).
 
@@ -200,4 +235,7 @@ return single or orderedBundle according to hub-router.json routerPolicy.outcome
 
 Per-packet behavior is **not flattened**: each packet keeps its own authoring contract, references, assets, scripts, and templates.
 
-This hub does **not** use keyed resource discovery (`references/<key>/` or `assets/<key>/`) at the hub root: there are no hub-root `references/` or `assets/` directories, and packet resources stay inside their owning packet or the shared backbone. If a future workflow needs keyed resource subdirectories, add that behavior inside the owning packet using guarded runtime discovery; do not hardcode resource inventories in this hub.
+This hub does **not** use keyed resource discovery (`references/<key>/` or `assets/<key>/`) at the hub root.
+There are no hub-root `references/` or `assets/` directories, and packet resources stay inside their owning packet or the shared backbone.
+If a future workflow needs keyed resource subdirectories, add that behavior inside the owning packet using guarded runtime discovery.
+Do not hardcode resource inventories in this hub.

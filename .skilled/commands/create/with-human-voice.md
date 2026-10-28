@@ -58,4 +58,8 @@ Startup questions, the scope-gate report, the scan tables, exemption wording, su
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-with-human-voice-auto.yaml` for `:auto`, `create-with-human-voice-confirm.yaml` for `:confirm` or an omitted mode) runs the voice workflow step by step after Phase 0 verification and setup resolution. It gates the scope first and names every exempt span, runs the mechanical scanner, reads the findings as candidates rather than verdicts, runs the judgment pass the scanner cannot perform, and computes the score under the standard's precedence rule. `score` stops there. `apply` edits only in-scope spans, re-runs the scanner and reports both numbers. All prompts, tables, exemption wording and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-with-human-voice-auto.yaml` for `:auto`, `create-with-human-voice-confirm.yaml` for `:confirm` or an omitted mode) runs the voice workflow step by step after Phase 0 verification and setup resolution.
+It gates the scope first and names every exempt span, runs the mechanical scanner, reads the findings as candidates rather than verdicts, runs the judgment pass the scanner cannot perform, and computes the score under the standard's precedence rule.
+`score` stops there.
+`apply` edits only in-scope spans, re-runs the scanner and reports both numbers.
+All prompts, tables, exemption wording and result display come from the presentation contract, not this router.

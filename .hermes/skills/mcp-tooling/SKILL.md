@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for eight modes: five workflow modes and three read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.9.0.0
+version: 1.9.1.0
 metadata:
   family: mcp
 ---
@@ -16,7 +16,9 @@ metadata:
 
 # MCP Tooling Hub (mcp-tooling)
 
-One skill, eight modes (five workflow bridges and three read-only design transports), and one shared `family: mcp` identity. `mcp-tooling` is the public advisor-routable home for every MCP tool bridge in this repository. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. The hub holds no per-mode logic. Each mode keeps its contract in its packet.
+One skill has eight modes: five workflow bridges and three read-only design transports. They share one `family: mcp` identity.
+`mcp-tooling` is the public advisor-routable home for every MCP tool bridge in this repository. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`.
+The hub holds no per-mode logic. Each mode keeps its contract in its packet.
 
 `mcp-code-mode` remains the shared MCP execution substrate for the modes that use Code Mode. It is external infrastructure, not a hub member.
 
@@ -76,6 +78,21 @@ The root `ROUTER.md` machine block keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in 
 ---
 
 ## 4. HOW IT WORKS
+
+### Terms
+
+- **`workflowMode`**: the public mode key this hub resolves to one tool-bridge packet.
+- **`packetKind`**: the axis a mode sits on, `workflow` for a bridge that can change state and `transport` for a read-only design bridge.
+- **`backendKind`**: which backend runs the mode, recorded per mode in `mode-registry.json`.
+- **advisor routing class**: how the advisor finds a mode, which is `metadata` for every mode here, so the advisor routes this hub and the hub picks the mode.
+- **`mode-registry.json`**: the registry that owns each mode's workflow mode, packet kind, backend kind, tool surface, aliases and advisor routing class.
+- **`hub-router.json`**: stage one's policy, signals, vocabulary classes and tie-break order.
+- **vocabulary classes**: the authored tool vocabulary that stage-one signals are matched against.
+- **tie-break**: the `hub-router.json` order that ranks modes when more than one scores.
+- **leaf resource**: a packet-qualified file inside the chosen mode, which the generated `leaf-manifest.json` represents.
+- **`INTENT_SIGNALS` / `RESOURCE_MAP`**: the machine-readable block in `ROUTER.md` that maps an intent to the leaf resources it loads.
+- **ordered bundle**: the stage-one result where several explicitly requested tools route in tie-break order.
+- **`defer`**: the stage-one result where unclear or contradictory tool intent asks for disambiguation.
 
 ### Layout
 

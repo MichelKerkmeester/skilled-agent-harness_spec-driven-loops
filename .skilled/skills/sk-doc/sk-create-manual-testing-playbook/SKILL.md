@@ -2,7 +2,7 @@
 name: sk-create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 <!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:manual-testing-playbook -->
@@ -242,7 +242,10 @@ Follow this sequence:
 7. Create one per-feature file for each feature ID from `assets/manual-testing-playbook-snippet-template.md`.
 8. Write root package policy before writing scenario-specific exceptions.
 9. Write each per-feature prompt and execution truth before polishing root summary prose.
-10. Fill each scenario contract with the nine display fields: Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria, Failure Triage. The operator validator's eight unconditional checks cover Feature ID plus the seven execution/link fields; realistic user request, table prompt, and feature-catalog link are conditional checks.
+10. Fill each scenario contract with the nine display fields:
+   - Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria and Failure Triage.
+   - The operator validator's eight unconditional checks cover Feature ID plus the seven execution/link fields.
+   - Realistic user request, table prompt and feature-catalog link are conditional checks.
 11. Write root category summaries and link every per-feature file.
 12. Add automated-test anchors when they exist.
 13. Add feature-catalog cross-references when a catalog exists.

@@ -70,7 +70,10 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-skill-parent-auto.yaml` for `:auto`, `create-skill-parent-confirm.yaml` for `:confirm` or an omitted mode) runs the parent-skill scaffolding workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-skill-parent-auto.yaml` for `:auto`, `create-skill-parent-confirm.yaml` for `:confirm` or an omitted mode) runs the parent-skill scaffolding workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch.
+`:auto` executes autonomously.
+`:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
 ---
 
@@ -96,12 +99,20 @@ Both workflows classify the target's root `ROUTER.md` on `update` and emit exact
 
 ## 8. WHAT THIS SCAFFOLDS
 
-This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the hub-router contract in `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md`. The templates are `parent-skill-hub-template.md`, `parent-skill-registry-template.json`, `parent-skill-hub-router-template.json`, `parent-skill-description-template.json`, and `parent-skill-graph-metadata-template.json` under `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/`.
+This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon.
+The canonical example is `sk-code` (workflow modes plus read-only surface packets).
+`system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`.
+The pattern is standardized in `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the hub-router contract in `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md`.
+The templates are `parent-skill-hub-template.md`, `parent-skill-registry-template.json`, `parent-skill-hub-router-template.json`, `parent-skill-description-template.json`, and `parent-skill-graph-metadata-template.json` under `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/`.
 
 The generated package is:
 
 - A thin hub `SKILL.md` (routing only, no per-mode logic).
-- A declarative `mode-registry.json` where every mode carries the two-axis discriminator — `workflowMode` + `packetKind` (`workflow` | `surface`) + `backendKind` — plus `toolSurface`, `grandfatheredFolderMismatch`, and one `advisorRouting` block (`routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
+- A declarative `mode-registry.json` carries the two-axis discriminator for every mode: `workflowMode` + `packetKind` (`workflow` | `surface`) + `backendKind`.
+  Every mode entry also carries `toolSurface`, `grandfatheredFolderMismatch` and one `advisorRouting` block.
+  That block includes `routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases` and `packetSkillName`.
+  The registry is the single source of truth.
+  Routers and tests read it. None re-derive it.
 - A `hub-router.json` describing how a prompt selects and bundles modes (routerSignals, typed vocabularyClasses, tieBreak, a catch-all class like `hub-identity` on the default mode only, and a `surfaceBundle` outcome when surfaces exist), and a `description.json`.
 - A root `ROUTER.md` stage-two control document. Fresh scaffolds declare `router_state: stage1-only` with empty maps; `active` is authored later with concrete, resolvable leaf paths and is never synthesized by this command.
 - Exactly one hub `graph-metadata.json` — the one hard invariant.

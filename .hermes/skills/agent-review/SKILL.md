@@ -13,7 +13,9 @@ Read-only code review specialist that applies the sk-code review mode to PRs and
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 **CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report. This is by design: reviewers observe and evaluate, they do not implement fixes.
 
@@ -33,7 +35,9 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 1. **RECEIVE** → Parse review request (PR, file changes, code snippet)
 2. **SCOPE** → Identify files to review, change boundaries, context requirements, and any optional `reviewer_focus` hint
-3. **LOAD STANDARDS** → Read the sk-code `SKILL.md` wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`), then its review mode, `sk-code-review/SKILL.md` in that same folder. The mode is the findings-first baseline and its router-selected resources are the standards evidence, while baseline security/correctness minimums remain mandatory. Resolve the rule sources for the reviewed files with the mode's resolver step (its `SKILL.md` section 3, Phase 1 step 3), which runs `sk-code-quality/scripts/quality-gate.cjs --explain` inside that same sk-code folder.
+3. **LOAD STANDARDS** → Read the sk-code `SKILL.md` wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`), then its review mode, `sk-code-review/SKILL.md` in that same folder.
+   The mode is the findings-first baseline and its router-selected resources are the standards evidence, while baseline security/correctness minimums remain mandatory.
+   Resolve the rule sources for the reviewed files with the mode's resolver step (its `SKILL.md` section 3, Phase 1 step 3), which runs `sk-code-quality/scripts/quality-gate.cjs --explain` inside that same sk-code folder.
 4. **ANALYZE** → Use available code search tools:
    - Content search: Use `Grep` to find patterns and keywords
    - File discovery: Use `Glob` to locate files by pattern
@@ -54,7 +58,10 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 **If no Context Package is provided and resumed packet context matters**: Read `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to broader corpus retrieval. Use a ripgrep recipe from `retrieval-conventions.md` only as supporting history after the canonical packet sources are exhausted.
 
-**If dispatched with `reviewer_focus`**: Prioritize the named files, modules, behaviors, or assumptions during reads and evidence gathering. Missing focus means use normal scope derivation from target/files. The hint never changes P0/P1/P2 thresholds, never replaces line-level evidence, and never justifies a finding by itself. Treat `self_assessed_quality` as the producer's own confidence note, not as the review score.
+**If dispatched with `reviewer_focus`**: Prioritize the named files, modules, behaviors, or assumptions during reads and evidence gathering.
+Missing focus means use normal scope derivation from target/files.
+The hint never changes P0/P1/P2 thresholds, never replaces line-level evidence, and never justifies a finding by itself.
+Treat `self_assessed_quality` as the producer's own confidence note, not as the review score.
 
 ### Read-Budget Discipline
 
@@ -87,7 +94,11 @@ The connected-code reads named in the mode's Phase 1 are planned reads. Their st
 | `Read` | File content access | Detailed line-by-line analysis       |
 | `Bash` | CLI commands        | `git diff`, `git log`, `gh pr view`  |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`) and free-text evidence uses the ripgrep recipes in its `references/retrieval/retrieval-conventions.md`. With no such skill installed, Grep and Read of the reviewed files are the evidence. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service.
+Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`).
+Where the skill is installed, free-text evidence likewise uses its `references/retrieval/retrieval-conventions.md` recipes.
+With no such skill installed, Grep and Read of the reviewed files are the evidence.
+Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Tool Access Patterns
 
@@ -133,7 +144,10 @@ The gate result is this table read off the findings. It is not a second verdict,
 | **P1**   | REQUIRED   | Correctness bug, spec mismatch, must-fix floor or lens issue | FAIL while open |
 | **P2**   | SUGGESTION | Non-blocking improvement, style or maintainability follow-up | None |
 
-**Reach rule.** A P0 or P1 finding names its reach in its Case line: an input or call path the code's stated contract allows, or a real caller that sends it. A failure that needs input outside that contract (`NaN` where the contract says a number, a wrong type, an inverted range the code already rejects) is P2 hardening, unless the code claims to validate that input. Data that crosses a trust boundary is always in reach. Low confidence raises severity only when the reach is named. The rule is owned by the review mode's `references/review-core.md` section 2.
+**Reach rule.** A P0 or P1 finding names its reach in its Case line: an input or call path the code's stated contract allows, or a real caller that sends it.
+A failure that needs input outside that contract (`NaN` where the contract says a number, a wrong type, an inverted range the code already rejects) is P2 hardening, unless the code claims to validate that input.
+Data that crosses a trust boundary is always in reach. Low confidence raises severity only when the reach is named.
+The rule is owned by the review mode's `references/review-core.md` section 2.
 
 ### Advisory Score (100 points total)
 
@@ -215,11 +229,17 @@ When the same agent's output fails the review gate round after round:
 
 **Report order.** Every review, in any format in this section, runs in this order: the summary, the findings numbered once across the P0, P1 and P2 groups, the removal or iteration plan, the next steps, the optional `AGENT_IO_RESULT` block, the `Not checked:` line, one blank line, and last the `Review status:` line as the absolute final line.
 
-**Summary agreement.** When a `sk-code-quality` run verdict is handed to the review, treat it as input evidence only: report `Quality gate evidence: present` in the summary, or `absent` when none was given, and still run every baseline check. When a summary carries an `Overall assessment` or a `Recommendation` line, its value names the same status as the final `Review status:` line. The mode's final-line checker fails a report where they disagree, and its findings checker fails a `Recommendation` or a final status that approves or comments over a P0 or P1 finding, or requests changes with none. A `Recommendation` line counts as a verdict only when its whole value is one status value.
+**Summary agreement.** When a `sk-code-quality` run verdict is handed to the review, treat it as input evidence only: report `Quality gate evidence: present` in the summary, or `absent` when none was given, and still run every baseline check.
+When a summary carries an `Overall assessment` or a `Recommendation` line, its value names the same status as the final `Review status:` line.
+The mode's final-line checker fails a report where they disagree.
+Its findings checker fails a `Recommendation` or a final status that approves or comments over a P0 or P1 finding, or requests changes with none.
+A `Recommendation` line counts as a verdict only when its whole value is one status value.
 
 **One vocabulary.** Every format below states its verdict in the mode's three status values, `APPROVED`, `REQUESTED_CHANGES` and `COMMENTED`, chosen by the verdict table in Section 5. The score appears only as `Advisory score: XX/100`.
 
-All reports follow structured markdown and carry the mode's summary lines (`Overall assessment`, `Files reviewed`, `Baseline used`, `Surface evidence used`, `Quality gate evidence` and the `Rule sources:` line) and its `## Findings` section, with findings numbered once across the `### P0 - Critical`, `### P1 - High` and `### P2 - Suggestion` groups and each carrying its `- Case:` line. Key sections per format:
+All reports follow structured markdown and carry the mode's summary lines (`Overall assessment`, `Files reviewed`, `Baseline used`, `Surface evidence used`, `Quality gate evidence` and the `Rule sources:` line) and its `## Findings` section.
+Findings are numbered once across the `### P0 - Critical`, `### P1 - High` and `### P2 - Suggestion` groups and each carries its `- Case:` line.
+Key sections per format:
 
 ### PR Review Report
 `## PR Review: [Title]` → Summary (`Recommendation: [APPROVED / REQUESTED_CHANGES / COMMENTED]`, `Advisory score: XX/100`, the mode's summary lines) → Advisory Score Breakdown table (5 dimensions) → `## Findings` (P0, P1, P2 groups) → Positive Highlights → Files Reviewed table (path, changes, issue counts)

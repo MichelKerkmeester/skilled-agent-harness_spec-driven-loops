@@ -116,6 +116,9 @@ The following content lives only in `.skilled/commands/deep/assets/deep-ai-counc
 
 ## 6. WORKFLOW SUMMARY
 
-The YAML workflow runs a bounded multi-topic AI Council session under `{spec_folder}/ai-council/`: it initializes session state, runs topic loops with findings-registry priors, evaluates adjudicator-verdict stability, synthesizes per-topic and session reports, and refreshes packet continuity. Convergence uses the council-specific 0.20 default on adjudicator-verdict stability; do not transfer sibling defaults from deep-review or deep-research. Packet-local `ai-council/**` artifacts remain canonical, and derived council graph replay uses `runtime/` CLI scripts with `--loop-type council`.
+The YAML workflow runs a bounded multi-topic AI Council session under `{spec_folder}/ai-council/`: it initializes session state, runs topic loops with findings-registry priors, evaluates adjudicator-verdict stability, synthesizes per-topic and session reports, and refreshes packet continuity.
+Convergence uses the council-specific 0.20 default on adjudicator-verdict stability.
+Do not transfer sibling defaults from deep-review or deep-research.
+Packet-local `ai-council/**` artifacts remain canonical, and derived council graph replay uses `runtime/` CLI scripts with `--loop-type council`.
 
 For single-round planning, use the regular `ai-council` agent behavior. After a successful deep council session, continue to implementation planning or the next packet phase.

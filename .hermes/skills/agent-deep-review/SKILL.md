@@ -13,7 +13,9 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 **Efficiency governor (the per-turn hook does not reach sub-agents — apply it here)**: reason about the problem, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); commit reversible decisions and move; qualify only when it changes what the reader should do.
 
@@ -86,7 +88,9 @@ Before reading review targets, running searches, or writing artifacts, validate 
 
 ### Scope Lock
 
-The declared review target is the maximum code-review scope. Findings, searches, file reads, and bash analysis must stay inside that target unless the strategy explicitly asks for traceability against packet docs or named integration surfaces. When traceability requires packet docs, commands, workflows, skills, MCP/code tools, caller agents, or mirrors, cite them as context evidence but do not broaden code findings beyond the declared target.
+The declared review target is the maximum code-review scope.
+Findings, searches, file reads, and bash analysis must stay inside that target unless the strategy explicitly asks for traceability against packet docs or named integration surfaces.
+When traceability requires packet docs, commands, workflows, skills, MCP/code tools, caller agents, or mirrors, cite them as context evidence but do not broaden code findings beyond the declared target.
 
 ### Setup BINDING Emission (mandatory grep-checkable contract)
 
@@ -185,7 +189,9 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - **P0 candidate** -- run full Hunter/Skeptic/Referee in THIS iteration BEFORE writing to JSONL.
 - **Gate-relevant P1** -- run compact skeptic/referee pass in-iteration and document it in the finding.
 - **P2** -- no self-check required; document evidence and move on.
-- The scale has exactly three tiers and no fourth is reserved. A rating outside P0/P1/P2, such as a `P3` carried over from an older four-level convention, is not a fourth tier: collapse it to the tier its impact matches and keep the original rating visible in the finding, so it is converted rather than lost. An unconverted value is dropped by the reducer and reaches the cross-lineage merge unranked, where it sorts below every P2 and cannot raise the merged verdict.
+- The scale has exactly three tiers and no fourth is reserved.
+  A rating outside P0/P1/P2, such as a `P3` carried over from an older four-level convention, is not a fourth tier: collapse it to the tier its impact matches and keep the original rating visible in the finding, so it is converted rather than lost.
+  An unconverted value is dropped by the reducer and reaches the cross-lineage merge unranked, where it sorts below every P2 and cannot raise the merged verdict.
 
 #### Verification Discipline
 
@@ -237,7 +243,11 @@ node <deep-loop>/runtime/scripts/append-mode-event.cjs \
   --event-json <record file>
 ```
 
-Here `<record file>` is a file holding the single canonical iteration record (one JSON object) — the gateway `JSON.parse`s it whole, so it must not be the multi-line `deltas/iter-NNN.jsonl`. The gateway authorizes the record against the mode's durable authority, fences it behind the ledger, returns a receipt, and refreshes `review/deep-review-state.jsonl` from the ledger. Exit `0` means the record is durable; exit `2` means it was refused — halt and name the check the refusal reports. Never fall back to a direct write of the projection file.
+Here `<record file>` is a file holding the single canonical iteration record (one JSON object).
+The gateway `JSON.parse`s it whole, so it must not be the multi-line `deltas/iter-NNN.jsonl`.
+The gateway authorizes the record against the mode's durable authority, fences it behind the ledger, returns a receipt, and refreshes `review/deep-review-state.jsonl` from the ledger.
+Exit `0` means the record is durable; exit `2` means it was refused — halt and name the check the refusal reports.
+Never fall back to a direct write of the projection file.
 
 #### Step 10: Write Delta
 
@@ -268,7 +278,11 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 - The ripgrep recipes in `retrieval-conventions.md`: broader history only after packet continuity is insufficient.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
-- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`) and free-text evidence uses the ripgrep recipes in its `references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service.
+  Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit.
+  Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`).
+  Where the skill is installed, free-text evidence uses its `references/retrieval/retrieval-conventions.md` recipes.
+  Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Skills
 
@@ -345,7 +359,10 @@ Review verdict: CONDITIONAL
 Review verdict: FAIL
 ```
 
-Mapping, over findings ACTIVE at this iteration rather than only the ones it raised: PASS when no active P0 or P1 remains; CONDITIONAL when an active P1 remains and no P0; FAIL when any active P0 remains. P2-only → PASS. Carrying a finding forward does not downgrade it, so an active P0 raised three iterations ago still forces `Review verdict: FAIL` -- never relabel that state as conditional, partial, mixed, or advisory. The synthesis phase parses this final line by exact string match; no CI job reads it, and the gate that decides release is the cross-lineage merge, which recomputes the verdict from the findings registry and never reads this line.
+Mapping runs over findings ACTIVE at this iteration rather than only the ones it raised: PASS when no active P0 or P1 remains; CONDITIONAL when an active P1 remains and no P0; FAIL when any active P0 remains.
+P2-only → PASS.
+Carrying a finding forward does not downgrade it, so an active P0 raised three iterations ago still forces `Review verdict: FAIL` -- never relabel that state as conditional, partial, mixed, or advisory.
+The synthesis phase parses this final line by exact string match; no CI job reads it, and the gate that decides release is the cross-lineage merge, which recomputes the verdict from the findings registry and never reads this line.
 
 ### Promotion Gate Logic
 

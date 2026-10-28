@@ -2,7 +2,7 @@
 name: sk-design-diagram
 description: Creates self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Create Diagram
@@ -81,7 +81,15 @@ The design system is skinnable. All colors, typography, and tokens live in `refe
 
 - **Focal rule:** `accent` goes on 1–2 elements max. Everything else is `ink` / `muted` / `soft`. If you're tempted to accent 4 things, you haven't decided what's focal yet.
 - **Node type → treatment:** focal = `accent-tint` / `accent`; backend/API/step = white / `ink`; store/state = `ink@0.05` / `muted`; external/cloud = `ink@0.03` / `ink@0.30`; input/user = `muted@0.10` / `soft`; optional/async = `ink@0.02` / `ink@0.20` dashed `4,3`; security/boundary = `accent@0.05` / `accent@0.50` dashed `4,4`.
-- **Typography:** title = Instrument Serif 1.75rem (H1 only); node name = Geist 12px 600; sublabel = Geist Mono 9px; eyebrow/tag = Geist Mono 7–8px uppercase tracked; arrow label = Geist Mono 8px; editorial aside = Instrument Serif *italic* 14px. Mono is for *technical* content (ports, commands, URLs); names go in Geist sans; the page title is Instrument Serif; **never JetBrains Mono** as a blanket "dev" font.
+- **Typography:**
+    - title = Instrument Serif 1.75rem (H1 only)
+    - node name = Geist 12px 600
+    - sublabel = Geist Mono 9px
+    - eyebrow/tag = Geist Mono 7–8px uppercase tracked
+    - arrow label = Geist Mono 8px
+    - editorial aside = Instrument Serif *italic* 14px
+    - Mono is for *technical* content (ports, commands, URLs), and names go in Geist sans
+    - the page title is Instrument Serif, and **never JetBrains Mono** as a blanket "dev" font
 
 Full spec: `references/foundations/style-guide.md`.
 
@@ -196,10 +204,23 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 **Mandatory connector rules** — these five are **non-negotiable** and apply to every diagram of every type:
 
 11. **NEVER use diagonal or slanted connectors between nodes that don't share an x or y axis.** Rounded right-angle (orthogonal) connectors are mandatory — every bend is a quarter-arc with `r=8` (or `r=6` minimum for tight layouts). Reserve plain straight `<line>` only for connections whose endpoints share the same x or y coordinate. A diagonal connector is an automatic fail.
-12. **NEVER let an arrow label sit on or touch its connector — a 6–10px gap is mandatory.** The label must sit centered above (or beside, for vertical segments) the line, and its mask must never touch the stroke. Aim for a 6-10 unit gap between the mask and the connector; four user units is the floor the corpus check enforces. What a unit is worth on screen depends on the form: the library's drawings scale between 1.0 and about 1.65, so four units is four physical pixels on the tightest form and nearly seven on the loosest. Take the upper end of the band when a drawing renders at 1.0. The opaque mask rect prevents the arrow bleeding through, but the *visible* gap between mask edge and line preserves the reader's ability to trace the connection; push to 8–10px when 6px feels cramped. Never let the mask rect touch or overlap the stroke.
-13. **NEVER overlap connectors or run two on the same stroke path.** Two connectors must never share a stroke path, run parallel on top of each other, or be drawn on top of each other for any segment. When two orthogonal arrows must cross at a single point, apply the bridge / hop primitive. When two arrows naturally want to overlap, offset their routing by ≥12px so each line is independently traceable. If you find yourself stacking connectors, redesign the layout — two nodes are too close, or the diagram is over budget (split into overview + detail).
-14. **NEVER let two connectors share a single attach point on a box edge — fan the attach points.** When two or more connectors enter or exit the *same edge* of a box, each must have its own distinct attach point along that edge: spread evenly, ≥12px between adjacent points (8px minimum for very small boxes). For N connectors on an edge of length L, attach point `k` (1..N) sits at offset `L * k / (N + 1)`. Two parallel connectors running in the same direction stay ≥12px apart along their entire length, not just at the attach point. **No connector may hide another** — if you can't tell two arrows apart at a glance, the layout has failed.
-15. **NEVER route a connector behind a box that isn't its source or destination — except when the box is geometrically unavoidable on a direct orthogonal path.** Reroute around intervening boxes by default. In the narrow exception (e.g., a cross-cutting footer service physically sits between source and destination on the only straight path), the stroke must be **dashed** to signal "transit, not interaction", the label sits at the **visible end** of the connector so it doesn't fall behind the intervening box, and no marker (arrowhead) may land on the intervening box's edge. When in doubt, reroute — the exception is for geometrically impossible rerouting, not a shortcut to avoid layout work.
+12. **NEVER let an arrow label sit on or touch its connector — a 6–10px gap is mandatory.** Center the label above the line (or beside it, for vertical segments), and never let its mask touch the stroke. Aim for a 6-10 unit gap between the mask and the connector, with four user units as the floor the corpus check enforces.
+    - A unit's worth on screen depends on the form. The library's drawings scale between 1.0 and about 1.65, so four units is four physical pixels on the tightest form and nearly seven on the loosest.
+    - Take the upper end of the band when a drawing renders at 1.0.
+    - The opaque mask rect prevents the arrow bleeding through. The *visible* gap between mask edge and line preserves the reader's ability to trace the connection, so push to 8–10px when 6px feels cramped.
+    - Never let the mask rect touch or overlap the stroke.
+13. **NEVER overlap connectors or run two on the same stroke path.** Two connectors must never share a stroke path, run parallel on top of each other, or be drawn on top of each other for any segment.
+    - When two orthogonal arrows must cross at a single point, apply the bridge / hop primitive.
+    - When two arrows naturally want to overlap, offset their routing by ≥12px so each line is independently traceable.
+    - If you find yourself stacking connectors, redesign the layout. Two nodes are too close, or the diagram is over budget (split into overview + detail).
+14. **NEVER let two connectors share a single attach point on a box edge — fan the attach points.** When two or more connectors enter or exit the *same edge* of a box, each must have its own distinct attach point along that edge. Spread them evenly, with ≥12px between adjacent points (8px minimum for very small boxes).
+    - For N connectors on an edge of length L, attach point `k` (1..N) sits at offset `L * k / (N + 1)`.
+    - Two parallel connectors running in the same direction stay ≥12px apart along their entire length, not just at the attach point.
+    - **No connector may hide another.** If you can't tell two arrows apart at a glance, the layout has failed.
+15. **NEVER route a connector behind a box that isn't its source or destination — except when the box is geometrically unavoidable on a direct orthogonal path.** Reroute around intervening boxes by default.
+    - In the narrow exception, the stroke must be **dashed** to signal "transit, not interaction". One example is a cross-cutting footer service that physically sits between source and destination on the only straight path.
+    - In that exception the label sits at the **visible end** of the connector, so it doesn't fall behind the intervening box. No marker (arrowhead) may land on the intervening box's edge.
+    - When in doubt, reroute. The exception is for geometrically impossible rerouting, not a shortcut to avoid layout work.
 
 ### ESCALATE IF
 
@@ -310,7 +331,9 @@ Run the applicable validation gate before delivery. `html-svg` requires the tast
 
 This section holds the format-resolution rule, the request-shape signals, the phase map, the resource domains, the loading-level table and the router pseudocode the SMART ROUTING summary above points at.
 
-Resolve the output format before selecting resources: **`html-svg`** is the default for the existing Generate, Import, and Export paths; **`ascii-markdown`** is for plain-text or box-drawing flowcharts in markdown. Then `html-svg` selects a type/import/export reference, while `ascii-markdown` selects one pattern from `references/ascii-format/pattern-selection.md` and `assets/ascii-patterns/`. `references/types/type-flowchart.md` remains the HTML/SVG flowchart TYPE reference, not the ASCII/markdown format path.
+Resolve the output format before selecting resources. **`html-svg`** is the default for the existing Generate, Import, and Export paths. **`ascii-markdown`** is for plain-text or box-drawing flowcharts in markdown.
+
+Then `html-svg` selects a type/import/export reference, while `ascii-markdown` selects one pattern from `references/ascii-format/pattern-selection.md` and `assets/ascii-patterns/`. `references/types/type-flowchart.md` remains the HTML/SVG flowchart TYPE reference, not the ASCII/markdown format path.
 
 ### Format Resolution
 

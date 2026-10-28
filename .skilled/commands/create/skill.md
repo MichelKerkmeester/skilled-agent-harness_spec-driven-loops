@@ -63,7 +63,10 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-skill-auto.yaml` for `:auto`, `create-skill-confirm.yaml` for `:confirm` or an omitted mode) runs the unified skill workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `full-create`, `full-update`, `reference-only`, or `asset-only` operation branch to create or update OpenCode skills. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-skill-auto.yaml` for `:auto`, `create-skill-confirm.yaml` for `:confirm` or an omitted mode) runs the unified skill workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `full-create`, `full-update`, `reference-only`, or `asset-only` operation branch to create or update OpenCode skills.
+`:auto` executes autonomously.
+`:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
 Generated routing follows the routing canon: `SMART ROUTING` is 8 to 12 lines of plain prose, any machine router block sits in the final `## MACHINE ROUTER` section, a mode packet never carries `ROUTER.md`, and the hub keeps one root `ROUTER.md`.
 

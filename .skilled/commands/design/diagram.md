@@ -34,7 +34,15 @@ Route /design:diagram to its presentation contract and workflow YAML for produci
 
 1. Read `.skilled/commands/design/assets/diagram-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
-3. Treat the following as workflow inputs rather than execution modes: the positional target path (`.html` for a diagram, `.md` for a flowchart), the remaining positional text as the description, `--import <src>` to redraw an existing draw.io or Mermaid source instead of describing one, `--type <t>` to name one of the 27 diagram types, `--format <f>` to choose the export format (`png`, `svg`, or `html+png`), and `--output-format` to choose the artifact family. Under `:auto`, a `PRE-BOUND SETUP ANSWERS:` block in the prompt body supplies the setup answers non-interactively.
+3. Treat the following as workflow inputs rather than execution modes:
+   - the positional target path (`.html` for a diagram, `.md` for a flowchart)
+   - the remaining positional text as the description
+   - `--import <src>` to redraw an existing draw.io or Mermaid source instead of describing one
+   - `--type <t>` to name one of the 27 diagram types
+   - `--format <f>` to choose the export format (`png`, `svg` or `html+png`)
+   - `--output-format` to choose the artifact family
+
+   Under `:auto`, a `PRE-BOUND SETUP ANSWERS:` block in the prompt body supplies the setup answers non-interactively.
 4. Resolve output format before selecting a diagram type or ASCII pattern: `html-svg` is the default; `ascii-markdown` is selected by `--output-format ascii-markdown`, a markdown target, or ASCII/flowchart request signals. Preserve `--format` for export formats. If the output format is ambiguous, use the presentation contract's `UNKNOWN_FALLBACK` path rather than guessing.
 5. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 6. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
@@ -64,5 +72,14 @@ The router must not invent visible wording for those surfaces; it only selects t
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`diagram-auto.yaml` for `:auto`, `diagram-confirm.yaml` for `:confirm` or an omitted mode) runs the workflow step by step after Phase 0 verification and setup resolution: resolve `html-svg` versus `ascii-markdown`, detect the request shape for `html-svg`, load the style guide and matching type/import/export reference or the ASCII pattern-selection/pattern asset, create or redraw the requested artifact, and run the applicable taste gate or `validate-flowchart.sh` check before delivery. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`diagram-auto.yaml` for `:auto`, `diagram-confirm.yaml` for `:confirm` or an omitted mode) runs the workflow step by step after Phase 0 verification and setup resolution.
+It resolves `html-svg` versus `ascii-markdown`.
+For `html-svg`, it detects the request shape.
+It loads the style guide and matching type/import/export reference.
+For ASCII, it loads the pattern-selection/pattern asset.
+It creates or redraws the requested artifact.
+Before delivery, it runs the applicable taste gate or `validate-flowchart.sh` check.
+`:auto` executes autonomously.
+`:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards and result display come from the presentation contract, not this router.
 

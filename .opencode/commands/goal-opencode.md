@@ -51,7 +51,9 @@ This command is state-free. It never reads or writes `.skilled/skills/.state/goa
 
 Status output reports the continuation field `provider_retry_after_ms`. No budget, turn count or elapsed time limits continuation.
 
-Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line; `bind` responses carry `mutation=bound` or `mutation=rebound` plus `packet_path`, `packet_nested`, `packet_slice_hash` and `resend_pending`. `created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
+Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line.
+`bind` responses carry `mutation=bound` or `mutation=rebound` plus `packet_path`, `packet_nested`, `packet_slice_hash` and `resend_pending`.
+`created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
 
 When `OPENCODE_GOAL_PLUGIN_DISABLED=1`, plugin tools fail closed. The command must print the tool result verbatim, including `STATUS=FAIL ACTION=<action> ERROR="..."` and `code=PLUGIN_DISABLED`.
 

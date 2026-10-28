@@ -62,5 +62,8 @@ The router must not invent visible wording for those surfaces; it only selects t
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-command-auto.yaml` for `:auto`, `create-command-confirm.yaml` for `:confirm` or an omitted mode) runs the command-authoring workflow step by step after Phase 0 verification and setup resolution, creating or updating OpenCode slash command sets. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-command-auto.yaml` for `:auto`, `create-command-confirm.yaml` for `:confirm` or an omitted mode) runs the command-authoring workflow step by step after Phase 0 verification and setup resolution, creating or updating OpenCode slash command sets.
+`:auto` executes autonomously.
+`:confirm` runs the same steps as an interactive checkpointed workflow.
+All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 

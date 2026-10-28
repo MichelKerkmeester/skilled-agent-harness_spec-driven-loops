@@ -2,7 +2,7 @@
 name: cli-external-orchestration
 description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.7.10.0
+version: 1.7.11.0
 metadata:
   family: cli
 ---
@@ -11,7 +11,9 @@ metadata:
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, seven workflow modes — one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
+One skill, seven workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
+Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`.
+This hub holds NO per-mode logic. Each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet. The hub routes by `workflowMode`.
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
 
@@ -57,6 +59,21 @@ The directive and remaining routing detail live in the final `MACHINE ROUTER` se
 ---
 
 ## 3. HOW IT WORKS
+
+### Terms
+
+- **`workflowMode`**: the public mode key this hub resolves to one CLI packet.
+- **`packetKind`**: the axis a mode sits on, and every mode here is `workflow` because all seven orchestrate a CLI binary.
+- **`backendKind`**: which backend runs the mode, recorded per mode in `mode-registry.json`.
+- **`toolSurface`**: the tools a mode may and may not use, together with its `mutatesWorkspace` flag.
+- **`advisorRouting`**: how the advisor finds the mode, which is `routingClass: "metadata"` throughout this hub, so the advisor routes the hub and the hub picks the mode.
+- **`mode-registry.json`**: the registry that owns each mode's discriminator, packet folder, aliases and `advisorRouting`, plus the executor-delegation scorer's one list of CLI executors.
+- **`hub-router.json`**: stage one's `routerPolicy`, `routerSignals` and `vocabularyClasses`.
+- **`vocabularyClasses`**: the authored mode vocabulary that `routerSignals` are scored against.
+- **`tieBreak`**: the `routerPolicy` order that ranks the seven modes when scores are close.
+- **leaf resource**: a packet-qualified file that a selected mode loads, named in `RESOURCE_MAP` and dual-read to a typed pair through `leaf-manifest.json`.
+- **`orderedBundle`**: the outcome where several explicitly requested executors route in `tieBreak` order.
+- **`defer`**: the outcome where unclear or contradictory dispatch intent asks for disambiguation instead of defaulting to `cli-opencode`.
 
 ### Layout
 
@@ -134,7 +151,12 @@ cli-external-orchestration/
 
 ### Recursion Guards Stay Packet-Local
 
-Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile or a documented heuristic), not path-based, so it is unaffected by this hub's routing layer. Two asymmetries are deliberate and preserved: `cli-opencode` carries a parallel-detached carve-out that `cli-claude-code` intentionally does not, and `cli-pi` is exempt from the two layers that mean "the caller is inside this CLI" — Pi has no in-process delegation left, so refusing those would leave a Pi session no way to hand work out. The layers that bound a spawn chain, fan-out lineage and dispatch stack, apply to every mode without exception.
+Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile or a documented heuristic), not path-based. The hub's routing layer does not affect it.
+Two asymmetries are deliberate and preserved:
+- `cli-opencode` carries a parallel-detached carve-out that `cli-claude-code` intentionally does not.
+- `cli-pi` is exempt from the two layers that mean "the caller is inside this CLI". Pi has no in-process delegation left, so refusing those would leave a Pi session no way to hand work out.
+
+The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to every mode without exception.
 
 ---
 
@@ -150,7 +172,11 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
 - Keep the surface router's `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
 - Keep every `RESOURCE_MAP` path packet-qualified (`<packet>/references|assets/…`) and resolving on disk.
-- Treat the installed binary as the authority for flags and enum values, and `--help` as an incomplete summary of it. A value this skill documents but help omits is not thereby fabricated — several CLIs here accept aliases and legacy names their help text never prints. Before changing or reporting a documented flag value as invalid, probe the binary with an argument that forces parse-time validation without starting a billable session (e.g. pointing a file-taking flag at a nonexistent path: a rejected enum fails first, an accepted one reaches the file error). Enums also move between releases, so re-probe after an upgrade instead of trusting a recorded result.
+- Treat the installed binary as the authority for flags and enum values. Treat `--help` as an incomplete summary.
+- A value this skill documents but help omits is not thereby fabricated. Several CLIs here accept aliases and legacy names their help text never prints.
+- Before changing or reporting a documented flag value as invalid, probe the binary with an argument that forces parse-time validation without starting a billable session.
+- For example, point a file-taking flag at a nonexistent path. A rejected enum fails first; an accepted one reaches the file error.
+- Enums move between releases. Re-probe after an upgrade instead of trusting a recorded result.
 - Read the target mode's `SKILL.md` before composing any dispatch prompt (constitutional cli-dispatch-skill-preload rule) — the advisor recommendation alone does not waive this.
 - Attach the resolved agent persona to every external-CLI dispatch (AGENTS.md §9 runtime agent dir; the right agent per subtask, never a bare task) — each mode's `SKILL.md` carries the native-surface-vs-inline mechanic, and the canonical contract is `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 
@@ -196,7 +222,11 @@ The compiled-routing directive and remaining routing detail live here.
 
 ### Two-Axis Model
 
-- `packetKind: "workflow"` — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary and their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`). None is a transport packet: all classify intent, choose/confirm a provider, and conduct the dispatched session. (`cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.)
+- `packetKind: "workflow"`:
+  - `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary.
+  - Their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`).
+  - None is a transport packet. All classify intent, choose/confirm a provider, and conduct the dispatched session.
+  - `cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.
 - No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes.
 
 ### Routing Rule
@@ -217,10 +247,22 @@ read hub-router.json
 
 ### Surface Router — per-mode leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (every mode in `mode-registry.json`, plus the deliberate absence: a bare CLI-dispatch phrase that names no executor fires no intent and defers at the hub), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay parses, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `cli-opencode`). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines three things:
+- The per-mode leaf-intent model. It covers every mode in `mode-registry.json`, plus one deliberate absence: a bare CLI-dispatch phrase that names no executor fires no intent and defers at the hub.
+- The machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay parses.
+- The how-to-read rules: a dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `cli-opencode`.
+
+Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 `ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
 
 ### Executor Delegation
 
-A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`. See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
+A specific-executor prompt is resolved by the system-skill-advisor's executor-delegation scorer. Examples include:
+- "use cli-opencode", "delegate to opencode", and "get a claude code second opinion".
+- "delegate to codex", "delegate to cursor", "delegate to devin", and "delegate to pi".
+- A small model that dispatches through one.
+
+The scorer sources its alias table from THIS hub's `mode-registry.json`, keyed by each mode's `packetSkillName`.
+It resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`.
+See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.

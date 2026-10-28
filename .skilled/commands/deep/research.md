@@ -62,10 +62,22 @@ You were invoked via `opencode run --command deep/research` with the `:auto` suf
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
 - PROCEED immediately: load the auto workflow YAML and dispatch the `deep-research` agent to run ONE iteration of the research loop over the bound target.
-- DISPATCH ONLY: you dispatch `deep-research` to run one iteration; you do NOT read, edit, patch, or run the research loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-research` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.
+- DISPATCH ONLY: You dispatch `deep-research` to run one iteration.
+  You do NOT read, edit, patch or run the research loop over the target yourself.
+  The auto workflow YAML owns the loop itself.
+  It owns setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis and all loop-level artifact writes.
+  The `deep-research` leaf owns only its own single-iteration artifacts.
+  Mixing your inline work with the dispatch is a route violation.
 - ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-research` writes each iteration state record with the route-proof fields present — `target_agent: "deep-research"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "research"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
-Your job is to DISPATCH `deep-research` to run ONE iteration of the research loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. The auto workflow YAML owns the loop itself (setup, dispatch-per-iteration, reducer sync, convergence, synthesis, and loop-level writes). This contract is your instruction set; the research target is the bound spec_folder/target named in your message, never this document.
+Your job is to DISPATCH `deep-research` to run ONE iteration of the research loop over the bound target.
+You do NOT run the loop yourself.
+You do NOT review or analyze this contract.
+You do NOT summarize this contract.
+The auto workflow YAML owns the loop itself.
+It owns setup, dispatch-per-iteration, reducer sync, convergence, synthesis and loop-level writes.
+This contract is your instruction set.
+The research target is the bound spec_folder/target named in your message, never this document.
 
 ---
 
@@ -127,7 +139,9 @@ the prompt body binds the same values without an interactive prompt.
 
 `--dry-run` is a first-class flag on the confirm flow, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering, and convergence reads when those steps can run without side effects.
 
-When `dry_run=true`, the confirm YAML emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn. A fresh packet will stop at the first persistent state boundary; an existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
+When `dry_run=true`, the confirm YAML emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn.
+A fresh packet will stop at the first persistent state boundary.
+An existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
 
 ---
 

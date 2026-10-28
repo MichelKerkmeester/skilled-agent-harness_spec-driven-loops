@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.1.12.0
+version: 2.1.13.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -14,7 +14,19 @@ metadata:
 
 **Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
 
-Detection is two-step. First, the surface trigger is work under `.skilled/` (including `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts, and changelogs). Second, once the Skilled surface is selected, file extensions and local markers select the language trio: `.cjs`/`.mjs`/`.js` -> JavaScript, `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript, `.py` plus `argparse` -> Python, `.sh`/`.bash` -> shell, `.rs` -> Rust, `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config. For Rust, when no `.rs` file is present, local `Cargo.toml`/`Cargo.lock` markers select it after the Skilled surface is established; napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-project surface detectors.
+Detection has two steps:
+
+- First, select the Skilled surface for work under `.skilled/`. This includes `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts and changelogs.
+- Then use file extensions and local markers to select the language trio:
+  - `.cjs`/`.mjs`/`.js` -> JavaScript
+  - `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript
+  - `.py` plus `argparse` -> Python
+  - `.sh`/`.bash` -> shell
+  - `.rs` -> Rust
+  - `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config
+
+For Rust, when no `.rs` file is present, local `Cargo.toml`/`Cargo.lock` markers select it after the Skilled surface is established.
+napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-project surface detectors.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
@@ -27,10 +39,43 @@ Detection is two-step. First, the surface trigger is work under `.skilled/` (inc
 ## 2. REFERENCE MAP
 
 Language standards — after `.skilled/` selects this surface, load the exact split resources for the detected language:
-- TypeScript — `references/typescript/style-guide/overview-strict-and-naming.md`, `references/typescript/style-guide/formatting-imports-and-coexistence.md`, `references/typescript/quality-standards/overview-and-type-system.md`, `references/typescript/quality-standards/tsdoc-errors-and-async.md`, `references/typescript/quality-standards/tsconfig-and-modules.md`, `references/typescript/quick-reference/template-naming-and-types.md`, `references/typescript/quick-reference/imports-errors-and-tsconfig.md`
+- TypeScript:
+  - `references/typescript/style-guide/overview-strict-and-naming.md`
+  - `references/typescript/style-guide/formatting-imports-and-coexistence.md`
+  - `references/typescript/quality-standards/overview-and-type-system.md`
+  - `references/typescript/quality-standards/tsdoc-errors-and-async.md`
+  - `references/typescript/quality-standards/tsconfig-and-modules.md`
+  - `references/typescript/quick-reference/template-naming-and-types.md`
+  - `references/typescript/quick-reference/imports-errors-and-tsconfig.md`
 - Python — `references/python/style-guide.md`, `references/python/quality-standards.md`, `references/python/quick-reference.md`
-- Shell — `references/shell/style-guide/overview-structure-and-naming.md`, `references/shell/style-guide/variables-functions-and-output.md`, `references/shell/quality-standards/overview-and-priority-blockers.md`, `references/shell/quality-standards/validation-security-and-shellcheck.md`, `references/shell/quick-reference/template-variables-and-loops.md`, `references/shell/quick-reference/functions-strings-and-checklist.md`
-- Rust — `references/rust/style-guide/overview-and-file-header.md`, `references/rust/style-guide/toolchain-and-project-structure.md`, `references/rust/style-guide/naming-conventions.md`, `references/rust/style-guide/formatting-and-imports.md`, `references/rust/style-guide/commenting-and-rustdoc.md`, `references/rust/style-guide/interop-model.md`, `references/rust/style-guide/interop-errors-and-parity.md`, `references/rust/quality-standards/overview-and-data-ownership.md`, `references/rust/quality-standards/modeling-collections-and-api.md`, `references/rust/quality-standards/docs-errors-and-async.md`, `references/rust/quality-standards/build-and-organization.md`, `references/rust/quality-standards/determinism-and-parity.md`, `references/rust/quick-reference/overview-and-boundary-template.md`, `references/rust/quick-reference/naming-ordering-and-signatures.md`, `references/rust/quick-reference/collections-imports-and-errors.md`, `references/rust/quick-reference/rustdoc-and-cargo.md`, `references/rust/quick-reference/determinism-parity-and-related.md`
+- Shell:
+  - `references/shell/style-guide/overview-structure-and-naming.md`
+  - `references/shell/style-guide/variables-functions-and-output.md`
+  - `references/shell/quality-standards/overview-and-priority-blockers.md`
+  - `references/shell/quality-standards/validation-security-and-shellcheck.md`
+  - `references/shell/quick-reference/template-variables-and-loops.md`
+  - `references/shell/quick-reference/functions-strings-and-checklist.md`
+- Rust:
+  - Style guide:
+    - `references/rust/style-guide/overview-and-file-header.md`
+    - `references/rust/style-guide/toolchain-and-project-structure.md`
+    - `references/rust/style-guide/naming-conventions.md`
+    - `references/rust/style-guide/formatting-and-imports.md`
+    - `references/rust/style-guide/commenting-and-rustdoc.md`
+    - `references/rust/style-guide/interop-model.md`
+    - `references/rust/style-guide/interop-errors-and-parity.md`
+  - Quality standards:
+    - `references/rust/quality-standards/overview-and-data-ownership.md`
+    - `references/rust/quality-standards/modeling-collections-and-api.md`
+    - `references/rust/quality-standards/docs-errors-and-async.md`
+    - `references/rust/quality-standards/build-and-organization.md`
+    - `references/rust/quality-standards/determinism-and-parity.md`
+  - Quick reference:
+    - `references/rust/quick-reference/overview-and-boundary-template.md`
+    - `references/rust/quick-reference/naming-ordering-and-signatures.md`
+    - `references/rust/quick-reference/collections-imports-and-errors.md`
+    - `references/rust/quick-reference/rustdoc-and-cargo.md`
+    - `references/rust/quick-reference/determinism-parity-and-related.md`
 - Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/style-guide.md`, `references/config/quality-standards.md`, `references/config/quick-reference.md`, `assets/checklists/config-checklist.md`
 - JavaScript (CommonJS/ESM plugins) — `references/javascript/style-guide.md`, `references/javascript/quality-standards/overview-modules-and-docs.md`, `references/javascript/quality-standards/security-testing-and-exemptions.md`, `references/javascript/quick-reference.md`
 
@@ -40,7 +85,27 @@ Language-agnostic shared tier (`references/shared/`, always kept within OpenCode
 - `alignment-verification-automation.md` — the alignment-drift verifier
 - `workflow-guardrails.md`: OpenCode-only implementation guardrails, the verification command chain and runtime build traps, applied on top of the shared implement and verify workflow
 
-Authoring and validation assets: `assets/checklists/agent-authoring.md`, `assets/checklists/command-authoring.md`, `assets/checklists/javascript-checklist.md`, `assets/checklists/mcp-server-authoring.md`, `assets/checklists/python-checklist.md`, `assets/checklists/rust-checklist/overview-and-p0-parity.md`, `assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `assets/checklists/rust-checklist/p1-required.md`, `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `assets/checklists/shell-checklist.md`, `assets/checklists/skill-authoring.md`, `assets/checklists/typescript-checklist.md`, `assets/checklists/universal-checklist.md`, `assets/scripts/README.md`, `references/shared/alignment-verification-automation.md`, `references/shared/hooks.md`
+Authoring and validation assets:
+
+- Checklists:
+  - `assets/checklists/agent-authoring.md`
+  - `assets/checklists/command-authoring.md`
+  - `assets/checklists/javascript-checklist.md`
+  - `assets/checklists/mcp-server-authoring.md`
+  - `assets/checklists/python-checklist.md`
+  - `assets/checklists/rust-checklist/overview-and-p0-parity.md`
+  - `assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`
+  - `assets/checklists/rust-checklist/p1-required.md`
+  - `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`
+  - `assets/checklists/shell-checklist.md`
+  - `assets/checklists/skill-authoring.md`
+  - `assets/checklists/typescript-checklist.md`
+  - `assets/checklists/universal-checklist.md`
+- Scripts:
+  - `assets/scripts/README.md`
+- References:
+  - `references/shared/alignment-verification-automation.md`
+  - `references/shared/hooks.md`
 
 Workflow: the implement -> debug -> verify phases use the split shared, language, hook, and alignment resources above; no root-level `workflow-*.md` trio is assumed.
 
@@ -58,9 +123,27 @@ The python block that encodes this routing lives in the final `MACHINE ROUTER` s
 
 - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality-standards/overview-modules-and-docs.md` and the plugin exemption tier.
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality-standards.md`.
-- **Alignment drift is a verification gate.** System-code changes re-run the four live sk-code drift guards through the single entry point `scripts/run-all-drift-guards.sh` before any completion claim: `assets/scripts/verify_alignment_drift.py` (language integrity, plus dead RESOURCE_MAP routes with `--check-router`) and `assets/scripts/verify_stack_folders.py` (language reference folders resolve). The router-sync guard (`assets/scripts/verify-router-sync.cjs`) restores the four checks of the `sk-code-router-sync.vitest.ts` suite, which was deleted, and the wrapper runs every leg of it (1a, 1b, 2, 3 and 4): (1) router paths exist on disk, every routable doc is routed, and every full path the prose maps name is routed; (2) the parent RESOURCE_MAP equals the union of the surface children's maps plus the parent tier; (3) compiled route-gold destinations, `leaf-manifest.json` and this RESOURCE_MAP agree through `qualifiedIdToLeaf`; (4) every playbook routing scenario's `expected_resource` is emitted by the router. The dead-path part of (1) is also checked by `--check-router`. Leg 1b, the orphan-doc walk, fails on any reference or asset doc that no router names. It allowlists only the three shared workflow docs, which each surface reaches through a symlink. `.github/workflows/routing-registry-drift.yml` covers the compiled side of (3) and (4) in CI only, with the admission step warn-only. The documentation claim guard (`assets/scripts/verify-doc-claims.cjs`) reads the sk-code prose the other guards skip, from the hub folder on disk: path references resolve, no retired packet name remains, every surface count matches the surface modes in `mode-registry.json` and every file the `ROUTER.md` load-tier prose says loads on every route is in `DEFAULT_RESOURCE`. Lines that keep a legacy name on purpose sit in its allowlist with a reason. See `references/shared/alignment-verification-automation.md`. The wrapper scans repository content only: files git tracks, so ignored trees, sibling worktrees and vendored clones stay out of a gate they can never pass. It exits 0 on a clean tree, so a completion claim requires wrapper rc 0 rather than a delta against a backlog.
+- **Alignment drift is a verification gate.** Before any completion claim, re-run the four live sk-code drift guards on a system-code change through the single entry point `scripts/run-all-drift-guards.sh`.
+  - `assets/scripts/verify_alignment_drift.py` checks language integrity, plus dead RESOURCE_MAP routes with `--check-router`.
+  - `assets/scripts/verify_stack_folders.py` checks that language reference folders resolve.
+  - `assets/scripts/verify-router-sync.cjs` is the router-sync guard. It restores the four checks of the `sk-code-router-sync.vitest.ts` suite, which was deleted, and the wrapper runs every leg of it: 1a, 1b, 2, 3 and 4.
+    - Check (1): router paths exist on disk, every routable doc is routed, and every full path the prose maps name is routed.
+    - Check (2): the parent RESOURCE_MAP equals the union of the surface children's maps plus the parent tier.
+    - Check (3): compiled route-gold destinations, `leaf-manifest.json` and this RESOURCE_MAP agree through `qualifiedIdToLeaf`.
+    - Check (4): every playbook routing scenario's `expected_resource` is emitted by the router.
+  - The dead-path part of check (1) is also checked by `--check-router`. Leg 1b, the orphan-doc walk, fails on any reference or asset doc that no router names. It allowlists only the three shared workflow docs, which each surface reaches through a symlink.
+  - `.github/workflows/routing-registry-drift.yml` covers the compiled side of (3) and (4) in CI only, with the admission step warn-only.
+  - The documentation claim guard (`assets/scripts/verify-doc-claims.cjs`) reads the sk-code prose the other guards skip, from the hub folder on disk.
+    It checks that path references resolve and that no retired packet name remains.
+    It also checks that every surface count matches the surface modes in `mode-registry.json`, and that every file the `ROUTER.md` load-tier prose says loads on every route is in `DEFAULT_RESOURCE`.
+    Lines that keep a legacy name on purpose sit in its allowlist with a reason. See `references/shared/alignment-verification-automation.md`.
+  The wrapper scans repository content only: the files git tracks, so ignored trees, sibling worktrees and vendored clones stay out of a gate they can never pass. It exits 0 on a clean tree, so a completion claim requires wrapper rc 0 rather than a delta against a backlog.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
-- **Touched-language set, not one-per-task.** Most `.skilled/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
+- **Touched-language set, not one-per-task.** Most `.skilled/` tasks touch a single language. Keep that slice tight and use the shared tier for cross-language rules.
+
+An interop task that spans a language pair, such as a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle, legitimately touches both languages.
+The router selects the languages the task actually touches and loads both trios plus the shared tier.
+You cannot hold Rust byte-identical to TypeScript without seeing both standards.
 
 ---
 
@@ -82,9 +165,17 @@ Spec-folder authoring lives in system-spec-kit (`.skilled/skills/system-spec-kit
 
 ## 5. QUALITY CHECKLIST MAP
 
-This is this repository's quality checklist map, not a universal one. The quality runner resolves checklists from two sources: the rows the quality mode owns in `../sk-code-quality/assets/quality-defaults.json`, and each surface's `quality.checklists` declaration in `../mode-registry.json`. This table renders both, in that order, and `scripts/tests/quality-checklist-map.test.cjs` fails when the two differ. In any repository, `node ../sk-code-quality/scripts/quality-gate.cjs --explain <path>` names the checklists for one file and why.
+This is this repository's quality checklist map, not a universal one.
+The quality runner resolves checklists from two sources: the rows owned by the quality mode in `../sk-code-quality/assets/quality-defaults.json` and each surface's `quality.checklists` declaration in `../mode-registry.json`.
+This table renders both sources in that order.
+`scripts/tests/quality-checklist-map.test.cjs` fails when the two differ.
+In any repository, run `node ../sk-code-quality/scripts/quality-gate.cjs --explain <path>` to see the checklists for a file and why they apply.
 
-A SKILLED row applies only to a file that resolves to SKILLED. A `sk-code-ci` row applies by path alone, because that surface declares no detection block. The spec-folder row applies only inside this hub's own repository. Applies to lists path globs and extensions, and a row with several values matches on any of them. The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when the target is MCP server source.
+A SKILLED row applies only to a file that resolves to SKILLED.
+A `sk-code-ci` row applies by path alone because that surface declares no detection block.
+The spec-folder row applies only inside this hub's own repository.
+Applies to lists path globs and extensions. A row with several values matches on any of them.
+The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when your target is MCP server source.
 
 | Owner | Applies to | Checklist |
 | --- | --- | --- |

@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 0.23.3.0
+version: 0.23.4.0
 metadata:
   packetKind: workflow
 ---
@@ -44,7 +44,30 @@ Use another `sk-doc` packet when:
 
 The boundary against `sk-design-diagram` is the one that actually gets tested, because that packet already names bar, line, scatter and radar in its own selection guide. The split is what the artifact carries. A diagram carries a structure a reader follows. A chart carries values a reader compares.
 
-The hub router splits the two by name. `sk-design-diagram` keeps the bare type names it documents, which are `bar chart`, `line chart`, `scatter plot`, `radar chart`, `gantt chart` and `org chart`. This packet answers the form names that packet has no file for, such as `treemap`, `waterfall chart`, `heatmap`, `box plot` and `histogram`, plus the data-qualified phrasings `bar chart of`, `line chart of` and `scatter plot of`. A request that names a bare type and asks for a diagram reaches both, and the router asks which one rather than guessing.
+The hub router splits the packets by name. `sk-design-diagram` documents these bare type names:
+
+- `bar chart`
+- `line chart`
+- `scatter plot`
+- `radar chart`
+- `gantt chart`
+- `org chart`
+
+This packet answers form names that diagram has no file for, such as:
+
+- `treemap`
+- `waterfall chart`
+- `heatmap`
+- `box plot`
+- `histogram`
+
+It also answers these data-qualified phrasings:
+
+- `bar chart of`
+- `line chart of`
+- `scatter plot of`
+
+If you name a bare type and ask for a diagram, the request reaches both packets. The router asks you which one you mean instead of guessing.
 
 `radar chart` is the one name where the split by name and the split by artifact disagree, and the
 two documents used to answer it differently with nothing saying so. By name it goes to
@@ -93,7 +116,14 @@ route that extraction to `sk-design-md-generator`; this packet owns application,
 
 ### What the corpus holds
 
-Twenty-nine chart forms across six question families: comparison, composition, time, distribution, relationship and matrix. `references/catalog.md` is the index and the corpus check reads it in both directions, so a row naming a missing file and a file carrying no row both fail. One form is one file. There are no gallery pages to lift a block out of, because what reaches a reader is a delivery and a gallery ships every other form's demo data alongside the one they asked for. When no row answers the question in front of you, report the gap rather than improvising a form.
+Use one file for each form.
+
+The corpus contains twenty-nine chart forms across six question families: comparison, composition, time, distribution, relationship and matrix. `references/catalog.md` is the index. The corpus check reads it in both directions:
+
+- A row that names a missing file fails.
+- A file with no catalog row also fails.
+
+There are no gallery pages to lift a block out of, because a chart reaches a reader as a delivery and a gallery ships every other form's demo data alongside the requested one. If no row answers your question, report the gap instead of improvising a form.
 
 The corpus shares a measured visual register for card anatomy, type scale, bare axes, bar and line geometry, positioned HTML tooltip cards and keyed legend chips. Each template accepts `?scheme=light` or `?scheme=dark` and sets `data-scheme` before it paints, because a capture on a dark machine has no other way to see the light rendering.
 

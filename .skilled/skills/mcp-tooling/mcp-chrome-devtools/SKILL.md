@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.16.1
+version: 1.0.17.1
 ---
 
 <!-- Keywords: chrome-devtools, cdp, browser-debugger-cli, bdg, browser-automation, terminal-debugging, screenshot-capture, network-monitoring, mcp-code-mode, orchestrator -->
@@ -187,7 +187,9 @@ Use `bdg cdp --list`, `bdg cdp --describe <domain>`, `bdg cdp --search <term>`, 
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md`, and `references/troubleshooting.md`. Assets: [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) — the registered-state snapshot of the `chrome_devtools_1` / `chrome_devtools_2` Code Mode manuals (verify, don't re-add).
+The router discovers Markdown resources dynamically from `references/` and `assets/` when those directories exist.
+This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md` and `references/troubleshooting.md`.
+The asset [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) is the registered-state snapshot of the `chrome_devtools_1` and `chrome_devtools_2` Code Mode manuals. Verify them, do not re-add them.
 
 Scripts: `scripts/install.sh`.
 

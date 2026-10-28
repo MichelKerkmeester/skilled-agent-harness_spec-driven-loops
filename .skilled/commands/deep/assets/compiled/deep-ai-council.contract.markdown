@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/ai-council.md",
-      "sha256": "b7008e88ec5e36651e315c8315db9427ef3090bcae76e82cbdba2388eacb70a3",
+      "sha256": "958914093861223f06c74ae1ad24fc0aca40cfab927ef5cac1a304e0ae71d908",
       "section": "full"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "11df67a7166d593f03804a68c859db696b8106714dc0ed8fecf41e36e02f9f83",
+      "sha256": "17de442d0d0fe2a6f727569549c05645003417e7d37b27561923222d29e172e1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "45e8671609750521dc00bf05e59ba6730ed8e0cb8fd7572f85e1dbe28661d2f4",
+      "sha256": "0aa2dda26bae63e5d68da955607fb6461e326cfdefcf96b1ec6c90c4d073ca81",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "495c809367b740bc433552b425a8d6b22d9c73407ac18848d73e6cd191e3f39c",
+      "sha256": "2ef5dab87fb40a6af60333944bcc17e21935f8cbf283f96680b6c59928711042",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".skilled/agents/ai-council.md",
-      "sha256": "d63992d97636e006756de9620fca3c861fc330908ab2e92b046e23f9088b6b15",
+      "sha256": "b3082079b746203d4532a9e5c0458a73134f574fafa8f064240bb069adcbb853",
       "section": "full"
     },
     {

@@ -75,7 +75,9 @@ DESIGN REQUEST
 
 **Deliverable, not mention.** The test is what the request asks you to produce, not which nouns it contains. A measured `DESIGN.md` handed over as *input* is a decide request — `sk-design` treats an existing reference as ground truth that outranks its own defaults. Only when the reference or `tokens.json` is the thing to be produced does it route to MEASURE.
 
-**The brief-only case belongs to MEASURE.** A request that names `DESIGN.md`, "style reference" or `tokens.json` as its deliverable routes to `sk-design-md-generator` even with no URL to crawl, because that skill owns the refusal: its `references/authoring-boundary.md` sorts every value into measured, brief-provided, inferred or absent. Routing it to `sk-design` on the technicality that nothing can be crawled skips the exact check the request needs.
+**The brief-only case belongs to MEASURE.** A request that names `DESIGN.md`, "style reference" or `tokens.json` as its deliverable routes to `sk-design-md-generator` even with no URL to crawl, because that skill owns the refusal.
+Its `references/authoring-boundary.md` sorts every value into measured, brief-provided, inferred or absent.
+Routing the request to `sk-design` on the technicality that nothing can be crawled skips the exact check the request needs.
 
 One caveat on vocabulary: `sk-design` ships `tokens.css` (a starter scale it authors), while `sk-design-md-generator` owns `tokens.json` (values measured off a page). A request for design tokens *from scratch* is authoring, and belongs to DECIDE.
 
@@ -101,9 +103,13 @@ Both skills state this boundary in their own words. If the dispatch prompt appea
 4. **Run the pipeline.** Execute the owned extract-write-validate scripts from the repo root with a spec-folder `--output`; capture provenance and label inferred-versus-measured values.
 5. **Verify.** Run the fidelity validator (hex accuracy, section completeness, Quick-Start fidelity) before reporting. Never claim completion without evidence.
 
-**Brief-only, no URL.** This is the case Step 1 routes here on purpose, and it matches none of the four phases. Apply the skill's own refusal instead of the pipeline: produce no Style Reference content, and return either a request for the live URL or an explicit out-of-scope statement citing `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` by path. Do not run readiness checks or the extractor — there is nothing to crawl.
+**Brief-only, no URL.** This is the case Step 1 routes here on purpose, and it matches none of the four phases.
+Apply the skill's own refusal instead of the pipeline: produce no Style Reference content, and return either a request for the live URL or an explicit out-of-scope statement citing `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` by path.
+Do not run readiness checks or the extractor — there is nothing to crawl.
 
-**Reading versus authoring.** That skill's `design-knowledge/numeric-design-laws.md` records type ratios, a spacing scale and motion bands as targets for **reading** a measured surface. They are observations, never instructions to author a new scale. When a measured reference reports a ratio, do not generate the next size by multiplying it — that is the authoring direction, and it belongs to `sk-design`.
+**Reading versus authoring.** That skill's `design-knowledge/numeric-design-laws.md` records type ratios, a spacing scale and motion bands as targets for **reading** a measured surface.
+They are observations, never instructions to author a new scale.
+When a measured reference reports a ratio, do not generate the next size by multiplying it — that is the authoring direction, and it belongs to `sk-design`.
 
 ---
 

@@ -75,4 +75,11 @@ Startup questions, the session-goal redirect wording, checkpoint prompts, succes
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-goal-auto.yaml` for `:auto`, `create-goal-confirm.yaml` for `:confirm` or an omitted mode) runs the goal workflow step by step: read the packet's sources, pick the operation, copy the template for the goal's kind, fill it against the authoring standards, match any phase-parent binding table to the phase folders on disk, measure the durable slice, run the goal checker, then print the packet's `chat_slice` and stop. `:confirm` checkpoints after the operation is chosen, before any goal file is written, and before handoff. All prompts and result wording come from the presentation contract, not this router.
+The bound workflow YAML (`create-goal-auto.yaml` for `:auto`, `create-goal-confirm.yaml` for `:confirm` or an omitted mode) runs the goal workflow step by step.
+It reads the packet's sources and picks the operation.
+It copies the template for the goal's kind and fills it against the authoring standards.
+It matches any phase-parent binding table to the phase folders on disk.
+It measures the durable slice and runs the goal checker.
+Then it prints the packet's `chat_slice` and stops.
+`:confirm` checkpoints after the operation is chosen, before any goal file is written and before handoff.
+All prompts and result wording come from the presentation contract, not this router.

@@ -2,7 +2,7 @@
 name: "{{HUB_NAME}}"
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: "{{ALLOWED_TOOLS}}"
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # {{HUB_TITLE}}
@@ -40,7 +40,7 @@ The agent runs the compiled-routing directive in the final MACHINE ROUTER sectio
 
 ### Terms
 
-This is the hub's only glossary; its packets link here instead of defining routing terms.
+This is the hub's only glossary. Its packets link here instead of defining routing terms.
 
 | Term | Meaning |
 |---|---|
@@ -73,18 +73,18 @@ This is the hub's only glossary; its packets link here instead of defining routi
 
 ## 5. REFERENCES
 
-- `ROUTER.md` — stage-two control document; `stage1-only` on a fresh scaffold.
-- `mode-registry.json` — workflow packet registry and tool surface.
-- `hub-router.json` — routing policy, signals, and vocabulary.
-- `{{PACKET}}/SKILL.md` — the initial workflow packet contract.
+- `ROUTER.md`: stage-two control document, `stage1-only` on a fresh scaffold.
+- `mode-registry.json`: workflow packet registry and tool surface.
+- `hub-router.json`: routing policy, signals and vocabulary.
+- `{{PACKET}}/SKILL.md`: the initial workflow packet contract.
 
 ---
 
 ## 6. RELATED RESOURCES
 
-- `README.md` — short operator entry point.
-- `graph-metadata.json` — hub discovery metadata.
-- [`description.json`](../../../references/shared/skill-root-metadata-contract.md) — hub-doctor metadata.
+- `README.md`: short operator entry point.
+- `graph-metadata.json`: hub discovery metadata.
+- [`description.json`](../../../references/shared/skill-root-metadata-contract.md): hub-doctor metadata.
 
 ---
 
@@ -102,11 +102,11 @@ This is the hub's only glossary; its packets link here instead of defining routi
 > ```bash
 > node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.
 
 A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
 
-The compiled router reads the fallback checklist below; the hub's leaf routing lives in the root ROUTER.md.
+The compiled router reads the fallback checklist below. The hub's leaf routing lives in the root ROUTER.md.
 
 ```python
 UNKNOWN_FALLBACK_CHECKLIST = [

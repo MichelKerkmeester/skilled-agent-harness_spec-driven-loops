@@ -10,7 +10,11 @@ Thin router for lexical retrieval over spec docs and skill docs.
 
 ## 1. ROUTER CONTRACT
 
-Argument resolution (deterministic, read this first). The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears as one positional argument after `--`, so the wrapper treats shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) as literal query text. The wrapper then joins the provided positional argument into one string and reports whether any argument was supplied.
+Argument resolution (deterministic, read this first).
+The shell line below is evaluated before you read any policy.
+It is the ground truth for this invocation.
+The renderer substitutes the raw query text where `$ARGUMENTS` appears as one positional argument after `--`, so the wrapper treats shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) as literal query text.
+The wrapper then joins the provided positional argument into one string and reports whether any argument was supplied.
 
 !`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- '$ARGUMENTS'`
 
@@ -135,6 +139,13 @@ The following content must come from the presentation asset, not from router pro
 
 ## 6. WORKFLOW SUMMARY
 
-The router binds control flow to the deterministic `ARGS_PRESENT`/`QUERY` resolution: with arguments present it dispatches the trigger-index lane (the generated index read by `lookup-trigger-index.mjs`) or the free-text lane (one literal ripgrep recipe from `retrieval-conventions.md`, ordered by the caller-side ranking tuple); with no arguments it asks the one open-ended startup question. Retrieval is lexical and needs no background service: exit `1` is a clean no-hit rendered as an empty result, and exit `2` or higher is an error rendered with stderr attached. Capabilities that lived in the retired database — semantic matching, fusion, decay, access tracking, session dedup, causal traversal, epistemic baselines, ablations and dashboards — are declared unsupported rather than approximated. Every user-facing string renders through the presentation asset.
+The router binds control flow to the deterministic `ARGS_PRESENT`/`QUERY` resolution.
+With arguments present, it dispatches the trigger-index lane (the generated index read by `lookup-trigger-index.mjs`) or the free-text lane (one literal ripgrep recipe from `retrieval-conventions.md`, ordered by the caller-side ranking tuple).
+With no arguments, it asks the one open-ended startup question.
+Retrieval is lexical and needs no background service.
+Exit `1` is a clean no-hit rendered as an empty result.
+Exit `2` or higher is an error rendered with stderr attached.
+Capabilities that lived in the retired database are declared unsupported rather than approximated: semantic matching, fusion, decay, access tracking, session dedup, causal traversal, epistemic baselines, ablations and dashboards.
+Every user-facing string renders through the presentation asset.
 
 Related commands: `/speckit:save` (write conversation context into packet continuity surfaces); `/speckit:resume` (session recovery and continuation, which owns the continuity ladder).

@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -87,7 +87,11 @@ Follow these steps in order, skipping only when the target skill already exists 
 25. Put references only as overflow pointers for deep detail, examples, or schemas.
 26. Run `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` after authoring so the manifest and derived aliases are generated and the root passes its class gate.
 27. Replace every slug-only routing default before calling the skill done: `graph-metadata.json` `domains` and `intent_signals` plus the `SKILL.md` keyword comment are the fields the advisor's scorers actually read, so fill them with phrases a user would genuinely type, not the skill name repeated.
-28. Confirm advisor discovery. A warm advisor daemon ingests a new root automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next daemon start ingests it. Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test routing with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
+28. Confirm advisor discovery.
+   A warm advisor daemon ingests a new root automatically, because its watcher watches the skills root for new top-level directories.
+   With no daemon running, the next daemon start ingests it.
+   Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`.
+   Smoke-test routing with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
 29. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
 30. Fix every hard failure and rerun the check until it exits clean.
 31. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
@@ -117,7 +121,10 @@ skill-name/
 
 `SKILL.md` is the root marker. Root JSON requirements are class-specific; the complete authored/generated matrix is [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md). `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
 
-A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file — `leaf-manifest.config.json`, naming its single workflow mode and leaf roots — and generates the rest. Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md); do not infer them from a sibling skill.
+A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file, `leaf-manifest.config.json`, and generates the rest.
+That file names its single workflow mode and leaf roots.
+Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
+Do not infer them from a sibling skill.
 
 The last two directories are a pair: `manual-testing-playbook/` holds the corpus a run reads, and
 `benchmark/` holds what the run wrote. Keeping them apart is what lets a run be re-executed against
@@ -148,7 +155,10 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 3. Ask whether the generated state must be `legacy` or `ready`; do not silently choose in the authoring workflow. Existing CLI calls remain backward-compatible and default to `legacy`.
 4. Scaffold the selected state with `scripts/init_skill.py <hub-name> --path <parent-directory> --kind parent --compiled-routing legacy|ready`.
 5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`, plus `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add `command-metadata.json` only when the hub owns slash commands; when present, it has one entry per owned command.
-6. `init_skill.py --kind parent` always emits the root `ROUTER.md` with `router_state: stage1-only` — empty stage-two maps and a root `SKILL.md` pointer. Keep it `stage1-only` until a concrete leaf map is authored; only then replace `router_state` with `active` with non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs. Never synthesize placeholder intents.
+6. `init_skill.py --kind parent` always emits the root `ROUTER.md` with `router_state: stage1-only`: empty stage-two maps and a root `SKILL.md` pointer.
+   Keep it `stage1-only` until a concrete leaf map is authored.
+   Only then replace `router_state` with `active` and add non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs.
+   Never synthesize placeholder intents.
 7. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
 8. Add `references/` and `assets/` to surface packets when they carry evidence material.
 9. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
@@ -169,9 +179,19 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 24. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
 25. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
 26. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
-27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
-28. Replace every slug-only routing default with phrases a user would genuinely type. The advisor's scorers read SKILL.md `keywords`, graph-metadata.json `domains` and `intent_signals`, and per-mode registry aliases; no scorer reads `description.json`, so keywords placed only there do not move a route. For a hub, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub <hub>` carries the ROUTER.md intent vocabulary into `intent_signals`.
-29. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
+27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness.
+   Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub.
+   Declaring only one of them is a half-written declaration the gate rejects.
+   Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
+28. Replace every slug-only routing default with phrases a user would genuinely type.
+   The advisor's scorers read SKILL.md `keywords`, graph-metadata.json `domains` and `intent_signals`, and per-mode registry aliases.
+   No scorer reads `description.json`, so keywords placed only there do not move a route.
+   For a hub, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub <hub>` carries the ROUTER.md intent vocabulary into `intent_signals`.
+29. Confirm advisor discovery.
+   A warm advisor daemon ingests a new hub automatically, because its watcher watches the skills root for new top-level directories.
+   With no daemon running, the next start ingests it.
+   Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`.
+   Smoke-test with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
 ### Parent Hub Shape
 
@@ -222,7 +242,10 @@ scripts/validate_skill_package.py <path/to/skill-folder>
 
 It auto-detects skill kind — standalone skills run the package check; parent hubs additionally run the parent-hub structural check and the canonical manifest freshness check. A missing manifest reports the valid legacy state; a valid fresh manifest reports compiled-ready; malformed or stale manifests fail validation.
 
-`--check` hard-fails on missing SKILL frontmatter or required fields, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and descriptions that are missing, multiline, or contain angle brackets. Generated package paths that are not kebab-case remain advisory during a debt-tolerant `--check`; `--strict` and actual packaging promote them to blocking errors. Python filenames, Python import-package directories, frozen/generated subtrees, and tool-mandated names are exempt.
+`--check` hard-fails on missing SKILL frontmatter or required fields, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and descriptions that are missing, multiline, or contain angle brackets.
+Generated package paths that are not kebab-case remain advisory during a debt-tolerant `--check`.
+`--strict` and actual packaging promote them to blocking errors.
+Python filenames, Python import-package directories, frozen/generated subtrees, and tool-mandated names are exempt.
 
 Use structure extraction when quality evidence is needed:
 

@@ -2,7 +2,7 @@
 name: sk-create-command
 description: Scaffold OpenCode slash commands with explicit argument hints, allowed tools, and router/presentation separation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 <!-- Keywords: create-command, slash command, opencode command, argument-hint, allowed-tools, command router, presentation contract, thin router, command scaffold -->
@@ -144,7 +144,16 @@ For a split mode-based workflow command, create or update:
 
 Use `-auto.yaml` and `-confirm.yaml` only for workflow-backed families that route execution into workflow assets. Direct-router families dispatch directly to tools/scripts and do not need workflow YAML.
 
-**Asset stems are hyphen-joined, never underscore-joined.** The stem carries the namespace, the action and the kind: `create-readme-auto.yaml`, `speckit-plan-presentation.txt`, `deep-research-confirm.yaml`. A family whose action names already read unambiguously on their own drops the namespace and names assets `<action>-<kind>`: `memory` ships `save-presentation.txt`, `design` ships `extract-auto.yaml`. Follow the family you are extending. A new family takes the namespace prefix. The contract's `metadata.asset_naming` carries the same rule in machine-readable form, and `generate-command-routers.cjs --check` compares each router's tables against it.
+**Asset stems are hyphen-joined, never underscore-joined.** The stem carries the namespace, the action and the kind:
+- `create-readme-auto.yaml`
+- `speckit-plan-presentation.txt`
+- `deep-research-confirm.yaml`
+
+A family whose action names already read unambiguously on their own drops the namespace and names assets `<action>-<kind>`.
+For example, `memory` ships `save-presentation.txt` and `design` ships `extract-auto.yaml`.
+Follow the family you are extending.
+A new family takes the namespace prefix.
+The contract's `metadata.asset_naming` carries the same rule in machine-readable form, and `generate-command-routers.cjs --check` compares each router's tables against it.
 
 For a compiled-stub router, the `.md` is a generated thin stub carrying the `render-command-contract` marker. Its section shape is rendered from a compiled source at invocation, not authored in the file. Do not hand-write section headings into a compiled stub, and keep its owned presentation/workflow assets alongside it:
 
@@ -232,7 +241,10 @@ Use these conventions:
 - Put sub-activities in bullets under a numbered step.
 - Use dividers between major sections when they improve scanability.
 - Return structured statuses such as `STATUS=OK`, `STATUS=FAIL ERROR="<message>"`, or `STATUS=CANCELLED ACTION=cancelled`.
-- Keep the body **behavioral**: routing, gates, contracts, and executable steps only. Do NOT embed design rationale, prose-register or prompt-framework labels (e.g. "written objective-first", "(COSTAR)"), development notes (benchmark timings, spec/packet cross-references), maintainer chores ("keep AGENTS/skills synchronized to this entrypoint"), or defensive self-attestations ("no workflow-asset gap exists"). That context belongs in the decision-record, changelog, or presentation asset (never in the shipped command a user sees rendered).
+- Keep the body **behavioral**: routing, gates, contracts, and executable steps only.
+  Do NOT embed design rationale, prose-register or prompt-framework labels (e.g. "written objective-first", "(COSTAR)") or development notes (benchmark timings, spec/packet cross-references).
+  Do NOT embed maintainer chores ("keep AGENTS/skills synchronized to this entrypoint") or defensive self-attestations ("no workflow-asset gap exists").
+  That context belongs in the decision-record, changelog, or presentation asset (never in the shipped command a user sees rendered).
 
 Approved common H2 section names include:
 
@@ -290,7 +302,10 @@ Interactive mode pauses after each step for approval, presents options such as a
 
 If the mode-based command is large or has visible dashboards/prompts/results, use the router/presentation split.
 
-**Mode completeness.** Every mode a command advertises must be fully realized, not merely reachable. For each mode in the argument hint (`:auto`, `:confirm`), the command must have both its workflow asset (the `-auto.yaml` / `-confirm.yaml`) and an EXECUTION TARGETS row that resolves the mode to that asset. A hint that lists `:auto` with no `-auto.yaml` or no `:auto` execution row is incomplete (a reader cannot route the advertised mode), so declare only the modes you have wired end to end.
+**Mode completeness.** Every mode a command advertises must be fully realized, not merely reachable.
+For each mode in the argument hint (`:auto`, `:confirm`), the command must have both its workflow asset (the `-auto.yaml` / `-confirm.yaml`) and an EXECUTION TARGETS row that resolves the mode to that asset.
+A hint that lists `:auto` with no `-auto.yaml` or no `:auto` execution row is incomplete, because a reader cannot route the advertised mode.
+Declare only the modes you have wired end to end.
 
 ### Step 11: Author The Router As A First-Class Command Type
 
@@ -302,7 +317,10 @@ A router is a first-class command type, not a loose refactor. Its `.md` is a thi
 - a `Presentation Boundary` section is present, or
 - two or more of `{Router Contract, Owned Assets, Mode Routing, Execution Targets}` co-occur.
 
-**Minimal core vs recommended.** A router must include the blocking core only: `Owned Assets` and `Presentation Boundary`. The remaining canonical sections (`Router Contract`, `Mode Routing`, `Execution Targets`, `Workflow Summary`) are recommended and surface as non-blocking warnings when absent. Author the full shape for new routers. The minimal core lets incremental migrations land without failing.
+**Minimal core vs recommended.** A router must include the blocking core only: `Owned Assets` and `Presentation Boundary`.
+The remaining canonical sections (`Router Contract`, `Mode Routing`, `Execution Targets`, `Workflow Summary`) are recommended and surface as non-blocking warnings when absent.
+Author the full shape for new routers.
+The minimal core lets incremental migrations land without failing.
 
 **Canonical vocabulary (numbered `## N.`, full integers).** Use exactly these H2 names, in this order, for a fully-shaped router:
 
@@ -317,7 +335,21 @@ A router is a first-class command type, not a loose refactor. Its `.md` is a thi
 
 Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`). The validator alias-normalizes those as a safety net, but the authored end state is the canonical names above.
 
-**Ownership boundary.** The router owns: the mandatory input gate or Phase 0, the owned-assets table, mode resolution, argument routing, execution-target selection, the presentation boundary, and a short workflow summary. The presentation asset owns: startup prompts and consolidated setup questions, auto fail-fast display text, dashboard and checkpoint layouts, success and failure result templates, and next-step suggestions. The router must not contain inline startup-question wording, dashboard templates, result templates, or next-step wording when a presentation asset exists. The split is behavior-preserving: move display content, do not change routing semantics.
+**Ownership boundary.** The router owns:
+- the mandatory input gate or Phase 0.
+- the owned-assets table, mode resolution and argument routing.
+- execution-target selection and the presentation boundary.
+- a short workflow summary.
+
+The presentation asset owns:
+- startup prompts and consolidated setup questions.
+- auto fail-fast display text.
+- dashboard and checkpoint layouts.
+- success and failure result templates.
+- next-step suggestions.
+
+The router must not contain inline startup-question wording, dashboard templates, result templates, or next-step wording when a presentation asset exists.
+The split is behavior-preserving: move display content, do not change routing semantics.
 
 **Variants (one type, differing only by hand-off, not by required sections). Each maps to the contract's `topology` field:**
 
@@ -328,7 +360,11 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 
 Which family uses which topology is defined by the machine-readable command contract (`assets/command-contract.json`, validated by `assets/command-contract.schema.json`). Consult it rather than a hand-maintained family list. Use `assets/command-router-template.md` for the canonical numbered router skeleton, and `assets/command-presentation-template.md` for the full presentation asset skeleton.
 
-**Template self-sufficiency.** Each router variant must be authorable from its template alone: `command-router-template.md` plus the family's `command-contract.json` entry carry every section, vocabulary, and asset-path shape a new router needs. If a required shape is not derivable from the template and the contract, the template is incomplete: fix the template rather than copying a sibling command. This keeps the contract the single source and lets `generate-command-routers.cjs --check` detect drift instead of it hiding in hand-copied prose.
+**Template self-sufficiency.** Each router variant must be authorable from its template alone.
+`command-router-template.md` plus the family's `command-contract.json` entry carry every section, vocabulary and asset-path shape a new router needs.
+If a required shape is not derivable from the template and the contract, the template is incomplete.
+Fix the template rather than copying a sibling command.
+This keeps the contract the single source and lets `generate-command-routers.cjs --check` detect drift instead of it hiding in hand-copied prose.
 
 ### Step 12: Add Destructive-Action Safety
 

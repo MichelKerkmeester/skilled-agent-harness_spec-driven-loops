@@ -67,9 +67,20 @@ All visible text and layouts live only in `.skilled/commands/doctor/assets/docto
 
 ## 6. WORKFLOW SUMMARY
 
-`check` reports release position and per-unit status without changing checkout files. `align` gathers explicit decisions into an ignored run directory and never writes outside it. `apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout. When no unapplied alignment run exists at the current HEAD, it writes only update and new units. `rollback` previews a recorded rollback, then asks before restoring paths or clearing a stale lock. `record-base` previews the units for a release and asks before writing the recorded base. `compat` previews the v3-to-v4 layout move and the legacy upgrade, asks for the move and the upgrade as two separate approvals, and runs both outside the release engine's transaction. The other five actions share the release-update engine while retaining action-specific input and mutation boundaries.
+`check` reports release position and per-unit status without changing checkout files.
+`align` gathers explicit decisions into an ignored run directory and never writes outside it.
+`apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout.
+When no unapplied alignment run exists at the current HEAD, it writes only update and new units.
+`rollback` previews a recorded rollback, then asks before restoring paths or clearing a stale lock.
+`record-base` previews the units for a release and asks before writing the recorded base.
+`compat` previews the v3-to-v4 layout move and the legacy upgrade, asks for the move and the upgrade as two separate approvals, and runs both outside the release engine's transaction.
+The other five actions share the release-update engine while retaining action-specific input and mutation boundaries.
 
-Release policy: latest-upstream resolution takes stable tags only unless `--include-prerelease` is passed. Both orders compare version segments as numbers. A tag named with `--release` is used as given. Generated files (leaf manifests, the trigger index and its sidecars, compiled-route activation manifests, and graph-metadata `derived` blocks) never count as customizations. A copy the operator regenerated stays in place and apply names its generator, while a release change to a copy the operator never regenerated is applied like any other file.
+Release policy: latest-upstream resolution takes stable tags only unless `--include-prerelease` is passed.
+Both orders compare version segments as numbers.
+A tag named with `--release` is used as given.
+Generated files (leaf manifests, the trigger index and its sidecars, compiled-route activation manifests, and graph-metadata `derived` blocks) never count as customizations.
+A copy the operator regenerated stays in place and apply names its generator, while a release change to a copy the operator never regenerated is applied like any other file.
 
 A first run on a copied or freshly installed tree reports `baseRecording.needed`. The `record-base` action records the base, and the presentation's base-recording template owns what the operator is told.
 

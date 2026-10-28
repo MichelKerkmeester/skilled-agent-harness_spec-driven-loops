@@ -87,4 +87,6 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-skil
 
 ## 6. WORKFLOW SUMMARY
 
-The router resolves a `target` against the `/doctor:skill-advisor` routes in `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then executes it step by step under an always-interactive mode. `tune` re-tunes the scoring lanes with per-skill review, `rebuild` rebuilds `skill-graph.sqlite` through the advisor CLI behind a backup, and the four read-only targets report graph drift, router reach, description budgets and parent-hub structure. `list`, `?`, or `--list` render the route manifest instead of dispatching.
+The router resolves a `target` against the `/doctor:skill-advisor` routes in `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then executes it step by step under an always-interactive mode.
+`tune` re-tunes the scoring lanes with per-skill review, `rebuild` rebuilds `skill-graph.sqlite` through the advisor CLI behind a backup, and the four read-only targets report graph drift, router reach, description budgets and parent-hub structure.
+`list`, `?`, or `--list` render the route manifest instead of dispatching.

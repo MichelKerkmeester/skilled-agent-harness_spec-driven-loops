@@ -71,5 +71,22 @@ The argument failure wording, the startup menu, the per-leg result table, the qu
 
 1. Bind the target from the first positional token, `setup` when there is none, then resolve its route from `_routes.yaml`.
 2. `setup` runs `doctor-sk-code-setup.yaml`: the read-only setup battery once (provisioning, parent-skill, root-metadata, guard, sync, drift-guards, derived-freshness, the route probe and quality), each leg reported as passing, as failing with its repair command or as skipped. It writes nothing in the repository.
-3. `quality` runs `doctor-sk-code-quality.yaml`: report which quality config the gate reads and whether each tool it names is on PATH, report whether the repository's trust grant lets the config's commands run, name the core comment-hygiene rules the config switches off through `commentHygiene.disableRules`, list what the gate would apply, check the config against the schema and, when none exists, create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once from the shipped template after an approved plan. In a repository with no `specs/` folder the plan also suggests the spec-kit hygiene rules for `disableRules`, which it shows and never writes. What the gate would apply is each checklist with the seat that declared it, its `## Rule overrides` rows or the reasons they were refused, each same-level conflict and the hygiene rules in force. The doctor reads it through `quality-gate.cjs --explain` over a sample of one file per first three folders and extension, in batches of 500 files, and runs no check, and it also checks each `checklists[]` row the sample did not reach. A refused section, a row whose rule id no rule carries or a checklist the config names that is missing fails the status with the runner's own code (`CONFIG_INVALID` or `CHECKLIST_MISSING`), because every gate run that loads it stops with exit 3. A same-level conflict is listed and does not fail the status, because the gate reads `UNVERIFIED` for the rule and still runs. It never runs a command the config names and never writes git config, so the trust grant stays the operator's to set.
+3. You run the `quality` action through `doctor-sk-code-quality.yaml`.
+   You report which quality config the gate reads and whether each tool it names is on PATH.
+   You report whether the repository's trust grant lets the config's commands run.
+   You name the core comment-hygiene rules the config switches off through `commentHygiene.disableRules`.
+   You list what the gate would apply.
+   You check the config against the schema.
+   When no config exists, you create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once from the shipped template after an approved plan.
+   In a repository with no `specs/` folder, the plan also suggests spec-kit hygiene rules for `disableRules`.
+   The plan shows those rules and never writes them.
+   What the gate would apply is each checklist with the seat that declared it, its `## Rule overrides` rows or the reasons they were refused, each same-level conflict and the hygiene rules in force.
+   The doctor reads the config through `quality-gate.cjs --explain` over a sample of one file per first three folders and extension, in batches of 500 files.
+   It runs no check.
+   It also checks each `checklists[]` row the sample did not reach.
+   A refused section, a row whose rule id no rule carries, or a checklist the config names that is missing, fails the status with the runner's own code (`CONFIG_INVALID` or `CHECKLIST_MISSING`).
+   Those three conditions are fatal because every gate run that loads the config stops with exit 3.
+   A same-level conflict is listed and does not fail the status because the gate reads `UNVERIFIED` for the rule and still runs.
+   The doctor never runs a command the config names.
+   It never writes git config, so the trust grant stays the operator's to set.
 4. Render the result and next step from the presentation contract.

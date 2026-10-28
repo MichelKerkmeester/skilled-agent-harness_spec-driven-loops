@@ -79,4 +79,8 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-mcp-
 
 ## 6. WORKFLOW SUMMARY
 
-The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. The health script runs with `--json` and preserves its structured output. Each repair requires explicit approval, including when `--fix` is set. The workflow reports credential reference presence without requesting or writing credential values. Subsystem diagnostics route through `/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop` and `/doctor:runtime-mirrors`.
+The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract.
+The health script runs with `--json` and preserves its structured output.
+Each repair requires explicit approval, including when `--fix` is set.
+The workflow reports credential reference presence without requesting or writing credential values.
+Subsystem diagnostics route through `/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop` and `/doctor:runtime-mirrors`.

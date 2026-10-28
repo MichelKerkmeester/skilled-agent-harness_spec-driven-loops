@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.10.0
+version: 1.1.11.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -12,7 +12,18 @@ metadata:
 
 # CI Surface: GitHub Actions Workflow Evidence
 
-**Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`. The packet states each workflow rule with the file and line that prove it, names the workflows that must never be weakened, records the one trigger that looks like drift and is not, and carries two scaffold templates. It writes nothing. The workflow mode the hub pairs it with reads the evidence and applies it, and when the hub routes this packet alone because no workflow mode scored, the acting agent reads and applies it directly. Read-only means this packet writes nothing. It does not limit what the acting agent may do.
+**Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`.
+
+The packet records four things:
+
+- Each workflow rule, with the file and line that prove it.
+- The workflows that must never be weakened.
+- The one trigger that looks like drift and is not.
+- Two scaffold templates.
+
+It writes nothing. Read-only means this packet writes nothing, and it does not limit what the acting agent may do.
+
+The workflow mode the hub pairs it with reads the evidence and applies it. When the hub routes this packet alone because no workflow mode scored, the acting agent reads and applies it directly.
 
 A workflow change looks small and has a wide effect. One path filter decides which workflows a commit starts, one missing twin entry fails the gate that guards the source tree, and one switched-off workflow can remove the only check a branch ruleset requires. This packet keeps those facts in one place so a reviewer or author does not rebuild them from the workflow files and review history.
 

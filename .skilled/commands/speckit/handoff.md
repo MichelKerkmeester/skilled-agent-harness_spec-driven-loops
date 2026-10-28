@@ -12,13 +12,28 @@ Manual entry point for the session relaunch loop. Writes this session's handoff 
 
 ## 1. PURPOSE
 
-The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed, on the sender's model and effort where the runtime takes them at launch. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. Inside `skilled-loop` the automatic nudge asks for a hop. Outside the loop it asks only for a note the session keeps with `session-relaunch.cjs keep` and claims after auto-compaction, and the session runs this command only when the operator explicitly asks for a manual handoff. Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every interactive runtime launch inside the loop, so nobody has to start the wrapper by hand. The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
+The relaunch loop carries work into a fresh session near the end of this session's useful context.
+This session writes a standalone handoff note.
+The wrapper relaunches the runtime with a claim seed, on the sender's model and effort where the runtime takes them at launch.
+The new session picks up the remaining work.
+This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook.
+Inside `skilled-loop` the automatic nudge asks for a hop.
+Outside the loop it asks only for a note the session keeps with `session-relaunch.cjs keep` and claims after auto-compaction, and the session runs this command only when the operator explicitly asks for a manual handoff.
+Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every interactive runtime launch inside the loop, so nobody has to start the wrapper by hand.
+The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`.
+Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
 
 ---
 
 ## 2. CONTRACT
 
-**Inputs:** nothing through `$ARGUMENTS`. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`. On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop. Other runtimes must pass the session id. If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session. `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
+**Inputs:** nothing through `$ARGUMENTS`.
+Both `prepare` and `claim` require `--session <id>`.
+Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`.
+On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop.
+Other runtimes must pass the session id.
+If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session.
+`spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
 
 **Outputs:**
 
@@ -60,7 +75,14 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 ### Step 2: Save The Bound Packet
 
-When `spec_folder` is a packet path, save its continuity before `prepare` so the receiving session's `/speckit:resume` lands on fresh state. The automatic nudge asks for the note first and the save second. Both orders meet that need. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`. Record the repo-relative packet path in `spec_folder`. When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save. When Gate 3 was never answered, leave `spec_folder` empty.
+When `spec_folder` is a packet path, save its continuity before `prepare` so the receiving session's `/speckit:resume` lands on fresh state.
+The automatic nudge asks for the note first and the save second.
+Both orders meet that need.
+Claude runs `/speckit:save`.
+Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`.
+Record the repo-relative packet path in `spec_folder`.
+When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save.
+When Gate 3 was never answered, leave `spec_folder` empty.
 
 If the save fails, stop here. Do not write the note or run `prepare`, because the receiving session would resume stale packet state. Report `STATUS=FAIL ERROR="continuity save failed: <reason>"`.
 
@@ -94,7 +116,19 @@ created_at: <ISO-8601 UTC>
 <non-empty>
 ```
 
-Frontmatter is flat `key: value` lines only: no nesting, no lists. `loop_id` is `$SKILLED_LOOP_ID`, empty when the session is not running under the wrapper. `runtime` is the runtime that wrote the note. `goal_packet` is an optional field that the template leaves out. `prepare` and `keep` set it, never you: each call writes the repo-relative directory of the packet whose `goal.md` holds the goal the session works under, and removes the field when that goal cannot be proven, so Codex notes never carry it. Leave it out of the note, because a value you write is replaced or removed. `SESSION_RELAUNCH_GOAL=0` turns the field off. On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal. Every section must be non-empty. Goal states what the work is for. Done records finished work. Remaining work lists the claimable tail. In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
+Frontmatter is flat `key: value` lines only: no nesting, no lists.
+`loop_id` is `$SKILLED_LOOP_ID`, empty when the session is not running under the wrapper.
+`runtime` is the runtime that wrote the note.
+`goal_packet` is an optional field that the template leaves out.
+`prepare` and `keep` set it, never you: each call writes the repo-relative directory of the packet whose `goal.md` holds the goal the session works under, and removes the field when that goal cannot be proven, so Codex notes never carry it.
+Leave it out of the note, because a value you write is replaced or removed.
+`SESSION_RELAUNCH_GOAL=0` turns the field off.
+On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
+Every section must be non-empty.
+Goal states what the work is for.
+Done records finished work.
+Remaining work lists the claimable tail.
+In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
 
 ### Step 4: Prepare
 
@@ -107,8 +141,18 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 ### Step 5: Report By Exit Code
 
 - `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
-- `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or no enable flag is set. Turning it on is the operator's choice, so report `STATUS=FAIL ERROR="<reason>"` and change no flag. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
-- `3`: no automatic hop. Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback. Both cases print the claim command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`. For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` launch starts under it.
+- `2`: refused.
+  Show the stderr reason verbatim.
+  Fix the cause it names, then run `prepare` again.
+  The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process.
+  A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or no enable flag is set.
+  Turning it on is the operator's choice, so report `STATUS=FAIL ERROR="<reason>"` and change no flag.
+  Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
+- `3`: no automatic hop.
+  Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback.
+  Both cases print the claim command for the selected runtime.
+  Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
+  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` launch starts under it.
 
 | Runtime | Printed command |
 |---|---|
@@ -130,7 +174,10 @@ The CLI and wrapper place each path `!` in single quotes outside the seed's doub
 
 A session seeded with `[session-relaunch] claim and continue handoff <path>` is on the other side of this protocol. It:
 
-1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body. When the note carries a `goal_packet`, the output ends with a `Goal packet: <path>` line. Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`. A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
+1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body.
+   When the note carries a `goal_packet`, the output ends with a `Goal packet: <path>` line.
+   Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`.
+   A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
 2. Reads the note's Goal, Done, Remaining work and In-flight state sections.
 3. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
 4. Continues the Remaining work.

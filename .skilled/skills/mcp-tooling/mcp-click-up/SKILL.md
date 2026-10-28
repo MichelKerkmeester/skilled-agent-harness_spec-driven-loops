@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 <!-- Keywords: clickup, click up, cupt, clickup tasks, my clickup tasks, mark task done, complete a clickup task, log time in clickup, start timer, stop timer, add note to task, tag task, process work queue, task queue, create clickup task, clickup document, clickup doc page, search clickup, clickup mcp, install cupt -->
@@ -126,7 +126,9 @@ cupt done <task_id> --note "done"  # Mark complete with note
 
 ### Official ClickUp MCP (Secondary Path)
 
-This is ClickUp's official hosted MCP server, at `https://mcp.clickup.com/mcp`. The registered `clickup_official` manual reaches it over stdio through `npx -y mcp-remote`. It authenticates with OAuth, so the first launch needs one approval in the browser, and the manual reads no API key. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the older API-key route no longer works.
+This is ClickUp's official hosted MCP server at `https://mcp.clickup.com/mcp`.
+The registered `clickup_official` manual reaches it over stdio through `npx -y mcp-remote`. It authenticates with OAuth, so the first launch needs one approval in the browser. The manual reads no API key.
+The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The older API-key route no longer works.
 
 **Prerequisites:**
 - Code Mode MCP configured, with the `clickup_official` manual in `.utcp_config.json` (not `opencode.json`, that file is for native/non-Code-Mode MCP tools)
@@ -151,7 +153,9 @@ This is ClickUp's official hosted MCP server, at `https://mcp.clickup.com/mcp`. 
 
 Reference: `references/mcp-tools.md` and `mcp-servers/clickup-mcp/README.md`
 
-**Invocation via Code Mode.** Call `mcp__code_mode__call_tool_chain` with one `code` string, not an array of `{tool, input}` records. Every server tool name already starts with `clickup_`, so the callable name repeats it: `clickup_official.clickup_official_clickup_<tool>`. Top-level `await` is rejected and a returned value comes back as `{}`, so wrap calls in an async function and print with `console.log`:
+**Invocation via Code Mode.** Call `mcp__code_mode__call_tool_chain` with one `code` string, not an array of `{tool, input}` records.
+Every server tool name already starts with `clickup_`. Its callable name repeats that prefix: `clickup_official.clickup_official_clickup_<tool>`.
+Top-level `await` is rejected, and a returned value comes back as `{}`. Wrap calls in an async function and print with `console.log`:
 ```typescript
 (async () => {
   const doc = await clickup_official.clickup_official_clickup_create_document({

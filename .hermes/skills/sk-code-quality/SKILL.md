@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.13.0
+version: 1.13.14.0
 metadata:
   family: sk-code
 ---
@@ -16,7 +16,9 @@ metadata:
 
 # Code Quality (quality)
 
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the acting agent applying `workflow-implement.md` changes the code and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family.
+It runs after the acting agent applying `workflow-implement.md` changes the code and before the surface's verification workflow or done-claim.
+It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 
 ---
 
@@ -73,13 +75,19 @@ That projection only makes the default resources scoreable; it never picks the p
 
 ### Resource Domains
 
-- This mode ships no house-style checklist. The universal floor and the universal style guide apply on every surface, and each surface's own checklists carry its house style. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target, and the SKILLED JavaScript and CSS house checks sit under `../sk-code-skilled/assets/checklists/js-css-style/`.
+- This mode ships no house-style checklist. The universal floor and the universal style guide apply on every surface, and each surface's own checklists carry its house style.
+  `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target, and the SKILLED JavaScript and CSS house checks sit under `../sk-code-skilled/assets/checklists/js-css-style/`.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
-- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file. The only commands it runs beyond its own are the ones a repository's committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, each as an argv array under a deadline and the workspace guard, and only once the repository is trusted (`references/quality-config.md` section 8). A command a manifest implies is reported as a suggestion it never runs. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids, and `references/quality-config.md` holds the repository config: its schema, discovery order, merge rule and trust boundary.
+- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file.
+  The only commands it runs beyond its own are the ones a repository's committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, each as an argv array under a deadline and the workspace guard, and only once the repository is trusted (`references/quality-config.md` section 8).
+  A command a manifest implies is reported as a suggestion it never runs.
+  `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids, and `references/quality-config.md` holds the repository config: its schema, discovery order, merge rule and trust boundary.
 - `assets/quality-defaults.json` holds the runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns. It names no command.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate. The runner calls it once per run with `--json`.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
-- `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
+- `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal.
+  Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts.
+  It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
 - `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.
 - `../shared/references/universal/code-quality-standards.md` is the cross-mode severity standard this packet consumes, and `references/code-style-guide.md` is this packet's own style and comment-hygiene guide.
 
@@ -106,9 +114,18 @@ That projection only makes the default resources scoreable; it never picks the p
 
 ### Target-Path Checklist Map
 
-The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, which are the universal floor and, in this hub's own repository, the spec-folder authoring checklist, and each surface's `quality.checklists` declaration. Ask the runner which checklists apply to a file, and why, with `node scripts/quality-gate.cjs --explain <path>`. Its `checklists[]` and each entry's `why` are the answer, in any repository. This repository's own map, the SKILLED rows among them, is rendered in `../sk-code-skilled/SKILL.md` under "Quality Checklist Map". `/doctor:sk-code quality` shows the same answer for a whole repository: every checklist the gate would load, its seat, its override rows and the hygiene rules that apply.
+The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, which are the universal floor and, in this hub's own repository, the spec-folder authoring checklist, and each surface's `quality.checklists` declaration.
+Ask the runner which checklists apply to a file, and why, with `node scripts/quality-gate.cjs --explain <path>`. Its `checklists[]` and each entry's `why` are the answer, in any repository.
+This repository's own map, the SKILLED rows among them, is rendered in `../sk-code-skilled/SKILL.md` under "Quality Checklist Map".
+`/doctor:sk-code quality` shows the same answer for a whole repository: every checklist the gate would load, its seat, its override rows and the hygiene rules that apply.
 
-**A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub. A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block. Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead. Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`. A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface. The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own. `references/quality-config.md` section 3 holds the row rules.
+**A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub.
+A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block.
+Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead.
+Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`.
+A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface.
+The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own.
+`references/quality-config.md` section 3 holds the row rules.
 
 ### Comment-Hygiene Enforcement Gates
 
@@ -122,11 +139,21 @@ This mode owns the author-side check and knows the three independent enforcement
 | Pre-commit block | `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh` | Blocks commits with forbidden comment patterns across runtimes. |
 | CI block | `.github/workflows/comment-hygiene.yml` | Blocks pull requests with forbidden comment patterns. |
 
-A repository can switch named core hygiene rules off with `commentHygiene.disableRules` in its quality config, never a rule the shared `rule-overrides.json` fixes. The runner, the pre-commit block and the CI block all read that key through `scripts/lib/quality-config.cjs`, so a rule switched off for one is off for all three. The config's additions, such as a ticket prefix, reach the runner alone, so the pre-commit and CI blocks keep the core set minus the disabled rules, and `config.hygiene.disabled` in the verdict names what is off. The write-time warning still applies every core rule, and it never blocks. `references/quality-config.md` holds the key's rules.
+A repository can switch named core hygiene rules off with `commentHygiene.disableRules` in its quality config, never a rule the shared `rule-overrides.json` fixes.
+The runner, the pre-commit block and the CI block all read that key through `scripts/lib/quality-config.cjs`, so a rule switched off for one is off for all three.
+The config's additions, such as a ticket prefix, reach the runner alone, so the pre-commit and CI blocks keep the core set minus the disabled rules, and `config.hygiene.disabled` in the verdict names what is off.
+The write-time warning still applies every core rule, and it never blocks.
+`references/quality-config.md` holds the key's rules.
 
-The write-time warning is one adapter of the shared router in `.skilled/hooks/post-edit-quality/`, which runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn. The pre-commit block can be bypassed for one commit with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`, and the CI block re-checks every PR to main, which `--no-verify` cannot skip. The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`. The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
+The write-time warning is one adapter of the shared router in `.skilled/hooks/post-edit-quality/`, which runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn.
+The pre-commit block can be bypassed for one commit with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`, and the CI block re-checks every PR to main, which `--no-verify` cannot skip.
+The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`.
+The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
 
-Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments. A finding on a changed line blocks. A finding on an unchanged line of a touched file blocks only when `layers` reports the pre-commit or CI layer `present`, because that layer scans whole files and would fail the change anyway. Otherwise it is P1 touched-file debt the change did not write.
+Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments.
+A finding on a changed line blocks.
+A finding on an unchanged line of a touched file blocks only when `layers` reports the pre-commit or CI layer `present`, because that layer scans whole files and would fail the change anyway.
+Otherwise it is P1 touched-file debt the change did not write.
 
 ---
 
@@ -136,7 +163,10 @@ Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.
 
 1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Run `node scripts/quality-gate.cjs` from the repository root. It takes the working-tree change by default, or `--base <ref>` or `--files <path>...`. Read the gate before anything else. `BLOCKED` means fix in place or escalate. `UNVERIFIED` means a required check produced no evidence or two override sources at one level disagree on a rule, so hand each check or rule id in `summary.unverified` to verification as an open claim. `NOTHING_CHECKED` is reported as such and never as clean. `ERROR` stops the gate until its `errors[]` entry is repaired.
+3. Run `node scripts/quality-gate.cjs` from the repository root. It takes the working-tree change by default, or `--base <ref>` or `--files <path>...`. Read the gate before anything else.
+   `BLOCKED` means fix in place or escalate.
+   `UNVERIFIED` means a required check produced no evidence or two override sources at one level disagree on a rule, so hand each check or rule id in `summary.unverified` to verification as an open claim.
+   `NOTHING_CHECKED` is reported as such and never as clean. `ERROR` stops the gate until its `errors[]` entry is repaired.
 4. Load every checklist the verdict's `checklists[]` names, with the `why` it gives. The universal floor `../shared/references/universal/code-quality-standards.md` is always one of them.
 5. Judge each item in `judgment_required`. No built-in check decides input validation, silent failures, initialization safety, commented-out code, accessibility or design restraint.
 6. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
@@ -183,7 +213,12 @@ verification_handoff: workflow-verify.md
 remaining_accepted_risk: <one-line residual risk, or none>
 ```
 
-`node scripts/quality-gate.cjs --format envelope` renders the machine fields, and `references/runner-contract.md` section 4 holds the grammar. The three judgment fields, `p0_p1_p2_decisions`, `accepted_deferrals` and `remaining_accepted_risk`, print as `PENDING_AGENT_JUDGMENT` until the agent fills them, and a field that still reads it is open work. `p0_p1_p2_decisions` also lists each `## Rule overrides` row the run applied, as `override <rule id> <none|replace> from <checklist file>`, and each `override-conflict <rule id> <checklist file> <checklist file>` between two checklists at one precedence level, ahead of the marker. A conflicting rule keeps its default and is unverified. A refused override section, or one with a row whose id no rule carries, ends the run `CONFIG_INVALID`, exit 3. A private surface prints by its label only, so the envelope never names a `local-` skill.
+`node scripts/quality-gate.cjs --format envelope` renders the machine fields, and `references/runner-contract.md` section 4 holds the grammar.
+The three judgment fields, `p0_p1_p2_decisions`, `accepted_deferrals` and `remaining_accepted_risk`, print as `PENDING_AGENT_JUDGMENT` until the agent fills them, and a field that still reads it is open work.
+`p0_p1_p2_decisions` also lists each `## Rule overrides` row the run applied, as `override <rule id> <none|replace> from <checklist file>`, and each `override-conflict <rule id> <checklist file> <checklist file>` between two checklists at one precedence level, ahead of the marker.
+A conflicting rule keeps its default and is unverified.
+A refused override section, or one with a row whose id no rule carries, ends the run `CONFIG_INVALID`, exit 3.
+A private surface prints by its label only, so the envelope never names a `local-` skill.
 
 This envelope is advisory and additive only: its `status` is fixed to `advisory` and MUST NOT be `pass`, `success`, or `done`. Its presence NEVER reads as a completion, done, works, or passing claim, and it never replaces the handoff to the surface's verification workflow (`workflow-verify.md`) — it reinforces, and does not relax, the §5 NEVER rule that this mode makes no passing claims.
 
@@ -371,4 +406,6 @@ discover_markdown_resources()
     -> UNKNOWN_FALLBACK when no routable target path is available
 ```
 
-The declarations behind `--explain` stay authoritative, and the runner reads them directly. One `--explain` call takes several paths. Each file's entry lists its `surfaces`, the folder each surface loads from in `surface_skills`, the `source` seat that declared each checklist and that checklist's parsed `## Rule overrides` rows, and a single path prints the same fields at the top level. The prompt-intent projection only makes the default quality resources scoreable.
+The declarations behind `--explain` stay authoritative, and the runner reads them directly. One `--explain` call takes several paths.
+Each file's entry lists its `surfaces`, the folder each surface loads from in `surface_skills`, the `source` seat that declared each checklist and that checklist's parsed `## Rule overrides` rows, and a single path prints the same fields at the top level.
+The prompt-intent projection only makes the default quality resources scoreable.

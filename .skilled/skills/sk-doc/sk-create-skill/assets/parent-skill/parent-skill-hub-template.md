@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -228,7 +228,7 @@ These extensions activate in-place fields. They do not move `advisorRouting` dat
 
 ### Terms
 
-This is the hub's only glossary; packets link here instead of defining routing terms of their own.
+This is the hub's only glossary. Packets link here instead of defining routing terms of their own.
 
 | Term | Meaning |
 |------|---------|
@@ -282,11 +282,11 @@ This is the hub's only glossary; packets link here instead of defining routing t
 > ```bash
 > node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.
 
 A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
 
-The compiled router reads the fallback checklist below; the hub's leaf routing lives in the root ROUTER.md.
+The compiled router reads the fallback checklist below. The hub's leaf routing lives in the root ROUTER.md.
 
 ```python
 UNKNOWN_FALLBACK_CHECKLIST = [

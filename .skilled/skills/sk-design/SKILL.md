@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.8.0
+version: 2.0.9.0
 metadata:
   family: sk-design
 ---
@@ -64,6 +64,21 @@ The directive, the fallback, the checklist and the rest of the routing detail li
 ---
 
 ## 3. HOW IT WORKS
+
+### Terms
+
+- **`workflowMode`**: the public mode key, one of `sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart` or `sk-design-diagram`.
+- **`packetKind`**: `workflow` for all four modes, because this hub has no surface axis.
+- **`backendKind`**: `surface-router` for fundamentals and the generator, which resolve leaves from a reference set, while `template-scaffold` for chart and diagram builds an artifact from a form.
+- **`routingClass`**: `metadata` on every nested mode, so the advisor resolves this hub by membership and holds no entry of its own per mode.
+- **`mode-registry.json`**: what modes exist and what each may touch.
+- **`hub-router.json`**: stage one's signals, vocabulary classes, tie-break and default mode.
+- **`vocabularyClasses`**: the terms stage one matches, with `routerSignals` naming the classes each mode scores.
+- **`tieBreak`**: the `routerPolicy` order that ranks the four modes when scores are close.
+- **`routerPolicy.defaultMode`**: `sk-design-fundamentals`, the mode a request with no signal at all lands on.
+- **leaf**: a resource a chosen mode loads, counted as a canonical `(workflowMode, leafResourceId)` pair through `leaf-manifest.json`.
+- **`ROUTER.md`**: stage two's `INTENT_SIGNALS` and `RESOURCE_MAP` over the five leaf intents, VALUES, REVIEW, CHART, FLOWCHART and EXTRACT.
+- **`intent_signals`**: the `graph-metadata.json` field that carries this hub's vocabulary to the advisor, since a `description.json` keyword is documentation and not scored.
 
 ### Layout
 

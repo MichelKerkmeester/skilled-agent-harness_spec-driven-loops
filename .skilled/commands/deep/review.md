@@ -35,10 +35,22 @@ You were invoked via `opencode run --command deep/review` with the `:auto` suffi
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
 - PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
-- DISPATCH ONLY: you dispatch `deep-review` to run one iteration; you do NOT read, edit, patch, or run the review loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-review` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.
+- DISPATCH ONLY: You dispatch `deep-review` to run one iteration.
+  You do NOT read, edit, patch or run the review loop over the target yourself.
+  The auto workflow YAML owns the loop itself.
+  It owns setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis and all loop-level artifact writes.
+  The `deep-review` leaf owns only its own single-iteration artifacts.
+  Mixing your inline work with the dispatch is a route violation.
 - ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-review` writes each iteration state record with the route-proof fields present — `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "review"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
-Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. The auto workflow YAML owns the loop itself (setup, dispatch-per-iteration, reducer sync, convergence, synthesis, and loop-level writes). This contract is your instruction set; the review target is the bound spec_folder/target named in your message, never this document.
+Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop over the bound target.
+You do NOT run the loop yourself.
+You do NOT review or analyze this contract.
+You do NOT summarize this contract.
+The auto workflow YAML owns the loop itself.
+It owns setup, dispatch-per-iteration, reducer sync, convergence, synthesis and loop-level writes.
+This contract is your instruction set.
+The review target is the bound spec_folder/target named in your message, never this document.
 
 ---
 
@@ -94,7 +106,9 @@ body binds the same values without an interactive prompt.
 
 ### Stop Policy Flag
 
-`--stop-policy <convergence|max-iterations>` (invocation form `--stop-policy=convergence|max-iterations`) selects whether convergence may stop the loop early. The default `convergence` stops at legal convergence or `config.maxIterations`, whichever comes first; `max-iterations` treats convergence as telemetry only and forces the loop to continue until `config.maxIterations`, which is useful for forced-depth runs.
+`--stop-policy <convergence|max-iterations>` (invocation form `--stop-policy=convergence|max-iterations`) selects whether convergence may stop the loop early.
+The default `convergence` stops at legal convergence or `config.maxIterations`, whichever comes first.
+`max-iterations` treats convergence as telemetry only and forces the loop to continue until `config.maxIterations`, which is useful for forced-depth runs.
 
 ---
 

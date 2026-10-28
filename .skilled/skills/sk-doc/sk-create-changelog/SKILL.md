@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.9.0
+version: 1.3.10.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -75,7 +75,10 @@ Global output lives under `.skilled/changelog/`. Versions read `v{MAJOR}.{MINOR}
 
 ### Global Component Changelog
 
-A global entry is written to `.skilled/changelog/{component}/v{VERSION}.md`. `{component}` is a lowercase kebab-case segment matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`, or `{hub}/{link}` when the folder is a hub, with each segment matching that pattern. Reject an ambiguous hint rather than emit a guessed or underscore-bearing directory. The `v{VERSION}.md` filename is an exact version contract and is never slug-normalized.
+A global entry is written to `.skilled/changelog/{component}/v{VERSION}.md`.
+`{component}` is a lowercase kebab-case segment matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`, or `{hub}/{link}` when the folder is a hub, with each segment matching that pattern.
+Reject an ambiguous hint rather than emit a guessed or underscore-bearing directory.
+The `v{VERSION}.md` filename is an exact version contract and is never slug-normalized.
 
 | Bump | Calculation | Source trigger intent |
 | --- | --- | --- |
@@ -120,7 +123,13 @@ A global entry must be as findable as a spec document, so its frontmatter block 
 | `importance_tier` | `"normal"` |
 | `contextType` | `"general"` |
 
-Identity phrases name the entry the way a reader asks for it. A skill entry declares `<component> v<version>` and `<component> <version>`, where `<component>` is the `name:` in the `SKILL.md` of the folder that holds the entry's changelog folder, never a `{hub}/{link}` target. The deep-loop runtime has no `SKILL.md` and is `deep-loop-runtime`. A Skilled release entry declares `v<version> release notes` and `skilled v<version>`. A topic phrase is 2 to 6 words from the entry's own text that name what changed. It carries no version number and never fits any release the way "bug fixes" would. A component entry may keep a `version:` key after the five.
+Identity phrases name the entry the way a reader asks for it.
+A skill entry declares `<component> v<version>` and `<component> <version>`, where `<component>` is the `name:` in the `SKILL.md` of the folder that holds the entry's changelog folder, never a `{hub}/{link}` target.
+The deep-loop runtime has no `SKILL.md` and is `deep-loop-runtime`.
+A Skilled release entry declares `v<version> release notes` and `skilled v<version>`.
+A topic phrase is 2 to 6 words from the entry's own text that name what changed.
+It carries no version number and never fits any release the way "bug fixes" would.
+A component entry may keep a `version:` key after the five.
 
 Existing packet-local entries keep the block the deprecated nested generator renders, with an identity phrase derived from the output path.
 
@@ -143,7 +152,12 @@ Discover component folders from the repository at run time with `ls -d .skilled/
 1. Each folder is a plain component name, such as `sk-doc` or `system-spec-kit`, with no numeric prefix. One folder is not a skill: `skilled` is the framework release line, with one entry per Skilled release.
 2. Match changed paths against folder names by whole path segment, never by substring.
 3. Match `.skilled/skills/{name}/**` to the folder named `{name}`, and `.skilled/commands/**` or `.skilled/agents/**` to the folder that owns them.
-4. Resolve a hub to one of its links, never to the hub folder. A hub is a real folder other than `skilled`, such as `sk-doc` or `sk-code`, holding one link per member packet plus `parent`, the hub's own changelog. `ls -l .skilled/changelog/{hub}/` lists them. A path under `.skilled/skills/{hub}/{packet}/` resolves to the link whose target is `{packet}/changelog`. Any other path under the hub, and a hint that names the hub, resolve to `{hub}/parent`. A hint that names a member by its link, its packet folder or `{hub}/{link}` resolves to that link.
+4. Resolve a hub to one of its links, never to the hub folder.
+   A hub is a real folder other than `skilled`, such as `sk-doc` or `sk-code`, holding one link per member packet plus `parent`, the hub's own changelog.
+   `ls -l .skilled/changelog/{hub}/` lists them.
+   A path under `.skilled/skills/{hub}/{packet}/` resolves to the link whose target is `{packet}/changelog`.
+   Any other path under the hub, and a hint that names the hub, resolve to `{hub}/parent`.
+   A hint that names a member by its link, its packet folder or `{hub}/{link}` resolves to that link.
 5. Match `component_hint` against folder names exactly.
 6. Use spec path segments as a tiebreaker.
 7. Resolve to `skilled` only when `component_hint` names it. A changed path never selects it, because the operator chooses a framework release.
@@ -169,16 +183,32 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
 
 1. **Analyze context.** Resolve the source type and read the source (section 6). Compile `work_context`: what changed for the reader, the change type, the level and the source.
 2. **Resolve output target.** Discover the folders, match paths and hints (section 6), choose the primary component, list secondary ones and verify `.skilled/changelog/{resolved_folder}/` exists.
-3. **Determine version.** List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on). List the version entries on the upstream branch with `git ls-tree` (the branch's upstream, else `origin/main`). Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version. Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge. Without a reachable upstream, number locally and say so in the report. For the `skilled` release line with at least one entry, first check the highest entry for a release tag with `git ls-remote --exit-code --tags origin refs/tags/v{latest}`. Exit 2 means no tag, so that release is still open: extend that entry wherever it sits instead of numbering a new one, keep its version and skip the bump. A bump the operator chose is not applied, and the report says so and that tagging the open release first starts a new one. When the open entry exists only upstream, stop and ask for a merge or rebase first. Any exit other than 0 or 2 means the check failed, so number a new entry and say so rather than risk editing a release that already shipped. Every other component numbers a new entry.
+3. **Determine version.** Do these in order:
+   - List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on).
+   - List the version entries on the upstream branch with `git ls-tree`, which reads the branch's upstream, else `origin/main`.
+   - Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version.
+   - Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge.
+   - Without a reachable upstream, number locally and say so in the report.
+   For the `skilled` release line with at least one entry, first check the highest entry for a release tag with `git ls-remote --exit-code --tags origin refs/tags/v{latest}`:
+   - Exit 2 means no tag, so that release is still open. Extend that entry wherever it sits instead of numbering a new one, keep its version and skip the bump.
+   - A bump the operator chose is not applied, and the report says so, and says that tagging the open release first starts a new one.
+   - When the open entry exists only upstream, stop and ask for a merge or rebase first.
+   - Any exit other than 0 or 2 means the check failed, so number a new entry and say so rather than risk editing a release that already shipped.
+   Every other component numbers a new entry.
 4. **Generate content.** Read `assets/changelog-template.md`, then:
    - Write the frontmatter block per the Frontmatter Contract in section 5.
    - Choose the content before writing it (template section 3). List what changed, keep what the reader would notice, act on or decide differently about, merge items with the same effect and drop the housekeeping.
    - Select compact or expanded from the changes that survive (template section 5).
    - Write each section to its one job, so a fact appears once: themes in the opening, the gap in Why This Release, one payoff line per theme at a glance, the detail in the H4 items and only actions in the upgrade notes.
    - Lead with why the release matters, and add a table only when its numbers are the story.
-   - When extending an open release, read the entry first and fold the new work into it: add its section or H4 items, a glance bullet in section order, its spec folder on the spec-folder line and any upgrade action. Widen the opening and Why This Release only enough to cover the new theme, keep the title unless the new work changes the headline, and correct any existing sentence the new work makes untrue.
+   - When extending an open release, read the entry first and fold the new work into it.
+     Add its section or H4 items, a glance bullet in section order, its spec folder on the spec-folder line and any upgrade action.
+     Widen the opening and Why This Release only enough to cover the new theme, keep the title unless the new work changes the headline, and correct any existing sentence the new work makes untrue.
 5. **Validate quality.** Run the section 9 checks on the draft. For a new entry, confirm the version is strictly greater than the latest one and no file exists at the target. For an extension, confirm the target is the open entry. Confirm every path the entry names exists. Apply the cut test (template section 3), fix what is safe and revalidate.
-6. **Write the file.** Write `.skilled/changelog/{primary_component}/v{next_version}.md`, or edit the open entry in place when extending, read back its first lines, then set `next_version` in every version carrier the component's skill root already has (`SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json`, never `README.md` or a hub `ROUTER.md`, whose versions are each document's own) and, for a hub, run `node .skilled/commands/doctor/scripts/parent-skill-check.cjs` on the hub and stop on a non-zero exit. Report secondary components as candidates rather than writing extra files.
+6. **Write the file.** Write `.skilled/changelog/{primary_component}/v{next_version}.md`, or edit the open entry in place when extending, then read back its first lines.
+   Set `next_version` in every version carrier the component's skill root already has (`SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json`), never in `README.md` or a hub `ROUTER.md`, whose versions are each document's own.
+   For a hub, run `node .skilled/commands/doctor/scripts/parent-skill-check.cjs` on the hub and stop on a non-zero exit.
+   Report secondary components as candidates rather than writing extra files.
 7. **Report and preserve context.** Report the path, component, version, whether the entry is new or extended, bump type, summary, section count and files tracked. A spec-folder source can preserve context through the normal memory save workflow. Do not claim completion before the written file is verified.
 
 Pause when confidence drops below 40 percent, component resolution stays ambiguous, the calculated version looks wrong or a required section would be empty.
@@ -205,7 +235,12 @@ For GitHub release notes, use the changelog content with any YAML frontmatter an
 Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
 
-The command YAMLs own the release itself, as `step_7_publish_release`, and run it only when `publish_release` is explicitly true and the component is `skilled`, the framework release line. Any other component skips the release, because component versions share the `vX.X.X.X` shape with release tags and a component version must never become one. The tag is `v{next_version}`, and the release title is the tag followed by the entry's editorial title, the H1 without its leading version. The step checks for a tag collision and an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes at once with no draft stage. `:confirm` shows the exact commands and runs them only after approval.
+The command YAMLs own the release itself, as `step_7_publish_release`.
+They run it only when `publish_release` is explicitly true and the component is `skilled`, the framework release line.
+Any other component skips the release, because component versions share the `vX.X.X.X` shape with release tags and a component version must never become one.
+The tag is `v{next_version}`, and the release title is the tag followed by the entry's editorial title, the H1 without its leading version.
+The step checks for a tag collision and an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes at once with no draft stage.
+`:confirm` shows the exact commands and runs them only after approval.
 
 ---
 
@@ -232,7 +267,16 @@ Voice gate, run on the draft before writing:
 python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <draft-file>
 ```
 
-The scan must report zero hard blockers (banned punctuation or words). Deductions below that threshold are acceptable. If the scanner is unavailable, apply the rules by hand and record that the scan was skipped. Structural checks complement it: bold lead-ins on glance bullets, an `&nbsp;` line before every H2, nothing between H4 items, no `---` rule in the body, no `**Problem:**`/`**Fix:**` labels and inline `**Breaking:**` markers.
+The scan must report zero hard blockers (banned punctuation or words).
+Deductions below that threshold are acceptable.
+If the scanner is unavailable, apply the rules by hand and record that the scan was skipped.
+Structural checks complement it:
+- bold lead-ins on glance bullets.
+- an `&nbsp;` line before every H2.
+- nothing between H4 items.
+- no `---` rule in the body.
+- no `**Problem:**`/`**Fix:**` labels.
+- inline `**Breaking:**` markers.
 
 Packet-local files are deprecated, so no new one is validated here. `validate_document.py` still checks the existing ones under `specs/**/changelog/`.
 

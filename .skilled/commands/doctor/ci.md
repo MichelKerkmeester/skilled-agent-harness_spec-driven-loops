@@ -83,5 +83,10 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-ci-p
 
 1. `report` runs the read-only report once: every workflow with its switch state, triggers, path filters, purpose and drift flags, and the newest commit on the default branch that is not a trigger-index rebuild. It writes nothing.
 2. `scaffold` creates one new file under `.github/workflows/` from the workflow standards templates, rendered with the repository CI profile. It refuses a path that already exists and refuses a protected workflow name, prints the whole file, and writes it only after a yes. It never edits an existing workflow and never stages or commits.
-3. `toggle` turns one switch variable from the repository CI profile off, or back on, in the repository's Actions variables. It prints the exact `gh variable` command and the current state. It refuses a variable that skips a job whose status context the live branch ruleset requires, a variable in the profile's `neverOff` list and one the profile's workflows README says must stay unset, because a skipped job reports Success. Here that keeps `SKILLED_CI_MESSAGES` and `SKILLED_CI` unset for `message-contract.yml`. It refuses a change to the state the variable already has, and asks a second named confirmation before a change that switches off a protected workflow. It runs the command only after a yes, and reads the state back.
+3. `toggle` turns one switch variable from the repository CI profile off, or back on, in the repository's Actions variables.
+   It prints the exact `gh variable` command and the current state.
+   It refuses a variable that skips a job whose status context the live branch ruleset requires, a variable in the profile's `neverOff` list and one the profile's workflows README says must stay unset, because a skipped job reports Success.
+   Here that keeps `SKILLED_CI_MESSAGES` and `SKILLED_CI` unset for `message-contract.yml`.
+   It refuses a change to the state the variable already has, and asks a second named confirmation before a change that switches off a protected workflow.
+   It runs the command only after a yes, and reads the state back.
 4. Render the result and next step from the presentation contract.

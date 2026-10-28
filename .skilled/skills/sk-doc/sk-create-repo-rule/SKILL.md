@@ -2,7 +2,7 @@
 name: sk-create-repo-rule
 description: Author, revise or retire a repo rule from a user's request, with the decision tests that refuse most of them.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 <!-- Keywords: create-repo-rule, /create:repo-rule, repo rule, REPO RULES.md, repo-rules, rule file, trigger table, rule router, operating discipline, always-loaded versus triggered -->
@@ -70,7 +70,17 @@ The resource domains, the loading levels, the prompt-intent projection and the c
 4. **Fill `assets/repo-rule-template.md`.** Ten fixed elements, open numbered body, aim under 160 lines.
 5. **Run `references/creation-standards.md` against the draft.** Structure is checkable and is not the bar; a rule can pass every assertion and be worth nobody's context.
 6. **Wire it**: a trigger row and an index row in the router, and a pointer from the `AGENTS.md` section it governs.
-7. **Verify by running the checker**, not by eye: `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`. It asserts count parity across the rule files and both router tables, row coverage with link resolution, trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity, rule links, fires-when sections, that every index summary matches its rule's own description, that every Fires-when bullet has a counterpart in its router row and that every committed rule card still matches the card its rule renders, and exits non-zero on any failure. A hand check of the same properties is how every one of them drifted before the checker existed. What it cannot judge is whether the rule is worth loading at all, which is `references/creation-standards.md` and still needs a reader.
+7. **Verify by running the checker**, not by eye: `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`.
+   It exits non-zero on any failure, and it asserts:
+   - count parity across the rule files and both router tables.
+   - row coverage with link resolution.
+   - trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity and rule links.
+   - fires-when sections.
+   - that every index summary matches its rule's own description.
+   - that every Fires-when bullet has a counterpart in its router row.
+   - that every committed rule card still matches the card its rule renders.
+
+   A hand check of the same properties is how every one of them drifted before the checker existed. What it cannot judge is whether the rule is worth loading at all, which is `references/creation-standards.md` and still needs a reader.
 
 ### Revise
 

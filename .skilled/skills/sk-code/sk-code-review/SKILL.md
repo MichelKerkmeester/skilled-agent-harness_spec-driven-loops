@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.11.0
+version: 1.9.12.0
 metadata:
   family: sk-code
 ---
@@ -73,7 +73,15 @@ The rule-override algorithm it hands to the review lives in [`review-core.md`](.
    node <hub>/sk-code-quality/scripts/quality-gate.cjs --explain <file> [<file>...]
    ```
 
-   Pass only paths that exist as regular files. One deleted or missing path makes the runner stop the whole call with `FILE_NOT_FOUND`, exit 3, which would drop every surface and override for the files that do exist. For a diff, `--diff-filter=d` leaves the deleted paths out. For a file list, drop any path that is not a regular file. List a deleted path on the `Not checked:` line when its removal matters to the review, such as a deleted test or a removed caller. It prints one `code-quality-explain/v1` JSON document and always exits 2, because it runs nothing. Read each `files[]` entry's `surfaces`, `surface_skills` (the folder each surface loads from), `checklists` (each with its `source`, `sources` and parsed `overrides`) and the document's `config.hygiene.disabled`. Exit 3 on that filtered list is a usage or root fault: name it on the `Not checked:` line and review those files against the baseline only. [`runner-contract.md`](../sk-code-quality/references/runner-contract.md) section 3 owns the fields.
+   Pass only paths that exist as regular files. One deleted or missing path makes the runner stop the whole call with `FILE_NOT_FOUND`, exit 3, which would drop every surface and override for the files that do exist.
+
+   - For a diff, `--diff-filter=d` leaves the deleted paths out.
+   - For a file list, drop any path that is not a regular file.
+   - List a deleted path on the `Not checked:` line when its removal matters to the review, such as a deleted test or a removed caller.
+
+   It prints one `code-quality-explain/v1` JSON document and always exits 2, because it runs nothing. Read each `files[]` entry's `surfaces`, `surface_skills` (the folder each surface loads from), `checklists` (each with its `source`, `sources` and parsed `overrides`) and the document's `config.hygiene.disabled`.
+
+   Exit 3 on that filtered list is a usage or root fault: name it on the `Not checked:` line and review those files against the baseline only. [`runner-contract.md`](../sk-code-quality/references/runner-contract.md) section 3 owns the fields.
 4. Load `sk-code` surface standards evidence for the surfaces the resolver returned. A surface the hub's router bundled from request words is a candidate, and it applies only to the files the resolver places in it: the file's `surfaces` holds its label, or one of its checklists applies to the file. A candidate that holds no reviewed file is not loaded and not named in `Surface evidence used`.
 5. With no file paths to review, nothing is resolved. The bundle keeps `sk-code-skilled` only when the working directory is inside the hub's own checkout, the same git common dir as the hub folder. Anywhere else it drops `sk-code-skilled`, because a word such as "typescript" says nothing about whose code it is.
 6. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
@@ -83,7 +91,8 @@ The rule-override algorithm it hands to the review lives in [`review-core.md`](.
 1. Load standards from `sk-code` for the resolved surfaces only, each for the files the resolver placed in it.
 2. Apply precedence matrix:
    - Baseline security/correctness minimums and the rest of the floor always apply.
-   - Apply the `## Rule overrides` rows of the checklists the resolver returned, by the precedence and outcomes of [`review-core.md`](./references/review-core.md) section 8: the repository checklist, then a specific surface, then the SKILLED fallback, then the default lens. A checklist whose `overrides.refused` is true contributes no row, and a hygiene rule in `config.hygiene.disabled` counts as a `none` row from the repository config.
+   - Apply the `## Rule overrides` rows of the checklists the resolver returned. Use the precedence and outcomes of [`review-core.md`](./references/review-core.md) section 8: the repository checklist, then a specific surface, then the SKILLED fallback, then the default lens.
+     A checklist whose `overrides.refused` is true contributes no row. A hygiene rule in `config.hygiene.disabled` counts as a `none` row from the repository config.
    - Surface style/process/verification conventions win on conflicts.
 3. If precedence cannot be resolved deterministically, escalate before scoring. Two rows at the same level that disagree apply the default, go under `Conflicts` and are named in Next Steps.
 
@@ -98,11 +107,18 @@ The rule-override algorithm it hands to the review lives in [`review-core.md`](.
 
 #### Reach Calibration
 
-A `P0` or `P1` finding names its reach in its `Case:` line: an input or call path that the code's stated contract allows, or a real caller that sends it. A failure that needs input outside that contract, such as `NaN` where the contract says a number, a wrong type, or an inverted range the code already rejects, is `P2` hardening, unless the code claims to validate that input. Data that crosses a trust boundary is always in reach. The low-confidence escalation rule raises a finding only when its reach is named. The full rule is [`review-core.md`](./references/review-core.md) section 2.
+A `P0` or `P1` finding names its reach in its `Case:` line: an input or call path that the code's stated contract allows, or a real caller that sends it.
+A failure that needs input outside that contract, such as `NaN` where the contract says a number, a wrong type, or an inverted range the code already rejects, is `P2` hardening, unless the code claims to validate that input.
+Data that crosses a trust boundary is always in reach.
+The low-confidence escalation rule raises a finding only when its reach is named.
+The full rule is [`review-core.md`](./references/review-core.md) section 2.
 
 #### Numeric Severity Calibration
 
-Use numeric calibration only as reviewer context, never as the gate. A finding may include an optional advisory `riskScore` to communicate relative risk, and reviewers may adjust that score by `+/-2` for local context such as exploitability, blast radius, user impact, confidence, or proven containment. The blocking decision still comes only from the `P0`/`P1`/`P2` severity contract. Do not introduce `score>=4` or any other numeric threshold as a blocker.
+Use numeric calibration only as reviewer context, never as the gate.
+A finding may include an optional advisory `riskScore` to communicate relative risk, and reviewers may adjust that score by `+/-2` for local context such as exploitability, blast radius, user impact, confidence, or proven containment.
+The blocking decision still comes only from the `P0`/`P1`/`P2` severity contract.
+Do not introduce `score>=4` or any other numeric threshold as a blocker.
 
 #### Instance-Only Opt-Out
 
@@ -153,11 +169,13 @@ Rule sources: [checklist files]. Overrides: [rule id none|replace from checklist
 Not checked: [one line naming what mattered but could not be checked, and why, or "nothing material"]
 ```
 
-The `Rule sources:` line is defined in [`review-core.md`](./references/review-core.md) section 8: the checklists the review read, then each override outcome group, with `none` for an empty group and `Rule sources: none` when no file was resolved. It never starts with `Review status:` or `Not checked:`, so the final-line checks read the rest of the report as before, and `scripts/check-review-final-line.js` checks the line's own format when it is present.
+The `Rule sources:` line is defined in [`review-core.md`](./references/review-core.md) section 8: the checklists the review read, then each override outcome group, with `none` for an empty group and `Rule sources: none` when no file was resolved.
+It never starts with `Review status:` or `Not checked:`, so the final-line checks read the rest of the report as before, and `scripts/check-review-final-line.js` checks the line's own format when it is present.
 
 `Quality gate evidence` reads `present` when a `sk-code-quality` run verdict was handed to the review as input, and `absent` otherwise. Either value leaves every baseline check in place. The verdict is input evidence only, so no check is skipped because the gate already ran it, and no gate count renumbers a finding.
 
-The `Overall assessment` value names the same status as the final `Review status:` line, and so does a `Recommendation` line, such as the one the review agent's PR shape carries. `scripts/check-review-final-line.js` fails a report whose values disagree, and `scripts/check-review-findings.js` fails a `Recommendation` or a final status that approves or comments over a P0 or P1 finding, or requests changes with none.
+The `Overall assessment` value names the same status as the final `Review status:` line, and so does a `Recommendation` line, such as the one the review agent's PR shape carries.
+`scripts/check-review-final-line.js` fails a report whose values disagree, and `scripts/check-review-findings.js` fails a `Recommendation` or a final status that approves or comments over a P0 or P1 finding, or requests changes with none.
 
 After reporting findings, request explicit next action before any implementation follow-up.
 
@@ -177,7 +195,9 @@ Review status: REQUESTED_CHANGES
 Review status: COMMENTED
 ```
 
-Directly above the status line, separated from it by one blank line, every full review carries one `Not checked:` line naming what mattered but could not be checked and why, or `Not checked: nothing material`. An optional `AGENT_IO_RESULT` block, when requested, goes above the `Not checked:` line and never below the status line. The M-1 and M-2 skip outputs (§9) are the status line alone and carry no `Not checked:` line.
+Directly above the status line, separated from it by one blank line, every full review carries one `Not checked:` line naming what mattered but could not be checked and why, or `Not checked: nothing material`.
+An optional `AGENT_IO_RESULT` block, when requested, goes above the `Not checked:` line and never below the status line.
+The M-1 and M-2 skip outputs (§9) are the status line alone and carry no `Not checked:` line.
 
 **Example output bottom:**
 
@@ -192,7 +212,10 @@ Not checked: behavior under concurrent writes to /api/bar; no test database was 
 Review status: REQUESTED_CHANGES
 ```
 
-Downstream automation parses this final line via exact string match. Do not vary the format, add trailing punctuation, or wrap in Markdown formatting. The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`. A normal review must still end with one of the three exact lines above.
+Downstream automation parses this final line via exact string match.
+Do not vary the format, add trailing punctuation, or wrap in Markdown formatting.
+The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`.
+A normal review must still end with one of the three exact lines above.
 
 ---
 
@@ -279,9 +302,20 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 
 A repository can add its own mode to the sk-code hub, such as a security surface for its auth code. This is the review side of that mode.
 
-**What a security surface supplies.** It registers as a surface packet (`packetKind: "surface"`, `backendKind: "evidence-base"`) with its own `surfaceDetection` block, router vocabulary and a tie-break slot ahead of the fallback surface. It supplies read-only evidence: the standards and checklists to load, the markers that place a path inside it, and the verification commands for the code it owns. It never supplies a severity table, a status value or findings of its own.
+**What a security surface supplies.** It registers as a surface packet (`packetKind: "surface"`, `backendKind: "evidence-base"`) with its own `surfaceDetection` block, router vocabulary and a tie-break slot ahead of the fallback surface.
+It supplies read-only evidence: the standards and checklists to load, the markers that place a path inside it, and the verification commands for the code it owns.
+It never supplies a severity table, a status value or findings of its own.
 
-**What a consuming workflow may rely on.** When a request scores both this mode and the surface, the hub returns a surface bundle with this mode first and the surface after it. That bundled surface is a candidate: it applies to the files the quality runner's resolver places in it. The review then names the surface's label in `Surface evidence used`, applies the surface's style, process and verification guidance under the precedence matrix in section 2, honors the `## Rule overrides` rows of the checklists its `quality` block declares at the specific-surface level, and keeps its own `P0`/`P1`/`P2` findings, report shape and final status line. A caller parses the report the same way whichever surface was loaded.
+**What a consuming workflow may rely on.** When a request scores both this mode and the surface, the hub returns a surface bundle with this mode first and the surface after it.
+That bundled surface is a candidate: it applies to the files the quality runner's resolver places in it.
+The review then:
+
+- Names the surface's label in `Surface evidence used`.
+- Applies the surface's style, process and verification guidance under the precedence matrix in section 2.
+- Honors the `## Rule overrides` rows of the checklists its `quality` block declares at the specific-surface level.
+- Keeps its own `P0`/`P1`/`P2` findings, report shape and final status line.
+
+A caller parses the report the same way whichever surface was loaded.
 
 **What it may not change.** The Extension Floors in section 4 bind every user mode. A surface may add checks beside a floor and may raise one, and it may never lower, skip or reword one.
 
@@ -295,7 +329,15 @@ Start with `references/quick-reference.md`, then load task-specific doctrine, as
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with the sk-doc document validator in playbook mode, `validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`, where the playbook path is relative to this packet and the validator path is wherever sk-doc is installed. Playbook mode applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
+Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md`, the root index, plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md`.
+Both the category folder and the scenario file use bare descriptive slugs, with no numeric prefix.
+
+Validate the root index with the sk-doc document validator in playbook mode:
+`validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`.
+The playbook path is relative to this packet, and the validator path is wherever sk-doc is installed.
+Playbook mode applies the playbook rule set.
+
+Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
 
 ---
 
@@ -315,7 +357,8 @@ Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=
 **Cache storage:**
 - Path: `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`, in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is this file, and deleting it resets the gate.
 - `<repo-ref>` is computed as `sha256(<repo identity>).slice(0, 12)`, where `<repo identity>` is `git remote get-url origin`. A repository with no `origin` remote falls back to `git rev-parse --show-toplevel`, the repository root path, so a local-only repository still gets a stable key. A moved folder changes that key, and the worst case is one cache miss and a full review.
-- An optional pathspec scopes the gate to one monorepo package: the same pathspec goes to the `git diff` and `git log` calls above, and `<repo-ref>` becomes `sha256(<repo identity> + "\u001f" + <pathspec>).slice(0, 12)`, so each package keeps its own signature and cache file. With no pathspec the whole repository is one scope. [references/pr-state-dedup.md](./references/pr-state-dedup.md) holds the commands.
+- An optional pathspec scopes the gate to one monorepo package. The same pathspec goes to the `git diff` and `git log` calls above, and `<repo-ref>` becomes `sha256(<repo identity> + "\u001f" + <pathspec>).slice(0, 12)`, so each package keeps its own signature and cache file.
+  With no pathspec the whole repository is one scope. [references/pr-state-dedup.md](./references/pr-state-dedup.md) holds the commands.
 - Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
 - Retention: keep last **100 entries** per repo-ref, prune older entries on write
 
@@ -364,7 +407,8 @@ If sensitive paths ARE touched, the full review runs regardless of line count.
 
 ### 9.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
 
-`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default), exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
+`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default), exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate.
+Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
 
 - `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing (§10 resource loading levels).
 - `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier in §10) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
