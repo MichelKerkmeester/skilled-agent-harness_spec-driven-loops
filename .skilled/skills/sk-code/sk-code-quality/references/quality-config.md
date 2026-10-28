@@ -8,7 +8,7 @@ trigger_phrases:
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.7.0
 ---
 
 # Repository Quality Config
@@ -80,6 +80,33 @@ The runner picks exactly one source, the most explicit first.
 | `sensors` | `conflictMarkers` and `secrets` accept `exclude` only. `debugLeftovers` also accepts `enabled` |
 
 `assets/quality-config.template.json` holds every key with an empty value, and it passes the schema.
+
+### A Repository Outside the Hub
+
+A repository that is not the hub's own names its house rules here, because the runner never discovers a surface skill that lives in it. Surface declarations are read only from the hub that holds the runner: its `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside the hub. A skill in the repository under test, or in any other checkout, is not read, even when its metadata declares `surface_detection` and a `quality` block.
+
+```json
+{
+  "schemaVersion": 1,
+  "checklists": [{"file": ".sk-code/checklists/house.md", "paths": ["src/**"], "why": "house style for the service code"}],
+  "commentHygiene": {"disableRules": ["task", "issue"]}
+}
+```
+
+```markdown
+## Rule overrides
+
+| Rule | Action | Reason |
+| --- | --- | --- |
+| `floor.documentation` | none | Public functions carry no doc comments here |
+```
+
+- **The checklist.** Each `checklists[]` row names a repository-relative checklist file and the files it applies to, by `paths`, `extensions` or `contentMarkers`. The runner lists it under the `repo-config` seat for every file the row selects.
+- **The overrides.** That file may carry one `## Rule overrides` section, the shared contract in `../../shared/references/universal/rule-overrides.md`. In the contract's precedence a repository checklist ranks above every surface. A row that names a hard-floor rule, such as `floor.input-validation`, is refused, and so is a section with a row whose id no rule carries, such as a misspelled one. A refused section applies none of its rows: a gate run that loads the file ends `CONFIG_INVALID`, exit 3, and names every reason. Each accepted row is recorded in the envelope's `p0_p1_p2_decisions`. Check a file with `node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.md>` before the config names it.
+- **The machine-checked hygiene rules.** A `## Rule overrides` row on a `hygiene.*` id changes what the agent and a review apply, not what the checker matches. Switch a checker rule off with `commentHygiene.disableRules`.
+- **The limit.** A row adds a checklist and never a surface label. `--explain` lists the checklist, and its `surfaces` and `surface_skills` never name a surface of the repository's own.
+
+`/doctor:sk-code quality` status shows the result: each checklist with its seat, each override row or the reason a section was refused, and the hygiene rules that apply.
 
 ---
 
@@ -157,7 +184,7 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 
 | Mode | What it does |
 | --- | --- |
-| `status` | Reports the source and its errors, the config trust state (with the repair line when untrusted), probes each tool a check names as `PASS` (found) or `DEGRADED` (absent, with one repair line), lists a tool only a suggestion names as `SKIP`, reports the hygiene layers and names the core hygiene rules `disableRules` switches off, in `hygiene.disabled` |
+| `status` | Reports the source and its errors, the config trust state (with the repair line when untrusted), probes each tool a check names as `PASS` (found) or `DEGRADED` (absent, with one repair line), lists a tool only a suggestion names as `SKIP`, reports the hygiene layers and names the core hygiene rules `disableRules` switches off, in `hygiene.disabled`. Its `applies` block shows what the gate would apply here: each checklist with its seats (`default`, `repo-config`, `hub-surface` or `outside-skill`), its `## Rule overrides` rows or the reasons a section was refused, the checklist errors and warnings, and in `applies.hygiene` the core rules that apply and the ones disabled. The runner resolves it through `quality-gate.cjs --explain` over one file per first three folders and extension, which starts no check. Each `checklists[]` row of the repository config is listed and checked even when the sample did not reach it. A checklist error such as `CHECKLIST_MISSING`, or a refused override section as `CONFIG_INVALID`, fails the status with that code, as a gate run that loads the file would, and a resolution that broke reads `DEGRADED`. It starts one runner process per batch of 500 sampled files, one after another |
 | `check` | Validates the discovered config, or the file `--config` names, and reports `config.errors` and the trust state with no tool probe |
 | `init` | Prints the template filled with the suggestions, each written as `required: false`, and writes nothing. `--apply` writes a temporary file and hard-links it to `.sk-code/quality.json`, so it creates the file once and refuses with `CONFIG_EXISTS` when one exists. A `.sk-code` folder that resolves outside the repository is refused. In a repository with no `specs/` folder, the plan also carries `suggested_hygiene`: the 15 spec-kit vocabulary rules (packet, phase, spec-path, worktree-session, council-seat and the like) offered for `commentHygiene.disableRules`. The six tracker-id rules stay out of it, and init never writes the suggestion |
 
@@ -170,3 +197,5 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 - **Windows.** The process-group kill is POSIX behavior. Configured checks on Windows are not specified, and their behavior there is UNKNOWN.
 - **Hook config source.** The pre-commit hook reads the working-tree config, not the staged one, so a `disableRules` change applies to the commit that stages it. A layer that cannot start `node` runs every core rule.
 - **Argument length.** `{files}` passes every matching file of a group in one argv, so a very large change can pass the system's argument limit, and that run reads `ERROR`.
+- **Surface discovery outside the hub.** A surface skill in the repository under test, or in any checkout other than the hub's, is never discovered, because declarations are read only from the hub that holds the runner. Section 3 says how such a repository names its rules instead, and a row there adds a checklist, never a surface label.
+- **The doctor's sample.** The status resolves one file per first three folders and extension, capped at 4000 files. A paths selector deeper than three folders, a contentMarkers selector, or a surface file or content marker can miss every sampled file, so a hub or outside-skill checklist that only such a selector reaches can be missing from the list. Every checklist row the repository config declares is still listed and checked, its file and its override section, whether or not the sample reached it. The status names the sample size, and `quality-gate.cjs --explain <path>` answers for any one file.

@@ -13,7 +13,8 @@
     "sk-code/017-portable-code-modes/013-router-reach-local-ties",
     "sk-code/017-portable-code-modes/014-advisor-phrase-calibration",
     "sk-code/017-portable-code-modes/005-review-floor-lens-overrides",
-    "sk-code/017-portable-code-modes/006-review-agent-and-dispatch"
+    "sk-code/017-portable-code-modes/006-review-agent-and-dispatch",
+    "sk-code/017-portable-code-modes/009-integration-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -115,16 +116,16 @@
     ],
     "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
     "created_at": "2026-10-27T20:47:57Z",
-    "last_save_at": "2026-10-28T01:09:22.924Z",
+    "last_save_at": "2026-10-28T04:14:05.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d4e701b946c607781596f9d5185be933a28dded7ffceb1356c052e041af30796",
+    "source_fingerprint": "sha256:33e37de88c8f377b5201459365047c74767db29d73f1c157441cd7be7ccf3bb8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa9742734b40f693d659b62c0686143abfb6b08bb0735ed5366e7a7087fb73d2"
+      "spec.md": "8f05106af97b154ea637683bfa775552e0b57c1db65b3a81d55ebcbda2d03c16"
     },
     "last_active_at": null
   }

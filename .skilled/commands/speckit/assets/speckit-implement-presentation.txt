@@ -73,10 +73,12 @@ Mode: [AUTONOMOUS|INTERACTIVE]
 Step: [current] / 9 - [step name]
 Prerequisites: spec.md [status] | plan.md [status] | tasks.md [status] | acceptance-criteria.md [status]
 Task progress: [done]/[total] complete
-Quality gate: [not-run|pass|blocked]
+Quality gate: [not-run|NO_BLOCKER_FOUND|BLOCKED|UNVERIFIED|NOTHING_CHECKED|ERROR]
 Current blocker: [none|details]
 Next: [next action]
 ```
+
+The quality gate field copies the `gate` value of the last sk-code quality runner verdict (`quality-gate.cjs`) read during this run, and reads `not-run` when none was read. It never reads `pass`: `NO_BLOCKER_FOUND` says only that no blocker was found and that every required check produced evidence, and `NOTHING_CHECKED` means no check read a file, never that the files are clean.
 
 ### Debug Offer
 

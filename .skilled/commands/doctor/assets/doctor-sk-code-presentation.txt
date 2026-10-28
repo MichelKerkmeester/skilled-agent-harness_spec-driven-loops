@@ -71,13 +71,14 @@ STATUS=[status]
 
 ### Quality Status Table
 
-Render the config source first, then one row per tool the status names.
+Render the config source first, then one row per tool the status names, then what the gate would apply.
 
 ```text
 Config: [path and source, or none, the gate runs its built-in checks alone]
 Errors: [each config error, or none]
 Trust: [trusted or untrusted with the rule that decided it, the repair line when untrusted, or none]
 Layers: pre-commit [state], ci [state], post-edit [state]
+Hygiene: [disabled and the rules, or every core rule applies]
 ```
 
 | Tool | Named by | State | Repair |
@@ -85,6 +86,21 @@ Layers: pre-commit [state], ci [state], post-edit [state]
 | [tool] | [check ids, or the suggestion that names it] | [PASS|SKIP|DEGRADED] | [the repair line, or none] |
 
 `PASS` means the tool is on PATH. `DEGRADED` means a configured check names it and it is absent. `SKIP` means only a suggestion names it, so no check would look for it.
+
+### Applied Rules
+
+Render the status's `applies` block: one row per checklist the gate would load, then the hygiene rules. The runner resolves it through `quality-gate.cjs --explain` over the sample the status names, one file per first three folders and extension, and runs no check. A paths selector deeper than three folders, a contentMarkers selector, or a surface file or content marker can miss every sampled file, so each checklist the repository config declares is listed and checked even when the sample did not reach it, marked `declared, not reached by the sample`.
+
+```text
+Checklists: [N], resolved over [N] of [N] listed files, or not resolved and why
+Hygiene rules: [N] apply ([rule ids]), disabled [rule ids, or none]
+```
+
+| Checklist | Seat | Overrides |
+|-----------|------|-----------|
+| [checklist file] | [default|repo-config|hub-surface|outside-skill, each seat that lists it] | [each row as `<rule id> none` or `<rule id> replace: <text>`, REFUSED with each reason, or none] |
+
+A seat is where the checklist was declared: `default` is the shipped base layer, `repo-config` is `checklists[]` in `.sk-code/quality.json`, `hub-surface` is a hub surface's `quality` block and `outside-skill` is a skill outside the hub that declares one. A refused section applies none of its rows, so print every reason the shared linter gave, such as a floor rule that cannot be overridden. A refused section, or one with a row whose id no rule carries, fails the status with `CONFIG_INVALID`, and a checklist error such as `CHECKLIST_MISSING` fails it with that code, because every gate run that loads the file stops on it with exit 3. A row the sample did not reach is checked the same way. Two checklists at one level that disagree on a rule for a sampled file print `override-conflict <rule id> <checklist> <checklist>` with the sampled files it covers: neither row applies there and the gate reads `UNVERIFIED`, exit 4, so the status lists it and does not fail on it. A resolution that broke reads `DEGRADED` with its reason.
 
 ### Quality Init Plan
 
@@ -121,6 +137,7 @@ Mutation class: mutates
 Config: [path and source, or none]
 Trust: [trusted, untrusted or none]
 Tools: [N] PASS, [N] SKIP, [N] DEGRADED
+Applies: [N] checklists, [N] override rows, [N] refused sections, [N] hygiene rules, [N] disabled
 Errors: [N]
 Written: [.sk-code/quality.json, or nothing]
 Undo: [delete .sk-code/quality.json, or none]
@@ -152,6 +169,8 @@ STATUS=ERROR ERROR="[message]"
 | A setup leg reports SKIP | The skipped legs wait on the provision step or the v4 layout, so run the provisioning leg's `repair:` command and rerun |
 | The quality status reports a DEGRADED tool | Install the tool, or remove the checks that name it from the config, then rerun `/doctor:sk-code quality` |
 | The quality check reports CONFIG_INVALID | Fix each field the errors name, as `.skilled/skills/sk-code/sk-code-quality/references/quality-config.md` describes, then rerun |
+| The quality status reports CHECKLIST_MISSING | A declaration names a checklist file that is not there. Restore the file, or fix the `checklists[]` row or the surface's `quality` block that names it, then rerun |
+| The applied rules show a refused override section | Fix or remove each row the reason names: a floor rule cannot be overridden, and a machine-checked id takes `none` only. Run `node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.md>` to check it, then rerun |
 | The quality status reports CONFIG_PATH_MISSING | Create the named file, or fix the `--config` value or the `skcode.qualityConfig` git config value that names it |
 | Quality init reports CONFIG_EXISTS | The file is kept and never overwritten. Edit it by hand, or delete it and rerun `/doctor:sk-code quality` |
 | Quality init reports OUTSIDE_REPOSITORY | `.sk-code` is a link that leads out of the repository. Replace it with a real folder, then rerun |

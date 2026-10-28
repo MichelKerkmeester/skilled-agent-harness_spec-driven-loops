@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/009-integration-fixes",
+  "spec_folder": "sk-code/017-portable-code-modes/009-integration-fixes",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "integration fixes",
+      "integration fixes doctor quality shows applied rules implement",
+      "doctor quality applied rules",
+      "implement dashboard quality gate verdict",
+      "outside repository surface discovery",
+      "integration fixes plan",
+      "integration fixes tasks",
+      "integration fixes acceptance criteria",
+      "integration fixes implementation summary"
+    ],
+    "key_topics": [
+      "integration",
+      "doctor",
+      "quality",
+      "shows",
+      "applied",
+      "rules",
+      "implement",
+      "dashboard",
+      "gate",
+      "verdict",
+      "outside",
+      "repository"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-sk-code-quality.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/shared/scripts/lib/rule-registry.cjs",
+      ".skilled/skills/sk-code/shared/scripts/tests/rule-registry.test.cjs",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/changelog/v3.9.13.0.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-quality.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-code-quality.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "rule-registry.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/lib/rule-registry.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "rule-registry.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/tests/rule-registry.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v3.9.13.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.9.13.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Measured",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:sk-code quality` status reports the config, its trust and its tools, and nothing about what the gate would apply in the repository: no checklist, no seat, no `## Rule overrides` row and no list of the hygiene rules in force",
+    "created_at": "2026-10-27T23:43:08Z",
+    "last_save_at": "2026-10-28T04:15:00.292Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ce1da42d28184aeeb543dcbdd4f21329484085c84f174bdb5a494142c33baaaa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5a0b3441432a66d15f8f266c702c1724f41d78854a00e5886ae720f34c19e543",
+      "plan.md": "3c79492644eba664fa1df9c17c6a69244a8153d781e311fbb109a2d46a882c6d",
+      "tasks.md": "63f3f1829dd7a5bed34cd8f29fbe71b57a8210efb8cd1bc2b7402e67834579fd",
+      "implementation-summary.md": "ffa69a86db80259e4aab45b8145032269956c2198c365782a5af8256a185345c"
+    },
+    "last_active_at": null
+  }
+}

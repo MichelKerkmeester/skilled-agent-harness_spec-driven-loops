@@ -2,7 +2,7 @@
 # DOCTOR: SK-CODE QUALITY CONFIG WORKFLOW (INTERACTIVE MUTATING MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator helping a repository name its own quality checks in one committed file
-purpose: Show which config the sk-code quality gate reads and whether each tool it names is on PATH, validate that config and create .sk-code/quality.json once from the shipped template behind one approval
+purpose: Show which config the sk-code quality gate reads, whether each tool it names is on PATH and which checklists, override rows and hygiene rules the gate would apply, validate that config and create .sk-code/quality.json once from the shipped template behind one approval
 action: Status -> check -> init dry run when no config exists -> approval -> apply -> check -> report
 
 # ─────────────────────────────────────────────────────────────────
@@ -22,8 +22,14 @@ operating_mode:
 config_invariant: |
   The quality gate reads one repository config: --config, else the file-scoped git config
   value skcode.qualityConfig, else .sk-code/quality.json at the repository root. The gate
-  runs every command that file names, so this workflow never runs one: status looks each
-  named tool up on PATH and stops there, and check validates the file against the schema.
+  runs every command that file names, and this workflow runs none of them: status looks
+  each named tool up on PATH without starting it, and check validates the file against the
+  schema. To show what the gate would apply, status asks the runner through
+  quality-gate.cjs --explain over one file per folder group and extension, one runner
+  process per batch of 500 sampled files, run one after another, so up to eight for the
+  4000-file cap. Explain starts no check and writes no file, and the doctor keeps no copy
+  of checklist discovery. Every checklist the repository config declares is checked too,
+  whether or not the sample reached it.
   The only write is init --apply, which creates .sk-code/quality.json from the shipped
   template with the checks the repository's manifests imply entered as not required, and
   which refuses with CONFIG_EXISTS when the file already exists. A dry run shows the plan
@@ -35,6 +41,7 @@ config_invariant: |
 upstream_assets:
   config_script: ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs"
   config_module: ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs"
+  runner: ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
   template: ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json"
   reference: ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md"
   config_file: ".sk-code/quality.json"
@@ -75,7 +82,8 @@ workflow:
     purpose: "Show which config is read and whether its tools are present before asking for anything"
     activities:
       - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status --json and keep the source, the path, the errors, each tool's PASS, SKIP or DEGRADED state with its repair line and the hygiene layers"
-      - "Render the presentation contract's quality status table"
+      - "Keep the applies block too: each checklist with its seats (default, repo-config, hub-surface or outside-skill), its override rows, a refused section with each reason, each override-conflict a sampled file reaches with the files it covers, the checklist errors and warnings, and the hygiene rules that apply and the ones disabled. A checklist error, a missing declared checklist or a refused override section fails the status with that error's code, as a gate run that loads the file would, and a resolution that broke reads DEGRADED"
+      - "Render the presentation contract's quality status table and its applied-rules block"
 
   phase_2_check:
     purpose: "Validate the config the gate would read"

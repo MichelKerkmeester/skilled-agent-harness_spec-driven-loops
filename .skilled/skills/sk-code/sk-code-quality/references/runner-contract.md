@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.6.0
+version: 1.0.8.0
 ---
 
 # Quality Runner Contract
@@ -68,7 +68,7 @@ That count is what the two-second budget rests on. On `arm64` with an `Apple M5 
 | `BLOCKED` | 1 | At least one blocking finding, or a required P0 configured check in `RAN_FAIL` |
 | `NOTHING_CHECKED` | 2 | No check read any file as code. A file that only the sensors scanned, such as a Markdown file, stays unchecked. Never read it as clean |
 | `ERROR` | 3 | The run could not finish honestly. `errors[]` names why |
-| `UNVERIFIED` | 4 | A required check produced no evidence. `summary.unverified` names it |
+| `UNVERIFIED` | 4 | A required check produced no evidence, or two override sources at one level disagree on a rule. `summary.unverified` names the check id or the rule id |
 
 Precedence runs `ERROR`, then `BLOCKED`, then `UNVERIFIED`, then `NOTHING_CHECKED`, then `NO_BLOCKER_FOUND`. A blocker and an unverified check in one run exit 1.
 
@@ -115,7 +115,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | Error code | Cause |
 | --- | --- |
 | `USAGE` | A flag the CLI section does not accept |
-| `CONFIG_PATH_MISSING`, `CONFIG_INVALID` | A named config path that does not exist, or a repository config that fails to parse or validate. `config.errors` lists one row per field, and a validation fault stops the run before a check starts. A `commentHygiene` value the checker refuses is a `CONFIG_INVALID` cause found once the run starts, and its row names the field that supplied the value |
+| `CONFIG_PATH_MISSING`, `CONFIG_INVALID` | A named config path that does not exist, or a repository config that fails to parse or validate. `config.errors` lists one row per field, and a validation fault stops the run before a check starts. A `commentHygiene` value the checker refuses is a `CONFIG_INVALID` cause found once the run starts, and its row names the field that supplied the value. So is a checklist the run loads whose `## Rule overrides` section the shared linter refuses, or one with a row whose id no rule carries: its `config.errors` row names the checklist and every reason, and none of that file's rows apply |
 | `NO_GIT_REPOSITORY` | No git repository and no `--files` |
 | `FILE_NOT_FOUND`, `FILE_OUTSIDE_ROOT` | A named file that is missing, not regular or outside the root |
 | `BASE_NOT_FOUND`, `GIT_FAILED` | A ref with no merge base, or a git call that failed |
@@ -141,6 +141,8 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | `surfaces` | One `{file, labels}` row per file that is not excluded. A file with no surface reads `["UNKNOWN"]` |
 | `layers` | `pre_commit_hygiene`, `ci_hygiene` and `post_edit`, each one layer state |
 | `checklists` | One `{file, path, why, files}` row per checklist to load, the floor first |
+| `rule_overrides` | One `{file, line, id, action, text, reason, files}` row per accepted `## Rule overrides` row in a checklist the run loads, in checklist order. `action` is `none` or `replace`, and `text` is null for `none`. `files` lists the scoped files the row applies to, after precedence: empty when a higher level outranks it or a conflict sets it aside. Empty when no loaded checklist carries a section |
+| `rule_conflicts` | One `{id, files, scope}` row per rule that two checklists at the same precedence level give a different action or text for one file. `files` names the checklists, `scope` the files the conflict covers. The rule keeps its default there, and its id joins `summary.unverified` |
 | `checks` | One row per built-in check id, in section 2 order, then one row per configured check in config order |
 | `findings` | Every finding, sorted by file and line |
 | `suggested_checks` | One `{id, source, reason, entry}` row per check a root manifest implies and no configured check holds. `entry` is the exact `checks` entry that would enable it. None ever runs |
@@ -164,7 +166,7 @@ An unchecked reason is `excluded`, `size` (over 2 MB), `binary` (a NUL byte in t
 | `files` | One per-file entry for each named file, in the order named, with duplicates dropped |
 | `errors` | `{code, message, repair}` rows for a declaration fault or a missing checklist that a named file reaches |
 | `note` | `nothing was run` |
-| `file`, `language`, `language_source`, `unchecked`, `surfaces`, `surface_skills`, `checklists`, `checks` | Present only when the named paths resolve to one file, duplicates dropped. They copy that file's entry from `files`, at the place a single-file caller has always read them |
+| `file`, `language`, `language_source`, `unchecked`, `surfaces`, `surface_skills`, `checklists`, `checks`, `rule_conflicts` | Present only when the named paths resolve to one file, duplicates dropped. They copy that file's entry from `files`, at the place a single-file caller has always read them |
 
 One resolution covers every named file, as one run does, so a fault is an error exactly when some named file reaches it. A path that is missing or outside the root stops the whole call with exit 3, as a single path does.
 
@@ -175,8 +177,11 @@ One resolution covers every named file, as one run does, so a fault is an error 
 | `surface_skills` | One `{label, owner, folder}` row per declared surface that detected the file. `owner` is `hub` for a surface the hub registry declares and `outside-skill` for one a skill's `graph-metadata.json` declares. `folder` is the absolute folder to load the surface from: the hub packet, or the outside skill's folder as the declared-surfaces reader listed it, a trusted `local-*` link included. A private surface with no `quality` block still names its folder. `folder` is null for a hub surface with no packet. An `UNKNOWN` file has none |
 | `checklists` | One `{file, path, why, source, sources, overrides}` row per checklist that applies to this file. `source` is the first seat that listed it for this file and `sources` every seat, in declaration order. A seat is `default` (the base layer in `quality-defaults.json`), `repo-config` (the repository config's `checklists`), `hub-surface` (a `quality` block in `mode-registry.json`) or `outside-skill` (a skill's `quality` block) |
 | `checks` | One `{id, applies, why}` row per built-in check and one `{id, origin, applies, why}` row per configured check |
+| `rule_conflicts` | One `{id, files}` row per rule that two checklists at the same precedence level give a different action or text for this file, found by the run's own override pass over the named files. `files` names the checklists. A run over this file lists the same conflict in its `rule_conflicts` and reads `UNVERIFIED`. Empty when no rule conflicts here |
 
-`overrides` is the checklist's `## Rule overrides` section, read through `lintOverrides` in `shared/scripts/check-rule-overrides.cjs`, the same reader both modes use. It holds `found`, `refused`, `rows` and `errors`. A row is `{line, id, action, text, reason}`, with `action` `none` or `replace`. An error is `{line, message}`, such as a floor rule that cannot be overridden. `refused` is true when `errors` holds anything: the contract applies a file's rows only when its error list is empty, so a caller then applies none of them. A file with no section reads `found: false` and `refused: false`. `overrides` is null when the checklist file is not a regular file, which `errors` already reports as `CHECKLIST_MISSING`.
+`overrides` is the checklist's `## Rule overrides` section, read through `lintOverrides` in `shared/scripts/check-rule-overrides.cjs`, the same reader both modes use. It holds `found`, `refused`, `rows` and `errors`. A row is `{line, id, action, text, reason}`, with `action` `none` or `replace`. An error is `{line, message}`, such as a floor rule that cannot be overridden. `refused` is true when `errors` holds anything: the contract applies a file's rows only when its error list is empty, so a caller then applies none of them. A file with no section reads `found: false` and `refused: false`. `overrides` is null when the checklist file is not a regular file, which `errors` already reports as `CHECKLIST_MISSING`. A run reads the same section of every checklist it loads: a refused one ends the run `ERROR` with `CONFIG_INVALID`, exit 3, and each accepted row is listed in `rule_overrides`. The run also refuses a section with a row whose id no rule carries, which the linter does not check. The known ids come from `shared/scripts/lib/rule-registry.cjs`, which reads them from the documents that declare them: section 5 of this file, with the hygiene names from the checker's own table, sections 3 to 5 of `code-quality-standards.md` and section 8 of `review-core.md`. An explanation does not apply this check, so its `overrides` block is the linter's alone. Its `rule_conflicts` does come from the run's pass, so a row that check refuses takes part in no conflict.
+
+Precedence follows the shared contract. Each checklist takes the highest level of the seats that list it for a file: `repo-config` is the repository checklist, a `hub-surface` other than the SKILLED fallback or an `outside-skill` is a specific surface, the SKILLED fallback comes next and `default` is the rule as the mode ships it. For each file and rule the highest level wins. Rows at that level that give the same action and text agree and all apply. Rows that differ are listed in `rule_conflicts`, none of them applies, and the rule id joins `summary.unverified`, so the gate reads `UNVERIFIED`, exit 4, unless an error or a blocker outranks it. No new exit code is added.
 
 The explanation is runtime output. Its JSON prints a private skill folder in `folder`, `path` and `file`, as the run's JSON does, so a caller copies labels, never those paths, into a tracked file.
 
@@ -202,9 +207,10 @@ verification_handoff: workflow-verify.md
 remaining_accepted_risk: PENDING_AGENT_JUDGMENT
 ```
 
-- `unverified` lists the required check ids from `summary.unverified`, joined by commas.
+- `unverified` lists the check ids and conflicting rule ids from `summary.unverified`, joined by commas.
 - `unchecked` counts `coverage.unchecked`.
 - The three judgment fields read `PENDING_AGENT_JUDGMENT` until the agent replaces them. A field that still reads it is open work.
+- `p0_p1_p2_decisions` starts with one `override <rule id> <none|replace> from <checklist file>` entry per `rule_overrides` row that applies to a file, then one `override-conflict <rule id> <checklist file> <checklist file>` entry per `rule_conflicts` row, joined by `, `. It still ends in `PENDING_AGENT_JUDGMENT`, because the per-severity dispositions stay the agent's. With no row it reads `PENDING_AGENT_JUDGMENT` alone.
 - A path segment or word that starts with `local-`, in any case, prints as `<LABEL>`, the label its private surface declares, or `<PRIVATE>` when no surface claims it. A public name that only holds the text, such as `nonlocal-config.js` or `.local-env.sh`, prints as it is. The envelope gets pasted into tracked handoffs, and no tracked file names a private skill. The JSON and text forms are not redacted.
 
 ---

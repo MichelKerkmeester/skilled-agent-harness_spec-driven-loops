@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.6.0
+version: 1.13.7.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -121,7 +121,9 @@ Phase 1 Implementation writes or changes files
 
 ### Target-Path Checklist Map
 
-The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, which are the universal floor and, in this hub's own repository, the spec-folder authoring checklist, and each surface's `quality.checklists` declaration. Ask the runner which checklists apply to a file, and why, with `node scripts/quality-gate.cjs --explain <path>`. Its `checklists[]` and each entry's `why` are the answer, in any repository. This repository's own map, the SKILLED rows among them, is rendered in `../sk-code-skilled/SKILL.md` under "Quality Checklist Map".
+The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, which are the universal floor and, in this hub's own repository, the spec-folder authoring checklist, and each surface's `quality.checklists` declaration. Ask the runner which checklists apply to a file, and why, with `node scripts/quality-gate.cjs --explain <path>`. Its `checklists[]` and each entry's `why` are the answer, in any repository. This repository's own map, the SKILLED rows among them, is rendered in `../sk-code-skilled/SKILL.md` under "Quality Checklist Map". `/doctor:sk-code quality` shows the same answer for a whole repository: every checklist the gate would load, its seat, its override rows and the hygiene rules that apply.
+
+**A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub. A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block. Such a repository names its rules in `.sk-code/quality.json` instead. Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`. A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface. The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own. `references/quality-config.md` section 3 holds the row rules.
 
 ### Comment-Hygiene Enforcement Gates
 
@@ -187,7 +189,7 @@ The declarations behind `--explain` stay authoritative, and the runner reads the
 
 1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Run `node scripts/quality-gate.cjs` from the repository root. It takes the working-tree change by default, or `--base <ref>` or `--files <path>...`. Read the gate before anything else. `BLOCKED` means fix in place or escalate. `UNVERIFIED` means a required check produced no evidence, so hand each id in `summary.unverified` to verification as an open claim. `NOTHING_CHECKED` is reported as such and never as clean. `ERROR` stops the gate until its `errors[]` entry is repaired.
+3. Run `node scripts/quality-gate.cjs` from the repository root. It takes the working-tree change by default, or `--base <ref>` or `--files <path>...`. Read the gate before anything else. `BLOCKED` means fix in place or escalate. `UNVERIFIED` means a required check produced no evidence or two override sources at one level disagree on a rule, so hand each check or rule id in `summary.unverified` to verification as an open claim. `NOTHING_CHECKED` is reported as such and never as clean. `ERROR` stops the gate until its `errors[]` entry is repaired.
 4. Load every checklist the verdict's `checklists[]` names, with the `why` it gives. The universal floor `../shared/references/universal/code-quality-standards.md` is always one of them.
 5. Judge each item in `judgment_required`. No built-in check decides input validation, silent failures, initialization safety, commented-out code, accessibility or design restraint.
 6. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
@@ -204,7 +206,7 @@ The tier rules and the P0 categories live in [`code-quality-standards.md`](../sh
 | Severity | Meaning | Gate Effect |
 | --- | --- | --- |
 | P0 | Correctness, safety, broken contract, or forbidden comment metadata | Blocks completion until fixed or escalated. |
-| UNVERIFIED | Unchecked generated drift, missing required checklist evidence, or a required check that produced no evidence | Neither clean nor blocked. The claim stays open until verification proves it with its own command or reports it open. |
+| UNVERIFIED | Unchecked generated drift, missing required checklist evidence, a required check that produced no evidence, or two override sources at one level that disagree on a rule | Neither clean nor blocked. The claim stays open until verification proves it with its own command or reports it open. |
 | P1 | Maintainability, routing, style, or authoring-contract issue likely to confuse future work | Fix before handoff unless the user accepts a documented risk. |
 | P2 | Local polish, clarity, or minor consistency issue with low behavioral risk | Fix when cheap; otherwise document the deferral and why it is safe. |
 
@@ -234,7 +236,7 @@ verification_handoff: workflow-verify.md
 remaining_accepted_risk: <one-line residual risk, or none>
 ```
 
-`node scripts/quality-gate.cjs --format envelope` renders the machine fields, and `references/runner-contract.md` section 4 holds the grammar. The three judgment fields, `p0_p1_p2_decisions`, `accepted_deferrals` and `remaining_accepted_risk`, print as `PENDING_AGENT_JUDGMENT` until the agent fills them, and a field that still reads it is open work. A private surface prints by its label only, so the envelope never names a `local-` skill.
+`node scripts/quality-gate.cjs --format envelope` renders the machine fields, and `references/runner-contract.md` section 4 holds the grammar. The three judgment fields, `p0_p1_p2_decisions`, `accepted_deferrals` and `remaining_accepted_risk`, print as `PENDING_AGENT_JUDGMENT` until the agent fills them, and a field that still reads it is open work. `p0_p1_p2_decisions` also lists each `## Rule overrides` row the run applied, as `override <rule id> <none|replace> from <checklist file>`, and each `override-conflict <rule id> <checklist file> <checklist file>` between two checklists at one precedence level, ahead of the marker. A conflicting rule keeps its default and is unverified. A refused override section, or one with a row whose id no rule carries, ends the run `CONFIG_INVALID`, exit 3. A private surface prints by its label only, so the envelope never names a `local-` skill.
 
 This envelope is advisory and additive only: its `status` is fixed to `advisory` and MUST NOT be `pass`, `success`, or `done`. Its presence NEVER reads as a completion, done, works, or passing claim, and it never replaces the handoff to the surface's verification workflow (`workflow-verify.md`) — it reinforces, and does not relax, the §4 NEVER rule that this mode makes no passing claims.
 

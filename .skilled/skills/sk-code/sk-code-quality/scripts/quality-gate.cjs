@@ -46,12 +46,16 @@ const HUB_OVERRIDE_ENV = 'SK_CODE_QUALITY_HUB_ROOT';
 // The linter is the runner's own hub code, like the checkers, so a moved declaration hub
 // never changes which grammar or floor reads an override section.
 const OVERRIDE_LINTER_PATH = path.join(HUB_ROOT, 'shared', 'scripts', 'check-rule-overrides.cjs');
+// The known rule ids come from the same hub, read from the documents that declare them.
+const RULE_REGISTRY_PATH = path.join(HUB_ROOT, 'shared', 'scripts', 'lib', 'rule-registry.cjs');
 
 const RUN_SCHEMA = 'code-quality-run/v1';
 const ENVELOPE_SCHEMA = 'code-quality/v1';
 const EXPLAIN_SCHEMA = 'code-quality-explain/v1';
 const EMPTY_TREE = '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
 const PENDING = 'PENDING_AGENT_JUDGMENT';
+const OVERRIDE_REPAIR = 'fix or remove each override row the message names, then check the file with '
+  + 'node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.md>';
 
 const GATE_EXIT = Object.freeze({ NO_BLOCKER_FOUND: 0, BLOCKED: 1, NOTHING_CHECKED: 2, ERROR: 3, UNVERIFIED: 4 });
 // A required check in one of these states produced no evidence, so the run cannot
@@ -1307,7 +1311,7 @@ function resolveChecklists(files, context) {
     const matched = scoped.filter((facts) => rowApplies(row, facts) && selectorsMatch(row.selectors, facts, context));
     if (matched.length === 0) continue;
     const listedBy = seats.get(row.file) || [];
-    for (const facts of matched) listedBy.push({ seat: row.seat, file: facts.rel });
+    for (const facts of matched) listedBy.push({ seat: row.seat, file: facts.rel, owner: row.owner });
     seats.set(row.file, listedBy);
     const existing = checklists.find((entry) => entry.file === row.file);
     if (existing) {
@@ -2143,8 +2147,10 @@ function applyLayerRule(findings, layers) {
  * @param {Object} facts - errors, findings, checks and filesChecked.
  * @returns {{gate:string, exit_code:number, unverified:string[]}}
  */
-function decideGate({ errors = [], findings = [], checks = [], filesChecked = 0 }) {
-  const unverified = checks.filter((check) => check.required && UNVERIFIED_STATES.has(check.state)).map((check) => check.id);
+// A rule two override sources at one level disagree on is an open claim, the same kind a
+// required check with no evidence is, so it joins the unverified list under its rule id.
+function decideGate({ errors = [], findings = [], checks = [], filesChecked = 0, openRules = [] }) {
+  const unverified = [...checks.filter((check) => check.required && UNVERIFIED_STATES.has(check.state)).map((check) => check.id), ...openRules];
   const blocked = findings.some((entry) => entry.blocking && entry.severity === 'P0' && entry.confidence === 'exact')
     || checks.some((check) => REPOSITORY_ORIGINS.has(check.origin) && check.severity === 'P0' && check.required && check.state === 'RAN_FAIL');
   let gate = 'NO_BLOCKER_FOUND';
@@ -2230,6 +2236,8 @@ function emptyVerdict(options) {
     surfaces: [],
     layers: { pre_commit_hygiene: 'unknown', ci_hygiene: 'unknown', post_edit: 'unknown' },
     checklists: [],
+    rule_overrides: [],
+    rule_conflicts: [],
     checks: [],
     findings: [],
     suggested_checks: [],
@@ -2272,7 +2280,9 @@ function runGate(context) {
   const surfaces = declaredSurfaces(context.declHub);
   const files = scope.files.map((file) => fileFacts(file, context));
   for (const facts of files) if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
-  const { checklists, errors: configErrors, warnings: configWarnings } = resolveChecklists(files, context);
+  const { checklists, errors: configErrors, warnings: configWarnings, seats } = resolveChecklists(files, context);
+  const overrides = runOverrides(checklists, seats, surfaces);
+  configErrors.push(...overrides.errors);
   const layers = probeLayers(context);
   const plan = planChecks(files, context);
   const checks = new Map();
@@ -2458,7 +2468,8 @@ function runGate(context) {
   const checked = new Set(configuredRan);
   for (const applicable of ranOn.values()) for (const facts of applicable) if (!facts.unchecked) checked.add(facts.rel);
   const allErrors = [...configErrors, ...configFaults, ...errors];
-  const decision = decideGate({ errors: allErrors, findings, checks: orderedChecks, filesChecked: checked.size });
+  const decision = decideGate({ errors: allErrors, findings, checks: orderedChecks, filesChecked: checked.size,
+    openRules: [...new Set(overrides.conflicts.map((row) => row.id))] });
   const labels = [];
   for (const surface of surfaces) {
     if (files.some((facts) => facts.labels.includes(surface.label)) && !labels.includes(surface.label)) labels.push(surface.label);
@@ -2476,6 +2487,8 @@ function runGate(context) {
     surfaces: files.filter(authored).map((facts) => ({ file: facts.rel, labels: facts.labels })),
     layers,
     checklists,
+    rule_overrides: overrides.applied,
+    rule_conflicts: overrides.conflicts,
     checks: orderedChecks,
     findings,
     suggested_checks: readSuggested(context),
@@ -2536,7 +2549,100 @@ function overridesReader() {
   };
 }
 
-function explainFile(facts, resolved, context, readOverrides) {
+// A run reads the override section of each checklist it loads through the same reader an
+// explanation uses. The contract applies a file's rows only when its error list is empty,
+// so a refused section stops the run rather than leaving a judgment the agent cannot see
+// was dropped. A row that names no known rule refuses its file the same way, because a
+// typo in an id would otherwise change nothing and say nothing.
+function runOverrides(checklists, seats, surfaces) {
+  const readOverrides = overridesReader();
+  let registry = null;
+  let registryFault = null;
+  try {
+    registry = require(RULE_REGISTRY_PATH).loadRegistry();
+  } catch (error) {
+    registryFault = `the rule id registry could not be read: ${error.message}`;
+  }
+  const accepted = [];
+  const errors = [];
+  const refuse = (entry, reasons) => errors.push({ code: 'CONFIG_INVALID', repair: OVERRIDE_REPAIR,
+    message: `${entry.file} has a refused ## Rule overrides section, so none of its rows apply: ${reasons.join('; ')}` });
+  for (const entry of checklists) {
+    const read = readOverrides(entry.path);
+    if (read === null || read.rows.length === 0 && !read.refused) continue;
+    if (read.refused) {
+      refuse(entry, read.errors.map((row) => `${row.line === null ? '' : `line ${row.line}: `}${row.message}`));
+      continue;
+    }
+    if (registryFault) {
+      refuse(entry, [registryFault]);
+      continue;
+    }
+    const unknown = read.rows.filter((row) => !registry.has(row.id));
+    if (unknown.length > 0) {
+      refuse(entry, unknown.map((row) => `line ${row.line}: \`${row.id}\` names no rule the runner, the universal standards or the review lens declares`));
+      continue;
+    }
+    for (const row of read.rows) {
+      accepted.push({ file: entry.file, line: row.line, id: row.id, action: row.action, text: row.text, reason: row.reason, files: [], entry });
+    }
+  }
+  const conflicts = resolveOverridePrecedence(accepted, seats, surfaces);
+  return { applied: accepted.map(({ entry, ...row }) => row), conflicts, errors };
+}
+
+// The precedence level of one checklist for one file, from the seats that listed it: the
+// repository checklist, then a specific surface, then the SKILLED fallback, then the rule
+// as the mode ships it. A checklist several seats list takes the highest of them.
+function overrideLevel(listedBy, rel, fallback) {
+  let level = 5;
+  for (const item of listedBy) {
+    if (item.file !== rel) continue;
+    const seatLevel = item.seat === 'repo-config' ? 2
+      : item.seat === 'outside-skill' ? 3
+        : item.seat === 'hub-surface' ? (item.owner && fallback.has(item.owner) ? 4 : 3)
+          : 5;
+    level = Math.min(level, seatLevel);
+  }
+  return level;
+}
+
+// For each file and each rule, the highest level that speaks wins. Rows at that level that
+// give the same action and text agree and all apply. Rows that differ are a conflict: none
+// of them applies, so the rule keeps its default, and the conflict is reported once per
+// rule and pair of checklists with every file it covers.
+function resolveOverridePrecedence(accepted, seats, surfaces) {
+  const fallback = new Set(surfaces.filter((surface) => surface.role === 'fallback').map((surface) => String(surface.label).toUpperCase()));
+  const perFile = new Map();
+  for (const row of accepted) {
+    for (const rel of row.entry.files) {
+      const level = overrideLevel(seats.get(row.file) || [], rel, fallback);
+      if (!perFile.has(rel)) perFile.set(rel, new Map());
+      const byId = perFile.get(rel);
+      if (!byId.has(row.id)) byId.set(row.id, []);
+      byId.get(row.id).push({ row, level });
+    }
+  }
+  const conflicts = new Map();
+  for (const [rel, byId] of perFile) {
+    for (const [id, candidates] of byId) {
+      const top = Math.min(...candidates.map((item) => item.level));
+      const winners = candidates.filter((item) => item.level === top).map((item) => item.row);
+      const actions = new Set(winners.map((row) => `${row.action}\0${row.text}`));
+      if (actions.size === 1) {
+        for (const row of winners) row.files.push(rel);
+        continue;
+      }
+      const between = [...new Set(winners.map((row) => row.file))];
+      const key = `${id}\0${between.join('\0')}`;
+      if (!conflicts.has(key)) conflicts.set(key, { id, files: between, scope: [] });
+      conflicts.get(key).scope.push(rel);
+    }
+  }
+  return [...conflicts.values()];
+}
+
+function explainFile(facts, resolved, context, readOverrides, conflicts) {
   const reasons = applicability(facts, context, { explain: true });
   // A configured check an explanation lists as applying still starts nothing when no trust
   // rule vouched for the config, so the row says that beside the match it reports.
@@ -2565,6 +2671,7 @@ function explainFile(facts, resolved, context, readOverrides) {
       applies: Boolean(reasons[check.id]),
       why: reasons[check.id] || (facts.unchecked ? `the file is unchecked: ${facts.unchecked}` : 'not this file\'s language or path'),
     })), ...repository],
+    rule_conflicts: conflicts.filter((row) => row.scope.includes(facts.rel)).map(({ id, files }) => ({ id, files })),
   };
 }
 
@@ -2578,7 +2685,10 @@ function explain(context) {
   for (const facts of files) if (authored(facts)) facts.labels = fileLabels(facts, surfaces);
   const resolved = { ...resolveChecklists(files, context), surfaces };
   const readOverrides = overridesReader();
-  const entries = files.map((facts) => explainFile(facts, resolved, context, readOverrides));
+  // The conflicts come from the run's own override pass, so an explanation names exactly
+  // the rules a run over these files would hold open. Its refusals stay the run's to report.
+  const { conflicts } = runOverrides(resolved.checklists, resolved.seats, surfaces);
+  const entries = files.map((facts) => explainFile(facts, resolved, context, readOverrides, conflicts));
   const single = entries.length === 1 ? entries[0] : null;
   return {
     schema: EXPLAIN_SCHEMA,
@@ -2593,7 +2703,7 @@ function explain(context) {
       surface_skills: single.surface_skills,
     } : {}),
     config: { ...context.config, warnings: [...context.config.warnings, ...resolved.warnings] },
-    ...(single ? { checklists: single.checklists, checks: single.checks } : {}),
+    ...(single ? { checklists: single.checklists, checks: single.checks, rule_conflicts: single.rule_conflicts } : {}),
     files: entries,
     errors: resolved.errors,
     note: 'nothing was run',
@@ -2634,6 +2744,15 @@ function checkerOutputs(verdict) {
     + `layers=pc:${layers.pre_commit_hygiene},ci:${layers.ci_hygiene},pe:${layers.post_edit}`;
 }
 
+// An applied override is a decision the runner already knows, so it is recorded in front of
+// the marker. The marker stays, because the per-severity dispositions are still the agent's.
+function decisionsField(verdict) {
+  const applied = (verdict.rule_overrides || []).filter((row) => row.files.length > 0)
+    .map((row) => `override ${row.id} ${row.action} from ${row.file}`);
+  const conflicts = (verdict.rule_conflicts || []).map((row) => `override-conflict ${row.id} ${row.files.join(' ')}`);
+  return [...applied, ...conflicts, PENDING].join(', ');
+}
+
 function renderEnvelope(verdict) {
   const lines = [
     'CODE_QUALITY_RESULT v1',
@@ -2643,7 +2762,7 @@ function renderEnvelope(verdict) {
     `resolved_surface: ${verdict.resolved_surface.join(', ')}`,
     `checklists_loaded: ${verdict.checklists.length > 0 ? verdict.checklists.map((entry) => entry.file).join(', ') : 'none'}`,
     `checker_outputs: ${checkerOutputs(verdict)}`,
-    `p0_p1_p2_decisions: ${PENDING}`,
+    `p0_p1_p2_decisions: ${decisionsField(verdict)}`,
     `accepted_deferrals: ${PENDING}`,
     'verification_handoff: workflow-verify.md',
     `remaining_accepted_risk: ${PENDING}`,
@@ -2676,6 +2795,13 @@ function renderText(verdict) {
   }
   out.push('checklists to load:');
   for (const entry of verdict.checklists) out.push(`  ${entry.file} (${entry.why})`);
+  for (const row of verdict.rule_overrides || []) {
+    if (row.files.length === 0) continue;
+    out.push(`override applied: ${row.id} ${row.action === 'replace' ? `replace: ${row.text}` : 'none'} from ${row.file}`);
+  }
+  for (const row of verdict.rule_conflicts || []) {
+    out.push(`override conflict: ${row.id} between ${row.files.join(' and ')}, the default applies to ${row.scope.join(', ')}`);
+  }
   for (const entry of verdict.coverage.unchecked) out.push(`unchecked: ${entry.file} (${entry.reason})`);
   for (const item of verdict.suggested_checks) out.push(`suggested, never run: ${item.id} from ${item.source}: ${item.entry.argv.join(' ')}`);
   out.push(`judgment required: ${verdict.judgment_required.join(', ')}`);

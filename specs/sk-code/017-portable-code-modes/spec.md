@@ -132,7 +132,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 6 | 006-review-agent-and-dispatch/ | `@review` verdict follows severity, one verdict vocabulary, the `CODE-REVIEW` marker added by `@orchestrate`, which also reads `@code`'s Quality Gate field | 005 | Complete |
 | 7 | 007-ci-repo-profile | The CI profile loader, report, scaffold and toggle reading `.sk-code/ci.json`, with this repository's profile committed | None (starts after the in-flight sk-code-ci lint lane lands) | Planned |
 | 8 | 008-ci-drift-flags/ | The five YAML drift fixes | None (starts after the in-flight sk-code-ci lint lane lands) | Complete |
-| 9 | 009-integration-fixes | Rule overrides applied in the quality run, the doctor quality status shows the applied rules, dashboard fix, outside-repo surface discovery documented | 002 to 006 | Planned |
+| 9 | 009-integration-fixes/ | Rule overrides applied in the quality run, the doctor quality status shows the applied rules, dashboard fix, outside-repo surface discovery documented | 002 to 006 | Complete |
 | 10 | 010-docs-and-doctor-alignment | Every doctor command, README, guide, skill document, agent and mirror aligned with the new behavior | 002 to 009 | Planned |
 | 11 | 011-node20-test-fixes | The two tests that fail on Node 20 | None | Complete |
 | 12 | 012-verification-and-release | End-to-end proof, this repository's `.sk-code/quality.json`, the framework changelog and release | All | Planned |

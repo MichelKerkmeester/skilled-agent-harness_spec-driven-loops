@@ -153,13 +153,24 @@ test('no command starts: status, check and init never run a configured check', (
     [TARGET]: config({ checks: [{ id: 'canary', argv: [process.execPath, '-e', 'require("fs").writeFileSync("canary", "ran")'], severity: 'P0' }] }),
   },
 }, (repo) => {
-  assertSnapshotUnchanged(repo, () => {
-    for (const args of [['status'], ['status', '--json'], ['check'], ['init']]) doctor(repo, args);
-  });
+  // The config is trusted, so a gate run would start the canary. The doctor still must not.
+  repo.git(['config', '--local', 'skilled.trustRepoChecks', 'true']);
+  const results = assertSnapshotUnchanged(repo, () => [['status'], ['status', '--json'], ['check'], ['init']].map((args) => doctor(repo, args)));
+  assert.match(results[0].last, / TRUST=trusted/);
+  assert.match(results[2].last, / TRUST=trusted /);
   assert.ok(!fs.existsSync(path.join(repo.root, 'canary')));
-  // The script holds no way to start a process at all, which a reviewer can check by
-  // reading one file.
-  assert.doesNotMatch(fs.readFileSync(SCRIPT, 'utf8'), /spawn|execFile|exec(Sync)?\(/);
+  // Besides git, the script starts only the quality runner with --explain, which starts no
+  // check and writes no file: one runner process per batch of sampled files, one after
+  // another. A reviewer can check that by reading one file, because every other way to
+  // start a process is absent.
+  const { RUNNER } = require(SCRIPT);
+  assert.ok(RUNNER.endsWith(path.join('sk-code-quality', 'scripts', 'quality-gate.cjs')), RUNNER);
+  assert.ok(fs.statSync(RUNNER).isFile());
+  const source = fs.readFileSync(SCRIPT, 'utf8');
+  assert.doesNotMatch(source, /child_process|execFile|exec(Sync)?\(|spawnSync|spawnGroup/);
+  assert.equal([...source.matchAll(/spawnArgv\(/g)].length, 1);
+  assert.match(source, /const argv = \[process\.execPath, RUNNER\];/);
+  assert.match(source, /argv\.push\('--explain', /);
 }));
 
 test('status: PASS for a found tool, DEGRADED with a repair line for an absent one, and SKIP for a suggestion only', () => withRepo({
@@ -234,7 +245,165 @@ test('status and check: an invalid config is CONFIG_INVALID with exit 1, and a m
 }));
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. HELP AND USAGE
+// 4. WHAT THE GATE WOULD APPLY
+// ─────────────────────────────────────────────────────────────────────────────
+
+const OVERRIDE_HEAD = '## Rule overrides\n\n| Rule | Action | Reason |\n| --- | --- | --- |\n';
+const HOUSE = `# House rules\n\n${OVERRIDE_HEAD}| \`floor.documentation\` | none | Public functions carry no doc comments here |\n`
+  + '| `review.function-length` | replace: A function stays under 80 lines | The team limit |\n';
+const STRICT = `# Strict rules\n\n${OVERRIDE_HEAD}| \`floor.input-validation\` | none | Callers are trusted |\n`;
+const DEEP = {
+  'src/a/b/aaa.js': 'module.exports = 1;\n',
+  'src/a/b/deep/x.js': 'module.exports = 2;\n',
+  [TARGET]: config({ checklists: [{ file: '.sk-code/checklists/deep.md', paths: ['src/a/b/deep/**'] }] }),
+};
+const APPLIED = {
+  'src/app.js': 'const answer = 42;\nmodule.exports = { answer };\n',
+  '.sk-code/checklists/house.md': HOUSE,
+  '.sk-code/checklists/strict.md': STRICT,
+  [TARGET]: config({
+    checklists: [
+      { file: '.sk-code/checklists/house.md', paths: ['src/**'] },
+      { file: '.sk-code/checklists/strict.md', paths: ['src/**'] },
+    ],
+    commentHygiene: { disableRules: ['task'] },
+  }),
+};
+
+test('status: shows each checklist the gate would apply with its seat, a valid override row and a floor row refused with its reason', () => withRepo({
+  base: APPLIED,
+}, (repo) => {
+  const result = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  // A gate run refuses the strict file's section with CONFIG_INVALID, exit 3, so the status
+  // fails on it too.
+  assert.equal(result.status, 1, result.stdout);
+  assert.equal(result.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID');
+  const { applies } = result.payload;
+  assert.equal(applies.resolved, true);
+  assert.ok(applies.sample.files >= 1 && applies.sample.files <= applies.sample.listed);
+  const byFile = Object.fromEntries(applies.checklists.map((item) => [item.file, item]));
+  assert.deepEqual(byFile['hub:sk-code/shared/references/universal/code-quality-standards.md'].seats, ['default']);
+
+  const house = byFile['.sk-code/checklists/house.md'];
+  assert.deepEqual(house.seats, ['repo-config']);
+  assert.equal(house.overrides.refused, false);
+  assert.deepEqual(house.overrides.rows.map((row) => [row.id, row.action, row.text]),
+    [['floor.documentation', 'none', null], ['review.function-length', 'replace', 'A function stays under 80 lines']]);
+
+  const strict = byFile['.sk-code/checklists/strict.md'];
+  assert.deepEqual(strict.seats, ['repo-config']);
+  assert.equal(strict.overrides.refused, true);
+  assert.deepEqual(strict.overrides.rows, []);
+  assert.equal(strict.overrides.errors.length, 1);
+  assert.match(strict.overrides.errors[0].message, /floor\.input-validation.*hard floor.*cannot be overridden/);
+  assert.deepEqual(applies.errors.map((row) => row.code), ['CONFIG_INVALID']);
+  assert.match(applies.errors[0].message, /^\.sk-code\/checklists\/strict\.md has a refused ## Rule overrides section, so none of its rows apply: line 7: /);
+  assert.ok(applies.checklists.every((item) => item.reached), 'every declared row was sampled');
+
+  const text = doctor(repo, ['status']).stdout;
+  assert.match(text, /^Checklists: \d+, resolved by quality-gate\.cjs --explain over \d+ of \d+ listed files/m);
+  assert.match(text, /^ {2}repo-config +\.sk-code\/checklists\/house\.md /m);
+  assert.match(text, /^ {4}override floor\.documentation none \(Public functions carry no doc comments here\)$/m);
+  assert.match(text, /^ {4}override review\.function-length replace: A function stays under 80 lines \(The team limit\)$/m);
+  assert.match(text, /^ {4}overrides REFUSED, none of its rows apply:\n {6}line 7: .*floor\.input-validation/m);
+}));
+
+test('status: lists the hygiene rules that apply and shows a disabled one as disabled, never as active', () => withRepo({
+  base: { ...APPLIED, [TARGET]: config({ checklists: [{ file: '.sk-code/checklists/house.md', paths: ['src/**'] }], commentHygiene: { disableRules: ['task'] } }) },
+}, (repo) => {
+  const result = doctor(repo, ['status', '--json']);
+  assert.equal(result.status, 0, result.stdout);
+  const { hygiene } = result.payload.applies;
+  assert.deepEqual(hygiene.disabled, ['hygiene.task']);
+  assert.ok(!hygiene.active.includes('hygiene.task'));
+  assert.ok(hygiene.active.includes('hygiene.adr') && hygiene.active.includes('hygiene.issue'));
+  assert.match(doctor(repo, ['status']).stdout, /^Hygiene rules: \d+ apply \(.*hygiene\.adr.*\), disabled hygiene\.task$/m);
+}));
+
+test('status: a checklist the config names that is missing fails the status with the runner\'s CHECKLIST_MISSING, and an invalid config resolves nothing', () => withRepo({
+  base: {
+    'src/app.js': 'const answer = 42;\n',
+    [TARGET]: config({ checklists: [{ file: '.sk-code/checklists/gone.md', paths: ['src/**'] }] }),
+  },
+}, (repo) => {
+  const result = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  assert.equal(result.status, 1);
+  assert.equal(result.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CHECKLIST_MISSING');
+  assert.deepEqual(result.payload.applies.errors.map((row) => row.code), ['CHECKLIST_MISSING']);
+  const gone = result.payload.applies.checklists.find((item) => item.file === '.sk-code/checklists/gone.md');
+  assert.equal(gone.overrides, null);
+
+  repo.write({ [TARGET]: config({ bogus: true }) });
+  const invalid = doctor(repo, ['status', '--json']);
+  assert.equal(invalid.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID');
+  assert.deepEqual([invalid.payload.applies.resolved, invalid.payload.applies.hygiene], [false, null]);
+}));
+
+test('status: a section with a row that names no known rule fails the status CONFIG_INVALID, as the gate refuses it', () => withRepo({
+  base: {
+    'src/app.js': 'const answer = 42;\n',
+    '.sk-code/checklists/typo.md': `# Typo\n\n${OVERRIDE_HEAD}| \`review.function-lenght\` | none | Misspelled on purpose |\n`,
+    [TARGET]: config({ checklists: [{ file: '.sk-code/checklists/typo.md', paths: ['src/**'] }] }),
+  },
+}, (repo) => {
+  const result = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  assert.equal(result.status, 1, result.stdout);
+  assert.equal(result.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID');
+  const typo = result.payload.applies.checklists.find((item) => item.file === '.sk-code/checklists/typo.md');
+  assert.deepEqual([typo.reached, typo.overrides.refused, typo.unknown.map((row) => row.line)], [true, false, [7]]);
+  assert.match(doctor(repo, ['status']).stdout, /^ {4}overrides REFUSED, none of its rows apply:\n {6}line 7: `review\.function-lenght` names no rule/m);
+}));
+
+test('status: two repository checklists that disagree on one rule print an override-conflict for the sampled file and keep the status OK', () => withRepo({
+  base: {
+    'src/app.js': 'const answer = 42;\n',
+    '.sk-code/checklists/house.md': HOUSE,
+    '.sk-code/checklists/other.md': `# Other team\n\n${OVERRIDE_HEAD}| \`review.function-length\` | none | No limit here |\n`,
+    [TARGET]: config({ checklists: [
+      { file: '.sk-code/checklists/house.md', paths: ['src/**'] },
+      { file: '.sk-code/checklists/other.md', paths: ['src/**'] },
+    ] }),
+  },
+}, (repo) => {
+  const result = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  // A conflict leaves the gate UNVERIFIED, exit 4, rather than stopping it with exit 3, so
+  // it does not fail the status the way a refused section does.
+  assert.equal(result.status, 0, result.stdout);
+  assert.equal(result.last, 'STATUS=OK SOURCE="repo" TRUST=none');
+  assert.deepEqual(result.payload.applies.conflicts,
+    [{ id: 'review.function-length', files: ['.sk-code/checklists/house.md', '.sk-code/checklists/other.md'], sampled: ['src/app.js'] }]);
+  assert.match(doctor(repo, ['status']).stdout,
+    /^ {2}override-conflict review\.function-length \.sk-code\/checklists\/house\.md \.sk-code\/checklists\/other\.md \(neither row applies, so the gate reads UNVERIFIED for src\/app\.js\)$/m);
+}));
+
+test('status: a repository row the sample cannot reach is still listed and checked, valid, missing or refused', () => withRepo({
+  base: { ...DEEP, '.sk-code/checklists/deep.md': HOUSE },
+}, (repo) => {
+  const valid = assertSnapshotUnchanged(repo, () => doctor(repo, ['status', '--json']));
+  assert.equal(valid.status, 0, valid.stdout);
+  assert.equal(valid.last, 'STATUS=OK SOURCE="repo" TRUST=none');
+  const deep = valid.payload.applies.checklists.find((item) => item.file === '.sk-code/checklists/deep.md');
+  assert.deepEqual([deep.reached, deep.seats, deep.files], [false, ['repo-config'], 0]);
+  assert.deepEqual(deep.overrides.rows.map((row) => row.id), ['floor.documentation', 'review.function-length']);
+  assert.match(doctor(repo, ['status']).stdout,
+    /^ {2}repo-config +\.sk-code\/checklists\/deep\.md \(.*declared, not reached by the sample: run quality-gate\.cjs --explain <path> on a file it selects\)$/m);
+
+  repo.write({ '.sk-code/checklists/deep.md': STRICT });
+  const refused = doctor(repo, ['status', '--json']);
+  assert.equal(refused.status, 1);
+  assert.equal(refused.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID');
+  assert.match(refused.payload.applies.errors[0].message, /deep\.md has a refused ## Rule overrides section.*floor\.input-validation/);
+
+  fs.rmSync(path.join(repo.root, '.sk-code', 'checklists', 'deep.md'));
+  const missing = doctor(repo, ['status', '--json']);
+  assert.equal(missing.status, 1);
+  assert.equal(missing.last, 'STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CHECKLIST_MISSING');
+  const gone = missing.payload.applies.checklists.find((item) => item.file === '.sk-code/checklists/deep.md');
+  assert.deepEqual([gone.reached, gone.overrides], [false, null]);
+}));
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. HELP AND USAGE
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('help: -h and --help print the usage and exit 0, and a usage error or a folder outside git exits 2', () => withRepo({}, (repo) => {
