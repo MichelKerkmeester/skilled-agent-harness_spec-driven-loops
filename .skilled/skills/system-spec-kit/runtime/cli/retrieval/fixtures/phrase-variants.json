@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9ac2c7abf8221528245c55dd5af29f2be588e6f1d9c93c10392940d49a0349a3",
+  "manifestHash": "a2b261553a9549b83192a9b97c5a718ae263409feddefe133ce0da986bd778c6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15107,6 +15107,18 @@
     ],
     "cache optimizer savings measured": [
       "cache optimizer savings measured"
+    ],
+    "cache optimizer single copy guard": [
+      "cache optimizer single copy guard"
+    ],
+    "cache optimizer single copy guard implementation summary": [
+      "cache optimizer single copy guard implementation summary"
+    ],
+    "cache optimizer single copy guard plan": [
+      "cache optimizer single copy guard plan"
+    ],
+    "cache optimizer single copy guard tasks": [
+      "cache optimizer single copy guard tasks"
     ],
     "cache optimizer stats cost": [
       "cache optimizer stats cost"
@@ -41056,6 +41068,9 @@
     "edit comment": [
       "edit comment"
     ],
+    "edit lines conflicts with": [
+      "edit_lines conflicts with"
+    ],
     "edit lines fix plan": [
       "edit_lines fix plan"
     ],
@@ -58699,6 +58714,9 @@
     ],
     "less doc template bloat": [
       "less doc-template bloat"
+    ],
+    "let a second pi cache optimizer copy stand": [
+      "let a second pi cache optimizer copy stand"
     ],
     "let the continuity writer save into a research": [
       "let the continuity writer save into a research"
@@ -102799,9 +102817,6 @@
     "skilled v4 0 0 16": [
       "skilled v4.0.0.16"
     ],
-    "skilled v4 0 0 17": [
-      "skilled v4.0.0.17"
-    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -114746,9 +114761,6 @@
     ],
     "v4 0 0 16 release notes": [
       "v4.0.0.16 release notes"
-    ],
-    "v4 0 0 17 release notes": [
-      "v4.0.0.17 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"

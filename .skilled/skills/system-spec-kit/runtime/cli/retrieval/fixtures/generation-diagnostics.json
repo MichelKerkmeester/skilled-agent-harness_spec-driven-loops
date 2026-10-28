@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7357,
-    "ok": 15940,
+    "ok": 15943,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26845,
+  "documentsScanned": 26848,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9ac2c7abf8221528245c55dd5af29f2be588e6f1d9c93c10392940d49a0349a3",
+  "manifestHash": "a2b261553a9549b83192a9b97c5a718ae263409feddefe133ce0da986bd778c6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39130,
+      "ok": 39134,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71171,6 +71171,10 @@
     },
     {
       "path": "specs/hooks/024-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/025-cache-optimizer-single-copy-guard/scratch",
       "reason": "excluded directory"
     },
     {

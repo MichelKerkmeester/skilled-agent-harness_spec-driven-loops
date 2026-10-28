@@ -1,5 +1,5 @@
 {
-  "corpusHash": "36b0c2fef977092dc1888eeeab86dad25e144b5aecc6f294efc41a846cfad232",
+  "corpusHash": "e61de68ab00c48dcf11ee16a3627697a75b4ed0a9d1a0d78abdd514e1ef97e2c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26845,
+  "includedPathCount": 26848,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -81,7 +81,6 @@
     ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.15.md",
     ".skilled/changelog/skilled/v4.0.0.16.md",
-    ".skilled/changelog/skilled/v4.0.0.17.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -10861,6 +10860,10 @@
     "specs/hooks/024-dispatch-adapter-test-repair/plan.md",
     "specs/hooks/024-dispatch-adapter-test-repair/spec.md",
     "specs/hooks/024-dispatch-adapter-test-repair/tasks.md",
+    "specs/hooks/025-cache-optimizer-single-copy-guard/implementation-summary.md",
+    "specs/hooks/025-cache-optimizer-single-copy-guard/plan.md",
+    "specs/hooks/025-cache-optimizer-single-copy-guard/spec.md",
+    "specs/hooks/025-cache-optimizer-single-copy-guard/tasks.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/acceptance-criteria.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/implementation-summary.md",
@@ -26876,7 +26879,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9ac2c7abf8221528245c55dd5af29f2be588e6f1d9c93c10392940d49a0349a3",
+  "manifestHash": "a2b261553a9549b83192a9b97c5a718ae263409feddefe133ce0da986bd778c6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29024,6 +29027,10 @@
     },
     {
       "path": "specs/hooks/024-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/025-cache-optimizer-single-copy-guard/scratch",
       "reason": "excluded directory"
     },
     {
