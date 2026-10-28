@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7347,
-    "ok": 15780,
+    "ok": 15788,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26675,
+  "documentsScanned": 26683,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f026a1eff9f91ba987c75641b91606ad64bfefaae49ae3ab7d67e6007c32b791",
+  "manifestHash": "a0bfcbd42115d9f2a1b45a029734d01ce7a730d10302775797abc56afc6d73cb",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38771,
+      "ok": 38790,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71835,6 +71835,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/009-integration-fixes/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f026a1eff9f91ba987c75641b91606ad64bfefaae49ae3ab7d67e6007c32b791",
+  "manifestHash": "a0bfcbd42115d9f2a1b45a029734d01ce7a730d10302775797abc56afc6d73cb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -39232,6 +39232,9 @@
     "doctor presentation markdown complete": [
       "doctor presentation markdown complete"
     ],
+    "doctor quality applied rules": [
+      "doctor quality applied rules"
+    ],
     "doctor realignment research findings": [
       "doctor realignment research findings"
     ],
@@ -54509,6 +54512,12 @@
     "implement code skilled refinement backlog": [
       "implement code-skilled refinement backlog"
     ],
+    "implement dashboard quality gate": [
+      "implement dashboard quality gate"
+    ],
+    "implement dashboard quality gate verdict": [
+      "implement dashboard quality gate verdict"
+    ],
     "implement fail closed gateway phase": [
       "implement fail-closed gateway phase"
     ],
@@ -55399,6 +55408,24 @@
     ],
     "integration and tests workstream": [
       "integration-and-tests workstream"
+    ],
+    "integration fixes": [
+      "integration fixes"
+    ],
+    "integration fixes acceptance criteria": [
+      "integration fixes acceptance criteria"
+    ],
+    "integration fixes doctor quality shows applied rules implement": [
+      "integration fixes doctor quality shows applied rules implement"
+    ],
+    "integration fixes implementation summary": [
+      "integration fixes implementation summary"
+    ],
+    "integration fixes plan": [
+      "integration fixes plan"
+    ],
+    "integration fixes tasks": [
+      "integration fixes tasks"
     ],
     "integration lifecycle contract": [
       "integration lifecycle contract"
@@ -71364,6 +71391,9 @@
     "outside quality checklists": [
       "outside quality checklists"
     ],
+    "outside repository surface discovery": [
+      "outside repository surface discovery"
+    ],
     "outside skill checklist rows": [
       "outside skill checklist rows"
     ],
@@ -80097,6 +80127,9 @@
     ],
     "quality row declaration": [
       "quality row declaration"
+    ],
+    "quality run rule overrides": [
+      "quality run rule overrides"
     ],
     "quality runner adr": [
       "quality runner ADR"
@@ -89378,6 +89411,9 @@
     "rule header split": [
       "rule header split"
     ],
+    "rule id registry": [
+      "rule id registry"
+    ],
     "rule invariant canary": [
       "rule invariant canary"
     ],
@@ -94960,6 +94996,9 @@
     "sk code 3 9 12 0": [
       "sk-code 3.9.12.0"
     ],
+    "sk code 3 9 13 0": [
+      "sk-code 3.9.13.0"
+    ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
@@ -95713,6 +95752,9 @@
     "sk code quality 1 13 6 0": [
       "sk-code-quality 1.13.6.0"
     ],
+    "sk code quality 1 13 7 0": [
+      "sk-code-quality 1.13.7.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -95814,6 +95856,9 @@
     ],
     "sk code quality v1 13 6 0": [
       "sk-code-quality v1.13.6.0"
+    ],
+    "sk code quality v1 13 7 0": [
+      "sk-code-quality v1.13.7.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -96525,6 +96570,9 @@
     ],
     "sk code v3 9 12 0": [
       "sk-code v3.9.12.0"
+    ],
+    "sk code v3 9 13 0": [
+      "sk-code v3.9.13.0"
     ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
@@ -108331,6 +108379,9 @@
     "system spec kit 2 12 14 0": [
       "system-spec-kit 2.12.14.0"
     ],
+    "system spec kit 2 12 15 0": [
+      "system-spec-kit 2.12.15.0"
+    ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
     ],
@@ -108813,6 +108864,9 @@
     ],
     "system spec kit v2 12 14 0": [
       "system-spec-kit v2.12.14.0"
+    ],
+    "system spec kit v2 12 15 0": [
+      "system-spec-kit v2.12.15.0"
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"
@@ -112753,6 +112807,9 @@
     ],
     "unknown option accepted silently": [
       "unknown option accepted silently"
+    ],
+    "unknown override rule id": [
+      "unknown override rule id"
     ],
     "unknown surface fallback": [
       "unknown surface fallback"

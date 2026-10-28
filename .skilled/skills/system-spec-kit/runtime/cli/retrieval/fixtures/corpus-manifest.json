@@ -1,5 +1,5 @@
 {
-  "corpusHash": "07c479fd7809f2fd8954582c5eb18aa583bcaf5a49705b48b3c6093672cf7b59",
+  "corpusHash": "8c591ed8f87feea50380771003fb3bc2ec50945d066a3816aa85f41e3272a71e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26675,
+  "includedPathCount": 26683,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2756,6 +2756,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.10.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.11.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.12.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.13.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -2857,6 +2858,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.5.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.6.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.7.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -8091,6 +8093,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.12.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.13.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.14.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.15.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -12601,6 +12604,11 @@
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/plan.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/spec.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/tasks.md",
+    "specs/sk-code/017-portable-code-modes/009-integration-fixes/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/009-integration-fixes/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/009-integration-fixes/plan.md",
+    "specs/sk-code/017-portable-code-modes/009-integration-fixes/spec.md",
+    "specs/sk-code/017-portable-code-modes/009-integration-fixes/tasks.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/plan.md",
@@ -26706,7 +26714,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f026a1eff9f91ba987c75641b91606ad64bfefaae49ae3ab7d67e6007c32b791",
+  "manifestHash": "a0bfcbd42115d9f2a1b45a029734d01ce7a730d10302775797abc56afc6d73cb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29578,6 +29586,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/009-integration-fixes/scratch",
       "reason": "excluded directory"
     },
     {
