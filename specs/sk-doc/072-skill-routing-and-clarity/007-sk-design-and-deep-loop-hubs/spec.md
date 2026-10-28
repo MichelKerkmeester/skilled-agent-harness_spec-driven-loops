@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,8 +61,20 @@ Bring both hubs and their packets to the canon shape.
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ git -c core.fsmonitor=false show HEAD:.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json \
+    | python3 -c "import json,sys;d=json.load(sys.stdin);ks=[k for k in d['debt'] if k in ('sk-design','system-deep-loop') or k.startswith(('sk-design/','system-deep-loop/'))];print(len(ks),'entries');[print(k, json.dumps(d['debt'][k])) for k in ks]"
+9 entries
+sk-design {"lines": 88, "words": 901, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-design/sk-design-chart {"lines": 44, "words": 297, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-design/sk-design-diagram {"lines": 81, "words": 617, "machineBlocks": 0, "codes": ["RS-001"]}
+sk-design/sk-design-fundamentals {"lines": 164, "words": 902, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-design/sk-design-md-generator {"lines": 145, "words": 1183, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+system-deep-loop {"lines": 38, "words": 974, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+system-deep-loop/deep-ai-council {"lines": 168, "words": 911, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+system-deep-loop/deep-research {"lines": 157, "words": 842, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+system-deep-loop/deep-review {"lines": 163, "words": 723, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
 ```
+The ledger's nine entries are the debt this phase closes: both hubs and all seven packets, each routing section between 38 and 168 lines and every one of them over the old limits. The spec's own problem statement had the no-match name as live work, and the baseline found it already done: the two hubs and the seven packets name it `UNKNOWN_FALLBACK` only, so that requirement is recorded as met rather than changed (`scratch/before.md` §4). `scratch/before.md` holds the full gate set: 38 of 38 exit 0, accuracy 155/195, 49/66, 19/24.
 <!-- /ANCHOR:measured-behavior -->
 
 ---

@@ -15,7 +15,8 @@
       "skill routing phase 7",
       "sk-design and system-deep-loop hubs plan",
       "sk-design and system-deep-loop hubs tasks",
-      "sk-design and system-deep-loop hubs acceptance criteria"
+      "sk-design and system-deep-loop hubs acceptance criteria",
+      "sk-design and system-deep-loop hubs implementation summary"
     ],
     "key_topics": [
       "sk-design",
@@ -28,16 +29,23 @@
       "tasks",
       "acceptance",
       "criteria",
-      "restate",
-      "mode"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      "scratch/before.md",
+      "scratch/gates.sh",
+      "scratch/after.md",
+      ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite"
     ],
     "entities": [
       {
@@ -62,6 +70,42 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite",
         "source": "derived"
       },
       {
@@ -147,61 +191,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-design and system-deep-loop restate their mode choice in hub `route()` pseudocode, and the no-match outcome carries a different name in each hub",
     "created_at": "2026-10-28T06:38:48Z",
-    "last_save_at": "2026-10-28T06:42:24.267Z",
+    "last_save_at": "2026-10-28T13:19:40.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c05a0a25e730302bc4a2d2fd13a9e5f2861e4c6ec75bd0f4b10749214bd904d",
+    "source_fingerprint": "sha256:961df3704a62d527832d9ab9097f7f2c474181f182d99903f58c66f8eae41f9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce64d138a1d7bc1e4edb645ad2da4d08eb4f06ddb305a344c6c3089d84082da7",
+      "spec.md": "fc13e681285bafbd22885e5305e856719c6142d59d8dc89f4c8fb6d8cfb819a9",
       "plan.md": "c7fb4bdf5e81af74265e2fbe282bcaf2a45bafdcbb4d263ac77a813db0a2942b",
-      "tasks.md": "ffd96fb14d20f57daebc996acdffeb4443d1c54a24eb345bb0306f6cded81d11"
+      "tasks.md": "0bdea81153d1a59b80ede77c5c212a3cde1ab36dc7fb02ca40dc97e81fc317d9",
+      "implementation-summary.md": "75e035068517ba6d4b474a124e978bf0dfdac559a1d42dbf074e86f7a9a32872"
     },
     "last_active_at": null
   }
