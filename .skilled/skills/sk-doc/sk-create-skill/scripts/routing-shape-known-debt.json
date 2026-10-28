@@ -145,15 +145,6 @@
         "RS-002"
       ]
     },
-    "mcp-tooling/mcp-magicpath": {
-      "lines": 134,
-      "words": 1053,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
     "mcp-tooling/mcp-mobbin": {
       "lines": 135,
       "words": 1161,
@@ -202,15 +193,6 @@
     "sk-prompt": {
       "lines": 174,
       "words": 1019,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-vision": {
-      "lines": 63,
-      "words": 336,
       "machineBlocks": 1,
       "codes": [
         "RS-001",
