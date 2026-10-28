@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d6c4408e8934b22140021814c87e61e55502d7e9765c2e98c5ba3332c5c8e056",
+  "corpusHash": "4014f687b5b2943674b04a96a9dd308533a69cf79122f7e67efa8b922549b071",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26823,
+  "includedPathCount": 26828,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -81,6 +81,7 @@
     ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.15.md",
     ".skilled/changelog/skilled/v4.0.0.16.md",
+    ".skilled/changelog/skilled/v4.0.0.17.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -7171,6 +7172,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.5.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.6.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.7.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.8.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md",
@@ -7313,6 +7315,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.36.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.1.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.10.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
@@ -7708,6 +7711,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.16.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.18.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.19.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -8155,6 +8159,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.14.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.15.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.16.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.17.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -26854,7 +26859,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "708f3a98861fe2baf723b9d5aec1270a69a0da5022649158a73a7e525a67d41e",
+  "manifestHash": "e877dfb6d6a2b5c41035f057ff688e127a3ff58f8447aa3385622b4a0e734a87",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
