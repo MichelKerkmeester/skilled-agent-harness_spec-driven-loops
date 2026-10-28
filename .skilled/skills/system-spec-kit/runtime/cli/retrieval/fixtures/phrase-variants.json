@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fd9f50351e52ba0f96307fe5acbabc41971acc0899c2bdfb3880f010a1e63081",
+  "manifestHash": "e662c16b035e94c127a07bbf4588f060ad3309b0e7c0a6222357ae5ec4ea3768",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -76809,6 +76809,9 @@
     "pi spec gate dialog": [
       "pi spec gate dialog"
     ],
+    "pi starts in worktrees": [
+      "pi starts in worktrees"
+    ],
     "pi stdio": [
       "pi stdio"
     ],
@@ -102277,6 +102280,9 @@
     "skill routing and clarity phase parent spec": [
       "skill routing and clarity phase parent spec"
     ],
+    "skill routing canon": [
+      "skill routing canon"
+    ],
     "skill routing council": [
       "skill routing council"
     ],
@@ -102840,6 +102846,9 @@
     ],
     "skilled v4 0 0 16": [
       "skilled v4.0.0.16"
+    ],
+    "skilled v4 0 0 17": [
+      "skilled v4.0.0.17"
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
@@ -114785,6 +114794,9 @@
     ],
     "v4 0 0 16 release notes": [
       "v4.0.0.16 release notes"
+    ],
+    "v4 0 0 17 release notes": [
+      "v4.0.0.17 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
