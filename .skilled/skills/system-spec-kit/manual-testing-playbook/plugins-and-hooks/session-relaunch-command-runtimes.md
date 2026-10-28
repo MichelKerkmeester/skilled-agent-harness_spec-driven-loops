@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.13.0
+version: 1.0.14.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -132,7 +132,7 @@ Operator decision: this live check was not run. For a future run, start from the
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-hermes-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH HERMES_ENABLE_PROJECT_PLUGINS=1 SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop hermes chat --provider llmgateway -m gpt-6-luna"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH HERMES_ENABLE_PROJECT_PLUGINS=1 SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop hermes chat --provider llmgateway -m deepseek-v4.1-flash-1017"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -182,7 +182,7 @@ tmux new-session -d -s shim-codex "zsh -c 'source \"$repo_root/.skilled/bin/skil
 tmux attach -t shim-codex
 ~~~
 
-Repeat with `hermes chat --provider llmgateway -m gpt-6-luna`, which the shim starts with `HERMES_ENABLE_PROJECT_PLUGINS=1`, `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex and Hermes hop on their own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex and Hermes reach a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
+Repeat with `hermes chat --provider llmgateway -m deepseek-v4.1-flash-1017`, which the shim starts with `HERMES_ENABLE_PROJECT_PLUGINS=1`, `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex and Hermes hop on their own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex and Hermes reach a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
 
 ### Codex Withdraw, Cancel And History Checks
 
@@ -454,7 +454,7 @@ PASS when the three runs match. FAIL when a control binds a goal or the packet r
 
 #### GR-C3 Cursor and Hermes (Live, SKIP 2026-10-25)
 
-Cursor: `cursor-agent about` printed `User Email         Not logged in`, so no session could start. Hermes: `hermes chat -Q --oneshot -q "Reply with the single word OK" --provider llmgateway --model gpt-6-luna` exited 1 with `Billing or credits exhausted: HTTP 402: You've reached the daily pacing allowance on the pro plan.` The unit proof for both stands: the `a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes` and `a Hermes hop restores the operator folder once a hop carries no goal` cases in `skilled-loop.test.cjs`, and `goal-cursor.test.mjs`. Neither check is a live pass.
+Cursor: `cursor-agent about` printed `User Email         Not logged in`, so no session could start. Hermes: a one-shot `hermes chat -Q --oneshot` probe on `--provider llmgateway` exited 1 with `Billing or credits exhausted: HTTP 402: You've reached the daily pacing allowance on the pro plan.` The unit proof for both stands: the `a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes` and `a Hermes hop restores the operator folder once a hop carries no goal` cases in `skilled-loop.test.cjs`, and `goal-cursor.test.mjs`. Neither check is a live pass.
 
 #### GR-C4 Goal carry-over suites (Automatable)
 

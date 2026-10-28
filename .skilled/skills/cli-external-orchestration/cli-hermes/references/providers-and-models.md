@@ -1,6 +1,6 @@
 ---
 title: cli-hermes Providers, Models & Invocation
-description: The per-mode catalog of the one fan-out provider (llmgateway), its operator-side configuration contract, the seven-id closed roster, and the reasoning-level lever reachable through cli-hermes.
+description: The per-mode catalog of the one fan-out provider (llmgateway), its operator-side configuration contract, the five-id closed roster, and the reasoning-level lever reachable through cli-hermes.
 trigger_phrases:
   - "hermes providers and models"
   - "which model for hermes dispatch"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes roster"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 The single catalog of the provider, the model ids, the reasoning lever and the dispatch shape the cli-hermes mode can reach. Hermes is a multi-provider pass-through with a catalog of some forty providers; this mode deliberately reaches one of them.
@@ -20,7 +20,7 @@ The single catalog of the provider, the model ids, the reasoning lever and the d
 
 ### Core Principle
 
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at seven ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at five ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
 
 ### When to Use
 
@@ -54,8 +54,6 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
 | `deepseek-v4.1-flash-1017` | `llmgateway` | pinned `max` | **observed 2026-10-22**: a live fan-out dispatch with no model pinned built `--model deepseek-v4.1-flash-1017` and replied `OK` | The rotation default; the same literal cli-pi dispatches through DevPass |
 | `deepseek-v4.1-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0, fan-out lineage dispatched | The 2026-09-10 release, still selectable and pinnable; llmgateway's DeepSeek provider route for it is Deactivating on Oct 24, 2026, so a pinned run must move to the `-1017` id before then |
 | `glm-5.3-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0 at `max` and `none` | The second lens; flat-price on DevPass |
-| `gpt-6-luna` | `llmgateway` | the caller's effort | **probed live 2026-09-23**, a one-turn smoke that replied `OK`; catalog-listed the same day in `/v1/models` (1.05M context, 128K output, efforts `none` to `max`) | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
-| `gpt-6-sol` | `llmgateway` | the caller's effort | **catalog-listed 2026-09-23** in `/v1/models` (1.05M context, 128K output, efforts `none` to `max`); live probe pending | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `minimax-m3` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `qwen3.8-max` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 

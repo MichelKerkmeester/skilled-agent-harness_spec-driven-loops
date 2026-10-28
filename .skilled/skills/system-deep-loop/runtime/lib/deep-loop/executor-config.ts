@@ -265,8 +265,6 @@ export const HERMES_SUPPORTED_MODELS = [
   'deepseek-v4.1-flash',
   'deepseek-v4.1-flash-1017',
   'minimax-m3',
-  'gpt-6-luna',
-  'gpt-6-sol',
   'qwen3.8-max',
   'glm-5.3-flash',
 ] as const;

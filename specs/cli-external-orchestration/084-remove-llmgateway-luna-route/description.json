@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-external-orchestration/084-remove-llmgateway-luna-route",
+  "description": "Remove the llmgateway GPT-6 Luna route from Pi, OpenCode and Hermes rosters",
+  "keywords": [
+    "remove",
+    "llmgateway",
+    "gpt-6",
+    "luna",
+    "route",
+    "opencode",
+    "hermes",
+    "rosters"
+  ],
+  "lastUpdated": "2026-10-28T08:35:42.895Z",
+  "specId": "084",
+  "folderSlug": "remove-llmgateway-luna-route",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

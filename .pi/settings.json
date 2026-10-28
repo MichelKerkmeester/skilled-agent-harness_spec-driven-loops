@@ -15,7 +15,6 @@
     "llmgateway/deepseek-v4.1-flash-1017",
     "openai/gpt-6-luna",
     "openai/gpt-6.1-terra",
-    "llmgateway/gpt-6-luna",
     "opencode-go/deepseek-v4.1-flash",
     "llmgateway/glm-5.3-flash",
     "opencode-go/glm-5.3-flash"

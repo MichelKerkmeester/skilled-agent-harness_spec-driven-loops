@@ -162,7 +162,7 @@ This packet owns provider-specific routing, the availability probe, and prompt c
 
 **One provider is reachable from the fan-out: `llmgateway`** (DevPass, the operator's LLM Gateway plan), declared as a Hermes custom provider block of that exact name in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`. That block is an operator step; the repo cannot carry it. Setup and the credential contract are in [providers-and-models.md](./references/providers-and-models.md).
 
-**Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the seven the gateway serves for Hermes: `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3` and `qwen3.8-max`. The `-1017` id is the rotation default. These are bare literals of Pi's roster. Every id except the two GPT-6 ids was probed live; `gpt-6-luna` and `gpt-6-sol` replaced the probed GPT-5.6 Luna and Sol on 2026-09-23, when the gateway's `/v1/models` catalog listed both. `gpt-6-luna` passed its first live probe the same day; `gpt-6-sol`'s is still pending. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
+**Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the five the gateway serves for Hermes: `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `minimax-m3` and `qwen3.8-max`. The `-1017` id is the rotation default. These are bare literals of Pi's roster, and every one was probed live. GPT-6 Luna and GPT-6 Sol are off this roster: GPT models run only on the GPT provider, through cli-codex or Pi's `openai` route. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
 
 ### The Dispatch Shape
 
@@ -246,7 +246,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - Flags, headless forms, exit codes, isolation flags, environment
-- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the seven-id roster, reasoning levels
+- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the five-id roster, reasoning levels
 - [hermes-tools.md](./references/hermes-tools.md) - Toolsets, project skills and plugins, the write guard, subsystems that stay off
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor and executor patterns, cross-validation, anti-patterns
 - [agent-delegation.md](./references/agent-delegation.md) - Persona inlining, persona skills, `delegate_task`, prompt templates for commands

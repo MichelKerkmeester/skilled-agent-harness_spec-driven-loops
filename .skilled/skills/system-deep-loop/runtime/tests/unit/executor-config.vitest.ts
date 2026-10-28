@@ -1045,10 +1045,13 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
   // except that Hermes keeps the undated DeepSeek release, which pi no longer registers.
   it('lists the gateway bare literals, keeps the undated DeepSeek release and keeps the retired MiMo id out', () => {
     expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
-      'deepseek-v4.1-flash', 'deepseek-v4.1-flash-1017', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
+      'deepseek-v4.1-flash', 'deepseek-v4.1-flash-1017', 'glm-5.3-flash',
       'minimax-m3', 'qwen3.8-max',
     ]);
     expect(isHermesModelAllowed('mimo-v2.6-pro')).toBe(false);
+    // GPT models run only on the GPT provider, never through the gateway Hermes is pinned to.
+    expect(isHermesModelAllowed('gpt-6-luna')).toBe(false);
+    expect(isHermesModelAllowed('gpt-6-sol')).toBe(false);
   });
 
   it('defaults to deepseek-v4.1-flash-1017, which is itself an allowed model', () => {
@@ -1072,7 +1075,7 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
     for (const model of ['deepseek-v4.1-flash', 'glm-5.3-flash']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('max');
     }
-    for (const model of ['gpt-6-luna', 'gpt-6-sol', 'minimax-m3', 'qwen3.8-max']) {
+    for (const model of ['minimax-m3', 'qwen3.8-max']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('high');
     }
   });

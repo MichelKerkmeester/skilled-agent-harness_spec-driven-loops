@@ -24,13 +24,13 @@ This file documents each custom provider: what it is, why it is wired by config 
 
 ## 2. LLMGATEWAY (DEVPASS)
 
-Routes three models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass meters per token at normal API list rates; the plan's 3x credit bonus discounts the bill rather than removing it.
+Routes two models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass meters per token at normal API list rates; the plan's 3x credit bonus discounts the bill rather than removing it.
 
 ### Where It Lives
 
-- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with three models. The gateway fronts many more, and only these three are on the roster
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/gpt-6-luna"`, `"llmgateway/deepseek-v4.1-flash-1017"` and `"llmgateway/glm-5.3-flash"`. The older `deepseek-v4.1-flash` is no longer registered here, so Pi cannot run it
-- Default: `.pi/settings.json` sets `defaultProvider` to `"llmgateway"` and `defaultModel` to `"deepseek-v4.1-flash-1017"`, so a `pi` run with no `--model` uses this block's DeepSeek V4.1 Flash 1017 route. The global `defaultThinkingLevel` is `xhigh`, and this model's `thinkingLevelMap` marks `xhigh` unsupported, so Pi's `clampThinkingLevel` rounds the run UP to `max`. `gpt-6-luna` stays selectable by name
+- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with two models. The gateway fronts many more, and only these two are on the roster
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4.1-flash-1017"` and `"llmgateway/glm-5.3-flash"`. The older `deepseek-v4.1-flash` is no longer registered here, so Pi cannot run it
+- Default: `.pi/settings.json` sets `defaultProvider` to `"llmgateway"` and `defaultModel` to `"deepseek-v4.1-flash-1017"`, so a `pi` run with no `--model` uses this block's DeepSeek V4.1 Flash 1017 route. The global `defaultThinkingLevel` is `xhigh`, and this model's `thinkingLevelMap` marks `xhigh` unsupported, so Pi's `clampThinkingLevel` rounds the run UP to `max`
 
 **Model ids are BARE, and the pi reference is two-segment**: `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4.1-flash-1017`. A provider-prefixed id inside the block is the easy mistake: see the gotcha below.
 
@@ -40,19 +40,18 @@ Routes three models through the operator's **DevPass** subscription at LLM Gatew
 pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4.1-flash-1017 --thinking max
 ```
 
-Swap the id for `glm-5.3-flash`, or use `gpt-6-luna` for GPT-6 Luna. Pi no longer carries the 2026-09-10 release; reproduce it through OpenCode or Hermes. Luna is direct-dispatch only on this route: the bare `gpt-6-luna` fan-out literal maps to the `openai` provider.
+Swap the id for `glm-5.3-flash`. Pi no longer carries the 2026-09-10 release; reproduce it through OpenCode or Hermes. GPT-6 Luna is not on this route: Pi reaches it only through the `openai` provider.
 
 ### Thinking And Effort
 
-All three are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
+Both are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
 | `deepseek-v4.1-flash-1017` | `max` | **The default DeepSeek route**, the 2026-10-17 release. **Image-capable.** $0.15 in and $0.60 out per million tokens, cached reads $0.003, which keeps it under the gateway's Premium threshold. Three efforts plus off: `low`, `high` and `max`. On the gateway `minimal` folds into `low`, `medium` and `xhigh` fold into `high`, `none` disables thinking, and the default is `high`. In pi this block maps `xhigh` to `null`, so `--thinking xhigh` rounds up to `max`. `ultra` and the integer form are rejected here. It carries the `"compat": {"supportsDeveloperRole": false}` entry, because the developer-role rejection described in the gotcha applies to it |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh` |
-| `gpt-6-luna` | `max` | Catalog-listed 2026-09-23 and dispatch-verified the same day: 1.05M context, 128K output, text and image input, efforts `none` through `max`, and $0.10 in, $0.50 out, $0.01 cached read per million tokens. `minimal` maps to `low`, because the model has no `minimal` tier. Direct-dispatch only |
 
-The global `defaultThinkingLevel` is `xhigh`. The three models do not share one ladder: GLM-5.3-Flash has a real `xhigh` above `high`, DeepSeek marks `xhigh` unsupported so Pi rounds it up to `max`, and GPT-6 Luna runs `low` through `max`. Pass `--thinking` explicitly rather than relying on a default that means different things per route.
+The global `defaultThinkingLevel` is `xhigh`. The two models do not share one ladder: GLM-5.3-Flash has a real `xhigh` above `high`, and DeepSeek marks `xhigh` unsupported so Pi rounds it up to `max`. Pass `--thinking` explicitly rather than relying on a default that means different things per route.
 
 No provider-level `compat.thinkingFormat` is set. The block spans several model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to some of them; pi's default OpenAI-compatible parsing handles them, confirmed by real dispatches.
 
@@ -94,10 +93,9 @@ pi --list-models | grep llmgateway
 # real round-trip (needs a key) proves each bare id is accepted:
 pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4.1-flash-1017 --thinking max --mode text
 pi -p "reply OK" --provider llmgateway --model llmgateway/glm-5.3-flash --thinking max --mode text
-pi -p "reply OK" --provider llmgateway --model llmgateway/gpt-6-luna --thinking high --mode text
 ```
 
-Expected: the list shows the three `llmgateway` rows, and each dispatch returns a model reply rather than a `400 Provider llmgateway does not support model …` or a `401 Unauthorized`. The older `deepseek-v4.1-flash` is no longer registered here, so pin it on OpenCode or Hermes when a run must reproduce the 2026-09-10 release.
+Expected: the list shows the two `llmgateway` rows, and each dispatch returns a model reply rather than a `400 Provider llmgateway does not support model …` or a `401 Unauthorized`. The older `deepseek-v4.1-flash` is no longer registered here, so pin it on OpenCode or Hermes when a run must reproduce the 2026-09-10 release.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value, including an unresolved placeholder that the provider will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 
@@ -105,6 +103,6 @@ Expected: the list shows the three `llmgateway` rows, and each dispatch returns 
 
 ## 5. REMOVE
 
-To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its three `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Reset `defaultProvider` and `defaultModel` to another authenticated provider first, so an unqualified dispatch still resolves, and take the bare `deepseek-v4.1-flash-1017` and `glm-5.3-flash` literals out of the fan-out roster and provider map, or those lineages fail.
+To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its two `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Reset `defaultProvider` and `defaultModel` to another authenticated provider first, so an unqualified dispatch still resolves, and take the bare `deepseek-v4.1-flash-1017` and `glm-5.3-flash` literals out of the fan-out roster and provider map, or those lineages fail.
 
-To drop a single model, remove its object from the provider block and its `enabledModels` line. GPT-6 Luna needs nothing else: the bare `gpt-6-luna` fan-out literal resolves to the `openai` provider. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
+To drop a single model, remove its object from the provider block and its `enabledModels` line. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.

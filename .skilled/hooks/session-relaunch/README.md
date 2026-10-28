@@ -80,7 +80,7 @@ bash .skilled/bin/skilled-loop pi --provider openai --model gpt-6-luna -ne -e .p
 bash .skilled/bin/skilled-loop opencode -m openai/gpt-6-luna
 bash .skilled/bin/skilled-loop codex -m gpt-6-luna
 bash .skilled/bin/skilled-loop cursor
-bash .skilled/bin/skilled-loop hermes chat --provider llmgateway -m gpt-6-luna
+bash .skilled/bin/skilled-loop hermes chat --provider llmgateway -m deepseek-v4.1-flash-1017
 bash .skilled/bin/skilled-loop devin
 ~~~
 
