@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Skill README Template
@@ -25,17 +25,22 @@ Give a person a fast, honest orientation to a skill before they open `SKILL.md`.
 
 ### Identity Guidance (Purpose First)
 
-The identity of a skill is the outcome it delivers, not the tools it routes between. Write the identity as one sentence a person would say out loud. Place that sentence before any tool name. The CLIs, the commands, the routing paths and the reference files are the means. They are described only after the outcome statement, in the pitch or in What It Does. A README that opens with a tool name has not found its identity yet.
+The identity of a skill is the outcome it delivers. State that outcome in one plain sentence before naming tools.
+Describe CLIs, commands, routing paths and reference files only after the outcome.
+A README that opens with a tool name has not stated its identity.
 
-The pilot README for mcp-obsidian states the outcome first: it makes AI use inside Obsidian effective. The CLIs and the MCP server are named later, as the surfaces that deliver that outcome. Follow that order. The outcome sentence and the pitch say the same thing twice on purpose: once in the frontmatter description, once in the blockquote, so the identity survives both a skim and a deep read.
+The mcp-obsidian README states the outcome first: it makes AI use inside Obsidian effective.
+It names the CLIs and MCP server later as delivery surfaces.
+Repeat the outcome in the frontmatter description and the pitch.
+The description supports a quick scan. The pitch opens the full README.
 
 ### Usage
 
 Copy the fillable scaffold in Section 6 into `.skilled/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers, the house style and the validator both require them. Drop any section that does not earn its place and renumber the rest.
 
-### What Changed From The Old Style
+### Template Focus
 
-The previous skill READMEs read as tabular reference cards: a feature inventory, a structure tree, a settings table and a command list, with no human entry point. This template keeps the facts but leads with the reader. The differences:
+The README gives people a human entry point, current capabilities and a clear route to supporting files. This template provides:
 
 - A one-line pitch in a blockquote right after the H1, stating the outcome before any tool name.
 - An identity guidance block that puts the delivered outcome ahead of the tooling.
@@ -54,7 +59,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 | 1 | AT A GLANCE | Four-row table a reader scans in five seconds | Always |
 | 2 | OVERVIEW | What the skill is and what the reader gets first, then the optional problem narrative | Always (required by the validator) |
 | 3 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
-| 4 | HOW IT WORKS | The lifecycle or main workflow in prose, with a small ASCII diagram when the flow has multiple steps | Skill has non-obvious behavior worth narrating |
+| 4 | HOW IT WORKS | The main workflow in prose, with a small Mermaid diagram for multi-step flows | Skill has non-obvious behavior worth explaining |
 | 5 | INTEGRATION & NAVIGATION | When to use it, plus how it hands off to sibling skills | Readers can confuse it with a neighbor |
 | 6 | TROUBLESHOOTING | The failure modes operators actually hit | Predictable issues exist |
 | 7 | FAQ | The two to five questions readers keep asking | High-value answers exist |
@@ -63,11 +68,19 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 
 `OVERVIEW` is the one required section. Its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. A small utility skill might run four sections (AT A GLANCE, OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all nine. Match the count to the skill. Never pad to hit a number.
 
-Inside OVERVIEW the `### What It Does` subsection comes first: what the skill is and what the reader gets, modeled on the root README opening with its SUMMARY section. You may then add up to two optional subsections. A `### Why This Skill Exists` problem narrative, used when the pain needs telling before the mechanism lands. And the capability section below.
+Inside OVERVIEW, start with `### What It Does`. Say what the skill is and what the reader gets.
+Add up to two optional subsections after it.
+Use `### Why This Skill Exists` only to name a current reader problem.
+Add the capability section below when it earns a table.
 
 ### Capability Section Pattern
 
-When a skill has a headline strength, give it a named capability section inside OVERVIEW, after What It Does. Open the section with 1 to 2 narrative sentences that say why the strength matters to the reader. Reach for one analogy if it makes the mechanism land. Then model the table on the pilot's Plugin Knowledge Layer: the section name names the domain. One table row covers each capability. Each row states what the skill can actually operate, at the file or data level. No marketing adjectives and no feature without a mechanism. A row that reads like a slogan has not earned its place. The prose carries the why, the table carries the what.
+When a skill has a headline strength, add a named capability section after What It Does.
+Use one or two short sentences to say why the strength matters.
+Use an analogy only when it clarifies the mechanism.
+Name the section after its domain and add one table row per capability.
+State the file or data the skill can operate on.
+Avoid marketing claims. The prose explains why the capability matters. The table states what it does.
 
 ```markdown
 ### The Plugin Knowledge Layer
@@ -82,10 +95,11 @@ When a skill has a headline strength, give it a named capability section inside 
 
 ## 3. WRITING RULES
 
+- Apply the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist) to README prose.
 - State the outcome before the tooling. The pitch and the identity guidance name what the reader gets. The tool names follow as the means.
-- Open value-first, the way the repo root README opens now: what the skill is and what the reader gets before any feature list. When the pain needs telling, add the optional `### Why This Skill Exists` narrative inside OVERVIEW and put the reader in a concrete failing situation there.
-- Add a 2 to 3 sentence narrative hook right after the blockquote pitch, before AT A GLANCE, when a skill needs a running start into its story. Keep AT A GLANCE the first numbered section so the validator contract and the five-second scan both hold.
-- Descriptive length is welcome. One idea per sentence governs clarity, not length. A sentence with a subordinate clause is fine when it reads naturally aloud. The banned forms in Section 4 stay banned regardless of length.
+- Open OVERVIEW with what the skill is and what the reader gets.
+- Use `### Why This Skill Exists` only to explain a current reader problem.
+- Add a short context hook after the blockquote only when it helps the reader. Keep AT A GLANCE as the first numbered section.
 - Carry the explanation in prose. Reach for a table only when 4 or more parallel items need a lookup grid (skill relationships, CLI flags, a comparison).
 - Use semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. Decorative section emoji never: that register belongs to the repository front-page README, while a skill README keeps the technical formatting.
 - A short, concrete analogy can carry an abstract mechanism better than adjectives (the repo root README uses "like a lab notebook for software"). Use one only where it clarifies, never as decoration.
@@ -97,7 +111,8 @@ When a skill has a headline strength, give it a named capability section inside 
 - Keep `SKILL.md` as the runtime surface. The README explains why and how to navigate. It does not restate long reference files.
 - Follow the Human Voice Rules. Section 4 lists the banned forms and the scripted checks. It links the full ruleset.
 - Vary subsection counts rather than defaulting to three.
-- Document current state only. Do not paste spec packet history into a README. Use stable paths and commands. When behavior changes, update the README in the same pass, with a version bump and a changelog entry per Section 5.
+- Document current behavior. Keep spec history out of the README.
+- Use stable paths and commands. Update the README, its version and its changelog entry when behavior changes.
 
 ---
 
@@ -156,7 +171,7 @@ version: 1.0.0.0
 
 > [One line. The delivered outcome, in plain words a person would say out loud, stated before any tool name.]
 
-[Optional narrative hook, two to three sentences. A running start into the skill's story for a reader who wants context before the scan table. Delete it for a small utility skill. AT A GLANCE stays the first numbered section.]
+[Optional. Add one or two sentences about the reader's current need before the scan table. Delete this for a small utility skill. AT A GLANCE stays the first numbered section.]
 
 ---
 
@@ -175,17 +190,20 @@ version: 1.0.0.0
 
 ### What It Does
 
-[Two to four sentences, first. What the skill is and what the reader gets, in plain language, naming the canonical command or entry point. Model the shape on the root README SUMMARY section: identity first, then what the reader walks away with. If a sibling skill is easy to confuse with this one, name the boundary in a sentence.]
+[Write two to four short sentences. Say what the skill is and what the reader gets.
+Name the canonical command or entry point. If a sibling skill is easy to confuse with this one, explain the boundary.]
 
 ### Why This Skill Exists
 
-[Optional. A short problem narrative, three to six sentences, used when the pain needs telling before the mechanism lands. Put the reader in a concrete failing situation and let them feel it before you name the solution. Delete this subsection when the payoff is obvious from What It Does.]
+[Optional. In two to four short sentences, name the reader's current problem and how the skill helps.
+Delete this subsection when What It Does already makes the outcome clear.]
 
 ### [The [Domain] Knowledge Layer]
 
 [Optional. Present when the skill has a headline strength worth a dedicated table. Name the layer after the domain. Model: the pilot's Plugin Knowledge Layer.]
 
-[One to two sentences that say why this strength matters to the reader, with one analogy if it helps the mechanism land. The prose carries the why.]
+[Write one or two short sentences about why this strength matters.
+Use an analogy only when it clarifies the mechanism.]
 
 [Then the table. One row per capability, each row stating what the skill can actually operate at the file or data level. The table carries the what.]
 
@@ -222,16 +240,13 @@ version: 1.0.0.0
 
 [Narrate the lifecycle or main workflow as prose: the sequence of steps, the decision points and the outputs. A reader should finish this section understanding the shape of the skill.]
 
-[For any skill with a multi-step flow, include a small ASCII diagram of how the pieces connect, modeled on the root README connection diagram. Keep it to the boxes a reader needs. Drop the diagram only for a genuinely linear one-step skill.]
+[For any skill with a multi-step flow, include a small Mermaid diagram that shows how the pieces connect. Keep it to the boxes a reader needs. Drop the diagram for a genuinely linear one-step skill.]
 
-```text
-[request]
-   |
-   v
-[the routing or decision step]
-   |
-   v
-[the surface that does the work]  -->  [the output the reader gets]
+```mermaid
+flowchart TD
+  Request["[request]"] --> Route["[the routing or decision step]"]
+  Route --> Work["[the surface that does the work]"]
+  Work --> Output["[the output the reader gets]"]
 ```
 
 ### [Key Concept]
@@ -307,8 +322,8 @@ Each check has a pass criterion. A check only passes when its criterion holds, n
 | 7 | HVR clean | The four greps in Section 4 return zero matches outside code fences |
 | 8 | Validator | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues |
 | 9 | Optional sections | Sections without real content were removed and the rest renumbered |
-| 10 | Optional problem narrative | When `### Why This Skill Exists` is present, it reads as a concrete failing situation the reader recognizes, not a one-line summary |
-| 11 | Connection diagram | A multi-step skill includes a small ASCII diagram of how the pieces connect |
+| 10 | Optional problem context | When `### Why This Skill Exists` is present, it names the reader's current problem and the skill's outcome |
+| 11 | Connection diagram | A multi-step skill includes a small Mermaid diagram of how the pieces connect |
 
 Pass criteria in full:
 
@@ -323,8 +338,8 @@ Pass criteria in full:
 | 7 | The em dash, semicolon, Oxford comma and banned-word greps report no prose hits. |
 | 8 | The command exits 0 and reports zero issues. |
 | 9 | The final section numbers run in order with no gaps. |
-| 10 | The optional problem narrative reads as a short story a reader feels, three to six sentences, after What It Does. |
-| 11 | Skills with more than one step in HOW IT WORKS carry an ASCII diagram. A single-step utility skill is exempt. |
+| 10 | Optional problem context names the reader's current problem and the skill's outcome in two to four short sentences. |
+| 11 | Skills with more than one step in HOW IT WORKS carry a Mermaid diagram. A single-step utility skill is exempt. |
 
 > The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the nine checks above.
 

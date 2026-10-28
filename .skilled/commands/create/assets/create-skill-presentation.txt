@@ -140,6 +140,12 @@ Validation:
 - DQI: [score] ([band])
 - Hard minimum: 75
 - Operation target: [operation_target]
+[operation == full-create or full-update:]
+Human Voice:
+  - Per target: [path, hard blockers, mechanical deductions/ceiling, score/band or deduction density, scanner exit code]
+  - Judgment findings: [summary or None]
+  - Exemptions: [summary or None]
+  - Gate: [PASS only when all scans exit 0 and every absolute score is at least 85]
 
 Routing shape: SMART ROUTING is 8 to 12 lines of plain prose with any machine router block in the final ## MACHINE ROUTER section. A mode packet never carries ROUTER.md, and the hub keeps one root ROUTER.md.
 

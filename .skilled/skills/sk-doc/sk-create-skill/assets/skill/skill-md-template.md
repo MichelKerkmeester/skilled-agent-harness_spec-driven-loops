@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -86,7 +86,9 @@ SKILL.md architecture follows progressive disclosure:
 
 > **Hard rules**: not a frontmatter key. They live in `hard-rules.json` beside the skill's `SKILL.md`, a JSON array of `{id, check, message, severity}` objects that the dispatch preflight reads.
 
-> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under the ~6,400-char project ceiling, which keeps headroom below the 8,000-char default where Claude Code silently drops the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose, and keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
+> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md).
+> Keep total project descriptions under the ~6,400-character ceiling. This leaves headroom below the 8,000-character auto-discovery limit.
+> Drop product and stack lists. Drop marketing prose. Keep the skill name, primary verb, domain noun and mode suffixes (`:auto` or `:confirm`).
 
 ### Template
 
@@ -632,7 +634,7 @@ def route_[skill_name]_resources(user_request, task=None):
 
 ### Section 2: SMART ROUTING (Required for All Skills)
 
-**Purpose**: Tell the agent, in plain words, how a request reaches this skill's knowledge files.
+**Purpose**: Use this section to explain how you route a request to this skill's resources.
 
 **Three skill kinds, one shape**:
 
@@ -644,7 +646,10 @@ def route_[skill_name]_resources(user_request, task=None):
 
 **The limit**: 12 non-blank lines and 180 words are the hard ceilings the check enforces; aim for 8 to 12 lines. A packet or standalone skill says three things: what selects it, what it loads first, and where the machine router is.
 
-**The appendix**: any machine router block sits in a final `## MACHINE ROUTER` section, which is the last H2 in the file. Number it like every other H2, as the next section number (for example `## 8. MACHINE ROUTER`); the check reads the title with its number removed. The pseudocode never goes inside SMART ROUTING. A packet whose leaves the hub root `ROUTER.md` already names may carry no block at all.
+**The appendix**: Put any machine router block in a final `## MACHINE ROUTER` section. It must be the last H2 in the file.
+Number it like every other H2, as the next section number. For example, use `## 8. MACHINE ROUTER`.
+The check ignores the section number. Keep pseudocode out of SMART ROUTING.
+A packet needs no block when the hub root `ROUTER.md` already names all its leaves.
 
 **One router file**: a mode packet never carries `ROUTER.md`. The hub root `ROUTER.md` is the only router file in the family.
 
@@ -659,9 +664,17 @@ def route_[skill_name]_resources(user_request, task=None):
 | `RS-003` | `## MACHINE ROUTER` exists but is not the last H2 |
 | `RS-004` | a mode packet carries its own `ROUTER.md` |
 
-A machine router block is a fenced block, or an unfenced run of lines such as an indented one, that holds `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`; a fence closes only on a run of the same character at least as long as the one that opened it.
+A machine router block is a fenced block or an unfenced run of indented lines.
+It contains one of these markers: `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`.
+A fence closes only on a run of the same character that is at least as long as its opening run.
 
-**Known debt** is listed in `sk-create-skill/scripts/routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`); a folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`. A listed skill fails when its line count, word count or number of machine blocks outside the appendix grows past the record, or when it shows a code the entry does not record. An entry in any other form is ignored. Remove the entry once the skill moves to the canon.
+**Known debt** is listed in `sk-create-skill/scripts/routing-shape-known-debt.json`.
+Entries use skill paths relative to `.skilled/skills`, such as `sk-code/sk-code-review`.
+A folder outside that root is never debt.
+Each entry records `{"lines", "words", "machineBlocks", "codes"}`.
+A listed skill fails if its line count, word count or machine blocks outside the appendix exceed the record, or if it adds an unrecorded code.
+The checker ignores entries in any other form.
+Remove an entry when the skill follows the canon.
 
 **Placement**: after Section 1 (WHEN TO USE) and before HOW IT WORKS. The `## MACHINE ROUTER` appendix goes at the end of the file.
 
@@ -742,7 +755,7 @@ STEP 2: [Action]
 \`\`\`
 
 **Writing Tips**:
-- Visual flows help comprehension (use ASCII diagrams)
+- Use Mermaid for flow diagrams so a parser can read them.
 - Show, don't just tell (include code examples)
 - Progressive detail: Overview → specifics → edge cases
 - Link to references for deep dives
@@ -997,16 +1010,14 @@ For the complete list of 8 common pitfalls with before/after examples, see:
 2. Bloated SKILL.md → Move details to references/
 3. Missing bundled resources → Identify repeated code/docs
 4. Unclear triggers → Specific activation conditions
-5. Second-person language → Use imperative form
+5. Distant instructions → Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist)
 6. Platform-specific claims → Stay platform-agnostic
 7. Multiline YAML descriptions → Keep single line
 8. Redundant routing tables → Keep routing authority in pseudocode
 
 ### Writing Style Quick Reference
 
-**DO**: Third-person voice (descriptions), imperative form (instructions), specific examples, rationale for rules
-
-**DON'T**: Second-person ("You should..."), vague descriptions, duplicate content, angle brackets in frontmatter
+For instructions and README prose, use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist).
 
 ---
 
@@ -1055,13 +1066,13 @@ Content - Routing Canon:
 □ A mode packet carries no `ROUTER.md` (the hub root `ROUTER.md` is the only router file)
 □ Flowchart supplements added to complex logic blocks in Section 3 (where applicable)
 □ Python/YAML code preserved (supplements, not replacements)
-□ All ASCII diagrams use consistent style (when used)
+□ Mermaid diagrams use valid syntax (when used)
 
 Quality:
 □ SKILL.md under 5k words (<3k preferred)
 □ Concrete examples included
 □ Rationale provided for rules
-□ Language is third-person (descriptions) or imperative (instructions)
+□ Instructions follow the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist)
 □ Consistent heading format
 □ All code blocks specify language
 □ Links work correctly

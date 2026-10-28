@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Creation Process
@@ -127,7 +127,9 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 3. Creates example resource directories: `scripts/`, `references/`, `assets/`
 4. Adds example files that can be customized or deleted
 
-**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md. Normalize it to the required section order (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES) and add recommended sections (SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES) as you complete the skill. Keep Section 2 to 8 to 12 lines of prose and put the seeded router pseudocode in a final `## MACHINE ROUTER` section.
+**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md. Normalize it to the required section order: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and REFERENCES.
+Add recommended sections as the skill needs them. Keep SMART ROUTING to 8 to 12 lines of prose.
+Put the seeded router pseudocode in a final `## MACHINE ROUTER` section.
 
 **After initialization**: Customize or remove generated files as needed.
 
@@ -147,6 +149,21 @@ scripts/init_skill.py markdown-optimizer --path .skilled/skill
 ### Step 4: Edit the Skill (~10-15 min)
 
 **Objective**: Populate skill with instructions and bundled resources.
+
+#### Prose Clarity Checklist
+
+Use this checklist for `SKILL.md` instructions and README prose:
+
+- [ ] Put instructions before background.
+- [ ] Keep any machine router in the final H2 of `SKILL.md`.
+- [ ] State each fact once. Link to it instead of repeating it.
+- [ ] Keep one idea per sentence. Split sentences longer than about 30 words.
+- [ ] Address the reader as "you" in instructions.
+- [ ] Keep project history out of instructions.
+- [ ] Use code blocks only for commands a person runs or content a parser reads.
+- [ ] Keep prose lines at 400 characters or fewer outside code blocks and tables.
+- [ ] For a hub, put one routing glossary under `### Terms` in `HOW IT WORKS`.
+  Link to that glossary wherever else you need it.
 
 **Remember**: Creating this skill for another AI agent instance to use. Focus on information that would be beneficial and non-obvious.
 
@@ -196,6 +213,8 @@ Choose the README template before writing the file.
 
 The decision is based on the skill directory role, not on the number of files. A hub that owns nested modes uses the parent template. A standalone skill and a child mode use the standalone family unless their documented contract says otherwise.
 
+Apply the [Prose Clarity Checklist](#prose-clarity-checklist) when you write README prose.
+
 **Post-authoring README gate, run before packaging**:
 
 1. Run `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <skill>/README.md --type readme` and require zero issues.
@@ -235,10 +254,14 @@ Answer these questions in SKILL.md:
      - Non-markdown file types
      ```
 
-3. **How should the agent route to the right resources?**
+3. **How will you route requests to the right resources?**
    - Section 2: SMART ROUTING
    - Write 8 to 12 non-blank lines of plain prose. Say what selects this skill, what it loads first, and that the machine router sits in the final section. No pseudocode and no tables.
-   - **Seed the pseudocode from the canonical resilience pattern**: copy the four patterns from [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2 (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) into the final `## MACHINE ROUTER` section, then adapt the routing key and resource map to this skill's domain. A SKILL.md with no machine router block is incomplete unless the hub `ROUTER.md` already names every leaf this packet loads.
+   - **Seed the pseudocode from the canonical resilience pattern** in [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2.
+     Use runtime discovery, existence checks, an extensible routing key and multi-tier fallback.
+     Adapt those patterns to this skill's resource map.
+     Keep the block in the final `## MACHINE ROUTER` section.
+     A packet needs no block when the hub `ROUTER.md` already names every leaf it loads.
    - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables. Do NOT put the router block inside SMART ROUTING.
    - `package_skill.py --strict` rejects the old shape with codes RS-001 to RS-004: an oversized SMART ROUTING section, a router block outside the final section, a `## MACHINE ROUTER` section that is not last, and a mode packet that carries its own `ROUTER.md`.
 
@@ -247,7 +270,7 @@ Answer these questions in SKILL.md:
    - Mirror key domains under `assets/` when templates/checklists are stack-specific
    - Keep one source of truth for the mapping in `RESOURCE_MAP` inside the machine router block
 
-5. **How should the agent use the skill in practice?**
+5. **How will you use the skill in practice?**
    - Section 3: HOW IT WORKS
    - Reference all bundled resources
    - Explain workflow and decision points
@@ -263,10 +286,8 @@ Answer these questions in SKILL.md:
    - Include core references and templates or use combined `SMART ROUTING & REFERENCES` if preferred.
 
 **Writing Style Reminders**:
-- Use imperative/infinitive form (verb-first: "Run validation", "Check structure")
-- Third-person descriptions ("This skill should be used when...")
-- Objective, instructional language
-- Keep total under 5k words
+- Apply the [Prose Clarity Checklist](#prose-clarity-checklist) to instructions and README prose.
+- Keep the SKILL.md under 5,000 words.
 
 **Frontmatter Completion**:
 
@@ -289,7 +310,9 @@ version: 1.0.0.0
 ```
 
 **Every authored `.md` carries `version`**: not just SKILL.md.
-- **`references/*.md` and `assets/*.md`** carry the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`) **plus `version`** (4-part `X.Y.Z.W`). Seed each new file from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) / [skill-asset-template.md](../../assets/skill/skill-asset-template.md) so the block is present by construction. Emit kebab-case filenames and directory slugs. Python filenames, Python import-package directories and tool-mandated names remain exempt.
+- **`references/*.md` and `assets/*.md`** carry the five required fields plus a four-part `version`: `title`, `description`, `trigger_phrases` (3 to 8), `importance_tier` and `contextType`.
+  Seed each file from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) or [skill-asset-template.md](../../assets/skill/skill-asset-template.md).
+  Use kebab-case filenames and directory slugs. Python filenames, import-package directories and tool-mandated names remain exempt.
 - **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description` and `version` per [skill-readme-template.md](../../assets/skill/skill-readme-template.md).
 
 > **Complete Reference**: For validation rules, format specifications and all document types, see [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md)

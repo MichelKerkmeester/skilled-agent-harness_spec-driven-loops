@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Parent Skill Hub README Template
@@ -33,21 +33,29 @@ version: 1.3.0.0
 
 ### Why This Template Exists
 
-A parent hub is one advisor identity over several nested packets. The mcp-tooling hub routes seven modes and the system-deep-loop hub routes five deep-loop families. Both hubs keep a README, a mode registry, a leaf manifest and a changelog folder. Without a shared template, every hub author invents a different front door: one lists features, another buries the packet table. A reader then has to reverse-engineer the hub from its folders.
+A parent hub routes related packets through one identity. Its README gives people a quick map of modes, files and commands.
+Use this template to build that map.
 
-The situation this template fixes: you have a hub folder with packets, a registry and a manifest. You need a README that orients a human in under a minute. This template gives you the section model, the writing rules for each surface and a fillable scaffold with stable relative links.
+Use this template when you have a hub folder with packets, a registry and a manifest.
+It gives you a README structure and stable relative links.
 
 ### What It Does
 
-Every finished hub README covers six surfaces: the pitch and purpose-first overview, the modes and packets table, the navigation to `mode-registry.json` and `leaf-manifest.json`, the changelog convention, the scripts and commands list and the verification close. The template uses `.skilled/skills/mcp-tooling/` and `.skilled/skills/system-deep-loop/` as the structural examples, because both hubs already carry the full surface set this template standardizes.
+A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
+Use the two example hubs to check structure.
 
 ### When To Write A Hub README
 
-Write one for every parent hub: a folder that carries `mode-registry.json`, `hub-router.json`, `leaf-manifest.json` and nested packet folders with their own SKILL files. Both example hubs show the pattern. `.skilled/skills/mcp-tooling/` routes seven modes across workflow bridges and design transports. `.skilled/skills/system-deep-loop/` routes five workflow families over one shared runtime layer. Read both READMEs and both registries before drafting. Build the packet table from what `mode-registry.json` lists.
+Write a README for every parent hub.
+Confirm that it has `mode-registry.json`, `hub-router.json`, `leaf-manifest.json` and packet SKILL files.
+Read `mode-registry.json` before building the packet table.
+Include every mode listed there.
 
 ---
 
 ## 3. SECTION MODEL
+
+Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist) when you write hub README prose.
 
 A hub README uses numbered ALL-CAPS H2 sections with `---` dividers between them. The default order:
 
@@ -71,27 +79,39 @@ A hub README uses numbered ALL-CAPS H2 sections with `---` dividers between them
 
 Open with a one-line blockquote pitch right after the H1. The pitch states the whole family outcome in plain words. The two example hubs show the shape: mcp-tooling opens with "One advisor identity, seven modes" and system-deep-loop opens with "One skill that routes to every active deep-loop workflow".
 
-The OVERVIEW starts with a `### What It Does` subsection: what the hub is and what the reader gets, modeled on the root README SUMMARY section, before any feature list. An optional `### Why This Hub Exists` subsection may follow when the pain needs telling: the family of problems, what went wrong before the hub unified them and where the reader is now.
+Start OVERVIEW with `### What It Does`. Name the hub and the result it gives the reader.
+Use `### Why This Hub Exists` only when the reader needs current problem context.
 
-Write the optional Why This Hub Exists as a short narrative, three to six sentences, not a summary. Put the reader in the situation they hit before the hub existed, when the family of problems lived in scattered places and every author invented a different front door. Let them feel that before you name the unifying identity. You may add a 2 to 3 sentence narrative hook after the blockquote, before AT A GLANCE. For a hub with a multi-step routing flow, add a small ASCII diagram of request to registry to packet, modeled on the root README connection diagram.
+Write two to four short sentences about the current problem and how the hub helps.
+Do not recount project history.
+Add a short hook after the blockquote only when readers need it.
+Add a simple Mermaid diagram when it clarifies multi-step routing.
 
 Emoji use follows the technical register. Semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and sparingly. Decorative section emoji stay on the repository front-page README, never on a hub README.
 
 ### 4.2 Modes And Packets
 
-Open MODES AND PACKETS with one or two sentences that frame the family the table lists, so the table reads as a map rather than a raw dump. Then give every child packet or mode one table row. Each row carries the packet folder name, the kind (workflow, surface or transport), a one-line use statement and a relative pointer to the child README or folder. A pointer looks like `[README.md](./[mode-a]/README.md)`. When a packet has no README yet, link the folder itself with a trailing slash.
+Open MODES AND PACKETS with one or two sentences that frame the table.
+Give each child packet one row with its folder, kind, use and relative pointer.
+Link to its README when it exists. Otherwise link to the folder with a trailing slash.
 
 The registry is the truth for this table. Read `mode-registry.json` and list every entry in `modes[]`. Do not invent rows. The mcp-tooling README lists all seven packet folders with one bullet each and a per-packet README pointer. The system-deep-loop README uses a layout table for the same job, mapping each mode packet to what it holds.
 
 ### 4.3 Navigation
 
-Link `mode-registry.json` and `leaf-manifest.json` with stable relative paths from the hub root. A stable path is one a reader resolves without a search: `[mode-registry.json](./mode-registry.json)` and `[leaf-manifest.json](./leaf-manifest.json)`. Say what each file holds in one line. The registry is the single source of truth for modes. The manifest is the generated inventory of the hub's routed leaves. Tell the reader the manifest regenerates when packets change, so it reads as a snapshot.
+Link `mode-registry.json` and `leaf-manifest.json` with stable relative paths from the hub root.
+Use `[mode-registry.json](./mode-registry.json)` and `[leaf-manifest.json](./leaf-manifest.json)`.
+Explain each file in one line. The registry is the source of truth for modes.
+The manifest lists routed leaves. State that it regenerates when packets change.
 
 The system-deep-loop README links `mode-registry.json` from its RELATED DOCUMENTS table with a purpose note per row. The mcp-tooling README names the registry and the router in its AT A GLANCE table, so a reader finds the routing files in the first scan.
 
 ### 4.4 Changelog
 
-Keep one file per release inside the hub `changelog/` folder, named `v[version].md`. Every entry opens with the release title and the reason in plain words, then a what-changed list grouped by surface (routing surfaces, advisor and docs, cleanup), then a files-changed table. The mcp-tooling changelog folder holds one file per release from `v1.0.0.0.md` forward. Its newest entry groups the changes exactly this way.
+Keep one file per release in the hub `changelog/` folder. Name it `v[version].md`.
+Open each entry with its release title and a plain-language reason.
+Group changes by surface and add a files-changed table.
+The newest mcp-tooling entry shows this structure.
 
 ### 4.5 Scripts And Commands
 
@@ -121,7 +141,7 @@ version: 1.0.0.0
 
 > [One line. The outcome the hub delivers for its whole family, in plain words a person would say out loud.]
 
-[Optional narrative hook, two to three sentences. A running start into the hub's story before the scan table. AT A GLANCE stays the first numbered section.]
+[Optional. Add one or two sentences about the reader's current need before the scan table. AT A GLANCE stays the first numbered section.]
 
 ---
 
@@ -140,22 +160,22 @@ version: 1.0.0.0
 
 ### What It Does
 
-[Two to four sentences, first. One public advisor identity that routes every request to a nested packet. The hub holds no packet-local logic. Name the registry that resolves modes and the manifest that inventories leaves. Model the shape on the root README SUMMARY section: what the hub is and what the reader gets before any feature list.]
+[Write two to four short sentences. Say what the hub is and what the reader gets.
+Name the registry that resolves modes and the manifest that inventories leaves.
+State what the hub does before listing features.]
 
 ### Why This Hub Exists
 
-[Optional. Two to four sentences, used when the pain needs telling. State the situation a reader is in and what goes wrong without the hub. Name the family and the nested packets. No feature list here.]
+[Optional. In two to four short sentences, name the reader's current problem and how the hub helps.
+Name the family and nested packets. Do not add a feature list.]
 
-[Optional connection diagram for a multi-step routing flow. Show request to registry to the packet that owns it, modeled on the root README connection diagram.]
+[Optional Mermaid diagram for a multi-step routing flow. Show request to registry to the packet that owns it.]
 
-```text
-[request]
-   |
-   v
-[mode-registry.json]  -->  [the packet that owns the request]
-   |
-   v
-[the artifact or decision the mode returns]
+```mermaid
+flowchart TD
+  Request["[request]"] --> Registry["[mode-registry.json]"]
+  Registry --> Packet["[the packet that owns the request]"]
+  Packet --> Result["[the artifact or decision the mode returns]"]
 ```
 
 ---
@@ -214,11 +234,10 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type rea
 
 [Expected: zero issues. The validator enforces the numbered ALL-CAPS OVERVIEW section.]
 
-Run the HVR check on this file. Grep for the em dash character and grep for the semicolon character. Both greps return zero matches:
+Run this check. It passes when it finds no em dashes or semicolons:
 
-```text
-grep for the em dash character in README.md
-grep for the semicolon character in README.md
+```bash
+! rg -n '\x{2014}|\x{3B}' README.md
 ```
 
 [Keep zero Oxford commas, zero banned words and zero setup phrases in the prose as well. Optional extra: run the parent-skill check to prove the whole hub shape.]

@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -20,9 +20,13 @@ The core is always the same **2-tier shape**:
 1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`. Add `command-metadata.json` only when the hub owns slash commands.
 2. Packet tier: workflow packets and optional surface packets listed in one `modes[]` array.
 
-`hub-router.json` selects a workflow mode, and the root `ROUTER.md` is the hub's stage-two control document. A fresh hub ships `router_state: stage1-only` with empty stage-two maps, so stage one is the whole routing story until an author promotes it to `active` with a concrete leaf map.
+`hub-router.json` selects a workflow mode. The root `ROUTER.md` selects its leaves.
+A new hub starts in `stage1-only` with empty stage-two maps. Stage one handles all routing in that state.
+Promote to `active` after you author a concrete leaf map.
 
 Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`, and do not create a third physical tier.
+
+Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist) when you write hub instructions.
 
 ---
 
@@ -122,7 +126,8 @@ version: 1.0.0.0
 
 ## 5. COPY-PASTE HUB SCAFFOLD
 
-Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder. The compiled router requires an `UNKNOWN_FALLBACK_CHECKLIST` list in the hub `SKILL.md`, so keep the final `## MACHINE ROUTER` section and fill its three placeholders.
+Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder.
+Keep the final `## MACHINE ROUTER` section and fill its three placeholders for `UNKNOWN_FALLBACK_CHECKLIST`.
 
 ````markdown
 ---
@@ -160,12 +165,18 @@ Use this skill when the request belongs to the [family/domain] family and should
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven: `hub-router.json` scores the request and `mode-registry.json` names the packet that `workflowMode` resolves to, while the root `ROUTER.md` is the stage-two control document (`stage1-only` on a fresh hub until an author promotes it to `active`).
-`packetKind: "workflow"` is a process or lifecycle packet and `packetKind: "surface"` is a read-only evidence-base packet (`backendKind: "evidence-base"`, `routingClass: "metadata"`, `mutatesWorkspace: false`), with no separate surface array.
-The rule is short: read `hub-router.json`, score `routerSignals` and `vocabularyClasses`, apply `routerPolicy.tieBreak` with workflow modes first, read `mode-registry.json` for `packetKind`, `backendKind`, `toolSurface`, and `advisorRouting`, then load the selected packet or packets.
-The outcomes are `single` (one workflow mode), `orderedBundle` (several workflow modes in policy order), `surfaceBundle` (one workflow primary plus read-only surfaces), and `defer` (two or more modes tie or conflict, so the hub asks which one is meant). `defer` is never the no-match result.
-A request no registered mode matches returns `UNKNOWN_FALLBACK`, never a silent default.
-The agent runs the compiled-routing directive in the final MACHINE ROUTER section first.
+`hub-router.json` scores the request and selects a `workflowMode`.
+`mode-registry.json` maps that mode to its packet.
+The root `ROUTER.md` selects the first resources the packet loads.
+`packetKind` identifies each packet as `workflow`, `surface` or `transport`.
+`routerPolicy` defines the available outcomes.
+It returns `single` when one workflow mode wins.
+It returns `orderedBundle` when several workflow modes match.
+It returns `surfaceBundle` for one workflow mode with read-only surfaces.
+It returns `defer` when modes tie or conflict.
+Ask which mode the reader means when the router returns `defer`.
+When no mode matches, return `UNKNOWN_FALLBACK`.
+You run the compiled-routing directive in the final MACHINE ROUTER section first.
 
 ---
 
@@ -173,30 +184,27 @@ The agent runs the compiled-routing directive in the final MACHINE ROUTER sectio
 
 ### Layout
 
-```text
-[parent-skill-name]/
-  SKILL.md
-  mode-registry.json
-  hub-router.json
-  ROUTER.md                     # stage-two control, stage1-only on a fresh scaffold
-  description.json
-  graph-metadata.json
-  command-metadata.json          # optional, only when the hub owns slash commands
-  leaf-manifest.json
-  changelog/
-  manual-testing-playbook/
-  benchmark/
-  [workflow-packet-a]/
-    SKILL.md
-    README.md
-    changelog/
-  [surface-name]/
-    SKILL.md
-    README.md
-    references/
-    assets/
-    changelog/
-```
+| Path | Purpose |
+|---|---|
+| `[parent-skill-name]/SKILL.md` | Hub instructions |
+| `[parent-skill-name]/mode-registry.json` | Packet registry |
+| `[parent-skill-name]/hub-router.json` | Routing policy |
+| `[parent-skill-name]/ROUTER.md` | Stage-two control document |
+| `[parent-skill-name]/description.json` | Hub-doctor metadata |
+| `[parent-skill-name]/graph-metadata.json` | Hub identity |
+| `[parent-skill-name]/command-metadata.json` | Optional command metadata |
+| `[parent-skill-name]/leaf-manifest.json` | Generated leaf inventory |
+| `[parent-skill-name]/changelog/` | Hub changelogs |
+| `[parent-skill-name]/manual-testing-playbook/` | Manual test cases |
+| `[parent-skill-name]/benchmark/` | Benchmark baseline (parent-skill-check 9b warns if absent) |
+| `[parent-skill-name]/[workflow-packet-a]/SKILL.md` | Workflow instructions |
+| `[parent-skill-name]/[workflow-packet-a]/README.md` | Workflow overview |
+| `[parent-skill-name]/[workflow-packet-a]/changelog/` | Workflow changelogs |
+| `[parent-skill-name]/[surface-name]/SKILL.md` | Surface instructions |
+| `[parent-skill-name]/[surface-name]/README.md` | Surface overview |
+| `[parent-skill-name]/[surface-name]/references/` | Surface evidence |
+| `[parent-skill-name]/[surface-name]/assets/` | Surface assets |
+| `[parent-skill-name]/[surface-name]/changelog/` | Surface changelogs |
 
 ### Companion Metadata
 

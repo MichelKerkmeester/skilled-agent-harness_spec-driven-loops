@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -24,30 +24,27 @@ Use this pattern when a skill family needs multiple independently documented pac
 
 The method has one physical shape:
 
-```text
-parent-hub/
-  SKILL.md
-  mode-registry.json
-  hub-router.json
-  ROUTER.md
-  description.json
-  graph-metadata.json
-  command-metadata.json             # optional; only when the hub owns slash commands
-  leaf-manifest.json
-  changelog/
-  manual-testing-playbook/
-  benchmark/
-  <workflow-packet>/
-    SKILL.md
-    README.md
-    changelog/
-  <surface-packet>/
-    SKILL.md
-    README.md
-    references/
-    assets/
-    changelog/
-```
+| Path | Purpose |
+|---|---|
+| `parent-hub/SKILL.md` | Hub instructions |
+| `parent-hub/mode-registry.json` | Packet registry |
+| `parent-hub/hub-router.json` | Routing policy |
+| `parent-hub/ROUTER.md` | Stage-two control document |
+| `parent-hub/description.json` | Hub-doctor metadata |
+| `parent-hub/graph-metadata.json` | Hub identity |
+| `parent-hub/command-metadata.json` | Optional command metadata |
+| `parent-hub/leaf-manifest.json` | Generated leaf inventory |
+| `parent-hub/changelog/` | Hub changelogs |
+| `parent-hub/manual-testing-playbook/` | Manual test cases |
+| `parent-hub/benchmark/` | Benchmark baseline (parent-skill-check 9b warns if absent) |
+| `<workflow-packet>/SKILL.md` | Workflow instructions |
+| `<workflow-packet>/README.md` | Workflow overview |
+| `<workflow-packet>/changelog/` | Workflow changelogs |
+| `<surface-packet>/SKILL.md` | Surface instructions |
+| `<surface-packet>/README.md` | Surface overview |
+| `<surface-packet>/references/` | Surface evidence |
+| `<surface-packet>/assets/` | Surface assets |
+| `<surface-packet>/changelog/` | Surface changelogs |
 
 Core rules:
 
@@ -58,10 +55,18 @@ Core rules:
 - **Surface packets**: read-only evidence bases such as `sk-code-ci` or `sk-code-skilled` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
 - **One advisor identity**: the hub's `graph-metadata.json` is the advisor identity input. Hub-only `description.json` is doctor metadata; packets never carry either file. No mode packet or `shared/` directory holds them. The full per-class rule for every root-level metadata JSON is canonical in [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md).
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
-- **Stage-two control document**: every hub also carries one root `ROUTER.md` declaring `router_state: stage1-only` or `active`. A fresh scaffold is `stage1-only` with empty maps, delegating all routing to stage one; `active` requires non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs. Promote only after authoring a concrete leaf map — never synthetic intents. `ROUTER.md` is a control-plane companion, never a leaf, advisor identity, or class discriminator.
+- **Stage-two control document**: every hub has one root `ROUTER.md` with `router_state: stage1-only` or `active`.
+  A fresh scaffold uses `stage1-only` and empty maps, so stage one owns routing.
+  `active` requires non-empty `INTENT_SIGNALS` and `RESOURCE_MAP` maps with equal keys and resolvable paths.
+  Each path must map to a typed `leaf-manifest.json` pair.
+  Promote only after you author a concrete leaf map, never synthetic intents.
+  `ROUTER.md` is a control-plane companion, not a leaf, advisor identity or class discriminator.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
 
-A hub has exactly one `ROUTER.md`, at its root. A packet has none and follows the mode-packet shape: a short SMART ROUTING section with its router block in a final `## MACHINE ROUTER` section. The hub's `SKILL.md` holds the hub's only Terms glossary.
+A hub has one root `ROUTER.md`, and a packet has none.
+Packets use short SMART ROUTING prose and keep any machine router in a final `## MACHINE ROUTER` section.
+The hub's only `### Terms` glossary sits under HOW IT WORKS.
+Use the [Prose Clarity Checklist](../skill/creation-workflow.md#prose-clarity-checklist) when you write packet prose.
 
 Required fields for every `modes[]` entry:
 
@@ -131,11 +136,20 @@ Tie-break order lists workflow modes first and surface packets after them. `surf
 
 ### Two-stage authoring: `hub-router.json` then root `ROUTER.md`
 
-Stage one and stage two are separate authoring acts. `hub-router.json` selects a workflow mode. The root `ROUTER.md` then owns stage-two leaf selection when `active` — mapping request intent to the exact packet-local leaf resources that mode loads — or declares `stage1-only` and leaves the whole routing story to stage one. A fresh hub scaffolds `stage1-only` with empty maps, a root `SKILL.md` pointer, and a four-part `version`. Promotion to `active` is the deliberate act of authoring non-empty equal-key maps with resolvable, typed leaf paths; the authoring tooling never fabricates those maps. See [`parent-skill-root-router-template.md`](../../assets/parent-skill/parent-skill-root-router-template.md) for both states.
+Stage one and stage two are separate authoring acts. `hub-router.json` selects a workflow mode.
+When `active`, the root `ROUTER.md` selects the exact packet-local leaf resources that mode loads.
+When `stage1-only`, stage one owns the full routing decision.
+A fresh hub uses `stage1-only` with empty maps, a root `SKILL.md` pointer and a four-part `version`.
+Promote to `active` only after you author non-empty equal-key maps with resolvable, typed leaf paths.
+The authoring tools never fabricate those maps.
+See [`parent-skill-root-router-template.md`](../../assets/parent-skill/parent-skill-root-router-template.md) for both states.
 
 ### Why the leaf router stays in `ROUTER.md`
 
-`ROUTER.md` stays a separate document on purpose. The router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document. The machine block must not move into the hub `SKILL.md`, because the replay would then treat it as the hub's own router and lose the mode projection. It must not move into `hub-router.json` either, because the schema's handoff-ambiguity rule forbids it. A hub `SKILL.md` links here rather than restating this.
+`ROUTER.md` stays separate because router replay reads the hub mode from `hub-router.json` and the leaf sets from the surface document.
+Do not move the machine block into the hub `SKILL.md`. Replay would treat it as the hub router and lose the mode projection.
+Do not move it into `hub-router.json`. The schema's handoff-ambiguity rule forbids that.
+A hub `SKILL.md` links here instead of repeating this explanation.
 
 ---
 

@@ -300,6 +300,9 @@ gate_logic:
     H5_validation_gate:
       description: "Hub validation, registry coverage, and per-packet structure checks must pass"
       fail_action: "Run fix-and-revalidate loop"
+    H6_human_voice_gate:
+      description: "No HVR hard blockers and every absolute score >= 85"
+      fail_action: "Revise or rewrite, re-run hvr_scan.py, then revalidate"
   soft:
     S1_packet_naming:
       description: "DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (surfaces use a bare-noun folder). NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid."
@@ -317,6 +320,8 @@ workflow_overview:
       purpose: "Load the reference and both hub/registry templates"
     - id: step_4_package_generation
       purpose: "Create or update hub, registry, packets, and shared with one identity"
+    - id: step_4b_human_voice_score
+      purpose: "Score authored hub and packet documents before validation"
     - id: step_5_validation
       purpose: "Run hub validation, registry coverage, and the one-identity invariant"
     - id: step_5b_save_context
@@ -419,6 +424,9 @@ workflow:
     purpose: Generate or update the parent-skill package
     activities:
       - Ensure skill_root exists
+      - >-
+        Read the [Prose Clarity Checklist](.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md#prose-clarity-checklist)
+        before authoring the hub and its packets.
       - Create or update the thin hub SKILL.md (routing only)
       - "Create or update mode-registry.json with the two-axis discriminator (workflowMode + packetKind + backendKind), toolSurface and grandfatheredFolderMismatch per mode, a top-level packet, and one advisorRouting block per mode"
       - "Create or update hub-router.json from parent_skill_hub_router_template.json (routerSignals for every mode, typed vocabularyClasses, tieBreak covering all modes, each new surface mode placed after the workflow modes and ahead of the existing surface modes (several new surfaces in the order given), and every mode already listed kept where it is; keep any catch-all class (hub-identity) on the default mode only, never specialized modes (route-gold over-emission); surface packets get metadata routerSignals plus a surfaceBundle outcome)"
@@ -441,6 +449,24 @@ workflow:
       - advisor_projection_emitted
       - generated_leaf_manifest
       - root_router_actioned
+
+  step_4b_human_voice_score:
+    purpose: Score generated or updated hub and packet documents before strict validation
+    activities:
+      - Enumerate each SKILL.md and README.md created or changed by step_4_package_generation that exists on disk, including packet READMEs, generated surface documents, and shared/README.md when written
+      - Read `.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md` and follow its score operation, scope gate, mechanical scan, judgment pass, scoring rules, and report shape
+      - "For each target, run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py [target_file]` without extra flags; capture its output and exit code."
+      - "Exit 0 means no hard blockers, exit 1 means at least one hard blocker and blocks completion, and exit 2 means the scan could not run and blocks completion. Review the remaining findings for sense and scope, and record justified exceptions."
+      - "Compute the score from 100 using first-match-wins. For files up to 400 lines, 85+ is publish-ready, 70-84 requires revision, and below 70 requires rewriting. For longer files, report hard-blocker count and deduction density instead of an absolute score."
+      - Record each target's scan output and exit code, confirmed blockers, score or length basis, judgment findings, exceptions, and verdict for the presentation
+      - "Every target passes only with no hard blockers and a score of at least 85 when an absolute score applies. Revise scores from 70 to 84 and rewrite scores below 70, then run the score operation again."
+      - "When a target fails, revise its in-scope prose and repeat the score operation before validation. Stop when the scan exits 2 or a hard blocker remains."
+    outputs:
+      - human_voice_results
+      - human_voice_passed
+    gate:
+      command: "python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py [target_file]"
+      blocking: true
 
   step_5_validation:
     purpose: Validate the generated package against the canonical structural gate (success gate == the /doctor:skill-advisor parent-skill gate)
@@ -500,6 +526,7 @@ workflow:
     activities:
       - Summarize operation, mode list, and generated paths
       - Report identity counts and validation results
+      - Provide human_voice_results and human_voice_passed to the presentation contract
       - "When --surfaces added a surface mode, report this follow-up, which this command does not run: author a canary case that routes to each new surface in the hub's .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/<NNN>-<hub>/fixtures/canary-cases.v1.json and copy that fixture to its authored twin under specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/<NNN>-<hub>/fixtures/, or parent-skill-check fails 5k-canary (skip when the hub has no such fixture)"
       - "When --surfaces added a surface mode, report this follow-up, which this command does not run: commit with the git hooks installed (bash .skilled/scripts/install-git-hooks.sh), whose pre-commit gate re-mints the hub's activation manifest and copies it to its authored path; without the hooks, run node .skilled/bin/compiled-route-manifest.cjs refresh --hub <hub> --skill-root <skill_root> and copy .skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json over specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/<hub>/manifest.json"
       - "Report advisor projection emission when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note)"
