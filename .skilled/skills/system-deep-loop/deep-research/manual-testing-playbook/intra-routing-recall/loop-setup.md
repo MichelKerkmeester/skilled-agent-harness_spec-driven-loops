@@ -11,14 +11,14 @@ expected_resources:
   - references/state/state-jsonl.md
   - references/protocol/spec-check-protocol.md
   - references/protocol/context-snapshot.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # DR-R01: Deep research loop setup routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`) scores a loop-setup-shaped request as `LOOP_SETUP` and loads the `LOOP_SETUP` resource set, distinct from the other seven intra-routing-recall intents (ITERATION, CONVERGENCE, RECOVERY, STATE, SPEC_ANCHORING, RUNTIME_PARITY, RESOURCE_MAP).
+This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §9 `Smart Router Pseudocode`) scores a loop-setup-shaped request as `LOOP_SETUP` and loads the `LOOP_SETUP` resource set, distinct from the other seven intra-routing-recall intents (ITERATION, CONVERGENCE, RECOVERY, STATE, SPEC_ANCHORING, RUNTIME_PARITY, RESOURCE_MAP).
 
 ---
 
@@ -50,7 +50,7 @@ Start an autoresearch deep research loop and handle setup and init for this inve
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-research/`.
 
 ### Prompt
@@ -59,7 +59,7 @@ Start an autoresearch deep research loop and handle setup and init for this inve
 
 ### Commands
 
-1. `sed -n '113,132p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `LOOP_SETUP` keyword list and resource map.
+1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `LOOP_SETUP` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/protocol/loop-protocol.md references/state/state-format.md references/state/state-jsonl.md references/protocol/spec-check-protocol.md references/protocol/context-snapshot.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 
@@ -95,7 +95,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

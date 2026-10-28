@@ -2,7 +2,7 @@
 name: sk-design-diagram
 description: Creates self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # Create Diagram
@@ -49,106 +49,13 @@ Before drawing, ask: *would the reader learn more from this than from a well-wri
 
 ## 2. SMART ROUTING
 
-Resolve the output format before selecting resources: **`html-svg`** is the default for the existing Generate, Import, and Export paths; **`ascii-markdown`** is for plain-text or box-drawing flowcharts in markdown. Then `html-svg` selects a type/import/export reference, while `ascii-markdown` selects one pattern from `references/ascii-format/pattern-selection.md` and `assets/ascii-patterns/`. `references/types/type-flowchart.md` remains the HTML/SVG flowchart TYPE reference, not the ASCII/markdown format path.
-
-### Format Resolution
-
-Resolve `OUTPUT_FORMAT` before selecting a type or pattern:
-
-```bash
-# ASCII/markdown: explicit format or plain-text flowchart signals
-echo "$REQUEST" | grep -qiE 'ascii flowchart|workflow diagram|text diagram|text characters|decision tree|decision branch|approval loop diagram|parallel execution diagram|box.drawing|ascii-markdown' && OUTPUT_FORMAT="ascii-markdown"
-# HTML/SVG remains the default for diagram, HTML, SVG, import, and export requests
-[[ -z "${OUTPUT_FORMAT:-}" ]] && OUTPUT_FORMAT="html-svg"
-```
-
-Use `ascii-markdown` for explicit markdown/text or flowchart signals. If ambiguous, use `UNKNOWN_FALLBACK`, not a guess. Load the pattern-selection reference and one matching asset for `ascii-markdown`; continue to the existing type/import/export routing for `html-svg`.
-
-### Primary Detection Signal
-
-Detect the request shape from source extensions and intent vocabulary:
-
-```bash
-# Generate: type vocabulary + "diagram" — no file source
-echo "$REQUEST" | grep -qiE 'diagram|architecture|sequence|er model|swimlane|venn' && SHAPE="GENERATE"
-# Import: a source file path or extension
-echo "$REQUEST" | grep -qiE '\.drawio|\.mmd|\.mermaid' && SHAPE="IMPORT"
-# Export: an output format
-echo "$REQUEST" | grep -qiE 'export|png|svg|rasterize|save as' && SHAPE="EXPORT"
-```
-
-### Phase Detection
-
-```text
-TASK CONTEXT
-    |
-    +- STEP 0: Detect request shape (generate / import / export) and diagram type
-    +- STEP 1: Score intents (top-2 when ambiguity is small)
-    +- Phase 1: Style-guide gate + load the type / route reference
-    +- Phase 2: Draw the diagram (taste gate)
-    +- Phase 3: Verify self-contained output + accessibility contract
-```
-
-### Resource Domains
-
-```text
-references/foundations/style-guide.md    # design tokens — ALWAYS
-references/foundations/onboarding.md     # skin extraction — CONDITIONAL (customize request)
-references/foundations/output-spec.md    # import dials + export sizing — CONDITIONAL (import/export)
-references/primitives/primitive-*.md     # annotation, sketchy, terminal, icons — ON_DEMAND
-references/types/type-*.md               # 27 per-type layout conventions — CONDITIONAL (generate)
-references/import-export/import-*.md     # draw.io / Mermaid redraw — CONDITIONAL (import)
-references/import-export/export.md       # PNG/SVG export procedure — CONDITIONAL (export)
-assets/diagrams/starter-*.html          # 4 skin starters to copy — ON_DEMAND
-assets/style-reference/harness-diagram/icons.html                        # icon gallery — ON_DEMAND
-```
-
-The route reference per diagram type:
-
-| Diagram type | Reference |
-|---|---|
-| Architecture | `references/types/type-architecture.md` |
-| IT current-state | `references/types/type-it-state.md` |
-| Flowchart | `references/types/type-flowchart.md` |
-| Sequence | `references/types/type-sequence.md` |
-| State machine | `references/types/type-state.md` |
-| ER / data model | `references/types/type-er.md` |
-| Timeline | `references/types/type-timeline.md` |
-| Swimlane | `references/types/type-swimlane.md` |
-| Quadrant | `references/types/type-quadrant.md` |
-| Radar / Spider | `references/types/type-radar.md` |
-| Loop | `references/types/type-loop.md` |
-| Nested | `references/types/type-nested.md` |
-| Tree | `references/types/type-tree.md` |
-| Org chart | `references/types/type-org-chart.md` |
-| Layer stack | `references/types/type-layers.md` |
-| Venn | `references/types/type-venn.md` |
-| Pyramid / funnel | `references/types/type-pyramid.md` |
-| Bar chart | `references/types/type-bar.md` |
-| Line chart | `references/types/type-line.md` |
-| Gantt | `references/types/type-gantt.md` |
-| Scatter plot | `references/types/type-scatter.md` |
-| High-Level | `references/types/type-high-level.md` |
-| Process | `references/types/type-process.md` |
-| Medallion | `references/types/type-medallion.md` |
-| Data flow | `references/types/type-data-flow.md` |
-| DP integration | `references/types/type-dp-integration.md` |
-| DP security matrix | `references/types/type-dp-security-matrix.md` |
-
-### Resource Loading Levels
-
-| Level | When to Load | Resources |
-|---|---|---|
-| ALWAYS | Every diagram | `references/foundations/style-guide.md` |
-| CONDITIONAL | Intent matches | `references/types/type-*.md`, `references/import-export/import-*.md`, `references/foundations/output-spec.md`, `references/import-export/export.md`, `references/foundations/onboarding.md` |
-| ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/diagrams/starter-*.html`, `assets/style-reference/harness-diagram/icons.html` |
-
-### Smart Router Pseudocode
-
-The reference implementation of the router lives in [`references/foundations/router-pseudocode.md`](references/foundations/router-pseudocode.md): it holds `discover_markdown_resources()`, `_guard_in_skill()` and the `UNKNOWN_FALLBACK` branch, while the routing rules above are the contract and the pseudocode is one way to hold them.
-
-
-The router guards paths and loads only existing resources. Format resolution precedes type/pattern selection; ambiguity returns `UNKNOWN_FALLBACK`.
+The `sk-design` hub resolves a diagram request here through `mode-registry.json` when the artifact carries a structure a reader follows rather than values to compare, and the hub's diagram mode selects this packet.
+The output format resolves before any resource is chosen: **`html-svg`** is the default, and **`ascii-markdown`** answers a plain-text or box-drawing flowchart in markdown.
+An ambiguous format returns `UNKNOWN_FALLBACK` rather than a guess.
+`references/foundations/style-guide.md` loads first, because every diagram draws its tokens from it.
+`html-svg` then loads the matching `references/types/type-*.md` or `references/import-export/import-*.md` reference, and `ascii-markdown` loads `references/ascii-format/pattern-selection.md` plus one matching `assets/ascii-patterns/` asset.
+`references/types/type-flowchart.md` stays the HTML/SVG flowchart TYPE reference, not the ASCII/markdown format path.
+The format-resolution rule, the request-shape signals, the phase map, the resource domains, the loading-level table and the router pseudocode sit in the final `MACHINE ROUTER` section of this file.
 
 ---
 
@@ -396,3 +303,110 @@ Run the applicable validation gate before delivery. `html-svg` requires the tast
 - [ ] The output is a markdown file or embedded markdown section with a fenced text flowchart?
 - [ ] Decision branches use `[YES]`/`[NO]` or `✓`/`✗` labels where decisions exist?
 - [ ] `bash scripts/validate-flowchart.sh <target>` exits `0` before handoff?
+
+---
+
+## 7. MACHINE ROUTER
+
+This section holds the format-resolution rule, the request-shape signals, the phase map, the resource domains, the loading-level table and the router pseudocode the SMART ROUTING summary above points at.
+
+Resolve the output format before selecting resources: **`html-svg`** is the default for the existing Generate, Import, and Export paths; **`ascii-markdown`** is for plain-text or box-drawing flowcharts in markdown. Then `html-svg` selects a type/import/export reference, while `ascii-markdown` selects one pattern from `references/ascii-format/pattern-selection.md` and `assets/ascii-patterns/`. `references/types/type-flowchart.md` remains the HTML/SVG flowchart TYPE reference, not the ASCII/markdown format path.
+
+### Format Resolution
+
+Resolve `OUTPUT_FORMAT` before selecting a type or pattern:
+
+```bash
+# ASCII/markdown: explicit format or plain-text flowchart signals
+echo "$REQUEST" | grep -qiE 'ascii flowchart|workflow diagram|text diagram|text characters|decision tree|decision branch|approval loop diagram|parallel execution diagram|box.drawing|ascii-markdown' && OUTPUT_FORMAT="ascii-markdown"
+# HTML/SVG remains the default for diagram, HTML, SVG, import, and export requests
+[[ -z "${OUTPUT_FORMAT:-}" ]] && OUTPUT_FORMAT="html-svg"
+```
+
+Use `ascii-markdown` for explicit markdown/text or flowchart signals. If ambiguous, use `UNKNOWN_FALLBACK`, not a guess. Load the pattern-selection reference and one matching asset for `ascii-markdown`; continue to the existing type/import/export routing for `html-svg`.
+
+### Primary Detection Signal
+
+Detect the request shape from source extensions and intent vocabulary:
+
+```bash
+# Generate: type vocabulary + "diagram" — no file source
+echo "$REQUEST" | grep -qiE 'diagram|architecture|sequence|er model|swimlane|venn' && SHAPE="GENERATE"
+# Import: a source file path or extension
+echo "$REQUEST" | grep -qiE '\.drawio|\.mmd|\.mermaid' && SHAPE="IMPORT"
+# Export: an output format
+echo "$REQUEST" | grep -qiE 'export|png|svg|rasterize|save as' && SHAPE="EXPORT"
+```
+
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: Detect request shape (generate / import / export) and diagram type
+    +- STEP 1: Score intents (top-2 when ambiguity is small)
+    +- Phase 1: Style-guide gate + load the type / route reference
+    +- Phase 2: Draw the diagram (taste gate)
+    +- Phase 3: Verify self-contained output + accessibility contract
+```
+
+### Resource Domains
+
+```text
+references/foundations/style-guide.md    # design tokens — ALWAYS
+references/foundations/onboarding.md     # skin extraction — CONDITIONAL (customize request)
+references/foundations/output-spec.md    # import dials + export sizing — CONDITIONAL (import/export)
+references/primitives/primitive-*.md     # annotation, sketchy, terminal, icons — ON_DEMAND
+references/types/type-*.md               # 27 per-type layout conventions — CONDITIONAL (generate)
+references/import-export/import-*.md     # draw.io / Mermaid redraw — CONDITIONAL (import)
+references/import-export/export.md       # PNG/SVG export procedure — CONDITIONAL (export)
+assets/diagrams/starter-*.html          # 4 skin starters to copy — ON_DEMAND
+assets/style-reference/harness-diagram/icons.html                        # icon gallery — ON_DEMAND
+```
+
+The route reference per diagram type:
+
+| Diagram type | Reference |
+|---|---|
+| Architecture | `references/types/type-architecture.md` |
+| IT current-state | `references/types/type-it-state.md` |
+| Flowchart | `references/types/type-flowchart.md` |
+| Sequence | `references/types/type-sequence.md` |
+| State machine | `references/types/type-state.md` |
+| ER / data model | `references/types/type-er.md` |
+| Timeline | `references/types/type-timeline.md` |
+| Swimlane | `references/types/type-swimlane.md` |
+| Quadrant | `references/types/type-quadrant.md` |
+| Radar / Spider | `references/types/type-radar.md` |
+| Loop | `references/types/type-loop.md` |
+| Nested | `references/types/type-nested.md` |
+| Tree | `references/types/type-tree.md` |
+| Org chart | `references/types/type-org-chart.md` |
+| Layer stack | `references/types/type-layers.md` |
+| Venn | `references/types/type-venn.md` |
+| Pyramid / funnel | `references/types/type-pyramid.md` |
+| Bar chart | `references/types/type-bar.md` |
+| Line chart | `references/types/type-line.md` |
+| Gantt | `references/types/type-gantt.md` |
+| Scatter plot | `references/types/type-scatter.md` |
+| High-Level | `references/types/type-high-level.md` |
+| Process | `references/types/type-process.md` |
+| Medallion | `references/types/type-medallion.md` |
+| Data flow | `references/types/type-data-flow.md` |
+| DP integration | `references/types/type-dp-integration.md` |
+| DP security matrix | `references/types/type-dp-security-matrix.md` |
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+|---|---|---|
+| ALWAYS | Every diagram | `references/foundations/style-guide.md` |
+| CONDITIONAL | Intent matches | `references/types/type-*.md`, `references/import-export/import-*.md`, `references/foundations/output-spec.md`, `references/import-export/export.md`, `references/foundations/onboarding.md` |
+| ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/diagrams/starter-*.html`, `assets/style-reference/harness-diagram/icons.html` |
+
+### Smart Router Pseudocode
+
+The reference implementation of the router lives in [`references/foundations/router-pseudocode.md`](references/foundations/router-pseudocode.md): it holds `discover_markdown_resources()`, `_guard_in_skill()` and the `UNKNOWN_FALLBACK` branch, while the routing rules above are the contract and the pseudocode is one way to hold them.
+
+
+The router guards paths and loads only existing resources. Format resolution precedes type/pattern selection; ambiguity returns `UNKNOWN_FALLBACK`.

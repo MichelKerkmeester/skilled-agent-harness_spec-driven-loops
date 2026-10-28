@@ -9,12 +9,12 @@ trigger_phrases:
   - "how to style a destructive button"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Visual Hierarchy
 
-The technique that does the most visible work. `SKILL.md` carries its operative core; this is the full method and the cases where it gets counterintuitive.
+The technique that does the most visible work. `SKILL.md` names its four rules; this is the full method, the values behind them, and the cases where it gets counterintuitive.
 
 ---
 

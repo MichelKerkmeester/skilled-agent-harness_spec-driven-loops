@@ -3,7 +3,7 @@ title: "SKD-004 -- Build procedure entry from nothing"
 description: "This scenario validates Build procedure entry from nothing for `SKD-004`. It focuses on confirm a from-scratch design request starts from a feature and defers color."
 stage: routing
 id: "SKD-004"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SKD-004 -- Build procedure entry from nothing
@@ -67,11 +67,11 @@ Advisor JSON, the agent reply, and the grep proving step one is the documented o
 
 ### Failure Triage
 
-If a layout was proposed first, confirm `build-procedure.md` loaded at all; the PROCEDURE intent keywords are in `SKILL.md` Section 2.
+If a layout was proposed first, confirm `build-procedure.md` loaded at all; the PROCEDURE intent keywords are in `SKILL.md` Section 9.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-004 | Build procedure entry from nothing | confirm a from-scratch design request starts from a feature and defers color | `Where do I start designing this screen` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "where do I start designing this screen" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Start with a feature, not a layout" .skilled/skills/sk-design/references/build-procedure.md` | The answer starts from a feature rather than a layout, names grayscale-first, and does not propose a nav pattern. | Advisor JSON, the agent reply, and the grep proving step one is the documented one. | PASS if the reply begins from a feature, names grayscale-first, and proposes no top-nav or sidebar decision; FAIL if the reply opens with a layout or navigation choice, or proposes a color palette before the layout works | If a layout was proposed first, confirm `build-procedure.md` loaded at all; the PROCEDURE intent keywords are in `SKILL.md` Section 2. |
+| SKD-004 | Build procedure entry from nothing | confirm a from-scratch design request starts from a feature and defers color | `Where do I start designing this screen` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "where do I start designing this screen" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Start with a feature, not a layout" .skilled/skills/sk-design/references/build-procedure.md` | The answer starts from a feature rather than a layout, names grayscale-first, and does not propose a nav pattern. | Advisor JSON, the agent reply, and the grep proving step one is the documented one. | PASS if the reply begins from a feature, names grayscale-first, and proposes no top-nav or sidebar decision; FAIL if the reply opens with a layout or navigation choice, or proposes a color palette before the layout works | If a layout was proposed first, confirm `build-procedure.md` loaded at all; the PROCEDURE intent keywords are in `SKILL.md` Section 9. |
 
 ---
 
@@ -88,7 +88,7 @@ If a layout was proposed first, confirm `build-procedure.md` loaded at all; the 
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
 | [references/build-procedure.md](../../references/build-procedure.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

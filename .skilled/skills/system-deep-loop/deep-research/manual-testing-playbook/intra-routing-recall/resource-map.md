@@ -8,14 +8,14 @@ expected_intent: RESOURCE_MAP
 expected_resources:
   - references/protocol/loop-protocol.md
   - references/state/state-outputs.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # DR-R08: Deep research resource map routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`) scores a resource-map-shaped request as `RESOURCE_MAP` and loads the `RESOURCE_MAP` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, RECOVERY, STATE, SPEC_ANCHORING, RUNTIME_PARITY).
+This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §9 `Smart Router Pseudocode`) scores a resource-map-shaped request as `RESOURCE_MAP` and loads the `RESOURCE_MAP` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, RECOVERY, STATE, SPEC_ANCHORING, RUNTIME_PARITY).
 
 ---
 
@@ -47,7 +47,7 @@ Use the resource map inventory and coverage gate while preparing the research lo
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-research/`.
 
 ### Prompt
@@ -56,7 +56,7 @@ Use the resource map inventory and coverage gate while preparing the research lo
 
 ### Commands
 
-1. `sed -n '113,132p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `RESOURCE_MAP` keyword list and resource map.
+1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `RESOURCE_MAP` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/protocol/loop-protocol.md references/state/state-outputs.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 
@@ -92,7 +92,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

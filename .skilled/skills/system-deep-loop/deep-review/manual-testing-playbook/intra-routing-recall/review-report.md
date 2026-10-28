@@ -11,14 +11,14 @@ expected_resources:
   - references/state/state-outputs.md
   - references/state/state-reducer-registry.md
   - assets/deep-review-dashboard.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # DV-R04: Deep review report routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-review` packet's intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`) scores a report-preparation request as `REVIEW_REPORT` and loads the state and dashboard resource set, distinct from the setup, iteration, and convergence resource sets.
+This scenario verifies the `deep-review` packet's intra-packet smart router (`SKILL.md` §8 `Smart Router Pseudocode`) scores a report-preparation request as `REVIEW_REPORT` and loads the state and dashboard resource set, distinct from the setup, iteration, and convergence resource sets.
 
 ---
 
@@ -50,7 +50,7 @@ Prepare the review report with remediation, verdict, release readiness, and plan
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §8 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-review/`.
 
 ### Prompt
@@ -59,7 +59,7 @@ Prepare the review report with remediation, verdict, release readiness, and plan
 
 ### Commands
 
-1. `sed -n '106,149p' .skilled/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_REPORT` keyword list and resource map.
+1. `sed -n '299,342p' .skilled/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_REPORT` keyword list and resource map.
 2. `for p in references/protocol/quick-reference.md references/state/state-format.md references/state/state-outputs.md references/state/state-reducer-registry.md assets/deep-review-dashboard.md; do test -e ".skilled/skills/system-deep-loop/deep-review/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-review packet's router and capture which intent and resource set it reports.
 
@@ -95,7 +95,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §8 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

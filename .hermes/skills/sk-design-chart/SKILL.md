@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 0.23.2.0
+version: 0.23.3.0
 metadata:
   packetKind: workflow
 ---
@@ -64,57 +64,11 @@ This packet may create and edit chart artifacts, its own corpus and its own vali
 
 ## 2. SMART ROUTING
 
-The hub resolves this packet through `mode-registry.json`. Routing below that point selects packet-local resources only.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "resources": [],
-}
-
-def discover_markdown_resources() -> set[str]:
-    return {
-        path.relative_to(SKILL_ROOT).as_posix()
-        for path in SKILL_ROOT.rglob("*.md")
-        if path.is_file()
-    }
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError("Only packet-local markdown resources are routable")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def route_resources(request):
-    inventory = discover_markdown_resources()
-    selected = select_resources_for_request(request, inventory)
-    if not selected:
-        return UNKNOWN_FALLBACK
-    return {
-        "resources": [
-            _guard_in_skill(path)
-            for path in selected
-            if _guard_in_skill(path) in inventory
-        ]
-    }
-```
-
-### Resource Domains
-
-| Domain | Where it lives | Use |
-| --- | --- | --- |
-| Chart lookup | `references/catalog.md` | Turn the comparison a reader needs into one chart form and the file that draws it |
-| Chart forms | `assets/templates/` | One self-contained file per form, copied whole rather than extracted from |
-| Style References | `assets/style-reference/` | One directory per reference. Each owns its `DESIGN.md`, its `palettes.json` and its proof sheets, so adding a reference means deciding its colour rather than inheriting somebody else's |
-| Stock colour | `assets/style-reference/evilcharts/palettes.json` | The default reference's own palette: the three named systems, the corner ladder and the type scale every stock form reads, and what `--default` themes to |
-| Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms; pass any other reference's path to override the stock one |
-| Template contract | `references/template-contract.md` | What a form file has to contain before the corpus check passes it |
-| Corpus validation | `scripts/` | Prove every form still renders after a change |
+The `sk-design` hub resolves a chart request here through `mode-registry.json`: the request plots values, names a chart form, or asks to theme a chart.
+Below that point the packet routes on the comparison a reader needs to make, and selects packet-local resources only.
+`references/catalog.md` loads first, because it resolves that comparison to one row, and the row names the form file under `assets/templates/` to copy whole.
+A request that names a `DESIGN.md`, a style reference or a measured site's look loads `references/design-md-theming.md` and runs `scripts/apply-design-md.cjs`.
+The resource domains and the discovery pseudocode sit in the final `MACHINE ROUTER` section of this file.
 
 ---
 
@@ -205,3 +159,61 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 - [`scripts/README.md`](../../../.skilled/skills/sk-design/sk-design-chart/scripts/README.md) - what the corpus validator checks.
 - [`../sk-design-diagram/SKILL.md`](../../../.skilled/skills/sk-design/sk-design-diagram/SKILL.md) - the structural-visual packet on the other side of this boundary.
 - [`../SKILL.md`](../../../.skilled/skills/sk-design/SKILL.md) - the hub that routes here.
+
+---
+
+## 9. MACHINE ROUTER
+
+This section holds the packet's resource domains and the discovery pseudocode that reads them.
+
+The hub resolves this packet through `mode-registry.json`. Routing below that point selects packet-local resources only.
+
+### Resource Domains
+
+| Domain | Where it lives | Use |
+| --- | --- | --- |
+| Chart lookup | `references/catalog.md` | Turn the comparison a reader needs into one chart form and the file that draws it |
+| Chart forms | `assets/templates/` | One self-contained file per form, copied whole rather than extracted from |
+| Style References | `assets/style-reference/` | One directory per reference. Each owns its `DESIGN.md`, its `palettes.json` and its proof sheets, so adding a reference means deciding its colour rather than inheriting somebody else's |
+| Stock colour | `assets/style-reference/evilcharts/palettes.json` | The default reference's own palette: the three named systems, the corner ladder and the type scale every stock form reads, and what `--default` themes to |
+| Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms; pass any other reference's path to override the stock one |
+| Template contract | `references/template-contract.md` | What a form file has to contain before the corpus check passes it |
+| Corpus validation | `scripts/` | Prove every form still renders after a change |
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "resources": [],
+}
+
+def discover_markdown_resources() -> set[str]:
+    return {
+        path.relative_to(SKILL_ROOT).as_posix()
+        for path in SKILL_ROOT.rglob("*.md")
+        if path.is_file()
+    }
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError("Only packet-local markdown resources are routable")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def route_resources(request):
+    inventory = discover_markdown_resources()
+    selected = select_resources_for_request(request, inventory)
+    if not selected:
+        return UNKNOWN_FALLBACK
+    return {
+        "resources": [
+            _guard_in_skill(path)
+            for path in selected
+            if _guard_in_skill(path) in inventory
+        ]
+    }
+```

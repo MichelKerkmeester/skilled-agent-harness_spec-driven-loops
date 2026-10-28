@@ -1,7 +1,7 @@
 ---
 title: "DETECT-001 -- Framework, Icon, And Motion Detection"
 description: "Validates that framework-detect.ts, icon-detect.ts, motion-extract.ts, and design-boundary-detect.ts populate their tokens.json sections with measured data or honest absence markers. Tests inline detector enrichment during extraction and confirms no detector fabricates data."
-version: 1.0.1.0
+version: 1.0.2.0
 expected_intent: EXTRACT_WRITE
 expected_resources:
   - references/design-md-format.md
@@ -99,7 +99,7 @@ Test detection-absence directly: extract from a plain-HTML page with no CSS fram
 | `../../backend/scripts/design-boundary-detect.ts` | Design boundary detection: dimension scoring across page groups (font, color, spacing, radius, component, shadow), relationship classification (unified/shared-foundation/independent), anomaly detection |
 | `../../backend/scripts/extract.ts` | Extraction orchestrator: calls all four detectors during Phase 1 crawl and writes results to tokens.json |
 | `../../backend/scripts/types.ts` | FrameworkDetection, IconSystemInfo, MotionSystem, DesignBoundary types |
-| `../../SKILL.md` | §3 How It Works (Phase 1 detector list), §2 Smart Routing (Phase 1 pipeline description) |
+| `../../SKILL.md` | §3 How It Works (Phase 1 detector list), §9 MACHINE ROUTER (Phase 1 pipeline description) |
 
 ---
 

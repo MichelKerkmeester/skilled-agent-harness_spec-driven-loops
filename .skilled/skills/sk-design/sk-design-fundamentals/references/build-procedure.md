@@ -9,7 +9,7 @@ trigger_phrases:
   - "how much white space"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Build Procedure
@@ -89,7 +89,7 @@ The steps govern order and process. Every actual value still comes from a scale:
 
 - Spacing, type, weight, color, elevation, radius, opacity and duration are in `SKILL.md` Section 3.
 - Palette construction is in [`color-system.md`](color-system.md).
-- Hierarchy technique is in `SKILL.md` Section 3, and it is what step 2's grayscale pass is testing.
+- Hierarchy technique is in [`hierarchy.md`](hierarchy.md), and it is what step 2's grayscale pass is testing.
 
 A procedure followed with invented values produces the same amateur result in a better order.
 

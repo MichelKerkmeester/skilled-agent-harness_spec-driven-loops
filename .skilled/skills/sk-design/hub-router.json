@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "2.0.7.0",
+  "version": "2.0.8.0",
   "routerPolicy": {
     "defaultMode": "sk-design-fundamentals",
     "ambiguityDelta": 1,

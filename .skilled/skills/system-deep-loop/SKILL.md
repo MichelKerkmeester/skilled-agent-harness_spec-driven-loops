@@ -1,6 +1,6 @@
 ---
 name: system-deep-loop
-version: 1.6.17.0
+version: 1.6.18.0
 description: "Routes research, review, and AI Council modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
@@ -35,57 +35,16 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven** (invokable-hub, Option E) in two stages. Stage 1 (hub → mode): `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. When invoked as `Skill(system-deep-loop[, "<mode>: <request>"])`, the hub classifies the request to a `workflowMode`, resolves it through the registry, and loads `registry[mode].packet`. The advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then picks the mode. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's deep-loop intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode. The `/deep:*` commands and native agent types remain as complementary surfaces — they reach the same packets through static routers/agent definitions — and the hub holds NO per-mode logic.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"
-> ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `system-deep-loop`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
-
-### Surface Router — per-mode leaf sets
-
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, and the ai-council loop protocol/scoring/output-schema leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
-
-`ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
-
-This hub is an intent/registry router, not a keyed resource-discovery router: at runtime it omits `discover_markdown_resources` and only guards registry-selected packet loads, never selecting hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. It does carry a second-layer surface router at the root `ROUTER.md` — a benchmark/replay artifact (mirroring sk-prompt/sk-code) that maps a resolved mode's intent to packet-qualified child leaves so router-replay can emit canonical `{workflowMode, leafResourceId}` typed pairs against `leaf-manifest.json`. That surface layer never re-decides the mode and is not a runtime hub discovery surface; the hub still routes by `workflowMode` through `mode-registry.json` alone.
-
-### Note on the frontmatter `allowed-tools` grant
-
-The hub's own routing logic is read-only (classify, guard a path, load a packet). The frontmatter `allowed-tools` list is nonetheless broad because, per the two-axis hub canon contract, a hub's tool grant MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json` — not the tool set the hub's own logic uses. This is a hard invariant enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces"); narrowing the frontmatter grant to only what routing-only logic needs would fail that check and break every mode whose `toolSurface` isn't a subset of the narrowed list. Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
-
-### The three-tier discriminator
-- **`workflowMode`** — the public active mode key: `research`, `review`, and `ai-council`.
-- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
-- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council).
-
-### Routing rule
-```
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is research, review, or ai-council work",
-    "Confirm the target artifact: research.md, a review verdict, or ai-council deliberation artifacts",
-    "Confirm the matching /deep:* command or agent type when one is already known",
-    "Confirm the backend expectations: runtimeLoopType (research/review/council)",
-]
-
-classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
-guard mode-registry.json inside SKILL_ROOT and read it as data
-if classifier confidence is low or no mode dominates:
-  → return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
-else:
-  → resolve workflowMode from the hint / classified intent (or the /deep:* command / advisor alias)
-  → find registry[mode]; if missing, return UNKNOWN_FALLBACK instead of loading a guessed path
-  → guard registry[mode].packet/SKILL.md inside SKILL_ROOT and load it only if the packet directory and SKILL.md both exist
-       e.g. registry["research"].packet → system-deep-loop/deep-research/SKILL.md
-  → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
-```
-
-Router-driven loads MUST use `_guard_in_skill(relative_path)` before `load()`, reject paths that escape this skill or do not end in `.md`, and check `if packet_base.exists()` plus `if packet_skill.exists()` before loading. The fallback must name the unresolved `workflowMode` when known, avoid loading any guessed packet, and ask the operator to provide one of the registered modes or the matching `/deep:*` command.
-
-Intent classification favors the single dominant active deep-loop mode; a mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier. The legacy advisor projection maps stay hardcoded and drift-guarded against the registry, and the command files remain static routers with hardcoded asset/mode routing; neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
-
-Per-mode behavior is **not flattened**: each active packet keeps its own convergence math, state shape, artifacts, and tool-permission guards (research has WebFetch; review/ai-council are code/inward-only). Exactly one `graph-metadata.json` — this hub's — is preserved, so the advisor discovers exactly one skill identity regardless of which surface (hub `Skill()`, `/deep:*` command, or agent) reaches a mode.
+Routing is **registry-driven at runtime and authored in `hub-router.json`** in two stages.
+Stage 1 (hub → mode) selects a mode: `hub-router.json` `vocabularyClasses` is the one authored vocabulary, and its `routerSignals` keys are `research`, `review` and `ai-council`.
+The `mode-registry.json` aliases, each packet's `Keyword triggers:` line where one exists and the root `ROUTER.md` intents are checked against it.
+Stage 2 (mode → leaves) lives in the root [`ROUTER.md`](./ROUTER.md), which maps the request's deep-loop intent to the packet-local leaf resources that mode loads.
+The advisor routes every deep-loop query to the single identity `system-deep-loop`.
+Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"`.
+Compiled routing is the default. `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
+An unclear deep-loop intent asks for disambiguation, because `routerPolicy.defaultMode` is `null`.
+The `routerPolicy.defaultResource` list is only a defer-time suggestion, never a silent default.
+The directive, the fallback, the checklist and the rest of the routing detail live in the final MACHINE ROUTER section.
 
 ---
 
@@ -168,3 +127,59 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - Pattern: `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
 - Sibling example: `.skilled/skills/sk-prompt/` (the same invokable-hub + `mode-registry.json` Option E pattern).
 - Registry: `mode-registry.json` (this hub's routing contract).
+
+---
+
+## 9. MACHINE ROUTER
+
+The hub's compiled-routing directive, its stage-two surface-router pointer, the frontmatter tool-grant note, the discriminator, the routing rule and the remaining routing detail live here, so the routing prose above stays short.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `system-deep-loop`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+### Surface Router — per-mode leaf sets
+
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, and the ai-council loop protocol/scoring/output-schema leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+`ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
+
+This hub is an intent/registry router, not a keyed resource-discovery router: at runtime it omits `discover_markdown_resources` and only guards registry-selected packet loads, never selecting hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. It does carry a second-layer surface router at the root `ROUTER.md` — a benchmark/replay artifact (mirroring sk-prompt/sk-code) that maps a resolved mode's intent to packet-qualified child leaves so router-replay can emit canonical `{workflowMode, leafResourceId}` typed pairs against `leaf-manifest.json`. That surface layer never re-decides the mode and is not a runtime hub discovery surface; the hub still routes by `workflowMode` through `mode-registry.json` alone.
+
+### Note on the frontmatter `allowed-tools` grant
+
+The hub's own routing logic is read-only (classify, guard a path, load a packet). The frontmatter `allowed-tools` list is nonetheless broad because, per the two-axis hub canon contract, a hub's tool grant MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json` — not the tool set the hub's own logic uses. This is a hard invariant enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces"); narrowing the frontmatter grant to only what routing-only logic needs would fail that check and break every mode whose `toolSurface` isn't a subset of the narrowed list. Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
+
+### The three-tier discriminator
+- **`workflowMode`** — the public active mode key: `research`, `review`, and `ai-council`.
+- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
+- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council).
+
+### Routing rule
+```
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether this is research, review, or ai-council work",
+    "Confirm the target artifact: research.md, a review verdict, or ai-council deliberation artifacts",
+    "Confirm the matching /deep:* command or agent type when one is already known",
+    "Confirm the backend expectations: runtimeLoopType (research/review/council)",
+]
+
+classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
+guard mode-registry.json inside SKILL_ROOT and read it as data
+if classifier confidence is low or no mode dominates:
+  → return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
+else:
+  → resolve workflowMode from the hint / classified intent (or the /deep:* command / advisor alias)
+  → find registry[mode]; if missing, return UNKNOWN_FALLBACK instead of loading a guessed path
+  → guard registry[mode].packet/SKILL.md inside SKILL_ROOT and load it only if the packet directory and SKILL.md both exist
+       e.g. registry["research"].packet → system-deep-loop/deep-research/SKILL.md
+  → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
+```
+
+Router-driven loads MUST use `_guard_in_skill(relative_path)` before `load()`, reject paths that escape this skill or do not end in `.md`, and check `if packet_base.exists()` plus `if packet_skill.exists()` before loading. The fallback must name the unresolved `workflowMode` when known, avoid loading any guessed packet, and ask the operator to provide one of the registered modes or the matching `/deep:*` command.
+
+Intent classification favors the single dominant active deep-loop mode; a mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier. The legacy advisor projection maps stay hardcoded and drift-guarded against the registry, and the command files remain static routers with hardcoded asset/mode routing; neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
+
+Per-mode behavior is **not flattened**: each active packet keeps its own convergence math, state shape, artifacts, and tool-permission guards (research has WebFetch; review/ai-council are code/inward-only). Exactly one `graph-metadata.json` — this hub's — is preserved, so the advisor discovers exactly one skill identity regardless of which surface (hub `Skill()`, `/deep:*` command, or agent) reaches a mode.

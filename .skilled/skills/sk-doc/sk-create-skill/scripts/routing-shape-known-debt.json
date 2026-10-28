@@ -190,50 +190,6 @@
         "RS-002"
       ]
     },
-    "sk-design": {
-      "lines": 88,
-      "words": 901,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-design/sk-design-chart": {
-      "lines": 44,
-      "words": 297,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-design/sk-design-diagram": {
-      "lines": 81,
-      "words": 617,
-      "machineBlocks": 0,
-      "codes": [
-        "RS-001"
-      ]
-    },
-    "sk-design/sk-design-fundamentals": {
-      "lines": 164,
-      "words": 902,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-design/sk-design-md-generator": {
-      "lines": 145,
-      "words": 1183,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
     "sk-git": {
       "lines": 135,
       "words": 639,
@@ -255,42 +211,6 @@
     "sk-vision": {
       "lines": 63,
       "words": 336,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "system-deep-loop": {
-      "lines": 38,
-      "words": 974,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "system-deep-loop/deep-ai-council": {
-      "lines": 168,
-      "words": 911,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "system-deep-loop/deep-research": {
-      "lines": 157,
-      "words": 842,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "system-deep-loop/deep-review": {
-      "lines": 163,
-      "words": 723,
       "machineBlocks": 1,
       "codes": [
         "RS-001",

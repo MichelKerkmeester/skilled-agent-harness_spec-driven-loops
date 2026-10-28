@@ -1,7 +1,7 @@
 ---
 title: "CMD-002 -- Hub registration"
 description: "This scenario validates the sk-design hub registration for `CMD-002`. It focuses on the mode-registry entry, the leaf-manifest references, the absence of a packet-local graph-metadata.json, and a clean package-structure validator run."
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # CMD-002 -- Hub registration
@@ -68,7 +68,7 @@ Capture the two grep excerpts (registry entry and leaf list), the step-3 absence
 
 ### Optional Supplemental Checks
 
-Spot-check one alias from the registry against the routing intent model in the packet's SMART ROUTING (e.g. `redraw` scores IMPORT) to confirm the alias text and the router's keyword weights stay aligned.
+Spot-check one alias from the registry against the routing intent model in the packet's `MACHINE ROUTER` section (e.g. `redraw` scores IMPORT) to confirm the alias text and the router's keyword weights stay aligned.
 
 ---
 

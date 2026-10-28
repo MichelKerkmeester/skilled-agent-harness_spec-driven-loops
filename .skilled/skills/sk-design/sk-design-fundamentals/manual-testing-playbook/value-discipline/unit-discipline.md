@@ -3,7 +3,7 @@ title: "SKD-012 -- Type scale unit discipline"
 description: "This scenario validates Type scale unit discipline for `SKD-012`. It focuses on confirm an em-based type size is flagged and converted, without breaking the measure exception."
 stage: routing
 id: "SKD-012"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SKD-012 -- Type scale unit discipline
@@ -88,7 +88,7 @@ Read the line-height and line length subsection in `SKILL.md` Section 3; over-co
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
 | [references/depth-and-detail.md](../../references/depth-and-detail.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

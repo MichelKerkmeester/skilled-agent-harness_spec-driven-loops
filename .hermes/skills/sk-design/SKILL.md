@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.7.0
+version: 2.0.8.0
 metadata:
   family: sk-design
 ---
@@ -28,6 +28,17 @@ visual artifact answers it: spacing, type, colour, contrast, hierarchy, a review
 surface against design criteria, a data chart, or a process diagram. The surface can be screen UI, a
 slide deck, a printed page or a document layout.
 
+| Mode | Command | Owns | Reach it by asking about |
+|------|---------|------|--------------------------|
+| `sk-design-fundamentals` | routes via aliases | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
+| `sk-design-md-generator` | `/design:extract` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, style reference, from a url |
+| `sk-design-chart` | `/design:chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
+| `sk-design-diagram` | `/design:diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
+
+Four modes. Fundamentals and the generator are complements rather than alternatives: one decides values, the other reads values back
+off something that already exists. A request that names an existing surface belongs to the
+generator; a request that asks what a value should be belongs to fundamentals.
+
 ### When NOT to Use
 
 - **Measuring a surface that already exists into a written specification.** That is this hub's
@@ -42,29 +53,103 @@ slide deck, a printed page or a document layout.
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven at runtime and mode-authored at source**, in two stages. Stage 1
-(hub → mode): the advisor scores this hub as one identity, then `mode-registry.json` and
-`hub-router.json` pick the mode without re-deriving mappings during a request. Stage 2
-(mode → leaves): the root `ROUTER.md` maps the design intent to the exact mode-local resources that
-mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router
-never re-decides the mode.
+Routing runs in two stages.
+Stage one picks a mode from this hub.
+`hub-router.json` is its one authored vocabulary.
+`vocabularyClasses` holds the terms, and `routerSignals` maps each mode to the classes it scores.
+The four modes are `sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart` and `sk-design-diagram`.
+Stage two maps the chosen mode to its leaves in the root [`ROUTER.md`](../../../.skilled/skills/sk-design/ROUTER.md).
+The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
+The advisor routes every design query to the single identity `sk-design`.
+Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`.
+Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses.
+With no signal at all, `routerPolicy.defaultMode` is `sk-design-fundamentals`, so the request lands on the values mode rather than asking.
+The directive, the fallback, the checklist and the rest of the routing detail live in the final MACHINE ROUTER section.
+
+---
+
+## 3. HOW IT WORKS
+
+### Layout
+
+```
+sk-design/
+├── SKILL.md                 routing only; this hub authors nothing
+├── ROUTER.md                stage two: which resources a chosen mode loads
+├── mode-registry.json       what modes exist, and what each may touch
+├── hub-router.json          signals, vocabulary classes, tie-break
+├── graph-metadata.json      the only vocabulary the advisor scores
+├── command-metadata.json    the commands this hub owns, and which mode owns each
+├── shared/scripts/          tooling both canvas modes use
+├── sk-design-fundamentals/  the values mode, and everything it owns
+├── sk-design-md-generator/  the extraction mode, its engine and style corpus
+├── sk-design-chart/         the chart corpus, its checker, gallery and screenshots
+└── sk-design-diagram/       the diagram forms, their validator and screenshots
+```
+
+Per-mode behaviour is **not flattened**: each mode keeps its own contract, references, assets and
+scripts. This hub has no root `references/` or `assets/` directory, and mode resources stay inside
+their owning mode.
+
+### Why a registry row proves nothing
+
+Nested modes carry `routingClass: metadata`, so they are resolved by hub membership and hold no
+advisor entry of their own: their vocabulary reaches the advisor only through this hub's
+`graph-metadata.json` `intent_signals`. A row in the registry, a keyword in `description.json` and a
+green gate all leave a request unable to arrive. Only replaying the request proves it does, and
+`ci-router-vocabulary-reach.cjs` probes every phrase this hub's router advertises for exactly that.
+
+---
+
+## 4. REFERENCES
+
+| Resource | Purpose |
+|----------|---------|
+| `mode-registry.json` | What modes exist, and what each may touch |
+| `hub-router.json` | Signals, vocabulary classes, tie-break |
+| `ROUTER.md` | Stage two: which resources a chosen mode loads |
+| `sk-design-fundamentals/` | The values mode, and everything it owns |
+| `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
+| `sk-design-chart/` | The chart corpus, its checker and its gallery |
+| `sk-design-diagram/` | The diagram forms and their validator |
+| `command-metadata.json` | The commands this hub owns, and which mode owns each |
+
+---
+
+## 5. RULES
+
+### ALWAYS
+
+- Read the registry before assuming a mode exists.
+- Load what the mode's own router resolves, not the whole tree.
+- Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
+  `description.json` are documentation, not what gets scored.
+- Take the mode from the compiled front door,
+  `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`, as the section 6
+  callout says. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing in
+  section 6 instead.
+
+### NEVER
+
+- Never re-read a mode already in context.
+- Never author content in this hub. Edits belong in a mode.
+
+### ESCALATE IF
+
+- A request cannot be mapped to one registered mode.
+- Registry modes, router signal keys or leaf manifest entries disagree.
+
+---
+
+## 6. MACHINE ROUTER
+
+The hub's compiled-routing directive, its fallback route, its disambiguation checklist and the remaining routing detail live here, so the routing prose above stays short.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 >
 > node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"
 >
 > Follow the returned decision. A `route` names its targets, a `clarify` or `defer` asks for disambiguation, and a `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for this hub. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide, the explicit kill-switch.
-
-| Mode | Command | Owns | Reach it by asking about |
-|------|---------|------|--------------------------|
-| `sk-design-fundamentals` | routes via aliases | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
-| `sk-design-md-generator` | `/design:extract` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, style reference, from a url |
-| `sk-design-chart` | `/design:chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
-| `sk-design-diagram` | `/design:diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
-
-Four modes. Fundamentals and the generator are complements rather than alternatives: one decides values, the other reads values back
-off something that already exists. A request that names an existing surface belongs to the
-generator; a request that asks what a value should be belongs to fundamentals.
 
 ### Surface Router, per-intent leaf sets
 
@@ -142,76 +227,3 @@ return single or ambiguous according to hub-router.json routerPolicy.outcomes
 `routerPolicy.defaultMode` is `sk-design-fundamentals`: a design question with no clearer owner is a
 values question. That differs from `sk-doc`, whose default is `null` because an unclear documentation
 intent has no safe default. Outcomes are `single`, `ambiguous` or `none`.
-
-### Why a registry row proves nothing
-
-Nested modes carry `routingClass: metadata`, so they are resolved by hub membership and hold no
-advisor entry of their own: their vocabulary reaches the advisor only through this hub's
-`graph-metadata.json` `intent_signals`. A row in the registry, a keyword in `description.json` and a
-green gate all leave a request unable to arrive. Only replaying the request proves it does, and
-`ci-router-vocabulary-reach.cjs` probes every phrase this hub's router advertises for exactly that.
-
----
-
-## 3. HOW IT WORKS
-
-### Layout
-
-```
-sk-design/
-├── SKILL.md                 routing only; this hub authors nothing
-├── ROUTER.md                stage two: which resources a chosen mode loads
-├── mode-registry.json       what modes exist, and what each may touch
-├── hub-router.json          signals, vocabulary classes, tie-break
-├── graph-metadata.json      the only vocabulary the advisor scores
-├── command-metadata.json    the commands this hub owns, and which mode owns each
-├── shared/scripts/          tooling both canvas modes use
-├── sk-design-fundamentals/  the values mode, and everything it owns
-├── sk-design-md-generator/  the extraction mode, its engine and style corpus
-├── sk-design-chart/         the chart corpus, its checker, gallery and screenshots
-└── sk-design-diagram/       the diagram forms, their validator and screenshots
-```
-
-Per-mode behaviour is **not flattened**: each mode keeps its own contract, references, assets and
-scripts. This hub has no root `references/` or `assets/` directory, and mode resources stay inside
-their owning mode.
-
----
-
-## 4. REFERENCES
-
-| Resource | Purpose |
-|----------|---------|
-| `mode-registry.json` | What modes exist, and what each may touch |
-| `hub-router.json` | Signals, vocabulary classes, tie-break |
-| `ROUTER.md` | Stage two: which resources a chosen mode loads |
-| `sk-design-fundamentals/` | The values mode, and everything it owns |
-| `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
-| `sk-design-chart/` | The chart corpus, its checker and its gallery |
-| `sk-design-diagram/` | The diagram forms and their validator |
-| `command-metadata.json` | The commands this hub owns, and which mode owns each |
-
----
-
-## 5. RULES
-
-### ALWAYS
-
-- Read the registry before assuming a mode exists.
-- Load what the mode's own router resolves, not the whole tree.
-- Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
-  `description.json` are documentation, not what gets scored.
-- Take the mode from the compiled front door,
-  `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`, as the section 2
-  callout says. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing in
-  section 2 instead.
-
-### NEVER
-
-- Never re-read a mode already in context.
-- Never author content in this hub. Edits belong in a mode.
-
-### ESCALATE IF
-
-- A request cannot be mapped to one registered mode.
-- Registry modes, router signal keys or leaf manifest entries disagree.

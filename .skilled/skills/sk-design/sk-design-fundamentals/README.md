@@ -6,7 +6,7 @@ trigger_phrases:
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-design
@@ -36,7 +36,7 @@ Visual design gets treated as talent, so people who do not have it guess. Guessi
 
 ### What It Does
 
-The skill decides values and behavior for a surface. `SKILL.md` holds the scales themselves, the procedure for working, and the hierarchy technique that does most of the visible work. Six references carry the rest: palette construction, a symptom-to-fix table for existing UI, depth and typography technique, interaction craft, motion principles, and a WCAG-cited review checklist.
+The skill decides values and behavior for a surface. `SKILL.md` holds the scales themselves, the procedure for working, and the four hierarchy rules that do most of the visible work. `references/hierarchy.md` carries the full method. Seven references carry the rest: hierarchy technique, palette construction, a symptom-to-fix table for existing UI, depth and typography technique, interaction craft, motion principles, and a WCAG-cited review checklist.
 
 It is the authoring counterpart to `sk-design-md-generator`, which measures a live site's real CSS into a Style Reference. That skill reads a surface; this one writes one. When a measured reference exists, its values win.
 

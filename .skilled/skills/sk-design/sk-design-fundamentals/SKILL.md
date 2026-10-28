@@ -2,7 +2,7 @@
 name: sk-design-fundamentals
 description: "Designs, builds and reviews any laid-out surface from fixed value scales: screen UI, slide decks, printed and document layouts."
 allowed-tools: [Read, Write, Edit, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 <!-- Keywords: ui design rules, what padding, how much padding, padding, margin, spacing between elements, spacing scale, what font size, font size, type scale, font weight, color palette, hsl shades, shade ramp, shadow elevation, box shadow, border radius, visual hierarchy, de-emphasize, ui looks off, looks amateur, feels cluttered, make this look better, design tokens, contrast ratio, wcag, wcag 4.5:1, a11y, accessibility, accessibility issues, accessibility review, accessibility audit, aria-label, alt text, screen reader, grey on color, em versus rem, breakpoint scaling, empty state, interaction guidelines, focus ring, focus outline, touch target, hit area, keyboard navigation, animation duration, transition duration, easing curve, spring animation, twelve principles of animation, review this component, design review, ui review, component states, dark mode palette, where do i start designing, grayscale first, how much white space, nothing draws the eye, primary secondary tertiary, destructive button, labels are a last resort, too many options, overwhelming, cognitive load, progressive disclosure, fitts law, hicks law, doherty threshold, chunking, concentric radius, layered shadows, button shadow anatomy, text-wrap balance, tabular nums, drop shadow, shadow, draws the eye, no visual hierarchy, everything looks the same, slide deck design, slide layout, presentation design, deck spacing, print layout, printed page design, margins for print, document layout, report layout, long-form layout, poster layout, how should this slide be laid out, type scale for print, laid out -->
@@ -56,6 +56,277 @@ The single biggest cause of amateur-looking UI is picking values ad hoc — 17px
 ---
 
 ## 2. SMART ROUTING
+
+The `sk-design` hub routes a design request here when it decides a value or judges a surface against values, and the hub's `VALUES` and `REVIEW` intents select this packet.
+A request that measures a live surface belongs to `sk-design-md-generator`; this packet supplies only the defaults a measurement outranks.
+The request is **build**, **improve** or **review**, and that split decides which reference loads first.
+The scales and hard rules in this file load on every invocation.
+An improve task loads `references/diagnosis-table.md` first, a review loads `references/review-checklist.md`, and something new loads `references/build-procedure.md`.
+A request naming one property needs only its scale; *"make this look designed"* also needs the hierarchy technique in Section 3.
+The two assets load only on explicit request.
+
+The detection trees, the phase sequence, the resource domains, the loading-level table and the routing pseudocode sit in the final `MACHINE ROUTER` section of this file.
+
+---
+
+## 3. HOW IT WORKS
+
+### The Surfaces
+
+The systems below are surface-agnostic. What differs is which of the extras apply.
+
+| Surface | Systems that apply | What changes | What does not apply |
+| --- | --- | --- | --- |
+| **Screen UI** | All four | The reference surface these rules were written against | Nothing |
+| **Slide decks** | All four | Far fewer elements per view, so hierarchy does more work and the type scale runs larger. Transitions replace interaction motion | Focus rings, hover, touch targets |
+| **Printed layouts** | All four | No dark mode and no hover state. Contrast still matters and is harder, because paper has no backlight. Measure in a physical unit and keep the spacing ratios | Interaction craft, motion, response budgets |
+| **Document layouts** | All four | Reading order is the hierarchy. Long-form type scale runs tighter than UI, and white space carries the structure | Interaction craft, motion |
+| **Chart and diagram canvases** | Colour and type scale only | Those canvases have their own layout rules | Everything else; the canvas modes own it |
+
+Two references are screen-only: [`interaction-craft.md`](references/interaction-craft.md) and
+[`motion-principles.md`](references/motion-principles.md). A deck may borrow the motion timings for
+transitions; a printed page has no use for either. Everything else in `references/` applies whatever
+the surface.
+
+### The Systems
+
+Pick from these lists. Never invent a value that is not on one.
+
+#### Spacing and sizing
+
+Base 16px, built from factors and multiples of it:
+
+```text
+4  8  12  16  24  32  48  64  96  128  192  256  384  512  640  768
+```
+
+Tight at the small end, spreading out at the large end. **No two adjacent values may be closer than about 25%** — that is what makes the choice obvious. A linear "multiples of 4" scale fails, because it does not help anyone decide between 120px and 124px.
+
+Use it for margin, padding, width, height, icon sizes and border width — everything spatial. Fix a small set of opacity values too (`.05 .1 .2 .4 .6 .8`) for disabled states, overlays and hover tints, rather than eyeballing a slider each time. Same logic as the other scales: decide once, reuse everywhere.
+
+#### Type scale
+
+```text
+12  14  16  18  20  24  30  36  48  60  72
+```
+
+Not a modular scale built from a ratio. Ratios produce fractional pixel values that round inconsistently across browsers, and they are too sparse for interface density. Hand-picked values, chosen for how they feel, win instead.
+
+**Units: `px` or `rem` only. Never `em`.** `em` is relative to the current font size, so `.875em` inside a `1.25em` parent computes to 17.5px — a value not on the scale. The scale silently stops existing.
+
+#### Font weight
+
+Two weights is enough:
+
+- **400 or 500** for body and most UI text.
+- **600 or 700** for anything emphasized. Medium-sized headings usually sit best at 500 to 600.
+
+Nothing below 400 in UI. To de-emphasize, use a lighter *color* or a smaller *size*, never a lighter weight. Weight must also not change on hover or selection, because the width change shifts the layout.
+
+#### Color
+
+A five-swatch palette generator gives nowhere near enough colors.
+
+- **Greys: 8 to 10 shades.** Almost all of a UI is grey — text, backgrounds, panels, borders, form controls. Three or four shades always runs out. Start at a very dark grey, not true black, which looks unnatural.
+- **Primary: 5 to 10 shades**, one or at most two primaries.
+- **Accents: 5 to 10 shades each** — destructive red, warning yellow, positive green, plus whatever else the product must distinguish. Ten colors at 5 to 10 shades each is normal for a complex UI.
+
+Name them `100` (lightest) through `900` (darkest), base `500`.
+
+**Build the ramp in one order:** base `500` first, then the `900` and `100` edges, then the gap fills — the reasoning, and the button-background test that decides `500`, are in [`references/color-system.md`](references/color-system.md) Section 3.
+
+**Write colors as HSL, not hex.** `hsl(220, 95%, 34%)` and `hsl(220, 65%, 61%)` are visibly related; `#03369E` and `#507DD7` are not.
+
+**Never generate shades at runtime** with `lighten()` or `darken()`. That is how a project ends up with 35 slightly different blues.
+
+Full construction method — base selection, saturation at the ends, hue rotation, dark mode, contrast escape hatches — is in [`references/color-system.md`](references/color-system.md).
+
+#### Shadows, five elevations
+
+```css
+0 1px 3px   hsla(0,0%,0%,.2)   /* barely raised - buttons */
+0 4px 6px   hsla(0,0%,0%,.2)   /* dropdowns */
+0 5px 15px  hsla(0,0%,0%,.2)
+0 10px 24px hsla(0,0%,0%,.2)
+0 15px 35px hsla(0,0%,0%,.2)   /* modals */
+```
+
+Choose by asking *where on the z-axis does this sit?*, not *what shadow looks nice?*. Closer to the user means more attention. Shrinking a button's shadow on `:active` makes it feel pressed. Growing a list item's shadow when it is picked up for drag-to-reorder does the reverse — it reads as "now above its siblings" and doubles as the drag affordance.
+
+Every shadow in a project shares one offset direction, because there is one light source. [`references/depth-and-detail.md`](references/depth-and-detail.md) carries two refined alternatives — a **two-part** cast-plus-contact scale and a **layered** three-part set — plus the rule for tinting shadow color on non-white surfaces and the full six-layer button anatomy. The three systems are parallel and not compatible: pick one per project and never mix them, or elevation stops being readable.
+
+#### Line-height and line length
+
+Line-height is **inversely** proportional to font size, and proportional to line width:
+
+- small text or wide columns: `1.5` to `2`
+- large headlines: `1` is fine
+
+Line length: **45 to 75 characters**, which is `max-width: 20em` to `35em`. This applies to the paragraph even when its container is wider. Mixed widths in one content area look more polished, not less.
+
+`em` is correct *here* — measure should scale with the text it wraps. The "never `em`" rule is scoped to the *type scale*, where `em` compounds through nesting. Do not "fix" this.
+
+#### Border radius
+
+Pick one and stay consistent. Small radius reads neutral, large reads playful, none reads serious or formal. Mixing square and rounded corners in one interface always looks worse. For nested elements, inner radius equals outer radius minus the padding between them.
+
+#### Motion durations
+
+Timing is a scale like the others, and consistency across it outranks the perfect value for any one element.
+
+```text
+120-180ms   press, hover, direct feedback
+180-260ms   small state change: toggle, dropdown, tooltip, tab
+up to 500ms layout transition: modal, drawer, accordion
+```
+
+300ms is the ceiling for anything the user initiated. Similar elements use identical values. The full model — easing curves, springs, staging, and when not to animate at all — is in [`references/motion-principles.md`](references/motion-principles.md).
+
+### The Procedure
+
+Seven steps govern the order of work on something new: start from a feature rather than a layout, work in **grayscale first**, treat low-fidelity artifacts as disposable, build the smallest useful version, **choose each value by elimination** against its two neighbours on the scale, start with too much white space and trim, and design at about 400px before relaxing to a large screen.
+
+Full steps with their reasoning: [`references/build-procedure.md`](references/build-procedure.md). Load it when starting something new; a value question does not need it.
+
+### Hierarchy, The Technique That Does The Most Work
+
+Everything on the surface sits in a pyramid: primary, secondary, tertiary. When everything competes, the surface reads as noise. This is the most surface-agnostic technique here: a slide with three competing headings fails the same way a screen does. This is what makes a design look designed, not styling.
+
+Four rules carry most of it: **size is not everything** (weight and color carry the emphasis, with sizes kept near the middle of the scale), **three text colors, maximum** (all three at 4.5:1), **emphasize by de-emphasizing** (soften the competition rather than amplifying the primary), and **style actions by hierarchy, not by semantics**. The full method — the destructive-action treatment, label suppression, the weight-versus-contrast trade, and why visual hierarchy may disagree with document hierarchy — is [`references/hierarchy.md`](references/hierarchy.md) Sections 2 through 7.
+
+### Beyond The Visual System
+
+Correct values do not make a screen behave correctly. Six references carry the behavior, each on its own intent: [`build-procedure.md`](references/build-procedure.md) Section 2, [`hierarchy.md`](references/hierarchy.md) Sections 1 and 3, [`interaction-craft.md`](references/interaction-craft.md) Sections 3 and 5, [`motion-principles.md`](references/motion-principles.md) Section 4, [`ux-laws.md`](references/ux-laws.md) Sections 2 to 5, [`review-checklist.md`](references/review-checklist.md) Sections 2 to 6.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. **ALWAYS pick values from the scales in Section 3.** A value off the scale is the defect this skill exists to prevent; it is what makes a UI read as amateur even when nothing is individually wrong. Timing is a scale too.
+2. **ALWAYS put more space around a group than within it.** This is the fix for "which label belongs to which field", cramped bullet lists (the gap must exceed the line-height), and headings that look attached to the wrong paragraph. Ambiguous spacing is a functional bug, not only an ugly one.
+3. **ALWAYS meet 4.5:1 for normal text.** The 3:1 allowance applies only to *large* text, which WCAG defines as **24px regular or 18.66px bold** — not 18px. Separately, **3:1 applies to non-text** (WCAG 1.4.11): a border that is the only thing identifying a control, such as an input outline or a checkbox edge, needs 3:1 against its background. A hairline that merely divides content does not. Those are two different tokens.
+4. **ALWAYS give large elements a faster shrink rate across breakpoints than small ones.** A 2.5em headline over 14px mobile body copy computes to 35px, far too big; it wants 20 to 24px there. A button's padding should get proportionally tighter as the button shrinks, not scale with its font size.
+5. **ALWAYS add a second signal alongside color.** An icon, a shape or a text cue. For charts, distinguish series by *contrast* — light to dark shades of one color — rather than by hue, because colorblind users read lightness reliably and hue unreliably.
+6. **ALWAYS give interactive elements their full state set.** Hover, focus, active and disabled, plus loading and error where they apply. The `:active` state needs a scale transform, or the element feels unresponsive under a finger.
+7. **ALWAYS load the matching reference before acting.** `diagnosis-table.md` for an improve task, `review-checklist.md` for a review. Changing UI from a vague complaint without mapping it to a cause is a guess.
+
+### ❌ NEVER
+
+1. **NEVER put grey text on a colored background.** Grey on white works because it *reduces contrast*; grey on color just looks dirty. White at reduced opacity looks washed out and disabled, and lets patterns show through the glyphs. Hand-pick a color at the background's hue, adjusting saturation and lightness.
+2. **NEVER use `em` for the type scale.** `px` or `rem`. `em` compounds through nesting and silently produces values that are not on the scale. The exception is line length (`max-width` in `em`), where measure should scale with its own text.
+3. **NEVER generate shades at runtime** with `lighten()` or `darken()`. Define every shade up front, or the palette drifts into dozens of near-identical colors.
+4. **NEVER use a percentage width for something that should not scale.** Sidebars get fixed widths and the main area flexes. Elements get a `max-width` and shrink only when the screen is actually smaller — a login card must not be *wider* at medium screens than at large.
+5. **NEVER scale an icon far from its intended size.** A 16 to 24px icon at 48px looks chunky and detail-starved. Put it at its real size inside a colored circle instead.
+6. **NEVER remove a focus outline without replacing it.** `outline: none` with no visible replacement is a serious accessibility defect. Replace it with a `box-shadow` ring, which respects border radius.
+7. **NEVER animate high-frequency interactions or keyboard navigation.** Focus movement is instant. A search input that animates on every keystroke is a tax paid on every keystroke.
+8. **NEVER mix two systems of the same kind in one project** — the five-elevation and two-part shadow scales, or two sets of motion durations. Parallel systems make the thing they encode unreadable.
+
+### ⚠️ ESCALATE IF
+
+1. **ESCALATE IF an existing design system or measured Style Reference conflicts with these defaults.** The established system wins. Ask which one governs before overwriting tokens, and say which values would change.
+2. **ESCALATE IF a brand color cannot reach 4.5:1 in its required role.** Both escape hatches — flipping to dark colored text on a light tint, and rotating hue toward a brighter one — are in `references/color-system.md`, but changing a brand color is the operator's decision.
+3. **ESCALATE IF the request implies a redesign wider than the named surface.** Hierarchy fixes often want to touch competing elements outside the stated scope; name what would need to change and get agreement first.
+4. **ESCALATE IF the complaint stays vague after the diagnosis table.** Ask which specific element feels wrong and what it should communicate instead, rather than restyling broadly.
+5. **ESCALATE IF a review finds accessibility defects the requester did not ask about.** Report them; do not silently fix code outside the requested scope.
+
+---
+
+## 5. REFERENCES
+
+### Core References
+
+- [build-procedure.md](references/build-procedure.md) — the seven-step order of work for something new, and why each step is in that position.
+- [color-system.md](references/color-system.md) — building a palette from scratch: choosing the base, saturation at the light and dark ends, hue rotation, warm and cool greys, dark mode, and the two escape hatches for hitting contrast ratios without ugly color.
+- [diagnosis-table.md](references/diagnosis-table.md) — symptom to fix table. Load first whenever the task is improving existing UI.
+- [hierarchy.md](references/hierarchy.md) — the full hierarchy method: action and destructive treatment, label suppression, the weight-versus-contrast trade, and visual versus document hierarchy.
+- [depth-and-detail.md](references/depth-and-detail.md) — light simulation, the three shadow systems and how to pick one, shadow color and button anatomy, typography detail, concentric radius, grids, component shape, and images.
+- [interaction-craft.md](references/interaction-craft.md) — inputs, touch, hit areas, focus, keyboard, screen readers, performance and feedback.
+- [motion-principles.md](references/motion-principles.md) — the twelve animation principles adapted to interfaces, plus the enforceable timing, easing, physics and staging rules.
+- [ux-laws.md](references/ux-laws.md) — the cognitive and perceptual constraints that decide what is on the screen at all, how it groups, and how long it may take to respond.
+- [review-checklist.md](references/review-checklist.md) — the severity-tiered audit pass over UI code, WCAG-cited.
+
+### Templates and Assets
+
+- [tokens.css](assets/tokens.css) — a complete, contrast-verified starting set of every scale above as CSS custom properties, including a semantic role layer and a dark-mode block.
+- [token-starter-set.md](assets/token-starter-set.md) — what is in `tokens.css`, how to retune it, and the rule that components reference roles rather than raw ramps.
+
+### Reference Loading Notes
+
+- Load only the references the current intent requires; Section 9 is the routing authority.
+- The scales themselves stay in this file. They are needed on every invocation, so moving them to a reference would add a load for no benefit.
+
+---
+
+## 6. SUCCESS CRITERIA
+
+### Task Completion Checklist
+
+**A UI task is complete when:**
+
+- [ ] Every spatial value, font size, weight, shadow, radius and duration came from a scale in Section 3, or from an established system that supersedes it.
+- [ ] The content has a stated primary, secondary and tertiary tier, separated by weight and color rather than size alone.
+- [ ] Exactly one primary action is styled as primary on the surface.
+- [ ] Group spacing exceeds within-group spacing everywhere grouping is meaningful.
+- [ ] Every text and control pair meets its contrast minimum (4.5:1 normal text, 3:1 large text and functional non-text).
+- [ ] Interactive elements carry their full state set, and focus is visible.
+- [ ] Motion durations sit in their band, similar elements share values, and nothing animates that should not.
+- [ ] No hard rule in Section 4 is violated, or each deviation is stated with its reason.
+
+### Quality Gates
+
+- **Scale conformance**: zero off-scale values, or each one named and justified.
+- **Color count**: shades come from a defined ramp; no runtime-generated shades.
+- **Breakpoint behavior**: large elements shrink faster than small ones; nothing scales proportionally.
+- **Signal redundancy**: no state or category communicated by color alone.
+- **Review output**: every finding carries a file, a line, a fix, and a criterion where one applies.
+
+---
+
+## 7. INTEGRATION POINTS
+
+### Inputs
+
+- The surface in scope: a component, a screen, a described complaint, or a set of files to review.
+- Optionally, an existing token file, design system, or a measured `DESIGN.md` Style Reference. Any of these **outranks** this skill's defaults.
+
+### Outputs
+
+- Concrete values and CSS, plus the reason each value was chosen from its scale.
+- For an improve task, the symptom-to-cause mapping that justified each change.
+- For a review, severity-tiered findings with file, line and fix.
+
+### Related Workflows
+
+- **`sk-design-md-generator`** measures a live site's real CSS into a v3 Style Reference. It is the reading half of the pair; this skill is the writing half. When a Style Reference exists for the surface, its measured values are ground truth and this skill supplies only what the reference left undecided.
+- **`sk-code`** implements the result. Hand it the chosen values, not adjectives.
+- **`system-spec-kit`** owns packet documentation and continuity when the work is tracked.
+
+### Reading Versus Authoring
+
+`sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` records type ratios, spacing and motion bands for *reading* a measured surface. This skill decides them for a surface not yet built. A measurement outranks a default, and [`references/motion-principles.md`](references/motion-principles.md) Section 5 states the reconciliation.
+
+---
+
+## 8. REFERENCES AND RELATED RESOURCES
+
+Section 9 governs what loads. This skill ships no scripts: every decision is a judgment, not an automated transform. Related skills are named in Section 7.
+
+### Sources
+
+Original notes derived from four public sources, captured 2026-08-28. None of their text is reproduced verbatim.
+
+- *Refactoring UI*, Adam Wathan and Steve Schoger (<https://www.refactoringui.com/>) — value systems, procedure, hierarchy, depth, diagnosis.
+- Web Interface Guidelines, Rauno Freiberg (<https://interfaces.rauno.me/>) — interaction craft.
+- userinterface-wiki, Raphael Salaja (<https://userinterface.wiki>) — the motion model and its ruleset, the UX laws, and the typography and visual-design rules.
+- Rams design review skill (<https://www.ui-skills.com/skills/rams/rams>) — the severity-tiered review structure and its WCAG check set.
+
+---
+
+## 9. MACHINE ROUTER
+
+This section holds the detection trees, the phase sequence, the resource domains, the loading-level table and the routing pseudocode the SMART ROUTING summary above points at.
 
 ### Primary Detection Signal
 
@@ -250,274 +521,3 @@ def route_ui_craft_resources(user_request, task=None):
         "resources": loaded,
     }
 ```
-
----
-
-## 3. HOW IT WORKS
-
-### The Surfaces
-
-The systems below are surface-agnostic. What differs is which of the extras apply.
-
-| Surface | Systems that apply | What changes | What does not apply |
-| --- | --- | --- | --- |
-| **Screen UI** | All four | The reference surface these rules were written against | Nothing |
-| **Slide decks** | All four | Far fewer elements per view, so hierarchy does more work and the type scale runs larger. Transitions replace interaction motion | Focus rings, hover, touch targets |
-| **Printed layouts** | All four | No dark mode and no hover state. Contrast still matters and is harder, because paper has no backlight. Measure in a physical unit and keep the spacing ratios | Interaction craft, motion, response budgets |
-| **Document layouts** | All four | Reading order is the hierarchy. Long-form type scale runs tighter than UI, and white space carries the structure | Interaction craft, motion |
-| **Chart and diagram canvases** | Colour and type scale only | Those canvases have their own layout rules | Everything else; the canvas modes own it |
-
-Two references are screen-only: [`interaction-craft.md`](references/interaction-craft.md) and
-[`motion-principles.md`](references/motion-principles.md). A deck may borrow the motion timings for
-transitions; a printed page has no use for either. Everything else in `references/` applies whatever
-the surface.
-
-### The Systems
-
-Pick from these lists. Never invent a value that is not on one.
-
-#### Spacing and sizing
-
-Base 16px, built from factors and multiples of it:
-
-```text
-4  8  12  16  24  32  48  64  96  128  192  256  384  512  640  768
-```
-
-Tight at the small end, spreading out at the large end. **No two adjacent values may be closer than about 25%** — that is what makes the choice obvious. A linear "multiples of 4" scale fails, because it does not help anyone decide between 120px and 124px.
-
-Use it for margin, padding, width, height, icon sizes and border width — everything spatial. Fix a small set of opacity values too (`.05 .1 .2 .4 .6 .8`) for disabled states, overlays and hover tints, rather than eyeballing a slider each time. Same logic as the other scales: decide once, reuse everywhere.
-
-#### Type scale
-
-```text
-12  14  16  18  20  24  30  36  48  60  72
-```
-
-Not a modular scale built from a ratio. Ratios produce fractional pixel values that round inconsistently across browsers, and they are too sparse for interface density. Hand-picked values, chosen for how they feel, win instead.
-
-**Units: `px` or `rem` only. Never `em`.** `em` is relative to the current font size, so `.875em` inside a `1.25em` parent computes to 17.5px — a value not on the scale. The scale silently stops existing.
-
-#### Font weight
-
-Two weights is enough:
-
-- **400 or 500** for body and most UI text.
-- **600 or 700** for anything emphasized. Medium-sized headings usually sit best at 500 to 600.
-
-Nothing below 400 in UI. To de-emphasize, use a lighter *color* or a smaller *size*, never a lighter weight. Weight must also not change on hover or selection, because the width change shifts the layout.
-
-#### Color
-
-A five-swatch palette generator gives nowhere near enough colors.
-
-- **Greys: 8 to 10 shades.** Almost all of a UI is grey — text, backgrounds, panels, borders, form controls. Three or four shades always runs out. Start at a very dark grey, not true black, which looks unnatural.
-- **Primary: 5 to 10 shades**, one or at most two primaries.
-- **Accents: 5 to 10 shades each** — destructive red, warning yellow, positive green, plus whatever else the product must distinguish. Ten colors at 5 to 10 shades each is normal for a complex UI.
-
-Name them `100` (lightest) through `900` (darkest), base `500`.
-
-**Build the scale in this order:** pick `500` first; for a primary or accent it should be a shade that works as a button background. Then find the edges — `900` is usually the text color and `100` a background tint, and an alert component uses both, so design one and read the two values off it. Then fill `700` and `300` as the perfect compromise between their neighbours, then `800 600 400 200` the same way.
-
-**Write colors as HSL, not hex.** `hsl(220, 95%, 34%)` and `hsl(220, 65%, 61%)` are visibly related; `#03369E` and `#507DD7` are not.
-
-**Never generate shades at runtime** with `lighten()` or `darken()`. That is how a project ends up with 35 slightly different blues.
-
-Full construction method — base selection, saturation at the ends, hue rotation, dark mode, contrast escape hatches — is in [`references/color-system.md`](references/color-system.md).
-
-#### Shadows, five elevations
-
-```css
-0 1px 3px   hsla(0,0%,0%,.2)   /* barely raised - buttons */
-0 4px 6px   hsla(0,0%,0%,.2)   /* dropdowns */
-0 5px 15px  hsla(0,0%,0%,.2)
-0 10px 24px hsla(0,0%,0%,.2)
-0 15px 35px hsla(0,0%,0%,.2)   /* modals */
-```
-
-Choose by asking *where on the z-axis does this sit?*, not *what shadow looks nice?*. Closer to the user means more attention. Shrinking a button's shadow on `:active` makes it feel pressed. Growing a list item's shadow when it is picked up for drag-to-reorder does the reverse — it reads as "now above its siblings" and doubles as the drag affordance.
-
-Every shadow in a project shares one offset direction, because there is one light source. [`references/depth-and-detail.md`](references/depth-and-detail.md) carries two refined alternatives — a **two-part** cast-plus-contact scale and a **layered** three-part set — plus the rule for tinting shadow color on non-white surfaces and the full six-layer button anatomy. The three systems are parallel and not compatible: pick one per project and never mix them, or elevation stops being readable.
-
-#### Line-height and line length
-
-Line-height is **inversely** proportional to font size, and proportional to line width:
-
-- small text or wide columns: `1.5` to `2`
-- large headlines: `1` is fine
-
-Line length: **45 to 75 characters**, which is `max-width: 20em` to `35em`. This applies to the paragraph even when its container is wider. Mixed widths in one content area look more polished, not less.
-
-`em` is correct *here* — measure should scale with the text it wraps. The "never `em`" rule is scoped to the *type scale*, where `em` compounds through nesting. Do not "fix" this.
-
-#### Border radius
-
-Pick one and stay consistent. Small radius reads neutral, large reads playful, none reads serious or formal. Mixing square and rounded corners in one interface always looks worse. For nested elements, inner radius equals outer radius minus the padding between them.
-
-#### Motion durations
-
-Timing is a scale like the others, and consistency across it outranks the perfect value for any one element.
-
-```text
-120-180ms   press, hover, direct feedback
-180-260ms   small state change: toggle, dropdown, tooltip, tab
-up to 500ms layout transition: modal, drawer, accordion
-```
-
-300ms is the ceiling for anything the user initiated. Similar elements use identical values. The full model — easing curves, springs, staging, and when not to animate at all — is in [`references/motion-principles.md`](references/motion-principles.md).
-
-### The Procedure
-
-Seven steps govern the order of work on something new: start from a feature rather than a layout, work in **grayscale first**, treat low-fidelity artifacts as disposable, build the smallest useful version, **choose each value by elimination** against its two neighbours on the scale, start with too much white space and trim, and design at about 400px before relaxing to a large screen.
-
-Full steps with their reasoning: [`references/build-procedure.md`](references/build-procedure.md). Load it when starting something new; a value question does not need it.
-
-### Hierarchy, The Technique That Does The Most Work
-
-Everything on the surface sits in a pyramid: primary, secondary, tertiary. When everything competes, the surface reads as noise. This is the most surface-agnostic technique here: a slide with three competing headings fails the same way a screen does. This is what makes a design look designed, not styling.
-
-Four rules carry most of it:
-
-1. **Size is not everything.** Font size alone gives primary content that is too big and secondary content that is too small. Carry emphasis with **weight** and **color**, and keep sizes near the middle of the scale.
-2. **Three text colors, maximum** — dark, grey, lighter grey. All three carry body-size text, so all three need 4.5:1. "Lighter grey" is the lightest shade that still clears it, roughly the middle of a nine-step ramp.
-3. **Emphasize by de-emphasizing.** When the important element will not stand out and there is nothing left to add to it, soften what competes with it instead.
-4. **Style actions by hierarchy, not by semantics.** Primary is solid and high contrast, usually exactly one per page; secondary is an outline; tertiary is styled like a link. Destructive is not automatically primary.
-
-The full method — action and destructive treatment, label suppression, the weight-versus-contrast trade, and why visual hierarchy may disagree with document hierarchy — is [`references/hierarchy.md`](references/hierarchy.md).
-
-### Beyond The Visual System
-
-Correct values do not make a screen behave correctly. Three references carry the rest, and each has an always-true core worth holding in mind before loading it.
-
-| Reference | Always-true core |
-| --- | --- |
-| [`build-procedure.md`](references/build-procedure.md) | Feature before layout, grayscale before color, mobile before desktop, and every value chosen against its two neighbours. |
-| [`hierarchy.md`](references/hierarchy.md) | Rank every element before styling any of them. Soften the competition rather than amplifying the primary. |
-| [`interaction-craft.md`](references/interaction-craft.md) | Focus rings are `box-shadow`, not `outline`. Guard hover with `@media (hover: hover)`. Inputs are 16px minimum or iOS zooms. No dead space between adjacent targets. |
-| [`motion-principles.md`](references/motion-principles.md) | Entrances `ease-out`, exits `ease-in`, gestures use springs, linear is only for progress. One focal point at a time. Some things should not animate at all. |
-| [`ux-laws.md`](references/ux-laws.md) | Respond within 400ms or fake it honestly. Chunk into groups of five to nine. Expand hit areas with padding, not a bigger box. One element may be the exception. |
-| [`review-checklist.md`](references/review-checklist.md) | Accessibility findings first, every finding with a file, a line and a fix. |
-
----
-
-## 4. RULES
-
-### ✅ ALWAYS
-
-1. **ALWAYS pick values from the scales in Section 3.** A value off the scale is the defect this skill exists to prevent; it is what makes a UI read as amateur even when nothing is individually wrong. Timing is a scale too.
-2. **ALWAYS put more space around a group than within it.** This is the fix for "which label belongs to which field", cramped bullet lists (the gap must exceed the line-height), and headings that look attached to the wrong paragraph. Ambiguous spacing is a functional bug, not only an ugly one.
-3. **ALWAYS meet 4.5:1 for normal text.** The 3:1 allowance applies only to *large* text, which WCAG defines as **24px regular or 18.66px bold** — not 18px. Separately, **3:1 applies to non-text** (WCAG 1.4.11): a border that is the only thing identifying a control, such as an input outline or a checkbox edge, needs 3:1 against its background. A hairline that merely divides content does not. Those are two different tokens.
-4. **ALWAYS give large elements a faster shrink rate across breakpoints than small ones.** A 2.5em headline over 14px mobile body copy computes to 35px, far too big; it wants 20 to 24px there. A button's padding should get proportionally tighter as the button shrinks, not scale with its font size.
-5. **ALWAYS add a second signal alongside color.** An icon, a shape or a text cue. For charts, distinguish series by *contrast* — light to dark shades of one color — rather than by hue, because colorblind users read lightness reliably and hue unreliably.
-6. **ALWAYS give interactive elements their full state set.** Hover, focus, active and disabled, plus loading and error where they apply. The `:active` state needs a scale transform, or the element feels unresponsive under a finger.
-7. **ALWAYS load the matching reference before acting.** `diagnosis-table.md` for an improve task, `review-checklist.md` for a review. Changing UI from a vague complaint without mapping it to a cause is a guess.
-
-### ❌ NEVER
-
-1. **NEVER put grey text on a colored background.** Grey on white works because it *reduces contrast*; grey on color just looks dirty. White at reduced opacity looks washed out and disabled, and lets patterns show through the glyphs. Hand-pick a color at the background's hue, adjusting saturation and lightness.
-2. **NEVER use `em` for the type scale.** `px` or `rem`. `em` compounds through nesting and silently produces values that are not on the scale. The exception is line length (`max-width` in `em`), where measure should scale with its own text.
-3. **NEVER generate shades at runtime** with `lighten()` or `darken()`. Define every shade up front, or the palette drifts into dozens of near-identical colors.
-4. **NEVER use a percentage width for something that should not scale.** Sidebars get fixed widths and the main area flexes. Elements get a `max-width` and shrink only when the screen is actually smaller — a login card must not be *wider* at medium screens than at large.
-5. **NEVER scale an icon far from its intended size.** A 16 to 24px icon at 48px looks chunky and detail-starved. Put it at its real size inside a colored circle instead.
-6. **NEVER remove a focus outline without replacing it.** `outline: none` with no visible replacement is a serious accessibility defect. Replace it with a `box-shadow` ring, which respects border radius.
-7. **NEVER animate high-frequency interactions or keyboard navigation.** Focus movement is instant. A search input that animates on every keystroke is a tax paid on every keystroke.
-8. **NEVER mix two systems of the same kind in one project** — the five-elevation and two-part shadow scales, or two sets of motion durations. Parallel systems make the thing they encode unreadable.
-
-### ⚠️ ESCALATE IF
-
-1. **ESCALATE IF an existing design system or measured Style Reference conflicts with these defaults.** The established system wins. Ask which one governs before overwriting tokens, and say which values would change.
-2. **ESCALATE IF a brand color cannot reach 4.5:1 in its required role.** Both escape hatches — flipping to dark colored text on a light tint, and rotating hue toward a brighter one — are in `references/color-system.md`, but changing a brand color is the operator's decision.
-3. **ESCALATE IF the request implies a redesign wider than the named surface.** Hierarchy fixes often want to touch competing elements outside the stated scope; name what would need to change and get agreement first.
-4. **ESCALATE IF the complaint stays vague after the diagnosis table.** Ask which specific element feels wrong and what it should communicate instead, rather than restyling broadly.
-5. **ESCALATE IF a review finds accessibility defects the requester did not ask about.** Report them; do not silently fix code outside the requested scope.
-
----
-
-## 5. REFERENCES
-
-### Core References
-
-- [build-procedure.md](references/build-procedure.md) — the seven-step order of work for something new, and why each step is in that position.
-- [color-system.md](references/color-system.md) — building a palette from scratch: choosing the base, saturation at the light and dark ends, hue rotation, warm and cool greys, dark mode, and the two escape hatches for hitting contrast ratios without ugly color.
-- [diagnosis-table.md](references/diagnosis-table.md) — symptom to fix table. Load first whenever the task is improving existing UI.
-- [hierarchy.md](references/hierarchy.md) — the full hierarchy method: action and destructive treatment, label suppression, the weight-versus-contrast trade, and visual versus document hierarchy.
-- [depth-and-detail.md](references/depth-and-detail.md) — light simulation, the three shadow systems and how to pick one, shadow color and button anatomy, typography detail, concentric radius, grids, component shape, and images.
-- [interaction-craft.md](references/interaction-craft.md) — inputs, touch, hit areas, focus, keyboard, screen readers, performance and feedback.
-- [motion-principles.md](references/motion-principles.md) — the twelve animation principles adapted to interfaces, plus the enforceable timing, easing, physics and staging rules.
-- [ux-laws.md](references/ux-laws.md) — the cognitive and perceptual constraints that decide what is on the screen at all, how it groups, and how long it may take to respond.
-- [review-checklist.md](references/review-checklist.md) — the severity-tiered audit pass over UI code, WCAG-cited.
-
-### Templates and Assets
-
-- [tokens.css](assets/tokens.css) — a complete, contrast-verified starting set of every scale above as CSS custom properties, including a semantic role layer and a dark-mode block.
-- [token-starter-set.md](assets/token-starter-set.md) — what is in `tokens.css`, how to retune it, and the rule that components reference roles rather than raw ramps.
-
-### Reference Loading Notes
-
-- Load only the references the current intent requires; Section 2 is the routing authority.
-- The scales themselves stay in this file. They are needed on every invocation, so moving them to a reference would add a load for no benefit.
-
----
-
-## 6. SUCCESS CRITERIA
-
-### Task Completion Checklist
-
-**A UI task is complete when:**
-
-- [ ] Every spatial value, font size, weight, shadow, radius and duration came from a scale in Section 3, or from an established system that supersedes it.
-- [ ] The content has a stated primary, secondary and tertiary tier, separated by weight and color rather than size alone.
-- [ ] Exactly one primary action is styled as primary on the surface.
-- [ ] Group spacing exceeds within-group spacing everywhere grouping is meaningful.
-- [ ] Every text and control pair meets its contrast minimum (4.5:1 normal text, 3:1 large text and functional non-text).
-- [ ] Interactive elements carry their full state set, and focus is visible.
-- [ ] Motion durations sit in their band, similar elements share values, and nothing animates that should not.
-- [ ] No hard rule in Section 4 is violated, or each deviation is stated with its reason.
-
-### Quality Gates
-
-- **Scale conformance**: zero off-scale values, or each one named and justified.
-- **Color count**: shades come from a defined ramp; no runtime-generated shades.
-- **Breakpoint behavior**: large elements shrink faster than small ones; nothing scales proportionally.
-- **Signal redundancy**: no state or category communicated by color alone.
-- **Review output**: every finding carries a file, a line, a fix, and a criterion where one applies.
-
----
-
-## 7. INTEGRATION POINTS
-
-### Inputs
-
-- The surface in scope: a component, a screen, a described complaint, or a set of files to review.
-- Optionally, an existing token file, design system, or a measured `DESIGN.md` Style Reference. Any of these **outranks** this skill's defaults.
-
-### Outputs
-
-- Concrete values and CSS, plus the reason each value was chosen from its scale.
-- For an improve task, the symptom-to-cause mapping that justified each change.
-- For a review, severity-tiered findings with file, line and fix.
-
-### Related Workflows
-
-- **`sk-design-md-generator`** measures a live site's real CSS into a v3 Style Reference. It is the reading half of the pair; this skill is the writing half. When a Style Reference exists for the surface, its measured values are ground truth and this skill supplies only what the reference left undecided.
-- **`sk-code`** implements the result. Hand it the chosen values, not adjectives.
-- **`system-spec-kit`** owns packet documentation and continuity when the work is tracked.
-
-### Reading Versus Authoring
-
-`sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` records type ratios, spacing and motion bands for *reading* a measured surface. This skill decides them for a surface not yet built. A measurement outranks a default, and [`references/motion-principles.md`](references/motion-principles.md) Section 5 states the reconciliation.
-
----
-
-## 8. REFERENCES AND RELATED RESOURCES
-
-Section 2 governs what loads. This skill ships no scripts: every decision is a judgment, not an automated transform. Related skills are named in Section 7.
-
-### Sources
-
-Original notes derived from four public sources, captured 2026-08-28. None of their text is reproduced verbatim.
-
-- *Refactoring UI*, Adam Wathan and Steve Schoger (<https://www.refactoringui.com/>) — value systems, procedure, hierarchy, depth, diagnosis.
-- Web Interface Guidelines, Rauno Freiberg (<https://interfaces.rauno.me/>) — interaction craft.
-- userinterface-wiki, Raphael Salaja (<https://userinterface.wiki>) — the motion model and its ruleset, the UX laws, and the typography and visual-design rules.
-- Rams design review skill (<https://www.ui-skills.com/skills/rams/rams>) — the severity-tiered review structure and its WCAG check set.
