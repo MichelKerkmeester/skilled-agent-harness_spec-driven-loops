@@ -1,5 +1,5 @@
 {
-  "manifestHash": "07030fda27a087f5e65865e0ecc2c6bbcdd79229871e61556e6ab70d2242242d",
+  "manifestHash": "76b363047fc029574a49ac78d3d830d563856d36252cb59fe3dcce501413a504",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -67090,6 +67090,9 @@
     "move frontmatter templates into mode": [
       "move frontmatter templates into mode"
     ],
+    "move goal opencode command into opencode only": [
+      "move goal opencode command into opencode only"
+    ],
     "move is not behavior change": [
       "move is not behavior change"
     ],
@@ -70206,6 +70209,21 @@
     ],
     "opencode multi agent workflow": [
       "opencode multi-agent workflow"
+    ],
+    "opencode native surfaces": [
+      "opencode native surfaces"
+    ],
+    "opencode native surfaces acceptance criteria": [
+      "opencode native surfaces acceptance criteria"
+    ],
+    "opencode native surfaces implementation summary": [
+      "opencode native surfaces implementation summary"
+    ],
+    "opencode native surfaces plan": [
+      "opencode native surfaces plan"
+    ],
+    "opencode native surfaces tasks": [
+      "opencode native surfaces tasks"
     ],
     "opencode nested run waiver": [
       "opencode nested run waiver"

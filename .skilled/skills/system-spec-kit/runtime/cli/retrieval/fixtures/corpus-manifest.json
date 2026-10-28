@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e05a138c0a3ce596b078d3d3a48999d05b37b844290ae96f9824d2648d5acd68",
+  "corpusHash": "107cfdfadab83dda4374a0b31774033100b46e61978f676b75341be7027695ec",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26788,
+  "includedPathCount": 26793,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13780,6 +13780,11 @@
     "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/spec.md",
+    "specs/sk-doc/073-opencode-native-surfaces/acceptance-criteria.md",
+    "specs/sk-doc/073-opencode-native-surfaces/implementation-summary.md",
+    "specs/sk-doc/073-opencode-native-surfaces/plan.md",
+    "specs/sk-doc/073-opencode-native-surfaces/spec.md",
+    "specs/sk-doc/073-opencode-native-surfaces/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -26819,7 +26824,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "07030fda27a087f5e65865e0ecc2c6bbcdd79229871e61556e6ab70d2242242d",
+  "manifestHash": "76b363047fc029574a49ac78d3d830d563856d36252cb59fe3dcce501413a504",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30523,6 +30528,10 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/073-opencode-native-surfaces/scratch",
       "reason": "excluded directory"
     },
     {
