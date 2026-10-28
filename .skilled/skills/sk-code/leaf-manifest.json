@@ -2,6 +2,7 @@
   "modes": [
     {
       "leaves": [
+        "assets/ci-profile.template.json",
         "assets/job-block-template.yml",
         "assets/workflow-template.yml",
         "references/ci-workflow-standards.md",

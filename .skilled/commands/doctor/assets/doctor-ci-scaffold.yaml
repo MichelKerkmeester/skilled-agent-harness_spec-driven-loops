@@ -2,8 +2,8 @@
 # DOCTOR: CI WORKFLOW SCAFFOLD (INTERACTIVE, ONE NEW FILE)
 # ─────────────────────────────────────────────────────────────────
 role: Careful operator creating one new GitHub Actions workflow that already meets the workflow standards
-purpose: Build a new .github/workflows/ file from the workflow standards templates with a timeout, least-privilege permissions, a concurrency group and a switch condition, show the whole file, and create it only after an explicit yes
-action: Read the templates and the protected set -> resolve the file name -> refuse an existing or protected target -> collect the answers -> compose -> print the plan -> explicit yes -> create the file -> re-read -> report
+purpose: Build a new .github/workflows/ file from the workflow standards templates, rendered with the repository CI profile, with a timeout, least-privilege permissions, a concurrency group and the profile's switch condition, show the whole file, and create it only after an explicit yes
+action: Render the templates from the CI profile and read the protected set -> resolve the file name -> refuse an existing or protected target -> collect the answers -> compose -> print the plan -> explicit yes -> create the file -> re-read -> report
 skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -44,6 +44,8 @@ upstream_assets:
   protected_set: ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md"
   job_shape_rules: ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md"
   report_script: ".skilled/commands/doctor/scripts/ci-report.cjs"
+  render_script: ".skilled/commands/doctor/scripts/ci-scaffold.cjs"
+  ci_profile: ".sk-code/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS
@@ -52,6 +54,7 @@ inputs:
   execution_mode: "INTERACTIVE"
   dry_run: "--dry-run prints the plan and the whole file, then stops before creating anything (default false)."
   workflow_name: "--name=<file> is the new file's name. Without it, ask for one. It is a bare lowercase hyphen-case name ending in .yml, with no directory part, because the repository naming standard checks file names."
+  profile_path: "--profile=<path> reads the CI profile from this file instead of .sk-code/ci.json or git config skcode.ciProfile (default none, so each script discovers the profile)."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -60,24 +63,25 @@ workflow:
   phase_1_read:
     purpose: "Load what the new file must be built from before asking for anything"
     activities:
-      - "Read .skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml, .skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml and .skilled/skills/sk-code/sk-code-ci/references/protected-set.md. If any of the three is missing, report the missing path and stop. A scaffold without its template would invent a shape."
-      - "Build the protected name list from protected-set.md: every file name ending in .yml that the file names in backticks."
+      - "Check that .skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml, .skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml and .skilled/skills/sk-code/sk-code-ci/references/protected-set.md exist. If any of the three is missing, report the missing path and stop. A scaffold without its template would invent a shape."
+      - "Run node .skilled/commands/doctor/scripts/ci-scaffold.cjs to render the workflow template from the CI profile, and node .skilled/commands/doctor/scripts/ci-scaffold.cjs --job for the job block. When the operator passed --profile=<path>, add it to every ci-scaffold.cjs and ci-report.cjs run in this workflow. The renderer fills the branches, the switch condition, the path-twin note, the setup action, the timeout floor and the README step from the profile, and leaves out any block the profile does not set, so another repository never receives this one's names. Exit 3 means the CI profile is missing or invalid: show the error and stop with STATUS=FAIL. Never fill a slot by hand."
+      - "Build the protected name list with node .skilled/commands/doctor/scripts/ci-scaffold.cjs --protected, which prints the profile's protected workflow file names one per line, and nothing for the generic default. protected-set.md explains why a workflow is protected. In this repository the list is gate-inputs.yml, trigger-index-rebuild.yml, dispatch-enforcement-guard.yml, naming-standard-guard.yml and message-contract.yml."
 
   phase_2_resolve_target:
     purpose: "Fix the one path the route may create, and refuse before any plan is shown"
     activities:
       - "Take the name from --name=<file>, or ask for it once. Accept only a bare name that matches lowercase letters, digits and hyphens and ends in .yml. A name with a slash, a leading dot or an upper-case letter prints REFUSE: <name> is not a bare lowercase hyphen-case name ending in .yml and stops with STATUS=FAIL."
-      - "If the name is on the protected list, print REFUSE: <name> is a protected workflow and stop with STATUS=FAIL. A new workflow that does the same job as a protected one joins the set, so tell the operator to record it in protected-set.md by hand."
+      - "If the name is on the protected list, print REFUSE: <name> is a protected workflow and stop with STATUS=FAIL. A new workflow that does the same job as a protected one joins the set, so tell the operator to add it to the profile's protected list, with its role, by hand."
       - "If .github/workflows/<name> already exists as a file or a directory, print REFUSE: the target path already exists; scaffold creates new workflows only and stop with STATUS=FAIL. Do not offer to overwrite, merge or edit it."
 
   phase_3_collect_and_compose:
     purpose: "Turn the template into the operator's workflow and keep every standard it carries"
     activities:
-      - "Ask once, in one prompt: the workflow title, the one-sentence responsibility for the README row, the job id and job title, the switch group (TESTS, REPORTS, REVIEW, FRESHNESS or MESSAGES), the triggers and any path filters, the timeout in minutes (default 10) and the command the job runs. Offer MESSAGES only with a warning that it is the group of the required message-contract check."
-      - "Start from workflow-template.yml. Replace the title, the triggers, the job id and title, the group variable in the switch condition, the timeout and the run command with the answers. Keep the permissions block, the concurrency block, the full-SHA checkout pin with its release comment and the set -euo pipefail line unless the operator gives a reason to change one."
-      - "Replace every placeholder comment with a comment that states the lasting reason for the line it sits above, or delete it. Leave no instruction-to-the-author comment in the file. Use job-block-template.yml for any further job and apply the composite setup action only when the operator names a job that imports built trees."
-      - "A path filter that names .skilled/ needs its .opencode/ twin in the same filter, and a filter on generated paths belongs to the push trigger only. Add both twins and keep generated paths push-only."
-      - "Compose the README rows the file needs: one contents-table row and one push versus pull-request row. They are printed for the operator to add and never written by this route."
+      - "Ask once, in one prompt: the workflow title, the one-sentence responsibility for the README row when the profile names a workflows README, the job id and job title, the switch group from the profile's switch.groups when it has any, the triggers and any path filters, the timeout in minutes (default the profile's timeoutFloorMinutes) and the command the job runs. Rerun the renderer with --group=<group> when the operator picks a group other than the first. Offer a group whose job holds a required status check only with a warning that a skipped job reports Success. In this repository the groups are TESTS, REPORTS, REVIEW, FRESHNESS and MESSAGES, and MESSAGES is the group of the required message-contract check."
+      - "Start from the rendered workflow. Replace the title, the triggers, the job id and title, the timeout and the run command with the answers. Keep the permissions block, the concurrency block, the full-SHA checkout pin with its release comment, the rendered switch condition and the set -euo pipefail line unless the operator gives a reason to change one."
+      - "Replace every placeholder comment with a comment that states the lasting reason for the line it sits above, or delete it. Leave no instruction-to-the-author comment in the file. Use the rendered job block for any further job, and keep its setup action step only when the profile names one and the operator names a job that imports built trees."
+      - "When the profile lists path twins, a path filter that names one root needs its twin in the same filter. In this repository .skilled/ needs its .opencode/ twin. A filter on generated paths belongs to the push trigger only. Add the twins and keep generated paths push-only."
+      - "When the profile names a workflows README, compose the rows the file needs, one per table its rowTables lists. In this repository that is one contents-table row and one push versus pull-request row. They are printed for the operator to add and never written by this route."
 
   phase_4_plan_and_approval:
     purpose: "Show exactly what will be created, then ask once"
@@ -90,7 +94,7 @@ workflow:
     purpose: "Create the one approved file and prove it reads back"
     activities:
       - "Check again that .github/workflows/<name> still does not exist, then create it with the approved content. If it now exists, print the existing-target refusal and stop."
-      - "Re-read the created file and print its first line. Run node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh and show the new file's row, so a parse error or a drift flag is visible before the operator commits. A readme-row-missing flag is expected until the operator adds the printed rows."
+      - "Re-read the created file and print its first line. Run node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh and show the new file's row, so a parse error or a drift flag is visible before the operator commits. Where the profile names a workflows README, a readme-row-missing flag is expected until the operator adds the printed rows."
       - "Record the undo step: delete the created file."
 
   phase_6_report:

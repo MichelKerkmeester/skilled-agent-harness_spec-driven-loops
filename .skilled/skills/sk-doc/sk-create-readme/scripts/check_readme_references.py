@@ -162,6 +162,7 @@ REPOSITORY_ROOT_PREFIXES = (
     ".github/",
     ".skilled/", ".opencode/",
     ".claude/", ".codex/", ".cursor/", ".devin/", ".hermes/", ".pi/",
+    ".sk-code/",
     "specs/",
     "opencode.json",
     ".utcp_config.json",
@@ -1271,6 +1272,19 @@ def run_self_test() -> int:
         (root / "build" / "README.md").write_text("`gone.md`\n", encoding="utf-8")
         broken, missing = check_readme(str(root / "build" / "README.md"))
         if missing is not None or print_result("self-test-class-readme-in-ignored-folder", broken, None):
+            return 1
+        # A tracked file under a repository-root config folder resolves from a README in any folder.
+        (root / ".sk-code").mkdir(exist_ok=True)
+        (root / ".sk-code" / "ci.json").write_text("{}\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(root), "add", "-A"], check=True)
+        _TRACKED_NAMES.clear()
+        (root / "hub" / "README.md").write_text("The profile is `.sk-code/ci.json`.\n", encoding="utf-8")
+        rooted, missing = check_readme(str(root / "hub" / "README.md"))
+        if missing is not None or not print_result("self-test-root-config-folder", rooted, None):
+            return 1
+        (root / "hub" / "README.md").write_text("`.sk-code/gone.json`\n", encoding="utf-8")
+        broken, missing = check_readme(str(root / "hub" / "README.md"))
+        if missing is not None or print_result("self-test-root-config-folder-missing", broken, None):
             return 1
     print("SELF-TEST PASS: positive, negative, example-fence, path-shaped prose, broken-path, "
           "marker and absent-by-design cases")

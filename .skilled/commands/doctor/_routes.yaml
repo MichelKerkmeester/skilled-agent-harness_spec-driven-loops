@@ -348,8 +348,8 @@ routes:
     target: report
     default_target: true
     yaml: doctor-ci-report.yaml
-    setup_vars: [execution_mode, json_output, sha, use_gh]
-    allowed_flags: ["--json", "--sha=<sha>", "--no-gh"]
+    setup_vars: [execution_mode, json_output, sha, use_gh, profile_path]
+    allowed_flags: ["--json", "--sha=<sha>", "--no-gh", "--profile=<path>"]
     mutating: read-only
     gate3_location: "n/a (read-only report; writes nothing)"
     mcp_tools: []
@@ -370,11 +370,13 @@ routes:
   - command: /doctor:ci
     target: scaffold
     yaml: doctor-ci-scaffold.yaml
-    setup_vars: [execution_mode, dry_run, workflow_name]
-    allowed_flags: ["--dry-run", "--name=<file>"]
+    setup_vars: [execution_mode, dry_run, workflow_name, profile_path]
+    allowed_flags: ["--dry-run", "--name=<file>", "--profile=<path>"]
     mutating: mutates
     gate3_location: "the new .github/workflows/ file named by --name, written only after an explicit yes"
     mcp_tools: []
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/ci-scaffold.cjs'
     trigger_phrases:
       - "scaffold a github actions workflow"
       - "create a workflow from the ci template"
@@ -384,11 +386,13 @@ routes:
   - command: /doctor:ci
     target: toggle
     yaml: doctor-ci-toggle.yaml
-    setup_vars: [execution_mode, variable, state]
-    allowed_flags: ["--variable=<name>", "--state=<on|off>"]
+    setup_vars: [execution_mode, variable, state, profile_path]
+    allowed_flags: ["--variable=<name>", "--state=<on|off>", "--profile=<path>"]
     mutating: mutates
     gate3_location: "the repository variable named by --variable, set only after an explicit yes"
     mcp_tools: []
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/ci-toggle.cjs'
     trigger_phrases:
       - "turn off a ci workflow"
       - "set a ci switch variable"

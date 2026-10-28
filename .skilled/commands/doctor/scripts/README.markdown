@@ -34,6 +34,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- command-catalog-mirror-check.cjs
 +-- check-mcp-mutation-class.sh
 +-- ci-report.cjs
++-- ci-scaffold.cjs
++-- ci-toggle.cjs
 +-- doctor-phrase-reach.cjs
 +-- git-hook-gates.cjs
 +-- git-setup-check.cjs
@@ -49,6 +51,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- sk-code-quality-config.cjs
 +-- sk-code-setup-check.cjs
 +-- skill-graph-freshness.cjs
++-- lib/
+|   `-- ci-profile.cjs  # the repository CI profile loader the report, scaffold and toggle scripts share
 +-- tests/            # one suite per script, plus run-all.sh
 |   `-- opencode-version-battery.test.cjs
 `-- README.markdown
@@ -78,7 +82,10 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails. Prose divergence reports and fails only under `--strict`. |
 | `doctor-phrase-reach.cjs` | Scores every activated doctor phrase and each runnable doctor command through the built advisor scorer, then keeps the three results the hooks show. It fails when a phrase reaches neither the top pick nor the second line. It also fails if a runnable command does not rank first or an activated phrase has fewer than three words. It exits 2 when the advisor build is missing or stale. |
 | `opencode-version-battery.cjs` | Checks this repository's OpenCode plugins on OpenCode 1 and 2. On 1 it proves plugin discovery through `debug config` and plugin load through an import check. On 2 it starts and stops a private server with the v2 binary it selected (`$OPENCODE_BIN`, `opencode` or `opencode2`, whichever reports a v2 version) and reads plugin and skill state from it. It exits 0 when every requested leg passes, 1 on a failed leg, 2 on a usage error, a crash or an `--out` file it cannot write and 3 when a leg is degraded or skipped. |
-| `ci-report.cjs` | Reads every workflow under `.github/workflows/` and reports its `SKILLED_CI*` switch state, triggers, path filters and drift flags for `/doctor:ci report`. A switch is read from each job's `if:` expression, so the workflow file is its only copy, and a repository variable value is reduced to a state and never printed. It exits 0 on a printed report, 1 when a workflow fails to parse and 2 on a bad argument. |
+| `ci-report.cjs` | Reads every workflow under `.github/workflows/` and reports its switch state, triggers, path filters and drift flags for `/doctor:ci report`. A switch is any variable a job's `if:` compares against `off`, so the workflow file is its only copy, and a repository variable value is reduced to a state and never printed. The branch, the required switch, the exempt files, the README and the rebuild trailer come from the CI profile, and the JSON names the profile it read. It exits 0 on a printed report, 1 when a workflow fails to parse, 2 on a bad argument and 3 when the CI profile is missing or invalid. |
+| `ci-scaffold.cjs` | Renders the sk-code-ci workflow or job template from the CI profile for `/doctor:ci scaffold`, and with `--protected` prints the profile's protected workflow names. It writes nothing. |
+| `ci-toggle.cjs` | Plans one switch change for `/doctor:ci toggle`: the allowlist, the refusals from the live ruleset, `neverOff` and the README, the no-op check, the exact `gh variable` command and the second named confirmation for a protected workflow. It never changes a variable. |
+| `lib/ci-profile.cjs` | Finds, validates and normalizes the repository CI profile (`--profile`, then `git config skcode.ciProfile`, then `.sk-code/ci.json`, then a generic default that forces nothing), rejecting an unknown key. |
 | `orphan-process-check.cjs` | Lists the helper processes and model servers this user started that were reparented to init and are older than a minimum age (60 minutes by default), classifying each as a node test, vitest, tail monitor, grep search, executor worker, session-relaunch test helper, model server or git-live-follow, and reports each one's age and memory with a total. `--reap` sends `SIGTERM` after re-checking each process's identity, `--yes` confirms it, and `--json` and `--summary` print machine-readable and one-line forms. It exits 0 on a printed report, 1 on an unexpected error and 2 on a bad argument. |
 
 ---

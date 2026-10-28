@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.1.0.0
 ---
 
 # Job Shape Rules
@@ -21,6 +21,8 @@ What every job carries beyond its steps: a timeout, a permissions scope, a concu
 ## 1. OVERVIEW
 
 Five parts of a job sit here: its timeout, its permissions, its concurrency group, the composite setup action that provisions it and the switch condition that can turn it off. Each part states the rule, the file and line that show it and what enforces it.
+
+The shape of each part is universal. The values a repository fills in, its timeout floor, its setup action and its switch variables, come from the repository CI profile described in `references/protected-set.md`. A line marked Skilled example shows this repository's value and holds nowhere else.
 
 
 ---
@@ -87,7 +89,7 @@ Enforcement: honour-system.
 
 status: landed
 
-Every workflow that needs the repository's dependency trees calls one composite action instead of repeating the install and build steps.
+Every workflow that needs the repository's dependency trees calls one composite action instead of repeating the install and build steps. The profile's `setupAction` names it, and the job template adds the step only when the profile does. Everything below in this section is the Skilled example.
 
 ```yaml
 - name: Provision the dependency trees
@@ -109,23 +111,26 @@ Today five jobs in three workflows call the action: `opencode-dual-version.yml` 
 
 ## 6. THE SWITCH IF SHAPE
 
-A job can be switched off from repository variables with one condition between `name:` and `runs-on:`. With no variable set, everything runs.
+A job can be switched off from repository variables with one condition between `name:` and `runs-on:`. With no variable set, everything runs. A switch is any repository variable the condition compares against `off`, so `/doctor:ci report` reads any repository's names. The profile's `switch.master` and `switch.groups` name them, and the example below uses neutral names.
 
 ```yaml
 jobs:
   example:
     name: Example job
-    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
+    if: vars.ACME_CI != 'off' && vars.ACME_CI_TESTS != 'off'
     runs-on: ubuntu-latest
 ```
+
+Skilled example: `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'`.
 
 - The condition is **job-level**, because `on:` filters see no contexts.
 - Where a job already has a condition, the switch is ANDed onto it and never replaces it.
 - `off` is the only disable token. `0`, `false` or a typo leaves the job on. That is fail-safe and must be documented wherever the variables are described.
-- `SKILLED_CI` is the master switch. The five group switches are `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
-- `message-contract.yml` is never switched off while its ruleset context is required, and the other protected workflows follow `references/protected-set.md`.
-- `dependabot-auto-merge.yml` gets no switch.
+- A job whose status context the branch ruleset requires is never switched off, and the other protected workflows follow `references/protected-set.md`.
+- A workflow in the profile's `switch.exempt` gets no switch. When `switch.required` is true, every other job carries one.
+- Skilled example: `SKILLED_CI` is the master switch. The five group switches are `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
+- Skilled example: `message-contract.yml` holds the required context, and `dependabot-auto-merge.yml` is the exempt workflow.
 
-The shape is the rule. Today 42 of the 44 jobs carry it, and all 42 test `SKILLED_CI`. The group variables split as 24 on `SKILLED_CI_TESTS`, 11 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:67`, `trigger-index-rebuild.yml:33` and `trigger-index-rebuild.yml:189`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
+Skilled example: the shape is the rule. Today 42 of the 44 jobs carry it, and all 42 test `SKILLED_CI`. The group variables split as 24 on `SKILLED_CI_TESTS`, 11 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:67`, `trigger-index-rebuild.yml:33` and `trigger-index-rebuild.yml:189`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
 
 Enforcement: honour-system.

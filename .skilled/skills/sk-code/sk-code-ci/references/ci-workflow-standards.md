@@ -8,7 +8,7 @@ trigger_phrases:
   - "sha pinned actions"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.1.0.0
 ---
 
 # CI Workflow Standards - Rule Index
@@ -23,6 +23,10 @@ The normative list of rules the repository's workflows follow, with the evidence
 
 A reader lands here first, then follows a row to the detailed file. The counts are the values read on the tree when this packet was written. Re-run the quoted command before relying on one, because the workflow files change faster than this index.
 
+### Universal Rules and Repository Values
+
+Each statement is universal. The names it applies to, the twin roots, the switch variables, the branches and the README tables, come from the repository CI profile described in `references/protected-set.md`. The evidence and the counts are read from this repository, so a line marked Skilled example shows this repository's value and holds nowhere else.
+
 ### Reading the Enforcement Column
 
 A row says **machine gate** when a script or workflow fails on a violation. It says **honour-system** when nothing checks the rule, so only a reviewer who knows it will catch a lapse. A rule with no enforcement is honour-system, and this index says so rather than implying a check exists.
@@ -33,9 +37,9 @@ A row says **machine gate** when a script or workflow fails on a violation. It s
 
 | Rule | Statement | Followed today | Evidence | Enforcement |
 |---|---|---|---|---|
-| Path parity | The path parity rule: every path filter and hook input that names one source root names its twin in the other root, so `.skilled/` and `.opencode/` stay mirrored | Yes | `.github/scripts/check-gate-inputs.sh:112-124` (the twin matcher), run by `.github/workflows/gate-inputs.yml` | Machine gate. The only workflow rule one enforces |
+| Path parity | When the profile lists path twins, every path filter and hook input that names one root names its twin. Skilled example: `.skilled/` and `.opencode/` stay mirrored | Yes | `.github/scripts/check-gate-inputs.sh:112-124` (the twin matcher), run by `.github/workflows/gate-inputs.yml` | Machine gate. The only workflow rule one enforces |
 | SHA-pinned `uses:` | Every remote action is pinned to a full 40-character commit SHA with the release tag as a trailing comment | 32 of 32 workflows, 89 remote `uses:` lines | `.github/workflows/advisory-checks.yml:31` (`actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1`). Dependabot keeps the pins current through the `github-actions` ecosystem in `.github/dependabot.yml:33` | Honour-system. Dependabot refreshes a pin but nothing rejects an unpinned one |
-| README row per workflow | Every file in `.github/workflows/` has one row in the contents table of the workflow README, and a trigger row in the push versus pull-request table | 32 of 32 | `.github/workflows/README.md:26-57` (contents) and `.github/workflows/README.md:72` (the push versus pull-request row for `message-contract.yml`) | Honour-system |
+| README row per workflow | When the profile names a workflows README, every file in `.github/workflows/` has one row in each table its `rowTables` lists. Skilled example: the contents table and the push versus pull-request table | 32 of 32 | `.github/workflows/README.md:26-57` (contents) and `.github/workflows/README.md:72` (the push versus pull-request row for `message-contract.yml`) | Honour-system |
 | `set -euo pipefail` | A multi-line `run:` block starts with `set -euo pipefail`. A report-only step that must keep going on a failure uses `set -uo pipefail` and says why | 29 of the 30 workflow files with a multi-line `run:` carry `set -euo pipefail`. Eight steps are deliberately `-uo`: `.github/workflows/advisory-checks.yml:39`, `:53` and `:70` (report-only steps), `.github/workflows/spec-kit-check.yml:143-144` (two background vitest processes, each wait collected into `status`), `.github/workflows/strict-pass-freshness-report.yml:60` and `:110` (baseline fetch and sweep keep going to record a report), `.github/workflows/trigger-index-rebuild.yml:74` and `:283` (commit and push steps handle their own exit codes) | `.github/workflows/message-contract.yml:81` (`set -euo pipefail`), `.github/workflows/advisory-checks.yml:39` | Honour-system here. The shell doctrine is owned by `sk-code-skilled` |
 | Fork and secret safety | No `pull_request_target` trigger. A free-text event field (branch name, body, title, commit message) reaches a script only through `env:`, never interpolated into `run:`. Only hex SHAs and numbers are interpolated in a script | Yes. No workflow uses `pull_request_target` | `.github/workflows/message-contract.yml:72-79` (head ref and body passed through `env:`) | Honour-system |
 | Matrix and `fail-fast` | A matrix whose entries report independently sets `fail-fast: false`, so one failing entry does not cancel the others | Both matrix workflows set it | `.github/workflows/pi-extension-tests.yml:61` and `.github/workflows/opencode-dual-version.yml:92` | Honour-system |
@@ -56,7 +60,7 @@ A row says **machine gate** when a script or workflow fails on a violation. It s
 
 ```bash
 grep -hE '^\s*-?\s*uses: ' .github/workflows/*.yml | grep -v 'uses: \./' | grep -vE '@[0-9a-f]{40}( |$)'
-for f in .github/workflows/*.yml; do grep -qF "$(basename "$f")" .github/workflows/README.md || echo "no row: $f"; done
+for f in .github/workflows/*.yml; do grep -qF "$(basename "$f")" .github/workflows/README.md || echo "no row: $f"; done  # Skilled example README path
 grep -l 'pull_request_target' .github/workflows/*.yml
 ```
 

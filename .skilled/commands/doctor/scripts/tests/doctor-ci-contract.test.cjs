@@ -65,8 +65,18 @@ const SHIPPED_FILES = [
   path.join(ASSETS, 'doctor-ci-scaffold.yaml'),
   path.join(ASSETS, 'doctor-ci-toggle.yaml'),
   path.join(DOCTOR, 'scripts', 'ci-report.cjs'),
+  path.join(DOCTOR, 'scripts', 'ci-scaffold.cjs'),
+  path.join(DOCTOR, 'scripts', 'ci-toggle.cjs'),
+  path.join(DOCTOR, 'scripts', 'lib', 'ci-profile.cjs'),
+  path.join(DOCTOR, 'scripts', 'tests', 'ci-profile.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'ci-report.test.cjs'),
+  path.join(DOCTOR, 'scripts', 'tests', 'ci-scaffold.test.cjs'),
+  path.join(DOCTOR, 'scripts', 'tests', 'ci-toggle.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'doctor-ci-contract.test.cjs'),
+  path.join(REPO_ROOT, '.sk-code', 'ci.json'),
+  path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'ci-profile.template.json'),
+  path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'workflow-template.yml'),
+  path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'job-block-template.yml'),
 ];
 const EPHEMERAL_ID = [/\bR[0-9]{2}\b/, /\bD[0-9]{1,2}\b/, /[Pp]hase 0[0-9]/];
 
@@ -100,6 +110,18 @@ test('the toggle workflow and its route agree on whether the command runs', () =
     assert.match(toggle.gate3_location, /^n\/a/);
     assert.match(TOGGLE_YAML, /this route writes nothing/);
   }
+});
+
+// All three scripts take --profile, so a route that rejects the flag would leave the
+// promised way to name another profile file unreachable from the command.
+test('each route allows --profile=<path>, the router documents it and each workflow passes it on', () => {
+  const workflows = { report: REPORT_YAML, scaffold: SCAFFOLD_YAML, toggle: TOGGLE_YAML };
+  for (const target of TARGETS) {
+    assert.ok(route(target).allowed_flags.includes('--profile=<path>'), `${target}: --profile=<path> is not allowed`);
+    assert.match(workflows[target], /--profile=<path>/, `${target}: the workflow does not pass --profile on`);
+  }
+  assert.match(ROUTER, /^\| `--profile=<path>` \| `report`, `scaffold`, `toggle` \|/m);
+  assert.match(PRESENTATION, /\/doctor:ci report \[--json\] \[--sha=<sha>\] \[--no-gh\] \[--profile=<path>\]/);
 });
 
 test('every trigger phrase has three or more words and every route declares its tool surface', () => {
@@ -181,6 +203,25 @@ test('the toggle workflow allows the six documented names and refuses the messag
   assert.ok(PRESENTATION.includes(masterRefusal));
   assert.ok(TOGGLE_YAML.includes('gh variable set <name> --body off'));
   assert.ok(TOGGLE_YAML.includes('gh variable delete <name>'));
+});
+
+test('the scaffold renders its templates and the toggle plans through the scripts the routes declare', () => {
+  assert.deepEqual(route('scaffold').script_invocations, ['node .skilled/commands/doctor/scripts/ci-scaffold.cjs']);
+  assert.deepEqual(route('toggle').script_invocations, ['node .skilled/commands/doctor/scripts/ci-toggle.cjs']);
+  assert.match(SCAFFOLD_YAML, /Never fill a slot by hand/);
+  assert.match(TOGGLE_YAML, /Only the exact variable name counts as the second confirmation/);
+  assert.match(PRESENTATION, /^Second confirmation: Type \[name\] to confirm a second time/m);
+});
+
+// Without the committed profile this repository would read the generic default, and
+// a single yes could then switch off a guard or the required message check.
+test('this repository commits the CI profile that keeps its protections', () => {
+  const profile = JSON.parse(read(path.join(REPO_ROOT, '.sk-code', 'ci.json')));
+  assert.equal(profile.switch.master, SWITCH_VARIABLES[0]);
+  assert.deepEqual(profile.switch.groups, SWITCH_VARIABLES.slice(1));
+  assert.ok(profile.neverOff.includes('SKILLED_CI_MESSAGES'));
+  assert.ok(profile.neverOff.includes('SKILLED_CI'));
+  assert.ok(profile.protected.some((entry) => entry.file === 'message-contract.yml'));
 });
 
 test('the workflows README still carries the sentence the toggle enforces', () => {

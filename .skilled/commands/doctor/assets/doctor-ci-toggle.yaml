@@ -2,8 +2,8 @@
 # DOCTOR: CI SWITCH TOGGLE (INTERACTIVE, ONE REPOSITORY VARIABLE)
 # ─────────────────────────────────────────────────────────────────
 role: Careful operator turning one documented CI switch off or back on in the repository's Actions variables
-purpose: Show the current state of one of the six documented switch variables and the workflows it covers, print the exact gh variable command, and run it only after an explicit yes
-action: Read the switch section of the workflows README and the variable list -> pick one variable and one state -> refuse an undocumented name or a protected switch -> print the plan -> explicit yes -> run the command -> read the state back -> report
+purpose: Show the current state of one switch variable from the repository CI profile and the workflows it covers, print the exact gh variable command, and run it only after an explicit yes, and a second named confirmation when it switches off a protected workflow
+action: Run the toggle planner -> refuse an undocumented name, a switch behind a required status check, a neverOff switch, a README-forbidden switch or a no-op -> print the plan -> explicit yes -> second named confirmation for a protected workflow -> run the command -> read the state back -> report
 skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -24,20 +24,23 @@ operating_mode:
 mutation_boundaries:
   read_only: false
   allowed_targets:
-    - "one repository Actions variable named by the operator, limited to SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS and SKILLED_CI_MESSAGES, set to off or deleted"
+    - "one repository Actions variable named by the operator and listed in the planner's allowlist (the profile's switch.master and switch.groups, or the switch names the workflows use when the profile declares none), set to off or deleted. In this repository the allowlist is SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS and SKILLED_CI_MESSAGES"
   forbidden_targets:
-    - "any variable not listed above"
-    - "setting SKILLED_CI_MESSAGES or SKILLED_CI to off while the workflows README says they must stay unset for the message contract"
+    - "any variable not in the allowlist"
+    - "setting to off a variable that skips a job whose status context the live branch ruleset requires, a variable in the profile's neverOff list, or a variable the profile's workflows README says must stay unset. In this repository that keeps SKILLED_CI_MESSAGES and SKILLED_CI unset for the message contract"
+    - "setting a variable to the state it already has"
     - "repository secrets, environment variables and organization variables"
     - "any workflow file and the workflows README"
     - "the git index, history and remotes"
-  invariant: "The route changes at most one variable per run, only to off or to unset, and only after the operator answers yes to the exact command it printed. A variable change reaches the whole repository and is not in git, so the plan names the workflows it covers and the opposite command that undoes it."
+  invariant: "The route changes at most one variable per run, only to off or to unset, and only after the operator answers yes to the exact command the planner printed. A change that switches off a workflow the profile protects also needs the second named confirmation the plan asks for. A variable change reaches the whole repository and is not in git, so the plan names the workflows it covers and the opposite command that undoes it."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  switch_documentation: ".github/workflows/README.md (the On/off switches section)"
+  planner_script: ".skilled/commands/doctor/scripts/ci-toggle.cjs"
+  ci_profile: ".sk-code/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs"
+  switch_documentation: "the profile's workflowsReadme (here .github/workflows/README.md, the On/off switches section)"
   standards_packet: ".skilled/skills/sk-code/sk-code-ci/"
   protected_set: ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md"
 
@@ -46,8 +49,9 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 inputs:
   execution_mode: "INTERACTIVE"
-  variable: "--variable=<name> is one of SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS or SKILLED_CI_MESSAGES. Without it, ask once and list the six."
+  variable: "--variable=<name> is one name from the planner's allowlist. Without it, ask once and list the allowlist. Here that is SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS or SKILLED_CI_MESSAGES."
   state: "--state=<on|off>. off sets the variable to off, which skips every job that reads it. on deletes the variable, because an unset variable runs the job. Without it, ask once."
+  profile_path: "--profile=<path> reads the CI profile from this file instead of .sk-code/ci.json or git config skcode.ciProfile (default none, so the planner discovers the profile)."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -56,23 +60,25 @@ workflow:
   phase_1_read:
     purpose: "Show the current state before asking for anything"
     activities:
-      - "Read the On/off switches section of .github/workflows/README.md: the table that maps each variable to the workflows it covers, and the sentence that says which variables must stay unset."
-      - "Run gh variable list --json name,value and keep, for each of the six names, only whether it is unset, set to off or set to another value. Never print a value. If gh cannot be read, say the state is unknown and continue to the plan, because the operator can still run the printed command themselves."
+      - "Take the variable and the state from the flags, or ask once for whichever is missing. To list the allowlist before asking, run node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh and read the variables keys."
+      - "Run node .skilled/commands/doctor/scripts/ci-toggle.cjs --variable=<name> --state=<on|off> --json once, adding --profile=<path> when the operator passed it. Add it to the ci-report.cjs run above too, so the allowlist comes from the same profile. It reads the CI profile, the workflows, gh variable list --json name,value, and the branch ruleset through gh api repos/{owner}/{repo}/rules/branches/<branch>. It never prints a variable value and never writes. If gh cannot be read, the state reads unknown and the plan still prints, because the operator can still run the printed command themselves."
+      - "Exit 2 is a bad argument and exit 3 a missing or invalid CI profile or a workflow that does not parse: show the script's error and stop with STATUS=FAIL."
 
-  phase_2_select:
-    purpose: "Bind one variable and one state"
+  phase_2_refuse:
+    purpose: "Refuse a change the planner refused, before any plan is shown"
     activities:
-      - "Take the variable and the state from the flags, or ask once for whichever is missing."
-      - "Accept only the six names SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS and SKILLED_CI_MESSAGES. For any other name print REFUSE: <name> is not a documented switch and stop with STATUS=FAIL."
+      - "A skipped job reports Success, so switching off a job that holds a required status context would let a change merge that the check exists to stop. The planner refuses in this order: a name outside the allowlist (REFUSE: <name> is not a documented switch), a variable that skips a job whose context the live ruleset requires, a variable in the profile's neverOff list (it holds whether or not the ruleset can be read), and a variable the profile's workflows README says must stay unset. In this repository the ruleset requires the message-contract context, so the planner prints REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context, and REFUSE: SKILLED_CI must stay unset because it also skips message-contract.yml, the only check the ruleset requires, and a skipped job reports Success."
+      - "When the planner exits 1, print its first refusal line exactly as printed and stop with STATUS=FAIL. Never offer a way around a refusal."
+      - "When the plan status is NO_CHANGE, the variable already has the requested state: render the presentation contract's no-change result and stop with STATUS=OK and no change. Never run a command that changes nothing."
 
-  phase_3_refuse_or_plan:
-    purpose: "Refuse a switch that would disable the required check, otherwise show the exact command"
+  phase_3_plan:
+    purpose: "Show the exact command and ask, twice when a protected workflow stops"
     activities:
-      - "A skipped job reports Success, so switching off the job that holds the only required status context would let a commit with a wrong message merge. If the variable is SKILLED_CI_MESSAGES and the state is off, print REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context and stop with STATUS=FAIL. Apply the refusal unless the On/off switches section is present and no longer contains the sentence SKILLED_CI_MESSAGES must stay unset. A missing section keeps the refusal, because the name is still the message-contract group."
-      - "The master switch SKILLED_CI switches the same job off, and the same README sentence says it must stay unset too. If the variable is SKILLED_CI and the state is off, print REFUSE: SKILLED_CI must stay unset because it also skips message-contract.yml, the only check the ruleset requires, and a skipped job reports Success. Apply it under the same condition and stop with STATUS=FAIL."
-      - "Render the presentation contract's change plan: the variable, its current state, the requested state, the workflows the README table says it covers, and the exact command. For state off the command is gh variable set <name> --body off. For state on the command is gh variable delete <name>. If the variable is already in the requested state, render the presentation contract's no-change result and stop with STATUS=OK and no change."
-      - "Name the effect in the plan: it applies to workflow runs that start after the change, it reaches every clone of the repository's Actions settings, and git does not record it. SKILLED_CI_REPORTS also covers the trigger index rebuild, so say that when it is chosen."
+      - "Render the presentation contract's change plan from the planner's output: the variable, its current state, the requested state, the workflows it covers and the exact command. For state off the command is gh variable set <name> --body off. For state on the command is gh variable delete <name>."
+      - "When the planner prints a Required checks: not read (<reason>); the ruleset refusal was not applied line (state off with requiredChecks.readable false), show that line in the plan, before the approval prompt, because no required status check was checked."
+      - "Name the effect in the plan: it applies to workflow runs that start after the change, it reaches every clone of the repository's Actions settings, and git does not record it. In this repository SKILLED_CI_REPORTS also covers the trigger index rebuild, so say that when it is chosen."
       - "Ask the approval prompt. Any answer other than yes counts as no: record the change as cancelled and run nothing."
+      - "When the plan carries secondConfirmation, the change switches off a workflow the profile protects. After the first yes, name each protected workflow with its role exactly as the plan lists it and ask the plan's prompt. Only the exact variable name counts as the second confirmation. Any other answer counts as no: record the change as cancelled and run nothing. In this repository SKILLED_CI_FRESHNESS reaches gate-inputs.yml, dispatch-enforcement-guard.yml and naming-standard-guard.yml, and SKILLED_CI_REPORTS reaches trigger-index-rebuild.yml."
 
   phase_4_apply_and_verify:
     purpose: "Run the one approved command and prove the state changed"

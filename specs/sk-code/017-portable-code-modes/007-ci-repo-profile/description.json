@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-code/017-portable-code-modes/007-ci-repo-profile",
+  "description": "CI repository profile for sk-code-ci and doctor ci",
+  "keywords": [
+    "repository",
+    "profile",
+    "sk-code-ci",
+    "doctor"
+  ],
+  "lastUpdated": "2026-10-27T21:49:45.524Z",
+  "specId": "007",
+  "folderSlug": "ci-repo-profile",
+  "parentChain": [
+    "sk-code",
+    "017-portable-code-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

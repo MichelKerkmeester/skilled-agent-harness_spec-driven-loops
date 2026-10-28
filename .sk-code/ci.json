@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "defaultBranch": "main",
+  "integrationBranches": ["main", "skilled/**"],
+  "workflowsReadme": {
+    "path": ".github/workflows/README.md",
+    "rowTables": ["the contents table", "the push versus pull-request table"]
+  },
+  "switch": {
+    "master": "SKILLED_CI",
+    "groups": [
+      "SKILLED_CI_TESTS",
+      "SKILLED_CI_REPORTS",
+      "SKILLED_CI_REVIEW",
+      "SKILLED_CI_FRESHNESS",
+      "SKILLED_CI_MESSAGES"
+    ],
+    "required": true,
+    "exempt": ["dependabot-auto-merge.yml"]
+  },
+  "neverOff": ["SKILLED_CI", "SKILLED_CI_MESSAGES"],
+  "protected": [
+    { "file": "gate-inputs.yml", "role": "It is the only enforcer of path parity between .skilled/ and .opencode/." },
+    { "file": "trigger-index-rebuild.yml", "role": "It keeps the job that runs repository code at contents: read and gives the write token only to the job that runs gh and git." },
+    { "file": "dispatch-enforcement-guard.yml", "role": "It checks the dispatch rules that other workflows and tools assume." },
+    { "file": "naming-standard-guard.yml", "role": "It checks the naming rules that other workflows and tools assume." },
+    { "file": "message-contract.yml", "role": "It holds the only status context the branch ruleset requires." }
+  ],
+  "pathTwins": [[".skilled/", ".opencode/"]],
+  "rebuildTrailer": "Trigger-Index-Rebuild: ci",
+  "setupAction": {
+    "uses": "./.github/actions/setup",
+    "with": { "cache": "true" },
+    "note": "Set cache to false to force a cold provision. bun-version is the only other input."
+  },
+  "timeoutFloorMinutes": 10
+}

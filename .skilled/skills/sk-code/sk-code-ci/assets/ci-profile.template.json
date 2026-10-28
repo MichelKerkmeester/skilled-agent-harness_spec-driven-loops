@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "defaultBranch": null,
+  "integrationBranches": [],
+  "workflowsReadme": null,
+  "switch": {
+    "master": null,
+    "groups": [],
+    "required": false,
+    "exempt": []
+  },
+  "neverOff": [],
+  "protected": [],
+  "pathTwins": [],
+  "rebuildTrailer": null,
+  "setupAction": null,
+  "timeoutFloorMinutes": 10
+}

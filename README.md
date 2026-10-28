@@ -1258,7 +1258,8 @@ Eleven commands check and repair the setup, one per area.
 
 - `report` (the default, read-only) lists every workflow with its switch state, triggers, path filters and drift flags
 - `scaffold` writes one new workflow under `.github/workflows/` from the CI surface's templates, after your yes. It refuses an existing file and a protected workflow name
-- `toggle` switches one of the six `SKILLED_CI*` repository variables off (it sets the variable to `off`) or back on (it deletes the variable), after your yes. It refuses to switch `SKILLED_CI` or `SKILLED_CI_MESSAGES` off while the [workflows README](.github/workflows/README.md#onoff-switches) says they must stay unset for the message-contract check
+- `toggle` switches one repository variable from the CI profile off (it sets the variable to `off`) or back on (it deletes the variable), after your yes. Here those are the six `SKILLED_CI*` variables. It refuses a variable that skips a status check the branch ruleset requires, so `SKILLED_CI` and `SKILLED_CI_MESSAGES` stay unset for the message-contract check, as the [workflows README](.github/workflows/README.md#onoff-switches) says. It refuses a change to the state the variable already has, and asks a second named confirmation before it switches off a protected workflow such as `gate-inputs.yml`
+- All three routes read the repository CI profile, `.sk-code/ci.json`, for the branch, the switch names, the protected workflows and the README. Another repository without one gets a generic default that forces none of these
 
 **`/doctor:git <hooks|standards|setup>`** - your own settings for the shipped git hooks and sk-git rules, and a check of which ones are live
 

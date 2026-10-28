@@ -1,13 +1,16 @@
+#<<! Profile template. /doctor:ci scaffold renders it with ci-scaffold.cjs --job from the repository CI profile, as the workflow template says.>>
 # Job scaffold. Paste the job under jobs: in a workflow that already carries the
 # workflow-level permissions and concurrency blocks. Replace every prose placeholder.
 jobs:
   example:
     name: Say what this job proves
+#<<#switch>>
     # Switch condition: job-level, ANDed onto any existing condition, off disables.
-    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    if: <<switchCondition>>
+#<</switch>>
     runs-on: ubuntu-latest
-    # Size from measured runs: max(10, 3 x p50, 2 x p100) minutes.
-    timeout-minutes: 10
+    # Size from measured runs: max(<<timeoutFloor>>, 3 x p50, 2 x p100) minutes.
+    timeout-minutes: <<timeoutFloor>>
     # Use this block only when the workflow declares permissions: {} at the top. A write
     # scope belongs to a job that runs no repository code. Delete it when the workflow
     # already grants contents: read to every job.
@@ -19,13 +22,16 @@ jobs:
           # Leave no token in the git config, so a step that later pushes gets it explicitly.
           persist-credentials: false
 
-      # Provision the dependency trees through the composite action. Set cache to false
-      # to force a cold provision. bun-version is the only other input.
+#<<#setupAction>>
+      #<<=setupComment:89>>
       - name: Provision the dependency trees
-        uses: ./.github/actions/setup
+        uses: <<setupUses>>
+#<<#setupWith>>
         with:
-          cache: 'true'
+          #<<=setupWith>>
+#<</setupWith>>
 
+#<</setupAction>>
       - name: Run the check
         run: |
           set -euo pipefail

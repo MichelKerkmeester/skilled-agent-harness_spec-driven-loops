@@ -31,7 +31,7 @@ Accepted answers:
 |--------|--------|---------|
 | `1` | target = `report` | List every workflow with its switch state, triggers, filters and drift flags. Reads only |
 | `2` | target = `scaffold` | Create one new workflow from the workflow standards templates, after you approve the whole file |
-| `3` | target = `toggle` | Turn one documented CI switch off or back on, after you approve the exact command |
+| `3` | target = `toggle` | Turn one CI switch from the repository CI profile off or back on, after you approve the exact command |
 | `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
 
 On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
@@ -46,9 +46,9 @@ Render this table for `menu`, `list` or `?`. Values should mirror `_routes.yaml`
 
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
-| `report` | `doctor-ci-report.yaml` | read-only | List every workflow with its switch state, triggers, path filters, purpose and drift flags, and name the newest non-rebuild commit on main |
+| `report` | `doctor-ci-report.yaml` | read-only | List every workflow with its switch state, triggers, path filters, purpose and drift flags, and name the newest non-rebuild commit on the default branch |
 | `scaffold` | `doctor-ci-scaffold.yaml` | mutates | Create one new `.github/workflows/` file from the standards templates, after an explicit yes |
-| `toggle` | `doctor-ci-toggle.yaml` | mutates | Set or clear one of the six documented switch variables, after an explicit yes |
+| `toggle` | `doctor-ci-toggle.yaml` | mutates | Set or clear one switch variable from the repository CI profile, after an explicit yes |
 
 ### Setup Dashboard
 
@@ -73,6 +73,7 @@ Render the script's table as returned, one row per workflow, under this header.
 CI WORKFLOW REPORT
 Workflows: [n]  Jobs: [n]
 Variables: [none | NAME=state for each variable that is set | unknown (reason)]
+Profile: [default | repo | cli | git-config] ([the profile path, when there is one])
 Newest non-rebuild SHA: [40 hex | none] ([reason])
 
 [table: Workflow | Switch | Jobs | Events | Filters | Drift flags | Purpose]
@@ -80,7 +81,7 @@ Newest non-rebuild SHA: [40 hex | none] ([reason])
 Not checked: path-parity, shell-strict-mode, matrix-guidance. The workflow standards packet owns these rules, so a clean row is not a pass for them.
 ```
 
-Switch values: `on` (every job runs), `off` (every job is skipped by a variable set to off), `partial` (some jobs skip and some run), `missing` (no job carries a switch) and `unknown` (gh could not be read). A variable is shown as `off`, `unset`, `other` or `unknown`, never by its value.
+Switch values: `on` (every job runs), `off` (every job is skipped by a variable set to off), `partial` (some jobs skip and some run), `missing` (no job carries a switch while the CI profile requires one) and `unknown` (gh could not be read). A variable is shown as `off`, `unset`, `other` or `unknown`, never by its value. The variables are the profile's declared switches, then any other name a workflow compares against `off`.
 
 ### Scaffold Plan And Approval
 
@@ -88,9 +89,9 @@ Switch values: `on` (every job runs), `off` (every job is skipped by a variable 
 WORKFLOW SCAFFOLD PLAN
 Target file: .github/workflows/[name].yml
 Templates: .skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml, .skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml
-Switch group: [TESTS|REPORTS|REVIEW|FRESHNESS|MESSAGES]
+Switch group: [a group from the CI profile, here TESTS|REPORTS|REVIEW|FRESHNESS|MESSAGES | none]
 Timeout: [n] minutes
-README row to add by hand: [the row for .github/workflows/README.md]
+README rows to add by hand: [one row per table the profile's workflowsReadme lists | none, the profile names no README]
 
 --- proposed file ---
 [the whole file]
@@ -116,14 +117,36 @@ SWITCH CHANGE PLAN
 Variable: [name]
 Now: [on|off|unknown] ([unset|set to off|set to another value|not readable])
 Change: [off|on]
+Covers: [the workflows whose jobs read the variable]
+Required checks: not read ([reason]); the ruleset refusal was not applied
 Command: [gh variable set [name] --body off | gh variable delete [name]]
+Undo: [gh variable delete [name] | gh variable set [name] --body off]
 Run this command? [yes/no]
 ```
 
-A refused change prints one of these lines, `STATUS=FAIL ERROR="refused"` and exits without a plan:
+The `Required checks` line appears only for a change to off when the planner could not read the branch ruleset, so no required status check was checked. Leave it out otherwise.
+
+When the plan lists protected workflows, the change switches off a workflow the CI profile protects. After the first yes, ask once more and accept only the variable name:
+
+```text
+Protected workflows this switches off:
+- [file]: [the role the profile records for it]
+Second confirmation: Type [name] to confirm a second time that these protected workflows stop running:
+```
+
+A refused change prints one of these lines, `STATUS=FAIL ERROR="refused"` and exits without a plan. The required-check lines come from the live branch ruleset, and the last two from the profile's `neverOff` list and its workflows README:
 
 ```text
 REFUSE: [name] is not a documented switch
+REFUSE: [group] must stay unset while the ruleset requires that context
+REFUSE: [master] must stay unset because it also skips [file], the only check the ruleset requires, and a skipped job reports Success
+REFUSE: [name] must stay unset because the CI profile lists it in neverOff
+REFUSE: [name] must stay unset, as [README path] says
+```
+
+In this repository the ruleset requires the message-contract context, so the two required-check lines read:
+
+```text
 REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context
 REFUSE: SKILLED_CI must stay unset because it also skips message-contract.yml, the only check the ruleset requires, and a skipped job reports Success
 ```
@@ -140,6 +163,8 @@ Drift flags: [n] workflows carry at least one
 Changed: none
 STATUS=[OK|FAIL|ERROR]
 ```
+
+When the report script exits 2 or 3, render the failure summary with the script's message and this accepted invocation on its `Next:` line: `/doctor:ci report [--json] [--sha=<sha>] [--no-gh] [--profile=<path>]`.
 
 ### Mutating Result
 
@@ -193,13 +218,15 @@ STATUS=FAIL ERROR="[message]"
 | Situation | Suggested Action |
 |-----------|------------------|
 | Every switch reads `unknown` | `gh` is missing, not logged in, or `--no-gh` was passed. Run `gh auth status`, then rerun `/doctor:ci report` |
-| The newest non-rebuild SHA is `none` | The last 100 runs on main are all rebuild commits, or gh could not read them. Pass `--sha=<40 hex>` to name a commit yourself |
-| A workflow shows `missing` | No job in it carries the switch condition. Add the condition the job-shape rules show, or confirm the workflow is exempt |
+| The newest non-rebuild SHA is `none` | The last 100 runs on the default branch are all rebuild commits, or gh could not read them. Pass `--sha=<40 hex>` to name a commit yourself |
+| A workflow shows `missing` | The CI profile requires a switch on every job and no job in it carries one. Add the condition the job-shape rules show, or add the file to the profile's `switch.exempt` |
+| The report, scaffold or toggle exits 3 | The CI profile is missing where `--profile` or `git config skcode.ciProfile` points, or a key is unknown or malformed. Fix the field the error names |
 | A workflow shows `partial` | Some jobs sit in a switched group and some do not. Read the job conditions in that file |
 | `event-in-run` flags a workflow | A run block interpolates an event field. A hex SHA or a number is allowed, so read the line before changing it |
 | A workflow file fails to parse | Fix the YAML error the report names. The other rows still print |
 | The scaffold refuses a name | Pick a name that is not already a workflow and is not in the protected set, then rerun with `--name=<file>` |
-| The toggle refuses the message variable or the master switch | The branch ruleset requires the message contract, and a skipped job reports Success. Leave both unset |
+| The toggle refuses a variable behind a required check | The branch ruleset requires a status context that job holds, and a skipped job reports Success. Leave the variable unset. Here that is the message variable and the master switch |
+| The toggle asks for a second confirmation | The change switches off a workflow the CI profile protects. Type the variable name only if you mean to stop that workflow |
 | `gh variable set` fails with a permission error | The login cannot write repository variables. Run the printed command with an account that can, or set the variable under Settings, Secrets and variables, Actions |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
@@ -210,7 +237,7 @@ STATUS=FAIL ERROR="[message]"
 | The report shows a drift flag | `/doctor:ci report --json` | The JSON names the flag per workflow for a script or a review |
 | The report shows `off` for a group | `/doctor:ci toggle --variable=<name> --state=on` | Clears the variable so the group runs again |
 | A new workflow is needed | `/doctor:ci scaffold --name=<file>.yml` | Starts from the standards templates and prints the file first |
-| A scaffolded file was written | Add its row to `.github/workflows/README.md` | The scaffold prints the row but never edits the README |
+| A scaffolded file was written | Add its rows to the workflows README the profile names | The scaffold prints the rows but never edits the README |
 | You want to review a workflow change | Review the diff with the workflow standards packet loaded | The packet carries the rules the report cannot check |
 
 End interactive presentations with: `What would you like to do next?`

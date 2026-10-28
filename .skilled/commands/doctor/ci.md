@@ -1,6 +1,6 @@
 ---
 description: "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch."
-argument-hint: "[report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>] | list | ?"
+argument-hint: "[report|scaffold|toggle] [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Write
 ---
 <!-- skill_agent: sk-code -->
@@ -24,6 +24,8 @@ Load the presentation contract before showing the menu, a table, a plan, an appr
 | Route manifest | `.skilled/commands/doctor/_routes.yaml` |
 | Presentation source of truth | `.skilled/commands/doctor/assets/doctor-ci-presentation.txt` |
 | Report script | `.skilled/commands/doctor/scripts/ci-report.cjs` |
+| Scaffold renderer and toggle planner | `.skilled/commands/doctor/scripts/ci-scaffold.cjs`, `.skilled/commands/doctor/scripts/ci-toggle.cjs` |
+| Repository CI profile | `.sk-code/ci.json`, read by `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`. With no profile the generic default forces no convention |
 
 ---
 
@@ -54,8 +56,9 @@ Load the presentation contract before showing the menu, a table, a plan, an appr
 | `--no-gh` | `report` | Make no gh call, so every switch reads unknown |
 | `--dry-run` | `scaffold` | Print the plan and the whole file, then stop before writing |
 | `--name=<file>` | `scaffold` | Name the new workflow file, a bare hyphen-case name ending in `.yml` |
-| `--variable=<name>` | `toggle` | Name one of the six documented switch variables |
+| `--variable=<name>` | `toggle` | Name one switch variable from the repository CI profile (here one of the six `SKILLED_CI*` names) |
 | `--state=<on\|off>` | `toggle` | `off` sets the variable to off and `on` deletes it |
+| `--profile=<path>` | `report`, `scaffold`, `toggle` | Read the CI profile from this file instead of `.sk-code/ci.json` or git config `skcode.ciProfile` |
 | `list`, `?`, `menu` | the command | Show the startup menu and the route manifest, and load no workflow |
 
 1. Read `.skilled/commands/doctor/assets/doctor-ci-presentation.txt`.
@@ -78,7 +81,7 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-ci-p
 
 ## 6. WORKFLOW SUMMARY
 
-1. `report` runs the read-only report once: every workflow with its switch state, triggers, path filters, purpose and drift flags, and the newest commit on main that is not a trigger-index rebuild. It writes nothing.
-2. `scaffold` creates one new file under `.github/workflows/` from the workflow standards templates. It refuses a path that already exists and refuses a protected workflow name, prints the whole file, and writes it only after a yes. It never edits an existing workflow and never stages or commits.
-3. `toggle` turns one of the six documented switch variables off, or back on, in the repository's Actions variables. It prints the exact `gh variable` command and the current state, refuses the message-contract variable and the master switch while the workflows README forbids switching them off, because either one skips `message-contract.yml`, the only check the ruleset requires, and a skipped job reports Success. It runs the command only after a yes, and reads the state back.
+1. `report` runs the read-only report once: every workflow with its switch state, triggers, path filters, purpose and drift flags, and the newest commit on the default branch that is not a trigger-index rebuild. It writes nothing.
+2. `scaffold` creates one new file under `.github/workflows/` from the workflow standards templates, rendered with the repository CI profile. It refuses a path that already exists and refuses a protected workflow name, prints the whole file, and writes it only after a yes. It never edits an existing workflow and never stages or commits.
+3. `toggle` turns one switch variable from the repository CI profile off, or back on, in the repository's Actions variables. It prints the exact `gh variable` command and the current state. It refuses a variable that skips a job whose status context the live branch ruleset requires, a variable in the profile's `neverOff` list and one the profile's workflows README says must stay unset, because a skipped job reports Success. Here that keeps `SKILLED_CI_MESSAGES` and `SKILLED_CI` unset for `message-contract.yml`. It refuses a change to the state the variable already has, and asks a second named confirmation before a change that switches off a protected workflow. It runs the command only after a yes, and reads the state back.
 4. Render the result and next step from the presentation contract.

@@ -52,7 +52,10 @@ Current state:
 | `check-mcp-mutation-class.test.sh` | `check-mcp-mutation-class.sh` and its manifest |
 | `mcp-doctor.test.sh` | `mcp-doctor.sh` and `mcp-doctor-lib.sh` |
 | `route-validate.test.sh` | `route-validate.sh` and `route-validate.py` |
-| `ci-report.test.cjs` | `ci-report.cjs`: switch-state reporting, the four missing-setting flags, trigger and action-pin flags, drift against the README table, the rebuild-commit skip, the failing-gh degrade, the usage error and a no-write proof over the repository root |
+| `ci-report.test.cjs` | `ci-report.cjs`: switch-state reporting, the four missing-setting flags, trigger and action-pin flags, drift against the README table, the rebuild-commit skip, the failing-gh degrade, the usage error, a no-write proof over the repository root and the CI profile cases: a foreign repository with its own switch names and no README, another branch, `--profile`, git config and an unknown key |
+| `ci-profile.test.cjs` | `../lib/ci-profile.cjs`: the discovery order, the generic default, the strict schema and this repository's committed profile with every protected entry |
+| `ci-scaffold.test.cjs` | `ci-scaffold.cjs`: this repository's render keeps every convention, a foreign render carries none of them, `--protected` and an unknown group |
+| `ci-toggle.test.cjs` | `ci-toggle.cjs` with a gh stub: a foreign switch is accepted, the variable behind a required check is refused, `neverOff` and README refusals, the no-op refusal and, here, the second confirmation for the freshness and reports switches |
 | `doctor-ci-contract.test.cjs` | Checks the `/doctor:ci` router, workflows, presentation and command contract against each other: the route manifest, the toggle's allowed names, the scaffold's refusals and templates |
 | `doctor-setup-orphan-line.test.cjs` | The orphan-process line in `/doctor:setup`: informational output that never changes the doctor status |
 | `opencode-version-battery.test.cjs` | `opencode-version-battery.cjs`: the plugin, command and MCP-prompt legs on v1 and v2, the family skips, nested roots, the argument errors and the probe count |

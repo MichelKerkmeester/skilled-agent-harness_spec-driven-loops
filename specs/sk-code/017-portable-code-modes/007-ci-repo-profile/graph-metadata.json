@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/007-ci-repo-profile",
+  "spec_folder": "sk-code/017-portable-code-modes/007-ci-repo-profile",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci repo profile",
+      "ci repository profile for sk code ci",
+      "sk-code ci.json profile",
+      "doctor ci toggle second confirmation",
+      "ci repo profile plan",
+      "ci repo profile tasks",
+      "ci repo profile acceptance criteria",
+      "ci repo profile implementation summary"
+    ],
+    "key_topics": [
+      "repo",
+      "profile",
+      "repository",
+      "code",
+      "sk-code",
+      "json",
+      "doctor",
+      "toggle",
+      "second",
+      "confirmation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".sk-code/ci.json",
+      ".skilled/commands/doctor/scripts/lib/ci-profile.cjs",
+      ".skilled/commands/doctor/scripts/ci-report.cjs",
+      ".skilled/commands/doctor/scripts/ci-toggle.cjs",
+      ".skilled/commands/doctor/scripts/ci-scaffold.cjs",
+      ".skilled/commands/doctor/scripts/tests/ci-profile.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/ci-report.test.cjs",
+      ".skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json",
+      ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml",
+      ".skilled/commands/doctor/assets/doctor-ci-report.yaml",
+      ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.5.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci.json",
+        "kind": "config",
+        "path": ".sk-code/ci.json",
+        "source": "derived"
+      },
+      {
+        "name": "ci-profile.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/ci-profile.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/ci-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-toggle.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/ci-toggle.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-scaffold.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/ci-scaffold.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-profile.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/ci-profile.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/ci-report.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-profile.template.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-template.yml",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-report.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-report.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-workflow-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.5.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.5.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`ci-report.cjs` reads switches only through the `SKILLEDCI` name pattern, lists runs on `main`, exempts `dependabot-auto-merge.yml` by name, skips commits by the `Trigger-Index-Rebuild: ci` trailer and flags `switch-missing` and `readme-row-missing` in every repository, so a repository with `ACMECI` switches gets a wrong switch state and a flag on every workflow",
+    "created_at": "2026-10-27T21:49:45Z",
+    "last_save_at": "2026-10-28T04:23:00.511Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d2e1645acef185544d3d7bad5fe9d5b47a6c2a68c8dceacf781a6f63c6bb527b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73c1d4b12cf1f0452a7ed75ee1f3d4a88069bcafea52c62e925646d9f6c99906",
+      "plan.md": "401ace4e1533f6e036cfe70545da6ee342663275aef292531818f7eaa314249a",
+      "tasks.md": "5ae1facd37ac5b55049d8401902da90083e40d9b0364112b041b932c755c578d",
+      "implementation-summary.md": "061547cea8b783c29dbe4fd27edc7a999ecc1f5272334fc16ce0d118803427c4"
+    },
+    "last_active_at": null
+  }
+}
