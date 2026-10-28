@@ -9,13 +9,13 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.7.0
+version: 2.3.8.0
 router_state: active
 skill_pointer: SKILL.md
 ---
 # sk-code Surface Router — routing logic and resource maps
 
-Authoritative routing reference for sk-code. Consolidates intent classification + resource loading into the single Barter-style smart-routing entry point. Detection logic lives in [`stack-detection.md`](shared/references/stack-detection.md); phase lifecycle lives in [`phase-detection.md`](shared/references/phase-detection.md).
+Leaf-set authority for sk-code. The routing authority is named once in `SKILL.md` §2 SMART ROUTING: `hub-router.json` is the mode vocabulary, and this document is the leaf-set router. Consolidates intent classification + resource loading into the single Barter-style smart-routing entry point. Detection logic lives in [`stack-detection.md`](shared/references/stack-detection.md); phase lifecycle lives in [`phase-detection.md`](shared/references/phase-detection.md).
 
 ---
 
@@ -40,33 +40,18 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 - [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) and SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and phase-specific resource expectations
-- `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
+- `SKILL.md` §2 SMART ROUTING — names the routing authority split and the compiled front door
 
 ---
 
 ## 2. INTENT MODEL
 
-Intent classification scores task text against weighted keyword signals to pick the dominant work type after surface detection.
-
-| Intent | Strong Signals |
-| --- | --- |
-| IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module` |
-| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat`, `skipped_untrusted`, `untrusted repository check`, `trustrepochecks`, `quality config`, `repository/quality.json`, `configured check`, `unverified` |
-| DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
-| VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
-| HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
-| CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
-| JAVASCRIPT | `javascript`, `vanilla js`, `.js`, `commonjs`, `.cjs`, `.mjs` |
-| TYPESCRIPT | `typescript`, `.ts`, `.tsx` |
-| PYTHON | `python`, `.py`, `docstring` |
-| SHELL | `shell script`, `bash`, `.sh` |
-| RUST | `rust`, `.rs`, `cargo.toml`, `cargo.lock`, `napi-rs`, `napi_rs`, `#[napi]`, `wasm-bindgen`, `wasm_bindgen`, `#[wasm_bindgen]`, `wasi`, `cdylib` |
-| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `github actions release workflow`, `github actions deploy workflow`, `release workflow yaml`, `deploy workflow yaml`, `github actions minutes`, `actions minutes`, `actions runner minutes`, `runner minutes`, `ci workflow cost`, `ci cost`, `reduce ci costs`, `lower ci costs`, `cut ci costs`, `reduce our ci costs`, `lower our ci costs`, `ci spend`, `ci bill`, `ci minutes cost`, `cut the ci minutes`, `cut ci minutes`, `reduce ci minutes`, `ci pipeline cost`, `ci pipeline cheaper`, `ci pipelines cheaper`, `cheaper ci pipeline`, `ci runs cheaper`, `failing ci`, `failing ci pipeline`, `ci failure`, `ci failures`, `ci is failing`, `broken ci`, `debug the ci`, `debug ci`, `cost of our ci`, `make ci cheaper`, `github actions bill`, `github actions cost`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
+Intent classification scores task text against weighted keyword signals to pick the dominant work type after surface detection. The vocabulary and weights are authored once, in the `INTENT_SIGNALS` block of §9 MACHINE-READABLE ROUTER; read them there. This section is the human-facing summary of how that block is scored, never a second copy of its keywords.
 
 ### Scoring algorithm
 
 1. Sum weighted keyword hits from the request, target files, and known task context.
-2. Boost explicit phase signals (verification, debugging, testing, code quality) by +5 when the phase is unambiguous.
+2. Boost explicit phase signals (verification, debugging, code quality) by +5 when the phase is unambiguous.
 3. Select the top intent.
 4. Select a second intent when the score delta to the next intent is small (`AMBIGUITY_DELTA = 1`).
 5. For SKILLED surface, run language sub-detection after intent selection.
@@ -216,7 +201,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 - [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
-- `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
+- `SKILL.md` §2 SMART ROUTING — names the routing authority split and the compiled front door
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
 
 ---

@@ -1,19 +1,19 @@
 ---
 title: "Two-Axis Registry-Driven Routing"
-description: "`mode-registry.json` is the single source of truth for dispatching a resolved WORKFLOW mode plus zero-or-more read-only SURFACE evidence packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`."
+description: "`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The hub's `SKILL.md` section 2 names `hub-router.json` as the mode vocabulary and `ROUTER.md` as the leaf-set router."
 trigger_phrases:
   - "two-axis registry-driven routing"
   - "sk-code workflow and surface axis"
-  - "mode-registry.json single source of truth"
+  - "mode-registry mode and packet list"
   - "sk-code smart routing"
-version: 1.0.4.0
+version: 1.0.4.1
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
 
 ## 1. OVERVIEW
 
-The skill advisor routes every code-related prompt to the single identity `sk-code`; the hub itself then resolves which packet(s) actually run. Resolution reads `mode-registry.json` as the single source of truth rather than re-deriving the mapping in prose.
+The skill advisor routes every code-related prompt to the single identity `sk-code`; the hub itself then resolves which packet(s) actually run. Resolution reads `mode-registry.json` for the mode and packet list rather than re-deriving it in prose, and the routing authority is named once in the hub's `SKILL.md` section 2, where `hub-router.json` is the mode vocabulary and `ROUTER.md` is the leaf-set router.
 
 Every registry entry carries a discriminator of `workflowMode` (the public mode key), `packetKind` (`workflow` or `surface`), and `backendKind` (which backend runs it). This keeps the hub a declarative router: adding or changing a packet is a registry edit, not a routing-logic rewrite.
 
@@ -45,7 +45,7 @@ The registry compiler rejects a hub that does not declare exactly one fallback o
 |---|---|---|
 | `.skilled/skills/sk-code/SKILL.md` | Shared | States the routing contract, the workflow/surface discriminator, and the bundling rule. |
 | `.skilled/skills/sk-code/ROUTER.md` | Shared | Owns stage-two intent/resource maps and the explicit hub-shared control allowlist. |
-| `.skilled/skills/sk-code/mode-registry.json` | Shared | Declarative two-axis registry; single source of truth for `workflowMode`/`packetKind`/`backendKind`/`advisorRoutingContract` per packet. |
+| `.skilled/skills/sk-code/mode-registry.json` | Shared | Declarative two-axis registry; lists each mode and packet with its `workflowMode`/`packetKind`/`backendKind`/`advisorRoutingContract`. |
 | `.skilled/skills/sk-code/hub-router.json` | Shared | Router signal and tie-break data consumed alongside the registry. |
 | `.skilled/skills/sk-code/shared/references/stack-detection.md` | Shared | The surface detection order and the `surfaceDetection` contract. |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Compiler | Validates the declared surfaces and compiles the fallback into the routing model. |

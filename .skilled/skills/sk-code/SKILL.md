@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.9.19.0
+version: 3.9.20.0
 metadata:
   family: sk-code
 ---
@@ -50,7 +50,84 @@ The **implement → debug → verify** phases are not standalone modes. Their su
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth. The hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`, and the hub then picks the mode. Stage two lives in root [`ROUTER.md`](./ROUTER.md): it maps surface intent to packet leaves plus explicitly declared hub-shared control resources without becoming a typed leaf or advisor identity.
+Routing is **registry-driven at runtime and authored in `hub-router.json`** in two stages. Stage 1 (hub → mode): `hub-router.json` is the authored mode vocabulary, and `mode-registry.json` carries the packet contracts whose aliases are checked against it. Stage 2 (mode → leaves): the root [`ROUTER.md`](./ROUTER.md) is the authored leaf-set router. Both files point back here rather than restating the split.
+
+The advisor routes every code query to the single identity `sk-code`. Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` and follow the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses. Compiled routing is the default. The legacy fallback, the kill-switch and the `UNKNOWN_FALLBACK_CHECKLIST` live in the final MACHINE ROUTER section.
+
+A bare implement, debug or verify request with no workflow mode becomes a pure surface bundle, and an unclear code intent asks for disambiguation. Neither path forces a stale default.
+
+---
+
+## 3. HOW IT WORKS
+
+### Layout
+```
+sk-code/
+  SKILL.md               # this routing hub (no per-mode code logic)
+  README.md              # human-facing front page for the hub
+  ROUTER.md              # active stage-two surface router and shared-control declaration
+  mode-registry.json     # the two-axis discriminator + advisorRouting contract
+  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice
+  description.json       # hub advisor descriptor
+  graph-metadata.json    # the ONE advisor identity for the whole skill
+  leaf-manifest.json     # typed (workflowMode, leaf) pairs the router guards validate
+  changelog/             # hub release notes, one v<version>.md per hub release
+  feature-catalog/       # current-state inventory of the hub's routing capabilities
+  manual-testing-playbook/  # routing and disambiguation scenarios for the hub
+  benchmark/             # historical routing benchmark inputs and reports
+  sk-code-quality/       # quality mode packet     (workflow)
+  sk-code-review/        # review mode packet      (workflow)
+  sk-code-ci/            # GitHub Actions workflow standards packet (read-only evidence; rules, protected set and scaffold templates)
+  sk-code-skilled/      # skilled surface packet (read-only evidence; carries the workflow doctrine)
+  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
+```
+
+Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`. Only this hub carries one, so the advisor discovers exactly one code skill identity. The implement/debug/verify workflow doctrine is a single shared source under `shared/references/`, and each surface symlinks it in rather than duplicating it.
+
+### Backend
+The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes the detection order over the declared surfaces, the SKILLED fallback and UNKNOWN, and it carries the shared implement → debug → verify workflow doctrine that the surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+- **ALWAYS** resolve a mode through `mode-registry.json`, and never hardcode a router mapping in the hub.
+- **ALWAYS** keep mode contracts in the mode packets, so the hub stays routing-only.
+- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity.
+- **ALWAYS** give every mode an `advisorRouting` block with `routingClass: "metadata"` and the correct `packetSkillName`.
+- **ALWAYS** keep the implement/debug/verify workflow doctrine as one shared source under `shared/references/`, symlinked into each surface, and never fork per-surface copies.
+- **ALWAYS** keep `ROUTER.md` `RESOURCE_MAP` keys aligned with its intent keys and packet leaves aligned with `leaf-manifest.json`.
+- **ALWAYS** keep hub-shared map inputs explicit in `SHARED_CONTROL_RESOURCES`, because they are control resources and never typed leaves.
+
+### ⛔ NEVER
+- **NEVER** add a `graph-metadata.json` inside a mode packet or `shared/`.
+- **NEVER** put per-mode quality, review, or surface workflow logic in the hub.
+- **NEVER** hardcode a router mapping outside `mode-registry.json`.
+- **NEVER** reintroduce implement, debug, or verify as standalone mode packets, because they are surface-owned doctrine.
+
+### ⚠️ ESCALATE IF
+- A new code mode is needed - extend `mode-registry.json` and open a packet. Do not bolt logic onto the hub.
+- Surface identity and workflow ownership conflict in a way the shared router cannot classify.
+
+---
+
+## 5. REFERENCES
+
+- Workflow mode packets: `sk-code-quality/SKILL.md`, `sk-code-review/SKILL.md`.
+- Surface evidence packets: `sk-code-ci/SKILL.md`, `sk-code-skilled/SKILL.md`.
+- Shared workflow doctrine: `shared/references/workflow-implement.md`, `shared/references/workflow-debug.md`, `shared/references/workflow-verify.md` (symlinked into each surface).
+- Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
+- Hub router signals + surface bundling: `hub-router.json`.
+- Surface router and shared controls: `ROUTER.md`.
+- Parent-skill pattern: `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+- Sibling example: `.skilled/skills/sk-prompt/`.
+
+---
+
+## 6. MACHINE ROUTER
+
+The hub's compiled-routing directive, its fallback route and its disambiguation checklist. A hub keeps them here so the routing prose above stays short.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -70,6 +147,16 @@ Root `ROUTER.md` owns the second-stage `INTENT_SIGNALS` / `RESOURCE_MAP`. Packet
 - **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
 
 Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my typescript module for jank" → `[sk-code-review, sk-code-skilled]`. Bundled surfaces follow the `routerPolicy.tieBreak` order, which ranks `sk-code-ci` ahead of `sk-code-skilled`, so the surface that wins a keyword tie comes first.
+
+### Surface detection
+
+Surface detection lives once in the hub's `shared/` layer and is consumed by every mode and surface. It tries every declared specific surface first, then the `SKILLED` fallback, then `UNKNOWN`. When a specific surface and `SKILLED` both match, the specific one leads and `SKILLED` comes along as second evidence. Each surface declares its markers in a `surfaceDetection` block in `mode-registry.json`, or in its own `graph-metadata.json` when it lives outside the hub. Modes own workflow contracts, not surface identity. `sk-code-ci` is the one surface that stack detection does not select: the hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
+
+### Fallback route
+
+When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null`, so the hub does not force a stale default. An unclear code intent asks for disambiguation.
+
+Per-mode behavior is **not flattened**: each packet keeps its own code-work contract, standards, evidence rules, and tool-permission guards.
 
 ### Routing rule
 ```python
@@ -131,76 +218,3 @@ def route(task):
 
     return {"workflowMode": workflow_mode, "backendKind": entry["backendKind"], "resources": loaded}
 ```
-
-When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null`, so the hub does not force a stale default. An unclear code intent asks for disambiguation.
-
-Surface detection lives once in the hub's `shared/` layer and is consumed by every mode and surface. It tries every declared specific surface first, then the `SKILLED` fallback, then `UNKNOWN`. When a specific surface and `SKILLED` both match, the specific one leads and `SKILLED` comes along as second evidence. Each surface declares its markers in a `surfaceDetection` block in `mode-registry.json`, or in its own `graph-metadata.json` when it lives outside the hub. Modes own workflow contracts, not surface identity. `sk-code-ci` is the one surface that stack detection does not select: the hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
-
-Per-mode behavior is **not flattened**: each packet keeps its own code-work contract, standards, evidence rules, and tool-permission guards.
-
----
-
-## 3. HOW IT WORKS
-
-### Layout
-```
-sk-code/
-  SKILL.md               # this routing hub (no per-mode code logic)
-  README.md              # human-facing front page for the hub
-  ROUTER.md              # active stage-two surface router and shared-control declaration
-  mode-registry.json     # the two-axis discriminator + advisorRouting (single source of truth)
-  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice
-  description.json       # hub advisor descriptor
-  graph-metadata.json    # the ONE advisor identity for the whole skill
-  leaf-manifest.json     # typed (workflowMode, leaf) pairs the router guards validate
-  changelog/             # hub release notes, one v<version>.md per hub release
-  feature-catalog/       # current-state inventory of the hub's routing capabilities
-  manual-testing-playbook/  # routing and disambiguation scenarios for the hub
-  benchmark/             # historical routing benchmark inputs and reports
-  sk-code-quality/       # quality mode packet     (workflow)
-  sk-code-review/        # review mode packet      (workflow)
-  sk-code-ci/            # GitHub Actions workflow standards packet (read-only evidence; rules, protected set and scaffold templates)
-  sk-code-skilled/      # skilled surface packet (read-only evidence; carries the workflow doctrine)
-  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
-```
-
-Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`. Only this hub carries one, so the advisor discovers exactly one code skill identity. The implement/debug/verify workflow doctrine is a single shared source under `shared/references/`, and each surface symlinks it in rather than duplicating it.
-
-### Backend
-The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes the detection order over the declared surfaces, the SKILLED fallback and UNKNOWN, and it carries the shared implement → debug → verify workflow doctrine that the surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
-
----
-
-## 4. RULES
-
-### ✅ ALWAYS
-- **ALWAYS** resolve a mode through `mode-registry.json`, and never hardcode a router mapping in the hub.
-- **ALWAYS** keep mode contracts in the mode packets, so the hub stays routing-only.
-- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity.
-- **ALWAYS** give every mode an `advisorRouting` block with `routingClass: "metadata"` and the correct `packetSkillName`.
-- **ALWAYS** keep the implement/debug/verify workflow doctrine as one shared source under `shared/references/`, symlinked into each surface, and never fork per-surface copies.
-- **ALWAYS** keep `ROUTER.md` `RESOURCE_MAP` keys aligned with its intent keys and packet leaves aligned with `leaf-manifest.json`.
-- **ALWAYS** keep hub-shared map inputs explicit in `SHARED_CONTROL_RESOURCES`, because they are control resources and never typed leaves.
-
-### ⛔ NEVER
-- **NEVER** add a `graph-metadata.json` inside a mode packet or `shared/`.
-- **NEVER** put per-mode quality, review, or surface workflow logic in the hub.
-- **NEVER** hardcode a router mapping outside `mode-registry.json`.
-- **NEVER** reintroduce implement, debug, or verify as standalone mode packets, because they are surface-owned doctrine.
-
-### ⚠️ ESCALATE IF
-- A new code mode is needed - extend `mode-registry.json` and open a packet. Do not bolt logic onto the hub.
-- Surface identity and workflow ownership conflict in a way the shared router cannot classify.
-
----
-
-## 5. REFERENCES
-
-- Workflow mode packets: `sk-code-quality/SKILL.md`, `sk-code-review/SKILL.md`.
-- Surface evidence packets: `sk-code-ci/SKILL.md`, `sk-code-skilled/SKILL.md`.
-- Shared workflow doctrine: `shared/references/workflow-implement.md`, `shared/references/workflow-debug.md`, `shared/references/workflow-verify.md` (symlinked into each surface).
-- Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
-- Hub router signals + surface bundling: `hub-router.json`.
-- Surface router and shared controls: `ROUTER.md`.
-- Parent-skill pattern: `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
-- Sibling example: `.skilled/skills/sk-prompt/`.

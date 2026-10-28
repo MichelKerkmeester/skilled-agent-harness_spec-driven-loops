@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.12.0
+version: 1.13.13.0
 metadata:
   family: sk-code
 ---
@@ -56,39 +56,20 @@ Pairs well with:
 
 ## 2. SMART ROUTING
 
-### Primary Detection Signal
+The `sk-code` hub routes a post-implementation quality gate here: the request names a quality gate, comment hygiene, an authoring checklist or a check before done, and the hub's `quality` signal selects this packet.
+This mode routes by target path more than by keyword, because the checklists a change needs follow the files it touches.
+`node scripts/quality-gate.cjs --explain <path>` names those checklists and why, and its answer outranks any keyword match.
 
-Surface identity is resolved once by the parent shared router. This mode consumes that result and then routes by target path and quality intent:
+Three resources load first: `references/runner-contract.md` for the runner's CLI, gate values and verdict;
+`../shared/references/universal/code-quality-standards.md` for the shared severity floor; and `references/code-style-guide.md` for this packet's style and comment rules.
+The resource domains, loading levels, path-keyed rows and comment-hygiene layers follow in the next section.
 
-```text
-QUALITY TASK
-    |
-    +- Surface identity -> ../shared/references/stack-detection.md
-    +- Phase lifecycle  -> ../shared/references/phase-detection.md
-    +- Resource routing -> ../ROUTER.md
-    |
-    +- Quality runner     -> node scripts/quality-gate.cjs (one verdict for the change)
-    |     +- any surface  -> the universal floor plus the runner's built-in checks
-    |     +- UNKNOWN      -> the floor plus the runner's checks, with `unknown` recorded
-    |
-    +- SKILLED target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
-    +- Comment hygiene    -> scripts/check-comment-hygiene.sh, called once by the runner
-    +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
-```
+The route map, the prompt-intent projection and the call sequence sit in the final `MACHINE ROUTER` section of this file.
+That projection only makes the default resources scoreable; it never picks the path-keyed checklist.
 
-### Phase Detection
+---
 
-```text
-Phase 1 Implementation writes or changes files
-    -> Phase 1.5 Code Quality Gate runs here
-        -> run node scripts/quality-gate.cjs and read its gate
-        -> load every checklist the verdict lists before any completion claim
-        -> the runner calls comment hygiene once over every modified file
-        -> apply P0/P1/P2 author checks and judge the judgment_required items
-        -> edit in place only for gate failures
-    -> Phase 2 Debugging if checks expose a failing symptom
-    -> Phase 3 Verification after the gate is clean enough to verify
-```
+## 3. RESOURCES
 
 ### Resource Domains
 
@@ -147,47 +128,9 @@ The write-time warning is one adapter of the shared router in `.skilled/hooks/po
 
 Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments. A finding on a changed line blocks. A finding on an unchanged line of a touched file blocks only when `layers` reports the pre-commit or CI layer `present`, because that layer scans whole files and would fail the change anyway. Otherwise it is P1 touched-file debt the change did not write.
 
-### 2b. Machine-Readable Router (thin, Type-1 benchmark)
-
-sk-code-quality routes primarily by TARGET PATH (the checklists `--explain` names for a file), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
-
-```python
-# Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
-# real routing is target-path-keyed (the checklists --explain names), and its parent
-# discoverability is the hub quality signal. This block only made the one asset
-# scoreable by the retired deterministic router-replay.
-DEFAULT_RESOURCE = [
-    "references/runner-contract.md",
-    "../shared/references/universal/code-quality-standards.md",
-    "references/code-style-guide.md",
-]
-
-INTENT_SIGNALS = {
-    "QUALITY": {"weight": 1, "keywords": ["quality gate", "comment hygiene", "p0 p1 p2", "code smell", "dist staleness", "naming", "standards", "checklist", "author quality gate", "envelope", "restraint", "yagni"]},
-}
-
-RESOURCE_MAP = {
-    "QUALITY": [
-        "references/quality-config.md",
-    ],
-}
-```
-
-### Machine-Readable Router Call Sequence
-
-```text
-discover_markdown_resources()
-    -> _guard_in_skill() + load_if_available()
-    -> score_intents()/select_intents() for the thin QUALITY projection
-    -> get_routing_key() from target path, then select the path-keyed checklist
-    -> UNKNOWN_FALLBACK when no routable target path is available
-```
-
-The declarations behind `--explain` stay authoritative, and the runner reads them directly. One `--explain` call takes several paths. Each file's entry lists its `surfaces`, the folder each surface loads from in `surface_skills`, the `source` seat that declared each checklist and that checklist's parsed `## Rule overrides` rows, and a single path prints the same fields at the top level. The prompt-intent projection only makes the default quality resources scoreable.
-
 ---
 
-## 3. HOW IT WORKS
+## 4. HOW IT WORKS
 
 ### Quality Gate Workflow
 
@@ -242,11 +185,11 @@ remaining_accepted_risk: <one-line residual risk, or none>
 
 `node scripts/quality-gate.cjs --format envelope` renders the machine fields, and `references/runner-contract.md` section 4 holds the grammar. The three judgment fields, `p0_p1_p2_decisions`, `accepted_deferrals` and `remaining_accepted_risk`, print as `PENDING_AGENT_JUDGMENT` until the agent fills them, and a field that still reads it is open work. `p0_p1_p2_decisions` also lists each `## Rule overrides` row the run applied, as `override <rule id> <none|replace> from <checklist file>`, and each `override-conflict <rule id> <checklist file> <checklist file>` between two checklists at one precedence level, ahead of the marker. A conflicting rule keeps its default and is unverified. A refused override section, or one with a row whose id no rule carries, ends the run `CONFIG_INVALID`, exit 3. A private surface prints by its label only, so the envelope never names a `local-` skill.
 
-This envelope is advisory and additive only: its `status` is fixed to `advisory` and MUST NOT be `pass`, `success`, or `done`. Its presence NEVER reads as a completion, done, works, or passing claim, and it never replaces the handoff to the surface's verification workflow (`workflow-verify.md`) — it reinforces, and does not relax, the §4 NEVER rule that this mode makes no passing claims.
+This envelope is advisory and additive only: its `status` is fixed to `advisory` and MUST NOT be `pass`, `success`, or `done`. Its presence NEVER reads as a completion, done, works, or passing claim, and it never replaces the handoff to the surface's verification workflow (`workflow-verify.md`) — it reinforces, and does not relax, the §5 NEVER rule that this mode makes no passing claims.
 
 ---
 
-## 4. RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -282,7 +225,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ---
 
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 - The quality gate ran after implementation and before verification.
 - Surface identity came from the shared router, not packet-local detection logic.
@@ -296,7 +239,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ---
 
-## 6. INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 - `sk-code` routes quality prompts here through `mode-registry.json` and keeps the hub routing-only.
 - The acting agent applying `workflow-implement.md` changes files before this gate runs, then applies the surface's `workflow-debug.md` and `workflow-verify.md`, which `sk-code-skilled` bundles as read-only doctrine.
@@ -305,7 +248,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ---
 
-## 7. REFERENCES AND RELATED RESOURCES
+## 8. REFERENCES AND RELATED RESOURCES
 
 ### Parent And Shared Router
 
@@ -351,3 +294,81 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - [`../shared/references/universal/code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md) - Shared code quality standards.
 - [`references/code-style-guide.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md) - This mode's code style and comment hygiene guide.
+
+---
+
+## 9. MACHINE ROUTER
+
+The packet's deterministic route map, its thin prompt-intent projection and the call sequence that reads them.
+
+### Primary Detection Signal
+
+Surface identity is resolved once by the parent shared router. This mode consumes that result and then routes by target path and quality intent:
+
+```text
+QUALITY TASK
+    |
+    +- Surface identity -> ../shared/references/stack-detection.md
+    +- Phase lifecycle  -> ../shared/references/phase-detection.md
+    +- Resource routing -> ../ROUTER.md
+    |
+    +- Quality runner     -> node scripts/quality-gate.cjs (one verdict for the change)
+    |     +- any surface  -> the universal floor plus the runner's built-in checks
+    |     +- UNKNOWN      -> the floor plus the runner's checks, with `unknown` recorded
+    |
+    +- SKILLED target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
+    +- Comment hygiene    -> scripts/check-comment-hygiene.sh, called once by the runner
+    +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
+```
+
+### Phase Detection
+
+```text
+Phase 1 Implementation writes or changes files
+    -> Phase 1.5 Code Quality Gate runs here
+        -> run node scripts/quality-gate.cjs and read its gate
+        -> load every checklist the verdict lists before any completion claim
+        -> the runner calls comment hygiene once over every modified file
+        -> apply P0/P1/P2 author checks and judge the judgment_required items
+        -> edit in place only for gate failures
+    -> Phase 2 Debugging if checks expose a failing symptom
+    -> Phase 3 Verification after the gate is clean enough to verify
+```
+
+### Thin Prompt-Intent Projection
+
+sk-code-quality routes primarily by TARGET PATH (the checklists `--explain` names for a file), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
+
+```python
+# Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
+# real routing is target-path-keyed (the checklists --explain names), and its parent
+# discoverability is the hub quality signal. This block only made the one asset
+# scoreable by the retired deterministic router-replay.
+DEFAULT_RESOURCE = [
+    "references/runner-contract.md",
+    "../shared/references/universal/code-quality-standards.md",
+    "references/code-style-guide.md",
+]
+
+INTENT_SIGNALS = {
+    "QUALITY": {"weight": 1, "keywords": ["quality gate", "comment hygiene", "p0 p1 p2", "code smell", "dist staleness", "naming", "standards", "checklist", "author quality gate", "envelope", "restraint", "yagni"]},
+}
+
+RESOURCE_MAP = {
+    "QUALITY": [
+        "references/quality-config.md",
+    ],
+}
+```
+
+### Call Sequence
+
+```text
+discover_markdown_resources()
+    -> _guard_in_skill() + load_if_available()
+    -> score_intents()/select_intents() for the thin QUALITY projection
+    -> get_routing_key() from target path, then select the path-keyed checklist
+    -> UNKNOWN_FALLBACK when no routable target path is available
+```
+
+The declarations behind `--explain` stay authoritative, and the runner reads them directly. One `--explain` call takes several paths. Each file's entry lists its `surfaces`, the folder each surface loads from in `surface_skills`, the `source` seat that declared each checklist and that checklist's parsed `## Rule overrides` rows, and a single path prints the same fields at the top level. The prompt-intent projection only makes the default quality resources scoreable.

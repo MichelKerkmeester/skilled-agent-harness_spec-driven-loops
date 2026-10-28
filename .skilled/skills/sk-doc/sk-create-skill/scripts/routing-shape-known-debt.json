@@ -190,42 +190,6 @@
         "RS-002"
       ]
     },
-    "sk-code": {
-      "lines": 67,
-      "words": 787,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-code/sk-code-quality": {
-      "lines": 102,
-      "words": 1760,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-code/sk-code-review": {
-      "lines": 312,
-      "words": 2104,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
-    "sk-code/sk-code-skilled": {
-      "lines": 118,
-      "words": 327,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-001",
-        "RS-002"
-      ]
-    },
     "sk-design": {
       "lines": 88,
       "words": 901,

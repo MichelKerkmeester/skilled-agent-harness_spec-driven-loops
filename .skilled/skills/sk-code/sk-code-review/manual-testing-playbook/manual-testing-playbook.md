@@ -1,7 +1,7 @@
 ---
 title: "review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
-version: 1.6.1.0
+version: 1.6.1.1
 ---
 
 # review: Manual Testing Playbook
@@ -39,7 +39,7 @@ Canonical package artifacts:
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 19 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, a user-authored security surface replayed through both routing stages, and foreign repositories whose own rule overrides the review must honor or refuse: one that wants almost no inline comments, one that wants the opposite and one that tries to drop a floor rule.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by the `INTENT_SIGNALS` and `RESOURCE_MAP` blocks in `SKILL.md` §10 (`MACHINE ROUTER`). `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, a user-authored security surface replayed through both routing stages, and foreign repositories whose own rule overrides the review must honor or refuse: one that wants almost no inline comments, one that wants the opposite and one that tries to drop a floor rule.
 
 ### Realistic Test Model
 
@@ -204,7 +204,7 @@ This section records wave planning and capacity guidance for executing the revie
 | 3 | Re-review + stale context | CR-013..CR-015 | Requires prior findings, stale docs, or generated-code fixtures |
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
 | 5 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
-| 6 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against `SKILL.md` §2's `INTENT_SIGNALS`/`RESOURCE_MAP`; no diff fixture or CLI dependency, isolates cleanly |
+| 6 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against the `INTENT_SIGNALS`/`RESOURCE_MAP` blocks in `SKILL.md` §10 (`MACHINE ROUTER`); no diff fixture or CLI dependency, isolates cleanly |
 | 7 | Foreign repository rules | CR-029..CR-031 | Each scenario builds its own scratch repository outside this checkout and reviews one file, so the three run in parallel without sharing a diff |
 
 ### Cross-CLI Reconciliation Rules
@@ -645,7 +645,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ## 14. INTRA ROUTING RECALL (CR-R01..CR-R07)
 
-This category covers 7 scenarios while the linked feature files remain the canonical execution contract. Unlike CR-001..CR-024, these scenarios do not review a diff; they confirm that `SKILL.md` §2's `INTENT_SIGNALS` keyword weights and `RESOURCE_MAP` entries still resolve the correct checklist/reference set for each of the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`).
+This category covers 7 scenarios while the linked feature files remain the canonical execution contract. Unlike CR-001..CR-024, these scenarios do not review a diff; they confirm that the `INTENT_SIGNALS` keyword weights and `RESOURCE_MAP` entries in `SKILL.md` §10 (`MACHINE ROUTER`) still resolve the correct checklist/reference set for each of the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`).
 
 ### CR-R01 | Security routing
 

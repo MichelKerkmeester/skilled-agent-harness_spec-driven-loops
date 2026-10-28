@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 # Review Core Doctrine
@@ -243,12 +243,145 @@ Rule sources: <checklist file>, <checklist file>. Overrides: <rule id> <none|rep
 
 ---
 
-## 9. RELATED RESOURCES
+## 9. THE RESOLVER ALGORITHM
+
+The review reads the rules for a reviewed file from one resolver, the quality runner's explain entry, and this section is the algorithm that turns its output into the floor, the lens and the `Rule sources:` line. It is pseudocode: `ResolverError` is the caller's own error type, reported on the `Not checked:` line, and `load()` is the resource loader the router supplies.
+
+```python
+# The quality runner's explain entry is the one resolver for which surfaces, skill
+# folders, checklists and rule overrides apply to a file. Review runs it and keeps no
+# surface markers of its own. HUB_ROOT is the sk-code folder this mode was loaded from.
+HUB_ROOT = SKILL_ROOT.parent
+QUALITY_RUNNER = HUB_ROOT / "sk-code-quality" / "scripts" / "quality-gate.cjs"
+SKILLED_PACKET = "sk-code-skilled"
+# bundled_surfaces holds the router's surface bundle, each with its label and packet.
+# known_rule_ids() reads the lens table of review-core.md section 8, the Id column of
+# the universal standards and the hygiene checker's rule names. redact_private()
+# prints a local-* path segment as its surface label, the envelope's redaction.
+
+def resolvable_files(files: list[str], cwd: str) -> tuple[list[str], list[str]]:
+    """Split the reviewed paths into existing regular files and the rest.
+
+    A path the change deleted has nothing to resolve, and one missing path makes
+    --explain stop the whole call with FILE_NOT_FOUND, exit 3. So deleted paths never
+    reach it: the review lists them on its Not checked line where they matter.
+    """
+    present = [f for f in files if (Path(cwd) / f).is_file()]
+    return present, [f for f in files if f not in present]
+
+def resolve_rule_sources(files: list[str], cwd: str) -> dict | None:
+    """Return the code-quality-explain/v1 document for the reviewed files, or None.
+
+    --explain runs nothing, writes nothing and always exits 2. Only existing regular
+    files reach it, from resolvable_files. Exit 3 is then a usage or root fault: the
+    caller catches ResolverError, reports it on the Not checked line and reviews
+    those files against the baseline only.
+    """
+    files, _deleted = resolvable_files(files, cwd)
+    if not files:
+        return None
+    run = subprocess.run(["node", str(QUALITY_RUNNER), "--explain", *files],
+                         cwd=cwd, capture_output=True, text=True)
+    if run.returncode != 2:
+        raise ResolverError(run.stderr.strip() or f"--explain exited {run.returncode}")
+    return json.loads(run.stdout)
+
+def inside_hub_checkout(cwd: str) -> bool:
+    """True when the working directory shares the hub's git common dir."""
+    def common_dir(where):
+        out = subprocess.run(["git", "-c", "core.fsmonitor=false", "-C", str(where),
+                              "rev-parse", "--path-format=absolute", "--git-common-dir"],
+                             capture_output=True, text=True)
+        return Path(out.stdout.strip()).resolve() if out.returncode == 0 else None
+    hub = common_dir(HUB_ROOT)
+    return hub is not None and common_dir(cwd) == hub
+
+def surface_evidence(explained, bundled_surfaces, cwd) -> list[str]:
+    """Labels in the resolver's order. A router-bundled surface is only a candidate."""
+    if explained is None:
+        # No files to resolve: keep the bundle, except that SKILLED stays only inside
+        # the hub's own checkout, because a word like "typescript" says nothing about
+        # whose code this is.
+        return [s.label for s in bundled_surfaces
+                if s.packet != SKILLED_PACKET or inside_hub_checkout(cwd)] or ["UNKNOWN"]
+    labels = []
+    for entry in explained["files"]:
+        placed = list(entry["surfaces"]) + [
+            s.label for s in bundled_surfaces
+            if any(c["file"].startswith(f"hub:{HUB_ROOT.name}/{s.packet}/") for c in entry["checklists"])]
+        for label in placed:
+            if label != "UNKNOWN" and label not in labels:
+                labels.append(label)
+    return labels or ["UNKNOWN"]
+
+def checklist_level(checklist) -> int:
+    """2 repository, 3 specific surface, 4 SKILLED fallback, 5 shipped default."""
+    def seat(source):
+        if source == "repo-config":
+            return 2
+        if source == "outside-skill":
+            return 3
+        if source == "hub-surface":
+            return 4 if checklist["file"].startswith(f"hub:{HUB_ROOT.name}/{SKILLED_PACKET}/") else 3
+        return 5
+    return min(seat(source) for source in checklist["sources"])
+
+def applied_overrides(explained, known_ids) -> dict:
+    """The winning row per (file, rule id) and the groups of the Rule sources line.
+
+    known_ids holds the lens ids of review-core.md section 8, the floor.* ids of
+    the universal standards and the checker's hygiene.* ids. The linter already
+    refused every hard-floor row, so a refused checklist contributes nothing.
+    """
+    groups = {"sources": [], "overrides": [], "refused": [], "ignored": [], "conflicts": []}
+    winners = {}
+    if explained is None:
+        return {"winners": winners, "groups": groups}
+    disabled = explained["config"].get("hygiene", {}).get("disabled", [])
+    for entry in explained["files"]:
+        candidates = {}
+        for rule_id in disabled:
+            candidates.setdefault(rule_id, []).append(
+                (2, explained["config"]["path"], {"id": rule_id, "action": "none", "text": None}))
+        for checklist in entry["checklists"]:
+            if checklist["file"] not in groups["sources"]:
+                groups["sources"].append(checklist["file"])
+            overrides = checklist.get("overrides") or {}
+            if overrides.get("refused"):
+                groups["refused"].append(checklist["file"])
+                continue
+            for row in overrides.get("rows", []):
+                if row["id"] not in known_ids:
+                    groups["ignored"].append(f'{row["id"]} from {checklist["file"]}')
+                    continue
+                candidates.setdefault(row["id"], []).append((checklist_level(checklist), checklist["file"], row))
+        for rule_id, rows in candidates.items():
+            top = min(level for level, _, _ in rows)
+            best = [(f, r) for level, f, r in rows if level == top]
+            if len({(r["action"], r["text"]) for _, r in best}) > 1:
+                groups["conflicts"].append(f'{rule_id} {best[0][0]} {best[1][0]}')
+                continue
+            winners[(entry["file"], rule_id)] = best[0][1]
+            groups["overrides"].append(f'{rule_id} {best[0][1]["action"]} from {best[0][0]}')
+    for name, values in groups.items():
+        groups[name] = list(dict.fromkeys(values))
+    return {"winners": winners, "groups": groups}
+
+def rule_sources_line(groups) -> str:
+    """The one Rule sources line of review-core.md section 8, private names redacted."""
+    def join(values):
+        return "; ".join(redact_private(v) for v in values) if values else "none"
+    return (f'Rule sources: {", ".join(redact_private(v) for v in groups["sources"]) or "none"}. '
+            f'Overrides: {join(groups["overrides"])}. Refused: {join(groups["refused"])}. '
+            f'Ignored: {join(groups["ignored"])}. Conflicts: {join(groups["conflicts"])}')
+```
+
+---
+
+## 10. RELATED RESOURCES
 
 - [review-ux-single-pass.md](./review-ux-single-pass.md) - Interactive single-pass report flow and next-step prompts.
 - [quick-reference.md](./quick-reference.md) - Lightweight index across baseline review references.
 - [security-checklist.md](../assets/security-checklist.md) - Security and reliability checks.
 - [code-quality-checklist.md](../assets/code-quality-checklist.md) - Correctness, KISS, DRY, and maintainability checks.
 - [rule-overrides.md](../../shared/references/universal/rule-overrides.md) - The shared override format, ids, hard floor and precedence.
-
----

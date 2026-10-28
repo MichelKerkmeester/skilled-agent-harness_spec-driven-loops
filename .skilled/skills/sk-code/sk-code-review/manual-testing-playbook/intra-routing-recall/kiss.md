@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CR-R03: KISS routing
@@ -111,8 +111,8 @@ Command transcript from steps 1-4; the resolved frontmatter block; the
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | `DEFAULT_RESOURCES` baseline this scenario assumes |
+| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `DEFAULT_RESOURCES` baseline this scenario assumes |
 
 ---
 
