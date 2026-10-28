@@ -1,7 +1,7 @@
 ---
 title: "CR-001 -- Small PR single-file"
 description: "This scenario validates Small PR single-file for `CR-001`. It focuses on Confirm a focused one-file diff review stays findings-first without over-scoping."
-version: 1.5.0.2
+version: 1.5.1.0
 ---
 
 # CR-001 -- Small PR single-file
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `baseline-review-flow/small-pr-single-file.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

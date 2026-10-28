@@ -6,7 +6,7 @@ trigger_phrases:
   - "compare two files directly"
   - "compare-pair before after"
   - "stateless two-file diff"
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Explicit-pair comparison (compare-pair)
@@ -15,7 +15,7 @@ version: 1.1.0.4
 
 Compares two explicit files with no stored state — the fallback when no baseline exists or when comparing two arbitrary versions.
 
-This is the stateless counterpart to the snapshot flow. A caller who already has both versions in hand — or who never captured a baseline — passes them directly and gets the same report without touching the snapshot store. It is the documented recovery path when `compare` exits `4`, and the typical caller is either a one-off comparison of two arbitrary files or an automation that manages its own file pairing. Because nothing is read from or written to `.sk-create-diff/`, there is no state to get stale.
+This is the stateless counterpart to the snapshot flow. A caller who already has both versions in hand — or who never captured a baseline — passes them directly and gets the same report without touching the snapshot store. It is the documented recovery path when `compare` exits `4`, and the typical caller is either a one-off comparison of two arbitrary files or an automation that manages its own file pairing. Because nothing is read from or written to `.create-diff/`, there is no state to get stale.
 
 ---
 

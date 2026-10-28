@@ -1,7 +1,7 @@
 ---
 title: "DOC-392 -- Doctor CI report"
 description: "Manual scenario validating that /doctor:ci report lists every GitHub Actions workflow file, returns an empty error list on a clean tree, reads every switch variable as unknown offline, rejects a bad argument with exit 2 and writes nothing."
-version: 1.0.2.0
+version: 1.0.3.0
 id: doctor-commands-doctor-ci-report
 expected_workflow_mode: sk-code-ci
 expected_leaf_resources: []
@@ -19,15 +19,15 @@ The scenario checks the script's JSON contract, the workflow count against the f
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Prove `/doctor:ci report` returns one entry per workflow file, leaves the `errors` list empty on a clean tree, reads every switch variable as unknown when run with `--no-gh`, rejects a bad argument with exit 2 and writes nothing.
+- Objective: Prove `/doctor:ci report` returns one entry per workflow file, leaves the `errors` list empty on a clean tree, reads every switch variable as unknown when run with `--no-gh`, honours a pinned `--sha` and a `--profile` override, shows its startup menu for `list` instead of binding a target, rejects a bad argument with exit 2 and writes nothing.
 - Playbook ID: DOC-392.
 - Real user request: `Run the doctor CI report and tell me which GitHub Actions workflows have a switch off.`
 - Prompt: `Run the doctor CI report and tell me which GitHub Actions workflows have a switch off.`
 - Preconditions: The shared current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, so the workflow files are the ones that ship. No GitHub login is needed, because every run uses `--no-gh`.
-- Expected execution process: Count the workflow files, run the report script with `--no-gh --json`, run it with a bad argument, run the route with `--no-gh`, and confirm the tree is unchanged after every step.
-- Expected signals: The JSON run exits 0 and carries the keys `repoRoot`, `profile`, `workflowCount`, `variables`, `newestNonRebuildSha`, `newestNonRebuildReason`, `notChecked`, `errors` and `workflows`. `profile` reads source `repo` and path `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, the profile this repository commits. `workflowCount` equals the file count, `workflows` holds one entry per file and `errors` is empty. All six names under `variables` read `unknown`, `newestNonRebuildSha` is `null` and `newestNonRebuildReason` reads `gh disabled by --no-gh`. The bad-argument run prints `ERROR: unknown argument: --bogus` with the usage line and exits 2.
+- Expected execution process: Count the workflow files, run the report script with `--no-gh --json`, run it with a malformed and then a valid `--sha`, run it with `--profile` naming a fixture copy of the CI profile, run it with a bad argument, run the route with `--no-gh` and the `list` menu, and confirm the tree is unchanged after every step.
+- Expected signals: The JSON run exits 0 and carries the keys `repoRoot`, `profile`, `workflowCount`, `variables`, `newestNonRebuildSha`, `newestNonRebuildReason`, `notChecked`, `errors` and `workflows`. `profile` reads source `repo` and path `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, the profile this repository commits. `workflowCount` equals the file count, `workflows` holds one entry per file and `errors` is empty. All six names under `variables` read `unknown`, `newestNonRebuildSha` is `null` and `newestNonRebuildReason` reads `gh disabled by --no-gh`. `--sha=notasha` exits 2 with `ERROR: --sha needs 40 lowercase hex characters: --sha=notasha`; a valid 40-hex `--sha` exits 0 with `newestNonRebuildSha` equal to it and `newestNonRebuildReason` reading `given by --sha`. `--profile=<fixture>` exits 0 with `profile` reading source `cli` and the fixture's own path, with `workflowCount` unchanged. The bad-argument run prints `ERROR: unknown argument: --bogus` with the usage line and exits 2. `list` prints the startup menu and the route manifest and loads no workflow.
 - Desired user-visible outcome: A workflow table through the presentation contract, a workflow count that matches the tree, and a named switch state for each workflow. Offline, the switch states that need GitHub are reported as unknown rather than guessed.
-- Pass/fail: PASS if the JSON run exits 0 with an empty `errors` list and a `workflowCount` equal to the file count, the six variables read `unknown` offline, the bad argument exits 2 with the usage line, the route reports the same count and no step writes a file.
+- Pass/fail: PASS if the JSON run exits 0 with an empty `errors` list and a `workflowCount` equal to the file count, the six variables read `unknown` offline, the malformed `--sha` exits 2 with its message, the valid `--sha` round-trips into `newestNonRebuildSha`, `--profile` moves `profile.source` to `cli` and its `path` to the fixture, the bad argument exits 2 with the usage line, `list` prints the menu without a workflow table, and no step writes a file.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
@@ -45,34 +45,44 @@ Run the doctor CI report and tell me which GitHub Actions workflows have a switc
 1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing. Run every step below inside the environment.
 2. Count the workflow files with `find .github/workflows -maxdepth 1 -name '*.yml' | wc -l` and keep the number. The report script reads only `*.yml` files, so this count is the one its `workflowCount` must equal.
 3. Run `node .skilled/commands/doctor/scripts/ci-report.cjs --no-gh --json` and capture the JSON, the stderr and the exit code.
-4. Run `node .skilled/commands/doctor/scripts/ci-report.cjs --bogus` and capture the stderr and the exit code.
-5. Run `/doctor:ci report --no-gh` in the AI runtime and capture the route output.
-6. Confirm `git status --porcelain` prints nothing after every step.
+4. Run `node .skilled/commands/doctor/scripts/ci-report.cjs --sha=notasha --no-gh --json` and capture the stderr and the exit code.
+5. Run `node .skilled/commands/doctor/scripts/ci-report.cjs --sha=0123456789abcdef0123456789abcdef01234567 --no-gh --json` and capture `newestNonRebuildSha` and `newestNonRebuildReason`.
+6. Copy the committed CI profile to a scratch path and run `node .skilled/commands/doctor/scripts/ci-report.cjs --no-gh --json --profile=<scratch path>`; capture the `profile` object and the exit code.
+7. Run `node .skilled/commands/doctor/scripts/ci-report.cjs --bogus` and capture the stderr and the exit code.
+8. Run `/doctor:ci report --no-gh` in the AI runtime and capture the route output.
+9. Run `/doctor:ci list` in the AI runtime and capture the startup menu.
+10. Confirm `git status --porcelain` prints nothing after every step.
 
 ### Expected
 
 Step 3 exits 0. Its JSON carries `repoRoot`, `profile`, `workflowCount`, `variables`, `newestNonRebuildSha`, `newestNonRebuildReason`, `notChecked`, `errors` and `workflows`. `workflowCount` equals the count from step 2, `workflows` holds one entry per workflow file and `errors` is an empty list. Offline, the six names under `variables` read `unknown`, `newestNonRebuildSha` is `null` and `newestNonRebuildReason` reads `gh disabled by --no-gh`.
 
-Step 4 exits 2 and prints `ERROR: unknown argument: --bogus`, followed by the usage line `Usage: node .skilled/commands/doctor/scripts/ci-report.cjs [--json] [--sha=<40 hex>] [--no-gh] [--profile <path>]`.
+Step 4 exits 2 and prints `ERROR: --sha needs 40 lowercase hex characters: --sha=notasha`, followed by the usage line. Step 5 exits 0 with `newestNonRebuildSha` equal to `0123456789abcdef0123456789abcdef01234567` and `newestNonRebuildReason` reading `given by --sha`, which is how an operator pins a commit without searching for one.
 
-Step 5 reports the same workflow count as step 3 and renders the workflows through the presentation contract. The route writes nothing, and step 6 confirms it.
+Step 6 exits 0 with `profile` reading source `cli` and the scratch path, and every other field unchanged, which is how a repository with its own switch names reads this one's report shape.
+
+Step 7 exits 2 and prints `ERROR: unknown argument: --bogus`, followed by the usage line `Usage: node .skilled/commands/doctor/scripts/ci-report.cjs [--json] [--sha=<40 hex>] [--no-gh] [--profile <path>]`.
+
+Step 8 reports the same workflow count as step 3 and renders the workflows through the presentation contract. Step 9 prints the startup menu and the route manifest and binds no target, so no workflow table is rendered. Neither the route nor the menu writes anything, and step 10 confirms it.
 
 ### Evidence
 
 - The step 2 count.
 - The step 3 JSON, its stderr and its exit code.
-- The step 4 stderr and exit code.
-- The step 5 route output.
+- The step 4 and step 5 stderr, exit code and the `newestNonRebuildSha` / `newestNonRebuildReason` pair.
+- The step 6 `profile` object and exit code.
+- The step 7 stderr and exit code.
+- The step 8 route output and the step 9 startup menu.
 - The `git status --porcelain` output after every step.
 
 ### Pass / Fail
 
-- **Pass**: The step 3 run exits 0 with an empty `errors` list and a `workflowCount` equal to the step 2 count, the six variables read `unknown` offline, step 4 exits 2 with the usage line, step 5 reports the same count and no step writes a file.
-- **Fail**: A workflow fails to parse and the run exits 1, `errors` is not empty, the count differs from the file count, a variable reads any state other than `unknown` offline, the bad argument exits with any other code, or any step writes a file.
+- **Pass**: The step 3 run exits 0 with an empty `errors` list and a `workflowCount` equal to the step 2 count, the six variables read `unknown` offline, step 4 exits 2 with the sha message, step 5 round-trips the pinned sha, step 6 moves `profile.source` to `cli`, step 7 exits 2 with the usage line, step 9 prints the menu without a workflow table, and no step writes a file.
+- **Fail**: A workflow fails to parse and the run exits 1, `errors` is not empty, the count differs from the file count, a variable reads any state other than `unknown` offline, a malformed `--sha` is accepted or a valid one is ignored, `--profile` leaves `profile.source` unchanged, a bad argument exits with any other code, `list` renders a workflow table, or any step writes a file.
 
 ### Failure Triage
 
-If `errors` is not empty, the named workflow failed to parse. Fix that file, then rerun step 3. If the count differs from the file count, compare the `workflows` file names with the directory listing. If the route output differs from the script output, read the route's presentation contract before changing the script.
+If `errors` is not empty, the named workflow failed to parse. Fix that file, then rerun step 3. If the count differs from the file count, compare the `workflows` file names with the directory listing. If `--sha` is ignored, confirm the value is exactly 40 lowercase hex characters, because any other length or an uppercase letter is rejected at exit 2. If `--profile` leaves `profile.source` at `repo`, confirm the scratch copy exists and parses, since a missing or invalid profile stops the run with exit 3. If the route output differs from the script output, read the route's presentation contract before changing the script.
 
 ---
 
@@ -88,6 +98,8 @@ If `errors` is not empty, the named workflow failed to parse. Fix that file, the
 - Category notes: [doctor-commands README](README.md)
 
 Provenance: manual only - /doctor:ci report
+
+Catalog: `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, which inventories the report, scaffold and toggle routes and the repository CI profile they read.
 
 ---
 

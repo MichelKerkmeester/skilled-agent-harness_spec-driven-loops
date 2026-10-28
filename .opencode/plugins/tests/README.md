@@ -17,7 +17,7 @@ trigger_phrases:
 
 The suites pin three contracts above all: the **kill-switch ordering** (a disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`), the **fail-open boundary** (a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op), and the **hook behavior** (correct injection / deny / advise / cache / lifecycle) when the kill-switch is off. The export-contract suite reaches the goal plugin's internal helpers through `getGoalCore(plugin.server)` rather than an extra test-only export on the default export, so no stray named export is mistaken for a second plugin.
 
-Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared `hook-flags.cjs` resolver directly, while importing the ESM plugin under test via `import(pathToFileURL(...))`. Some suites use cache-busting query strings (`?${label}-${Date.now()}`) or `data:text/javascript;base64,...` instrumented modules to get a fresh module instance per test.
+Tests are CJS (`*.test.cjs`) so they can `require()` Node builtins and the shared `hook-flags.cjs` resolver directly, while importing the ESM plugin under test via `import(pathToFileURL(...))`. Some suites use cache-busting query strings (`?${label}-${Date.now()}`) or `data:text/javascript;base64,...` instrumented modules to get a fresh module instance per test.
 
 ---
 
@@ -35,7 +35,7 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, internals reached through `getGoalCore(plugin.server)`). |
 | `opencode-goal-handover.test.cjs` | `opencode-goal.js` hand-over binding | A receiver with no goal binds the hand-over goal packet, and a dispatched child process never binds it. |
 | `opencode-goal-lifecycle.test.cjs` | `opencode-goal.js` | Goal lifecycle events and usage tracking, using `helpers/continuation-log.cjs`. |
-| `opencode-goal-render-parity.test.cjs` | `opencode-goal.js` + `hooks/goal/lib/goal-core.cjs` | Pins the shared injection label set across both renderers and the brief cache key's write sensitivity. |
+| `opencode-goal-render-parity.test.cjs` | `opencode-goal.js` + `../../hooks/goal/lib/goal-core.cjs` | Pins the shared injection label set across both renderers and the brief cache key's write sensitivity. |
 | `opencode-goal-state.test.cjs` | `opencode-goal.js` | Session-keyed goal persistence, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-supervisor.test.cjs` | `opencode-goal.js` | Verifier results and durable goal state. |
 | `opencode-goal-tool-path.test.cjs` | `opencode-goal.js` | Tool-context session resolution, packet bind, resent, packet read and the injected resend reminder. |
@@ -116,7 +116,7 @@ tests/
 
 ## 5. CONFIGURATION
 
-Tests manage their own env per test (save/restore). The kill-switch env each suite toggles is the same one documented in the parent `plugins/README.md` and each plugin's own README (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). No external configuration is required to run the suites.
+Tests manage their own env per test (save/restore). The kill-switch env each suite toggles is the same one documented in the parent [`README.md`](../README.md) and each plugin's own README (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). No external configuration is required to run the suites.
 
 ---
 
@@ -127,7 +127,7 @@ Tests manage their own env per test (save/restore). The kill-switch env each sui
 | Hermetic | Temporary directories, in-process `import()`, stubbed `ctx.client` / bridge / subprocess seams, per-test env save/restore. No live OpenCode session, daemon, or network. |
 | Kill-switch ordering | A disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`. |
 | Fail-open boundary | A missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. |
-| CJS shell, ESM under test | Tests are `.test.cjs` so they can `require()` Node builtins and `hook-flags.cjs`. The ESM plugin under test is imported via `import(pathToFileURL(...))`. Cache-busting query strings or `data:text/javascript;base64,...` instrumented modules give a fresh module instance per test where needed. |
+| CJS shell, ESM under test | Tests are `*.test.cjs` so they can `require()` Node builtins and `hook-flags.cjs`. The ESM plugin under test is imported via `import(pathToFileURL(...))`. Cache-busting query strings or `data:text/javascript;base64,...` instrumented modules give a fresh module instance per test where needed. |
 | `getGoalCore(plugin.server)` seam | The export-contract suite reaches the goal plugin's internal helpers through `getGoalCore(plugin.server)` rather than adding an extra test-only export to the default export, so a stray named export is never mistaken for a second plugin. |
 | Helpers | Shared fixture utilities live under `helpers/` (see `helpers/README.md`). |
 
@@ -158,3 +158,7 @@ Expected result: that suite's tests pass.
 - [`../README.md`](../README.md): the plugin entrypoints these suites cover.
 - [`helpers/README.md`](helpers/README.md): the shared test helpers.
 - [`../../hooks/README.md`](../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
+
+<!-- readme-check
+allow-count 9 files | the goal glob in that row names nine suites in this folder, and the checker counts the folder itself, which holds more
+-->

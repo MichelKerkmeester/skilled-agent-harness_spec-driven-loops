@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript error handling standards"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.15
+version: 1.0.1.0
 ---
 
 # JavaScript Quality Standards
@@ -40,14 +40,17 @@ contract. Do not force one JavaScript module style across all paths.
 
 | Surface | Module Pattern | Notes |
 |---------|----------------|-------|
-| `.js/.cjs` Node utilities outside plugin loader paths | CommonJS with `'use strict'` | Default for legacy runtime helpers and standalone scripts |
+| `.js` files | Follow the nearest package `type` and loader contract | `"type": "module"` selects ESM; otherwise use the package's CommonJS boundary |
+| `.cjs` files | CommonJS | The extension selects CommonJS |
 | `.mjs` files | ESM | The verifier skips `'use strict'` enforcement for `.mjs` |
 | `.opencode/plugins/*.{js,mjs,ts}` | ESM default export | Required by the OpenCode plugin loader |
 
 ### CommonJS Pattern
 
-Non-plugin `.js/.cjs` modules use CommonJS format with `'use strict'`
-directive.
+Use CommonJS for `.cjs` files and `.js` files whose package boundary selects
+CommonJS. Those files include the repository's required `'use strict'`
+directive. ESM `.js` files follow their package boundary and also keep that
+directive to satisfy the repository's alignment checks; it is redundant in ESM.
 
 ```javascript
 'use strict';

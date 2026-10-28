@@ -8,7 +8,8 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/comment-syntax.json
-version: 1.1.4.1
+catalog_applicable: true
+version: 1.1.5.0
 ---
 
 # CQ-003: A Change With No Checkable File Reports Nothing Checked
@@ -65,8 +66,8 @@ Run the quality gate on this change and tell me whether it passed.
 
 Run the commands from the repository root.
 
-1. `node --test --test-reporter=tap --test-name-pattern='^F05' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
-2. `sed -n "/^test('F05/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
+1. `node --test --test-reporter=tap --test-name-pattern='^F05' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs`
+2. `sed -n "/^test('F05/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs`
 3. Build fixture F05 by hand in a temporary repository, run the gate on it and assert every field the table names.
 
 ```bash
@@ -150,13 +151,14 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog entry for the runner and the gate values it prints |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
 | [SKILL.md](../../SKILL.md) §9 | Surface routing that leaves a foreign change on the universal floor |
-| [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The F05 case this scenario replays |
+| [quality-gate-surfaces.test.cjs](../../scripts/tests/quality-gate-surfaces.test.cjs) | The F05 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §2 and §3 | The `NOTHING_CHECKED` gate value and the `coverage.unchecked` reasons |
 | [comment-syntax.json](../../assets/comment-syntax.json) | The language and extension table that decides whether a comment family exists |
 

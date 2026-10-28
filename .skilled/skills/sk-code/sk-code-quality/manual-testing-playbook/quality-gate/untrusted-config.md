@@ -8,7 +8,8 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.4.1
+catalog_applicable: true
+version: 1.1.5.0
 ---
 
 # CQ-009: Untrusted Config Reads Skipped Untrusted Until The Operator Grants Trust
@@ -70,8 +71,8 @@ Run the quality gate on this cloned repository and tell me why its configured ch
 
 Run the commands from the repository root in one shell session, so the variables set in step 3 stay defined.
 
-1. `node --test --test-reporter=tap --test-name-pattern='^trust: (a committed config with no trust rule|a local skilled.trustRepoChecks true)' .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs`
-2. `sed -n "/^test('trust: a committed config with no trust rule/,/^}));/p; /^test('trust: a local skilled.trustRepoChecks true/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs`
+1. `node --test --test-reporter=tap --test-name-pattern='^trust: (a committed config with no trust rule|a local skilled.trustRepoChecks true)' .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-trust.test.cjs`
+2. `sed -n "/^test('trust: a committed config with no trust rule/,/^}));/p; /^test('trust: a local skilled.trustRepoChecks true/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-trust.test.cjs`
 3. Build the fixture by hand, run the gate without trust, grant trust, rerun and assert the fields.
 
 ```bash
@@ -127,10 +128,11 @@ echo "exit $?"
 ```
 
 4. `for p in references/quality-config.md references/runner-contract.md scripts/quality-gate.cjs; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+5. Clean up: `rm -rf "$TMP"`
 
 ### Expected
 
-Step 1 replays both trust cases and prints `# pass 2` then `# fail 0`. Step 2 shows the two cases: the first asserts the row, the repair line, the unverified list and the absence of the canary file, the second asserts the check runs and fails once the local key is set. Step 3 prints `untrusted gate UNVERIFIED exit 4`, `row SKIPPED_UNTRUSTED required true`, the repair line, the untrusted trust line, `marker after untrusted run: absent`, then `trusted blocking gate exit 1 unverified 0`, `row RAN_FAIL`, the trusted trust line and `marker after trusted run: present`, and the command exits 0. Step 4 prints `OK` for all three paths.
+Step 1 replays both trust cases and prints `# pass 2` then `# fail 0`. Step 2 shows the two cases: the first asserts the row, the repair line, the unverified list and the absence of the canary file, the second asserts the check runs and fails once the local key is set. Step 3 prints `untrusted gate UNVERIFIED exit 4`, `row SKIPPED_UNTRUSTED required true`, the repair line, the untrusted trust line, `marker after untrusted run: absent`, then `trusted blocking gate exit 1 unverified 0`, `row RAN_FAIL`, the trusted trust line and `marker after trusted run: present`, and the command exits 0. Step 4 prints `OK` for all three paths. Step 5 prints nothing and leaves no scratch folder behind.
 
 | Signal | Expected value |
 | --- | --- |
@@ -154,7 +156,7 @@ Step 1 replays both trust cases and prints `# pass 2` then `# fail 0`. Step 2 sh
 
 ### Evidence
 
-Command transcript from steps 1 to 4, the frontmatter block with `expected_intent: QUALITY`, the first run's check row quoted with `state`, `required` and `repair`, both `config.trust` lines, both gate and exit lines, the marker state after each run, and the command's exit 0, which is the result of both snapshot checks and every assertion. Read every transcript line of the first run for a passing claim before the verdict is recorded. Save the transcript under the dated run label the playbook names.
+Command transcript from steps 1 to 5, the frontmatter block with `expected_intent: QUALITY`, the first run's check row quoted with `state`, `required` and `repair`, both `config.trust` lines, both gate and exit lines, the marker state after each run, and the command's exit 0, which is the result of both snapshot checks and every assertion. Read every transcript line of the first run for a passing claim before the verdict is recorded. Save the transcript under the dated run label the playbook names.
 
 ### Pass / Fail
 
@@ -178,13 +180,14 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 | --- | --- |
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`repository-quality-config.md`](../../../feature-catalog/quality-gate/repository-quality-config.md) | The feature catalog entry for the trust boundary and the repair line |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 | --- | --- |
 | [SKILL.md](../../SKILL.md) §4 | The gate workflow line that reads `UNVERIFIED` as an open claim rather than a pass |
-| [configured-checks.test.cjs](../../scripts/tests/configured-checks.test.cjs) | The trust cases this scenario replays |
+| [configured-checks-trust.test.cjs](../../scripts/tests/configured-checks-trust.test.cjs) | The trust cases this scenario replays |
 | [quality-config.md](../../references/quality-config.md) §8 | The trust boundary: the four rules, the state, the repair line and what `config.trust` names |
 | [runner-contract.md](../../references/runner-contract.md) §2 | The check states, the `SKIPPED_UNTRUSTED` row and the unverified list |
 | [quality-gate.cjs](../../scripts/quality-gate.cjs) | The trust decision and the state it writes onto a configured row |

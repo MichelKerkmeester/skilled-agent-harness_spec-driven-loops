@@ -8,7 +8,7 @@ trigger_phrases:
   - "import ordering rules"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.17
+version: 1.0.1.0
 ---
 
 # Code Organization - File Structure and Module Principles
@@ -58,11 +58,12 @@ Every file starts with a header block identifying its purpose:
 // ───────────────────────────────────────────────────────────────
 ```
 
-**JavaScript `.js/.cjs` utilities** (boxed header plus strict mode):
+**JavaScript `.js/.cjs` utilities** (MODULE header; module syntax follows the
+package boundary):
 ```javascript
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Example Utility                                              ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Example Utility
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 ```
 
@@ -78,15 +79,16 @@ Every file starts with a header block identifying its purpose:
 ```bash
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# LIBRARY: COMMON UTILITIES
+# COMPONENT: COMMON UTILITIES
 # ───────────────────────────────────────────────────────────────
 ```
 
-### Module Type Labels
+### Module Role Names
 
-Use consistent labels in headers:
+Use the marker required by the language-specific style guide. These role names
+describe module purpose; they do not replace the required header marker.
 
-| Label | Use For |
+| Role | Use For |
 |-------|---------|
 | `SERVER` | MCP servers, HTTP servers |
 | `HANDLER` | Request/event handlers |
@@ -107,25 +109,25 @@ Every significant file should have numbered sections:
 - Do not convert these headers to sentence case or unnumbered variants.
 
 ```javascript
-/* ─────────────────────────────────────────────────────────────
-   1. MODULE IMPORTS
-──────────────────────────────────────────────────────────────── */
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
-/* ─────────────────────────────────────────────────────────────
-   2. CONSTANTS
-──────────────────────────────────────────────────────────────── */
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
-/* ─────────────────────────────────────────────────────────────
-   3. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
-/* ─────────────────────────────────────────────────────────────
-   4. MAIN LOGIC
-──────────────────────────────────────────────────────────────── */
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
-/* ─────────────────────────────────────────────────────────────
-   5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 ```
 
 ---

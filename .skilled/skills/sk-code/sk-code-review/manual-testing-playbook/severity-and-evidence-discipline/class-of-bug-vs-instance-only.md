@@ -1,7 +1,7 @@
 ---
 title: "CR-008 -- Class of bug vs instance-only"
 description: "This scenario validates Class of bug vs instance-only for `CR-008`. It focuses on Confirm findings classify same-class inventory instead of patching only the cited instance by default."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-008 -- Class of bug vs instance-only
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-008
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `severity-and-evidence-discipline/class-of-bug-vs-instance-only.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

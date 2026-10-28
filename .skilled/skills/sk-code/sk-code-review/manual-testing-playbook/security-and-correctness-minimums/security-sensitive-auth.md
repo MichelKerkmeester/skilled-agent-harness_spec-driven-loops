@@ -1,7 +1,7 @@
 ---
 title: "CR-004 -- Security-sensitive auth"
 description: "This scenario validates Security-sensitive auth for `CR-004`. It focuses on Confirm auth and authorization gaps are treated as mandatory baseline risks."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-004 -- Security-sensitive auth
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-004
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `security-and-correctness-minimums/security-sensitive-auth.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

@@ -8,7 +8,7 @@ trigger_phrases:
   - "snapshot cleanup lifecycle"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # Workflow: baseline, comparison, and lifecycle
@@ -72,9 +72,9 @@ multi-file CLI arguments.
 
 ## Where snapshots live
 
-Baselines are stored under a `.sk-create-diff/` directory in the current working directory (override with `--state-dir DIR`). Each source path gets its own subdirectory keyed by a hash of its absolute path, containing the copied blobs plus a `manifest.json` recording capture time, size, and SHA-256. Writes are atomic (temp file + rename); the source is only ever read.
+Baselines are stored under a `.create-diff/` directory in the current working directory (override with `--state-dir DIR`). Each source path gets its own subdirectory keyed by a hash of its absolute path, containing the copied blobs plus a `manifest.json` recording capture time, size, and SHA-256. Writes are atomic (temp file + rename); the source is only ever read.
 
-Add `.sk-create-diff/` to `.gitignore` if you run this inside a repository — it is local scratch state, not a deliverable.
+Add `.create-diff/` to `.gitignore` if you run this inside a repository — it is local scratch state, not a deliverable.
 
 ## Lifecycle
 

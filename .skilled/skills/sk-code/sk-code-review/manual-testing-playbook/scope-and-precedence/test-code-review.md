@@ -1,7 +1,7 @@
 ---
 title: "CR-012 -- Test code review"
 description: "This scenario validates Test code review for `CR-012`. It focuses on Confirm test-only changes are reviewed for false confidence, isolation, and meaningful assertions."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-012 -- Test code review
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-012
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `scope-and-precedence/test-code-review.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

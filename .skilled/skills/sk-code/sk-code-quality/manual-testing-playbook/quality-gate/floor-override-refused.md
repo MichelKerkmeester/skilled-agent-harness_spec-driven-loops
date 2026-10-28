@@ -8,7 +8,8 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.0.1.0
+catalog_applicable: true
+version: 1.0.2.0
 ---
 
 # CQ-013: A Hard-Floor Rule Cannot Be Overridden Or Disabled
@@ -67,7 +68,7 @@ Check that the quality gate refuses a style document that turns input validation
 
 ### Commands
 
-Run the commands from the repository root in one shell session, so the variables stay defined.
+Run the commands from the repository root in one shell session, so the variables stay defined. Every step that reads or edits the fixture runs in a subshell with an explicit `cd`, and the one config edit names the scratch path absolutely, so no step depends on another step's working directory and no step can name a repository-relative config path.
 
 1. Build the fixture and set `HUB`.
 
@@ -117,18 +118,20 @@ echo "linter exit $?"
 3. Ask the resolver about the style document, then run the gate with the row alone and read its errors.
 
 ```bash
-cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --explain src/download.js | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);const c=j.checklists.find(x=>x.file==="docs/code-style.md");console.log("refused "+c.overrides.refused+" rows "+c.overrides.rows.length);for(const e of c.overrides.errors)console.log("line "+e.line+": "+e.message)})'
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js 2> /dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("gate "+j.gate);for(const e of j.config.errors)console.log(e.code+" "+e.message)})'
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js > /dev/null 2>&1; echo "gate exit $?"
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --explain src/download.js | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);const c=j.checklists.find(x=>x.file==="docs/code-style.md");console.log("refused "+c.overrides.refused+" rows "+c.overrides.rows.length);for(const e of c.overrides.errors)console.log("line "+e.line+": "+e.message)})' )
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js 2> /dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("gate "+j.gate);for(const e of j.config.errors)console.log(e.code+" "+e.message)})' )
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js > /dev/null 2>&1; echo "gate exit $?" )
 ```
 
 4. Add the fixed hygiene id to the config and run the gate again.
 
 ```bash
-node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json","utf8"));c.commentHygiene={disableRules:["secret.private-key"]};fs.writeFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json",JSON.stringify(c,null,2)+"\n")'
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js 2> /dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("gate "+j.gate);for(const e of j.config.errors)console.log(e.code+" "+e.field+": "+e.message)})'
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js > /dev/null 2>&1; echo "gate exit $?"
-cd - > /dev/null && rm -rf "$SCRATCH"
+node -e 'const fs=require("fs");const p=process.argv[1];const c=JSON.parse(fs.readFileSync(p,"utf8"));c.commentHygiene={disableRules:["secret.private-key"]};fs.writeFileSync(p,JSON.stringify(c,null,2)+"\n")' "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json"
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js 2> /dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("gate "+j.gate);for(const e of j.config.errors)console.log(e.code+" "+e.field+": "+e.message)})' )
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js > /dev/null 2>&1; echo "gate exit $?" )
+rm -rf "$SCRATCH"
+git -c core.fsmonitor=false status --porcelain -- .skilled/skills/sk-code/sk-code-quality/repository/quality.json
+echo "the repository config prints above only when it was touched"
 ```
 
 5. `for p in references/quality-config.md references/runner-contract.md scripts/quality-gate.cjs; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
@@ -159,7 +162,7 @@ CONFIG_INVALID commentHygiene.disableRules[0]: commentHygiene.disableRules[0]: "
 gate exit 3
 ```
 
-Step 5 prints `OK` for all three paths.
+Step 4 ends by removing the scratch folder and then checking the repository's own config path, which prints nothing when that file was never touched. Step 5 prints `OK` for all three paths.
 
 | Signal | Expected value |
 | --- | --- |
@@ -196,6 +199,7 @@ Command transcript from steps 1 to 5, the frontmatter block with `expected_inten
 | File | Role |
 | --- | --- |
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`rule-overrides-and-hygiene-policy.md`](../../../feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md) | The feature catalog entry for the hard floor and the refused section |
 
 ### Implementation And Test Anchors
 
@@ -206,7 +210,8 @@ Command transcript from steps 1 to 5, the frontmatter block with `expected_inten
 | [check-rule-overrides.cjs](../../../shared/scripts/check-rule-overrides.cjs) | The linter that refuses the row |
 | [quality-config.md](../../references/quality-config.md) §3 and §7 | The `disableRules` key and the `CONFIG_INVALID` code |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The explain output, its `overrides` field and the run's `CONFIG_INVALID` for a refused section |
-| [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The runner cases for the key and the explain output |
+| [quality-config-hygiene.test.cjs](../../scripts/tests/quality-config-hygiene.test.cjs) | The runner cases for the key |
+| [quality-gate-explain-and-overrides.test.cjs](../../scripts/tests/quality-gate-explain-and-overrides.test.cjs) | The runner cases for the refused section and the explain output |
 
 ---
 

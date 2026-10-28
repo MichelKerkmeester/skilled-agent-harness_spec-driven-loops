@@ -1,7 +1,7 @@
 ---
 title: "create-diff: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the create-diff sk-doc mode."
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # create-diff: Manual Testing Playbook
@@ -55,7 +55,7 @@ Coverage note (2026-07-15): every scenario is runnable today against `scripts/cr
 1. Working directory is the packet root `.skilled/skills/sk-doc/sk-create-diff/` (or supply absolute paths to the scripts).
 2. Python 3.9+ is available on `PATH`.
 3. For PDF scenarios, at least one of `pdftotext`, `pypdf`, or `pdfplumber` is installed; otherwise CMP-003 is a documented SKIP.
-4. A scratch directory outside the repo is used for generated reports and the `.sk-create-diff/` snapshot store.
+4. A scratch directory outside the repo is used for generated reports and the `.create-diff/` snapshot store.
 5. No destructive scenarios exist — the engine never mutates source files — but each scenario MUST confirm the input files are byte-unchanged afterward.
 
 ---
@@ -242,7 +242,7 @@ Verify the capture-before-edit invariant: snapshot a file, edit it, then compare
 #### Scenario Contract
 Prompt: `Save a baseline of this doc before I let the AI edit it, then show me the diff afterward.`
 
-Run `snapshot`, modify the file, then `compare`; expect the report to reflect the edit and the source snapshot store under `.sk-create-diff/`.
+Run `snapshot`, modify the file, then `compare`; expect the report to reflect the edit and the source snapshot store under `.create-diff/`.
 
 Desired user-visible outcome: a correct diff between the pre-edit baseline and the edited file.
 

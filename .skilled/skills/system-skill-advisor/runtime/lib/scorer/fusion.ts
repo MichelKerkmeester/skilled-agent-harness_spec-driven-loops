@@ -407,7 +407,13 @@ function rrfRankFor(
 }
 
 function promptMentionsSkill(promptLower: string, skill: SkillProjection): boolean {
-  return [skill.id, skill.name, skill.id.replace(/-/g, ' ')].some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()));
+  const phrases = [skill.id, skill.name, skill.id.replace(/-/g, ' ')];
+  // A cli skill wraps one named external tool, so the tool's own name ("orca"
+  // for cli-orca) names the skill as surely as its id does.
+  if (skill.family === 'cli' && skill.id.startsWith('cli-')) {
+    phrases.push(skill.id.slice('cli-'.length).replace(/-/g, ' '));
+  }
+  return phrases.some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()));
 }
 
 function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {

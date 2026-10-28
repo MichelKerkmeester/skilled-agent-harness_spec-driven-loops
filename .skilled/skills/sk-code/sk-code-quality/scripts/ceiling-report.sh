@@ -36,12 +36,22 @@ Exit codes:
      be loaded
 
 """
+# ───────────────────────────────────────────────────────────────
+# 1. IMPORTS
+# ───────────────────────────────────────────────────────────────
+
 import importlib.machinery
 import importlib.util
 import os
 import re
 import subprocess
 import sys
+from types import ModuleType
+from typing import Any, Dict, List, Pattern, Tuple
+
+# ───────────────────────────────────────────────────────────────
+# 2. CONSTANTS
+# ───────────────────────────────────────────────────────────────
 
 # Loading the checker must not leave a bytecode cache beside the scripts.
 sys.dont_write_bytecode = True
@@ -56,8 +66,12 @@ MARKER_WORDS = r"\s*(ceiling|intentional-limit):"
 # A file of unknown language, named as an argument, is read with the table's hash family.
 FALLBACK_FAMILY = "hash"
 
+# ───────────────────────────────────────────────────────────────
+# 3. CHECKER LOADER
+# ───────────────────────────────────────────────────────────────
 
-def load_checker():
+
+def _load_checker() -> ModuleType:
     """Load the comment-hygiene checker that sits beside this file.
 
     The checker owns what counts as comment text, so the report asks it rather than
@@ -73,17 +87,22 @@ def load_checker():
         spec = importlib.util.spec_from_loader(loader.name, loader)
         module = importlib.util.module_from_spec(spec)
         loader.exec_module(module)
-    except Exception as error:
+    except (ImportError, OSError, SyntaxError, UnicodeError) as error:
         print("ceiling-report: cannot load the comment-hygiene checker %s: %s" % (path, error), file=sys.stderr)
         sys.exit(2)
     return module
 
 
 # One module serves the whole run, so the report never keeps a second copy of the rules.
-CHECKER = load_checker()
+CHECKER = _load_checker()
 
 
-def marker_pattern(family):
+# ───────────────────────────────────────────────────────────────
+# 4. MARKER SCANNING
+# ───────────────────────────────────────────────────────────────
+
+
+def _marker_pattern(family: Dict[str, Any]) -> Pattern[str]:
     """Build the marker pattern for one comment family of the table.
 
     A marker starts the comment text, after an optional comment prefix, so a docstring
@@ -99,7 +118,7 @@ def marker_pattern(family):
     return re.compile("^(?:" + "|".join(re.escape(token) for token in prefixes) + ")?" + MARKER_WORDS)
 
 
-def trigger_clause(after_marker):
+def _trigger_clause(after_marker: str) -> str:
     if ";" in after_marker:
         return after_marker.split(";", 1)[1]
     if "," in after_marker:
@@ -107,7 +126,7 @@ def trigger_clause(after_marker):
     return ""
 
 
-def tags_for(trigger):
+def _tags_for(trigger: str) -> List[str]:
     if not trigger.strip():
         return ["no-trigger"]
     if re.search(r"\d", trigger) or "%" in trigger or MEASURABLE_RE.search(trigger):
@@ -115,7 +134,7 @@ def tags_for(trigger):
     return ["no-signal"]
 
 
-def read_lines(path):
+def _read_lines(path: str) -> List[str]:
     try:
         with open(path, "rb") as handle:
             raw = handle.read()
@@ -132,7 +151,13 @@ def read_lines(path):
     return text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
 
-def scan(shown, path, table, patterns, found):
+def _scan(
+    shown: str,
+    path: str,
+    table: Dict[str, Any],
+    patterns: Dict[str, Pattern[str]],
+    found: List[Tuple[str, int, str, List[str]]],
+) -> None:
     """Collect the ceiling markers of one file, reading its comment text through the checker.
 
     The language comes from the checker, and one scan state runs over the whole file, so a
@@ -146,16 +171,16 @@ def scan(shown, path, table, patterns, found):
     family_name = family_name or FALLBACK_FAMILY
     family = table["families"][family_name]
     state = CHECKER.ScanState()
-    for lineno, raw_line in enumerate(read_lines(path), start=1):
+    for lineno, raw_line in enumerate(_read_lines(path), start=1):
         text = CHECKER.comment_text(raw_line, family, state)
         match = patterns[family_name].match(text)
         if match is None:
             continue
-        trigger = trigger_clause(text[match.end():])
-        found.append((shown, lineno, raw_line.strip(), tags_for(trigger)))
+        trigger = _trigger_clause(text[match.end():])
+        found.append((shown, lineno, raw_line.strip(), _tags_for(trigger)))
 
 
-def read_table():
+def _read_table() -> Dict[str, Any]:
     """Read the comment family table through the checker, and exit 2 when it cannot."""
     try:
         table = CHECKER.load_table(CHECKER.TABLE_PATH)
@@ -175,8 +200,13 @@ def read_table():
     return table
 
 
+# ───────────────────────────────────────────────────────────────
+# 5. REPOSITORY FILE DISCOVERY
+# ───────────────────────────────────────────────────────────────
+
+
 # The report serves the repository it is run in, which need not be the one that holds this script.
-def repo_root():
+def _repo_root() -> str:
     here = os.getcwd()
     result = subprocess.run(
         ["git", "-C", here, "rev-parse", "--show-toplevel"],
@@ -189,7 +219,7 @@ def repo_root():
     return result.stdout.decode("utf-8").strip()
 
 
-def tracked_code_files(root, extensions):
+def _tracked_code_files(root: str, extensions: Dict[str, Any]) -> List[str]:
     result = subprocess.run(
         ["git", "-C", root, "ls-files", "-z"],
         stdout=subprocess.PIPE,
@@ -213,9 +243,9 @@ def tracked_code_files(root, extensions):
     return kept
 
 
-def main(argv):
-    table = read_table()
-    patterns = {name: marker_pattern(family) for name, family in table["families"].items()}
+def main(argv: List[str]) -> int:
+    table = _read_table()
+    patterns = {name: _marker_pattern(family) for name, family in table["families"].items()}
     if argv:
         for arg in argv:
             if arg.startswith("-"):
@@ -230,12 +260,12 @@ def main(argv):
                 return 2
         targets = [(arg, arg) for arg in argv]
     else:
-        root = repo_root()
-        targets = [(rel, os.path.join(root, rel)) for rel in tracked_code_files(root, table["by_extension"])]
+        root = _repo_root()
+        targets = [(rel, os.path.join(root, rel)) for rel in _tracked_code_files(root, table["by_extension"])]
 
     found = []
     for shown, path in targets:
-        scan(shown, path, table, patterns, found)
+        _scan(shown, path, table, patterns, found)
 
     no_trigger = 0
     no_signal = 0

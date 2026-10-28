@@ -6,7 +6,7 @@ trigger_phrases:
   - "capture baseline before editing"
   - "snapshot then compare"
   - "compare against latest baseline"
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Baseline snapshot and compare (snapshot / compare)
@@ -21,7 +21,7 @@ This is the primary lifecycle for reviewing an edit whose "before" state would o
 
 ## 2. HOW IT WORKS
 
-`snapshot <file>` copies the source into a local snapshot store — `./.sk-create-diff/` by default, overridable with `--state-dir`. Each source gets its own subdirectory keyed by the sha256 of its absolute path, holding a content-addressed blob plus a `manifest.json`. Writes are atomic (temp file then `os.replace`), and the source document is only read, never written, which is what upholds the capture-before-edit invariant.
+`snapshot <file>` copies the source into a local snapshot store — `./.create-diff/` by default, overridable with `--state-dir`. Each source gets its own subdirectory keyed by the sha256 of its absolute path, holding a content-addressed blob plus a `manifest.json`. Writes are atomic (temp file then `os.replace`), and the source document is only read, never written, which is what upholds the capture-before-edit invariant.
 
 `compare <file>` then diffs the current file against its latest stored baseline: the baseline is the "before" side and the current file is the "after" side. It reuses the same extraction, deterministic diff, and self-contained report path as every other comparison, so the output is identical in form to an explicit-pair run. If no baseline exists for the file, `compare` exits `4` with guidance toward `compare-pair`.
 
@@ -33,7 +33,7 @@ This is the primary lifecycle for reviewing an edit whose "before" state would o
 
 | File | Layer | Role |
 |---|---|---|
-| `scripts/create_diff.py` | Script | `snapshot` captures a content-addressed baseline under `.sk-create-diff/` with atomic writes; `compare` diffs the current file against its latest baseline and exits `4` when none exists |
+| `scripts/create_diff.py` | Script | `snapshot` captures a content-addressed baseline under `.create-diff/` with atomic writes; `compare` diffs the current file against its latest baseline and exits `4` when none exists |
 | `references/workflow.md` | Shared | The capture-before-edit invariant, the snapshot flow, and the snapshot storage layout |
 
 ### Validation And Tests

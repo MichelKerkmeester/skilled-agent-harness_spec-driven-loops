@@ -1,7 +1,7 @@
 ---
 title: "DR-001: Design Restraint Ladder (pre-write rung selection)"
 description: "Verify sk-code walks the Design Restraint Ladder and selects the laziest viable rung before writing new code, after surface and intent routing, without overriding surface precedence or the Iron Law."
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # DR-001: Design Restraint Ladder (pre-write rung selection)
@@ -10,7 +10,7 @@ version: 1.5.3.0
 
 This scenario verifies that for an implementation-intent request, sk-code climbs the Design Restraint Ladder and picks the laziest viable rung before writing any new code: does this need to exist at all (YAGNI), then a helper, component, service or pattern already in this codebase, then a standard-library primitive, a native platform or runtime feature, an already-installed dependency, a one-line expression, and only then minimal custom code.
 
-The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither the surface detection order (declared specific surfaces, then the SKILLED fallback, then UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
+The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither the surface detection order (declared specific surfaces, then the SKILLED fallback, then UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition: the Phase 0 to 1 row of `shared/references/phase-detection.md` is where the gate is recorded.
 
 The ladder is defined in `shared/references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `shared/references/phase-detection.md`.
 
@@ -53,18 +53,17 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 
 ### Preconditions
 
-1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and its Phase Overview names the Design Restraint Ladder.
-2. The ladder reference exists: `bash: rg -n "Design Restraint Ladder" .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md`.
-3. The Phase 0 to 1 gate exists: `bash: rg -n "laziest viable" .skilled/skills/sk-code/shared/references/phase-detection.md`.
-4. Skill advisor callable.
+1. The ladder reference exists: `bash: rg -n "Design Restraint Ladder" .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md`.
+2. The Phase 0 to 1 gate exists: `bash: rg -n "laziest viable" .skilled/skills/sk-code/shared/references/phase-detection.md`.
+3. Skill advisor callable.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```
-   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array." --threshold 0.8 > /tmp/skc-DR001-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung." --threshold 0.8 > /tmp/skc-DR001-advisor.txt
    ```
-2. **Verify**: top-1 == `sk-code`, score >= 0.80.
+2. **Verify**: the top-1 candidate is `sk-code` with `passes_threshold` true at `--threshold 0.8`.
 3. **Invoke sk-code** with the exact prompt.
 4. **Capture the ladder trace**: the AI should report the detected surface first, then the rung it selected from the ladder.
 5. **Persist evidence** to `/tmp/skc-DR001-ladder.txt`.
@@ -73,7 +72,7 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 
 | Step | Signal |
 |---|---|
-| 2 | Advisor: top_skill == sk-code, score >= 0.80. |
+| 2 | Advisor: top-1 is `sk-code` with `passes_threshold` true. |
 | 3 | sk-code router emits `SURFACE: SKILLED` BEFORE any ladder reasoning. |
 | 4 | The ladder checks the codebase-reuse rung, then selects an existing helper, a standard-library or a one-line rung (e.g. `new Set`) and explicitly rejects writing a custom loop. |
 | 4 | The Phase 0 to 1 gate is honored: the rung is chosen before new code. |
@@ -88,7 +87,7 @@ Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR00
 ### Failure Triage
 
 1. If the AI writes a custom loop: verify the ladder rungs and ordering in `shared/references/universal/code-quality-standards.md`.
-2. If the ladder runs before routing: verify the Phase Overview ordering in SKILL.md places the ladder at the Phase 0 to 1 transition.
+2. If the ladder runs before routing: the gate belongs to the Phase 0 to 1 row of `shared/references/phase-detection.md`, so confirm the router emitted its surface before any ladder reasoning began.
 3. If surface precedence shifts: confirm the ladder text states it consumes, but does not change, the detected surface.
 
 ---
@@ -98,7 +97,10 @@ Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR00
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` — The pre-write Design Restraint Ladder.
 - `.skilled/skills/sk-code/shared/references/phase-detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
-- `.skilled/skills/sk-code/SKILL.md` — Phase Overview naming the ladder; surface precedence and Iron Law.
+- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/shared/references/workflow-implement.md` — the phase whose pre-write step applies the ladder.
+
+Catalog: none. `feature-catalog/feature-catalog.md` does not inventory the phase doctrine or the restraint ladder, so no catalog entry applies to this scenario.
 
 ---
 

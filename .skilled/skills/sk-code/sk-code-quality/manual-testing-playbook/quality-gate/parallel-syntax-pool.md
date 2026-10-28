@@ -8,7 +8,8 @@ expected_resources:
   - scripts/lib/parallel-node-check.cjs
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.3.1
+catalog_applicable: true
+version: 1.1.4.0
 ---
 
 # CQ-011: A Multi-File Change Gets One Syntax Finding Per Bad File From The Parallel Pool
@@ -45,17 +46,17 @@ Operators confirm that a twenty-file change with two syntax errors yields exactl
 Run the quality gate on my twenty changed modules and tell me which ones fail the syntax check.
 ```
 
-- Fixture: a temporary git repository outside the working tree, built from the fixture builder the runner suite uses. The change adds twenty files named `pool/f01.mjs` to `pool/f20.mjs`. Files `f04.mjs` and `f17.mjs` hold `export const broken = ;`, and the other eighteen hold a valid export.
+- Fixture: a temporary git repository outside the working tree, built from the fixture builder the runner suite uses. The change adds twenty files, the first and last of them `<fixture>/pool/f01.mjs` and `<fixture>/pool/f20.mjs`. The fourth and seventeenth hold `export const broken = ;`, and the other eighteen hold a valid export.
 
 | Fixture part | Content | What the run must say |
 | --- | --- | --- |
-| `pool/f04.mjs`, `pool/f17.mjs` | `export const broken = ;` | one `syntax.mjs` finding each, P0, exact, check `syntax-node`, line 1 |
+| `<fixture>/pool/f04.mjs`, `<fixture>/pool/f17.mjs` | `export const broken = ;` | one `syntax.mjs` finding each, P0, exact, check `syntax-node`, line 1 |
 | the other eighteen files | a valid `export const` line | no finding |
 | run deadline | `--timeout 30` | the `syntax-node` row ends well under 30 seconds |
 | helper payload | a JSON array of paths, then the text `not json` | ordered records, then the usage error and exit 2 |
 
 - Expected execution process: the operator replays the helper's unit cases, builds the fixture by hand, runs the gate in JSON with a 30 second per-check deadline and reads the findings and the check row. The operator then starts the helper directly with a JSON payload and again with a payload that is not JSON. The gate run is wrapped in the fixture builder's snapshot check, so a run that writes any file fails the command rather than the reading.
-- Expected signals: the gate is the blocking value with exit `1`, the `syntax-node` row is `RAN_FAIL` with `files` `20` and a `duration_ms` under the deadline, and the findings are exactly two, for `pool/f04.mjs` and `pool/f17.mjs`. The helper prints a two-element JSON array whose `file` fields follow the input order, with `status` `0` for the good file and a non-zero `status` for the bad one. The helper given `not json` writes `the file list was not JSON` to stderr and exits `2`.
+- Expected signals: the gate is the blocking value with exit `1`, the `syntax-node` row is `RAN_FAIL` with `files` `20` and a `duration_ms` under the deadline, and the findings are exactly two, for the fourth and seventeenth files. The helper prints a two-element JSON array whose `file` fields follow the input order, with `status` `0` for the good file and a non-zero `status` for the bad one. The helper given `not json` writes `the file list was not JSON` to stderr and exits `2`.
 - Desired user-visible outcome: the author fixes exactly the two named files, and no file is blamed twice or skipped.
 - Pass/fail: PASS if every value in the expected-result table below holds, the command exits 0 and the snapshot check passes. FAIL if any good file carries a finding, a bad file is missing or repeated, the row is not `RAN_FAIL`, the row's file count is not 20, the run exceeds its deadline, the helper's records are out of order, or the helper accepts the malformed payload.
 
@@ -128,10 +129,11 @@ echo "exit $?"
 ```
 
 4. `for p in scripts/lib/parallel-node-check.cjs references/runner-contract.md scripts/quality-gate.cjs; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+5. Clean up: `rm -rf "$TMP"`
 
 ### Expected
 
-Step 1 replays the helper's unit cases and prints `# fail 0`. Step 2 shows the helper's header comment: one `node --check` per file, a bounded pool, one record per input file in input order, and the usage line. Step 3 prints `blocking gate exit 1 p0_blocking 2`, `row RAN_FAIL files 20 within deadline`, `findings pool/f04.mjs,pool/f17.mjs`, `helper records in input order: bad then good` and a `helper exit 2` line carrying `the file list was not JSON`, and the command exits 0. Step 4 prints `OK` for all three paths.
+Step 1 replays the helper's unit cases and prints `# fail 0`. Step 2 shows the helper's header comment: one `node --check` per file, a bounded pool, one record per input file in input order, and the usage line. Step 3 prints `blocking gate exit 1 p0_blocking 2`, `row RAN_FAIL files 20 within deadline`, `findings` followed by the two bad file names, `helper records in input order: bad then good` and a `helper exit 2` line carrying `the file list was not JSON`, and the command exits 0. Step 4 prints `OK` for all three paths. Step 5 prints nothing and leaves no scratch folder behind.
 
 | Signal | Expected value |
 | --- | --- |
@@ -141,7 +143,7 @@ Step 1 replays the helper's unit cases and prints `# fail 0`. Step 2 shows the h
 | `syntax-node` row `state` | `RAN_FAIL` |
 | `syntax-node` row `files` | `20` |
 | `syntax-node` row `duration_ms` | under the 30 second deadline |
-| findings | exactly two, for `pool/f04.mjs` and `pool/f17.mjs` |
+| findings | exactly two, for the fourth and seventeenth files |
 | each finding | rule `syntax.mjs`, severity `P0`, confidence `exact`, check `syntax-node` |
 | findings for the eighteen good files | none |
 | helper records for a two-file payload | two, in input order, bad file with a non-zero `status`, good file with `status` `0` |
@@ -150,7 +152,7 @@ Step 1 replays the helper's unit cases and prints `# fail 0`. Step 2 shows the h
 
 ### Evidence
 
-Command transcript from steps 1 to 4, the frontmatter block with `expected_intent: QUALITY`, the check row quoted with `state`, `files` and `duration_ms`, the two finding file names, the helper's two outputs, and the command's exit 0, which is the result of the snapshot check and every assertion. Save the transcript under the dated run label the playbook names.
+Command transcript from steps 1 to 5, the frontmatter block with `expected_intent: QUALITY`, the check row quoted with `state`, `files` and `duration_ms`, the two finding file names, the helper's two outputs, and the command's exit 0, which is the result of the snapshot check and every assertion. Save the transcript under the dated run label the playbook names.
 
 ### Pass / Fail
 
@@ -174,6 +176,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 | --- | --- |
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: no entry; the nearest is [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog describes the runner and its built-in checks, and names no pool entry |
 
 ### Implementation And Test Anchors
 

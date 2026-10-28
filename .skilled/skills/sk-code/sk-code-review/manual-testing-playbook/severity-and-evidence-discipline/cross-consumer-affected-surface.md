@@ -1,7 +1,7 @@
 ---
 title: "CR-009 -- Cross-consumer affected surface"
 description: "This scenario validates Cross-consumer affected surface for `CR-009`. It focuses on Confirm public helper or schema changes inventory consumers before declaring review complete."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-009 -- Cross-consumer affected surface
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-009
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `severity-and-evidence-discipline/cross-consumer-affected-surface.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

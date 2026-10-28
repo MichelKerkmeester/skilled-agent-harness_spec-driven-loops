@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 8 |
+| Code files | 51 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -80,7 +80,8 @@ Run the owning package test command from the nearest package boundary.
 | `test_package_skill_regressions.py` | Regression tests for `package_skill.py`. |
 | `test_quick_validate_086.py` | Tests for `quick_validate.py`. |
 | `test_validator.py` | Tests for `validate_document.py`. |
-| `valid_*.md`, `missing_*.md`, `single-dash-anchors.md`, `command/`, `specs/` | Test fixtures and expected-shape sample documents (data, not code). |
+| `test_scaffold_template_typing.py` | Regression tests for how `validate_document.py` types skill scaffold templates versus asset guides. |
+| `valid-readme.md`, `missing-sections.md`, `single-dash-anchors.md`, `command/`, `specs/` | Test fixtures and expected-shape sample documents (data, not code). A file prefixed `valid-` is a well-formed sample of its document type, and each `missing-` file drops one required section. |
 
 ---
 

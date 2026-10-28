@@ -2,7 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: CEILING REPORT TESTS
 # ───────────────────────────────────────────────────────────────
+# Exit Codes: 0 all cases pass; 1 one or more cases fail; strict-mode failures return nonzero.
 set -euo pipefail
+
+# ───────────────────────────────────────────────────────────────
+# 1. TEST SETUP
+# ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REPORT="$SCRIPT_DIR/ceiling-report.sh"
@@ -12,6 +17,10 @@ cleanup() {
   rm -rf "$TMP_DIR"
 }
 trap cleanup EXIT
+
+# ───────────────────────────────────────────────────────────────
+# 2. ASSERTION HELPERS
+# ───────────────────────────────────────────────────────────────
 
 failures=0
 
@@ -117,6 +126,10 @@ run_file_case() {
   fi
 }
 
+# ───────────────────────────────────────────────────────────────
+# 3. MARKER CASES
+# ───────────────────────────────────────────────────────────────
+
 run_case "measurable" "js" '// ceiling: global lock; switch to per-account locks if throughput matters' "[]" "markers=1 no-trigger=0 no-signal=0"
 run_case "no_trigger" "sh" '# ceiling: global lock' "[no-trigger]" "markers=1 no-trigger=1 no-signal=0"
 run_case "no_signal" "js" '// ceiling: global lock; switch to per-account locks when the team agrees' "[no-signal]" "markers=1 no-trigger=0 no-signal=1"
@@ -167,6 +180,10 @@ printf 'cat <<EOF\r\nbody\r\nEOF\r\n# ceiling: 10 rows; split past 10 rows\r\n' 
 run_file_case "crlf_heredoc_marker" "$TMP_DIR/sh_heredoc_crlf.sh" \
   "$TMP_DIR/sh_heredoc_crlf.sh:4  # ceiling: 10 rows; split past 10 rows  []" "markers=1 no-trigger=0 no-signal=0"
 
+# ───────────────────────────────────────────────────────────────
+# 4. FAILURE AND REPOSITORY CASES
+# ───────────────────────────────────────────────────────────────
+
 expect_exit 2 "missing_path" "$TMP_DIR/missing-probe.js"
 expect_exit 2 "unknown_option" --bogus
 expect_exit 2 "directory_path" "$TMP_DIR"
@@ -190,11 +207,50 @@ else
   failures=$((failures + 1))
 fi
 
+# Import and syntax errors from a malformed checker get the documented loader result.
+SYNTAX_CASE="$TMP_DIR/syntax-case"
+mkdir -p "$SYNTAX_CASE/scripts" "$SYNTAX_CASE/assets"
+cp "$REPORT" "$SCRIPT_DIR/check-comment-hygiene.sh" "$SYNTAX_CASE/scripts/"
+mkdir -p "$SYNTAX_CASE/scripts/lib" && cp -R "$SCRIPT_DIR/lib/comment_hygiene" "$SYNTAX_CASE/scripts/lib/"
+printf '\ndef broken(\n' >> "$SYNTAX_CASE/scripts/check-comment-hygiene.sh"
+set +e
+syntax_output="$(python3 "$SYNTAX_CASE/scripts/ceiling-report.sh" "$REPORT" 2>&1)"
+syntax_exit=$?
+set -e
+if [[ "$syntax_exit" -eq 2 ]] \
+  && grep -qF -- "ceiling-report: cannot load the comment-hygiene checker" <<< "$syntax_output" \
+  && ! grep -qF -- "Traceback" <<< "$syntax_output"; then
+  printf 'PASS checker_syntax_error\n'
+else
+  printf 'FAIL checker_syntax_error: exit %s\n%s\n' "$syntax_exit" "$syntax_output" >&2
+  failures=$((failures + 1))
+fi
+
+# An unexpected checker failure is not converted into a routine loader error.
+RUNTIME_CASE="$TMP_DIR/runtime-case"
+mkdir -p "$RUNTIME_CASE/scripts" "$RUNTIME_CASE/assets"
+cp "$REPORT" "$SCRIPT_DIR/check-comment-hygiene.sh" "$RUNTIME_CASE/scripts/"
+mkdir -p "$RUNTIME_CASE/scripts/lib" && cp -R "$SCRIPT_DIR/lib/comment_hygiene" "$RUNTIME_CASE/scripts/lib/"
+printf '\nraise RuntimeError("unexpected checker failure")\n' >> "$RUNTIME_CASE/scripts/check-comment-hygiene.sh"
+set +e
+runtime_output="$(python3 "$RUNTIME_CASE/scripts/ceiling-report.sh" "$REPORT" 2>&1)"
+runtime_exit=$?
+set -e
+if [[ "$runtime_exit" -ne 0 ]] \
+  && grep -qF -- "RuntimeError: unexpected checker failure" <<< "$runtime_output" \
+  && ! grep -qF -- "ceiling-report: cannot load the comment-hygiene checker" <<< "$runtime_output"; then
+  printf 'PASS unexpected_checker_error\n'
+else
+  printf 'FAIL unexpected_checker_error: exit %s\n%s\n' "$runtime_exit" "$runtime_output" >&2
+  failures=$((failures + 1))
+fi
+
 # The table loader can fail with more than a read error or a bad value on a malformed table,
 # and no failure of it may end in a traceback: one message on one line, and exit 2.
 TABLE_CASE="$TMP_DIR/table-case"
 mkdir -p "$TABLE_CASE/scripts" "$TABLE_CASE/assets"
 cp "$REPORT" "$SCRIPT_DIR/check-comment-hygiene.sh" "$TABLE_CASE/scripts/"
+mkdir -p "$TABLE_CASE/scripts/lib" && cp -R "$SCRIPT_DIR/lib/comment_hygiene" "$TABLE_CASE/scripts/lib/"
 printf '%s\n' \
   '{' \
   '  "schemaVersion": 1,' \
@@ -222,6 +278,7 @@ fi
 FALLBACK_CASE="$TMP_DIR/fallback-case"
 mkdir -p "$FALLBACK_CASE/scripts" "$FALLBACK_CASE/assets"
 cp "$REPORT" "$SCRIPT_DIR/check-comment-hygiene.sh" "$FALLBACK_CASE/scripts/"
+mkdir -p "$FALLBACK_CASE/scripts/lib" && cp -R "$SCRIPT_DIR/lib/comment_hygiene" "$FALLBACK_CASE/scripts/lib/"
 printf '%s\n' \
   '{' \
   '  "families": {"c": {"lineComment": ["//"]}},' \
@@ -275,6 +332,10 @@ else
   printf 'FAIL no_bytecode_cache: %s\n' "$cache_dirs" >&2
   failures=$((failures + 1))
 fi
+
+# ───────────────────────────────────────────────────────────────
+# 5. RESULTS
+# ───────────────────────────────────────────────────────────────
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s ceiling report test case(s) failed\n' "$failures" >&2

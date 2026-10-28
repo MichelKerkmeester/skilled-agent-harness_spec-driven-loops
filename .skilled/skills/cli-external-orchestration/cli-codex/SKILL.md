@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.9.11.0
+version: 1.9.12.0
 ---
 
 <!-- Keywords: codex, codex-cli, openai, cross-ai, web-search, code-generation, code-review, second-opinion, agent-delegation, gpt-5, session-management -->
@@ -216,7 +216,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
    - **Exception (cross-skill parallel).** When the operator explicitly authorizes N parallel dispatches, run N concurrently, but still SIGKILL each by its own captured PID as its work returns.
 16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true. It does not make it observable.
    The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero.
-   When sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`), copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+   Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
    A session may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `codex exec` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own.
    The wrapper checks `AI_SESSION_CHILD`, plus a `git --git-common-dir` structural backstop, and exec's in place when the variable is set. Pattern: `AI_SESSION_CHILD=1 codex exec ... </dev/null`. This is harmless when the wrapper is not in use.
    See `.skilled/bin/README.md` → "Worktree session isolation".

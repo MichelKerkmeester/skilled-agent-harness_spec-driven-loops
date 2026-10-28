@@ -1,7 +1,7 @@
 ---
 title: "DOC-382 -- Doctor sk-code setup"
 description: "Manual scenario validating that /doctor:sk-code setup runs the nine-leg read-only setup battery, maps its exit codes to STATUS=OK, STATUS=FAIL and STATUS=ERROR and writes nothing."
-version: 1.1.2.0
+version: 1.1.3.0
 id: doctor-commands-doctor-sk-code-setup
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -91,6 +91,8 @@ If a leg fails on a clean tree, run the `repair:` command the battery printed un
 - Setup battery: [.skilled/commands/doctor/scripts/sk-code-setup-check.cjs](../../../../commands/doctor/scripts/sk-code-setup-check.cjs)
 - Environment guide: [doctor-commands README](../../../system-spec-kit/manual-testing-playbook/doctor-commands/README.md)
 
+Catalog: `feature-catalog/doctor-commands/sk-code-setup-and-quality-doctor.md`, which inventories the nine setup legs and their repair lines.
+
 Provenance: manual only - /doctor:sk-code
 
 ---
@@ -102,5 +104,5 @@ Provenance: manual only - /doctor:sk-code
 - Feature name: Doctor sk-code setup
 - Command mode: `/doctor:sk-code setup`
 - YAML asset: `doctor-sk-code-setup.yaml`
-- Mutation boundary: none. Every leg runs in its check-only form, each failure prints a repair command instead of applying one, and the restore step removes the probe file the scenario adds.
+- Mutation boundary: one temporary file. Step 6 writes a nested `graph-metadata.json` inside the `sk-code-skilled/` packet to make the parent-skill leg fail, and step 8 deletes it; the undo is that delete, and `git status --porcelain` must be empty afterwards. The battery itself writes nothing: every leg runs in its check-only form and prints a repair command instead of applying one.
 - Feature file path: `doctor-commands/doctor-sk-code-setup.md`

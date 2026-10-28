@@ -8,7 +8,8 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/quality-defaults.json
-version: 1.1.5.1
+catalog_applicable: true
+version: 1.1.6.0
 ---
 
 # CQ-004: A CI Workflow Change Lists The CI Checklist
@@ -19,7 +20,7 @@ This document captures the run contract, execution process, source anchors and m
 
 ## 1. OVERVIEW
 
-This scenario validates the gate run for `CQ-004`. Fixture F14 changes one file, `.github/workflows/x.yml`, in a repository whose hub is the real `sk-code` registry. The change holds a tidy workflow with a name, a trigger and one job that runs a command. No label, conflict marker, secret or debugger line appears in it. The run must list the CI checklist that the `sk-code-ci` surface declares, keep the universal floor ahead of it, and report the YAML check as clean over the one changed file.
+This scenario validates the gate run for `CQ-004`. Fixture F14 changes one file, `x.yml` under the workflows folder, in a repository whose hub is the real `sk-code` registry. The change holds a tidy workflow with a name, a trigger and one job that runs a command. No label, conflict marker, secret or debugger line appears in it. The run must list the CI checklist that the `sk-code-ci` surface declares, keep the universal floor ahead of it, and report the YAML check as clean over the one changed file.
 
 ### Why This Matters
 
@@ -33,19 +34,19 @@ Operators confirm that the changed workflow returns `NO_BLOCKER_FOUND`, that the
 
 - Objective: confirm the gate value, the exit code, the checklist rows and the YAML check coverage for fixture F14.
 - Real user request: `I updated our CI workflow. Run the quality gate and tell me what applies before I claim done.`
-- Prompt: `Run the quality gate on my edited .github/workflows/ci.yml.`
+- Prompt: `Run the quality gate on my edited workflow x.yml.`
 
 **Exact prompt**:
 
 ```text
-Run the quality gate on my edited .github/workflows/ci.yml.
+Run the quality gate on my edited workflow x.yml.
 ```
 
 - Fixture: F14, built in a temporary git repository outside the working tree, with the real `sk-code` registry as the hub. The seed keeps the CI checklist path in one document, so a rename in the registry and a stale scenario show up as one failed row.
 
 | File | Seeded content | What the gate must say |
 | --- | --- | --- |
-| `.github/workflows/x.yml` | a workflow with a name, an `on` trigger and one job that runs a command | `syntax-yaml` reads 1 file and reports nothing |
+| `<fixture>/.github/workflows/x.yml` | a workflow with a name, an `on` trigger and one job that runs a command | `syntax-yaml` reads 1 file and reports nothing |
 
 - Expected execution process: the operator replays the F14 case, reads the case that builds the fixture, then builds the same fixture by hand from the suite's `buildRepo` with the real `sk-code` hub, runs `quality-gate.cjs --format json` on it and reads the fields the table names before loading each listed checklist in the order given. Each run is wrapped in the fixture builder's snapshot check, so a run that writes any file fails the command rather than the reading.
 - Expected signals: `gate` is `NO_BLOCKER_FOUND`, `exit_code` is `0`, `checklists` holds the universal floor first and `hub:sk-code/sk-code-ci/references/ci-workflow-standards.md` second, and the `syntax-yaml` row reads `RAN_CLEAN` over 1 file.
@@ -58,14 +59,14 @@ Run the quality gate on my edited .github/workflows/ci.yml.
 
 ### Prompt
 
-- Prompt: `Run the quality gate on my edited .github/workflows/ci.yml.`
+- Prompt: `Run the quality gate on my edited workflow x.yml.`
 
 ### Commands
 
 Run the commands from the repository root.
 
-1. `node --test --test-reporter=tap --test-name-pattern='^F14' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
-2. `sed -n "/^test('F14/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
+1. `node --test --test-reporter=tap --test-name-pattern='^F14' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs`
+2. `sed -n "/^test('F14/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs`
 3. Build fixture F14 by hand in a temporary repository against the real hub, run the gate on it and assert every field the table names.
 
 ```bash
@@ -150,6 +151,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog entry for the runner, its checklist rows and its exit codes |
 
 ### Implementation And Test Anchors
 
@@ -157,7 +159,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 |---|---|
 | [SKILL.md](../../SKILL.md) §3 | The checklist sources and the --explain pointer |
 | [SKILL.md](../../../sk-code-skilled/SKILL.md) §5 | This repository's quality checklist map |
-| [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The F14 case this scenario replays |
+| [quality-gate-surfaces.test.cjs](../../scripts/tests/quality-gate-surfaces.test.cjs) | The F14 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The `checklists` and `checks` fields this scenario reads, and the YAML check row |
 
 ---

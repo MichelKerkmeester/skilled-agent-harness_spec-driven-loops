@@ -8,7 +8,8 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
   - scripts/quality-gate.cjs
-version: 1.1.4.1
+catalog_applicable: true
+version: 1.1.5.0
 ---
 
 # CQ-010: A Checklist Row Fault Stays Scoped To The Files Its Declaration Reaches
@@ -45,17 +46,17 @@ Operators confirm that the malformed row gates a change its surface reaches, tha
 Run the quality gate on my change and tell me whether the broken checklist row in the private skill matters for it.
 ```
 
-- Fixture: two temporary git repositories outside the working tree, each built from the fixture builder the runner suite uses, with a private sibling skill beside the fixture hub. The skill's `graph-metadata.json` declares the hub's family, a `surface_detection` block with the path marker `xsrc/`, and a `quality` block of two rows. Repository A changes `xsrc/run.js`, inside the surface. Repository B changes `ysrc/run.js`, outside it.
+- Fixture: two temporary git repositories outside the working tree, each built from the fixture builder the runner suite uses, with a private sibling skill beside the fixture hub. The skill's `graph-metadata.json` declares the hub's family, a `surface_detection` block with the path marker `xsrc/`, and a `quality` block of two rows. Repository A changes a file under the surface's path marker. Repository B changes a file outside it.
 
 | Fixture part | Content | What the run must say |
 | --- | --- | --- |
-| valid row | `extensions` `.js`, `file` `outside-checklist.md`, with the file present | listed for `xsrc/run.js` in repository A, and never listed in repository B |
+| valid row | `extensions` `.js`, `file` `outside-checklist.md`, with the file present | listed for `<fixture>/xsrc/run.js` in repository A, and never listed in repository B |
 | malformed row | `file` `no-selector.md` and no selector | `CHECKLIST_ROW_INVALID`, naming the skill label, the row index and `names no selector` |
-| repository A change | `xsrc/run.js`, a file the surface reaches | the fault is in `config.errors` and the gate is `ERROR` |
-| repository B change | `ysrc/run.js`, a file no surface reaches | the fault is in `config.warnings` and the gate is `NO_BLOCKER_FOUND` |
+| repository A change | `<fixture>/xsrc/run.js`, a file the surface reaches | the fault is in `config.errors` and the gate is `ERROR` |
+| repository B change | `<fixture>/ysrc/run.js`, a file no surface reaches | the fault is in `config.warnings` and the gate is `NO_BLOCKER_FOUND` |
 
 - Expected execution process: the operator replays the scoped-fault cases from the runner suite, then builds both repositories by hand, runs the gate in JSON and, for repository B, in text form, and reads the fields the table names. Each run is wrapped in the fixture builder's snapshot check, so a run that writes any file fails the command rather than the reading.
-- Expected signals: repository A reads `gate` `ERROR`, exit `3`, `config.errors` holding one `CHECKLIST_ROW_INVALID` and `config.warnings` empty, with the valid row still listed for `xsrc/run.js`. Repository B reads `gate` `NO_BLOCKER_FOUND`, exit `0`, `config.errors` empty and `config.warnings` holding the same one code with a repair string, and the text form prints a `warning CHECKLIST_ROW_INVALID:` line.
+- Expected signals: repository A reads `gate` `ERROR`, exit `3`, `config.errors` holding one `CHECKLIST_ROW_INVALID` and `config.warnings` empty, with the valid row still listed for the changed file. Repository B reads `gate` `NO_BLOCKER_FOUND`, exit `0`, `config.errors` empty and `config.warnings` holding the same one code with a repair string, and the text form prints a `warning CHECKLIST_ROW_INVALID:` line.
 - Desired user-visible outcome: the author of the private skill sees the typo named with its row index in both runs, and only the change the skill governs is held up by it.
 - Pass/fail: PASS if every value in the expected-result table below holds, the command exits 0 and every snapshot check passes. FAIL if repository B gates, repository A reads clean, the fault is missing from both lists or sits in both, or the valid row stops listing in repository A.
 
@@ -71,8 +72,8 @@ Run the quality gate on my change and tell me whether the broken checklist row i
 
 Run the commands from the repository root in one shell session, so the variables set in step 3 stay defined.
 
-1. `node --test --test-reporter=tap --test-name-pattern='^outside skill fault' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
-2. `sed -n "/^test('outside skill fault: a malformed row whose surface/,/^}));/p; /^test('outside skill fault: the same malformed row/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
+1. `node --test --test-reporter=tap --test-name-pattern='^outside skill fault' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-outside-skills.test.cjs`
+2. `sed -n "/^test('outside skill fault: a malformed row whose surface/,/^}));/p; /^test('outside skill fault: the same malformed row/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-outside-skills.test.cjs`
 3. Build both repositories by hand, run the gate over each and assert the fields.
 
 ```bash
@@ -146,7 +147,7 @@ Step 1 replays the scoped-fault cases and prints `# pass 4` then `# fail 0`. Ste
 | repository A `exit_code` | `3` |
 | repository A `config.errors` | one entry, code `CHECKLIST_ROW_INVALID`, message starting `EXAMPLE quality.checklists[1] names no selector` |
 | repository A `config.warnings` | empty |
-| repository A valid row | listed as `hub:<private folder>/outside-checklist.md` for `xsrc/run.js` |
+| repository A valid row | listed as `hub:<private folder>/outside-checklist.md` for the changed file |
 | repository B `gate` | `NO_BLOCKER_FOUND` |
 | repository B `exit_code` | `0` |
 | repository B `config.errors` | empty |
@@ -160,7 +161,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 ### Pass / Fail
 
-- **Pass**: repository A is `ERROR` with exit `3`, the fault is in its `config.errors` and not in its warnings, and the valid row still lists for `xsrc/run.js`. Repository B is `NO_BLOCKER_FOUND` with exit `0`, the same fault is in its `config.warnings` with a repair string and not in its errors, and the command exits 0 with every snapshot check passed.
+- **Pass**: repository A is `ERROR` with exit `3`, the fault is in its `config.errors` and not in its warnings, and the valid row still lists for the changed file. Repository B is `NO_BLOCKER_FOUND` with exit `0`, the same fault is in its `config.warnings` with a repair string and not in its errors, and the command exits 0 with every snapshot check passed.
 - **Fail**: repository B is gated, repository A reads clean, the fault appears in neither list or in both, the valid row stops listing in repository A, the warning has no repair string, or a snapshot check throws.
 
 ### Failure Triage
@@ -180,13 +181,14 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 | --- | --- |
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`rule-overrides-and-hygiene-policy.md`](../../../feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md) | The feature catalog entry for the checklist row rules and the explain output |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 | --- | --- |
 | [SKILL.md](../../SKILL.md) §4 | The gate workflow line that reads an `ERROR` run as no verdict rather than a pass |
-| [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The scoped-fault cases this scenario replays |
+| [quality-gate-outside-skills.test.cjs](../../scripts/tests/quality-gate-outside-skills.test.cjs) | The scoped-fault cases this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §6 | The row rules, the fault codes and the rule that sends an unreached fault to `config.warnings` |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The `config` field of the envelope: `errors` and `warnings` |
 | [quality-config.md](../../references/quality-config.md) §3 | The `checklists` row schema the fixture's valid row follows |

@@ -22,11 +22,19 @@ Hook entry (settings.json):
 
 See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 """
+# ───────────────────────────────────────────────────────────────
+# 1. IMPORTS
+# ───────────────────────────────────────────────────────────────
+
 import sys
 import os
 import json
 import subprocess
 import time
+
+# ───────────────────────────────────────────────────────────────
+# 2. CONSTANTS
+# ───────────────────────────────────────────────────────────────
 
 COMMENT_CHECKER_REL = ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 DIST_CHECKER_REL = ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
@@ -34,7 +42,12 @@ HOOK_BUDGET_SECONDS = 9.0
 CHECKER_TIMEOUT_SECONDS = 8.0
 MIN_CHECKER_SECONDS = 0.5
 
-def resolve_checker(cwd, checker_rel, fallback_name):
+# ───────────────────────────────────────────────────────────────
+# 3. CHECKER HELPERS
+# ───────────────────────────────────────────────────────────────
+
+
+def _resolve_checker(cwd: str, checker_rel: str, fallback_name: str) -> str:
     checker_path = os.path.join(cwd, checker_rel)
     if os.path.isfile(checker_path):
         return checker_path
@@ -45,10 +58,15 @@ def resolve_checker(cwd, checker_rel, fallback_name):
     )
     return os.path.normpath(checker_path)
 
-def remaining_timeout(started_at):
+def _remaining_timeout(started_at: float) -> float:
     return min(CHECKER_TIMEOUT_SECONDS, HOOK_BUDGET_SECONDS - (time.monotonic() - started_at))
 
-def main():
+# ───────────────────────────────────────────────────────────────
+# 4. HOOK FLOW
+# ───────────────────────────────────────────────────────────────
+
+
+def main() -> None:
     started_at = time.monotonic()
     # --- Read stdin ---
     try:
@@ -79,14 +97,14 @@ def main():
     cwd = data.get("cwd")
     if not isinstance(cwd, str) or not cwd:
         cwd = os.getcwd()
-    checker_path = resolve_checker(cwd, COMMENT_CHECKER_REL, "check-comment-hygiene.sh")
+    checker_path = _resolve_checker(cwd, COMMENT_CHECKER_REL, "check-comment-hygiene.sh")
 
     if not os.path.isfile(checker_path):
         # Checker not found — fail-safe, log to stderr only
         print(f"WARNING: comment hygiene checker not found at {COMMENT_CHECKER_REL}", file=sys.stderr)
     else:
         # --- Run checker ---
-        timeout = remaining_timeout(started_at)
+        timeout = _remaining_timeout(started_at)
         if timeout < MIN_CHECKER_SECONDS:
             print("WARNING: comment hygiene checker skipped because the hook deadline is exhausted", file=sys.stderr)
         else:
@@ -113,9 +131,9 @@ def main():
                     print("Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.")
                     print()
 
-    dist_checker_path = resolve_checker(cwd, DIST_CHECKER_REL, "check-dist-staleness.sh")
+    dist_checker_path = _resolve_checker(cwd, DIST_CHECKER_REL, "check-dist-staleness.sh")
     if os.path.isfile(dist_checker_path):
-        timeout = remaining_timeout(started_at)
+        timeout = _remaining_timeout(started_at)
         if timeout < MIN_CHECKER_SECONDS:
             print("WARNING: dist staleness checker skipped because the hook deadline is exhausted", file=sys.stderr)
         else:
@@ -133,6 +151,11 @@ def main():
                     print()
                     print(dist_result.stdout.strip())
                     print()
+
+
+# ───────────────────────────────────────────────────────────────
+# 5. ENTRY POINT
+# ───────────────────────────────────────────────────────────────
 
 
 if __name__ == "__main__":

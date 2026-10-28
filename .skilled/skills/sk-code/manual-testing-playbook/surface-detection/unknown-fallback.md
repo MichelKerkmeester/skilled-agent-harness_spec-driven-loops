@@ -1,7 +1,7 @@
 ---
 title: "SD-003: UNKNOWN Surface Fallback"
 description: "Verify sk-code asks for runtime/verification disambiguation when the prompt targets an unsupported stack (Go, Swift, React Native, generic Node.js)."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # SD-003: UNKNOWN Surface Fallback
@@ -48,7 +48,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 
 ### Preconditions
 
-1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and the "Unsupported / Unknown" row in the Multi-Repository Architecture table is intact.
+1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and its UNKNOWN fallback rule is intact.
 2. Skill advisor callable.
 
 ### Exact Command Sequence
@@ -57,7 +57,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
    ```
    bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header." --threshold 0.8 > /tmp/skc-SD003-advisor.txt
    ```
-2. **Verify advisor result**: sk-code MAY win (the prompt mentions "middleware" and "HTTP server" which align with code work generally) but SHOULD have a low confidence (closer to 0.50 than 0.90), OR another skill may win. EITHER outcome is acceptable for this scenario — what matters is the sk-code BEHAVIOR after invocation.
+2. **Verify advisor result**: the probe is not the graded criterion. `skill_advisor.py` returns an empty JSON array for this prompt, because no candidate clears the threshold, and another prompt in the same family may return sk-code. What matters is the sk-code BEHAVIOR after invocation.
 3. **Invoke sk-code** with the prompt.
 4. **Capture surface decision**: must be `SURFACE: UNKNOWN`.
 5. **Capture AI response**: must contain an explicit disambiguation question for runtime + verification commands.
@@ -67,7 +67,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 
 | Step | Signal |
 |---|---|
-| 1 | Advisor returns a result (sk-code may or may not win — both are acceptable). |
+| 1 | Advisor returns whatever it returns; the battery does not grade this step. |
 | 4 | sk-code emits `SURFACE: UNKNOWN`. |
 | 5 | AI response contains both "what runtime" AND "what verification commands" (or semantically equivalent). |
 | 6 | No surface-specific refs loaded; only `references/*` and `shared/references/universal/code-quality-standards.md`. |
@@ -81,7 +81,7 @@ Evidence: `/tmp/skc-SD003-response.txt` (surface decision, AI disambiguation res
 
 ### Failure Triage
 
-1. If sk-code silently proceeds (worst case): re-read SKILL.md "Unsupported / Unknown" row in the Multi-Repository Architecture table. The expected behavior is documented as "Ask for explicit runtime surface and verification commands".
+1. If sk-code silently proceeds (worst case): re-read the UNKNOWN FALLBACK section of `ROUTER.md`. The expected behavior is documented there as a four-question checklist naming the surface and the verification command.
 3. If `sk-code-skilled/references/*` is incorrectly loaded: the CWD probably contains `/.skilled/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
 
 ---
@@ -89,9 +89,11 @@ Evidence: `/tmp/skc-SD003-response.txt` (surface decision, AI disambiguation res
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
-- `.skilled/skills/sk-code/shared/references/stack-detection.md` — Marker definitions (none should match Go).
-- `AGENTS.md` (project root) — Multi-Repository Architecture table cross-reference.
+- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules, including the disambiguation rule.
+- `.skilled/skills/sk-code/ROUTER.md` — section 6, UNKNOWN FALLBACK, and its four-question checklist.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` — marker definitions (none should match Go) and the test cases that return UNKNOWN.
+
+Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which inventories the UNKNOWN rank at the end of the declared-surface order.
 
 ---
 

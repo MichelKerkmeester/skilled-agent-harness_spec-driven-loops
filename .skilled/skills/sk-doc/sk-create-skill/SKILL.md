@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.7.4.0
+version: 1.7.5.0
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -104,6 +104,7 @@ skill-name/
 ├── SKILL.md
 ├── graph-metadata.json
 ├── leaf-manifest.config.json
+├── leaf-scopes.json                # optional: narrows the leaf roots to scopes
 ├── leaf-manifest.json              # generated
 ├── leaf-aliases.json               # generated identity projection
 ├── README.md
@@ -121,8 +122,11 @@ skill-name/
 
 `SKILL.md` is the root marker. Root JSON requirements are class-specific; the complete authored/generated matrix is [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md). `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
 
-A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file, `leaf-manifest.config.json`, and generates the rest.
+A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors `leaf-manifest.config.json` and generates the rest.
 That file names its single workflow mode and leaf roots.
+`leaf-scopes.json` is the optional second authored metadata file: it narrows those roots for the root's single workflow mode, to a subtree or a single doc, when a configured root also holds runtime code or only some of its docs are routable.
+The generator reads it on both the hub and the standalone path, and falls back to its default walk when it is absent, so a root without one needs no change.
+A scope must stay under one of the root's declared leaf roots, and the mode it names must be one the root declares, so `OUT_OF_ROOT_LEAF_SCOPE` and `ORPHAN_LEAF_SCOPE_MODE` fail the manifest instead of widening it.
 Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
 Do not infer them from a sibling skill.
 
@@ -321,6 +325,7 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `references/skill/creation-workflow.md` - expanded examples for the six-step standalone workflow.
 - `references/skill/upgrading-a-skill-to-v4.md` - adopter guide for reconciling a customized skill to the v4 parent-hub format (convert-vs-keep-single decision, single→parent procedure, sk-code/sk-git cases).
 - `references/shared/validation-and-packaging.md` - detailed validation, packaging, and distribution notes.
+- `references/shared/skill-root-metadata-contract.md` - the per-class root JSON matrix, authored versus generated ownership, and the optional authored `leaf-scopes.json` that narrows a root's leaf roots to subtrees or single docs.
 - `references/shared/common-pitfalls.md` - examples of recurring trigger, YAML, style, and context-budget defects.
 - `references/parent-skill/parent-skills-nested-packets.md` - detailed parent-hub and nested-packet model.
 - `references/parent-skill/parent-hub-router-schema.md` - full router and registry schema.

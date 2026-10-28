@@ -6,7 +6,7 @@ trigger_phrases:
   - "quality gate runner"
   - "quality-gate.cjs"
   - "run the quality gate"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Codebase-Agnostic Quality Gate (quality-gate.cjs)
@@ -51,7 +51,9 @@ Built-in sensors, one comment-hygiene call and a parse floor run on every scope.
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` | Node test | Flags, scopes, verdicts, exit codes and the multi-file explain output |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-runner-units.test.cjs` | Node test | Flags, the envelope, the scope listing and exit precedence |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs` | Node test | Scope resolution: the surfaces, the shebang dispatch and the no-git fallback |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-explain-and-overrides.test.cjs` | Node test | The multi-file explain output |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/tests/parallel-node-check.test.cjs` | Node test | The parse-floor pool |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/tests/check-comment-hygiene.test.sh` | Automated test | The comment-hygiene checker |
 

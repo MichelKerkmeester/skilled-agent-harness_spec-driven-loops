@@ -49,8 +49,8 @@ const CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS = {
   command: ['**/.skilled/commands/**'],
   specs: ['**/.opencode/specs/**', '**/specs/**'],
   // Plugins are authored under the opencode runtime, which is the only loader and
-  // the tree whose installed SDK they bind. The other spelling still resolves and is
-  // matched too, because documents and older records address them by that path.
+  // the tree whose installed SDK they bind. The .skilled/plugins spelling is gone,
+  // so a record that still names it describes a path the tree no longer holds.
   plugins: ['**/.opencode/plugins/**'],
 } as const;
 

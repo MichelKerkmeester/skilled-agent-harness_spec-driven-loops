@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ╔═════════════════════════════════════════════════════════════════════════════════════╗
-// ║ check-review-findings - checks finding numbering and the Case line in review output ║
-// ╚═════════════════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Review Findings Checker
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -10,7 +10,8 @@
 
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { readFinalStatus, readRecommendations } from './check-review-final-line.js';
+
+import { REVIEW_STATUS, readCliInput, readFinalStatus, readRecommendations } from './check-review-final-line.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -20,13 +21,18 @@ const FINDINGS_HEADING = '## Findings';
 // Two documented shapes: the SKILL.md template numbers list items, and the
 // review-core.md schema puts the number in a level-three heading.
 const NUMBERED_FINDING = /^(\d+)\. \S/;
-const HEADING_FINDING = /^### (\d+) \[P([0-2])\] \S/;
+const FINDING_SEVERITIES = ['P0', 'P1', 'P2'];
+const SEVERITY_PATTERN = FINDING_SEVERITIES.join('|');
+const HEADING_FINDING = new RegExp('^### (\\d+) \\[(' + SEVERITY_PATTERN + ')\\] \\S');
 // A severity group heading, such as `### P1 - High` or `### Blockers (P0)`, sets the
 // severity of the numbered list items under it.
-const SEVERITY_GROUP = /^###\s.*\bP([0-2])\b/;
+const SEVERITY_GROUP = new RegExp('^###\\s.*\\b(' + SEVERITY_PATTERN + ')\\b');
 const CASE_LINE = /^\s*- Case: \S/;
 // A P0 blocks merge and a P1 must be fixed before merge, so only these two decide the verdict.
-const BLOCKING_SEVERITIES = new Set(['P0', 'P1']);
+const NON_BLOCKING_SEVERITY = FINDING_SEVERITIES[FINDING_SEVERITIES.length - 1];
+const BLOCKING_SEVERITIES = new Set(
+  FINDING_SEVERITIES.filter((severity) => severity !== NON_BLOCKING_SEVERITY)
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FINDINGS CHECKER
@@ -57,12 +63,12 @@ function parseFindings(text) {
     }
     const headed = HEADING_FINDING.exec(line);
     if (headed) {
-      findings.push({ number: Number(headed[1]), severity: `P${headed[2]}`, hasCase: false });
+      findings.push({ number: Number(headed[1]), severity: headed[2], hasCase: false });
       continue;
     }
     const group = SEVERITY_GROUP.exec(line);
     if (group) {
-      groupSeverity = `P${group[1]}`;
+      groupSeverity = group[1];
       continue;
     }
     const numbered = NUMBERED_FINDING.exec(line);
@@ -102,10 +108,10 @@ function checkVerdicts(text, findings) {
   }
   const failures = [];
   for (const verdict of verdicts) {
-    if (verdict.status !== 'REQUESTED_CHANGES' && blocking.length > 0) {
+    if (verdict.status !== REVIEW_STATUS.REQUESTED_CHANGES && blocking.length > 0) {
       const first = blocking[0];
       failures.push(`${verdict.label} contradicts ${first.severity} finding ${first.number}, which blocks approval`);
-    } else if (verdict.status === 'REQUESTED_CHANGES' && blocking.length === 0 && severitiesKnown) {
+    } else if (verdict.status === REVIEW_STATUS.REQUESTED_CHANGES && blocking.length === 0 && severitiesKnown) {
       failures.push(`${verdict.label} requests changes with no P0 or P1 finding, and a P2 never blocks`);
     }
   }
@@ -141,23 +147,8 @@ function checkReviewFindings(text) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function runCli() {
-  const args = process.argv.slice(2);
-  const offending = args.find((arg) => arg.startsWith('-')) ?? (args.length > 1 ? args[1] : null);
-  if (offending !== null) {
-    console.error(`check-review-findings.js: unknown option: ${offending}`);
-    console.error('usage: check-review-findings.js [file]');
-    process.exitCode = 2;
-    return;
-  }
-  const inputPath = process.argv.length > 2 ? process.argv[2] : null;
-  let text;
-
-  try {
-    text = inputPath === null ? fs.readFileSync(0, 'utf8') : fs.readFileSync(inputPath, 'utf8');
-  } catch (error) {
-    console.error(`cannot read ${inputPath === null ? 'stdin' : inputPath}: ${error.message}`);
-    console.error('usage: check-review-findings.js [file]');
-    process.exitCode = 2;
+  const text = readCliInput('check-review-findings.js');
+  if (text === null) {
     return;
   }
 

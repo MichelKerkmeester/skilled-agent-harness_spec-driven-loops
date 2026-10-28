@@ -4,7 +4,7 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # create-benchmark
@@ -146,3 +146,10 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 | [`references/behavior-benchmark/behavior-benchmark-guide.md`](./references/behavior-benchmark/behavior-benchmark-guide.md) | End-to-end guide for authoring a `behavior-benchmark` package |
 | [`assets/shared/benchmark-report-template.md`](./assets/shared/benchmark-report-template.md) | Template for the ten-section `benchmark-report.md` |
 | [`assets/shared/source-template.md`](./assets/shared/source-template.md) | Template for the `source.md` wayfinding file |
+
+<!-- readme-check
+allow-ref benchmark-report.md | the report this packet authors into a consuming skill's dated benchmark folder, so it is never a file in this packet
+allow-ref mcp-server/benchmarks/ | the tree inside the consuming skill a promotion writes into, relative to that skill rather than to this one
+allow-ref benchmark-YYYY-MM-DD/ | the dated folder a run creates at execution time, so its name carries the run's date
+allow-ref benchmark/README.md | the index a consuming skill keeps beside its own benchmark reports, so the folder is that skill's
+-->

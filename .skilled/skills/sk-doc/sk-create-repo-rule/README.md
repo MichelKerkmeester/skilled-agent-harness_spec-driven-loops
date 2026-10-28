@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my rule refused"
 importance_tier: normal
 contextType: general
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # create-repo-rule
@@ -193,3 +193,7 @@ A: No. Every refusal except the restraint one names a destination. The restraint
 | [`assets/repo-rule-template.md`](./assets/repo-rule-template.md) | The blank a new rule is filled from |
 | [`assets/repo-rules-router-template.md`](./assets/repo-rules-router-template.md) | The router for a repository that has none |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Ten operator scenarios, seven of which end in a refusal or a halt |
+
+<!-- readme-check
+allow-count four tests | the four decision tests `references/decision-tests.md` defines, a set of questions rather than files in a folder
+-->

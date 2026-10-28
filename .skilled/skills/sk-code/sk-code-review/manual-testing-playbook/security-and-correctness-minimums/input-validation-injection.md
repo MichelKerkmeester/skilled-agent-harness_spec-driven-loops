@@ -1,7 +1,7 @@
 ---
 title: "CR-005 -- Input validation injection"
 description: "This scenario validates Input validation injection for `CR-005`. It focuses on Confirm injection sinks trigger context-aware input/output safety review."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-005 -- Input validation injection
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-005
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `security-and-correctness-minimums/input-validation-injection.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

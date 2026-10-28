@@ -8,7 +8,8 @@ expected_resources:
   - references/runner-contract.md
   - ../shared/references/universal/code-quality-standards.md
   - references/code-style-guide.md
-version: 1.0.1.1
+catalog_applicable: true
+version: 1.0.2.0
 ---
 
 # CQ-008: Restraint Prompt Routes To The Quality Gate
@@ -92,6 +93,7 @@ Command transcript from steps 1 to 6, the resolved frontmatter block, the stage-
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: no entry; the nearest is [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog describes the quality mode's gate, and names no restraint-routing entry |
 
 ### Implementation And Test Anchors
 

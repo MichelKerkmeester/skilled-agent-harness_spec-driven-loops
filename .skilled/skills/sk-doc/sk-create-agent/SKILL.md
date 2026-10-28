@@ -2,7 +2,7 @@
 name: sk-create-agent
 description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 <!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template -->

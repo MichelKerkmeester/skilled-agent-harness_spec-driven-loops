@@ -21,19 +21,34 @@ mode, which the Claude SessionStart hook runs once per session. This mirrors the
 OpenCode plugin, which likewise checks all packages at session start and warns
 per-turn while scoping per-edit work to the edited file.
 """
+# ───────────────────────────────────────────────────────────────
+# 1. IMPORTS
+# ───────────────────────────────────────────────────────────────
+
 import json
 import os
 import re
 import subprocess
 import sys
+from typing import Any, Dict, List, Optional, Tuple
+
+# ───────────────────────────────────────────────────────────────
+# 2. CONSTANTS
+# ───────────────────────────────────────────────────────────────
+
+CHECKER_REL = ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
+
+# ───────────────────────────────────────────────────────────────
+# 3. HOOK CONFIGURATION
+# ───────────────────────────────────────────────────────────────
 
 
-def _hook_flags_config():
+def _hook_flags_config() -> Dict[str, str]:
     # Operator config file; env vars still override it. Fail-open on any error.
     try:
         override = os.environ.get("HOOK_FLAGS_CONFIG")
         path = override if override else os.path.join(
-            source_root_from_script(), "hooks", "hook-flags.env"
+            _source_root_from_script(), "hooks", "hook-flags.env"
         )
         cfg = {}
         # utf-8-sig drops a byte order mark, which would otherwise stay on the
@@ -53,16 +68,16 @@ def _hook_flags_config():
                 if key:
                     cfg[key] = val
         return cfg
-    except Exception:
+    except (OSError, UnicodeError):
         return {}
 
 
-def _hook_enabled(concern):
-    def _truthy(v):
+def _hook_enabled(concern: str) -> bool:
+    def _truthy(v: Any) -> bool:
         return str(v or "").strip().lower() in ("1", "true", "yes", "on")
     cfg = _hook_flags_config()
 
-    def _resolve(key):
+    def _resolve(key: str) -> Optional[str]:
         return os.environ[key] if key in os.environ else cfg.get(key)
 
     if _truthy(_resolve("SYSTEM_HOOKS_DISABLED")):
@@ -74,10 +89,12 @@ def _hook_enabled(concern):
     return True
 
 
-CHECKER_REL = ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
+# ───────────────────────────────────────────────────────────────
+# 4. PATH AND CHECKER HELPERS
+# ───────────────────────────────────────────────────────────────
 
 
-def source_root_from_script() -> str:
+def _source_root_from_script() -> str:
     # The real path, so a copy reached through a runtime link still finds the
     # tree it belongs to, under whichever name that tree carries.
     script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -85,22 +102,26 @@ def source_root_from_script() -> str:
     return os.path.abspath(os.path.join(script_dir, "../../../.."))
 
 
-def repo_root_from_script() -> str:
+def _repo_root_from_script() -> str:
     script_dir = os.path.dirname(os.path.abspath(__file__))
     # scripts -> code-quality -> sk-code -> skills -> .skilled -> repo root
     return os.path.abspath(os.path.join(script_dir, "../../../../.."))
 
 
-def resolve_checker():
+def _resolve_checker() -> Tuple[str, str]:
     repo_root = os.getcwd()
     checker = os.path.join(repo_root, CHECKER_REL)
     if not os.path.isfile(checker):
-        repo_root = repo_root_from_script()
+        repo_root = _repo_root_from_script()
         checker = os.path.join(repo_root, CHECKER_REL)
     return repo_root, checker
 
 
-def run_checker(checker, repo_root, command_args):
+def _run_checker(
+    checker: str,
+    repo_root: str,
+    command_args: List[str],
+) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
     """Return the checker's verdict, or (None, reason) when it holds none."""
     try:
         result = subprocess.run(
@@ -110,14 +131,14 @@ def run_checker(checker, repo_root, command_args):
             timeout=8,
             cwd=repo_root,
         )
-    except (OSError, subprocess.TimeoutExpired, Exception) as exc:
-        if not read_only_requested():
+    except (OSError, subprocess.TimeoutExpired, UnicodeError) as exc:
+        if not _read_only_requested():
             print(f"WARNING: dist freshness checker failed: {exc}", file=sys.stderr)
         return None, f"the checker could not run: {exc}"
 
     text = result.stdout.strip()
     if not text:
-        return None, no_verdict_reason(result)
+        return None, _no_verdict_reason(result)
     try:
         payload = json.loads(text)
     except json.JSONDecodeError:
@@ -128,7 +149,7 @@ def run_checker(checker, repo_root, command_args):
     return payload, None
 
 
-def no_verdict_reason(result) -> str:
+def _no_verdict_reason(result: Any) -> str:
     if result.returncode == 0:
         return "the checker printed no verdict"
     stderr_lines = (result.stderr or "").strip().splitlines()
@@ -136,13 +157,13 @@ def no_verdict_reason(result) -> str:
     return f"the checker exited {result.returncode} without printing a verdict{detail}"
 
 
-def print_stale(payload) -> None:
+def _print_stale(payload: Dict[str, Any]) -> None:
     package_name = payload.get("packageName") or payload.get("packageId") or "unknown package"
     rebuild_command = payload.get("rebuildCommand") or "npm run build"
     print(f"STALE DIST WARNING: {package_name} -- run: {rebuild_command}")
 
 
-def print_error(payload, target="") -> None:
+def _print_error(payload: Dict[str, Any], target: str = "") -> None:
     package_name = payload.get("packageName") or payload.get("packageId") or target or "unknown package"
     message = payload.get("message")
     if not message:
@@ -154,21 +175,21 @@ def print_error(payload, target="") -> None:
     print(f"DIST FRESHNESS CHECK ERROR: {package_name} -- {message}")
 
 
-def print_unmatched(payload) -> None:
+def _print_unmatched(payload: Dict[str, Any]) -> None:
     target = payload.get("filePath") or "unknown file"
     message = payload.get("message") or "dist freshness could not be verified"
     print(f"DIST FRESHNESS CHECK UNMATCHED: {target} -- {message}")
 
 
-def report_unassessable(target, reason) -> None:
+def _report_unassessable(target: str, reason: str) -> None:
     # A read-only caller is a gate run, and its banner is the whole verdict: a check
     # that could not answer has to say so, because silence there reads as a pass. The
     # session path stays quiet, where a broken checker is no news the hook can act on.
-    if read_only_requested():
+    if _read_only_requested():
         print(f"DIST FRESHNESS CHECK ERROR: {target} -- {reason}")
 
 
-def auto_rebuild_enabled() -> bool:
+def _auto_rebuild_enabled() -> bool:
     # Session-start self-heal is on by default. A stale checked-out build otherwise
     # survives every session and breaks every consumer that imports the compiled
     # entry, so a warning alone -- easily lost in hook output -- does not close the
@@ -177,7 +198,7 @@ def auto_rebuild_enabled() -> bool:
     return value not in ("0", "false", "off", "no")
 
 
-def read_only_requested() -> bool:
+def _read_only_requested() -> bool:
     # A gate run promises to write nothing, and the freshness checker writes a
     # cache record beside the dist entry it verifies. The runner asks for the same
     # verdict without that record, while every other caller -- the session-start
@@ -186,7 +207,7 @@ def read_only_requested() -> bool:
     return value in ("1", "true", "yes", "on")
 
 
-def workspace_root_override() -> str:
+def _workspace_root_override() -> str:
     # A runner checks the repository it scanned, which is not always the checkout
     # that holds this script or the cwd the hook inherited. Only the runner sets
     # this, so a plain hook keeps resolving packages against the checkout around
@@ -195,7 +216,7 @@ def workspace_root_override() -> str:
     return os.path.abspath(value) if value else ""
 
 
-def try_rebuild(payload, repo_root) -> bool:
+def _try_rebuild(payload: Dict[str, Any], repo_root: str) -> bool:
     # The freshness checker hands back a self-contained command (it cd's into the
     # package itself), so it runs from the repo root. Bounded and fail-open: a build
     # that errors or overruns its timeout returns False and the caller falls back to
@@ -213,7 +234,7 @@ def try_rebuild(payload, repo_root) -> bool:
             timeout=180,
             cwd=repo_root,
         )
-    except (OSError, subprocess.TimeoutExpired, Exception):
+    except (OSError, subprocess.TimeoutExpired, UnicodeError):
         return False
     if result.returncode == 0:
         print(f"DIST REBUILT: {package_name} -- self-healed a stale build at session start")
@@ -221,25 +242,35 @@ def try_rebuild(payload, repo_root) -> bool:
     return False
 
 
-def surface_result(payload, repo_root, auto_rebuild=False, target="") -> None:
+def _surface_result(
+    payload: Dict[str, Any],
+    repo_root: str,
+    auto_rebuild: bool = False,
+    target: str = "",
+) -> None:
     if payload.get("stale") is True:
-        if auto_rebuild and auto_rebuild_enabled() and try_rebuild(payload, repo_root):
+        if auto_rebuild and _auto_rebuild_enabled() and _try_rebuild(payload, repo_root):
             return
-        print_stale(payload)
+        _print_stale(payload)
     elif payload.get("status") == "error":
-        print_error(payload, target)
+        _print_error(payload, target)
     elif payload.get("status") == "unprovisioned":
         # A gate run cannot rebuild and has no build record to fall back on, so a
         # package it cannot inspect is a verdict it must not report as clean.
-        if read_only_requested():
-            print_error(payload, target)
-    elif payload.get("status") == "unmatched" and read_only_requested():
+        if _read_only_requested():
+            _print_error(payload, target)
+    elif payload.get("status") == "unmatched" and _read_only_requested():
         # A read-only caller is a gate run, and every file it hands over is a
         # declared build output. A file the checker cannot map to a package is
         # therefore unverified, and silence here would read as a pass.
-        print_unmatched(payload)
-    elif read_only_requested() and not payload.get("status"):
-        print_error(payload, target)
+            _print_unmatched(payload)
+    elif _read_only_requested() and not payload.get("status"):
+        _print_error(payload, target)
+
+
+# ───────────────────────────────────────────────────────────────
+# 5. ENTRY POINT
+# ───────────────────────────────────────────────────────────────
 
 
 def main() -> None:
@@ -252,21 +283,21 @@ def main() -> None:
     if len(sys.argv) < 2:
         sys.exit(0)
 
-    repo_root, checker = resolve_checker()
+    repo_root, checker = _resolve_checker()
     if not os.path.isfile(checker):
         print("WARNING: dist freshness checker not found", file=sys.stderr)
         sys.exit(0)
 
     if sys.argv[1] == "--all":
-        payload, problem = run_checker(checker, repo_root, ["check-all", "--json"])
+        payload, problem = _run_checker(checker, repo_root, ["check-all", "--json"])
         if payload is None:
-            report_unassessable("all watched packages", problem)
+            _report_unassessable("all watched packages", problem or "the checker returned no verdict")
             sys.exit(0)
         results = payload.get("results")
         if isinstance(results, list):
             for item in results:
                 if isinstance(item, dict):
-                    surface_result(item, repo_root, auto_rebuild=True)
+                    _surface_result(item, repo_root, auto_rebuild=True)
         sys.exit(0)
 
     file_path = os.path.abspath(sys.argv[1])
@@ -274,17 +305,17 @@ def main() -> None:
         sys.exit(0)
 
     command_args = ["check-file", "--file", file_path, "--json"]
-    workspace_root = workspace_root_override()
+    workspace_root = _workspace_root_override()
     if workspace_root:
         command_args.extend(["--workspace-root", workspace_root])
-    if read_only_requested():
+    if _read_only_requested():
         command_args.append("--no-write")
-    payload, problem = run_checker(checker, repo_root, command_args)
+    payload, problem = _run_checker(checker, repo_root, command_args)
     if payload is None:
-        report_unassessable(file_path, problem)
+        _report_unassessable(file_path, problem or "the checker returned no verdict")
         sys.exit(0)
 
-    surface_result(payload, repo_root, target=file_path)
+    _surface_result(payload, repo_root, target=file_path)
     sys.exit(0)
 
 

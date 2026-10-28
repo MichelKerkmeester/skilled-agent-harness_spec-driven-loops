@@ -8,7 +8,8 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/quality-defaults.json
-version: 1.1.5.1
+catalog_applicable: true
+version: 1.1.6.0
 ---
 
 # CQ-005: Private Surface Resolves Through Its Quality Declaration
@@ -73,8 +74,8 @@ Run the quality gate on a change in my private surface and show me the envelope.
 
 Run the commands from the repository root in one shell session, so the variables set in step 3 stay defined.
 
-1. `node --test --test-reporter=tap --test-name-pattern='^F15' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
-2. `sed -n "/^function writeOutsideSkill/,/^}/p; /^test('F15 outside skill/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs`
+1. `node --test --test-reporter=tap --test-name-pattern='^F15' .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-outside-skills.test.cjs`
+2. `sed -n "/^function writeOutsideSkill/,/^}/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-helpers.cjs; sed -n "/^test('F15 outside skill/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-outside-skills.test.cjs`
 3. Build fixture F15 by hand, render the envelope and assert the fields the table names.
 
 ```bash
@@ -127,10 +128,11 @@ echo "exit $?"
 ```
 
 4. `for p in references/runner-contract.md scripts/quality-gate.cjs assets/quality-defaults.json; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+5. Clean up: `rm -rf "$TMP"`
 
 ### Expected
 
-Step 1 replays both F15 cases and prints `# pass 2` then `# fail 0`. Step 2 shows the helper that writes the sibling's `graph-metadata.json` and the positive case's assertions: the checklist is listed, the row's `why` reads `EXAMPLE surface, extensions .js`, the row serves the one changed file, `resolved_surface` reads `EXAMPLE`, and the envelope holds no private folder name. Step 3 prints the envelope, then `gate NO_BLOCKER_FOUND exit 0`, `outside checklist row: hub:<EXAMPLE>/outside-checklist.md` and `private folder name in envelope: absent`, and the command exits 0. Step 4 prints `OK` for all three paths.
+Step 1 replays both F15 cases and prints `# pass 2` then `# fail 0`. Step 2 shows the helper that writes the sibling's `graph-metadata.json` and the positive case's assertions: the checklist is listed, the row's `why` reads `EXAMPLE surface, extensions .js`, the row serves the one changed file, `resolved_surface` reads `EXAMPLE`, and the envelope holds no private folder name. Step 3 prints the envelope, then `gate NO_BLOCKER_FOUND exit 0`, `outside checklist row: hub:<EXAMPLE>/outside-checklist.md` and `private folder name in envelope: absent`, and the command exits 0. Step 4 prints `OK` for all three paths. Step 5 prints nothing and leaves no scratch folder behind.
 
 | Signal | Expected value |
 | --- | --- |
@@ -146,7 +148,7 @@ Step 1 replays both F15 cases and prints `# pass 2` then `# fail 0`. Step 2 show
 
 ### Evidence
 
-Command transcript from steps 1 to 4, the frontmatter block with `expected_intent: QUALITY`, the envelope's `modified_files`, `resolved_surface` and `checklists_loaded` lines, the `outside checklist row` line, the `private folder name in envelope: absent` line, and the command's exit 0, which is the result of both snapshot checks. The transcript shows the private folder name inside the test file that step 2 prints, and no tracked document repeats it. Save the transcript and the envelope excerpt under the dated run label the playbook names.
+Command transcript from steps 1 to 5, the frontmatter block with `expected_intent: QUALITY`, the envelope's `modified_files`, `resolved_surface` and `checklists_loaded` lines, the `outside checklist row` line, the `private folder name in envelope: absent` line, and the command's exit 0, which is the result of both snapshot checks. The transcript shows the private folder name inside the test file that step 2 prints, and no tracked document repeats it. Save the transcript and the envelope excerpt under the dated run label the playbook names.
 
 ### Pass / Fail
 
@@ -170,6 +172,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog entry for the runner and the surfaces it resolves |
 
 ### Implementation And Test Anchors
 
@@ -178,7 +181,8 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | [SKILL.md](../../SKILL.md) §3 | The checklist sources and the --explain pointer |
 | [quality-gate.cjs](../../scripts/quality-gate.cjs) | The outside-skill row reader, the folder label it builds and the envelope redaction |
 | [router-replay-lib.cjs](../../../sk-code-skilled/assets/scripts/router-replay-lib.cjs) | The outside-skill discovery that walks the hub's siblings and reads each declaration |
-| [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The F15 helper and cases this scenario replays, and the outside-row cases that prove both refusals |
+| [quality-gate-outside-skills.test.cjs](../../scripts/tests/quality-gate-outside-skills.test.cjs) | The F15 cases this scenario replays, and the outside-row cases that prove both refusals |
+| [quality-gate-helpers.cjs](../../scripts/tests/quality-gate-helpers.cjs) | The `writeOutsideSkill` helper the F15 cases build their site with |
 | [runner-contract.md](../../references/runner-contract.md) §4 and §6 | The envelope grammar, its private-name rule and the checklist-owner rules for outside rows |
 
 ---

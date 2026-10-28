@@ -1,7 +1,7 @@
 ---
 title: "sk-create-skill: Manual Testing Playbook"
 description: "Operator-facing scenarios for scaffolding standalone skills, building parent hubs, validating root metadata and preserving routing boundaries."
-version: 1.2.0.5
+version: 1.2.0.6
 ---
 
 # sk-create-skill: Manual Testing Playbook
@@ -163,13 +163,13 @@ Desired user-visible outcome: a valid standalone skill with a clear runtime cont
 
 #### Description
 
-Verify that a standalone root authors `graph-metadata.json` and `leaf-manifest.config.json`, omits hub-only declarations and generates fresh manifest files.
+Verify that a standalone root authors `graph-metadata.json` and `leaf-manifest.config.json`, adds `leaf-scopes.json` only when a leaf root needs narrowing, omits hub-only declarations and generates fresh manifest files.
 
 #### Scenario Contract
 
 Prompt: `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?`
 
-The mode should classify the root as class S because it declares neither `mode-registry.json` nor `hub-router.json`. It should author the identity and leaf config, run the metadata gate with `--fix` and confirm that `leaf-manifest.json` and `leaf-aliases.json` are generated. It should not add `description.json` or a parent registry.
+The mode should classify the root as class S because it declares neither `mode-registry.json` nor `hub-router.json`. It should author the identity and leaf config, run the metadata gate with `--fix` and confirm that `leaf-manifest.json` and `leaf-aliases.json` are generated. It should not add `description.json` or a parent registry. When a declared leaf root needs narrowing, it should add `leaf-scopes.json` for the config's single `workflowMode` and confirm that a scope outside the declared roots fails with `OUT_OF_ROOT_LEAF_SCOPE` and a scope on an undeclared mode fails with `ORPHAN_LEAF_SCOPE_MODE`.
 
 Desired user-visible outcome: a standalone root with the correct authored and generated metadata.
 

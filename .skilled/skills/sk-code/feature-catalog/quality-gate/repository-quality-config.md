@@ -6,7 +6,7 @@ trigger_phrases:
   - "repository/quality.json"
   - "configured quality checks"
   - "skilled.trustRepoChecks"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Repository Quality Config (repository/quality.json)
@@ -50,8 +50,11 @@ A configured check runs only from a trusted config: the operator named the file 
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config.test.cjs` | Node test | One discovery case per source and the config errors |
-| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs` | Node test | Configured runs, trust states and the workspace guard |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config-discovery.test.cjs` | Node test | One discovery case per source, the legacy-path refusal and the repository field |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config-validation.test.cjs` | Node test | Every config error the schema reports, and the merge rule over the base layer |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-outcomes.test.cjs` | Node test | The outcomes a configured run reaches: absent tool, failing check and a mutated workspace |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-trust.test.cjs` | Node test | The trust states a committed check resolves to |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-execution.test.cjs` | Node test | Argv execution, the workspace guard and the timeout kill |
 
 ---
 

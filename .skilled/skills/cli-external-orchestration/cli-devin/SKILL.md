@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 <!-- Keywords: devin, devin-cli, cognition, cross-ai, cloud-handoff, subagent-delegation, code-generation, code-review, second-opinion, multi-model, session-management, handoff, swe -->
@@ -213,7 +213,7 @@ The experimental native profile format ([docs.devin.ai/cli/subagents](https://do
 
 #### Installed-Version Findings
 
-Devin `3000.2.17` does not import `.claude/agents/*.md` as its docs claim, which is why the `.devin/agents/<name>/AGENT.md` symlinks above exist, and it has no command-file system. The probes behind both findings are in [agent-delegation.md](./references/agent-delegation.md) §10.
+Devin `3000.2.17` does not import `.claude/agents/*.md` as its docs claim, so the `.devin/agents/<name>/AGENT.md` symlinks above exist, and it has no command-file system. The probes behind both findings are in [agent-delegation.md](./references/agent-delegation.md) §10.
 
 ### Cloud Handoff
 
@@ -235,7 +235,7 @@ The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_
 ```
 Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `dangerous` for throwaway isolated runners.
 - **Always pass `--model` explicitly in scripts** — omitting it relies on the caller's `~/.config/devin/config.json` default, which may be a different model. Explicit means reproducible regardless of who runs it.
-- **Model ids carry no `-high` suffix, but the interactive picker shows one** — the TUI labels `glm-5-2` as "GLM-5.2 High", so an operator asking for "GLM 5.2 high" means the id `glm-5-2`. There is no `glm-5-2-high`. `devin models list` is the authority for every id and its display name; this document's roster is a convenience copy.
+- **Model ids carry no `-high` suffix, but the interactive picker shows one** — the TUI labels `glm-5-2` as "GLM-5.2 High", so an operator asking for "GLM 5.2 high" means the id `glm-5-2`. No `glm-5-2-high` exists. `devin models list` is the authority for every id and its display name; this document's roster is a convenience copy.
 - **A free-tier model still dispatches when the Pro quota reads 0%** — `glm-5-2` is billed as Free, and a dispatch succeeded with `Pro · 0% remaining` showing in the TUI. Quota exhaustion gates the paid families, so do not abandon a dispatch on the quota banner alone; probe with a trivial read-only call first.
 - **`devin --help` is NOT the authoritative `--permission-mode` enum.** It prints 4 values; the binary accepts 8.
   - Canonical set with aliases: `normal` (`auto`), `accept-edits`, `smart`, `dangerous` (`yolo`, `bypass`), `autonomous` (requires `--sandbox`).
@@ -256,7 +256,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
     Prefer `dangerous` over `accept-edits` for any task that must read files or run its own verification; `accept-edits` refuses those calls and the dispatch fails silently.
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
-6. **Redirect devin stdin from `/dev/null` on EVERY non-interactive dispatch**, not only inside a `while read` loop, which is the condition this rule used to name and the reason it was skipped.
+6. **Redirect devin stdin from `/dev/null` on EVERY non-interactive dispatch**, not only inside a `while read` loop, the condition this rule used to name and the reason it was skipped.
     Pattern: `devin -p -- "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded devin process inherits the loop's stdin and silently consumes the remaining lines.
     See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
 7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode dangerous`. Honor user overrides verbatim. Use `gpt-5-6-luna-max` for reasoning-heavy tasks (architecture, security, deep planning).
@@ -289,8 +289,8 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
     - **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently, but still SIGKILL each by its own captured PID as its work returns.
 16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable.
     The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero.
-    When sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`), copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
-    The variable also matters for the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `devin -p` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own.
+    Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+    The variable also matters for the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `devin -p` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree, not allocate its own.
     The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set.
     Pattern: `AI_SESSION_CHILD=1 devin -p -- ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
 

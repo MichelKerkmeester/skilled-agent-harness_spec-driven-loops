@@ -239,6 +239,9 @@ def walk_commands(repo: Path) -> List[Item]:
     # canonical tree, so only the real files there are new to the audit.
     native_root = repo / ".opencode" / "commands"
     native = sorted(p for p in native_root.glob("*.md") if not p.is_symlink()) if native_root.is_dir() else []
+    # A native file that repeats a canonical command is that command read a second time, so
+    # it is skipped. The canonical tree is walked first, so its path and description win.
+    seen: set = set()
     for cmd in sorted(base.rglob("*.md")) + native:
         # Skip nested asset markdown files
         if "assets" in cmd.parts or "scripts" in cmd.parts:
@@ -256,6 +259,9 @@ def walk_commands(repo: Path) -> List[Item]:
             display_name = f"{rel.parent}/{rel.stem}"
         else:
             display_name = rel.stem
+        if display_name in seen:
+            continue
+        seen.add(display_name)
         items.append(
             Item(
                 name=display_name,

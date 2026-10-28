@@ -19,9 +19,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
 const { parse: parseYaml } = require('yaml');
+const { REPO_PROFILE_FILE, REPO_ROOT } = require('../lib/ci-profile.cjs');
 
 const DOCTOR = path.resolve(__dirname, '..', '..');
-const REPO_ROOT = path.resolve(DOCTOR, '..', '..', '..');
 const ASSETS = path.join(DOCTOR, 'assets');
 
 const read = (file) => fs.readFileSync(file, 'utf8');
@@ -68,12 +68,18 @@ const SHIPPED_FILES = [
   path.join(DOCTOR, 'scripts', 'ci-scaffold.cjs'),
   path.join(DOCTOR, 'scripts', 'ci-toggle.cjs'),
   path.join(DOCTOR, 'scripts', 'lib', 'ci-profile.cjs'),
+  path.join(DOCTOR, 'scripts', 'lib', 'ci-report-render.cjs'),
+  path.join(DOCTOR, 'scripts', 'lib', 'ci-report-sources.cjs'),
+  path.join(DOCTOR, 'scripts', 'lib', 'ci-report-text.cjs'),
+  path.join(DOCTOR, 'scripts', 'lib', 'ci-report-workflows.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'ci-profile.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'ci-report.test.cjs'),
+  path.join(DOCTOR, 'scripts', 'tests', 'ci-report-fixtures.cjs'),
+  path.join(DOCTOR, 'scripts', 'tests', 'ci-report-profile.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'ci-scaffold.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'ci-toggle.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'doctor-ci-contract.test.cjs'),
-  path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'repository', 'ci.json'),
+  path.join(REPO_ROOT, REPO_PROFILE_FILE),
   path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'ci-profile.template.json'),
   path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'workflow-template.yml'),
   path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'job-block-template.yml'),
@@ -216,7 +222,7 @@ test('the scaffold renders its templates and the toggle plans through the script
 // Without the committed profile this repository would read the generic default, and
 // a single yes could then switch off a guard or the required message check.
 test('this repository commits the CI profile that keeps its protections', () => {
-  const profile = JSON.parse(read(path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'repository', 'ci.json')));
+  const profile = JSON.parse(read(path.join(REPO_ROOT, REPO_PROFILE_FILE)));
   assert.equal(profile.switch.master, SWITCH_VARIABLES[0]);
   assert.deepEqual(profile.switch.groups, SWITCH_VARIABLES.slice(1));
   assert.ok(profile.neverOff.includes('SKILLED_CI_MESSAGES'));

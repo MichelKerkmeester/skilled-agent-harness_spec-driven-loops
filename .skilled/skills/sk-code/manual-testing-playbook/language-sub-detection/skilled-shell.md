@@ -1,7 +1,7 @@
 ---
 title: "LS-003: SKILLED Shell Sub-Detection"
 description: "Verify that within SKILLED surface, shell-script extensions trigger loading of shell/* references (not typescript, python, or config)."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # LS-003: SKILLED Shell Sub-Detection
@@ -66,16 +66,19 @@ Evidence: `/tmp/skc-LS003-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
-1. Verify `.sh` and shebang signals (`#!/bin/bash`, `#!/usr/bin/env bash`) in SKILL.md sub-detection table.
-2. Verify `pipefail` is in the SHELL signal keywords list.
+1. Verify the SHELL row's `.sh` and `.bash` extension list in `shared/references/stack-detection.md` section 3.
+2. Verify a shebang-led file with no extension still resolves, because extension decides the language first and the shebang is the fallback signal.
 
 ---
 
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` (sub-detection table).
-- `.skilled/skills/sk-code/sk-code-skilled/references/shell/{style_guide,quality_standards,quick_reference}.md`.
+- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` (section 3, the SHELL row).
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/` — the three expected-loaded Shell reference folders, `style-guide/`, `quality-standards/` and `quick-reference/`, each split into topic parts.
+
+Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that names `ROUTER.md` as the owner of the stage-two resource maps the language overlay lives in.
 
 ---
 

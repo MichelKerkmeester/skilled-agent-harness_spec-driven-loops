@@ -316,6 +316,12 @@ def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[
         return 'agent', 'rule'
     if '/references/' in path_lower or '\\references\\' in path_lower:
         return 'reference', 'rule'
+    # A skill scaffold is the template a renderer copies into SKILL.md, so the sections
+    # it must carry are the ones that file needs, not the asset rule's Overview, which
+    # no SKILL.md ever has. Name and the assets/ ancestor together mark a template;
+    # either alone would also catch written documentation.
+    if 'scaffold' in portable_path.stem and ('/assets/' in path_lower or '\\assets\\' in path_lower):
+        return 'skill', 'rule'
     if '/assets/' in path_lower or '\\assets\\' in path_lower:
         return 'asset', 'rule'
 

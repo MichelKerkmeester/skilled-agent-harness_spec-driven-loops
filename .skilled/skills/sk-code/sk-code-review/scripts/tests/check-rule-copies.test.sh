@@ -2,6 +2,13 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: RULE COPY CANARY TESTS
 # ───────────────────────────────────────────────────────────────
+# Runs the review-output checkers and rule-copy canary against valid and tampered reports.
+#
+# Usage: check-rule-copies.test.sh
+#
+# Exit Codes:
+#   0 - All rule-canary cases passed.
+#   1 - One or more rule-canary cases failed.
 set -euo pipefail
 
 # Self-contained test for check-rule-copies.js. Runnable from anywhere — paths
@@ -63,6 +70,12 @@ run_case() {
   else
     printf 'PASS %s\n' "$name"
   fi
+}
+
+run_review_checker_stdin() {
+  local checker="$1"
+  local content="$2"
+  printf '%s' "$content" | node "$checker"
 }
 
 # PASS: the real, consistent repo tree (exercises the default-CWD root path).
@@ -209,6 +222,10 @@ expect_output 'more than one "Not checked:" line in the output' "final_line_two_
 FINAL_LINE_UNREADABLE="$TMP_DIR/no-such-file.md"
 run_case 2 "final_line_unreadable_file" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_UNREADABLE"
 expect_output "cannot read $FINAL_LINE_UNREADABLE: " "final_line_unreadable_file_output" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_UNREADABLE"
+run_case 2 "final_line_unknown_option" node "$FINAL_LINE_CHECKER" --unknown
+expect_output 'check-review-final-line.js: unknown option: --unknown' "final_line_unknown_option_output" node "$FINAL_LINE_CHECKER" --unknown
+FINAL_LINE_STDIN_INPUT=$'Findings\n\nNot checked: nothing material\n\nReview status: APPROVED\n'
+run_case 0 "final_line_stdin" run_review_checker_stdin "$FINAL_LINE_CHECKER" "$FINAL_LINE_STDIN_INPUT"
 
 # The findings checker keeps one numbering across the severity groups and needs a Case line on each finding.
 FINDINGS_VALID="$TMP_DIR/findings_valid.md"
@@ -228,13 +245,20 @@ expect_output 'finding numbers restart or skip: expected 2, found 1' "findings_r
 FINDINGS_NONE="$TMP_DIR/findings_no_findings.md"
 printf '## Findings\n\n### P0 - Critical\nNo findings.\n\nNot checked: nothing material\n' > "$FINDINGS_NONE"
 run_case 0 "findings_no_findings" node "$FINDINGS_CHECKER" "$FINDINGS_NONE"
+FINDINGS_STDIN_INPUT=$'## Findings\n\n### P1 - High\n1. src/a.ts:1 Title\n   - Case: x\n'
+run_case 0 "findings_stdin" run_review_checker_stdin "$FINDINGS_CHECKER" "$FINDINGS_STDIN_INPUT"
+FINDINGS_UNREADABLE="$TMP_DIR/no-such-findings.md"
+run_case 2 "findings_unreadable_file" node "$FINDINGS_CHECKER" "$FINDINGS_UNREADABLE"
+expect_output "cannot read $FINDINGS_UNREADABLE: " "findings_unreadable_file_output" node "$FINDINGS_CHECKER" "$FINDINGS_UNREADABLE"
+run_case 2 "findings_unknown_option" node "$FINDINGS_CHECKER" --unknown
+expect_output 'check-review-findings.js: unknown option: --unknown' "findings_unknown_option_output" node "$FINDINGS_CHECKER" --unknown
 
 FINAL_LINE_NOT_CHECKED_SPACES="$TMP_DIR/final_line_not_checked_two_spaces.md"
 printf 'Findings\n\nNot checked:  two spaces after the colon\n\nReview status: APPROVED\n' > "$FINAL_LINE_NOT_CHECKED_SPACES"
 run_case 0 "final_line_not_checked_two_spaces" node "$FINAL_LINE_CHECKER" "$FINAL_LINE_NOT_CHECKED_SPACES"
 
 # Both documented finding shapes run through both checkers, so neither shape can pass unchecked.
-SHAPE_DIR="$SCRIPT_DIR/review-output-fixture"
+SHAPE_DIR="$SCRIPT_DIR/tests/fixtures/review-output"
 for shape in list-shape-valid heading-shape-valid heading-shape-missing-case heading-shape-restart; do
   run_case 0 "shape_final_line_$shape" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/$shape.md"
 done

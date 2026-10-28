@@ -8,7 +8,7 @@ trigger_phrases:
   - "python public api exports"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Import Ordering & Export Patterns
@@ -137,9 +137,9 @@ source "${SCRIPT_DIR}/lib/output.sh"
 Use object literal at end of file for non-plugin `.js/.cjs` utilities:
 
 ```javascript
-/* ─────────────────────────────────────────────────────────────
-   5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   // Primary exports (camelCase)

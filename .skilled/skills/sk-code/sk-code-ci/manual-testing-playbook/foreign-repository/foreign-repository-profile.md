@@ -3,7 +3,7 @@ id: ci-foreign-repository-profile
 category: foreign_repository
 title: 'A repository with its own switch names reads clean in /doctor:ci'
 description: "This scenario validates the CI doctor in a repository that is not this one. It builds a fresh repository with ACME_CI switches and three workflows, then reads the report with a mocked gh, renders the scaffold and plans four toggles. The report reads the real switch state with no false flag, the scaffold prints no Skilled text, and the toggle accepts ACME_CI_TESTS and refuses the variable behind the required check."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # A Repository With Its Own Switch Names Reads Clean In /doctor:ci
@@ -38,7 +38,7 @@ Operators confirm that the report reads the real switch state with no false flag
 Run the CI doctor in my repository and check it reads our ACME_CI switches without flagging them.
 ```
 
-- Fixture: a scratch folder outside the repository, with no git history, built by the commands below. It holds the three scripts and the two scaffold templates at their repository paths, three workflows (`tests.yml`, `gate.yml`, `lint.yml`) whose jobs carry `ACME_CI` and one group switch each, no CI profile, and a `gh` stub. The stub reports `ACME_CI_LINT` set to `off`, the default branch `main` and a branch ruleset that requires the status context `Required gate`, the name of the job in `gate.yml`.
+- Fixture: a scratch folder outside the repository, with no git history, built by the commands below. It holds the three scripts and the two scaffold templates at their repository paths, three workflows (`tests.yml`, `gate.yml`, `lint.yml`) whose jobs carry `ACME_CI` and one group switch each, no CI profile, and a `gh` stub. The stub reports `ACME_CI_LINT` set to `off`, the default branch `main` and a branch ruleset that requires the status context `Required gate`, the name of the job in `gate.yml`. Step 1 exports `GIT_CONFIG_GLOBAL=/dev/null`, so the run cannot read an operator's `skcode.ciProfile` value; the file-scoped git config source is exercised by the profile scenario in the `ci-surface/` category.
 
 | Fixture part | Content | What the run must say |
 | --- | --- | --- |
@@ -71,6 +71,10 @@ Run the commands from the repository root in one shell session, so the variables
 ```bash
 CHECKOUT="$PWD"
 SCRATCH="$(mktemp -d)"
+# An empty global git config keeps the fixture at the generic default: a
+# skcode.ciProfile value in the operator's own config would otherwise win, and a
+# path that does not exist here would abort the run.
+export GIT_CONFIG_GLOBAL=/dev/null
 S=.skilled/commands/doctor/scripts
 A=.skilled/skills/sk-code/sk-code-ci/assets
 I=.skilled/skills/sk-code/shared/scripts/lib
@@ -201,7 +205,7 @@ exit 1
 0
 ```
 
-The last `0` is the count of write calls in the stub's log. Step 5 prints `OK` for all three paths.
+The last `0` is the count of write calls in the stub's log, and its count command exits 1 on zero matches as well. Step 5 prints `OK` for all three paths.
 
 | Signal | Expected value |
 | --- | --- |
@@ -232,6 +236,7 @@ Command transcript from steps 1 to 5, the frontmatter block, the report's six li
 3. If a script stops with `Cannot find module 'yaml'`, `NODE_PATH` does not reach the checkout's node modules. Check that `CHECKOUT` was set from the repository root.
 4. If `ACME_CI_GATE` is planned, the stub did not return the ruleset. Read the call log for the ruleset request, and note that a ruleset the script cannot read prints a `Required checks: not read` line in the plan.
 5. A refusal never runs the write. The script prints the plan and the route runs the command only after a yes, so the call log holds no write whatever the answer.
+6. If the run stops with `ERROR: git config skcode.ciProfile names ...`, the shell lost the `GIT_CONFIG_GLOBAL` export from step 1. Re-export it in the same session, or read `git config --show-scope --get-all skcode.ciProfile` and unset the value.
 
 ---
 
@@ -242,6 +247,7 @@ Command transcript from steps 1 to 5, the frontmatter block, the report's six li
 | File | Role |
 | --- | --- |
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| [ci-workflow-doctor-and-switches.md](../../../feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md) | Feature-catalog entry that records the profile lookup order and the foreign-repository behaviour this scenario exercises |
 
 ### Implementation And Test Anchors
 

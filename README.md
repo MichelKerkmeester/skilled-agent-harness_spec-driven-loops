@@ -78,7 +78,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 13 on-demand skills, 40 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 13 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 &nbsp;
 
@@ -1640,7 +1640,3 @@ Everything is a file in your own repository.
 - **[→ Release Notes](.skilled/changelog/skilled/)** - every Skilled release, one entry per version
 - **[→ Spec Kit Changelog](.skilled/skills/system-spec-kit/changelog/)** - the version history of the system-spec-kit skill
 - **[→ Daemon CLI Reference](.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - the advisor's daemon-backed CLI front door, its warm-only policy and its exit codes
-
-<!-- readme-check
-allow-count two example files | the next two bullets name .env.example and hook-flags.env.example
--->

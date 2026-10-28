@@ -91,6 +91,14 @@ function parseArgs(argv) {
   return options;
 }
 
+/**
+ * Resolve the repository's hygiene flags and write the requested output format.
+ *
+ * @param {string[]} argv - Command-line arguments after the executable name.
+ * @param {{cwd?:string, env?:NodeJS.ProcessEnv, out?:NodeJS.WriteStream, err?:NodeJS.WriteStream}} options -
+ *   Working directory, environment and output streams for this run.
+ * @returns {number} The CLI exit code.
+ */
 function main(argv, { cwd = process.cwd(), env = process.env, out = process.stdout, err = process.stderr } = {}) {
   const options = parseArgs(argv);
   if (!options) {

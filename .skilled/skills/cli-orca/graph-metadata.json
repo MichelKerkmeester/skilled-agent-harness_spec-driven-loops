@@ -46,6 +46,7 @@
   "intent_signals": [
     "orca cli",
     "orca worktree",
+    "orca worktrees",
     "orca terminal",
     "orca browser",
     "orca automation",
@@ -55,6 +56,7 @@
     "orca repository",
     "orca embedded browser",
     "managed worktree",
+    "managed worktrees in orca",
     "paired terminal",
     "child worktree"
   ],
@@ -62,6 +64,7 @@
     "trigger_phrases": [
       "orca cli",
       "orca worktree",
+      "orca worktrees",
       "orca terminal",
       "orca browser",
       "orca automation",
@@ -69,6 +72,7 @@
       "orca artifacts",
       "orca skills",
       "managed worktree",
+      "managed worktrees in orca",
       "paired terminal",
       "official orca skills",
       "orca per workspace env"

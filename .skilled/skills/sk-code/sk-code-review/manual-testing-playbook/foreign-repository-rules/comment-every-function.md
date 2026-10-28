@@ -1,7 +1,7 @@
 ---
 title: "CR-030 -- Repository with the opposite rule: comment every function"
 description: "This scenario validates a repository that replaces the documentation rule with its opposite for `CR-030`. It focuses on the review applying a `replace:` row on `floor.documentation` and raising the missing doc comments at the severity of the rule it replaces."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CR-030 -- Repository with the opposite rule: comment every function
@@ -183,4 +183,5 @@ If the primary run passes, add a doc comment above each function in the fixture,
 - Playbook ID: CR-030
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `foreign-repository-rules/comment-every-function.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

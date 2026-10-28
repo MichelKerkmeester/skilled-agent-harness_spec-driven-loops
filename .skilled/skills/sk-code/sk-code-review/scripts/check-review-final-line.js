@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║ check-review-final-line - validates the final status line in review output ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Review Final-Line Checker
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -10,30 +10,42 @@
 
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
+
 import ruleOverrides from '../../shared/scripts/check-rule-overrides.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const EXACT_STATUS = /^Review status: (APPROVED|REQUESTED_CHANGES|COMMENTED)$/;
+const REVIEW_STATUS = Object.freeze({
+  APPROVED: 'APPROVED',
+  REQUESTED_CHANGES: 'REQUESTED_CHANGES',
+  COMMENTED: 'COMMENTED',
+});
+const REVIEW_STATUS_TOKENS = Object.values(REVIEW_STATUS);
+const REVIEW_STATUS_PATTERN = REVIEW_STATUS_TOKENS.join('|');
+const LEGACY_STATUS = new Map([
+  ['APPROVE', REVIEW_STATUS.APPROVED],
+  ['REQUEST CHANGES', REVIEW_STATUS.REQUESTED_CHANGES],
+  ['BLOCK', REVIEW_STATUS.REQUESTED_CHANGES],
+]);
+const LEGACY_STATUS_PATTERN = [...LEGACY_STATUS.keys()].join('|');
+const EXACT_STATUS = new RegExp('^Review status: (' + REVIEW_STATUS_PATTERN + ')$');
 // A list marker and title case are accepted, so a reworded header line is still compared with the status line.
 const OVERALL_ASSESSMENT = /^\s*(?:[-*+]\s+)?\*{0,2}Overall assessment\*{0,2}:\s*(.*)$/i;
-const ASSESSMENT_STATUSES = new Set(['APPROVED', 'REQUESTED_CHANGES', 'COMMENTED']);
-const COMMENTED_SKIP_STATUS =
-  /^Review status: COMMENTED \((no changes since last review at \S+|skipped: [^)]+)\)$/;
+const ASSESSMENT_STATUSES = new Set(REVIEW_STATUS_TOKENS);
+const COMMENTED_SKIP_STATUS = new RegExp(
+  '^Review status: ' +
+    REVIEW_STATUS.COMMENTED +
+    ' \\((no changes since last review at \\S+|skipped: [^)]+)\\)$'
+);
 const RESULT_BLOCK_HEADER = 'AGENT_IO_RESULT v1';
 // The agent's report carries a Recommendation line. It is a verdict only when its whole value
 // is one status token, or one of the older tokens followed by the end of the line or a comma,
 // so prose such as "approve the migration after the fix" is never read as one.
 const RECOMMENDATION = /^\s*(?:[-*+]\s+)?\*{0,2}Recommendation\*{0,2}:\s*(.*)$/i;
-const RECOMMENDATION_STATUS = /^(APPROVED|REQUESTED_CHANGES|COMMENTED)$/;
-const RECOMMENDATION_LEGACY = /^(APPROVE|REQUEST CHANGES|BLOCK)(?:$|,)/;
-const LEGACY_STATUS = new Map([
-  ['APPROVE', 'APPROVED'],
-  ['REQUEST CHANGES', 'REQUESTED_CHANGES'],
-  ['BLOCK', 'REQUESTED_CHANGES'],
-]);
+const RECOMMENDATION_STATUS = new RegExp('^(' + REVIEW_STATUS_PATTERN + ')$');
+const RECOMMENDATION_LEGACY = new RegExp('^(' + LEGACY_STATUS_PATTERN + ')(?:$|,)');
 // The Rule sources line names five groups in a fixed order. Its rule ids use the grammar
 // of the shared rule-overrides linter, read from the linter so the two cannot drift.
 const RULE_SOURCES_PREFIX = 'Rule sources:';
@@ -236,24 +248,36 @@ function checkReviewOutput(text) {
 // 5. COMMAND-LINE INTERFACE
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runCli() {
-  const args = process.argv.slice(2);
+/**
+ * Reads checker input from one file argument or stdin and reports CLI input errors.
+ *
+ * @param {string} programName - The checker name shown in usage and option errors.
+ * @param {string[]} [args=process.argv.slice(2)] - The arguments after the script name.
+ * @returns {string | null} Input text, or null after setting exit code 2 for a CLI error.
+ */
+function readCliInput(programName, args = process.argv.slice(2)) {
   const offending = args.find((arg) => arg.startsWith('-')) ?? (args.length > 1 ? args[1] : null);
+  const usage = 'usage: ' + programName + ' [file]';
   if (offending !== null) {
-    console.error(`check-review-final-line.js: unknown option: ${offending}`);
-    console.error('usage: check-review-final-line.js [file]');
+    console.error(programName + ': unknown option: ' + offending);
+    console.error(usage);
     process.exitCode = 2;
-    return;
+    return null;
   }
-  const inputPath = process.argv.length > 2 ? process.argv[2] : null;
-  let text;
-
+  const inputPath = args.length > 0 ? args[0] : null;
   try {
-    text = inputPath === null ? fs.readFileSync(0, 'utf8') : fs.readFileSync(inputPath, 'utf8');
+    return inputPath === null ? fs.readFileSync(0, 'utf8') : fs.readFileSync(inputPath, 'utf8');
   } catch (error) {
-    console.error(`cannot read ${inputPath === null ? 'stdin' : inputPath}: ${error.message}`);
-    console.error('usage: check-review-final-line.js [file]');
+    console.error('cannot read ' + (inputPath === null ? 'stdin' : inputPath) + ': ' + error.message);
+    console.error(usage);
     process.exitCode = 2;
+    return null;
+  }
+}
+
+function runCli() {
+  const text = readCliInput('check-review-final-line.js');
+  if (text === null) {
     return;
   }
 
@@ -273,7 +297,7 @@ function runCli() {
 // 6. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export { checkReviewOutput, readFinalStatus, readRecommendations };
+export { REVIEW_STATUS, checkReviewOutput, readCliInput, readFinalStatus, readRecommendations };
 
 if (
   process.argv[1] &&

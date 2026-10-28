@@ -1,7 +1,7 @@
 ---
 title: "CR-025 -- Seeded SQL injection"
 description: "This scenario validates the seeded SQL injection for `CR-025`. It focuses on a live review of a small user lookup module that builds a SQL statement by concatenating its email argument, and on whether the review raises a P0 or P1 finding at the concatenation line that names SQL injection and recommends a parameterized query."
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 # CR-025 -- Seeded SQL injection
@@ -28,9 +28,9 @@ Operators run the exact prompt and command sequence for `CR-025` and confirm the
 - Real user request: `Review this new user lookup module before I commit it.`
 - Prompt: `Review this new user lookup module before I commit it.`
 - Expected execution process: Run the deterministic command sequence, save the review output, check its final line, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when no review executor can run in the session, and name the missing executor as the blocker.
-- Expected signals: Step 1: the fixture is written to a scratch folder outside the repository with the injection on line 5; Step 2: the review reports a P0 or P1 finding at `users.js:5` naming SQL injection and a parameterized query, with a Case line, and its Overall assessment and status line agree; Step 3: the final-line checker exits 0.
+- Expected signals: Step 1: the fixture is written to a scratch folder outside the repository with the injection on line 5; Step 2: the review reports a P0 or P1 finding at `users.js:5` naming SQL injection and a parameterized query, with a Case line, and its Overall assessment and status line agree; Step 3: the final-line checker exits 0 and the findings checker exits 0, which is only possible when the report ends on `Review status: REQUESTED_CHANGES`.
 - Desired user-visible outcome: the review blocks the commit and tells the operator exactly which line interpolates untrusted input into SQL and how to fix it.
-- Pass/fail: PASS iff the P0 or P1 finding is present at `users.js:5` with a Case line, the Overall assessment and status line agree, and the final-line checker exits 0; FAIL if the injection is missed, cited at the wrong line, or graded P2.
+- Pass/fail: PASS iff the P0 or P1 finding is present at `users.js:5` with a Case line, the Overall assessment and status line agree, the report ends on `Review status: REQUESTED_CHANGES`, and both checkers exit 0; FAIL if the injection is missed, cited at the wrong line, graded P2, reported but approved over, or either checker exits non-zero.
 
 Fixture file (write it to a scratch folder as users.js):
 
@@ -55,13 +55,13 @@ module.exports = { findUserByEmail };
 
 1. Write the fixture to a scratch folder outside the repository and confirm the injection lands on line 5.
 2. Run the exact prompt through the chosen review executor and save the full output beside the run record.
-3. Run `scripts/check-review-final-line.js` over the saved output and read its exit status.
+3. Run `scripts/check-review-final-line.js` and `scripts/check-review-findings.js` over the saved output and read both exit statuses. The findings checker is the one that fails a report which approves or comments over its own P0 or P1 finding.
 4. Compare the finding line, severity, and remedy against this contract, not against a remembered summary.
 5. Record executor, model, wall-clock duration, and total tokens with the verdict, then name the missed or misgraded element when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-025 | Seeded SQL injection | Confirm a live review of the seeded file raises a P0 or P1 finding at `users.js:5` naming SQL injection through string concatenation and recommending a parameterized query. | `Review this new user lookup module before I commit it.` | bash: write the fixture to a scratch folder -> agent: @review the fixture as a pre-commit review of a new file -> bash: node <sk-code-review>/scripts/check-review-final-line.js <saved review output> -> record executor, model, duration and tokens | Step 1: the fixture is written with the injection on line 5; Step 2: the review reports a P0 or P1 finding at `users.js:5` naming SQL injection and a parameterized query, with a Case line, and its Overall assessment and status line agree; Step 3: the final-line checker exits 0 | Saved review output, final-line checker output, executor, model, duration and token count | PASS iff the P0 or P1 finding is present at `users.js:5` with a Case line, the Overall assessment and status line agree, and the final-line checker exits 0; FAIL if the injection is missed, cited at the wrong line, or graded P2 | 1. Confirm the fixture was written verbatim so the injection is on line 5; 2. Re-run with the same executor and model before changing the verdict; 3. Check whether the status line is last and agrees with the Overall assessment |
+| CR-025 | Seeded SQL injection | Confirm a live review of the seeded file raises a P0 or P1 finding at `users.js:5` naming SQL injection through string concatenation and recommending a parameterized query. | `Review this new user lookup module before I commit it.` | bash: write the fixture to a scratch folder -> agent: @review the fixture as a pre-commit review of a new file -> bash: node <sk-code-review>/scripts/check-review-final-line.js <saved review output> -> bash: node <sk-code-review>/scripts/check-review-findings.js <saved review output> -> record executor, model, duration and tokens | Step 1: the fixture is written with the injection on line 5; Step 2: the review reports a P0 or P1 finding at `users.js:5` naming SQL injection and a parameterized query, with a Case line, and its Overall assessment and status line agree; Step 3: the final-line checker exits 0 and the findings checker exits 0, which is only possible on `Review status: REQUESTED_CHANGES` | Saved review output, both checker outputs, executor, model, duration and token count | PASS iff the P0 or P1 finding is present at `users.js:5` with a Case line, the Overall assessment and status line agree, the report ends on `Review status: REQUESTED_CHANGES`, and both checkers exit 0; FAIL if the injection is missed, cited at the wrong line, graded P2, reported but approved over, or either checker exits non-zero | 1. Confirm the fixture was written verbatim so the injection is on line 5; 2. Read the findings checker message before suspecting the review: a status that approves over the finding fails there and not in the final-line checker; 3. Re-run with the same executor and model before changing the verdict |
 
 ### Optional Supplemental Checks
 
@@ -96,3 +96,4 @@ If the primary run passes, re-run the same prompt against a variant that uses a 
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `finding-accuracy/seeded-sql-injection.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.

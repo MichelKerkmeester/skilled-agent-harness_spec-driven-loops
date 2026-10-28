@@ -4,7 +4,7 @@ description: "Author canonical feature-inventory packages, a root catalog plus o
 trigger_phrases:
   - "feature catalog"
   - "feature inventory"
-version: 1.0.0.12
+version: 1.0.1.0
 ---
 
 # create-feature-catalog
@@ -146,3 +146,7 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 | [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring catalog defects with worked fixes |
 | [`assets/feature-catalog-template.md`](./assets/feature-catalog-template.md) | Root catalog scaffold |
 | [`assets/feature-catalog-snippet-template.md`](./assets/feature-catalog-snippet-template.md) | Per-feature file scaffold |
+
+<!-- readme-check
+allow-ref feature-catalog/feature-catalog.md | the root catalog a run writes into the skill it inventories, so the folder is that skill's rather than this packet's
+-->

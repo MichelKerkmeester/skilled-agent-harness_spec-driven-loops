@@ -1,7 +1,7 @@
 ---
 title: "CR-022 -- Ceiling-comment downgrade"
 description: "This scenario validates ceiling-comment downgrade for `CR-022`. It focuses on treating a concrete ceiling: comment as evidence that a too-simple KISS or YAGNI finding was intentional, while never downgrading a protected-class finding."
-version: 1.5.0.2
+version: 1.5.1.0
 ---
 
 # CR-022 -- Ceiling-comment downgrade
@@ -78,4 +78,5 @@ If the primary run passes, repeat against a `ceiling:` comment that is vague (no
 - Playbook ID: CR-022
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `efficiency-and-restraint/ceiling-comment-downgrade.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

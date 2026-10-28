@@ -7,7 +7,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "nous hermes"
   - "hermes chat"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # cli-hermes
@@ -220,3 +220,7 @@ Result: a lineage whose iterations run through `buildHermesLineageCommand`. Give
 | [`SKILL.md`](./SKILL.md) | The routing contract this README summarizes |
 | [`.hermes/SYNC.md`](../../../../.hermes/SYNC.md) | What the repo's Hermes surface derives from and how to resync it |
 | [Hermes Agent repository](https://github.com/NousResearch/hermes-agent) | Upstream source and documentation |
+
+<!-- readme-check
+allow-ref SOUL.md | a Hermes runtime instruction file, created by the Hermes runtime rather than this repository
+-->

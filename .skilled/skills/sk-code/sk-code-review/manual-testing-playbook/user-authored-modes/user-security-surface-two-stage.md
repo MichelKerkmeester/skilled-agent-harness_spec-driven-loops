@@ -1,7 +1,7 @@
 ---
 title: "CR-028 -- User security surface through both routing stages"
 description: "This scenario validates the user security surface through both routing stages for `CR-028`. It focuses on the skill advisor selecting the `sk-code` hub, then the hub router selecting the review mode plus a repository-added security surface, with review staying primary and the surface riding as read-only evidence."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-028 -- User security surface through both routing stages
@@ -109,4 +109,5 @@ If the primary run passes, move the tie-break insertion after the fallback slot 
 - Playbook ID: CR-028
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `user-authored-modes/user-security-surface-two-stage.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

@@ -1,7 +1,7 @@
 ---
 title: "CR-029 -- Repository that wants almost no inline comments"
 description: "This scenario validates a repository that wants almost no inline comments for `CR-029`. It focuses on the review reading the repository's own rule overrides through the quality runner's explain entry, applying a dropped documentation rule and a switched-off tracker-id hygiene rule, and raising no finding for either."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CR-029 -- Repository that wants almost no inline comments
@@ -186,4 +186,5 @@ If the primary run passes, remove the `commentHygiene` block and the `hygiene.is
 - Playbook ID: CR-029
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `foreign-repository-rules/almost-no-inline-comments.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

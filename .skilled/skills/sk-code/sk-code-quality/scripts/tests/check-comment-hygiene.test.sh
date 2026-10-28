@@ -2,7 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: COMMENT HYGIENE CHECKER TESTS
 # ───────────────────────────────────────────────────────────────
+# Exit Codes: 0 all cases pass; 1 one or more cases fail; strict-mode failures return nonzero.
 set -euo pipefail
+
+# ───────────────────────────────────────────────────────────────
+# 1. TEST SETUP
+# ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CHECKER="$SCRIPT_DIR/check-comment-hygiene.sh"
@@ -12,6 +17,10 @@ cleanup() {
   rm -rf "$TMP_DIR"
 }
 trap cleanup EXIT
+
+# ───────────────────────────────────────────────────────────────
+# 2. ASSERTION HELPER
+# ───────────────────────────────────────────────────────────────
 
 failures=0
 
@@ -48,6 +57,10 @@ run_case() {
   done
   printf 'PASS %s\n' "$name"
 }
+
+# ───────────────────────────────────────────────────────────────
+# 3. COMMENT SCANNER CASES
+# ───────────────────────────────────────────────────────────────
 
 run_case 1 "rc_ref" "js" "// RC-2 x"
 run_case 1 "dr_single" "js" "// DR-005 x"
@@ -217,6 +230,10 @@ run_case 0 "standard_cwe" "js" "// guards CWE-79"
 # A standard code is cut out of the text, so it never hides a label on the same line.
 run_case 1 "standard_beside_label" "js" "// CWE-79 https://example.test and ADR-1"
 
+# ───────────────────────────────────────────────────────────────
+# 4. CLI AND EXIT-CODE CASES
+# ───────────────────────────────────────────────────────────────
+
 # Checks one run of the checker: its exit code, and a substring its combined output must hold.
 run_cli() {
   local expected_exit="$1"
@@ -320,6 +337,30 @@ else
   printf 'FAIL multi_file: exits %s/%s/%s\n%s\n' "$multi_exit" "$clean_exit" "$skip_exit" "$multi_output" >&2
   failures=$((failures + 1))
 fi
+
+# A missing rule-override contract under --disable-rule is a usage error (exit 3),
+# never an uncaught exception, so a caller can tell a bad setup from a violation.
+set +e
+contract_output="$(python3 - "$(dirname "$CHECKER")/lib" "$TMP_DIR/multi_good.js" 2>&1 <<'PY'
+import sys
+sys.path.insert(0, sys.argv[1])
+import comment_hygiene.cli as cli
+cli.CONTRACT_PATH = sys.argv[2] + ".missing-contract.json"
+sys.exit(cli.main(["--disable-rule", "no-ticket-ids", "--", sys.argv[2]], []))
+PY
+)"
+contract_exit=$?
+set -e
+if [[ "$contract_exit" -eq 3 && "$contract_output" == *"cannot read the rule-override contract"* ]]; then
+  printf 'PASS disable_rule_missing_contract\n'
+else
+  printf 'FAIL disable_rule_missing_contract: exit %s\n%s\n' "$contract_exit" "$contract_output" >&2
+  failures=$((failures + 1))
+fi
+
+# ───────────────────────────────────────────────────────────────
+# 5. RESULTS
+# ───────────────────────────────────────────────────────────────
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s comment hygiene test case(s) failed\n' "$failures" >&2

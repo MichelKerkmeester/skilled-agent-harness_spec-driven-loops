@@ -7,7 +7,8 @@ expected_intent: QUALITY
 expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
-version: 1.2.0.1
+catalog_applicable: true
+version: 1.2.1.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -69,13 +70,13 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
 
 1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`
 2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .skilled/skills/sk-code/sk-code-quality/SKILL.md`
-3. `for p in references/runner-contract.md ../shared/references/universal/code-quality-standards.md references/code-style-guide.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/runner-contract.md ../shared/references/universal/code-quality-standards.md references/code-style-guide.md references/quality-config.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
 Step 1 shows `expected_intent: QUALITY` in the frontmatter. Step 2 shows the thin-router
-`INTENT_SIGNALS["QUALITY"]` keyword list this scenario's prompt matches. Step 3 prints `OK` for all three
-paths.
+`INTENT_SIGNALS["QUALITY"]` keyword list this scenario's prompt matches. Step 3 prints `OK` for all four
+paths, because it checks every path `expected_resources` declares.
 
 ### Evidence
 
@@ -95,8 +96,9 @@ excerpt.
 2. Diff this scenario's `expected_resources` against `SKILL.md`'s `RESOURCE_MAP["QUALITY"]` and
    `DEFAULT_RESOURCE` (§9) to see whether the drift is a stale scenario file or a stale router map.
    `RESOURCE_MAP["QUALITY"]` names the repository config reference, and
-   `DEFAULT_RESOURCE` names the runner contract, the universal floor and the style guide. Step 3 tracks
-   the `DEFAULT_RESOURCE` set, and `expected_resources` draws from both.
+   `DEFAULT_RESOURCE` names the runner contract, the universal floor and the style guide. Step 3 checks
+   the union of the two, which is the set `expected_resources` declares, so a rename in either list
+   fails this scenario.
 
 ---
 
@@ -107,6 +109,7 @@ excerpt.
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: no entry; the nearest is [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog describes the runner, its checks and its exit codes, and names no prompt-intent projection entry |
 
 ### Implementation And Test Anchors
 

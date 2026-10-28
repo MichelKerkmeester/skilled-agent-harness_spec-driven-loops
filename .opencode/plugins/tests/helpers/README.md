@@ -101,3 +101,7 @@ Expected result: no syntax error.
 
 - [`../README.md`](../README.md): the plugin test suites that consume these helpers.
 - [`../../README.md`](../../README.md): the plugin entrypoints under test.
+
+<!-- readme-check
+allow-count four suites | counts the four suites the fenced command above names, not the suites in this folder
+-->

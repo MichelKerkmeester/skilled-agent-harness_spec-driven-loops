@@ -1,7 +1,7 @@
 ---
 title: "CR-003 -- Multi-commit feature branch"
 description: "This scenario validates Multi-commit feature branch for `CR-003`. It focuses on Confirm branch review preserves commit lineage and distinguishes PR scope from unrelated churn."
-version: 1.5.0.2
+version: 1.5.1.0
 ---
 
 # CR-003 -- Multi-commit feature branch
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `baseline-review-flow/multi-commit-feature-branch.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

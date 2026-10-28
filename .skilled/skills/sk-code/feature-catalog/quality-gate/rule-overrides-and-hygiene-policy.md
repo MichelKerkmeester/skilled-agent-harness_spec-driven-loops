@@ -6,7 +6,7 @@ trigger_phrases:
   - "rule overrides section"
   - "commentHygiene disableRules"
   - "drop or replace a quality rule"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rule Overrides And Hygiene Policy (`## Rule overrides`, `commentHygiene.disableRules`)
@@ -65,7 +65,8 @@ A quality run reads the section of every checklist it loads through the same lin
 |---|---|---|
 | `.skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` | Node test | The linter and the floor agreement with the JSON |
 | `.skilled/skills/sk-code/shared/scripts/tests/rule-registry.test.cjs` | Node test | The registry's derivation and its refusal to shrink unnoticed |
-| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` | Node test | The `disableRules` cases, the explain output and the run's refusal, recording and conflict cases |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-config-hygiene.test.cjs` | Node test | The `disableRules` cases and the hygiene values a config may not carry |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-explain-and-overrides.test.cjs` | Node test | The explain output and the run's refusal, recording and conflict cases |
 | `.skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/disabled-hygiene-rules.md` | Manual playbook | CQ-012, a repository that switches a hygiene rule off |
 | `.skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/floor-override-refused.md` | Manual playbook | CQ-013, a floor row and a fixed hygiene id refused |
 

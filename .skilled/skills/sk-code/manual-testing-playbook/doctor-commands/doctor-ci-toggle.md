@@ -1,7 +1,7 @@
 ---
 title: "DOC-394 -- Doctor CI toggle"
 description: "Manual scenario validating that /doctor:ci toggle prints the SKILLED_CI switch plan and approval prompt, changes nothing on a no answer, sets and clears the variable on a yes, and refuses an undocumented variable name."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-ci-toggle
 expected_workflow_mode: sk-code-ci
 expected_leaf_resources: []
@@ -97,6 +97,8 @@ If the no answer changed the variable, read `phase_3_refuse_or_plan` in the matc
 - Category notes: [doctor-commands README](README.md)
 
 Provenance: manual only - /doctor:ci toggle
+
+Catalog: `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, which inventories the toggle route, the switch variables and the profile's protected and never-off sets.
 
 ---
 

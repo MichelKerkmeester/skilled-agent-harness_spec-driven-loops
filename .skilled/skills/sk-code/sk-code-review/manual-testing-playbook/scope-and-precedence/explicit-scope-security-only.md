@@ -1,7 +1,7 @@
 ---
 title: "CR-010 -- Explicit scope security only"
 description: "This scenario validates Explicit scope security only for `CR-010`. It focuses on Confirm a security-only review still enforces correctness minimums when security impact exists and avoids style drift."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-010 -- Explicit scope security only
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-010
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `scope-and-precedence/explicit-scope-security-only.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

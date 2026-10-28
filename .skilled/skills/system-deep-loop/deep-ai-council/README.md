@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 1.8.0.0
+version: 1.8.1.0
 ---
 
 # deep-ai-council
@@ -214,3 +214,8 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 | [`assets/deep-ai-council-config.json`](./assets/deep-ai-council-config.json) | Config template with max rounds, anti-convergence floor and fail-closed stop policy |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Full feature inventory across the nine categories |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation package with per-feature scenarios |
+
+<!-- readme-check
+allow-ref seats/round-NNN/ | a runtime per-seat folder the persist helper writes under a packet ai-council/ tree, with NNN standing for the round number
+allow-ref failed/ | a runtime archive folder the round rollback moves failed round artifacts into, under a packet ai-council/ tree
+-->

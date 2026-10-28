@@ -56,6 +56,22 @@ describe('read-only command bridge exemption', () => {
   });
 });
 
+describe('read-only prompt that names a cli tool', () => {
+  const orca: SkillProjection = { ...skill('cli-orca'), family: 'cli' };
+
+  it('lets a cli skill answer a list prompt that names its tool', () => {
+    expect(readOnlyRouteAllowed('list my orca worktrees and open a terminal in the new one', orca)).toBe(true);
+  });
+
+  it('keeps the floor when the prompt names no tool', () => {
+    expect(readOnlyRouteAllowed('list my worktrees and open a terminal in the new one', orca)).toBe(false);
+  });
+
+  it('keeps a non-cli skill gated on its bare suffix', () => {
+    expect(readOnlyRouteAllowed('list the git branches', skill('sk-git'))).toBe(false);
+  });
+});
+
 describe('review-loop verb', () => {
   const projection = createFixtureProjection([skill('system-deep-loop'), skill('sk-code')]);
 

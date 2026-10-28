@@ -1,7 +1,7 @@
 ---
 title: "CR-002 -- Large refactor PR"
 description: "This scenario validates Large refactor PR for `CR-002`. It focuses on Confirm large refactors trigger scope control, surface evidence, and risk-ranked findings."
-version: 1.5.0.2
+version: 1.5.1.0
 ---
 
 # CR-002 -- Large refactor PR
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `baseline-review-flow/large-refactor-pr.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

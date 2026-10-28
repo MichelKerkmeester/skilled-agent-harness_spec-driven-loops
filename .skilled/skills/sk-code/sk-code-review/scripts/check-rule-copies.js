@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ check-rule-copies — lock load-bearing rule wording across skill docs      ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
-//
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Rule Copy Canary
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
 // Some rules must read identically (or carry the same safety concept) in more
 // than one place: the review-status vocabulary that downstream PR-state dedup
 // logic keys on, and the "Iron Law" that forbids completion claims without
@@ -25,7 +26,6 @@
 // `--mode-only` checks only the pins inside the sk-code skill, for a repository that
 // installed the skill but has no AGENTS.md of this shape. It names what it skipped,
 // and without `--root` it reads the skill from the folder this script ships in.
-'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -34,6 +34,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { checkReviewOutput } from './check-review-final-line.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -255,6 +256,18 @@ function readFileOrNull(relPath) {
   }
 }
 
+function sectionEnd(lines, startIndex) {
+  let endIndex = startIndex;
+  while (
+    endIndex < lines.length &&
+    !lines[endIndex].startsWith('#') &&
+    lines[endIndex].trim() !== '---'
+  ) {
+    endIndex += 1;
+  }
+  return endIndex;
+}
+
 // Byte offset where an anchor's clause ends, or null when the anchor is absent.
 function anchorEndByte(lines, lineStarts, anchor) {
   const index = lines.findIndex((line) => line.includes(anchor.text));
@@ -263,13 +276,7 @@ function anchorEndByte(lines, lineStarts, anchor) {
   }
   let endIndex = index + 1;
   if (anchor.scope === 'section') {
-    while (
-      endIndex < lines.length &&
-      !lines[endIndex].startsWith('#') &&
-      lines[endIndex].trim() !== '---'
-    ) {
-      endIndex += 1;
-    }
+    endIndex = sectionEnd(lines, endIndex);
   }
   return lineStarts[endIndex];
 }
@@ -351,14 +358,7 @@ if (floorsContent === null) {
   if (headingIndex === -1) {
     failures.push(`${EXTENSION_FLOORS.file}: extension floors heading not found: "${EXTENSION_FLOORS.heading}"`);
   } else {
-    let endIndex = headingIndex + 1;
-    while (
-      endIndex < lines.length &&
-      !lines[endIndex].startsWith('#') &&
-      lines[endIndex].trim() !== '---'
-    ) {
-      endIndex += 1;
-    }
+    const endIndex = sectionEnd(lines, headingIndex + 1);
     const section = lines.slice(headingIndex + 1, endIndex).join('\n');
     for (const floor of EXTENSION_FLOORS.floors) {
       if (!section.includes(floor)) {

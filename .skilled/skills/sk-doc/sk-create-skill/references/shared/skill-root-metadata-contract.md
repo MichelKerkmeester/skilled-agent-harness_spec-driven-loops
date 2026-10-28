@@ -8,7 +8,7 @@ trigger_phrases:
   - "hub versus standalone skill class"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Skill Root Metadata Contract
@@ -19,7 +19,7 @@ Which root-level metadata JSON files a skill root must, may, and must not carry,
 
 ## 1. OVERVIEW
 
-A skill root carries up to eight metadata JSON files. Which of them apply is not a per-skill preference: it follows from the root's **class**, and the class follows from one authored declaration.
+A skill root carries up to nine metadata JSON files. Which of them apply is not a per-skill preference: it follows from the root's **class**, and the class follows from one authored declaration.
 
 **Core Principle**: Classify first, then check. A root's class is decided by an authored declaration, never by a generated artifact.
 
@@ -37,7 +37,7 @@ A skill root carries up to eight metadata JSON files. Which of them apply is not
 | Class | What it is | Discriminator |
 | --- | --- | --- |
 | **H** — packet hub | Routes prompts across several mode packets and projects one advisor identity | Declares **both** `mode-registry.json` and `hub-router.json` |
-| **S** — standalone routed-resource skill | One workflow mode; its `references/`, `assets/`, `feature-catalog/`, and `manual-testing-playbook/` docs are the routed corpus | Declares **neither** |
+| **S** — standalone routed-resource skill | One workflow mode; its `references/`, `assets/`, `feature-catalog/`, `hooks/` and `manual-testing-playbook/` docs are the routed corpus | Declares **neither** |
 
 The registry and the router are the discriminator because they are consumed as one coupled declaration — the router's signal keys must name registry modes. A root carrying exactly one of them is therefore not a third class; it is a half-written declaration, and the gate rejects it rather than guessing.
 
@@ -65,6 +65,7 @@ Classification deliberately ignores every other file, including generated output
 | `mode-registry.json` | required | **forbidden** | authored |
 | `hub-router.json` | required | **forbidden** | authored |
 | `leaf-manifest.config.json` | **forbidden** | required | authored |
+| `leaf-scopes.json` | optional, authored | optional, authored | authored |
 | `leaf-manifest.json` | required | required | **generated** |
 | `leaf-aliases.json` | optional, authored | required, **generated** | see §4 |
 | `command-metadata.json` | optional, authored | **forbidden** | authored |
@@ -83,6 +84,12 @@ When present, the fleet gate validates each entry's core schema (`command`, `own
 
 The file is forbidden on standalone roots: every entry binds a command to an `ownerMode` in a mode registry, and a standalone root has none.
 
+### Why `leaf-scopes.json` is optional for both classes
+
+An authored scope list narrows one workflow mode's leaves to packet-relative subtrees or single docs, so a root whose configured leaf root also holds runtime code, or only partly routable docs, keeps the rest out of `leaf-manifest.json`. The generator reads the file on both paths and gives an unscoped mode its default walk — the declared leaf roots for a standalone root, `references/` and `assets/` inside the packet for a hub — so a root without it behaves exactly as it did before the file existed.
+
+It stays authored because a scope is a routing decision no generator can infer, and the presence gate neither requires nor forbids it: the file is an input to manifest generation, not a class marker. A scope that escapes the root's declared leaf roots fails closed with `OUT_OF_ROOT_LEAF_SCOPE`, and a scope naming a workflow mode the root does not declare fails closed with `ORPHAN_LEAF_SCOPE_MODE`, so a typo can neither widen a manifest nor leave a dead entry behind.
+
 ---
 
 ## 4. GENERATED VERSUS AUTHORED
@@ -100,7 +107,7 @@ A **hub's** alias rows carry real compatibility triples — they relocate a mode
 
 A **standalone** root has exactly one workflow mode, so the same triple degenerates to an identity projection over its own leaves: `workflowMode` is the skill id and `leafResourceId` equals `diskPath` on every row. That is a pure function of the manifest, so deriving it is strictly better than authoring it — a hand-maintained identity list silently rots the moment a leaf is added.
 
-The remaining seven files carry authored semantic identity, routing policy, or a declaration only a human can make. `--fix` never touches them.
+Everything else carries authored semantic identity, routing policy, or a declaration only a human can make: `graph-metadata.json`, `description.json`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.config.json`, `command-metadata.json` and `leaf-scopes.json`, plus `leaf-aliases.json` on a hub, where the projection carries real compatibility mappings rather than a derivative. `--fix` reads every one of them and never rewrites one.
 
 ---
 
@@ -157,13 +164,13 @@ The gate also prints one non-failing note, `INTENT_SIGNALS_TRIGGER_RECONCILIATIO
 
 **A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix below and does not affect class-H classification.
 
-**A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Run `--fix` to generate the manifest and the alias projection.
+**A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Add `leaf-scopes.json` only when a configured leaf root must be narrowed to a subtree or a named set of docs. Run `--fix` to generate the manifest and the alias projection.
 
-A standalone root therefore needs exactly one authored metadata file beyond identity. That is the whole delta between a non-conforming root and a conforming one.
+A standalone root therefore needs exactly one authored metadata file beyond identity, plus `leaf-scopes.json` when its leaf roots need narrowing. That is the whole delta between a non-conforming root and a conforming one.
 
 ### Templates
 
-Every authored file has a scaffold under `create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch.
+Every authored file except `leaf-scopes.json` has a scaffold under `create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root.
 
 | File | Class | Template |
 | --- | --- | --- |
@@ -175,6 +182,7 @@ Every authored file has a scaffold under `create-skill/assets/`; the two generat
 | `command-metadata.json` | H | [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) |
 | `leaf-aliases.json` | H (authored) | [parent-skill-leaf-aliases-template.json](../../assets/parent-skill/parent-skill-leaf-aliases-template.json) |
 | `leaf-manifest.config.json` | S | [skill-leaf-manifest-config-template.json](../../assets/skill/skill-leaf-manifest-config-template.json) |
+| `leaf-scopes.json` | H + S | none — copy a shipped root, such as `.skilled/skills/system-skill-advisor/leaf-scopes.json` |
 | `leaf-manifest.json` | H + S | none — generated by the gate |
 | `leaf-aliases.json` | S | none — derived identity projection, generated by the gate |
 

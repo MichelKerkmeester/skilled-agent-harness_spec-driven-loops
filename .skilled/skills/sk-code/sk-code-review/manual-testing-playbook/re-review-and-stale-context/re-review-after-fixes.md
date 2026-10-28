@@ -1,7 +1,7 @@
 ---
 title: "CR-013 -- Re-review after fixes"
 description: "This scenario validates Re-review after fixes for `CR-013`. It focuses on Confirm re-review verifies previous findings against the new diff instead of rubber-stamping."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-013 -- Re-review after fixes
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-013
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `re-review-and-stale-context/re-review-after-fixes.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

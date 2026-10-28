@@ -37,7 +37,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const report = require('./ci-report.cjs');
-const { ProfileError, declaredSwitches, loadProfile } = require('./lib/ci-profile.cjs');
+const {
+  ProfileError,
+  REPO_ROOT,
+  declaredSwitches,
+  isPlainObject,
+  loadProfile,
+  parseProfileFlag,
+} = require('./lib/ci-profile.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -45,6 +52,12 @@ const { ProfileError, declaredSwitches, loadProfile } = require('./lib/ci-profil
 
 const USAGE = 'Usage: node .skilled/commands/doctor/scripts/ci-toggle.cjs --variable=<NAME> --state=<on|off> [--json] [--no-gh] [--profile <path>]';
 const STATES = Object.freeze(['on', 'off']);
+const NOW_LABELS = {
+  unset: 'on (unset)',
+  off: 'off (set to off)',
+  other: 'on (set to another value)',
+  unknown: 'unknown (not readable)',
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ARGUMENTS
@@ -54,14 +67,14 @@ function parseArgs(argv) {
   const options = { variable: null, state: null, json: false, noGh: false, profile: null };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+    const profileFlag = parseProfileFlag(argv, index);
     if (arg === '--json') options.json = true;
     else if (arg === '--no-gh') options.noGh = true;
     else if (arg.startsWith('--variable=')) options.variable = arg.slice('--variable='.length);
     else if (arg.startsWith('--state=')) options.state = arg.slice('--state='.length);
-    else if (arg === '--profile' || arg.startsWith('--profile=')) {
-      const value = arg === '--profile' ? argv[(index += 1)] : arg.slice('--profile='.length);
-      if (!value) throw new Error('--profile needs a path');
-      options.profile = value;
+    else if (profileFlag) {
+      options.profile = profileFlag.value;
+      index = profileFlag.nextIndex;
     } else throw new Error(`unknown argument: ${arg}`);
   }
   if (!options.variable) throw new Error('--variable=<NAME> is required');
@@ -77,9 +90,9 @@ function parseArgs(argv) {
 function jobsOf(docs) {
   const jobs = [];
   for (const { file, doc } of docs) {
-    if (!report.isMapping(doc.jobs)) continue;
+    if (!isPlainObject(doc.jobs)) continue;
     for (const [id, job] of Object.entries(doc.jobs)) {
-      const name = report.isMapping(job) && typeof job.name === 'string' ? job.name : id;
+      const name = isPlainObject(job) && typeof job.name === 'string' ? job.name : id;
       jobs.push({ file, context: name, switches: report.switchNames(job) });
     }
   }
@@ -109,7 +122,7 @@ function readRequiredContexts(branch, noGh) {
 function readmeText(profile) {
   if (!profile.workflowsReadme) return null;
   try {
-    return fs.readFileSync(path.join(report.REPO_ROOT, profile.workflowsReadme.path), 'utf8');
+    return fs.readFileSync(path.join(REPO_ROOT, profile.workflowsReadme.path), 'utf8');
   } catch {
     return null;
   }
@@ -156,7 +169,11 @@ function refusalsFor({ variable, state, allowlist, profile, required, jobs, read
   // neverOff names it lists are exactly what a change to off would skip. Unread, they
   // protect nothing, and the plan must not print a command that skips them.
   if (ignored) {
-    refusals.push({ source: 'ignored', message: `REFUSE: ${variable} must stay unset because the CI profile was ignored, so the protected workflows cannot be checked: fix its repository field or name it with --profile` });
+    refusals.push({
+      source: 'ignored',
+      message: 'REFUSE: ' + `${variable} must stay unset because the CI profile was ignored, `
+        + 'so the protected workflows cannot be checked: fix its repository field or name it with --profile',
+    });
   }
   const fromRuleset = required.readable ? rulesetRefusal(variable, profile, required, jobs) : null;
   if (fromRuleset) refusals.push(fromRuleset);
@@ -187,6 +204,14 @@ function secondConfirmation(variable, state, profile, covers) {
   };
 }
 
+/**
+ * Build a read-only plan for changing one GitHub Actions variable.
+ *
+ * @param {Object} options - The parsed variable, state and mode options.
+ * @param {Object} loadedProfile - The loaded and validated CI profile.
+ * @param {Object} parsed - The parsed workflow documents and diagnostics.
+ * @returns {Object} The plan and any refusal reasons.
+ */
 function buildPlan(options, loadedProfile, parsed) {
   const { profile } = loadedProfile;
   const declared = declaredSwitches(profile);
@@ -234,15 +259,14 @@ function buildPlan(options, loadedProfile, parsed) {
 // 7. OUTPUT
 // ─────────────────────────────────────────────────────────────────────────────
 
-const NOW_LABELS = { unset: 'on (unset)', off: 'off (set to off)', other: 'on (set to another value)', unknown: 'unknown (not readable)' };
-
 // An ignored profile is the one this repository committed, so the protections it lists are
 // the ones this run cannot check. Every display names it, whatever the status, so the
 // operator never reads a plan without knowing which promises were left unread.
 function ignoredProfileLine(plan) {
   const { ignored } = plan.profile;
   if (!ignored) return null;
-  return `Profile: ignored ${ignored.path}, written for ${ignored.repository}, this repository is ${ignored.current || 'unknown'}; the protected workflows it lists are not checked`;
+  return `Profile: ignored ${ignored.path}, written for ${ignored.repository}, `
+    + `this repository is ${ignored.current || 'unknown'}; the protected workflows it lists are not checked`;
 }
 
 function renderText(plan) {
@@ -287,7 +311,7 @@ function main(argv) {
   }
   let loadedProfile;
   try {
-    loadedProfile = loadProfile({ cliPath: options.profile, root: report.REPO_ROOT });
+    loadedProfile = loadProfile({ cliPath: options.profile, root: REPO_ROOT });
   } catch (error) {
     if (!(error instanceof ProfileError)) throw error;
     process.stderr.write(`ERROR: ${error.message}\n`);
@@ -309,6 +333,10 @@ function main(argv) {
   else process.stdout.write(`${renderText(plan).join('\n')}\n`);
   return plan.status === 'REFUSED' ? 1 : 0;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { buildPlan, refusalsFor };
 

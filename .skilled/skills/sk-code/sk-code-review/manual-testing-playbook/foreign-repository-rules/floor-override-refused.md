@@ -1,7 +1,7 @@
 ---
 title: "CR-031 -- Floor override refused"
 description: "This scenario validates a refused floor override for `CR-031`. It focuses on the shared linter refusing a `none` row on the input validation rule, the resolver marking the checklist refused and the review still enforcing the rule while listing the checklist under `Refused:`."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CR-031 -- Floor override refused
@@ -185,4 +185,5 @@ If the primary run passes, change the row to a lens id such as `review.performan
 - Playbook ID: CR-031
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `foreign-repository-rules/floor-override-refused.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

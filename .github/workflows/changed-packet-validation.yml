@@ -18,11 +18,14 @@ jobs:
     name: Spec packets touched by this PR validate clean
     if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
+      # The diff reads a push's before-sha, so full history stays; its blobs are skipped,
+      # since they took the slowest run to 8.9 min and one hit the old 10 min cap.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          filter: blob:none
 
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0

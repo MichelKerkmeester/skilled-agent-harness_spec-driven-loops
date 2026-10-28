@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.14.0
+version: 1.0.15.0
 ---
 
 # mcp-chrome-devtools
@@ -147,7 +147,7 @@ The skill ships three production scripts under `examples/`. Each doubles as an e
 - `animation-testing.sh` asserts layout count, recalculation count and task-duration thresholds, captures before and after screenshots and exits non-zero on any failure. It targets a selector and an animation trigger class so you can test any animated element on the page.
 - `multi-viewport-test.sh` runs five viewports (desktop 1920x1080, laptop 1366x768, tablet 768x1024, mobile 375x667, mobile-large 414x896) and fails on any console error. It captures an initial and an animated screenshot per viewport and writes a per-viewport summary.
 
-All three scripts support headless mode through `CHROME_HEADLESS=true` and return semantic exit codes. They fit straight into CI pipelines.
+All three scripts under `examples/` support headless mode through `CHROME_HEADLESS=true` and return semantic exit codes. They fit straight into CI pipelines.
 
 ---
 
@@ -244,3 +244,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 | [`mcp-servers/bdg-cli/README.md`](./mcp-servers/bdg-cli/README.md) | Install pointer for the bdg CLI, nothing vendored |
 | [`mcp-servers/chrome-devtools-mcp/README.md`](./mcp-servers/chrome-devtools-mcp/README.md) | The Code Mode server behind the manual entries |
 | [`assets/utcp-chrome-devtools-manuals.md`](./assets/utcp-chrome-devtools-manuals.md) | Byte-true snapshot of both registered manual entries |
+
+<!-- readme-check
+allow-ref performance-baselines/ | the output folder performance-baseline.sh writes its timestamped metrics, HAR, screenshot and console logs into, not a path in this repository
+-->

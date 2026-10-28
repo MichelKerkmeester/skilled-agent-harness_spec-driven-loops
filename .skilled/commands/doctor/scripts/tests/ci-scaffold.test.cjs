@@ -21,10 +21,10 @@ const test = require('node:test');
 const YAML = require('yaml');
 
 const SCRIPTS = path.resolve(__dirname, '..');
-const REPO_ROOT = path.resolve(__dirname, '../../../../..');
+const { REPO_PROFILE_FILE, REPO_ROOT } = require('../lib/ci-profile.cjs');
 const ASSETS_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/assets';
 const SCRIPTS_RELATIVE = '.skilled/commands/doctor/scripts';
-const PROFILE_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
+const PROFILE_RELATIVE = REPO_PROFILE_FILE;
 const REPOSITORY_IDENTITY_RELATIVE = '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs';
 
 // Any directive the renderer failed to consume.

@@ -21,10 +21,11 @@ const test = require('node:test');
 
 const QUALITY_ROOT = path.resolve(__dirname, '../../../../skills/sk-code/sk-code-quality');
 const { assertSnapshotUnchanged, buildRepo } = require(path.join(QUALITY_ROOT, 'scripts', 'tests', 'fixtures.cjs'));
-const { validateConfig } = require(path.join(QUALITY_ROOT, 'scripts', 'lib', 'quality-config.cjs'));
+const qualityConfig = require(path.join(QUALITY_ROOT, 'scripts', 'lib', 'quality-config.cjs'));
+const { validateConfig } = qualityConfig;
 
 const SCRIPT = path.resolve(__dirname, '..', 'sk-code-quality-config.cjs');
-const TARGET = '.skilled/skills/sk-code/sk-code-quality/repository/quality.json';
+const TARGET = qualityConfig.REPO_CONFIG_FILE;
 const PACKAGE = `${JSON.stringify({ name: 'fixture', scripts: { lint: 'eslint .', test: 'node --test' } }, null, 2)}\n`;
 
 function withRepo(options, body) {
@@ -406,8 +407,13 @@ test('status: two repository checklists that disagree on one rule print an overr
   assert.equal(result.last, 'STATUS=OK SOURCE="repo" TRUST=none');
   assert.deepEqual(result.payload.applies.conflicts,
     [{ id: 'review.function-length', files: ['.skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md', '.skilled/skills/sk-code/sk-code-quality/repository/checklists/other.md'], sampled: ['src/app.js'] }]);
-  assert.match(doctor(repo, ['status']).stdout,
-    /^ {2}override-conflict review\.function-length \.skilled\/skills\/sk-code\/sk-code-quality\/repository\/checklists\/house\.md \.skilled\/skills\/sk-code\/sk-code-quality\/repository\/checklists\/other\.md \(neither row applies, so the gate reads UNVERIFIED for src\/app\.js\)$/m);
+  const conflictPattern = [
+    '^ {2}override-conflict review\\.function-length ',
+    '\\.skilled\\/skills\\/sk-code\\/sk-code-quality\\/repository\\/checklists\\/house\\.md ',
+    '\\.skilled\\/skills\\/sk-code\\/sk-code-quality\\/repository\\/checklists\\/other\\.md ',
+    '\\(neither row applies, so the gate reads UNVERIFIED for src\\/app\\.js\\)$',
+  ].join('');
+  assert.match(doctor(repo, ['status']).stdout, new RegExp(conflictPattern, 'm'));
 }));
 
 test('status: a repository row the sample cannot reach is still listed and checked, valid, missing or refused', () => withRepo({

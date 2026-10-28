@@ -52,7 +52,9 @@ Current state:
 | `check-mcp-mutation-class.test.sh` | `check-mcp-mutation-class.sh` and its manifest |
 | `mcp-doctor.test.sh` | `mcp-doctor.sh` and `mcp-doctor-lib.sh` |
 | `route-validate.test.sh` | `route-validate.sh` and `route-validate.py` |
-| `ci-report.test.cjs` | `ci-report.cjs`: switch-state reporting, the four missing-setting flags, trigger and action-pin flags, drift against the README table, the rebuild-commit skip, the failing-gh degrade, the usage error, a no-write proof over the repository root and the CI profile cases: a foreign repository with its own switch names and no README, another branch, `--profile`, git config and an unknown key |
+| `ci-report.test.cjs` | `ci-report.cjs`: switch-state reporting, the four missing-setting flags, trigger and action-pin flags, drift against the README table, the rebuild-commit skip, the failing-gh degrade, the usage error and a no-write proof over the repository root |
+| `ci-report-profile.test.cjs` | `ci-report.cjs` with a CI profile: a foreign repository with its own switch names and no README, another branch, a skill-folder profile for another repository, a profile left at the root, `--profile`, git config, an unknown key and the profile line in the text table |
+| `ci-report-fixtures.cjs` | The throwaway repository both report suites drive: a few small workflows, a README, a CI profile, a gh stub on PATH, and the report with every module it loads copied in |
 | `ci-profile.test.cjs` | `../lib/ci-profile.cjs`: the discovery order, the generic default, the strict schema and this repository's committed profile with every protected entry |
 | `ci-scaffold.test.cjs` | `ci-scaffold.cjs`: this repository's render keeps every convention, a foreign render carries none of them, `--protected` and an unknown group |
 | `ci-toggle.test.cjs` | `ci-toggle.cjs` with a gh stub: a foreign switch is accepted, the variable behind a required check is refused, `neverOff` and README refusals, the no-op refusal and, here, the second confirmation for the freshness and reports switches |

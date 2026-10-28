@@ -1,7 +1,7 @@
 ---
 title: "DOC-383 -- Doctor sk-code on a pre-v4 checkout"
 description: "Manual scenario validating that /doctor:sk-code setup on a pre-v4 checkout runs no leg, fails provisioning with the v4-layout repair, reports eight SKIP legs, exits 1 and writes nothing."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-sk-code-pre-v4-checkout
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -102,6 +102,8 @@ If the battery reaches a leg, confirm the fixture lacks `.skilled/skills/sk-code
 - Setup battery: [.skilled/commands/doctor/scripts/sk-code-setup-check.cjs](../../../../commands/doctor/scripts/sk-code-setup-check.cjs)
 - Environment guide: [doctor-commands README](../../../system-spec-kit/manual-testing-playbook/doctor-commands/README.md)
 
+Catalog: `feature-catalog/doctor-commands/sk-code-setup-and-quality-doctor.md`, which inventories the setup legs and the v4-layout precondition they run behind.
+
 Provenance: manual only - /doctor:sk-code
 
 ---
@@ -113,5 +115,5 @@ Provenance: manual only - /doctor:sk-code
 - Feature name: Doctor sk-code on a pre-v4 checkout
 - Command mode: `/doctor:sk-code setup`
 - YAML asset: `doctor-sk-code-setup.yaml`
-- Mutation boundary: none. The fixture is a throwaway clone the scenario creates and deletes, and the battery runs in its check-only form and writes nothing.
+- Mutation boundary: none in this checkout. The battery runs in its check-only form and writes nothing. The throwaway clone is mutated: the scenario copies the doctor command in and commits it as a baseline, then deletes the whole directory in step 9. Undo: the step 9 `rm -rf "$TMP_DIR"`; a surviving temp directory is a FAIL, not a note.
 - Feature file path: `doctor-commands/doctor-sk-code-pre-v4-checkout.md`

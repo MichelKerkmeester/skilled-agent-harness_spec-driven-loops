@@ -1,7 +1,7 @@
 ---
 title: "SKL-002 -- Classify standalone root metadata"
 description: "This scenario validates standalone root metadata for `SKL-002`. It focuses on class S, authored declarations, generated manifests and forbidden hub files."
-version: 1.2.0.3
+version: 1.2.0.4
 ---
 
 # SKL-002 -- Classify standalone root metadata
@@ -27,10 +27,10 @@ Operators run the exact prompt and command sequence for `SKL-002` and inspect au
 - Objective: classify a standalone root and produce the correct authored and generated metadata files
 - Realistic user request: `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?`
 - Prompt: `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?`
-- Expected execution process: inspect the root, confirm it declares neither `mode-registry.json` nor `hub-router.json`, author `graph-metadata.json` and `leaf-manifest.config.json`, run `ci-skill-root-metadata.cjs --fix` and confirm fresh generated files.
-- Expected signals: class S is named, `graph-metadata.json` and `leaf-manifest.config.json` are authored, `leaf-manifest.json` and `leaf-aliases.json` are generated and hub-only files are absent.
+- Expected execution process: inspect the root, confirm it declares neither `mode-registry.json` nor `hub-router.json`, author `graph-metadata.json` and `leaf-manifest.config.json`, add `leaf-scopes.json` only when a declared leaf root needs narrowing, run `ci-skill-root-metadata.cjs --fix`, confirm fresh generated files and prove both bad-scope failures.
+- Expected signals: class S is named, `graph-metadata.json` and `leaf-manifest.config.json` are authored, `leaf-scopes.json` is named as the optional authored file that narrows a declared leaf root for the config's single `workflowMode`, `leaf-manifest.json` and `leaf-aliases.json` are generated and hub-only files are absent. A scope outside the declared leaf roots reports `OUT_OF_ROOT_LEAF_SCOPE` and a scope on an undeclared workflow mode reports `ORPHAN_LEAF_SCOPE_MODE`.
 - Desired user-visible outcome: a standalone root with correct metadata ownership and fresh generated output.
-- Pass/fail: PASS if the class and file ownership are correct and the gate is clean. FAIL if `description.json`, `mode-registry.json` or `hub-router.json` is added to the standalone root or generated files are hand-edited.
+- Pass/fail: PASS if the class and file ownership are correct, any scope stays under a declared leaf root and names the configured mode, and the gate is clean. FAIL if `description.json`, `mode-registry.json` or `hub-router.json` is added to the standalone root, a scope escapes the declared roots or names an undeclared mode, or generated files are hand-edited.
 
 ---
 
@@ -42,34 +42,37 @@ Operators run the exact prompt and command sequence for `SKL-002` and inspect au
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKL-002 | Classify standalone root metadata | Classify a standalone root and produce the correct authored and generated metadata files | `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?` | 1. `agent: Read the standalone class row in references/shared/skill-root-metadata-contract.md` -> 2. `agent: Confirm the root declares neither mode-registry.json nor hub-router.json` -> 3. `agent: Author graph-metadata.json and leaf-manifest.config.json only` -> 4. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` -> 5. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Step 1: class S is named. Step 2: both hub declarations are absent. Step 3: the authored set is correct. Step 4: generated manifests are refreshed. Step 5: the final gate is clean | The exact prompt, class row, root metadata listing, both gate transcripts with exit statuses and the final file ownership map | PASS if the authored and generated sets match class S and the final gate reports clean. FAIL if a hub-only file is present or generated output is hand-authored | 1. Compare the root files with the class S matrix. 2. Check that `leaf-manifest.json` and `leaf-aliases.json` match generated output. 3. Re-run the gate without `--fix` and read its exit status |
+| SKL-002 | Classify standalone root metadata | Classify a standalone root and produce the correct authored and generated metadata files | `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?` | 1. `agent: Read the standalone class row in references/shared/skill-root-metadata-contract.md` -> 2. `agent: Confirm the root declares neither mode-registry.json nor hub-router.json` -> 3. `agent: Author graph-metadata.json and leaf-manifest.config.json, the required class-S set` -> 4. `agent: When a declared leaf root needs narrowing, add leaf-scopes.json naming the config's workflowMode` -> 5. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` -> 6. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` -> 7. `bash: node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-standalone-scopes.test.cjs` | Step 1: class S is named. Step 2: both hub declarations are absent. Step 3: the required authored set is correct and no scope file is invented for a root that needs none. Step 4: the scope stays under a declared leaf root and names the configured `workflowMode`. Step 5: generated manifests are refreshed, and a scoped root's manifest lists only the scoped leaves. Step 6: the final gate is clean. Step 7: the scoped-generator suite passes, which proves `OUT_OF_ROOT_LEAF_SCOPE` stops a scope outside the declared roots and `ORPHAN_LEAF_SCOPE_MODE` stops a scope on an undeclared mode | The exact prompt, class row, root metadata listing, both gate transcripts with exit statuses, the scope failure output and the final file ownership map | PASS if the authored and generated sets match class S, any scope stays under a declared leaf root, and the final gate reports clean. FAIL if a hub-only file is present, a scope escapes the declared roots or names an undeclared mode, or generated output is hand-authored | 1. Compare the root files with the class S matrix. 2. Check that `leaf-manifest.json` and `leaf-aliases.json` match generated output. 3. Re-run the gate without `--fix` and read its exit status. 4. Compare a failing scope's `workflowMode` with `leaf-manifest.config.json` and its path with the declared `leafRoots`, which is what separates `ORPHAN_LEAF_SCOPE_MODE` from `OUT_OF_ROOT_LEAF_SCOPE` |
 
 ### Commands
 
 1. `agent: Read the standalone class row in references/shared/skill-root-metadata-contract.md`
 2. `agent: Confirm the root declares neither mode-registry.json nor hub-router.json`
-3. `agent: Author graph-metadata.json and leaf-manifest.config.json only`
-4. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`
-5. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
+3. `agent: Author graph-metadata.json and leaf-manifest.config.json, the required class-S set`
+4. `agent: When a declared leaf root needs narrowing, add leaf-scopes.json naming the config's workflowMode`
+5. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`
+6. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
+7. `bash: node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-standalone-scopes.test.cjs`
 
 ### Expected
 
-Step 1 resolves the root as class S. Step 2 confirms the discriminator. Step 3 authors the two semantic declarations. Step 4 generates the manifest and identity alias projection. Step 5 proves freshness and absence of forbidden hub files.
+Step 1 resolves the root as class S. Step 2 confirms the discriminator. Step 3 authors the two semantic declarations and leaves the optional scope file out when nothing needs narrowing. Step 4 adds the scope only for a root whose declared leaf root also holds runtime code or partly routable docs. Step 5 generates the manifest and identity alias projection from those inputs. Step 6 proves freshness and absence of forbidden hub files. Step 7 proves both scope failures, so a typo cannot quietly widen a manifest.
 
 ### Evidence
 
-Capture the prompt, class matrix, root file listing, both gate outputs and exit statuses and the authored-versus-generated ownership map.
+Capture the prompt, class matrix, root file listing, both gate outputs and exit statuses, the scoped-generator suite result and the authored-versus-generated ownership map.
 
 ### Pass / Fail
 
-- **Pass**: class S is explicit, only its authored files are hand-written, generated files are fresh and hub-only files are absent.
-- **Fail**: the root is treated as a hub, a generated file is hand-edited or the final gate is not run.
+- **Pass**: class S is explicit, only its authored files are hand-written, any scope stays under a declared leaf root and names the configured mode, generated files are fresh and hub-only files are absent.
+- **Fail**: the root is treated as a hub, a generated file is hand-edited, a scope escapes the declared roots or names an undeclared mode, or the final gate is not run.
 
 ### Failure Triage
 
 1. Inspect the presence of registry and router declarations.
-2. Compare the root file set with the class S matrix.
+2. Compare the root file set with the class S matrix, including whether `leaf-scopes.json` was needed at all.
 3. Regenerate derived files and compare the final gate output.
+4. For a scope failure, compare `workflowMode` with `leaf-manifest.config.json` and each scope with the declared `leafRoots`.
 
 ---
 
@@ -89,6 +92,7 @@ Capture the prompt, class matrix, root file listing, both gate outputs and exit 
 | [`SKILL.md`](../../SKILL.md) | Standalone metadata workflow |
 | [`references/shared/skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) | Class S matrix and generated-file ownership |
 | [`scripts/ci-skill-root-metadata.cjs`](../../scripts/ci-skill-root-metadata.cjs) | Root metadata gate and generator |
+| [`scripts/generate-leaf-manifest.cjs`](../../scripts/generate-leaf-manifest.cjs) | Reads `leaf-scopes.json` and fails closed on a bad scope |
 
 ---
 

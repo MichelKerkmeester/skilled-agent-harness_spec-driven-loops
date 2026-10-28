@@ -1,7 +1,7 @@
 ---
 title: "DOC-393 -- Doctor CI scaffold"
 description: "Manual scenario validating that /doctor:ci scaffold prints its plan and the whole proposed workflow under --dry-run without writing a file, and that answering no to the approval prompt also writes nothing."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-ci-scaffold
 expected_workflow_mode: sk-code-ci
 expected_leaf_resources: []
@@ -47,8 +47,9 @@ Scaffold a new CI workflow called probe-check.yml and show me the file before yo
 3. Confirm `git status --porcelain` prints nothing and `ls .github/workflows | grep probe-check` still prints nothing.
 4. Run `/doctor:ci scaffold --name=probe-check.yml` without `--dry-run`, answer the questions the same way, and answer `no` at the `Write this file? [yes/no]` prompt. Capture the output.
 5. Confirm `git status --porcelain` prints nothing and `ls .github/workflows | grep probe-check` still prints nothing.
-6. Run `/doctor:ci scaffold --name=<the name of any file already under .github/workflows/> --dry-run` and capture the output. Repeat with `--name=Probe_Check.yml` and capture the output.
-7. Confirm `git status --porcelain` prints nothing after the last run.
+6. Run `/doctor:ci scaffold --name=comment-hygiene.yml --dry-run` against a workflow that already exists and is not on the protected list, and capture the output.
+7. Run `/doctor:ci scaffold --name=trigger-index-rebuild.yml --dry-run` against a workflow that exists and is on the protected list, and capture the output. Repeat with `--name=Probe_Check.yml` and capture the output.
+8. Confirm `git status --porcelain` prints nothing after the last run.
 
 ### Expected
 
@@ -56,25 +57,27 @@ Step 2 prints the plan, with `Target file: .github/workflows/probe-check.yml`, b
 
 Step 4 prints the same plan and the prompt `Write this file? [yes/no]`. After the answer no it prints `DOCTOR TARGET CANCELLED`, `Changed: none` and `STATUS=CANCELLED ACTION=cancelled`.
 
-Steps 3, 5 and 7 print nothing from `git status --porcelain`, and the probe file does not exist.
+Steps 3, 5 and 8 print nothing from `git status --porcelain`, and the probe file does not exist.
 
-Step 6 prints `REFUSE: the target path already exists; scaffold creates new workflows only` for the existing name and `REFUSE: Probe_Check.yml is not a bare lowercase hyphen-case name ending in .yml` for the second name. Each run ends with `STATUS=FAIL ERROR="refused"` and shows no plan.
+Step 6 prints `REFUSE: the target path already exists; scaffold creates new workflows only`.
+
+Step 7 shows which refusal wins when a name is both protected and present, because the route resolves the target in a fixed order. `trigger-index-rebuild.yml` prints `REFUSE: trigger-index-rebuild.yml is a protected workflow`, not the existing-path line, since the protected list is checked before the filesystem. The second run prints `REFUSE: Probe_Check.yml is not a bare lowercase hyphen-case name ending in .yml`. Each run ends with `STATUS=FAIL ERROR="refused"` and shows no plan.
 
 ### Evidence
 
 - The step 2 output, including the proposed file.
 - The step 4 output and the answer given.
-- The step 6 output for both names.
-- The `git status --porcelain` output and an `ls .github/workflows | grep probe-check` result after steps 3, 5 and 7.
+- The step 6 and step 7 output for all three names.
+- The `git status --porcelain` output and an `ls .github/workflows | grep probe-check` result after steps 3, 5 and 8.
 
 ### Pass / Fail
 
-- **Pass**: The dry run prints the plan and the whole file and ends with `Dry run: nothing was written.`, the no answer ends in `STATUS=CANCELLED ACTION=cancelled`, both bad names are refused without a plan and no step creates or changes a file.
-- **Fail**: A dry run writes a file or asks for approval, a no answer writes a file, an existing workflow is offered for overwrite, a refusal still shows a plan, or `git status --porcelain` prints anything after any step.
+- **Pass**: The dry run prints the plan and the whole file and ends with `Dry run: nothing was written.`, the no answer ends in `STATUS=CANCELLED ACTION=cancelled`, each refused name prints its own `REFUSE:` line without a plan, the protected name reports the protected refusal rather than the existing-path one, and no step creates or changes a file.
+- **Fail**: A dry run writes a file or asks for approval, a no answer writes a file, an existing workflow is offered for overwrite, a refusal still shows a plan, a protected name reports the existing-path refusal, or `git status --porcelain` prints anything after any step.
 
 ### Failure Triage
 
-If the dry run writes a file, read `phase_4_plan_and_approval` in the matching YAML asset, since the dry-run line must precede the approval prompt. If a file appears after the no answer, read the same phase for the rule that any answer other than yes counts as no. If the proposed file lacks a timeout, permissions block or concurrency block, compare it with `.skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml`. Remove any file a failed run created before the next run.
+If the dry run writes a file, read `phase_4_plan_and_approval` in the matching YAML asset, since the dry-run line must precede the approval prompt. If a file appears after the no answer, read the same phase for the rule that any answer other than yes counts as no. If a protected name reports the existing-path refusal, read `phase_2_resolve_target`: the protected list is checked before the filesystem, so the order is the finding. If the proposed file lacks a timeout, permissions block or concurrency block, compare it with `.skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml`. Remove any file a failed run created before the next run.
 
 ---
 
@@ -88,6 +91,8 @@ If the dry run writes a file, read `phase_4_plan_and_approval` in the matching Y
 - Category notes: [doctor-commands README](README.md)
 
 Provenance: manual only - /doctor:ci scaffold
+
+Catalog: `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, which inventories the scaffold route, its template sources and the profile it renders from.
 
 ---
 

@@ -108,6 +108,36 @@ class AuditDescriptionsTest(unittest.TestCase):
         self.assertEqual(payload["totalChars"], len("Helps with things."))
         self.assertEqual(payload["items"][0]["mirrored"], 2)
 
+    def seed_command_sources(self) -> Path:
+        """Seed a canonical command tree mirrored beside one runtime-native file."""
+        commands = self.repo / ".skilled" / "commands"
+        write_md(commands / "doctor" / "env.md", "Audits env.")
+        write_md(commands / "memory.md", "Remembers.")
+        native = self.repo / ".opencode" / "commands"
+        native.mkdir(parents=True)
+        # Both mirror shapes the runtime uses: a namespaced folder and a single command file.
+        (native / "doctor").symlink_to("../../.skilled/commands/doctor", target_is_directory=True)
+        (native / "memory.md").symlink_to("../../.skilled/commands/memory.md")
+        write_md(native / "goal-opencode.md", "Native goal.")
+        return native
+
+    def test_walk_commands_counts_a_native_file_and_skips_its_mirrors(self) -> None:
+        self.seed_command_sources()
+        items = load_module().walk_commands(self.repo)
+        self.assertEqual([item.name for item in items], ["doctor/env", "memory", "goal-opencode"])
+        self.assertEqual(
+            [item.path for item in items],
+            [".skilled/commands/doctor/env.md", ".skilled/commands/memory.md", ".opencode/commands/goal-opencode.md"],
+        )
+
+    def test_walk_commands_does_not_count_a_native_duplicate_twice(self) -> None:
+        native = self.seed_command_sources()
+        (native / "memory.md").unlink()
+        write_md(native / "memory.md", "Remembers.")
+        items = load_module().walk_commands(self.repo)
+        self.assertEqual([item.name for item in items], ["doctor/env", "memory", "goal-opencode"])
+        self.assertEqual([item.path for item in items][1], ".skilled/commands/memory.md")
+
     def test_private_local_skills_are_skipped(self) -> None:
         self.seed(skills={"alpha": "Short skill.", "local-private": "x" * 2000})
         outside = self.repo / "outside" / "local-linked"

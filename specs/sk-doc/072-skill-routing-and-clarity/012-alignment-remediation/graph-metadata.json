@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment remediation",
+      "phase 12 alignment remediation",
+      "alignment remediation plan",
+      "alignment remediation tasks",
+      "alignment remediation acceptance criteria",
+      "alignment remediation decision record",
+      "readme-check marker disposition",
+      "alignment remediation implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "remediation",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "readme-check",
+      "marker",
+      "disposition"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/commands/prompt/improve.md",
+      "scratch/before.md",
+      "scratch/after.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".skilled/skills/cli-orca/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+      ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/classify-standalone-root-metadata.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "improve.md",
+        "kind": "doc",
+        "path": ".skilled/commands/prompt/improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "classify-standalone-root-metadata.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/classify-standalone-root-metadata.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The routing program landed 18 first-parent commits across 507 files",
+    "created_at": "2026-10-28T20:35:55Z",
+    "last_save_at": "2026-10-28T22:20:56.406Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8a453cc7365c80e6d08f66d346ccc8887db0f2322ebfd8d7d77d2f3081fc2fef",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1c3ae2bfaddf6451db1f46cccb7edf444a4d8f484adbf6f34c8cf730ac4222f9",
+      "plan.md": "a648e867fe6ab724dc8dca0d9245a62349f58169dcd37d2c78b870a19f6f43dd",
+      "tasks.md": "fba86eb3bedf6f1e0497553d921455798ac62cc50f9df5e72978c44d1c317929",
+      "decision-record.md": "c294e32564707c25adc78072891dc9d272762326947716b160b782f02b162e4b",
+      "implementation-summary.md": "9552f9e4a327d0f5053d4e660b60f2e7114e2e5a92715876b8e7448d34054ae4"
+    },
+    "last_active_at": null
+  }
+}

@@ -8,7 +8,8 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.0.2.1
+catalog_applicable: true
+version: 1.0.3.0
 ---
 
 # CQ-012: A Repository That Switches A Hygiene Rule Off Is Not Blocked By It
@@ -67,7 +68,7 @@ Run the quality gate on my change and tell me whether our config switches the tr
 
 ### Commands
 
-Run the commands from the repository root in one shell session, so the variables stay defined.
+Run the commands from the repository root in one shell session, so the variables stay defined. Every step that reads or edits the fixture runs in a subshell with an explicit `cd`, and the one config edit names the scratch path absolutely, so no step depends on another step's working directory and no step can name a repository-relative config path.
 
 1. Build the fixture and set `HUB`.
 
@@ -112,24 +113,26 @@ SHOW='let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse
 2. Run the gate with the key set, read its exit status, and read the override rows it recorded.
 
 ```bash
-cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js | node -e "$SHOW"
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js > /dev/null; echo "exit $?"
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js --format envelope | grep p0_p1_p2_decisions
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js | node -e "$SHOW" )
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js > /dev/null; echo "exit $?" )
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js --format envelope | grep p0_p1_p2_decisions )
 ```
 
 3. Ask the resolver what the repository's checklist says.
 
 ```bash
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --explain src/total.js | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("hygiene.disabled "+j.config.hygiene.disabled.join(","));for(const c of j.checklists)console.log(c.file+" "+c.source+" "+c.overrides.rows.map(r=>r.id+":"+r.action).join(" "))})'
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --explain src/total.js | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("hygiene.disabled "+j.config.hygiene.disabled.join(","));for(const c of j.checklists)console.log(c.file+" "+c.source+" "+c.overrides.rows.map(r=>r.id+":"+r.action).join(" "))})' )
 ```
 
 4. Remove the key and run the gate again.
 
 ```bash
-node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json","utf8"));delete c.commentHygiene;fs.writeFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json",JSON.stringify(c,null,2)+"\n")'
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js | node -e "$SHOW"
-node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js > /dev/null; echo "exit $?"
-cd - > /dev/null && rm -rf "$SCRATCH"
+node -e 'const fs=require("fs");const p=process.argv[1];const c=JSON.parse(fs.readFileSync(p,"utf8"));delete c.commentHygiene;fs.writeFileSync(p,JSON.stringify(c,null,2)+"\n")' "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json"
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js | node -e "$SHOW" )
+( cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js > /dev/null; echo "exit $?" )
+rm -rf "$SCRATCH"
+git -c core.fsmonitor=false status --porcelain -- .skilled/skills/sk-code/sk-code-quality/repository/quality.json
+echo "the repository config prints above only when it was touched"
 ```
 
 5. `for p in references/quality-config.md references/runner-contract.md scripts/quality-gate.cjs; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
@@ -150,7 +153,7 @@ hub:sk-code/shared/references/universal/code-quality-standards.md default
 docs/code-style.md repo-config floor.documentation:none hygiene.issue:none
 ```
 
-Step 4 prints `exit_code 1`, `disabled none`, `findings hygiene.issue@src/total.js:1` and then `exit 1`. Step 5 prints `OK` for all three paths.
+Step 4 prints `exit_code 1`, `disabled none`, `findings hygiene.issue@src/total.js:1` and then `exit 1`, then prints no path from the `git status` check, which is the proof that the repository's own config was never named. Step 5 prints `OK` for all three paths.
 
 | Signal | Expected value |
 | --- | --- |
@@ -190,6 +193,7 @@ Command transcript from steps 1 to 5, the frontmatter block with `expected_inten
 | File | Role |
 | --- | --- |
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`rule-overrides-and-hygiene-policy.md`](../../../feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md) | The feature catalog entry for the hygiene key and the disabled-rule list |
 
 ### Implementation And Test Anchors
 
@@ -199,7 +203,8 @@ Command transcript from steps 1 to 5, the frontmatter block with `expected_inten
 | [quality-config.md](../../references/quality-config.md) §3 | The `commentHygiene.disableRules` key, its ids and its errors |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The `config.hygiene` field of the verdict and the explain output |
 | [rule-overrides.md](../../../shared/references/universal/rule-overrides.md) | The section format the style document follows |
-| [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The runner cases for the key and the explain output |
+| [quality-config-hygiene.test.cjs](../../scripts/tests/quality-config-hygiene.test.cjs) | The runner cases for the key |
+| [quality-gate-explain-and-overrides.test.cjs](../../scripts/tests/quality-gate-explain-and-overrides.test.cjs) | The runner cases for the explain output |
 
 ---
 

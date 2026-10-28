@@ -89,7 +89,7 @@ Use these IDs when a recommendation depends on an integration point.
 | ID | Surface | Contract |
 | --- | --- | --- |
 | `INT-CALLER-GENERAL` | `@general-purpose` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
-| `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.skilled/commands/prompt-improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
+| `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.skilled/commands/prompt/improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
 | `INT-SKILL-PROMPT-IMPROVER` | `.skilled/skills/sk-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, or `copilot` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
@@ -110,7 +110,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | Command | Integration ID | Purpose | Path |
 | ------- | -------------- | ------- | ---- |
-| `/prompt-improve` | `INT-CMD-PROMPT-IMPROVER` | Shared prompt-improvement command surface with inline vs agent routing | `.skilled/commands/prompt-improve.md` |
+| `/prompt-improve` | `INT-CMD-PROMPT-IMPROVER` | Shared prompt-improvement command surface with inline vs agent routing | `.skilled/commands/prompt/improve.md` |
 
 ### Skills
 

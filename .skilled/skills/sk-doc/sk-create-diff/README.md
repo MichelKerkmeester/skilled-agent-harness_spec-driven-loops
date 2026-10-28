@@ -4,7 +4,7 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.0.10
+version: 1.1.1.0
 ---
 
 # create-diff
@@ -87,11 +87,11 @@ Prints `PASS` when the report is safe and self-contained.
 
 ## 4. HOW IT WORKS
 
-The lifecycle has one hard invariant: the baseline has to exist before the edit happens. `snapshot` copies the current file into a local `.sk-create-diff/` store without altering the source. Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report. When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`. Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
+The lifecycle has one hard invariant: the baseline has to exist before the edit happens. `snapshot` copies the current file into a local `.create-diff/` store without altering the source. Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report. When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`. Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
 
 ### Key Concept: Aggregate File Boundaries
 
-`compare-pair` can also review a bundle of multiple files in one call, as long as both `--before` and `--after` wrap every file in matching `===== BEGIN FILE: <path> =====` and `===== END FILE: <path> =====` markers. When the markers line up, the report renders each transition as a full-width boundary band with a canvas gap before it, so a five-file bundle still reads as five distinct reviews instead of one file's heading bleeding into the next. Malformed or unbalanced markers just render as ordinary text. The CLI itself still only ever receives one before-document and one after-document.
+`compare-pair` can also review a bundle of files in one call, as long as both `--before` and `--after` wrap every file in matching `===== BEGIN FILE: <path> =====` and `===== END FILE: <path> =====` markers. When the markers line up, the report renders each transition as a full-width boundary band with a canvas gap before it, so a five-file bundle still reads as five distinct reviews instead of one file's heading bleeding into the next. Malformed or unbalanced markers just render as ordinary text. The CLI itself still only ever receives one before-document and one after-document.
 
 ---
 
@@ -166,3 +166,7 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
 | [`assets/fixtures/README.md`](./assets/fixtures/README.md) | Runnable before/after worked example |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Canonical capability inventory |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator-facing validation scenarios |
+
+<!-- readme-check
+allow-ref .create-diff/ | the snapshot store a run creates in the working directory, so a checkout holds one only after a snapshot
+-->

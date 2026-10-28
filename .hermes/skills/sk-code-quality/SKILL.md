@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.14.0
+version: 1.13.15.0
 metadata:
   family: sk-code
 ---
@@ -317,7 +317,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### Scripts
 
 - [`scripts/quality-gate.cjs`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs) - The quality runner, which prints one verdict for a change in any repository.
-- [`scripts/tests/quality-gate.test.cjs`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs) - Runner tests: the named fixtures and the unit cases, run with `node --test`.
+- [`scripts/tests/`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/tests) - The runner's suites, one part per behavior: the named fixtures, the surfaces, the outside-skill rows, the layers and generated rows, the dist adapter, the explain output, the config cases and the unit cases. Run one with `node --test`.
 - [`scripts/check-comment-hygiene.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker.
 - [`scripts/tests/check-comment-hygiene.test.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/tests/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
 - [`scripts/check-dist-staleness.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh) - Distribution drift checker.

@@ -1,7 +1,7 @@
 ---
 title: "DR-003: Intentional-simplification ceiling comment"
 description: "Verify that when sk-code takes a deliberate shortcut it emits a neutral ceiling: comment naming the shortcut, its ceiling, and the upgrade trigger as a durable WHY, and that comment-hygiene passes it without allow-listing."
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # DR-003: Intentional-simplification ceiling comment
@@ -16,22 +16,22 @@ It is a durable WHY, not a brand or tool prefix (a brand prefix reads as a peris
 
 ## 2. SCENARIO CONTRACT
 
-**Realistic user request**: A maintainer asks for a deliberately simple in-memory rate limiter on a local-only preview server, and wants the shortcut marked so it reads as a choice.
+**Realistic user request**: A maintainer asks for a deliberately simple in-memory cache around a table the quality gate reads on every call, and wants the shortcut marked so it reads as a choice.
 
 **Exact prompt**:
 ```
-Add a small in-memory rate limiter to the sk-doc local preview server at .skilled/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.
+Add a small process-lifetime memo to readHygieneRules() in .skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs. One gate run reads the table once, so a fixed in-memory cache is fine, and mark the deliberate ceiling.
 ```
 
-Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server at .skilled/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.`
+Prompt: `Add a small process-lifetime memo to readHygieneRules() in .skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs. One gate run reads the table once, so a fixed in-memory cache is fine, and mark the deliberate ceiling.`
 
 **Expected detection**:
 - Surface: `SKILLED` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
-- Sub-language: `TYPESCRIPT` (target file extension `.ts`)
+- Sub-language: `JAVASCRIPT` (target file extension `.cjs`)
 
 **Expected behavior**:
-- The AI emits a `ceiling:` comment that names the shortcut, its known ceiling (in-memory, single-process, resets on restart), and the upgrade trigger (move to a shared store when multi-process or persistence is needed).
+- The AI emits a `ceiling:` comment that names the shortcut, its known ceiling (one process, so another process re-reads the table, and an edited table needs a restart), and the upgrade trigger (drop the memo if the table must be re-read within a run).
 - The comment is a plain WHY — no brand prefix, no forbidden tracking id.
 - `check-comment-hygiene.sh` passes the file (exit 0) WITHOUT `ceiling:` being added to the checker's allowed-pattern list.
 
@@ -53,7 +53,7 @@ Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server a
 2. **Capture the emitted comment**: confirm it is a `ceiling:` comment with shortcut, ceiling, and upgrade trigger.
 3. **Run comment-hygiene** on the produced file:
    ```
-   bash: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/skc-DR003-sandbox/preview-server.ts
+   bash: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/skc-DR003-sandbox/quality-config.cjs
    ```
 4. **Verify**: exit 0 (clean), and the checker's allowed-pattern list was not modified.
 5. **Persist evidence** to `/tmp/skc-DR003-hygiene.txt`.
@@ -88,6 +88,9 @@ Evidence: `/tmp/skc-DR003-hygiene.txt` (comment-hygiene checker output).
 - `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`: §3 neutral `ceiling:` intentional-simplification convention.
 - `.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md`: §4, which lets a surface define an intentional-simplification marker.
 - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
+- `.skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs` — the target file and its `readHygieneRules()` call.
+
+Catalog: `feature-catalog/review-calibration/review-floor-lens-and-overrides.md`, which carries the review lens rule `review.ceiling-marker` this producer-side convention pairs with.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript exemption tiers"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Security, Testing, Async & Exemption Tiers
@@ -288,11 +288,10 @@ OpenCode's TUI paints plugin `stdout`/`stderr` onto the prompt input line, where
 ### Brief Example
 
 ```javascript
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Example OpenCode Plugin                                      ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Show the allowed ESM default export with required structure.    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Example OpenCode Plugin
+// ───────────────────────────────────────────────────────────────────
+'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS

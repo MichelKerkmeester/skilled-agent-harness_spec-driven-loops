@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity"
-    last_updated_at: "2026-10-28T19:30:00Z"
-    last_updated_by: "orchestrator"
-    recent_action: "Closed phase 011; all eleven phases complete"
-    next_safe_action: "None: the program is closed"
+    last_updated_at: "2026-10-28T21:55:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Closed phase 012: every alignment finding fixed and the nine failing rows rerun green"
+    next_safe_action: "None: the program is complete"
     blockers: []
     key_files:
       - "001-deep-research/research/research.md"
@@ -120,6 +120,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 9 | 009-standalone-skills/ | The seven standalone skills: short inline router, machine block last, generated leaf manifest | Complete |
 | 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | Complete |
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Complete |
+| 12 | 012-alignment-remediation/ | The alignment run over the program's own range: close its 34 findings, from the two red CI gates to the documentation debt, and rerun the battery rows that failed | Complete |
 
 ### Phase Transition Rules
 
@@ -142,6 +143,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 008-cli-and-mcp-hubs | 009-standalone-skills | Three hubs at the canon shape | The three hubs' gates pass |
 | 009-standalone-skills | 010-prose-clarity-pass | Seven standalone skills at the canon shape | package_skill and leaf-manifest checks pass |
 | 010-prose-clarity-pass | 011-regeneration-and-verification | Prose pass complete | check-rule-copies, package_skill and verify-doc-claims pass |
+| 011-regeneration-and-verification | 012-alignment-remediation | Every generator writes nothing and the alignment run has a range to check | The alignment battery and lanes run over the program range |
 <!-- /ANCHOR:phase-map -->
 
 ---

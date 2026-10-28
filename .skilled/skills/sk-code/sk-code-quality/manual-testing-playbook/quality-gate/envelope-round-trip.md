@@ -7,7 +7,8 @@ expected_intent: QUALITY
 expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.5.0
+catalog_applicable: true
+version: 1.1.6.0
 ---
 
 # CQ-007: Envelope Round Trip Keeps Both Verdicts Intact
@@ -160,6 +161,7 @@ Command transcript from steps 1 to 5, the reader rule line from step 1, the exit
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: no entry; the nearest is [`codebase-agnostic-quality-gate.md`](../../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md) | The feature catalog describes the verdict and its exit codes, and names no envelope reader entry |
 
 ### Implementation And Test Anchors
 

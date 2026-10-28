@@ -23,12 +23,14 @@ const {
   LEGACY_PROFILE_FILE,
   ProfileError,
   REPO_PROFILE_FILE,
+  REPO_ROOT,
+  isPlainObject,
   loadProfile,
   normalizeProfile,
+  parseProfileFlag,
   validateProfile,
 } = require('../lib/ci-profile.cjs');
 
-const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const OPENCODE_PROFILE_FILE = REPO_PROFILE_FILE.replace(/^\.skilled\//, '.opencode/');
 
 function tempRoot(t) {
@@ -57,6 +59,41 @@ test('a repository with no profile gets the generic default, which forces nothin
   assert.equal(loaded.profile.switch.required, false);
   assert.equal(loaded.profile.workflowsReadme, null);
   assert.equal(loaded.profile.defaultBranch, null);
+});
+
+test('the shared profile flag parser preserves both forms and the missing-path error', () => {
+  assert.deepEqual(parseProfileFlag(['--profile', 'ci.json'], 0), { value: 'ci.json', nextIndex: 1 });
+  assert.deepEqual(parseProfileFlag(['--profile=ci.json'], 0), { value: 'ci.json', nextIndex: 0 });
+  assert.deepEqual(parseProfileFlag(['--profile', '--json'], 0), { value: '--json', nextIndex: 1 });
+  assert.equal(parseProfileFlag(['--json'], 0), null);
+  assert.throws(() => parseProfileFlag(['--profile'], 0), { message: '--profile needs a path' });
+  assert.throws(() => parseProfileFlag(['--profile='], 0), { message: '--profile needs a path' });
+});
+
+test('the shared object check rejects null and arrays', () => {
+  assert.equal(isPlainObject({}), true);
+  assert.equal(isPlainObject(null), false);
+  assert.equal(isPlainObject([]), false);
+});
+
+test('loading a discovered repository profile reads it once', (t) => {
+  const root = tempRoot(t);
+  const profileFile = writeProfile(root, REPO_PROFILE_FILE, { schemaVersion: 1 });
+  const originalReadFileSync = fs.readFileSync;
+  let profileReads = 0;
+  fs.readFileSync = function readFileSync(file, ...args) {
+    if (path.resolve(String(file)) === path.resolve(profileFile)) profileReads += 1;
+    return originalReadFileSync.call(this, file, ...args);
+  };
+  t.after(() => {
+    fs.readFileSync = originalReadFileSync;
+  });
+
+  const loaded = loadProfile({ root, git: false });
+
+  assert.equal(loaded.source, 'repo');
+  assert.deepEqual(loaded.errors, []);
+  assert.equal(profileReads, 1);
 });
 
 test('--profile outranks the committed file, and a key it leaves out takes the default', (t) => {

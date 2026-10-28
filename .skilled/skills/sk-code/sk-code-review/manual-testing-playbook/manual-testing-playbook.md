@@ -1,7 +1,7 @@
 ---
 title: "review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
-version: 1.6.1.1
+version: 1.6.2.0
 ---
 
 # review: Manual Testing Playbook
@@ -39,7 +39,7 @@ Canonical package artifacts:
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 19 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by the `INTENT_SIGNALS` and `RESOURCE_MAP` blocks in `SKILL.md` §10 (`MACHINE ROUTER`). `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, a user-authored security surface replayed through both routing stages, and foreign repositories whose own rule overrides the review must honor or refuse: one that wants almost no inline comments, one that wants the opposite and one that tries to drop a floor rule.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for all eleven router intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`, `CORE`, `COMPLETENESS`, `PR_STATE`, `SETUP`) plus the `ON_DEMAND` loading tier, driven by the `INTENT_SIGNALS` and `RESOURCE_MAP` blocks in `SKILL.md` §10 (`MACHINE ROUTER`). `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, a user-authored security surface replayed through both routing stages, and foreign repositories whose own rule overrides the review must honor or refuse: one that wants almost no inline comments, one that wants the opposite and one that tries to drop a floor rule. The two §9 efficiency gates have their own scenarios as well: the M-1 PR-state content-hash dedup, with its cache file, skip line and pathspec scope, and the M-2 opt-in minimum-evidence threshold with its six never-skip path classes. So do the report summary contract, including the mandatory `Not checked:` line and the `Quality gate evidence` value, both populated outcomes of the `Rule sources:` groups (`Ignored:` and `Conflicts:`), and the resolver call that survives a deleted path in the reviewed diff.
 
 ### Realistic Test Model
 
@@ -77,6 +77,8 @@ Coverage note: the playbook covers single-pass review flow, security/correctness
 - Changed-file inventory or explicit reviewed scope
 - Review output with P0/P1/P2 ordering preserved
 - File:line citations for every P0/P1 finding, or explicit evidence-backed clean result
+- The six summary lines of the output contract: `Files reviewed`, `Overall assessment`, `Baseline used`, `Surface evidence used`, `Quality gate evidence` and `Rule sources`
+- The `Not checked:` line, naming what could not be read and why, or `Not checked: nothing material`
 - Source-reference mapping to `references/review-core.md` and any applicable checklist
 - Delegation or runtime-routing notes when a sub-agent or external CLI is used
 - Final scenario verdict with rationale: PASS, FAIL, or SKIP
@@ -89,8 +91,11 @@ Coverage note: the playbook covers single-pass review flow, security/correctness
 - Native review-agent prompts shown as `agent: @review <instruction>`.
 - Deep-review references shown as `agent: @deep-review <single-iteration context>` only when a scenario inspects deep-review behavior; this root playbook does not run the deep-review loop.
 - External OpenCode CLI dispatches shown as `cli-opencode: <prompt>`.
-- OpenCode CLI dispatches shown as `cli-opencode: <prompt>`.
+- Claude Code CLI dispatches shown as `cli-claude-code: <prompt>`.
+- An environment variable a scenario exports is a `bash:` step of its own, and the `agent:` step that follows it runs in that exported shell. A cell never prefixes an `agent:` step with a variable assignment.
+- A dispatcher that renders a review prompt, whether that is `@orchestrate` or a workflow step dispatching `@review`, puts the `CODE-REVIEW` marker line first in that prompt, per the Extension Floors in `SKILL.md` §4.
 - `->` separates sequential steps inside one deterministic command sequence.
+- A `path/to/...` token in a command step is a placeholder for the reviewed change's real path. The operator substitutes it and records both the token and the substituted path with the evidence; a scenario that ships a named fixture instead needs no substitution.
 - External CLI handbacks are review-only. Any implementation, file edit, or branch mutation is contradictory evidence.
 
 ---
@@ -100,7 +105,7 @@ Coverage note: the playbook covers single-pass review flow, security/correctness
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
+2. Referenced per-feature files under `manual-testing-playbook/<category>/<scenario>.md`, with the bare kebab-case category and scenario slugs the package uses
 3. Scenario execution evidence from section 3
 4. Feature-to-scenario coverage map from section 19
 5. Triage notes for every FAIL or SKIP verdict
@@ -110,7 +115,7 @@ Coverage note: the playbook covers single-pass review flow, security/correctness
 For each executed scenario, check:
 
 1. Preconditions were satisfied.
-2. Prompt and command sequence were executed as written.
+2. Prompt and command sequence were executed as written. For a step carrying a `path/to/...` placeholder, the executed command used the recorded substituted path, and both the placeholder and the substitution are in the evidence.
 3. Expected signals are present without contradictory evidence.
 4. Evidence is complete and readable.
 5. Pass/fail criteria cite the relevant `review` source file.
@@ -152,7 +157,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-031 or CR-R01..CR-R07 (CR-019 is not assigned) |
+| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-037 or CR-R01..CR-R12 (CR-019 is not assigned) |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-opencode, cli-claude-code, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
@@ -166,12 +171,12 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 Before declaring this playbook release-ready, confirm:
 
-1. Root validator is clean.
-2. Per-feature structural sweep checks every file the section 19 index links.
+1. The operator validator is clean. Run `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-review/manual-testing-playbook` from the repository root and require `PASS ... violations=0 warnings=0` with exit 0.
+2. Per-feature structural sweep confirms every file the section 19 index links was read once after its last edit; the operator validator covers section order and required content, not the accuracy of what a scenario asserts.
 3. No forbidden sidecars exist.
-4. Every table row has exactly 9 columns.
+4. Every scenario table row has exactly 9 columns. The root playbook's own index, ledger and signal tables are exempt, because they are not scenario tables.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
-6. Every SCENARIO CONTRACT prompt equals its table prompt.
+6. Every SCENARIO CONTRACT prompt equals its 9-column table Exact Prompt cell. The operator validator reports a disagreement as a `PROMPT_UNSYNCED` warning, so a clean run is also the machine check for this item.
 7. Every pass/fail rule cites a real review source file.
 8. Every external CLI scenario either ran or recorded an environment-only SKIP.
 9. Every P0/P1 observed while executing scenarios has file:line evidence.
@@ -199,13 +204,15 @@ This section records wave planning and capacity guidance for executing the revie
 
 | Wave | Categories | Scenarios | Rationale |
 |---|---|---|---|
-| 1 | Baseline flow + scope | CR-001..CR-003, CR-010..CR-012 | Cheap review paths reveal scope and precedence issues early |
-| 2 | Security + evidence | CR-004..CR-009 | Exercises mandatory P0/P1 evidence and checklist discipline |
+| 1 | Baseline flow + scope | CR-001..CR-003, CR-010..CR-012, CR-037 | Cheap review paths reveal scope and precedence issues early, and the resolver's deleted-path defence needs only a two-commit fixture |
+| 2 | Security + evidence | CR-004..CR-009, CR-034 | Exercises mandatory P0/P1 evidence, checklist discipline and the report's required summary lines |
 | 3 | Re-review + stale context | CR-013..CR-015 | Requires prior findings, stale docs, or generated-code fixtures |
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
-| 5 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
-| 6 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against the `INTENT_SIGNALS`/`RESOURCE_MAP` blocks in `SKILL.md` §10 (`MACHINE ROUTER`); no diff fixture or CLI dependency, isolates cleanly |
-| 7 | Foreign repository rules | CR-029..CR-031 | Each scenario builds its own scratch repository outside this checkout and reviews one file, so the three run in parallel without sharing a diff |
+| 5 | Efficiency + restraint | CR-020..CR-024, CR-032, CR-033 | Restraint, needed-ness, ceiling evidence, the depth alias, the wording canary and the two §9 gates; CR-032 owns a scratch cache directory, so it runs beside the read-only scenarios rather than inside a shared tree |
+| 6 | Intra routing recall | CR-R01..CR-R12 | Pure path-resolution checks against the `INTENT_SIGNALS`/`RESOURCE_MAP` blocks in `SKILL.md` §10 (`MACHINE ROUTER`); no diff fixture or CLI dependency, isolates cleanly |
+| 7 | Foreign repository rules | CR-029..CR-031, CR-035, CR-036 | Each scenario builds its own scratch repository outside this checkout and reviews one file, so the five run in parallel without sharing a diff |
+| 8 | Finding accuracy | CR-025..CR-027 | Each run needs a live review executor over a seeded or clean fixture and records model, duration and tokens, so the wave is capacity-bound rather than scope-bound |
+| 9 | User-authored modes | CR-028 | Builds an in-memory copy of the hub to add a surface, so it runs alone after the read-only waves |
 
 ### Cross-CLI Reconciliation Rules
 
@@ -341,9 +348,9 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ---
 
-## 9. SEVERITY AND EVIDENCE DISCIPLINE (CR-007..CR-009)
+## 9. SEVERITY AND EVIDENCE DISCIPLINE (CR-007..CR-009, CR-034)
 
-This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
 
 ### CR-007 | P0 blocker with file:line
 
@@ -393,11 +400,27 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 > **Feature File:** [CR-009](../manual-testing-playbook/severity-and-evidence-discipline/cross-consumer-affected-surface.md)
 
+### CR-034 | Report summary contract
+
+#### Description
+
+Report-shape check that a full review carries all six summary lines and the mandatory `Not checked:` line, and that `Quality gate evidence` reads `present` only when a sk-code quality verdict was handed in.
+
+#### Scenario Contract
+
+Prompt: `Review this helper and make sure the summary tells me how much you reviewed, what the verdict is, which baseline and surface evidence you used, whether a quality gate verdict was handed to you, and what you could not check.`
+
+Desired user-visible outcome: A review whose summary a maintainer or a script can compare field by field, with a missing `Not checked:` line reported rather than tolerated.
+
+#### Test Execution
+
+> **Feature File:** [CR-034](../manual-testing-playbook/severity-and-evidence-discipline/report-summary-contract.md)
+
 ---
 
-## 10. SCOPE AND PRECEDENCE (CR-010..CR-012)
+## 10. SCOPE AND PRECEDENCE (CR-010..CR-012, CR-037)
 
-This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
 
 ### CR-010 | Explicit scope security only
 
@@ -419,11 +442,11 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Description
 
-Precedence review that separates baseline minimums from surface conventions.
+Precedence review that separates baseline minimums from surface conventions, with the quality runner's resolver as the only surface evidence.
 
 #### Scenario Contract
 
-Prompt: `Review this diff against detected sk-code surface evidence, letting surface conventions win while baseline security and correctness still block.`
+Prompt: `Review this diff against the sk-code surface evidence the quality runner returns, letting surface conventions win while baseline security and correctness still block.`
 
 Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
 
@@ -446,6 +469,22 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 #### Test Execution
 
 > **Feature File:** [CR-012](../manual-testing-playbook/scope-and-precedence/test-code-review.md)
+
+### CR-037 | Deleted path in the resolver call
+
+#### Description
+
+Resolver-invocation check that one deleted path in the diff stops the explain call with `FILE_NOT_FOUND` and exit 3, that `--diff-filter=d` keeps the surface evidence for the files that exist, and that the deleted path is named on the `Not checked:` line.
+
+#### Scenario Contract
+
+Prompt: `Review this branch before I merge it. It deletes the legacy helper and adds a sum function.`
+
+Desired user-visible outcome: A review that keeps the surface evidence for the files that exist and states, in one line, what the deletion left unread.
+
+#### Test Execution
+
+> **Feature File:** [CR-037](../manual-testing-playbook/scope-and-precedence/deleted-path-resolver-fault.md)
 
 ---
 
@@ -511,7 +550,7 @@ This category covers 3 scenarios while the linked feature files remain the canon
 
 #### Description
 
-Native @review invocation that checks read-only and findings-first behavior.
+Native @review invocation that checks the `CODE-REVIEW` marker on the rendered prompt together with read-only and findings-first behavior.
 
 #### Scenario Contract
 
@@ -557,9 +596,9 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ---
 
-## 13. EFFICIENCY AND RESTRAINT (CR-020..CR-024)
+## 13. EFFICIENCY AND RESTRAINT (CR-020..CR-024, CR-032, CR-033)
 
-This category covers 5 scenarios while the linked feature files remain the canonical execution contract. These scenarios validate the v1.4.0.0 ponytail-based refinement: maintainability restraint, needed-ness, intentional-simplification evidence, the review-depth alias, and the load-bearing-wording canary.
+This category covers 7 scenarios while the linked feature files remain the canonical execution contract. These scenarios validate the v1.4.0.0 ponytail-based refinement (maintainability restraint, needed-ness, intentional-simplification evidence, the review-depth alias, and the load-bearing-wording canary) and the two §9 efficiency gates (the M-1 PR-state content-hash dedup and the M-2 opt-in minimum-evidence threshold).
 
 ### CR-020 | Reinvent-the-wheel detection
 
@@ -613,7 +652,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Description
 
-Depth-routing check that resolves SK_CODE_REVIEW_DEPTH env over config over default without relaxing any floor or skipping a sensitive path.
+Depth-routing check that resolves SK_CODE_REVIEW_DEPTH env over default with no config tier, showing what ultra biases toward and that lite neither suppresses a review on its own nor skips a sensitive path.
 
 #### Scenario Contract
 
@@ -641,11 +680,43 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 > **Feature File:** [CR-024](../manual-testing-playbook/efficiency-and-restraint/rule-invariant-canary.md)
 
+### CR-032 | PR-state content-hash dedup
+
+#### Description
+
+Efficiency-gate check that the M-1 signature is reproducible, a matching cache entry produces the exact skip line and no full review, a new commit produces a different signature and a second cache entry, and a pathspec keeps a key and a cache file of its own.
+
+#### Scenario Contract
+
+Prompt: `Review this branch again and tell me whether anything changed since the last review at <prev_sha>, so you can skip the full pass when it did not.`
+
+Desired user-visible outcome: A reviewer that skips a repeat review with a verifiable reason, and no folder created inside the reviewed repository.
+
+#### Test Execution
+
+> **Feature File:** [CR-032](../manual-testing-playbook/efficiency-and-restraint/pr-state-content-hash-dedup.md)
+
+### CR-033 | Opt-in minimum evidence gate
+
+#### Description
+
+Efficiency-gate check that a sub-threshold non-sensitive diff produces the exact M-2 skip line and passes the final-line checker, and that a `*token*` path in the same repository forces the full review.
+
+#### Scenario Contract
+
+Prompt: `Review this small diff, skipping the full pass when the change is too small to matter, and never skip it when the diff touches auth, config, persistence, dependency or subprocess code.`
+
+Desired user-visible outcome: A small inert change that costs no full review, and an auth-adjacent change that always gets one.
+
+#### Test Execution
+
+> **Feature File:** [CR-033](../manual-testing-playbook/efficiency-and-restraint/minimum-evidence-gate.md)
+
 ---
 
-## 14. INTRA ROUTING RECALL (CR-R01..CR-R07)
+## 14. INTRA ROUTING RECALL (CR-R01..CR-R12)
 
-This category covers 7 scenarios while the linked feature files remain the canonical execution contract. Unlike CR-001..CR-024, these scenarios do not review a diff; they confirm that the `INTENT_SIGNALS` keyword weights and `RESOURCE_MAP` entries in `SKILL.md` §10 (`MACHINE ROUTER`) still resolve the correct checklist/reference set for each of the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`).
+This category covers 12 scenarios while the linked feature files remain the canonical execution contract. Unlike the diff-review scenarios in the sections above, these do not review a diff; they confirm that the `INTENT_SIGNALS` keyword weights and `RESOURCE_MAP` entries in `SKILL.md` §10 (`MACHINE ROUTER`) still select the right intent and resolve the right checklist/reference set for all eleven intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`, `CORE`, `COMPLETENESS`, `PR_STATE`, `SETUP`) plus the `ON_DEMAND` loading tier. Each scenario runs the shipped router block and asserts the selected intent and its score, alongside the resource set, because an intent whose `RESOURCE_MAP` target is already in `DEFAULT_RESOURCES` cannot be proved by a path-existence check alone. Each one also runs a disconfirming prompt that must not select the intent.
 
 ### CR-R01 | Security routing
 
@@ -745,6 +816,86 @@ Prompt: `Review this test suite for testing coverage, assertions, mocks, stubs, 
 
 > **Feature File:** [CR-R07](../manual-testing-playbook/intra-routing-recall/testing.md)
 
+### CR-R08 | CORE routing
+
+#### Description
+
+Confirms a doctrine-shaped prompt selects `CORE` at its own score rather than merely receiving the always-loaded baseline, and that the same prompt without its doctrine words selects no intent.
+
+#### Scenario Contract
+
+Prompt: `Walk me through the review doctrine and the single-pass interactive review before I start on this branch.`
+
+Desired user-visible outcome: A reviewer routed to the shared review doctrine, with no silent fall-through where the doctrine intent merely looks satisfied by the baseline.
+
+#### Test Execution
+
+> **Feature File:** [CR-R08](../manual-testing-playbook/intra-routing-recall/core.md)
+
+### CR-R09 | COMPLETENESS routing
+
+#### Description
+
+Confirms a fix-completeness prompt selects `COMPLETENESS` at its own score rather than merely receiving the always-loaded baseline, and that the same prompt without its completeness words selects no intent.
+
+#### Scenario Contract
+
+Prompt: `Check fix completeness here: is this an incomplete fix that leaves leftover call sites?`
+
+Desired user-visible outcome: A reviewer routed to the fix-completeness checklist, with no silent fall-through where that checklist merely arrives with the baseline.
+
+#### Test Execution
+
+> **Feature File:** [CR-R09](../manual-testing-playbook/intra-routing-recall/completeness.md)
+
+### CR-R10 | PR_STATE routing
+
+#### Description
+
+Confirms a pull-request-state prompt selects `PR_STATE` and adds `references/pr-state-dedup.md` beyond the baseline, and that a prompt without those words adds nothing.
+
+#### Scenario Contract
+
+Prompt: `The PR state for this branch: a repeated finding was already flagged in a prior comment, so deduplicate it.`
+
+Desired user-visible outcome: A reviewer handed the pull-request dedup doctrine before it starts, with no route that can silently degrade to the baseline.
+
+#### Test Execution
+
+> **Feature File:** [CR-R10](../manual-testing-playbook/intra-routing-recall/pr-state.md)
+
+### CR-R11 | SETUP routing
+
+#### Description
+
+Confirms a setup-shaped prompt selects `SETUP` and adds `references/quick-reference.md` beyond the baseline, and that a prompt without those words adds nothing.
+
+#### Scenario Contract
+
+Prompt: `Show me the review quick reference and the review workflow for a small change.`
+
+Desired user-visible outcome: A reviewer handed the mode's own index before it starts, with no route that can silently degrade to the baseline.
+
+#### Test Execution
+
+> **Feature File:** [CR-R11](../manual-testing-playbook/intra-routing-recall/setup.md)
+
+### CR-R12 | ON_DEMAND tier loading
+
+#### Description
+
+Confirms an `ON_DEMAND_KEYWORDS` match loads every `RESOURCE_MAP` target, so one intent's prompt resolves to the ten deep-dive paths, and that the same prompt without the ON_DEMAND term loads the selected intent's target alone.
+
+#### Scenario Contract
+
+Prompt: `Run a comprehensive security review with all checks and list findings.`
+
+Desired user-visible outcome: One comprehensive request that loads the deep-dive set, and a single-intent request that stays narrow, so the operator can tell the two apart from the transcript.
+
+#### Test Execution
+
+> **Feature File:** [CR-R12](../manual-testing-playbook/intra-routing-recall/on-demand-tier.md)
+
 ---
 
 ## 15. FINDING ACCURACY (CR-025..CR-027)
@@ -823,9 +974,9 @@ Desired user-visible outcome: A repository-added security surface reaches review
 
 ---
 
-## 17. FOREIGN REPOSITORY RULES (CR-029..CR-031)
+## 17. FOREIGN REPOSITORY RULES (CR-029..CR-031, CR-035, CR-036)
 
-This category covers 3 scenarios that review one file in a scratch repository whose own rule overrides the review must honor or refuse. Each run builds the repository from the scenario's fixture, runs the quality runner's explain entry as the resolver and records executor, model, duration and tokens.
+This category covers 5 scenarios that review one file in a scratch repository whose own rule overrides the review must honor or refuse. Each run builds the repository from the scenario's fixture, runs the quality runner's explain entry as the resolver and records executor, model, duration and tokens.
 
 ### CR-029 | Repository that wants almost no inline comments
 
@@ -875,22 +1026,71 @@ Desired user-visible outcome: The review lists the style document under `Refused
 
 > **Feature File:** [CR-031](../manual-testing-playbook/foreign-repository-rules/floor-override-refused.md)
 
+### CR-035 | Repository rule naming no review rule is ignored
+
+#### Description
+
+Override-outcome check that a repository row naming an id the review cannot match is recorded under `Ignored:` with its checklist file, applies no override and does not refuse the rest of the checklist.
+
+#### Scenario Contract
+
+Prompt: `Review this helper before I commit it.`
+
+Desired user-visible outcome: A review that tells the repository its row had no matching rule, without failing the review or discarding the rest of the checklist.
+
+#### Test Execution
+
+> **Feature File:** [CR-035](../manual-testing-playbook/foreign-repository-rules/unknown-rule-id-ignored.md)
+
+### CR-036 | Two same-level checklists that disagree are a conflict
+
+#### Description
+
+Override-outcome check that two repository checklists at the same precedence level produce a resolver conflict, that the review applies the default lens rather than either row, and that it names both files under `Conflicts` and in Next Steps.
+
+#### Scenario Contract
+
+Prompt: `Review this report helper before I commit it.`
+
+Desired user-visible outcome: A review that refuses to pick a winner between two equal-level rows, states which limit it used instead, and hands the decision back to the repository.
+
+#### Test Execution
+
+> **Feature File:** [CR-036](../manual-testing-playbook/foreign-repository-rules/same-level-conflict.md)
+
 ---
 
 ## 18. AUTOMATED TEST CROSS-REFERENCE
 
-The current repository has no dedicated automated test module for `review/manual-testing-playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
+The package has two automated gates and no dedicated unit test module of its own. These adjacent tests exercise related routing, override and report-checking behavior.
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
-| Internal design notes | Stress fixture that maps review channel behavior to `review` | CR-016 |
-| Internal design notes | Earlier stress fixture for review channel expectations | CR-016 |
-| `.skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` | The override linter: row grammar, the hard floor, repeated ids and the floor-id agreement with the contract JSON | CR-031 |
-| `.skilled/skills/sk-code/shared/scripts/tests/review-lens-overrides.test.cjs` | Every review floor and lens id against the shared contract | CR-029, CR-030, CR-031 |
-| `.skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh` | The report checkers, including the `Rule sources:` line shape, and the canary pins on the resolver step and the four floor ids | CR-024, CR-029, CR-030, CR-031 |
+| `.skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` | The override linter: row grammar, the hard floor, repeated ids and the floor-id agreement with the contract JSON | CR-031, CR-035, CR-036 |
+| `.skilled/skills/sk-code/shared/scripts/tests/review-lens-overrides.test.cjs` | Every review floor and lens id against the shared contract | CR-029, CR-030, CR-031, CR-035, CR-036 |
+| `.skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh` | The report checkers, including the `Rule sources:` line shape, and the canary pins on the resolver step and the four floor ids | CR-024, CR-029, CR-030, CR-031, CR-032, CR-033, CR-034, CR-035, CR-036, CR-037 |
 
-Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
+### Operator Validator
+
+The operator contract has its own validator, and it walks every scenario tree rather than the root document alone. Run it from the repository root:
+
+```bash
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs \
+  --package .skilled/skills/sk-code/sk-code-review/manual-testing-playbook
+```
+
+A conforming package prints one `PASS` line and exits 0:
+
+```text
+PASS package=sk-code/sk-code-review tier=FAIL_CLOSED scenarios=<count> categories=<count> operator=<count> routing_gold_excluded=0 violations=0 warnings=0
+```
+
+The counts are derived from the walked tree, so the section 19 index is the only list to maintain, and a per-feature file the index does not link is reported as `INDEX_ORPHAN_FILE`. Exit `1` means a fail-closed contract violation and exit `2` a usage or boundary error.
+
+### What The Gates Do Not Cover
+
+The two automated gates check structure, required content, links, index bijection, filename shape and prompt synchronization. Neither of them reads a scenario's assertions, so neither can tell whether a command still prints what its Expected block claims, whether a pass criterion can actually fail, or whether the covered behaviour is the behaviour that matters. The structural sweep in this playbook is what covers that gap: read each scenario once after its last edit and run its commands. `validate_document.py --type playbook` on the root document stays the third check, and it validates that document's structure only.
 
 ---
 
@@ -928,6 +1128,12 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-029 | Repository that wants almost no inline comments | FOREIGN REPOSITORY RULES | [CR-029](../manual-testing-playbook/foreign-repository-rules/almost-no-inline-comments.md) |
 | CR-030 | Repository with the opposite rule: comment every function | FOREIGN REPOSITORY RULES | [CR-030](../manual-testing-playbook/foreign-repository-rules/comment-every-function.md) |
 | CR-031 | Floor override refused | FOREIGN REPOSITORY RULES | [CR-031](../manual-testing-playbook/foreign-repository-rules/floor-override-refused.md) |
+| CR-032 | PR-state content-hash dedup | EFFICIENCY AND RESTRAINT | [CR-032](../manual-testing-playbook/efficiency-and-restraint/pr-state-content-hash-dedup.md) |
+| CR-033 | Opt-in minimum evidence gate | EFFICIENCY AND RESTRAINT | [CR-033](../manual-testing-playbook/efficiency-and-restraint/minimum-evidence-gate.md) |
+| CR-034 | Report summary contract | SEVERITY AND EVIDENCE DISCIPLINE | [CR-034](../manual-testing-playbook/severity-and-evidence-discipline/report-summary-contract.md) |
+| CR-035 | Repository rule naming no review rule is ignored | FOREIGN REPOSITORY RULES | [CR-035](../manual-testing-playbook/foreign-repository-rules/unknown-rule-id-ignored.md) |
+| CR-036 | Two same-level checklists that disagree are a conflict | FOREIGN REPOSITORY RULES | [CR-036](../manual-testing-playbook/foreign-repository-rules/same-level-conflict.md) |
+| CR-037 | Deleted path in the resolver call | SCOPE AND PRECEDENCE | [CR-037](../manual-testing-playbook/scope-and-precedence/deleted-path-resolver-fault.md) |
 | CR-R01 | Security routing | INTRA ROUTING RECALL | [CR-R01](../manual-testing-playbook/intra-routing-recall/security.md) |
 | CR-R02 | Quality routing | INTRA ROUTING RECALL | [CR-R02](../manual-testing-playbook/intra-routing-recall/quality.md) |
 | CR-R03 | KISS routing | INTRA ROUTING RECALL | [CR-R03](../manual-testing-playbook/intra-routing-recall/kiss.md) |
@@ -935,3 +1141,8 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-R05 | SOLID routing | INTRA ROUTING RECALL | [CR-R05](../manual-testing-playbook/intra-routing-recall/solid.md) |
 | CR-R06 | Removal routing | INTRA ROUTING RECALL | [CR-R06](../manual-testing-playbook/intra-routing-recall/removal.md) |
 | CR-R07 | Testing routing | INTRA ROUTING RECALL | [CR-R07](../manual-testing-playbook/intra-routing-recall/testing.md) |
+| CR-R08 | CORE routing | INTRA ROUTING RECALL | [CR-R08](../manual-testing-playbook/intra-routing-recall/core.md) |
+| CR-R09 | COMPLETENESS routing | INTRA ROUTING RECALL | [CR-R09](../manual-testing-playbook/intra-routing-recall/completeness.md) |
+| CR-R10 | PR_STATE routing | INTRA ROUTING RECALL | [CR-R10](../manual-testing-playbook/intra-routing-recall/pr-state.md) |
+| CR-R11 | SETUP routing | INTRA ROUTING RECALL | [CR-R11](../manual-testing-playbook/intra-routing-recall/setup.md) |
+| CR-R12 | ON_DEMAND tier loading | INTRA ROUTING RECALL | [CR-R12](../manual-testing-playbook/intra-routing-recall/on-demand-tier.md) |

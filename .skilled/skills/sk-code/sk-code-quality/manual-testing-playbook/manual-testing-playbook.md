@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -27,14 +27,14 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `sk-code-quality` skill surface. The operator validator computes those counts from the walked tree, so the root index in section 9 is the only list to maintain. Each scenario keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note: `sk-code-quality` routes primarily by target path, through the checklist map in `SKILL.md` section 2, and its discoverability from the parent hub is the hub `quality` signal. This playbook exercises the one thin prompt-intent `QUALITY` route and the checklist set it resolves.
+Coverage note: `sk-code-quality` routes primarily by target path, through the checklist map in `SKILL.md` section 2, and its discoverability from the parent hub is the hub `quality` signal. The corpus covers the runner's five gate values, its ten check states and its error codes, its CLI, config discovery and trust boundary, the outside-skill checklist rows, the rule-override and hygiene paths, the dist adapter, the ceiling report, the legacy write-time adapter, the manifest suggestion lane and the quality doctor. Two scenarios check routing rather than the runner: the prompt-intent `QUALITY` projection and the restraint prompt. The corpus does not cover the layer probe's `untrusted`, `broken` and `unknown` states, the `quality-config-*.test.cjs` parts of the suite, or the path-keyed checklist families for the SKILLED, agent, command, spec-folder and language rows.
 
 ### Realistic Test Model
 
 1. A realistic quality-gate request reaches the sk-code hub.
-2. The hub routes it to `sk-code-quality`, and the mode's `QUALITY` prompt intent selects its checklist set.
-3. The operator captures the exact prompt, the command transcript and the resolved resources.
-4. The scenario passes only when every expected resource resolves and the declared intent matches.
+2. The hub routes it to `sk-code-quality`, which runs the gate over the change or resolves the checklists the target path needs.
+3. The operator captures the exact prompt and the command transcript, including every exit status.
+4. The scenario passes only when the pass criteria of that scenario hold and its evidence is complete. A resolved path set and a matching intent are what CQ-001 grades, not a package-wide rule.
 
 ### What Each Feature File Should Explain
 
@@ -51,8 +51,8 @@ Coverage note: `sk-code-quality` routes primarily by target path, through the ch
 1. Working directory is the repository root.
 2. `.skilled/skills/sk-code/sk-code-quality/SKILL.md` resolves on disk.
 3. Every file under `.skilled/skills/sk-code/sk-code-quality/references/` resolves on disk.
-4. The operator can run `sed`, `test` and `git status` without network access.
-5. No scenario in this playbook is destructive. Each one reads files and writes nothing.
+4. The operator has `node` at the version the runner supports, `git`, `python3` with the interpreter the runner's checkers use, `rg`, `mktemp`, `sed`, `test` and `bash`. No scenario needs network access.
+5. No scenario writes inside the repository. Each one reads tracked files, builds its fixtures in a temporary folder outside the working tree, and removes that folder in its last step. The one config edit a scenario makes names the scratch path absolutely, so no step can reach the committed repository config.
 
 ---
 
@@ -73,6 +73,7 @@ Coverage note: `sk-code-quality` routes primarily by target path, through the ch
 - Agent prompts shown as `agent: <instruction>`.
 - `->` separates sequential steps.
 - Paths in a scenario are relative to the repository root unless the scenario names the skill root.
+- A path a scenario creates inside a temporary fixture is written `<fixture>/<path>`, and a scratch folder the operator creates is written `<scratch>/<path>`, because neither exists until the run builds it.
 
 ---
 
@@ -97,9 +98,11 @@ For each executed scenario, check:
 5. Outcome rationale is explicit.
 
 Scenario verdict:
-- `PASS`: every path in `expected_resources` resolves under the skill root and the frontmatter `expected_intent` agrees with the root index
-- `FAIL`: a listed path is missing, or the frontmatter intent disagrees
-- `SKIP`: the `references/` directory is unavailable in the sandboxed checkout
+- `PASS`: every pass criterion that scenario states holds, and the evidence it asks for is complete
+- `FAIL`: any of that scenario's pass criteria does not hold, or its evidence is missing or contradictory
+- `SKIP`: a named sandbox or runtime blocker prevents the scenario from running, such as a missing `python3` for the checks that need it
+
+CQ-001 grades a resolved path set and a matching intent because that is its pass criterion. The other scenarios grade the gate value, the exit code, the check state and the findings they read, and the root applies no second rule over them.
 
 ### Feature Verdict Rules
 
@@ -148,7 +151,7 @@ This section records wave planning for the manual testing package. It is not a r
 
 ---
 
-## 7. QUALITY GATE (`CQ-001..CQ-013`)
+## 7. QUALITY GATE (`CQ-001..CQ-023`)
 
 ### CQ-001 | Quality gate routes to the sk-code-quality checklist
 
@@ -384,35 +387,253 @@ Desired user-visible outcome: the linter exits 1 naming the floor rule, the reso
 
 > **Feature File:** [CQ-013](quality-gate/floor-override-refused.md)
 
+### CQ-014 | A declared generated path is read by the dist adapter
+
+#### Description
+
+Verify that a path the base layer declares as generated output reaches the dist adapter, that a stale build yields a P1 finding, that an attested build reads clean and that a path the checker cannot map reads `ERROR`.
+
+#### Scenario Contract
+
+Fixture: three temporary repositories, each holding one declared generated path, one stale, one attested against its current sources and one with no package around the path.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the gate over the declared path in each repository and reads the `dist-staleness` row and the findings.
+
+Desired user-visible outcome: the author rebuilds the package whose output is stale, and never reads a build the checker could not inspect as fresh.
+
+#### Test Execution
+
+> **Feature File:** [CQ-014](quality-gate/dist-staleness-adapter.md)
+> **Catalog:** none; the nearest is [`codebase-agnostic-quality-gate.md`](../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md)
+
+### CQ-015 | The ceiling report tags the markers whose trigger cannot fire
+
+#### Description
+
+Verify that the ceiling-marker report prints one line per marker with its tag, closes with the counts line and exits 0 whether or not it found a marker it cannot act on.
+
+#### Scenario Contract
+
+Fixture: a scratch folder holding one JavaScript module with three markers, one per tag state.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the report over that one file and replays the report's own test cases.
+
+Desired user-visible outcome: the reviewer gets the shortcuts with their triggers and the two a reader cannot act on, and knows the report made no blocking claim.
+
+#### Test Execution
+
+> **Feature File:** [CQ-015](quality-gate/ceiling-marker-report.md)
+> **Catalog:** none; the nearest is [`codebase-agnostic-quality-gate.md`](../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md)
+
+### CQ-016 | The legacy write-time hook warns on a labelled comment
+
+#### Description
+
+Verify that the compatibility write-time adapter warns on a `Write` payload naming a labelled comment, prints nothing for a tool it does not handle, and exits 0 either way.
+
+#### Scenario Contract
+
+Fixture: a scratch folder holding one file with a labelled comment on its first line, and two hook payloads.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then pipes both payloads into the adapter and replays the parse suite over the live Node adapter.
+
+Desired user-visible outcome: the author replaces the label before the next turn, and no runtime treats the adapter as a blocker.
+
+#### Test Execution
+
+> **Feature File:** [CQ-016](quality-gate/legacy-write-time-hook.md)
+> **Catalog:** none; the nearest is [`rule-overrides-and-hygiene-policy.md`](../../feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md)
+
+### CQ-017 | An unblocked hygiene layer leaves a touched-file label as debt
+
+#### Description
+
+Verify that a pre-commit hook naming the checker reads `present` and makes a touched-file hygiene finding block, and that the same change with no hook reads `absent` and counts the finding as debt.
+
+#### Scenario Contract
+
+Fixture: two temporary repositories with the same labelled comment on an unchanged line, one carrying a pre-commit hook and one carrying none.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the gate over both and reads the `layers` field, the finding and the two summaries.
+
+Desired user-visible outcome: the author learns whether the commit will be refused, and an older comment is either fixed or reported as debt rather than as a blocker the change caused.
+
+#### Test Execution
+
+> **Feature File:** [CQ-017](quality-gate/hygiene-layers-and-debt.md)
+> **Catalog:** [`rule-overrides-and-hygiene-policy.md`](../../feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md)
+
+### CQ-018 | Every runner flag changes the run the way the CLI table says
+
+#### Description
+
+Verify that each documented flag owns the field the CLI table names: the `--base` scope, `--lines file`, `--only` and `--skip`, `--no-run`, `--config`, `--help` and a multi-path `--explain`.
+
+#### Scenario Contract
+
+Fixture: four temporary repositories, one per flag group.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs each flag group and reads the field that flag owns.
+
+Desired user-visible outcome: the operator can gate a branch, widen the line rule, isolate a check, inspect a config or a CLI, and resolve several files at once.
+
+#### Test Execution
+
+> **Feature File:** [CQ-018](quality-gate/cli-flag-surface.md)
+> **Catalog:** [`codebase-agnostic-quality-gate.md`](../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md)
+
+### CQ-019 | A request the runner cannot honour exits 3 and names the reason
+
+#### Description
+
+Verify that each refusal code names its own unanswerable request, and that no refused run reports a gate value about the change.
+
+#### Scenario Contract
+
+Fixture: six temporary repositories and one file beside them, covering eight refusal cases.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then sends each request and reads the gate, the exit code and the code row.
+
+Desired user-visible outcome: the operator can tell a broken install from a moved file, an old config location, a bad ref and a missing registry.
+
+#### Test Execution
+
+> **Feature File:** [CQ-019](quality-gate/refused-requests.md)
+> **Catalog:** [`codebase-agnostic-quality-gate.md`](../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md)
+
+### CQ-020 | A check that produced no evidence never reads as clean
+
+#### Description
+
+Verify the five ways a run can end without answering: a check killed at its deadline, a configured check outside git, a checklist that is absent, an outside-skill row that leaves its folder and a command that writes while it runs.
+
+#### Scenario Contract
+
+Fixture: four temporary repositories and one outside-skill folder beside the fixture hub.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then drives each case and reads the check row, the config error or the `errors[]` row.
+
+Desired user-visible outcome: the operator fixes the evidence gap or reverts the write by hand, and never records any of the five as a clean run.
+
+#### Test Execution
+
+> **Feature File:** [CQ-020](quality-gate/no-evidence-states.md)
+> **Catalog:** [`codebase-agnostic-quality-gate.md`](../../feature-catalog/quality-gate/codebase-agnostic-quality-gate.md)
+
+### CQ-021 | Two checklists at one level that disagree leave the rule unverified
+
+#### Description
+
+Verify that two checklists the same repository declares, answering one rule differently for one file, are reported in `rule_conflicts`, leave the rule unverified, apply neither row and add the `override-conflict` entry to the envelope.
+
+#### Scenario Contract
+
+Fixture: one temporary repository whose config declares two checklists, each with a `## Rule overrides` section.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the gate in JSON and envelope form and asks the resolver for the same file.
+
+Desired user-visible outcome: the author sees which rule the repository has not decided and fixes one of the two rows.
+
+#### Test Execution
+
+> **Feature File:** [CQ-021](quality-gate/rule-override-conflict.md)
+> **Catalog:** [`rule-overrides-and-hygiene-policy.md`](../../feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md)
+
+### CQ-022 | A manifest implies a check the runner suggests and never runs
+
+#### Description
+
+Verify that a `package.json` script and a workflow file each produce one suggestion with the entry that would enable it, that the excluded scripts produce none and that nothing the run suggests was started.
+
+#### Scenario Contract
+
+Fixture: one temporary repository holding a `package.json` with three scripts and one workflow file.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the gate and reads `suggested_checks` against the check rows.
+
+Desired user-visible outcome: the author can paste a suggested entry into the repository config, and knows the gate made no claim about a command it did not run.
+
+#### Test Execution
+
+> **Feature File:** [CQ-022](quality-gate/manifest-suggestions.md)
+> **Catalog:** [`repository-quality-config.md`](../../feature-catalog/quality-gate/repository-quality-config.md)
+
+### CQ-023 | The quality doctor shows the seats, the override rows and the disabled rules
+
+#### Description
+
+Verify that the doctor's `status` names each checklist with its seat and override rows, reports the disabled hygiene rule beside the active ones, and that `init --apply` refuses an existing config.
+
+#### Scenario Contract
+
+Fixture: one temporary repository whose config names one checklist with two override rows and switches one hygiene rule off.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs `status --json` and `init --apply --json` over that repository.
+
+Desired user-visible outcome: the operator sees exactly what the gate would apply and knows the doctor will not write over a reviewed config.
+
+#### Test Execution
+
+> **Feature File:** [CQ-023](quality-gate/quality-doctor.md)
+> **Catalog:** [`sk-code-setup-and-quality-doctor.md`](../../feature-catalog/doctor-commands/sk-code-setup-and-quality-doctor.md)
+
 ---
 
 ## 8. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `scripts/tests/check-comment-hygiene.test.sh` | Comment-hygiene checker violations, skips and exit codes | CQ-001 |
-| `scripts/hooks/claude-posttooluse.test.sh` | A `node --check` syntax check of the edit-time hook adapter, plus a broken copy that must fail it | CQ-001 |
-| `scripts/tests/quality-gate.test.cjs` | The runner's gates, exit codes, `disableRules` cases and the explain output | CQ-012, CQ-013 |
-| `../../shared/scripts/tests/check-rule-overrides.test.cjs` | The override linter, including the hard-floor refusals | CQ-013 |
+| `scripts/tests/quality-gate-hygiene.test.cjs` | The named hygiene fixtures, the secret redaction and the checker's config faults | CQ-002 |
+| `scripts/tests/quality-gate-surfaces.test.cjs` | Scope resolution, the target-path fixtures, the shebang dispatch and the no-git fallback | CQ-003, CQ-004 |
+| `scripts/tests/quality-gate-outside-skills.test.cjs` | The outside-skill row faults, both refusals and the scoped-fault warning | CQ-005, CQ-010 |
+| `scripts/tests/quality-gate-layers-and-generated.test.cjs` | The layer probe's hook spellings and a repository's generated rows | CQ-017 |
+| `scripts/tests/quality-gate-dist.test.cjs` | The dist adapter and the four states it reads | CQ-014 |
+| `scripts/tests/quality-gate-explain-and-overrides.test.cjs` | The multi-file explain output and the override pass with its refusal, recording and conflict cases | CQ-012, CQ-013, CQ-021 |
+| `scripts/tests/quality-gate-runner-units.test.cjs` | The flags, the envelope, the scope listing, exit precedence and the guard boundary | CQ-018 |
+| `scripts/tests/configured-checks-outcomes.test.cjs` | A configured run's outcomes: an absent tool, a failing check, a mutated workspace and the suggestion lane | CQ-006, CQ-020 |
+| `scripts/tests/configured-checks-trust.test.cjs` | The trust boundary: the states a committed check resolves to and the one-time grant | CQ-009 |
+| `scripts/tests/configured-checks-execution.test.cjs` | Argv execution, the workspace guard, the timeout kill and the package-folded cwd | CQ-020 |
+| `scripts/tests/parallel-node-check.test.cjs` | The bounded pool helper, its input-order records and its usage error | CQ-011 |
+| `scripts/tests/ceiling-report.test.sh` | The report's comment families, tags, counts and argument errors | CQ-015 |
+| `scripts/hooks/claude-posttooluse.test.sh` | A parse check of the live Node write-time adapter, plus a broken copy that must fail it | CQ-016 |
+| `scripts/tests/quality-config-discovery.test.cjs` | Config discovery, one case per source, and the legacy-path refusal | no scenario replays this module |
+| `scripts/tests/quality-config-validation.test.cjs` | The schema's error list and the merge rule | no scenario replays this module |
+| `scripts/tests/quality-config-hygiene.test.cjs` | The hygiene values a config may not carry, and the `disableRules` cases | CQ-012, CQ-013 |
+| `scripts/tests/quality-config-help.test.cjs` | `--help` and `-h` printing the usage | none |
+| `scripts/tests/check-comment-hygiene.test.sh` | The checker's rules, skips and exit codes | no scenario replays this module; the runner calls the checker in CQ-002 and CQ-017 |
+| `../../shared/scripts/tests/check-rule-overrides.test.cjs` | The override linter, including the hard-floor refusals | no scenario replays this module; the linter itself runs in CQ-013 |
+| `scripts/tests/fixtures.cjs` | The builder and the snapshot check every fixture scenario runs through | CQ-002, CQ-004, CQ-005, CQ-006, CQ-007, CQ-009, CQ-010, CQ-011, CQ-014, CQ-017, CQ-018, CQ-019, CQ-020, CQ-021, CQ-022 |
 
-No test for target-path checklist routing was found in this package. CQ-001 checks the prompt-intent route only.
+Target-path checklist routing is covered for the CI workflow path by CQ-004, and for outside-skill path markers by CQ-005 and CQ-010. The path families no scenario reaches are the SKILLED, agent, command, spec-folder and language rows; CQ-001 checks the prompt-intent route only.
 
 ---
 
 ## 9. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-| Feature ID | Feature Name | Category | Feature File |
-|---|---|---|---|
-| CQ-001 | Quality gate routes to the sk-code-quality checklist | QUALITY GATE | [CQ-001](quality-gate/quality-checklist.md) |
-| CQ-002 | Foreign polyglot change gets a real verdict | QUALITY GATE | [CQ-002](quality-gate/foreign-polyglot-change.md) |
-| CQ-003 | Unknown language change is never read as clean | QUALITY GATE | [CQ-003](quality-gate/unknown-language-change.md) |
-| CQ-004 | CI workflow change resolves the CI checklist by path | QUALITY GATE | [CQ-004](quality-gate/ci-target-change.md) |
-| CQ-005 | Private surface resolves through its quality declaration | QUALITY GATE | [CQ-005](quality-gate/private-surface-change.md) |
-| CQ-006 | Absent required tool reports UNVERIFIED | QUALITY GATE | [CQ-006](quality-gate/absent-required-tool.md) |
-| CQ-007 | Envelope round trip keeps both verdicts intact | QUALITY GATE | [CQ-007](quality-gate/envelope-round-trip.md) |
-| CQ-008 | Restraint prompt routes to the quality gate and the Design Restraint Ladder | QUALITY GATE | [CQ-008](quality-gate/restraint-prompt.md) |
-| CQ-009 | Untrusted config reads SKIPPED_UNTRUSTED until the operator grants trust | QUALITY GATE | [CQ-009](quality-gate/untrusted-config.md) |
-| CQ-010 | A checklist row fault stays scoped to the files its declaration reaches | QUALITY GATE | [CQ-010](quality-gate/scoped-checklist-faults.md) |
-| CQ-011 | A multi-file change gets one syntax finding per bad file from the parallel pool | QUALITY GATE | [CQ-011](quality-gate/parallel-syntax-pool.md) |
-| CQ-012 | A repository that switches a hygiene rule off is not blocked by it | QUALITY GATE | [CQ-012](quality-gate/disabled-hygiene-rules.md) |
-| CQ-013 | A hard-floor rule cannot be overridden or disabled | QUALITY GATE | [CQ-013](quality-gate/floor-override-refused.md) |
+Every row names the feature-catalog entry that carries the same capability, or `none` where the catalog has no entry for it. A row that reads `none` names the nearest entry in its own per-feature file, so the exception is explicit rather than implied.
+
+| Feature ID | Feature Name | Category | Feature File | Catalog |
+|---|---|---|---|---|
+| CQ-001 | Quality gate routes to the sk-code-quality checklist | QUALITY GATE | [CQ-001](quality-gate/quality-checklist.md) | none |
+| CQ-002 | Foreign polyglot change gets a real verdict | QUALITY GATE | [CQ-002](quality-gate/foreign-polyglot-change.md) | codebase-agnostic-quality-gate |
+| CQ-003 | Unknown language change is never read as clean | QUALITY GATE | [CQ-003](quality-gate/unknown-language-change.md) | codebase-agnostic-quality-gate |
+| CQ-004 | CI workflow change resolves the CI checklist by path | QUALITY GATE | [CQ-004](quality-gate/ci-target-change.md) | codebase-agnostic-quality-gate |
+| CQ-005 | Private surface resolves through its quality declaration | QUALITY GATE | [CQ-005](quality-gate/private-surface-change.md) | codebase-agnostic-quality-gate |
+| CQ-006 | Absent required tool reports UNVERIFIED | QUALITY GATE | [CQ-006](quality-gate/absent-required-tool.md) | repository-quality-config |
+| CQ-007 | Envelope round trip keeps both verdicts intact | QUALITY GATE | [CQ-007](quality-gate/envelope-round-trip.md) | none |
+| CQ-008 | Restraint prompt routes to the quality gate and the Design Restraint Ladder | QUALITY GATE | [CQ-008](quality-gate/restraint-prompt.md) | none |
+| CQ-009 | Untrusted config reads SKIPPED_UNTRUSTED until the operator grants trust | QUALITY GATE | [CQ-009](quality-gate/untrusted-config.md) | repository-quality-config |
+| CQ-010 | A checklist row fault stays scoped to the files its declaration reaches | QUALITY GATE | [CQ-010](quality-gate/scoped-checklist-faults.md) | rule-overrides-and-hygiene-policy |
+| CQ-011 | A multi-file change gets one syntax finding per bad file from the parallel pool | QUALITY GATE | [CQ-011](quality-gate/parallel-syntax-pool.md) | none |
+| CQ-012 | A repository that switches a hygiene rule off is not blocked by it | QUALITY GATE | [CQ-012](quality-gate/disabled-hygiene-rules.md) | rule-overrides-and-hygiene-policy |
+| CQ-013 | A hard-floor rule cannot be overridden or disabled | QUALITY GATE | [CQ-013](quality-gate/floor-override-refused.md) | rule-overrides-and-hygiene-policy |
+| CQ-014 | A declared generated path is read by the dist adapter | QUALITY GATE | [CQ-014](quality-gate/dist-staleness-adapter.md) | none |
+| CQ-015 | The ceiling report tags the markers whose trigger cannot fire | QUALITY GATE | [CQ-015](quality-gate/ceiling-marker-report.md) | none |
+| CQ-016 | The legacy write-time hook warns on a labelled comment | QUALITY GATE | [CQ-016](quality-gate/legacy-write-time-hook.md) | none |
+| CQ-017 | An unblocked hygiene layer leaves a touched-file label as debt | QUALITY GATE | [CQ-017](quality-gate/hygiene-layers-and-debt.md) | rule-overrides-and-hygiene-policy |
+| CQ-018 | Every runner flag changes the run the way the CLI table says | QUALITY GATE | [CQ-018](quality-gate/cli-flag-surface.md) | codebase-agnostic-quality-gate |
+| CQ-019 | A request the runner cannot honour exits 3 and names the reason | QUALITY GATE | [CQ-019](quality-gate/refused-requests.md) | codebase-agnostic-quality-gate |
+| CQ-020 | A check that produced no evidence never reads as clean | QUALITY GATE | [CQ-020](quality-gate/no-evidence-states.md) | codebase-agnostic-quality-gate |
+| CQ-021 | Two checklists at one level that disagree leave the rule unverified | QUALITY GATE | [CQ-021](quality-gate/rule-override-conflict.md) | rule-overrides-and-hygiene-policy |
+| CQ-022 | A manifest implies a check the runner suggests and never runs | QUALITY GATE | [CQ-022](quality-gate/manifest-suggestions.md) | repository-quality-config |
+| CQ-023 | The quality doctor shows the seats, the override rows and the disabled rules | QUALITY GATE | [CQ-023](quality-gate/quality-doctor.md) | doctor-commands/sk-code-setup-and-quality-doctor |

@@ -8,7 +8,8 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
   - scripts/quality-gate.cjs
-version: 1.1.4.1
+catalog_applicable: true
+version: 1.1.5.0
 ---
 
 # CQ-006: Absent Required Tool Reports Unverified
@@ -70,8 +71,8 @@ Run the quality gate with our required lint check missing and tell me what it me
 
 Run the commands from the repository root in one shell session, so the variables set in step 3 stay defined.
 
-1. `node --test --test-reporter=tap --test-name-pattern='^F06' .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs`
-2. `sed -n "/^test('F06/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks.test.cjs`
+1. `node --test --test-reporter=tap --test-name-pattern='^F06' .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-outcomes.test.cjs`
+2. `sed -n "/^test('F06/,/^}));/p" .skilled/skills/sk-code/sk-code-quality/scripts/tests/configured-checks-outcomes.test.cjs`
 3. Confirm the tool is absent, then build fixture F06 by hand, render both forms and assert the fields.
 
 ```bash
@@ -117,10 +118,11 @@ echo "exit $?"
 ```
 
 4. `for p in references/runner-contract.md references/quality-config.md scripts/quality-gate.cjs; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+5. Clean up: `rm -rf "$TMP"`
 
 ### Expected
 
-Step 1 replays F06 and prints `# pass 1` then `# fail 0`. Step 2 shows the config row, the absent tool name and the four assertions: the exit code, the gate, the row and the unverified list. Step 3 prints `absent`, then the envelope, then `gate UNVERIFIED exit 4`, `row SKIPPED_ABSENT required true requires sk-code-absent-tool`, the repair line, `unverified absent-tool` and `p0_blocking 0`, and the command exits 0. Step 4 prints `OK` for all three paths.
+Step 1 replays F06 and prints `# pass 1` then `# fail 0`. Step 2 shows the config row, the absent tool name and the four assertions: the exit code, the gate, the row and the unverified list. Step 3 prints `absent`, then the envelope, then `gate UNVERIFIED exit 4`, `row SKIPPED_ABSENT required true requires sk-code-absent-tool`, the repair line, `unverified absent-tool` and `p0_blocking 0`, and the command exits 0. Step 4 prints `OK` for all three paths. Step 5 prints nothing and leaves no scratch folder behind.
 
 | Signal | Expected value |
 | --- | --- |
@@ -140,7 +142,7 @@ Step 1 replays F06 and prints `# pass 1` then `# fail 0`. Step 2 shows the confi
 
 ### Evidence
 
-Command transcript from steps 1 to 4, the frontmatter block with `expected_intent: QUALITY`, the check row quoted with `state`, `required`, `requires` and `repair`, the envelope with its `checker_outputs` and `modified_files` lines, both `exit 4` lines, the unverified list, and the command's exit 0, which is the result of both snapshot checks. Read every transcript line for a passing claim before the verdict is recorded, because this is the scenario where a pass claim would be most tempting. Save the transcript under the dated run label the playbook names.
+Command transcript from steps 1 to 5, the frontmatter block with `expected_intent: QUALITY`, the check row quoted with `state`, `required`, `requires` and `repair`, the envelope with its `checker_outputs` and `modified_files` lines, both `exit 4` lines, the unverified list, and the command's exit 0, which is the result of both snapshot checks. Read every transcript line for a passing claim before the verdict is recorded, because this is the scenario where a pass claim would be most tempting. Save the transcript under the dated run label the playbook names.
 
 ### Pass / Fail
 
@@ -163,13 +165,14 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| Catalog: [`repository-quality-config.md`](../../../feature-catalog/quality-gate/repository-quality-config.md) | The feature catalog entry for the config, the trust boundary and the required checks |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
 | [SKILL.md](../../SKILL.md) §4 | The gate workflow line that reads `UNVERIFIED` as an open claim rather than a pass |
-| [configured-checks.test.cjs](../../scripts/tests/configured-checks.test.cjs) | The F06 case this scenario replays |
+| [configured-checks-outcomes.test.cjs](../../scripts/tests/configured-checks-outcomes.test.cjs) | The F06 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §2 and §3 | The exit codes, the check states, the repair field and the unverified list |
 | [quality-config.md](../../references/quality-config.md) §3 | The `checks` schema the fixture config uses |
 

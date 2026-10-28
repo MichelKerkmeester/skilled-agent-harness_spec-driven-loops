@@ -9,9 +9,9 @@
 // for a minified file still carries the message the finding is built from, and that one
 // crashed child costs only its own record.
 //
-// The first case blocks a child on a FIFO that has no writer, so it is skipped where
-// process groups do not exist. Every case builds its fixtures under the OS temp folder,
-// so the repository is never the place a check runs.
+// The first case starts a child stub that records its pid and arguments before blocking,
+// so it can check cleanup without querying the process table. Every case builds its
+// fixtures under the OS temp folder, so the repository is never the place a check runs.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -47,19 +47,6 @@ function tempDir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'parallel-node-check-'));
 }
 
-// The helper starts every child directly, so its own child list is the list of `node
-// --check` processes it is holding at this moment.
-function childPids(pid) {
-  const found = spawnSync('pgrep', ['-P', String(pid)], { encoding: 'utf8' });
-  if (found.status !== 0) return [];
-  return found.stdout.split('\n').filter(Boolean).map(Number);
-}
-
-function commandOf(pid) {
-  const found = spawnSync('ps', ['-o', 'command=', '-p', String(pid)], { encoding: 'utf8' });
-  return found.status === 0 ? found.stdout.trim() : '';
-}
-
 function alive(pid) {
   try {
     process.kill(pid, 0);
@@ -93,31 +80,51 @@ function stopQuietly(pid) {
 // 4. TESTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('unit: node pool helper: a SIGTERM leaves no node --check child running', { skip: POSIX ? false : 'process groups are a POSIX feature' }, async () => {
+test('unit: node pool helper: a SIGTERM leaves no check child running', { skip: POSIX ? false : 'process groups are a POSIX feature' }, async () => {
   const dir = tempDir();
-  const fifo = path.join(dir, 'blocking.js');
-  const made = spawnSync('mkfifo', [fifo], { encoding: 'utf8' });
-  assert.equal(made.status, 0, `mkfifo did not make a FIFO: ${made.stderr}`);
-  const helper = spawn(process.execPath, [HELPER, process.execPath, '1', '60000'], { stdio: ['pipe', 'pipe', 'pipe'] });
-  const started = [];
+  const file = path.join(dir, 'blocking.js');
+  const stub = path.join(dir, 'stub-node');
+  const pidFile = path.join(dir, 'child.pid');
+  const argsFile = path.join(dir, 'child.args');
+  fs.writeFileSync(file, 'module.exports = 1;\n');
+  fs.writeFileSync(stub, [
+    '#!/bin/sh',
+    'printf "%s\\n" "$$" > "$PARALLEL_NODE_CHILD_PID_FILE"',
+    'printf "%s\\n" "$@" > "$PARALLEL_NODE_CHILD_ARGS_FILE"',
+    'exec sleep 60',
+    '',
+  ].join('\n'));
+  fs.chmodSync(stub, 0o755);
+  const helper = spawn(process.execPath, [HELPER, stub, '1', '60000'], {
+    stdio: ['pipe', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      PARALLEL_NODE_CHILD_PID_FILE: pidFile,
+      PARALLEL_NODE_CHILD_ARGS_FILE: argsFile,
+    },
+  });
+  let childPid = null;
   try {
-    helper.stdin.end(JSON.stringify([fifo]));
-    // A read of a FIFO with no writer blocks, so the child a check started never finishes
-    // and is still there to be found when the helper is told to stop.
-    const found = await waitFor(() => {
-      const pids = childPids(helper.pid);
-      started.push(...pids.filter((pid) => !started.includes(pid)));
-      return started.length > 0 ? started : null;
+    helper.stdin.end(JSON.stringify([file]));
+    // The stub writes its identity before it waits, so the helper can be stopped while
+    // the child is still running and the test knows which process must disappear.
+    const started = await waitFor(() => {
+      if (!fs.existsSync(pidFile) || !fs.existsSync(argsFile)) return null;
+      return {
+        pid: Number(fs.readFileSync(pidFile, 'utf8').trim()),
+        args: fs.readFileSync(argsFile, 'utf8').trim().split('\n'),
+      };
     }, 20000);
-    assert.ok(found, 'the helper started no child to stop');
-    assert.match(commandOf(started[0]), /--check .*blocking\.js/, 'the child is not the syntax check it should be');
+    assert.ok(started && Number.isInteger(started.pid), 'the helper started no child to stop');
+    childPid = started.pid;
+    assert.deepEqual(started.args, ['--check', file], 'the helper changed the child command');
     helper.kill('SIGTERM');
     const [code, signal] = await new Promise((resolve) => helper.on('exit', (exitCode, exitSignal) => resolve([exitCode, exitSignal])));
     assert.ok(signal === 'SIGTERM' || code === 143, `the helper left with code ${code} and signal ${signal}`);
-    const gone = await waitFor(() => started.every((pid) => !alive(pid)), 10000);
-    assert.ok(gone, `a node --check child outlived the helper: ${started.filter(alive).join(', ')}`);
+    const gone = await waitFor(() => !alive(childPid), 10000);
+    assert.ok(gone, `the check child outlived the helper: ${childPid}`);
   } finally {
-    for (const pid of started) stopQuietly(pid);
+    if (childPid !== null) stopQuietly(childPid);
     helper.kill('SIGKILL');
     fs.rmSync(dir, { recursive: true, force: true });
   }

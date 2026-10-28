@@ -52,6 +52,13 @@ const USAGE_TEXT = [
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Loads and validates the hard-floor contract for rule overrides.
+ *
+ * @param {string} [contractPath=CONTRACT_PATH] - The contract JSON path.
+ * @returns {{fixed: Array<{id: string, rule: string}>, machineChecked: string[]}}
+ * @throws {Error} If the contract cannot be read, parsed, or validated.
+ */
 function loadContract(contractPath = CONTRACT_PATH) {
   const contract = JSON.parse(fs.readFileSync(contractPath, 'utf8'));
   if (!contract || !Array.isArray(contract.fixed) || contract.fixed.length === 0) {
@@ -234,6 +241,14 @@ function lintOverrides(text, contract = loadContract()) {
   return { found: result.found, rows: accepted, errors: result.errors };
 }
 
+/**
+ * Runs the override checker for the supplied checklist paths.
+ *
+ * @param {string[]} argv - Checklist paths and optional help flags.
+ * @param {NodeJS.WritableStream} [out=process.stdout] - Destination for successful or refused results.
+ * @param {NodeJS.WritableStream} [err=process.stderr] - Destination for usage and read errors.
+ * @returns {number} The checker exit code.
+ */
 function main(argv, out = process.stdout, err = process.stderr) {
   if (argv.includes('--help') || argv.includes('-h')) {
     out.write(`${USAGE_TEXT}\n`);

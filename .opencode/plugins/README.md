@@ -232,5 +232,9 @@ Expected result: each exits 0, reporting all plugin files active on OpenCode 2 (
 - [`ARCHITECTURE.md`](./ARCHITECTURE.md): the dual-version design, the bridge, the kill switches and the known limits.
 - [`tests/README.md`](./tests/README.md): the plugin regression suites.
 - [`tests/helpers/README.md`](./tests/helpers/README.md): the shared test helpers.
-- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `git-message-gate`, `session-cleanup`, `injection-screen`).
+- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `git-message-gate`, `session-cleanup`, `injection-screen`).
 - [`../skills/`](../skills/): the shared skill cores these plugins adapt.
+
+<!-- readme-check
+allow-count two plugins | the sentence counts the plugins that reject by default by behavior, not the plugin files in this folder
+-->

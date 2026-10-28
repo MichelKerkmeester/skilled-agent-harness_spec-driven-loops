@@ -193,8 +193,12 @@ function buildRepo({ base = {}, change = {}, links = {}, modes = {}, git = true,
   };
 }
 
-// A fixture whose committed checks should run vouches for them the way the operator of a
-// third-party repository would, so the case keeps testing what it tested.
+/**
+ * Mark a fixture repository as trusted for its committed checks.
+ *
+ * @param {Object} repo - A fixture returned by buildRepo.
+ * @returns {Object} The same repository fixture after its local trust setting is applied.
+ */
 function trustRepoChecks(repo) {
   repo.git(['config', '--local', 'skilled.trustRepoChecks', 'true']);
   return repo;

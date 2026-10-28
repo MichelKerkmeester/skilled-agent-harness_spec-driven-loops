@@ -20,21 +20,27 @@ const path = require('node:path');
 const test = require('node:test');
 
 const SCRIPT = path.resolve(__dirname, '..', 'sk-code-setup-check.cjs');
+const setupCheck = require('../sk-code-setup-check.cjs');
+const {
+  DERIVED_FRESHNESS,
+  DRIFT_GUARDS,
+  LEGS,
+  PARENT_SKILL_CHECK,
+  QUALITY_CHECKER,
+  QUALITY_DIR,
+  QUALITY_RUNNER,
+  QUALITY_TABLES,
+  QUALITY_TESTS,
+  ROOT_METADATA,
+  ROUTE_GUARD,
+  ROUTE_PROBE,
+  ROUTE_SYNC,
+  SKILL_DIR,
+} = setupCheck;
 
-const SKILL_FILE = '.skilled/skills/sk-code/SKILL.md';
-const PARENT_SKILL_CHECK = '.skilled/commands/doctor/scripts/parent-skill-check.cjs';
-const ROOT_METADATA = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs';
-const ROUTE_GUARD = '.skilled/bin/compiled-route-guard.cjs';
-const ROUTE_SYNC = '.skilled/bin/compiled-route-sync.cjs';
-const DRIFT_GUARDS = '.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh';
-const DERIVED_FRESHNESS = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs';
-const ROUTE_PROBE = '.skilled/bin/compiled-route.cjs';
+const SKILL_FILE = `${SKILL_DIR}/SKILL.md`;
 const SHARED_FRONTMATTER = 'node_modules/@spec-kit/shared/frontmatter/parse-frontmatter.js';
-const QUALITY_DIR = '.skilled/skills/sk-code/sk-code-quality';
-const QUALITY_RUNNER = `${QUALITY_DIR}/scripts/quality-gate.cjs`;
-const QUALITY_CHECKER = `${QUALITY_DIR}/scripts/check-comment-hygiene.sh`;
-const QUALITY_TABLES = [`${QUALITY_DIR}/assets/comment-syntax.json`, `${QUALITY_DIR}/assets/quality-defaults.json`];
-const QUALITY_TEST = `${QUALITY_DIR}/scripts/tests/stub.test.cjs`;
+const QUALITY_TEST = `${QUALITY_TESTS}/stub.test.cjs`;
 const PASSING_TEST = "require('node:test')('stub passes', () => {});\n";
 
 // The quality leg probes with its own prompt and reads the routed mode, and the stub
@@ -129,10 +135,10 @@ test('a provisioned tree whose legs all pass reports nine PASS lines and exit 0'
   const { status, out } = run(buildRoot());
   assert.equal(status, 0, out);
   assert.match(out, /^\/doctor:sk-code setup \(read-only; writes nothing\)$/m);
-  assert.equal((out.match(/^PASS {2}/gm) || []).length, 9);
+  assert.equal((out.match(/^PASS {2}/gm) || []).length, LEGS.length);
   assert.match(out, /^PASS {2}probe +node \S+ --hub sk-code --prompt "fix a typescript bug in the opencode plugin"$/m);
   assert.match(out, /^PASS {2}quality +python3, executables, tables, node --test \S+, quality route probe$/m);
-  assert.match(out, /^STATUS=OK legs=9$/m);
+  assert.match(out, new RegExp(`^STATUS=OK legs=${LEGS.length}$`, 'm'));
 });
 
 test('a custom prompt replaces the default on the probe command line', () => {

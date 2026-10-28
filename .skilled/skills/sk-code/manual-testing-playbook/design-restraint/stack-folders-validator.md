@@ -1,7 +1,7 @@
 ---
 title: "DR-004: Language reference folder validator"
 description: "Verify verify_stack_folders.py confirms every known sk-code-skilled language has an on-disk references folder, allows shared material, flags unknown reference folders, and exits non-zero on a mismatch."
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # DR-004: Language reference folder validator
@@ -96,6 +96,8 @@ Evidence: the exit code and report text captured from each `verify_stack_folders
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py` — sk-code-skilled language reference folder validator.
 - `.skilled/skills/sk-code/sk-code-skilled/references/` — language reference folders and shared cross-language material checked by the validator.
 
+Catalog: none. `feature-catalog/feature-catalog.md` does not inventory the reference-folder validator, so no catalog entry applies to this scenario.
+
 ---
 
 ## 5. SOURCE METADATA
@@ -104,7 +106,7 @@ Evidence: the exit code and report text captured from each `verify_stack_folders
 - Playbook ID: DR-004
 - **Created**: 2026-06-13
 - **Critical path**: No
-- **Destructive**: No (creates and removes a temporary `references/zzz_fake_language/` folder; recovery is the `rmdir` in step 6).
-- **Sandbox**: the only mutation is the temporary orphan folder, removed in step 6; verify cleanup before finishing.
-- **Concurrent-safe**: No (the temporary orphan folder mutates the live references tree; run this scenario serially).
+- **Destructive**: Yes, temporarily. The scenario creates one folder inside the live references tree, `sk-code-skilled/references/zzz_fake_language/`, and removes it in step 6. Undo: run the step 6 `rmdir`. Anything left behind makes the next clean run fail, so confirm the removal before finishing.
+- **Sandbox**: no `/tmp` copy is used; the validator reads the real references tree, so the orphan must exist there for the step 4 run to see it.
+- **Concurrent-safe**: No (the temporary orphan folder changes the live references tree; run this scenario serially)
 - **Last validated**: pending first manual run

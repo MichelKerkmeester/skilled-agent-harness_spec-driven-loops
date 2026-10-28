@@ -1,7 +1,7 @@
 ---
 title: "CR-021 -- Unrequested-code removal prompt"
 description: "This scenario validates the unrequested-code removal prompt for `CR-021`. It focuses on recommending removal, not just simplification, for code that traces to no stated requirement."
-version: 1.5.0.2
+version: 1.5.1.0
 ---
 
 # CR-021 -- Unrequested-code removal prompt
@@ -16,7 +16,7 @@ This scenario validates the unrequested-code removal prompt for `CR-021`. It foc
 
 ### Why This Matters
 
-The old KISS pass asked "can this be simpler?" but never "should this exist?". A feature, parameter, branch, or config that nothing in the stated scope asked for is pure carrying cost, and simplifying it only makes unused code shorter. The §7 needed-ness prompt added in v1.4.0.0 makes the reviewer ask whether the code was requested and whether anything breaks if the requirement is dropped, then recommend removal cross-referenced to removal_plan.md. CR-021 proves the reviewer reaches for removal with a Replacement entry and applies the correct P2 default with P1 escalation only when the unneeded code adds attack surface, contract obligations, or regression risk.
+The old KISS pass asked "can this be simpler?" but never "should this exist?". A feature, parameter, branch, or config that nothing in the stated scope asked for is pure carrying cost, and simplifying it only makes unused code shorter. The §7 needed-ness prompt added in v1.4.0.0 makes the reviewer ask whether the code was requested and whether anything breaks if the requirement is dropped, then recommend removal cross-referenced to the removal plan asset the review ships. CR-021 proves the reviewer reaches for removal with a Replacement entry and applies the correct P2 default with P1 escalation only when the unneeded code adds attack surface, contract obligations, or regression risk.
 
 ---
 
@@ -78,4 +78,5 @@ If the primary run passes, repeat against a diff where the new code DOES trace t
 - Playbook ID: CR-021
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `efficiency-and-restraint/unrequested-code-removal.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

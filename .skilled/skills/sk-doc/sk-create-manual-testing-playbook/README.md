@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.0.17
+version: 1.0.1.0
 ---
 
 # create-manual-testing-playbook
@@ -164,3 +164,7 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
 | [`references/examples.md`](./references/examples.md) | Shipped reference playbooks and scaffold templates |
 | [`assets/manual-testing-playbook-template.md`](./assets/manual-testing-playbook-template.md) | Root playbook scaffold |
 | [`assets/manual-testing-playbook-snippet-template.md`](./assets/manual-testing-playbook-snippet-template.md) | Per-feature file scaffold |
+
+<!-- readme-check
+allow-ref checklist.md | the checklist a spec packet can carry at its root, which only a legacy packet still has, so no fixed checkout path holds one
+-->

@@ -7,7 +7,7 @@ trigger_phrases:
   - "before after document review"
   - "feature catalog"
 last_updated: "2026-07-20"
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # create-diff: Feature Catalog
@@ -82,7 +82,7 @@ Captures a baseline copy of a document before an edit, then compares the edited 
 
 #### Current Reality
 
-`snapshot` copies the source into a local `.sk-create-diff/` store (content-addressed, atomic write, source never touched); `compare` uses the latest baseline as "before" and the current file as "after".
+`snapshot` copies the source into a local `.create-diff/` store (content-addressed, atomic write, source never touched); `compare` uses the latest baseline as "before" and the current file as "after".
 
 #### Source Files
 
@@ -114,7 +114,7 @@ Lists and prunes stored baselines so local snapshot state stays bounded.
 
 #### Current Reality
 
-`status` lists snapshots (all or per-file); `cleanup` removes them by age (`--older-than`) or wholesale, with `--dry-run` to preview; state lives under `.sk-create-diff/` and is safe to delete.
+`status` lists snapshots (all or per-file); `cleanup` removes them by age (`--older-than`) or wholesale, with `--dry-run` to preview; state lives under `.create-diff/` and is safe to delete.
 
 #### Source Files
 

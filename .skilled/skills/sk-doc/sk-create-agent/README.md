@@ -4,7 +4,7 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-agent
@@ -149,3 +149,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
 | [`references/agent-vs-skill-vs-command.md`](./references/agent-vs-skill-vs-command.md) | The full component-choice decision, when the call is close |
 | [`references/permission-design.md`](./references/permission-design.md) | `mode` selection and least-authority permission design |
 | [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring mistakes with why they break and the correct fix |
+
+<!-- readme-check
+allow-count two files | the answer counts the files a reader authors, one per runtime directory, so no folder in this checkout holds that inventory
+-->

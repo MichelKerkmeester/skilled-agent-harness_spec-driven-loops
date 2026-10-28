@@ -1,7 +1,7 @@
 ---
 title: "CR-020 -- Reinvent-the-wheel detection"
 description: "This scenario validates reinvent-the-wheel detection for `CR-020`. It focuses on flagging hand-rolled code that duplicates a standard-library or native platform capability and recommending the built-in."
-version: 1.5.0.2
+version: 1.5.1.0
 ---
 
 # CR-020 -- Reinvent-the-wheel detection
@@ -78,4 +78,5 @@ If the primary run passes, repeat the scenario against a diff where the hand-rol
 - Playbook ID: CR-020
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `efficiency-and-restraint/reinvent-the-wheel-detection.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

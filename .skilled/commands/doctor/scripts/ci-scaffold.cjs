@@ -33,13 +33,12 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { ProfileError, loadProfile } = require('./lib/ci-profile.cjs');
+const { ProfileError, REPO_ROOT, loadProfile, parseProfileFlag } = require('./lib/ci-profile.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REPO_ROOT = path.resolve(__dirname, '../../../..');
 const ASSETS = path.join(REPO_ROOT, '.skilled/skills/sk-code/sk-code-ci/assets');
 const TEMPLATES = { workflow: 'workflow-template.yml', job: 'job-block-template.yml' };
 const USAGE = 'Usage: node .skilled/commands/doctor/scripts/ci-scaffold.cjs [--job | --protected] [--group=<NAME>] [--profile <path>]';
@@ -51,23 +50,27 @@ const BLOCK_LINE = /^(\s*)#<<=([A-Za-z][A-Za-z0-9]*)(?::(\d+))?>>\s*$/;
 const INLINE_SECTION = /<<([#^])([A-Za-z][A-Za-z0-9]*)>>(.*?)<<\/\2>>/g;
 const VALUE_SLOT = /<<([A-Za-z][A-Za-z0-9]*)>>/g;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ERRORS
+// ─────────────────────────────────────────────────────────────────────────────
+
 class TemplateError extends Error {}
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. ARGUMENTS
+// 4. ARGUMENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const options = { job: false, protectedList: false, group: null, profile: null };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+    const profileFlag = parseProfileFlag(argv, index);
     if (arg === '--job') options.job = true;
     else if (arg === '--protected') options.protectedList = true;
     else if (arg.startsWith('--group=')) options.group = arg.slice('--group='.length);
-    else if (arg === '--profile' || arg.startsWith('--profile=')) {
-      const value = arg === '--profile' ? argv[(index += 1)] : arg.slice('--profile='.length);
-      if (!value) throw new Error('--profile needs a path');
-      options.profile = value;
+    else if (profileFlag) {
+      options.profile = profileFlag.value;
+      index = profileFlag.nextIndex;
     } else throw new Error(`unknown argument: ${arg}`);
   }
   if (options.job && options.protectedList) throw new Error('--job and --protected cannot be combined');
@@ -75,7 +78,7 @@ function parseArgs(argv) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. VALUES FROM THE PROFILE
+// 5. VALUES FROM THE PROFILE
 // ─────────────────────────────────────────────────────────────────────────────
 
 function yamlScalar(value) {
@@ -122,7 +125,8 @@ function slotValues(profile, wantedGroup) {
   return {
     readme: Boolean(readme),
     readmeStep: readme
-      ? `Required last step: add one row for this workflow to ${readme.path}${tables.length > 0 ? `, in ${tables.join(' and in ')}` : ''}.`
+      ? `Required last step: add one row for this workflow to ${readme.path}`
+        + `${tables.length > 0 ? `, in ${tables.join(' and in ')}` : ''}.`
       : null,
     integrationBranches: profile.integrationBranches.length > 0 ? `[${profile.integrationBranches.map(yamlScalar).join(', ')}]` : null,
     pathTwins: profile.pathTwins.length > 0,
@@ -143,7 +147,7 @@ function slotValues(profile, wantedGroup) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. RENDERING
+// 6. RENDERING
 // ─────────────────────────────────────────────────────────────────────────────
 
 function isSet(value) {
@@ -221,7 +225,7 @@ function render(template, values) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. MAIN
+// 7. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main(argv) {
@@ -245,7 +249,10 @@ function main(argv) {
     return 3;
   }
   if (loaded.ignored) {
-    process.stderr.write(`note: ignored ${loaded.ignored.path}, written for ${loaded.ignored.repository}, this repository is ${loaded.ignored.current || 'unknown'}\n`);
+    process.stderr.write(
+      `note: ignored ${loaded.ignored.path}, written for ${loaded.ignored.repository}, `
+        + `this repository is ${loaded.ignored.current || 'unknown'}\n`,
+    );
   }
   if (options.protectedList) {
     const files = loaded.profile.protected.map((entry) => entry.file);
@@ -269,6 +276,10 @@ function main(argv) {
   }
   return 0;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { render, slotValues };
 

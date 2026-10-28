@@ -1,7 +1,7 @@
 ---
 title: "CR-006 -- Secrets and hardcoded credentials"
 description: "This scenario validates Secrets and hardcoded credentials for `CR-006`. It focuses on Confirm committed secrets and sensitive logs are treated as security blockers."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-006 -- Secrets and hardcoded credentials
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-006
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `security-and-correctness-minimums/secrets-and-hardcoded-creds.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

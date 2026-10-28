@@ -23,10 +23,20 @@ const path = require('node:path');
 const test = require('node:test');
 
 const SCRIPTS = path.resolve(__dirname, '..');
-const REPO_ROOT = path.resolve(__dirname, '../../../../..');
+const { REPO_PROFILE_FILE, REPO_ROOT } = require('../lib/ci-profile.cjs');
 const SCRIPTS_RELATIVE = '.skilled/commands/doctor/scripts';
-const COPIED = ['ci-toggle.cjs', 'ci-report.cjs', 'lib/ci-profile.cjs'];
-const PROFILE_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
+// The toggle and every module the report it reads loads, so a copied fixture runs the
+// same code and never resolves a module from this worktree.
+const COPIED = [
+  'ci-toggle.cjs',
+  'ci-report.cjs',
+  'lib/ci-profile.cjs',
+  'lib/ci-report-render.cjs',
+  'lib/ci-report-sources.cjs',
+  'lib/ci-report-text.cjs',
+  'lib/ci-report-workflows.cjs',
+];
+const PROFILE_RELATIVE = REPO_PROFILE_FILE;
 const REPOSITORY_IDENTITY_RELATIVE = '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs';
 
 const MESSAGE_CONTEXT = 'Commit messages, branch names and PR description follow the templates';

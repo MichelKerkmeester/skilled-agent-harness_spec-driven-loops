@@ -8,7 +8,7 @@ trigger_phrases:
   - "jsdoc template pattern"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # JavaScript Quick Reference
@@ -31,12 +31,12 @@ Use when implementing or reviewing JavaScript code and a concise pattern lookup 
 
 ---
 
-## 2. COMPLETE FILE TEMPLATE
+## 2. COMMONJS FILE TEMPLATE
 
 ```javascript
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ [Module Name]                                                             ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: [Module Name]
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

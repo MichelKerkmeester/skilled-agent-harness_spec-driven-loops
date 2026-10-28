@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # create-frontmatter
@@ -190,5 +190,4 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 
 <!-- readme-check
 allow-count three scripts | the sentence names the three by role (the versioning engine frontmatter-version.mjs, the corpus gate check-frontmatter-versions.sh that wraps it, and the fast validator quick_validate.py), and the folder they share holds other scripts, so no folder count proves it
-allow-count four command workflows | the create-agent-confirm, create-command-auto, create-skill-auto and create-skill-confirm workflow assets call quick_validate.py
 -->

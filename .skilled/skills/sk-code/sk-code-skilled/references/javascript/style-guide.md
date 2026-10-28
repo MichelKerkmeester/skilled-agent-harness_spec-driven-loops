@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript section organization"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # JavaScript Style Guide
@@ -38,9 +38,10 @@ Use when writing, reviewing, or resolving style questions for JavaScript files.
 ## 2. FILE HEADER FORMAT
 
 All JavaScript files MUST begin with a module header identifying the module,
-in the same divider form the TypeScript style guide uses, so a mixed tree reads
-as one convention. For `.mjs` files and OpenCode plugin loader paths, keep the
-same header but follow ESM module syntax instead of CommonJS.
+using the divider form below. Module syntax follows the nearest package
+boundary and loader contract: `.cjs` is CommonJS, `.mjs` is ESM, and `.js`
+follows the nearest package's `type`. OpenCode plugin paths use their ESM
+loader contract.
 
 ### Template
 
@@ -55,8 +56,10 @@ same header but follow ESM module syntax instead of CommonJS.
 - Divider width: 67 box-drawing characters after `// `
 - Module name: after `MODULE:` on the middle line
 - A shebang line may precede the header in an executable script
-- Immediately followed by `'use strict';` directive for `.js/.cjs` files
-- `.mjs` and plugin ESM files do not require `'use strict'`
+- Immediately followed by `'use strict';` for `.js/.cjs` files, as required by
+  this repository's alignment checks; it is redundant in ESM `.js` files
+- `.mjs` files do not require `'use strict'`; ESM `.js` plugin files follow the
+  `.js` requirement above
 - The older 78-character `╔═╗` box is accepted where it already exists; do not
   introduce it in new files
 
@@ -68,8 +71,9 @@ same header but follow ESM module syntax instead of CommonJS.
 ## 3. USE STRICT DIRECTIVE
 
 Every `.js` and `.cjs` JavaScript file MUST include the strict mode directive.
-Do not add it to `.mjs` files; ES modules are strict by definition and the
-alignment verifier intentionally skips `.mjs` strict-mode enforcement.
+This repository convention also applies to ESM `.js` files, where it is
+redundant because modules are strict by definition. Do not add it to `.mjs`
+files; the alignment verifier intentionally skips `.mjs` enforcement.
 
 ```javascript
 'use strict';
@@ -98,7 +102,7 @@ Large files are organized using numbered section dividers.
 
 | Order | Section Name     | Purpose                           |
 |-------|------------------|-----------------------------------|
-| 1     | IMPORTS/REQUIRES | Module dependencies               |
+| 1     | IMPORTS          | Module dependencies               |
 | 2     | CONSTANTS        | Configuration values, magic numbers |
 | 3     | HELPERS          | Internal utility functions        |
 | 4     | CORE LOGIC       | Main implementation               |
@@ -275,7 +279,7 @@ const message = "Hello world";  // Double quotes
 
 ### Line Length
 
-- **Maximum**: 100 characters
+- **Soft limit**: roughly 100 to 120 characters, per the shared formatting rule
 - **Preferred**: 80 characters
 - **Exception**: URLs and long strings
 

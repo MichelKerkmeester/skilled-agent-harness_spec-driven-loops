@@ -32,13 +32,18 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { REPOSITORY_PATTERN, currentRepository, repositoryMatches } = require('../../../../skills/sk-code/shared/scripts/lib/repository-identity.cjs');
+const {
+  REPOSITORY_PATTERN,
+  currentRepository,
+  repositoryMatches,
+} = require('../../../../skills/sk-code/shared/scripts/lib/repository-identity.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REPO_PROFILE_FILE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
+const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const LEGACY_PROFILE_FILE = '.sk-code/ci.json';
 // A repository that installs the skills under .opencode/ instead keeps the file at the
 // same path there, so the profile is found in either installation.
@@ -102,8 +107,37 @@ class ProfileError extends Error {
   }
 }
 
+/**
+ * Test whether a parsed profile value is a non-array object.
+ *
+ * @param {*} value - The parsed value.
+ * @returns {boolean} Whether the value is a plain object candidate.
+ */
 function isPlainObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+/**
+ * Read a --profile argument without changing the caller's command-specific parsing.
+ *
+ * @param {string[]} argv - The arguments after the program name.
+ * @param {number} index - The index of the current argument.
+ * @returns {{value:string, nextIndex:number}|null} The path and consumed index, or null.
+ */
+function parseProfileFlag(argv, index) {
+  const arg = argv[index];
+  if (arg !== '--profile' && !arg.startsWith('--profile=')) return null;
+  const value = arg === '--profile' ? argv[index + 1] : arg.slice('--profile='.length);
+  if (!value) throw new Error('--profile needs a path');
+  return { value, nextIndex: arg === '--profile' ? index + 1 : index };
+}
+
+function readProfileFile(file) {
+  try {
+    return { raw: JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, '')), error: null };
+  } catch (error) {
+    return { raw: null, error };
+  }
 }
 
 function isText(value) {
@@ -186,19 +220,17 @@ function fileScopedGitValue(root, env) {
 }
 
 /**
- * Pick the one profile source, most explicit first.
+ * Resolve the selected source and retain a parsed repository profile for the loader.
  *
  * @param {Object} options - cliPath, cwd, root, git and env.
- * @returns {{source:string, path:string|null, ignored?:Object}} source is cli, git-config,
- * repo or default. ignored names a profile found for another repository, with its
- * repository-relative path, its declared repository and the one read here.
+ * @returns {{found:Object, read:Object|null}} The selected source and any repository read.
  */
-function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true, env = process.env }) {
+function resolveProfile({ cliPath = null, cwd = process.cwd(), root, git = true, env = process.env }) {
   if (cliPath) {
     const file = path.resolve(cwd, cliPath);
     if (!fs.existsSync(file)) throw new ProfileError('PROFILE_PATH_MISSING', `--profile names ${file}, which does not exist`);
     refuseLegacyLocation(file, root);
-    return { source: 'cli', path: file };
+    return { found: { source: 'cli', path: file }, read: null };
   }
   if (git) {
     const configured = fileScopedGitValue(root, env);
@@ -206,7 +238,7 @@ function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true
       const file = path.resolve(root, configured);
       if (!fs.existsSync(file)) throw new ProfileError('PROFILE_PATH_MISSING', `git config ${GIT_CONFIG_KEY} names ${file}, which does not exist`);
       refuseLegacyLocation(file, root);
-      return { source: 'git-config', path: file };
+      return { found: { source: 'git-config', path: file }, read: null };
     }
   }
   const legacy = path.join(root, LEGACY_PROFILE_FILE);
@@ -216,22 +248,34 @@ function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true
   const file = PROFILE_CANDIDATES
     .map((candidate) => path.join(root, candidate))
     .find((candidate) => fs.existsSync(candidate));
-  if (!file) return { source: 'default', path: null };
-  let raw;
-  try {
-    raw = JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, ''));
-  } catch {
-    return { source: 'repo', path: file };
-  }
+  if (!file) return { found: { source: 'default', path: null }, read: null };
+  const read = readProfileFile(file);
+  if (read.error) return { found: { source: 'repo', path: file }, read };
+  const { raw } = read;
   const declared = isPlainObject(raw) ? raw.repository : undefined;
   const namesRepository = typeof declared === 'string' && REPOSITORY_PATTERN.test(declared.trim());
   // An absent field applies everywhere. A value the pattern refuses is a profile fault
   // rather than another repository, so the file stays a profile source and validation
   // names the field.
-  if (declared === undefined || !namesRepository) return { source: 'repo', path: file };
+  if (declared === undefined || !namesRepository) return { found: { source: 'repo', path: file }, read };
   const { identity } = currentRepository({ root, env });
-  if (repositoryMatches(declared, identity)) return { source: 'repo', path: file };
-  return { source: 'default', path: null, ignored: { path: file, repository: declared, current: identity } };
+  if (repositoryMatches(declared, identity)) return { found: { source: 'repo', path: file }, read };
+  return {
+    found: { source: 'default', path: null, ignored: { path: file, repository: declared, current: identity } },
+    read,
+  };
+}
+
+/**
+ * Pick the one profile source, most explicit first.
+ *
+ * @param {Object} options - cliPath, cwd, root, git and env.
+ * @returns {{source:string, path:string|null, ignored?:Object}} source is cli, git-config,
+ * repo or default. ignored names a profile found for another repository, with its
+ * repository-relative path, its declared repository and the one read here.
+ */
+function discoverProfile(options = {}) {
+  return resolveProfile(options).found;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -343,6 +387,12 @@ function validateProfile(raw) {
 
 // Every key the file leaves out takes the default, so a profile names only what
 // differs. The switch block merges per key for the same reason.
+/**
+ * Fill optional profile fields with the generic defaults after validation.
+ *
+ * @param {Object|null} raw - The validated profile data, or null for the generic default.
+ * @returns {Object} The normalized CI profile.
+ */
 function normalizeProfile(raw) {
   const own = raw || {};
   const ownSwitch = own.switch || {};
@@ -379,16 +429,17 @@ function normalizeProfile(raw) {
  * @returns {{source:string, path:string|null, display:string|null, errors:Object[], profile:Object|null, ignored?:Object}}
  */
 function loadProfile({ cliPath = null, cwd = process.cwd(), root, git = true, env = process.env }) {
-  const found = discoverProfile({ cliPath, cwd, root, git, env });
+  const resolved = resolveProfile({ cliPath, cwd, root, git, env });
+  const { found } = resolved;
   const base = { source: found.source, path: found.path, display: displayPath(found.path, root), errors: [] };
   if (found.ignored) base.ignored = { ...found.ignored, path: displayPath(found.ignored.path, root) };
   if (!found.path) return { ...base, profile: normalizeProfile(null) };
-  let raw;
-  try {
-    raw = JSON.parse(fs.readFileSync(found.path, 'utf8').replace(/^﻿/, ''));
-  } catch (error) {
+  const read = resolved.read || readProfileFile(found.path);
+  if (read.error) {
+    const { error } = read;
     return { ...base, errors: [issue('', `${base.display} does not parse as JSON: ${error.message}`)], profile: null };
   }
+  const { raw } = read;
   const errors = validateProfile(raw);
   return { ...base, errors, profile: errors.length > 0 ? null : normalizeProfile(raw) };
 }
@@ -414,11 +465,14 @@ module.exports = {
   PROFILE_CANDIDATES,
   ProfileError,
   REPO_PROFILE_FILE,
+  REPO_ROOT,
   SCHEMA_VERSION,
   declaredSwitches,
   discoverProfile,
   displayPath,
+  isPlainObject,
   loadProfile,
   normalizeProfile,
+  parseProfileFlag,
   validateProfile,
 };

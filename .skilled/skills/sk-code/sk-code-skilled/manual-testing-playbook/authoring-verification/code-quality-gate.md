@@ -2,12 +2,15 @@
 id: OC-007
 category: authoring_verification
 title: 'Code quality gate routing'
-description: "This scenario validates CODE_QUALITY routing for `OC-007`. It confirms a lint/format/naming/code-smell prompt loads the full nine-file authoring checklist set — universal plus JavaScript, TypeScript, Python, Shell, and the four-part Rust checklist — instead of a single-language subset."
+description: "This scenario validates CODE_QUALITY routing for `OC-007`. It confirms a lint/format/naming/code-smell prompt loads the full twelve-file authoring checklist set — universal, the JavaScript checklist with its three-part js-css-style tier, TypeScript, Python, Shell, and the four-part Rust checklist — instead of a single-language subset."
 expected_surface: SKILLED
 expected_intent: CODE_QUALITY
 expected_resources:
   - assets/checklists/universal-checklist.md
   - assets/checklists/javascript-checklist.md
+  - assets/checklists/js-css-style/overview-header-and-comments.md
+  - assets/checklists/js-css-style/naming-init-formatting-and-css.md
+  - assets/checklists/js-css-style/verification-quick-reference-and-related.md
   - assets/checklists/typescript-checklist.md
   - assets/checklists/python-checklist.md
   - assets/checklists/shell-checklist.md
@@ -15,7 +18,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.1.1
+version: 1.0.2.0
 ---
 
 # OC-007: Code quality gate routing
@@ -27,12 +30,12 @@ This document captures the routing-recall contract, execution process, source an
 ## 1. OVERVIEW
 
 This scenario validates `CODE_QUALITY` routing for `OC-007`. It focuses on confirming that the exact prompt
-below classifies as `CODE_QUALITY` and loads the full 9-file resource set instead of a generic or mismatched
+below classifies as `CODE_QUALITY` and loads the full 12-file resource set instead of a generic or mismatched
 resource set, per `SKILL.md` §6's machine-readable router.
 
 ### Why This Matters
 
-`CODE_QUALITY` is the shared post-implementation gate across every language this surface owns. If the router drops the four-file Rust checklist from the resolved set, a Rust change could clear the quality gate without the P0 safety/boundary-discipline and P1/P2 checks that trio enforces.
+`CODE_QUALITY` is the shared post-implementation gate across every language this surface owns. If the router drops the four-file Rust checklist from the resolved set, a Rust change could clear the quality gate without the P0 safety/boundary-discipline and P1/P2 checks that trio enforces. If it drops the three `js-css-style` parts, a JavaScript or stylesheet change clears the gate without the header, comment, naming and CSS-convention checks those parts carry, and the 12-entry list is the one `RESOURCE_MAP["CODE_QUALITY"]` actually declares.
 
 ---
 
@@ -74,13 +77,14 @@ Run a quality gate for lint, format, naming, standards, and code smell risks in 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"CODE_QUALITY"'`
 3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
-4. `for p in assets/checklists/universal-checklist.md assets/checklists/javascript-checklist.md assets/checklists/typescript-checklist.md assets/checklists/python-checklist.md assets/checklists/shell-checklist.md assets/checklists/rust-checklist/overview-and-p0-parity.md assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md assets/checklists/rust-checklist/p1-required.md assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in assets/checklists/universal-checklist.md assets/checklists/javascript-checklist.md assets/checklists/js-css-style/overview-header-and-comments.md assets/checklists/js-css-style/naming-init-formatting-and-css.md assets/checklists/js-css-style/verification-quick-reference-and-related.md assets/checklists/typescript-checklist.md assets/checklists/python-checklist.md assets/checklists/shell-checklist.md assets/checklists/rust-checklist/overview-and-p0-parity.md assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md assets/checklists/rust-checklist/p1-required.md assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
 Step 1 shows `expected_intent: CODE_QUALITY` and the full `expected_resources` list in the frontmatter. Step
 2 shows the `INTENT_SIGNALS["CODE_QUALITY"]` keyword list this scenario's prompt matches. Step 3 shows the
-`RESOURCE_MAP["CODE_QUALITY"]` array this scenario's list should mirror. Step 4 prints `OK` for every path.
+`RESOURCE_MAP["CODE_QUALITY"]` array this scenario's 12-path list mirrors entry for entry. Step 4 prints
+`OK` for every path.
 
 ### Evidence
 
@@ -96,9 +100,10 @@ excerpt.
 ### Failure Triage
 
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
-   `assets/checklists/`.
-2. Diff this scenario's `expected_resources` against the step-3 `RESOURCE_MAP["CODE_QUALITY"]` excerpt to see
-   whether the drift is a stale scenario file or a stale `SKILL.md` map.
+   `assets/checklists/` or `assets/checklists/js-css-style/`.
+2. Sort both lists — this scenario's `expected_resources` and the step-3 array — and diff them; both hold
+   12 paths, so any difference is a stale scenario file or a stale `SKILL.md` map, never a legitimate
+   subset.
 
 ---
 

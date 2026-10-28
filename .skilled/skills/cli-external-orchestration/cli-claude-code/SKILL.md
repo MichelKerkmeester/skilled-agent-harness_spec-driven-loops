@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 <!-- Keywords: claude-code, claude-cli, anthropic, cross-ai, deep-reasoning, extended-thinking, code-editing, structured-output, agent-delegation, opus, sonnet, haiku -->
@@ -200,7 +200,7 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
    - Exception: when the operator explicitly authorizes N parallel dispatches, run N concurrently and still SIGKILL each as its work returns.
 13. **Set `AI_SESSION_CHILD=1` in the dispatched child's env and state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable.
    - The reader being waived is a model, and a model cannot see an environment variable. A child given only the variable still stops to ask the documentation-scope question, writes nothing, and exits with code zero.
-   - When sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`), copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+   - Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
    - A session may use the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `claude -p` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own.
    - The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 claude -p ...`. This is harmless when the wrapper is not in use.
    - See `.skilled/bin/README.md` → "Worktree session isolation".

@@ -1,7 +1,7 @@
 ---
 title: "LS-001: SKILLED TypeScript Sub-Detection"
 description: "Verify that within SKILLED surface, TypeScript file extensions trigger loading of typescript/* references (not python, shell, or config)."
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # LS-001: SKILLED TypeScript Sub-Detection
@@ -47,7 +47,7 @@ Prompt: `Refactor the parseExecutorConfig function in .skilled/skills/system-dee
 ### Preconditions
 
 1. Target file exists: `bash: test -f .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`
-2. TypeScript sub-language reference set intact: `bash: ls .skilled/skills/sk-code/sk-code-skilled/references/typescript/ | sort` returns exactly `quality-standards.md style-guide.md quick-reference.md` (in some sort order).
+2. TypeScript sub-language reference set intact: `bash: ls .skilled/skills/sk-code/sk-code-skilled/references/typescript/` lists exactly the three folders `quality-standards`, `quick-reference` and `style-guide`, and each folder holds at least one topic part.
 
 ### Exact Command Sequence
 
@@ -68,8 +68,8 @@ Evidence: `/tmp/skc-LS001-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
-1. If a python/shell/config ref leaks: verify the file extension parsing in SKILL.md sub-detection table.
-2. If quick-reference.md is missing: check whether the quick-reference always-load rule in `resource-loading.md` is intact.
+1. If a python/shell/config ref leaks: verify the TYPESCRIPT row and the CONFIG row in `shared/references/stack-detection.md` section 3.
+2. If a quick-reference part is missing: check the LANGUAGE row of the load tiers and the language overlay in `ROUTER.md` section 4, which names the three folders for each language.
 
 ---
 
@@ -77,7 +77,10 @@ Evidence: `/tmp/skc-LS001-loaded-refs.txt` (loaded-refs transcript).
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/shared/references/stack-detection.md` (section 3, SKILLED language sub-detection).
-- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/{style_guide,quality_standards,quick_reference}.md`.
+- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/` — the three expected-loaded TypeScript reference folders, `style-guide/`, `quality-standards/` and `quick-reference/`, each split into topic parts.
+
+Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that names `ROUTER.md` as the owner of the stage-two resource maps the language overlay lives in.
 
 ---
 

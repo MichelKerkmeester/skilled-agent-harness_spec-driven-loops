@@ -1,7 +1,7 @@
 ---
 title: "TH-002: check-comment-hygiene.sh wiring into claude-posttooluse.sh"
 description: "Verify that an Edit introducing a forbidden ephemeral-artifact comment makes the legacy PostToolUse hook print a COMMENT HYGIENE WARNING banner to stdout while always exiting 0, and that the direct check-comment-hygiene.sh checker returns rc=1 on the offending file and rc=0 once the comment is rewritten as a durable WHY."
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # TH-002: check-comment-hygiene.sh wiring into claude-posttooluse.sh
@@ -91,7 +91,7 @@ Prompt: `In a /tmp sandbox, add a source file whose comment carries an ephemeral
 
 | Step | Signal (intended contract) |
 |---|---|
-| 2 (direct checker, pre-fix) | stdout: `<file>:2:   // retry cap per ADR-014`; `direct_prefix_exit=1` |
+| 2 (direct checker, pre-fix) | stdout: `<file>:2:   // retry cap per ADR-014 [ADR reference]`; `direct_prefix_exit=1`. The bracketed tail names the violation class the line matched, so it follows the excerpt rather than replacing it. |
 | 3 (full hook, pre-fix) | hook stdout contains the `COMMENT HYGIENE WARNING` banner (blank-line wrapped), the indented violation line, and the `code-style-guide.md §4` + `hygiene-ok` escape lines; stderr empty; `hook_exit=0` |
 | 5 (direct checker, post-fix) | stdout empty; `direct_postfix_exit=0` |
 
@@ -101,14 +101,14 @@ The banner expected verbatim at step 3:
 COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
 Violations in /tmp/skc-TH002-sandbox/sample.ts:
-  /tmp/skc-TH002-sandbox/sample.ts:2:   // retry cap per ADR-014
+  /tmp/skc-TH002-sandbox/sample.ts:2:   // retry cap per ADR-014 [ADR reference]
 See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 ```
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: the hook prints the COMMENT HYGIENE WARNING banner to stdout for the file with the forbidden comment AND exits 0, AND `check-comment-hygiene.sh` returns rc=1 on that file pre-fix and rc=0 after the comment is rewritten as a durable WHY.
+- **PASS** iff: the hook prints the COMMENT HYGIENE WARNING banner to stdout for the file with the forbidden comment AND exits 0, AND `check-comment-hygiene.sh` returns rc=1 on that file pre-fix with the matched class named in brackets, and rc=0 after the comment is rewritten as a durable WHY.
 - **FAIL** iff: the hook exits non-zero (blocks the edit) for any reason, the checker fires the banner when the comment carries no forbidden pointer (false positive), the direct checker rc does not flip from 1 (pre-fix) to 0 (post-fix), or the banner does not reach stdout for the forbidden comment (e.g. a stripped executable bit, the class of gap TH-001 documented) even though the hook itself still exits 0.
 
 Evidence: `/tmp/th002-hook-stdout.txt` (full hook stdout), `/tmp/th002-direct-prefix.txt` (direct checker pre-fix stdout), `/tmp/th002-direct-postfix.txt` (direct checker post-fix stdout).
@@ -128,6 +128,8 @@ Evidence: `/tmp/th002-hook-stdout.txt` (full hook stdout), `/tmp/th002-direct-pr
 - `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; prints the `COMMENT HYGIENE WARNING` banner only when the comment checker returns rc=1 with non-empty stdout; always exits 0.
 - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker (Python, `.sh` extension); ships executable (`-rwxr-xr-x`). Exit 0 clean, 1 violations (printed as `<file>:<lineno>: <excerpt>`), 2 skipped (excluded dir, unknown extension, or unreadable).
 - `.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md` §4: the forbidden ephemeral-artifact-pointer classes and the durable-WHY convention the checker enforces.
+
+Catalog: `feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md`, which inventories the comment-hygiene rules and the `commentHygiene.disableRules` key this checker's rules are named by.
 
 **Related**: `claude-posttooluse.sh` also runs the dist-staleness checker (`check-dist-staleness.sh`) on the same edit; that branch is validated by TH-001 (see `tooling-and-hooks/check-dist-staleness-hook.md`). The `ceiling:` intentional-simplification convention that must pass this same comment-hygiene checker without allow-listing is validated by DR-003 (see `design-restraint/ceiling-comment-convention.md`), which asserts the checker exits 0 on a well-formed ceiling comment; TH-002 is the complementary case, asserting rc=1 (and the banner) on a genuine violation.
 
@@ -152,6 +154,6 @@ The comment-hygiene hook is an **author-side** gate: it runs at edit time inside
 
 **What `sk-code-quality` hands forward.** When a `sk-code-quality` pass completes it emits an advisory evidence envelope — the modified files, the checker outputs (including any `COMMENT HYGIENE WARNING` this scenario exercises and the underlying `check-comment-hygiene.sh` rc), the P0/P1/P2 decisions the author took on each finding, any deferrals, and the remaining risk the author is knowingly shipping. This envelope is advisory: the hook itself never blocks (it always exits 0), so an unresolved comment-hygiene warning can legitimately survive into the diff a reviewer later sees.
 
-**Where `deep-review` consumes it.** `deep-review` audits four dimensions — correctness, security, **traceability**, and maintainability (`.skilled/skills/system-deep-loop/deep-review/README.md:92`). The comment-hygiene envelope feeds the **traceability** dimension: a comment that still points at a spec path, packet/phase number, or ADR/REQ/task/finding id is exactly the kind of unstable, rot-prone reference the traceability pass is meant to catch, and the author-side envelope tells the reviewer which such references were already flagged, fixed, or deferred. `deep-review` then classifies each surviving finding by blocking severity — P0/P1/P2 (`.skilled/skills/system-deep-loop/deep-review/README.md:96`) — and those severity gates roll up into the release-readiness verdict, PASS / CONDITIONAL / FAIL (`.skilled/skills/system-deep-loop/deep-review/README.md:27`). A comment-hygiene deferral the author labelled low-risk typically lands as a P2 advisory that rides a PASS; one that obscures a real traceability defect can be escalated by the reviewer through its own adversarial re-read.
+**Where `deep-review` consumes it.** `deep-review` audits four dimensions — correctness, security, **traceability**, and maintainability (the review-dimension table in `.skilled/skills/system-deep-loop/deep-review/README.md`). The comment-hygiene envelope feeds the **traceability** dimension: a comment that still points at a spec path, packet/phase number, or ADR/REQ/task/finding id is exactly the kind of unstable, rot-prone reference the traceability pass is meant to catch, and the author-side envelope tells the reviewer which such references were already flagged, fixed, or deferred. `deep-review` then classifies each surviving finding by blocking severity — P0/P1/P2 (the severity table in `.skilled/skills/system-deep-loop/deep-review/README.md`) — and those severity gates roll up into the release-readiness verdict, PASS / CONDITIONAL / FAIL (the release-readiness verdict table in `.skilled/skills/system-deep-loop/deep-review/README.md`). A comment-hygiene deferral the author labelled low-risk typically lands as a P2 advisory that rides a PASS; one that obscures a real traceability defect can be escalated by the reviewer through its own adversarial re-read.
 
 **The boundary (what this note is NOT).** This consumption path does **not** make `sk-code-quality` a deep-loop mode, and it does **not** make the comment-hygiene hook a review owner. `sk-code-quality` stays the author-side gate that produces evidence; `deep-review` stays the independent reviewer that consumes it, re-derives severity through its own Hunter/Skeptic/Referee self-check, and owns the verdict. The hook's warn-only, always-exit-0 contract — the whole point of this TH-002 scenario — is precisely what keeps it advisory rather than gating: the blocking decision belongs to the reviewer, not to the author-side hook. Nothing here adds a dependency from `sk-code-quality` onto the deep-loop runtime; the envelope is read by `deep-review`, not produced for it.

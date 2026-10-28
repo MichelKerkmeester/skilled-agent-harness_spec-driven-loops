@@ -45,11 +45,6 @@ const ROOT = process.env.SK_CODE_SETUP_ROOT
 
 const DEFAULT_PROMPT = 'fix a typescript bug in the opencode plugin';
 
-// Prints the prompt the way a shell reads it back, so a pasted probe line reruns the same prompt.
-function shellQuote(text) {
-  return `"${text.replace(/[\\"$`]/g, '\\$&')}"`;
-}
-
 const USAGE = 'Usage: node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs [--prompt=<text>]';
 
 const HUB = 'sk-code';
@@ -87,7 +82,16 @@ const MAX_BUFFER = 64 * 1024 * 1024;
 const DETAIL_LIMIT = 10;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. LEGS
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Prints the prompt the way a shell reads it back, so a pasted probe line reruns the same prompt.
+function shellQuote(text) {
+  return `"${text.replace(/[\\"$`]/g, '\\$&')}"`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. LEGS
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Every leg runs from the repository root so the battery reports the tree a
@@ -239,7 +243,7 @@ const LEGS = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. VERDICTS AND REPAIRS
+// 5. VERDICTS AND REPAIRS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const pass = () => ({ ok: true, details: [], repairs: [] });
@@ -377,7 +381,7 @@ const JUDGES = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. REPORT
+// 6. REPORT
 // ─────────────────────────────────────────────────────────────────────────────
 
 const verdictLine = (verdict, id, command) => `${verdict}  ${id.padEnd(18)}  ${command}`;
@@ -408,7 +412,7 @@ function report(rows, ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. MAIN
+// 7. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 // An argument that is not the prompt option is a caller mistake, and an empty
@@ -461,5 +465,26 @@ function main(argv) {
   process.stdout.write(`${lines.join('\n')}\n`);
   return failed === 0 ? 0 : 1;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+module.exports = {
+  DERIVED_FRESHNESS,
+  DRIFT_GUARDS,
+  LEGS,
+  PARENT_SKILL_CHECK,
+  QUALITY_CHECKER,
+  QUALITY_DIR,
+  QUALITY_RUNNER,
+  QUALITY_TABLES,
+  QUALITY_TESTS,
+  ROOT_METADATA,
+  ROUTE_GUARD,
+  ROUTE_PROBE,
+  ROUTE_SYNC,
+  SKILL_DIR,
+};
 
 if (require.main === module) process.exitCode = main(process.argv.slice(2));

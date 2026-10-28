@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # mcp-figma
@@ -201,3 +201,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery and a `call_tool_chain` example |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts and the Code Mode env-var prefix |
 | Skills Library, `.skilled/skills/README.txt` in the skills repository | The skill catalog and routing front door |
+
+<!-- readme-check
+allow-ref plugin/manifest.json | the FigCli plugin manifest inside the installed figma-ds-cli package, imported into Figma Desktop rather than a path in this repository
+-->

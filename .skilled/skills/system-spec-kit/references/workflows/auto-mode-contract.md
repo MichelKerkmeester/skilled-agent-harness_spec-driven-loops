@@ -9,12 +9,14 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Auto Mode Contract Reference
 
-This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+## 1. OVERVIEW
+
+This reference defines the canonical setup-resolution contract for user-invokable `:auto` commands across `/speckit:*`, `/create:*` and `/deep:*`. Command authors use its tier semantics, marker grammar, fail-fast error format and verification protocol to define each command's field-level resolution table; commands follow it to resolve inputs, ask targeted questions or fail when required values remain missing.
 
 ---
 

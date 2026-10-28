@@ -2,7 +2,7 @@
 name: sk-create-diff
 description: Local, Git-free before/after review of an edited document (text, Markdown, HTML, DOCX, text PDF) as a self-contained HTML report.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 <!-- Keywords: create-diff, document diff, before after review, before/after document, local html diff report, document snapshot, ai edit review, docx diff, pdf diff, markdown diff, multi-file diff, aggregate file boundaries -->
 
@@ -72,7 +72,7 @@ All comparison, extraction, snapshotting, and rendering are done by `scripts/cre
 # 0. (optional) confirm what is supported and at what fidelity
 python3 scripts/create_diff.py capabilities
 
-# 1. BEFORE the edit — capture a baseline (copies the file into a local .sk-create-diff/ store;
+# 1. BEFORE the edit — capture a baseline (copies the file into a local .create-diff/ store;
 #    never touches the source)
 python3 scripts/create_diff.py snapshot path/to/doc.md
 

@@ -17,7 +17,7 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "fb47c04f17d9593504346aa2e55c62d5cbba333a067808b570368ae3829cd721",
+      "sha256": "ee12f0dbc7258c9687e2723168433129df5c5c80bd525460f4151dc350d57b6e",
       "section": "full"
     },
     {

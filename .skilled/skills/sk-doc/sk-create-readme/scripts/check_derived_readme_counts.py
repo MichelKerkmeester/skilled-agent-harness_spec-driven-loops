@@ -5,10 +5,12 @@ Usage: python3 check_derived_readme_counts.py [--self-test] README.md [...]
 
 The checker can prove a count only from a folder listing, so it reads a number
 as a count claim only when it counts a plural term directly, as in "three
-files" or "12 shell scripts", with at most one word between them and no
-function or subset word such as "of", "the" or "more" there. Two words are
-allowed only when one is a singular count term and the claim names its folder,
-as in a tree entry's "fifteen Node test files". A label form such as
+files" or "12 shell scripts". One intervening word is allowed only when it is
+a known category modifier or a singular count term, as in "12 shell scripts"
+or a tree entry's "fifteen Node test files"; arbitrary concept words such as
+"reader" or "example" do not turn a compound concept into a file count. Two
+words are allowed only when one is a singular count term and the claim names
+its folder. A label form such as
 ``Files: 12`` is a claim too, unless it reports a run (``Tests: 20/20 pass``).
 Prose such as "in one file" counts nothing, and neither does a number after a
 label or bound word (``Level 2 file set``, ``Gate 4``, ``more than 100 tracked
@@ -125,14 +127,17 @@ TEST_PREFIXES = (("test_", ".py"), ("test-", ".sh"))
 FOLDER_SPAN = re.compile(r"`([^`\s]+/)`")
 NUMBER_PATTERN = re.compile(r"\b(?:\d+|" + "|".join(NUMBER_WORDS) + r")\b", re.IGNORECASE)
 WORD_PATTERN = re.compile(r"[A-Za-z][A-Za-z0-9_./*-]*")
-# A count names what it counts right after the number, with at most one word
-# between them ("three test files"). Two words are allowed only when one is a
-# singular count term that narrows the plural ("fifteen Node test files") and
-# the claim names the folder it counts, since an adjective pair such as "two
-# compiled ESM entrypoints" or "four goal-plugin test files" picks out a subset
-# no folder listing can prove. The number must stand alone, so "one-shot" or
-# "v2.1" never opens a count.
+# A count names what it counts right after the number, with at most one known
+# category modifier or singular count term between them ("12 shell scripts",
+# "three test files"). Two words are allowed only when one is a singular count
+# term that narrows the plural ("fifteen Node test files") and the claim names
+# the folder it counts, since a compound concept such as "four reader tests"
+# is not a file count. The number must stand alone, so "one-shot" or "v2.1"
+# never opens a count.
 MAX_MODIFIERS = 2
+# These modifiers name file or test categories; other words before a count term
+# can form a concept name rather than a count of files in a folder.
+CATEGORY_MODIFIERS = {"node", "shell", "vitest"}
 WORD_STEP_PATTERN = re.compile(r"\s+([A-Za-z][\w-]*)")
 # Words that end a noun phrase, or mark the count as a part of a larger set
 # ("adds 2 more test files"), so a count term after one is not what the number counts.
@@ -251,9 +256,11 @@ def counted_term(line: str, number_end: int) -> tuple[str, int, int] | None:
     """Return the count term a number counts, where the phrase ends and how many words sit between.
 
     The phrase must end in a plural count term. A singular count term before it
-    modifies it ("12 test files"), so the claim counts that narrower term. A gap
-    of two words needs such a singular term in it, and any gap word that breaks
-    the phrase ("the", "more") makes the number prose.
+    modifies it ("12 test files"), so the claim counts that narrower term. A
+    one-word gap may instead name a known category ("12 shell scripts") or any
+    word when the line names the folder it counts. A gap
+    of two words needs a singular count term in it, and any other unknown word
+    or phrase breaker ("the", "more") makes the number prose.
     """
     first: str | None = None
     position = number_end
@@ -270,6 +277,10 @@ def counted_term(line: str, number_end: int) -> tuple[str, int, int] | None:
                 return None
             return first or lower, position, index
         if lower in PHRASE_BREAK_WORDS:
+            return None
+        # An unknown word may still narrow a count when the line names the folder it
+        # counts ("three rule files live in `rules/`"), since that listing proves it.
+        if lower not in COUNT_TERMS and lower not in CATEGORY_MODIFIERS and not FOLDER_SPAN.search(line):
             return None
         if lower in COUNT_TERMS and first is None:
             first = lower
@@ -650,8 +661,8 @@ def run_self_test() -> int:
         # A marker suppresses only its own phrase: an unproven claim beside it still fails.
         marked = root / "marked.md"
         marked.write_text(
-            "Two example files list them. Five files live here.\n\n"
-            "<!-- readme-check\nallow-count two example files | the next bullets name both\n-->\n",
+            "Two shell scripts list them. Five files live here.\n\n"
+            "<!-- readme-check\nallow-count two shell scripts | the next bullets name both\n-->\n",
             encoding="utf-8",
         )
         claims, failures, missing = check_readme(str(marked))
@@ -659,8 +670,8 @@ def run_self_test() -> int:
             print("FAIL self-test-marker-scope")
             return 1
         for label, body in (
-            ("marker-unused", "Nothing counted.\n\n<!-- readme-check\nallow-count two example files | stale\n-->\n"),
-            ("marker-no-reason", "Two example files list them.\n\n<!-- readme-check\nallow-count two example files\n-->\n"),
+            ("marker-unused", "Nothing counted.\n\n<!-- readme-check\nallow-count two shell scripts | stale\n-->\n"),
+            ("marker-no-reason", "Two shell scripts list them.\n\n<!-- readme-check\nallow-count two shell scripts\n-->\n"),
         ):
             target = root / f"{label}.md"
             target.write_text(body, encoding="utf-8")

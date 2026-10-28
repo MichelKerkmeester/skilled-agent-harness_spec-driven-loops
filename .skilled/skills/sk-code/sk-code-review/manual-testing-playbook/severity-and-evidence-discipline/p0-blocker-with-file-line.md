@@ -1,7 +1,7 @@
 ---
 title: "CR-007 -- P0 blocker with file:line"
 description: "This scenario validates P0 blocker with file:line for `CR-007`. It focuses on Confirm blocker findings include concrete file:line evidence and user impact."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-007 -- P0 blocker with file:line
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-007
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `severity-and-evidence-discipline/p0-blocker-with-file-line.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

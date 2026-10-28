@@ -22,6 +22,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
+const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('./command-scope.cjs');
 
@@ -72,8 +73,8 @@ function parseArguments(argv) {
   throw new Error('Usage: node sync-runtime-mirrors.cjs [--check]');
 }
 
-function listAgentNames() {
-  const dir = path.join(REPO_ROOT, CLAUDE_AGENTS);
+function listAgentNames(repoRoot = REPO_ROOT) {
+  const dir = path.join(repoRoot, CLAUDE_AGENTS);
   if (!fs.existsSync(dir)) {
     throw new Error(`No canonical agents found at ${CLAUDE_AGENTS}`);
   }
@@ -84,8 +85,8 @@ function listAgentNames() {
     .sort();
 }
 
-function listCommandPaths() {
-  const root = path.join(REPO_ROOT, CANONICAL_COMMANDS);
+function listCommandPaths(repoRoot = REPO_ROOT) {
+  const root = path.join(repoRoot, CANONICAL_COMMANDS);
   if (!fs.existsSync(root)) {
     throw new Error(`No canonical commands found at ${CANONICAL_COMMANDS}`);
   }
@@ -106,11 +107,24 @@ function listCommandPaths() {
   return found.sort();
 }
 
-// Every top-level entry OpenCode needs from the canonical tree. A local-* entry is
-// private and git-ignored, so provisioning links it per checkout instead.
-function listCommandRootEntries() {
-  return fs.readdirSync(path.join(REPO_ROOT, CANONICAL_COMMANDS))
+function isGitIgnored(repoPath, repoRoot) {
+  try {
+    execFileSync('git', ['-c', 'core.fsmonitor=false', 'check-ignore', '-q', '--', repoPath], {
+      cwd: repoRoot,
+      stdio: 'ignore',
+    });
+    return true;
+  } catch (error) {
+    if (error.status === 1) return false;
+    throw new Error(`Unable to check Git ignore state for ${repoPath}: ${error.message}`);
+  }
+}
+
+// Git-ignored mirror paths cannot be represented in a fresh checkout.
+function listCommandRootEntries(repoRoot = REPO_ROOT) {
+  return fs.readdirSync(path.join(repoRoot, CANONICAL_COMMANDS))
     .filter((name) => !name.startsWith('.') && !name.startsWith('local-'))
+    .filter((name) => !isGitIgnored(`${OPENCODE_COMMANDS}/${name}`, repoRoot))
     .sort();
 }
 
@@ -123,8 +137,8 @@ function toFlatName(relativePath) {
 // Every path the runtime's own config actually invokes is a path its discovery
 // mirror should expose. Reading the raw text keeps this indifferent to the four
 // mutually incompatible config shapes.
-function hookSourcesFromConfig(configRelative) {
-  const absolute = path.join(REPO_ROOT, configRelative);
+function hookSourcesFromConfig(configRelative, repoRoot = REPO_ROOT) {
+  const absolute = path.join(repoRoot, configRelative);
   if (!fs.existsSync(absolute)) return [];
   const raw = fs.readFileSync(absolute, 'utf8');
   const matches = raw.match(/\.skilled\/[A-Za-z0-9_./-]+?\.(?:mjs|cjs|js|sh|py)/g) || [];
@@ -132,10 +146,11 @@ function hookSourcesFromConfig(configRelative) {
 }
 
 // Each entry: { mirror: repo-relative path of the symlink, source: repo-relative target }
-function buildExpectedLinks() {
+/** Derive mirror expectations using the ignore rules of the given repository. */
+function buildExpectedLinks(repoRoot = REPO_ROOT) {
   const links = [];
-  const agents = listAgentNames();
-  const commands = listCommandPaths();
+  const agents = listAgentNames(repoRoot);
+  const commands = listCommandPaths(repoRoot);
 
   for (const name of agents) {
     const source = `${CLAUDE_AGENTS}/${name}.md`;
@@ -153,12 +168,12 @@ function buildExpectedLinks() {
     links.push({ tree: 'cursor-commands', mirror: `.cursor/commands/${flat}.md`, source });
   }
 
-  for (const name of listCommandRootEntries()) {
+  for (const name of listCommandRootEntries(repoRoot)) {
     links.push({ tree: 'opencode-commands', mirror: `${OPENCODE_COMMANDS}/${name}`, source: `${CANONICAL_COMMANDS}/${name}` });
   }
 
   for (const { runtime, config, mirror } of HOOK_CONFIGS) {
-    for (const source of hookSourcesFromConfig(config)) {
+    for (const source of hookSourcesFromConfig(config, repoRoot)) {
       links.push({ tree: `${runtime}-hooks`, mirror: `${mirror}/${path.posix.basename(source)}`, source });
     }
   }
@@ -168,10 +183,10 @@ function buildExpectedLinks() {
 }
 
 // Mirrors are relative symlinks so the tree stays valid when the repo moves.
-function expectedTarget(mirrorRelative, sourceRelative) {
+function expectedTarget(mirrorRelative, sourceRelative, repoRoot = REPO_ROOT) {
   return path.relative(
-    path.dirname(path.join(REPO_ROOT, mirrorRelative)),
-    path.join(REPO_ROOT, sourceRelative),
+    path.dirname(path.join(repoRoot, mirrorRelative)),
+    path.join(repoRoot, sourceRelative),
   );
 }
 
@@ -180,8 +195,8 @@ function isBuildArtifact(target) {
   return target.split('/').includes('dist');
 }
 
-function inspect(link) {
-  const absolute = path.join(REPO_ROOT, link.mirror);
+function inspect(link, repoRoot = REPO_ROOT) {
+  const absolute = path.join(repoRoot, link.mirror);
   let stat = null;
   try {
     stat = fs.lstatSync(absolute);
@@ -190,7 +205,7 @@ function inspect(link) {
     return { state: 'MISSING' };
   }
   if (!stat.isSymbolicLink()) return { state: 'STALE', why: 'not a symlink (silent fork risk)' };
-  const want = expectedTarget(link.mirror, link.source);
+  const want = expectedTarget(link.mirror, link.source, repoRoot);
   const actual = fs.readlinkSync(absolute);
   if (actual !== want) return { state: 'STALE', why: `points at ${actual}, expected ${want}` };
   // A mirror aimed at the right place but resolving to nothing is either a deleted source
@@ -204,8 +219,7 @@ function inspect(link) {
   return { state: 'OK' };
 }
 
-// A mirror with no canonical source keeps serving something the roster dropped.
-// The root defaults to this checkout; a test passes a scratch tree instead.
+/** Find unignored mirror entries that no canonical source expects. */
 function findOrphans(expectedLinks, repoRoot = REPO_ROOT) {
   const expectedByDir = new Map();
   for (const link of expectedLinks) {
@@ -228,7 +242,8 @@ function findOrphans(expectedLinks, repoRoot = REPO_ROOT) {
       if (entry.isDirectory()) continue;
       // A runtime's own hand-authored native command is deliberately not a mirror.
       if (isRuntimeNativeCommand(dir, entry.name)) continue;
-      if (!names.has(entry.name)) orphans.push(path.posix.join(dir, entry.name));
+      const mirror = path.posix.join(dir, entry.name);
+      if (!names.has(entry.name) && !isGitIgnored(mirror, repoRoot)) orphans.push(mirror);
     }
   }
 
@@ -260,11 +275,12 @@ function findOrphans(expectedLinks, repoRoot = REPO_ROOT) {
 // 4. SYNC EXECUTION
 // ───────────────────────────────────────────────────────────────────
 
-function checkMirrors(expectedLinks) {
+/** Check for missing or stale links under the repository used to derive them. */
+function checkMirrors(expectedLinks, repoRoot = REPO_ROOT) {
   const drift = [];
   for (const commandsRoot of REAL_COMMAND_ROOTS) {
     try {
-      const rootStat = fs.lstatSync(path.join(REPO_ROOT, commandsRoot));
+      const rootStat = fs.lstatSync(path.join(repoRoot, commandsRoot));
       if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) {
         drift.push(`STALE ${commandsRoot} — must be a real filtered command directory`);
       }
@@ -274,11 +290,11 @@ function checkMirrors(expectedLinks) {
     }
   }
   for (const link of expectedLinks) {
-    const result = inspect(link);
+    const result = inspect(link, repoRoot);
     if (result.state === 'MISSING') drift.push(`MISSING ${link.mirror}`);
     else if (result.state === 'STALE') drift.push(`STALE ${link.mirror} — ${result.why}`);
   }
-  for (const orphan of findOrphans(expectedLinks)) drift.push(`EXTRA ${orphan}`);
+  for (const orphan of findOrphans(expectedLinks, repoRoot)) drift.push(`EXTRA ${orphan}`);
 
   if (drift.length > 0) {
     console.error('[runtime-mirror-sync] Drift detected:');
@@ -291,10 +307,11 @@ function checkMirrors(expectedLinks) {
   return true;
 }
 
-function writeMirrors(expectedLinks) {
+/** Apply expected links under the repository used to derive them. */
+function writeMirrors(expectedLinks, repoRoot = REPO_ROOT) {
   let changed = 0;
   for (const commandsRoot of REAL_COMMAND_ROOTS) {
-    const absoluteRoot = path.join(REPO_ROOT, commandsRoot);
+    const absoluteRoot = path.join(repoRoot, commandsRoot);
     try {
       const rootStat = fs.lstatSync(absoluteRoot);
       if (rootStat.isSymbolicLink()) {
@@ -309,18 +326,18 @@ function writeMirrors(expectedLinks) {
   }
 
   for (const link of expectedLinks) {
-    const result = inspect(link);
+    const result = inspect(link, repoRoot);
     if (result.state === 'OK') continue;
-    const absolute = path.join(REPO_ROOT, link.mirror);
+    const absolute = path.join(repoRoot, link.mirror);
     fs.mkdirSync(path.dirname(absolute), { recursive: true });
     if (result.state === 'STALE') fs.rmSync(absolute, { force: true });
-    fs.symlinkSync(expectedTarget(link.mirror, link.source), absolute);
+    fs.symlinkSync(expectedTarget(link.mirror, link.source, repoRoot), absolute);
     changed += 1;
   }
 
   let removed = 0;
-  for (const orphan of findOrphans(expectedLinks)) {
-    const absolute = path.join(REPO_ROOT, orphan);
+  for (const orphan of findOrphans(expectedLinks, repoRoot)) {
+    const absolute = path.join(repoRoot, orphan);
     fs.rmSync(absolute, { force: true });
     // Devin's per-item directory is meaningless once its only entry is gone.
     const parent = path.dirname(absolute);
@@ -356,4 +373,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { findOrphans };
+module.exports = { buildExpectedLinks, checkMirrors, findOrphans, writeMirrors };

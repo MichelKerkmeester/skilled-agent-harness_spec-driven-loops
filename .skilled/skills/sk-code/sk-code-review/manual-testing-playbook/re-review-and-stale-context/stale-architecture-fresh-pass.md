@@ -1,7 +1,7 @@
 ---
 title: "CR-014 -- Stale architecture fresh pass"
 description: "This scenario validates Stale architecture fresh pass for `CR-014`. It focuses on Confirm stale architecture prose does not override current implementation evidence."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-014 -- Stale architecture fresh pass
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-014
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `re-review-and-stale-context/stale-architecture-fresh-pass.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

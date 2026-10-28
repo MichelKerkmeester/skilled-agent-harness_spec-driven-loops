@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.17.22.0
+version: 0.17.23.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -253,7 +253,8 @@ Resource domains:
 
 **Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill. Its sole workflow mode is `system-skill-advisor`, and there is no `mode-registry.json`.
 
-- Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json`.
+- Every routable leaf under the five declared leaf roots, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/` and `hooks/`, is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` and narrowed by `leaf-scopes.json`.
+- `hooks/` is Markdown-only through `leaf-scopes.json`: the scope names its five hook docs, and the nine runtime `.ts`, `.py` and `.json` files beside them are never leaves. `assets/` is declared and has no docs to contribute.
 - Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`.
 - The plain gate must keep them byte-stable.
 - `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity. A deterministic router replay recovers real typed pairs against the manifest.

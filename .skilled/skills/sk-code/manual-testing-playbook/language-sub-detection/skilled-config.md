@@ -1,7 +1,7 @@
 ---
 title: "LS-004: SKILLED JSON/JSONC Sub-Detection"
 description: "Verify that within SKILLED surface, JSON/JSONC extensions trigger loading of config/* references."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # LS-004: SKILLED JSON/JSONC Sub-Detection
@@ -66,7 +66,7 @@ Evidence: `/tmp/skc-LS004-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
-1. Verify `.json` and `.jsonc` are mapped to CONFIG in SKILL.md sub-detection table.
+1. Verify `.json`, `.jsonc`, `.yaml` and `.yml` are mapped to CONFIG in `shared/references/stack-detection.md` section 3.
 2. Verify the package descriptor / graph-metadata files are not accidentally classified as typescript by an over-broad TS marker.
 
 ---
@@ -74,8 +74,11 @@ Evidence: `/tmp/skc-LS004-loaded-refs.txt` (loaded-refs transcript).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` (sub-detection table).
-- `.skilled/skills/sk-code/sk-code-skilled/references/config/{style_guide,quality_standards,quick_reference}.md`.
+- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` (section 3, the CONFIG row).
+- `.skilled/skills/sk-code/sk-code-skilled/references/config/{style-guide,quality-standards,quick-reference}.md`.
+
+Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that names `ROUTER.md` as the owner of the stage-two resource maps the language overlay lives in.
 
 ---
 

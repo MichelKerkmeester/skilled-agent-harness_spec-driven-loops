@@ -40,8 +40,10 @@ is a shortened name for the target and passes when the target's path ends
 with it. Any other label is checked as a path, so a stale label in front of a
 working link still fails. A ``path/to/...`` stem or a leading bracketed segment
 such as ``[spec]/memory/*.md`` is a placeholder, not a reference, outside link
-targets. A bracketed segment further in, as in ``app/[id]/page.tsx``, is a real
-dynamic-route folder and is checked.
+targets. A bracketed segment in a file basename, such as
+``changelog/v[version].md``, is a filename placeholder resolved against that
+folder. A bracketed segment in a folder position, as in
+``app/[id]/page.tsx``, is a real dynamic-route folder and is checked.
 
 A reference resolves from the README folder, from the nearest folder above it
 that holds a ``package.json`` and from the repository root. A code span the
@@ -206,6 +208,8 @@ HTML_COMMENT_PATTERN = re.compile(r"<!--.*?(?:-->|$)")
 TYPO_SIMILARITY = 0.8
 # A whole segment in square brackets, such as `[spec]`, stands for a name the reader fills in.
 PLACEHOLDER_SEGMENT_PATTERN = re.compile(r"^\[[A-Za-z][A-Za-z0-9 _-]*\]$")
+# A placeholder embedded in a filename stands for one concrete file name.
+FILENAME_PLACEHOLDER_PATTERN = re.compile(r"\[[A-Za-z][A-Za-z0-9 _-]*\]")
 
 
 @dataclass(frozen=True)
@@ -504,6 +508,7 @@ def is_placeholder(raw: str) -> bool:
 
     Only the first segment counts, as in `[spec-folder]/spec.md`: a bracketed
     segment further in, as in `app/[id]/page.tsx`, is a real dynamic-route folder.
+    A bracketed token in a file basename is resolved as a filename template.
     """
     segments = raw.strip("/").split("/")
     if PLACEHOLDER_SEGMENT_PATTERN.match(segments[0]):
@@ -750,12 +755,36 @@ def absent_by_design(raw: str, readme: Path, root: Path) -> str:
     return ""
 
 
+def matching_filename_template(candidate_path: Path) -> list[Path] | None:
+    """Return files matching a bracketed filename template, or None for a literal basename."""
+    filename_pattern = FILENAME_PLACEHOLDER_PATTERN.sub("*", candidate_path.name)
+    if filename_pattern == candidate_path.name or not candidate_path.suffix:
+        return None
+    if not candidate_path.parent.is_dir():
+        return []
+    try:
+        return sorted(
+            (
+                path
+                for path in candidate_path.parent.iterdir()
+                if path.is_file() and fnmatch.fnmatchcase(path.name, filename_pattern)
+            ),
+            key=lambda path: path.name,
+        )
+    except OSError:
+        return []
+
+
 def resolve_literal(reference: Reference, raw: str, readme: Path, root: Path) -> Resolution:
-    """Resolve one literal or glob from every candidate base."""
+    """Resolve one literal, glob or filename template from every candidate base."""
     for candidate_path in candidate_paths(raw, readme.parent, root):
-        matches = sorted(glob.glob(str(candidate_path), recursive=True)) if any(
-            marker in str(candidate_path) for marker in ("*", "?")
-        ) else [str(candidate_path)]
+        template_matches = matching_filename_template(candidate_path)
+        if template_matches is not None:
+            matches = [str(path) for path in template_matches]
+        else:
+            matches = sorted(glob.glob(str(candidate_path), recursive=True)) if any(
+                marker in str(candidate_path) for marker in ("*", "?")
+            ) else [str(candidate_path)]
         for match in matches:
             path = Path(match)
             if not path.exists():
@@ -873,6 +902,21 @@ def resolve_reference(reference: Reference, readme: Path, root: Path) -> Resolut
         return resolve_slash_command(reference, root)
     if machine_path_outside(reference.raw, root):
         return Resolution(reference, False, "names a machine-local path outside the repository")
+    if reference.kind in ("inline", "link"):
+        candidates = (reference.raw, *reference.alternatives)
+        if any(matching_filename_template(Path(candidate)) is not None for candidate in candidates):
+            for candidate in candidates:
+                templated = resolve_literal(reference, candidate, readme, root)
+                if templated.resolved or templated.detail == "resolves outside the repository":
+                    return templated
+    if (
+        reference.kind == "inline"
+        and reference.named
+        and matching_filename_template(Path(reference.raw)) is not None
+    ):
+        nearby = resolve_from_nearby(reference, readme.parent, root)
+        if nearby is not None:
+            return Resolution(reference, True, nearby)
     if reference.named:
         hit = resolve_by_name(reference, readme, root)
         if hit is not None:
@@ -956,6 +1000,15 @@ def resolve_from_nearby(reference: Reference, folder: Path, root: Path) -> str |
         for name in names:
             for base in bases:
                 path = Path(os.path.normpath(base / name))
+                template_matches = matching_filename_template(path)
+                if template_matches is not None:
+                    for match in template_matches:
+                        try:
+                            match.resolve().relative_to(root)
+                        except ValueError:
+                            continue
+                        return str(match)
+                    continue
                 if path.exists() and (path == root or root in path.parents):
                     return str(path)
     if reference.subtree:

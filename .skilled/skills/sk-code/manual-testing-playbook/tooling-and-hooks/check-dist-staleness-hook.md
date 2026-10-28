@@ -1,7 +1,7 @@
 ---
 title: "TH-001: check-dist-staleness.sh wiring into claude-posttooluse.sh"
 description: "Verify that editing a file under a watched dist-producing source tree with a stale compiled dist output makes the legacy PostToolUse hook print a STALE DIST WARNING banner, and that the hook always exits 0 regardless of checker outcome."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # TH-001: check-dist-staleness.sh wiring into claude-posttooluse.sh
@@ -100,6 +100,8 @@ Prompt: `Edit .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrato
 - `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` — Dist-staleness checker (Python, `.sh` extension); ships executable (see §1 for the historical missing-bit gap and its fix, §3 Failure Triage for the regression check).
 - `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` — Shared `checkFileFreshness()` / `DIST_PACKAGES` registry the checker calls.
 
+Catalog: none. `feature-catalog/feature-catalog.md` does not inventory the shared dist-freshness checker or its hook wiring, so no catalog entry applies to this scenario.
+
 **Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `sk-code-quality/references/code-style-guide.md` §4) on the same edit. That checker's hook branch is covered by its own scenario `TH-002` (see `comment-hygiene-hook.md` in this same category).
 
 ---
@@ -110,8 +112,8 @@ Prompt: `Edit .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrato
 - Playbook ID: TH-001
 - **Created**: 2026-07-02
 - **Critical path**: No
-- **Destructive**: No (writes only touch mtimes and a temp cache file under the already-gitignored `dist/` tree; content changes are backed up and restored byte-exact via the local `$BAK` copy)
-- **Sandbox**: mutations are confined to `orchestrator.ts` mtime/content (restored) and `orchestrator.js` mtime (restored); no production behavior changes
-- **Concurrent-safe**: No (touches a shared source file's mtime; run this scenario serially, and avoid running it while another session may be editing the same file)
+- **Destructive**: Yes, temporarily. Step 1 appends a newline to the tracked file `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` and back-dates its compiled `orchestrator.js`; step 4 restores the source from the `$BAK` copy and re-touches the dist file. Undo: the step 4 restore, then `git diff --stat -- "$SOURCE"` must come back empty. Never use `git checkout` to clean the file, because it may carry unrelated uncommitted work.
+- **Sandbox**: mutations are confined to `orchestrator.ts` content and mtimes (restored from `$BAK`) and `orchestrator.js` mtime (restored with `touch`); no production behavior changes.
+- **Concurrent-safe**: No (touches a shared source file's mtime and content; run this scenario serially, and avoid running it while another session may be editing the same file)
 - **Last validated**: pending first manual run against the current Pass/Fail criteria.
 - Evidence: direct checker stdout (`direct_exit`) and full hook stdout/stderr (`hook_exit`) captured during §3 steps 2-3.

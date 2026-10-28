@@ -7,7 +7,7 @@ trigger_phrases:
   - "post edit quality router"
   - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Post-Edit Quality Router
@@ -48,7 +48,7 @@ call in OpenCode; the exact adapter invocations exercised are the live commands 
   - `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
   - `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` exists (shared core).
   - `.claude/settings.json` wires `PostToolUse` matcher `Write|Edit` to the Claude adapter above.
-  - `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` (38 tests) is present.
+  - `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` (51 tests) is present.
   - All six canonical checker paths in `CHECKER_RELATIVE_PATHS` exist on disk (comment-hygiene,
     flowchart, frontmatter-versions, placeholders, wikilinks, dist-staleness) -- verified present.
   - Node `v22.23.1` available on PATH (confirmed via `node --version`).
@@ -72,8 +72,8 @@ call in OpenCode; the exact adapter invocations exercised are the live commands 
   - OpenCode plugin, kill-switch env: `output.system` stays `[]` after the same sequence.
   - `resolveDispatch()` on a path outside the project root (e.g. a scratch dir under `/private/tmp`):
     returns `[]`, so neither adapter emits a finding.
-  - `node --test` run of `sk-code-post-edit-quality.test.cjs`: `# pass 38`, `# fail 0`.
-- Pass/fail: PASS if the real 38-test suite is fully green AND a live invocation of the real Claude
+  - `node --test` run of `sk-code-post-edit-quality.test.cjs`: every test passes, `ℹ pass 51`, `ℹ fail 0`.
+- Pass/fail: PASS if the real 51-test suite is fully green AND a live invocation of the real Claude
   adapter against a genuine ephemeral-comment file prints the `COMMENT HYGIENE WARNING` banner with
   exit `0` AND the kill-switch and outside-root cases both produce empty output AND a live import of the
   real OpenCode plugin module surfaces the buffered finding through `experimental.chat.system.transform`
@@ -92,7 +92,7 @@ call in OpenCode; the exact adapter invocations exercised are the live commands 
 node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
-Expected: `# tests 38`, `# pass 38`, `# fail 0`, `# cancelled 0`.
+Expected: `ℹ tests 51`, `ℹ pass 51`, `ℹ fail 0`, `ℹ cancelled 0`. The count is the suite's current size; grade on every test passing rather than on the number, which grows with the core.
 
 2. Live invocation of the real Claude PostToolUse adapter against a genuine ephemeral-comment file
    (created inside a throwaway dir under the repo root so `resolveDispatch` treats it as in-scope,
@@ -225,7 +225,7 @@ check, and `.claude/settings.json` wiring).
 - OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
 - Claude PostToolUse adapter: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
 - Shared runtime-neutral core: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`
-- Unit-test suite (38 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
+- Unit-test suite (51 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
   - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
@@ -234,6 +234,8 @@ check, and `.claude/settings.json` wiring).
   - `.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh`
   - `.skilled/skills/system-spec-kit/runtime/cli/rules/check-links.sh`
   - `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
+
+Catalog: none. `feature-catalog/feature-catalog.md` does not inventory the runtime-neutral post-edit quality router, so no catalog entry applies to this scenario.
 
 ---
 
@@ -255,16 +257,16 @@ node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 ```text
-1..38
-# tests 38
-# suites 0
-# pass 38
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 11608.680125
+ℹ tests 51
+ℹ suites 0
+ℹ pass 51
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
 ```
+
+The per-test check marks print above these summary lines, and `ℹ duration_ms` follows them and varies run to run, so neither is quoted here.
 
 Live Claude PostToolUse adapter invocation (real stdin payload, real checker install, throwaway file
 removed after capture):
@@ -376,7 +378,7 @@ directories; it made no edits to any source file.
 
 PASS
 
-The real 38-test suite ran green (`# pass 38`, `# fail 0`, `# cancelled 0`). A live invocation of the
+The real 51-test suite ran green (`ℹ pass 51`, `ℹ fail 0`, `ℹ cancelled 0`). A live invocation of the
 real Claude PostToolUse adapter against a genuine ephemeral-comment `.ts` file printed the exact
 `COMMENT HYGIENE WARNING` banner with exit code `0`. The same adapter under
 `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` produced empty stdout with exit code `0` (full no-op). A direct live

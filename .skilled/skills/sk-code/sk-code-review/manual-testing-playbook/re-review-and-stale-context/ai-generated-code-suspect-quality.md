@@ -1,7 +1,7 @@
 ---
 title: "CR-015 -- AI-generated suspect quality"
 description: "This scenario validates AI-generated suspect quality for `CR-015`. It focuses on Confirm AI-generated code is reviewed for over-abstraction, missing tests, and invented contracts without biasing severity unfairly."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-015 -- AI-generated suspect quality
@@ -79,4 +79,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-015
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `re-review-and-stale-context/ai-generated-code-suspect-quality.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

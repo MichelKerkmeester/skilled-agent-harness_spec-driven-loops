@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.18.0.0
+version: 0.18.1.0
 ---
 
 # mcp-obsidian
@@ -221,3 +221,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 | [`examples/README.md`](./examples/README.md) | Index for the headless notes and MCP roundtrip workflows |
 | [`scripts/install.sh`](./scripts/install.sh) | Installs the headless CLI when possible and prints the official CLI and MCP setup steps |
 | [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only environment diagnostics |
+
+<!-- readme-check
+allow-ref data.json | the Iconic community plugin rulebook inside an Obsidian vault, written by the live plugin rather than kept in this repository
+-->

@@ -1,7 +1,7 @@
 ---
 title: "CR-018 -- cli-opencode and cli-claude-code handback"
 description: "This scenario validates cli-opencode and cli-claude-code handback for `CR-018`. It focuses on Confirm alternate CLI reviewers can hand back findings that preserve severity, evidence, and uncertainty."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CR-018 -- cli-opencode and cli-claude-code handback
@@ -80,4 +80,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-018
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

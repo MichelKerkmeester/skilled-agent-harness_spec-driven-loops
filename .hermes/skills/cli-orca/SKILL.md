@@ -2,7 +2,7 @@
 name: cli-orca
 description: "Route Orca CLI work: worktrees, terminals, browser, automations, handoffs, artifacts, and the eight official Orca skills."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.1.5.0
+version: 0.1.6.0
 user-invocable: true
 ---
 
@@ -68,7 +68,7 @@ A bare `orca` mention is never sufficient. The token also matches the `OpenOrca`
 
 ## 2. SMART ROUTING
 
-cli-orca is a standalone skill, so its own advisor signal selects it, and only an Orca-qualified phrase selects a lane, except the recovery lane, which names a runtime failure state: a named Orca surface, a managed worktree, a paired terminal, the embedded browser, an automation or an official skill placed in Orca.
+The advisor selects cli-orca when a request matches one of its phrases in `graph-metadata.json`. The lane router classifies matched phrases into worktree, terminal, browser, automation or official-skill lanes, while runtime failure signals select the recovery lane.
 
 `SKILL.md` loads first and stays in context.
 The selected lane then loads exactly one reference, and the flags themselves come from the version-matched guide served by the binary.

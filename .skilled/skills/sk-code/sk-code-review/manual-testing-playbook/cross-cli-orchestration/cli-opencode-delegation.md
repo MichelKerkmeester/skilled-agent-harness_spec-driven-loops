@@ -1,7 +1,7 @@
 ---
 title: "CR-017 -- cli-opencode delegation"
 description: "This scenario validates cli-opencode delegation for `CR-017`. It focuses on Confirm external OpenCode delegation preserves the exact review scope and returns review-compatible findings."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # CR-017 -- cli-opencode delegation
@@ -80,4 +80,5 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 - Playbook ID: CR-017
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `cross-cli-orchestration/cli-opencode-delegation.md`
+- Feature catalog: none for this skill; anchors are `SKILL.md` and `references/` per the root coverage note.
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

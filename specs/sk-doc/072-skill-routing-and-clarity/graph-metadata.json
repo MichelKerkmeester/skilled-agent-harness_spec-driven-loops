@@ -14,7 +14,8 @@
     "sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs",
     "sk-doc/072-skill-routing-and-clarity/009-standalone-skills",
     "sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass",
-    "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification"
+    "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification",
+    "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -108,16 +109,16 @@
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-28T18:18:37.763Z",
+    "last_save_at": "2026-10-28T22:19:50.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8ba5d88f3575cada99e1f0f1fee647fb9f66a6b446c75ccc806e100f724ca7f6",
+    "source_fingerprint": "sha256:f9e6cb72736aee28d383a596955027a336184eaf57f6ba10cd4a6591e052ce85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92a1d397d0a666b971407fb310d975ea63ff006bcee84c0fa2ea0efffe55b138"
+      "spec.md": "94320553b4589b1a7bce15fee9a9943757494bf30c70f9456c6f5cb852c01d30"
     },
     "last_active_at": null
   }
