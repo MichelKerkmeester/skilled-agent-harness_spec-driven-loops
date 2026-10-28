@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7338,
-    "ok": 15732,
+    "ok": 15740,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26618,
+  "documentsScanned": 26626,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "996fd1ddd0d1769eb242fe55d7aa857e06c10185742bcc951680370e209aab15",
+  "manifestHash": "9b9b4cec41e1e328baede3d67ca305bc7d5413a58610b2cb3be5fccf0a6d1528",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38684,
+      "ok": 38696,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71781,6 +71781,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "996fd1ddd0d1769eb242fe55d7aa857e06c10185742bcc951680370e209aab15",
+  "manifestHash": "9b9b4cec41e1e328baede3d67ca305bc7d5413a58610b2cb3be5fccf0a6d1528",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9015,6 +9015,27 @@
     ],
     "advisor phrase booster": [
       "advisor phrase booster"
+    ],
+    "advisor phrase calibration": [
+      "advisor phrase calibration"
+    ],
+    "advisor phrase calibration acceptance criteria": [
+      "advisor phrase calibration acceptance criteria"
+    ],
+    "advisor phrase calibration decision record": [
+      "advisor phrase calibration decision record"
+    ],
+    "advisor phrase calibration implementation summary": [
+      "advisor phrase calibration implementation summary"
+    ],
+    "advisor phrase calibration plan": [
+      "advisor phrase calibration plan"
+    ],
+    "advisor phrase calibration tasks": [
+      "advisor phrase calibration tasks"
+    ],
+    "advisor phrase calibration timeline": [
+      "advisor phrase calibration timeline"
     ],
     "advisor playbook validator exclusion": [
       "advisor playbook validator exclusion"
@@ -31308,6 +31329,9 @@
     "declared mark choices": [
       "declared mark choices"
     ],
+    "declared phrase specificity": [
+      "declared phrase specificity"
+    ],
     "declared signal closure": [
       "declared signal closure"
     ],
@@ -40403,6 +40427,9 @@
     "duplicate anchor repair": [
       "duplicate anchor repair"
     ],
+    "duplicate author phrase": [
+      "duplicate author phrase"
+    ],
     "duplicate content collapse": [
       "duplicate content collapse"
     ],
@@ -43180,6 +43207,9 @@
     ],
     "explicit fast flag": [
       "explicit fast flag"
+    ],
+    "explicit lane duplicate author phrase": [
+      "explicit lane duplicate author phrase"
     ],
     "explicit lexical over fire fix": [
       "explicit lexical over-fire fix"
@@ -107560,6 +107590,9 @@
     "system skill advisor 0 17 14 0": [
       "system-skill-advisor 0.17.14.0"
     ],
+    "system skill advisor 0 17 15 0": [
+      "system-skill-advisor 0.17.15.0"
+    ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
     ],
@@ -107781,6 +107814,9 @@
     ],
     "system skill advisor v0 17 14 0": [
       "system-skill-advisor v0.17.14.0"
+    ],
+    "system skill advisor v0 17 15 0": [
+      "system-skill-advisor v0.17.15.0"
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"

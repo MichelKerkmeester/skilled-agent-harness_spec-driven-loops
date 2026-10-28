@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1c2c6ba26b5151b5fb004933f84453b09ad222cab7292b391c82a423ce29b101",
+  "corpusHash": "5d61392289b1377027f958b5e361c0278e3ff5204f5321a6c35bdbf7494dd8d7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26618,
+  "includedPathCount": 26626,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7627,6 +7627,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.12.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.13.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.14.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.15.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -12580,6 +12581,13 @@
     "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/plan.md",
     "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/spec.md",
     "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/tasks.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/decision-record.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/plan.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/spec.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/tasks.md",
+    "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/timeline.md",
     "specs/sk-code/017-portable-code-modes/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
@@ -26649,7 +26657,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "996fd1ddd0d1769eb242fe55d7aa857e06c10185742bcc951680370e209aab15",
+  "manifestHash": "9b9b4cec41e1e328baede3d67ca305bc7d5413a58610b2cb3be5fccf0a6d1528",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29521,6 +29529,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/014-advisor-phrase-calibration/scratch",
       "reason": "excluded directory"
     },
     {
