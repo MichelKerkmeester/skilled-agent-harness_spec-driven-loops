@@ -71,7 +71,7 @@ Each fix closes a finding in `../001-deep-research/research/research.md` §5.
 | The seven files in the table above | Modified | The fixes |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:58`, `generate-leaf-manifest.cjs:253` | Modified | Admit `hooks` as a standalone leaf root |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs` | Modified | A test that fails on the old contract |
-| Seven `changelog/v*.md` entries and their version carriers | Created, modified | sk-code 3.9.17.0, mcp-tooling 1.8.8.0, cli-external-orchestration 1.7.7.0, cli-jev 0.1.7.0, system-spec-kit 2.12.17.0, system-skill-advisor 0.17.19.0, sk-create-skill 1.5.13.0 |
+| Seven `changelog/v*.md` entries and their version carriers | Created, modified | sk-code 3.9.17.0, mcp-tooling 1.8.8.0, cli-external-orchestration 1.7.7.0, cli-jev 0.1.7.0, system-spec-kit 2.12.18.0, system-skill-advisor 0.17.20.0, sk-create-skill 1.5.13.0 |
 | Five compiled-route manifests, runtime and authored copies | Regenerated | cli-classifier, cli-external-orchestration, mcp-tooling, sk-code, sk-doc |
 | Seven `.hermes/skills/*/SKILL.md` copies | Regenerated | Mirror of the changed `SKILL.md` files |
 | `scratch/baseline.md`, `scratch/after.md` | Created | The gate record |
