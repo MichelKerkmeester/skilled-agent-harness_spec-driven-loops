@@ -20,6 +20,7 @@ const test = require('node:test');
 
 const {
   DEFAULT_PROFILE,
+  LEGACY_PROFILE_FILE,
   ProfileError,
   REPO_PROFILE_FILE,
   loadProfile,
@@ -28,6 +29,7 @@ const {
 } = require('../lib/ci-profile.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
+const OPENCODE_PROFILE_FILE = REPO_PROFILE_FILE.replace(/^\.skilled\//, '.opencode/');
 
 function tempRoot(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ci-profile-'));
@@ -75,6 +77,53 @@ test('a named path that does not exist throws instead of falling back', (t) => {
     (error) => error instanceof ProfileError && error.code === 'PROFILE_PATH_MISSING');
 });
 
+test('a profile left at the old repository-root path is refused with its move target', (t) => {
+  const root = tempRoot(t);
+  writeProfile(root, LEGACY_PROFILE_FILE, { schemaVersion: 1 });
+  assert.throws(() => loadProfile({ root, git: false }), (error) => error instanceof ProfileError
+    && error.code === 'PROFILE_LEGACY_LOCATION'
+    && error.message === `${LEGACY_PROFILE_FILE} is no longer read: move it to ${REPO_PROFILE_FILE}`);
+});
+
+test('a repository that installs the skills under .opencode/ reads the same path there', (t) => {
+  const root = tempRoot(t);
+  writeProfile(root, OPENCODE_PROFILE_FILE, { schemaVersion: 1, defaultBranch: 'trunk' });
+  const loaded = loadProfile({ root, git: false });
+  assert.equal(loaded.source, 'repo');
+  assert.equal(loaded.display, OPENCODE_PROFILE_FILE);
+  assert.equal(loaded.profile.defaultBranch, 'trunk');
+});
+
+// The file travels with the skill, so the repository it names decides whether its
+// branch names and protections may replace this repository's.
+test('a profile written for another repository is reported and ignored', (t) => {
+  const root = tempRoot(t);
+  writeProfile(root, REPO_PROFILE_FILE, { schemaVersion: 1, repository: 'someone/elsewhere', defaultBranch: 'trunk' });
+  const loaded = loadProfile({ root, git: false, env: { GITHUB_REPOSITORY: 'acme/widgets' } });
+  assert.equal(loaded.source, 'default');
+  assert.equal(loaded.path, null);
+  assert.deepEqual(loaded.ignored, { path: REPO_PROFILE_FILE, repository: 'someone/elsewhere', current: 'acme/widgets' });
+  assert.equal(loaded.profile.defaultBranch, null);
+});
+
+test('a profile written for this repository applies, in either spelling of its name', (t) => {
+  const root = tempRoot(t);
+  writeProfile(root, REPO_PROFILE_FILE, { schemaVersion: 1, repository: 'Acme/Widgets', defaultBranch: 'trunk' });
+  const loaded = loadProfile({ root, git: false, env: { GITHUB_REPOSITORY: 'acme/widgets' } });
+  assert.equal(loaded.source, 'repo');
+  assert.equal(loaded.path, path.join(root, REPO_PROFILE_FILE));
+  assert.equal('ignored' in loaded, false);
+  assert.equal(loaded.profile.defaultBranch, 'trunk');
+});
+
+test('a profile with no repository field applies here', (t) => {
+  const root = tempRoot(t);
+  writeProfile(root, REPO_PROFILE_FILE, { schemaVersion: 1, defaultBranch: 'trunk' });
+  const loaded = loadProfile({ root, git: false, env: { GITHUB_REPOSITORY: 'acme/widgets' } });
+  assert.equal(loaded.source, 'repo');
+  assert.equal(loaded.profile.defaultBranch, 'trunk');
+});
+
 // A repository copies the template to start its own profile, so the copy must load
 // as the default and change nothing until a key is filled in.
 test('the shipped template validates and reads as the generic default', () => {
@@ -107,6 +156,11 @@ test('a protected entry needs a role, and a path twin needs two roots that end i
   }).map((fault) => fault.message);
   assert.ok(messages.some((message) => message.startsWith('protected[0].role:')));
   assert.ok(messages.some((message) => message.startsWith('pathTwins[0]:')));
+});
+
+test('a repository field must name one owner and one name', () => {
+  const messages = validateProfile({ schemaVersion: 1, repository: 'not a repository' }).map((fault) => fault.message);
+  assert.deepEqual(messages, ['repository: "not a repository" must name the repository as owner/name']);
 });
 
 test('a file that does not parse comes back as an error and no profile', (t) => {

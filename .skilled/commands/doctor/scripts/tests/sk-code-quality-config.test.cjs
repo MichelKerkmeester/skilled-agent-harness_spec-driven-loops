@@ -24,7 +24,7 @@ const { assertSnapshotUnchanged, buildRepo } = require(path.join(QUALITY_ROOT, '
 const { validateConfig } = require(path.join(QUALITY_ROOT, 'scripts', 'lib', 'quality-config.cjs'));
 
 const SCRIPT = path.resolve(__dirname, '..', 'sk-code-quality-config.cjs');
-const TARGET = '.sk-code/quality.json';
+const TARGET = '.skilled/skills/sk-code/sk-code-quality/repository/quality.json';
 const PACKAGE = `${JSON.stringify({ name: 'fixture', scripts: { lint: 'eslint .', test: 'node --test' } }, null, 2)}\n`;
 
 function withRepo(options, body) {
@@ -91,7 +91,7 @@ test('init: without a specs/ folder it suggests the spec-kit hygiene rules, neve
   const applied = doctor(repo, ['init', '--apply']);
   assert.equal(applied.status, 0);
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(repo.root, TARGET), 'utf8')).commentHygiene.disableRules, []);
-  fs.rmSync(path.join(repo.root, '.sk-code'), { recursive: true });
+  fs.rmSync(path.join(repo.root, '.skilled'), { recursive: true });
 
   fs.mkdirSync(path.join(repo.root, 'specs'));
   const withSpecs = doctor(repo, ['init', '--json']);
@@ -133,10 +133,11 @@ test('init apply: creates the file once, and a second apply refuses with CONFIG_
   assert.equal(dry.last, 'STATUS=FAIL MODE=DRY_RUN ERROR=CONFIG_EXISTS');
 }));
 
-test('init apply: a .sk-code folder that resolves outside the repository is refused, and nothing is written there', () => withRepo({}, (repo) => {
+test('init apply: a config folder that resolves outside the repository is refused, and nothing is written there', () => withRepo({}, (repo) => {
   const outside = path.join(repo.parent, 'elsewhere');
   fs.mkdirSync(outside);
-  fs.symlinkSync(outside, path.join(repo.root, '.sk-code'));
+  fs.mkdirSync(path.dirname(path.join(repo.root, path.dirname(TARGET))), { recursive: true });
+  fs.symlinkSync(outside, path.join(repo.root, path.dirname(TARGET)));
   const result = doctor(repo, ['init', '--apply']);
   assert.equal(result.status, 1);
   assert.match(result.last, /^STATUS=FAIL MODE=REFUSED ERROR=OUTSIDE_REPOSITORY /);

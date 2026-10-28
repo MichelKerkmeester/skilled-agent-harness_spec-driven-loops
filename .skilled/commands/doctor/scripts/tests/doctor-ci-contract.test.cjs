@@ -73,7 +73,7 @@ const SHIPPED_FILES = [
   path.join(DOCTOR, 'scripts', 'tests', 'ci-scaffold.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'ci-toggle.test.cjs'),
   path.join(DOCTOR, 'scripts', 'tests', 'doctor-ci-contract.test.cjs'),
-  path.join(REPO_ROOT, '.sk-code', 'ci.json'),
+  path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'repository', 'ci.json'),
   path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'ci-profile.template.json'),
   path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'workflow-template.yml'),
   path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'assets', 'job-block-template.yml'),
@@ -216,7 +216,7 @@ test('the scaffold renders its templates and the toggle plans through the script
 // Without the committed profile this repository would read the generic default, and
 // a single yes could then switch off a guard or the required message check.
 test('this repository commits the CI profile that keeps its protections', () => {
-  const profile = JSON.parse(read(path.join(REPO_ROOT, '.sk-code', 'ci.json')));
+  const profile = JSON.parse(read(path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-ci', 'repository', 'ci.json')));
   assert.equal(profile.switch.master, SWITCH_VARIABLES[0]);
   assert.deepEqual(profile.switch.groups, SWITCH_VARIABLES.slice(1));
   assert.ok(profile.neverOff.includes('SKILLED_CI_MESSAGES'));

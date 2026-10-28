@@ -670,6 +670,9 @@ check "the helper checks a staged name that starts with --" 1 "$RC" "staged file
 # A foreign repository's own tracker ids block until its quality config switches the
 # rules off, and a config that does not validate leaves every core rule on.
 REAL_FLAG_HELPER="$REPO_ROOT/.skilled/skills/sk-code/sk-code-quality/scripts/hygiene-config-flags.cjs"
+# The config travels with the skill, so a repository that installs skills under .opencode/
+# keeps it at the same path under that folder.
+QUALITY_CONFIG="$TMP/.opencode/skills/sk-code/sk-code-quality/repository/quality.json"
 plant_real_flag_helper() {
   ln -s "$REAL_FLAG_HELPER" "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/hygiene-config-flags.cjs"
 }
@@ -680,13 +683,13 @@ plant_real_flag_helper
 stage_new "foreign.js" "$FOREIGN_LINES"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a foreign repository's tracker ids block with no quality config" 1 "$RC" "foreign.js:3:"
-mkdir -p "$TMP/.sk-code"
-printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"disableRules": ["issue", "adr", "task"]}}' > "$TMP/.sk-code/quality.json"
+mkdir -p "$(dirname "$QUALITY_CONFIG")"
+printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"disableRules": ["issue", "adr", "task"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "the rules the quality config disables do not block the commit" 0 "$RC"
 run_legacy; RC=$?
 check "the helper honors the rules the quality config disables" 0 "$RC"
-printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"disableRules": ["tsak"]}}' > "$TMP/.sk-code/quality.json"
+printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"disableRules": ["tsak"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a quality config that does not validate keeps every core rule" 1 "$RC" "did not validate, so every core rule applies"
 # The config's additions tighten the author gate only, so the hook keeps the core set
@@ -697,14 +700,14 @@ plant_real_comment_checker
 plant_real_flag_helper
 stage_new "vendor/lib.js" "// tracked in JIRA-12"
 stage_new "foreign.js" "$FOREIGN_LINES"
-mkdir -p "$TMP/.sk-code"
-printf '%s\n' '{"schemaVersion": 1, "exclude": ["vendor/**"], "commentHygiene": {"ticketPrefixes": ["JIRA"], "disableRules": ["issue", "adr", "task"]}}' > "$TMP/.sk-code/quality.json"
+mkdir -p "$(dirname "$QUALITY_CONFIG")"
+printf '%s\n' '{"schemaVersion": 1, "exclude": ["vendor/**"], "commentHygiene": {"ticketPrefixes": ["JIRA"], "disableRules": ["issue", "adr", "task"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a ticket prefix the config adds does not reach the commit gate" 0 "$RC"
-printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"extraPatterns": ["(?<=a+)b"], "disableRules": ["issue", "adr", "task"]}}' > "$TMP/.sk-code/quality.json"
+printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"extraPatterns": ["(?<=a+)b"], "disableRules": ["issue", "adr", "task"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "an extra pattern Python refuses does not reach the commit gate" 0 "$RC"
-printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"ticketPrefixes": ["JIRA"], "disableRules": ["issue", "adr"]}}' > "$TMP/.sk-code/quality.json"
+printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"ticketPrefixes": ["JIRA"], "disableRules": ["issue", "adr"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a rule the config leaves on still blocks beside the additions" 1 "$RC" "foreign.js:3:"
 

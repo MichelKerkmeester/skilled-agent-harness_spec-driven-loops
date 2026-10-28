@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "repository": "MichelKerkmeester/skilled-agent-harness_spec-driven-loops",
   "defaultBranch": "main",
   "integrationBranches": ["main", "skilled/**"],
   "workflowsReadme": {

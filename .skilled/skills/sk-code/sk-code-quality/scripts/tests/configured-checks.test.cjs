@@ -83,7 +83,7 @@ function deadWithin(pid, ms) {
 test('F06 required tool absent: the check is SKIPPED_ABSENT with a repair line and the run is UNVERIFIED', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{ id: 'absent-tool', argv: ['sk-code-absent-tool', '{files}'], severity: 'P0' }] }),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'absent-tool', argv: ['sk-code-absent-tool', '{files}'], severity: 'P0' }] }),
   },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
@@ -92,14 +92,14 @@ test('F06 required tool absent: the check is SKIPPED_ABSENT with a repair line a
   assert.equal(verdict.gate, 'UNVERIFIED');
   const row = check(verdict, 'absent-tool');
   assert.deepEqual([row.origin, row.state, row.required, row.requires], ['configured', 'SKIPPED_ABSENT', true, 'sk-code-absent-tool']);
-  assert.equal(row.repair, "install 'sk-code-absent-tool' or remove the check from .sk-code/quality.json");
+  assert.equal(row.repair, "install 'sk-code-absent-tool' or remove the check from .skilled/skills/sk-code/sk-code-quality/repository/quality.json");
   assert.deepEqual(verdict.summary.unverified, ['absent-tool']);
 }));
 
 test('F07 check fails: a required P0 check that exits 1 is RAN_FAIL and blocks, and a failing P1 check does not', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [
       { id: 'soft-fail', argv: [NODE, '-e', 'process.exit(1)'], severity: 'P1' },
       { id: 'hard-fail', argv: [NODE, '-e', 'process.exit(1)'], severity: 'P0' },
     ] }),
@@ -113,14 +113,14 @@ test('F07 check fails: a required P0 check that exits 1 is RAN_FAIL and blocks, 
   assert.deepEqual([check(verdict, 'hard-fail').state, check(verdict, 'hard-fail').exit], ['RAN_FAIL', 1]);
   assert.deepEqual([check(verdict, 'soft-fail').state, check(verdict, 'soft-fail').required], ['RAN_FAIL', false]);
 
-  repo.write({ '.sk-code/quality.json': config({ checks: [{ id: 'soft-fail', argv: [NODE, '-e', 'process.exit(1)'], severity: 'P1' }] }) });
-  assert.equal(repo.run(['--config', '.sk-code/quality.json']).status, 0);
+  repo.write({ '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'soft-fail', argv: [NODE, '-e', 'process.exit(1)'], severity: 'P1' }] }) });
+  assert.equal(repo.run(['--config', '.skilled/skills/sk-code/sk-code-quality/repository/quality.json']).status, 0);
 }));
 
 test('F08 check mutates: a check that rewrites a tracked file ends the run with CHECK_MUTATED_WORKSPACE and keeps the change', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [
       { id: 'rewriter', argv: [NODE, '-e', 'require("fs").appendFileSync("app.go", "func C() {}\\n")'], severity: 'P1' },
       { id: 'after', argv: [NODE, '-e', 'process.exit(0)'], severity: 'P1' },
     ] }),
@@ -167,7 +167,7 @@ test('F09 discovered only: a package.json lint script is suggested with its conf
 test('trust: a committed config with no trust rule leaves its required check SKIPPED_UNTRUSTED and starts nothing', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{
       id: 'untrusted-canary',
       argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran"); process.exit(1)'],
       severity: 'P0',
@@ -189,7 +189,7 @@ test('trust: a committed config with no trust rule leaves its required check SKI
 test('trust: a local skilled.trustRepoChecks true lets the committed check run and fail as before', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{ id: 'trusted-fail', argv: [NODE, '-e', 'process.exit(1)'], severity: 'P0' }] }),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'trusted-fail', argv: [NODE, '-e', 'process.exit(1)'], severity: 'P0' }] }),
   },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
@@ -203,7 +203,7 @@ test('trust: a local skilled.trustRepoChecks true lets the committed check run a
 
 // Git stores any text under the key, and only a value it reads as a boolean true is a grant.
 test('trust: a skilled.trustRepoChecks value that is not a git boolean is no grant and the check never starts', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': canaryConfig('maybe-grant') },
+  base: { 'app.go': CLEAN_GO, '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': canaryConfig('maybe-grant') },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
   repo.git(['config', '--local', 'skilled.trustRepoChecks', 'maybe']);
@@ -219,11 +219,11 @@ test('trust: a skilled.trustRepoChecks value that is not a git boolean is no gra
 test('trust: naming the committed config with --config trusts it for that run only', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{ id: 'named-run', argv: [NODE, '-e', 'process.exit(0)'], severity: 'P0' }] }),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'named-run', argv: [NODE, '-e', 'process.exit(0)'], severity: 'P0' }] }),
   },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
-  const named = assertSnapshotUnchanged(repo, () => repo.run(['--config', '.sk-code/quality.json']));
+  const named = assertSnapshotUnchanged(repo, () => repo.run(['--config', '.skilled/skills/sk-code/sk-code-quality/repository/quality.json']));
   assert.equal(named.status, 0);
   assert.equal(check(named.verdict, 'named-run').state, 'RAN_CLEAN');
   assert.deepEqual([named.verdict.config.trust.checks, named.verdict.config.trust.reason],
@@ -236,7 +236,7 @@ test('trust: naming the committed config with --config trusts it for that run on
 // .git/config reports the scope of the file that carries it, and that file is often
 // tracked. Trust reads the local scope again with no include, so these cases separate the
 // three ways the same key can reach a run.
-const OUTSIDE_GITCONFIG = '[skcode]\n\tqualityConfig = .sk-code/quality.json\n';
+const OUTSIDE_GITCONFIG = '[skcode]\n\tqualityConfig = .skilled/skills/sk-code/sk-code-quality/repository/quality.json\n';
 
 function canaryConfig(id, extra = {}) {
   return config({ checks: [{ id, argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")'], severity: 'P0', ...extra }] });
@@ -248,10 +248,10 @@ function localGitConfig(repo, args) {
 }
 
 test('trust: a skcode.qualityConfig value stored in .git/config itself lets the check run', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': config({ checks: [{ id: 'own-config', argv: [NODE, '-e', 'process.exit(0)'], severity: 'P0' }] }) },
+  base: { 'app.go': CLEAN_GO, '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'own-config', argv: [NODE, '-e', 'process.exit(0)'], severity: 'P0' }] }) },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
-  localGitConfig(repo, ['skcode.qualityConfig', '.sk-code/quality.json']);
+  localGitConfig(repo, ['skcode.qualityConfig', '.skilled/skills/sk-code/sk-code-quality/repository/quality.json']);
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 0);
   assert.equal(verdict.config.source, 'git-config');
@@ -264,7 +264,7 @@ test('trust: a skcode.qualityConfig value stored in .git/config itself lets the 
 }));
 
 test('trust: the same key at global scope does not trust the committed config', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': canaryConfig('global-key') },
+  base: { 'app.go': CLEAN_GO, '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': canaryConfig('global-key') },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
   const globalConfig = path.join(repo.parent, 'global.gitconfig');
@@ -284,7 +284,7 @@ test('trust: the same key at global scope does not trust the committed config', 
 test('trust: a value reached through an include in .git/config is not trusted', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': canaryConfig('included-key'),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': canaryConfig('included-key'),
     'repo.gitconfig': OUTSIDE_GITCONFIG,
   },
   change: { 'app.go': CHANGED_GO },
@@ -326,7 +326,7 @@ test('unit trust: a repository that shares the runner checkout\'s common dir is 
 });
 
 test('trust: --no-run lists an untrusted configured check and never reports SKIPPED_UNTRUSTED', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': canaryConfig('listed-canary') },
+  base: { 'app.go': CLEAN_GO, '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': canaryConfig('listed-canary') },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
   const listed = assertSnapshotUnchanged(repo, () => repo.run(['--no-run']));
@@ -337,13 +337,13 @@ test('trust: --no-run lists an untrusted configured check and never reports SKIP
   const explained = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'app.go']));
   const named = explained.verdict.checks.find((entry) => entry.id === 'listed-canary');
   assert.deepEqual([named.applies, named.why], [true,
-    'matches every file the runner reads in .sk-code/quality.json, but it will not run until trusted: git config --local skilled.trustRepoChecks true']);
+    'matches every file the runner reads in .skilled/skills/sk-code/sk-code-quality/repository/quality.json, but it will not run until trusted: git config --local skilled.trustRepoChecks true']);
   const run = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(check(run.verdict, 'listed-canary').state, 'SKIPPED_UNTRUSTED');
 }));
 
 test('trust: an untrusted check that is not required leaves the gate short of UNVERIFIED', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': canaryConfig('optional-canary', { severity: 'P1', required: false }) },
+  base: { 'app.go': CLEAN_GO, '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': canaryConfig('optional-canary', { severity: 'P1', required: false }) },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
@@ -358,7 +358,7 @@ test('trust: an untrusted check that is not required leaves the gate short of UN
 test('trust: a repository generated row in an untrusted repository is SKIPPED_UNTRUSTED', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ generated: [{
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ generated: [{
       paths: ['dist/**'],
       argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")', '{files}'],
       severity: 'P0',
@@ -377,10 +377,10 @@ test('no git: a configured check reports ERROR with GUARD_UNAVAILABLE, starts no
   git: false,
   base: {
     'app.go': CHANGED_GO,
-    '.sk-code/quality.json': config({ checks: [{ id: 'canary', argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")'], severity: 'P0' }] }),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'canary', argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")'], severity: 'P0' }] }),
   },
 }, (repo) => {
-  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', 'app.go', '--config', '.sk-code/quality.json']));
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', 'app.go', '--config', '.skilled/skills/sk-code/sk-code-quality/repository/quality.json']));
   assert.equal(status, 4);
   const row = check(verdict, 'canary');
   assert.deepEqual([row.state, row.code], ['ERROR', 'GUARD_UNAVAILABLE']);
@@ -390,7 +390,7 @@ test('no git: a configured check reports ERROR with GUARD_UNAVAILABLE, starts no
 test('argv: shell metacharacters reach the program as literal text, and no shell reads them', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{
       id: 'literal',
       argv: [NODE, '-e', `process.exit(process.argv[1] === ${JSON.stringify(HOSTILE)} ? 0 : 1)`, HOSTILE],
       severity: 'P0',
@@ -414,7 +414,7 @@ test('timeout: a check over its deadline is TIMEOUT, and the runner kills the wh
     withRepo({
       base: {
         'app.go': CLEAN_GO,
-        '.sk-code/quality.json': config({ checks: [
+        '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [
           { id: 'stall', argv: [NODE, '-e', `${FORK_HELPER} setInterval(() => {}, 1000);`, stalled], severity: 'P0', timeoutSec: 0.5 },
           { id: 'leave', argv: [NODE, '-e', `${FORK_HELPER} process.exit(0);`, exited], severity: 'P1' },
         ] }),
@@ -437,7 +437,7 @@ test('timeout: a check over its deadline is TIMEOUT, and the runner kills the wh
 test('--no-run lists configured checks with their planned runs and spawns none, and the flags accept configured ids', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{ id: 'canary', argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")', '{files}'], severity: 'P0' }] }),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'canary', argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")', '{files}'], severity: 'P0' }] }),
   },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
@@ -460,7 +460,7 @@ test('package cwd: a {files} check runs once per package folder and receives onl
   base: {
     'pkg/a/package.json': '{"name": "a"}\n',
     'pkg/b/Cargo.toml': '[package]\nname = "b"\n',
-    '.sk-code/quality.json': config({ checks: [{
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{
       id: 'per-package',
       // Exits 0 only when every file it was handed exists from where it started.
       argv: [NODE, '-e', 'process.exit(process.argv.slice(1).every((f) => require("fs").existsSync(f)) ? 0 : 1)', '{files}'],
@@ -493,7 +493,7 @@ test('relative program: a slash argv[0] starts from the repository root whatever
       base: {
         'tools/lint.sh': `#!/bin/sh\nprintf '%s\\n' started > '${marker}'\n`,
         'pkg/package.json': '{"name": "pkg"}\n',
-        '.sk-code/quality.json': config({ checks: [{
+        '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{
           id: 'lint',
           argv: ['./tools/lint.sh', '{files}'],
           languages: ['python'],
@@ -519,7 +519,7 @@ test('relative program: a slash argv[0] starts from the repository root whatever
 test('NOT_APPLICABLE: a check whose selectors match no file in scope never starts', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ checks: [{ id: 'docs-only', argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")'], paths: ['docs/**'], severity: 'P0' }] }),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ checks: [{ id: 'docs-only', argv: [NODE, '-e', 'require("fs").writeFileSync("canary", "ran")'], paths: ['docs/**'], severity: 'P0' }] }),
   },
   change: { 'app.go': CHANGED_GO },
 }, (repo) => {
@@ -532,7 +532,7 @@ test('NOT_APPLICABLE: a check whose selectors match no file in scope never start
 test('generated: a row whose paths match a changed file runs as a configured check, even under an excluded folder', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': config({ generated: [{
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ generated: [{
       paths: ['dist/**'],
       argv: [NODE, '-e', 'process.exit(require("fs").existsSync(process.argv[1]) ? 0 : 1)', '{files}'],
       severity: 'P0',

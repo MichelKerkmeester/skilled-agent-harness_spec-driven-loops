@@ -24,9 +24,12 @@ const test = require('node:test');
 
 const SCRIPT = path.resolve(__dirname, '..', 'ci-report.cjs');
 const PROFILE_LIB = path.resolve(__dirname, '..', 'lib', 'ci-profile.cjs');
+const REPOSITORY_IDENTITY_LIB = path.resolve(__dirname, '../../../../skills/sk-code/shared/scripts/lib/repository-identity.cjs');
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const SCRIPT_RELATIVE = '.skilled/commands/doctor/scripts/ci-report.cjs';
 const PROFILE_LIB_RELATIVE = '.skilled/commands/doctor/scripts/lib/ci-profile.cjs';
+const REPOSITORY_IDENTITY_RELATIVE = '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs';
+const PROFILE_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
 
 // The conventions the original fixtures were written against: one master switch with
 // groups, a switch on every job, the auto-merge exemption, a README and a trailer.
@@ -192,7 +195,8 @@ function fixture(t, extraWorkflows = {}, { profile = SKILLED_STYLE_PROFILE, work
   fs.mkdirSync(path.dirname(path.join(root, SCRIPT_RELATIVE)), { recursive: true });
   fs.copyFileSync(SCRIPT, path.join(root, SCRIPT_RELATIVE));
   writeFile(root, PROFILE_LIB_RELATIVE, fs.readFileSync(PROFILE_LIB, 'utf8'));
-  if (profile) writeFile(root, '.sk-code/ci.json', `${JSON.stringify(profile, null, 2)}\n`);
+  writeFile(root, REPOSITORY_IDENTITY_RELATIVE, fs.readFileSync(REPOSITORY_IDENTITY_LIB, 'utf8'));
+  if (profile) writeFile(root, PROFILE_RELATIVE, `${JSON.stringify(profile, null, 2)}\n`);
   if (readme) writeFile(root, '.github/workflows/README.md', readme);
   const base = workflows || {
     'a.yml': WORKFLOW_A,
@@ -451,7 +455,7 @@ test('a profile names a branch other than main, the master switch and the README
   const result = run(['--json'], { GH_VARIABLES: ACME_VARIABLES, GH_RUN_BRANCH: 'develop' });
   assert.equal(result.code, 0, result.err);
   const { json } = result;
-  assert.deepEqual(json.profile, { source: 'repo', path: '.sk-code/ci.json' });
+  assert.deepEqual(json.profile, { source: 'repo', path: PROFILE_RELATIVE });
   assert.deepEqual(Object.keys(json.variables), ['ACME_CI', 'ACME_CI_TESTS', 'ACME_CI_GATE']);
   assert.deepEqual(row(json, 'tests.yml').groups, ['ACME_CI_TESTS']);
   assert.equal(row(json, 'tests.yml').purpose, 'Runs the tests.');
@@ -460,6 +464,29 @@ test('a profile names a branch other than main, the master switch and the README
   assert.ok(!row(json, 'release.yml').flags.includes('switch-missing'));
   assert.ok(calls().includes('run list --branch develop --limit 100 --json headSha,createdAt'));
   assert.ok(!calls().some((call) => call.startsWith('repo view')));
+});
+
+test('a skill-folder profile written for another repository is ignored and named in the report', (t) => {
+  const profile = { ...SKILLED_STYLE_PROFILE, repository: 'someone/else' };
+  const { run } = fixture(t, {}, { profile });
+  const result = run(['--json', '--no-gh'], { GITHUB_REPOSITORY: 'acme/widgets' });
+  assert.equal(result.code, 0, result.err);
+  assert.deepEqual(result.json.profile, {
+    source: 'default',
+    path: null,
+    ignored: { path: PROFILE_RELATIVE, repository: 'someone/else', current: 'acme/widgets' },
+  });
+  assert.match(run(['--no-gh'], { GITHUB_REPOSITORY: 'acme/widgets' }).out,
+    /^profile: default; ignored \.skilled\/skills\/sk-code\/sk-code-ci\/repository\/ci\.json, written for someone\/else, this repository is acme\/widgets$/m);
+});
+
+test('a profile left at the repository root exits 3 and names the move', (t) => {
+  const { root, run } = fixture(t, {}, { profile: null, workflows: ACME_WORKFLOWS, readme: null });
+  writeFile(root, '.sk-code/ci.json', JSON.stringify({ schemaVersion: 1 }));
+  const result = run(['--json', '--no-gh']);
+  assert.equal(result.code, 3);
+  assert.match(result.err, /\.sk-code\/ci\.json is no longer read: move it to \.skilled\/skills\/sk-code\/sk-code-ci\/repository\/ci\.json/);
+  assert.equal(result.out, '');
 });
 
 test('a required switch flags a foreign workflow that carries none', (t) => {
@@ -502,5 +529,5 @@ test('an unknown profile key exits 3 and names the key', (t) => {
 
 test('the text table names the profile it read', (t) => {
   const { run } = fixture(t);
-  assert.match(run(['--no-gh']).out, /^profile: repo \(\.sk-code\/ci\.json\)$/m);
+  assert.match(run(['--no-gh']).out, /^profile: repo \(\.skilled\/skills\/sk-code\/sk-code-ci\/repository\/ci\.json\)$/m);
 });

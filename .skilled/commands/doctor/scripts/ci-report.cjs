@@ -446,7 +446,11 @@ function variableMap(variables, names) {
 function buildReport(variables, resolved, loaded, names, loadedProfile) {
   return {
     repoRoot: REPO_ROOT,
-    profile: { source: loadedProfile.source, path: loadedProfile.display },
+    profile: {
+      source: loadedProfile.source,
+      path: loadedProfile.display,
+      ...(loadedProfile.ignored ? { ignored: loadedProfile.ignored } : {}),
+    },
     workflowCount: loaded.rows.length,
     variables: variableMap(variables, names),
     newestNonRebuildSha: resolved.sha,
@@ -470,11 +474,12 @@ function variableSummary(report, variables) {
 
 function renderTable(report, variables) {
   const jobCount = report.workflows.reduce((sum, row) => sum + row.jobs, 0);
+  const { ignored } = report.profile;
   const lines = [
     'CI WORKFLOW REPORT',
     `workflows: ${report.workflowCount}  jobs: ${jobCount}`,
     `variables: ${variableSummary(report, variables)}`,
-    `profile: ${report.profile.source}${report.profile.path ? ` (${report.profile.path})` : ''}`,
+    `profile: ${report.profile.source}${report.profile.path ? ` (${report.profile.path})` : ''}${ignored ? `; ignored ${ignored.path}, written for ${ignored.repository}, this repository is ${ignored.current || 'unknown'}` : ''}`,
     `newest non-rebuild SHA: ${report.newestNonRebuildSha || 'none'} (${report.newestNonRebuildReason})`,
     '',
     '| Workflow | Switch | Jobs | Events | Filters | Drift flags | Purpose |',

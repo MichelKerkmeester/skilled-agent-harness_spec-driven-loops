@@ -215,6 +215,7 @@ const REPAIRS = Object.freeze({
   CHECKLIST_OUTSIDE_SKILL: 'point the row at a file inside the folder of the skill that declares it',
   CHECKLIST_ROW_INVALID: 'fix the row as the skill root metadata contract describes',
   CONFIG_PATH_MISSING: 'create the named config file, or fix the --config value or the skcode.qualityConfig git config value that names it',
+  CONFIG_LEGACY_LOCATION: 'move .sk-code/quality.json to the path the message names inside the sk-code-quality skill folder, then delete the .sk-code folder',
   CONFIG_INVALID: 'fix each field that config.errors lists, as references/quality-config.md describes',
   CHECK_MUTATED_WORKSPACE: 'review the listed paths, the runner reverts nothing',
   GUARD_FAILED: 'run git status in this repository and fix what it reports',
@@ -247,7 +248,7 @@ const USAGE_TEXT = [
   '  1. --config PATH',
   '  2. git config skcode.qualityConfig from a config file, relative to the repository root',
   '     (a git -c or GIT_CONFIG_* value is ignored)',
-  '  3. .sk-code/quality.json at the repository root',
+  `  3. ${qualityConfig.CONFIG_CANDIDATES.join(' or ')} under the repository root`,
   '  4. none, so only the built-in checks run',
   '',
   'Exit codes:',
@@ -767,7 +768,8 @@ function readRepositoryConfig(options, realCwd, root, git, env, defaults) {
     });
   } catch (error) {
     if (!(error instanceof qualityConfig.ConfigError)) throw error;
-    const failure = new GateError(error.code === 'CONFIG_PATH_MISSING' ? 'CONFIG_PATH_MISSING' : 'GIT_FAILED', error.message);
+    const named = ['CONFIG_PATH_MISSING', 'CONFIG_LEGACY_LOCATION'];
+    const failure = new GateError(named.includes(error.code) ? error.code : 'GIT_FAILED', error.message);
     failure.config = { source: error.source || null, path: error.path || null, bytes: null, defaults: DEFAULTS_FILE,
       trust: noTrust('the config could not be read, so no configured check runs'), errors: [], warnings: [], hygiene: { disabled: [] } };
     throw failure;

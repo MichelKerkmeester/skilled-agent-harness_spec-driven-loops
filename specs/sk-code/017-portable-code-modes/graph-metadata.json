@@ -15,7 +15,8 @@
     "sk-code/017-portable-code-modes/005-review-floor-lens-overrides",
     "sk-code/017-portable-code-modes/006-review-agent-and-dispatch",
     "sk-code/017-portable-code-modes/009-integration-fixes",
-    "sk-code/017-portable-code-modes/007-ci-repo-profile"
+    "sk-code/017-portable-code-modes/007-ci-repo-profile",
+    "sk-code/017-portable-code-modes/016-repository-config-in-skill"
   ],
   "manual": {
     "depends_on": [],
@@ -44,11 +45,10 @@
       "repository"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-shared-rule-contract/spec.md",
-      ".sk-code/ci.json",
       ".github/workflows/sk-code-script-tests.yml",
       "specs/sk-code/015-quality-agnostic-gate/spec.md",
       ".skilled/skills/sk-code/shared/references/universal/rule-overrides.json",
@@ -59,12 +59,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "ci.json",
-        "kind": "config",
-        "path": ".sk-code/ci.json",
         "source": "derived"
       },
       {
@@ -124,16 +118,16 @@
     ],
     "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
     "created_at": "2026-10-27T20:47:57Z",
-    "last_save_at": "2026-10-28T04:19:22.948Z",
+    "last_save_at": "2026-10-28T05:43:42.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fb9b60ad50b445b297abcaeb882c05e2c7d918b1e705c8857776084dd0727c1e",
+    "source_fingerprint": "sha256:07facd59fe73dbe6d7aa4eefc6350a963fec3b5badb36f6e7a16919596c1810c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "698c3ad15f54c00a254913d776dce0ac0c821514c680ab537546ae33c080a9d1"
+      "spec.md": "7a0dd6c1f272c316342716e6a787495412af3bbfe9a373817c54ab33ec43743b"
     },
     "last_active_at": null
   }

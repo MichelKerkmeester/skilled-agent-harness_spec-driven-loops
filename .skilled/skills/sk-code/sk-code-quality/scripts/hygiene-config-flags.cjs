@@ -46,7 +46,7 @@ const USAGE_TEXT = 'Usage: hygiene-config-flags.cjs [--repo DIR] [--json]';
 /**
  * Read a repository's quality config and return the --disable-rule flags its
  * commentHygiene block asks for. Discovery follows the runner: the file-scoped git config value, then
- * .sk-code/quality.json at the root.
+ * the config the skill folder carries, at whichever candidate path exists.
  *
  * @param {Object} options - root, the repository root, and env.
  * @returns {{flags:string[], disabled:string[], source:string, path:string|null, errors:Array<{code:string, message:string}>}}

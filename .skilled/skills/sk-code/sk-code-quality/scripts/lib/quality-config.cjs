@@ -19,6 +19,7 @@ const path = require('node:path');
 
 const { runGit } = require('./run-check.cjs');
 const { loadContract } = require('../../../shared/scripts/check-rule-overrides.cjs');
+const { REPOSITORY_PATTERN, currentRepository, repositoryMatches } = require('../../../shared/scripts/lib/repository-identity.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -29,12 +30,18 @@ const SYNTAX_PATH = path.join(QUALITY_ROOT, 'assets', 'comment-syntax.json');
 const TEMPLATE_PATH = path.join(QUALITY_ROOT, 'assets', 'quality-config.template.json');
 const HYGIENE_CHECKER_PATH = path.join(QUALITY_ROOT, 'scripts', 'check-comment-hygiene.sh');
 
-const REPO_CONFIG_FILE = '.sk-code/quality.json';
+// The config travels with the skill, so a repository that installs skills under .opencode/
+// keeps the same path there. The root-level file is where it used to live, and a copy left
+// there is refused rather than read, so a repository cannot look configured while the gate
+// reads nothing.
+const REPO_CONFIG_FILE = '.skilled/skills/sk-code/sk-code-quality/repository/quality.json';
+const LEGACY_CONFIG_FILE = '.sk-code/quality.json';
+const CONFIG_CANDIDATES = Object.freeze([REPO_CONFIG_FILE, REPO_CONFIG_FILE.replace(/^\.skilled\//, '.opencode/')]);
 const GIT_CONFIG_KEY = 'skcode.qualityConfig';
 const SCHEMA_VERSION = 1;
 const FILES_TOKEN = '{files}';
 
-const TOP_KEYS = Object.freeze(['schemaVersion', 'exclude', 'checks', 'checklists', 'generated', 'commentHygiene', 'sensors']);
+const TOP_KEYS = Object.freeze(['schemaVersion', 'repository', 'exclude', 'checks', 'checklists', 'generated', 'commentHygiene', 'sensors']);
 const CHECK_KEYS = Object.freeze(['id', 'argv', 'languages', 'paths', 'cwd', 'requires', 'severity', 'required', 'timeoutSec']);
 const GENERATED_KEYS = Object.freeze(['id', 'argv', 'paths', 'cwd', 'requires', 'severity', 'required', 'timeoutSec']);
 const CHECKLIST_KEYS = Object.freeze(['file', 'why', 'paths', 'extensions', 'contentMarkers']);
@@ -182,6 +189,39 @@ function stringList(value, field, errors, { required = false, nonEmpty = require
 // 4. DISCOVERY
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * The path init writes: the candidate whose skill folder this repository holds. A
+ * repository that keeps skills under .opencode/ keeps the config there, and a repository
+ * with neither layout gets the path this framework installs by default.
+ *
+ * @param {string} root - Repository root.
+ * @returns {string} The repository-relative target, one of CONFIG_CANDIDATES.
+ */
+function repoConfigTarget(root) {
+  for (const candidate of CONFIG_CANDIDATES) {
+    if (lstatOrNull(path.join(root, path.dirname(path.dirname(candidate))))) return candidate;
+  }
+  return REPO_CONFIG_FILE;
+}
+
+/**
+ * The repository a config file declares, or undefined when it declares none or does not
+ * parse. A file that does not parse stays a repository source, so the JSON fault is what
+ * the caller reports.
+ *
+ * @param {string} file - Absolute path to a config file.
+ * @returns {*} The declared value, or undefined.
+ */
+function declaredRepository(file) {
+  let raw;
+  try {
+    raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch {
+    return undefined;
+  }
+  return isPlainObject(raw) ? raw.repository : undefined;
+}
+
 // Only a value stored in a config file counts. A git -c flag or a GIT_CONFIG_*
 // variable reports scope command, and honoring it would let one invocation swap the
 // commands a repository committed. The last value wins, as git reads it, and its scope
@@ -204,16 +244,22 @@ function fileScopedGitValue(root, env) {
 
 /**
  * Pick the one repository config source, most explicit first: --config relative to
- * the working directory, the file-scoped git config value relative to the root, then
- * .sk-code/quality.json at the root. A named path that points nowhere is a broken
- * install, never a fall back to the next source.
+ * the working directory, the file-scoped git config value relative to the root, then the
+ * config the skill folder carries, at the first candidate that exists. A named path that
+ * points nowhere is a broken install, never a fall back to the next source, and a file
+ * left at the old root-level location is refused with CONFIG_LEGACY_LOCATION, so a stale
+ * copy cannot be read in silence.
  *
  * `value` is the git config value discovery read, verbatim, and null for every other
  * source. A trust decision needs it, because whether that value sits in the repository's
  * own .git/config is a different question from which scope git labels it with.
  *
+ * `ignored` is set only when the candidate exists and names another repository. It holds
+ * the path, the repository the file declares and the one read here, so a caller can report
+ * why a committed config applied to nothing.
+ *
  * @param {Object} options - cliPath, cwd, root, git and env.
- * @returns {{source:string, path:string|null, scope:string|null, value:string|null}}
+ * @returns {{source:string, path:string|null, scope:string|null, value:string|null, ignored?:Object}}
  *   source is cli, git-config, repo or none, and scope is the git config scope that
  *   supplied it.
  */
@@ -236,9 +282,21 @@ function discoverConfig({ cliPath = null, cwd, root, git, env = process.env }) {
       return { source: 'git-config', path: file, scope: configured.scope, value: configured.value };
     }
   }
-  const file = path.join(root, REPO_CONFIG_FILE);
-  if (!lstatOrNull(file)) return { source: 'none', path: null, scope: null, value: null };
-  return { source: 'repo', path: file, scope: null, value: null };
+  const legacy = path.join(root, LEGACY_CONFIG_FILE);
+  if (lstatOrNull(legacy)) {
+    throw new ConfigError('CONFIG_LEGACY_LOCATION', `${LEGACY_CONFIG_FILE} is no longer read: move it to ${repoConfigTarget(root)}`,
+      { source: 'repo', path: legacy, scope: null });
+  }
+  const file = CONFIG_CANDIDATES.map((candidate) => path.join(root, candidate)).find((candidate) => lstatOrNull(candidate));
+  if (!file) return { source: 'none', path: null, scope: null, value: null };
+  const declared = declaredRepository(file);
+  const namesRepository = typeof declared === 'string' && REPOSITORY_PATTERN.test(declared.trim());
+  // An absent field applies everywhere. A value the pattern refuses is a config fault rather
+  // than another repository, so it stays a repository source and validation names the field.
+  if (declared === undefined || !namesRepository) return { source: 'repo', path: file, scope: null, value: null };
+  const current = currentRepository({ root, env }).identity;
+  if (repositoryMatches(declared, current)) return { source: 'repo', path: file, scope: null, value: null };
+  return { source: 'none', path: null, scope: null, value: null, ignored: { path: file, repository: declared, current } };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -532,6 +590,9 @@ function validateConfig(raw, { builtinIds = [] } = {}) {
   const table = readSyntaxTable();
   unknownKeys(raw, TOP_KEYS, '', errors);
   if (raw.schemaVersion !== SCHEMA_VERSION) errors.push(issue('schemaVersion', `must be ${SCHEMA_VERSION}`));
+  if (raw.repository !== undefined && (typeof raw.repository !== 'string' || !REPOSITORY_PATTERN.test(raw.repository))) {
+    errors.push(issue('repository', 'must name one repository as <owner>/<name>, the repository this file applies to'));
+  }
   stringList(raw.exclude, 'exclude', errors);
   const ids = new Map();
   const claim = (id, field) => {
@@ -661,16 +722,19 @@ function hygieneCheckerFlags(hygiene) {
  * and merged is null whenever errors is not empty.
  *
  * @param {Object} options - cliPath, cwd, root, git, env, defaults and builtinIds.
- * @returns {{source:string, path:string|null, scope:string|null, display:string|null, bytes:number|null, raw:*, errors:Object[], merged:Object|null}}
+ * @returns {{source:string, path:string|null, scope:string|null, display:string|null, bytes:number|null, raw:*, errors:Object[], merged:Object|null, ignored?:Object}}
  */
 function loadConfig({ cliPath = null, cwd, root, git, env = process.env, defaults, builtinIds = [] }) {
   const found = discoverConfig({ cliPath, cwd, root, git, env });
   const base = { source: found.source, scope: found.scope, path: found.path, value: found.value, display: displayPath(found.path, root), bytes: null, raw: null, errors: [] };
+  // Only a config that named another repository carries this, so a reader sees why a committed
+  // file applied to nothing rather than reading the run as unconfigured.
+  if (found.ignored) base.ignored = found.ignored;
   if (!found.path) return { ...base, merged: mergeConfig(defaults, null) };
   // The committed file is the one source no operator named, so it must be this
   // repository's own content. A link that leads out of the repository is refused.
   if (found.source === 'repo' && !isInside(realOrSelf(found.path), realOrSelf(root))) {
-    return { ...base, errors: [issue('', `${REPO_CONFIG_FILE} resolves to ${realOrSelf(found.path)}, outside the repository`)], merged: null };
+    return { ...base, errors: [issue('', `${base.display} resolves to ${realOrSelf(found.path)}, outside the repository`)], merged: null };
   }
   const stat = statOrNull(found.path);
   if (!stat || !stat.isFile()) {
@@ -789,8 +853,10 @@ function initialConfig(root) {
 
 module.exports = {
   ConfigError,
+  CONFIG_CANDIDATES,
   FILES_TOKEN,
   GIT_CONFIG_KEY,
+  LEGACY_CONFIG_FILE,
   PACKAGE_MARKERS,
   REPO_CONFIG_FILE,
   SPEC_KIT_HYGIENE_RULES,
@@ -805,5 +871,6 @@ module.exports = {
   mergeConfig,
   readHygieneRules,
   readSuggestions,
+  repoConfigTarget,
   validateConfig,
 };

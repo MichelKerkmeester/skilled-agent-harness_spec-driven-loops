@@ -169,8 +169,9 @@ test('a hygiene id a repository disables in quality reaches review as a mapped i
   const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'review-lens-'));
   try {
     spawnSync('git', ['-c', 'core.fsmonitor=false', 'init', '-q', repo], { encoding: 'utf8' });
-    fs.mkdirSync(path.join(repo, '.sk-code'));
-    fs.writeFileSync(path.join(repo, '.sk-code', 'quality.json'), JSON.stringify({ schemaVersion: 1, commentHygiene: { disableRules: ['issue'] } }));
+    const configDir = path.join(repo, '.skilled', 'skills', 'sk-code', 'sk-code-quality', 'repository');
+    fs.mkdirSync(configDir, { recursive: true });
+    fs.writeFileSync(path.join(configDir, 'quality.json'), JSON.stringify({ schemaVersion: 1, commentHygiene: { disableRules: ['issue'] } }));
     fs.writeFileSync(path.join(repo, 'a.js'), '// TODO ticket #12: retry the upload\nmodule.exports = 1;\n');
     const run = spawnSync(process.execPath, [QUALITY_GATE, '--explain', 'a.js'], { cwd: repo, encoding: 'utf8' });
     assert.equal(run.status, 2, run.stderr);

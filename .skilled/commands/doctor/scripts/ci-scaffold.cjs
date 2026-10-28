@@ -244,6 +244,9 @@ function main(argv) {
     for (const fault of loaded.errors) process.stderr.write(`ERROR: CI profile ${loaded.display}: ${fault.message}\n`);
     return 3;
   }
+  if (loaded.ignored) {
+    process.stderr.write(`note: ignored ${loaded.ignored.path}, written for ${loaded.ignored.repository}, this repository is ${loaded.ignored.current || 'unknown'}\n`);
+  }
   if (options.protectedList) {
     const files = loaded.profile.protected.map((entry) => entry.file);
     process.stdout.write(files.length > 0 ? `${files.join('\n')}\n` : '');

@@ -826,7 +826,7 @@ test('explain several files: a SKILLED file and a foreign file each get their ow
   base: {
     '.skilled/tools/x.js': 'module.exports = 1;\n',
     'src/a.go': 'package a\n',
-    '.sk-code/quality.json': FOREIGN_CONFIG,
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': FOREIGN_CONFIG,
     'checks/valid.md': VALID_OVERRIDES,
     'checks/floor.md': FLOOR_OVERRIDES,
   },
@@ -862,7 +862,7 @@ test('explain several files: a SKILLED file and a foreign file each get their ow
 test('explain overrides: a valid section is read and a floor override is refused with its error', () => withRepo({
   base: {
     'src/a.go': 'package a\n',
-    '.sk-code/quality.json': FOREIGN_CONFIG,
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': FOREIGN_CONFIG,
     'checks/valid.md': VALID_OVERRIDES,
     'checks/floor.md': FLOOR_OVERRIDES,
   },
@@ -890,7 +890,7 @@ test('explain overrides: a valid section is read and a floor override is refused
 }));
 
 test('run overrides: a refused section a changed file reaches ends the run CONFIG_INVALID, exit 3, naming the file and the reason', () => withRepo({
-  base: { '.sk-code/quality.json': FOREIGN_CONFIG, 'checks/valid.md': VALID_OVERRIDES, 'checks/floor.md': FLOOR_OVERRIDES },
+  base: { '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': FOREIGN_CONFIG, 'checks/valid.md': VALID_OVERRIDES, 'checks/floor.md': FLOOR_OVERRIDES },
   change: { 'src/a.go': 'package a\n' },
 }, (repo) => {
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
@@ -906,7 +906,7 @@ test('run overrides: a refused section a changed file reaches ends the run CONFI
 
 test('run overrides: each valid row is recorded in the envelope decisions ahead of the pending marker, and a file reaching no override stays pending', () => withRepo({
   base: {
-    '.sk-code/quality.json': `${JSON.stringify({ schemaVersion: 1, checklists: [{ file: 'checks/valid.md', paths: ['src/**'] }] }, null, 2)}\n`,
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({ schemaVersion: 1, checklists: [{ file: 'checks/valid.md', paths: ['src/**'] }] }, null, 2)}\n`,
     'checks/valid.md': VALID_OVERRIDES,
   },
   change: { 'src/a.go': 'package a\n', 'lib/b.go': 'package b\n' },
@@ -936,7 +936,7 @@ function repoChecklists(...files) {
 
 test('run overrides: a row whose id no documented rule carries refuses its file CONFIG_INVALID, exit 3, though the linter accepts it', () => withRepo({
   base: {
-    '.sk-code/quality.json': repoChecklists('checks/valid.md', 'checks/typo.md'),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': repoChecklists('checks/valid.md', 'checks/typo.md'),
     'checks/valid.md': VALID_OVERRIDES,
     'checks/typo.md': overrideSection('Typo', ['| `review.function-lenght` | none | Misspelled on purpose |']),
   },
@@ -955,7 +955,7 @@ test('run overrides: a row whose id no documented rule carries refuses its file 
 
 test('run overrides: two repository checklists that disagree on one rule record an override-conflict, keep the default and leave the rule unverified', () => withRepo({
   base: {
-    '.sk-code/quality.json': repoChecklists('checks/valid.md', 'checks/other.md'),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': repoChecklists('checks/valid.md', 'checks/other.md'),
     'checks/valid.md': VALID_OVERRIDES,
     'checks/other.md': overrideSection('Other team', ['| `review.function-length` | none | No limit here |']),
   },
@@ -976,7 +976,7 @@ test('run overrides: two repository checklists that disagree on one rule record 
 
 test('explain overrides: each file lists the rule conflicts a run would hold open on it, through the run\'s own precedence', () => withRepo({
   base: {
-    '.sk-code/quality.json': repoChecklists('checks/valid.md', 'checks/other.md'),
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': repoChecklists('checks/valid.md', 'checks/other.md'),
     'checks/valid.md': VALID_OVERRIDES,
     'checks/other.md': overrideSection('Other team', ['| `review.function-length` | none | No limit here |']),
     'src/a.go': 'package a\n',
@@ -997,7 +997,7 @@ test('explain overrides: each file lists the rule conflicts a run would hold ope
 test('run overrides: rows that give the same action and text agree, and a higher level wins over a lower one without a conflict', () => withRepo({
   hub: 'inside',
   base: {
-    '.sk-code/quality.json': `${JSON.stringify({ schemaVersion: 1, checklists: [
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({ schemaVersion: 1, checklists: [
       { file: 'checks/one.md', paths: ['src/**'] },
       { file: 'checks/two.md', paths: ['src/**'] },
       { file: 'checks/repo.md', paths: ['.skilled/**'] },
@@ -1065,7 +1065,7 @@ test('explain starts nothing: several files with a trusted command and a spy pyt
   base: {
     'a.go': 'package a\n',
     'b.py': 'B = 1\n',
-    '.sk-code/quality.json': `${JSON.stringify({
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({
       schemaVersion: 1,
       checks: [{ id: 'canary-check', argv: [process.execPath, '-e', 'require("fs").writeFileSync("canary", "ran")'], severity: 'P0' }],
     }, null, 2)}\n`,
@@ -1487,7 +1487,7 @@ test('F38 a repository generated row runs on its declared path and blocks', () =
   const declared = '.skilled/skills/sk-design/sk-design-md-generator/backend/dist/cli.js';
   trustRepoChecks(repo);
   repo.write({
-    '.sk-code/quality.json': `${JSON.stringify({
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({
       schemaVersion: 1,
       generated: [{
         id: 'own-gen',
@@ -1513,7 +1513,7 @@ test('F39 a repository generated row runs on a path outside every declared folde
 }, (repo) => {
   trustRepoChecks(repo);
   repo.write({
-    '.sk-code/quality.json': `${JSON.stringify({
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({
       schemaVersion: 1,
       generated: [{
         id: 'own-gen',
@@ -1539,7 +1539,7 @@ test('F40 a repository generated row runs on a path no built-in check reads', ()
 }, (repo) => {
   trustRepoChecks(repo);
   repo.write({
-    '.sk-code/quality.json': `${JSON.stringify({
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({
       schemaVersion: 1,
       generated: [{
         id: 'own-gen',
@@ -1749,13 +1749,13 @@ test('unit: configured skips generated', () => withRepo({
     checks: [{ id: 'js-lint', argv: [process.execPath, '-e', 'process.exit(9)', '{files}'], paths: ['**/*.js'], severity: 'P1' }],
     ...extra,
   })}\n`;
-  repo.write({ '.sk-code/quality.json': config({}) });
+  repo.write({ '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({}) });
   const declared = assertSnapshotUnchanged(repo, () => repo.run(['--files', DECLARED_PATH]));
   assert.equal(declared.status, 0);
   assert.deepEqual([check(declared.verdict, 'js-lint').state, check(declared.verdict, 'js-lint').files], ['NOT_APPLICABLE', 0]);
   assert.deepEqual([check(declared.verdict, 'dist-staleness').state, check(declared.verdict, 'dist-staleness').files], ['RAN_CLEAN', 1]);
 
-  repo.write({ '.sk-code/quality.json': config({ exclude: [DECLARED_PATH] }) });
+  repo.write({ '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': config({ exclude: [DECLARED_PATH] }) });
   const excluded = assertSnapshotUnchanged(repo, () => repo.run(['--files', DECLARED_PATH]));
   assert.equal(excluded.status, 2);
   assert.deepEqual([check(excluded.verdict, 'dist-staleness').state, check(excluded.verdict, 'dist-staleness').files], ['NOT_APPLICABLE', 0]);
@@ -1776,7 +1776,7 @@ test('unit: checker failure', () => withRepo({ change: { 'app.go': 'package a\n'
 
 test('unit: config fault: a pattern the checker cannot compile ends the run as a config error', () => withRepo({
   base: {
-    '.sk-code/quality.json': `${JSON.stringify({ schemaVersion: 1, commentHygiene: { extraPatterns: [CHECKER_REFUSED_PATTERN] } })}\n`,
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({ schemaVersion: 1, commentHygiene: { extraPatterns: [CHECKER_REFUSED_PATTERN] } })}\n`,
   },
   change: { 'app.go': 'package a\n' },
 }, (repo) => {
@@ -1799,7 +1799,7 @@ test('unit: config fault: a pattern the checker cannot compile ends the run as a
 
 test('unit: config fault: a checker warning above its refusal still names the field', () => withRepo({
   base: {
-    '.sk-code/quality.json': `${JSON.stringify({ schemaVersion: 1, commentHygiene: { extraPatterns: [NESTED_SET_REFUSED_PATTERN] } })}\n`,
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `${JSON.stringify({ schemaVersion: 1, commentHygiene: { extraPatterns: [NESTED_SET_REFUSED_PATTERN] } })}\n`,
   },
   change: { 'app.go': 'package a\n' },
 }, (repo) => {

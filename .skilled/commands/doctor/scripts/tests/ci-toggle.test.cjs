@@ -26,6 +26,8 @@ const SCRIPTS = path.resolve(__dirname, '..');
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const SCRIPTS_RELATIVE = '.skilled/commands/doctor/scripts';
 const COPIED = ['ci-toggle.cjs', 'ci-report.cjs', 'lib/ci-profile.cjs'];
+const PROFILE_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
+const REPOSITORY_IDENTITY_RELATIVE = '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs';
 
 const MESSAGE_CONTEXT = 'Commit messages, branch names and PR description follow the templates';
 
@@ -122,10 +124,11 @@ function acmeFixture(t, { profile = null, readme = null } = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ci-toggle-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   for (const rel of COPIED) writeFile(root, `${SCRIPTS_RELATIVE}/${rel}`, fs.readFileSync(path.join(SCRIPTS, rel), 'utf8'));
+  writeFile(root, REPOSITORY_IDENTITY_RELATIVE, fs.readFileSync(path.join(REPO_ROOT, REPOSITORY_IDENTITY_RELATIVE), 'utf8'));
   writeFile(root, '.github/workflows/tests.yml', ACME_TESTS);
   writeFile(root, '.github/workflows/gate.yml', ACME_GATE);
   writeFile(root, '.github/workflows/lint.yml', ACME_LINT);
-  if (profile) writeFile(root, '.sk-code/ci.json', JSON.stringify(profile));
+  if (profile) writeFile(root, PROFILE_RELATIVE, JSON.stringify(profile));
   if (readme) writeFile(root, 'CI.md', readme);
   const gh = ghStub(t);
   const run = runner(path.join(root, SCRIPTS_RELATIVE, 'ci-toggle.cjs'), gh.bin, { GH_RULES: RULESET_REQUIRES('Required gate') });
@@ -250,6 +253,18 @@ test('a bad argument exits 2 and an invalid profile exits 3', (t) => {
   assert.match(invalid.err, /prefix: is not a known key/);
 });
 
+test('a skill-folder profile written for another repository is ignored and named in the plan', (t) => {
+  const profile = { schemaVersion: 1, repository: 'someone/else', switch: { master: 'ACME_CI', groups: ['ACME_CI_TESTS'] } };
+  const { run } = acmeFixture(t, { profile });
+  const result = run(['--variable=ACME_CI_TESTS', '--state=off', '--json'], { GITHUB_REPOSITORY: 'acme/widgets' });
+  assert.equal(result.code, 0, result.err);
+  assert.deepEqual(result.json.profile, {
+    source: 'default',
+    path: null,
+    ignored: { path: PROFILE_RELATIVE, repository: 'someone/else', current: 'acme/widgets' },
+  });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. THIS REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -260,7 +275,7 @@ test('here SKILLED_CI_FRESHNESS off asks for a second named confirmation for the
   assert.equal(result.code, 0, result.err);
   const plan = result.json;
   assert.equal(plan.status, 'PLAN');
-  assert.deepEqual(plan.profile, { source: 'repo', path: '.sk-code/ci.json' });
+  assert.deepEqual(plan.profile, { source: 'repo', path: PROFILE_RELATIVE });
   assert.deepEqual(plan.secondConfirmation.workflows.map((entry) => entry.file).sort(),
     ['dispatch-enforcement-guard.yml', 'gate-inputs.yml', 'naming-standard-guard.yml']);
   assert.ok(plan.secondConfirmation.workflows.every((entry) => entry.role.length > 0));

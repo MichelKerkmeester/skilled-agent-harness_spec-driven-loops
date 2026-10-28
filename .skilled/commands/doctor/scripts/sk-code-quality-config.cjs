@@ -7,9 +7,9 @@
 // Shows, checks and creates the repository quality config the sk-code quality gate
 // reads, without running anything that config names.
 //
-// WHY THIS EXISTS: a repository names its own checks in .sk-code/quality.json, and the
-// gate runs those commands on every change. Writing that file by hand risks a typo
-// that fails every run, and copying a template over a reviewed file loses the review.
+// WHY THIS EXISTS: a repository names its own checks in the quality config the skill folder
+// carries, and the gate runs those commands on every change. Writing that file by hand risks
+// a typo that fails every run, and copying a template over a reviewed file loses the review.
 // This script reads the config through the same module the gate uses, reports which
 // named tools are on PATH, and creates the file once from the shipped template, with
 // the checks the repository's manifests imply entered as not required.
@@ -89,7 +89,7 @@ const USAGE_TEXT = [
   'Options:',
   '  --repo DIR        the repository to read, default the working directory',
   '  --config PATH     read this config instead of discovering one, for status and check',
-  '  --apply           let init create .sk-code/quality.json, which it never overwrites',
+  `  --apply           let init create ${qualityConfig.REPO_CONFIG_FILE}, which it never overwrites`,
   '  --json            print one JSON document before the STATUS line',
   '  -h, --help        print this help and exit 0',
   '',
@@ -97,7 +97,7 @@ const USAGE_TEXT = [
   '  1. --config PATH',
   '  2. git config skcode.qualityConfig from a config file, relative to the repository root',
   '     (a git -c or GIT_CONFIG_* value is ignored)',
-  '  3. .sk-code/quality.json at the repository root',
+  `  3. ${qualityConfig.CONFIG_CANDIDATES.join(' or ')} under the repository root`,
   '  4. none, so the gate runs its built-in checks alone',
   '',
   'Exit codes:',
@@ -140,7 +140,7 @@ function parseArgs(argv) {
   if (!MODES.includes(mode)) throw new RequestError(`the mode must be one of ${MODES.join(', ')}, not ${mode || 'nothing'}`);
   if (rest.length > 0) throw new RequestError(`unexpected argument: ${rest[0]}`);
   if (opts.apply && mode !== 'init') throw new RequestError('--apply belongs to init only');
-  if (opts.config && mode === 'init') throw new RequestError('init always writes .sk-code/quality.json, so it takes no --config');
+  if (opts.config && mode === 'init') throw new RequestError('init always writes the repository config file, so it takes no --config');
   return { ...opts, mode };
 }
 
@@ -582,8 +582,9 @@ function createOnce(target, text) {
 }
 
 function init(ctx, opts) {
-  const target = path.join(ctx.root, qualityConfig.REPO_CONFIG_FILE);
-  const folder = path.dirname(target);
+  const target = qualityConfig.repoConfigTarget(ctx.root);
+  const file = path.join(ctx.root, target);
+  const folder = path.dirname(file);
   assertFolderInside(ctx, folder);
   const { config, suggestions } = qualityConfig.initialConfig(ctx.root);
   const text = `${JSON.stringify(config, null, 2)}\n`;
@@ -595,10 +596,10 @@ function init(ctx, opts) {
     if (!(error instanceof qualityConfig.ConfigError)) throw error;
     if (error.source === 'git-config') outranked = error.path;
   }
-  const exists = Boolean(fs.lstatSync(target, { throwIfNoEntry: false }));
+  const exists = Boolean(fs.lstatSync(file, { throwIfNoEntry: false }));
   const plan = {
     repo: ctx.root,
-    target: qualityConfig.REPO_CONFIG_FILE,
+    target,
     applied: false,
     exists,
     checks: suggestions.map((item) => ({ id: item.id, source: item.source, argv: item.entry.argv, required: false })),
@@ -606,17 +607,17 @@ function init(ctx, opts) {
     suggested_hygiene: hygieneSuggestion(ctx.root),
     config,
   };
-  const lines = [`Target: ${qualityConfig.REPO_CONFIG_FILE}`];
+  const lines = [`Target: ${target}`];
   if (plan.checks.length === 0) lines.push('Checks: none, no manifest at the root implies one');
   for (const item of plan.checks) lines.push(`  enable ${item.id} from ${item.source}, not required: ${item.argv.join(' ')}`);
   if (plan.suggested_hygiene) {
     lines.push(`Suggested, not written: ${plan.suggested_hygiene.field} ${JSON.stringify(plan.suggested_hygiene.rules)}`,
       `  why: ${plan.suggested_hygiene.reason}. Add the list to the file to switch those rules off.`);
   }
-  if (outranked) lines.push(`Note: git config skcode.qualityConfig names ${outranked}, which outranks ${qualityConfig.REPO_CONFIG_FILE}. Unset it for the new file to take effect.`);
+  if (outranked) lines.push(`Note: git config skcode.qualityConfig names ${outranked}, which outranks ${target}. Unset it for the new file to take effect.`);
 
   if (exists) {
-    lines.push(`Refused: ${qualityConfig.REPO_CONFIG_FILE} already exists and is never overwritten.`);
+    lines.push(`Refused: ${target} already exists and is never overwritten.`);
     emit(opts, plan, lines, `STATUS=FAIL MODE=${opts.apply ? 'REFUSED' : 'DRY_RUN'} ERROR=CONFIG_EXISTS`);
     return 1;
   }
@@ -627,12 +628,12 @@ function init(ctx, opts) {
   }
   fs.mkdirSync(folder, { recursive: true });
   assertFolderInside(ctx, folder);
-  if (!createOnce(target, text)) {
-    lines.push(`Refused: ${qualityConfig.REPO_CONFIG_FILE} appeared before the write and is never overwritten.`);
+  if (!createOnce(file, text)) {
+    lines.push(`Refused: ${target} appeared before the write and is never overwritten.`);
     emit(opts, { ...plan, exists: true }, lines, 'STATUS=FAIL MODE=REFUSED ERROR=CONFIG_EXISTS');
     return 1;
   }
-  lines.push(`Wrote: ${qualityConfig.REPO_CONFIG_FILE}. Review it and commit it like any other repository setting.`);
+  lines.push(`Wrote: ${target}. Review it and commit it like any other repository setting.`);
   emit(opts, { ...plan, applied: true }, lines, 'STATUS=OK MODE=APPLIED');
   return 0;
 }

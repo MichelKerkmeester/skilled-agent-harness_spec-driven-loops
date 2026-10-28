@@ -73,7 +73,7 @@ Render the script's table as returned, one row per workflow, under this header.
 CI WORKFLOW REPORT
 Workflows: [n]  Jobs: [n]
 Variables: [none | NAME=state for each variable that is set | unknown (reason)]
-Profile: [default | repo | cli | git-config] ([the profile path, when there is one])
+Profile: [default | repo | cli | git-config] ([the profile path, when there is one])[; ignored [path], written for [repository], this repository is [current or unknown]; shown only when the skill-folder profile names another repository]
 Newest non-rebuild SHA: [40 hex | none] ([reason])
 
 [table: Workflow | Switch | Jobs | Events | Filters | Drift flags | Purpose]
@@ -221,6 +221,8 @@ STATUS=FAIL ERROR="[message]"
 | The newest non-rebuild SHA is `none` | The last 100 runs on the default branch are all rebuild commits, or gh could not read them. Pass `--sha=<40 hex>` to name a commit yourself |
 | A workflow shows `missing` | The CI profile requires a switch on every job and no job in it carries one. Add the condition the job-shape rules show, or add the file to the profile's `switch.exempt` |
 | The report, scaffold or toggle exits 3 | The CI profile is missing where `--profile` or `git config skcode.ciProfile` points, or a key is unknown or malformed. Fix the field the error names |
+| The report, scaffold or toggle refuses `.sk-code/ci.json` | That root path is no longer read. Move `.sk-code/ci.json` to `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, then delete the root `.sk-code/` folder |
+| The profile line reads `Profile: default ... ignored` | The skill-folder profile names another repository, so this one runs on the default. Write this repository's own `repository` value in the profile, or pass `--profile` |
 | A workflow shows `partial` | Some jobs sit in a switched group and some do not. Read the job conditions in that file |
 | `event-in-run` flags a workflow | A run block interpolates an event field. A hex SHA or a number is allowed, so read the line before changing it |
 | A workflow file fails to parse | Fix the YAML error the report names. The other rows still print |

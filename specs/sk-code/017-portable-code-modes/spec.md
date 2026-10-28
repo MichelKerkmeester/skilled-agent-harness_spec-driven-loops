@@ -138,6 +138,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 12 | 012-verification-and-release | End-to-end proof, this repository's `.sk-code/quality.json`, the framework changelog and release | All | Planned |
 | 13 | 013-router-reach-local-ties/ | The router reach check judges only the shipped fleet, and an operator-local surface ranked ahead of a shipped hub is a non-failing note that never prints its name | None | Complete |
 | 14 | 014-advisor-phrase-calibration/ | The advisor stops counting one generic word twice, so a hub's exact declared phrase outranks a skill that lists the word in both keyword fields; a cross-scorer test and four harder-corpus prompts gate the rule | None | Complete |
+| 16 | 016-repository-config-in-skill/ | Every repository's CI profile and quality config live inside the owning skill folder, never at the repository root | 007, 009 | Planned |
 
 ### Phase Transition Rules
 
@@ -157,6 +158,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 010 | 012 | Docs match the shipped behavior | A fresh read-only review of every doc phase 010 touched |
 | 001 | 013 | A shipped hub's declared phrase can be outranked only by another shipped hub before the check fails | The reach check prints `RESULT: PASSED` from a checkout with operator-local links and from one without |
 | 013 | 014 | The reach check names the two phrases an operator-local surface takes on this machine | Both scorers route the fixture's exact-phrase prompts to the declaring hub; the routing-accuracy baseline is unchanged |
+| 014-advisor-phrase-calibration | 016-repository-config-in-skill | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

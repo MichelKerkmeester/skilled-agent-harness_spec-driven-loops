@@ -200,7 +200,11 @@ function buildPlan(options, loadedProfile, parsed) {
   return {
     variable: options.variable,
     state: options.state,
-    profile: { source: loadedProfile.source, path: loadedProfile.display },
+    profile: {
+      source: loadedProfile.source,
+      path: loadedProfile.display,
+      ...(loadedProfile.ignored ? { ignored: loadedProfile.ignored } : {}),
+    },
     allowlist,
     allowlistSource: declared.length > 0 ? 'profile' : 'workflows',
     current,

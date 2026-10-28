@@ -11,9 +11,16 @@
 // required, no README row is checked and no branch is assumed.
 //
 // Discovery follows the quality config: --profile, then the file-scoped git config value
-// skcode.ciProfile, then .sk-code/ci.json at the repository root, then the default. A
-// named path that points nowhere is an error, never a fall back to the next source,
-// because a typo would otherwise apply the default and drop every protection silently.
+// skcode.ciProfile, then the profile inside the skill folder, then the default. A named
+// path that points nowhere is an error, never a fall back to the next source, because a
+// typo would otherwise apply the default and drop every protection silently.
+//
+// The profile travels with the skill into every repository that installs it, so its
+// `repository` field decides whether it applies here. A file written for another
+// repository is reported and ignored, never applied, because its branch names and
+// protected workflows would silently replace this repository's. The former
+// repository-root location is refused with its move target, because a stale copy there
+// would otherwise look authoritative while nothing reads it.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -23,16 +30,26 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
+const { REPOSITORY_PATTERN, currentRepository, repositoryMatches } = require('../../../../skills/sk-code/shared/scripts/lib/repository-identity.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REPO_PROFILE_FILE = '.sk-code/ci.json';
+const REPO_PROFILE_FILE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
+const LEGACY_PROFILE_FILE = '.sk-code/ci.json';
+// A repository that installs the skills under .opencode/ instead keeps the file at the
+// same path there, so the profile is found in either installation.
+const PROFILE_CANDIDATES = Object.freeze([
+  REPO_PROFILE_FILE,
+  REPO_PROFILE_FILE.replace(/^\.skilled\//, '.opencode/'),
+]);
 const GIT_CONFIG_KEY = 'skcode.ciProfile';
 const SCHEMA_VERSION = 1;
 
 const TOP_KEYS = Object.freeze([
   'schemaVersion',
+  'repository',
   'defaultBranch',
   'integrationBranches',
   'workflowsReadme',
@@ -157,7 +174,9 @@ function fileScopedGitValue(root, env) {
  * Pick the one profile source, most explicit first.
  *
  * @param {Object} options - cliPath, cwd, root, git and env.
- * @returns {{source:string, path:string|null}} source is cli, git-config, repo or default.
+ * @returns {{source:string, path:string|null, ignored?:Object}} source is cli, git-config,
+ * repo or default. ignored names a profile found for another repository, with its
+ * repository-relative path, its declared repository and the one read here.
  */
 function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true, env = process.env }) {
   if (cliPath) {
@@ -173,8 +192,24 @@ function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true
       return { source: 'git-config', path: file };
     }
   }
-  const file = path.join(root, REPO_PROFILE_FILE);
-  return fs.existsSync(file) ? { source: 'repo', path: file } : { source: 'default', path: null };
+  const legacy = path.join(root, LEGACY_PROFILE_FILE);
+  if (fs.existsSync(legacy)) {
+    throw new ProfileError('PROFILE_LEGACY_LOCATION', `${LEGACY_PROFILE_FILE} is no longer read: move it to ${REPO_PROFILE_FILE}`);
+  }
+  const file = PROFILE_CANDIDATES
+    .map((candidate) => path.join(root, candidate))
+    .find((candidate) => fs.existsSync(candidate));
+  if (!file) return { source: 'default', path: null };
+  let raw;
+  try {
+    raw = JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, ''));
+  } catch {
+    return { source: 'repo', path: file };
+  }
+  const declared = isPlainObject(raw) ? raw.repository : undefined;
+  const { identity } = currentRepository({ root, env });
+  if (repositoryMatches(declared, identity)) return { source: 'repo', path: file };
+  return { source: 'default', path: null, ignored: { path: file, repository: declared, current: identity } };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -263,6 +298,7 @@ function validateProfile(raw) {
   const errors = [];
   unknownKeys(raw, TOP_KEYS, '', errors);
   if (raw.schemaVersion !== SCHEMA_VERSION) errors.push(issue('schemaVersion', `must be ${SCHEMA_VERSION}`));
+  nullableText(raw.repository, 'repository', errors, { pattern: REPOSITORY_PATTERN, hint: 'must name the repository as owner/name' });
   nullableText(raw.defaultBranch, 'defaultBranch', errors, { pattern: BRANCH_PATTERN, hint: 'is not a branch name' });
   textList(raw.integrationBranches, 'integrationBranches', errors);
   validateReadme(raw.workflowsReadme, errors);
@@ -318,11 +354,12 @@ function normalizeProfile(raw) {
  * null whenever errors is not empty.
  *
  * @param {Object} options - cliPath, cwd, root, git and env.
- * @returns {{source:string, path:string|null, display:string|null, errors:Object[], profile:Object|null}}
+ * @returns {{source:string, path:string|null, display:string|null, errors:Object[], profile:Object|null, ignored?:Object}}
  */
 function loadProfile({ cliPath = null, cwd = process.cwd(), root, git = true, env = process.env }) {
   const found = discoverProfile({ cliPath, cwd, root, git, env });
   const base = { source: found.source, path: found.path, display: displayPath(found.path, root), errors: [] };
+  if (found.ignored) base.ignored = { ...found.ignored, path: displayPath(found.ignored.path, root) };
   if (!found.path) return { ...base, profile: normalizeProfile(null) };
   let raw;
   try {
@@ -351,6 +388,8 @@ function declaredSwitches(profile) {
 module.exports = {
   DEFAULT_PROFILE,
   GIT_CONFIG_KEY,
+  LEGACY_PROFILE_FILE,
+  PROFILE_CANDIDATES,
   ProfileError,
   REPO_PROFILE_FILE,
   SCHEMA_VERSION,

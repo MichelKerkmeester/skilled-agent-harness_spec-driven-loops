@@ -21,7 +21,8 @@ const { assertSnapshotUnchanged, buildRepo } = require('./fixtures.cjs');
 const { USAGE_TEXT } = require('../quality-gate.cjs');
 const { resolveHygieneFlags } = require('../hygiene-config-flags.cjs');
 const {
-  SPEC_KIT_HYGIENE_RULES, TEMPLATE_PATH, hygieneCheckerFlags, mergeConfig, readHygieneRules, validateConfig,
+  SPEC_KIT_HYGIENE_RULES, TEMPLATE_PATH, discoverConfig, hygieneCheckerFlags, mergeConfig, readHygieneRules, repoConfigTarget,
+  validateConfig,
 } = require('../lib/quality-config.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -36,6 +37,12 @@ const TICKET_LABEL = ['ACME', '12'].join('-');
 const WIDGET_LABEL = ['widget', '42'].join('-');
 const CLEAN_GO = 'package a\n\nfunc A() {}\n';
 const MINIMAL = '{"schemaVersion": 1}\n';
+// The config travels with the skill, so a repository that installs skills under .opencode/
+// keeps it there, and the two paths differ only in that first folder.
+const TARGET = '.skilled/skills/sk-code/sk-code-quality/repository/quality.json';
+const OPENCODE_TARGET = '.opencode/skills/sk-code/sk-code-quality/repository/quality.json';
+const LEGACY_TARGET = '.sk-code/quality.json';
+const REPO_IDENTITY = 'acme/widget';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -62,12 +69,18 @@ function hygieneFindings(verdict) {
   return verdict.findings.filter((entry) => entry.check === 'comment-hygiene');
 }
 
+// Discovery reads the environment before the origin remote, so a case names the repository
+// it runs in instead of depending on what the temp folder happens to hold.
+function discover(repo, env = {}) {
+  return discoverConfig({ cwd: repo.root, root: repo.root, git: false, env: { ...repo.env, ...env } });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. DISCOVERY
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('discovery: --config wins over the other sources and is read relative to the working directory', () => withRepo({
-  base: { 'sub/app.go': CLEAN_GO, '.sk-code/quality.json': MINIMAL, 'conf/q.json': MINIMAL, 'sub/cli.json': MINIMAL },
+  base: { 'sub/app.go': CLEAN_GO, [TARGET]: MINIMAL, 'conf/q.json': MINIMAL, 'sub/cli.json': MINIMAL },
   change: { 'sub/app.go': `${CLEAN_GO}func B() {}\n` },
 }, (repo) => {
   repo.git(['config', 'skcode.qualityConfig', 'conf/q.json']);
@@ -77,7 +90,7 @@ test('discovery: --config wins over the other sources and is read relative to th
 }));
 
 test('discovery: a file-scoped git config value beats the repository file and is read relative to the root', () => withRepo({
-  base: { 'sub/app.go': CLEAN_GO, '.sk-code/quality.json': MINIMAL, 'conf/q.json': MINIMAL },
+  base: { 'sub/app.go': CLEAN_GO, [TARGET]: MINIMAL, 'conf/q.json': MINIMAL },
   change: { 'sub/app.go': `${CLEAN_GO}func B() {}\n` },
 }, (repo) => {
   repo.git(['config', 'skcode.qualityConfig', 'conf/q.json']);
@@ -86,13 +99,13 @@ test('discovery: a file-scoped git config value beats the repository file and is
   assert.deepEqual([verdict.config.source, verdict.config.path], ['git-config', 'conf/q.json']);
 }));
 
-test('discovery: .sk-code/quality.json at the root is the repository source, with its size', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': MINIMAL },
+test('discovery: the config the skill folder carries is the repository source, with its size', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [TARGET]: MINIMAL },
   change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
 }, (repo) => {
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 0);
-  assert.deepEqual([verdict.config.source, verdict.config.path, verdict.config.bytes], ['repo', '.sk-code/quality.json', MINIMAL.length]);
+  assert.deepEqual([verdict.config.source, verdict.config.path, verdict.config.bytes], ['repo', TARGET, MINIMAL.length]);
 }));
 
 test('discovery: with no source the run uses the base layer alone and fills suggested_checks', () => withRepo({
@@ -107,7 +120,7 @@ test('discovery: with no source the run uses the base layer alone and fills sugg
 }));
 
 test('CONFIG_PATH_MISSING: a missing path named with --config exits 3, names the path and never falls back', () => withRepo({
-  base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': MINIMAL },
+  base: { 'app.go': CLEAN_GO, [TARGET]: MINIMAL },
   change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
 }, (repo) => {
   const missing = path.join(repo.root, 'missing.json');
@@ -142,9 +155,79 @@ test('F11 config scope: a file-scoped value to a missing path is CONFIG_PATH_MIS
   assert.equal(counted.verdict.config.source, 'none');
 }));
 
+test('discovery: a config left at the old root-level path is refused, and the message names where it belongs', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [LEGACY_TARGET]: MINIMAL },
+  change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
+}, (repo) => {
+  assert.throws(() => discover(repo), (error) => error.code === 'CONFIG_LEGACY_LOCATION'
+    && error.source === 'repo'
+    && error.path === path.join(repo.root, LEGACY_TARGET)
+    && error.message === `${LEGACY_TARGET} is no longer read: move it to ${TARGET}`);
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 3);
+  assert.match(verdict.errors[0].message, /^\.sk-code\/quality\.json is no longer read: move it to /);
+  assert.deepEqual(verdict.checks, []);
+}));
+
+test('discovery: a repository field decides whether the config applies, and a mismatch names both repositories', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [TARGET]: json({ schemaVersion: 1, repository: REPO_IDENTITY }) },
+  change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
+}, (repo) => {
+  const elsewhere = discover(repo, { GITHUB_REPOSITORY: 'other/thing' });
+  assert.equal(elsewhere.source, 'none');
+  assert.equal(elsewhere.path, null);
+  assert.deepEqual(elsewhere.ignored, { path: path.join(repo.root, TARGET), repository: REPO_IDENTITY, current: 'other/thing' });
+
+  const here = discover(repo, { GITHUB_REPOSITORY: REPO_IDENTITY });
+  assert.deepEqual([here.source, here.path], ['repo', path.join(repo.root, TARGET)]);
+  assert.equal(here.ignored, undefined);
+
+  const skipped = assertSnapshotUnchanged(repo, () => repo.run([], { env: { GITHUB_REPOSITORY: 'other/thing' } }));
+  assert.equal(skipped.status, 0);
+  assert.equal(skipped.verdict.config.source, 'none');
+  const applied = assertSnapshotUnchanged(repo, () => repo.run([], { env: { GITHUB_REPOSITORY: REPO_IDENTITY } }));
+  assert.equal(applied.verdict.config.source, 'repo');
+}));
+
+test('discovery: a config with no repository field applies in every repository', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [TARGET]: MINIMAL },
+}, (repo) => {
+  const found = discover(repo, { GITHUB_REPOSITORY: 'any/where' });
+  assert.deepEqual([found.source, found.path], ['repo', path.join(repo.root, TARGET)]);
+  assert.equal(found.ignored, undefined);
+}));
+
+test('discovery: a repository that installs skills under .opencode/ keeps the config at the same path there', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [OPENCODE_TARGET]: MINIMAL },
+  change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
+}, (repo) => {
+  assert.equal(repoConfigTarget(repo.root), OPENCODE_TARGET);
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 0);
+  assert.deepEqual([verdict.config.source, verdict.config.path], ['repo', OPENCODE_TARGET]);
+}));
+
+test('discovery: a repository with no skill folder gets the path this framework installs', () => withRepo({
+  base: { 'app.go': CLEAN_GO },
+}, (repo) => {
+  assert.equal(repoConfigTarget(repo.root), TARGET);
+}));
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. VALIDATION
 // ─────────────────────────────────────────────────────────────────────────────
+
+test('CONFIG_INVALID: a repository field that names no owner and name is a config error, and a valid one is not', () => withRepo({
+  base: { 'app.go': CLEAN_GO },
+  change: { 'app.go': `${CLEAN_GO}func B() {}\n`, [TARGET]: json({ schemaVersion: 1, repository: 'widget' }) },
+}, (repo) => {
+  assert.deepEqual(validateConfig({ schemaVersion: 1, repository: 'widget' }).map((entry) => entry.field), ['repository']);
+  assert.deepEqual(validateConfig({ schemaVersion: 1, repository: REPO_IDENTITY }), []);
+  const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(status, 3);
+  assert.deepEqual(fields(verdict), ['repository']);
+  assert.deepEqual(verdict.checks, []);
+}));
 
 test('CONFIG_INVALID: every bad field is listed in config.errors and no check starts', () => withRepo({
   base: { 'app.go': CLEAN_GO },
@@ -152,7 +235,7 @@ test('CONFIG_INVALID: every bad field is listed in config.errors and no check st
 }, (repo) => {
   const canary = path.join(repo.parent, 'canary');
   repo.write({
-    '.sk-code/quality.json': json({
+    [TARGET]: json({
       schemaVersion: 2,
       bogus: true,
       checks: [
@@ -174,7 +257,7 @@ test('CONFIG_INVALID: every bad field is listed in config.errors and no check st
 
 test('CONFIG_INVALID: an empty config file is a parse error', () => withRepo({
   base: { 'app.go': CLEAN_GO },
-  change: { 'app.go': `${CLEAN_GO}func B() {}\n`, '.sk-code/quality.json': '' },
+  change: { 'app.go': `${CLEAN_GO}func B() {}\n`, [TARGET]: '' },
 }, (repo) => {
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 3);
@@ -183,21 +266,23 @@ test('CONFIG_INVALID: an empty config file is a parse error', () => withRepo({
   assert.equal(verdict.config.bytes, 0);
 }));
 
-test('CONFIG_INVALID: a symlinked .sk-code folder that leads out of the repository is refused, and one inside it is read', () => withRepo({
+test('CONFIG_INVALID: a symlinked config folder that leads out of the repository is refused, and one inside it is read', () => withRepo({
   base: { 'app.go': CLEAN_GO, 'config/sk/quality.json': MINIMAL },
   change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
 }, (repo) => {
+  const link = path.join(repo.root, path.dirname(TARGET));
+  fs.mkdirSync(path.dirname(link), { recursive: true });
   const outside = path.join(repo.parent, 'elsewhere');
   fs.mkdirSync(outside);
   fs.writeFileSync(path.join(outside, 'quality.json'), MINIMAL);
-  fs.symlinkSync(outside, path.join(repo.root, '.sk-code'));
+  fs.symlinkSync(outside, link);
   const refused = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(refused.status, 3);
   assert.equal(refused.verdict.errors[0].code, 'CONFIG_INVALID');
   assert.match(refused.verdict.config.errors[0].message, /outside the repository/);
 
-  fs.unlinkSync(path.join(repo.root, '.sk-code'));
-  fs.symlinkSync(path.join('config', 'sk'), path.join(repo.root, '.sk-code'));
+  fs.unlinkSync(link);
+  fs.symlinkSync(path.join(repo.root, 'config', 'sk'), link);
   const inside = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(inside.status, 0);
   assert.equal(inside.verdict.config.source, 'repo');
@@ -248,7 +333,7 @@ test('ticket: a prefix with a symbol is a config error, and a valid prefix reach
   const refused = validateConfig({ schemaVersion: 1, commentHygiene: { ticketPrefixes: ['JI-RA', 'OK1', '9AB'] } });
   assert.deepEqual(refused.map((entry) => entry.field), ['commentHygiene.ticketPrefixes[0]', 'commentHygiene.ticketPrefixes[2]']);
   withRepo({
-    base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { ticketPrefixes: ['ACME'] } }) },
+    base: { 'app.go': CLEAN_GO, [TARGET]: json({ schemaVersion: 1, commentHygiene: { ticketPrefixes: ['ACME'] } }) },
     change: { 'app.go': `${CLEAN_GO}// see ${TICKET_LABEL}\nfunc B() {}\n` },
   }, (repo) => {
     const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
@@ -263,7 +348,7 @@ test('extraPatterns: a pattern over 200 characters or one that does not compile 
   const refused = validateConfig({ schemaVersion: 1, commentHygiene: { extraPatterns: ['a'.repeat(201), '(', 'b'.repeat(200)] } });
   assert.deepEqual(refused.map((entry) => entry.field), ['commentHygiene.extraPatterns[0]', 'commentHygiene.extraPatterns[1]']);
   withRepo({
-    base: { 'app.go': CLEAN_GO, '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { extraPatterns: ['\\bwidget-[0-9]+\\b'] } }) },
+    base: { 'app.go': CLEAN_GO, [TARGET]: json({ schemaVersion: 1, commentHygiene: { extraPatterns: ['\\bwidget-[0-9]+\\b'] } }) },
     change: { 'app.go': `${CLEAN_GO}// see ${WIDGET_LABEL}\nfunc B() {}\n` },
   }, (repo) => {
     const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
@@ -272,7 +357,7 @@ test('extraPatterns: a pattern over 200 characters or one that does not compile 
 
     // A variable-width lookbehind is JavaScript's and not Python's, and the validator
     // cannot see that, so the run names the field the refused value came from.
-    repo.write({ '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { extraPatterns: ['(?<=a+)b'] } }) });
+    repo.write({ [TARGET]: json({ schemaVersion: 1, commentHygiene: { extraPatterns: ['(?<=a+)b'] } }) });
     const refused = repo.run([]);
     assert.equal(refused.status, 3);
     assert.deepEqual(refused.verdict.config.errors.map((entry) => entry.field), ['commentHygiene.extraPatterns']);
@@ -321,7 +406,7 @@ test('extensions: a mapped extension gives a file a family the checker reads, an
   const refused = validateConfig({ schemaVersion: 1, commentHygiene: { extensions: { '.zig': 'klingon', zig: 'c' } } });
   assert.deepEqual(refused.map((entry) => entry.field), ['commentHygiene.extensions..zig', 'commentHygiene.extensions.zig']);
   withRepo({
-    base: { 'README.txt': 'fixture\n', '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { extensions: { '.zig': 'c' }, exclude: ['skip/**'] } }) },
+    base: { 'README.txt': 'fixture\n', [TARGET]: json({ schemaVersion: 1, commentHygiene: { extensions: { '.zig': 'c' }, exclude: ['skip/**'] } }) },
     change: { 'a.zig': `const a = 1; // see ${ADR_LABEL}\n`, 'skip/b.zig': `const b = 1; // see ${ADR_LABEL}\n` },
   }, (repo) => {
     const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
@@ -340,7 +425,7 @@ test('extensions: a repository adds an extension the shipped table lacks, and a 
   // any check starts and the label in the file stays reachable.
   withRepo({
     base: { 'a.js': `const a = 1; // see ${ADR_LABEL}\n` },
-    change: { '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { extensions: { '.js': 'hash' } } }) },
+    change: { [TARGET]: json({ schemaVersion: 1, commentHygiene: { extensions: { '.js': 'hash' } } }) },
   }, (repo) => {
     const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
     assert.equal(status, 3);
@@ -366,7 +451,7 @@ test('disableRules: a foreign repository that disables issue, adr and task is no
   assert.deepEqual(hygieneFindings(blocked.verdict).map((entry) => entry.rule), ['hygiene.issue', 'hygiene.adr', 'hygiene.task']);
   assert.deepEqual(blocked.verdict.config.hygiene, { disabled: [] });
 
-  repo.write({ '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { disableRules: ['issue', 'hygiene.adr', 'task'] } }) });
+  repo.write({ [TARGET]: json({ schemaVersion: 1, commentHygiene: { disableRules: ['issue', 'hygiene.adr', 'task'] } }) });
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 0);
   assert.deepEqual(hygieneFindings(verdict), []);
@@ -387,7 +472,7 @@ test('disableRules: an unknown id and a fixed id are each CONFIG_INVALID, exit 3
   assert.deepEqual(validateConfig({ schemaVersion: 1, commentHygiene: { disableRules: 'issue' } }).map((entry) => entry.field), ['commentHygiene.disableRules']);
   withRepo({
     base: { 'app.js': 'const a = 1;\n' },
-    change: { 'app.js': `const a = 1;\n${FOREIGN_COMMENTS}\n`, '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: { disableRules: ['tsak'] } }) },
+    change: { 'app.js': `const a = 1;\n${FOREIGN_COMMENTS}\n`, [TARGET]: json({ schemaVersion: 1, commentHygiene: { disableRules: ['tsak'] } }) },
   }, (repo) => {
     const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
     assert.equal(status, 3);
@@ -410,7 +495,7 @@ test('disableRules: the rule list comes from the checker, and the spec-kit sugge
 test('disableRules: the pre-commit and CI helper passes only the disabled rules, never the additions', () => withRepo({
   base: {
     'app.go': CLEAN_GO,
-    '.sk-code/quality.json': json({ schemaVersion: 1, commentHygiene: {
+    [TARGET]: json({ schemaVersion: 1, commentHygiene: {
       ticketPrefixes: ['JIRA'], extraPatterns: ['(?<=a+)b'], extensions: { '.zig': 'c' }, disableRules: ['issue', 'hygiene.task'],
     } }),
   },
@@ -433,7 +518,7 @@ test('template: the shipped template parses and passes the schema', () => {
 
 test('help: --help and -h print the usage and exit 0, even beside a broken config', () => withRepo({
   base: { 'app.go': CLEAN_GO },
-  change: { '.sk-code/quality.json': '{"bogus": true}\n' },
+  change: { [TARGET]: '{"bogus": true}\n' },
 }, (repo) => {
   for (const flag of ['--help', '-h']) {
     const { status, stdout, stderr } = assertSnapshotUnchanged(repo, () => repo.run(['--worktree', flag]));
@@ -447,7 +532,7 @@ test('help: --help and -h print the usage and exit 0, even beside a broken confi
   const parsed = [...source.matchAll(/arg === '(--[a-z-]+)'/g)].map((match) => match[1]).filter((flag) => flag !== '--');
   assert.ok(parsed.length >= 11);
   for (const flag of parsed) assert.ok(USAGE_TEXT.includes(flag), flag);
-  for (const word of ['skcode.qualityConfig', '.sk-code/quality.json', 'NO_BLOCKER_FOUND', 'BLOCKED', 'NOTHING_CHECKED', 'ERROR', 'UNVERIFIED']) {
+  for (const word of ['skcode.qualityConfig', TARGET, OPENCODE_TARGET, 'NO_BLOCKER_FOUND', 'BLOCKED', 'NOTHING_CHECKED', 'ERROR', 'UNVERIFIED']) {
     assert.ok(USAGE_TEXT.includes(word), word);
   }
   // After the separator, -h is a file name like any other, so the run goes on and meets

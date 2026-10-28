@@ -24,6 +24,8 @@ const SCRIPTS = path.resolve(__dirname, '..');
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const ASSETS_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/assets';
 const SCRIPTS_RELATIVE = '.skilled/commands/doctor/scripts';
+const PROFILE_RELATIVE = '.skilled/skills/sk-code/sk-code-ci/repository/ci.json';
+const REPOSITORY_IDENTITY_RELATIVE = '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs';
 
 // Any directive the renderer failed to consume.
 const UNFILLED_SLOT = /<<[#^/=!]?[A-Za-z]/;
@@ -52,10 +54,11 @@ function foreignFixture(t, profile) {
   for (const rel of ['ci-scaffold.cjs', 'lib/ci-profile.cjs']) {
     writeFile(root, `${SCRIPTS_RELATIVE}/${rel}`, fs.readFileSync(path.join(SCRIPTS, rel), 'utf8'));
   }
+  writeFile(root, REPOSITORY_IDENTITY_RELATIVE, fs.readFileSync(path.join(REPO_ROOT, REPOSITORY_IDENTITY_RELATIVE), 'utf8'));
   for (const name of ['workflow-template.yml', 'job-block-template.yml']) {
     writeFile(root, `${ASSETS_RELATIVE}/${name}`, fs.readFileSync(path.join(REPO_ROOT, ASSETS_RELATIVE, name), 'utf8'));
   }
-  if (profile) writeFile(root, '.sk-code/ci.json', JSON.stringify(profile));
+  if (profile) writeFile(root, PROFILE_RELATIVE, JSON.stringify(profile));
   return (args) => render(path.join(root, SCRIPTS_RELATIVE, 'ci-scaffold.cjs'), args);
 }
 
