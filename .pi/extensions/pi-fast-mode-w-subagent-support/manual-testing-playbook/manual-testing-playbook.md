@@ -8,7 +8,7 @@ version: 1.0.0.0
 
 This document is the operator directory and review surface for manually validating the `pi-fast-mode-w-subagent-support` Pi extension. It explains how to run each scenario against a live Pi session, what to observe, how to capture evidence, and how to grade the result. Per-feature files carry the exact prompt, command sequence, expected signals, and pass/fail rule for one scenario each.
 
-The extension injects the OpenAI `service_tier: "priority"` hint into requests when Fast Mode is on and the active model is a configured target. The GPT-6 SOL, GPT-5.6 TERRA, and GPT-6 LUNA variants (provider `openai-codex`) are configured targets, so they are the focus of the activation scenarios.
+The extension injects the OpenAI `service_tier: "priority"` hint into requests when Fast Mode is on and the active model is a configured target. The GPT-6 SOL, GPT-6.1 TERRA, and GPT-6 LUNA variants (provider `openai`) are configured targets, so they are the focus of the activation scenarios.
 
 ---
 
@@ -53,7 +53,7 @@ Coverage note (2026-08-17): activation is verified on all three GPT-5.6 variants
 
 1. Working directory is a project where the extension is loaded (`.pi/settings.json` lists `extensions/pi-fast-mode-w-subagent-support` in `packages`).
 2. Pi is installed and runs in interactive TUI mode.
-3. The `openai-codex` provider is authenticated so the SOL, TERRA, and LUNA models are selectable.
+3. The `openai` provider (the ChatGPT sign-in) is authenticated so the SOL, TERRA, and LUNA models are selectable. Pi 1.0 removed the older `openai-codex` provider name.
 4. Fast Mode state starts from a known value. Run `/fast off` once before a scenario when the starting state matters.
 5. No scenario in this package is destructive. None edit code, delete files, or mutate provider account settings.
 
@@ -154,7 +154,7 @@ Verify that turning Fast Mode on while the LUNA model is active reports enabled 
 #### Scenario Contract
 Prompt: `/fast on`
 
-Launch Pi on `openai-codex/gpt-6-luna`, turn Fast Mode on, and confirm the notification reads `Fast Mode enabled` with the `fast` indicator visible.
+Launch Pi on `openai/gpt-6-luna`, turn Fast Mode on, and confirm the notification reads `Fast Mode enabled` with the `fast` indicator visible.
 
 Desired user-visible outcome: the operator sees a clear confirmation that Fast Mode is active for LUNA.
 
@@ -169,7 +169,7 @@ Verify that turning Fast Mode on while the TERRA model is active reports enabled
 #### Scenario Contract
 Prompt: `/fast on`
 
-Launch Pi on `openai-codex/gpt-5.6-terra`, turn Fast Mode on, and confirm the notification reads `Fast Mode enabled` with the `fast` indicator visible.
+Launch Pi on `openai/gpt-6.1-terra`, turn Fast Mode on, and confirm the notification reads `Fast Mode enabled` with the `fast` indicator visible.
 
 Desired user-visible outcome: the operator sees a clear confirmation that Fast Mode is active for TERRA.
 
@@ -184,7 +184,7 @@ Verify that turning Fast Mode on while the SOL model is active reports enabled a
 #### Scenario Contract
 Prompt: `/fast on`
 
-Launch Pi on `openai-codex/gpt-6-sol`, turn Fast Mode on, and confirm the notification reads `Fast Mode enabled` with the `fast` indicator visible.
+Launch Pi on `openai/gpt-6-sol`, turn Fast Mode on, and confirm the notification reads `Fast Mode enabled` with the `fast` indicator visible.
 
 Desired user-visible outcome: the operator sees a clear confirmation that Fast Mode is active for SOL.
 
@@ -265,7 +265,7 @@ Desired user-visible outcome: a typo is caught with a helpful message and no sur
 Verify that launching Pi with `--fast` starts a target-model session with Fast Mode already on.
 
 #### Scenario Contract
-Prompt: `bash: pi --model openai-codex/gpt-6-luna --fast`
+Prompt: `bash: pi --model openai/gpt-6-luna --fast`
 
 Launch with the flag and confirm Fast Mode is enabled at session start on LUNA.
 
@@ -299,7 +299,7 @@ Desired user-visible outcome: the operator's last choice is remembered on the ne
 Verify that a child Pi process launched with the handoff environment variable set starts with Fast Mode matching the parent.
 
 #### Scenario Contract
-Prompt: `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-6-luna`
+Prompt: `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai/gpt-6-luna`
 
 Launch a child process with the handoff variable set to `1` and confirm the child session starts with Fast Mode enabled.
 

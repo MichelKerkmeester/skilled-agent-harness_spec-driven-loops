@@ -1,6 +1,6 @@
 ---
 title: "FAST-001 -- LUNA priority-tier activation"
-description: "This scenario validates LUNA priority-tier activation for `FAST-001`. It focuses on confirming that Fast Mode reports enabled and shows the indicator on the openai-codex/gpt-6-luna model."
+description: "This scenario validates LUNA priority-tier activation for `FAST-001`. It focuses on confirming that Fast Mode reports enabled and shows the indicator on the openai/gpt-6-luna model."
 stage: routing
 version: 1.0.0.0
 ---
@@ -13,7 +13,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates LUNA priority-tier activation for `FAST-001`. It focuses on confirming that Fast Mode reports enabled and shows the `fast` indicator when the active model is `openai-codex/gpt-6-luna`, a configured target.
+This scenario validates LUNA priority-tier activation for `FAST-001`. It focuses on confirming that Fast Mode reports enabled and shows the `fast` indicator when the active model is `openai/gpt-6-luna`, a configured target.
 
 ### Why This Matters
 
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `FAST-001` and confirm t
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAST-001 | LUNA priority-tier activation | Verify Fast Mode activates on LUNA | `/fast on` | 1. `bash: pi --model openai-codex/gpt-6-luna` -> 2. `pi> /fast on` -> 3. `pi> Refactor the auth module to use async/await` | Step 1: Pi starts on `openai-codex/gpt-6-luna`; Step 2: chat notification `Fast Mode enabled` (info) and the right-aligned `fast` indicator appears; Step 3: the request runs against LUNA | Notification text, indicator screenshot, and the active model label | PASS if the notification is exactly `Fast Mode enabled` and the indicator is visible; FAIL if it is missing, reads `inactive`, or no indicator appears | 1. Confirm the active model is `openai-codex/gpt-6-luna`. 2. Run `pi list` and confirm `extensions/pi-fast-mode-w-subagent-support` is loaded. 3. Read `.pi/pi-fast-mode-w-subagent-support-config.json` and confirm `enabled` is `true`. |
+| FAST-001 | LUNA priority-tier activation | Verify Fast Mode activates on LUNA | `/fast on` | 1. `bash: pi --model openai/gpt-6-luna` -> 2. `pi> /fast on` -> 3. `pi> Refactor the auth module to use async/await` | Step 1: Pi starts on `openai/gpt-6-luna`; Step 2: chat notification `Fast Mode enabled` (info) and the right-aligned `fast` indicator appears; Step 3: the request runs against LUNA | Notification text, indicator screenshot, and the active model label | PASS if the notification is exactly `Fast Mode enabled` and the indicator is visible; FAIL if it is missing, reads `inactive`, or no indicator appears | 1. Confirm the active model is `openai/gpt-6-luna`. 2. Run `pi list` and confirm `extensions/pi-fast-mode-w-subagent-support` is loaded. 3. Read `.pi/pi-fast-mode-w-subagent-support-config.json` and confirm `enabled` is `true`. |
 
 ### Optional Supplemental Checks
 

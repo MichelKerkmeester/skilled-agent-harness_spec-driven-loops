@@ -1,7 +1,7 @@
 ---
 title: "Create Readme Scripts: README conformance auditor and gates"
 description: "Python scripts that audit every in-scope README for sk-doc template alignment and freshness drift, and gate single READMEs on broken references and unproven file counts."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Create Readme Scripts
@@ -16,7 +16,7 @@ Discovery matches the names `README.md` and `README.markdown` exactly, so a lowe
 
 The two gates check the READMEs they are given and print one `PASS` or `FAIL` line per file, with the failing line numbers, then a `SUMMARY` line:
 
-- `check_readme_references.py` checks every Markdown link target that is not a URL or an anchor, path-shaped code spans, fenced command tokens that the audit's rules read as paths, code-span-only table cells and file tree entries drawn with box glyphs or ASCII `+--`, `|--` and `` `-- ``. A link, an anchored code span, a command, a row or a tree entry resolves from the README folder, its package root and the repository root, and fails only when none holds the file. A bare name or unanchored path in a code span resolves from the README folder, a skill folder or a file of that name in the repository. Slash commands, home paths, model ids and placeholders are not paths, and a fenced tree whose root names no folder here fails once at the root. Example fences are skipped. Unresolved paths that git ignores are cleared in two batched `git check-ignore` calls per run, so a typo of an ignored path still fails, and a README kept inside an ignored folder is not cleared. A README-level `<!-- readme-check -->` block lists `allow-ref` exceptions, each with a reason, and an entry that matches nothing fails.
+- `check_readme_references.py` checks every Markdown link target that is not a URL or an anchor, path-shaped code spans, fenced command tokens that the audit's rules read as paths, code-span-only table cells and file tree entries drawn with box glyphs or ASCII `+--`, `|--` and `` `-- ``. A link, an anchored code span, a command, a row or a tree entry resolves from the README folder, its package root and the repository root, and fails only when none holds the file. A bare name or unanchored path in a code span resolves from the README folder, a skill folder or a file of that name in the repository. Slash commands, home paths, model ids and placeholders are not paths, and a fenced tree whose root names no folder here fails once at the root. References inside an example fence are never checked against the disk; the summary counts them on its `examples=` field. Unresolved paths that git ignores are cleared in two batched `git check-ignore` calls per run, so a typo of an ignored path still fails, and a README kept inside an ignored folder is not cleared. A README-level `<!-- readme-check -->` block lists `allow-ref` exceptions, each with a reason, and an entry that matches nothing fails.
 - `check_derived_readme_counts.py` reads a number as a count claim only when a plural term such as `files`, `scripts` or `suites` follows it, and skips it when its own sentence names another path and not the README folder, or when the number follows a label or bound word such as `Level` or `than`. A claim passes when it matches the folder a code span in its sentence names, when it matches a count derived from the README's own folder and the README lists every direct file there, or when a fenced shell line derives it with `find`, `ls` or `wc`. A vague count word such as "several" or "many" before a counted term fails. An `allow-count` entry in the same marker block excuses one claim phrase.
 
 Every git call in this folder runs as `git -c core.fsmonitor=false`, so a stalled fsmonitor daemon cannot hang a run.
@@ -73,3 +73,7 @@ Expected result: `all sk-doc script tests passed` and exit 0.
 - [`README.md`](../README.md)
 - [`validate_document.py`](../../shared/scripts/validate_document.py), the per-file template validator this auditor drives.
 - [`scripts/tests/`](../../scripts/tests/), the sk-doc suite that tests both gates.
+
+<!-- readme-check
+allow-ref lib/**/*.js | an illustrative ignore pattern the sentence warns about, not a path
+-->

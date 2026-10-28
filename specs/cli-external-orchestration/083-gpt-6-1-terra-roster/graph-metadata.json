@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The Codex model catalog lists `gpt-6.1-terra` (GPT-6.1 Terra), the newest Terra model, but none of the three openai-capable CLI skills names it",
     "created_at": "2026-10-27T06:14:44Z",
-    "last_save_at": "2026-10-28T05:09:36.211Z",
+    "last_save_at": "2026-10-28T05:31:30.372Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a96b8ed5bf778629bea40015aab3721f3652c646921774849c84ed6f105f43c1",
+    "source_fingerprint": "sha256:6dee2cf4844d3d86f6cf9635d116ae0158745eda89196b363a6b940874f1e520",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa8be9ef21949e7fd764d00f8666a0b650ded7ab11620213d2c896bbb7a9b2a3",
       "plan.md": "b3dd520519437e5f15f1fc301cfd6a6423a7c3d1d4100fe7d08520399525d382",
       "tasks.md": "8ca496f29a27e8e6461b97d0aaa25b8f317da6b01ba8a654eb59e98554bbe158",
-      "implementation-summary.md": "da9fa68d82d9fbfe70e277c2044a2d0fc00010cd4b9dc53f5d63fe4e343b98da"
+      "implementation-summary.md": "355efe9abbfe6e2de647a140b4df98e099c286169d2d23e2ff76ca66ee64c5b1"
     },
     "last_active_at": null
   }
