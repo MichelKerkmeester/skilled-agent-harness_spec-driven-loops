@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,8 +61,33 @@ Make every skill doc, and the command and agent docs that teach routing, readabl
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ python3 - <<'PY'
+import glob
+fence = "`" * 3
+over = 0
+worst = (0, "")
+in_fence = False
+paths = sorted(glob.glob(".skilled/skills/**/SKILL.md", recursive=True))
+for path in paths:
+    for number, line in enumerate(open(path, encoding="utf-8"), 1):
+        text = line.rstrip("\n")
+        if text.lstrip().startswith(fence):
+            in_fence = not in_fence
+            continue
+        if in_fence or text.lstrip().startswith("|"):
+            continue
+        if len(text) > 400:
+            over += 1
+            worst = max(worst, (len(text), path + ":" + str(number)))
+print("SKILL.md files scanned: " + str(len(paths)))
+print("prose lines over 400 characters: " + str(over))
+print("longest: " + str(worst[0]) + " characters at " + worst[1])
+PY
+SKILL.md files scanned: 59
+prose lines over 400 characters: 368
+longest: 2195 characters at .skilled/skills/sk-git/SKILL.md:307
 ```
+The scan skips fenced blocks and table rows, so what it counts is prose. 368 lines across 59 files is the size of the pass REQ-002 asks for, and the longest line, 2,195 characters at `.skilled/skills/sk-git/SKILL.md:307`, is the 1,000 to 2,200 character line the problem statement names. Both readings are unchanged so far, because the pass has not run. The gate set is recorded beside them: 39 gates at exit 0 at `9fdae0b7d4`, with routing accuracy 155/195, 49/66 and 19/24 (`scratch/before.md`).
 <!-- /ANCHOR:measured-behavior -->
 
 ---

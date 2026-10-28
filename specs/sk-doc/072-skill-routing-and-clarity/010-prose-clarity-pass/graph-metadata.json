@@ -15,7 +15,8 @@
       "skill routing phase 10",
       "prose clarity pass plan",
       "prose clarity pass tasks",
-      "prose clarity pass acceptance criteria"
+      "prose clarity pass acceptance criteria",
+      "prose clarity pass implementation summary"
     ],
     "key_topics": [
       "prose",
@@ -28,16 +29,20 @@
       "tasks",
       "acceptance",
       "criteria",
-      "docs",
-      "terms"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/before.md",
+      "scratch/after.md",
+      "scratch/gates.sh",
       "references/cli/shared-smart-router.md",
       ".skilled/skills/system-spec-kit/references/cli/memory-handback.md"
     ],
@@ -67,6 +72,30 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
+        "source": "derived"
+      },
+      {
         "name": "shared-smart-router.md",
         "kind": "doc",
         "path": "references/cli/shared-smart-router.md",
@@ -80,6 +109,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -104,12 +139,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Skill",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,49 +190,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill docs use terms before defining them, mix project history into instructions, and carry single lines of 1,000 to 2,200 characters",
     "created_at": "2026-10-28T06:38:51Z",
-    "last_save_at": "2026-10-28T07:42:56.840Z",
+    "last_save_at": "2026-10-28T14:50:29.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4cab76d0cc4f546aab727c4a768b97a1f4bc020816d22ac5f0292e97214323f1",
+    "source_fingerprint": "sha256:f19a5a7bcda5dc00f34405e2ef69c7e47ff9c719abb3ebf7979a391e0c71c367",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48612fa8250f602b8bd53e980a531d78646c75b97fa4d930ceece0f4c188b1d2",
+      "spec.md": "dad41265f8d23fa4d8270cf7bf6ee210be25ce81c390a5a5f98fede9869cd9c7",
       "plan.md": "3a8d0f83100c7a97f69c6bb6bcf154d5636fff537f44844c5d0c22050d338a3e",
-      "tasks.md": "ef8cff19db31b2ba9c1f0b19a47cf7ac189a560ddb3c59f7afa2a0756ade9a46"
+      "tasks.md": "eedaddf3ee6b659f3f7b729fa52d8de0716ba91b373a644ef4120af03156debf",
+      "implementation-summary.md": "e95dac3d5c33fe740f09d96187fcf5fb7aae010c4f08f4b9597df3125267f08f"
     },
     "last_active_at": null
   }
