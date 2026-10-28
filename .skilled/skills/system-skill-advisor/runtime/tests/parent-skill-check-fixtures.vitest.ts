@@ -30,8 +30,11 @@ const GOLDEN_HUB = join(R, '.skilled/skills/sk-doc'); // a canon-clean workflow-
 function runChecker(hubDir: string): { code: number; out: string } {
   // The checker loads its contract libraries from the repository root, not from
   // beside the hub, so a hub copy in a bare tempdir needs no module path of its own.
+  // Routing-shape debt is keyed by the path under the skills root, so the copy's
+  // tempdir stands in for that root and the copy keeps the real hub's ledger key.
+  const env = { ...process.env, ROUTING_SHAPE_SKILLS_ROOT: dirname(hubDir) };
   try {
-    const out = execFileSync('node', [CHECKER, hubDir], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const out = execFileSync('node', [CHECKER, hubDir], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env });
     return { code: 0, out };
   } catch (e: unknown) {
     const err = e as { status?: number; stdout?: string; stderr?: string };
