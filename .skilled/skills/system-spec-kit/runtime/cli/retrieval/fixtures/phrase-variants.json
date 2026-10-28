@@ -1,5 +1,5 @@
 {
-  "manifestHash": "55e13e2b9db185041ad8ac60c3868d0b61d95715cc536f2e1b17220b646505f9",
+  "manifestHash": "8789d04808fa58015f82555baf53b7db6c5b403ec46c41d5a2b4815df21af0ac",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10752,6 +10752,24 @@
     "alignment registry sealing tasks": [
       "alignment registry sealing tasks"
     ],
+    "alignment remediation": [
+      "alignment remediation"
+    ],
+    "alignment remediation acceptance criteria": [
+      "alignment remediation acceptance criteria"
+    ],
+    "alignment remediation decision record": [
+      "alignment remediation decision record"
+    ],
+    "alignment remediation implementation summary": [
+      "alignment remediation implementation summary"
+    ],
+    "alignment remediation plan": [
+      "alignment remediation plan"
+    ],
+    "alignment remediation tasks": [
+      "alignment remediation tasks"
+    ],
     "alignment report digest boundary": [
       "alignment report digest boundary"
     ],
@@ -12825,6 +12843,9 @@
     "auto mode contract": [
       "auto mode contract"
     ],
+    "auto mode contract overview": [
+      "auto-mode contract overview"
+    ],
     "auto note": [
       "auto-note"
     ],
@@ -13746,6 +13767,9 @@
     "benchmark keyword triggers": [
       "benchmark keyword triggers"
     ],
+    "benchmark one off example": [
+      "benchmark one-off example"
+    ],
     "benchmark promotion errors": [
       "benchmark promotion errors"
     ],
@@ -14343,6 +14367,9 @@
     "born findable changelog entries": [
       "born findable changelog entries"
     ],
+    "both advisor output paths": [
+      "both advisor output paths"
+    ],
     "both canvas modes ship html that has": [
       "both canvas modes ship html that has"
     ],
@@ -14798,6 +14825,9 @@
     ],
     "bump rule count 39": [
       "bump rule count 39"
+    ],
+    "bundle file sentence": [
+      "bundle file sentence"
     ],
     "bundle gate strictness": [
       "bundle-gate strictness"
@@ -17922,6 +17952,9 @@
     "child phase research subfolder": [
       "child-phase research subfolder"
     ],
+    "child preamble rule": [
+      "child preamble rule"
+    ],
     "child process env allowlist": [
       "child process env allowlist"
     ],
@@ -19671,6 +19704,9 @@
     "cli claude code 1 5 6 0": [
       "cli-claude-code 1.5.6.0"
     ],
+    "cli claude code 1 5 7 0": [
+      "cli-claude-code 1.5.7.0"
+    ],
     "cli claude code benchmark": [
       "cli-claude-code benchmark"
     ],
@@ -19782,6 +19818,9 @@
     "cli claude code v1 5 6 0": [
       "cli-claude-code v1.5.6.0"
     ],
+    "cli claude code v1 5 7 0": [
+      "cli-claude-code v1.5.7.0"
+    ],
     "cli codex 1 0 0 0": [
       "cli-codex 1.0.0.0"
     ],
@@ -19862,6 +19901,9 @@
     ],
     "cli codex 1 9 11 0": [
       "cli-codex 1.9.11.0"
+    ],
+    "cli codex 1 9 12 0": [
+      "cli-codex 1.9.12.0"
     ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
@@ -20046,6 +20088,9 @@
     "cli codex v1 9 11 0": [
       "cli-codex v1.9.11.0"
     ],
+    "cli codex v1 9 12 0": [
+      "cli-codex v1.9.12.0"
+    ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
     ],
@@ -20160,6 +20205,9 @@
     "cli cursor 1 5 7 0": [
       "cli-cursor 1.5.7.0"
     ],
+    "cli cursor 1 5 8 0": [
+      "cli-cursor 1.5.8.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -20234,6 +20282,9 @@
     ],
     "cli cursor v1 5 7 0": [
       "cli-cursor v1.5.7.0"
+    ],
+    "cli cursor v1 5 8 0": [
+      "cli-cursor v1.5.8.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -20327,6 +20378,9 @@
     ],
     "cli devin 1 4 10 0": [
       "cli-devin 1.4.10.0"
+    ],
+    "cli devin 1 4 11 0": [
+      "cli-devin 1.4.11.0"
     ],
     "cli devin 1 4 2 0": [
       "cli-devin 1.4.2.0"
@@ -20459,6 +20513,9 @@
     ],
     "cli devin v1 4 10 0": [
       "cli-devin v1.4.10.0"
+    ],
+    "cli devin v1 4 11 0": [
+      "cli-devin v1.4.11.0"
     ],
     "cli devin v1 4 2 0": [
       "cli-devin v1.4.2.0"
@@ -20859,6 +20916,9 @@
     "cli hermes 1 0 1 0": [
       "cli-hermes 1.0.1.0"
     ],
+    "cli hermes 1 0 10 0": [
+      "cli-hermes 1.0.10.0"
+    ],
     "cli hermes 1 0 2 0": [
       "cli-hermes 1.0.2.0"
     ],
@@ -20981,6 +21041,9 @@
     ],
     "cli hermes v1 0 1 0": [
       "cli-hermes v1.0.1.0"
+    ],
+    "cli hermes v1 0 10 0": [
+      "cli-hermes v1.0.10.0"
     ],
     "cli hermes v1 0 2 0": [
       "cli-hermes v1.0.2.0"
@@ -21684,6 +21747,9 @@
     "cli orca 0 1 5 0": [
       "cli-orca 0.1.5.0"
     ],
+    "cli orca 0 1 6 0": [
+      "cli-orca 0.1.6.0"
+    ],
     "cli orca audit surfaces": [
       "cli-orca audit surfaces"
     ],
@@ -21767,6 +21833,9 @@
     ],
     "cli orca v0 1 5 0": [
       "cli-orca v0.1.5.0"
+    ],
+    "cli orca v0 1 6 0": [
+      "cli-orca v0.1.6.0"
     ],
     "cli orchestration ram overload": [
       "CLI orchestration RAM overload"
@@ -22269,6 +22338,9 @@
     ],
     "cli tests write into specs": [
       "cli tests write into specs"
+    ],
+    "cli tool name read only floor": [
+      "cli tool name read-only floor"
     ],
     "cli tooling ux": [
       "cli tooling ux"
@@ -28677,6 +28749,9 @@
     "council anticonvergence": [
       "council antiConvergence"
     ],
+    "council artifact folders": [
+      "council artifact folders"
+    ],
     "council artifact tree": [
       "council artifact tree"
     ],
@@ -32144,6 +32219,9 @@
     "deep ai council 1 8 7 0": [
       "deep-ai-council 1.8.7.0"
     ],
+    "deep ai council 1 8 8 0": [
+      "deep-ai-council 1.8.8.0"
+    ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
     ],
@@ -32509,6 +32587,9 @@
     ],
     "deep ai council v1 8 7 0": [
       "deep-ai-council v1.8.7.0"
+    ],
+    "deep ai council v1 8 8 0": [
+      "deep-ai-council v1.8.8.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -47757,6 +47838,9 @@
     "four beat migration runbook tasks": [
       "four beat migration runbook tasks"
     ],
+    "four decision tests": [
+      "four decision tests"
+    ],
     "four indexing gates": [
       "four indexing gates"
     ],
@@ -49339,6 +49423,9 @@
     ],
     "generate visual report": [
       "generate visual report"
+    ],
+    "generated catalog path": [
+      "generated catalog path"
     ],
     "generated class": [
       "generated class"
@@ -54777,6 +54864,9 @@
     "iconic obsidian plugin": [
       "iconic obsidian plugin"
     ],
+    "iconic rulebook reference": [
+      "Iconic rulebook reference"
+    ],
     "iconic rules companion markdown": [
       "iconic rules companion markdown"
     ],
@@ -54977,6 +55067,9 @@
     ],
     "ignore and commit guard tasks": [
       "ignore and commit guard tasks"
+    ],
+    "ignore aware command mirrors": [
+      "ignore-aware command mirrors"
     ],
     "ignored folder consistency": [
       "ignored folder consistency"
@@ -57078,6 +57171,9 @@
     "job queue governance json test fix": [
       "job-queue governance_json test fix"
     ],
+    "job timeout ledger": [
+      "job timeout ledger"
+    ],
     "journal mode force wal regression": [
       "journal_mode force wal regression"
     ],
@@ -58311,6 +58407,9 @@
     "leaf review agent": [
       "leaf review agent"
     ],
+    "leaf root inventory": [
+      "leaf root inventory"
+    ],
     "leaf route replay": [
       "leaf route replay",
       "leaf-route-replay"
@@ -58344,6 +58443,9 @@
     ],
     "leaf router reason in one place": [
       "leaf router reason in one place"
+    ],
+    "leaf scopes documented": [
+      "leaf-scopes documented"
     ],
     "leaf set authority": [
       "leaf-set authority"
@@ -61267,6 +61369,9 @@
     "mcp chrome devtools 1 0 17 1": [
       "mcp-chrome-devtools 1.0.17.1"
     ],
+    "mcp chrome devtools 1 0 18 0": [
+      "mcp-chrome-devtools 1.0.18.0"
+    ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
     ],
@@ -61323,6 +61428,9 @@
     ],
     "mcp chrome devtools v1 0 17 1": [
       "mcp-chrome-devtools v1.0.17.1"
+    ],
+    "mcp chrome devtools v1 0 18 0": [
+      "mcp-chrome-devtools v1.0.18.0"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -61878,6 +61986,9 @@
     "mcp figma 1 1 8 0": [
       "mcp-figma 1.1.8.0"
     ],
+    "mcp figma 1 1 9 0": [
+      "mcp-figma 1.1.9.0"
+    ],
     "mcp figma standards alignment": [
       "mcp-figma standards alignment"
     ],
@@ -61913,6 +62024,9 @@
     ],
     "mcp figma v1 1 8 0": [
       "mcp-figma v1.1.8.0"
+    ],
+    "mcp figma v1 1 9 0": [
+      "mcp-figma v1.1.9.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -62139,6 +62253,9 @@
     "mcp obsidian 0 24 4 0": [
       "mcp-obsidian 0.24.4.0"
     ],
+    "mcp obsidian 0 24 5 0": [
+      "mcp-obsidian 0.24.5.0"
+    ],
     "mcp obsidian 0 3 0 0": [
       "mcp-obsidian 0.3.0.0"
     ],
@@ -62234,6 +62351,9 @@
     ],
     "mcp obsidian v0 24 4 0": [
       "mcp-obsidian v0.24.4.0"
+    ],
+    "mcp obsidian v0 24 5 0": [
+      "mcp-obsidian v0.24.5.0"
     ],
     "mcp obsidian v0 3 0 0": [
       "mcp-obsidian v0.3.0.0"
@@ -67216,6 +67336,9 @@
     "module header block": [
       "MODULE header block"
     ],
+    "module header examples": [
+      "module header examples"
+    ],
     "module map": [
       "module map"
     ],
@@ -69918,6 +70041,9 @@
     "one shot embedding retry script": [
       "one-shot embedding retry script"
     ],
+    "one status vocabulary": [
+      "one status vocabulary"
+    ],
     "one to one script path proof": [
       "one to one script path proof"
     ],
@@ -71290,6 +71416,9 @@
     "orca qualified routing vocabulary": [
       "orca-qualified routing vocabulary"
     ],
+    "orca qualified worktree signals": [
+      "Orca-qualified worktree signals"
+    ],
     "orca recipe setup": [
       "orca recipe setup"
     ],
@@ -71782,6 +71911,9 @@
     "output contract layer": [
       "output contract layer"
     ],
+    "output paths are not shipped": [
+      "output paths are not shipped"
+    ],
     "output schema": [
       "output_schema"
     ],
@@ -72172,6 +72304,9 @@
     ],
     "package baseline gates tasks": [
       "package-baseline-gates tasks"
+    ],
+    "package boundary module format": [
+      "package boundary module format"
     ],
     "package digest orca skill": [
       "package digest orca skill"
@@ -74270,6 +74405,9 @@
     ],
     "phase 12 alignment fixes": [
       "phase 12 alignment fixes"
+    ],
+    "phase 12 alignment remediation": [
+      "phase 12 alignment remediation"
     ],
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
@@ -77655,6 +77793,9 @@
     "playbook scenario count": [
       "playbook scenario count"
     ],
+    "playbook scenario coverage": [
+      "playbook scenario coverage"
+    ],
     "playbook scenario links": [
       "playbook scenario links"
     ],
@@ -77841,6 +77982,9 @@
     "plugin loader path drift correction": [
       "plugin-loader path drift correction"
     ],
+    "plugin manifest reference": [
+      "plugin manifest reference"
+    ],
     "plugin operation logic": [
       "plugin operation logic"
     ],
@@ -77945,6 +78089,9 @@
     ],
     "plugins inventory update": [
       "plugins inventory update"
+    ],
+    "plugins link guard": [
+      "plugins link guard"
     ],
     "plugins purity dual export": [
       "plugins purity dual export"
@@ -81461,6 +81608,9 @@
     "readme check examples count": [
       "readme check examples count"
     ],
+    "readme check marker disposition": [
+      "readme-check marker disposition"
+    ],
     "readme check sk code path": [
       "readme check sk-code path"
     ],
@@ -81514,6 +81664,9 @@
     ],
     "readme compliance 97 percent": [
       "README compliance 97 percent"
+    ],
+    "readme count and reference checks": [
+      "README count and reference checks"
     ],
     "readme count claim shapes": [
       "readme count claim shapes"
@@ -81718,6 +81871,9 @@
     ],
     "readme readability improvement": [
       "readme readability improvement"
+    ],
+    "readme reference and count checks": [
+      "README reference and count checks"
     ],
     "readme reference checker false positives": [
       "readme reference checker false positives"
@@ -89889,6 +90045,9 @@
     "routing resilience at the command surface": [
       "routing resilience at the command surface"
     ],
+    "routing scenarios can fail": [
+      "routing scenarios can fail"
+    ],
     "routing shape known debt": [
       "routing shape known debt"
     ],
@@ -90137,6 +90296,9 @@
     ],
     "rule precedence first match wins": [
       "rule precedence first match wins"
+    ],
+    "rule reference scenarios": [
+      "rule reference scenarios"
     ],
     "rule refusal test": [
       "rule refusal test"
@@ -95744,6 +95906,9 @@
     "sk code 3 9 20 0": [
       "sk-code 3.9.20.0"
     ],
+    "sk code 3 9 22 0": [
+      "sk-code 3.9.22.0"
+    ],
     "sk code 3 9 3 0": [
       "sk-code 3.9.3.0"
     ],
@@ -95918,6 +96083,9 @@
     "sk code ci 1 1 11 0": [
       "sk-code-ci 1.1.11.0"
     ],
+    "sk code ci 1 1 12 0": [
+      "sk-code-ci 1.1.12.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -95993,6 +96161,9 @@
     ],
     "sk code ci v1 1 11 0": [
       "sk-code-ci v1.1.11.0"
+    ],
+    "sk code ci v1 1 12 0": [
+      "sk-code-ci v1.1.12.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -96560,6 +96731,9 @@
     "sk code quality 1 13 14 0": [
       "sk-code-quality 1.13.14.0"
     ],
+    "sk code quality 1 13 15 0": [
+      "sk-code-quality 1.13.15.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -96685,6 +96859,9 @@
     ],
     "sk code quality v1 13 14 0": [
       "sk-code-quality v1.13.14.0"
+    ],
+    "sk code quality v1 13 15 0": [
+      "sk-code-quality v1.13.15.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -96851,6 +97028,9 @@
     "sk code review 1 9 12 0": [
       "sk-code-review 1.9.12.0"
     ],
+    "sk code review 1 9 13 0": [
+      "sk-code-review 1.9.13.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -96973,6 +97153,9 @@
     ],
     "sk code review v1 9 12 0": [
       "sk-code-review v1.9.12.0"
+    ],
+    "sk code review v1 9 13 0": [
+      "sk-code-review v1.9.13.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -97148,6 +97331,9 @@
     "sk code skilled 2 1 12 0": [
       "sk-code-skilled 2.1.12.0"
     ],
+    "sk code skilled 2 1 14 0": [
+      "sk-code-skilled 2.1.14.0"
+    ],
     "sk code skilled 2 1 2 0": [
       "sk-code-skilled 2.1.2.0"
     ],
@@ -97294,6 +97480,9 @@
     ],
     "sk code skilled v2 1 13 0": [
       "sk-code-skilled v2.1.13.0"
+    ],
+    "sk code skilled v2 1 14 0": [
+      "sk-code-skilled v2.1.14.0"
     ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
@@ -97523,6 +97712,9 @@
     "sk code v3 9 21 0": [
       "sk-code v3.9.21.0"
     ],
+    "sk code v3 9 22 0": [
+      "sk-code v3.9.22.0"
+    ],
     "sk code v3 9 3 0": [
       "sk-code v3.9.3.0"
     ],
@@ -97598,6 +97790,9 @@
     "sk create agent 1 0 4 0": [
       "sk-create-agent 1.0.4.0"
     ],
+    "sk create agent 1 0 5 0": [
+      "sk-create-agent 1.0.5.0"
+    ],
     "sk create agent playbook": [
       "sk-create-agent playbook"
     ],
@@ -97621,6 +97816,9 @@
     ],
     "sk create agent v1 0 4 0": [
       "sk-create-agent v1.0.4.0"
+    ],
+    "sk create agent v1 0 5 0": [
+      "sk-create-agent v1.0.5.0"
     ],
     "sk create benchmark 1 0 0 0": [
       "sk-create-benchmark 1.0.0.0"
@@ -97648,6 +97846,9 @@
     ],
     "sk create benchmark 1 6 2 0": [
       "sk-create-benchmark 1.6.2.0"
+    ],
+    "sk create benchmark 1 6 3 0": [
+      "sk-create-benchmark 1.6.3.0"
     ],
     "sk create benchmark playbook": [
       "sk-create-benchmark playbook"
@@ -97678,6 +97879,9 @@
     ],
     "sk create benchmark v1 6 2 0": [
       "sk-create-benchmark v1.6.2.0"
+    ],
+    "sk create benchmark v1 6 3 0": [
+      "sk-create-benchmark v1.6.3.0"
     ],
     "sk create changelog 1 0 0 0": [
       "sk-create-changelog 1.0.0.0"
@@ -97931,6 +98135,9 @@
     "sk create diff 1 1 7 0": [
       "sk-create-diff 1.1.7.0"
     ],
+    "sk create diff 1 1 8 0": [
+      "sk-create-diff 1.1.8.0"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -97957,6 +98164,9 @@
     ],
     "sk create diff v1 1 7 0": [
       "sk-create-diff v1.1.7.0"
+    ],
+    "sk create diff v1 1 8 0": [
+      "sk-create-diff v1.1.8.0"
     ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
@@ -97993,6 +98203,9 @@
     ],
     "sk create feature catalog 1 0 8 0": [
       "sk-create-feature-catalog 1.0.8.0"
+    ],
+    "sk create feature catalog 1 0 9 0": [
+      "sk-create-feature-catalog 1.0.9.0"
     ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
@@ -98033,6 +98246,9 @@
     "sk create feature catalog v1 0 8 0": [
       "sk-create-feature-catalog v1.0.8.0"
     ],
+    "sk create feature catalog v1 0 9 0": [
+      "sk-create-feature-catalog v1.0.9.0"
+    ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
     ],
@@ -98053,6 +98269,9 @@
     ],
     "sk create frontmatter 1 0 6 0": [
       "sk-create-frontmatter 1.0.6.0"
+    ],
+    "sk create frontmatter 1 0 7 0": [
+      "sk-create-frontmatter 1.0.7.0"
     ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
@@ -98083,6 +98302,9 @@
     ],
     "sk create frontmatter v1 0 6 0": [
       "sk-create-frontmatter v1.0.6.0"
+    ],
+    "sk create frontmatter v1 0 7 0": [
+      "sk-create-frontmatter v1.0.7.0"
     ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
@@ -98228,6 +98450,9 @@
     "sk create manual testing playbook 1 0 6 0": [
       "sk-create-manual-testing-playbook 1.0.6.0"
     ],
+    "sk create manual testing playbook 1 0 7 0": [
+      "sk-create-manual-testing-playbook 1.0.7.0"
+    ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
     ],
@@ -98257,6 +98482,9 @@
     ],
     "sk create manual testing playbook v1 0 6 0": [
       "sk-create-manual-testing-playbook v1.0.6.0"
+    ],
+    "sk create manual testing playbook v1 0 7 0": [
+      "sk-create-manual-testing-playbook v1.0.7.0"
     ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
@@ -98330,6 +98558,9 @@
     "sk create readme 1 3 1 0": [
       "sk-create-readme 1.3.1.0"
     ],
+    "sk create readme 1 3 10 0": [
+      "sk-create-readme 1.3.10.0"
+    ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
     ],
@@ -98377,6 +98608,9 @@
     ],
     "sk create readme v1 3 1 0": [
       "sk-create-readme v1.3.1.0"
+    ],
+    "sk create readme v1 3 10 0": [
+      "sk-create-readme v1.3.10.0"
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
@@ -98435,6 +98669,9 @@
     "sk create repo rule 1 1 4 0": [
       "sk-create-repo-rule 1.1.4.0"
     ],
+    "sk create repo rule 1 1 5 0": [
+      "sk-create-repo-rule 1.1.5.0"
+    ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"
     ],
@@ -98455,6 +98692,9 @@
     ],
     "sk create repo rule v1 1 4 0": [
       "sk-create-repo-rule v1.1.4.0"
+    ],
+    "sk create repo rule v1 1 5 0": [
+      "sk-create-repo-rule v1.1.5.0"
     ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
@@ -98527,6 +98767,9 @@
     ],
     "sk create skill 1 7 4 0": [
       "sk-create-skill 1.7.4.0"
+    ],
+    "sk create skill 1 7 5 0": [
+      "sk-create-skill 1.7.5.0"
     ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
@@ -98608,6 +98851,9 @@
     ],
     "sk create skill v1 7 4 0": [
       "sk-create-skill v1.7.4.0"
+    ],
+    "sk create skill v1 7 5 0": [
+      "sk-create-skill v1.7.5.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -99323,6 +99569,9 @@
     "sk doc 2 3 28 0": [
       "sk-doc 2.3.28.0"
     ],
+    "sk doc 2 3 29 0": [
+      "sk-doc 2.3.29.0"
+    ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
     ],
@@ -99727,6 +99976,9 @@
     ],
     "sk doc v2 3 28 0": [
       "sk-doc v2.3.28.0"
+    ],
+    "sk doc v2 3 29 0": [
+      "sk-doc v2.3.29.0"
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
@@ -102709,6 +102961,9 @@
     "skill routing restatement inventory": [
       "skill routing restatement inventory"
     ],
+    "skill scaffolds pass the document gate": [
+      "skill scaffolds pass the document gate"
+    ],
     "skill scenario event parity plan": [
       "skill scenario event parity plan"
     ],
@@ -103532,6 +103787,9 @@
     "snapshot state management": [
       "Snapshot state management"
     ],
+    "snapshot store folder name": [
+      "snapshot store folder name"
+    ],
     "snapshot then compare": [
       "snapshot then compare"
     ],
@@ -103607,6 +103865,9 @@
     ],
     "sort refusals order test": [
       "sort refusals order test"
+    ],
+    "soul md reference check": [
+      "SOUL.md reference check"
     ],
     "source balanced fan in": [
       "source-balanced fan-in"
@@ -104267,6 +104528,9 @@
     ],
     "spec folder authoring steps": [
       "spec folder authoring steps"
+    ],
+    "spec folder checklist reference": [
+      "spec folder checklist reference"
     ],
     "spec folder completion check": [
       "spec folder completion check"
@@ -106559,6 +106823,9 @@
     "stale completion frontmatter": [
       "stale completion frontmatter"
     ],
+    "stale count allowance": [
+      "stale count allowance"
+    ],
     "stale derived after checkpoint restore": [
       "stale derived after checkpoint restore"
     ],
@@ -106877,6 +107144,9 @@
     ],
     "standalone deep review skill": [
       "standalone deep-review skill"
+    ],
+    "standalone leaf scope guidance": [
+      "standalone leaf scope guidance"
     ],
     "standalone leaf scopes": [
       "standalone leaf scopes"
@@ -109274,6 +109544,9 @@
     "system skill advisor 0 17 22 0": [
       "system-skill-advisor 0.17.22.0"
     ],
+    "system skill advisor 0 17 23 0": [
+      "system-skill-advisor 0.17.23.0"
+    ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
@@ -109519,6 +109792,9 @@
     ],
     "system skill advisor v0 17 22 0": [
       "system-skill-advisor v0.17.22.0"
+    ],
+    "system skill advisor v0 17 23 0": [
+      "system-skill-advisor v0.17.23.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
@@ -109837,6 +110113,9 @@
     ],
     "system spec kit 2 12 20 0": [
       "system-spec-kit 2.12.20.0"
+    ],
+    "system spec kit 2 12 21 0": [
+      "system-spec-kit 2.12.21.0"
     ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
@@ -110338,6 +110617,9 @@
     ],
     "system spec kit v2 12 20 0": [
       "system-spec-kit v2.12.20.0"
+    ],
+    "system spec kit v2 12 21 0": [
+      "system-spec-kit v2.12.21.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
@@ -113652,6 +113934,9 @@
     "two executor fan out research": [
       "two executor fan-out research"
     ],
+    "two file authoring answer": [
+      "two file authoring answer"
+    ],
     "two hubs still named one packet": [
       "two hubs still named one packet"
     ],
@@ -113888,6 +114173,9 @@
     ],
     "typed event policy ratification evidence": [
       "typed event policy ratification evidence"
+    ],
+    "typed gate scripts": [
+      "typed gate scripts"
     ],
     "typed handoff shadow pilot": [
       "typed-handoff shadow pilot"

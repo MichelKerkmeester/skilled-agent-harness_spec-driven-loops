@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7275,
-    "ok": 16021,
+    "missing-frontmatter": 7292,
+    "ok": 16054,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26844,
+  "documentsScanned": 26894,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "55e13e2b9db185041ad8ac60c3868d0b61d95715cc536f2e1b17220b646505f9",
+  "manifestHash": "8789d04808fa58015f82555baf53b7db6c5b403ec46c41d5a2b4815df21af0ac",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39285,
+      "ok": 39381,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -10770,6 +10770,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-quality.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10782,7 +10788,19 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-javascript.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-python.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10854,7 +10872,43 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/job-shape-checks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/protected-set-checks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/routing-floor.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/rule-index-checks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/trigger-and-filter-checks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/route-options.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10974,13 +11028,31 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/ceiling-marker-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/ci-target-change.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/cli-flag-surface.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/disabled-hygiene-rules.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/dist-staleness-adapter.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11004,6 +11076,30 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/hygiene-layers-and-debt.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/legacy-write-time-hook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/manifest-suggestions.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/no-evidence-states.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/parallel-syntax-pool.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11022,7 +11118,25 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-doctor.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/refused-requests.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/restraint-prompt.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/rule-override-conflict.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11233,6 +11347,18 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/minimum-evidence-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/pr-state-content-hash-dedup.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/reinvent-the-wheel-detection.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11293,6 +11419,30 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/foreign-repository-rules/same-level-conflict.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/foreign-repository-rules/unknown-rule-id-ignored.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/completeness.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/core.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/dry.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11300,6 +11450,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/kiss.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/on-demand-tier.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/pr-state.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11318,6 +11480,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/security.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/setup.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11360,6 +11528,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/scope-and-precedence/baseline-vs-surface-precedence.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/scope-and-precedence/deleted-path-resolver-fault.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11413,6 +11587,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/report-summary-contract.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/user-authored-modes/user-security-surface-two-stage.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11421,102 +11601,6 @@
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/focused-file-recommendation-contradicts.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-missing-case.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-bulleted.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-title-case.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/pr-shape-valid.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-contradicts-findings.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-contradicts-status.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-prose-next-steps.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-malformed.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/status-commented-open-p1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/status-requested-changes-p2-only.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -11617,6 +11701,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/javascript-standards.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/python-standards.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11642,6 +11732,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/routing-tier/shared-default-tier.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/routing-tier/skilled-surface-detection.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69006,6 +69108,10 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -72235,6 +72341,10 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/012-alignment-remediation/scratch",
       "reason": "excluded directory"
     },
     {
