@@ -1,5 +1,5 @@
 {
-  "corpusHash": "626241a581e9575963a10dbbe3fcc018219ae3ed395e92923198c81c6a6fa7e1",
+  "corpusHash": "36b0c2fef977092dc1888eeeab86dad25e144b5aecc6f294efc41a846cfad232",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26836,
+  "includedPathCount": 26845,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2777,6 +2777,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.15.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.16.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.17.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.18.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -2846,6 +2847,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.6.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.7.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.8.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.9.0.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
@@ -2882,6 +2884,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.10.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.11.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
@@ -2960,6 +2963,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.10.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -12697,6 +12701,11 @@
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/plan.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/spec.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/tasks.md",
+    "specs/sk-code/017-portable-code-modes/012-verification-and-release/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/012-verification-and-release/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/012-verification-and-release/plan.md",
+    "specs/sk-code/017-portable-code-modes/012-verification-and-release/spec.md",
+    "specs/sk-code/017-portable-code-modes/012-verification-and-release/tasks.md",
     "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/decision-record.md",
     "specs/sk-code/017-portable-code-modes/013-router-reach-local-ties/implementation-summary.md",
@@ -26867,7 +26876,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b00af3bd9834a5308b0d968d41aadb54ffc72db2ada0474467512533b6cfd147",
+  "manifestHash": "9ac2c7abf8221528245c55dd5af29f2be588e6f1d9c93c10392940d49a0349a3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29755,6 +29764,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/012-verification-and-release/scratch",
       "reason": "excluded directory"
     },
     {

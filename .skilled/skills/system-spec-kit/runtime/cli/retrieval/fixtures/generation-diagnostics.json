@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7357,
-    "ok": 15931,
+    "ok": 15940,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26836,
+  "documentsScanned": 26845,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b00af3bd9834a5308b0d968d41aadb54ffc72db2ada0474467512533b6cfd147",
+  "manifestHash": "9ac2c7abf8221528245c55dd5af29f2be588e6f1d9c93c10392940d49a0349a3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39112,
+      "ok": 39130,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71911,6 +71911,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/012-verification-and-release/scratch",
       "reason": "excluded directory"
     },
     {

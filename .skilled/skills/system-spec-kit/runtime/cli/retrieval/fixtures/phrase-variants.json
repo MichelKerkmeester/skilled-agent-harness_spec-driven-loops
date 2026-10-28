@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b00af3bd9834a5308b0d968d41aadb54ffc72db2ada0474467512533b6cfd147",
+  "manifestHash": "9ac2c7abf8221528245c55dd5af29f2be588e6f1d9c93c10392940d49a0349a3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -42004,6 +42004,12 @@
     "end to end data stack": [
       "end to end data stack"
     ],
+    "end to end playbook proof": [
+      "end-to-end playbook proof"
+    ],
+    "end to end playbook run plan": [
+      "end-to-end playbook run plan"
+    ],
     "end user scope code graph": [
       "end-user scope code-graph"
     ],
@@ -47282,6 +47288,9 @@
     ],
     "foreign repository playbook scenarios": [
       "foreign repository playbook scenarios"
+    ],
+    "foreign repository profile": [
+      "foreign repository profile"
     ],
     "foreign spec ids dominate rendered content": [
       "foreign spec ids dominate rendered content"
@@ -74217,6 +74226,9 @@
     "phase 12 template phrase cleanup round two": [
       "phase 12 template phrase cleanup round two"
     ],
+    "phase 12 verification and release": [
+      "phase 12 verification and release"
+    ],
     "phase 126 implementation summary": [
       "phase 126 implementation summary"
     ],
@@ -88262,6 +88274,9 @@
     "review playbook foreign repository rules": [
       "review playbook foreign repository rules"
     ],
+    "review playbook hub copy": [
+      "review playbook hub copy"
+    ],
     "review plus write disambiguation": [
       "review-plus-write disambiguation"
     ],
@@ -95564,6 +95579,9 @@
     "sk code 3 9 17 0": [
       "sk-code 3.9.17.0"
     ],
+    "sk code 3 9 18 0": [
+      "sk-code 3.9.18.0"
+    ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
@@ -95756,6 +95774,9 @@
     "sk code ci 1 1 8 0": [
       "sk-code-ci 1.1.8.0"
     ],
+    "sk code ci 1 1 9 0": [
+      "sk-code-ci 1.1.9.0"
+    ],
     "sk code ci cost aliases": [
       "sk-code ci cost aliases"
     ],
@@ -95822,6 +95843,9 @@
     ],
     "sk code ci v1 1 8 0": [
       "sk-code-ci v1.1.8.0"
+    ],
+    "sk code ci v1 1 9 0": [
+      "sk-code-ci v1.1.9.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -96350,6 +96374,9 @@
     "sk code quality 1 13 10 0": [
       "sk-code-quality 1.13.10.0"
     ],
+    "sk code quality 1 13 11 0": [
+      "sk-code-quality 1.13.11.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -96463,6 +96490,9 @@
     ],
     "sk code quality v1 13 10 0": [
       "sk-code-quality v1.13.10.0"
+    ],
+    "sk code quality v1 13 11 0": [
+      "sk-code-quality v1.13.11.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -96620,6 +96650,9 @@
     "sk code review 1 9 1 0": [
       "sk-code-review 1.9.1.0"
     ],
+    "sk code review 1 9 10 0": [
+      "sk-code-review 1.9.10.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -96733,6 +96766,9 @@
     ],
     "sk code review v1 9 1 0": [
       "sk-code-review v1.9.1.0"
+    ],
+    "sk code review v1 9 10 0": [
+      "sk-code-review v1.9.10.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -97258,6 +97294,9 @@
     ],
     "sk code v3 9 17 0": [
       "sk-code v3.9.17.0"
+    ],
+    "sk code v3 9 18 0": [
+      "sk-code v3.9.18.0"
     ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
@@ -115731,6 +115770,21 @@
     ],
     "verification and closeout tasks": [
       "verification and closeout tasks"
+    ],
+    "verification and release": [
+      "verification and release"
+    ],
+    "verification and release acceptance criteria": [
+      "verification and release acceptance criteria"
+    ],
+    "verification and release implementation summary": [
+      "verification and release implementation summary"
+    ],
+    "verification and release plan": [
+      "verification and release plan"
+    ],
+    "verification and release tasks": [
+      "verification and release tasks"
     ],
     "verification and remediation bm25 indexing fidelity changelog": [
       "verification and remediation bm25 indexing fidelity changelog"
