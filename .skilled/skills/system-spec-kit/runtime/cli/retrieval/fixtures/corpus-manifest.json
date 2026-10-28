@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8720c6c4fa5c1fe17503ce0107daa697e3795ca359a57aaf15e2aa7c4ae10705",
+  "corpusHash": "6a006786804fc1f92cce1710468ad3196e87ed0836504e47696a09c4bba4cb0d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26698,
+  "includedPathCount": 26699,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6461,6 +6461,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.4.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.5.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.6.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
@@ -26729,7 +26730,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1f0ba56c12231d8f33c8af33b3ff43e8293e91470bdbed3b87555967999c8611",
+  "manifestHash": "fc5215edb180ee7575e5a4631a66540549b2bfa43b1c4ac4d1cd99b7d14f4fd1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

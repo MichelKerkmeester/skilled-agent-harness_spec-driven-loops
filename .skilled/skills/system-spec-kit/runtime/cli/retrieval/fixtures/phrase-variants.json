@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1f0ba56c12231d8f33c8af33b3ff43e8293e91470bdbed3b87555967999c8611",
+  "manifestHash": "fc5215edb180ee7575e5a4631a66540549b2bfa43b1c4ac4d1cd99b7d14f4fd1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -81013,6 +81013,9 @@
     "readme check allow marker": [
       "readme-check allow marker"
     ],
+    "readme check examples count": [
+      "readme check examples count"
+    ],
     "readme check sk code path": [
       "readme check sk-code path"
     ],
@@ -97300,6 +97303,9 @@
     "sk create readme 1 3 5 0": [
       "sk-create-readme 1.3.5.0"
     ],
+    "sk create readme 1 3 6 0": [
+      "sk-create-readme 1.3.6.0"
+    ],
     "sk create readme lacks the writing style rules": [
       "sk create readme lacks the writing style rules"
     ],
@@ -97335,6 +97341,9 @@
     ],
     "sk create readme v1 3 5 0": [
       "sk-create-readme v1.3.5.0"
+    ],
+    "sk create readme v1 3 6 0": [
+      "sk-create-readme v1.3.6.0"
     ],
     "sk create readme writing style": [
       "sk create readme writing style"
