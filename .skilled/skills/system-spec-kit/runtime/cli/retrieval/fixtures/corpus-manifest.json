@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c31870626cc6688ebe070b933fe8e7c372767a9c9df1e9467ad835bac9c5d226",
+  "corpusHash": "adc67c82c0b56c206f08db4c94ace99955f9afb472b20d307fca996c8c152f3c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26894,
+  "includedPathCount": 26895,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2969,6 +2969,7 @@
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/hooks/README.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+    ".skilled/skills/sk-code/sk-code-quality/scripts/lib/comment_hygiene/README.md",
     ".skilled/skills/sk-code/sk-code-review/README.md",
     ".skilled/skills/sk-code/sk-code-review/SKILL.md",
     ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
@@ -26925,7 +26926,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5f305ce083af3f3c9b21552a1f36393fdaa79f23a3fdb5aae418710f9269491d",
+  "manifestHash": "0e1b8fde7659b724522da417921a48c93c8d73b5f4c24ecb3c26a3fe4f686779",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

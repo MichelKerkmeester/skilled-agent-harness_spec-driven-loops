@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7292,
+    "missing-frontmatter": 7293,
     "ok": 16054,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26894,
+  "documentsScanned": 26895,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5f305ce083af3f3c9b21552a1f36393fdaa79f23a3fdb5aae418710f9269491d",
+  "manifestHash": "0e1b8fde7659b724522da417921a48c93c8d73b5f4c24ecb3c26a3fe4f686779",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -11167,6 +11167,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/comment_hygiene/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
