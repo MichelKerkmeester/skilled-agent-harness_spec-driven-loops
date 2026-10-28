@@ -61,6 +61,8 @@ The release is recorded in `.skilled/skills/system-skill-advisor/changelog/v0.17
 
 The skill-root inventory test failed because commit `c02124d0ff` added `outsideSurfaces()` to `router-replay-lib.cjs`, a `readdirSync` of the skills root with no `local-*` rule. Another agent added a rule comment and listed the file as `include`. Commit `cbf4aeb5cf` on main then replaced that comment with the advisor's trusted-root rule and the same `include` ruling, so the local edit was dropped in favour of it. The inventory test passes on that version; this packet only records it.
 
+An alignment run against this work found three prompts that still routed wrong, and a catalog gap. "packet-local changelog", sk-doc's own declared phrase, and "Document a packet-local changelog." ranked system-spec-kit first, because the corpus-study rule in `fusion.ts` read `packet-local` as study vocabulary whenever no write or create verb governed the changelog. `packet-local` now counts as study vocabulary only when it qualifies something other than a changelog, so both prompts rank sk-doc first and the sk-doc router vocabulary reach check passes, while the packet-local prompt-template, helper and iteration prompts keep their routes. "Review this change iteratively using cli-opencode as the executor." ranked the CLI hub first, because the research-loop and review-loop checks in `explicit.ts` knew `iterative` and `iterations` but not the adverb, so the workflow-owner guard found no deep-loop owner. The adverb now counts, the guard keeps `system-deep-loop` first with the hub just below, and the Python fallback's deep-mode loop words read it as they read `iterate`. "how do I turn off the automatic worktree cleanup at session start" tied sk-git with two skills at the floor. sk-git's `graph-metadata.json` now declares `worktree cleanup`, `worktree reaper` and `numbered worktree sweep`, plus `session-start worktree cleanup` as a trigger phrase, and the prompt ranks sk-git first with no tie. The feature catalog gained an executor delegation entry covering the resolver, split handoffs and the guard. The release is `changelog/v0.17.18.0.md`.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -79,6 +81,16 @@ The skill-root inventory test failed because commit `c02124d0ff` added `outsideS
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Superseded by `cbf4aeb5cf` | Trusted-root rule for `local-*` links in `outsideSurfaces()` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` | Superseded by `cbf4aeb5cf` | File listed in `RULED` as `include` |
 | `.env.example` | Modified | Lists `SPECKIT_PRIVATE_SKILL_ROOTS`, which the launcher forwards but the file never named |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Modified | `packet-local` is study vocabulary only when it does not qualify a changelog |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Modified | `iteratively` counts in the research-loop and review-loop checks |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Modified | `iteratively` read like `iterate` in the deep-mode loop words |
+| `.skilled/skills/sk-git/graph-metadata.json` | Modified | Worktree cleanup vocabulary in `intent_signals` and `derived.trigger_phrases` |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl` | Modified | Two golden rows for the worktree cleanup phrasings |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts`, `tests/scorer/executor-delegation.vitest.ts`, `tests/routing-parity-deep-skills.vitest.ts` | Modified | Loop-word cases, the iteratively executor prompt and the Python deep-mode case |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/packet-local-changelog.vitest.ts`, `tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts` | Added | The short changelog prompts, and the worktree cleanup prompts with a session-state control |
+| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md`, `feature-catalog/feature-catalog.md` | Added, Modified | Executor delegation entry and its root row, counts 44 to 45 and 7 to 8 |
+| `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Regenerated | The new catalog leaf |
+| `.skilled/skills/system-skill-advisor/changelog/v0.17.18.0.md`, `SKILL.md`, `.hermes/skills/system-skill-advisor/SKILL.md` | Added, Modified, Regenerated | Release 0.17.18.0 and its Hermes copy |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -91,6 +103,8 @@ Baseline first: the whole advisor suite, then the new tests written before the c
 The follow-up wrote the new tests first and ran them on the module as it stood, then on `HEAD`'s module, then built the match in TypeScript and Python.
 
 A second follow-up fixed the calendar drift in the scorer baseline. The derived lane multiplies each skill's score by `0.5 ^ (age / 90 days)`, floored at 0.1, where age runs from the skill's `derived.generated_at` to the scoring clock. A capture on a different day therefore moves the numbers with no scorer change: scoring at `2027-03-05` gave full corpus 154 and ambiguity 17 against 155 and 19 at `2026-10-11`. The capture script already pinned the clock to midnight UTC of the capture day, but took that day from the wall clock, so each recapture re-measured the calendar. It now reads the date from `SPECKIT_EVAL_BASELINE_SCORING_DATE`, else from the `capturedAt` already recorded in the baseline, and exits 2 for an invalid date or when neither exists. The ratchet and the three other readers already replay `capturedAt` at midnight UTC, so they needed no change. The script also clears `SPECKIT_PRIVATE_SKILL_ROOTS`, the same environment hole the ratchet closed, so a recapture on the operator's shell cannot see private skills. The baseline was then recaptured with `--write`, replacing the earlier hand edit: only `capturedAtSha` and the delegation bucket (9 to 13) moved.
+The alignment follow-up wrote its tests first and ran them on the unchanged scorer, where eight failed. The first full run after the fix dropped holdout top-1 from 49 to 48. Removing one new sk-git phrase at a time showed that only `speckit_worktree_autoreap` caused it: `phraseVariants` derives a spaced form, its token `autoreap` starts with `auto`, and the lexical prefix rule then gave sk-git a partial hit on "auto review this PR". The phrase was dropped rather than the baseline recaptured, since that row is not an intended change. The same run showed `prompt-policy-gold-replay` declining the two short changelog prompts as below the prompt-time floor, so they moved from the golden fixture into a scorer test.
+
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -104,6 +118,11 @@ A second follow-up fixed the calendar drift in the scorer baseline. The derived 
 | Owner must pass the threshold and carry explicit-lane evidence | A side mention of "research" or "plan" must not demote an executor request that never asked for the workflow. |
 | Hub confidence is owner minus 0.001 | The order is strict, the hub still passes the 0.8 threshold, and the gap does not read as a second tie in the ambiguity check. |
 | Ratchet cleared of private skills, ledger left alone | The two prompts agree on a clean checkout, so a ledger entry would record a divergence only this machine has. |
+| `packet-local` excluded only before `changelog` | The study prompts that carry it (a prompt template, a helper, an iteration) keep the bonus, and the authoring-verb exception still covers verb-led changelog requests. |
+| `SPECKIT_WORKTREE_AUTOREAP` not declared on sk-git | Every declared form yields the token `autoreap`, which costs the holdout one row through the shared prefix rule; changing that rule is scorer work outside a vocabulary fix. |
+| The explain phrasing left abstaining | The read-only explainer floor is advisor-wide and pinned by `read-only-explainer.vitest.ts`; lifting it for one skill would be the scorer special case the brief ruled out. |
+| Fast-mode mapping prompt left as is | Both phrasings tie three skills at the 0.82 floor and report `ambiguous`, so the advisor already declines to pick. The change is TypeScript in a Pi extension, which is sk-code's surface, while the model roster it maps is cli-external-orchestration's knowledge, and no skill's metadata names the extension. Picking one by tuning would claim an owner nobody has declared. |
+
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -129,6 +148,14 @@ A second follow-up fixed the calendar drift in the scorer baseline. The derived 
 | Typecheck and build of the advisor runtime | Both exit 0 |
 | `node --test` for sk-create-skill and sk-code-skilled | 70 of 70 and 32 of 32, exit 0 |
 | `validate.sh specs/system-skill-advisor/039-executor-workflow-owner-guard --strict` | `RESULT: PASSED` |
+| Alignment follow-up baseline, whole advisor suite | 1 failed, 1325 passed, 8 skipped of 1334; 153 of 154 files; the failure was a capture-date race with another session's commit |
+| Alignment follow-up final, whole advisor suite | 0 failed, 1339 passed, 8 skipped of 1347; 156 of 156 files; exit 0 |
+| New tests on the unchanged scorer | 8 failed, 73 passed of 81 across the four edited files; the two later test files failed 2 of 2 and 3 of 4 on `HEAD`'s `fusion.ts` and sk-git metadata |
+| `ci-router-vocabulary-reach.cjs --hub sk-doc` | Before `outranked=  1`, `RESULT: FAILED`; after `outranked=  0`, `RESULT: PASSED` |
+| `validate_catalog_package.py --package system-skill-advisor` | `PASS: 0 violations` |
+| `ci-skill-root-metadata.cjs` | `checked=14 passed=14 failed=0` |
+| `sync-skills-hermes.cjs --check` | `PASS: 67 Hermes skill copies in sync` |
+| `python3 tests/python/test_skill_advisor.py` | `pass=89, fail=0` (run after the change only) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -140,6 +167,10 @@ A second follow-up fixed the calendar drift in the scorer baseline. The derived 
 2. **The guard names two owners.** A third workflow-owning skill would need adding to `WORKFLOW_OWNER_SKILL_IDS`. Accepted: adding an owner is a one-entry change to the set at `runtime/lib/scorer/executor-delegation.ts:62`.
 3. **Daemon and dist freshness.** `advisor_rebuild` refused while the status was live, and a stale shared daemon kept the old order until it restarted. Touching any runtime source, even to restore identical content, marks `dist/` stale and makes the CLI tests report `daemon launcher exited with code 1` until `npm run build` runs again.
 4. **Moving the scoring date is manual.** The pinned date stays `2026-10-11` until someone exports `SPECKIT_EVAL_BASELINE_SCORING_DATE` for a capture; the baseline then measures the derived lane's age haircut at that date, and the prose in `references/scoring/validation-baselines.md` (dated 2026-07-30) is a separate snapshot this packet did not touch. Accepted: the fixed date is deliberate, so a recapture on a later day does not move the numbers through the age discount (`changelog/v0.17.11.0.md:27`).
+5. **The variable name alone still abstains.** "how do I set SPECKIT_WORKTREE_AUTOREAP=0" gets no recommendation, because declaring the variable costs a holdout row through the prefix rule at `runtime/lib/scorer/text.ts:116`. A prompt that also names the cleanup, the reaper or the sweep reaches sk-git.
+6. **An explain-led question abstains.** "Explain how to disable the periodic session-start worktree cleanup." stays at the read-only explainer floor (`runtime/lib/scorer/text.ts:131`), as every explain-led question does for every skill.
+7. **The iteratively executor prompt is flagged ambiguous.** `system-deep-loop` leads at 0.82 and the hub follows at 0.819, while `sk-code` keeps 0.88 in third place, exactly as the shipped "over several iterations" phrasing ranks. The guard orders by ownership, not confidence, so a caller reading confidence alone sees sk-code higher.
+8. **The Python fallback has no workflow-owner guard.** A degraded answer still lists the CLI hub first on a workflow-owned executor prompt; the `iteratively` mirror only changes its deep-mode scoring.
 <!-- /ANCHOR:limitations -->
 
 ---

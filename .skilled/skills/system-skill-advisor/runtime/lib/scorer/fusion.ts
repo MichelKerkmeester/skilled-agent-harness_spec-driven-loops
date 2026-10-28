@@ -742,7 +742,10 @@ function primaryIntentBonus(
   }
   // The corpus-study rule reads "packet-local" as study vocabulary, so it must
   // stay off a changelog request or it would pull the prompt to system-spec-kit.
-  if (!changelogFromPacket && /\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower) && !AUTHORS_CODE.test(promptLower)) {
+  // "packet-local changelog" names sk-doc's changelog mode with or without an
+  // authoring verb, so packet-local is study vocabulary only when it qualifies
+  // something other than a changelog.
+  if (!changelogFromPacket && /\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local(?!\s+changelog))\b/.test(promptLower) && !AUTHORS_CODE.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
     if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-tooling' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }

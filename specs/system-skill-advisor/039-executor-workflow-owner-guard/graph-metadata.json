@@ -53,7 +53,8 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs"
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
     ],
     "entities": [
       {
@@ -171,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A prompt such as \"run a deep research loop with the cli-pi executor\" made the advisor rank `cli-external-orchestration` (confidence 0.95) above `system-deep-loop` (0.9248)",
     "created_at": "2026-10-27T19:44:35Z",
-    "last_save_at": "2026-10-27T22:19:28.622Z",
+    "last_save_at": "2026-10-28T05:56:58.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b42af3fd06789166cc2e6418787969ddf2dcb7c3b0e2b22b8b55907824ad057c",
+    "source_fingerprint": "sha256:28d9430c0012c5f34450bdd9716312ce29842b13a87d766ebf3fd204e24bd370",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4b287896c2eecaa4d2376cf4cbaa11a82e6f417244c8834211297e85e52a88d4",
+      "spec.md": "b5922c3822de2cac1eebc217bd2e51c479000d8047e2dbf099802e214a636b6f",
       "plan.md": "d215143e98facda8400e69f530423e5048da2193b8955b5847bef277e8df29e1",
-      "tasks.md": "4e9630f7c329ea37f6c951f7e995f7fd5e7617a42210fcc2637b3362641199be",
-      "implementation-summary.md": "7d309b5fea2e48338076485a7c988313cfe405d24f97b89aac0dd1690fa42179"
+      "tasks.md": "58e0ecf7e5d269c685fb1507a5ce7f4b25ec04d4b1f092b5451a9f2f9b171a30",
+      "implementation-summary.md": "4c9a31b2a5425a7c4bb5549818c2e55d777e33ac970e897dc119c7b4d1dac0f8"
     },
     "last_active_at": null
   }

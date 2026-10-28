@@ -43,6 +43,7 @@
         "feature-catalog/scorer-fusion/ambiguity.md",
         "feature-catalog/scorer-fusion/attribution.md",
         "feature-catalog/scorer-fusion/doctor-command-routing.md",
+        "feature-catalog/scorer-fusion/executor-delegation.md",
         "feature-catalog/scorer-fusion/five-lane-fusion.md",
         "feature-catalog/scorer-fusion/projection.md",
         "feature-catalog/scorer-fusion/weights-config.md",

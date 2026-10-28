@@ -3419,20 +3419,20 @@ DEEP_ROUTING_LEXICAL_PATTERNS = {
         (r"\bdeep[- ]review\b", 1.8),
         (r"\breview loop\b|\biterative review\b|\bmulti-pass review\b", 1.4),
         (r"\baudit\b|\breview\b", 0.7),
-        (r"\bfindings?\b|\bconvergence\b|\bloop\b|\biterate\b", 0.35),
+        (r"\bfindings?\b|\bconvergence\b|\bloop\b|\biterat(?:e|ively)\b", 0.35),
     ),
     "deep-research": (
         (r"\bautoresearch\b|/autoresearch\b", 2.0),
         (r"\bdeep[- ]research\b|\bresearch loop\b|\biterative research\b", 1.8),
         (r"\binvestigat(?:e|ion|ing)\b|\bresearch\b|\bdiscover(?:y|ing)?\b", 1.2),
         (r"\bnewinforatio\b|\bnegative knowledge\b|\bruled out\b", 1.2),
-        (r"\bconvergence\b|\bloop\b|\biterate\b", 0.25),
+        (r"\bconvergence\b|\bloop\b|\biterat(?:e|ively)\b", 0.25),
     ),
     "deep-ai-council": (
         (r"\bdeep[- ]ai[- ]council\b|\bdeep[- ]council\b|\bsk[- ]ai[- ]council\b|\bai[- ]council\b", 2.0),
         (r"\bdeliberat(?:e|ion|ing)\b|\bmulti-seat\b|\bcouncil\b", 1.5),
         (r"\bstrateg(?:y|ies)\b|\boption(?:s)?\b|\bverdict\b|\bdecision\b", 0.7),
-        (r"\bconver(?:ge|ges|gence)\b|\biterate\b", 0.2),
+        (r"\bconver(?:ge|ges|gence)\b|\biterat(?:e|ively)\b", 0.2),
     ),
 }
 

@@ -259,6 +259,7 @@ describe('executor delegation never overrides a workflow-owned route', () => {
   const workflowOwned: ReadonlyArray<readonly [string, string]> = [
     ['run a deep research loop with the cli-pi executor', 'system-deep-loop'],
     ['run a deep review with cli-codex as the executor', 'system-deep-loop'],
+    ['Review this change iteratively using cli-opencode as the executor.', 'system-deep-loop'],
   ];
 
   it.each(workflowOwned)('keeps the workflow owner first and the CLI hub just below: %s', (prompt, owner) => {

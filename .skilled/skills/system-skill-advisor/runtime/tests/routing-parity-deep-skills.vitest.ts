@@ -194,4 +194,13 @@ describe('routing-parity-deep-skills', () => {
     expect(result.scores.review).toBeGreaterThanOrEqual(0.70);
     expect(result.scores.research).toBeLessThan(0.30);
   });
+
+  it('INV-009: the adverb iteratively scores as the loop word iterate does', () => {
+    const adverb = scoreRouting('Review this change iteratively using cli-opencode as the executor.', {});
+    const verb = scoreRouting('Review this change and iterate using cli-opencode as the executor.', {});
+
+    expect(adverb.skill).toBe('system-deep-loop');
+    expect(adverb.mode).toBe('review');
+    expect(adverb.scores).toEqual(verb.scores);
+  });
 });

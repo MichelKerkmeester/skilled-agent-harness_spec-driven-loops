@@ -342,12 +342,12 @@ export function scoreExplicitLane(
   if (/\breview\b/.test(lower) && /\b(update|edit|fix|modify)\b/.test(lower)) {
     push(scores, 'sk-code', 3.0, 'review-plus-write-disambiguation');
   }
-  if (/\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
+  if (/\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
     push(scores, 'system-deep-loop', 0.85, 'research-loop');
   }
   // A loop verb counts only when it governs the review ("resume the active
   // deep-review"); a resume or start elsewhere in a review prompt is a topic.
-  if (/\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
+  if (/\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
     push(scores, 'system-deep-loop', 0.85, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
       push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');

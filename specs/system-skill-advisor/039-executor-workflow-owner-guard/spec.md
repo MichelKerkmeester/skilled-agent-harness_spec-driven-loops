@@ -67,6 +67,26 @@ run a deep review with cli-codex as the executor
 Prompt `delegate this refactor to codex using gpt-6.1 terra`, scored on the old `executor-delegation.ts` from `HEAD` and on the new one by the same temporary probe: both returned `cli-external-orchestration:0.82:0.26`, then `sk-code:0.82:0.34`. `resolveExecutorDelegation` returns `null` for it on both, because the cue `delegate to` does not match "delegate this refactor to" and `codex` alone is not an alias, so the override never runs and the 0.82 is the hub's own fusion score. The other two plain delegations scored 0.95 on both.
 
 Ratchet before: `cd .skilled/skills/system-skill-advisor/runtime && ./node_modules/.bin/vitest run tests/parity/local-native-divergence-ratchet.vitest.ts` printed `{"corpusSize":217,"labeled":195,"harder":22,"currentDivergences":76,"ledgerEntries":74}` and named `rr-iter3-066` (local=sk-code native=sk-doc, gold sk-doc) and `rr-iter3-075` (local=none native=system-spec-kit, gold system-spec-kit). With `SPECKIT_PRIVATE_SKILL_ROOTS` unset the same file passes 9 of 9.
+
+Alignment follow-up, live `advisor_recommend` with `includeAttribution`, recommendations in ranked order as `skillId confidence`, before the change and after it:
+
+```text
+packet-local changelog
+  before  system-spec-kit 0.82, sk-doc 0.9223
+  after   sk-doc 0.9223, system-spec-kit 0.82
+Document a packet-local changelog.
+  before  system-spec-kit 0.8421, sk-doc 0.9285
+  after   sk-doc 0.9285, system-spec-kit 0.8421
+Review this change iteratively using cli-opencode as the executor.
+  before  cli-external-orchestration 0.95, sk-code 0.88, system-deep-loop 0.82
+  after   system-deep-loop 0.82, cli-external-orchestration 0.819, sk-code 0.88
+how do I turn off the automatic worktree cleanup at session start
+  before  sk-git 0.82, sk-code 0.82, system-spec-kit 0.82 (ambiguous)
+  after   sk-git 0.8278, sk-code 0.82, system-spec-kit 0.82 (not ambiguous)
+how do I set SPECKIT_WORKTREE_AUTOREAP=0
+  before  no recommendation
+  after   no recommendation (the variable is not declared, see Out of Scope)
+```
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -80,6 +100,11 @@ Ratchet before: `cd .skilled/skills/system-skill-advisor/runtime && ./node_modul
 - Make the divergence ratchet, its ledger capture script and the five other suites that pin counts on a clean checkout ignore private `local-*` skills linked from outside it.
 - Confirm whether the Task 1 change moved the confidence of `delegate this refactor to codex using gpt-6.1 terra` (it did not; see Measured Behavior).
 - Record the skill-root reader inventory fix made by another agent (see Files to Change).
+- Alignment follow-up: route the bare phrase `packet-local changelog` and `Document a packet-local changelog.` to sk-doc while packet-local study prompts keep their route.
+- Alignment follow-up: count `iteratively` as a loop word in the research-loop and review-loop checks, and in the Python fallback's deep-mode loop words.
+- Alignment follow-up: give sk-git the vocabulary for stopping the session-start numbered-worktree sweep, in its `graph-metadata.json`.
+- Alignment follow-up: catalogue executor delegation and the workflow-owner guard in the advisor feature catalog.
+- Alignment follow-up: decide whether "add a priority fast-mode model mapping" needs a routing change.
 
 ### Out of Scope
 - Changing any delegation prompt that names no workflow owner - it must behave exactly as before.
@@ -87,6 +112,9 @@ Ratchet before: `cd .skilled/skills/system-skill-advisor/runtime && ./node_modul
 - Widening the delegation cue so `delegate this refactor to codex` matches the resolver - that prompt scored 0.82 before this packet and the cue regex is not part of the ask.
 - `advisor-graph-health` and the other tests that exercise private skills or the live graph - they keep the variable.
 - Restarting or signalling the shared advisor daemon - it belongs to other sessions.
+- The read-only explainer floor: a prompt that starts with "explain" stays held for every skill, so "Explain how to disable the periodic session-start worktree cleanup." still abstains.
+- A Python mirror of the workflow-owner guard: the Python fallback still lists the CLI hub first on a workflow-owned executor prompt.
+- Declaring `SPECKIT_WORKTREE_AUTOREAP` as sk-git vocabulary: its spaced variant yields the token `autoreap`, which the lexical prefix rule matches against any prompt word `auto`, and that moved holdout row `P1-REVIEW-006` ("auto review this PR") from sk-code to sk-git. A question that names only the variable still gets no recommendation.
 
 ### Files to Change
 
@@ -99,6 +127,17 @@ Ratchet before: `cd .skilled/skills/system-skill-advisor/runtime && ./node_modul
 | `.skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts`, `tests/legacy/advisor-corpus-parity.vitest.ts`, `tests/parity/python-ts-parity.vitest.ts`, `tests/parity/holdout-independent.vitest.ts`, `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` | Modify | Clear the private skill roots variable for the run and restore it afterwards |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Modify (other agent) | Rule comment above `outsideSurfaces()` stating that its readdir follows `local-*` links on purpose |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` | Modify (other agent) | `router-replay-lib.cjs` added to `RULED` as `include` |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Modify | `packet-local` is corpus-study vocabulary only when it does not qualify a changelog |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Modify | `iteratively` added to the research-loop and review-loop words |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Modify | `iteratively` read like `iterate` in the deep-mode loop words |
+| `.skilled/skills/sk-git/graph-metadata.json` | Modify | Sweep vocabulary in `intent_signals` and `derived.trigger_phrases` |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl` | Modify | Two golden rows for the sweep |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts`, `tests/scorer/executor-delegation.vitest.ts`, `tests/routing-parity-deep-skills.vitest.ts` | Modify | Loop-word tests, the iteratively executor prompt and the Python deep-mode case |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts` | Create | Sweep prompts reach sk-git with no tie; a session-state cleanup does not |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/packet-local-changelog.vitest.ts` | Create | The bare phrase and the document phrasing rank sk-doc first |
+| `.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md`, `feature-catalog/scorer-fusion/executor-delegation.md` | Modify, Create | Executor delegation and workflow-owner guard entry |
+| `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Regenerate | New catalog leaf, through `ci-skill-root-metadata.cjs --fix` |
+| `.skilled/skills/system-skill-advisor/changelog/v0.17.18.0.md`, `SKILL.md`, `.hermes/skills/system-skill-advisor/SKILL.md` | Create, Modify, Regenerate | Release entry, version bump and the Hermes copy |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -126,6 +165,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-008 | Non-workflow delegation prompts keep the confidence they had before this packet, except the split-handoff phrasings that REQ-009 resolves. |
 | REQ-009 | `delegate <object> to <executor>` and `hand <object> off to <executor>` resolve the executor (the codex prompt reaches the 0.95 lift with target `cli-codex`), while ordinary prose handoffs such as `delegate the decision to the team` and `hand off to QA` lift no CLI hub. |
 | REQ-010 | The scorer eval baseline capture scores at a pinned, recorded date instead of the wall clock, so a recapture on any day reproduces the same numbers, and the ratchet replays that date. |
+| REQ-011 | `packet-local changelog` and `Document a packet-local changelog.` rank sk-doc first, `ci-router-vocabulary-reach.cjs --hub sk-doc` prints `RESULT: PASSED`, and the packet-local prompt-template, helper and iteration prompts keep their route. |
+| REQ-012 | `Review this change iteratively using cli-opencode as the executor.` ranks `system-deep-loop` first with the CLI hub directly below it, and a prompt that asks for no review or research gains no loop evidence from the adverb. |
+| REQ-013 | `how do I turn off the automatic worktree cleanup at session start` and `disable the periodic session-start worktree cleanup` rank sk-git first with no tie, through sk-git's metadata only, and holdout top-1 stays at its baseline. |
+| REQ-014 | The advisor feature catalog has an entry for executor delegation and the workflow-owner guard, and `validate_catalog_package.py` passes. |
+| REQ-015 | The fast-mode model mapping prompt is either fixed or left with a recorded reason. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

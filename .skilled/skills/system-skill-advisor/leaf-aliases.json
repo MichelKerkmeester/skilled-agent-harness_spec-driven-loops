@@ -206,6 +206,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/scorer-fusion/executor-delegation.md",
+    "diskPath": "feature-catalog/scorer-fusion/executor-delegation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/five-lane-fusion.md",
     "diskPath": "feature-catalog/scorer-fusion/five-lane-fusion.md"
   },

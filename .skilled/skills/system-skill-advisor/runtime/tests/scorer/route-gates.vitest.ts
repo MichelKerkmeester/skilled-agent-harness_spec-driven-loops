@@ -71,4 +71,31 @@ describe('review-loop verb', () => {
   it('still fires when the loop verb governs the review', () => {
     expect(reviewLoopFires('Resume the active deep-review lineage and append the next review artifact set.')).toBe(true);
   });
+
+  it('reads the adverb iteratively as a loop word, like iterative', () => {
+    expect(reviewLoopFires('Review this change iteratively using cli-opencode as the executor.')).toBe(true);
+    expect(reviewLoopFires('Review this change iteratively.')).toBe(true);
+  });
+
+  it('keeps the adverb off a prompt that asks for no review', () => {
+    expect(reviewLoopFires('Iteratively refine the CSS grid layout for the pricing page.')).toBe(false);
+    expect(reviewLoopFires('Review this pull request for security issues.')).toBe(false);
+  });
+});
+
+describe('research-loop verb', () => {
+  const projection = createFixtureProjection([skill('system-deep-loop'), skill('sk-code')]);
+
+  function researchLoopFires(prompt: string): boolean {
+    return scoreExplicitLane(prompt.toLowerCase(), projection)
+      .some((match) => match.skillId === 'system-deep-loop' && match.evidence.includes('research-loop'));
+  }
+
+  it('reads the adverb iteratively as a loop word, like iterative', () => {
+    expect(researchLoopFires('Research the cache eviction bug iteratively.')).toBe(true);
+  });
+
+  it('keeps the adverb off a prompt that asks for no research', () => {
+    expect(researchLoopFires('Iteratively tune the retry backoff in the fetch helper.')).toBe(false);
+  });
 });
