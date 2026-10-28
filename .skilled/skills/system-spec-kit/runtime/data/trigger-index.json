@@ -1,5 +1,5 @@
 {
-  "manifestHash": "49ed593e2177f42ec8495f4dbbea97cdb599ae4d058de1ee5f53ac007e1ffb96",
+  "manifestHash": "25b90ede4b0259b16e882317e7003ad8aa04b76bb19ff97c5643e8385e2590b9",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -125262,9 +125262,6 @@
     ],
     "skill metadata audit apply": [
       11749
-    ],
-    "skill metadata drift gate": [
-      1689
     ],
     "skill metadata quality audit": [
       11748
