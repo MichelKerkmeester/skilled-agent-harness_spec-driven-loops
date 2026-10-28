@@ -56,7 +56,7 @@
       "scratch/followup-verification.txt",
       ".skilled/skills/system-spec-kit/README.md",
       ".skilled/hooks/README.md",
-      ".claude/hooks/README.md"
+      "scratch/baseline-refs.txt"
     ],
     "entities": [
       {
@@ -144,6 +144,12 @@
         "source": "derived"
       },
       {
+        "name": "baseline-refs.txt",
+        "kind": "file",
+        "path": "scratch/baseline-refs.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,17 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Narrow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`checkreadmereferences.py` and `checkderivedreadmecounts.py` fail on all 12 root and hub READMEs",
     "created_at": "2026-10-27T19:44:37Z",
-    "last_save_at": "2026-10-27T22:19:32.778Z",
+    "last_save_at": "2026-10-28T04:46:49.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b61b1a90c4845199a8c3a4936555e5ba32db09e6f8d9fbaa51bee466b617a05",
+    "source_fingerprint": "sha256:d8e14d539890f74854f597fff05e9f40c22cfadba2c438b740c22979707a3728",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "660d537f8aa3f6fafe0e78f2cafb4d8344b1aca5fe6aa0e153c48e667e09970b",
       "plan.md": "ad1ef5a8f898bd795dcb2943f3cdb2e830b4ef6f4f4d0f497f1f2d56b0dfd9cf",
       "tasks.md": "41ade258ec933c2b7510e643cd3cf79c4453cab26dedbf6bafd045dc574bddb7",
-      "implementation-summary.md": "6a7929265429aca741c20528c13cff55317e88a9463a74d86cf0cb6a8917981d"
+      "implementation-summary.md": "3ebbe6d60d19a713f8db86be4e4599c445943d61397a33bcf4091bd0e65eee63"
     },
     "last_active_at": null
   }

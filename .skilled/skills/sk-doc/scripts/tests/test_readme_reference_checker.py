@@ -104,6 +104,19 @@ def test_example_fence_is_still_skipped(tmp_path: Path) -> None:
     assert _unresolved(readme) == []
 
 
+def test_example_fence_references_are_counted_not_checked(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    readme = root / "README.md"
+    readme.write_text("```bash example\n./illustrative.sh\n```\n\n```bash\n./real.sh\n```\n", encoding="utf-8")
+
+    resolutions, missing = check_readme(str(readme))
+    assert missing is None
+    examples = [item for item in resolutions if item.reference.example]
+    assert [item.reference.raw for item in examples] == ["./illustrative.sh"]
+    assert all(item.resolved for item in examples)
+    assert _unresolved(readme) == ["./real.sh"]
+
+
 def test_git_ignored_runtime_path_is_not_broken(tmp_path: Path) -> None:
     root = _repo(tmp_path)
     (root / ".gitignore").write_text("logs/\n", encoding="utf-8")

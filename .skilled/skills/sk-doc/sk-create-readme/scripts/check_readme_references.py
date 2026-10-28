@@ -517,6 +517,7 @@ def extract_references(text: str, readme: Path | None = None, root: Path | None 
     references: list[Reference] = []
     active_fence: str | None = None
     example_fence = False
+    example_lines: set[int] = set()
     in_comment = False
     tree = TreeState(readme.parent if readme else None, root)
 
@@ -538,8 +539,10 @@ def extract_references(text: str, readme: Path | None = None, root: Path | None 
             tree.reset()
             continue
 
+        # An example fence is read like any other fence so its references can be
+        # counted, and each one is tagged so it is never checked against the disk.
         if example_fence:
-            continue
+            example_lines.add(line_number)
 
         labels: list[tuple[int, int, str]] = []
         for match in LINK_PATTERN.finditer(line):
@@ -585,7 +588,8 @@ def extract_references(text: str, readme: Path | None = None, root: Path | None 
                 references.append(Reference(line_number, token, "command"))
 
     return [
-        reference for reference in references
+        dataclasses.replace(reference, example=True) if reference.line in example_lines else reference
+        for reference in references
         if reference.kind in ("link", "slash") or not is_placeholder(reference.raw)
     ]
 
@@ -859,6 +863,8 @@ def near_command(tree: Path, group: str, name: str) -> bool:
 
 def resolve_reference(reference: Reference, readme: Path, root: Path) -> Resolution:
     """Resolve one reference and reject a target that escapes the repository."""
+    if reference.example:
+        return Resolution(reference, True, "example: not checked")
     if reference.kind == "slash":
         return resolve_slash_command(reference, root)
     if machine_path_outside(reference.raw, root):

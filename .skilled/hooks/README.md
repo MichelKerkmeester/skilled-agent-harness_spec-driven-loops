@@ -297,3 +297,8 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 | `sk-vision` | devin + opencode plugin + pi extension + hermes plugin, cursor runs the CLI from `/vision`, and claude and codex read images natively | `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` |
 
 Each runtime's `session-lifecycle/` and `skill-advisor/` subfolders also carry the deployed `.js` entrypoint alongside its `.ts` source: a relative symlink into `system-spec-kit`'s built `dist/hooks/`, so the actually-executed file is browsable too. Those dist symlinks resolve after a build, exactly like the deployed `.<runtime>/hooks/*.js` symlinks the runtimes already use.
+
+<!-- readme-check
+allow-ref mcp-code-mode/runtime/ | a former location these hooks moved out of
+allow-ref runtime-hooks/ | the sibling directory name the operator rejected in favour of one tree
+-->
