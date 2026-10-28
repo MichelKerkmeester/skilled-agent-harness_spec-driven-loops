@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e61de68ab00c48dcf11ee16a3627697a75b4ed0a9d1a0d78abdd514e1ef97e2c",
+  "corpusHash": "eaf2ce4ea4a4464a652c829625fd8227bf914972c1b487af28ca76b97127bd37",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26848,
+  "includedPathCount": 26851,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2839,6 +2839,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.1.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.10.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
@@ -6598,6 +6599,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.7.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.8.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.9.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -13804,6 +13806,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/tasks.md",
@@ -26879,7 +26882,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a2b261553a9549b83192a9b97c5a718ae263409feddefe133ce0da986bd778c6",
+  "manifestHash": "fd9f50351e52ba0f96307fe5acbabc41971acc0899c2bdfb3880f010a1e63081",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

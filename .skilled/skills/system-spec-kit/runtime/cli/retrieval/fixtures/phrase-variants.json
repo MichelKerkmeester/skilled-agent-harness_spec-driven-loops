@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a2b261553a9549b83192a9b97c5a718ae263409feddefe133ce0da986bd778c6",
+  "manifestHash": "fd9f50351e52ba0f96307fe5acbabc41971acc0899c2bdfb3880f010a1e63081",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -89604,17 +89604,26 @@
     "routing benchmark": [
       "routing benchmark"
     ],
+    "routing canon": [
+      "routing canon"
+    ],
     "routing canon and tooling": [
       "routing canon and tooling"
     ],
     "routing canon and tooling acceptance criteria": [
       "routing canon and tooling acceptance criteria"
     ],
+    "routing canon and tooling implementation summary": [
+      "routing canon and tooling implementation summary"
+    ],
     "routing canon and tooling plan": [
       "routing canon and tooling plan"
     ],
     "routing canon and tooling tasks": [
       "routing canon and tooling tasks"
+    ],
+    "routing canon proof packet": [
+      "routing canon proof packet"
     ],
     "routing clarify default": [
       "routing clarify default"
@@ -89777,6 +89786,9 @@
     ],
     "routing resilience at the command surface": [
       "routing resilience at the command surface"
+    ],
+    "routing shape known debt": [
+      "routing shape known debt"
     ],
     "routing telemetry stress test": [
       "routing-telemetry stress test"
@@ -95771,6 +95783,9 @@
     "sk code ci 1 1 1 0": [
       "sk-code-ci 1.1.1.0"
     ],
+    "sk code ci 1 1 10 0": [
+      "sk-code-ci 1.1.10.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -95840,6 +95855,9 @@
     ],
     "sk code ci v1 1 1 0": [
       "sk-code-ci v1.1.1.0"
+    ],
+    "sk code ci v1 1 10 0": [
+      "sk-code-ci v1.1.10.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -98156,6 +98174,9 @@
     "sk create skill 1 5 9 0": [
       "sk-create-skill 1.5.9.0"
     ],
+    "sk create skill 1 6 0 0": [
+      "sk-create-skill 1.6.0.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -98218,6 +98239,9 @@
     ],
     "sk create skill v1 5 9 0": [
       "sk-create-skill v1.5.9.0"
+    ],
+    "sk create skill v1 6 0 0": [
+      "sk-create-skill v1.6.0.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
