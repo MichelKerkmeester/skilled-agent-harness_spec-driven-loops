@@ -30,7 +30,8 @@
     "hooks/021-compat-opt-in-and-image-declaration",
     "hooks/022-smart-rule-injection",
     "hooks/023-session-relaunch-loop",
-    "hooks/024-dispatch-adapter-test-repair"
+    "hooks/024-dispatch-adapter-test-repair",
+    "hooks/025-cache-optimizer-single-copy-guard"
   ],
   "manual": {
     "depends_on": [],
