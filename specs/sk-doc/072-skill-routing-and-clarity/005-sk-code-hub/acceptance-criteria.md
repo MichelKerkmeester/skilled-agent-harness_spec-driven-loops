@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/005-sk-code-hub"
-    last_updated_at: "2026-10-28T06:50:00Z"
+    last_updated_at: "2026-10-28T11:08:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned the phase from the phase 001 research"
-    next_safe_action: "Run /speckit:plan on this phase before implementation"
+    recent_action: "Verified every criterion against the final gate run"
+    next_safe_action: "Conductor review and landing"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "skill-routing-and-clarity-planning"
+      session_id: "skill-routing-and-clarity-phase-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `sk-doc/072-skill-routing-and-clarity/005-sk-code-hub`
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-10-28
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `verify-router-sync.cjs`, `package_skill.py --strict`, `check-rule-copies.js` and `compiled-route-guard.cjs` pass after each packet. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: Each packet's first instruction appears before its machine-router appendix. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-003 | REQ-003 | Given the phase is implemented, When its gates run, Then: One document names the routing authority, and the other two point at it. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-004 | REQ-004 | Given the sk-code router, When section 2 and the phase boost are inspected, Then: section 2 is generated from section 9 or points to it without a keyword table, and the boost does not name `testing`. | Inspection recorded in `scratch/after.md` | Unmet | - |
+| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `verify-router-sync.cjs`, `package_skill.py --strict`, `check-rule-copies.js` and `compiled-route-guard.cjs` pass after each packet. | At the final state all four pass: `verify-router-sync` 5/5, `package_skill.py --check --strict` PASS for all 14 top-level skills and for each of the four sk-code packets, `check-rule-copies.js` OK (6 extension floors), and `compiled-route-guard.cjs --json` 7 of 7 fresh. The interim runs kept during the packet work are the review packet's `rule-copies.out` and `canary-tests.out`; the other packets' interim output was not archived. `scratch/after.md:9`, `scratch/after.md:55`, `scratch/after.md:90` | Met | - |
+| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: Each packet's first instruction appears before its machine-router appendix. | The machine router is the last H2 in every file: `## 9` in quality, `## 6` in skilled, `## 10` in review and `## 6` in the hub, with `sk-code-ci` unchanged. SMART ROUTING is 8, 3 and 8 lines, and the section after it starts at line 67 (quality), 57 (skilled), 63 (review) and 61 (hub); review's `## 3. HOW IT WORKS` used to start at 415. `scratch/after.md:76`, `scratch/after.md:90` | Met | - |
+| AC-003 | REQ-003 | Given the phase is implemented, When its gates run, Then: One document names the routing authority, and the other two point at it. | `SKILL.md` §2 names `hub-router.json` as the mode vocabulary and `ROUTER.md` as the leaf-set router. `ROUTER.md` and `hub-router.json`'s `defaultResourceContract` point back at that sentence, and `mode-registry.json` and the feature catalog defer to it. `grep -i 'authoritative routing source' .skilled/skills/sk-code` finds nothing. `scratch/after.md:104` | Met | - |
+| AC-004 | REQ-004 | Given the sk-code router, When section 2 and the phase boost are inspected, Then: section 2 is generated from section 9 or points to it without a keyword table, and the boost does not name `testing`. | `ROUTER.md` §2 carries no keyword table and points at the `INTENT_SIGNALS` block in §9; the boost reads `verification, debugging, code quality`; §9 is unchanged. The 92 stage-one terms stay out of §9 by decision, with the reason in `implementation-summary.md` Key Decisions. `scratch/after.md:104`, `scratch/after.md:110` | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is Planned and no criterion is met yet.
+All four criteria are Met with observed evidence from the final gate run.
 <!-- /ANCHOR:closure -->

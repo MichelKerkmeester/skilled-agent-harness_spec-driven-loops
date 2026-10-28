@@ -20,9 +20,9 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
-| **Branch** | `worktrees/254-skill-routing-and-clarity` |
+| **Branch** | `worktrees/257-single-vocabulary-source` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 11 |
 | **Predecessor** | 004-single-vocabulary-source |
@@ -61,8 +61,21 @@ Bring sk-code and its four packets to the canon shape so a reader reaches the in
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ git -c core.fsmonitor=false show 782195b82b^:.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json \
+    | python3 -c "import json,sys;d=json.load(sys.stdin);[print(k, json.dumps(d['debt'][k])) for k in d['debt'] if k.startswith('sk-code')]"
+sk-code {"lines": 67, "words": 787, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-code/sk-code-quality {"lines": 102, "words": 1760, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-code/sk-code-review {"lines": 312, "words": 2104, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-code/sk-code-skilled {"lines": 118, "words": 327, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+
+$ git -c core.fsmonitor=false show 782195b82b^:.skilled/skills/sk-code/sk-code-review/SKILL.md \
+    | python3 -c "import sys;print(len(sys.stdin.read().split()))"
+5676
+
+$ git -c core.fsmonitor=false show 782195b82b^:.skilled/skills/sk-code/sk-code-review/SKILL.md | grep -n '^## 3. HOW IT WORKS'
+415:## 3. HOW IT WORKS
 ```
+The ledger's four entries are the debt this phase closes: each section is over both the 12-line and 180-word limits and carries a machine block inside SMART ROUTING. Review's 5,676 words sit over the 5,000-word ceiling, and its first instruction starts at line 415. `scratch/baseline.md` holds the full gate set and the three routing-authority claims.
 <!-- /ANCHOR:measured-behavior -->
 
 ---

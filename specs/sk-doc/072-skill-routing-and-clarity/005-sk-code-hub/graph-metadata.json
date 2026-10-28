@@ -15,7 +15,8 @@
       "skill routing phase 5",
       "sk-code hub and mode packets plan",
       "sk-code hub and mode packets tasks",
-      "sk-code hub and mode packets acceptance criteria"
+      "sk-code hub and mode packets acceptance criteria",
+      "sk-code hub and mode packets implementation summary"
     ],
     "key_topics": [
       "sk-code",
@@ -29,16 +30,20 @@
       "tasks",
       "acceptance",
       "criteria",
-      "prose"
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
       ".skilled/skills/sk-code/SKILL.md",
+      "scratch/gates.sh",
+      "scratch/baseline.md",
+      "scratch/after.md",
       ".skilled/skills/sk-code/ROUTER.md"
     ],
     "entities": [
@@ -67,9 +72,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
         "source": "derived"
       },
       {
@@ -161,49 +190,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Routing prose fills 37 to 54 percent of the sk-code mode `SKILL.md` files, and three of its documents each claim a different routing authority",
     "created_at": "2026-10-28T06:38:46Z",
-    "last_save_at": "2026-10-28T07:43:23.130Z",
+    "last_save_at": "2026-10-28T11:10:02.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:528578f8de1ce527f42aaf5fc380bf2222b244e273b0c86e631786ce1280022f",
+    "source_fingerprint": "sha256:b8754e1bf99bdfa11f80f1b4ac051a4acd8d1d2618b26a4e83321e0073874bb8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80eee7680afdd45513f787095ab759ba2e4a64c031669d9a9d8f5679245349db",
+      "spec.md": "fc7ded6ed18bcb02fd55f31140e2b170f01fa99e13438012b015516f5b314dca",
       "plan.md": "c35f4b1f81c8bd89c94d62f875948844d622c7c3eeffa5f37970900cb0eeb788",
-      "tasks.md": "5e7e6192541deb05cd6ccbf6aed2797ce56001ee05c5f1f99953c16ba0a4e482"
+      "tasks.md": "93d31d6dbcd90fd5b6b748e8e4c7d0367e0ca611288cc774d3dcc7414b670d7c",
+      "implementation-summary.md": "c6eb96f2c6a1bef325842a1b05154db70d93cc406de43856d5b7dda59058e3a6"
     },
     "last_active_at": null
   }

@@ -108,16 +108,16 @@
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-28T10:01:39.416Z",
+    "last_save_at": "2026-10-28T11:07:17.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8d1d819e2d153c8b852b604da6ffc3e9e602ff3584f79e0c22454c31734423cf",
+    "source_fingerprint": "sha256:28ebba52ae12097e1026851a52e7627192be16a370bf92904d473a68e2392739",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bdc11860fbd1544911c9610f8e9f39ebfce49d334bc3c28ec9b782e71bff57c8"
+      "spec.md": "973baf90e3fb4b194ce5d2c0f4e326a79501985b177a33b1676f693fbe830b3c"
     },
     "last_active_at": null
   }
