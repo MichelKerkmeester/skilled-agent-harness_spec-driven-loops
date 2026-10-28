@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f384b3511f74990010949f79a40d9f15953c435da735c95a385a95cf89cccbe7",
+  "manifestHash": "1f0ba56c12231d8f33c8af33b3ff43e8293e91470bdbed3b87555967999c8611",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82532,6 +82532,9 @@
     "refuted research finding record": [
       "refuted research finding record"
     ],
+    "regenerable ignored files": [
+      "regenerable ignored files"
+    ],
     "regenerate 113 clean packets": [
       "regenerate 113 clean packets"
     ],
@@ -98533,6 +98536,9 @@
     "sk git 1 11 0 0": [
       "sk-git 1.11.0.0"
     ],
+    "sk git 1 11 1 0": [
+      "sk-git 1.11.1.0"
+    ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
     ],
@@ -98757,6 +98763,9 @@
     ],
     "sk git v1 11 0 0": [
       "sk-git v1.11.0.0"
+    ],
+    "sk git v1 11 1 0": [
+      "sk-git v1.11.1.0"
     ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
@@ -105042,6 +105051,9 @@
     ],
     "sqlite3 shell out replacement": [
       "sqlite3 shell-out replacement"
+    ],
+    "squash merged worktree": [
+      "squash-merged worktree"
     ],
     "stable advisor entrypoint": [
       "stable advisor entrypoint"
