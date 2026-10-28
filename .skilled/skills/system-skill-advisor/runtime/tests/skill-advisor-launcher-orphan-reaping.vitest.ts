@@ -50,9 +50,47 @@ const tempDirs: string[] = [];
 const servers: net.Server[] = [];
 const daemonSockets: net.Socket[] = [];
 
-function advisorServerSource(childPidFile: string): string {
+interface FixtureSocket {
+  readonly socketPath: string;
+  readonly delayMs: number;
+}
+
+// The real daemon opens its IPC socket only after its startup work, so the fixture
+// can do the same after a delay. It answers initialize the way a warm daemon does.
+function fixtureSocketSource(socket: FixtureSocket | undefined): string {
+  if (!socket) return '';
   return `
-const fs = require('fs');
+setTimeout(() => {
+  const server = require('net').createServer((conn) => {
+    let pending = '';
+    conn.on('data', (chunk) => {
+      pending += String(chunk);
+      let index = pending.indexOf('\\n');
+      while (index !== -1) {
+        const frame = pending.slice(0, index).trim();
+        pending = pending.slice(index + 1);
+        index = pending.indexOf('\\n');
+        if (!frame) continue;
+        const request = JSON.parse(frame);
+        if (request.method === 'initialize' && request.id !== undefined) {
+          conn.write(JSON.stringify({
+            jsonrpc: '2.0',
+            id: request.id,
+            result: { protocolVersion: '2025-06-18', capabilities: {}, serverInfo: { name: 'starting-advisor', version: 'fixture' } },
+          }) + '\\n');
+          setTimeout(() => conn.end(), 10);
+        }
+      }
+    });
+  });
+  server.listen(${JSON.stringify(socket.socketPath)});
+}, ${socket.delayMs});
+`;
+}
+
+function advisorServerSource(childPidFile: string, socket?: FixtureSocket): string {
+  return `
+const fs = require('fs');${fixtureSocketSource(socket)}
 fs.mkdirSync(${JSON.stringify(dirname(childPidFile))}, { recursive: true });
 fs.writeFileSync(${JSON.stringify(childPidFile)}, String(process.pid));
 process.on('SIGTERM', () => { process.exit(0); });
@@ -145,7 +183,7 @@ exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
 `;
 }
 
-function createWorkspace(): Workspace {
+function createWorkspace(options: { daemonSocketDelayMs?: number } = {}): Workspace {
   const root = mkdtempSync('/tmp/sao-');
   tempDirs.push(root);
   const launcherPath = join(root, '.skilled/bin/system-skill-advisor-launcher.cjs');
@@ -162,10 +200,14 @@ function createWorkspace(): Workspace {
   copyFileSync(join(repoRoot, '.skilled/bin/system-skill-advisor-launcher.cjs'), launcherPath);
   copyFileSync(join(repoRoot, '.skilled/bin/lib/launcher-ipc-bridge.cjs'), bridgePath);
   copyFileSync(join(repoRoot, '.skilled/bin/lib/launcher-session-proxy.cjs'), sessionProxyPath);
-  writeFileSync(advisorServer, advisorServerSource(childPidFile), 'utf8');
-  writeFileSync(leaseModule, leaseModuleSource(), 'utf8');
   const dbDir = join(root, 'skill-advisor-db');
   const socketDir = join(root, 'ipc');
+  const socketPath = join(socketDir, 'daemon-ipc.sock');
+  const daemonSocket = options.daemonSocketDelayMs === undefined
+    ? undefined
+    : { socketPath, delayMs: options.daemonSocketDelayMs };
+  writeFileSync(advisorServer, advisorServerSource(childPidFile, daemonSocket), 'utf8');
+  writeFileSync(leaseModule, leaseModuleSource(), 'utf8');
   mkdirSync(dbDir, { recursive: true, mode: 0o700 });
   mkdirSync(socketDir, { recursive: true, mode: 0o700 });
   return {
@@ -176,7 +218,7 @@ function createWorkspace(): Workspace {
     sessionProxyPath,
     dbDir,
     socketDir,
-    socketPath: join(socketDir, 'daemon-ipc.sock'),
+    socketPath,
     leaseFilePath: join(dbDir, '.system-skill-advisor-launcher.json'),
     ownerLeaseFilePath: join(dbDir, '.skill-advisor-owner.json'),
     childPidFile,
@@ -263,6 +305,11 @@ async function createLivePid(): Promise<ChildProcess> {
 function readLeasePid(workspace: Workspace): number | null {
   const lease = readJsonFile<{ readonly pid?: unknown }>(workspace.leaseFilePath);
   return typeof lease?.pid === 'number' ? lease.pid : null;
+}
+
+function readLeaseChildPid(workspace: Workspace): number | null {
+  const lease = readJsonFile<{ readonly childPid?: unknown }>(workspace.leaseFilePath);
+  return typeof lease?.childPid === 'number' ? lease.childPid : null;
 }
 
 function readOwnerLeasePid(workspace: Workspace): number | null {
@@ -403,7 +450,9 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
   });
 
   it('serializes two stale lease reclaimers and leaves one writer', async () => {
-    const workspace = createWorkspace();
+    // The daemon opens its socket once it runs, as the real one does, so the
+    // losing launcher can bridge to the winner instead of waiting out its startup.
+    const workspace = createWorkspace({ daemonSocketDelayMs: 0 });
     const deadPid = await createDeadPid();
     const staleTimestamp = new Date(Date.now() - 180_000).toISOString();
     writeFileSync(workspace.leaseFilePath, JSON.stringify({ pid: deadPid, startedAt: new Date().toISOString() }));
@@ -420,13 +469,22 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     const first = spawnLauncher(workspace);
     const second = spawnLauncher(workspace);
     await waitFor(() => /staleReclaimed: true/.test(`${first.stderr}\n${second.stderr}`), 3000, 'stale reclaim log');
-    await waitFor(() => readLeasePid(workspace) !== null && readLeasePid(workspace) !== deadPid, 2000, 'replacement lease');
+    await waitFor(() => countProcessesMatching(workspace.launcherPath) === 1, 5000, 'single stale-lease launcher');
+    // The launcher publishes its lease before it spawns the daemon child, and the
+    // child records its pid only once it runs. Either launcher may end up the
+    // writer, so the run has settled only when the lease names a live child that
+    // has reported in.
+    await waitFor(() => {
+      const childPid = readChildPid(workspace);
+      return childPid !== null && readLeaseChildPid(workspace) === childPid && processLive(childPid);
+    }, 5000, 'surviving launcher daemon child');
     const ownerPid = readLeasePid(workspace);
 
     expect(ownerPid).not.toBe(deadPid);
-    await waitFor(() => countProcessesMatching(workspace.launcherPath) === 1, 5000, 'single stale-lease launcher');
+    expect([first.child.pid, second.child.pid]).toContain(ownerPid);
+    expect(processLive(ownerPid)).toBe(true);
     expect(readOwnerLeasePid(workspace)).toBe(ownerPid);
-    expect(readChildPid(workspace)).toEqual(expect.any(Number));
+    expect(countProcessesMatching(workspace.advisorServerPath)).toBe(1);
     if (ownerPid) await terminatePidTree(ownerPid);
     await waitFor(() => countProcessesMatching(workspace.launcherPath) === 0, 3000, 'zero stale-lease launchers');
   });
@@ -472,6 +530,73 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     await waitFor(() => countProcessesMatching(workspace.launcherPath) === 0, 5000, 'zero respawn launchers after client close');
   });
 
+  it('bridges a second client to an owner whose daemon is still starting instead of reaping it', async () => {
+    const workspace = createWorkspace({ daemonSocketDelayMs: 1500 });
+    const first = spawnLauncher(workspace);
+    await waitFor(() => readLeasePid(workspace) === first.child.pid, 2000, 'first launcher lease');
+    await waitFor(() => readOwnerLeasePid(workspace) === first.child.pid, 2000, 'first owner lease');
+    await waitFor(() => readChildPid(workspace) !== null, 2000, 'first daemon child');
+    const firstChildPid = readChildPid(workspace);
+    expect(existsSync(workspace.socketPath)).toBe(false);
+
+    const second = spawnLauncher(workspace, {}, { interactive: true });
+    await waitFor(() => second.stderr.includes('is still starting; waiting up to'), 3000, 'startup wait log');
+    await waitFor(() => second.stderr.includes('bridging to lease holder'), 5000, 'bridge once the socket opens');
+    second.child.stdin!.write(`${JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'init-while-starting',
+      method: 'initialize',
+      params: {
+        protocolVersion: '2025-06-18',
+        capabilities: {},
+        clientInfo: { name: 'advisor-starting-owner-test', version: '0' },
+      },
+    })}\n`);
+    second.child.stdin!.end();
+
+    await waitForStdoutClose(second);
+    const exit = await waitForExit(second.child, 5000);
+
+    expect(exit.code).toBe(0);
+    expect(second.stdout).toContain('starting-advisor');
+    expect(second.stderr).not.toContain('requesting respawn');
+    expect(second.stderr).not.toContain('reaping recorded');
+    expect(readChildPid(workspace)).toBe(firstChildPid);
+    expect(processLive(firstChildPid)).toBe(true);
+    expect(readLeasePid(workspace)).toBe(first.child.pid);
+    expect(readOwnerLeasePid(workspace)).toBe(first.child.pid);
+    expect(countProcessesMatching(workspace.launcherPath)).toBe(1);
+    expect(countProcessesMatching(workspace.advisorServerPath)).toBe(1);
+  });
+
+  it('reports a starting owner at once when the bridge is disabled', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    await waitFor(() => readOwnerLeasePid(workspace) === first.child.pid, 2000, 'first owner lease');
+    await waitFor(() => readChildPid(workspace) !== null, 2000, 'first daemon child');
+    const firstChildPid = readChildPid(workspace);
+    expect(existsSync(workspace.socketPath)).toBe(false);
+
+    // The owner is young and has no socket, which would hold a bridging client for
+    // the grace. With the bridge disabled the client only reports, so it must not wait.
+    const startedAt = Date.now();
+    const second = spawnLauncher(workspace, {
+      SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1',
+      SPECKIT_LEASE_STARTUP_GRACE_MS: '7000',
+    });
+    const exit = await waitForExit(second.child, 10000);
+    const elapsedMs = Date.now() - startedAt;
+    await waitForStdoutClose(second);
+
+    expect(exit.code).toBe(0);
+    expect(second.stdout).toContain(`LEASE_HELD_BY:${first.child.pid}`);
+    expect(second.stderr).not.toContain('is still starting');
+    expect(elapsedMs).toBeLessThan(2000);
+    expect(readChildPid(workspace)).toBe(firstChildPid);
+    expect(processLive(firstChildPid)).toBe(true);
+    expect(countProcessesMatching(workspace.launcherPath)).toBe(1);
+  });
+
   it('respawns when the lease holder socket is missing and serves the second client', async () => {
     const workspace = createWorkspace();
     const first = spawnLauncher(workspace);
@@ -483,8 +608,11 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     })();
     expect(firstChildPid).toEqual(expect.any(Number));
 
-    const second = spawnLauncher(workspace, {}, { interactive: true });
-    await waitFor(() => second.stderr.includes('requesting respawn'), 3000, 'missing socket respawn request');
+    // A short startup grace: the holder's daemon never opens a socket, so the
+    // second launcher waits out the grace and then treats the holder as dead.
+    const second = spawnLauncher(workspace, { SPECKIT_LEASE_STARTUP_GRACE_MS: '1500' }, { interactive: true });
+    await waitFor(() => second.stderr.includes('requesting respawn'), 5000, 'missing socket respawn request');
+    expect(second.stderr).toContain('is still starting; waiting up to');
     await waitFor(() => second.stderr.includes('reaping recorded skill-advisor daemon pid'), 5000, 'missing socket reap log');
     await waitFor(() => readChildPid(workspace) !== null && readChildPid(workspace) !== firstChildPid, 5000, 'replacement daemon child');
 

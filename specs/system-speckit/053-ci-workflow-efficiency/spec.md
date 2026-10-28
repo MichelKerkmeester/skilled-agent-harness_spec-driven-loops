@@ -115,6 +115,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 12 | 012-alignment-fixes/ | Follow-up: correct four stale workflow citations, run the advisor default suite in CI, exempt the deep loop's synthesis marker in the naming guard and run it on `main`, pin two host-dependent hook tests and make the runtime lint check pass | Complete |
 | 13 | 013-killer-test-spawn-race/ | Follow-up: the session-relaunch killer test waited for the target's spawn event instead of its SIGTERM handler, so it failed once in 40 CI runs; targets now report readiness and the tests wait for it | Complete |
 | 14 | 014-unused-dependency-removal/ | Follow-up: remove `playwright-extra` and `puppeteer-extra-plugin-stealth` from the sk-design-md-generator backend because nothing imports them, which drops the `deepmerge` copy behind Dependabot alert 1410; the output rule accepts the documented `specs/` folder, the help text names real paths, 13 docs and the playbook stop printing a skill path that does not exist, and the install guide and troubleshooting page stop naming wrong packages | Complete |
+| 15 | 015-advisor-lease-reclaim-flake/ | Follow-up: the advisor stale-reclaimer test read the daemon child's pid before the child ran; behind it, a torn owner-lease read made a launcher stop itself, a reclaim could delete a peer's fresh lease, and a second client reaped an owner still starting. The lease is now published complete and reclaimed only as read, a starting owner gets a bounded grace, and the test waits for the child | Complete |
 
 ### Phase Transition Rules
 
@@ -138,6 +139,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 011 | 012 | The seven CI and test alignment findings are listed with file, line and evidence | The advisor default suite passes 150 of 150 files after a scan; the naming guard test passes 9 of 9; both hook test files pass 5 runs in a row; the runtime `npm run check` exits 0; `012-alignment-fixes` passes `validate.sh --strict` |
 | 011 | 013 | The killer test's one-in-40 CI failure is traced to the spawn event it waited on | With a 600 ms delay forced ahead of the handler the old file fails and the fixed file passes 64 of 64; ten unforced runs pass 64 of 64; `013-killer-test-spawn-race` passes `validate.sh --strict` |
 | 011 | 014 | The backend's two unused packages and the `deepmerge` chain they pull are named, with the usage scan that shows no file imports them | `npm ls deepmerge` in the backend prints `(empty)`; typecheck and build exit 0; `npm test` passes 178 of 178 (the 176 baseline plus two output-rule tests, one failing on the old rule); `014-unused-dependency-removal` passes `validate.sh --strict` |
+| 013 | 015 | The advisor stale-reclaimer test's CI failure is traced to its pid-file read and to three races in the launcher's owner-lease claim and bridge decision | Each forced race fails the code before its fix and passes after; 20 sequential and 20 four-at-a-time runs pass 9 of 9; the advisor default suite passes 153 files and the stress suite 21; `015-advisor-lease-reclaim-flake` passes `validate.sh --strict` |
 
 ### Recommendation Traceability
 

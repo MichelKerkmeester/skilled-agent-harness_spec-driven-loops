@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake",
+  "description": "Advisor launcher lease reclaim flake",
+  "keywords": [
+    "advisor",
+    "launcher",
+    "lease",
+    "reclaim",
+    "flake"
+  ],
+  "lastUpdated": "2026-10-27T23:07:05.531Z",
+  "specId": "015",
+  "folderSlug": "advisor-lease-reclaim-flake",
+  "parentChain": [
+    "system-speckit",
+    "053-ci-workflow-efficiency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

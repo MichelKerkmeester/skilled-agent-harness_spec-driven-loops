@@ -5,20 +5,28 @@
 //   - reapOwnerBeforeRespawn must NOT SIGKILL a recorded pid that the OS recycled
 //     to an unrelated process: when the live pid's executable basename provably
 //     differs from the lease's recorded executablePath, treat it as already-dead.
-//   - owner-lease stale reclaim must be a single O_EXCL CAS (no double-acquire).
+//   - owner-lease stale reclaim must be a single exclusive CAS (no double-acquire).
+//   - a claim is published complete, and a loser never names itself the holder.
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
+// The launcher's own fs module object, so a spy sees the launcher's calls.
+const launcherFs = require('fs') as typeof import('node:fs');
 const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   reapOwnerBeforeRespawn: (ownerPid: number, expectedExecutablePath?: string | null) => Promise<{ allowed: boolean; reason: string }>;
   readProcessExecutableBasename: (pid: number) => string | null;
-  acquireOwnerLeaseFile: () => { acquired: boolean; lease?: { ownerPid: number }; classification?: string };
+  acquireOwnerLeaseFile: () => {
+    acquired: boolean;
+    lease?: { ownerPid: number };
+    holder?: { ownerPid: number };
+    classification?: string;
+  };
   clearOwnerLeaseFile: () => void;
   ownerLeasePath: () => string;
   readOwnerLeaseFile: (filePath?: string) => Record<string, unknown> | null;
@@ -134,6 +142,82 @@ describe('system-skill-advisor owner-lease CAS reclaim', () => {
         // The sleeper may already have exited.
       }
     }
+  });
+
+  it('claims an owner lease file that names no owner instead of taking itself for the holder', () => {
+    configureTempLauncher();
+    launcher.clearOwnerLeaseFile();
+    // An empty file is what a peer's claim left in place while it was still being
+    // written, and what stays behind when that writer dies mid-write.
+    writeFileSync(launcher.ownerLeasePath(), '');
+    const result = launcher.acquireOwnerLeaseFile();
+    expect(result.holder?.ownerPid).not.toBe(process.pid);
+    expect(result.acquired).toBe(true);
+    expect(launcher.readOwnerLeaseFile()?.ownerPid).toBe(process.pid);
+  });
+
+  it('keeps a live lease a peer published after this launcher read the stale one', () => {
+    configureTempLauncher();
+    launcher.clearOwnerLeaseFile();
+    const first = launcher.acquireOwnerLeaseFile();
+    expect(first.acquired).toBe(true);
+    const realLease = launcher.readOwnerLeaseFile();
+    launcher.clearOwnerLeaseFile();
+    const ownerPath = launcher.ownerLeasePath();
+    writeFileSync(ownerPath, `${JSON.stringify({ ...realLease, ownerPid: findDeadPid(), ppid: 1 }, null, 2)}\n`);
+    // The parent of this test runner is alive, so its lease is a live owner.
+    const peerLease = `${JSON.stringify({
+      ...realLease,
+      ownerPid: process.ppid,
+      ppid: 1,
+      lastHeartbeatIso: new Date().toISOString(),
+      ttlMs: 60000,
+    }, null, 2)}\n`;
+    const realReadFileSync = launcherFs.readFileSync;
+    let injected = false;
+    // The peer publishes right after this launcher's first read of the stale lease.
+    const spy = vi.spyOn(launcherFs, 'readFileSync').mockImplementation(((...args: Parameters<typeof launcherFs.readFileSync>) => {
+      const result = realReadFileSync(...args);
+      if (!injected && args[0] === ownerPath) {
+        injected = true;
+        writeFileSync(ownerPath, peerLease);
+      }
+      return result;
+    }) as typeof launcherFs.readFileSync);
+    let result: ReturnType<typeof launcher.acquireOwnerLeaseFile>;
+    try {
+      result = launcher.acquireOwnerLeaseFile();
+    } finally {
+      spy.mockRestore();
+    }
+    expect(injected).toBe(true);
+    expect(result.acquired).toBe(false);
+    expect(result.holder?.ownerPid).toBe(process.ppid);
+    expect(readFileSync(ownerPath, 'utf8')).toBe(peerLease);
+  });
+
+  it('never exposes a half-written owner lease while a claim is being written', () => {
+    configureTempLauncher();
+    launcher.clearOwnerLeaseFile();
+    const ownerPath = launcher.ownerLeasePath();
+    const observed: string[] = [];
+    const realWriteFileSync = launcherFs.writeFileSync;
+    const spy = vi.spyOn(launcherFs, 'writeFileSync').mockImplementation(((...args: Parameters<typeof launcherFs.writeFileSync>) => {
+      if (existsSync(ownerPath)) {
+        observed.push(launcher.readOwnerLeaseFile(ownerPath) ? 'complete' : 'unreadable');
+      } else {
+        observed.push('absent');
+      }
+      return realWriteFileSync(...args);
+    }) as typeof launcherFs.writeFileSync);
+    try {
+      expect(launcher.acquireOwnerLeaseFile().acquired).toBe(true);
+    } finally {
+      spy.mockRestore();
+    }
+    expect(observed.length).toBeGreaterThan(0);
+    expect(observed).not.toContain('unreadable');
+    expect(launcher.readOwnerLeaseFile()?.ownerPid).toBe(process.pid);
   });
 });
 

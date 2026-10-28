@@ -118,6 +118,15 @@ const now = () => new Date().toISOString();
 const BOOTSTRAP_LOCK_TIMEOUT_MS = 120000;
 const BOOTSTRAP_LOCK_STALE_MS = 300000;
 const RESPAWN_REAP_GRACE_MS = 7000;
+// A lost owner-lease claim re-reads the winner. Running out of attempts means the
+// lease keeps vanishing between claim and read, which only constant churn causes.
+const OWNER_LEASE_CLAIM_ATTEMPTS = 3;
+// A new owner has no socket until its daemon finishes starting. A second launcher
+// waits this long from the owner lease's start for that socket before it treats the
+// missing socket as a dead holder. SPECKIT_LEASE_STARTUP_GRACE_MS overrides it,
+// clamped to the ceiling so a typo cannot stall a client for minutes.
+const LEASE_STARTUP_GRACE_MAX_MS = 30000;
+const LEASE_STARTUP_POLL_MS = 50;
 const SOURCE_DIRS = ['handlers', 'lib', 'schemas', 'tools'];
 const CHILD_ENV_ALLOWLIST = new Set([
   'PATH',
@@ -418,7 +427,16 @@ function leaseHeldFromFile(filePath = leasePath(), legacyPath = null) {
 
 function readOwnerLeaseFile(filePath = ownerLeasePath()) {
   try {
-    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return parseOwnerLease(fs.readFileSync(filePath, 'utf8'));
+  } catch {
+    // A missing owner lease is treated as no active owner.
+  }
+  return null;
+}
+
+function parseOwnerLease(text) {
+  try {
+    const parsed = JSON.parse(text);
     if (
       Number.isInteger(parsed.ownerPid) &&
       Number.isInteger(parsed.ppid) &&
@@ -431,7 +449,7 @@ function readOwnerLeaseFile(filePath = ownerLeasePath()) {
       return parsed;
     }
   } catch {
-    // Missing or corrupt owner leases are treated as no active owner.
+    // A corrupt owner lease names no owner.
   }
   return null;
 }
@@ -450,19 +468,33 @@ function writeOwnerLeaseFile(lease) {
   fs.renameSync(tmp, currentLeasePath);
 }
 
+// The lease is written to a private temp file and published with one hard link,
+// so the owner path is only ever absent or complete. Opening the final path with
+// O_EXCL and writing into it left an empty file there for the length of the write,
+// and a launcher racing the claim read that as a lease with no owner. link() keeps
+// the exclusivity O_EXCL gave: it fails with EEXIST when a holder already exists.
 function writeOwnerLeaseFileExclusive(lease) {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
+  const tmp = `${currentLeasePath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
   let fd;
   try {
-    fd = fs.openSync(currentLeasePath, 'wx', 0o600);
+    fd = fs.openSync(tmp, 'wx', 0o600);
     fs.writeFileSync(fd, `${JSON.stringify(lease, null, 2)}\n`, 'utf8');
     fs.fsyncSync(fd);
+    fs.closeSync(fd);
+    fd = undefined;
+    fs.linkSync(tmp, currentLeasePath);
     return true;
   } catch (error) {
     if (error.code === 'EEXIST') return false;
     throw error;
   } finally {
     if (typeof fd === 'number') fs.closeSync(fd);
+    try {
+      fs.unlinkSync(tmp);
+    } catch {
+      // The temp file was never created, or is already gone.
+    }
   }
 }
 
@@ -590,40 +622,87 @@ function classifyOwnerLease(lease) {
   return 'live-owner';
 }
 
+// Move the lease this launcher judged reclaimable out of the way, and only if it
+// is still that lease. Deleting by path would also delete a live lease a peer
+// published after the read, leaving two launchers that each think they own it.
+// Returns true when the observed lease is gone and a fresh claim may proceed, and
+// false when the path changed, so the caller reads and classifies it again.
+function setAsideOwnerLease(leasePathValue, observedText) {
+  const claimPath = `${leasePathValue}.reclaiming.${process.pid}.${Math.random().toString(36).slice(2)}`;
+  try {
+    fs.renameSync(leasePathValue, claimPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
+  let movedText = null;
+  try {
+    movedText = fs.readFileSync(claimPath, 'utf8');
+  } catch {
+    // An unreadable moved file is handed back below, never deleted unseen.
+  }
+  if (movedText === observedText) {
+    fs.rmSync(claimPath, { force: true });
+    return true;
+  }
+  // The move took a lease published after the read. Put it back without
+  // replacing anything newer: link() fails with EEXIST when a third launcher
+  // already claimed the path, and that claim then stands.
+  try {
+    fs.linkSync(claimPath, leasePathValue);
+  } catch (error) {
+    if (error.code !== 'EEXIST') throw error;
+  }
+  fs.rmSync(claimPath, { force: true });
+  return false;
+}
+
 function acquireOwnerLeaseFile() {
   const currentOwnerLeasePath = ownerLeasePath();
-  const existing = readOwnerLeaseFile(currentOwnerLeasePath);
 
-  if (existing) {
-    const classification = classifyOwnerLease(existing);
-    if (classification === 'live-owner' || classification === 'unknown-eperm') {
-      return { acquired: false, holder: existing, classification };
-    }
-    log(`ownerLeaseReclaimed: ${classification} ownerPid=${existing.ownerPid}`);
-  }
-
-  const lease = buildOwnerLease(process.pid);
-  // Reclaim a stale lease by removing it first, then claim exclusively (O_EXCL).
-  // This collapses the fresh-acquire and stale-reclaim paths into a single CAS so
-  // only one racer can win: the loser's exclusive create hits EEXIST and returns
-  // acquired:false instead of last-writer-wins overwriting the winner's lease.
-  if (existing) {
+  for (let attempt = 1; attempt <= OWNER_LEASE_CLAIM_ATTEMPTS; attempt += 1) {
+    // One read decides between absent and unparseable, so a lease published
+    // between two separate checks is never mistaken for a corrupt one.
+    let existingText = null;
     try {
-      fs.unlinkSync(currentOwnerLeasePath);
+      existingText = fs.readFileSync(currentOwnerLeasePath, 'utf8');
     } catch (error) {
       if (error.code !== 'ENOENT') throw error;
     }
+    const existing = existingText === null ? null : parseOwnerLease(existingText);
+    let reclaim = false;
+
+    if (existing) {
+      const classification = classifyOwnerLease(existing);
+      if (classification === 'live-owner' || classification === 'unknown-eperm') {
+        return { acquired: false, holder: existing, classification };
+      }
+      log(`ownerLeaseReclaimed: ${classification} ownerPid=${existing.ownerPid}`);
+      reclaim = true;
+    } else if (existingText !== null) {
+      // A lease that exists but does not parse names no owner. Leases are published
+      // complete, so this is a damaged file, such as the empty one a writer that
+      // died mid-write used to leave, and it would otherwise block every exclusive
+      // claim with nobody to defer to.
+      log('ownerLeaseReclaimed: unreadable');
+      reclaim = true;
+    }
+
+    // Reclaim a stale lease by moving it aside first, then claim exclusively. This
+    // collapses the fresh-acquire and stale-reclaim paths into a single CAS so
+    // only one racer can win: the loser's exclusive create hits EEXIST instead of
+    // last-writer-wins overwriting the winner's lease.
+    if (reclaim && !setAsideOwnerLease(currentOwnerLeasePath, existingText)) continue;
+    const lease = buildOwnerLease(process.pid);
+    if (writeOwnerLeaseFileExclusive(lease)) {
+      ownerLeasePid = process.pid;
+      return { acquired: true, lease, reclaimed: existing };
+    }
+    // Lost the create. The next pass reads and classifies the winner's lease. It
+    // must never stand in this launcher's own lease for the holder: a launcher
+    // that takes itself for the live owner goes on to reap itself.
   }
-  if (!writeOwnerLeaseFileExclusive(lease)) {
-    const holder = readOwnerLeaseFile(currentOwnerLeasePath);
-    return {
-      acquired: false,
-      holder: holder || lease,
-      classification: holder ? classifyOwnerLease(holder) : 'live-owner',
-    };
-  }
-  ownerLeasePid = process.pid;
-  return { acquired: true, lease, reclaimed: existing };
+  throw new Error(`skill-advisor owner lease stayed contended after ${OWNER_LEASE_CLAIM_ATTEMPTS} claim attempts`);
 }
 
 function refreshOwnerLeaseFile(ownerPid, patch = {}) {
@@ -850,6 +929,35 @@ function leaseResultForOwnerLease(ownerLease) {
   };
 }
 
+function leaseStartupGraceMs(env = process.env) {
+  const raw = Number.parseInt(env.SPECKIT_LEASE_STARTUP_GRACE_MS ?? '', 10);
+  if (!Number.isInteger(raw) || raw < 0) return RESPAWN_REAP_GRACE_MS;
+  return Math.min(raw, LEASE_STARTUP_GRACE_MAX_MS);
+}
+
+// Hold off the missing-socket respawn while the holder is a live owner that is
+// still inside its startup grace, so a second client bridges to a daemon that is
+// coming up instead of reaping it. Returns once the socket exists, the grace ends
+// or the owner dies, and the bridge decision that follows sees the result.
+async function waitForStartingHolderSocket(leaseResult) {
+  // With the bridge disabled the decision only reports the holder and never reads
+  // the socket, so waiting for one would only delay that report.
+  if (process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1') return;
+  const ownerLease = readOwnerLeaseFile();
+  if (!ownerLease || ownerLease.ownerPid === process.pid || ownerLease.ownerPid !== leaseResult.ownerPid) return;
+  if (classifyOwnerLease(ownerLease) !== 'live-owner') return;
+  const startedAtMs = Date.parse(ownerLease.startedAtIso);
+  if (!Number.isFinite(startedAtMs)) return;
+  const deadline = startedAtMs + leaseStartupGraceMs();
+  const socketReady = () => socketPathUsable(leaseResult.socketPath) || socketPathUsable(resolveSessionProxySocketPath());
+  if (socketReady() || Date.now() >= deadline) return;
+  log(`lease holder pid=${ownerLease.ownerPid} is still starting; waiting up to ${deadline - Date.now()}ms for its socket`);
+  while (Date.now() < deadline) {
+    await sleep(LEASE_STARTUP_POLL_MS);
+    if (socketReady() || processLiveness(ownerLease.ownerPid) === 'dead') return;
+  }
+}
+
 async function bridgeOrReportLeaseHeld(leaseResult) {
   if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED !== '1' && launchedDaemonPredatesBuild(leaseResult)) {
     log(`skill-advisor daemon for owner pid ${leaseResult.ownerPid} was launched before the current build; recycling it`);
@@ -861,6 +969,7 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
     if (recycled.action === 'respawn') return recycled;
     log(`stale-build recycle skipped (${recycled.reason}); bridging to the running daemon`);
   }
+  await waitForStartingHolderSocket(leaseResult);
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
   const decision = await maybeBridgeLeaseHolder({
     serviceName: 'system-skill-advisor',

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor lease reclaim flake",
+      "phase 15 advisor lease reclaim flake",
+      "stale lease reclaimers flake",
+      "owner lease torn read",
+      "advisor lease reclaim flake plan",
+      "advisor lease reclaim flake tasks",
+      "advisor lease reclaim flake acceptance criteria",
+      "advisor lease reclaim flake implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "lease",
+      "reclaim",
+      "flake",
+      "phase",
+      "stale",
+      "reclaimers",
+      "owner",
+      "torn",
+      "read",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/launcher-reap-pid-reuse.vitest.ts",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-launcher-orphan-reaping.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-reap-pid-reuse.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/launcher-reap-pid-reuse.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.17.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Atomic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`serializes two stale lease reclaimers and leaves one writer` failed in CI run 40596294785 (attempt 1, Ubuntu, Node 22) on commit `c8e5e2d4e1`, which touched no advisor code",
+    "created_at": "2026-10-27T23:07:05Z",
+    "last_save_at": "2026-10-28T04:16:35.500Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2af143373c59e9108a9fc31ae2c8b11f3a20b367d6694ac71e8fdd7bc8423e31",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3c5a7b9c191cc54e903ba01a152a9fa4033836f548292dbd646d16d3e2861da4",
+      "plan.md": "06e688dfbc2288ab204a10f0a7bf94d590a91fbd5088eb04868fc121f03e6bd6",
+      "tasks.md": "2bb66cbe2e9a3c6edf6f4ac132e6f7661aeaf65afea8a3c9a9f91e5acdffaf69",
+      "implementation-summary.md": "b6a2109c04bb70b6c81e4071e4b41f0bd7bd25a5a4098be273ca2cc237df0366"
+    },
+    "last_active_at": null
+  }
+}
