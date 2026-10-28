@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c591ed8f87feea50380771003fb3bc2ec50945d066a3816aa85f41e3272a71e",
+  "corpusHash": "67ec99945d463f8760b5d979d1ef04e0c2f3f35ddffeb408ff59d1ed3254355a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26683,
+  "includedPathCount": 26689,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7649,6 +7649,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.14.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.15.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.16.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -26508,6 +26509,11 @@
     "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/plan.md",
     "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/fanout-attribution.md",
     "specs/system-speckit/053-ci-workflow-efficiency/review/review-report.md",
@@ -26714,7 +26720,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a0bfcbd42115d9f2a1b45a029734d01ce7a730d10302775797abc56afc6d73cb",
+  "manifestHash": "0d9ae04dc4a60a03a64853630835b4539f0fe8f48f44e0acb746fc8e890d7221",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34042,6 +34048,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/scratch",
       "reason": "excluded directory"
     },
     {

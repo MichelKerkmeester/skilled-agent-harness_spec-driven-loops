@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a0bfcbd42115d9f2a1b45a029734d01ce7a730d10302775797abc56afc6d73cb",
+  "manifestHash": "0d9ae04dc4a60a03a64853630835b4539f0fe8f48f44e0acb746fc8e890d7221",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8934,6 +8934,21 @@
     ],
     "advisor launcher supervisor": [
       "advisor launcher supervisor"
+    ],
+    "advisor lease reclaim flake": [
+      "advisor lease reclaim flake"
+    ],
+    "advisor lease reclaim flake acceptance criteria": [
+      "advisor lease reclaim flake acceptance criteria"
+    ],
+    "advisor lease reclaim flake implementation summary": [
+      "advisor lease reclaim flake implementation summary"
+    ],
+    "advisor lease reclaim flake plan": [
+      "advisor lease reclaim flake plan"
+    ],
+    "advisor lease reclaim flake tasks": [
+      "advisor lease reclaim flake tasks"
     ],
     "advisor lease semantics": [
       "advisor lease semantics"
@@ -71520,6 +71535,9 @@
     "owner lease cas reclaim launchers": [
       "owner lease cas reclaim launchers"
     ],
+    "owner lease claim race": [
+      "owner lease claim race"
+    ],
     "owner lease election race launcher": [
       "owner lease election race launcher"
     ],
@@ -71531,6 +71549,9 @@
     ],
     "owner lease stale heartbeat reclaim": [
       "owner-lease stale-heartbeat-reclaim"
+    ],
+    "owner lease torn read": [
+      "owner lease torn read"
     ],
     "owner liveness gc": [
       "owner liveness gc"
@@ -73924,6 +73945,9 @@
     ],
     "phase 14 unused dependency removal": [
       "phase 14 unused dependency removal"
+    ],
+    "phase 15 advisor lease reclaim flake": [
+      "phase 15 advisor lease reclaim flake"
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
@@ -92207,6 +92231,9 @@
     "seat recommendation sections": [
       "seat recommendation sections"
     ],
+    "second client reaps starting daemon": [
+      "second client reaps starting daemon"
+    ],
     "second family design review": [
       "second family design review"
     ],
@@ -105334,6 +105361,9 @@
     "stale lease cas": [
       "stale lease CAS"
     ],
+    "stale lease reclaimers flake": [
+      "stale lease reclaimers flake"
+    ],
     "stale lock breaking git hook": [
       "stale lock breaking git hook"
     ],
@@ -107851,6 +107881,9 @@
     "system skill advisor 0 17 16 0": [
       "system-skill-advisor 0.17.16.0"
     ],
+    "system skill advisor 0 17 17 0": [
+      "system-skill-advisor 0.17.17.0"
+    ],
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
     ],
@@ -108078,6 +108111,9 @@
     ],
     "system skill advisor v0 17 16 0": [
       "system-skill-advisor v0.17.16.0"
+    ],
+    "system skill advisor v0 17 17 0": [
+      "system-skill-advisor v0.17.17.0"
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"

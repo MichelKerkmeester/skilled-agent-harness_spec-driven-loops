@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7347,
-    "ok": 15788,
+    "ok": 15794,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26683,
+  "documentsScanned": 26689,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a0bfcbd42115d9f2a1b45a029734d01ce7a730d10302775797abc56afc6d73cb",
+  "manifestHash": "0d9ae04dc4a60a03a64853630835b4539f0fe8f48f44e0acb746fc8e890d7221",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38790,
+      "ok": 38802,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -76291,6 +76291,10 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/014-unused-dependency-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/scratch",
       "reason": "excluded directory"
     },
     {
