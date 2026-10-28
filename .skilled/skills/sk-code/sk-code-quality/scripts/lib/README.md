@@ -1,7 +1,7 @@
 ---
 title: "Lib: the quality runner's spawner, workspace guard and config reader"
 description: "run-check.cjs, the quality runner's spawner and workspace guard, the config reader quality-config.cjs and parallel-node-check.cjs, the bounded parallel node --check helper."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Lib
@@ -35,7 +35,7 @@ The post-edit dispatch table, `post-edit-router.cjs`, is at `.skilled/hooks/post
 - `../quality-gate.cjs` requires `run-check.cjs` and `quality-config.cjs`.
 - `../quality-gate.cjs` starts `parallel-node-check.cjs` for the `syntax-node` check.
 - `../hygiene-config-flags.cjs` requires `quality-config.cjs` and prints the disable flags the pre-commit hook and the CI hygiene job pass to the checker.
-- `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` requires `quality-config.cjs`, the `runGit()` and `findTool()` helpers and the runner's `CHECK_IDS` and `probeLayers()` exports.
+- `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` requires `quality-config.cjs`, the `runGit()` and `findTool()` helpers and the runner's `CHECK_IDS` and `probeLayers()` exports, and starts the runner with `--explain` through `spawnArgv()` for the applied-rules block of `/doctor:sk-code quality`.
 - `../tests/quality-gate.test.cjs` tests its spawn, timeout and guard behavior directly, `../tests/configured-checks.test.cjs` tests the process group kill and the chained guard windows, and `../tests/quality-config.test.cjs` tests the config reader.
 - `../tests/parallel-node-check.test.cjs` tests the helper.
 - `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` and `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` call the dispatch table at `.skilled/hooks/post-edit-quality/lib/`.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "sk-code quality gate"
   - "sk-code doctor commands"
 last_updated: "2026-10-28"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # sk-code: Feature Catalog
@@ -98,7 +98,7 @@ A repository drops or replaces any quality or review rule outside a fixed hard f
 
 #### Current Reality
 
-The shared linter refuses a row that names a hard-floor id, and the quality runner's explain entry shows each declared checklist's parsed rows for several files at once. The runner, the pre-commit hook and the CI job honor the hygiene key together, and the verdict lists the disabled rules in `config.hygiene.disabled`.
+The shared linter refuses a row that names a hard-floor id, and the quality runner reads the section of every checklist it loads: a refused section or an unknown rule id ends the run `CONFIG_INVALID` with exit 3, each accepted row lands in `rule_overrides` and the envelope's `p0_p1_p2_decisions`, and two checklists that disagree at one level keep the default and make the rule unverified. The explain entry shows the same rows and conflicts for several files at once. The runner, the pre-commit hook and the CI job honor the hygiene key together, and the verdict lists the disabled rules in `config.hygiene.disabled`.
 
 #### Source Files
 
@@ -116,7 +116,7 @@ See [`quality-gate/rule-overrides-and-hygiene-policy.md`](quality-gate/rule-over
 
 #### Current Reality
 
-`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` names the hygiene rules the config switches off, suggests the spec-kit rules for a repository with no `specs/` folder without writing them, and writes `.sk-code/quality.json` only after approval and never over an existing file.
+`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` names the hygiene rules the config switches off and shows what the gate would apply: each checklist with its seat, its override rows or why they were refused, same-level conflicts and the hygiene rules in force, resolved through the runner's explain entry over a sample of the tree. A refused section, an unknown rule id or a missing checklist fails the status. It suggests the spec-kit rules for a repository with no `specs/` folder without writing them, and writes `.sk-code/quality.json` only after approval and never over an existing file.
 
 #### Source Files
 
@@ -126,11 +126,11 @@ See [`doctor-commands/sk-code-setup-and-quality-doctor.md`](doctor-commands/sk-c
 
 #### Description
 
-/doctor:ci reports every GitHub Actions workflow with its switch state, scaffolds a new workflow from the standards templates and toggles one documented CI switch after approval.
+/doctor:ci reports every GitHub Actions workflow with its switch state, scaffolds a new workflow from the standards templates and toggles one CI switch after approval, all read against the repository's own CI profile.
 
 #### Current Reality
 
-`report` is read-only and prints switch states, never variable values. `toggle` covers six switch variables and refuses the master and message-contract switches while the workflows README forbids switching them off.
+`report` is read-only and prints switch states, never variable values, and a repository with no CI profile reads clean under a default that forces no convention. `toggle` accepts any variable a workflow compares against `off`, refuses the variable behind a status check the live branch ruleset requires and any variable the profile or its README keeps unset, and asks for the variable name a second time before it stops a protected workflow. Here the profile is `.sk-code/ci.json` and the switches are the six `SKILLED_CI*` variables.
 
 #### Source Files
 

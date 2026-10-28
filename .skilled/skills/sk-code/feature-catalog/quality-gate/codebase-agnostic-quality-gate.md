@@ -6,7 +6,7 @@ trigger_phrases:
   - "quality gate runner"
   - "quality-gate.cjs"
   - "run the quality gate"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Codebase-Agnostic Quality Gate (quality-gate.cjs)
@@ -27,11 +27,11 @@ The runner checks one scope per run. `--worktree`, the default, reads the uncomm
 
 ### What Runs
 
-Built-in sensors, one comment-hygiene call and a parse floor run on every scope. The runner probes which hooks and workflows enforce hygiene and resolves the checklists that the hub and the repository declare. The universal floor applies to every file, and this repository's house style loads only for files its SKILLED surface covers. The only commands a repository can make it start are the ones its committed config names, each run as an argv array under a deadline and inside the workspace guard. A command a manifest only implies is reported under `suggested_checks` and never started. `--no-run` lists the spawned and configured checks as `LISTED` and starts none, and `--only` and `--skip` narrow the check ids.
+Built-in sensors, one comment-hygiene call and a parse floor run on every scope. The runner probes which hooks and workflows enforce hygiene and resolves the checklists that the hub and the repository declare. The universal floor applies to every file, and this repository's house style loads only for files its SKILLED surface covers. The run also reads the `## Rule overrides` section of every checklist it loads: a refused section or a row whose rule id no declaring document carries ends the run `ERROR` with `CONFIG_INVALID`, each accepted row is recorded in `rule_overrides` and in the envelope's `p0_p1_p2_decisions`, and two checklists that disagree at one precedence level keep the default and join `summary.unverified`. The only commands a repository can make it start are the ones its committed config names, each run as an argv array under a deadline and inside the workspace guard. A command a manifest only implies is reported under `suggested_checks` and never started. `--no-run` lists the spawned and configured checks as `LISTED` and starts none, and `--only` and `--skip` narrow the check ids.
 
 ### Verdict And Exit Codes
 
-`--format json|text|envelope` picks the output form, and JSON is the default. The exit code carries the verdict: 0 `NO_BLOCKER_FOUND`, 1 `BLOCKED` for a blocking P0 finding or a failed required P0 configured check, 2 `NOTHING_CHECKED` when no check applied to any file, 3 `ERROR` for a usage or config error or a check that changed the workspace, and 4 `UNVERIFIED` when nothing blocks but a required check produced no evidence. The run verdict has three readers: the verify workflow, the `Quality Gate` field of the @code return and `sk-code-review`, which reads it as input evidence only.
+`--format json|text|envelope` picks the output form, and JSON is the default. The exit code carries the verdict: 0 `NO_BLOCKER_FOUND`, 1 `BLOCKED` for a blocking P0 finding or a failed required P0 configured check, 2 `NOTHING_CHECKED` when no check applied to any file, 3 `ERROR` for a usage or config error or a check that changed the workspace, and 4 `UNVERIFIED` when nothing blocks but a required check produced no evidence or two checklists disagree on a rule. The run verdict has three readers: the verify workflow, the `Quality Gate` field of the @code return and `sk-code-review`, which reads it as input evidence only.
 
 ---
 

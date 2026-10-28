@@ -33,7 +33,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 
 | Surface | Carries | Packet |
 |---------|---------|--------|
-| **sk-code-ci** | GitHub Actions evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set, the intentional message-contract exception and the scaffold templates. Read-only. | `sk-code/sk-code-ci/` |
+| **sk-code-ci** | GitHub Actions evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set, the intentional message-contract exception and the scaffold templates, with the repository-specific values read from a CI profile. Read-only. | `sk-code/sk-code-ci/` |
 | **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
 
 **Surface list.** The hub has exactly two surfaces: SKILLED (`sk-code-skilled`), the native surface for this framework's own code, and CI (`sk-code-ci`), the GitHub Actions workflow standards surface. It also has two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence. After adding or removing a surface, `/doctor:sk-code setup` checks the hub and names the repair for each failing check.

@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.33.0
+version: 2.2.34.0
 ---
 
 # sk-code
@@ -79,9 +79,9 @@ The implement → debug → verify phases are not standalone modes. Their surfac
 
 ### Rules A Repository Can Change
 
-The quality and review modes ship defaults, and a repository does not have to accept them. Each rule has an id. A small hard floor is fixed everywhere: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup, accessibility for UI code, and the review severity ids and reach rule. Every other rule can be dropped or replaced.
+The quality and review modes ship defaults, and a repository does not have to accept them. Each rule has an id. A small hard floor is fixed everywhere: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup, accessibility for UI code, and the review severity ids, reach rule and security and correctness minimums. Every other rule can be dropped or replaced.
 
-A repository does that in a `## Rule overrides` section of a checklist its `.sk-code/quality.json` names, and a surface does it in the checklists its declaration names. Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding. `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together. The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
+A repository does that in a `## Rule overrides` section of a checklist its `.sk-code/quality.json` names, and a surface does it in the checklists its declaration names. Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding. A quality run applies the section of every checklist it loads: a refused section or an unknown rule id is `CONFIG_INVALID`, exit 3, each accepted row is recorded in the run's decisions, and two checklists at one level that disagree make the rule unverified. `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together. The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
 
 ### One Advisor Identity
 
@@ -109,7 +109,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 ## 5. ADAPTING TO YOUR STACK
 
-sk-code ships one native surface and one CI standards surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
+sk-code ships one native surface and one CI standards surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.sk-code/ci.json`. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
 
@@ -189,7 +189,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/README.md --type readme` reports zero issues |
 | Routing scenarios | The manual testing playbook runs every routing and disambiguation scenario behind the hub |
 | Setup battery | `/doctor:sk-code setup` runs the adaptation battery read-only and names the repair command for each failing leg |
-| CI workflows | `/doctor:ci report` lists every workflow with its switch state, trigger, filters and drift flags |
+| CI workflows | `/doctor:ci report` lists every workflow with its switch state, trigger, filters and drift flags, read against the repository's CI profile |
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.4.0
+version: 1.3.5.0
 ---
 
 # sk-code-quality
@@ -85,7 +85,7 @@ The mode sits between implementation and verification. It runs the quality runne
 
 ### Target-Path Routing
 
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path> [<path>...]` answers for a whole change in one call. For each file it names the surfaces, the folder each surface loads from and every checklist with the seat that declared it, plus each checklist's parsed `## Rule overrides` rows. It runs nothing, writes nothing and always exits 2.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path> [<path>...]` answers for a whole change in one call. For each file it names the surfaces, the folder each surface loads from and every checklist with the seat that declared it, plus each checklist's parsed `## Rule overrides` rows. It runs nothing and writes nothing. It exits 2 when every path resolves, and 3 (ERROR) on a usage error or a missing path.
 
 ### Rules Your Repository Can Change
 
@@ -96,7 +96,9 @@ There are two ways to say so, and they work together.
 - **A `## Rule overrides` section** in a checklist the repository already declares, such as one named in `.sk-code/quality.json` `checklists[]`. Each row gives a rule id, `none` or `replace: <text>` and an optional reason. The shared contract is [`rule-overrides.md`](../shared/references/universal/rule-overrides.md), and `node ../shared/scripts/check-rule-overrides.cjs <checklist.md>` checks a section. A row that names a hard-floor id is refused.
 - **`commentHygiene.disableRules`** in `.sk-code/quality.json` switches off named core comment-hygiene rules, such as `issue` or `task`. The runner, the pre-commit hook and the CI job all honor it, and the verdict lists what is off in `config.hygiene.disabled`. An unknown id, or a hard-floor id such as `secret.private-key`, is `CONFIG_INVALID`.
 
-A hygiene row in a checklist changes what the agent and the review mode apply. The runner's own check changes only through `disableRules`, so a repository that wants a hygiene rule off everywhere sets both. `--explain` shows what each checklist's section says.
+A run reads the section of every checklist it loads. A refused section, or a row whose rule id no declaring document carries, ends the run `ERROR` with `CONFIG_INVALID` and exit 3, and the error names the checklist and every reason. Each accepted row is recorded in `rule_overrides` and in the envelope's `p0_p1_p2_decisions` as `override <rule id> <none|replace> from <checklist>`, ahead of `PENDING_AGENT_JUDGMENT`. Two checklists at one precedence level that disagree on a rule leave its default in force, appear in `rule_conflicts` and join `summary.unverified`, so the gate reads `UNVERIFIED`.
+
+A recorded hygiene row tells the agent and the review mode what to apply. The runner's own comment-hygiene check changes only through `disableRules`, so a repository that wants a hygiene rule off everywhere sets both. `--explain` shows what each checklist's section says and the conflicts for each file, and `/doctor:sk-code quality` shows the same answer for the whole repository.
 
 ### The Mutation Boundary
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-code-ci
@@ -24,7 +24,7 @@ version: 1.0.2.0
 | **Invoke with** | No direct invocation. The sk-code hub bundles it beside a workflow mode when a request is about a workflow |
 | **Advisor** | invisible (`routingClass: metadata`) |
 | **Bundled with** | `sk-code-quality` when authoring, `sk-code-review` when reviewing |
-| **Produces** | The rule evidence, the protected set, the exception record and the scaffold templates. The packet itself edits nothing |
+| **Produces** | The rule evidence, the protected set, the exception record, the scaffold templates and a CI profile template. The packet itself edits nothing |
 
 ---
 
@@ -40,7 +40,11 @@ Without one written source a reviewer cannot tell a deliberate trigger from drif
 
 The packet states each rule next to the file and line that prove it and says whether anything enforces it. It lists the workflows protected by function, so a change that would weaken one asks for a second confirmation first. It records message-contract's every-branch push trigger as an intentional exception, with the reason, so a report does not flag it. It also holds a whole-workflow template and a job template that start compliant.
 
-The packet never writes. The acting mode or a doctor command applies any change it recommends. `/doctor:ci report` lists every workflow with its switch state. `/doctor:ci scaffold` writes a new workflow from these templates after a yes. `/doctor:ci toggle` turns one `SKILLED_CI*` switch off or back on after a yes.
+The packet never writes. The acting mode or a doctor command applies any change it recommends. `/doctor:ci report` lists every workflow with its switch state. `/doctor:ci scaffold` writes a new workflow from these templates after a yes. `/doctor:ci toggle` turns one switch variable off or back on after a yes.
+
+### The Repository Profile
+
+The rules are universal, but the values they apply to are not. Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three `/doctor:ci` routes read them from a CI profile: `--profile`, then the git config value `skcode.ciProfile`, then `.sk-code/ci.json`, then a generic default that forces none of them. This repository commits its profile, and its `SKILLED_CI*` switches, its `gate-inputs.yml` protected workflow and its `.opencode/` twin are that profile's values, not rules of the packet. A repository without a profile reads clean: the report requires no switch and checks no README row, the scaffold prints none of this repository's names, and the toggle accepts any variable a job compares against `off` and refuses the one behind a status check the live branch ruleset requires. `assets/ci-profile.template.json` is the starting point for a new profile.
 
 ---
 
@@ -51,10 +55,11 @@ The packet never writes. The acting mode or a doctor command applies any change 
 | `references/ci-workflow-standards.md` | The rule index: path parity, SHA pins, README row, `set -euo pipefail`, fork and secret safety, matrix and `fail-fast` |
 | `references/trigger-and-filter-rules.md` | The twin rule, the rebuild-commit skip rule, push-only scope and the intentional exceptions table |
 | `references/job-shape-rules.md` | Timeouts, permissions, the concurrency template, the composite setup action and the switch `if:` shape |
-| `references/protected-set.md` | The workflows protected by function and the rules that follow |
+| `references/protected-set.md` | The repository CI profile and its keys, the workflows protected by function and the rules that follow |
 | `assets/workflow-template.yml` | Whole-workflow scaffold |
 | `assets/job-block-template.yml` | Single-job scaffold |
-| `manual-testing-playbook/` | The routing scenario the hub's router-sync guard replays |
+| `assets/ci-profile.template.json` | The profile a repository fills in to give `/doctor:ci` its own conventions |
+| `manual-testing-playbook/` | The routing scenario the hub's router-sync guard replays, and the foreign-repository scenario that runs the CI doctor against a mocked `gh` |
 
 The implement, debug and verify doctrine is symlinked in from `../shared/references/`.
 
@@ -68,6 +73,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | Drift guards | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 |
 | Compiled route | `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` exits 0 |
 | Playbook replay | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 4` exits 0 |
+| CI doctor scripts | `node --test .skilled/commands/doctor/scripts/tests/ci-profile.test.cjs .skilled/commands/doctor/scripts/tests/ci-report.test.cjs .skilled/commands/doctor/scripts/tests/ci-scaffold.test.cjs .skilled/commands/doctor/scripts/tests/ci-toggle.test.cjs` exits 0 |
 
 ---
 
@@ -80,4 +86,5 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | [../sk-code-review/README.md](../sk-code-review/README.md) | The review mode that applies these rules to a workflow diff |
 | [../sk-code-quality/README.md](../sk-code-quality/README.md) | The quality mode that applies these rules to a workflow being authored |
 | [../../../commands/doctor/ci.md](../../../commands/doctor/ci.md) | The `/doctor:ci` command that reports, scaffolds and toggles workflows against these rules |
+| [../../../../.sk-code/ci.json](../../../../.sk-code/ci.json) | This repository's committed CI profile |
 | [../../../../.github/workflows/README.md](../../../../.github/workflows/README.md) | The workflow README the rules cite for the contents table and the trigger table |

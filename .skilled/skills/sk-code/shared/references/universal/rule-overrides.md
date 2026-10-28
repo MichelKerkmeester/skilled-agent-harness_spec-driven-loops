@@ -9,7 +9,7 @@ trigger_phrases:
   - "check rule overrides linter"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rule Overrides Contract
@@ -30,12 +30,13 @@ A repository may change any rule except the hard floor. The floor holds the rule
 
 ### Scope
 
-This file defines the format, the ids, the floor, the precedence and how an applied override is recorded. The quality and review modes adopt it in their own contracts. The review mode applies the rows it reads and records them on its `Rule sources` line. The quality runner reads each declared checklist's section through the same linter and shows the parsed rows in its explain output, and `commentHygiene.disableRules` carries the machine-checked half. A mode that does not state that it reads overrides behaves as before.
+This file defines the format, the ids, the floor, the precedence and how an applied override is recorded. The quality and review modes adopt it in their own contracts. The review mode applies the rows it reads and records them on its `Rule sources` line. The quality runner reads the section of every checklist it loads through the same linter, applies and records the rows as section 7 describes, and shows the parsed rows and the conflicts in its explain output. Its registry of known rule ids is read from the documents that declare them, and `commentHygiene.disableRules` carries the machine-checked half. A mode that does not state that it reads overrides behaves as before.
 
 ### Key Sources
 
 - [`rule-overrides.json`](./rule-overrides.json): the machine-readable hard floor and the machine-checked classes. The linter reads it, and sections 2 and 4 of this file mirror it.
 - [`../../scripts/check-rule-overrides.cjs`](../../scripts/check-rule-overrides.cjs): the linter that checks a section.
+- [`../../scripts/lib/rule-registry.cjs`](../../scripts/lib/rule-registry.cjs): the registry of rule ids the quality runner checks a row's id against.
 - [`../../../sk-code-quality/references/runner-contract.md`](../../../sk-code-quality/references/runner-contract.md) section 5: the `<class>.<name>` rule id grammar this contract reuses.
 
 ---

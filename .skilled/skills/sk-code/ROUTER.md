@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.4.0
+version: 2.3.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -156,7 +156,7 @@ When the request names a GitHub Actions workflow, the hub bundles `sk-code-ci` f
 | `sk-code-ci/references/ci-workflow-standards.md` | The rule index: path parity, SHA pins, README row, `set -euo pipefail`, fork and secret safety, matrix and `fail-fast` |
 | `sk-code-ci/references/trigger-and-filter-rules.md` | The twin rule, the rebuild-commit skip rule, push-only scope and the intentional exceptions table |
 | `sk-code-ci/references/job-shape-rules.md` | Timeouts, permissions, the concurrency template, the composite setup action and the switch `if:` shape |
-| `sk-code-ci/references/protected-set.md` | The workflows protected by function and the rules that follow |
+| `sk-code-ci/references/protected-set.md` | The repository CI profile and its keys, the workflows protected by function and the rules that follow |
 
 The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so the two stay equal.
 

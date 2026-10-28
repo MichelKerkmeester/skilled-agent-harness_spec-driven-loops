@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Quality Runner Contract
@@ -30,7 +30,7 @@ Scope takes one of four flags. Two scope flags in one call are a usage error.
 | `--worktree` | The default. Tracked changes against `HEAD`, or against the empty tree before the first commit, plus every untracked file that is not ignored |
 | `--base <ref>` | Changes from the merge base of `<ref>` and `HEAD` to the working tree, plus untracked files. No merge base exits 3 with `BASE_NOT_FOUND` |
 | `--files <path>...` | The named files only. A path after `--` may start with two dashes. Outside git this is the only scope that runs |
-| `--explain <path>...` | Prints `code-quality-explain/v1` for each named file and exits 2. It runs nothing. List several paths after the flag, or repeat the flag once per path |
+| `--explain <path>...` | Prints `code-quality-explain/v1` for each named file and exits 2, or 3 on a usage error or a missing path. It runs nothing. List several paths after the flag, or repeat the flag once per path |
 
 | Option | Effect |
 | --- | --- |
@@ -157,7 +157,7 @@ A finding holds `rule`, `severity`, `confidence` (`exact` or `heuristic`), `file
 
 An unchecked reason is `excluded`, `size` (over 2 MB), `binary` (a NUL byte in the first 8 KB), `no comment family`, `not a regular file` or `unreadable`.
 
-`--explain` prints `code-quality-explain/v1`. It always exits 2, because nothing ran. It starts no check and no configured command, and it writes no file. It reads each named file, the declarations and each listed checklist file. It is the one resolver for which surfaces and rule files apply to a file, so a caller such as review reads it instead of detecting surfaces itself.
+`--explain` prints `code-quality-explain/v1`. It exits 2 when every path resolves, because nothing ran, and 3 (ERROR) on a usage error or a missing path. It starts no check and no configured command, and it writes no file. It reads each named file, the declarations and each listed checklist file. It is the one resolver for which surfaces and rule files apply to a file, so a caller such as review reads it instead of detecting surfaces itself.
 
 | Field | Content |
 | --- | --- |

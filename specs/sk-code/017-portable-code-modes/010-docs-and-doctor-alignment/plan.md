@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `validate_document.py`, `validate-playbook-package.cjs`, `validate_catalog_package.py`, the README checkers, the drift guards and the setup battery |
 
 ### Overview
-Search every document that describes the quality or review behavior, record each stale claim with its line and the shipped fact, and fix it at the doc that owns it, keeping that doc's structure and voice. The foreign-repository scenarios are built from scratch fixtures whose commands were run, the review ones with a live `@review` agent. The generators then refresh the compiled-route manifest and the Hermes copies.
+Search every document that describes the quality, review or CI behavior, record each stale claim with its line and the shipped fact, and fix it at the doc that owns it, keeping that doc's structure and voice. The foreign-repository scenarios are built from scratch fixtures whose commands were run, the review ones with a live `@review` agent and the CI one with a mocked `gh`. Round B repeats the pass after the override-applying run and the CI profile landed, reading their implementation summaries as the shipped behavior. The generators then refresh the compiled-route manifest and the Hermes copies.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -77,7 +77,10 @@ The scenarios build a fixture in a scratch folder, call the shared linter, the q
 | Feature catalog | Inventories the hub | Update and add leaves | `validate_catalog_package.py` PASS |
 | Doctor command text and assets | Describe `/doctor:sk-code quality` | Update | doctor script tests 485 pass |
 | Hook and CI READMEs | Describe the layers that run the hygiene check | Update | README reference checker shows no new failure |
-| `check-comment-hygiene.sh`, `quality-gate.cjs`, the hooks | Behavior the docs describe | Unchanged, not a consumer | `git diff --stat` over `scripts/` is empty |
+| `check-comment-hygiene.sh`, `quality-gate.cjs`, the hooks, the CI scripts | Behavior the docs describe | Unchanged, not a consumer | `git diff --stat` over `scripts/` is empty |
+| Doctor presentation, doctor scripts README, `sk-code.md` | Describe the applies block and the hygiene lines | Update | `grep -c "^Hygiene"` 3 to 2, `explain` 0 to 2 |
+| sk-code-ci README, `SKILL.md`, router row, hub playbook CI scenarios, catalog CI leaf | Describe `/doctor:ci` | Update | `CI profile` 0 to 4 in the README, `six documented` 3 to 0 in DOC-394 |
+| sk-code-ci playbook | Proves the packet | Add a scenario | validator `scenarios=2 categories=2` |
 | `.skilled/agents/{review,deep-review,orchestrate,code}.md` | Agent text | Unchanged, already aligned | `grep -c "advisory"` and `REQUESTED_CHANGES` read as shipped |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -98,7 +101,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | The shared linter, the config validation, the checker suites | `node --test`, the canary suite |
-| Integration | The playbook scenarios, replayed command by command | Shell, the runner, the resolver, the linter |
+| Integration | The playbook scenarios, replayed command by command | Shell, the runner, the resolver, the linter, the CI scripts with a mocked `gh` |
 | Manual | Three live `@review` runs over the foreign-repository fixtures | The `@review` agent, `check-review-final-line.js`, `check-review-findings.js` |
 <!-- /ANCHOR:testing -->
 
@@ -110,7 +113,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The quality and review children | Internal | Green | The docs would describe nothing |
-| The quality run applying override sections | Internal | Yellow, landed on `origin/main` only | Docs stay silent on it; round B documents it |
+| The quality run applying override sections, the CI profile | Internal | Green after the rebase | Round B documents both from their implementation summaries |
 | The compiled-route and Hermes generators | Internal | Green | The setup battery would stay red |
 <!-- /ANCHOR:dependencies -->
 

@@ -1,7 +1,7 @@
 ---
 title: "CR-029 -- Repository that wants almost no inline comments"
 description: "This scenario validates a repository that wants almost no inline comments for `CR-029`. It focuses on the review reading the repository's own rule overrides through the quality runner's explain entry, applying a dropped documentation rule and a switched-off tracker-id hygiene rule, and raising no finding for either."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-029 -- Repository that wants almost no inline comments
@@ -93,14 +93,14 @@ echo "$SCRATCH"
 ### Recommended Orchestration Process
 
 1. Run the fixture build from the repository root and keep the folder it prints as `SCRATCH`. Keep `HUB` set to the absolute path of `.skilled/skills/sk-code`.
-2. Run the resolver from the fixture root and read the three lines it prints.
+2. Run the resolver from the fixture root and read the four lines it prints.
 3. Run the exact prompt through the chosen review executor with the fixture as its working repository and `HUB` as the installed sk-code folder, and save the full output.
 4. Run both report checkers over the saved output and read their exit status.
 5. Compare the findings and the `Rule sources:` line against this contract. Record executor, model, wall-clock duration, and total tokens with the verdict.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-029 | Repository that wants almost no inline comments | Confirm a live review applies the repository's `none` overrides for documentation and the tracker-id hygiene rule and raises no finding for either. | `Review this helper before I commit it.` | bash: build the fixture and set HUB -> bash: run the resolver from the fixture root -> agent: @review src/total.js in the fixture as an explicit file list -> bash: node `<sk-code-review>`/scripts/check-review-final-line.js and check-review-findings.js over the saved output -> record executor, model, duration and tokens | Step 1: the fixture is written verbatim; Step 2: `hygiene.disabled hygiene.issue` and `docs/code-style.md repo-config floor.documentation:none hygiene.issue:none`; Step 3: the `Rule sources:` line lists both overrides and no finding cites the dropped rules; Step 4: both checkers exit 0 | Saved review output, resolver output, both checker outputs, executor, model, duration and token count | PASS iff both overrides are recorded, no documentation or tracker-reference finding is raised and both checkers exit 0; FAIL on a finding for either rule, a missing `Rule sources:` line or a checker failure | 1. Confirm the fixture was written verbatim and the resolver printed the three lines; 2. Re-run with the same executor and model before changing the verdict; 3. Quote the finding or the missing line, and check whether the executor ran the resolver from the fixture root |
+| CR-029 | Repository that wants almost no inline comments | Confirm a live review applies the repository's `none` overrides for documentation and the tracker-id hygiene rule and raises no finding for either. | `Review this helper before I commit it.` | bash: build the fixture and set HUB -> bash: run the resolver from the fixture root -> agent: @review src/total.js in the fixture as an explicit file list -> bash: node `<sk-code-review>`/scripts/check-review-final-line.js and check-review-findings.js over the saved output -> record executor, model, duration and tokens | Step 1: the fixture is written verbatim; Step 2: `hygiene.disabled hygiene.issue` and `docs/code-style.md repo-config floor.documentation:none hygiene.issue:none`; Step 3: the `Rule sources:` line lists both overrides and no finding cites the dropped rules; Step 4: both checkers exit 0 | Saved review output, resolver output, both checker outputs, executor, model, duration and token count | PASS iff both overrides are recorded, no documentation or tracker-reference finding is raised and both checkers exit 0; FAIL on a finding for either rule, a missing `Rule sources:` line or a checker failure | 1. Confirm the fixture was written verbatim and the resolver printed the four lines; 2. Re-run with the same executor and model before changing the verdict; 3. Quote the finding or the missing line, and check whether the executor ran the resolver from the fixture root |
 
 ### Exact Commands
 
@@ -120,7 +120,7 @@ node .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js <sa
 
 ### Expected
 
-Step 2 prints exactly these three lines (the resolver exits 2, which is its advisory exit):
+Step 2 prints exactly these four lines (the resolver exits 2, which is its advisory exit):
 
 ```text
 surfaces UNKNOWN
@@ -147,7 +147,7 @@ The order inside the `Overrides:` group may differ, because the contract does no
 
 ### Evidence
 
-Command transcript from steps 1 to 4, the resolver's three lines, the saved review output with its `Rule sources:` line quoted, both checker outputs with their exit status, and the executor, model, duration and token count. Save the transcript under the dated run label the playbook names.
+Command transcript from steps 1 to 4, the resolver's four lines, the saved review output with its `Rule sources:` line quoted, both checker outputs with their exit status, and the executor, model, duration and token count. Save the transcript under the dated run label the playbook names.
 
 ### Optional Supplemental Checks
 

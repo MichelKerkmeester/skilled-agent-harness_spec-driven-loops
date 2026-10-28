@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.8.0
+version: 1.7.9.0
 ---
 
 # sk-code-review mode
@@ -72,12 +72,12 @@ The advisor prints the recommended skill route when confidence lands at or above
 
 ```markdown
 ## Code Review Summary
-**Files reviewed**: 3 files, 127 lines changed
+**Files reviewed**: X files, Y lines changed
 **Overall assessment**: REQUESTED_CHANGES
 **Baseline used**: sk-code (sk-code-review)
 **Surface evidence used**: SKILLED
 **Quality gate evidence**: absent
-Rule sources: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md. Overrides: review.todo-tracking replace from .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md. Refused: none. Ignored: none. Conflicts: none
+Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md. Overrides: review.todo-tracking replace from hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md. Refused: none. Ignored: none. Conflicts: none
 
 ## Findings
 

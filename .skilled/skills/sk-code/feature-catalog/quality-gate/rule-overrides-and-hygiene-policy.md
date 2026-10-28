@@ -6,7 +6,7 @@ trigger_phrases:
   - "rule overrides section"
   - "commentHygiene disableRules"
   - "drop or replace a quality rule"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule Overrides And Hygiene Policy (`## Rule overrides`, `commentHygiene.disableRules`)
@@ -37,7 +37,11 @@ The floor holds the rules whose breach causes an incident in any codebase: parse
 
 ### Reading Overrides
 
-`quality-gate.cjs --explain` takes several files at once. For each file it prints the surfaces, the folder each surface loads from, every checklist with the seat that declared it and each checklist's parsed rows. The review mode reads this output instead of detecting surfaces itself.
+`quality-gate.cjs --explain` takes several files at once. For each file it prints the surfaces, the folder each surface loads from, every checklist with the seat that declared it, each checklist's parsed rows and the rule conflicts for that file. The review mode reads this output instead of detecting surfaces itself.
+
+### Applying And Recording
+
+A quality run reads the section of every checklist it loads through the same linter. A refused section ends the run `ERROR` with `CONFIG_INVALID` and exit 3, and the error names the checklist and every reason. So does a row whose rule id no declaring document carries: the shared registry reads the ids from the runner contract, the universal standards and the review mode's rule table, so a row added to one of them is known at once. Each accepted row lands in `rule_overrides` with the files it applies to after precedence, and in the envelope's `p0_p1_p2_decisions` as `override <rule id> <none|replace> from <checklist>`, ahead of `PENDING_AGENT_JUDGMENT`. Two checklists at one precedence level that disagree on a rule for a file are listed in `rule_conflicts` and as `override-conflict <rule id> <checklist> <checklist>`. Neither row applies, the rule keeps its default and joins `summary.unverified`, so the gate reads `UNVERIFIED` with exit 4. The runner's own comment-hygiene check still changes only through `commentHygiene.disableRules`.
 
 ---
 
@@ -50,6 +54,7 @@ The floor holds the rules whose breach causes an incident in any codebase: parse
 | `.skilled/skills/sk-code/shared/references/universal/rule-overrides.md` | Shared | The contract: section format, ids, hard floor, precedence and how an override is recorded |
 | `.skilled/skills/sk-code/shared/references/universal/rule-overrides.json` | Shared | The hard floor as data, read by the linter and the config check |
 | `.skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs` | Script | The linter, the only path through which a mode reads a section |
+| `.skilled/skills/sk-code/shared/scripts/lib/rule-registry.cjs` | Script | The rule ids a row may name, read from the documents that declare them |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs` | Shared | Validation of `disableRules` and the flags handed to the checker |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/hygiene-config-flags.cjs` | Script | The `--disable-rule` flags the pre-commit hook and the CI job read |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs` | Script | The runner and its multi-file explain output |
@@ -59,7 +64,8 @@ The floor holds the rules whose breach causes an incident in any codebase: parse
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` | Node test | The linter and the floor agreement with the JSON |
-| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` | Node test | The `disableRules` cases and the explain output |
+| `.skilled/skills/sk-code/shared/scripts/tests/rule-registry.test.cjs` | Node test | The registry's derivation and its refusal to shrink unnoticed |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate.test.cjs` | Node test | The `disableRules` cases, the explain output and the run's refusal, recording and conflict cases |
 | `.skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/disabled-hygiene-rules.md` | Manual playbook | CQ-012, a repository that switches a hygiene rule off |
 | `.skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/floor-override-refused.md` | Manual playbook | CQ-013, a floor row and a fixed hygiene id refused |
 

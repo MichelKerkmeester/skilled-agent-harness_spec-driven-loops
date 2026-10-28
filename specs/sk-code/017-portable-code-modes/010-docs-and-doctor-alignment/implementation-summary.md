@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The docs, playbooks, feature catalog, doctor text and hook READMEs now describe the shipped portable quality and review behavior, and both playbooks prove the three foreign-repository cases: almost no inline comments, a comment on every function, and a refused floor override."
+description: "The docs, playbooks, feature catalog, doctor text and hook READMEs now describe the shipped portable quality, review and CI behavior, and the playbooks prove four foreign-repository cases: almost no inline comments, a comment on every function, a refused floor override, and a CI doctor that reads a repository's own switch names."
 trigger_phrases:
   - "docs and doctor alignment implementation summary"
 importance_tier: "normal"
@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "sk-code/017-portable-code-modes/010-docs-and-doctor-alignment"
     last_updated_at: "2026-10-28T05:30:00Z"
     last_updated_by: "implementer"
-    recent_action: "Aligned the docs, playbooks, catalog, doctor text and hook docs; ran the gates"
+    recent_action: "Round B aligned the CI and override docs"
     next_safe_action: "Conductor merges and commits"
     blockers: []
     key_files:
@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-docs-and-doctor-alignment |
-| **Status** | Complete (round A) |
+| **Status** | Complete (rounds A and B) |
 | **Completed** | 2026-10-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A reader of the sk-code docs now finds what ships: a hard floor no repository changes, a `## Rule overrides` section and `commentHygiene.disableRules` for everything else, a review that names its rules on a `Rule sources:` line, and an agent whose verdict follows severity. The setup battery moves from 8 of 9 legs to all 9, and each of the three foreign-repository cases has a playbook scenario that was run.
+Round B repeated the pass on top of the rebased tree, which adds the CI repository profile and the quality run that applies override sections. A reader of the sk-code docs now finds what ships: a hard floor no repository changes, a `## Rule overrides` section and `commentHygiene.disableRules` for everything else, a review that names its rules on a `Rule sources:` line, and an agent whose verdict follows severity. The setup battery moves from 8 of 9 legs to all 9, and each of the four foreign-repository cases has a playbook scenario that was run.
 
 ### Documents
 
@@ -71,6 +71,15 @@ A reader of the sk-code docs now finds what ships: a hard floor no repository ch
 | CR-031 | A floor override refused | A live run read `REQUESTED_CHANGES` with `Overrides: none. Refused: docs/code-style.md` and a P0 path traversal finding |
 | CQ-012 | Quality gate with and without `commentHygiene.disableRules` | `exit_code 0` and `disabled hygiene.issue`; without the key `exit_code 1` and one `hygiene.issue` finding |
 | CQ-013 | A floor row and a fixed hygiene id refused | Linter exit 1, resolver `refused true rows 0`, gate `ERROR`, exit 3 |
+
+### Round B
+
+- **The run applies override sections.** The quality README, the scripts READMEs, the shared README (now listing the rule registry module and its test), `rule-overrides.md` and the catalog leaves state that a refused section or an unknown rule id is `CONFIG_INVALID` with exit 3, accepted rows land in `rule_overrides` and `p0_p1_p2_decisions`, and two checklists that disagree at one level make the rule unverified. CQ-012 now prints the decisions line with both style rows. CQ-012 and CQ-013 both pass in this tree.
+- **The doctor shows what the gate would apply.** `sk-code.md`, the doctor scripts README and the catalog doctor leaf describe the applies block, its sample of one file per first three folders and extension, and the failures it raises. The presentation prints one `Hygiene:` line in the status block and one `Hygiene rules:` line in the applied block, the duplicate in the result summary is gone and the init plan gains the `why:` line the script prints.
+- **The CI profile.** The sk-code-ci README gets a profile section, the template and the doctor test row. `SKILL.md`, the router row, the hub README and `SKILL.md` name it, the catalog describes the lookup, shape-based switch detection, ruleset refusal and second confirmation, and the hub playbook scenarios DOC-392 and DOC-394 name the profile key and the protected-workflow confirmation. The sk-code-ci playbook gains `ci-foreign-repository-profile`.
+- **README checker failures.** The hook READMEs' unresolved paths are corrected or carry a reason marker, the quality scripts README's two correct count claims carry reason markers, and the review README example uses the contract's placeholders.
+- **Release carriers.** The four unlanded entries are extended, sk-code-ci v1.1.6.0 is new, and 19 frontmatter versions are bumped again.
+- **Review fixes.** A fresh read-only review returned one P1 and seven P2 claims, each fixed at its line: the hub README's floor list names the security and correctness minimums, the CI usage line and the DOC-392 key list name `--profile` and `profile`, the resolver's exit is 2 on success and 3 on a usage error or a missing path, CR-029 says four resolver lines, the review README's `Rule sources:` example uses the `hub:` form, and two changelog lines no longer claim a rule count or a mode-table change.
 
 ### Release carriers
 
@@ -94,12 +103,17 @@ The gates were baselined first (both playbook validators, the canary, the setup 
 |----------|-----|
 | New ids CR-029 to CR-031 and CQ-012 to CQ-013 | CR-028 and CQ-011 are the highest ids and CR-019 is unassigned; the brief says use the next free ids and never renumber |
 | Review playbook sections 17 and 18 became 18 and 19, with the new category as section 17 | The root lists categories before the cross-reference sections, so a new category goes ahead of them; scenario ids stay, and the four internal section references were updated |
-| The changed docs say nothing about whether a quality run applies override rows | The brief says the run does not apply them, but `origin/main` already does; staying silent keeps the docs true on both trees, and round B documents the run |
-| CQ-013 states the `origin/main` result for a refused section (`gate ERROR`, exit 3) | The conductor merges onto `origin/main`, where it is true; in this tree the same step exits 0 because the run reads no override sections |
-| The quality `SKILL.md` edit moved off the line `origin/main` changed | Both sides edited the explain sentence; the multi-path description now sits on the line about the declarations behind `--explain` (line 180 of `HEAD`), and the other side changed lines 5, 124, 190, 207 and 239 of the same file |
+| Round A stayed silent on whether a quality run applies override rows | The base tree and the other tree disagreed; round B states the shipped behavior now that the tree is rebased |
+| CQ-013 states that a refused section ends the run `ERROR`, exit 3 | True in the rebased tree, where the replay printed it |
+| The quality `SKILL.md` edit sits on the line about the declarations behind `--explain` | Both sides edited the explain sentence in round A, so the multi-path description moved off the line the other side changed |
 | Agents, `_routes.yaml` and `command-contract.json` were not edited | The four agents already state the severity verdict, the marker and the `Quality Gate` field; no route or contract text was stale, so no mirror run was needed |
-| The hook and workflow READMEs were edited | They describe the layers that read `commentHygiene.disableRules`; the workflows README row may overlap round B's CI profile row |
+| The hook and workflow READMEs were edited | They describe the layers that read `commentHygiene.disableRules` |
 | The compiled-route manifest and its archived copy were refreshed by the guard's own repair command | Editing `SKILL.md` and the READMEs made the manifest stale and the setup battery red; the pre-commit gate would do the same on commit |
+| Presentation hygiene lines: keep `Hygiene:` in the status block and `Hygiene rules:` in the applied block, drop the second `Hygiene:` | The status script prints exactly those two lines, so the document matches what it prints; the summary's `Applies:` line already carries the counts |
+| README checker failures: a correct path or placeholder where one exists, a reason marker only where the token is right and cannot resolve | `.git/hooks/` is a git-directory path with no tracked file, and the two bash-suite counts are correct but the checker cannot derive them; every other token was fixed at the doc |
+| The sk-code-ci foreign-repository scenario has no `expected_intent` | The router-sync guard replays every scenario that has one as a routing check, and this scenario is an operator run with a mocked `gh`, so it must not be replayed as a routing scenario |
+| The CI scenario copies the scripts into the fixture | The scripts resolve the repository root from their own location, so a copy is the only way to run them against a different tree without a profile |
+| `--sha` in the scenario's report | It skips the commit search, so the fixture needs no git history |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -107,28 +121,33 @@ The gates were baselined first (both playbook validators, the canary, the setup 
 <!-- ANCHOR:verification -->
 ## Verification
 
+Round A ran against the base tree before the rebase; round B ran against the rebased tree.
+
 | Check | Result |
 |-------|--------|
-| Setup battery, baseline | 8 of 9 legs, `FAIL drift-guards` on `sk-code-review/scripts/README.md:43: path does not resolve` |
-| Setup battery, final state | 9 `PASS` legs, `STATUS=OK legs=9`, exit 0 |
-| `verify-doc-claims.cjs` | `3/4` with one unresolved path, then `doc-claims: 4/4 checks passed`, exit 0 |
-| Review playbook | `scenarios=34 categories=10` at baseline; `scenarios=37 categories=11 violations=0 warnings=0` |
-| Quality playbook | `violations=0`, 11 warnings at baseline and after |
+| Setup battery, round A baseline | 8 of 9 legs, `FAIL drift-guards` on `sk-code-review/scripts/README.md:43: path does not resolve` |
+| Setup battery, round B baseline and final state | 9 `PASS` legs, `STATUS=OK legs=9`, exit 0, both times (the final run after the manifest refresh) |
+| `verify-doc-claims.cjs` | Round A `3/4` with one unresolved path, then `4/4`; round B final `doc-claims: 4/4 checks passed`, exit 0 |
+| Review playbook | `scenarios=34 categories=10` at baseline; `scenarios=37 categories=11 violations=0 warnings=0`, unchanged in round B |
+| Quality playbook | `violations=0`, 11 warnings at baseline and after, with CQ-012 extended |
+| sk-code-ci playbook | `scenarios=1 categories=1` at the round B baseline; `scenarios=2 categories=2 violations=0 warnings=0`; router-sync check 4 `1/1 checks passed` |
 | Hub playbook | `scenarios=28 violations=0 warnings=0` |
-| Feature catalog | `validate_catalog_package.py --package sk-code --json` `"verdict": "PASS"`, exit 0 |
-| `validate_document.py --json` over 39 changed or new docs | `39 files, with issues: 0` |
-| Four changelogs | `total_issues` 0 each |
-| README reference checker | `PASS` on every changed README except the two hook READMEs, which fail on four paths each that this child did not write |
-| README count checker | Fails two READMEs on lines present at `HEAD` (a bash suite count and a template example); the new wording that failed was reworded |
+| Feature catalog | `validate_catalog_package.py --package sk-code --json` `"verdict": "PASS"`, `violationCount` 0 |
+| `validate_document.py --json` over the 64 docs changed since `origin/main` | 63 with 0 issues; `ROUTER.md` reports one `document_type_fallback` and 0 issues with `--type reference` |
+| README reference checker over the 14 changed READMEs | Round B baseline: two hook READMEs failed on four paths each. Final: `SUMMARY files=14 pass=14 fail=0`, exit 0 |
+| README count checker over the 14 changed READMEs | Round B baseline: the quality scripts README (2 claims) and the review README (1 claim) failed. Final: `SUMMARY files=14 pass=14 fail=0`, exit 0 |
 | Canary and its suite | `check-rule-copies.js` exit 0; `check-rule-copies.test.sh` `All rule-canary test cases passed` |
-| Quality suite | `tests 137 pass 137 fail 0` |
-| Shared suite | `tests 18 pass 18 fail 0` |
-| Doctor script suite | `pass 485 fail 0` |
-| CQ-012 and CQ-013 replay on an `origin/main` archive | Output equals the expected block |
-| Three live `@review` runs | Verdicts as in the table above; `check-review-final-line.js` and `check-review-findings.js` exit 0 on all three |
-| Hermes sync | `Wrote 4 of 67 Hermes skill copies`; `--check` `PASS: 67 Hermes skill copies in sync` |
+| Quality suite, explicit files | `tests 143 pass 143 fail 0` |
+| Shared suite, explicit files | `tests 22 pass 22 fail 0`; `rule-registry.test.cjs` alone `tests 4 pass 4` |
+| Five CI suites, explicit files | `tests 64 pass 64 fail 0` |
+| Full doctor suite, `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` | `tests 529 pass 529 fail 0`, exit 0 |
+| CQ-012 and CQ-013 replay in this tree | Output equals the expected blocks (CQ-013 step 3 `gate ERROR`, `gate exit 3`) |
+| CI scenario replay with a mocked `gh` | `profile default`, `errors 0`, `flags none` on three workflows, scaffold Skilled-text count `0`, plan for `ACME_CI_TESTS`, three `REFUSE:` lines with exit 1, write calls `0` |
+| `sk-code-quality-config.cjs status` | Printed one `Hygiene:` and one `Hygiene rules:` line; for a fixture with a refused section it printed `STATUS=FAIL SOURCE="repo" TRUST=none ERROR=CONFIG_INVALID` and exited 1 |
+| Three live `@review` runs (round A) | Verdicts as in the table above; `check-review-final-line.js` and `check-review-findings.js` exit 0 on all three |
+| Hermes sync | Round A `Wrote 4 of 67`; round B `Wrote 2 of 67`; `--check` `PASS: 67 Hermes skill copies in sync` |
 | `validate.sh <folder> --recursive --strict` | `Errors: 0  Warnings: 0`, `RESULT: PASSED` |
-| `validate.sh <parent> --strict` | `Errors: 0`, `RESULT: PASSED`, with one warning, `GRAPH_METADATA_CHILD_DRIFT`: the parent's `children_ids` lacks this child until the conductor wires it in |
+| `validate.sh <parent> --strict` | `RESULT: PASSED`; any `GRAPH_METADATA_CHILD_DRIFT` warning is the parent's `children_ids`, which the conductor wires |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -136,11 +155,11 @@ The gates were baselined first (both playbook validators, the canary, the setup 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Merge overlap with `origin/main`.** The other side also edited `sk-code-quality/SKILL.md` (different lines), `doctor-sk-code-presentation.txt`, `doctor-sk-code-quality.yaml`, the sk-code and sk-code-quality version carriers and the quality changelog folder. The conflicts are textual: keep both sides' text, and renumber the changelogs above 3.9.13.0 and 1.13.7.0 if they collide. The doctor presentation then carries a `Hygiene:` line here and a `Hygiene rules:` line there, which can be merged into one.
-2. **CQ-013 step 3 needs the `origin/main` runner.** In this tree alone the gate exits 0 over a refused section; after the merge it exits 3.
-3. **Round B is open.** The CI profile mode, its workflow row, the applied-rules block of the doctor and the run recording its overrides are not documented here beyond what the merge brings.
-4. **The router-reach recheck handoff item** from the review-agent child is not part of this docs child.
-5. **The live review scenarios are agent runs.** They assert the verdict, the rule sources and the finding class, so a different agent wording does not fail them, but a model that misses the planted path traversal would.
+1. **The sample is not the tree.** The doctor's applies block lists the checklists a sample of the tree reaches, so a hub or outside-skill checklist behind a path selector deeper than three folders can go unlisted. The docs say so.
+2. **The live review scenarios are agent runs.** They assert the verdict, the rule sources and the finding class, so a different agent wording does not fail them, but a model that misses the planted path traversal would.
+3. **The CI scenario is an operator run.** It carries no `expected_intent`, so the router-sync guard does not replay it, and it needs the checkout's node modules on `NODE_PATH`.
+4. **DOC-394's live round trip was not rerun.** Its text now names the protected-workflow list and the second confirmation, taken from the toggle script's printed plan with `--no-gh`; the `gh`-authenticated round trip stays an operator run.
+5. **The router-reach recheck handoff item** from the review-agent child is not part of this docs child.
 <!-- /ANCHOR:limitations -->
 
 ---

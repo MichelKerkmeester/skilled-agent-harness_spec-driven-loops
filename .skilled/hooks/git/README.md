@@ -75,7 +75,7 @@ git/
 | File | Responsibility |
 |---|---|
 | `install-hooks.sh` | Resolves the repo root, symlinks `pre-commit` into `$REPO_ROOT/.git/hooks/pre-commit`. Does not check for existing hooks or ownership: the primary installer does. |
-| `pre-commit` | Sources `shared/hook-flags.sh` and short-circuits on the `git-commit-hooks` kill switch. Runs `check-comment-hygiene.sh` once over the staged blobs (blocks if absent where the toolchain ships). Runs `check-agent-mirror-sync.cjs` over staged agent files (fail-open if `node` or the checker is absent, and warn-and-skip when the checker exits 3 because its built frontmatter parser is missing or fails to load). Blocks on violations, and exits 0 otherwise. |
+| `pre-commit` | Sources `../shared/hook-flags.sh` and short-circuits on the `git-commit-hooks` kill switch. Runs `check-comment-hygiene.sh` once over the staged blobs (blocks if absent where the toolchain ships). Runs `check-agent-mirror-sync.cjs` over staged agent files (fail-open if `node` or the checker is absent, and warn-and-skip when the checker exits 3 because its built frontmatter parser is missing or fails to load). Blocks on violations, and exits 0 otherwise. |
 
 ---
 
@@ -85,7 +85,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 
 | Variable | Effect |
 |---|---|
-| `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` | Full no-op. The hook sources `shared/hook-flags.sh` and exits 0 before any gate runs. |
+| `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` | Full no-op. The hook sources `../shared/hook-flags.sh` and exits 0 before any gate runs. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
 The `hook-flags.sh` mirror checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED` name only. Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file.
@@ -96,7 +96,7 @@ The `hook-flags.sh` mirror checks the master switch and the default-shape `SYSTE
 
 | Boundary | Rule |
 |---|---|
-| Imports | The hook sources `shared/hook-flags.sh` (POSIX sh, Node-free). The checkers are spawned by path: `check-comment-hygiene.sh` (shell) and `check-agent-mirror-sync.cjs` (Node). |
+| Imports | The hook sources `../shared/hook-flags.sh` (POSIX sh, Node-free). The checkers are spawned by path: `check-comment-hygiene.sh` (shell) and `check-agent-mirror-sync.cjs` (Node). |
 | Decisions | Block (exit 1) or allow (exit 0). Both gates block when they fire. The one advisory state is a mirror checker that exits 3 because it could not run: the hook warns, names `npm --prefix .skilled/skills/system-spec-kit run build` and skips that gate. |
 | Failure | A missing comment-hygiene checker blocks where the toolchain ships and warns elsewhere. A missing `node` or mirror-sync checker warns and skips that gate. An unavailable kill-switch resolver lets the hook run without checking its switches. |
 | Scope | Only staged files are inspected (`git diff --cached --name-only`). Commits that touch no in-scope files are unaffected. |
@@ -136,3 +136,7 @@ Expected result: the hook exits 0 immediately, regardless of staged content.
 - [`../../skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`](../../skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh): the comment-hygiene checker.
 - [`../../skills/sk-code/sk-code-quality/references/code-style-guide.md`](../../skills/sk-code/sk-code-quality/references/code-style-guide.md): the comment-hygiene standard (§4).
 - [`../../bin/check-agent-mirror-sync.cjs`](../../bin/check-agent-mirror-sync.cjs): the agent mirror-sync checker.
+
+<!-- readme-check
+allow-ref .git/hooks/ | the hooks folder of a checkout's git directory, which holds the installed symlinks and is not a tracked path
+-->

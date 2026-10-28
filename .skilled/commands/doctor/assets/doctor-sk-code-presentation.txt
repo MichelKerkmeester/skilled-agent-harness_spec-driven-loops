@@ -78,7 +78,7 @@ Config: [path and source, or none, the gate runs its built-in checks alone]
 Errors: [each config error, or none]
 Trust: [trusted or untrusted with the rule that decided it, the repair line when untrusted, or none]
 Layers: pre-commit [state], ci [state], post-edit [state]
-Hygiene: [disabled and the rules, or every core rule applies]
+Hygiene: [disabled followed by each core rule the config switches off, or every core rule applies]
 ```
 
 | Tool | Named by | State | Repair |
@@ -100,7 +100,7 @@ Hygiene rules: [N] apply ([rule ids]), disabled [rule ids, or none]
 |-----------|------|-----------|
 | [checklist file] | [default|repo-config|hub-surface|outside-skill, each seat that lists it] | [each row as `<rule id> none` or `<rule id> replace: <text>`, REFUSED with each reason, or none] |
 
-A seat is where the checklist was declared: `default` is the shipped base layer, `repo-config` is `checklists[]` in `.sk-code/quality.json`, `hub-surface` is a hub surface's `quality` block and `outside-skill` is a skill outside the hub that declares one. A refused section applies none of its rows, so print every reason the shared linter gave, such as a floor rule that cannot be overridden. A refused section, or one with a row whose id no rule carries, fails the status with `CONFIG_INVALID`, and a checklist error such as `CHECKLIST_MISSING` fails it with that code, because every gate run that loads the file stops on it with exit 3. A row the sample did not reach is checked the same way. Two checklists at one level that disagree on a rule for a sampled file print `override-conflict <rule id> <checklist> <checklist>` with the sampled files it covers: neither row applies there and the gate reads `UNVERIFIED`, exit 4, so the status lists it and does not fail on it. A resolution that broke reads `DEGRADED` with its reason.
+The status block's `Hygiene:` line names only the core rules the config switches off, and the `Hygiene rules:` line here counts and lists the rules left in force, with the disabled ones repeated as the status prints them. Render each line once, as printed. A seat is where the checklist was declared: `default` is the shipped base layer, `repo-config` is `checklists[]` in `.sk-code/quality.json`, `hub-surface` is a hub surface's `quality` block and `outside-skill` is a skill outside the hub that declares one. A refused section applies none of its rows, so print every reason the shared linter gave, such as a floor rule that cannot be overridden. A refused section, or one with a row whose id no rule carries, fails the status with `CONFIG_INVALID`, and a checklist error such as `CHECKLIST_MISSING` fails it with that code, because every gate run that loads the file stops on it with exit 3. A row the sample did not reach is checked the same way. Two checklists at one level that disagree on a rule for a sampled file print `override-conflict <rule id> <checklist> <checklist>` with the sampled files it covers: neither row applies there and the gate reads `UNVERIFIED`, exit 4, so the status lists it and does not fail on it. A resolution that broke reads `DEGRADED` with its reason.
 
 ### Quality Init Plan
 
@@ -111,6 +111,7 @@ Checks to enable, each not required:
    [id] from [manifest]: [argv]
 Outranked by: [the git config skcode.qualityConfig path, or nothing]
 Suggested, not written: [commentHygiene.disableRules and the rule list, or nothing]
+   why: [the reason the suggestion is shown, when there is one]
 Nothing has been written yet.
 ```
 
@@ -137,7 +138,6 @@ Status: [OK|CANCELLED|FAIL]
 Mutation class: mutates
 Config: [path and source, or none]
 Trust: [trusted, untrusted or none]
-Hygiene: [every core rule applies, or the rules disabled]
 Tools: [N] PASS, [N] SKIP, [N] DEGRADED
 Applies: [N] checklists, [N] override rows, [N] refused sections, [N] hygiene rules, [N] disabled
 Errors: [N]

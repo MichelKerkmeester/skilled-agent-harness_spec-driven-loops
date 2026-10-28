@@ -8,7 +8,7 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CQ-012: A Repository That Switches A Hygiene Rule Off Is Not Blocked By It
@@ -31,7 +31,7 @@ A portable gate has to let a repository opt out of house rules it does not share
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm that the gate reads `NO_BLOCKER_FOUND` with the key set, the blocking gate value without it, that the verdict names the disabled rule, and that the resolver lists the repository checklist with its two `none` rows.
+Operators confirm that the gate reads `NO_BLOCKER_FOUND` with the key set, the blocking gate value without it, that the verdict names the disabled rule and records both override rows in its decisions, and that the resolver lists the repository checklist with its two `none` rows.
 
 - Objective: confirm the gate, the exit code, the disabled rule and the finding for each of the two runs, and the resolver's view of the repository checklist.
 - Real user request: `Our repository writes tracker references in comments and the quality gate blocks us for it. Run the gate and tell me whether our config switches that rule off.`
@@ -53,9 +53,9 @@ Run the quality gate on my change and tell me whether our config switches the tr
 | same run without the key | the `commentHygiene` block removed | the blocking gate value, exit 1, one `hygiene.issue` finding on line 1 |
 
 - Expected execution process: the operator builds the fixture, runs the gate over the one file with the key set, removes the key, runs it again and then asks the resolver. Every run reads files and writes none.
-- Expected signals: the first run prints `exit_code 0`, `disabled hygiene.issue` and `findings none` and exits 0. The second prints `exit_code 1`, `disabled none` and `findings hygiene.issue@src/total.js:1` and exits 1. The resolver prints `hygiene.disabled` and the checklist row.
+- Expected signals: the first run prints `exit_code 0`, `disabled hygiene.issue` and `findings none` and exits 0, then prints a decisions line with one `override` entry for each style-document row. The second prints `exit_code 1`, `disabled none` and `findings hygiene.issue@src/total.js:1` and exits 1. The resolver prints `hygiene.disabled` and the checklist row.
 - Desired user-visible outcome: the repository sees that its own rule choice is honored, and sees which rule is off, instead of a gate that is quiet for no stated reason.
-- Pass/fail: PASS if every value in the expected-result table below holds. FAIL if the key does not change the gate, the verdict does not name the disabled rule, the second run reads clean, or the resolver lists no rows for the style document.
+- Pass/fail: PASS if every value in the expected-result table below holds. FAIL if the key does not change the gate, the verdict does not name the disabled rule or record the rows, the second run reads clean, or the resolver lists no rows for the style document.
 
 ---
 
@@ -109,11 +109,12 @@ MD
 SHOW='let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("exit_code "+j.exit_code);console.log("disabled "+(j.config.hygiene.disabled.join(",")||"none"));console.log("findings "+(j.findings.map(f=>f.rule+"@"+f.file+":"+f.line).join(",")||"none"))})'
 ```
 
-2. Run the gate with the key set, and read its exit status.
+2. Run the gate with the key set, read its exit status, and read the override rows it recorded.
 
 ```bash
 cd "$SCRATCH" && node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js | node -e "$SHOW"
 node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js > /dev/null; echo "exit $?"
+node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js --format envelope | grep p0_p1_p2_decisions
 ```
 
 3. Ask the resolver what the repository's checklist says.
@@ -135,7 +136,13 @@ cd - > /dev/null && rm -rf "$SCRATCH"
 
 ### Expected
 
-Step 2 prints `exit_code 0`, `disabled hygiene.issue`, `findings none` and then `exit 0`. Step 3 prints the following, with a space after the second `default` because that checklist has no rows (the resolver exits 2, which is its advisory exit):
+Step 2 prints `exit_code 0`, `disabled hygiene.issue`, `findings none` and `exit 0`, then the decisions line. The run reads the style document's section and records each accepted row ahead of the agent's own marker:
+
+```text
+p0_p1_p2_decisions: override floor.documentation none from docs/code-style.md, override hygiene.issue none from docs/code-style.md, PENDING_AGENT_JUDGMENT
+```
+
+Step 3 prints the following, with a space after the second `default` because that checklist has no rows (the resolver exits 2, which is its advisory exit):
 
 ```text
 hygiene.disabled hygiene.issue
@@ -151,6 +158,7 @@ Step 4 prints `exit_code 1`, `disabled none`, `findings hygiene.issue@src/total.
 | run with the key, exit code | `0` |
 | run with the key, `config.hygiene.disabled` | `hygiene.issue` |
 | run with the key, findings | none |
+| run with the key, `p0_p1_p2_decisions` | one `override` entry for each of the two rows, then `PENDING_AGENT_JUDGMENT` |
 | resolver, repository checklist | source `repo-config`, rows `floor.documentation:none` and `hygiene.issue:none` |
 | run without the key, `exit_code` | `1`, the blocking gate value |
 | run without the key, exit code | `1` |
@@ -158,19 +166,20 @@ Step 4 prints `exit_code 1`, `disabled none`, `findings hygiene.issue@src/total.
 
 ### Evidence
 
-Command transcript from steps 1 to 5, the frontmatter block with `expected_intent: QUALITY`, the gate and exit lines for both runs, the disabled-rule line, the finding line of the second run, the resolver's three lines and the three `OK` lines. Save the transcript under the dated run label the playbook names.
+Command transcript from steps 1 to 5, the frontmatter block with `expected_intent: QUALITY`, the gate and exit lines for both runs, the disabled-rule line, the decisions line, the finding line of the second run, the resolver's three lines and the three `OK` lines. Save the transcript under the dated run label the playbook names.
 
 ### Pass / Fail
 
-- **Pass**: the run with the key reads `NO_BLOCKER_FOUND` with exit `0` and names `hygiene.issue` as disabled, the resolver lists the style document with both `none` rows, and the run without the key takes the blocking gate value with exit `1` and the one finding.
-- **Fail**: the key leaves the gate blocked, the verdict names no disabled rule, the run without the key reads clean, or the resolver lists no row for the style document.
+- **Pass**: the run with the key reads `NO_BLOCKER_FOUND` with exit `0` and names `hygiene.issue` as disabled, the decisions line records both rows, the resolver lists the style document with both `none` rows, and the run without the key takes the blocking gate value with exit `1` and the one finding.
+- **Fail**: the key leaves the gate blocked, the verdict names no disabled rule, the run without the key reads clean, the decisions line lacks a row, or the resolver lists no row for the style document.
 
 ### Failure Triage
 
 1. If the run with the key is still blocking, read `config.errors`. A `CONFIG_INVALID` row means the id is unknown or fixed, and the gate stops before any check.
 2. If the disabled line reads `none` with the key set, the file in the fixture root is not the one the runner read. Check that the working directory is the fixture root, because the runner finds the quality config from there.
 3. If the resolver lists the style document with no rows, the section heading is wrong. It must read `## Rule overrides` or `## 7. RULE OVERRIDES`, and the table needs the three columns.
-4. A `hygiene.issue` row in the style document changes what the agent and the review mode apply. The gate's own check changes only through `disableRules`, which is why the scenario sets both.
+4. A `hygiene.issue` row in the style document is recorded in the decisions and changes what the agent and the review mode apply. The gate's own comment-hygiene check changes only through `disableRules`, which is why the scenario sets both and why the run without the key is still blocked.
+5. If the decisions line shows only the marker, the style document is not reached from the config. Check that `checklists[]` names it and that its extension matches the file.
 
 ---
 

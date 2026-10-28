@@ -8,7 +8,7 @@ trigger_phrases:
   - "sk-code surface detection"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # sk-code shared
@@ -23,7 +23,7 @@ version: 1.2.2.0
 
 This README is also the hub's zero-signal fallback. [`../hub-router.json`](../hub-router.json) names this file as `routerPolicy.defaultResource`, and the router offers it with the disambiguation checklist when a prompt scores no mode. A scored route never loads it.
 
-The folder ships reference files and one linter that both workflow modes read their rule overrides through, with no assets or graph metadata. Authoritative content lives in the linked files. This page only says what each one is for and who reads it.
+The folder ships reference files, one linter that both workflow modes read their rule overrides through and the registry of rule ids it is checked against, with no assets or graph metadata. Authoritative content lives in the linked files. This page only says what each one is for and who reads it.
 
 ---
 
@@ -44,9 +44,12 @@ shared/
 |       `-- rule-overrides.json        # the hard floor no override may name
 `-- scripts/
     +-- check-rule-overrides.cjs       # linter for a checklist's Rule overrides section
+    +-- lib/
+    |   `-- rule-registry.cjs          # every rule id an override row may name, read from the declaring documents
     `-- tests/
         +-- check-rule-overrides.test.cjs  # node --test suite for the linter
-        `-- review-lens-overrides.test.cjs # review floor and lens ids against the contract
+        +-- review-lens-overrides.test.cjs # review floor and lens ids against the contract
+        `-- rule-registry.test.cjs         # the registry's derivation and no-silent-shrink cases
 ```
 
 ---
@@ -93,7 +96,8 @@ Edit the file under [`./references/`](./references/). A symlink resolves to it, 
 |---|---|---|
 | [`references/universal/code-quality-standards.md`](./references/universal/code-quality-standards.md) | The stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate, with an id and a FIXED or overridable mark on each floor rule | `sk-code-quality` before any implementation-done claim, the `../ROUTER.md` preamble, the `sk-code-review` rule-copy check |
 | [`references/universal/rule-overrides.md`](./references/universal/rule-overrides.md) | The shared contract for a checklist's optional `## Rule overrides` section: row format, rule ids, the hard floor, precedence and how an override is recorded. The floor ids live once in [`references/universal/rule-overrides.json`](./references/universal/rule-overrides.json) | `sk-code-quality`, `sk-code-review`, which adopts it in `review-core.md` section 8, and the linter below |
-| [`scripts/check-rule-overrides.cjs`](./scripts/check-rule-overrides.cjs) | Checks a checklist's override section, refuses any floor id and is the only path a mode reads a section through. Run `node --test .skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` for its suite. `review-lens-overrides.test.cjs` checks the review mode's floor and lens ids, its TODO rule's hygiene mapping and the SKILLED surface rows against the contract | Authors of a checklist with an override section, `sk-code-quality` through `--explain`, and `sk-code-review`, which reads the rows the resolver returns |
+| [`scripts/check-rule-overrides.cjs`](./scripts/check-rule-overrides.cjs) | Checks a checklist's override section, refuses any floor id and is the only path a mode reads a section through. Run `node --test .skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` for its suite. `review-lens-overrides.test.cjs` checks the review mode's floor and lens ids, its TODO rule's hygiene mapping and the SKILLED surface rows against the contract | Authors of a checklist with an override section, `sk-code-quality` through `--explain` and in every run, and `sk-code-review`, which reads the rows the resolver returns |
+| [`scripts/lib/rule-registry.cjs`](./scripts/lib/rule-registry.cjs) | Reads every rule id an override row may name from the three documents that declare them: the runner's ids from `runner-contract.md` section 5, the `floor.*` ids from `code-quality-standards.md` and the `review.*` ids from `review-core.md` section 8. A missing table, or a table row that names no id, throws with its file, so the registry cannot shrink unnoticed. Run `node --test .skilled/skills/sk-code/shared/scripts/tests/rule-registry.test.cjs` for its suite | The quality runner, which refuses a row whose id is unknown, and the doctor status |
 
 The language-agnostic style guide, comment hygiene included, belongs to the quality mode at [`../sk-code-quality/references/code-style-guide.md`](../sk-code-quality/references/code-style-guide.md).
 

@@ -1,12 +1,12 @@
 ---
 title: "sk-code-ci: Manual Testing Playbook"
-description: "Routing-recall corpus for the sk-code-ci surface: the scenario that exercises its CI_WORKFLOW intent signal and resource map."
-version: 1.0.2.0
+description: "Corpus for the sk-code-ci surface: the routing-recall scenario for its CI_WORKFLOW intent signal and resource map, and the foreign-repository scenario that runs /doctor:ci in a repository with its own switch names."
+version: 1.0.3.0
 ---
 
 # sk-code-ci: Manual Testing Playbook
 
-Routing-recall corpus for the `sk-code-ci` surface.
+Routing-recall and foreign-repository corpus for the `sk-code-ci` surface.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and
@@ -17,21 +17,23 @@ Routing-recall corpus for the `sk-code-ci` surface.
 
 ## 1. OVERVIEW
 
-The scenario exercises the machine-readable intent signal and resource map in `SKILL.md` section 2b, and the hub's bundling of this packet beside a workflow mode when a request is about a GitHub Actions workflow.
+The routing scenario exercises the machine-readable intent signal and resource map in `SKILL.md` section 2b, and the hub's bundling of this packet beside a workflow mode when a request is about a GitHub Actions workflow. The foreign-repository scenario runs the three `/doctor:ci` scripts in a fresh repository with its own `ACME_CI` switches and a mocked `gh`, and proves the doctor reads that repository's conventions and not this one's.
 
-The hub's router-sync guard replays the scenario in this folder (check `4` of `sk-code-skilled/assets/scripts/verify-router-sync.cjs`). The guard walks packet-level playbooks only, so a scenario kept anywhere else would never be replayed.
+The hub's router-sync guard replays each routing scenario in this folder (check `4` of `sk-code-skilled/assets/scripts/verify-router-sync.cjs`). The guard walks packet-level playbooks only, so a routing scenario kept anywhere else would never be replayed. The foreign-repository scenario carries no `expected_intent`, so the guard skips it and an operator runs it by hand.
 
 ### Categories
 
 | # | Category | Folder | Scenario IDs |
 |---|---|---|---|
 | 1 | CI Surface | `ci-surface/` | ci-surface-ci-standards |
+| 2 | Foreign Repository | `foreign-repository/` | ci-foreign-repository-profile |
 
 ### Scenarios
 
 | # | ID | Intent | File |
 | --- | --- | --- | --- |
 | 1 | ci-surface-ci-standards | CI_WORKFLOW | [ci-surface.md](ci-surface/ci-surface.md) |
+| 2 | ci-foreign-repository-profile | Operator-run, no routing intent | [foreign-repository-profile.md](foreign-repository/foreign-repository-profile.md) |
 
 A scenario's verdict is `PASS` when every path in its `expected_resources` resolves under the packet root and the router emits it for the exact prompt, `FAIL` when either check fails, and `SKIP` only when a specific sandbox or runtime blocker prevents the check from running.
 
@@ -41,7 +43,7 @@ A scenario's verdict is `PASS` when every path in its `expected_resources` resol
 
 - Run every command from the repository root.
 - The `sk-code` hub registers `sk-code-ci` in `mode-registry.json`, so the packet is a known surface.
-- Node is available for the router-sync guard.
+- Node is available for the router-sync guard and for the foreign-repository scenario, which also needs the checkout's `.skilled/node_modules` on `NODE_PATH`.
 
 ---
 
@@ -64,7 +66,7 @@ Commands are written as numbered steps with the exact shell line in backticks. A
 ### Inputs Required
 
 1. This root playbook.
-2. [ci-surface.md](ci-surface/ci-surface.md).
+2. [ci-surface.md](ci-surface/ci-surface.md) and [foreign-repository-profile.md](foreign-repository/foreign-repository-profile.md).
 3. The command transcript and exit status recorded under section 3.
 4. The feature-to-scenario map in section 8.
 5. A triage note for any `FAIL` or `SKIP` verdict.

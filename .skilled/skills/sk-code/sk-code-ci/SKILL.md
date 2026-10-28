@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.5.0
+version: 1.1.6.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -35,11 +35,12 @@ Rule data (`references/`):
 - `references/ci-workflow-standards.md`: the rule index. Path parity, SHA-pinned actions, a README row per workflow, `set -euo pipefail`, fork and secret safety, matrix and `fail-fast`. Each row says whether a machine gate enforces it.
 - `references/trigger-and-filter-rules.md`: the twin rule, the rebuild-commit skip rule, push-only scope for generated-path filters and the intentional exceptions table.
 - `references/job-shape-rules.md`: timeouts, least-privilege permissions, the concurrency template, the composite setup action and the switch `if:` shape.
-- `references/protected-set.md`: the workflows protected by function and the rules that follow from it.
+- `references/protected-set.md`: the repository CI profile and its keys, the workflows protected by function and the rules that follow from it.
 
 Scaffold templates (`assets/`):
 - `assets/workflow-template.yml`: a whole-workflow starting point.
 - `assets/job-block-template.yml`: a single job starting point.
+- `assets/ci-profile.template.json`: the profile a repository fills in so `/doctor:ci` reads its own switch names, branches, protected workflows and README instead of this repository's.
 
 Workflow doctrine: the implement, debug and verify phases are the shared doctrine symlinked in as `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md`. The acting agent applies it.
 
