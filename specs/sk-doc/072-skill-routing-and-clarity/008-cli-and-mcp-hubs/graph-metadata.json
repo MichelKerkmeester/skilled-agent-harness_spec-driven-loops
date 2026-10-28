@@ -15,7 +15,8 @@
       "skill routing phase 8",
       "cli and mcp hubs plan",
       "cli and mcp hubs tasks",
-      "cli and mcp hubs acceptance criteria"
+      "cli and mcp hubs acceptance criteria",
+      "cli and mcp hubs implementation summary"
     ],
     "key_topics": [
       "cli",
@@ -28,16 +29,22 @@
       "tasks",
       "acceptance",
       "criteria",
-      "cli-external-orchestration",
-      "cli-classifier"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/SKILL.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      "scratch/after.md",
+      "scratch/gates.sh",
+      "scratch/before.md"
     ],
     "entities": [
       {
@@ -62,6 +69,36 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
         "source": "derived"
       },
       {
@@ -153,55 +190,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "cli-external-orchestration, cli-classifier and mcp-tooling carry executor vocabulary that drifts between the registry and `ROUTER.md`, and the seven cli packets repeat the same six-step call sequence",
     "created_at": "2026-10-28T06:38:49Z",
-    "last_save_at": "2026-10-28T06:54:03.457Z",
+    "last_save_at": "2026-10-28T14:54:57.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f209147c7870c8776d4c08752dd20302b1787b201f0b82df93c1c2a9673a07e",
+    "source_fingerprint": "sha256:ef2855b6900576652ac4736030de0e6c8a70223628c6c0a7b485d9da53f5a790",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "330864670d2b55067caa7438bbd13c920ad61e802a1430fd25cf58b90d6ae6e0",
+      "spec.md": "2a60f59df9f7cc58892367022c96e11cbc5b140897a599fb85347efad4af81a6",
       "plan.md": "17cbb1ff6a0f3e0d7a19d0918f98e1aabd2a0c2b1445318707c531d85f6388b5",
-      "tasks.md": "f318c58f8b781520c758baf03e961e08efee801e1677ce1543476139e15541c0"
+      "tasks.md": "d58a295978b45d9f5114b3c5263bec4c97685115d8656f50850cff49e5bf8d9a",
+      "implementation-summary.md": "4a9292902d630d33ca1ab3050937e5f831a37e9d80218907bd84df13edbf1089"
     },
     "last_active_at": null
   }

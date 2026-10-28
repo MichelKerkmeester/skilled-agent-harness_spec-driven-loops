@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,8 +61,17 @@ Bring the three hubs and their packets to the canon shape while keeping each pac
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration
+PASS: 12b-routing-shape: hub and 7 packet(s) follow the routing canon (8 known debt)
+
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier
+PASS: 12b-routing-shape: hub and 1 packet(s) follow the routing canon (2 known debt)
+
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
+PASS: 12b-routing-shape: hub and 9 packet(s) follow the routing canon (9 known debt)
 ```
+
+Those nineteen known-debt entries are the shape this phase closes, eighteen of them: the two hubs and the sixteen packets that got there. The nineteenth is `mcp-tooling`'s ninth packet, which stays. The seven cli packets each also restate the same six-step call sequence that `system-spec-kit/references/cli/shared-smart-router.md` already carries, and each restatement points at that file. `scratch/before.md` holds the full gate set: 39 of 39 exit 0, accuracy 155/195, 49/66, 19/24.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
