@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7354,
-    "ok": 15827,
+    "missing-frontmatter": 7357,
+    "ok": 15918,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26729,
+  "documentsScanned": 26823,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a014643292beb5345bf897a9add8a118fcb43797db56764d3993391a95b8f4e4",
+  "manifestHash": "708f3a98861fe2baf723b9d5aec1270a69a0da5022649158a73a7e525a67d41e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38884,
+      "ok": 39067,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -41003,6 +41003,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -71904,6 +71922,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/017-portable-code-modes/015-frontmatter-yaml-validity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/016-repository-config-in-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
       "reason": "excluded directory"
     },
@@ -72653,6 +72679,54 @@
     },
     {
       "path": "specs/sk-doc/071-readme-reference-debt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/004-single-vocabulary-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/005-sk-code-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/006-sk-doc-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/scratch",
       "reason": "excluded directory"
     },
     {
