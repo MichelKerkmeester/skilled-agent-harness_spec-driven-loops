@@ -42,7 +42,7 @@
       "skilled"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-deep-research/research/research.md",
@@ -76,12 +76,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,20 +98,26 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-28T17:01:03.592Z",
+    "last_save_at": "2026-10-28T18:18:37.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:15456adade9c850f0a888f7215f278d5d290048ce0ec0a59980984966f5b10d6",
+    "source_fingerprint": "sha256:8ba5d88f3575cada99e1f0f1fee647fb9f66a6b446c75ccc806e100f724ca7f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf2c6040ff773214dee78aa97b2c535047a38fe2fe8379086cc75b5a09ec5f4d"
+      "spec.md": "92a1d397d0a666b971407fb310d975ea63ff006bcee84c0fa2ea0efffe55b138"
     },
     "last_active_at": null
   }

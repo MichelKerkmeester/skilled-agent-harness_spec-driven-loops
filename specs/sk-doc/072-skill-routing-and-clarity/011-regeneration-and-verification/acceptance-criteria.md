@@ -8,17 +8,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification"
-    last_updated_at: "2026-10-28T06:50:00Z"
+    last_updated_at: "2026-10-28T19:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned the phase from the phase 001 research"
-    next_safe_action: "Run /speckit:plan on this phase before implementation"
+    recent_action: "Regenerated every derived surface and verified the gates against the phase 002 baseline"
+    next_safe_action: "Close the parent packet"
     blockers: []
-    key_files: []
+    key_files:
+      - "scratch/before.md"
+      - "scratch/after.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "skill-routing-and-clarity-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 
 **Packet:** `sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification`
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-10-28
 <!-- /ANCHOR:metadata -->
 
@@ -51,8 +53,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: Every gate in the phase 002 baseline passes, and the report states the delta. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: `sync-skills-hermes.cjs --check` and `sync-runtime-mirrors.cjs --check` pass. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: Every gate in the phase 002 baseline passes, and the report states the delta. | Met. All 38 gates exit 0 at `scratch/after.md:29`, and each phase 002 gate sits beside its baseline reading with the delta stated, ending at routing accuracy 155/195, 49/66, 19/24 at `scratch/after.md:44`. Every delta is a removed skill or a recorded allowlist entry, and no reading is worse. The drift recounts read 0 against 64, 36 and 17 at `scratch/after.md:73`. | Met | - |
+| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: `sync-skills-hermes.cjs --check` and `sync-runtime-mirrors.cjs --check` pass. | Met. `PASS: 65 Hermes skill copies in sync` at `scratch/after.md:63` and `PASS: 202 mirrors across 9 trees are in sync.` at `scratch/after.md:64`. | Met | - |
+| AC-003 | REQ-003 | Given the phase is implemented, When its docs are read, Then: The phase docs record the gate output that proves each P0 requirement. | Met. `scratch/before.md` records the gates and CI before the fixes, and `scratch/after.md` records the regeneration run from `scratch/after.md:19`, the gates, the fixes and the mirror checks, each as the command's own output line. | Met | - |
 
 ### Status values
 
@@ -77,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is Planned and no criterion is met yet.
+All three criteria are met. Regeneration found nothing stale, every phase 002 gate passes with its delta stated, and the mirror checks pass.
 <!-- /ANCHOR:closure -->

@@ -15,7 +15,8 @@
       "skill routing phase 11",
       "regeneration and verification plan",
       "regeneration and verification tasks",
-      "regeneration and verification acceptance criteria"
+      "regeneration and verification acceptance criteria",
+      "regeneration and verification implementation summary"
     ],
     "key_topics": [
       "regeneration",
@@ -27,17 +28,21 @@
       "tasks",
       "acceptance",
       "criteria",
-      "every",
-      "change",
-      "earlier"
+      "implementation",
+      "summary",
+      "every"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/after.md",
+      "scratch/before.md",
+      ".github/scripts/check-gate-inputs.sh"
     ],
     "entities": [
       {
@@ -62,6 +67,30 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
         "source": "derived"
       },
       {
@@ -159,49 +188,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every change in the earlier phases reaches runtime mirrors and generated files: Hermes text copies, command prompt stubs, leaf manifests and compiled routes",
     "created_at": "2026-10-28T06:38:52Z",
-    "last_save_at": "2026-10-28T06:42:24.266Z",
+    "last_save_at": "2026-10-28T18:17:41.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8167ec6ffe4d03b894ff6766cf2dd8db16f5fa186f17a1796b364f649d2f3220",
+    "source_fingerprint": "sha256:3473d761251b2c2f288d859f40ad287627008209ed6a258742c827c8ddfe0b8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c14dd4713a8c93d4a8995deaaf1caf447718331b745b1176b50c9cf8309e73c5",
+      "spec.md": "143acc95f36973b039b61e1fe23021478647eb7dd78b98cb1031ae45e76ddbe2",
       "plan.md": "da830417d572983720700366708849341bb49920ed75eb05b54a2014c6b8306b",
-      "tasks.md": "f090c40ea9444f35ce362f1409abf5e51badc5a923cb12dc4d068c645f45fbc9"
+      "tasks.md": "be444df545d7ca9c64db6977700bcf897d197f3a5bd75d5a2eec7658e330d558",
+      "implementation-summary.md": "e29fd96c76cde5eb594d4ccf2d23f9af151f05b06c16561a8a112682271be84f"
     },
     "last_active_at": null
   }
