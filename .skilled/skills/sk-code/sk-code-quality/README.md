@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.3.0
+version: 1.3.4.0
 ---
 
 # sk-code-quality
@@ -23,8 +23,8 @@ version: 1.3.3.0
 |---|---|
 | **Use it for** | Post-implementation quality checks, P0/P1/P2 author-side fixes, comment hygiene and OpenCode target-path checklists |
 | **Invoke with** | `quality gate`, `code quality`, `comment hygiene`, `authoring checklist`, `check before done` |
-| **Works on** | OpenCode skills, agents, commands, specs, MCP servers, scripts, config and language files |
-| **Produces** | In-place quality fixes plus a handoff that states the runner's verdict, the checklists used and any remaining risk |
+| **Works on** | Any repository: the runner checks the change with the universal floor and the checks the repository names. In this repository it also loads the SKILLED checklists for skills, agents, commands, specs, MCP servers, scripts, config and language files |
+| **Produces** | In-place quality fixes plus a handoff that states the runner's verdict, the checklists used, the hygiene rules switched off and any remaining risk |
 
 ---
 
@@ -40,7 +40,7 @@ The quality mode runs `scripts/quality-gate.cjs` over the change, which works in
 
 ### The Checklist Router
 
-The mode's headline strength is routing by target path: every surface family lands on the checklist that covers it, so the gate checks the same things a human reviewer would check.
+The mode's headline strength is routing by target path: every surface family lands on the checklist that covers it, so the gate checks the same things a human reviewer would check. The universal floor applies to every file. The rows below are this hub's own SKILLED surface, which loads for files the surface detection places in it.
 
 | Target family | What the mode knows how to check |
 |---|---|
@@ -49,6 +49,7 @@ The mode's headline strength is routing by target path: every surface family lan
 | **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |
 | **MCP servers** | routes to the MCP-server-authoring checklist |
 | **Language files and config** | applies the language-specific and config checklists |
+| **Your own surface** | a surface another skill declares, or a checklist your `.sk-code/quality.json` names, brings its own checklists |
 
 ---
 
@@ -64,7 +65,7 @@ node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format t
 
 The runner reads the change, by default the working tree against `HEAD`. It runs the conflict-marker, secret and debug-leftover sensors, one comment-hygiene call over the changed files and a parse floor, and probes which hooks and workflows enforce hygiene. It prints one verdict with a gate and an exit code from 0 to 4. No gate means pass: exit 0 says only that no blocker was found and that every required check produced evidence. [`references/runner-contract.md`](./references/runner-contract.md) documents every field. A committed `.sk-code/quality.json` runs its commands only in a trusted repository. Without a grant each configured check reads `SKIPPED_UNTRUSTED` with the repair `git config --local skilled.trustRepoChecks true`, and [section 8 of the quality config reference](./references/quality-config.md) names the grants.
 
-**Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface. On SKILLED it also names the JavaScript and CSS house checks for a `.js` or `.css` target, in [`js-css-style/`](../sk-code-skilled/assets/checklists/js-css-style/). For `.skilled/` targets it names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
+**Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. It gives each rule an id and marks it FIXED or overridable. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface. On SKILLED it also names the JavaScript and CSS house checks for a `.js` or `.css` target, in [`js-css-style/`](../sk-code-skilled/assets/checklists/js-css-style/). For `.skilled/` targets it names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/). The house style of this framework (file layout, `MODULE:` headers, the `ceiling:` marker, test layout) lives in those SKILLED files, so another repository does not inherit it.
 
 **Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Root-cause failures that need investigation to the surface debugging workflow (`workflow-debug.md`). Send final evidence to the surface verification workflow (`workflow-verify.md`).
 
@@ -84,7 +85,18 @@ The mode sits between implementation and verification. It runs the quality runne
 
 ### Target-Path Routing
 
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path>` names the checklists for any one file, and why.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path> [<path>...]` answers for a whole change in one call. For each file it names the surfaces, the folder each surface loads from and every checklist with the seat that declared it, plus each checklist's parsed `## Rule overrides` rows. It runs nothing, writes nothing and always exits 2.
+
+### Rules Your Repository Can Change
+
+The universal floor splits into FIXED rules and overridable ones. The hard floor stays on in every repository: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup and accessibility for UI code. A repository can drop or replace the rest, such as documentation, typing strictness, naming and the `ceiling:` marker.
+
+There are two ways to say so, and they work together.
+
+- **A `## Rule overrides` section** in a checklist the repository already declares, such as one named in `.sk-code/quality.json` `checklists[]`. Each row gives a rule id, `none` or `replace: <text>` and an optional reason. The shared contract is [`rule-overrides.md`](../shared/references/universal/rule-overrides.md), and `node ../shared/scripts/check-rule-overrides.cjs <checklist.md>` checks a section. A row that names a hard-floor id is refused.
+- **`commentHygiene.disableRules`** in `.sk-code/quality.json` switches off named core comment-hygiene rules, such as `issue` or `task`. The runner, the pre-commit hook and the CI job all honor it, and the verdict lists what is off in `config.hygiene.disabled`. An unknown id, or a hard-floor id such as `secret.private-key`, is `CONFIG_INVALID`.
+
+A hygiene row in a checklist changes what the agent and the review mode apply. The runner's own check changes only through `disableRules`, so a repository that wants a hygiene rule off everywhere sets both. `--explain` shows what each checklist's section says.
 
 ### The Mutation Boundary
 
@@ -114,7 +126,8 @@ Use it when a change is already written and needs standards enforcement before f
 |---|---|
 | Quality verdict | `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs` prints one `code-quality-run/v1` verdict and exits 0 to 4, as `references/runner-contract.md` section 2 states. It writes no file |
 | Runner tests | `node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/*.test.cjs` runs the named fixtures and unit cases, each in a throwaway repository |
-| Comment hygiene | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0. Run it directly, not through `bash`, because it is a Python program |
+| Comment hygiene | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0. Run it directly, not through `bash`, because it is a Python program. Add `--disable-rule <id>` to skip one core rule |
+| Rule overrides | `node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.md>` exits 0 for a valid or absent `## Rule overrides` section and 1 when a row is refused |
 | Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh <changed-file>` prints a banner when the package that holds the file is stale or cannot be checked, and nothing when it is current. This per-file form never rebuilds. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |
 | Ceiling markers | `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh` prints one line per `ceiling:` or `intentional-limit:` marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate |
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-quality/README.md --type readme` reports zero issues |
@@ -136,4 +149,6 @@ Use it when a change is already written and needs standards enforcement before f
 | [`scripts/ceiling-report.sh`](./scripts/ceiling-report.sh) | Ceiling-marker report for debt passes and release checks |
 | [`../shared/references/stack-detection.md`](../shared/references/stack-detection.md) | Shared surface detection |
 | [`../shared/references/phase-detection.md`](../shared/references/phase-detection.md) | Lifecycle placement for the quality gate |
-| [`../shared/references/universal/code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) | Universal quality standards |
+| [`../shared/references/universal/code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) | Universal quality standards, with rule ids and FIXED or overridable marks |
+| [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | How a repository drops or replaces a rule, and the hard floor no one can change |
+| [`references/quality-config.md`](./references/quality-config.md) | The `.sk-code/quality.json` schema, including `commentHygiene.disableRules` |

@@ -6,7 +6,7 @@ trigger_phrases:
   - ".sk-code/quality.json"
   - "configured quality checks"
   - "skilled.trustRepoChecks"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Repository Quality Config (.sk-code/quality.json)
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 A committed .sk-code/quality.json names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for.
 
-The quality runner reads the file on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through one module, so they never disagree about what the file says. The file tightens the author gate only.
+The quality runner reads the file on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through one module, so they never disagree about what the file says. The file tightens the author gate only, except that `commentHygiene.disableRules` also relaxes the core hygiene set, for the runner, the pre-commit hook and the CI job alike.
 
 ---
 
@@ -27,7 +27,7 @@ The runner picks exactly one source, the most explicit first: `--config PATH` re
 
 ### Schema And Merge
 
-`schemaVersion` must be `1`, and an unknown key at any level is a config error. The file can carry `checks`, `checklists`, `generated`, `exclude`, `commentHygiene` and `sensors`. The shipped base layer loads first and names no command, so `checks` come only from the repository layer. Lists append, and an exact sensor whose findings block cannot be switched off.
+`schemaVersion` must be `1`, and an unknown key at any level is a config error. The file can carry `checks`, `checklists`, `generated`, `exclude`, `commentHygiene` and `sensors`. `commentHygiene.disableRules` lists core hygiene rules to switch off, and an unknown id or one the shared contract fixes is `CONFIG_INVALID`. The shipped base layer loads first and names no command, so `checks` come only from the repository layer. Lists append, and an exact sensor whose findings block cannot be switched off.
 
 ### Trust Boundary
 

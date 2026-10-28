@@ -9,7 +9,7 @@ trigger_phrases:
   - "check rule overrides linter"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rule Overrides Contract
@@ -30,7 +30,7 @@ A repository may change any rule except the hard floor. The floor holds the rule
 
 ### Scope
 
-This file defines the format, the ids, the floor, the precedence and how an applied override is recorded. The quality and review modes adopt it in their own contracts. Until a mode states that it reads overrides, its behavior is unchanged.
+This file defines the format, the ids, the floor, the precedence and how an applied override is recorded. The quality and review modes adopt it in their own contracts. The review mode applies the rows it reads and records them on its `Rule sources` line. The quality runner reads each declared checklist's section through the same linter and shows the parsed rows in its explain output, and `commentHygiene.disableRules` carries the machine-checked half. A mode that does not state that it reads overrides behaves as before.
 
 ### Key Sources
 

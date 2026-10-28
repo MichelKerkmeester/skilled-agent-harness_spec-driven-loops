@@ -28,7 +28,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. Compares the set of failing rules at head against the merge base, or the previous tip on a push, and blocks when head fails a rule the base did not. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
 | `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical, and the Hermes skill and prompt copies equal to their sources. |
-| `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
+| `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments, except for the rules the repository's quality config switches off through `commentHygiene.disableRules`. |
 | `deep-loop-runtime.yml` | Runs the deep-loop runtime suites, including the command-contract drift check. |
 | `dependabot-auto-merge.yml` | Turns on auto-merge for an npm security pull request from Dependabot whose every bump is a patch release. Every other Dependabot pull request waits for a person. |
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |

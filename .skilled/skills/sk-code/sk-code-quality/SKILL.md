@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.7.0
+version: 1.13.8.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -179,7 +179,7 @@ discover_markdown_resources()
     -> UNKNOWN_FALLBACK when no routable target path is available
 ```
 
-The declarations behind `--explain` stay authoritative, and the runner reads them directly. The prompt-intent projection only makes the default quality resources scoreable.
+The declarations behind `--explain` stay authoritative, and the runner reads them directly. One `--explain` call takes several paths. Each file's entry lists its `surfaces`, the folder each surface loads from in `surface_skills`, the `source` seat that declared each checklist and that checklist's parsed `## Rule overrides` rows, and a single path prints the same fields at the top level. The prompt-intent projection only makes the default quality resources scoreable.
 
 ---
 

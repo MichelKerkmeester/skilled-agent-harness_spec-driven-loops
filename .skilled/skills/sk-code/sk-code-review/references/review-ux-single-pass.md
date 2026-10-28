@@ -8,7 +8,7 @@ trigger_phrases:
   - "pre commit review guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # Review UX - Single Pass
@@ -43,9 +43,9 @@ Recommended next-step options:
 
 Use this flow for interactive review responses:
 
-1. State what was reviewed and the scope source (`git diff`, staged diff, file list, or commit range).
+1. State what was reviewed and the scope source (`git diff`, staged diff, file list, or commit range), and the rules applied on the summary's `Rule sources:` line.
 2. Publish findings ordered by severity.
-3. Summarize merge posture or risk level briefly.
+3. Summarize merge posture or risk level briefly. Merge posture follows severity: a P0 finding or an open P1 means changes are requested, and a score never decides it.
 4. Ask the user what to do next.
 
 If no diff is present, report:
@@ -61,7 +61,7 @@ If no diff is present, report:
 Choose the lightest presentation that fits the request:
 
 - Findings-only: list the issues with evidence and stop after the next-step prompt.
-- Findings + gate recommendation: include `APPROVED`, `REQUESTED_CHANGES` or `COMMENTED` after the findings, the same tokens the final `Review status:` line uses.
+- Findings + gate recommendation: include `APPROVED`, `REQUESTED_CHANGES` or `COMMENTED` after the findings, the same tokens the final `Review status:` line uses. The older `APPROVE`, `REQUEST CHANGES` and `BLOCK` words are retired.
 - Findings + fix follow-up options: present the review, then offer concrete remediation choices without starting implementation automatically.
 
 Presentation rules:

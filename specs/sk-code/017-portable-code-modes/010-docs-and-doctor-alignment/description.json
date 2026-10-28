@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-code/017-portable-code-modes/010-docs-and-doctor-alignment",
+  "description": "Align docs, playbooks, catalogs and doctor text with the shipped portable quality and review behavior",
+  "keywords": [
+    "align",
+    "docs",
+    "playbooks",
+    "catalogs",
+    "doctor",
+    "text",
+    "shipped",
+    "portable",
+    "quality",
+    "review",
+    "behavior"
+  ],
+  "lastUpdated": "2026-10-28T04:11:20.544Z",
+  "specId": "010",
+  "folderSlug": "docs-and-doctor-alignment",
+  "parentChain": [
+    "sk-code",
+    "017-portable-code-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

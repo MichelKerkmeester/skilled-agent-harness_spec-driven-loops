@@ -1,7 +1,7 @@
 ---
 title: "review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # review: Manual Testing Playbook
@@ -31,14 +31,15 @@ Canonical package artifacts:
 - `intra-routing-recall/`
 - `finding-accuracy/`
 - `user-authored-modes/`
+- `foreign-repository-rules/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 18 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 19 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, and a user-authored security surface replayed through both routing stages.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk. It also covers live finding accuracy on seeded defects and a clean control, a user-authored security surface replayed through both routing stages, and foreign repositories whose own rule overrides the review must honor or refuse: one that wants almost no inline comments, one that wants the opposite and one that tries to drop a floor rule.
 
 ### Realistic Test Model
 
@@ -101,7 +102,7 @@ Coverage note: the playbook covers single-pass review flow, security/correctness
 1. `manual-testing-playbook.md`
 2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
 3. Scenario execution evidence from section 3
-4. Feature-to-scenario coverage map from section 17
+4. Feature-to-scenario coverage map from section 19
 5. Triage notes for every FAIL or SKIP verdict
 
 ### Scenario Acceptance Rules
@@ -137,7 +138,7 @@ The release is cleared to ship only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`, both counted from the section 18 index).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`, both counted from the section 19 index).
 4. No unresolved blocking triage item remains.
 5. External CLI handbacks preserve review severity and evidence contracts.
 
@@ -151,7 +152,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-028 or CR-R01..CR-R07 (CR-019 is not assigned) |
+| Scenario ID | Yes | One of CR-001..CR-018, CR-020..CR-031 or CR-R01..CR-R07 (CR-019 is not assigned) |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-opencode, cli-claude-code, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
@@ -166,7 +167,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks every file the section 18 index links.
+2. Per-feature structural sweep checks every file the section 19 index links.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
@@ -182,7 +183,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the review battery the section 18 index lists. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the review battery the section 19 index lists. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -204,6 +205,7 @@ This section records wave planning and capacity guidance for executing the revie
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
 | 5 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
 | 6 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against `SKILL.md` §2's `INTENT_SIGNALS`/`RESOURCE_MAP`; no diff fixture or CLI dependency, isolates cleanly |
+| 7 | Foreign repository rules | CR-029..CR-031 | Each scenario builds its own scratch repository outside this checkout and reviews one file, so the three run in parallel without sharing a diff |
 
 ### Cross-CLI Reconciliation Rules
 
@@ -821,7 +823,61 @@ Desired user-visible outcome: A repository-added security surface reaches review
 
 ---
 
-## 17. AUTOMATED TEST CROSS-REFERENCE
+## 17. FOREIGN REPOSITORY RULES (CR-029..CR-031)
+
+This category covers 3 scenarios that review one file in a scratch repository whose own rule overrides the review must honor or refuse. Each run builds the repository from the scenario's fixture, runs the quality runner's explain entry as the resolver and records executor, model, duration and tokens.
+
+### CR-029 | Repository that wants almost no inline comments
+
+#### Description
+
+Live review of a helper in a repository that drops the documentation rule and switches off the tracker-id hygiene rule, which should raise no finding for missing doc comments or for the tracker reference in a comment.
+
+#### Scenario Contract
+
+Prompt: `Review this helper before I commit it.`
+
+Desired user-visible outcome: The review accepts the repository's own style and records both overrides on its `Rule sources:` line.
+
+#### Test Execution
+
+> **Feature File:** [CR-029](../manual-testing-playbook/foreign-repository-rules/almost-no-inline-comments.md)
+
+### CR-030 | Repository with the opposite rule: comment every function
+
+#### Description
+
+Live review of the same helper in a repository that replaces the documentation rule with a doc comment on every function, which should raise the two undocumented functions as a P2 finding.
+
+#### Scenario Contract
+
+Prompt: `Review this helper before I commit it.`
+
+Desired user-visible outcome: The review holds the file to the repository's stricter rule and says which functions lack a comment.
+
+#### Test Execution
+
+> **Feature File:** [CR-030](../manual-testing-playbook/foreign-repository-rules/comment-every-function.md)
+
+### CR-031 | Floor override refused
+
+#### Description
+
+Live review of a download handler in a repository whose style document tries to drop input validation, which the linter, the resolver and the review should each refuse while the path traversal keeps its blocking severity.
+
+#### Scenario Contract
+
+Prompt: `Review this download handler before I commit it.`
+
+Desired user-visible outcome: The review lists the style document under `Refused:`, applies no override and blocks the commit on the traversal.
+
+#### Test Execution
+
+> **Feature File:** [CR-031](../manual-testing-playbook/foreign-repository-rules/floor-override-refused.md)
+
+---
+
+## 18. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `review/manual-testing-playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
@@ -830,12 +886,15 @@ The current repository has no dedicated automated test module for `review/manual
 | `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
 | Internal design notes | Stress fixture that maps review channel behavior to `review` | CR-016 |
 | Internal design notes | Earlier stress fixture for review channel expectations | CR-016 |
+| `.skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` | The override linter: row grammar, the hard floor, repeated ids and the floor-id agreement with the contract JSON | CR-031 |
+| `.skilled/skills/sk-code/shared/scripts/tests/review-lens-overrides.test.cjs` | Every review floor and lens id against the shared contract | CR-029, CR-030, CR-031 |
+| `.skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh` | The report checkers, including the `Rule sources:` line shape, and the canary pins on the resolver step and the four floor ids | CR-024, CR-029, CR-030, CR-031 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 
 ---
 
-## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -866,6 +925,9 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-026 | Seeded off-by-one | FINDING ACCURACY | [CR-026](../manual-testing-playbook/finding-accuracy/seeded-off-by-one.md) |
 | CR-027 | Clean control | FINDING ACCURACY | [CR-027](../manual-testing-playbook/finding-accuracy/clean-control.md) |
 | CR-028 | User security surface through both routing stages | USER-AUTHORED MODES | [CR-028](../manual-testing-playbook/user-authored-modes/user-security-surface-two-stage.md) |
+| CR-029 | Repository that wants almost no inline comments | FOREIGN REPOSITORY RULES | [CR-029](../manual-testing-playbook/foreign-repository-rules/almost-no-inline-comments.md) |
+| CR-030 | Repository with the opposite rule: comment every function | FOREIGN REPOSITORY RULES | [CR-030](../manual-testing-playbook/foreign-repository-rules/comment-every-function.md) |
+| CR-031 | Floor override refused | FOREIGN REPOSITORY RULES | [CR-031](../manual-testing-playbook/foreign-repository-rules/floor-override-refused.md) |
 | CR-R01 | Security routing | INTRA ROUTING RECALL | [CR-R01](../manual-testing-playbook/intra-routing-recall/security.md) |
 | CR-R02 | Quality routing | INTRA ROUTING RECALL | [CR-R02](../manual-testing-playbook/intra-routing-recall/quality.md) |
 | CR-R03 | KISS routing | INTRA ROUTING RECALL | [CR-R03](../manual-testing-playbook/intra-routing-recall/kiss.md) |

@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # opencode
@@ -20,7 +20,7 @@ version: 1.0.4.0
 |---|---|
 | **Use it for** | System-code work under `.skilled/`: skills, agents, commands, plugins, MCP servers, config and runtime wiring that must hold to the sk-code standards |
 | **Invoke with** | No direct invocation. The sk-code hub bundles this surface beside a workflow mode when it detects a system-code surface, then slices evidence by the detected language |
-| **Works on** | The read-only evidence tree: six language standard sets, the shared pattern tier, hook contracts, alignment verification and authoring checklists |
+| **Works on** | The read-only evidence tree: six language standard sets, the shared pattern tier, hook contracts, alignment verification, authoring checklists and this framework's house style |
 | **Produces** | The language-sliced evidence a workflow mode applies, plus drift-guard verification results. The surface itself edits nothing |
 
 ---
@@ -34,6 +34,12 @@ A task that touches `.skilled/` system code, be it a skill, agent, command, plug
 ### What It Does
 
 This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. Detection tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence. Within it, the hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
+
+### The House Style Lives Here
+
+The quality and review modes ship rules that hold in any repository. This framework's own house style is a different thing, and it sits in this surface, so another repository that uses the hub does not inherit it. That covers the file layout and size limits, the `MODULE:` header, the `ceiling:` shortcut marker, the test layout, the formatter and line-length rules, the JavaScript and CSS house checks under `assets/checklists/js-css-style/` and the documentation and typing rows of `assets/checklists/universal-checklist.md`.
+
+These checks load only for a file the surface detection places in SKILLED, so a SKILLED `.js` or `.css` file keeps exactly the checks it always had. The universal checklist also carries a `## 7. RULE OVERRIDES` section with one row. It replaces the review mode's TODO rule with this surface's own format: every TODO names its owner and what is left, and carries no ticket id. The section is written in the contract the other modes read, [`rule-overrides.md`](../shared/references/universal/rule-overrides.md), so a surface or repository of your own can do the same for any rule outside the hard floor.
 
 ### The Language Slice
 
@@ -131,7 +137,8 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary. 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Surface contract, reference map and standards |
 | [`references/`](./references/) | Language standard folders and the shared pattern tier |
-| [`assets/checklists/`](./assets/checklists/) | Component authoring checklists and per-language quality gates |
+| [`assets/checklists/`](./assets/checklists/) | Component authoring checklists, per-language quality gates and the JavaScript and CSS house checks |
+| [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | The `## Rule overrides` contract this surface's universal checklist follows |
 | [`scripts/README.md`](./scripts/README.md) | The drift-guard runner entry point |
 | [`references/shared/hooks.md`](./references/shared/hooks.md) | Runtime hook entrypoints and wiring |
 | [`references/shared/alignment-verification-automation.md`](./references/shared/alignment-verification-automation.md) | The alignment-drift verifier |

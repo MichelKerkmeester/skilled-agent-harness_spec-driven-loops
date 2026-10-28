@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doctor:sk-code"
   - "sk-code setup battery"
   - "doctor sk-code quality"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code Setup And Quality Doctor (/doctor:sk-code)
@@ -27,7 +27,7 @@ The command is a thin router over two workflows. `setup` is the default target a
 
 ### Quality Target
 
-`/doctor:sk-code quality` drives the config script in three modes. `status` reports the config source, its errors, the trust state and a probe of each tool a check names. `check` validates the config and reports its errors and trust state with no tool probe. `init` prints the template filled with the suggested checks and writes nothing, and its apply step creates the file once and refuses with `CONFIG_EXISTS` when one exists. `--dry-run` shows the init plan and stops before the write. The doctor never runs a configured command.
+`/doctor:sk-code quality` drives the config script in three modes. `status` reports the config source, its errors, the trust state, a probe of each tool a check names, the hygiene layers and a `Hygiene:` line that names the core rules the config switches off. `check` validates the config and reports its errors and trust state with no tool probe. `init` prints the template filled with the suggested checks and writes nothing, and in a repository with no `specs/` folder it also suggests the 15 spec-kit vocabulary rules for `commentHygiene.disableRules` without writing them, and its apply step creates the file once and refuses with `CONFIG_EXISTS` when one exists. `--dry-run` shows the init plan and stops before the write. The doctor never runs a configured command.
 
 ---
 

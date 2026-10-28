@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.32.0
+version: 2.2.33.0
 ---
 
 # sk-code
@@ -21,7 +21,7 @@ version: 2.2.32.0
 | **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
 | **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
 | **Works on** | The shared surface-detection router for the two surfaces the hub `SKILL.md` lists: the native SKILLED surface and the `sk-code-ci` CI standards surface |
-| **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface |
+| **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface. The quality and review modes work in any repository and read that repository's own rule overrides |
 
 ---
 
@@ -45,8 +45,8 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 
 | Mode | Owns | Pointer |
 |---|---|---|
-| `sk-code-quality` | Author-side quality gates, comment hygiene and surface checklists | [`README.md`](./sk-code-quality/README.md) |
-| `sk-code-review` | Findings-first review, security and correctness baseline, review output cache | [`README.md`](./sk-code-review/README.md) |
+| `sk-code-quality` | Author-side quality gates, comment hygiene and surface checklists, with a hard floor and rules a repository can change | [`README.md`](./sk-code-quality/README.md) |
+| `sk-code-review` | Findings-first review: a fixed security and correctness floor, a default lens a repository can change, review output cache | [`README.md`](./sk-code-review/README.md) |
 
 **Surface evidence packets (read-only and advisor-invisible, bundled alongside a workflow mode):**
 
@@ -76,6 +76,12 @@ The implement → debug → verify phases are not standalone modes. Their surfac
 - `workflow-implement.md` for the authoring pass
 - `workflow-debug.md` for the repair pass
 - `workflow-verify.md` for the proof pass
+
+### Rules A Repository Can Change
+
+The quality and review modes ship defaults, and a repository does not have to accept them. Each rule has an id. A small hard floor is fixed everywhere: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup, accessibility for UI code, and the review severity ids and reach rule. Every other rule can be dropped or replaced.
+
+A repository does that in a `## Rule overrides` section of a checklist its `.sk-code/quality.json` names, and a surface does it in the checklists its declaration names. Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding. `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together. The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
 
 ### One Advisor Identity
 
@@ -160,7 +166,7 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
 ```
 
-`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg. `/doctor:sk-code quality` shows which quality config the gate reads and checks it, and when there is none it creates `.sk-code/quality.json` once after you approve. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
+`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg. `/doctor:sk-code quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off, and when there is none it creates `.sk-code/quality.json` once after you approve. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
 
 ---
 
@@ -199,7 +205,8 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
-| [`changelog/v3.9.1.0.md`](./changelog/v3.9.1.0.md) | The newest hub release entry |
+| [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md) | The `## Rule overrides` contract, the hard floor and the precedence both modes read |
+| [`changelog/`](./changelog/) | The hub release entries, newest first by version |
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
 | [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |

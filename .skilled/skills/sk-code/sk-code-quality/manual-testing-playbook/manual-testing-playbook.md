@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -148,7 +148,7 @@ This section records wave planning for the manual testing package. It is not a r
 
 ---
 
-## 7. QUALITY GATE (`CQ-001..CQ-011`)
+## 7. QUALITY GATE (`CQ-001..CQ-013`)
 
 ### CQ-001 | Quality gate routes to the sk-code-quality checklist
 
@@ -348,6 +348,42 @@ Desired user-visible outcome: two findings naming the two bad files, a `RAN_FAIL
 
 > **Feature File:** [CQ-011](quality-gate/parallel-syntax-pool.md)
 
+### CQ-012 | A repository that switches a hygiene rule off is not blocked by it
+
+#### Description
+
+Verify that a repository whose comments carry a tracker reference reads `NO_BLOCKER_FOUND` once `commentHygiene.disableRules` names the rule, that the verdict lists the rule in `config.hygiene.disabled`, that the same file takes the blocking gate value when the key is removed, and that the resolver shows the repository checklist's `## Rule overrides` rows.
+
+#### Scenario Contract
+
+Fixture: a scratch folder with no git history, holding one source file with a `// Fixes #12` comment, a quality config that names a style document and sets `disableRules` to `["issue"]`, and the style document with two `none` rows.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner over the one file with the key, without it, and in explain form.
+
+Desired user-visible outcome: the run with the key reads `NO_BLOCKER_FOUND` with exit 0 and names `hygiene.issue` as disabled, and the run without it takes the blocking gate value with exit 1 and one `hygiene.issue` finding.
+
+#### Test Execution
+
+> **Feature File:** [CQ-012](quality-gate/disabled-hygiene-rules.md)
+
+### CQ-013 | A hard-floor rule cannot be overridden or disabled
+
+#### Description
+
+Verify that a `## Rule overrides` row naming `floor.input-validation` is refused by the linter with exit 1 and reported by the resolver as a refused checklist with no rows, and that a `commentHygiene.disableRules` id the shared contract fixes stops the gate with `CONFIG_INVALID` and exit 3.
+
+#### Scenario Contract
+
+Fixture: a scratch folder with no git history, holding one source file, a quality config that names a style document, and the style document with one `none` row for the input validation rule. A later step adds `disableRules` set to `["secret.private-key"]`.
+
+Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the linter, the resolver and the built-in runner.
+
+Desired user-visible outcome: the linter exits 1 naming the floor rule, the resolver reports the checklist as refused, and the gate reads `ERROR` with exit 3 for the fixed hygiene id.
+
+#### Test Execution
+
+> **Feature File:** [CQ-013](quality-gate/floor-override-refused.md)
+
 ---
 
 ## 8. AUTOMATED TEST CROSS-REFERENCE
@@ -356,6 +392,8 @@ Desired user-visible outcome: two findings naming the two bad files, a `RAN_FAIL
 |---|---|---|
 | `scripts/tests/check-comment-hygiene.test.sh` | Comment-hygiene checker violations, skips and exit codes | CQ-001 |
 | `scripts/hooks/claude-posttooluse.test.sh` | A `node --check` syntax check of the edit-time hook adapter, plus a broken copy that must fail it | CQ-001 |
+| `scripts/tests/quality-gate.test.cjs` | The runner's gates, exit codes, `disableRules` cases and the explain output | CQ-012, CQ-013 |
+| `../../shared/scripts/tests/check-rule-overrides.test.cjs` | The override linter, including the hard-floor refusals | CQ-013 |
 
 No test for target-path checklist routing was found in this package. CQ-001 checks the prompt-intent route only.
 
@@ -376,3 +414,5 @@ No test for target-path checklist routing was found in this package. CQ-001 chec
 | CQ-009 | Untrusted config reads SKIPPED_UNTRUSTED until the operator grants trust | QUALITY GATE | [CQ-009](quality-gate/untrusted-config.md) |
 | CQ-010 | A checklist row fault stays scoped to the files its declaration reaches | QUALITY GATE | [CQ-010](quality-gate/scoped-checklist-faults.md) |
 | CQ-011 | A multi-file change gets one syntax finding per bad file from the parallel pool | QUALITY GATE | [CQ-011](quality-gate/parallel-syntax-pool.md) |
+| CQ-012 | A repository that switches a hygiene rule off is not blocked by it | QUALITY GATE | [CQ-012](quality-gate/disabled-hygiene-rules.md) |
+| CQ-013 | A hard-floor rule cannot be overridden or disabled | QUALITY GATE | [CQ-013](quality-gate/floor-override-refused.md) |

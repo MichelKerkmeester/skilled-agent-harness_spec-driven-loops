@@ -110,6 +110,7 @@ Target: .sk-code/quality.json
 Checks to enable, each not required:
    [id] from [manifest]: [argv]
 Outranked by: [the git config skcode.qualityConfig path, or nothing]
+Suggested, not written: [commentHygiene.disableRules and the rule list, or nothing]
 Nothing has been written yet.
 ```
 
@@ -136,6 +137,7 @@ Status: [OK|CANCELLED|FAIL]
 Mutation class: mutates
 Config: [path and source, or none]
 Trust: [trusted, untrusted or none]
+Hygiene: [every core rule applies, or the rules disabled]
 Tools: [N] PASS, [N] SKIP, [N] DEGRADED
 Applies: [N] checklists, [N] override rows, [N] refused sections, [N] hygiene rules, [N] disabled
 Errors: [N]
@@ -174,6 +176,8 @@ STATUS=ERROR ERROR="[message]"
 | The quality status reports CONFIG_PATH_MISSING | Create the named file, or fix the `--config` value or the `skcode.qualityConfig` git config value that names it |
 | Quality init reports CONFIG_EXISTS | The file is kept and never overwritten. Edit it by hand, or delete it and rerun `/doctor:sk-code quality` |
 | Quality init reports OUTSIDE_REPOSITORY | `.sk-code` is a link that leads out of the repository. Replace it with a real folder, then rerun |
+| The quality init plan suggests hygiene rules | The repository has no `specs/` folder, so the spec-kit vocabulary rules would only block it. Add the ones you want to `commentHygiene.disableRules` by hand, because the doctor never writes them |
+| A `commentHygiene.disableRules` id is rejected | An unknown id, or one the shared contract fixes such as `secret.private-key`, is a CONFIG_INVALID error. Use a core hygiene rule id from `references/quality-config.md`, then rerun |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

@@ -1,6 +1,6 @@
 ---
 title: "sk-code: Feature Catalog"
-description: "Current-state inventory for the sk-code hub, covering its two-axis registry-driven routing, the compiled-routing fast path, the quality gate and its repository config, the sk-code and CI doctors and review reach calibration."
+description: "Current-state inventory for the sk-code hub, covering its two-axis registry-driven routing, the compiled-routing fast path, the quality gate and its repository config, the rule overrides a repository can set, the sk-code and CI doctors, review reach calibration and the review floor, lens and agent verdict."
 trigger_phrases:
   - "sk-code feature catalog"
   - "sk-code hub capabilities"
@@ -8,8 +8,8 @@ trigger_phrases:
   - "sk-code compiled routing"
   - "sk-code quality gate"
   - "sk-code doctor commands"
-last_updated: "2026-10-27"
-version: 1.0.5.0
+last_updated: "2026-10-28"
+version: 1.0.6.0
 ---
 
 # sk-code: Feature Catalog
@@ -20,7 +20,7 @@ This catalog inventories the live `sk-code` hub surface. The skill advisor route
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `sk-code` hub. The hub does not implement or debug code itself. It is a declarative router that hands the resolved workflow mode (plus bundled surface evidence) to the correct nested packet. Sections 4 to 6 inventory the features the modes and their doctor commands ship: the quality gate and its repository config, the sk-code and CI doctors and the review reach rule.
+Use this catalog as the current-state inventory for the `sk-code` hub. The hub does not implement or debug code itself. It is a declarative router that hands the resolved workflow mode (plus bundled surface evidence) to the correct nested packet. Sections 4 to 6 inventory the features the modes and their doctor commands ship: the quality gate and its repository config, the rule overrides a repository can set, the sk-code and CI doctors, the review reach rule and the review floor, lens and agent verdict.
 
 ---
 
@@ -84,11 +84,25 @@ A committed .sk-code/quality.json names the commands a repository runs as qualit
 
 #### Current Reality
 
-Discovery takes the first of `--config`, a stored `skcode.qualityConfig`, `.sk-code/quality.json` and none. A configured command runs as an argv array with no shell inside the workspace guard, and an untrusted config reads `SKIPPED_UNTRUSTED` with a repair line.
+Discovery takes the first of `--config`, a stored `skcode.qualityConfig`, `.sk-code/quality.json` and none. A configured command runs as an argv array with no shell inside the workspace guard, and an untrusted config reads `SKIPPED_UNTRUSTED` with a repair line. The same file can switch named comment-hygiene rules off through `commentHygiene.disableRules`.
 
 #### Source Files
 
 See [`quality-gate/repository-quality-config.md`](quality-gate/repository-quality-config.md) for discovery, the schema, the trust boundary and source anchors.
+
+### Rule Overrides And Hygiene Policy
+
+#### Description
+
+A repository drops or replaces any quality or review rule outside a fixed hard floor, in a `## Rule overrides` section of a checklist it already declares and in `commentHygiene.disableRules`.
+
+#### Current Reality
+
+The shared linter refuses a row that names a hard-floor id, and the quality runner's explain entry shows each declared checklist's parsed rows for several files at once. The runner, the pre-commit hook and the CI job honor the hygiene key together, and the verdict lists the disabled rules in `config.hygiene.disabled`.
+
+#### Source Files
+
+See [`quality-gate/rule-overrides-and-hygiene-policy.md`](quality-gate/rule-overrides-and-hygiene-policy.md) for the section format, the hard floor, the explain output and source anchors.
 
 ---
 
@@ -102,7 +116,7 @@ See [`quality-gate/repository-quality-config.md`](quality-gate/repository-qualit
 
 #### Current Reality
 
-`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` writes `.sk-code/quality.json` only after approval and never over an existing file.
+`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` names the hygiene rules the config switches off, suggests the spec-kit rules for a repository with no `specs/` folder without writing them, and writes `.sk-code/quality.json` only after approval and never over an existing file.
 
 #### Source Files
 
@@ -139,3 +153,31 @@ Out-of-contract input is P2 hardening unless the code claims to validate it, and
 #### Source Files
 
 See [`review-calibration/review-reach-calibration.md`](review-calibration/review-reach-calibration.md) for the rule, its exceptions and source anchors.
+
+### Review Floor, Default Lens And Rule Overrides
+
+#### Description
+
+The review mode keeps a fixed floor of security and correctness rules, applies a default lens a repository can change and records every rule source on one `Rule sources:` line.
+
+#### Current Reality
+
+Each checklist rule carries an id. The review reads a file's checklists and parsed override rows from the quality runner's explain entry, applies them by the shared precedence and lists applied, refused, ignored and conflicting rows. A hygiene rule the repository switched off raises no review finding.
+
+#### Source Files
+
+See [`review-calibration/review-floor-lens-and-overrides.md`](review-calibration/review-floor-lens-and-overrides.md) for the ids, the precedence, the outcomes and source anchors.
+
+### Review Agent Severity Verdict
+
+#### Description
+
+The `@review` agent applies the review mode's rules and decides pass or fail from severity alone, with its 100-point score kept as advisory information.
+
+#### Current Reality
+
+Any P0 finding, or an open P1, means `REQUESTED_CHANGES` and a failed gate. Every report format uses the mode's three status values, `@orchestrate` adds the `CODE-REVIEW` marker to a review dispatch, and the report checkers fail a verdict that contradicts its findings.
+
+#### Source Files
+
+See [`review-calibration/review-agent-severity-verdict.md`](review-calibration/review-agent-severity-verdict.md) for the verdict table, the dispatch marker and source anchors.

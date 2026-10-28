@@ -1,7 +1,7 @@
 ---
 title: "CR-024 -- Rule-invariant canary"
 description: "This scenario validates the rule-invariant canary for `CR-024`. It focuses on check-rule-copies.js passing when the verdict triplet and cross-doc Iron Law wording agree and failing closed when any copy drifts, and that both documented example outputs end on a Not checked line then the exact status line."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CR-024 -- Rule-invariant canary
@@ -51,6 +51,8 @@ Operators run the exact prompt and command sequence for `CR-024` and confirm the
 ### Optional Supplemental Checks
 
 If the primary run passes, delete or move the canary and confirm `.github/workflows/rule-canary-sync.yml` would fail closed (its guard errors when the canary is missing). Keep supplemental evidence separate from the primary verdict and restore the canary afterward.
+
+To check the skill's own pins the way another repository would, run `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js --mode-only` from any folder outside this checkout. It prints `OK: mode rule invariants present (7 exact-string file(s) + 1 Iron Law file(s) + 6 extension floor(s) + 2 example output(s)).` and a `SKIPPED:` line that names the three `AGENTS.md` checks, and exits 0.
 
 ---
 

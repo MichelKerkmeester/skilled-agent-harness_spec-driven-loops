@@ -1,6 +1,6 @@
 ---
 title: "sk-code-review mode"
-description: "sk-code family review mode: stack-agnostic findings-first code review baseline that enforces security and correctness minimums, classifies every finding by blocking severity and ends with a machine-parsable approval status."
+description: "sk-code family review mode: stack-agnostic findings-first code review baseline that enforces a fixed floor of security and correctness minimums, applies a default lens a repository can change, classifies every finding by blocking severity and ends with a machine-parsable approval status."
 trigger_phrases:
   - "code review"
   - "review"
@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.7.0
+version: 1.7.8.0
 ---
 
 # sk-code-review mode
@@ -24,7 +24,7 @@ version: 1.7.7.0
 | **Use it for** | Stack-agnostic code review with blocking severity, file:line evidence and a machine-parsable approval verdict |
 | **Invoke with** | `@review` agent dispatch, the "code review", "review", "pull request" and "security review" keywords |
 | **Works on** | Diffs, staged files, commit ranges or explicit file lists |
-| **Produces** | Severity-ranked findings (P0/P1/P2), a removal plan, next steps and one exact `Review status:` line |
+| **Produces** | Severity-ranked findings (P0/P1/P2), a `Rule sources:` line naming the rules applied, a removal plan, next steps and one exact `Review status:` line |
 
 ---
 
@@ -32,13 +32,15 @@ version: 1.7.7.0
 
 ### Why This Mode Exists
 
-An ad-hoc review reads the diff once and reports whatever the reviewer happened to notice. Security gaps slip through. Correctness bugs get a mention but no evidence. A single generic checklist cannot capture a specific stack's idioms and its build and test commands, but a per-stack reviewer would need rebuilding for every language. Without a fixed output shape, downstream automation cannot tell an approval from a request for changes.
+An ad-hoc review reads the diff once and reports whatever the reviewer happened to notice. Security gaps slip through. Correctness bugs get a mention but no evidence. A single generic checklist cannot capture a specific stack's idioms and its build and test commands, but a per-stack reviewer would need rebuilding for every language. Without a fixed output shape, downstream automation cannot tell an approval from a request for changes. And a reviewer that carries one house style into every repository raises findings the repository has already decided against.
 
-The `sk-code-review` mode of the sk-code family fixes this. It pairs a stack-agnostic baseline that always enforces security and correctness minimums with surface-specific standards loaded through sk-code. Every review ends with one exact status line a gate can parse.
+The `sk-code-review` mode of the sk-code family fixes this. It pairs a stack-agnostic floor that always enforces security and correctness minimums with a default lens a repository can change, and with surface-specific standards loaded through sk-code. Every review ends with one exact status line a gate can parse.
 
 ### What It Does
 
 The `sk-code-review` mode is the single-pass review baseline for the `@review` agent. It classifies every finding by blocking severity with file:line evidence on P0 and P1 findings, orders the report by severity and closes with one exact status line. It is read-only on the target: it reports findings and never edits the code under review.
+
+The `@review` agent applies this mode's rules and keeps no checklist of its own. Its verdict follows severity alone: any P0 finding, or an open P1, means `REQUESTED_CHANGES` and a failed gate. Its 100-point score is advisory and never decides a verdict.
 
 It is not the multi-iteration loop. `deep-review` owns iterative passes with JSONL state and tracked convergence. `sk-code` supplies the surface style and build and test standards that pair with the baseline. The boundary is single-pass versus iterative: use this mode when you want one report. Use deep-review when the scope demands multiple passes.
 
@@ -75,6 +77,7 @@ The advisor prints the recommended skill route when confidence lands at or above
 **Baseline used**: sk-code (sk-code-review)
 **Surface evidence used**: SKILLED
 **Quality gate evidence**: absent
+Rule sources: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md. Overrides: review.todo-tracking replace from .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md. Refused: none. Ignored: none. Conflicts: none
 
 ## Findings
 
@@ -105,7 +108,7 @@ Not checked: the permission guard's behavior for service accounts; no fixture co
 Review status: REQUESTED_CHANGES
 ```
 
-The final line is always exactly one of the three status values below, with no trailing whitespace. Downstream automation parses it by exact string match. The line above it, after one blank line, is the `Not checked:` line.
+The `Rule sources:` line lists the checklists the review read and every override it applied, refused, ignored or found in conflict, with `none` for an empty group. The final line is always exactly one of the three status values below, with no trailing whitespace. Downstream automation parses it by exact string match. The line above it, after one blank line, is the `Not checked:` line.
 
 - `Review status: APPROVED`
 - `Review status: REQUESTED_CHANGES`
@@ -117,7 +120,7 @@ The final line is always exactly one of the three status values below, with no t
 node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
-Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs and both example outputs end on a `Not checked:` line followed by the exact status line. The full run also reads this repository's `AGENTS.md`. In another repository, add `--mode-only` to check only the skill's own pins: it prints a `SKIPPED:` line for the `AGENTS.md` checks and runs from any folder. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
+Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs, the resolver step and the four floor ids stay pinned, and both example outputs end on a `Not checked:` line followed by the exact status line. The full run also reads this repository's `AGENTS.md`. In another repository, add `--mode-only` to check only the skill's own pins: it prints a `SKIPPED:` line for the `AGENTS.md` checks and runs from any folder. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
 
 ---
 
@@ -127,9 +130,13 @@ Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep acros
 
 Findings-first means the review runs security and correctness checks before anything else. After those come quality and performance, then architecture (KISS, DRY, SOLID) and finally removal opportunities. This order keeps the blocking risks at the top where a merge decision needs them.
 
-### Baseline Plus Surface
+### Floor, Default Lens And Surface
 
-The baseline minimums from the `sk-code-review` mode are always enforced and never relaxed by surface guidance. Security and correctness checks are non-negotiable. When a code surface is detected, sk-code supplies the surface style and build and test standards that override the baseline's generic guidance on those topics. When the surface is unknown, the review runs baseline-only and discloses the uncertainty. When baseline and surface guidance conflict in a way that cannot be resolved, the reviewer escalates instead of guessing.
+The floor is the part of the review no repository and no surface can change: the severity ids, the reach rule and the baseline security and correctness minimums. Those checks are non-negotiable. Everything else is the default lens, the mode's own view of maintainable code, such as function length, nesting depth or the Rule of Three. Each lens rule has an id in `references/review-core.md` section 8, and a repository can drop it or replace it.
+
+A repository does that with a `## Rule overrides` section in a checklist its quality config or a surface declaration already names. The review does not search for such a section. It asks the quality runner's `--explain` entry, which names each reviewed file's surfaces, checklists and parsed override rows, and applies them by the contract's precedence: the floor, then the repository checklist, then a specific surface, then the SKILLED fallback, then the default lens. A comment-hygiene rule the repository switched off in its quality config raises no review finding either.
+
+When a code surface is detected, sk-code supplies the surface style and build and test standards that override the lens's generic guidance on those topics. A surface the hub's router bundles from request words is only a candidate, and it applies to the files the resolver places in it. When the surface is unknown, the review runs on the floor and the default lens and discloses the uncertainty. When two sources at the same level disagree on one rule, the review applies the default, lists the conflict on the `Rule sources:` line and asks the repository to settle it.
 
 ### Single Pass
 
@@ -166,10 +173,13 @@ Reach for the `sk-code-review` mode when you want severity-ranked findings with 
 |---|---|---|
 | Findings missing severity labels | The reviewer skipped classification | Every finding must carry a severity level from `references/review-core.md` |
 | Security minimums not enforced | The security checklist was skipped or downgraded | The security and code quality checklists are non-negotiable. Rerun with them loaded. |
+| A rule the repository dropped still shows up as a finding | The override section is not in a checklist a declaration names, or the linter refused it | Run `node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.md>` and read the `Refused:` group of the `Rule sources:` line |
+| The `Rule sources:` line lists a checklist under `Refused:` | The section names a floor id, a `replace:` row on a machine-checked id or a repeated id | Remove the row. A floor rule cannot be overridden, and `commentHygiene.disableRules` is the way to switch off a hygiene rule |
 | Findings arrive across multiple messages | The reviewer broke the single-pass contract | Collect all findings and emit in one message. Single-pass is the rule. |
 | Surface evidence claimed without source | sk-code returned UNKNOWN or was not loaded | Fall back to baseline-only and disclose that the surface was not detected |
 | Baseline and surface guidance conflict | Precedence is ambiguous | Escalate and ask. Do not guess which rule wins. |
 | Output omits the Review status line | The reviewer missed the final-line contract | Every review must end with one exact `Review status:` line from the output contract |
+| `@review` reports a low score and still passes the gate | The score is advisory | The verdict follows severity alone: only a P0 or an open P1 fails the gate |
 
 ---
 
@@ -191,6 +201,10 @@ A: The `sk-code-review` mode is the single-pass baseline. One report, one status
 
 A: The surface packets (`sk-code-skilled`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
 
+**Q: Can a repository switch off a review rule?**
+
+A: Yes, for any rule outside the floor. Add a row to the `## Rule overrides` section of a checklist the repository already declares: `none` drops the rule, and `replace: <text>` puts the text in its place at the same severity. The `Rule sources:` line in the report records each override the review applied. The shared contract is `../shared/references/universal/rule-overrides.md`.
+
 **Q: Why the mandatory status line?**
 
 A: Downstream automation reads the final line by exact string match to decide whether to block the merge or pass it through with changes requested. The three values are the contract. No variation is accepted.
@@ -203,7 +217,8 @@ A: Downstream automation reads the final line by exact string match to decide wh
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` reports zero issues under the playbook rule set |
-| Rule invariants | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
+| Rule invariants | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet, the cross-doc Iron Law wording, the resolver step and the four floor ids). In another repository add `--mode-only` |
+| Report shape | `node .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js <review-output>` and `check-review-findings.js <review-output>` exit 0. The first also checks the `Rule sources:` line when it is present |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/<scenario>.md` (bare descriptive slugs, no numeric prefix) in a live session |
 
 ---
@@ -213,8 +228,9 @@ A: Downstream automation reads the final line by exact string match to decide wh
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router and the full rule set |
-| [`references/review-core.md`](./references/review-core.md) | Shared doctrine: severity taxonomy, evidence rules and baseline-plus-surface precedence |
+| [`references/review-core.md`](./references/review-core.md) | Shared doctrine: severity taxonomy, evidence rules, the floor, the default lens and its rule ids, rule overrides and the `Rule sources:` line |
 | [`references/review-ux-single-pass.md`](./references/review-ux-single-pass.md) | Single-pass report flow and the next-action prompt |
+| [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | The shared override format, rule ids, hard floor and precedence the review and quality modes both read |
 | [`assets/security-checklist.md`](./assets/security-checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
 | [`assets/code-quality-checklist.md`](./assets/code-quality-checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
 | [`assets/solid-checklist.md`](./assets/solid-checklist.md) | SOLID principles and architecture smell detection |

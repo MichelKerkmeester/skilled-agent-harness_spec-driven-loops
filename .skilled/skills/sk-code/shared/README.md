@@ -8,7 +8,7 @@ trigger_phrases:
   - "sk-code surface detection"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # sk-code shared
@@ -23,7 +23,7 @@ version: 1.2.1.0
 
 This README is also the hub's zero-signal fallback. [`../hub-router.json`](../hub-router.json) names this file as `routerPolicy.defaultResource`, and the router offers it with the disambiguation checklist when a prompt scores no mode. A scored route never loads it.
 
-The folder ships reference files and one linter that both workflow modes will call, with no assets or graph metadata. Authoritative content lives in the linked files. This page only says what each one is for and who reads it.
+The folder ships reference files and one linter that both workflow modes read their rule overrides through, with no assets or graph metadata. Authoritative content lives in the linked files. This page only says what each one is for and who reads it.
 
 ---
 
@@ -91,7 +91,7 @@ Edit the file under [`./references/`](./references/). A symlink resolves to it, 
 
 | File | Purpose | Read by |
 |---|---|---|
-| [`references/universal/code-quality-standards.md`](./references/universal/code-quality-standards.md) | The stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate | `sk-code-quality` before any implementation-done claim, the `../ROUTER.md` preamble, the `sk-code-review` rule-copy check |
+| [`references/universal/code-quality-standards.md`](./references/universal/code-quality-standards.md) | The stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate, with an id and a FIXED or overridable mark on each floor rule | `sk-code-quality` before any implementation-done claim, the `../ROUTER.md` preamble, the `sk-code-review` rule-copy check |
 | [`references/universal/rule-overrides.md`](./references/universal/rule-overrides.md) | The shared contract for a checklist's optional `## Rule overrides` section: row format, rule ids, the hard floor, precedence and how an override is recorded. The floor ids live once in [`references/universal/rule-overrides.json`](./references/universal/rule-overrides.json) | `sk-code-quality`, `sk-code-review`, which adopts it in `review-core.md` section 8, and the linter below |
 | [`scripts/check-rule-overrides.cjs`](./scripts/check-rule-overrides.cjs) | Checks a checklist's override section, refuses any floor id and is the only path a mode reads a section through. Run `node --test .skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs` for its suite. `review-lens-overrides.test.cjs` checks the review mode's floor and lens ids, its TODO rule's hygiene mapping and the SKILLED surface rows against the contract | Authors of a checklist with an override section, `sk-code-quality` through `--explain`, and `sk-code-review`, which reads the rows the resolver returns |
 
