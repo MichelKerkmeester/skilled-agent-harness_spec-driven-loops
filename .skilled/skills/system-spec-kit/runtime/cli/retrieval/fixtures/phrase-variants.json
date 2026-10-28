@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9b9b4cec41e1e328baede3d67ca305bc7d5413a58610b2cb3be5fccf0a6d1528",
+  "manifestHash": "aef42b67ec9a8a08d4103c1d18aa37f8b8caf93bf5722c5ad1ae23b3c4ac811e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -87318,6 +87318,9 @@
     "review dedup cache retention": [
       "review dedup cache retention"
     ],
+    "review default lens overrides": [
+      "review default lens overrides"
+    ],
     "review definition of done": [
       "review definition of done"
     ],
@@ -87399,6 +87402,24 @@
     "review first implement second": [
       "review first implement second"
     ],
+    "review floor default lens and rule overrides": [
+      "review floor default lens and rule overrides"
+    ],
+    "review floor lens overrides": [
+      "review floor lens overrides"
+    ],
+    "review floor lens overrides acceptance criteria": [
+      "review floor lens overrides acceptance criteria"
+    ],
+    "review floor lens overrides implementation summary": [
+      "review floor lens overrides implementation summary"
+    ],
+    "review floor lens overrides plan": [
+      "review floor lens overrides plan"
+    ],
+    "review floor lens overrides tasks": [
+      "review floor lens overrides tasks"
+    ],
     "review focus flag": [
       "review focus flag"
     ],
@@ -87473,6 +87494,9 @@
     ],
     "review leaf protocol": [
       "review leaf protocol"
+    ],
+    "review lens override tests": [
+      "review lens override tests"
     ],
     "review lens tasks": [
       "review lens tasks"
@@ -87606,6 +87630,9 @@
     ],
     "review reach calibration": [
       "review reach calibration"
+    ],
+    "review reads quality explain": [
+      "review reads quality explain"
     ],
     "review record fixture tasks": [
       "review-record fixture tasks"
@@ -87771,6 +87798,9 @@
     ],
     "review rows reconciliation tasks": [
       "review rows reconciliation tasks"
+    ],
+    "review rule sources line": [
+      "review rule sources line"
     ],
     "review run open plan": [
       "review run open plan"
@@ -89290,6 +89320,9 @@
     ],
     "rule severity levels": [
       "rule severity levels"
+    ],
+    "rule sources line": [
+      "rule sources line"
     ],
     "rule template contract": [
       "rule template contract"
@@ -94804,6 +94837,9 @@
     "sk code 3 9 10 0": [
       "sk-code 3.9.10.0"
     ],
+    "sk code 3 9 11 0": [
+      "sk-code 3.9.11.0"
+    ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
@@ -95797,6 +95833,9 @@
     "sk code review 1 9 4 0": [
       "sk-code-review 1.9.4.0"
     ],
+    "sk code review 1 9 5 0": [
+      "sk-code-review 1.9.5.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -95895,6 +95934,9 @@
     ],
     "sk code review v1 9 4 0": [
       "sk-code-review v1.9.4.0"
+    ],
+    "sk code review v1 9 5 0": [
+      "sk-code-review v1.9.5.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -96055,6 +96097,9 @@
     "sk code skilled 2 1 7 0": [
       "sk-code-skilled 2.1.7.0"
     ],
+    "sk code skilled 2 1 8 0": [
+      "sk-code-skilled 2.1.8.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -96177,6 +96222,9 @@
     ],
     "sk code skilled v2 1 7 0": [
       "sk-code-skilled v2.1.7.0"
+    ],
+    "sk code skilled v2 1 8 0": [
+      "sk-code-skilled v2.1.8.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -96345,6 +96393,9 @@
     ],
     "sk code v3 9 10 0": [
       "sk-code v3.9.10.0"
+    ],
+    "sk code v3 9 11 0": [
+      "sk-code v3.9.11.0"
     ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
@@ -101468,6 +101519,9 @@
     ],
     "skilled style split": [
       "skilled style split"
+    ],
+    "skilled todo format override": [
+      "skilled todo format override"
     ],
     "skilled tree move results": [
       "skilled tree move results"

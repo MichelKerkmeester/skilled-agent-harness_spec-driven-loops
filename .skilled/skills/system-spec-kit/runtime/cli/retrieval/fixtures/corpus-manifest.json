@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5d61392289b1377027f958b5e361c0278e3ff5204f5321a6c35bdbf7494dd8d7",
+  "corpusHash": "37828b6b4ca41a40265da8054122b26a74db2919ae8e83b8823bfca912ce8220",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26626,
+  "includedPathCount": 26635,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2754,6 +2754,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.10.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.11.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -2926,6 +2927,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.5.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2973,6 +2975,7 @@
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-bulleted.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-title-case.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
     ".skilled/skills/sk-code/sk-code-skilled/README.md",
     ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md",
@@ -3028,6 +3031,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.5.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.6.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.7.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.8.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -12565,6 +12569,11 @@
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/plan.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/spec.md",
     "specs/sk-code/017-portable-code-modes/004-quality-resolver/tasks.md",
+    "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/plan.md",
+    "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/spec.md",
+    "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/tasks.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/plan.md",
@@ -26657,7 +26666,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9b9b4cec41e1e328baede3d67ca305bc7d5413a58610b2cb3be5fccf0a6d1528",
+  "manifestHash": "aef42b67ec9a8a08d4103c1d18aa37f8b8caf93bf5722c5ad1ae23b3c4ac811e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29517,6 +29526,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/004-quality-resolver/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/scratch",
       "reason": "excluded directory"
     },
     {

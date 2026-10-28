@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7338,
-    "ok": 15740,
+    "missing-frontmatter": 7339,
+    "ok": 15748,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26626,
+  "documentsScanned": 26635,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9b9b4cec41e1e328baede3d67ca305bc7d5413a58610b2cb3be5fccf0a6d1528",
+  "manifestHash": "aef42b67ec9a8a08d4103c1d18aa37f8b8caf93bf5722c5ad1ae23b3c4ac811e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38696,
+      "ok": 38714,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -11450,6 +11450,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -71769,6 +71775,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/004-quality-resolver/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/scratch",
       "reason": "excluded directory"
     },
     {
