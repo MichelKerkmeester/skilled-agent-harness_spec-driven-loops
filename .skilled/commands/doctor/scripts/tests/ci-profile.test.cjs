@@ -85,6 +85,18 @@ test('a profile left at the old repository-root path is refused with its move ta
     && error.message === `${LEGACY_PROFILE_FILE} is no longer read: move it to ${REPO_PROFILE_FILE}`);
 });
 
+// A stale copy must not be reachable by name either, so a --profile path into the old
+// folder is refused even when the file it names is not the one discovery looks for.
+test('a --profile path inside the old repository-root folder is refused with its move target', (t) => {
+  const root = tempRoot(t);
+  for (const named of [LEGACY_PROFILE_FILE, '.sk-code/ci-alternate.json']) {
+    writeProfile(root, named, { schemaVersion: 1 });
+    assert.throws(() => loadProfile({ cliPath: named, cwd: root, root, git: false }), (error) => error instanceof ProfileError
+      && error.code === 'PROFILE_LEGACY_LOCATION'
+      && error.message === `${named} is no longer read: move it to ${REPO_PROFILE_FILE}`);
+  }
+});
+
 test('a repository that installs the skills under .opencode/ reads the same path there', (t) => {
   const root = tempRoot(t);
   writeProfile(root, OPENCODE_PROFILE_FILE, { schemaVersion: 1, defaultBranch: 'trunk' });
@@ -114,6 +126,17 @@ test('a profile written for this repository applies, in either spelling of its n
   assert.equal(loaded.path, path.join(root, REPO_PROFILE_FILE));
   assert.equal('ignored' in loaded, false);
   assert.equal(loaded.profile.defaultBranch, 'trunk');
+});
+
+test('a repository field the pattern refuses is a validation error, not a foreign profile', (t) => {
+  const root = tempRoot(t);
+  writeProfile(root, REPO_PROFILE_FILE, { schemaVersion: 1, repository: 'not a repository', defaultBranch: 'trunk' });
+  const loaded = loadProfile({ root, git: false, env: { GITHUB_REPOSITORY: 'acme/widgets' } });
+  assert.equal(loaded.source, 'repo');
+  assert.equal(loaded.path, path.join(root, REPO_PROFILE_FILE));
+  assert.equal('ignored' in loaded, false);
+  assert.deepEqual(loaded.errors.map((fault) => fault.message), ['repository: "not a repository" must name the repository as owner/name']);
+  assert.equal(loaded.profile, null);
 });
 
 test('a profile with no repository field applies here', (t) => {

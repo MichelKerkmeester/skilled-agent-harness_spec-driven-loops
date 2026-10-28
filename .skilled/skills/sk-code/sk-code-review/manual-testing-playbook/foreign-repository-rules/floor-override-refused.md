@@ -1,7 +1,7 @@
 ---
 title: "CR-031 -- Floor override refused"
 description: "This scenario validates a refused floor override for `CR-031`. It focuses on the shared linter refusing a `none` row on the input validation rule, the resolver marking the checklist refused and the review still enforcing the rule while listing the checklist under `Refused:`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-031 -- Floor override refused
@@ -36,7 +36,7 @@ Fixture build (the builder prints the scratch folder it created):
 
 ```bash
 SCRATCH="$(mktemp -d)"
-mkdir -p "$SCRATCH/.sk-code" "$SCRATCH/docs" "$SCRATCH/src"
+mkdir -p "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository" "$SCRATCH/docs" "$SCRATCH/src"
 cat > "$SCRATCH/src/download.js" <<'JS'
 const fs = require('node:fs');
 const path = require('node:path');
@@ -50,7 +50,7 @@ function download(request, response) {
 
 module.exports = { download };
 JS
-cat > "$SCRATCH/.sk-code/quality.json" <<'JSON'
+cat > "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json" <<'JSON'
 {
   "schemaVersion": 1,
   "checklists": [{ "file": "docs/code-style.md", "extensions": [".js"] }]

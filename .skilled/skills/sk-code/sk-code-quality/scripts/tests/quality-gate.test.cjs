@@ -859,6 +859,27 @@ test('explain several files: a SKILLED file and a foreign file each get their ow
   assert.deepEqual(listed.verdict.errors, []);
 }));
 
+test('explain: a config written for another repository reads none and carries the ignored record', () => withRepo({
+  base: {
+    'app.go': 'package a\n',
+    '.skilled/skills/sk-code/sk-code-quality/repository/quality.json': `\uFEFF${JSON.stringify({ schemaVersion: 1, repository: 'acme/widget' }, null, 2)}\n`,
+  },
+}, (repo) => {
+  const skipped = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'app.go'], { env: { GITHUB_REPOSITORY: 'other/thing' } }));
+  assert.equal(skipped.status, 2);
+  assert.equal(skipped.verdict.config.source, 'none');
+  assert.equal(skipped.verdict.config.path, null);
+  assert.deepEqual(skipped.verdict.config.ignored, {
+    path: path.join(repo.root, '.skilled/skills/sk-code/sk-code-quality/repository/quality.json'),
+    repository: 'acme/widget',
+    current: 'other/thing',
+  });
+
+  const applied = assertSnapshotUnchanged(repo, () => repo.run(['--explain', 'app.go'], { env: { GITHUB_REPOSITORY: 'acme/widget' } }));
+  assert.equal(applied.verdict.config.source, 'repo');
+  assert.ok(!('ignored' in applied.verdict.config));
+}));
+
 test('explain overrides: a valid section is read and a floor override is refused with its error', () => withRepo({
   base: {
     'src/a.go': 'package a\n',

@@ -71,6 +71,12 @@ const ALLOWED = [
   },
 ];
 
+// Repository files a command writes on demand, so a checkout may not hold them yet. A doc may
+// name one before it exists; any other missing path still fails.
+const ON_DEMAND_PATHS = new Set([
+  '.skilled/skills/sk-code/sk-code-quality/repository/quality.json',
+]);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -293,7 +299,7 @@ function checkPaths(hub, docs) {
         if (!isPathCandidate(ref)) continue;
         const candidates = bases(hub, doc, ref);
         const found = candidates.find((p) => fs.existsSync(p));
-        if (candidates.length && !found) problems.push(`${where}: path does not resolve: ${ref}`);
+        if (candidates.length && !found && !ON_DEMAND_PATHS.has(ref)) problems.push(`${where}: path does not resolve: ${ref}`);
         else if (found && anchor && ref.endsWith('.md') && !PLACEHOLDER.test(anchor) && anchorMissing(found, anchor)) {
           problems.push(`${where}: anchor does not resolve: ${ref}#${anchor}`);
         }

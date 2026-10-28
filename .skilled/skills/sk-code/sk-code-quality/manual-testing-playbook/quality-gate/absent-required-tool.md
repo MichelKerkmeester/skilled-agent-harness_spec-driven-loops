@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
   - scripts/quality-gate.cjs
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CQ-006: Absent Required Tool Reports Unverified
@@ -19,7 +19,7 @@ This document captures the run contract, execution process, source anchors and m
 
 ## 1. OVERVIEW
 
-This scenario validates the gate run for `CQ-006`. Fixture F06 commits one repository config, `.sk-code/quality.json`, that names a single required P0 check, then seeds one changed function in `app.go`. The tool the check names is not installed, so the check cannot start. The runner contract says a required check that produced no evidence reads `SKIPPED_ABSENT` with a repair row, and the run is `UNVERIFIED` with exit 4.
+This scenario validates the gate run for `CQ-006`. Fixture F06 commits one repository config, `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`, that names a single required P0 check, then seeds one changed function in `app.go`. The tool the check names is not installed, so the check cannot start. The runner contract says a required check that produced no evidence reads `SKIPPED_ABSENT` with a repair row, and the run is `UNVERIFIED` with exit 4.
 
 The scenario renders both forms the operator uses. The JSON verdict carries the check row, the repair text and the unverified list. The envelope carries the gate, the exit code, the changed file and the handoff field the verify workflow reads, and it carries no pass status.
 
@@ -49,7 +49,7 @@ Run the quality gate with our required lint check missing and tell me what it me
 
 | Fixture part | Content | What the run must say |
 | --- | --- | --- |
-| `.sk-code/quality.json` | one check, `id` `absent-tool`, `argv` of the absent tool and `{files}`, severity `P0` | the row is `SKIPPED_ABSENT`, required, and names the tool in `requires` |
+| `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` | one check, `id` `absent-tool`, `argv` of the absent tool and `{files}`, severity `P0` | the row is `SKIPPED_ABSENT`, required, and names the tool in `requires` |
 | the tool | absent from `PATH` | the check never starts, and the run is unverified rather than clean |
 | `app.go` | one added function on a new line | the changed file appears in `scope.files` and in the envelope's `modified_files` |
 
@@ -86,7 +86,7 @@ const { assertSnapshotUnchanged, buildRepo } = require(path.join(Q, "tests/fixtu
 const repo = buildRepo({
   base: {
     "app.go": "package a\n\nfunc A() {}\n",
-    ".sk-code/quality.json": JSON.stringify({ schemaVersion: 1, checks: [{ id: "absent-tool", argv: ["sk-code-absent-tool", "{files}"], severity: "P0" }] }, null, 2) + "\n",
+    ".skilled/skills/sk-code/sk-code-quality/repository/quality.json": JSON.stringify({ schemaVersion: 1, checks: [{ id: "absent-tool", argv: ["sk-code-absent-tool", "{files}"], severity: "P0" }] }, null, 2) + "\n",
   },
   change: { "app.go": "package a\n\nfunc A() {}\nfunc B() {}\n" },
 });
@@ -98,7 +98,7 @@ try {
   assert.equal(envelopeRun.status, 4);
   assert.equal(verdict.gate, "UNVERIFIED");
   assert.deepEqual([row.state, row.required, row.requires], ["SKIPPED_ABSENT", true, "sk-code-absent-tool"]);
-  assert.match(row.repair, /^install .+ or remove the check from \.sk-code\/quality\.json$/);
+  assert.match(row.repair, /^install .+ or remove the check from \.skilled\/skills\/sk-code\/sk-code-quality\/repository\/quality\.json$/);
   assert.deepEqual(verdict.summary.unverified, ["absent-tool"]);
   assert.equal(verdict.summary.p0_blocking, 0);
   fs.writeFileSync(process.argv[1] + "/envelope.txt", envelopeRun.stdout);
@@ -129,7 +129,7 @@ Step 1 replays F06 and prints `# pass 1` then `# fail 0`. Step 2 shows the confi
 | check `state` | `SKIPPED_ABSENT` |
 | check `required` | `true` |
 | check `requires` | `sk-code-absent-tool` |
-| check `repair` | `install 'sk-code-absent-tool' or remove the check from .sk-code/quality.json` |
+| check `repair` | `install 'sk-code-absent-tool' or remove the check from .skilled/skills/sk-code/sk-code-quality/repository/quality.json` |
 | `summary.unverified` | `["absent-tool"]` |
 | `summary.p0_blocking` | `0` |
 | envelope `modified_files` | `app.go` |

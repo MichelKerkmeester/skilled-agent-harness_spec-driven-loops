@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -302,7 +302,7 @@ Verify that a configured check from a config no trust rule vouches for reads `SK
 
 #### Scenario Contract
 
-Fixture: a temporary repository whose committed `.sk-code/quality.json` names one required configured check, run once without trust and once after the local trust key is set.
+Fixture: a temporary repository whose committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names one required configured check, run once without trust and once after the local trust key is set.
 
 Every scenario assumes the hub has already routed the request to `sk-code-quality`. The scenario then runs the built-in runner twice and reads the check row, the repair line and `config.trust`.
 

@@ -752,6 +752,9 @@ function configSummary(loaded, trust) {
     trust,
     errors: loaded.errors.map((entry) => ({ ...entry, repair: REPAIRS.CONFIG_INVALID })),
     warnings: [],
+    // A committed file that named another repository applied to nothing. The record names
+    // the file and both repositories, so the run does not read as an unconfigured one.
+    ...(loaded.ignored ? { ignored: loaded.ignored } : {}),
     // The core hygiene rules the repository switched off, named the way a finding names
     // its rule, so a reader can see which findings this run could not raise.
     hygiene: { disabled: loaded.merged ? loaded.merged.commentHygiene.disableRules.map((rule) => `hygiene.${rule}`) : [] },

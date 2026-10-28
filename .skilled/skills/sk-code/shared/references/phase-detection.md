@@ -8,7 +8,7 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # Phase Detection and Lifecycle
@@ -106,7 +106,7 @@ These hold on every surface and in every mode. No phase transition relaxes them.
 
 1. **No completion claim without Phase 3 verification evidence.** A clean read, a green unit test or a successful build each prove less than the claim "it works", so only fresh verification output counts.
 2. **No Phase 1 completion claim without the Phase 1.5 quality gate.** Written code is unreviewed code until its P0 items pass.
-3. **No claim about an unsupported surface.** An UNKNOWN surface gets the universal floor in [code-quality-standards.md](./universal/code-quality-standards.md), the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied under [rule-overrides.md](./universal/rule-overrides.md). That config can come from `--config`, the git config key `skcode.qualityConfig` or `.sk-code/quality.json`, and it never supplies a verification command, so the command set still comes from [workflow-verify.md](./workflow-verify.md), which asks for it. The spec-folder authoring checklist applies only where the SKILLED surface resolves. No other standard and no discovered command applies.
+3. **No claim about an unsupported surface.** An UNKNOWN surface gets the universal floor in [code-quality-standards.md](./universal/code-quality-standards.md), the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied under [rule-overrides.md](./universal/rule-overrides.md). That config can come from `--config`, the git config key `skcode.qualityConfig` or `repository/quality.json` in the `sk-code-quality` packet, and it never supplies a verification command, so the command set still comes from [workflow-verify.md](./workflow-verify.md), which asks for it. The spec-folder authoring checklist applies only where the SKILLED surface resolves. No other standard and no discovered command applies.
 
 ---
 

@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
   - scripts/quality-gate.cjs
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CQ-010: A Checklist Row Fault Stays Scoped To The Files Its Declaration Reaches
@@ -169,7 +169,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 2. If repository A reads `NO_BLOCKER_FOUND` with a warning, the changed file did not resolve to the declared surface. Check that the path marker `xsrc/` is a path segment of the file and that the skill's `family` equals the fixture hub folder name, because a skill that declares another family is never read.
 3. If neither list holds the fault, the declaration was not read. Confirm the skill folder is a sibling of the fixture hub and its `graph-metadata.json` parses.
 4. If the gate is `ERROR` with code `CHECKLIST_MISSING`, a valid row's file is absent. The fixture must write `outside-checklist.md` beside the metadata file.
-5. A fault on a checklist row in the repository's own `.sk-code/quality.json` is a different case. That config is validated as a whole, so a bad row there is a config error for the run and never a scoped warning.
+5. A fault on a checklist row in the repository's own `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` is a different case. That config is validated as a whole, so a bad row there is a config error for the run and never a scoped warning.
 
 ---
 

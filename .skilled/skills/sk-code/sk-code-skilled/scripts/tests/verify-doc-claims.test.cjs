@@ -92,6 +92,19 @@ test('known-bad paths: a dead link, a stale path label and a dead backticked pat
   assert.match(out, /bad\.md:3: path does not resolve: shared\/references\/nope\.md/);
 });
 
+test('a repository file a command writes on demand may be named before it exists, and a sibling may not', (t) => {
+  const hub = buildHub(t);
+  write(path.join(hub, 'sk-code-demo', 'references', 'config.md'), [
+    '`.skilled/skills/sk-code/sk-code-quality/repository/quality.json`',
+    '`.skilled/skills/sk-code/sk-code-quality/repository/other.json`',
+    '',
+  ].join('\n'));
+  const { status, out } = run(hub, 'paths');
+  assert.equal(status, 1, out);
+  assert.doesNotMatch(out, /config\.md:1:/);
+  assert.match(out, /config\.md:2: path does not resolve: \.skilled\/skills\/sk-code\/sk-code-quality\/repository\/other\.json/);
+});
+
 test('an allowlisted line only exempts its own file', (t) => {
   const hub = buildHub(t);
   write(path.join(hub, 'sk-code-demo', 'references', 'bad.md'), '<!-- Keywords: code-webflow -->\n');

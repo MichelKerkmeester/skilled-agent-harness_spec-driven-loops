@@ -9,7 +9,7 @@ trigger_phrases:
   - "sk-code quality gate"
   - "sk-code doctor commands"
 last_updated: "2026-10-28"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # sk-code: Feature Catalog
@@ -80,11 +80,11 @@ See [`quality-gate/codebase-agnostic-quality-gate.md`](quality-gate/codebase-agn
 
 #### Description
 
-A committed .sk-code/quality.json names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for.
+A committed `repository/quality.json` in the `sk-code-quality` packet names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for.
 
 #### Current Reality
 
-Discovery takes the first of `--config`, a stored `skcode.qualityConfig`, `.sk-code/quality.json` and none. A configured command runs as an argv array with no shell inside the workspace guard, and an untrusted config reads `SKIPPED_UNTRUSTED` with a repair line. The same file can switch named comment-hygiene rules off through `commentHygiene.disableRules`.
+Discovery takes the first of `--config`, a stored `skcode.qualityConfig`, `repository/quality.json` in the `sk-code-quality` packet and none. A `repository` field limits a copy to the repository it names, and a file at the former root-level `.sk-code/` path is refused rather than read. A configured command runs as an argv array with no shell inside the workspace guard, and an untrusted config reads `SKIPPED_UNTRUSTED` with a repair line. The same file can switch named comment-hygiene rules off through `commentHygiene.disableRules`.
 
 #### Source Files
 
@@ -116,7 +116,7 @@ See [`quality-gate/rule-overrides-and-hygiene-policy.md`](quality-gate/rule-over
 
 #### Current Reality
 
-`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` names the hygiene rules the config switches off and shows what the gate would apply: each checklist with its seat, its override rows or why they were refused, same-level conflicts and the hygiene rules in force, resolved through the runner's explain entry over a sample of the tree. A refused section, an unknown rule id or a missing checklist fails the status. It suggests the spec-kit rules for a repository with no `specs/` folder without writing them, and writes `.sk-code/quality.json` only after approval and never over an existing file.
+`setup` names a repair command for each failing leg, and its last leg checks the quality gate itself. `quality` names the hygiene rules the config switches off and shows what the gate would apply: each checklist with its seat, its override rows or why they were refused, same-level conflicts and the hygiene rules in force, resolved through the runner's explain entry over a sample of the tree. A refused section, an unknown rule id or a missing checklist fails the status. It suggests the spec-kit rules for a repository with no `specs/` folder without writing them, and writes `repository/quality.json` in the `sk-code-quality` packet only after approval and never over an existing file.
 
 #### Source Files
 
@@ -130,7 +130,7 @@ See [`doctor-commands/sk-code-setup-and-quality-doctor.md`](doctor-commands/sk-c
 
 #### Current Reality
 
-`report` is read-only and prints switch states, never variable values, and a repository with no CI profile reads clean under a default that forces no convention. `toggle` accepts any variable a workflow compares against `off`, refuses the variable behind a status check the live branch ruleset requires and any variable the profile or its README keeps unset, and asks for the variable name a second time before it stops a protected workflow. Here the profile is `.sk-code/ci.json` and the switches are the six `SKILLED_CI*` variables.
+`report` is read-only and prints switch states, never variable values, and a repository with no CI profile reads clean under a default that forces no convention. `toggle` accepts any variable a workflow compares against `off`, refuses the variable behind a status check the live branch ruleset requires and any variable the profile or its README keeps unset, and asks for the variable name a second time before it stops a protected workflow. Here the profile is `.skilled/skills/sk-code/sk-code-ci/repository/ci.json` and the switches are the six `SKILLED_CI*` variables.
 
 #### Source Files
 

@@ -253,16 +253,38 @@ test('a bad argument exits 2 and an invalid profile exits 3', (t) => {
   assert.match(invalid.err, /prefix: is not a known key/);
 });
 
-test('a skill-folder profile written for another repository is ignored and named in the plan', (t) => {
+// An ignored profile is the one this repository committed, so the workflows it protects
+// and the names it keeps unset go unread here. The line and the refusal keep that from
+// being silent, while a change to on only deletes a variable and stays available.
+test('a skill-folder profile written for another repository is named and refuses a change to off', (t) => {
   const profile = { schemaVersion: 1, repository: 'someone/else', switch: { master: 'ACME_CI', groups: ['ACME_CI_TESTS'] } };
-  const { run } = acmeFixture(t, { profile });
-  const result = run(['--variable=ACME_CI_TESTS', '--state=off', '--json'], { GITHUB_REPOSITORY: 'acme/widgets' });
-  assert.equal(result.code, 0, result.err);
-  assert.deepEqual(result.json.profile, {
+  const { run, calls } = acmeFixture(t, { profile });
+  const env = { GITHUB_REPOSITORY: 'acme/widgets' };
+  const line = `Profile: ignored ${PROFILE_RELATIVE}, written for someone/else, this repository is acme/widgets; the protected workflows it lists are not checked`;
+
+  const off = run(['--variable=ACME_CI_TESTS', '--state=off', '--json'], env);
+  assert.equal(off.code, 1, off.err);
+  assert.deepEqual(off.json.profile, {
     source: 'default',
     path: null,
     ignored: { path: PROFILE_RELATIVE, repository: 'someone/else', current: 'acme/widgets' },
   });
+  assert.deepEqual(off.json.refusals.map((refusal) => refusal.source), ['ignored']);
+  assert.equal(off.json.command, null);
+  const refusedText = run(['--variable=ACME_CI_TESTS', '--state=off'], env).out;
+  assert.match(refusedText, /^REFUSE: ACME_CI_TESTS must stay unset because the CI profile was ignored, so the protected workflows cannot be checked: fix its repository field or name it with --profile$/m);
+  assert.match(refusedText, /^STATUS=FAIL ERROR="refused"$/m);
+  assert.ok(refusedText.includes(line), refusedText);
+
+  const changed = { ...env, GH_VARIABLES: JSON.stringify([{ name: 'ACME_CI_TESTS', value: 'off' }]) };
+  const on = run(['--variable=ACME_CI_TESTS', '--state=on', '--json'], changed);
+  assert.equal(on.code, 0, on.err);
+  assert.equal(on.json.status, 'PLAN');
+  assert.equal(on.json.command, 'gh variable delete ACME_CI_TESTS');
+  const planText = run(['--variable=ACME_CI_TESTS', '--state=on'], changed).out;
+  assert.ok(planText.includes(line), planText);
+  assert.ok(planText.indexOf(line) < planText.indexOf('STATUS=OK ACTION=plan'));
+  assert.ok(!calls().some((call) => WRITES.test(call)));
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

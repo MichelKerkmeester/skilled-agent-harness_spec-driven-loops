@@ -8,7 +8,7 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CQ-013: A Hard-Floor Rule Cannot Be Overridden Or Disabled
@@ -74,7 +74,7 @@ Run the commands from the repository root in one shell session, so the variables
 ```bash
 HUB="$PWD/.skilled/skills/sk-code"
 SCRATCH="$(mktemp -d)"
-mkdir -p "$SCRATCH/.sk-code" "$SCRATCH/docs" "$SCRATCH/src"
+mkdir -p "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository" "$SCRATCH/docs" "$SCRATCH/src"
 cat > "$SCRATCH/src/download.js" <<'JS'
 const fs = require('node:fs');
 const path = require('node:path');
@@ -88,7 +88,7 @@ function download(request, response) {
 
 module.exports = { download };
 JS
-cat > "$SCRATCH/.sk-code/quality.json" <<'JSON'
+cat > "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json" <<'JSON'
 {
   "schemaVersion": 1,
   "checklists": [{ "file": "docs/code-style.md", "extensions": [".js"] }]
@@ -125,7 +125,7 @@ node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js > /
 4. Add the fixed hygiene id to the config and run the gate again.
 
 ```bash
-node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync(".sk-code/quality.json","utf8"));c.commentHygiene={disableRules:["secret.private-key"]};fs.writeFileSync(".sk-code/quality.json",JSON.stringify(c,null,2)+"\n")'
+node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json","utf8"));c.commentHygiene={disableRules:["secret.private-key"]};fs.writeFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json",JSON.stringify(c,null,2)+"\n")'
 node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js 2> /dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log("gate "+j.gate);for(const e of j.config.errors)console.log(e.code+" "+e.field+": "+e.message)})'
 node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/download.js > /dev/null 2>&1; echo "gate exit $?"
 cd - > /dev/null && rm -rf "$SCRATCH"

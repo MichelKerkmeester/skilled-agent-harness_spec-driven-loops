@@ -1,21 +1,21 @@
 ---
 title: Repository Quality Config
-description: The schema, discovery order, merge rule, error codes, trust boundary and known limits of the committed .sk-code/quality.json file that names a repository's own quality checks.
+description: The schema, discovery order, merge rule, error codes, trust boundary and known limits of the committed .skilled/skills/sk-code/sk-code-quality/repository/quality.json file that names a repository's own quality checks.
 trigger_phrases:
   - "sk-code quality config"
-  - ".sk-code/quality.json"
+  - ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"
   - "configured quality checks"
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Repository Quality Config
 
 ## 1. OVERVIEW
 
-A repository names its own quality checks in one committed file, `.sk-code/quality.json`. The quality runner reads it on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through `scripts/lib/quality-config.cjs`, so they never disagree about what the file says. The file's additions tighten the author gate only. The CI job and the pre-commit hook keep the core hygiene set at whole-file scope, minus the rules `commentHygiene.disableRules` switches off, which they read through the same loader by way of `scripts/hygiene-config-flags.cjs`. So a rule the file switches off blocks nowhere, and a ticket prefix the file adds can fail locally and pass on push. A file that does not validate leaves both layers on every core rule.
+A repository names its own quality checks in one committed file, `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`. The quality runner reads it on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through `scripts/lib/quality-config.cjs`, so they never disagree about what the file says. The file's additions tighten the author gate only. The CI job and the pre-commit hook keep the core hygiene set at whole-file scope, minus the rules `commentHygiene.disableRules` switches off, which they read through the same loader by way of `scripts/hygiene-config-flags.cjs`. So a rule the file switches off blocks nowhere, and a ticket prefix the file adds can fail locally and pass on push. A file that does not validate leaves both layers on every core rule.
 
 ---
 
@@ -25,13 +25,15 @@ The runner picks exactly one source, the most explicit first.
 
 1. `--config <path>`, read relative to the working directory.
 2. The git config value `skcode.qualityConfig`, read relative to the repository root. Only a value stored in a config file counts. A value set with `git -c` or a `GIT_CONFIG_*` variable reports scope `command` and is ignored, because one invocation must not swap the commands a repository committed. When several files set it, the last value git reads wins. Discovery follows an include, and trust reads only this repository's own `.git/config` with no include, so a value an include supplies can name the config a run reads and still never make that config trusted.
-3. `.sk-code/quality.json` at the repository root.
+3. `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` inside the skill folder, or the same path under `.opencode/` when the skills are installed there.
 4. None. The runner uses the shipped base layer alone and fills `suggested_checks`.
+
+A file that carries `"repository": "<owner>/<name>"` applies only when the current repository matches, read from `GITHUB_REPOSITORY` in CI and from the origin remote otherwise, so a copy shipped with the skills into another repository is reported as `ignored` and not applied, and a file left at the old root path `.sk-code/quality.json` is refused with `CONFIG_LEGACY_LOCATION`, exit 3, and its message names the move. The same refusal applies to any path inside `.sk-code/` that `--config` or `skcode.qualityConfig` names, so no repository can keep its config there by naming it.
 
 `config.source` names the choice: `cli`, `git-config`, `repo` or `none`. `config.path` prints the file relative to the root, or absolute outside it, and `config.bytes` gives its size.
 
 - **A named path that does not exist** exits 3 with `CONFIG_PATH_MISSING` and names the path. The runner never falls back to the next source, because a named path that points nowhere is a broken install, not an opt-out.
-- **The committed file must be the repository's own.** When `.sk-code/quality.json` resolves outside the repository, for example through a linked `.sk-code` folder, the run exits 3 with `CONFIG_INVALID`. A path named with `--config` or `skcode.qualityConfig` may point anywhere, because an operator chose it.
+- **The committed file must be the repository's own.** When `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` resolves outside the repository, for example through a linked `.skilled` folder, the run exits 3 with `CONFIG_INVALID`. A path named with `--config` or `skcode.qualityConfig` may point anywhere, because an operator chose it.
 - **Cost.** Discovery and validation start one process, the `git config` read, and none outside git.
 
 ---
@@ -50,7 +52,7 @@ The runner picks exactly one source, the most explicit first.
     {"id": "ruff", "argv": ["ruff", "check", "{files}"], "languages": ["python"], "severity": "P1"},
     {"id": "actionlint", "argv": ["actionlint", "{files}"], "paths": [".github/workflows/**"], "severity": "P1"}
   ],
-  "checklists": [{"file": ".sk-code/checklists/web.md", "paths": ["src/**"]}],
+  "checklists": [{"file": ".skilled/skills/sk-code/sk-code-quality/repository/checklists/web.md", "paths": ["src/**"]}],
   "generated": [{"paths": ["dist/**"], "argv": ["npm", "run", "build:check"], "severity": "P1"}],
   "commentHygiene": {"ticketPrefixes": ["JIRA"], "extraPatterns": [], "extensions": {".zig": "c"}, "exclude": ["fixtures/**"],
                      "disableRules": ["issue", "adr", "task"]},
@@ -88,7 +90,7 @@ A repository that is not the hub's own names its house rules here, because the r
 ```json
 {
   "schemaVersion": 1,
-  "checklists": [{"file": ".sk-code/checklists/house.md", "paths": ["src/**"], "why": "house style for the service code"}],
+  "checklists": [{"file": ".skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md", "paths": ["src/**"], "why": "house style for the service code"}],
   "commentHygiene": {"disableRules": ["task", "issue"]}
 }
 ```
@@ -158,10 +160,11 @@ A script named `test`, `fix` or `format` is never suggested, and neither is a sc
 | Code | Where | Cause |
 | --- | --- | --- |
 | `CONFIG_PATH_MISSING` | `errors[]`, exit 3 | `--config` or `skcode.qualityConfig` names a path that does not exist |
+| `CONFIG_LEGACY_LOCATION` | `errors[]`, exit 3 | A file is still at the old root path `.sk-code/quality.json`, and the message names the move to the skill-folder file |
 | `CONFIG_INVALID` | `errors[]` and one `config.errors` row per field, exit 3 | A parse fault, an empty file, a wrong `schemaVersion`, an unknown key, a malformed field, a reused check id, a `disableRules` id that is unknown or fixed, or a committed file that resolves outside the repository. These stop the run before a check starts. A `commentHygiene` value the checker refuses is a cause too, found once the run starts, and its row names the field that supplied the value |
 | `CHECK_MUTATED_WORKSPACE` | `errors[]`, exit 3 | The workspace changed while a check ran. `check` and `paths` name what changed |
 | `GUARD_UNAVAILABLE` | the check row's `code`, state `ERROR` | A configured check outside git, where no snapshot can show a change. A required one makes the run UNVERIFIED |
-| `CONFIG_EXISTS` | the doctor's `init`, exit 1 | `.sk-code/quality.json` already exists, and init never overwrites it |
+| `CONFIG_EXISTS` | the doctor's `init`, exit 1 | `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` already exists, and init never overwrites it |
 
 Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 
@@ -186,7 +189,7 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 | --- | --- |
 | `status` | Reports the source and its errors, the config trust state (with the repair line when untrusted), probes each tool a check names as `PASS` (found) or `DEGRADED` (absent, with one repair line), lists a tool only a suggestion names as `SKIP`, reports the hygiene layers and names the core hygiene rules `disableRules` switches off, in `hygiene.disabled`. Its `applies` block shows what the gate would apply here: each checklist with its seats (`default`, `repo-config`, `hub-surface` or `outside-skill`), its `## Rule overrides` rows or the reasons a section was refused, the checklist errors and warnings, and in `applies.hygiene` the core rules that apply and the ones disabled. The runner resolves it through `quality-gate.cjs --explain` over one file per first three folders and extension, which starts no check. Each `checklists[]` row of the repository config is listed and checked even when the sample did not reach it. A checklist error such as `CHECKLIST_MISSING`, or a refused override section as `CONFIG_INVALID`, fails the status with that code, as a gate run that loads the file would, and a resolution that broke reads `DEGRADED`. It starts one runner process per batch of 500 sampled files, one after another |
 | `check` | Validates the discovered config, or the file `--config` names, and reports `config.errors` and the trust state with no tool probe |
-| `init` | Prints the template filled with the suggestions, each written as `required: false`, and writes nothing. `--apply` writes a temporary file and hard-links it to `.sk-code/quality.json`, so it creates the file once and refuses with `CONFIG_EXISTS` when one exists. A `.sk-code` folder that resolves outside the repository is refused. In a repository with no `specs/` folder, the plan also carries `suggested_hygiene`: the 15 spec-kit vocabulary rules (packet, phase, spec-path, worktree-session, council-seat and the like) offered for `commentHygiene.disableRules`. The six tracker-id rules stay out of it, and init never writes the suggestion |
+| `init` | Prints the template filled with the suggestions, each written as `required: false`, and writes nothing. `--apply` writes a temporary file and hard-links it to the target path in the skill folder, `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` by default, so it creates the file once and refuses with `CONFIG_EXISTS` when one exists. A skill folder that resolves outside the repository is refused. In a repository with no `specs/` folder, the plan also carries `suggested_hygiene`: the 15 spec-kit vocabulary rules (packet, phase, spec-path, worktree-session, council-seat and the like) offered for `commentHygiene.disableRules`. The six tracker-id rules stay out of it, and init never writes the suggestion |
 
 ---
 

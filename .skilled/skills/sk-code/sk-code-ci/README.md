@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk-code-ci
@@ -44,7 +44,7 @@ The packet never writes. The acting mode or a doctor command applies any change 
 
 ### The Repository Profile
 
-The rules are universal, but the values they apply to are not. Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three `/doctor:ci` routes read them from a CI profile: `--profile`, then the git config value `skcode.ciProfile`, then `.sk-code/ci.json`, then a generic default that forces none of them. This repository commits its profile, and its `SKILLED_CI*` switches, its `gate-inputs.yml` protected workflow and its `.opencode/` twin are that profile's values, not rules of the packet. A repository without a profile reads clean: the report requires no switch and checks no README row, the scaffold prints none of this repository's names, and the toggle accepts any variable a job compares against `off` and refuses the one behind a status check the live branch ruleset requires. `assets/ci-profile.template.json` is the starting point for a new profile.
+The rules are universal, but the values they apply to are not. Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three `/doctor:ci` routes read them from a CI profile: `--profile`, then the git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default that forces none of them. This repository commits its profile, and its `SKILLED_CI*` switches, its `gate-inputs.yml` protected workflow and its `.opencode/` twin are that profile's values, not rules of the packet. A `repository` field limits the profile to the repository it names, so a copy shipped with the skills into another repository is ignored, and a file left at the former root-level `.sk-code/` path is refused rather than read, with its move named. A repository without a profile reads clean: the report requires no switch and checks no README row, the scaffold prints none of this repository's names, and the toggle accepts any variable a job compares against `off` and refuses the one behind a status check the live branch ruleset requires. `assets/ci-profile.template.json` is the starting point for a new profile.
 
 ---
 
@@ -86,5 +86,5 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | [../sk-code-review/README.md](../sk-code-review/README.md) | The review mode that applies these rules to a workflow diff |
 | [../sk-code-quality/README.md](../sk-code-quality/README.md) | The quality mode that applies these rules to a workflow being authored |
 | [../../../commands/doctor/ci.md](../../../commands/doctor/ci.md) | The `/doctor:ci` command that reports, scaffolds and toggles workflows against these rules |
-| [../../../../.sk-code/ci.json](../../../../.sk-code/ci.json) | This repository's committed CI profile |
+| [repository/ci.json](repository/ci.json) | This repository's committed CI profile |
 | [../../../../.github/workflows/README.md](../../../../.github/workflows/README.md) | The workflow README the rules cite for the contents table and the trigger table |

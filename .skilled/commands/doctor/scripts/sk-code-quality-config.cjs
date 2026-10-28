@@ -188,20 +188,27 @@ function load(ctx, opts) {
   }
 }
 
-function describeSource(loaded) {
+// A committed file that named another repository applied to nothing, and the line says
+// which file and which two repositories, so the status does not read as unconfigured.
+function describeSource(loaded, root) {
+  if (loaded.ignored) {
+    const where = qualityConfig.displayPath(loaded.ignored.path, root);
+    return `none; ignored ${where}, written for ${loaded.ignored.repository}, this repository is ${loaded.ignored.current || 'unknown'}`;
+  }
   if (loaded.source === 'none') return 'none, the gate runs its built-in checks alone';
   return `${loaded.display} (${loaded.source}${loaded.bytes === null ? '' : `, ${loaded.bytes} bytes`})`;
 }
 
 function errorCode(loaded) {
-  return loaded.errors.some((entry) => entry.code === 'CONFIG_PATH_MISSING') ? 'CONFIG_PATH_MISSING' : 'CONFIG_INVALID';
+  const named = loaded.errors.find((entry) => entry.code === 'CONFIG_PATH_MISSING' || entry.code === 'CONFIG_LEGACY_LOCATION');
+  return named ? named.code : 'CONFIG_INVALID';
 }
 
 // The doctor reads the same trust rule the runner applies, so the state it reports is the
 // state the gate would act on. A config that did not validate names no check for this run.
 function trustState(loaded, ctx) {
   if (loaded.errors.length > 0) {
-    const missing = loaded.errors.some((entry) => entry.code === 'CONFIG_PATH_MISSING');
+    const missing = loaded.errors.some((entry) => entry.code === 'CONFIG_PATH_MISSING' || entry.code === 'CONFIG_LEGACY_LOCATION');
     const reason = missing ? 'the config could not be read, so no configured check runs' : 'the config did not validate, so no configured check runs';
     return { checks: 'none', reason, repair: null };
   }
@@ -499,7 +506,7 @@ function status(ctx, opts) {
   const trust = trustState(loaded, ctx);
   const tools = probeTools(ctx, loaded);
   const layers = probeLayers({ git: true, root: ctx.root, env: ctx.env });
-  const lines = [`Repository: ${ctx.root}`, `Config: ${describeSource(loaded)}`, trustLine(trust)];
+  const lines = [`Repository: ${ctx.root}`, `Config: ${describeSource(loaded, ctx.root)}`, trustLine(trust)];
   if (loaded.errors.length === 0) lines.push('Errors: none');
   for (const entry of loaded.errors) lines.push(`  ERROR  ${entry.message}`);
   if (tools.length === 0) lines.push('Tools: none named');
@@ -535,7 +542,7 @@ function status(ctx, opts) {
 function check(ctx, opts) {
   const loaded = load(ctx, opts);
   const trust = trustState(loaded, ctx);
-  const lines = [`Config: ${describeSource(loaded)}`, trustLine(trust)];
+  const lines = [`Config: ${describeSource(loaded, ctx.root)}`, trustLine(trust)];
   for (const entry of loaded.errors) lines.push(`  ERROR  ${entry.message}`);
   if (loaded.errors.length === 0) lines.push(loaded.source === 'none' ? 'Nothing to check.' : 'Valid against the schema.');
   const failed = loaded.errors.length > 0;

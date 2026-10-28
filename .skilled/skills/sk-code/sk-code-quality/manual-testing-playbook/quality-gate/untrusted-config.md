@@ -8,7 +8,7 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CQ-009: Untrusted Config Reads Skipped Untrusted Until The Operator Grants Trust
@@ -19,7 +19,7 @@ This document captures the run contract, execution process, source anchors and m
 
 ## 1. OVERVIEW
 
-This scenario validates the gate run for `CQ-009`. The fixture commits one repository config, `.sk-code/quality.json`, that names a single required P0 check, then seeds one changed function in `app.go`. The config is read from the repository itself, and no trust rule vouches for it: the operator did not name it with `--config`, `skcode.qualityConfig` is not stored in the repository's own `.git/config`, `skilled.trustRepoChecks` is unset, and the repository does not share a git common dir with the runner checkout. The quality config reference says a configured check that would start a command then reads `SKIPPED_UNTRUSTED`, starts nothing and carries a repair line, and a required one leaves the run UNVERIFIED.
+This scenario validates the gate run for `CQ-009`. The fixture commits one repository config, `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`, that names a single required P0 check, then seeds one changed function in `app.go`. The config is read from the repository itself, and no trust rule vouches for it: the operator did not name it with `--config`, `skcode.qualityConfig` is not stored in the repository's own `.git/config`, `skilled.trustRepoChecks` is unset, and the repository does not share a git common dir with the runner checkout. The quality config reference says a configured check that would start a command then reads `SKIPPED_UNTRUSTED`, starts nothing and carries a repair line, and a required one leaves the run UNVERIFIED.
 
 The scenario runs the gate twice over the same fixture. The first run has no trust and the second runs after `git config --local skilled.trustRepoChecks true`. The only difference between the two runs is the trust key, so a changed result is attributable to it.
 
@@ -49,7 +49,7 @@ Run the quality gate on this cloned repository and tell me why its configured ch
 
 | Fixture part | Content | What the run must say |
 | --- | --- | --- |
-| `.sk-code/quality.json` | one check, `id` `untrusted-canary`, `argv` of the node binary writing a marker then exiting 1, severity `P0` | without trust the row is `SKIPPED_UNTRUSTED`, required, with the repair line |
+| `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` | one check, `id` `untrusted-canary`, `argv` of the node binary writing a marker then exiting 1, severity `P0` | without trust the row is `SKIPPED_UNTRUSTED`, required, with the repair line |
 | trust key | unset for the first run, `git config --local skilled.trustRepoChecks true` for the second | the first run names no trust rule, the second names the key |
 | marker file | in a scratch folder outside the repository | absent after the first run, present after the second |
 
@@ -86,7 +86,7 @@ const marker = path.join(process.argv[1], "ran");
 const repo = buildRepo({
   base: {
     "app.go": "package a\n\nfunc A() {}\n",
-    ".sk-code/quality.json": JSON.stringify({ schemaVersion: 1, checks: [{ id: "untrusted-canary", argv: [process.execPath, "-e", "require(\"fs\").writeFileSync(process.argv[1], \"ran\"); process.exit(1)", marker], severity: "P0" }] }, null, 2) + "\n",
+    ".skilled/skills/sk-code/sk-code-quality/repository/quality.json": JSON.stringify({ schemaVersion: 1, checks: [{ id: "untrusted-canary", argv: [process.execPath, "-e", "require(\"fs\").writeFileSync(process.argv[1], \"ran\"); process.exit(1)", marker], severity: "P0" }] }, null, 2) + "\n",
   },
   change: { "app.go": "package a\n\nfunc A() {}\nfunc B() {}\n" },
 });

@@ -39,7 +39,7 @@ mutation_boundaries:
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   planner_script: ".skilled/commands/doctor/scripts/ci-toggle.cjs"
-  ci_profile: ".sk-code/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs"
+  ci_profile: ".skilled/skills/sk-code/sk-code-ci/repository/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs; a profile whose repository field names another repository is ignored, and one left at .sk-code/ci.json is refused"
   switch_documentation: "the profile's workflowsReadme (here .github/workflows/README.md, the On/off switches section)"
   standards_packet: ".skilled/skills/sk-code/sk-code-ci/"
   protected_set: ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md"
@@ -51,7 +51,7 @@ inputs:
   execution_mode: "INTERACTIVE"
   variable: "--variable=<name> is one name from the planner's allowlist. Without it, ask once and list the allowlist. Here that is SKILLED_CI, SKILLED_CI_TESTS, SKILLED_CI_REPORTS, SKILLED_CI_REVIEW, SKILLED_CI_FRESHNESS or SKILLED_CI_MESSAGES."
   state: "--state=<on|off>. off sets the variable to off, which skips every job that reads it. on deletes the variable, because an unset variable runs the job. Without it, ask once."
-  profile_path: "--profile=<path> reads the CI profile from this file instead of .sk-code/ci.json or git config skcode.ciProfile (default none, so the planner discovers the profile)."
+  profile_path: "--profile=<path> reads the CI profile from this file instead of .skilled/skills/sk-code/sk-code-ci/repository/ci.json or git config skcode.ciProfile (default none, so the planner discovers the profile)."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW

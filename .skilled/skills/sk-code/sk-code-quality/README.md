@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.5.0
+version: 1.3.6.0
 ---
 
 # sk-code-quality
@@ -49,7 +49,7 @@ The mode's headline strength is routing by target path: every surface family lan
 | **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |
 | **MCP servers** | routes to the MCP-server-authoring checklist |
 | **Language files and config** | applies the language-specific and config checklists |
-| **Your own surface** | a surface another skill declares, or a checklist your `.sk-code/quality.json` names, brings its own checklists |
+| **Your own surface** | a surface another skill declares, or a checklist your `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, brings its own checklists |
 
 ---
 
@@ -63,7 +63,7 @@ The mode's headline strength is routing by target path: every surface family lan
 node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format text
 ```
 
-The runner reads the change, by default the working tree against `HEAD`. It runs the conflict-marker, secret and debug-leftover sensors, one comment-hygiene call over the changed files and a parse floor, and probes which hooks and workflows enforce hygiene. It prints one verdict with a gate and an exit code from 0 to 4. No gate means pass: exit 0 says only that no blocker was found and that every required check produced evidence. [`references/runner-contract.md`](./references/runner-contract.md) documents every field. A committed `.sk-code/quality.json` runs its commands only in a trusted repository. Without a grant each configured check reads `SKIPPED_UNTRUSTED` with the repair `git config --local skilled.trustRepoChecks true`, and [section 8 of the quality config reference](./references/quality-config.md) names the grants.
+The runner reads the change, by default the working tree against `HEAD`. It runs the conflict-marker, secret and debug-leftover sensors, one comment-hygiene call over the changed files and a parse floor, and probes which hooks and workflows enforce hygiene. It prints one verdict with a gate and an exit code from 0 to 4. No gate means pass: exit 0 says only that no blocker was found and that every required check produced evidence. [`references/runner-contract.md`](./references/runner-contract.md) documents every field. A committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` runs its commands only in a trusted repository. Without a grant each configured check reads `SKIPPED_UNTRUSTED` with the repair `git config --local skilled.trustRepoChecks true`, and [section 8 of the quality config reference](./references/quality-config.md) names the grants.
 
 **Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. It gives each rule an id and marks it FIXED or overridable. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface. On SKILLED it also names the JavaScript and CSS house checks for a `.js` or `.css` target, in [`js-css-style/`](../sk-code-skilled/assets/checklists/js-css-style/). For `.skilled/` targets it names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/). The house style of this framework (file layout, `MODULE:` headers, the `ceiling:` marker, test layout) lives in those SKILLED files, so another repository does not inherit it.
 
@@ -93,8 +93,8 @@ The universal floor splits into FIXED rules and overridable ones. The hard floor
 
 There are two ways to say so, and they work together.
 
-- **A `## Rule overrides` section** in a checklist the repository already declares, such as one named in `.sk-code/quality.json` `checklists[]`. Each row gives a rule id, `none` or `replace: <text>` and an optional reason. The shared contract is [`rule-overrides.md`](../shared/references/universal/rule-overrides.md), and `node ../shared/scripts/check-rule-overrides.cjs <checklist.md>` checks a section. A row that names a hard-floor id is refused.
-- **`commentHygiene.disableRules`** in `.sk-code/quality.json` switches off named core comment-hygiene rules, such as `issue` or `task`. The runner, the pre-commit hook and the CI job all honor it, and the verdict lists what is off in `config.hygiene.disabled`. An unknown id, or a hard-floor id such as `secret.private-key`, is `CONFIG_INVALID`.
+- **A `## Rule overrides` section** in a checklist the repository already declares, such as one named in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` `checklists[]`. Each row gives a rule id, `none` or `replace: <text>` and an optional reason. The shared contract is [`rule-overrides.md`](../shared/references/universal/rule-overrides.md), and `node ../shared/scripts/check-rule-overrides.cjs <checklist.md>` checks a section. A row that names a hard-floor id is refused.
+- **`commentHygiene.disableRules`** in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` switches off named core comment-hygiene rules, such as `issue` or `task`. The runner, the pre-commit hook and the CI job all honor it, and the verdict lists what is off in `config.hygiene.disabled`. An unknown id, or a hard-floor id such as `secret.private-key`, is `CONFIG_INVALID`.
 
 A run reads the section of every checklist it loads. A refused section, or a row whose rule id no declaring document carries, ends the run `ERROR` with `CONFIG_INVALID` and exit 3, and the error names the checklist and every reason. Each accepted row is recorded in `rule_overrides` and in the envelope's `p0_p1_p2_decisions` as `override <rule id> <none|replace> from <checklist>`, ahead of `PENDING_AGENT_JUDGMENT`. Two checklists at one precedence level that disagree on a rule leave its default in force, appear in `rule_conflicts` and join `summary.unverified`, so the gate reads `UNVERIFIED`.
 
@@ -153,4 +153,4 @@ Use it when a change is already written and needs standards enforcement before f
 | [`../shared/references/phase-detection.md`](../shared/references/phase-detection.md) | Lifecycle placement for the quality gate |
 | [`../shared/references/universal/code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) | Universal quality standards, with rule ids and FIXED or overridable marks |
 | [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | How a repository drops or replaces a rule, and the hard floor no one can change |
-| [`references/quality-config.md`](./references/quality-config.md) | The `.sk-code/quality.json` schema, including `commentHygiene.disableRules` |
+| [`references/quality-config.md`](./references/quality-config.md) | The `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` schema, including `commentHygiene.disableRules` |

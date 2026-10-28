@@ -8,7 +8,7 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CQ-012: A Repository That Switches A Hygiene Rule Off Is Not Blocked By It
@@ -74,7 +74,7 @@ Run the commands from the repository root in one shell session, so the variables
 ```bash
 HUB="$PWD/.skilled/skills/sk-code"
 SCRATCH="$(mktemp -d)"
-mkdir -p "$SCRATCH/.sk-code" "$SCRATCH/docs" "$SCRATCH/src"
+mkdir -p "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository" "$SCRATCH/docs" "$SCRATCH/src"
 cat > "$SCRATCH/src/total.js" <<'JS'
 // Fixes #12: an empty list totals zero
 function total(items) {
@@ -87,7 +87,7 @@ function average(items) {
 
 module.exports = { total, average };
 JS
-cat > "$SCRATCH/.sk-code/quality.json" <<'JSON'
+cat > "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json" <<'JSON'
 {
   "schemaVersion": 1,
   "checklists": [{ "file": "docs/code-style.md", "extensions": [".js"] }],
@@ -126,7 +126,7 @@ node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --explain src/total.js | no
 4. Remove the key and run the gate again.
 
 ```bash
-node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync(".sk-code/quality.json","utf8"));delete c.commentHygiene;fs.writeFileSync(".sk-code/quality.json",JSON.stringify(c,null,2)+"\n")'
+node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json","utf8"));delete c.commentHygiene;fs.writeFileSync(".skilled/skills/sk-code/sk-code-quality/repository/quality.json",JSON.stringify(c,null,2)+"\n")'
 node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js | node -e "$SHOW"
 node "$HUB/sk-code-quality/scripts/quality-gate.cjs" --files src/total.js > /dev/null; echo "exit $?"
 cd - > /dev/null && rm -rf "$SCRATCH"

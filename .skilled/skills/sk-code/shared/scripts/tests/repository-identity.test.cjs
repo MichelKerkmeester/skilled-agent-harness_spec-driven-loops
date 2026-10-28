@@ -52,12 +52,23 @@ test('normalizeRemote reads https, ssh and scp-like remotes', () => {
   assert.equal(normalizeRemote('https://github.com/example/widget'), 'example/widget');
   assert.equal(normalizeRemote('ssh://git@github.com/example/widget.git'), 'example/widget');
   assert.equal(normalizeRemote('git@github.com:example/widget.git'), 'example/widget');
+  assert.equal(normalizeRemote('github.com:example/widget.git'), 'example/widget');
+  assert.equal(normalizeRemote('github.com:o/n.git'), 'o/n');
 });
 
 test('normalizeRemote tolerates a trailing slash and any host', () => {
   assert.equal(normalizeRemote('https://git.example.com/example/widget.git/'), 'example/widget');
   assert.equal(normalizeRemote('https://git.example.com/example/widget/'), 'example/widget');
   assert.equal(normalizeRemote('ssh://git@git.example.com/example/widget.git/'), 'example/widget');
+});
+
+// The host part of the scp-like form is optional in front, so a drive letter must not be
+// read as a host and a local path must not answer as a repository.
+test('normalizeRemote does not read a Windows drive path or a URL as the scp-like form', () => {
+  for (const value of ['C:/Users/me/repo', 'C:\\Users\\me\\repo', 'D:/work/example/widget']) {
+    assert.equal(normalizeRemote(value), null, `"${value}" should not parse`);
+  }
+  assert.equal(normalizeRemote('https://github.com/example/widget.git'), 'example/widget');
 });
 
 test('normalizeRemote returns null for text that names no repository', () => {
@@ -73,6 +84,26 @@ test('REPOSITORY_PATTERN accepts owner/name and refuses anything else', () => {
   assert.ok(!REPOSITORY_PATTERN.test('example/widget/extra'));
   assert.ok(!REPOSITORY_PATTERN.test('example widget'));
   assert.ok(!REPOSITORY_PATTERN.test('https://github.com/example/widget'));
+});
+
+// The remote read is a git call, so the caller's environment decides which configuration,
+// and so which origin remote, the answer comes from. A stub git that answers only when the
+// caller's PATH reaches it proves the environment was handed to the child.
+test('currentRepository passes its environment to the git read', (t) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'repository-identity-git-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const log = path.join(dir, 'git-calls.log');
+  fs.writeFileSync(log, '');
+  fs.writeFileSync(path.join(dir, 'git'), `#!/usr/bin/env node
+const fs = require('node:fs');
+fs.appendFileSync(${JSON.stringify(log)}, process.argv.slice(2).join(' ') + '\\n');
+process.stdout.write('github.com:acme/widgets.git\\n');
+`, { mode: 0o755 });
+  const env = { PATH: `${dir}${path.delimiter}${process.env.PATH}` };
+  assert.deepEqual(currentRepository({ root: dir, env }), { identity: 'acme/widgets', source: 'origin' });
+  const calls = fs.readFileSync(log, 'utf8');
+  assert.ok(calls.includes(`-C ${dir}`), calls);
+  assert.match(calls, /remote get-url origin$/m);
 });
 
 test('GITHUB_REPOSITORY wins over the origin remote', { skip: !HAS_GIT && 'git is not installed' }, () => {

@@ -45,7 +45,7 @@ upstream_assets:
   job_shape_rules: ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md"
   report_script: ".skilled/commands/doctor/scripts/ci-report.cjs"
   render_script: ".skilled/commands/doctor/scripts/ci-scaffold.cjs"
-  ci_profile: ".sk-code/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs"
+  ci_profile: ".skilled/skills/sk-code/sk-code-ci/repository/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs; a profile whose repository field names another repository is ignored, and one left at .sk-code/ci.json is refused"
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS
@@ -54,7 +54,7 @@ inputs:
   execution_mode: "INTERACTIVE"
   dry_run: "--dry-run prints the plan and the whole file, then stops before creating anything (default false)."
   workflow_name: "--name=<file> is the new file's name. Without it, ask for one. It is a bare lowercase hyphen-case name ending in .yml, with no directory part, because the repository naming standard checks file names."
-  profile_path: "--profile=<path> reads the CI profile from this file instead of .sk-code/ci.json or git config skcode.ciProfile (default none, so each script discovers the profile)."
+  profile_path: "--profile=<path> reads the CI profile from this file instead of .skilled/skills/sk-code/sk-code-ci/repository/ci.json or git config skcode.ciProfile (default none, so each script discovers the profile)."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW

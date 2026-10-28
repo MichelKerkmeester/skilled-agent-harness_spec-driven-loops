@@ -7,7 +7,7 @@ expected_intent: QUALITY
 expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # CQ-007: Envelope Round Trip Keeps Both Verdicts Intact
@@ -89,7 +89,7 @@ const blocking = buildRepo({
 const unverified = buildRepo({
   base: {
     "app.go": "package a\n\nfunc A() {}\n",
-    ".sk-code/quality.json": JSON.stringify({ schemaVersion: 1, checks: [{ id: "absent-tool", argv: ["sk-code-absent-tool", "{files}"], severity: "P0" }] }, null, 2) + "\n",
+    ".skilled/skills/sk-code/sk-code-quality/repository/quality.json": JSON.stringify({ schemaVersion: 1, checks: [{ id: "absent-tool", argv: ["sk-code-absent-tool", "{files}"], severity: "P0" }] }, null, 2) + "\n",
   },
   change: { "app.go": "package a\n\nfunc A() {}\nfunc B() {}\n" },
 });

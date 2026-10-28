@@ -197,6 +197,42 @@ test('discovery: a config with no repository field applies in every repository',
   assert.equal(found.ignored, undefined);
 }));
 
+test('discovery: a leading BOM does not hide the repository field, so a file written for another repository is ignored', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [TARGET]: `\uFEFF${json({ schemaVersion: 1, repository: REPO_IDENTITY })}` },
+}, (repo) => {
+  const elsewhere = discover(repo, { GITHUB_REPOSITORY: 'other/thing' });
+  assert.equal(elsewhere.source, 'none');
+  assert.equal(elsewhere.path, null);
+  assert.deepEqual(elsewhere.ignored, { path: path.join(repo.root, TARGET), repository: REPO_IDENTITY, current: 'other/thing' });
+
+  const here = discover(repo, { GITHUB_REPOSITORY: REPO_IDENTITY });
+  assert.deepEqual([here.source, here.path], ['repo', path.join(repo.root, TARGET)]);
+  assert.equal(here.ignored, undefined);
+}));
+
+test('discovery: a path named with --config or the git config value inside .sk-code/ is refused as CONFIG_LEGACY_LOCATION', () => withRepo({
+  base: { 'app.go': CLEAN_GO, [LEGACY_TARGET]: MINIMAL },
+}, (repo) => {
+  assert.throws(() => discoverConfig({ cliPath: LEGACY_TARGET, cwd: repo.root, root: repo.root, git: false, env: repo.env }),
+    (error) => error.code === 'CONFIG_LEGACY_LOCATION' && error.source === 'cli'
+      && error.path === path.join(repo.root, LEGACY_TARGET));
+
+  repo.git(['config', 'skcode.qualityConfig', LEGACY_TARGET]);
+  assert.throws(() => discoverConfig({ cwd: repo.root, root: repo.root, git: true, env: repo.env }),
+    (error) => error.code === 'CONFIG_LEGACY_LOCATION' && error.source === 'git-config'
+      && error.path === path.join(repo.root, LEGACY_TARGET));
+
+  const named = assertSnapshotUnchanged(repo, () => repo.run(['--config', LEGACY_TARGET]));
+  assert.equal(named.status, 3);
+  assert.equal(named.verdict.errors[0].code, 'CONFIG_LEGACY_LOCATION');
+  assert.deepEqual([named.verdict.config.source, named.verdict.config.path], ['cli', path.join(repo.root, LEGACY_TARGET)]);
+
+  const viaGit = assertSnapshotUnchanged(repo, () => repo.run([]));
+  assert.equal(viaGit.status, 3);
+  assert.equal(viaGit.verdict.errors[0].code, 'CONFIG_LEGACY_LOCATION');
+  assert.deepEqual([viaGit.verdict.config.source, viaGit.verdict.config.path], ['git-config', path.join(repo.root, LEGACY_TARGET)]);
+}));
+
 test('discovery: a repository that installs skills under .opencode/ keeps the config at the same path there', () => withRepo({
   base: { 'app.go': CLEAN_GO, [OPENCODE_TARGET]: MINIMAL },
   change: { 'app.go': `${CLEAN_GO}func B() {}\n` },
@@ -298,7 +334,7 @@ test('merge: only the repository layer adds checks, lists append and a reused id
     schemaVersion: 1,
     exclude: ['vendor/**'],
     checks: [{ id: 'lint', argv: ['npm', 'run', 'lint'], severity: 'P1' }, { id: 'typecheck', argv: ['tsc'], severity: 'P0' }],
-    checklists: [{ file: '.sk-code/checklists/web.md', paths: ['src/**'] }],
+    checklists: [{ file: '.skilled/skills/sk-code/sk-code-quality/repository/checklists/web.md', paths: ['src/**'] }],
     sensors: { secrets: { exclude: ['test/fixtures/**'] } },
   };
   assert.deepEqual(validateConfig(repo, { builtinIds: ['secrets'] }), []);

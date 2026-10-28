@@ -1,19 +1,19 @@
 ---
 title: "Repository Quality Config"
-description: "A committed .sk-code/quality.json names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for."
+description: "A committed `repository/quality.json` in the `sk-code-quality` packet names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for."
 trigger_phrases:
   - "repository quality config"
-  - ".sk-code/quality.json"
+  - "repository/quality.json"
   - "configured quality checks"
   - "skilled.trustRepoChecks"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
-# Repository Quality Config (.sk-code/quality.json)
+# Repository Quality Config (repository/quality.json)
 
 ## 1. OVERVIEW
 
-A committed .sk-code/quality.json names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for.
+A committed `repository/quality.json` in the `sk-code-quality` packet names the commands a repository runs as quality checks, and a configured check starts only from a config the repository or an operator vouched for.
 
 The quality runner reads the file on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through one module, so they never disagree about what the file says. The file tightens the author gate only, except that `commentHygiene.disableRules` also relaxes the core hygiene set, for the runner, the pre-commit hook and the CI job alike.
 
@@ -23,7 +23,7 @@ The quality runner reads the file on every run, and `/doctor:sk-code quality` sh
 
 ### Discovery
 
-The runner picks exactly one source, the most explicit first: `--config PATH` relative to the working directory, then the git config value `skcode.qualityConfig` from a config file, then `.sk-code/quality.json` at the repository root, then none. A `git -c` or `GIT_CONFIG_*` value is ignored, because one invocation must not swap the commands a repository committed. A named path that does not exist exits 3 with `CONFIG_PATH_MISSING` and never falls back to the next source. With no config the runner uses the shipped base layer alone.
+The runner picks exactly one source, the most explicit first: `--config PATH` relative to the working directory, then the git config value `skcode.qualityConfig` from a config file, then `repository/quality.json` in the `sk-code-quality` packet, then none. A `git -c` or `GIT_CONFIG_*` value is ignored, because one invocation must not swap the commands a repository committed. A named path that does not exist exits 3 with `CONFIG_PATH_MISSING` and never falls back to the next source. With no config the runner uses the shipped base layer alone. A `repository` field limits the file to the repository it names, so a copy shipped with the skills into another repository is ignored, and a file left at the former root-level `.sk-code/` path is refused rather than read.
 
 ### Schema And Merge
 

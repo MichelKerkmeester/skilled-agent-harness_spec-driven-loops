@@ -18,6 +18,10 @@
 // the state the variable already has is refused as a no-op. A change that switches off
 // a workflow the profile protects is planned with a second named confirmation.
 //
+// A profile written for another repository is ignored, which leaves the protected list and
+// the neverOff list it carries unread here. A change to off would then skip a workflow
+// nothing names, so it is refused, and only a change to on is planned.
+//
 // Usage: ci-toggle.cjs --variable=<NAME> --state=<on|off> [--json] [--no-gh] [--profile <path>]
 //   --json            print JSON only
 //   --no-gh           make no gh call: the state and the ruleset read unknown
@@ -140,13 +144,20 @@ function readmeRefusal(variable, profile, text) {
 /**
  * Every reason the requested change may not run, most authoritative source first.
  *
- * @param {Object} input - variable, state, allowlist, profile, required, jobs and readme.
+ * @param {Object} input - variable, state, allowlist, profile, required, jobs, readme and
+ * ignored, the last naming a profile found for another repository.
  * @returns {Array<{source:string, message:string}>} The refusals, empty when allowed.
  */
-function refusalsFor({ variable, state, allowlist, profile, required, jobs, readme }) {
+function refusalsFor({ variable, state, allowlist, profile, required, jobs, readme, ignored = null }) {
   if (!allowlist.includes(variable)) return [{ source: 'allowlist', message: `REFUSE: ${variable} is not a documented switch` }];
   if (state !== 'off') return [];
   const refusals = [];
+  // The ignored profile is the repository's own, so the protected workflows and the
+  // neverOff names it lists are exactly what a change to off would skip. Unread, they
+  // protect nothing, and the plan must not print a command that skips them.
+  if (ignored) {
+    refusals.push({ source: 'ignored', message: `REFUSE: ${variable} must stay unset because the CI profile was ignored, so the protected workflows cannot be checked: fix its repository field or name it with --profile` });
+  }
   const fromRuleset = required.readable ? rulesetRefusal(variable, profile, required, jobs) : null;
   if (fromRuleset) refusals.push(fromRuleset);
   // neverOff is the operator's own list, so it holds whether or not the ruleset reads.
@@ -188,7 +199,7 @@ function buildPlan(options, loadedProfile, parsed) {
   const branch = options.noGh ? { branch: profile.defaultBranch, source: profile.defaultBranch ? 'profile' : 'unknown' } : report.resolveDefaultBranch(profile);
   const required = readRequiredContexts(branch.branch, options.noGh || !branch.branch);
 
-  const refusals = refusalsFor({ variable: options.variable, state: options.state, allowlist, profile, required, jobs, readme: readmeText(profile) });
+  const refusals = refusalsFor({ variable: options.variable, state: options.state, allowlist, profile, required, jobs, readme: readmeText(profile), ignored: loadedProfile.ignored });
   const noChange = refusals.length === 0 && isUnchanged(options.state, current);
   const command = options.state === 'off' ? `gh variable set ${options.variable} --body off` : `gh variable delete ${options.variable}`;
   const undo = options.state === 'off' ? `gh variable delete ${options.variable}` : `gh variable set ${options.variable} --body off`;
@@ -225,10 +236,21 @@ function buildPlan(options, loadedProfile, parsed) {
 
 const NOW_LABELS = { unset: 'on (unset)', off: 'off (set to off)', other: 'on (set to another value)', unknown: 'unknown (not readable)' };
 
+// An ignored profile is the one this repository committed, so the protections it lists are
+// the ones this run cannot check. Every display names it, whatever the status, so the
+// operator never reads a plan without knowing which promises were left unread.
+function ignoredProfileLine(plan) {
+  const { ignored } = plan.profile;
+  if (!ignored) return null;
+  return `Profile: ignored ${ignored.path}, written for ${ignored.repository}, this repository is ${ignored.current || 'unknown'}; the protected workflows it lists are not checked`;
+}
+
 function renderText(plan) {
-  if (plan.status === 'REFUSED') return [plan.refusals[0].message, 'STATUS=FAIL ERROR="refused"'];
+  const profile = ignoredProfileLine(plan);
+  const withStatus = (lines, status) => [...lines, ...(profile ? [profile] : []), status];
+  if (plan.status === 'REFUSED') return withStatus([plan.refusals[0].message], 'STATUS=FAIL ERROR="refused"');
   if (plan.status === 'NO_CHANGE') {
-    return ['DOCTOR TARGET UNCHANGED', 'Target: toggle', `Variable: ${plan.variable}`, `State: ${plan.state}, already as requested`, 'Changed: none', 'STATUS=OK'];
+    return withStatus(['DOCTOR TARGET UNCHANGED', 'Target: toggle', `Variable: ${plan.variable}`, `State: ${plan.state}, already as requested`, 'Changed: none'], 'STATUS=OK');
   }
   const lines = [
     'SWITCH CHANGE PLAN',
@@ -248,8 +270,7 @@ function renderText(plan) {
     for (const entry of plan.secondConfirmation.workflows) lines.push(`- ${entry.file}: ${entry.role}`);
     lines.push(`Second confirmation: ${plan.secondConfirmation.prompt}`);
   }
-  lines.push('STATUS=OK ACTION=plan');
-  return lines;
+  return withStatus(lines, 'STATUS=OK ACTION=plan');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

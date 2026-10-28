@@ -9,7 +9,7 @@ trigger_phrases:
   - "check rule overrides linter"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Rule Overrides Contract
@@ -115,7 +115,7 @@ Every other rule can be overridden. That covers comment hygiene, documentation, 
 When more than one source speaks to the same rule for a file, the higher level wins:
 
 1. **The hard floor.** No source changes it.
-2. **The repository checklist.** A file named in the repository's `.sk-code/quality.json` `checklists[]`.
+2. **The repository checklist.** A file named in `checklists[]` of the repository's quality config, `repository/quality.json` in the `sk-code-quality` packet.
 3. **A specific surface.** A hub surface other than SKILLED, or an outside skill that declares a surface.
 4. **The SKILLED fallback.** The `sk-code-skilled` checklists.
 5. **The default lens.** The rule as the mode ships it.
@@ -132,7 +132,7 @@ A section has effect only in a checklist file that an existing declaration alrea
 | --- | --- | --- |
 | A hub surface checklist | That surface's `quality.checklists` in the hub's `mode-registry.json` | Specific surface, or the SKILLED fallback for `sk-code-skilled` |
 | An outside skill checklist | The `quality` block beside `surface_detection` in that skill's `graph-metadata.json` | Specific surface |
-| A repository checklist | `checklists[]` in the repository's `.sk-code/quality.json` | Repository |
+| A repository checklist | `checklists[]` in `repository/quality.json`, the `sk-code-quality` packet's quality config | Repository |
 
 A checklist applies to the files its declaration matches by path or extension, and so does its section. An override in a checklist for `.github/workflows/**` never reaches a Python file.
 

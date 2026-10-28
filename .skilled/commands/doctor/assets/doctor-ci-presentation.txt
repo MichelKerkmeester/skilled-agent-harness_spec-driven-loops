@@ -126,6 +126,14 @@ Run this command? [yes/no]
 
 The `Required checks` line appears only for a change to off when the planner could not read the branch ruleset, so no required status check was checked. Leave it out otherwise.
 
+Every display the toggle prints carries this one extra line immediately before its status line when the skill-folder profile names another repository:
+
+```text
+Profile: ignored [path], written for [repository], this repository is [current or unknown]; the protected workflows it lists are not checked
+```
+
+That profile is the one this repository committed, so the protected workflows and the `neverOff` names it lists are not checked here. A change to `off` would skip a workflow nothing names, so it is refused; a change to `on` only deletes a variable, so it is still planned.
+
 When the plan lists protected workflows, the change switches off a workflow the CI profile protects. After the first yes, ask once more and accept only the variable name:
 
 ```text
@@ -134,10 +142,11 @@ Protected workflows this switches off:
 Second confirmation: Type [name] to confirm a second time that these protected workflows stop running:
 ```
 
-A refused change prints one of these lines, `STATUS=FAIL ERROR="refused"` and exits without a plan. The required-check lines come from the live branch ruleset, and the last two from the profile's `neverOff` list and its workflows README:
+A refused change prints one of these lines, `STATUS=FAIL ERROR="refused"` and exits without a plan. The required-check lines come from the live branch ruleset, the ignored-profile line from a skill-folder profile written for another repository, and the last two from the profile's `neverOff` list and its workflows README:
 
 ```text
 REFUSE: [name] is not a documented switch
+REFUSE: [name] must stay unset because the CI profile was ignored, so the protected workflows cannot be checked: fix its repository field or name it with --profile
 REFUSE: [group] must stay unset while the ruleset requires that context
 REFUSE: [master] must stay unset because it also skips [file], the only check the ruleset requires, and a skipped job reports Success
 REFUSE: [name] must stay unset because the CI profile lists it in neverOff
@@ -223,6 +232,7 @@ STATUS=FAIL ERROR="[message]"
 | The report, scaffold or toggle exits 3 | The CI profile is missing where `--profile` or `git config skcode.ciProfile` points, or a key is unknown or malformed. Fix the field the error names |
 | The report, scaffold or toggle refuses `.sk-code/ci.json` | That root path is no longer read. Move `.sk-code/ci.json` to `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, then delete the root `.sk-code/` folder |
 | The profile line reads `Profile: default ... ignored` | The skill-folder profile names another repository, so this one runs on the default. Write this repository's own `repository` value in the profile, or pass `--profile` |
+| The toggle refuses a variable because the CI profile was ignored | The skill-folder profile names another repository, so its protected workflows and `neverOff` names are not checked and no change to `off` is planned. Write this repository's own `repository` value in the profile, or pass `--profile` |
 | A workflow shows `partial` | Some jobs sit in a switched group and some do not. Read the job conditions in that file |
 | `event-in-run` flags a workflow | A run block interpolates an event field. A hex SHA or a number is allowed, so read the line before changing it |
 | A workflow file fails to parse | Fix the YAML error the report names. The other rows still print |

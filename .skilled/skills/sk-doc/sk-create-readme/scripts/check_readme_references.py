@@ -69,12 +69,15 @@ path is absent by design: a path the repository's ``.gitignore`` excludes
 (build output such as ``dist/``), a bare ``name.js`` whose ``name.ts`` source is
 tracked, a path a hub README names per mode that every child mode folder (a
 subfolder holding ``SKILL.md``) holds, and the per-repository config the doctor
-commands create on demand (``.sk-code/quality.json`` and ``.sk-git/``, exact
-tokens only). Every README in a run is asked about git-ignored paths in one
-batched ``git check-ignore`` call, after one batched call that finds the
-READMEs kept inside an ignored folder, where the rule does not apply. The
-argument of an output flag (``-o file.txt``) names a file the command writes,
-so it is not checked.
+commands create on demand
+(``.skilled/skills/sk-code/sk-code-quality/repository/quality.json`` and
+``.sk-git/``, exact tokens only). The former root location, ``.sk-code/ci.json``
+and ``.sk-code/quality.json``, is named only so a document can describe the
+move: the sk-code loaders refuse it. Every README in a run is asked about
+git-ignored paths in one batched ``git check-ignore`` call, after one batched
+call that finds the READMEs kept inside an ignored folder, where the rule does
+not apply. The argument of an output flag (``-o file.txt``) names a file the
+command writes, so it is not checked.
 
 Any other known-good reference that cannot exist in the checkout is named in a
 README-level marker block. Each entry suppresses that exact token in that README
@@ -162,7 +165,6 @@ REPOSITORY_ROOT_PREFIXES = (
     ".github/",
     ".skilled/", ".opencode/",
     ".claude/", ".codex/", ".cursor/", ".devin/", ".hermes/", ".pi/",
-    ".sk-code/",
     "specs/",
     "opencode.json",
     ".utcp_config.json",
@@ -178,7 +180,9 @@ MARKER_DIRECTIVES = ("allow-ref", "allow-count")
 OUTPUT_FLAGS = {"-o", "--output", "--out"}
 # Per-repository config the doctor commands create on demand, so no checkout ships it.
 ON_DEMAND_PATHS = {
-    ".sk-code/quality.json": "created by /doctor:sk-code quality",
+    ".skilled/skills/sk-code/sk-code-quality/repository/quality.json": "created by /doctor:sk-code quality",
+    ".sk-code/ci.json": "the former root location, which the sk-code loaders refuse",
+    ".sk-code/quality.json": "the former root location, which the sk-code loaders refuse",
     ".sk-git/": "created by /doctor:git standards",
 }
 # An extensionless sibling name whose ignored state shows a README's folder is ignored as a whole.
@@ -1250,7 +1254,7 @@ def run_self_test() -> int:
         _TRACKED_NAMES.clear()
         (root / "hub" / "README.md").write_text(
             "Each mode keeps `refs/x.md`. Output lands in `build/out.js`. It runs `gen.js`.\n"
-            "Config lives in `.sk-git/` and `.sk-code/quality.json`. Run `tool -o out.txt`.\n",
+            "Config lives in `.sk-git/` and `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`. Run `tool -o out.txt`.\n",
             encoding="utf-8",
         )
         classes, missing = check_readme(str(root / "hub" / "README.md"))
@@ -1279,12 +1283,15 @@ def run_self_test() -> int:
         broken, missing = check_readme(str(root / "build" / "README.md"))
         if missing is not None or print_result("self-test-class-readme-in-ignored-folder", broken, None):
             return 1
-        # A tracked file under a repository-root config folder resolves from a README in any folder.
-        (root / ".sk-code").mkdir(exist_ok=True)
-        (root / ".sk-code" / "ci.json").write_text("{}\n", encoding="utf-8")
+        # A tracked file under the skill folder resolves from a README in any folder, because
+        # the skills sit under a repository-root folder.
+        profile = root / ".skilled" / "skills" / "sk-code" / "sk-code-ci" / "repository" / "ci.json"
+        profile.parent.mkdir(parents=True, exist_ok=True)
+        profile.write_text("{}\n", encoding="utf-8")
         subprocess.run(["git", "-C", str(root), "add", "-A"], check=True)
         _TRACKED_NAMES.clear()
-        (root / "hub" / "README.md").write_text("The profile is `.sk-code/ci.json`.\n", encoding="utf-8")
+        (root / "hub" / "README.md").write_text(
+            "The profile is `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`.\n", encoding="utf-8")
         rooted, missing = check_readme(str(root / "hub" / "README.md"))
         if missing is not None or not print_result("self-test-root-config-folder", rooted, None):
             return 1

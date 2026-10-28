@@ -130,6 +130,12 @@ function isInside(child, parent) {
   return rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel);
 }
 
+// A file may open with a byte-order mark, which JSON.parse refuses. Every reader of a config
+// file strips it here, so discovery and validation cannot disagree about what the file says.
+function parseConfigJson(text) {
+  return JSON.parse(text.replace(/^\uFEFF/, ''));
+}
+
 function readJsonQuiet(file) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -215,7 +221,7 @@ function repoConfigTarget(root) {
 function declaredRepository(file) {
   let raw;
   try {
-    raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+    raw = parseConfigJson(fs.readFileSync(file, 'utf8'));
   } catch {
     return undefined;
   }
@@ -243,12 +249,29 @@ function fileScopedGitValue(root, env) {
 }
 
 /**
+ * Refuse a path an operator named when it resolves inside the old root-level folder. The
+ * old folder is refused on every path, so no repository can keep its config there by
+ * naming it with --config or the git config value.
+ *
+ * @param {string} file - Absolute path the source named.
+ * @param {string} root - Repository root.
+ * @param {string} source - The source that named it, cli or git-config.
+ * @param {string|null} scope - The git config scope, null for --config.
+ * @returns {void}
+ */
+function refuseNamedLegacyPath(file, root, source, scope) {
+  if (!isInside(realOrSelf(file), realOrSelf(path.join(root, path.dirname(LEGACY_CONFIG_FILE))))) return;
+  throw new ConfigError('CONFIG_LEGACY_LOCATION', `${displayPath(file, root)} is no longer read: move it to ${repoConfigTarget(root)}`,
+    { source, path: file, scope });
+}
+
+/**
  * Pick the one repository config source, most explicit first: --config relative to
  * the working directory, the file-scoped git config value relative to the root, then the
  * config the skill folder carries, at the first candidate that exists. A named path that
- * points nowhere is a broken install, never a fall back to the next source, and a file
- * left at the old root-level location is refused with CONFIG_LEGACY_LOCATION, so a stale
- * copy cannot be read in silence.
+ * points nowhere is a broken install, never a fall back to the next source, and a path
+ * inside the old root-level location is refused with CONFIG_LEGACY_LOCATION, whether
+ * discovery found it or a source named it, so a stale copy cannot be read in silence.
  *
  * `value` is the git config value discovery read, verbatim, and null for every other
  * source. A trust decision needs it, because whether that value sits in the repository's
@@ -269,6 +292,7 @@ function discoverConfig({ cliPath = null, cwd, root, git, env = process.env }) {
     if (!statOrNull(file)) {
       throw new ConfigError('CONFIG_PATH_MISSING', `--config names ${file}, which does not exist`, { source: 'cli', path: file, scope: null });
     }
+    refuseNamedLegacyPath(file, root, 'cli', null);
     return { source: 'cli', path: file, scope: null, value: null };
   }
   if (git) {
@@ -279,6 +303,7 @@ function discoverConfig({ cliPath = null, cwd, root, git, env = process.env }) {
         throw new ConfigError('CONFIG_PATH_MISSING', `git config ${GIT_CONFIG_KEY} names ${file}, which does not exist`,
           { source: 'git-config', path: file, scope: configured.scope });
       }
+      refuseNamedLegacyPath(file, root, 'git-config', configured.scope);
       return { source: 'git-config', path: file, scope: configured.scope, value: configured.value };
     }
   }
@@ -749,7 +774,7 @@ function loadConfig({ cliPath = null, cwd, root, git, env = process.env, default
   const bytes = Buffer.byteLength(text);
   let raw;
   try {
-    raw = JSON.parse(text.replace(/^﻿/, ''));
+    raw = parseConfigJson(text);
   } catch (error) {
     return { ...base, bytes, errors: [issue('', `does not parse as JSON: ${error.message}`)], merged: null };
   }

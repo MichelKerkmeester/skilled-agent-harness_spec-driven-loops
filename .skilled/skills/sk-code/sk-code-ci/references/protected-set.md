@@ -9,7 +9,7 @@ trigger_phrases:
   - "repository ci profile"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Repository CI Profile and Protected Workflows
@@ -22,9 +22,9 @@ Where a repository states its own CI conventions, and which workflows are never 
 
 ### The Profile
 
-Branch names, switch variables, path twins, README tables and the setup action differ from one repository to the next, so no rule in this packet hard-codes them. A repository states them in one file, `.sk-code/ci.json`, and `/doctor:ci report`, `scaffold` and `toggle` read it through `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`.
+Branch names, switch variables, path twins, README tables and the setup action differ from one repository to the next, so no rule in this packet hard-codes them. A repository states them in one file, `repository/ci.json` in its `sk-code-ci` packet, and `/doctor:ci report`, `scaffold` and `toggle` read it through `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`.
 
-The lookup order is `--profile <path>`, then the file-scoped git config value `skcode.ciProfile`, then `.sk-code/ci.json` at the repository root, then a generic default. A named path that does not exist is an error and never falls back, because a typo would otherwise drop every protection without a word. An unknown key is an error too.
+The lookup order is `--profile <path>`, then the file-scoped git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default. A `repository` field limits the file to the repository it names, so a copy shipped with the skills into another repository is ignored, and a file left at the former root-level `.sk-code/` path is refused rather than read. A named path that does not exist is an error and never falls back, because a typo would otherwise drop every protection without a word. An unknown key is an error too.
 
 The generic default forces nothing. It requires no switch, checks no README row, assumes no branch and protects no workflow. A repository without a profile gets the parser checks that hold everywhere and nothing that only this repository needs. To start one, copy `assets/ci-profile.template.json`, which reads as the default, and fill in the keys that differ.
 
@@ -80,7 +80,7 @@ A workflow that holds a status context the branch ruleset requires is protected 
 
 ## 5. SKILLED PROFILE
 
-This repository commits its profile as `.sk-code/ci.json`. Everything in this section is the Skilled example, and none of it applies to another repository.
+This repository commits its profile as `repository/ci.json`. Everything in this section is the Skilled example, and none of it applies to another repository.
 
 | Class | Workflows |
 |---|---|
@@ -99,4 +99,4 @@ This repository commits its profile as `.sk-code/ci.json`. Everything in this se
 
 The Skilled example switches are the master `SKILLED_CI` and the groups `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`. `SKILLED_CI` and `SKILLED_CI_MESSAGES` are in `neverOff` (Skilled example) because both skip `message-contract.yml`. `SKILLED_CI_FRESHNESS` reaches `gate-inputs.yml`, `dispatch-enforcement-guard.yml` and `naming-standard-guard.yml`, and `SKILLED_CI_REPORTS` reaches `trigger-index-rebuild.yml` (Skilled example), so the toggle asks the second confirmation for both. `dependabot-auto-merge.yml` is in `switch.exempt`, the rebuild trailer is `Trigger-Index-Rebuild: ci` and the setup action is `./.github/actions/setup`.
 
-A contract test fails when `.sk-code/ci.json` goes missing or loses a protected entry, because without it this repository would read the generic default and a single yes could switch off a guard.
+A contract test fails when `repository/ci.json` goes missing or loses a protected entry, because without it this repository would read the generic default and a single yes could switch off a guard.

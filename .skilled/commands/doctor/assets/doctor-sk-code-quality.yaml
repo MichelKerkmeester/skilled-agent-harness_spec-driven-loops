@@ -2,7 +2,7 @@
 # DOCTOR: SK-CODE QUALITY CONFIG WORKFLOW (INTERACTIVE MUTATING MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator helping a repository name its own quality checks in one committed file
-purpose: Show which config the sk-code quality gate reads, whether each tool it names is on PATH and which checklists, override rows and hygiene rules the gate would apply, validate that config and create .sk-code/quality.json once from the shipped template behind one approval
+purpose: Show which config the sk-code quality gate reads, whether each tool it names is on PATH and which checklists, override rows and hygiene rules the gate would apply, validate that config and create .skilled/skills/sk-code/sk-code-quality/repository/quality.json once from the shipped template behind one approval
 action: Status -> check -> init dry run when no config exists -> approval -> apply -> check -> report
 
 # ─────────────────────────────────────────────────────────────────
@@ -21,7 +21,10 @@ operating_mode:
 # ─────────────────────────────────────────────────────────────────
 config_invariant: |
   The quality gate reads one repository config: --config, else the file-scoped git config
-  value skcode.qualityConfig, else .sk-code/quality.json at the repository root. The gate
+  value skcode.qualityConfig, else the quality skill's
+  .skilled/skills/sk-code/sk-code-quality/repository/quality.json. A file whose repository
+  field names another repository is ignored, and one left at the former root path
+  .sk-code/quality.json is refused with CONFIG_LEGACY_LOCATION. The gate
   runs every command that file names, and this workflow runs none of them: status looks
   each named tool up on PATH without starting it, and check validates the file against the
   schema. To show what the gate would apply, status asks the runner through
@@ -30,10 +33,10 @@ config_invariant: |
   4000-file cap. Explain starts no check and writes no file, and the doctor keeps no copy
   of checklist discovery. Every checklist the repository config declares is checked too,
   whether or not the sample reached it.
-  The only write is init --apply, which creates .sk-code/quality.json from the shipped
-  template with the checks the repository's manifests imply entered as not required, and
-  which refuses with CONFIG_EXISTS when the file already exists. A dry run shows the plan
-  and writes nothing.
+  The only write is init --apply, which creates the skill folder's repository/quality.json
+  from the shipped template with the checks the repository's manifests imply entered as not
+  required, and which refuses with CONFIG_EXISTS when the file already exists. A dry run
+  shows the plan and writes nothing.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -44,7 +47,7 @@ upstream_assets:
   runner: ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
   template: ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json"
   reference: ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md"
-  config_file: ".sk-code/quality.json"
+  config_file: ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS
@@ -67,10 +70,11 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".sk-code/quality.json"
+    - ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"
+    - ".opencode/skills/sk-code/sk-code-quality/repository/quality.json"
   forbidden_targets:
-    - ".skilled/skills/sk-code/**"
-    - ".opencode/skills/sk-code/**"
+    - ".skilled/skills/sk-code/** except sk-code-quality/repository/"
+    - ".opencode/skills/sk-code/** except sk-code-quality/repository/"
     - "git config skcode.qualityConfig"
   invariant: "The config file is created only through sk-code-quality-config.cjs init --apply after an approved plan, and only when it does not exist. An existing config is never overwritten or edited by this workflow, and no command the config names is ever run."
 
@@ -105,13 +109,13 @@ workflow:
     activities:
       - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs init --apply --json. STATUS=OK MODE=APPLIED is the write, and STATUS=FAIL MODE=REFUSED ERROR=CONFIG_EXISTS means a file appeared and was kept"
       - "Run node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs check --json, which must report ERRORS=0"
-      - "Record the undo: delete .sk-code/quality.json, which this run created"
+      - "Record the undo: delete the repository/quality.json it created"
 
   phase_5_report:
     purpose: "Summarize what was read and what was written"
     activities:
       - "Render the presentation contract's quality result: the source, each tool state, the disabled hygiene rules, the errors, the file written and its undo"
-      - "Remind the operator that .sk-code/quality.json is ordinary repository content: review each check it enables, then commit it"
+      - "Remind the operator that repository/quality.json is ordinary repository content: review each check it enables, then commit it"
       - "Status is STATUS=OK when the config is valid or was created and checks clean, STATUS=CANCELLED ACTION=cancelled when the write was declined, STATUS=FAIL when the config has errors or a write or check failed"
 
 # ─────────────────────────────────────────────────────────────────

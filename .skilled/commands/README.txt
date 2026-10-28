@@ -138,7 +138,7 @@ Eleven command files cover the diagnostic surface, one per owner. Backed by `_ro
 | Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
 | Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
-| sk-code Setup | `/doctor:sk-code [setup\|quality] [--prompt=<text>] [--dry-run]` | Run the sk-code setup battery read-only, or check the repository quality config and create `.sk-code/quality.json` once after an approved plan, naming each repair |
+| sk-code Setup | `/doctor:sk-code [setup\|quality] [--prompt=<text>] [--dry-run]` | Run the sk-code setup battery read-only, or check the repository quality config and create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after an approved plan, naming each repair |
 | CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List GitHub Actions workflows with their switch state, scaffold a new workflow or toggle one CI switch |
 | Git | `/doctor:git <hooks\|standards\|setup> [--dry-run]` | Switch shipped git hook gates on or off in git config, change the commit, PR and branch rules in `.sk-git/` and check which sk-git settings are live |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |

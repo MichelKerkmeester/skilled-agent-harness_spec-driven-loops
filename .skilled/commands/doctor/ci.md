@@ -25,7 +25,7 @@ Load the presentation contract before showing the menu, a table, a plan, an appr
 | Presentation source of truth | `.skilled/commands/doctor/assets/doctor-ci-presentation.txt` |
 | Report script | `.skilled/commands/doctor/scripts/ci-report.cjs` |
 | Scaffold renderer and toggle planner | `.skilled/commands/doctor/scripts/ci-scaffold.cjs`, `.skilled/commands/doctor/scripts/ci-toggle.cjs` |
-| Repository CI profile | `.sk-code/ci.json`, read by `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`. With no profile the generic default forces no convention |
+| Repository CI profile | `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, read by `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`. A profile whose `repository` field names another repository is ignored, one left at `.sk-code/ci.json` is refused, and with no profile the generic default forces no convention |
 
 ---
 
@@ -58,7 +58,7 @@ Load the presentation contract before showing the menu, a table, a plan, an appr
 | `--name=<file>` | `scaffold` | Name the new workflow file, a bare hyphen-case name ending in `.yml` |
 | `--variable=<name>` | `toggle` | Name one switch variable from the repository CI profile (here one of the six `SKILLED_CI*` names) |
 | `--state=<on\|off>` | `toggle` | `off` sets the variable to off and `on` deletes it |
-| `--profile=<path>` | `report`, `scaffold`, `toggle` | Read the CI profile from this file instead of `.sk-code/ci.json` or git config `skcode.ciProfile` |
+| `--profile=<path>` | `report`, `scaffold`, `toggle` | Read the CI profile from this file instead of `.skilled/skills/sk-code/sk-code-ci/repository/ci.json` or git config `skcode.ciProfile` |
 | `list`, `?`, `menu` | the command | Show the startup menu and the route manifest, and load no workflow |
 
 1. Read `.skilled/commands/doctor/assets/doctor-ci-presentation.txt`.

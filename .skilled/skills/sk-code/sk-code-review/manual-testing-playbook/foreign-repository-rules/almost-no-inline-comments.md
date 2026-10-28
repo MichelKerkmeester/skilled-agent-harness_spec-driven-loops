@@ -1,7 +1,7 @@
 ---
 title: "CR-029 -- Repository that wants almost no inline comments"
 description: "This scenario validates a repository that wants almost no inline comments for `CR-029`. It focuses on the review reading the repository's own rule overrides through the quality runner's explain entry, applying a dropped documentation rule and a switched-off tracker-id hygiene rule, and raising no finding for either."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-029 -- Repository that wants almost no inline comments
@@ -36,7 +36,7 @@ Fixture build (the builder prints the scratch folder it created):
 
 ```bash
 SCRATCH="$(mktemp -d)"
-mkdir -p "$SCRATCH/.sk-code" "$SCRATCH/docs" "$SCRATCH/src" "$SCRATCH/test"
+mkdir -p "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository" "$SCRATCH/docs" "$SCRATCH/src" "$SCRATCH/test"
 cat > "$SCRATCH/src/total.js" <<'JS'
 // Fixes #12: an empty list totals zero
 function total(items) {
@@ -64,7 +64,7 @@ test('average divides by the count and returns zero for an empty list', () => {
   assert.equal(average([]), 0);
 });
 JS
-cat > "$SCRATCH/.sk-code/quality.json" <<'JSON'
+cat > "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json" <<'JSON'
 {
   "schemaVersion": 1,
   "checklists": [{ "file": "docs/code-style.md", "extensions": [".js"] }],
@@ -132,7 +132,7 @@ docs/code-style.md repo-config floor.documentation:none hygiene.issue:none
 Step 3 returns a report whose summary carries a line of this shape, with the checklist list first and both overrides in the `Overrides:` group:
 
 ```text
-Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, docs/code-style.md. Overrides: hygiene.issue none from .sk-code/quality.json; floor.documentation none from docs/code-style.md. Refused: none. Ignored: none. Conflicts: none
+Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, docs/code-style.md. Overrides: hygiene.issue none from .skilled/skills/sk-code/sk-code-quality/repository/quality.json; floor.documentation none from docs/code-style.md. Refused: none. Ignored: none. Conflicts: none
 ```
 
 The order inside the `Overrides:` group may differ, because the contract does not fix it. The report then lists no finding, or only findings for rules the repository did not drop, and ends on `Review status: APPROVED`. Step 4 prints `OK: review output ends on the exact status line`, then `OK: no numbered findings to check` for a report with no findings, and each checker exits 0.

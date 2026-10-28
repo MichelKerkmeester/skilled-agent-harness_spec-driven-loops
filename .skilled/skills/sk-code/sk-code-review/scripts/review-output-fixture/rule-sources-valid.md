@@ -5,7 +5,7 @@
 **Baseline used**: sk-code (sk-code-review)
 **Surface evidence used**: UNKNOWN
 **Quality gate evidence**: absent
-Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, .sk-code/checklists/house.md. Overrides: review.function-length replace from .sk-code/checklists/house.md; floor.documentation none from .sk-code/checklists/house.md; hygiene.issue none from .sk-code/quality.json. Refused: none. Ignored: none. Conflicts: none
+Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, .skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md. Overrides: review.function-length replace from .skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md; floor.documentation none from .skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md; hygiene.issue none from .skilled/skills/sk-code/sk-code-quality/repository/quality.json. Refused: none. Ignored: none. Conflicts: none
 
 ## Findings
 

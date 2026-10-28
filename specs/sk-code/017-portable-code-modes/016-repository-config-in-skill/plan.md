@@ -1,13 +1,13 @@
 ---
-title: "Implementation Plan: Phase 15: repository-config-in-skill"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Repository config inside the owning skill folder"
+description: "One shared identity module reads which repository a checkout is, both loaders move their default path into the skill folder that reads the file, and this repository's profile moves with them so the CI report is unchanged apart from the profile path."
 trigger_phrases:
   - "repository config in skill plan"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 15: repository-config-in-skill
+# Implementation Plan: Repository config inside the owning skill folder
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -15,127 +15,114 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Node.js CommonJS, YAML route assets, Markdown references |
+| **Framework** | None |
+| **Storage** | `repository/ci.json` and `repository/quality.json` inside the owning skill folder, committed per repository |
+| **Testing** | `node:test` over throwaway fixture repositories under `os.tmpdir()`, a shell suite for the pre-commit hook, and a Python self-test for the README checker |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+`shared/scripts/lib/repository-identity.cjs` reads which repository a checkout is, from `GITHUB_REPOSITORY` first and the origin remote otherwise, through one parser for https, ssh and scp-like URLs. Both loaders move their default path into the skill folder that reads the file, accept an optional `repository` field, report a file written for another repository as `ignored` and refuse the old root path with its move target. This repository's profile moves with the code, so `/doctor:ci report --no-gh --json` keeps 32 workflows and 0 errors, and each suite proves the foreign, legacy and `.opencode/` cases.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] The five CI suites print `tests 73 pass 73 fail 0` and the combined quality, doctor-quality, shared and CI run prints `tests 270 pass 270 fail 0`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+One identity module, two loaders.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`shared/scripts/lib/repository-identity.cjs`**: `normalizeRemote`, `currentRepository`, `repositoryMatches` and `REPOSITORY_PATTERN`.
+- **`doctor/scripts/lib/ci-profile.cjs`**: the skill-folder path and its `.opencode/` twin, the `repository` field check, the `ignored` result and the `PROFILE_LEGACY_LOCATION` refusal.
+- **`sk-code-quality/scripts/lib/quality-config.cjs`**: the same four pieces for the quality config, plus `repoConfigTarget` for `init` and source `none` on a mismatch.
+- **The readers**: `ci-report.cjs`, `ci-toggle.cjs` and `ci-scaffold.cjs` carry `ignored` into their output, and `quality-gate.cjs` gives the legacy code its own repair line.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+Each loader reads the identity once, parses the file, validates every field, and compares `repository` when the file declares one. It then applies the file, returns the default with `ignored`, or throws the legacy error. The readers only print what the loader returned; none of them re-reads the file.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| `ci-profile.cjs` | Owns CI profile discovery, validation and the default | update | `ci-profile.test.cjs` legacy, ignored and `.opencode/` cases |
+| `ci-report.cjs`, `ci-toggle.cjs`, `ci-scaffold.cjs` | Print the profile and its refusals | update | `ignored` cases in `ci-report.test.cjs`, `ci-toggle.test.cjs`, `ci-scaffold.test.cjs` |
+| `quality-config.cjs` | Owns quality config discovery and the `init` target | update | `quality-config.test.cjs` legacy, ignored and `.opencode/` cases |
+| `quality-gate.cjs` | Turns a config fault into a gate error | update | `CONFIG_LEGACY_LOCATION` maps to its own code and repair line |
+| `.skilled/skills/sk-code/sk-code-ci/repository/ci.json` | This repository's CI profile | moved | `ci-profile.test.cjs` "this repository commits its CI profile and it keeps every protection" |
+| Doctor commands, READMEs, references and playbooks | Describe the old root path | update | `rg -n '\.sk-code/'` leaves only the refusal text |
+| `.github/workflows/**`, `.github/scripts/**` | CI | unchanged | `git diff --stat` shows none |
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup counts the archives. Implementation adds `--keep`. Verification counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. Setup captures the baseline report and reads the current lookup order. Implementation lands the identity module, both loaders, their readers, this repository's moved profile and the docs sweep. Verification reruns every suite and checks that the report is unchanged apart from the profile path.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Remote normalization, the environment-first identity, the match rule, loader schema and discovery | `repository-identity.test.cjs`, `ci-profile.test.cjs`, `quality-config.test.cjs` |
+| Integration | Report, toggle, scaffold, quality gate and doctor quality as processes against foreign fixtures, a legacy fixture and this repository | `ci-report.test.cjs`, `ci-toggle.test.cjs`, `ci-scaffold.test.cjs`, `quality-gate.test.cjs`, `sk-code-quality-config.test.cjs` |
+| Manual | The live read-only report, and each loader against a temp root holding a file at the old path | `ci-report.cjs --no-gh --json`, the two loader calls in `spec.md` |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| `git` with an origin remote, or `GITHUB_REPOSITORY` in CI | External | Green | The identity reads `unknown`, and a file that names a repository is ignored |
+| `node:test`, `bash` and `python3` for the suites | Internal | Green | The verification gate cannot run |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: A repository whose profile stops applying, or a report here that differs beyond the profile path.
+- **Procedure**: Revert the commit. The identity module is new, both loader changes are additive, and moving the profile back to `.sk-code/ci.json` restores the old read.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +130,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | Closure |
 <!-- /ANCHOR:phase-deps -->
 
 ---
-

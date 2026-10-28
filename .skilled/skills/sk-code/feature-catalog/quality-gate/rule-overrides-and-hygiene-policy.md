@@ -6,7 +6,7 @@ trigger_phrases:
   - "rule overrides section"
   - "commentHygiene disableRules"
   - "drop or replace a quality rule"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rule Overrides And Hygiene Policy (`## Rule overrides`, `commentHygiene.disableRules`)
@@ -23,7 +23,7 @@ Each repository keeps its own house style. One wants almost no inline comments, 
 
 ### The Section
 
-An override lives in an optional section of a checklist that a declaration already names: a hub surface's `quality.checklists`, an outside skill's `quality` block, or `checklists[]` in `.sk-code/quality.json`. The heading reads `## Rule overrides`, or `## 7. RULE OVERRIDES` in a checklist that numbers its headings. The table has three columns: a rule id, an action and an optional reason. The action is `none`, which drops the rule, or `replace: <text>`, which puts the text in its place at the same severity.
+An override lives in an optional section of a checklist that a declaration already names: a hub surface's `quality.checklists`, an outside skill's `quality` block, or `checklists[]` in `repository/quality.json`, the quality config the `sk-code-quality` packet holds. The heading reads `## Rule overrides`, or `## 7. RULE OVERRIDES` in a checklist that numbers its headings. The table has three columns: a rule id, an action and an optional reason. The action is `none`, which drops the rule, or `replace: <text>`, which puts the text in its place at the same severity.
 
 A rule id is `<class>.<name>`. The classes are the runner's own (`hygiene`, `conflict`, `secret`, `syntax`, `debug`, `dist`), the universal floor's `floor.*` rules and the review lens's `review.*` rules. When more than one source speaks to the same rule, the higher level wins: the hard floor, then the repository checklist, then a specific surface, then the SKILLED fallback, then the default.
 
@@ -33,7 +33,7 @@ The floor holds the rules whose breach causes an incident in any codebase: parse
 
 ### The Hygiene Key
 
-`commentHygiene.disableRules` in `.sk-code/quality.json` switches off named core comment-hygiene rules, written bare (`task`) or with their class (`hygiene.task`). The runner, the pre-commit hook and the CI job all read it, so a rule switched off for one is off for all three, and the verdict lists what is off in `config.hygiene.disabled`. An unknown id, or an id the shared contract fixes such as `secret.private-key`, is `CONFIG_INVALID` with exit 3 before any check runs. The hygiene row of a checklist changes what the agent and the review mode apply, while the runner's own check changes only through this key, so a repository that wants a rule off everywhere sets both.
+`commentHygiene.disableRules` in the `sk-code-quality` packet's `repository/quality.json` switches off named core comment-hygiene rules, written bare (`task`) or with their class (`hygiene.task`). The runner, the pre-commit hook and the CI job all read it, so a rule switched off for one is off for all three, and the verdict lists what is off in `config.hygiene.disabled`. An unknown id, or an id the shared contract fixes such as `secret.private-key`, is `CONFIG_INVALID` with exit 3 before any check runs. The hygiene row of a checklist changes what the agent and the review mode apply, while the runner's own check changes only through this key, so a repository that wants a rule off everywhere sets both.
 
 ### Reading Overrides
 

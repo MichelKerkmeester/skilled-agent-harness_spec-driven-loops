@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Quality Runner Contract
@@ -98,7 +98,7 @@ Precedence runs `ERROR`, then `BLOCKED`, then `UNVERIFIED`, then `NOTHING_CHECKE
 | `syntax-yaml` | P0 | no | The same python3 process, through PyYAML `compose_all`, when it imports |
 | `syntax-toml` | P0 | no | The same python3 process, through `tomllib`, when it imports |
 | `dist-staleness` | P1 | no | The dist adapter in section 8 |
-| A configured id | Declared | Declared, and true by default for P0 only | The commands `.sk-code/quality.json` names in `checks` and `generated`, after the built-in rows, as `quality-config.md` describes. A command starts only from a trusted config |
+| A configured id | Declared | Declared, and true by default for P0 only | The commands `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names in `checks` and `generated`, after the built-in rows, as `quality-config.md` describes. A command starts only from a trusted config |
 
 A configured check runs only from a trusted config. One of four rules makes it trusted. The operator names the file with `--config`, `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include, `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test, or the repository under test shares its git common dir with the checkout that holds the runner. Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one is unverified. A built-in check is never gated this way, and `--no-run` lists a configured check without starting it, so trust does not change that listing. The trust rule compares git common dirs, so every worktree of the hub's repository counts as the hub's own checkout, while a checklist row scoped to `hubRepo` reads the hub checkout's own path instead.
 
@@ -115,7 +115,7 @@ The pre-commit probe reads the hook folder git resolves, then the checker the ho
 | Error code | Cause |
 | --- | --- |
 | `USAGE` | A flag the CLI section does not accept |
-| `CONFIG_PATH_MISSING`, `CONFIG_INVALID` | A named config path that does not exist, or a repository config that fails to parse or validate. `config.errors` lists one row per field, and a validation fault stops the run before a check starts. A `commentHygiene` value the checker refuses is a `CONFIG_INVALID` cause found once the run starts, and its row names the field that supplied the value. So is a checklist the run loads whose `## Rule overrides` section the shared linter refuses, or one with a row whose id no rule carries: its `config.errors` row names the checklist and every reason, and none of that file's rows apply |
+| `CONFIG_PATH_MISSING`, `CONFIG_LEGACY_LOCATION`, `CONFIG_INVALID` | A named config path that does not exist, a config still at the old root path `.sk-code/quality.json` whose message names the move to `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`, or a repository config that fails to parse or validate. `config.errors` lists one row per field, and a validation fault stops the run before a check starts. A `commentHygiene` value the checker refuses is a `CONFIG_INVALID` cause found once the run starts, and its row names the field that supplied the value. So is a checklist the run loads whose `## Rule overrides` section the shared linter refuses, or one with a row whose id no rule carries: its `config.errors` row names the checklist and every reason, and none of that file's rows apply |
 | `NO_GIT_REPOSITORY` | No git repository and no `--files` |
 | `FILE_NOT_FOUND`, `FILE_OUTSIDE_ROOT` | A named file that is missing, not regular or outside the root |
 | `BASE_NOT_FOUND`, `GIT_FAILED` | A ref with no merge base, or a git call that failed |

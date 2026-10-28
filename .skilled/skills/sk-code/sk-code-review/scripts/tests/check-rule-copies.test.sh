@@ -366,7 +366,7 @@ expect_output 'Review status "REQUESTED_CHANGES" requests changes with no P0 or 
 
 # The Rule sources line is optional, and when present it must keep its five groups and entry shapes.
 run_case 1 "shape_final_line_rule_sources_malformed" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/rule-sources-malformed.md"
-expect_output 'Rule sources line has a malformed Overrides entry: "review.function-length dropped by .sk-code/checklists/house.md"' "shape_final_line_rule_sources_malformed_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/rule-sources-malformed.md"
+expect_output 'Rule sources line has a malformed Overrides entry: "review.function-length dropped by .skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md"' "shape_final_line_rule_sources_malformed_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/rule-sources-malformed.md"
 # FAIL: an upper-case rule id breaks the shared linter's id grammar, which the checker reads from the linter.
 RULE_SOURCES_UPPERCASE_ID="$TMP_DIR/rule_sources_uppercase_id.md"
 printf 'Rule sources: a.md. Overrides: Review.KISS none from a.md. Refused: none. Ignored: none. Conflicts: none\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$RULE_SOURCES_UPPERCASE_ID"

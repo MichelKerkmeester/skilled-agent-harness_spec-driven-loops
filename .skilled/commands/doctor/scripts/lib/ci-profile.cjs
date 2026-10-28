@@ -18,9 +18,11 @@
 // The profile travels with the skill into every repository that installs it, so its
 // `repository` field decides whether it applies here. A file written for another
 // repository is reported and ignored, never applied, because its branch names and
-// protected workflows would silently replace this repository's. The former
-// repository-root location is refused with its move target, because a stale copy there
-// would otherwise look authoritative while nothing reads it.
+// protected workflows would silently replace this repository's. A declared value the
+// pattern refuses is a profile fault rather than another repository, so validation names
+// the field instead of the file being ignored. The former repository-root location is
+// refused with its move target wherever a discovery path leads into it, because a stale
+// copy there would otherwise look authoritative while nothing reads it.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -154,6 +156,19 @@ function displayPath(file, root) {
   return rel && !rel.startsWith('..') && !path.isAbsolute(rel) ? rel.split(path.sep).join('/') : file;
 }
 
+/**
+ * Refuse a profile path that sits in the old repository-root folder.
+ *
+ * @param {string} file - Absolute profile path.
+ * @param {string} root - Repository root.
+ */
+function refuseLegacyLocation(file, root) {
+  const rel = path.relative(path.join(root, path.dirname(LEGACY_PROFILE_FILE)), file);
+  if (rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel))) {
+    throw new ProfileError('PROFILE_LEGACY_LOCATION', `${displayPath(file, root)} is no longer read: move it to ${REPO_PROFILE_FILE}`);
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. DISCOVERY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -182,6 +197,7 @@ function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true
   if (cliPath) {
     const file = path.resolve(cwd, cliPath);
     if (!fs.existsSync(file)) throw new ProfileError('PROFILE_PATH_MISSING', `--profile names ${file}, which does not exist`);
+    refuseLegacyLocation(file, root);
     return { source: 'cli', path: file };
   }
   if (git) {
@@ -189,6 +205,7 @@ function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true
     if (configured) {
       const file = path.resolve(root, configured);
       if (!fs.existsSync(file)) throw new ProfileError('PROFILE_PATH_MISSING', `git config ${GIT_CONFIG_KEY} names ${file}, which does not exist`);
+      refuseLegacyLocation(file, root);
       return { source: 'git-config', path: file };
     }
   }
@@ -207,6 +224,11 @@ function discoverProfile({ cliPath = null, cwd = process.cwd(), root, git = true
     return { source: 'repo', path: file };
   }
   const declared = isPlainObject(raw) ? raw.repository : undefined;
+  const namesRepository = typeof declared === 'string' && REPOSITORY_PATTERN.test(declared.trim());
+  // An absent field applies everywhere. A value the pattern refuses is a profile fault
+  // rather than another repository, so the file stays a profile source and validation
+  // names the field.
+  if (declared === undefined || !namesRepository) return { source: 'repo', path: file };
   const { identity } = currentRepository({ root, env });
   if (repositoryMatches(declared, identity)) return { source: 'repo', path: file };
   return { source: 'default', path: null, ignored: { path: file, repository: declared, current: identity } };

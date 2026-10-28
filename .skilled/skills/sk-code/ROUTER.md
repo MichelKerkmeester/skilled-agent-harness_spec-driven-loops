@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.5.0
+version: 2.3.6.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -51,7 +51,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | Intent | Strong Signals |
 | --- | --- |
 | IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module` |
-| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat`, `skipped_untrusted`, `untrusted repository check`, `trustrepochecks`, `quality config`, `.sk-code/quality.json`, `configured check`, `unverified` |
+| CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat`, `skipped_untrusted`, `untrusted repository check`, `trustrepochecks`, `quality config`, `repository/quality.json`, `configured check`, `unverified` |
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
 | TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |
@@ -239,7 +239,7 @@ DEFAULT_RESOURCE = [
 
 INTENT_SIGNALS = {
     "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
-    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell", "comment hygiene", "restraint", "yagni", "simplify", "over-engineering", "bloat", "skipped_untrusted", "untrusted repository check", "trustrepochecks", "quality config", ".sk-code/quality.json", "configured check", "unverified"]},
+    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell", "comment hygiene", "restraint", "yagni", "simplify", "over-engineering", "bloat", "skipped_untrusted", "untrusted repository check", "trustrepochecks", "quality config", "repository/quality.json", "configured check", "unverified"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},

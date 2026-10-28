@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doctor:sk-code"
   - "sk-code setup battery"
   - "doctor sk-code quality"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-code Setup And Quality Doctor (/doctor:sk-code)
@@ -15,7 +15,7 @@ version: 1.0.2.0
 
 /doctor:sk-code runs the read-only nine-leg setup battery by default, and its quality target shows, checks and once creates the repository quality config.
 
-The command is a thin router over two workflows. `setup` is the default target and only reads. `quality` writes `.sk-code/quality.json` only after the workflow prints its plan and the operator approves, and never over an existing file.
+The command is a thin router over two workflows. `setup` is the default target and only reads. `quality` writes `repository/quality.json` in the `sk-code-quality` packet only after the workflow prints its plan and the operator approves, and never over an existing file.
 
 ---
 

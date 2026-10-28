@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.8.0
+version: 1.13.9.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -95,7 +95,7 @@ Phase 1 Implementation writes or changes files
 
 - This mode ships no house-style checklist. The universal floor and the universal style guide apply on every surface, and each surface's own checklists carry its house style. `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target, and the SKILLED JavaScript and CSS house checks sit under `../sk-code-skilled/assets/checklists/js-css-style/`.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
-- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file. The only commands it runs beyond its own are the ones a repository's committed `.sk-code/quality.json` names, each as an argv array under a deadline and the workspace guard, and only once the repository is trusted (`references/quality-config.md` section 8). A command a manifest implies is reported as a suggestion it never runs. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids, and `references/quality-config.md` holds the repository config: its schema, discovery order, merge rule and trust boundary.
+- `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file. The only commands it runs beyond its own are the ones a repository's committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, each as an argv array under a deadline and the workspace guard, and only once the repository is trusted (`references/quality-config.md` section 8). A command a manifest implies is reported as a suggestion it never runs. `references/runner-contract.md` holds its CLI, gate values, verdict, envelope grammar and rule ids, and `references/quality-config.md` holds the repository config: its schema, discovery order, merge rule and trust boundary.
 - `assets/quality-defaults.json` holds the runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns. It names no command.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate. The runner calls it once per run with `--json`.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
@@ -111,7 +111,7 @@ Phase 1 Implementation writes or changes files
 | ALWAYS | Before any implementation-done claim | `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md`, `references/code-style-guide.md` |
 | ALWAYS | Any quality-gate invocation on changed files | `scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file |
 | CONDITIONAL | The verdict lists a checklist | Every file in the runner's `checklists[]`, each with the `why` the verdict gives |
-| CONDITIONAL | The repository has or needs `.sk-code/quality.json`, or the verdict reports a configured check, a config error or a suggestion | `references/quality-config.md` |
+| CONDITIONAL | The repository has or needs `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`, or the verdict reports a configured check, a config error or a suggestion | `references/quality-config.md` |
 | CONDITIONAL | SKILLED is a resolved surface of the target | `../sk-code-skilled/assets/checklists/universal-checklist.md` |
 | CONDITIONAL | A direct check on one file, outside a runner call | `scripts/check-comment-hygiene.sh` |
 | CONDITIONAL | `.skilled/skills/` target | `../sk-code-skilled/assets/checklists/skill-authoring.md` |
@@ -128,7 +128,7 @@ Phase 1 Implementation writes or changes files
 
 The runner resolves checklists from two sources: the rows this mode owns in `assets/quality-defaults.json`, which are the universal floor and, in this hub's own repository, the spec-folder authoring checklist, and each surface's `quality.checklists` declaration. Ask the runner which checklists apply to a file, and why, with `node scripts/quality-gate.cjs --explain <path>`. Its `checklists[]` and each entry's `why` are the answer, in any repository. This repository's own map, the SKILLED rows among them, is rendered in `../sk-code-skilled/SKILL.md` under "Quality Checklist Map". `/doctor:sk-code quality` shows the same answer for a whole repository: every checklist the gate would load, its seat, its override rows and the hygiene rules that apply.
 
-**A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub. A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block. Such a repository names its rules in `.sk-code/quality.json` instead. Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`. A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface. The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own. `references/quality-config.md` section 3 holds the row rules.
+**A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub. A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block. Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead. Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`. A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface. The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own. `references/quality-config.md` section 3 holds the row rules.
 
 ### Comment-Hygiene Enforcement Gates
 
@@ -319,7 +319,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### Quality References And Assets
 
 - [`references/runner-contract.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
-- [`references/quality-config.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/quality-config.md) - The repository config `.sk-code/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
+- [`references/quality-config.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/quality-config.md) - The repository config `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
 - [`assets/quality-defaults.json`](../../../.skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.
 - [`assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
 - [`assets/checklists/skill-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.

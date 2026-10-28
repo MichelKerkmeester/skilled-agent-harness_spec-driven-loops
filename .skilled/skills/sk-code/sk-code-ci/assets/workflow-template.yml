@@ -1,4 +1,4 @@
-#<<! Profile template. /doctor:ci scaffold renders it with ci-scaffold.cjs from the repository CI profile, .sk-code/ci.json or the generic default.>>
+#<<! Profile template. /doctor:ci scaffold renders it with ci-scaffold.cjs from the repository CI profile, .skilled/skills/sk-code/sk-code-ci/repository/ci.json or the generic default.>>
 #<<! A <<name>> slot takes a profile value, a #<<#name>> line opens a block kept when the profile sets it, #<<^name>> one kept when it does not,>>
 #<<! #<</name>> closes it, and a #<<=name:width>> line is a comment the renderer wraps at that width. A #<<! line never reaches the rendered file.>>
 # Workflow scaffold. Copy this file to .github/workflows/<name>.yml, then replace every

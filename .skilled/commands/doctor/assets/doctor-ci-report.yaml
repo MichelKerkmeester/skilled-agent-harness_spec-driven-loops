@@ -32,7 +32,7 @@ mutation_boundaries:
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   report_script: ".skilled/commands/doctor/scripts/ci-report.cjs"
-  ci_profile: ".sk-code/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs"
+  ci_profile: ".skilled/skills/sk-code/sk-code-ci/repository/ci.json, or the file --profile or git config skcode.ciProfile names, read by .skilled/commands/doctor/scripts/lib/ci-profile.cjs; a profile whose repository field names another repository is ignored, and one left at .sk-code/ci.json is refused"
   workflow_readme: "the profile's workflowsReadme, here .github/workflows/README.md"
   standards_packet: ".skilled/skills/sk-code/sk-code-ci/"
 
@@ -45,7 +45,7 @@ inputs:
   json_output: "true when --json is passed: the route prints the script's JSON and nothing else (default false)."
   sha: "--sha=<40 hex> skips the commit search and reports that commit."
   use_gh: "false when --no-gh is passed: the route makes no gh call, every switch reads unknown and no commit is searched. Use it offline or with no GitHub login (default true)."
-  profile_path: "--profile=<path> reads the CI profile from this file instead of .sk-code/ci.json or git config skcode.ciProfile (default none, so the script discovers the profile)."
+  profile_path: "--profile=<path> reads the CI profile from this file instead of .skilled/skills/sk-code/sk-code-ci/repository/ci.json or git config skcode.ciProfile (default none, so the script discovers the profile)."
 
 # ─────────────────────────────────────────────────────────────────
 # EXECUTION

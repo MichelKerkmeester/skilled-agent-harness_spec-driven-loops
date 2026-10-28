@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doctor:ci"
   - "ci switch"
   - "turn off the ci"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CI Workflow Doctor And Switches (/doctor:ci)
@@ -23,7 +23,7 @@ The command is a thin router over three targets. `report` is the default and wri
 
 ### The CI Profile
 
-Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three scripts read them from a profile. The lookup order is `--profile=<path>`, the file-scoped git config value `skcode.ciProfile`, `.sk-code/ci.json`, then a generic default that forces nothing: it requires no switch, checks no README row, assumes no branch and protects no workflow. An unknown key in a profile is an error. This repository commits its profile, so its report, templates and switches are unchanged, and another repository with its own `ACME_CI` switches reads clean without one.
+Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three scripts read them from a profile. The lookup order is `--profile=<path>`, the file-scoped git config value `skcode.ciProfile`, `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, then a generic default that forces nothing: it requires no switch, checks no README row, assumes no branch and protects no workflow. An unknown key in a profile is an error. A `repository` field limits the file to the repository it names, and a file left at the former root-level `.sk-code/` path is refused rather than read. This repository commits its profile, so its report, templates and switches are unchanged, and another repository with its own `ACME_CI` switches reads clean without one.
 
 ### Report
 
@@ -50,7 +50,7 @@ The switches are the repository variables a job's `if:` compares against `off`. 
 | `.skilled/commands/doctor/scripts/lib/ci-profile.cjs` | Script | Profile discovery, validation and the generic default |
 | `.skilled/commands/doctor/scripts/ci-toggle.cjs` | Script | The toggle planner and its refusals |
 | `.skilled/commands/doctor/scripts/ci-scaffold.cjs` | Script | The template renderer and the protected list |
-| `.sk-code/ci.json` | Config | This repository's committed profile |
+| `.skilled/skills/sk-code/sk-code-ci/repository/ci.json` | Config | This repository's committed profile |
 | `.skilled/commands/doctor/assets/doctor-ci-report.yaml` | Shared | The report workflow |
 | `.skilled/commands/doctor/assets/doctor-ci-scaffold.yaml` | Shared | The scaffold workflow and its approval step |
 | `.skilled/commands/doctor/assets/doctor-ci-toggle.yaml` | Shared | The toggle workflow and its refusals |

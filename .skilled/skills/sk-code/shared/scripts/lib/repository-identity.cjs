@@ -27,7 +27,13 @@ const { spawnSync } = require('node:child_process');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REPOSITORY_PATTERN = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
-const SCP_LIKE = /^[^@\s/]+@[^:/\s]+:(.+)$/;
+// git accepts the scp-like `[user@]host:path`, where a remote named in an ssh config needs
+// no user, so the host is whatever sits before the first colon that does not open a
+// `//` URL.
+const SCP_LIKE = /^(?:[^@\s/]+@)?([^:/\s]+):(?!\/\/)(.+)$/;
+// A drive-letter path is a local path. Without this check the scp-like form would read it
+// as a host and a path, and `C:/work/owner/name` would answer as `owner/name`.
+const WINDOWS_DRIVE = /^[A-Za-z]:[\\/]/;
 const GIT_TIMEOUT_MS = 5000;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -35,7 +41,7 @@ const GIT_TIMEOUT_MS = 5000;
 // ─────────────────────────────────────────────────────────────────────────────
 
 // The path part of a URL, for both `scheme://host/path` and the scp-like
-// `user@host:path` form git also accepts. Returns null when neither shape fits.
+// `[user@]host:path` form git also accepts. Returns null when neither shape fits.
 function remotePath(text) {
   if (text.includes('://')) {
     try {
@@ -44,8 +50,9 @@ function remotePath(text) {
       return null;
     }
   }
+  if (WINDOWS_DRIVE.test(text)) return null;
   const match = SCP_LIKE.exec(text);
-  return match ? match[1] : null;
+  return match ? match[2] : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -55,7 +62,7 @@ function remotePath(text) {
 /**
  * Reduce a git remote URL to its `owner/name` identity.
  *
- * @param {string} url - An https, ssh or scp-like remote URL.
+ * @param {string} url - An https, ssh or scp-like remote URL, with or without a user.
  * @returns {string|null} The identity, or null when the text names no repository.
  */
 function normalizeRemote(url) {
@@ -89,6 +96,9 @@ function currentRepository({ root = process.cwd(), env = process.env } = {}) {
   try {
     const run = spawnSync('git', ['-C', root, '-c', 'core.fsmonitor=false', 'remote', 'get-url', 'origin'], {
       encoding: 'utf8',
+      // The caller's environment decides which git configuration, and so which origin
+      // remote, this read sees, so it has to reach the child as well.
+      env,
       timeout: GIT_TIMEOUT_MS,
     });
     if (run.status === 0 && typeof run.stdout === 'string') identity = normalizeRemote(run.stdout);

@@ -1,7 +1,7 @@
 ---
 title: "DOC-392 -- Doctor CI report"
 description: "Manual scenario validating that /doctor:ci report lists every GitHub Actions workflow file, returns an empty error list on a clean tree, reads every switch variable as unknown offline, rejects a bad argument with exit 2 and writes nothing."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-ci-report
 expected_workflow_mode: sk-code-ci
 expected_leaf_resources: []
@@ -25,7 +25,7 @@ The scenario checks the script's JSON contract, the workflow count against the f
 - Prompt: `Run the doctor CI report and tell me which GitHub Actions workflows have a switch off.`
 - Preconditions: The shared current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, so the workflow files are the ones that ship. No GitHub login is needed, because every run uses `--no-gh`.
 - Expected execution process: Count the workflow files, run the report script with `--no-gh --json`, run it with a bad argument, run the route with `--no-gh`, and confirm the tree is unchanged after every step.
-- Expected signals: The JSON run exits 0 and carries the keys `repoRoot`, `profile`, `workflowCount`, `variables`, `newestNonRebuildSha`, `newestNonRebuildReason`, `notChecked`, `errors` and `workflows`. `profile` reads source `repo` and path `.sk-code/ci.json`, the profile this repository commits. `workflowCount` equals the file count, `workflows` holds one entry per file and `errors` is empty. All six names under `variables` read `unknown`, `newestNonRebuildSha` is `null` and `newestNonRebuildReason` reads `gh disabled by --no-gh`. The bad-argument run prints `ERROR: unknown argument: --bogus` with the usage line and exits 2.
+- Expected signals: The JSON run exits 0 and carries the keys `repoRoot`, `profile`, `workflowCount`, `variables`, `newestNonRebuildSha`, `newestNonRebuildReason`, `notChecked`, `errors` and `workflows`. `profile` reads source `repo` and path `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, the profile this repository commits. `workflowCount` equals the file count, `workflows` holds one entry per file and `errors` is empty. All six names under `variables` read `unknown`, `newestNonRebuildSha` is `null` and `newestNonRebuildReason` reads `gh disabled by --no-gh`. The bad-argument run prints `ERROR: unknown argument: --bogus` with the usage line and exits 2.
 - Desired user-visible outcome: A workflow table through the presentation contract, a workflow count that matches the tree, and a named switch state for each workflow. Offline, the switch states that need GitHub are reported as unknown rather than guessed.
 - Pass/fail: PASS if the JSON run exits 0 with an empty `errors` list and a `workflowCount` equal to the file count, the six variables read `unknown` offline, the bad argument exits 2 with the usage line, the route reports the same count and no step writes a file.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.

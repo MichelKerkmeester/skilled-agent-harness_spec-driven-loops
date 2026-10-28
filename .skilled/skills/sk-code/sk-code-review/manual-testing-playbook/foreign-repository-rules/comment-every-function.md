@@ -1,7 +1,7 @@
 ---
 title: "CR-030 -- Repository with the opposite rule: comment every function"
 description: "This scenario validates a repository that replaces the documentation rule with its opposite for `CR-030`. It focuses on the review applying a `replace:` row on `floor.documentation` and raising the missing doc comments at the severity of the rule it replaces."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-030 -- Repository with the opposite rule: comment every function
@@ -36,7 +36,7 @@ Fixture build (the builder prints the scratch folder it created):
 
 ```bash
 SCRATCH="$(mktemp -d)"
-mkdir -p "$SCRATCH/.sk-code" "$SCRATCH/docs" "$SCRATCH/src" "$SCRATCH/test"
+mkdir -p "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository" "$SCRATCH/docs" "$SCRATCH/src" "$SCRATCH/test"
 cat > "$SCRATCH/src/total.js" <<'JS'
 function total(items) {
   return items.reduce((sum, item) => sum + item, 0);
@@ -63,7 +63,7 @@ test('average divides by the count and returns zero for an empty list', () => {
   assert.equal(average([]), 0);
 });
 JS
-cat > "$SCRATCH/.sk-code/quality.json" <<'JSON'
+cat > "$SCRATCH/.skilled/skills/sk-code/sk-code-quality/repository/quality.json" <<'JSON'
 {
   "schemaVersion": 1,
   "checklists": [{ "file": "docs/code-style.md", "extensions": [".js"] }]

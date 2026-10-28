@@ -29,7 +29,7 @@ Accepted answers:
 | Answer | Result | Meaning |
 |--------|--------|---------|
 | `1` | target = `setup` | Run the read-only setup battery and name the repair for each failing leg |
-| `2` | target = `quality` | Show the quality config the gate reads and check it, then create `.sk-code/quality.json` once after you approve |
+| `2` | target = `quality` | Show the quality config the gate reads and check it, then create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after you approve |
 | `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
 
 On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
@@ -43,7 +43,7 @@ Render this table for `menu`, `list` or `?`. Values should mirror `_routes.yaml`
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
 | `setup` | `doctor-sk-code-setup.yaml` | read-only | Run the sk-code setup battery in its check-only form and name the repair for each failing leg |
-| `quality` | `doctor-sk-code-quality.yaml` | mutates | Report and check the repository quality config, and create `.sk-code/quality.json` once after an explicit approve |
+| `quality` | `doctor-sk-code-quality.yaml` | mutates | Report and check the repository quality config, and create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after an explicit approve |
 
 ## 3. Setup Results
 
@@ -100,13 +100,13 @@ Hygiene rules: [N] apply ([rule ids]), disabled [rule ids, or none]
 |-----------|------|-----------|
 | [checklist file] | [default|repo-config|hub-surface|outside-skill, each seat that lists it] | [each row as `<rule id> none` or `<rule id> replace: <text>`, REFUSED with each reason, or none] |
 
-The status block's `Hygiene:` line names only the core rules the config switches off, and the `Hygiene rules:` line here counts and lists the rules left in force, with the disabled ones repeated as the status prints them. Render each line once, as printed. A seat is where the checklist was declared: `default` is the shipped base layer, `repo-config` is `checklists[]` in `.sk-code/quality.json`, `hub-surface` is a hub surface's `quality` block and `outside-skill` is a skill outside the hub that declares one. A refused section applies none of its rows, so print every reason the shared linter gave, such as a floor rule that cannot be overridden. A refused section, or one with a row whose id no rule carries, fails the status with `CONFIG_INVALID`, and a checklist error such as `CHECKLIST_MISSING` fails it with that code, because every gate run that loads the file stops on it with exit 3. A row the sample did not reach is checked the same way. Two checklists at one level that disagree on a rule for a sampled file print `override-conflict <rule id> <checklist> <checklist>` with the sampled files it covers: neither row applies there and the gate reads `UNVERIFIED`, exit 4, so the status lists it and does not fail on it. A resolution that broke reads `DEGRADED` with its reason.
+The status block's `Hygiene:` line names only the core rules the config switches off, and the `Hygiene rules:` line here counts and lists the rules left in force, with the disabled ones repeated as the status prints them. Render each line once, as printed. A seat is where the checklist was declared: `default` is the shipped base layer, `repo-config` is `checklists[]` in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`, `hub-surface` is a hub surface's `quality` block and `outside-skill` is a skill outside the hub that declares one. A refused section applies none of its rows, so print every reason the shared linter gave, such as a floor rule that cannot be overridden. A refused section, or one with a row whose id no rule carries, fails the status with `CONFIG_INVALID`, and a checklist error such as `CHECKLIST_MISSING` fails it with that code, because every gate run that loads the file stops on it with exit 3. A row the sample did not reach is checked the same way. Two checklists at one level that disagree on a rule for a sampled file print `override-conflict <rule id> <checklist> <checklist>` with the sampled files it covers: neither row applies there and the gate reads `UNVERIFIED`, exit 4, so the status lists it and does not fail on it. A resolution that broke reads `DEGRADED` with its reason.
 
 ### Quality Init Plan
 
 ```text
 QUALITY CONFIG PLAN
-Target: .sk-code/quality.json
+Target: .skilled/skills/sk-code/sk-code-quality/repository/quality.json
 Checks to enable, each not required:
    [id] from [manifest]: [argv]
 Outranked by: [the git config skcode.qualityConfig path, or nothing]
@@ -118,7 +118,7 @@ Nothing has been written yet.
 ### Quality Init Prompt
 
 ```text
-Create .sk-code/quality.json with the checks above?
+Create .skilled/skills/sk-code/sk-code-quality/repository/quality.json with the checks above?
    approve  write the file once, then check it
    X        cancel, nothing changes
 ```
@@ -141,8 +141,8 @@ Trust: [trusted, untrusted or none]
 Tools: [N] PASS, [N] SKIP, [N] DEGRADED
 Applies: [N] checklists, [N] override rows, [N] refused sections, [N] hygiene rules, [N] disabled
 Errors: [N]
-Written: [.sk-code/quality.json, or nothing]
-Undo: [delete .sk-code/quality.json, or none]
+Written: [.skilled/skills/sk-code/sk-code-quality/repository/quality.json, or nothing]
+Undo: [delete .skilled/skills/sk-code/sk-code-quality/repository/quality.json, or none]
 Next: review each check the file enables, then commit it
 STATUS=[status]
 ```
@@ -174,8 +174,9 @@ STATUS=ERROR ERROR="[message]"
 | The quality status reports CHECKLIST_MISSING | A declaration names a checklist file that is not there. Restore the file, or fix the `checklists[]` row or the surface's `quality` block that names it, then rerun |
 | The applied rules show a refused override section | Fix or remove each row the reason names: a floor rule cannot be overridden, and a machine-checked id takes `none` only. Run `node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.md>` to check it, then rerun |
 | The quality status reports CONFIG_PATH_MISSING | Create the named file, or fix the `--config` value or the `skcode.qualityConfig` git config value that names it |
+| The quality status reports CONFIG_LEGACY_LOCATION | Move `.sk-code/quality.json` to the path the message names inside the sk-code-quality skill folder, then delete the `.sk-code` folder |
 | Quality init reports CONFIG_EXISTS | The file is kept and never overwritten. Edit it by hand, or delete it and rerun `/doctor:sk-code quality` |
-| Quality init reports OUTSIDE_REPOSITORY | `.sk-code` is a link that leads out of the repository. Replace it with a real folder, then rerun |
+| Quality init reports OUTSIDE_REPOSITORY | The `repository` folder in the sk-code quality skill is a link that leads out of the repository. Replace it with a real folder, then rerun |
 | The quality init plan suggests hygiene rules | The repository has no `specs/` folder, so the spec-kit vocabulary rules would only block it. Add the ones you want to `commentHygiene.disableRules` by hand, because the doctor never writes them |
 | A `commentHygiene.disableRules` id is rejected | An unknown id, or one the shared contract fixes such as `secret.private-key`, is a CONFIG_INVALID error. Use a core hygiene rule id from `references/quality-config.md`, then rerun |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |

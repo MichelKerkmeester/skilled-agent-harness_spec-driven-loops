@@ -7,7 +7,7 @@
 **Baseline used**: sk-code (sk-code-review)
 **Surface evidence used**: UNKNOWN
 **Quality gate evidence**: absent
-Rule sources: .sk-code/checklists/house.md. Overrides: review.function-length dropped by .sk-code/checklists/house.md. Refused: none. Ignored: none. Conflicts: none
+Rule sources: .skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md. Overrides: review.function-length dropped by .skilled/skills/sk-code/sk-code-quality/repository/checklists/house.md. Refused: none. Ignored: none. Conflicts: none
 
 ## Findings
 
