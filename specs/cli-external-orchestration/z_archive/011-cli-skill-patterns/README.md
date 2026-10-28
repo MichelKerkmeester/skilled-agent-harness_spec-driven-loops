@@ -92,7 +92,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature
 - Completion checks run in priority order: P0, then P1, then P2.
 - `implementation-summary.md` is finalized after implementation work.
 - Resume active packet work through `/speckit:resume`, which rebuilds continuity from `handover.md -> _memory.continuity -> spec docs`.
-- Save continuity with `/memory:save`, which routes updates into canonical packet docs such as `implementation-summary.md`, `decision-record.md`, and `handover.md` when those surfaces apply.
+- Save continuity with the retired memory save command, which routes updates into canonical packet docs such as `implementation-summary.md`, `decision-record.md`, and `handover.md` when those surfaces apply.
 
 ---
 

@@ -194,7 +194,5 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
 
 <!-- readme-check
-allow-ref ../lib/ | an import specifier relative to an adapter folder, resolving to this folder's lib/
-allow-ref ../../shared/hook-flags.mjs | an import specifier relative to an adapter folder, resolving to .skilled/hooks/shared/hook-flags.mjs
 allow-ref ../../.skilled/hooks/shared/hook-flags.mjs | the Pi adapters' specifier, written for their .pi/extensions/ symlink
 -->

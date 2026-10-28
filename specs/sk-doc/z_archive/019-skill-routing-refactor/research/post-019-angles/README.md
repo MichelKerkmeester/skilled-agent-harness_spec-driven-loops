@@ -20,7 +20,7 @@ and flags whether it is already covered by an open 019 phase or is genuinely new
 
 - [`alignment-loop-angles.md`](./alignment-loop-angles.md) — **11 alignment-loop (conformance/drift) angles**.
   What may have drifted from an authority 019 established (compiled serving contract, scorer, defaultMode
-  canon, create-* conformance, doc-quality standards) and is worth a `/deep:alignment` pass.
+  canon, create-* conformance, doc-quality standards) and is worth a deep alignment pass.
 - [`research-angles.md`](./research-angles.md) — **13 research angles**. Open questions 019 surfaced but
   did not settle (calibration, causal leaf telemetry, two-tier selection, benchmark external validity,
   the never-run TRP decomposition dive, …) worth a `/deep:research` loop.
@@ -49,7 +49,3 @@ these are quicker to *fix* than to loop:
 
 Two SOL agents, ~530k tokens each, isolated read-only run in a git worktree; neither modified any repo file.
 The reports are the agents' verbatim output; the confirmed-drift section above was verified separately.
-
-<!-- readme-check
-allow-ref /deep:alignment | an archived record of a command that existed when this research ran
--->

@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/validation/` decides every spec-folder rule verdict. It detects a folder's documentation level, runs the named spec-doc structure rules, checks the two generated JSON files (`description.json` and `graph-metadata.json`) against their schemas and invariants, and folds the results into the `ValidationReport` that `validate.sh` prints.
+`lib/validation/` decides every spec-folder rule verdict. It detects a folder's documentation level, runs the named spec-doc structure rules, checks the generated JSON files (`description.json` and `graph-metadata.json`) against their schemas and invariants, and folds the results into the `ValidationReport` that `validate.sh` prints.
 
 Current state:
 

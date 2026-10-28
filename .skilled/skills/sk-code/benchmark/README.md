@@ -11,7 +11,7 @@ trigger_phrases:
 
 > Reports from benchmarking how well `sk-code` is routed, discovered, and used in practice, kept beside the skill they measure.
 
-> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. This tree is a frozen index of the reports that lane produced; no new run can be started from it.
+> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the deep skill-benchmark command were removed. This tree is a frozen index of the reports that lane produced; no new run can be started from it.
 
 > **Successor:** the router-mode CI gate has a partial successor in `.github/workflows/routing-registry-drift.yml`. Its compiled-serving admission step scores each hub's compiled decisions against its playbook routing gold, warn-only, and its golden-prompt job checks skill selection and the compiled workflow mode. Together they cover part of D1 routing. D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity and live-mode scoring have no successor. Owner of that gap: sk-code. The restored router-sync guard at `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` restores the four router checks the deleted suite ran: every check of the guard (1a, 1b, 2, 3 and 4) is wired into the drift-guard umbrella.
 
@@ -144,8 +144,4 @@ node --test .skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.c
 ```
 
 Archived folders stay frozen. A folder written by an earlier template, or written by hand, fails `--check` by design, and the storage rule above gives a changed result a new folder rather than an edit to an old one.
-
-<!-- readme-check
-allow-ref /deep:skill-benchmark | names the retired command the retired-lane note says was removed
--->
 

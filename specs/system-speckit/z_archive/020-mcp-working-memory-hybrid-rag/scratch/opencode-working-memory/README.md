@@ -204,7 +204,3 @@ Inspired by the needs of real-world OpenCode usage and built to solve actual pai
 ---
 
 **Made with ❤️ for the OpenCode community**
-
-<!-- readme-check
-allow-count 300 files | a per-session cache limit, toolOutputMaxFiles in index.ts, not a folder count
--->

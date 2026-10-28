@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # create-frontmatter
@@ -131,7 +131,7 @@ Skip it when the document body is what needs writing, when a validator needs cha
 
 | What you see | Why | Fix |
 |---|---|---|
-| A field is required in one file and rejected in another | The two files are different document classes | Read the class row in section 4 of the field reference, not the field row in section 3 |
+| A field is required in one file and rejected in another | The files are different document classes | Read the class row in section 4 of the field reference, not the field row in section 3 |
 | A skill stopped appearing in auto-discovery | The project description budget was exceeded and the longest entries were dropped | Trim descriptions to the budget. Nothing reports this at the point of failure |
 | A trimmed description no longer routes | The trim removed the tokens the advisor matches on | Keep the skill name, primary verb, domain noun and mode suffixes. Cut enumerations instead |
 | A computed version looks far too high | The edit count was not gated through per-file numstat | Gate each commit on its own added-plus-deleted count for that file |
@@ -191,5 +191,4 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 <!-- readme-check
 allow-count three scripts | the sentence names the three by role (the versioning engine frontmatter-version.mjs, the corpus gate check-frontmatter-versions.sh that wraps it, and the fast validator quick_validate.py), and the folder they share holds other scripts, so no folder count proves it
 allow-count four command workflows | the create-agent-confirm, create-command-auto, create-skill-auto and create-skill-confirm workflow assets call quick_validate.py
-allow-count two files | refers back to the one file and the other file named in the same table row
 -->

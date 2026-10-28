@@ -95,3 +95,7 @@ cat test-outputs/full-test-run.txt
 
 ## Generated: 2026-01-16
 
+<!-- readme-check
+allow-count tests: 171 | a recorded test-run total, which the suite table below it sums to, not a count of test files
+-->
+

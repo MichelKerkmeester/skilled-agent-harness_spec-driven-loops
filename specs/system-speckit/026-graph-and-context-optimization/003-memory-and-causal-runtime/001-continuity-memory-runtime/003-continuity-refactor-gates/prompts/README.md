@@ -13,9 +13,9 @@ Two research prompts for investigating Option C (Wiki-Style Spec Kit Updates) fr
 | [`research-prompt-implementation.md`](./research-prompt-implementation.md) | Design HOW to implement Option C with UX and usefulness at the forefront | 20 | `implementation-design.md` + 11 findings files | 2–4 hours wall clock |
 | [`research-prompt-impact.md`](./research-prompt-impact.md) | Produce a file-by-file impact matrix with effort estimates and dependency ordering | 5 | `findings/impact-matrix.md` + `findings/dependency-graph.md` | 60–90 minutes |
 
-## ⚠ MANDATORY: Use `/deep:start-research-loop` — do NOT single-shot via Codex
+## ⚠ MANDATORY: Use the retired deep research loop command, do NOT single-shot via Codex
 
-**Both prompts MUST be driven by `/deep:start-research-loop:auto` or `:confirm`.** They are **not** self-contained enough to run as a single-shot `codex exec` brief.
+**Both prompts MUST be driven by the retired deep research loop command in its auto or confirm mode.** They are **not** self-contained enough to run as a single-shot `codex exec` brief.
 
 Why this is non-negotiable:
 
@@ -46,37 +46,37 @@ Have time and want both in parallel?
 
 ## How to Run
 
-Both prompts are launched via `/deep:start-research-loop` with `--spec-folder` pointed at this phase 018 spec folder. The loop driver reads the prompt file as the strategy seed, then dispatches `@deep-research` once per iteration with fresh context.
+Both prompts are launched via the retired deep research loop command with `--spec-folder` pointed at this phase 018 spec folder. The loop driver reads the prompt file as the strategy seed, then dispatches `@deep-research` once per iteration with fresh context.
 
 ### Implementation prompt (20 iterations)
 
 **Autonomous mode (recommended):**
 ```bash
-/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
+<retired deep research loop command>:auto "Wiki-Style Spec Kit Updates: HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
 ```
 
 **Confirm mode (pause at each iteration for approval):**
 ```bash
-/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
+<retired deep research loop command>:confirm "Wiki-Style Spec Kit Updates: HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
 ```
 
 ### Impact prompt (5 iterations)
 
 **Autonomous mode (recommended):**
 ```bash
-/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates — file-level impact analysis. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
+<retired deep research loop command>:auto "Wiki-Style Spec Kit Updates: file-level impact analysis. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
 ```
 
 **Confirm mode (pause at each iteration for approval):**
 ```bash
-/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates — file-level impact analysis. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
+<retired deep research loop command>:confirm "Wiki-Style Spec Kit Updates: file-level impact analysis. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
 ```
 
 ### Lifecycle controls
 
 - **Pause the loop mid-run**: `touch specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/research/.deep-research-pause`. The loop will halt between iterations with a resume message. Delete the sentinel to resume.
-- **Resume after crash**: re-run the same `/deep:start-research-loop:auto` command. The driver auto-detects the existing config/state/strategy and continues from `last_iteration + 1`.
-- **Restart with clean state**: `/deep:start-research-loop:auto ... --lineage=restart` archives the prior packet under `research/archive/{oldSessionId}/` and starts fresh.
+- **Resume after crash**: re-run the same auto-mode invocation of the retired deep research loop command. The driver auto-detects the existing config/state/strategy and continues from `last_iteration + 1`.
+- **Restart with clean state**: the auto-mode invocation of the retired deep research loop command with `--lineage=restart` archives the prior packet under `research/archive/{oldSessionId}/` and starts fresh.
 - **Fork from current state**: `--lineage=fork` branches from the current state as a new session.
 - **Reopen a completed run**: `--lineage=completed-continue` snapshots `research.md` to `research/synthesis-v{generation}.md` and reopens as a new segment.
 
@@ -153,7 +153,7 @@ specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-ru
 ## Anti-Patterns (Don't Do This)
 
 1. **Don't single-shot via `codex exec`.** This is the primary failure mode. The prompts are not self-contained — they assume the sk-deep-research loop driver is orchestrating them. A single-shot run produces a flat `research.md` with no state files, no iteration history, no convergence tracking, and cannot be resumed or audited. Phase 017 was produced this way and had to be retrofitted after the fact.
-2. **Don't run both prompts in the same deep-research session.** They have overlapping scope and would confuse the reducer's question registry. Launch them as separate `/deep:start-research-loop` invocations.
+2. **Don't run both prompts in the same deep-research session.** They have overlapping scope and would confuse the reducer's question registry. Launch them as separate invocations of the retired deep research loop command.
 3. **Don't modify the prompts during execution.** The reducer assumes the strategy file is stable across iterations. If you need to tweak a prompt, create the pause sentinel, edit, then delete the sentinel to resume — or kill the run and `--lineage=restart`.
 4. **Don't let an iteration dispatch sub-agents.** `@deep-research` is a LEAF agent and has no `Task` tool. If you see it trying to spawn nested agents, the dispatch context is wrong.
 5. **Don't skip the iteration-1 seed actions.** The seed actions in each prompt are calibration reads. Skipping them produces surface-level findings that fail the evidence standards.
@@ -166,7 +166,7 @@ specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-ru
 
 | Symptom | Likely Cause | Fix |
 |---|---|---|
-| Run exits with no state files created | Prompt launched via `codex exec` instead of `/deep:start-research-loop` | Use `/deep:start-research-loop:auto` — this is the only valid launch path |
+| Run exits with no state files created | Prompt launched via `codex exec` instead of the retired deep research loop command | Use that command in auto mode: this is the only valid launch path |
 | Loop halts after iteration 1 with `INSUFFICIENT_CONTEXT_ABORT` | Iteration 1 seed actions not executed | Restart with `--lineage=restart` and verify the prompt's Section 9 (iteration-1 seed actions) is visible to the agent |
 | `deep-research-state.jsonl` exists but `iterations/` is empty | Dispatch failed silently | Check `deep-research-state.jsonl` for `guard_violation` events; inspect the last iteration's error field |
 | Loop stops at iteration 2 with convergence = 0 | Too-aggressive convergence threshold | Increase `--convergence 0.10` or use confirm mode to inspect what's happening |

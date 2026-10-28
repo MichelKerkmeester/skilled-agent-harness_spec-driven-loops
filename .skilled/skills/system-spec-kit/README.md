@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.18.0
+version: 2.7.19.0
 ---
 
 # System Spec Kit
@@ -63,7 +63,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Packet-local changelogs (deprecated)** | spec folders no longer get changelogs, and entries go to `.skilled/changelog/` through `/create:changelog` |
 | **Goal documents** | an optional `goal.md` addon binding a session to a durable objective, gated by a character budget |
 | **Validation** | the 42-rule registry with three strict-only rules gated behind `--strict` |
-| **Authoring** | one short card as the default load for the four writing intents, a placeholder gate that warns while a packet is Draft, and two read-only guards for examples and card sync |
+| **Authoring** | one short card as the default load for the four writing intents, a placeholder gate that warns while a packet is Draft, and read-only guards for example drift and card sync |
 
 ### Continuity and Retrieval
 
@@ -379,7 +379,7 @@ Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a wr
 
 ### No MCP Server
 
-This skill registers no MCP server of its own. Retrieval runs from two committed scripts under `runtime/cli/retrieval/`, and continuity is written by `runtime/cli/dist/continuity/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
+This skill registers no MCP server of its own. Retrieval runs from committed scripts under `runtime/cli/retrieval/`, `lookup-trigger-index.mjs` for the trigger index and `rg-wrapper.mjs` for free text, and continuity is written by `runtime/cli/dist/continuity/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
@@ -568,7 +568,7 @@ A: Yes, for any conversation that modifies files. The only exemption is a trivia
 
 **Q: When do I need Level 2 instead of Level 1?**
 
-A: Level 2 adds an `acceptance-criteria.md` closure gate. Use it when the change touches multiple files, needs testing verification or has edge cases worth documenting. The LOC guidance is 100 to 499, but risk and complexity matter more than line count.
+A: Level 2 adds an `acceptance-criteria.md` closure gate. Use it when the change touches more than one file, needs testing verification or has edge cases worth documenting. The LOC guidance is 100 to 499, but risk and complexity matter more than line count.
 
 **Q: When do I need Level 3?**
 
@@ -687,7 +687,7 @@ The manual testing playbook runs every scenario behind these checks.
 | Resource | Purpose |
 |---|---|
 | `AGENTS.md` (project root) | gate definitions, AI behavior framework and mandatory workflow rules |
-| `specs/` | all spec folders created by Spec Kit (the runtime still falls back to the legacy `.opencode/specs` root when a checkout has no top-level `specs/`) |
+| `specs/` | all spec folders created by Spec Kit (the resolvers also accept the legacy `.opencode/specs` root, which this checkout does not have) |
 | `.skilled/commands/speckit/` | speckit command definitions, including the continuity save and search commands |
 
 ### External Resources
@@ -696,3 +696,7 @@ The manual testing playbook runs every scenario behind these checks.
 |---|---|
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | The free-text retrieval lane's search engine |
 | [Ollama](https://ollama.com/) | Local embedding server used by the shared embedding client |
+
+<!-- readme-check
+allow-ref .opencode/specs | a legacy specs root the spec-folder resolvers also accept; absent from this checkout
+-->

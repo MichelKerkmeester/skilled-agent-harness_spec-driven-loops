@@ -20,6 +20,28 @@ what a path is. Five kinds of reference are read:
   A tree whose root line names a placeholder such as ``<track>`` is a template.
   A fenced tree whose root names no folder in this checkout reports the root,
   and its entries are not checked.
+- ``slash``: a slash command in a code span or a fenced line, read against the
+  command tree (``.skilled/commands``). ``/group:name`` names
+  ``group/name.md``, and a trailing ``:mode`` must be one the command declares
+  in its ``argument-hint`` or ``description``. A command file directly under
+  the tree, such as ``vision.md``, has no group, so ``/vision:auto`` names it in
+  mode ``auto`` when no ``vision/`` group folder exists. A hyphen form such as
+  ``/create-changelog`` is tried as each ``group-name`` split. It fails only
+  when it opens a code span and its prefix names a group holding a command it
+  nearly spells (``/create-changelg``), so a skill name such as ``/deep-dive``
+  or a route on a fenced line such as ``GET /deep-status`` is not read as a
+  typo. A single name the tree does
+  not hold (a runtime built-in such as ``/goal``), every command in a checkout
+  with no command tree, text inside an HTML comment (``<!-- ... -->``) and a
+  ``/<placeholder>`` form are not checked.
+
+A code span that labels a working link, as in ``[`guide/intro.md`](../docs/guide/intro.md)``,
+is a shortened name for the target and passes when the target's path ends
+with it. Any other label is checked as a path, so a stale label in front of a
+working link still fails. A ``path/to/...`` stem or a leading bracketed segment
+such as ``[spec]/memory/*.md`` is a placeholder, not a reference, outside link
+targets. A bracketed segment further in, as in ``app/[id]/page.tsx``, is a real
+dynamic-route folder and is checked.
 
 A reference resolves from the README folder, from the nearest folder above it
 that holds a ``package.json`` and from the repository root. A code span the
@@ -37,7 +59,8 @@ types such as ``*.ts``, and slashed words without a suffix or trailing slash
 tokens, and quoted shell arguments that contain spaces. A bare name in a code
 span, such as ``graph-metadata.json``, that is not beside the README passes
 when a file or folder of that name that git tracks or would track, or a
-``.tmpl`` template that renders it, exists in the repository, and a path that
+``.tmpl`` template that renders it, exists on disk in the repository (a tracked
+file deleted from the working tree no longer counts), and a path that
 starts with a skill folder name resolves from that skill. A fenced line drawn
 inside a box (``│ ... │``) is diagram prose, so no path on it is checked.
 
@@ -70,6 +93,10 @@ reads the same block.
 from __future__ import annotations
 
 import argparse
+import dataclasses
+import difflib
+import fnmatch
+import functools
 import glob
 import os
 import re
@@ -95,7 +122,7 @@ from audit_readmes import (  # type: ignore  # noqa: E402
 
 
 FENCE_PATTERN = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")
-LINK_PATTERN = re.compile(r"\[[^\]]*\]\(\s*(<[^>]+>|[^\s)]+)")
+LINK_PATTERN = re.compile(r"\[(?P<label>[^\]]*)\]\(\s*(?P<target><[^>]+>|[^\s)]+)")
 LINK_SPAN_PATTERN = re.compile(r"!?\[[^\]]*\]\([^)]*\)")
 INLINE_PATTERN = re.compile(r"`([^`\n]+)`")
 # A cell made only of code spans joined by commas, slashes or "and"/"or".
@@ -144,7 +171,7 @@ ANCHORED_PREFIXES = ("./", "../", "/") + REPOSITORY_ROOT_PREFIXES
 SLASH_COMMAND_PATTERN = re.compile(r"/[A-Za-z][\w-]*(?::[\w*-]+)?")
 # An absolute path under a user home still fails: it leaks one machine's layout.
 MACHINE_PATH_PREFIXES = ("/Users/", "/home/")
-_TRACKED_NAMES: dict[Path, tuple[set[str], dict[str, Path]]] = {}
+_TRACKED_NAMES: dict[Path, tuple[set[str], dict[str, Path], dict[str, list[str]]]] = {}
 MARKER_OPEN = re.compile(r"^\s*<!--\s*readme-check\s*$")
 MARKER_DIRECTIVES = ("allow-ref", "allow-count")
 OUTPUT_FLAGS = {"-o", "--output", "--out"}
@@ -155,6 +182,25 @@ ON_DEMAND_PATHS = {
 }
 # An extensionless sibling name whose ignored state shows a README's folder is ignored as a whole.
 IGNORE_PROBE = "readme-check-probe"
+COMMAND_TREE = (".skilled", "commands")
+# A command is one segment after the slash: `/group:name` with optional trailing
+# `:mode` tokens, or a bare `/name`. A second slash makes it a path.
+COMMAND_PATTERN = re.compile(
+    r"/(?P<group>[A-Za-z0-9][A-Za-z0-9_-]*)(?::(?P<name>[A-Za-z0-9*][A-Za-z0-9_*-]*))?"
+    r"(?P<modes>(?::[A-Za-z][A-Za-z0-9-]*)*)"
+)
+# A command declares its `:mode` tokens in frontmatter, as in `[:auto|:confirm]`
+# or "Modes :auto, :confirm; :with-* modifiers".
+DECLARED_MODE_PATTERN = re.compile(r"(?<![A-Za-z0-9]):([A-Za-z][A-Za-z0-9-]*\*?)")
+MODE_FRONTMATTER_KEYS = ("argument-hint:", "description:")
+# An HTML comment closed on its own line, as in `<!-- /ANCHOR:id -->`, or running to the line end.
+HTML_COMMENT_PATTERN = re.compile(r"<!--.*?(?:-->|$)")
+# How closely a hyphen form must spell a real command to count as its typo:
+# "changelg" against "changelog" scores 0.94, while an unrelated skill name such
+# as "dive" against "research" scores far below.
+TYPO_SIMILARITY = 0.8
+# A whole segment in square brackets, such as `[spec]`, stands for a name the reader fills in.
+PLACEHOLDER_SEGMENT_PATTERN = re.compile(r"^\[[A-Za-z][A-Za-z0-9 _-]*\]$")
 
 
 @dataclass(frozen=True)
@@ -172,6 +218,11 @@ class Reference:
     # A code-span token the audit does not read as a path, such as a bare file
     # name, resolves by name from the repository rather than from nearby folders.
     named: bool = False
+    # The target of the Markdown link whose visible text holds this code span.
+    label_of: str = ""
+    # A slash command that opens its code span, as an invocation does, rather
+    # than a word on a fenced line such as an HTTP route in `GET /deep-status`.
+    leading: bool = False
 
 
 @dataclass(frozen=True)
@@ -406,14 +457,74 @@ def inline_references(line_number: int, span_text: str, skip: set[str]) -> list[
     return references
 
 
+def command_tokens(text: str) -> list[str]:
+    """Return the slash commands in a code span or fenced line, each once."""
+    tokens: list[str] = []
+    for word in text.split():
+        token = clean_candidate(word.lstrip("([{'\"*"))
+        if COMMAND_PATTERN.fullmatch(token) and token not in tokens:
+            tokens.append(token)
+    return tokens
+
+
+def mask_html_comments(line: str, inside: bool) -> tuple[str, bool]:
+    """Blank the HTML comment text on a prose line and report whether a comment stays open.
+
+    A ``<!--`` inside a code span is quoted syntax, not a comment, so it opens
+    nothing. Blanking keeps every column, so code span offsets agree.
+    """
+    spans = [(match.start(), match.end()) for match in INLINE_PATTERN.finditer(line)]
+    characters = list(line)
+    index = 0
+    while index < len(line):
+        if inside:
+            close = line.find("-->", index)
+            stop = len(line) if close < 0 else close + 3
+            characters[index:stop] = " " * (stop - index)
+            if close < 0:
+                break
+            inside, index = False, stop
+            continue
+        opening = line.find("<!--", index)
+        while opening >= 0 and any(start <= opening < end for start, end in spans):
+            opening = line.find("<!--", opening + 1)
+        if opening < 0:
+            break
+        inside, index = True, opening
+    return "".join(characters), inside
+
+
+def is_placeholder(raw: str) -> bool:
+    """Recognize a path the reader fills in: a leading `[name]` segment or a `path/to/` stem.
+
+    Only the first segment counts, as in `[spec-folder]/spec.md`: a bracketed
+    segment further in, as in `app/[id]/page.tsx`, is a real dynamic-route folder.
+    """
+    segments = raw.strip("/").split("/")
+    if PLACEHOLDER_SEGMENT_PATTERN.match(segments[0]):
+        return True
+    return any(first == "path" and second == "to" for first, second in zip(segments, segments[1:]))
+
+
+def label_target(labels: list[tuple[int, int, str]], start: int, end: int) -> str:
+    """Return the target of the link whose visible text holds the span at start..end, or ''."""
+    return next((target for low, high, target in labels if low <= start and end <= high), "")
+
+
 def extract_references(text: str, readme: Path | None = None, root: Path | None = None) -> list[Reference]:
-    """Extract links, inline paths, command paths, inventories and tree entries with line numbers."""
+    """Extract links, inline paths, command paths, slash commands, inventories and tree entries."""
     references: list[Reference] = []
     active_fence: str | None = None
     example_fence = False
+    in_comment = False
     tree = TreeState(readme.parent if readme else None, root)
 
     for line_number, line in enumerate(text.splitlines(), start=1):
+        # A slash command inside an HTML comment is hidden from readers, so it is not read.
+        if active_fence is None:
+            visible, in_comment = mask_html_comments(line, in_comment)
+        else:
+            visible = HTML_COMMENT_PATTERN.sub(" ", line)
         fence_match = FENCE_PATTERN.match(line)
         if fence_match:
             marker = fence_match.group(1)
@@ -429,10 +540,12 @@ def extract_references(text: str, readme: Path | None = None, root: Path | None 
         if example_fence:
             continue
 
+        labels: list[tuple[int, int, str]] = []
         for match in LINK_PATTERN.finditer(line):
-            token = normalize_reference_token(match.group(1), "markdown_link")
+            token = normalize_reference_token(match.group("target"), "markdown_link")
             if token:
                 references.append(Reference(line_number, token, "link"))
+                labels.append((match.start("label"), match.end("label"), token))
 
         inventory = table_tokens(line)
         for token in inventory:
@@ -442,7 +555,22 @@ def extract_references(text: str, readme: Path | None = None, root: Path | None 
         for match in INLINE_PATTERN.finditer(line):
             found = inline_references(line_number, match.group(1), seen)
             seen.update(reference.raw for reference in found)
-            references.extend(found)
+            target = label_target(labels, match.start(), match.end())
+            references.extend(dataclasses.replace(item, label_of=target) if target else item for item in found)
+
+        # A code span that quotes comment syntax, as in `<!-- /ANCHOR:id -->`, names no command.
+        commands = [HTML_COMMENT_PATTERN.sub(" ", match.group(1)) for match in INLINE_PATTERN.finditer(visible)]
+        if active_fence is not None:
+            commands = [visible]
+        leading: dict[str, bool] = {}
+        for part in commands:
+            tokens = command_tokens(part)
+            words = part.split()
+            opener = clean_candidate(words[0].lstrip("([{'\"*")) if words and active_fence is None else ""
+            for token in tokens:
+                leading[token] = leading.get(token, False) or token == opener
+        for token, opens in leading.items():
+            references.append(Reference(line_number, token, "slash", leading=opens))
 
         candidates = tree.entry(line, line_number)
         if TREE_ENTRY_PATTERN.match(line) and active_fence is not None:
@@ -455,7 +583,10 @@ def extract_references(text: str, readme: Path | None = None, root: Path | None 
             for token in path_tokens(line):
                 references.append(Reference(line_number, token, "command"))
 
-    return references
+    return [
+        reference for reference in references
+        if reference.kind in ("link", "slash") or not is_placeholder(reference.raw)
+    ]
 
 
 @dataclass(frozen=True)
@@ -515,16 +646,35 @@ def tracked_names(root: Path) -> tuple[set[str], dict[str, Path]]:
         )
         names: set[str] = set()
         skills: dict[str, Path] = {}
+        paths: dict[str, list[str]] = {}
+        folders: set[str] = set()
         for relative in result.stdout.split("\0"):
             if not relative:
                 continue
             parts = relative.split("/")
             names.add(parts[-1])
-            names.update(f"{part}/" for part in parts[:-1])
+            paths.setdefault(parts[-1], []).append(relative)
+            for depth in range(1, len(parts)):
+                folder = "/".join(parts[:depth])
+                if folder not in folders:
+                    folders.add(folder)
+                    names.add(f"{parts[depth - 1]}/")
+                    paths.setdefault(f"{parts[depth - 1]}/", []).append(folder)
             if parts[-1] == "SKILL.md" and parts[:2] == [".skilled", "skills"] and len(parts) in (4, 5):
                 skills.setdefault(parts[-2], root.joinpath(*parts[:-1]))
-        _TRACKED_NAMES[root] = (names, skills)
-    return _TRACKED_NAMES[root]
+        _TRACKED_NAMES[root] = (names, skills, paths)
+    names, skills, _paths = _TRACKED_NAMES[root]
+    return names, skills
+
+
+def name_on_disk(name: str, root: Path) -> bool:
+    """Tell whether a file or folder of this name is listed by git and still on disk.
+
+    The index keeps listing a tracked file deleted from the working tree, and a
+    reference to it is as broken as one to a file that never existed.
+    """
+    tracked_names(root)
+    return any(os.path.lexists(root / relative) for relative in _TRACKED_NAMES[root][2].get(name, ()))
 
 
 def candidate_paths(candidate: str, base: Path, root: Path) -> list[Path]:
@@ -619,17 +769,97 @@ def resolve_by_name(reference: Reference, readme: Path, root: Path) -> Resolutio
         whole = resolve_literal(reference, reference.span, readme, root)
         if whole.resolved:
             return whole
-        if "/" not in reference.span.rstrip("/") and reference.span in tracked_names(root)[0]:
+        if "/" not in reference.span.rstrip("/") and name_on_disk(reference.span, root):
             return Resolution(reference, True, f"tracked name {reference.span}")
     bare = reference.raw
-    names = tracked_names(root)[0]
-    if "/" not in bare.rstrip("/") and "*" not in bare and (bare in names or f"{bare}.tmpl" in names):
+    if "/" not in bare.rstrip("/") and "*" not in bare and (
+        name_on_disk(bare, root) or name_on_disk(f"{bare}.tmpl", root)
+    ):
         return Resolution(reference, True, f"tracked name {bare}")
     return None
 
 
+@functools.lru_cache(maxsize=None)
+def declared_modes(command_file: Path) -> frozenset[str]:
+    """Return the `:mode` tokens a command's frontmatter declares, wildcards included."""
+    try:
+        lines = command_file.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return frozenset()
+    if not lines or lines[0].strip() != "---":
+        return frozenset()
+    modes: set[str] = set()
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        if line.startswith(MODE_FRONTMATTER_KEYS):
+            modes.update(DECLARED_MODE_PATTERN.findall(line.split(":", 1)[1]))
+    return frozenset(modes)
+
+
+def check_modes(reference: Reference, command_file: Path, modes: list[str], concrete: bool) -> Resolution:
+    """Accept a resolved command only when every trailing `:mode` is one it declares."""
+    if modes and concrete:
+        declared = declared_modes(command_file)
+        unknown = [mode for mode in modes if not any(fnmatch.fnmatchcase(mode, token) for token in declared)]
+        if unknown:
+            return Resolution(reference, False, f"mode :{unknown[0]} is not declared by {command_file.name}")
+    return Resolution(reference, True, str(command_file))
+
+
+def command_group(tree: Path, group: str) -> bool:
+    """Tell whether a folder of the command tree holds commands, not only assets or scripts."""
+    folder = tree / group
+    return folder.is_dir() and any(folder.glob("*.md"))
+
+
+def resolve_slash_command(reference: Reference, root: Path) -> Resolution:
+    """Resolve `/group:name`, `/name` or `/group-name` against the command tree."""
+    tree = root.joinpath(*COMMAND_TREE)
+    if not tree.is_dir():
+        return Resolution(reference, True, "no command tree in this checkout")
+    match = COMMAND_PATTERN.fullmatch(reference.raw)
+    if match is None:
+        return Resolution(reference, False, "not a command name")
+    group, name = match.group("group"), match.group("name")
+    modes = [mode for mode in match.group("modes").split(":") if mode]
+    if name is not None:
+        hits = sorted(glob.glob(str(tree / group / f"{name}.md")))
+        if hits and command_group(tree, group):
+            return check_modes(reference, Path(hits[0]), modes, concrete="*" not in name)
+        # A command file directly under the tree, such as `vision.md`, has no
+        # group, so in `/vision:auto` the segment after the colon is a mode.
+        top_level = tree / f"{group}.md"
+        if not command_group(tree, group) and top_level.is_file():
+            return check_modes(reference, top_level, [name, *modes], concrete="*" not in name)
+        return Resolution(reference, False, "command does not exist in the command tree")
+    # Runtimes that cannot spell a colon write `/group-name`, so try each hyphen split.
+    splits = [index for index, character in enumerate(group) if character == "-"]
+    candidates = [tree / f"{group}.md"]
+    candidates += [tree / group[:index] / f"{group[index + 1:]}.md" for index in splits]
+    for candidate in candidates:
+        if candidate.is_file():
+            return check_modes(reference, candidate, modes, concrete=True)
+    # A hyphen form that opens its code span and nearly spells a command of the
+    # group its prefix names is a typo. Any other hyphen form, such as a skill
+    # name like `/deep-dive` or a route on a fenced line, is not a command here.
+    if reference.leading and any(near_command(tree, group[:index], group[index + 1:]) for index in splits):
+        return Resolution(reference, False, "command does not exist in its command group")
+    return Resolution(reference, True, "not in the command tree: a runtime built-in or skill")
+
+
+def near_command(tree: Path, group: str, name: str) -> bool:
+    """Tell whether ``name`` nearly spells a command in a group of the command tree."""
+    if not command_group(tree, group):
+        return False
+    names = [path.stem for path in (tree / group).glob("*.md")]
+    return bool(difflib.get_close_matches(name, names, n=1, cutoff=TYPO_SIMILARITY))
+
+
 def resolve_reference(reference: Reference, readme: Path, root: Path) -> Resolution:
     """Resolve one reference and reject a target that escapes the repository."""
+    if reference.kind == "slash":
+        return resolve_slash_command(reference, root)
     if machine_path_outside(reference.raw, root):
         return Resolution(reference, False, "names a machine-local path outside the repository")
     if reference.named:
@@ -827,6 +1057,36 @@ def apply_markers(
     return marked
 
 
+def path_ends_with(path: str, tail: str) -> bool:
+    """Tell whether a path's last segments are exactly the segments of tail."""
+    tail_parts = [part for part in tail.strip("/").split("/") if part not in ("", ".")]
+    path_parts = [part for part in path.strip("/").split("/") if part]
+    return bool(tail_parts) and path_parts[-len(tail_parts):] == tail_parts
+
+
+def pass_link_labels(resolutions: list[Resolution], readme: Path) -> list[Resolution]:
+    """Pass a code-span label that shortens the target of a working link on its line.
+
+    Readers follow the target, so a label such as `guide/intro.md` in front of
+    a working link to `../docs/guide/intro.md` names that file. A label the
+    target does not end with, such as a folder that was renamed, is still a
+    path of its own and keeps its own verdict.
+    """
+    working = {
+        (item.reference.line, item.reference.raw)
+        for item in resolutions if item.reference.kind == "link" and item.resolved
+    }
+    passed: list[Resolution] = []
+    for item in resolutions:
+        target = item.reference.label_of
+        if not item.resolved and target and (item.reference.line, target) in working:
+            full = os.path.normpath(readme.parent / target).replace(os.sep, "/")
+            if path_ends_with(target, item.reference.raw) or path_ends_with(full, item.reference.raw):
+                item = Resolution(item.reference, True, f"label of a working link to {target}")
+        passed.append(item)
+    return passed
+
+
 def check_readmes(readme_args: list[str]) -> list[tuple[list[Resolution], Path | None]]:
     """Check READMEs and return, per README, reference receipts plus a read error."""
     results: list[tuple[list[Resolution], Path | None]] = []
@@ -847,9 +1107,10 @@ def check_readmes(readme_args: list[str]) -> list[tuple[list[Resolution], Path |
         entries, errors, text = parse_markers(text)
         references = [
             reference for reference in extract_references(text, readme, root)
-            if not outside_repository(reference.raw, root)
+            if reference.kind == "slash" or not outside_repository(reference.raw, root)
         ]
-        checked.append(([resolve_reference(reference, readme, root) for reference in references], readme, root))
+        resolutions = [resolve_reference(reference, readme, root) for reference in references]
+        checked.append((pass_link_labels(resolutions, readme), readme, root))
         markers.append((entries, errors))
         slots.append(len(results))
         results.append(([], None))

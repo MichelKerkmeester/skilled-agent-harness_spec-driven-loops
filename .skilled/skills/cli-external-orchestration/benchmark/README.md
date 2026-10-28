@@ -13,7 +13,7 @@ contextType: "general"
 
 > Reports and inputs for benchmarking how well the `cli-external-orchestration` parent hub is routed, discovered, and used in practice, kept beside the skill they measure. Each run-label folder holds one run's rendered report pair; this file indexes them.
 
-> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. No skill-benchmark report was archived in this tree, and no new run can be started from it.
+> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the deep skill-benchmark command were removed. No skill-benchmark report was archived in this tree, and no new run can be started from it.
 
 
 ---
@@ -50,8 +50,4 @@ No Lane C skill-benchmark run was archived for `cli-external-orchestration` befo
 ## 4. COMPILED-ROUTING ARCHIVE
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
-
-<!-- readme-check
-allow-ref /deep:skill-benchmark | names the retired command the retired-lane note says was removed
--->
 

@@ -5,18 +5,30 @@ Usage: python3 check_derived_readme_counts.py [--self-test] README.md [...]
 
 The checker can prove a count only from a folder listing, so it reads a number
 as a count claim only when it counts a plural term directly, as in "three
-files" or "12 shell scripts", with at most one word between them. Prose such as
-"in one file" counts nothing, and neither does a number after a label or bound
-word: ``Level 2 file set``, ``Gate 4``, ``more than 100 tracked files``.
+files" or "12 shell scripts", with at most one word between them and no
+function or subset word such as "of", "the" or "more" there. Two words are
+allowed only when one is a singular count term and the claim names its folder,
+as in a tree entry's "fifteen Node test files". A label form such as
+``Files: 12`` is a claim too, unless it reports a run (``Tests: 20/20 pass``).
+Prose such as "in one file" counts nothing, and neither does a number after a
+label or bound word (``Level 2 file set``, ``Gate 4``, ``more than 100 tracked
+files``) or a rate such as ``300 files/session``.
 
 A count in a sentence that names another path, and does not also name the
 README's own folder, describes that path, so it is not a claim. Path detection
 uses audit_readmes.py's reference rules. A claim whose sentence names a folder
-in a code span, such as ``rules/``, is derived from that folder. Any other claim
-is accepted only when a complete direct-file inventory in the README derives the
-claimed category. Dynamic shell derivations using ``find``, ``ls``, or ``wc``
-are accepted. Vague count words fail closed because they cannot be compared with
-the folder.
+in a code span, such as ``rules/``, is derived from that folder, and so is a
+claim written after a folder entry on a fenced tree line (``├──``, ``└──``,
+``+--`` or a backtick then ``--``), with or without a ``#``, resolved under the
+tree's root line. A named folder is counted directly and recursively, with the
+term's own filter (scripts and plugins count code files, tests and suites count
+test files such as ``*.test.mjs``, ``test_*.py``, ``*.test.sh`` or
+``test-*.sh``), so a folder that does not exist, or whose files are not what
+the claim names, fails; the README folder's own lenient categories apply only
+when the named folder is the README's. Any other claim is accepted only when a
+complete direct-file inventory in the README derives the claimed category.
+Dynamic shell derivations using ``find``, ``ls``, or ``wc`` are accepted.
+Vague count words fail closed because they cannot be compared with the folder.
 
 A correct claim the checker cannot derive, such as a count of guards one script
 runs, is named in the README-level ``readme-check`` block that
@@ -105,13 +117,36 @@ LABEL_WORDS = {
     "phase", "phases", "tier", "tiers", "than", "to", "least", "most",
 }
 CODE_SUFFIXES = {".js", ".cjs", ".mjs", ".ts"}
+# What a script or plugin in a named folder may be written in.
+SCRIPT_SUFFIXES = {".sh", ".bash", ".py", ".js", ".cjs", ".mjs", ".ts"}
+TEST_SUFFIXES = (".test.cjs", ".test.js", ".test.mjs", ".test.ts", ".vitest.ts", ".test.sh")
+# Runners that match on a name prefix: pytest's `test_*.py` and the shell `test-*.sh` scripts.
+TEST_PREFIXES = (("test_", ".py"), ("test-", ".sh"))
 FOLDER_SPAN = re.compile(r"`([^`\s]+/)`")
 NUMBER_PATTERN = re.compile(r"\b(?:\d+|" + "|".join(NUMBER_WORDS) + r")\b", re.IGNORECASE)
 WORD_PATTERN = re.compile(r"[A-Za-z][A-Za-z0-9_./*-]*")
 # A count names what it counts right after the number, with at most one word
-# between them ("three test files"). The number must stand alone, so "one-shot"
-# or "v2.1" never opens a count.
-COUNTED_TERM_PATTERN = re.compile(r"\s+([A-Za-z][\w-]*)(?:\s+([A-Za-z][\w-]*))?")
+# between them ("three test files"). Two words are allowed only when one is a
+# singular count term that narrows the plural ("fifteen Node test files") and
+# the claim names the folder it counts, since an adjective pair such as "two
+# compiled ESM entrypoints" or "four goal-plugin test files" picks out a subset
+# no folder listing can prove. The number must stand alone, so "one-shot" or
+# "v2.1" never opens a count.
+MAX_MODIFIERS = 2
+WORD_STEP_PATTERN = re.compile(r"\s+([A-Za-z][\w-]*)")
+# Words that end a noun phrase, or mark the count as a part of a larger set
+# ("adds 2 more test files"), so a count term after one is not what the number counts.
+PHRASE_BREAK_WORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "before", "by", "extra", "for", "from",
+    "in", "is", "more", "new", "of", "on", "or", "other", "per", "than", "that", "the",
+    "to", "was", "with",
+}
+# A result such as "20/20 pass" or "3 failing" reports a run, not a folder's contents.
+RESULT_WORDS = {"pass", "passed", "passes", "passing", "fail", "failed", "failing"}
+# Unicode and plain-text tree entries, as in `├── lib/` or `+-- lib/` under `|   `.
+TREE_ENTRY_PATTERN = re.compile(r"^(?P<lead>[\s|│]*)(?:├──|└──|\+--|\|--|`--)\s*(?P<name>\S+)(?P<rest>.*)$")
+TREE_ROOT_PATTERN = re.compile(r"^\s*(?P<name>[\w.@-][\w./@-]*/)\s*(?:#.*)?$")
+WALK_SKIP = {"node_modules"}
 # Only a plural counts the folder's contents. A singular after a number reads as
 # prose ("in one file", "one log file"), not as an inventory.
 PLURAL_COUNT_TERMS = {
@@ -130,6 +165,8 @@ class CountClaim:
     reason: str
     folder: str = ""
     phrase: str = ""
+    # The root line of the tree whose folder entry the claim describes.
+    tree_root: str = ""
 
 
 def repository_root(readme: Path) -> Path:
@@ -151,15 +188,19 @@ def direct_files(folder: Path) -> list[Path]:
     )
 
 
+def is_test_file(name: str) -> bool:
+    """Tell whether a filename follows one of the test naming forms the repository uses."""
+    return name.endswith(TEST_SUFFIXES) or any(
+        name.startswith(prefix) and name.endswith(suffix) for prefix, suffix in TEST_PREFIXES
+    )
+
+
 def derived_values(folder: Path) -> dict[str, set[int]]:
     """Derive count categories from the current directory contents."""
     files = direct_files(folder)
     regular = [path for path in files if not path.is_symlink()]
     symlinks = [path for path in files if path.is_symlink()]
-    test_files = [
-        path for path in regular
-        if path.name.endswith((".test.cjs", ".test.js", ".test.ts", ".vitest.ts"))
-    ]
+    test_files = [path for path in regular if is_test_file(path.name)]
     scripts = [path for path in files if path.suffix in {".sh", ".bash"}]
     code = [path for path in files if path.suffix in CODE_SUFFIXES]
     return {
@@ -191,20 +232,101 @@ def source_inventory_complete(text: str, folder: Path) -> bool:
     return all(path.name in text for path in direct_files(folder))
 
 
-def counted_term(line: str, number_end: int) -> tuple[str, int] | None:
-    """Return the plural count term a number counts and where it ends, or None for prose."""
-    match = COUNTED_TERM_PATTERN.match(line, number_end)
-    if match is None:
-        return None
-    for index, word in enumerate(match.groups(), start=1):
-        if word is None:
+def divides_as_rate(line: str, position: int) -> bool:
+    """Tell a rate such as "300 files/session" from an alternative such as "7 files/folders".
+
+    A rate divides by one unit, so the word after the slash is singular. A plural
+    or a count term there names another kind of thing being counted.
+    """
+    if line[position:position + 1] != "/":
+        return False
+    after = re.match(r"[A-Za-z]+", line[position + 1:])
+    if after is None:
+        return True
+    word = after.group(0).lower()
+    return word not in COUNT_TERMS and not (word.endswith("s") and not word.endswith("ss"))
+
+
+def counted_term(line: str, number_end: int) -> tuple[str, int, int] | None:
+    """Return the count term a number counts, where the phrase ends and how many words sit between.
+
+    The phrase must end in a plural count term. A singular count term before it
+    modifies it ("12 test files"), so the claim counts that narrower term. A gap
+    of two words needs such a singular term in it, and any gap word that breaks
+    the phrase ("the", "more") makes the number prose.
+    """
+    first: str | None = None
+    position = number_end
+    for index in range(MAX_MODIFIERS + 1):
+        step = WORD_STEP_PATTERN.match(line, position)
+        if step is None:
             return None
-        lower = word.lower()
+        position = step.end()
+        lower = step.group(1).lower()
         if lower in PLURAL_COUNT_TERMS:
-            return lower, match.end(index)
-        if lower in COUNT_TERMS:
+            if divides_as_rate(line, position):
+                return None
+            if index == MAX_MODIFIERS and first is None:
+                return None
+            return first or lower, position, index
+        if lower in PHRASE_BREAK_WORDS:
             return None
+        if lower in COUNT_TERMS and first is None:
+            first = lower
     return None
+
+
+def labelled_term(line: str, number_start: int) -> tuple[str, int] | None:
+    """Return the plural term a label such as ``Files: 12`` or ``**Files:** 12`` puts before a number.
+
+    A run result such as ``Tests: 20/20 pass`` reports outcomes, not the folder's files.
+    """
+    after = line[number_start:]
+    number = re.match(r"\w+", after)
+    rest = after[number.end():] if number else after
+    if rest.startswith("/"):
+        return None
+    following = re.match(r"\s+([A-Za-z]+)", rest)
+    if following is not None and following.group(1).lower() in RESULT_WORDS:
+        return None
+    before = line[:number_start].rstrip().rstrip("*")
+    if not before.endswith(":"):
+        return None
+    words = before[:-1].split()
+    if not words:
+        return None
+    term = words[-1].strip("*").lower()
+    if term not in PLURAL_COUNT_TERMS:
+        return None
+    return term, before.rfind(words[-1])
+
+
+def term_keeps(term: str, path: Path) -> bool:
+    """Tell whether a file in a named folder is one of the things a count term counts."""
+    singular = term[:-2] if term.endswith("es") and term[:-2] in COUNT_TERMS else term.rstrip("s")
+    if singular in ("script", "plugin"):
+        return path.suffix in SCRIPT_SUFFIXES
+    if singular in ("test", "suite"):
+        return is_test_file(path.name)
+    if singular == "symlink":
+        return path.is_symlink()
+    return True
+
+
+def folder_values(folder: Path, term: str) -> set[int]:
+    """Count the files a term names in a folder, directly and recursively.
+
+    Dot folders and ``node_modules`` are not walked, and README files and
+    dotfiles are not counted, since neither is what a README counts.
+    """
+    direct = [path for path in direct_files(folder) if term_keeps(term, path)]
+    recursive = 0
+    for current, dirnames, filenames in os.walk(folder):
+        dirnames[:] = [name for name in dirnames if not name.startswith(".") and name not in WALK_SKIP]
+        for name in filenames:
+            if name != "README.md" and not name.startswith(".") and term_keeps(term, Path(current) / name):
+                recursive += 1
+    return {len(direct), recursive}
 
 
 def normalize_phrase(phrase: str) -> str:
@@ -312,14 +434,30 @@ def line_claims(text: str, readme: Path | None = None, root: Path | None = None)
     """Find numeric or vague count claims about the README's own folder or a folder its sentence names."""
     claims: list[CountClaim] = []
     in_fence = False
+    tree_root = ""
+    tree_stack: list[tuple[int, str]] = []
     for line_number, line in enumerate(text.splitlines(), start=1):
         if line.lstrip().startswith("```"):
             in_fence = not in_fence
+            tree_root, tree_stack = "", []
             continue
         if re.match(r"^\s*#{1,6}\s+\d+\.", line):
             continue
         if not WORD_PATTERN.search(line):
             continue
+        # Text after a folder entry on a tree line describes that folder, `#` or not.
+        tree_dir, described_from = "", len(line)
+        entry = TREE_ENTRY_PATTERN.match(line) if in_fence else None
+        if entry is not None:
+            depth = len(entry.group("lead"))
+            while tree_stack and tree_stack[-1][0] >= depth:
+                tree_stack.pop()
+            name = entry.group("name")
+            if name.endswith("/"):
+                tree_stack.append((depth, name.rstrip("/")))
+                tree_dir, described_from = "/".join(part for _depth, part in tree_stack) + "/", entry.start("rest")
+        elif in_fence and not tree_root and TREE_ROOT_PATTERN.match(line):
+            tree_root = TREE_ROOT_PATTERN.match(line).group("name")
         dynamic = in_fence and any(token in line for token in ("find ", "ls ", "wc", "glob"))
         tokens = list(WORD_PATTERN.finditer(line))
         folders = list(FOLDER_SPAN.finditer(line))
@@ -335,10 +473,20 @@ def line_claims(text: str, readme: Path | None = None, root: Path | None = None)
             if is_label(line, tokens, match.start()):
                 continue
             counted = counted_term(line, match.end())
+            phrase_start = match.start()
             if counted is None:
+                labelled = labelled_term(line, match.start())
+                if labelled is None:
+                    continue
+                counted, phrase_start = (labelled[0], match.end(), 0), labelled[1]
+            term, term_end, gap = counted
+            in_tree = bool(tree_dir) and match.start() >= described_from
+            folder = tree_dir if in_tree else same_sentence_folder(line, folders, match)
+            if gap == MAX_MODIFIERS and not folder:
                 continue
-            term, term_end = counted
-            if readme is not None and root is not None and describes_other_path(line, match.start(), readme, root):
+            if not in_tree and readme is not None and root is not None and describes_other_path(
+                line, match.start(), readme, root,
+            ):
                 continue
             value = int(value_token) if value_token.isdigit() else NUMBER_WORDS[value_token]
             claims.append(
@@ -348,8 +496,10 @@ def line_claims(text: str, readme: Path | None = None, root: Path | None = None)
                     term,
                     line.strip(),
                     "dynamic derivation" if dynamic else "numeric count",
-                    same_sentence_folder(line, folders, match),
-                    normalize_phrase(line[match.start():term_end]),
+                    folder,
+                    # Bold markers in a label form are layout, so `**Files:** 12` reads `files: 12`.
+                    normalize_phrase(line[phrase_start:term_end].replace("*", "")),
+                    tree_root if in_tree else "",
                 )
             )
         for vague in VAGUE_TERMS:
@@ -366,25 +516,41 @@ def line_claims(text: str, readme: Path | None = None, root: Path | None = None)
 
 
 def named_folder(claim: CountClaim, folder: Path, root: Path) -> Path | None:
-    """Resolve the folder a claim's sentence names, from the README or the repository root."""
+    """Resolve the folder a claim names, from the README or the repository root.
+
+    A tree entry is tried under its tree's root line first, then from the
+    README folder, since a root line often repeats the README folder's name.
+    """
     if not claim.folder:
         return None
-    for base in (folder, root):
-        candidate = base / claim.folder
-        if candidate.is_dir():
-            return candidate
+    relatives = [claim.tree_root + claim.folder] if claim.tree_root else []
+    relatives.append(claim.folder)
+    for relative in relatives:
+        for base in (folder, root):
+            candidate = base / relative
+            if candidate.is_dir():
+                return candidate
     return None
 
 
 def evaluate_claim(claim: CountClaim, text: str, folder: Path, root: Path | None = None) -> bool:
-    """Accept only dynamic, named-folder or complete-inventory-backed claims."""
+    """Accept only dynamic, named-folder or complete-inventory-backed claims.
+
+    A claim that names a folder is judged against that folder only: a folder
+    that does not exist fails rather than falling back to the README folder.
+    """
     if claim.reason == "dynamic derivation":
         return True
     if claim.value is None:
         return False
-    target = named_folder(claim, folder, root or folder)
-    if target is not None:
-        return claim.value in derived_values(target).get(claim.term, set())
+    if claim.folder:
+        target = named_folder(claim, folder, root or folder)
+        if target is None:
+            return False
+        values = folder_values(target, claim.term)
+        if target.resolve() == folder.resolve():
+            values |= derived_values(target).get(claim.term, set())
+        return claim.value in values
     values = derived_values(folder)
     if claim.value not in values.get(claim.term, set()):
         return False

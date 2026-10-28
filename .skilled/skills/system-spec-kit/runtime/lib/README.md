@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`runtime/lib/` contains the TypeScript implementation behind the package's public API. It owns spec folder validation, the two generated metadata files a packet carries, per-folder description generation, continuity records and resume ladders, and the small shared helpers those depend on.
+`runtime/lib/` contains the TypeScript implementation behind the package's public API. It owns spec folder validation, the generated metadata files a packet carries, per-folder description generation, continuity records and resume ladders, and the small shared helpers those depend on.
 
 Current state:
 
@@ -106,7 +106,7 @@ lib/
 |---|---|
 | `validation/orchestrator.ts` | Owns every spec folder rule verdict and the report shape `validate.sh` prints. |
 | `validation/spec-doc-structure.ts` | Per-document structure rules and the continuity fingerprint. |
-| `validation/generated-metadata-integrity.ts` | Schema, path-prefix and status-enum invariants for the two generated JSON files. |
+| `validation/generated-metadata-integrity.ts` | Schema, path-prefix and status-enum invariants for the generated JSON files. |
 | `graph/graph-metadata-parser.ts` | Loads, derives, merges, serializes and writes `graph-metadata.json`. |
 | `graph/generated-metadata-drift.ts` | Re-derives a folder and compares stored synopsis fields against a fresh derivation. Reports only; never writes. |
 | `description/packet-synopsis.ts` | The one shared synopsis extractor behind both generated summary fields. |

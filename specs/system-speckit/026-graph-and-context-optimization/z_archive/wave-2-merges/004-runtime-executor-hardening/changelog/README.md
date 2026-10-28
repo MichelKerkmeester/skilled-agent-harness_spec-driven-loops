@@ -12,7 +12,7 @@ contextType: "implementation"
 
 # Runtime Executor Hardening Phase Changelogs
 
-Three phases and two review sub-phases shipped between 2026-04-17 and 2026-04-19, transforming the system-spec-kit runtime from a state where `/memory:save` was a structural metadata no-op and iterative skills had no executor flexibility into one where canonical writes propagate freshness across 38 folders, CLI dispatch is a first-class YAML branch, and 6 Tier 1 hardening findings are closed.
+Three phases and two review sub-phases shipped between 2026-04-17 and 2026-04-19, transforming the system-spec-kit runtime from a state where the retired memory save command was a structural metadata no-op and iterative skills had no executor flexibility into one where canonical writes propagate freshness across 38 folders, CLI dispatch is a first-class YAML branch, and 6 Tier 1 hardening findings are closed.
 
 The foundational runtime phase (004/001) is the largest single remediation effort in the 026 track: 27 tasks across 5 clusters, 4 waves, 25 commits. It eliminated H-56-1 (the metadata no-op), added 5 architectural primitives, and brought 6 code-graph sibling handlers to parity. The two review sub-phases (pt-01 and pt-02) are read-only audits that produced 50 findings and 20 findings respectively, driving the remediation backlog. Phase 004/002 introduced CLI executor selection for iterative skills. Phase 004/003 closed 40 system-level findings across 6 sub-phases.
 

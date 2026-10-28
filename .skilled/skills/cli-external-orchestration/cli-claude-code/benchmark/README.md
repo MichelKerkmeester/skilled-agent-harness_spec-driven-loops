@@ -13,7 +13,7 @@ contextType: "reference"
 
 > Reports and inputs for benchmarking how well the `cli-claude-code` skill is routed, discovered, and used in practice, kept beside the skill it measures. Each run-label folder holds one run's report pair; this file indexes them.
 
-> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. This tree is a frozen index of the reports that lane produced; no new skill-benchmark run can be started from it.
+> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the deep skill-benchmark command were removed. This tree is a frozen index of the reports that lane produced; no new skill-benchmark run can be started from it.
 
 
 ---
