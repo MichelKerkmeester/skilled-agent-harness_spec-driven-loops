@@ -109,6 +109,7 @@ Variables: `ENVREF` is `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
 - [x] T042 [P] Add the numbered sweep to the Git Worktrees section of the v4.0.0.16 notes. Verify: no tag contains the notes, and `validate_document.py` reports `Total issues: 0`.
 - [x] T043 Write the sk-git v1.11.2.0 changelog entry, raise the `SKILL.md` version and sync the Hermes copy. Verify: `validate_document.py` and `frontmatter-version.mjs verify --skill sk-git` exit 0, `validate_skill_package.py` exits 0, and `sync-skills-hermes.cjs --check` prints `PASS: 67 Hermes skill copies in sync`.
 - [x] T044 Rerun every touched suite and the live dry run. Verify: the counts and the unchanged registry, ref and object hashes are in `implementation-summary.md`.
+- [x] T045 List `GIT_BOUND_SECONDS` and `WORKTREE_REAPER_NOW` in `.env.example` under `--- Internal overrides (set by callers and tests, not by hand) ---` in section 19, reversing T041's keep-out. Verify: `check-env-tokens.cjs` prints `unlisted=0` on both alignment scopes, `goal-doc-contract.test.cjs` prints 5 pass and `env-reference-drift.vitest.ts` prints 5 passed.
 <!-- /ANCHOR:phase-5 -->
 
 ---

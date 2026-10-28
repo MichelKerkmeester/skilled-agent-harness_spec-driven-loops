@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The reaper only removes launch-wrapper worktrees",
     "created_at": "2026-10-27T20:29:24Z",
-    "last_save_at": "2026-10-28T06:01:44.170Z",
+    "last_save_at": "2026-10-28T06:57:13.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fcbd8868ae37fa58f256f63bb6fbfdb812fdfe4d58930a8ae9a35e53dd21a4d",
+    "source_fingerprint": "sha256:589f6dcbf8de108d1c03d1bbe0b6c31d1d6f8a975b24d30f3a980b85dfdc4c38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "528263dcb5aa21efba2e8321f71115d8dd70762a090d356126736cf2fbe0c0ae",
       "plan.md": "ed2720e1074d8b8c043f90d38b4bcc437a78f3ed6dd7c651720337dbb2d05df8",
-      "tasks.md": "704cc9c3171443512276d0b1767934f26c5f387f782cdb71283001a1ba968cac",
-      "implementation-summary.md": "efa23cc56d9ad2189ef5ca14bdb2bf1d98343574485b11bba7b082bd4cde1c60"
+      "tasks.md": "9de8af6c7893a1fb86d1d926a6857189534b88cef2dd8a5c93ceb04d93cbd3bf",
+      "implementation-summary.md": "eea98f2ec1cf706ffe1ba42d8a31106b28df4fbe0a7d0d9caa57633a6cb6af13"
     },
     "last_active_at": null
   }

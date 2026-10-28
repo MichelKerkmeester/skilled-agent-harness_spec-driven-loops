@@ -220,7 +220,7 @@ The two unresolved references in the lib README (`refs/autostash-rescue/` and `t
 | The trial merge runs in a throwaway object directory | `merge-tree --write-tree` writes real objects, and a dry run must change nothing. Reading through to the repository's objects keeps the merge exact |
 | Any non-zero `lsof` exit is an unknown listing | Rows without a clean exit do not prove the process list was complete. The rule costs nothing on this host, where `lsof` exits 0 |
 | An unreadable registry skips the verdicts, the orphan report and the cleanup | Every one of them reads an empty list as "nothing exists", and the cleanup deletes on that reading |
-| `GIT_BOUND_SECONDS` stays internal and out of `.env.example` | Only the launcher and the tests set it, and `SPECKIT_GIT_TIMEOUT` is the operator's setting |
+| `GIT_BOUND_SECONDS` and `WORKTREE_REAPER_NOW` stay internal, listed in `.env.example` under an internal-overrides heading | Only the launcher and the tests set them, and `SPECKIT_GIT_TIMEOUT` is the operator's setting. Listing them there, rather than leaving them out, ends the two `check-env-tokens.cjs` reports every alignment run had to dismiss (reversed 2026-10-28) |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -264,7 +264,6 @@ The two unresolved references in the lib README (`refs/autostash-rescue/` and `t
 6. **Resolved by the alignment follow-up:** `ENV-REFERENCE.md` now has a row for `SPECKIT_WORKTREE_AUTOREAP` and for the other worktree and git timeout settings.
 7. **A host whose `lsof` exits non-zero on every run keeps every worktree.** The reaper prints `process listing unavailable` for each, which is the safe direction. This host exits 0.
 8. **A database or `.state` folder anywhere inside `node_modules` keeps its worktree.** The search for state names includes `node_modules`, and a package that ships a `*.db` file would trigger it. None in this repository does.
-9. **`check-env-tokens.cjs` still reports `GIT_BOUND_SECONDS` and `WORKTREE_REAPER_NOW`.** Both are internal (a per-call override and a test clock), and the script has no way to mark a variable internal, so each run needs a reviewer to dismiss them.
 <!-- /ANCHOR:limitations -->
 
 ---
