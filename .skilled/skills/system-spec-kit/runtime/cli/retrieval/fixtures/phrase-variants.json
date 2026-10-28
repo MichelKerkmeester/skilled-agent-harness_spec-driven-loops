@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fc5215edb180ee7575e5a4631a66540549b2bfa43b1c4ac4d1cd99b7d14f4fd1",
+  "manifestHash": "d336c866ce7b2735011e0ac25ce1c8007207b09b03b8907b69d909fc8ce8f36c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -38282,6 +38282,9 @@
     "doc quality command examples": [
       "doc quality command examples"
     ],
+    "doc quality command retired": [
+      "doc quality command retired"
+    ],
     "doc quality reference map": [
       "doc quality reference map"
     ],
@@ -71947,6 +71950,9 @@
     "packet canonicalization": [
       "packet canonicalization"
     ],
+    "packet changelog frontmatter": [
+      "packet changelog frontmatter"
+    ],
     "packet changelog identity phrase": [
       "packet changelog identity phrase"
     ],
@@ -97081,6 +97087,9 @@
     "sk create frontmatter 1 0 2 0": [
       "sk-create-frontmatter 1.0.2.0"
     ],
+    "sk create frontmatter 1 0 3 0": [
+      "sk-create-frontmatter 1.0.3.0"
+    ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
     ],
@@ -97098,6 +97107,9 @@
     ],
     "sk create frontmatter v1 0 2 0": [
       "sk-create-frontmatter v1.0.2.0"
+    ],
+    "sk create frontmatter v1 0 3 0": [
+      "sk-create-frontmatter v1.0.3.0"
     ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
@@ -97261,6 +97273,9 @@
     "sk create quality control 1 0 2 0": [
       "sk-create-quality-control 1.0.2.0"
     ],
+    "sk create quality control 1 0 3 0": [
+      "sk-create-quality-control 1.0.3.0"
+    ],
     "sk create quality control playbook": [
       "sk-create-quality-control playbook"
     ],
@@ -97275,6 +97290,9 @@
     ],
     "sk create quality control v1 0 2 0": [
       "sk-create-quality-control v1.0.2.0"
+    ],
+    "sk create quality control v1 0 3 0": [
+      "sk-create-quality-control v1.0.3.0"
     ],
     "sk create readme 1 0 0 0": [
       "sk-create-readme 1.0.0.0"
@@ -97771,6 +97789,9 @@
     "sk design diagram 1 2 4 0": [
       "sk-design-diagram 1.2.4.0"
     ],
+    "sk design diagram 1 2 5 0": [
+      "sk-design-diagram 1.2.5.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -97797,6 +97818,9 @@
     ],
     "sk design diagram v1 2 4 0": [
       "sk-design-diagram v1.2.4.0"
+    ],
+    "sk design diagram v1 2 5 0": [
+      "sk-design-diagram v1.2.5.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -106668,6 +106692,9 @@
     ],
     "style reference chart": [
       "style reference chart"
+    ],
+    "style reference language folder": [
+      "style reference language folder"
     ],
     "style reference output examples": [
       "style reference output examples"

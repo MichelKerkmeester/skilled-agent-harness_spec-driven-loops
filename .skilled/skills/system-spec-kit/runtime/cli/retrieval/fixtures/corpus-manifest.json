@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6a006786804fc1f92cce1710468ad3196e87ed0836504e47696a09c4bba4cb0d",
+  "corpusHash": "df9f563591238dfc00f4a841a53f48d0793a042495508fde47e16876f7269af7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26699,
+  "includedPathCount": 26702,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3247,6 +3247,7 @@
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.2.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.3.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.4.0.md",
+    ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.5.0.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/design-diagram-command.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/hub-registration.md",
     ".skilled/skills/sk-design/sk-design-diagram/feature-catalog/diagram-generation/editorial-style-and-connectors.md",
@@ -6363,6 +6364,7 @@
     ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/silent-discovery-drop.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/trim-an-over-budget-description.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/trim-that-loses-routing-tokens.md",
@@ -6434,6 +6436,7 @@
     ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/assess-batch-snapshot.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/leave-creation-requests-alone.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/run-a-report-only-audit.md",
@@ -26730,7 +26733,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fc5215edb180ee7575e5a4631a66540549b2bfa43b1c4ac4d1cd99b7d14f4fd1",
+  "manifestHash": "d336c866ce7b2735011e0ac25ce1c8007207b09b03b8907b69d909fc8ce8f36c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
