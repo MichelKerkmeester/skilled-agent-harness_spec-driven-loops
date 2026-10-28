@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1c5bc490b17807c6b7edfd8dc3c4de52b0a712c28f67c9c972f2d92be166daf4",
+  "corpusHash": "e7da74797dcae8b48dc4c35b7a8b5a522cde77d465e86240c82f364c994cbbb4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26759,
+  "includedPathCount": 26761,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6603,6 +6603,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.2.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -13743,6 +13744,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/tasks.md",
@@ -26790,7 +26792,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cb9a8316e13859f866726d75b33d3bbbc16d5cebe911b5b0f0a4c0b874cc710b",
+  "manifestHash": "5be46f3a6642849f447c2e547f1b8ded03bb52837fc5a777adf3475a11f93297",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cb9a8316e13859f866726d75b33d3bbbc16d5cebe911b5b0f0a4c0b874cc710b",
+  "manifestHash": "5be46f3a6642849f447c2e547f1b8ded03bb52837fc5a777adf3475a11f93297",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -79531,6 +79531,9 @@
     "prose clarity pass acceptance criteria": [
       "prose clarity pass acceptance criteria"
     ],
+    "prose clarity pass implementation summary": [
+      "prose clarity pass implementation summary"
+    ],
     "prose clarity pass plan": [
       "prose clarity pass plan"
     ],
@@ -98051,6 +98054,9 @@
     "sk create skill 1 7 1 0": [
       "sk-create-skill 1.7.1.0"
     ],
+    "sk create skill 1 7 2 0": [
+      "sk-create-skill 1.7.2.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -98122,6 +98128,9 @@
     ],
     "sk create skill v1 7 1 0": [
       "sk-create-skill v1.7.1.0"
+    ],
+    "sk create skill v1 7 2 0": [
+      "sk-create-skill v1.7.2.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -102027,6 +102036,9 @@
     "skill procedure card templates": [
       "skill procedure card templates"
     ],
+    "skill prose checklist": [
+      "skill prose checklist"
+    ],
     "skill purpose correction": [
       "skill purpose correction"
     ],
@@ -102219,6 +102231,9 @@
     ],
     "skill surface reconciliation tasks": [
       "skill surface reconciliation tasks"
+    ],
+    "skill template clarity": [
+      "skill template clarity"
     ],
     "skill update triggers": [
       "skill update triggers"
