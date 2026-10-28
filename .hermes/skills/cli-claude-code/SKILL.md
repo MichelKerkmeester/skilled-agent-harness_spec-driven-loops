@@ -39,12 +39,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
 
 ### When NOT to Use
 
-- **You ARE Claude Code already.** This skill refuses to load when your runtime is Claude Code. Check `$CLAUDECODE`, `claude` in process ancestry, or `~/.claude/state/<id>/lock`.
-  - Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation.
-  - Run the work natively instead: dispatch a subagent with the Agent tool. Its `model` parameter picks the model; it takes no effort setting.
-  - A subagent runs at the session's effort level unless its agent definition sets `effort` (`low`, `medium`, `high`, `xhigh` or `max`). You need a definition only for a different level, such as `~/.claude/agents/opus-xhigh.md`.
-  - A new or edited definition loads within seconds, with no restart.
-  - Source: the `effort` row of the frontmatter table at https://code.claude.com/docs/en/sub-agents. Where this summary and that page differ, the page wins.
+- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation. Run the work natively instead: dispatch a subagent with the Agent tool. Its `model` parameter picks the model, and it takes no effort setting. A subagent runs at the session's effort level unless its agent definition sets `effort` (`low`, `medium`, `high`, `xhigh` or `max`), so a definition is needed only for a level different from the session's, such as `~/.claude/agents/opus-xhigh.md`. A new or edited definition loads within seconds, with no restart. Source: the `effort` row of the frontmatter table at https://code.claude.com/docs/en/sub-agents; where this summary and that page differ, the page wins.
 - Simple, quick tasks where CLI overhead is not worth it.
 - Tasks requiring interactive terminal UI (use `claude` directly instead).
 - Context already loaded and understood by the calling AI.
