@@ -2,7 +2,7 @@
 name: sk-create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Doc Quality (quality)
