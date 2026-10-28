@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "2.0.5.0",
+  "version": "2.0.6.0",
   "routerPolicy": {
     "defaultMode": "sk-design-fundamentals",
     "ambiguityDelta": 1,
@@ -144,7 +144,16 @@
         "decision branch",
         "parallel execution diagram",
         "approval loop diagram",
-        "export diagram"
+        "export diagram",
+        "create:diagram",
+        "/design:diagram",
+        "theme diagram",
+        "repaint diagram",
+        "brand the diagram",
+        "data model",
+        "state machine",
+        "venn",
+        "mermaid"
       ]
     },
     "create-chart-aliases": {
@@ -181,7 +190,9 @@
         "donut chart",
         "waffle chart",
         "histogram",
-        "parallel coordinates"
+        "parallel coordinates",
+        "measured site's look",
+        "theme a chart"
       ]
     }
   }

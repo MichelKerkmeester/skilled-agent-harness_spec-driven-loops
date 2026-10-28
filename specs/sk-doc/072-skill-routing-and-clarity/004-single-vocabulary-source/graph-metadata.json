@@ -15,7 +15,8 @@
       "skill routing phase 4",
       "single vocabulary source per hub plan",
       "single vocabulary source per hub tasks",
-      "single vocabulary source per hub acceptance criteria"
+      "single vocabulary source per hub acceptance criteria",
+      "single vocabulary source per hub implementation summary"
     ],
     "key_topics": [
       "single",
@@ -32,12 +33,17 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs",
+      ".github/workflows/routing-registry-drift.yml",
+      "scratch/baseline.md",
+      "scratch/after.md"
     ],
     "entities": [
       {
@@ -62,6 +68,36 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-hub-vocabulary-source.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
         "source": "derived"
       },
       {
@@ -149,59 +185,31 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Measured Behavior",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Each hub writes its mode vocabulary in several places that nothing generates from one another: `hub-router.json` classes, `mode-registry.json` aliases, `ROUTER.md` `INTENTSIGNALS` and packet `Keyword triggers:` lines",
     "created_at": "2026-10-28T06:38:45Z",
-    "last_save_at": "2026-10-28T06:42:24.266Z",
+    "last_save_at": "2026-10-28T10:01:37.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc6d92074fc59de789a08e7c1a4bb45193762b0024671d8e5cf21e63bf788e1a",
+    "source_fingerprint": "sha256:b0d46722c340a09740be297fe112e60ab6d04b34663609dc808ea2cae92fc94c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c4ae4590e8b8d235d6d736e99300fae0b949f8b353acb782f85c0fb5ef21f14",
-      "plan.md": "69cf69da481f4fd1d0ccd853f19924c3e775f79353fa7d8fbca697a26e559a5e",
-      "tasks.md": "48cc01c162711f6d92965ca613d44c3d198c7feca90ceb86a6e7e8b5c75d9699"
+      "spec.md": "3cb305ec2db1433e54e6994faa6b107f966499d20cb2bde73e7b0725f0cf3db7",
+      "plan.md": "a05938e16f67f7538cf2e1b619636048e12bdfaaf1f5357f511fbb761572d49a",
+      "tasks.md": "0abc9814952f0a8b0e0e2dde2e89fb0e0b5ec2b61792692cba04c53a4def9fe4",
+      "implementation-summary.md": "5652992c26ad2f83c9acdfbcfbb0c648c88b885d5b680a679b68e0636efff7d2"
     },
     "last_active_at": null
   }

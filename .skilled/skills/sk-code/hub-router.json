@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "3.9.18.0",
+  "version": "3.9.19.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -44,7 +44,7 @@
       "keywords": ["sk-code", "sk-code hub", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub", "surface-aware code implementation", "workflow doctrine", "verification commands", "language-specific verification commands", "surface detection routing", "code work"]
     },
     "quality-aliases": {
-      "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "quality check", "check before done", "author quality gate", "pre-verification quality check"]
+      "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "quality check", "check before done", "author quality gate", "pre-verification quality check", "authoring checklist", "skilled checklist"]
     },
     "quality-gates": {
       "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "skipped_untrusted", "untrusted repository check", "trustrepochecks", "quality config", "repository/quality.json", "configured check", "unverified"]

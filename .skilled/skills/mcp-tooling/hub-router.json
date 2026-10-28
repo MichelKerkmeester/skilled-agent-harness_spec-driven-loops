@@ -1,6 +1,6 @@
 {
   "skill": "mcp-tooling",
-  "version": "1.8.8.0",
+  "version": "1.8.9.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -147,7 +147,6 @@
       "keywords": [
         "chrome devtools",
         "browser debug",
-        "dom inspect",
         "lighthouse",
         "bdg",
         "cdp",
@@ -209,7 +208,6 @@
         "clickup goals",
         "bulk tasks",
         "clickup task",
-        "task list",
         "complete task",
         "add note to task",
         "tag task",
@@ -237,7 +235,6 @@
         "figma variables",
         "export from figma",
         "figma export",
-        "design tokens",
         "design file"
       ]
     },

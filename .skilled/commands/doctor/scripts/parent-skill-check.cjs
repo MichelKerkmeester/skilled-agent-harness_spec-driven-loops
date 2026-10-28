@@ -1369,10 +1369,10 @@ function checkVocabularyParity(ctx) {
     'every routerSignals mode is the expected route of a canary case');
 }
 
-// These hubs already carry vocabulary drift on the listed legs. Until that drift
-// is repaired, a listed leg reports it as a warning. Drift on any other hub or
-// leg fails the check.
-const VOCABULARY_PARITY_WARN_ONLY = { 'mcp-tooling': ['alias'], 'sk-design': ['alias', 'packet'], 'sk-doc': ['alias'], 'system-deep-loop': ['alias'] };
+// A hub listed here would report drift on the listed leg as a warning. The list
+// is empty because no hub carries vocabulary drift, so drift on any hub or leg
+// fails the check.
+const VOCABULARY_PARITY_WARN_ONLY = Object.freeze({});
 
 function checkHubRouter(ctx) {
   const { exists, value: router, error } = ctx.hubRouter;

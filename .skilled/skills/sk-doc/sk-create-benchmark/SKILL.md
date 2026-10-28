@@ -2,7 +2,7 @@
 name: sk-create-benchmark
 description: Author MCP-promotion and behavior artifacts.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 <!-- Keywords: create-benchmark, benchmark-report.md, source.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior-benchmark.md, behavior_benchmark, scenario contract, behavior-benchmark framework, claude-baseline, benchmark/README.md, run-label folder -->
@@ -27,7 +27,7 @@ Use this packet to author completed benchmark evidence or benchmark inputs into 
 - **MCP promotion** (on-disk `shared`; §3-8) — promote a completed MCP benchmark from a spec packet: author the ten-section `benchmark-report.md` and `source.md`, copy `results.csv`, applicable `per-probe.jsonl` and runtime sidecars into a dated folder, then update `benchmarks/README.md`.
 - **Behavior benchmark** (§9) — author or extend a deep-loop mode's index, `<PREFIX>-NNN-<slug>.md` scenario contracts, baseline, and entry-surface/clarity matrix. Fixed prefixes are `research` (RSB), `review` (RVB), and `ai-council` (ACB); declare a new mode's prefix in the index OVERVIEW.
 
-Keyword triggers: `benchmark-report.md`, `source.md`, `mcp-server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior-benchmark.md`, `behavior_benchmark`, `scenario contract`, `benchmark/README.md`, `run-label folder`, `benchmark package`
+Keyword triggers: `benchmark-report.md`, `source.md`, `mcp-server/benchmarks`; `behavior benchmark`, `behavior-benchmark.md`, `behavior_benchmark`, `scenario contract`, `benchmark/README.md`, `run-label folder`, `benchmark package`
 
 ### Adoption Gate (MCP promotion)
 

@@ -2,7 +2,7 @@
 name: cli-classifier
 description: "Routes typed classifier judgment requests to the hosted Jev transport via mode-registry.json; future classifiers join as modes."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 <!-- Keywords: cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, hosted classifier, noul, jev choice, jev score -->

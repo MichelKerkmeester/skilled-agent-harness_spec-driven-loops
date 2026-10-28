@@ -2,7 +2,7 @@
 name: sk-create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Doc Quality (quality)
@@ -27,7 +27,7 @@ Use this workflow when the request involves:
 - Validating an edited markdown document before handoff.
 - Auditing or validating an existing README or markdown flowchart when no new README or flowchart is being authored.
 
-Keyword triggers: `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `HVR`, `human voice`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget`, `trim`.
+Keyword triggers: `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget`, `trim`.
 
 ### When NOT to Use
 

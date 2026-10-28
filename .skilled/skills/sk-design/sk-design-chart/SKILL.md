@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 0.23.1.0
+version: 0.23.2.0
 metadata:
   packetKind: workflow
 ---
@@ -27,7 +27,7 @@ Use this packet when the request involves:
 - Applying a local v3 `DESIGN.md` Style Reference to a chart delivery.
 - Adding a chart form to the corpus, or checking that the corpus still renders.
 
-Keyword triggers: `create a chart`, `plot the data`, `data visualization`, `treemap`, `waterfall chart`, `heatmap`, `box plot`, `histogram`, `chart catalog`, `chart colour system`, `standalone html chart`, `DESIGN.md`, `style reference`, `measured site's look`, `theme a chart`.
+Keyword triggers: `create a chart`, `plot the data`, `data visualization`, `treemap`, `waterfall chart`, `heatmap`, `box plot`, `histogram`, `chart catalog`, `chart colour system`, `standalone html chart`, `measured site's look`, `theme a chart`.
 
 ### When NOT to Use
 

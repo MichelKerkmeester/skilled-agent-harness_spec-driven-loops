@@ -230,6 +230,13 @@ jobs:
         run: |
           set -euo pipefail
           node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check
+      - name: Hub vocabulary source - every copy agrees with hub-router.json
+        # hub-router.json is the one authored mode vocabulary, so a registry alias,
+        # ROUTER.md intent or packet trigger line that disagrees with it silently
+        # advertises or routes a term the other stage cannot serve.
+        run: |
+          set -euo pipefail
+          node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs
       - name: Compiled skill graph freshness - compiled json matches graph-metadata
         # The compiled skill-graph.json fell days behind its sources with nothing
         # failing. Strict mode exits 1 on a stale, ghost or missing compiled

@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.11.0
+version: 1.13.12.0
 metadata:
   family: sk-code
 ---
@@ -26,7 +26,7 @@ Use this mode when the request involves:
 - Loading a SKILLED authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `specs/`, MCP server source, or language-specific SKILLED files.
 - Fixing quality-gate failures in place with `Edit` when the fix belongs to the already-authored file.
 
-Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `P0`, `P1`, `P2`, `authoring checklist`, `SKILLED checklist`, `skill authoring`, `agent authoring`, `command authoring`, `MCP server authoring`, `spec folder authoring`, `check before done`.
+Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `authoring checklist`, `SKILLED checklist`, `check before done`.
 
 ### When NOT to Use
 

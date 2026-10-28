@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.5.0
+version: 2.0.6.0
 metadata:
   family: sk-design
 ---

@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.3.0
+version: 1.8.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -92,14 +92,14 @@ a canonical typed pair.
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "inspect the dom", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace"]},
-    "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks"]},
-    "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud", "health", "health-md"]},
-    "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through"]},
-    "NOTION":          {"weight": 4, "keywords": ["notion", "notion mcp", "notion api", "notion page", "notion token", "ntn_", "notion database", "notion data source", "query notion", "notion property", "notion relation", "notion rollup", "notion formula", "notion markdown"]},
-    "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design file"]},
-    "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
-    "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps"]},
+    "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "inspect the dom", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace", "chrome-devtools", "mcp-chrome-devtools", "console errors", "capture browser screenshots"]},
+    "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks", "mcp-click-up", "click-up", "process queue", "clickup goals", "complete task", "add note to task", "tag task", "start timer", "stop timer", "mark task done"]},
+    "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud", "health", "health-md", "health md", "health.md", "health data", "apple health", "health chart", "health visualization", "iconic", "iconic rulebook", "icon rules", "icon automation", "file icons", "folder icons", "icon color", "iconic data json", "iconic ruleset", "excalidraw", "excalidraw.md", "drawing note", "embedded drawing", "whiteboard", "drawing script", "minimal theme", "css theme", "theme snippet", "style settings", "appearance", "snippets"]},
+    "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through", "natural language browser", "aside account", "repl evidence capture", "on its own"]},
+    "NOTION":          {"weight": 4, "keywords": ["notion", "notion mcp", "notion api", "notion page", "notion token", "ntn_", "notion database", "notion data source", "query notion", "notion property", "notion relation", "notion rollup", "notion formula", "notion markdown", "notion search"]},
+    "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design file", "connect to figma", "figma variables", "figma export"]},
+    "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products", "real app screen search", "design reference", "ui screens from real apps", "design inspiration search", "user flow references"]},
+    "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps", "real app ux patterns", "screen examples", "real app screenshots", "app screen gallery", "design pattern research"]},
     "MAGICPATH":       {"weight": 4, "keywords": ["magicpath", "magicpath ai", "magicpath component", "magicpath canvas", "magicpath design system", "magicpath.ai"]},
 }
 

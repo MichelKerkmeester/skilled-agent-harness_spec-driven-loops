@@ -73,6 +73,42 @@
       "declaredBy": "sk-doc",
       "wonBy": "create:agent",
       "reason": "Not a defect. A command surface winning a phrase that names that command is correct routing."
+    },
+    {
+      "phrase": "opencode skill",
+      "declaredBy": "sk-doc",
+      "wonBy": "sk-code",
+      "reason": "Two senses: authoring a skill package is sk-doc's, coding inside one is sk-code's. The bare phrase names neither act; a prompt with an authoring verb reaches sk-doc."
+    },
+    {
+      "phrase": "opencode agent",
+      "declaredBy": "sk-doc",
+      "wonBy": "sk-code",
+      "reason": "Same shape as 'opencode skill': authoring the agent file versus coding against the runtime."
+    },
+    {
+      "phrase": "opencode command",
+      "declaredBy": "sk-doc",
+      "wonBy": "sk-code",
+      "reason": "Same shape as 'opencode skill': authoring the command file versus coding against the runtime."
+    },
+    {
+      "phrase": "claude code agent",
+      "declaredBy": "sk-doc",
+      "wonBy": "cli-external-orchestration",
+      "reason": "Authoring a Claude Code agent file is sk-doc's; dispatching work to the Claude Code CLI is cli-external-orchestration's. The bare phrase reads as either."
+    },
+    {
+      "phrase": "release readiness",
+      "declaredBy": "sk-doc",
+      "wonBy": "system-deep-loop",
+      "reason": "A release-readiness playbook is sk-doc's; a release-readiness review loop is system-deep-loop's. Both are legitimate owners of the bare phrase."
+    },
+    {
+      "phrase": "decision branch",
+      "declaredBy": "sk-design",
+      "wonBy": "sk-git",
+      "reason": "A decision branch in a diagram is sk-design's; the word 'branch' pulls the bare phrase to sk-git. Not resolvable by vocabulary; belongs to the lexical-lane work, like 'design review'."
     }
   ]
 }

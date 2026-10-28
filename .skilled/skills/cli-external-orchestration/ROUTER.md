@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.3.0
+version: 1.7.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -91,13 +91,13 @@ a canonical typed pair.
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "OPENCODE":    {"weight": 4, "keywords": ["opencode", "opencode cli", "opencode run", "delegate to opencode", "cli-opencode", "parallel detached session", "full plugin runtime", "full plugin and memory stack", "ablation suite", "worker farm opencode"]},
-    "CLAUDE_CODE": {"weight": 4, "keywords": ["claude code", "claude cli", "cli-claude-code", "anthropic cli", "anthropic cli second opinion", "delegate to claude", "extended thinking", "deep reasoning handoff", "deeply-reasoned opinion", "structured claude code output", "claude code review"]},
-    "CODEX":       {"weight": 4, "keywords": ["codex", "codex cli", "codex exec", "cli-codex", "openai cli second opinion", "delegate to codex", "openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]},
-    "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch"]},
-    "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch"]},
-    "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider"]},
-    "HERMES":      {"weight": 4, "keywords": ["hermes cli", "cli-hermes", "hermes agent", "nous hermes", "delegate to hermes", "hermes chat", "hermes oneshot", "hermes dispatch", "hermes headless", "hermes query-file"]},
+    "OPENCODE":    {"weight": 4, "keywords": ["opencode", "opencode cli", "opencode run", "delegate to opencode", "cli-opencode", "parallel detached session", "full plugin runtime", "full plugin and memory stack", "ablation suite", "worker farm opencode", "parallel opencode session", "detached opencode session", "full plugin runtime dispatch", "cross-ai handback opencode", "ablation suite opencode", "in-opencode parallel session"]},
+    "CLAUDE_CODE": {"weight": 4, "keywords": ["claude code", "claude cli", "cli-claude-code", "anthropic cli", "anthropic cli second opinion", "delegate to claude", "extended thinking", "deep reasoning handoff", "deeply-reasoned opinion", "structured claude code output", "claude code review", "claude-code", "claude-cli"]},
+    "CODEX":       {"weight": 4, "keywords": ["codex", "codex cli", "codex exec", "cli-codex", "openai cli second opinion", "delegate to codex", "openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch", "cli codex"]},
+    "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch", "cursor agent", "cursor plan mode", "cursor ask mode", "cursor worktree", "cursor cloud worker"]},
+    "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch", "cognition cli", "cognition cli second opinion", "devin handoff", "cognition-cli", "devin subagent", "devin cloud handoff", "swe-1.7 dispatch"]},
+    "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider", "pi agent", "pi.dev cli", "pi coding agent", "cli pi", "pi json event stream", "pi rpc integration", "pi community package", "pi headless dispatch"]},
+    "HERMES":      {"weight": 4, "keywords": ["hermes cli", "cli-hermes", "hermes agent", "nous hermes", "delegate to hermes", "hermes chat", "hermes oneshot", "hermes dispatch", "hermes headless", "hermes query-file", "cli hermes", "hermes coding agent", "hermes yolo dispatch", "hermes second opinion", "nous research agent dispatch"]},
 }
 
 RESOURCE_MAP = {

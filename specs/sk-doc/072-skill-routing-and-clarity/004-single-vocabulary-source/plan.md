@@ -35,14 +35,14 @@ Give each hub one authored vocabulary and make every other copy generated or che
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified: Phase 003 canon
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified: Phase 003 canon
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Every gate in scope passes, with output and exit status recorded in `scratch/`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Every gate in scope passes, with output and exit status recorded in `scratch/`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

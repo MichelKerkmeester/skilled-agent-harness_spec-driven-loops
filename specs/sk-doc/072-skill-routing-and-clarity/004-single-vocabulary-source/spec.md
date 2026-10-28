@@ -20,9 +20,9 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
-| **Branch** | `worktrees/254-skill-routing-and-clarity` |
+| **Branch** | `worktrees/257-single-vocabulary-source` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 11 |
 | **Predecessor** | 003-routing-canon-and-tooling |
@@ -61,7 +61,19 @@ Give each hub one authored vocabulary and make every other copy generated or che
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs   # at 87e43b5dc0, before any edit
+DRIFT cli-classifier               alias=0 stage-two=13 triggers=0
+DRIFT cli-external-orchestration   alias=0 stage-two=36 triggers=0
+DRIFT mcp-tooling                  alias=0 stage-two=62 triggers=0
+DRIFT sk-code                      alias=0 stage-two=90 triggers=10
+DRIFT sk-design                    alias=0 stage-two=44 triggers=15
+DRIFT sk-doc                       alias=0 stage-two=73 triggers=19
+DRIFT system-deep-loop             alias=0 stage-two=13 triggers=0
+checked=7 hub(s), drift=375
+RESULT: FAILED
+
+$ node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "make a docx diff of these"
+{"hubId":"sk-doc","action":"defer","selectionKind":null,"targets":[],...}
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -107,6 +119,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-003 | The router-reach doctor workflow reports no new WRONG-HUB or OUTRANKED phrase against the phase 002 baseline. |
+| REQ-004 | The drift phase 002 counted is closed: the 62 mcp-tooling and 36 cli-external-orchestration stage-one terms with no stage-two intent, and the 17 sk-doc `Keyword triggers:` terms no mode routes. Each term is carried into the other copy or removed from the hub. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

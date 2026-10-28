@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.3.25.0
+version: 2.3.26.0
 metadata:
   family: sk-util
 ---
@@ -49,7 +49,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven at runtime and packet-authored at source** in two stages. Stage 1 (hub → mode): each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections that the hub reads without re-deriving mappings during a request. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's authoring intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
+Routing is **registry-driven at runtime and authored in `hub-router.json`** in two stages. Stage 1 (hub → mode): `hub-router.json` `vocabularyClasses` is the authored routing vocabulary; the `mode-registry.json` aliases, each packet's `Keyword triggers:` line and the root `ROUTER.md` intents are checked against it by `sk-create-skill/scripts/ci-hub-vocabulary-source.cjs`. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's authoring intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash

@@ -478,12 +478,12 @@ test('a hub ROUTER.md version that differs from SKILL.md is not reported by 13a'
   assert.equal(status, 0, output);
 });
 
-test('5k warns, and does not fail, on alias drift that another hub already carries', () => {
+test('5k fails on alias drift on any hub', () => {
   const hub = buildHub('sk-design');
   editJson(hub, 'mode-registry.json', (r) => { r.modes[0].aliases.push('yagni'); });
-  const { output } = runChecker(hub);
-  assertLine(output, 'WARN', '5k-alias', 'yagni');
-  assert.doesNotMatch(output, /^FAIL: 5k-alias:/m);
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '5k-alias', 'yagni');
+  assert.equal(status, 1, output);
 });
 
 test('5l fails when a hand-added sk-code surface sorts after sk-code-skilled', () => {

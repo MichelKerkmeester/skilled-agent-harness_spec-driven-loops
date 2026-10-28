@@ -8,7 +8,7 @@ trigger_phrases:
   - "typed judgment routing"
 importance_tier: important
 contextType: implementation
-version: 0.8.1.0
+version: 0.8.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -56,7 +56,7 @@ DEFAULT_RESOURCE = []
 SHARED_CONTROL_RESOURCES = []
 
 INTENT_SIGNALS = {
-    "JEV_JUDGMENT":    {"weight": 4, "keywords": ["ask jev", "jev judgment", "jev noul", "jev choice", "jev score", "jev urgency check", "jev yes or no", "jev probability", "cli-jev", "cli-usage"]},
+    "JEV_JUDGMENT":    {"weight": 4, "keywords": ["ask jev", "jev judgment", "jev noul", "jev choice", "jev score", "jev urgency check", "jev yes or no", "jev probability", "cli-jev", "cli-usage", "jev cli", "typesafe jev", "type-safe jev", "cli jev", "jev probability judgment", "typed judgment cli", "jev dispatch", "jev judgment call", "run jev", "use jev", "with jev", "through jev", "does jev use"]},
     "JEV_QUESTION":    {"weight": 3, "keywords": ["jev pick one", "jev options", "jev question", "shape a jev question", "jev batch", "jev run", "several jev questions", "jev question card"]},
     "JEV_PROVIDER":    {"weight": 3, "keywords": ["jev provider", "jev model id", "jev model", "jev openrouter", "jev official provider", "jev auth status", "jev auth"]},
     "JEV_MCP":         {"weight": 3, "keywords": ["jev mcp", "jev mcp host", "jev mcp server", "expose jev"]},

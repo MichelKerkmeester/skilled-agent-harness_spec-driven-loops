@@ -1,6 +1,6 @@
 {
   "skill": "cli-external-orchestration",
-  "version": "1.7.7.0",
+  "version": "1.7.8.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -121,8 +121,6 @@
     },
     "opencode-dispatch": {
       "keywords": [
-        "spec kit runtime",
-        "spec kit memory",
         "full plugin runtime dispatch",
         "full plugin and memory stack",
         "cross-ai handback opencode",
