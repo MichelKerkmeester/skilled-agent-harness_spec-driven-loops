@@ -1,5 +1,5 @@
 {
-  "corpusHash": "309d312d3295c9fb6c12d2aef218400c428807f2a7c490e29ae15007866e3fef",
+  "corpusHash": "c31870626cc6688ebe070b933fe8e7c372767a9c9df1e9467ad835bac9c5d226",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26925,7 +26925,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8789d04808fa58015f82555baf53b7db6c5b403ec46c41d5a2b4815df21af0ac",
+  "manifestHash": "5f305ce083af3f3c9b21552a1f36393fdaa79f23a3fdb5aae418710f9269491d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
