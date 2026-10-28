@@ -1,5 +1,5 @@
 {
-  "manifestHash": "509618c02e0fd94a15741ad7d32e5fc46c4c6af8b86dade540b744d54ab3f4e1",
+  "manifestHash": "fd7a4da3ddf8da702d12e8d648b9b1a1f40f1d523166e2af3c5d715fc3e12eff",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17309,6 +17309,9 @@
     "chart review tasks": [
       "chart review tasks"
     ],
+    "chart routing canon": [
+      "chart routing canon"
+    ],
     "chart routing integration": [
       "chart routing integration"
     ],
@@ -31997,6 +32000,9 @@
     "deep ai council 1 8 5 0": [
       "deep-ai-council 1.8.5.0"
     ],
+    "deep ai council 1 8 6 0": [
+      "deep-ai-council 1.8.6.0"
+    ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
     ],
@@ -32353,6 +32359,9 @@
     ],
     "deep ai council v1 8 5 0": [
       "deep-ai-council v1.8.5.0"
+    ],
+    "deep ai council v1 8 6 0": [
+      "deep-ai-council v1.8.6.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -34110,6 +34119,9 @@
     "deep research 1 15 8 0": [
       "deep-research 1.15.8.0"
     ],
+    "deep research 1 15 9 0": [
+      "deep-research 1.15.9.0"
+    ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
     ],
@@ -34608,6 +34620,9 @@
     "deep research rollback switch tasks": [
       "deep-research rollback switch tasks"
     ],
+    "deep research routing summary": [
+      "deep-research routing summary"
+    ],
     "deep research run certificate": [
       "deep-research run certificate"
     ],
@@ -34784,6 +34799,9 @@
     "deep research v1 15 8 0": [
       "deep-research v1.15.8.0"
     ],
+    "deep research v1 15 9 0": [
+      "deep-research v1.15.9.0"
+    ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
     ],
@@ -34868,6 +34886,9 @@
     ],
     "deep review 1 11 10 0": [
       "deep-review 1.11.10.0"
+    ],
+    "deep review 1 11 11 0": [
+      "deep-review 1.11.11.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -35425,6 +35446,9 @@
     "deep review rollout fallback decision": [
       "deep review rollout fallback decision"
     ],
+    "deep review routing summary": [
+      "deep-review routing summary"
+    ],
     "deep review run certificate": [
       "deep-review run certificate"
     ],
@@ -35600,6 +35624,9 @@
     ],
     "deep review v1 11 10 0": [
       "deep-review v1.11.10.0"
+    ],
+    "deep review v1 11 11 0": [
+      "deep-review v1.11.11.0"
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
@@ -37619,6 +37646,9 @@
     ],
     "diagram router pseudocode": [
       "diagram router pseudocode"
+    ],
+    "diagram routing canon": [
+      "diagram routing canon"
     ],
     "diagram semantic roles": [
       "diagram semantic roles"
@@ -48537,6 +48567,9 @@
     ],
     "fundamentals beyond ui tasks": [
       "fundamentals beyond ui tasks"
+    ],
+    "fundamentals routing canon": [
+      "fundamentals routing canon"
     ],
     "funnel conversion": [
       "funnel conversion"
@@ -60270,6 +60303,9 @@
     "machine router section": [
       "machine router section"
     ],
+    "machine router section in the deep loop hub": [
+      "machine router section in the deep-loop hub"
+    ],
     "macos daemon ipc sock einval": [
       "macOS daemon-ipc.sock einval"
     ],
@@ -62922,6 +62958,9 @@
     ],
     "md generator readme rewrite": [
       "md generator readme rewrite"
+    ],
+    "md generator routing canon": [
+      "md-generator routing canon"
     ],
     "md generator smoke lane": [
       "md-generator smoke lane"
@@ -89907,6 +89946,9 @@
     "routing perfection research tasks": [
       "routing perfection research tasks"
     ],
+    "routing prose summary": [
+      "routing prose summary"
+    ],
     "routing ratchet deep review wave": [
       "routing ratchet deep-review wave"
     ],
@@ -94973,6 +95015,9 @@
     "short registry reconstruction plan": [
       "short registry reconstruction plan"
     ],
+    "short routing prose": [
+      "short routing prose"
+    ],
     "short smart routing summary": [
       "short smart routing summary"
     ],
@@ -98585,6 +98630,9 @@
     "sk design 2 0 7 0": [
       "sk-design 2.0.7.0"
     ],
+    "sk design 2 0 8 0": [
+      "sk-design 2.0.8.0"
+    ],
     "sk design advisor identity": [
       "sk-design advisor identity"
     ],
@@ -98593,6 +98641,9 @@
     ],
     "sk design and system deep loop hubs acceptance criteria": [
       "sk-design and system-deep-loop hubs acceptance criteria"
+    ],
+    "sk design and system deep loop hubs implementation summary": [
+      "sk-design and system-deep-loop hubs implementation summary"
     ],
     "sk design and system deep loop hubs plan": [
       "sk-design and system-deep-loop hubs plan"
@@ -98699,6 +98750,9 @@
     "sk design chart 0 23 2 0": [
       "sk-design-chart 0.23.2.0"
     ],
+    "sk design chart 0 23 3 0": [
+      "sk-design-chart 0.23.3.0"
+    ],
     "sk design chart 0 3 0 0": [
       "sk-design-chart 0.3.0.0"
     ],
@@ -98777,6 +98831,9 @@
     "sk design chart v0 23 2 0": [
       "sk-design-chart v0.23.2.0"
     ],
+    "sk design chart v0 23 3 0": [
+      "sk-design-chart v0.23.3.0"
+    ],
     "sk design chart v0 3 0 0": [
       "sk-design-chart v0.3.0.0"
     ],
@@ -98846,6 +98903,9 @@
     "sk design diagram 1 2 6 0": [
       "sk-design-diagram 1.2.6.0"
     ],
+    "sk design diagram 1 2 7 0": [
+      "sk-design-diagram 1.2.7.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -98879,6 +98939,9 @@
     "sk design diagram v1 2 6 0": [
       "sk-design-diagram v1.2.6.0"
     ],
+    "sk design diagram v1 2 7 0": [
+      "sk-design-diagram v1.2.7.0"
+    ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
     ],
@@ -98894,6 +98957,9 @@
     "sk design fundamentals 1 0 1 0": [
       "sk-design-fundamentals 1.0.1.0"
     ],
+    "sk design fundamentals 1 0 2 0": [
+      "sk-design-fundamentals 1.0.2.0"
+    ],
     "sk design fundamentals reads as a ui skill": [
       "sk design fundamentals reads as a ui skill"
     ],
@@ -98902,6 +98968,9 @@
     ],
     "sk design fundamentals v1 0 1 0": [
       "sk-design-fundamentals v1.0.1.0"
+    ],
+    "sk design fundamentals v1 0 2 0": [
+      "sk-design-fundamentals v1.0.2.0"
     ],
     "sk design hub routing replay": [
       "sk-design hub routing replay"
@@ -98942,6 +99011,9 @@
     "sk design md generator 1 1 7 0": [
       "sk-design-md-generator 1.1.7.0"
     ],
+    "sk design md generator 1 1 8 0": [
+      "sk-design-md-generator 1.1.8.0"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
@@ -98965,6 +99037,9 @@
     ],
     "sk design md generator v1 1 7 0": [
       "sk-design-md-generator v1.1.7.0"
+    ],
+    "sk design md generator v1 1 8 0": [
+      "sk-design-md-generator v1.1.8.0"
     ],
     "sk design mode rename": [
       "sk-design mode rename"
@@ -99067,6 +99142,9 @@
     ],
     "sk design v2 0 7 0": [
       "sk-design v2.0.7.0"
+    ],
+    "sk design v2 0 8 0": [
+      "sk-design v2.0.8.0"
     ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
@@ -108857,6 +108935,9 @@
     "system deep loop 1 6 17 0": [
       "system-deep-loop 1.6.17.0"
     ],
+    "system deep loop 1 6 18 0": [
+      "system-deep-loop 1.6.18.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -109033,6 +109114,9 @@
     ],
     "system deep loop v1 6 17 0": [
       "system-deep-loop v1.6.17.0"
+    ],
+    "system deep loop v1 6 18 0": [
+      "system-deep-loop v1.6.18.0"
     ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
