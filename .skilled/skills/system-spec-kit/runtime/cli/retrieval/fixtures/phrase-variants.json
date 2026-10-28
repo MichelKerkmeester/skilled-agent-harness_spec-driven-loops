@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3269041fb3d2ee2fb9654648682ffb6606fc10cdbe0af95af526aa02e2bab1cf",
+  "manifestHash": "f026a1eff9f91ba987c75641b91606ad64bfefaae49ae3ab7d67e6007c32b791",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17541,6 +17541,9 @@
     "check review convergence": [
       "check review convergence"
     ],
+    "check rule copies mode only": [
+      "check rule copies mode only"
+    ],
     "check rule overrides linter": [
       "check rule overrides linter"
     ],
@@ -24325,6 +24328,12 @@
     ],
     "code review marker": [
       "code-review marker"
+    ],
+    "code review marker dispatch": [
+      "code review marker dispatch"
+    ],
+    "code review marker dispatcher": [
+      "code review marker dispatcher"
     ],
     "code review mode established": [
       "code-review mode established"
@@ -34655,6 +34664,9 @@
     "deep review 1 11 8 0": [
       "deep-review 1.11.8.0"
     ],
+    "deep review 1 11 9 0": [
+      "deep-review 1.11.9.0"
+    ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
     ],
@@ -34938,6 +34950,9 @@
     ],
     "deep review implementation summary": [
       "deep review implementation summary"
+    ],
+    "deep review installed skill paths": [
+      "deep review installed skill paths"
     ],
     "deep review interruption recovery": [
       "deep-review interruption recovery"
@@ -35380,6 +35395,9 @@
     ],
     "deep review v1 11 8 0": [
       "deep-review v1.11.8.0"
+    ],
+    "deep review v1 11 9 0": [
+      "deep-review v1.11.9.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -87243,8 +87261,26 @@
     "review advisories tasks": [
       "review advisories tasks"
     ],
+    "review agent and dispatch": [
+      "review agent and dispatch"
+    ],
+    "review agent and dispatch acceptance criteria": [
+      "review agent and dispatch acceptance criteria"
+    ],
+    "review agent and dispatch implementation summary": [
+      "review agent and dispatch implementation summary"
+    ],
+    "review agent and dispatch plan": [
+      "review agent and dispatch plan"
+    ],
+    "review agent and dispatch tasks": [
+      "review agent and dispatch tasks"
+    ],
     "review agent structural impact removal": [
       "review agent structural impact removal"
+    ],
+    "review agent verdict follows severity": [
+      "review agent verdict follows severity"
     ],
     "review alignment projection refresh": [
       "review alignment projection refresh"
@@ -89257,6 +89293,9 @@
     ],
     "rule blank": [
       "rule blank"
+    ],
+    "rule canary mode only": [
+      "rule canary mode only"
     ],
     "rule card generator": [
       "rule card generator"
@@ -94021,6 +94060,9 @@
     "shared rule contract tasks": [
       "shared rule contract tasks"
     ],
+    "shared rule id grammar": [
+      "shared rule id grammar"
+    ],
     "shared runtime dispatch": [
       "shared runtime dispatch"
     ],
@@ -94914,6 +94956,9 @@
     ],
     "sk code 3 9 11 0": [
       "sk-code 3.9.11.0"
+    ],
+    "sk code 3 9 12 0": [
+      "sk-code 3.9.12.0"
     ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
@@ -95911,6 +95956,9 @@
     "sk code review 1 9 5 0": [
       "sk-code-review 1.9.5.0"
     ],
+    "sk code review 1 9 6 0": [
+      "sk-code-review 1.9.6.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -96012,6 +96060,9 @@
     ],
     "sk code review v1 9 5 0": [
       "sk-code-review v1.9.5.0"
+    ],
+    "sk code review v1 9 6 0": [
+      "sk-code-review v1.9.6.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -96471,6 +96522,9 @@
     ],
     "sk code v3 9 11 0": [
       "sk-code v3.9.11.0"
+    ],
+    "sk code v3 9 12 0": [
+      "sk-code v3.9.12.0"
     ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
@@ -108274,6 +108328,9 @@
     "system spec kit 2 12 13 0": [
       "system-spec-kit 2.12.13.0"
     ],
+    "system spec kit 2 12 14 0": [
+      "system-spec-kit 2.12.14.0"
+    ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
     ],
@@ -108753,6 +108810,9 @@
     ],
     "system spec kit v2 12 13 0": [
       "system-spec-kit v2.12.13.0"
+    ],
+    "system spec kit v2 12 14 0": [
+      "system-spec-kit v2.12.14.0"
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"

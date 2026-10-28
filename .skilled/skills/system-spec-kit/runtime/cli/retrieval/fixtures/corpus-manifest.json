@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a1b0037179326cfdfe8c5f74051ac3050af2fb9188d051d4e7f1ac2d1f3fc4b4",
+  "corpusHash": "07c479fd7809f2fd8954582c5eb18aa583bcaf5a49705b48b3c6093672cf7b59",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26658,
+  "includedPathCount": 26675,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2755,6 +2755,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.10.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.11.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.12.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -2928,6 +2929,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.5.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.6.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2968,6 +2970,7 @@
     ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
     ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/focused-file-recommendation-contradicts.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-missing-case.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-restart.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md",
@@ -2975,7 +2978,14 @@
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-bulleted.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status-title-case.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/overall-contradicts-status.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/pr-shape-valid.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-contradicts-findings.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-contradicts-status.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-prose-next-steps.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-malformed.md",
     ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/status-commented-open-p1.md",
+    ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/status-requested-changes-p2-only.md",
     ".skilled/skills/sk-code/sk-code-skilled/README.md",
     ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
     ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md",
@@ -7252,6 +7262,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.6.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.7.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.8.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.9.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.1.0.md",
@@ -8079,6 +8090,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.11.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.12.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.13.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.14.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -12579,6 +12591,11 @@
     "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/plan.md",
     "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/spec.md",
     "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/tasks.md",
+    "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/plan.md",
+    "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/spec.md",
+    "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/tasks.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/008-ci-drift-flags/plan.md",
@@ -26689,7 +26706,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3269041fb3d2ee2fb9654648682ffb6606fc10cdbe0af95af526aa02e2bab1cf",
+  "manifestHash": "f026a1eff9f91ba987c75641b91606ad64bfefaae49ae3ab7d67e6007c32b791",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29553,6 +29570,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7339,
-    "ok": 15771,
+    "missing-frontmatter": 7347,
+    "ok": 15780,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26658,
+  "documentsScanned": 26675,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3269041fb3d2ee2fb9654648682ffb6606fc10cdbe0af95af526aa02e2bab1cf",
+  "manifestHash": "f026a1eff9f91ba987c75641b91606ad64bfefaae49ae3ab7d67e6007c32b791",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38751,
+      "ok": 38771,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -11413,6 +11413,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/focused-file-recommendation-contradicts.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/heading-shape-missing-case.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -11455,7 +11461,49 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/pr-shape-valid.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-contradicts-findings.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-contradicts-status.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/recommendation-prose-next-steps.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-malformed.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/status-commented-open-p1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/status-requested-changes-p2-only.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -71779,6 +71827,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/005-review-floor-lens-overrides/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/scratch",
       "reason": "excluded directory"
     },
     {
