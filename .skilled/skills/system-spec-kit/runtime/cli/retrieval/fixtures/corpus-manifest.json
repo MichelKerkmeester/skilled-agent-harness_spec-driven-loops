@@ -1,5 +1,5 @@
 {
-  "corpusHash": "37828b6b4ca41a40265da8054122b26a74db2919ae8e83b8823bfca912ce8220",
+  "corpusHash": "da8a3f6714a4515259b5f14bc4feb3a4073eaf9b4cb1aef5a99a8732fb77c7a6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26635,
+  "includedPathCount": 26658,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6079,6 +6079,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.21.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.22.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.23.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.24.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
@@ -6239,6 +6240,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.4.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.5.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.6.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
@@ -6443,6 +6445,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.1.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.4.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
@@ -7632,6 +7635,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.13.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.14.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.15.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.16.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
@@ -8074,6 +8078,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.10.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.11.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.12.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.13.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -26628,6 +26633,24 @@
     "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26666,7 +26689,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "aef42b67ec9a8a08d4103c1d18aa37f8b8caf93bf5722c5ad1ae23b3c4ac811e",
+  "manifestHash": "9766b552212cf90b06d8bee73a5ba7a4b2fb6857a462681c8b6ea11b1c814766",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34090,6 +34113,18 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7339,
-    "ok": 15748,
+    "ok": 15771,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26635,
+  "documentsScanned": 26658,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "aef42b67ec9a8a08d4103c1d18aa37f8b8caf93bf5722c5ad1ae23b3c4ac811e",
+  "manifestHash": "9766b552212cf90b06d8bee73a5ba7a4b2fb6857a462681c8b6ea11b1c814766",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38714,
+      "ok": 38751,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -76339,6 +76339,18 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/scratch",
       "reason": "excluded directory"
     },
     {
