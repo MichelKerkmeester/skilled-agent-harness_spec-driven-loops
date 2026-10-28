@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity"
-    last_updated_at: "2026-10-28T15:45:00Z"
+    last_updated_at: "2026-10-28T18:45:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Phases 001 to 009 complete: standalone skills at the canon shape"
-    next_safe_action: "Finish 010-prose-clarity-pass"
+    recent_action: "Phases 001 to 010 complete: the prose sweep brought every SKILL.md, command and agent doc under the line limit"
+    next_safe_action: "Run 011-regeneration-and-verification"
     blockers: []
     key_files:
       - "001-deep-research/research/research.md"
@@ -118,7 +118,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 7 | 007-sk-design-and-deep-loop-hubs/ | sk-design and system-deep-loop hubs and packets | Complete |
 | 8 | 008-cli-and-mcp-hubs/ | cli-external-orchestration, cli-classifier and mcp-tooling hubs and packets | Complete |
 | 9 | 009-standalone-skills/ | The seven standalone skills: short inline router, machine block last, generated leaf manifest | Complete |
-| 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | In Progress |
+| 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | Complete |
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Planned |
 
 ### Phase Transition Rules

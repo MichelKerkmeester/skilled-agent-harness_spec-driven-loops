@@ -33,13 +33,14 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scratch/sweep.md",
       "scratch/before.md",
       "scratch/after.md",
       "scratch/gates.sh",
@@ -75,6 +76,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep.md",
+        "kind": "doc",
+        "path": "scratch/sweep.md",
         "source": "derived"
       },
       {
@@ -114,12 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -139,6 +140,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill docs use terms before defining them, mix project history into instructions, and carry single lines of 1,000 to 2,200 characters",
     "created_at": "2026-10-28T06:38:51Z",
-    "last_save_at": "2026-10-28T14:50:29.308Z",
+    "last_save_at": "2026-10-28T17:01:02.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f19a5a7bcda5dc00f34405e2ef69c7e47ff9c719abb3ebf7979a391e0c71c367",
+    "source_fingerprint": "sha256:83162ee398161a38b59896409380a6ca7ea1d4dd9afebbbdd77795f2a1d2b713",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dad41265f8d23fa4d8270cf7bf6ee210be25ce81c390a5a5f98fede9869cd9c7",
+      "spec.md": "ae0c5ad6854dbcdf3f4af44b0ef91ed839674bde49afa509bb00f8647b47af33",
       "plan.md": "3a8d0f83100c7a97f69c6bb6bcf154d5636fff537f44844c5d0c22050d338a3e",
-      "tasks.md": "eedaddf3ee6b659f3f7b729fa52d8de0716ba91b373a644ef4120af03156debf",
-      "implementation-summary.md": "e95dac3d5c33fe740f09d96187fcf5fb7aae010c4f08f4b9597df3125267f08f"
+      "tasks.md": "d74f11605f5f24a8a49822e7736944f656013423e7de30d74a1412e87533a805",
+      "implementation-summary.md": "79b8eda3c032ad3afea93951bd598adc8f4f7ed8343c97de3b150d035c4bf334"
     },
     "last_active_at": null
   }

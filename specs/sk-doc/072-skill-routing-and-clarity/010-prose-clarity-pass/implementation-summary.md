@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 10: Prose clarity pass"
-description: "Progress record for the first landed lane. The clarity rules now live once, in a checklist that sk-create-skill's templates and both create workflows link to, and both workflows score the generated SKILL.md and README.md and stop on a hard blocker. The prose sweep across every skill has not run."
+description: "The clarity rules live once, in a checklist that sk-create-skill's templates and both create workflows link to, and both workflows score what they generate. Every skill SKILL.md, command and agent doc now scans no prose line over 400 characters, and every hub has a routing glossary."
 trigger_phrases:
   - "prose clarity pass implementation summary"
 importance_tier: "normal"
@@ -8,23 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass"
-    last_updated_at: "2026-10-28T15:50:00Z"
+    last_updated_at: "2026-10-28T18:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Landed the writing side: one checklist, both flows scoring"
-    next_safe_action: "Run the SKILL.md prose sweep after phases 008 and 009 land"
+    recent_action: "Ran the prose sweep over every SKILL.md, command and agent doc; all four criteria met"
+    next_safe_action: "Run 011-regeneration-and-verification"
     blockers: []
     key_files:
       - "scratch/before.md"
       - "scratch/after.md"
+      - "scratch/sweep.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "skill-routing-and-clarity-phase-010"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Why does the prose sweep wait for phases 008 and 009? Because both rewrite the SKILL.md files the sweep would touch, and 368 lines over 400 characters across 59 files is measured against the current text. Sweeping first would mean editing the same lines twice."
-      - "Was the shared-smart-router.md sentence in this phase's scope fixed here? No. Phase 008 owns that file and its lane has replaced the sentence in its own worktree. This phase's copy still carries it, and the record says so rather than claiming a fix it did not make."
+      - "Why did the prose sweep wait for phases 008 and 009? Because both rewrote the SKILL.md files the sweep touches. Sweeping first would have meant editing the same lines twice."
+      - "Was the shared-smart-router.md sentence in this phase's scope fixed? Yes, by phase 008, which owned that file. Its line 17 now says only what is true."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary: Phase 10: Prose clarity pass
@@ -40,12 +41,12 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-prose-clarity-pass |
-| **Completed** | Not complete. First lane landed 2026-10-28 |
+| **Completed** | 2026-10-28 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
-This is a progress record for one lane of the phase, not a completion claim. REQ-003 and REQ-004 are met and the gate set is recorded in `scratch/before.md` and `scratch/after.md`. The prose sweep that REQ-001 and REQ-002 depend on has not run, so the phase stays `In Progress` and `acceptance-criteria.md` reads `Closeable: No`.
+The phase landed in two lanes. The writing lane met REQ-003 and REQ-004, so a new skill starts clear. The sweep lane ran after phases 008 and 009 and met REQ-001 and REQ-002. `acceptance-criteria.md` reads `Closeable: Yes`. The sweep's readings are in `scratch/sweep.md`.
 
 ---
 
@@ -75,6 +76,20 @@ Its §4 was also a claim that did not survive an audit. It said each sibling cit
 ### The README's own hard blocker
 
 `sk-create-skill/README.md` carried one semicolon, at line 83. The human-voice rules treat a semicolon as a hard blocker, so the skill's own README would have failed the gate the skill now teaches. The sentence is split and the count is 0.
+
+### The prose sweep
+
+Every tracked skill `SKILL.md` now scans no prose line over 400 characters, down from 335. The command routers under `.skilled/commands/` went from 51 to 0 and the agent definitions under `.skilled/agents/` from 55 to 0. Each long paragraph or bullet became short sentences or a short list, with the instruction first.
+
+The facts did not move. Each file was compared against `HEAD` for every inline code span, link target and number, and for every pinned or fenced line. The one dropped item is project history in `system-deep-loop/SKILL.md`, which the clarity rules keep out of instructions.
+
+### A glossary per hub
+
+All seven parent hubs open HOW IT WORKS with `### Terms`. Each holds six to twelve routing terms, such as `workflowMode`, `packetKind`, `backendKind` and `defer`, with meanings taken from the hub's own text and registry.
+
+### Templates that pass their own gate
+
+The two `SKILL.md` templates and the three scaffolds under `sk-create-skill/assets/` carried 32 hard blockers between them. Each now scans 0, so a new skill no longer trips the create flow's human-voice gate on its first run. That closes the limitation the writing lane recorded.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -87,6 +102,8 @@ The lane edited prose and workflow YAML in one pass, then ran the shared gate se
 The baseline came first and is reproducible: `scratch/before.md` records the four readings this lane changes and the line-length scan, each as a command with its output, taken from `git show HEAD:<path>` so the record cannot drift with the working tree. `scratch/after.md` records the same readings taken from the final tree and the full 39-gate comparison.
 
 A read-only review of the uncommitted diff ran before the docs were written. It found the copies that had crept into the workflow YAMLs, a broken code fence in the nested-packets reference, a hub README template that failed the scan it teaches, and an anchor claim that was false for three siblings. Every finding is fixed and the fixed tree is what the gate run measures.
+
+The sweep lane split the files into sets that did not overlap, one set per worker, and ran the workers in parallel. Each worker checked each file it changed: the line scan, the facts and pinned comparisons, the strict package check and the changelog validator. A second pass took the 37 lines the first left, most of them lines the first scanner wrongly treated as pinned. Then two lint passes ran over every changed file. One found paragraphs that rendered inside the list item before them, the other sentences left starting lowercase where a semicolon was split. Two read-only review rounds compared the diffs for changed meaning, which no script sees.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,6 +123,14 @@ The review returned no P0, four P1 and four P2 findings, and `report.md` ends `F
 | P2-3.1 A full create scored a `README.md` that might not exist | The step resolves targets from existing files only |
 | P2-3.2 The new blocking gate was absent from `gate_logic` | `H4b` and `H6` added, so the gate inventory lists every stop |
 | P2-5.1 The changelog omitted two author-visible changes in the same diff | The sibling reference rewrite and the Mermaid flow diagrams are both named in the entry |
+
+The sweep had two review rounds of its own, recorded in `scratch/sweep.md` §5.
+
+| Round | Findings | Outcome |
+|-------|----------|---------|
+| 1, the `SKILL.md` sweep | 17: P0 5, P1 6, P2 6 | All fixed. The five P0s were dropped conditions: a worktree-wrapper condition in three `cli-*` packets, an "only because" in `system-spec-kit`, and an example in `sk-design-diagram` that read as a condition |
+| 1, the list-spacing scan | 14 paragraphs rendering inside a list item | All fixed with a blank line |
+| 2, commands, agents and templates | 18: P0 2, P1 5, P2 11 | 17 fixed. The two P0s were a per-mode scope lost in `/create:skill-parent` and an OpenCode form that lost its bound-session condition in `/speckit:save`. One P2 is kept: it asks to reword the compiled-routing directive, which a test holds identical in the hub template and the hub scaffold |
 <!-- /ANCHOR:review -->
 
 ---
@@ -132,11 +157,17 @@ The review returned no P0, four P1 and four P2 findings, and `report.md` ends `F
 
 2. **`sk-create-skill/README.md` was fixed here.** The Files to Change names the skill's templates and references, not its README. The README carried a hard blocker under the rules this lane lands, so a reader who ran the new gate on the skill would have been sent back to the same fix.
 
-3. **The `shared-smart-router.md` line in scope is not fixed here.** Phase 008 owns that file and its lane has replaced the sentence in its own worktree. In this worktree `references/cli/shared-smart-router.md:17` still reads "The helper bodies below are byte-identical across all seven files", and no `cli-*` `SKILL.md` carries those bodies. The record states the handoff rather than claiming the fix, because the replacement is not in this tree.
+3. **The `shared-smart-router.md` line was fixed by phase 008.** That phase owned the file, and its line 17 now says only what is true.
 
-4. **The sweep is not started.** REQ-001 and REQ-002 measure the text of every `SKILL.md`, and phases 008 and 009 are still rewriting those files. The measured size of the job is in `scratch/before.md` §4.
+4. **The sweep ran after phases 008 and 009.** Both rewrote the files it touches, so it ran on their final text.
 
-5. **The templates were not edited beyond the brief.** The hub template's payload now carries five hard blockers the same rules forbid, and the skill template carries six. Both are outside the files this lane was given, so the reading is recorded rather than fixed: `scratch/after.md` §7 and the known limitations.
+5. **The three scaffolds were fixed with the templates.** The writing lane recorded the hub and skill templates as tripping the new gate. The sweep fixed those two and also the three scaffolds under `assets/`, which generate the same files and carried 21 more hard blockers. The compiled-routing directive changed in the hub template, so the same line changed in `scaffold/hub-skill-scaffold.md`. `test_create_skill_contract.py` holds the two identical and passes 29 of 29.
+
+6. **The pinned lines are counted out of REQ-002.** Eight keyword comments, the compiled-routing blockquote in four hubs and in the two hub templates, and `Keyword triggers:` lines stay over 400 characters. A parser or a byte-for-byte check reads each one, and `spec.md` leaves pinned lines unchanged.
+
+7. **A worker deleted the orchestration scratch folder.** A template worker ran `rm -rf` on the session's scratch folder, outside its brief. Its pre-edit copies, worker reports and the first review reports were lost, along with the scan script. No tracked file was lost, because every comparison can run against `HEAD`. The scan script was rebuilt so it reads `HEAD:<path>`. Every check above was run again on the final tree, and later briefs forbid any delete outside the worktree.
+
+8. **The last round ran on one model.** The Luna route reached its usage limit partway through the third round. The glossary work it had not finished, the scaffold fixes and the second review ran on the DeepSeek route instead.
 <!-- /ANCHOR:deviations -->
 
 ---
@@ -158,8 +189,12 @@ The review returned no P0, four P1 and four P2 findings, and `report.md` ends `F
 | `validate_document.py --json`, the ten changed and new documents | `"valid": true` and 0 issues on all ten |
 | `compiled-route-guard` and `compiled-route-sync` | every hub fresh, 0 failures, 55 of 55 served copies matching |
 | `skill-graph-freshness` | no stale graph, zombie, ghost or signal drift, and nothing written |
+| Sweep: prose lines over 400 characters | `SKILL.md` 335 to 0, commands 51 to 0, agents 55 to 0 |
+| Sweep: facts and pinned lines against `HEAD` | 0 lost except one history remark, 0 pinned lines changed outside the template payload |
+| Sweep: full gate run on the final tree | every gate passes, three on a reread (`scratch/sweep.md` §6) |
+| Sweep: `test_create_skill_contract.py` | 29 passed |
 
-Detail: `scratch/after.md`.
+Detail: `scratch/after.md` for the writing lane and `scratch/sweep.md` for the sweep.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -167,15 +202,13 @@ Detail: `scratch/after.md`.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The phase is not closeable.** Two of the four requirements are met. REQ-001 and REQ-002 wait on the prose sweep across every `SKILL.md`, and the sweep runs after phases 008 and 009.
+1. **The line limit is a scan, not a gate.** No CI gate counts prose line length, so a later edit can bring a long line back. The checklist in `creation-workflow.md` names the limit for authors, and the scan in `spec.md` is the way to read it again.
 
-2. **The sweep's size is measured, not estimated.** `scratch/before.md` §4 counts 368 prose lines over 400 characters across 59 `SKILL.md` files, the longest 2,195 characters at `.skilled/skills/sk-git/SKILL.md:307`. That number is the current tree, so it moves when 008 and 009 land.
+2. **The 368 in `spec.md` was measured on a larger tree.** It counted 59 files before `sk-vision` and `mcp-magicpath` were removed from main. The sweep's 335 is the same scan on the 54 files this tree tracks, with the pinned lines skipped.
 
-3. **The template payload still trips the gate the flow now runs.** Three of the four templates are clean or improved. `assets/parent-skill/parent-skill-hub-template.md` is not: it read 0 hard blockers and 97/100 at `HEAD` and reads 5 and 69/100 now, from one semicolon that `### Terms` opens with at `:231` and four more across `:285` and `:289`. `assets/skill/skill-md-template.md` improved from 9 blockers and 41/100 to 6 and 56/100. No gate scans a template, so the gate set stays green, but an author who follows the hub template meets the new blocker inside the creation flow rather than before it. The fix is one edit per line and it belongs with the sweep, which owns the prose these templates produce. `scratch/after.md` §7 holds the four readings.
+3. **The project-history removal in `system-deep-loop/SKILL.md` drops a date.** "Formerly the separate `deep-loop-runtime` skill, merged into this hub 2026-07-08" is gone from the instructions. The hub's changelog keeps that history.
 
 4. **Two numbers describe the same bar from different places.** The skill names bands, 85 and above publishes, 70 to 84 revises, below 70 rewrites, and no pass bar of its own. The create workflows turn the top band into a completion condition in `gate_logic`. The criterion that the skill defines no numeric passing threshold is true of the skill and not of the flow, and the record says which is which rather than leaving a reader to guess.
 
-5. **One scope line is recorded as handed off, not as done.** `references/cli/shared-smart-router.md:17` in this worktree still carries the sentence that phase 008's lane has replaced in its own tree. The replacement arrives with that phase.
-
-6. **The packet's scratch records are untracked.** `scratch/before.md` and `scratch/after.md` land with these docs, and `scratch/gates.sh` is already there. A broad `git add` would sweep in all three, which is intended.
+5. **The packet's scratch records land with these docs.** `scratch/before.md`, `scratch/after.md`, `scratch/sweep.md` and `scratch/gates.sh` are tracked, and they are the evidence the criteria cite.
 <!-- /ANCHOR:limitations -->

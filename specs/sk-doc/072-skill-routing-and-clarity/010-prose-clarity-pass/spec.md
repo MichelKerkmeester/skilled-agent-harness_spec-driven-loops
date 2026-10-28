@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -87,7 +87,7 @@ SKILL.md files scanned: 59
 prose lines over 400 characters: 368
 longest: 2195 characters at .skilled/skills/sk-git/SKILL.md:307
 ```
-The scan skips fenced blocks and table rows, so what it counts is prose. 368 lines across 59 files is the size of the pass REQ-002 asks for, and the longest line, 2,195 characters at `.skilled/skills/sk-git/SKILL.md:307`, is the 1,000 to 2,200 character line the problem statement names. Both readings are unchanged so far, because the pass has not run. The gate set is recorded beside them: 39 gates at exit 0 at `9fdae0b7d4`, with routing accuracy 155/195, 49/66 and 19/24 (`scratch/before.md`).
+The scan skips fenced blocks and table rows, so what it counts is prose. 368 lines across 59 files is the size of the pass REQ-002 asks for, and the longest line, 2,195 characters at `.skilled/skills/sk-git/SKILL.md:307`, is the 1,000 to 2,200 character line the problem statement names. Those were the readings before the pass. After it, the same scan with pinned lines skipped counts 0 prose lines over 400 characters, and `scratch/sweep.md` §1 holds the before and after per surface. The gate set is recorded beside them: 39 gates at exit 0 at `9fdae0b7d4`, with routing accuracy 155/195, 49/66 and 19/24 (`scratch/before.md`).
 <!-- /ANCHOR:measured-behavior -->
 
 ---
