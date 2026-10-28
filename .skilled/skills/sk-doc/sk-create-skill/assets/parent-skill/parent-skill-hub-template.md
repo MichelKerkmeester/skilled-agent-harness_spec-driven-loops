@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.0.20
+version: 1.2.1.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -98,6 +98,8 @@ Surface packets have these required properties:
 | Surface packet | `assets/` | Conditional | Add when the packet carries reusable snippets or examples |
 | Surface packet | `changelog/` | Yes | Real changelog files for the packet |
 
+Packets inside the hub follow the mode-packet shape: a short SMART ROUTING section of 8 to 12 non-blank lines of plain prose, any machine router in a final `## MACHINE ROUTER` section, and no `ROUTER.md` of their own. The hub root `ROUTER.md` is the only router file in the family. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet scaffold.
+
 ---
 
 ## 4. HUB FRONTMATTER
@@ -120,7 +122,7 @@ version: 1.0.0.0
 
 ## 5. COPY-PASTE HUB SCAFFOLD
 
-Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder.
+Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder. The compiled router requires an `UNKNOWN_FALLBACK_CHECKLIST` list in the hub `SKILL.md`, so keep the final `## MACHINE ROUTER` section and fill its three placeholders.
 
 ````markdown
 ---
@@ -158,44 +160,18 @@ Use this skill when the request belongs to the [family/domain] family and should
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven. `mode-registry.json` lists every workflow and surface packet in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, ordered workflow bundle, defer response, or surface bundle.
+Routing is registry-driven: `hub-router.json` scores the request and `mode-registry.json` names the packet that `workflowMode` resolves to, while the root `ROUTER.md` is the stage-two control document (`stage1-only` on a fresh hub until an author promotes it to `active`).
+`packetKind: "workflow"` is a process or lifecycle packet and `packetKind: "surface"` is a read-only evidence-base packet (`backendKind: "evidence-base"`, `routingClass: "metadata"`, `mutatesWorkspace: false`), with no separate surface array.
+The rule is short: read `hub-router.json`, score `routerSignals` and `vocabularyClasses`, apply `routerPolicy.tieBreak` with workflow modes first, read `mode-registry.json` for `packetKind`, `backendKind`, `toolSurface`, and `advisorRouting`, then load the selected packet or packets.
+The outcomes are `single` (one workflow mode), `orderedBundle` (several workflow modes in policy order), `surfaceBundle` (one workflow primary plus read-only surfaces), and `defer` (unclear or contradictory intent asks for disambiguation).
+A request no registered mode matches returns `UNKNOWN_FALLBACK`, never a silent default.
+A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive below returns the legacy sentinel until the hub is activated.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
-
-A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so the
-directive above stays inert (it returns the legacy sentinel) until `{{HUB_NAME}}` completes its
-own compiled-routing activation and joins the serving closure. That closure currently holds five hubs:
-`sk-code`, `sk-doc`, `mcp-tooling`, `system-deep-loop` and `cli-external-orchestration`. This paragraph sits outside the
-blockquote on purpose: the quoted directive is held in lockstep with every serving hub, and a
-template-only sentence inside it would read as drift to the parity check.
-
-### Two-Axis Model
-
-- `packetKind: "workflow"` means a process/lifecycle packet.
-- `packetKind: "surface"` means a read-only evidence-base packet.
-- Surface packets use `backendKind: "evidence-base"`, `routingClass: "metadata"`, and `mutatesWorkspace: false`.
-- There is no separate surface array. Consumers derive packet roots and vocabulary ownership from `modes[]`.
-
-### Routing Rule
-
-```text
-read hub-router.json
-  -> score routerSignals and vocabularyClasses
-  -> apply routerPolicy.tieBreak, workflow modes first then surfaces
-  -> read mode-registry.json for packetKind, backendKind, toolSurface, and advisorRouting
-  -> load the selected packet(s)
-```
-
-### Outcomes
-
-- `single`: one dominant workflow mode.
-- `orderedBundle`: multiple workflow modes, ordered by policy.
-- `surfaceBundle`: one workflow primary plus zero or more read-only surface evidence packets.
-- `defer`: unclear or contradictory intent asks for disambiguation.
 
 ---
 
@@ -248,6 +224,15 @@ Use top-level `extensions` in `mode-registry.json` only when the hub needs extra
 
 These extensions activate in-place fields. They do not move `advisorRouting` data and do not create a third physical tier.
 
+### Terms
+
+This is the hub's only glossary; packets link here instead of defining routing terms of their own.
+
+| Term | Meaning |
+|------|---------|
+| [routing term] | [one-line meaning] |
+| [routing term] | [one-line meaning] |
+
 ---
 
 ## 4. RULES
@@ -286,6 +271,26 @@ These extensions activate in-place fields. They do not move `advisorRouting` dat
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `[workflow-packet-a]/SKILL.md`, `[workflow-packet-b]/SKILL.md`.
 - Surface packets: `[surface-name]/SKILL.md`, `[surface-name]/references/`, `[surface-name]/assets/`.
+
+---
+
+## MACHINE ROUTER
+
+The compiled router reads the fallback checklist below; the hub's leaf routing lives in the root ROUTER.md.
+
+```python
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "[placeholder: name the requested workflow outcome]",
+    "[placeholder: name the target component or document]",
+    "[placeholder: confirm whether the request may mutate workspace files]",
+]
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "resources": [],
+    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
+}
+```
 ````
 
 ---

@@ -32,9 +32,9 @@
  *
  * The audit checks hub-router and registry consistency, changelog shape,
  * required hub metadata, playbook and benchmark baseline, leaf-manifest
- * freshness and reachability, skill-root metadata class, and routing-version
- * consistency. PARENT_HUB_CHECK_STRICT=0 downgrades advisory findings only;
- * hard failures remain failures.
+ * freshness and reachability, skill-root metadata class, routing shape, and
+ * routing-version consistency. PARENT_HUB_CHECK_STRICT=0 downgrades advisory
+ * findings only; hard failures remain failures.
  *
  * Output: one `PASS: <id>: ...`, `FAIL: <id>: ...`, `WARN: <id>: ...` or
  * `INFO: <id>: ...` line per finding. This format is the documented exemption
@@ -1745,7 +1745,7 @@ function checkLeafManifest(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 12. ROOT CONTRACT CHECKS (11a, 12a)
+// 12. ROOT CONTRACT CHECKS (11a, 12a, 12b)
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 11a: the shared classifier decides the root's class from its own authored
@@ -1836,6 +1836,218 @@ function checkRootRouter(ctx) {
     }
   } catch (e) {
     softFail(`12a-router-contract: RRC-UNKNOWN — the root-router contract library failed unexpectedly: ${e.message}`);
+  }
+}
+
+// The known-debt ledger lists skills still in the old routing shape together
+// with the SMART ROUTING line count each was listed with. An unreadable or
+// absent ledger means every skill must meet the canon today. The env override
+// lets a test point at its own ledger instead of the live one.
+const ROUTING_SHAPE_DEBT_FILE = path.join(SK_CREATE_SKILL_SCRIPTS, 'routing-shape-known-debt.json');
+const ROUTING_SHAPE_MAX_LINES = 12;
+const ROUTING_SHAPE_MACHINE_LINE =
+  /^\s*(?:INTENT_SIGNALS|RESOURCE_MAP)\s*=|^\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b/;
+
+function loadRoutingShapeDebt() {
+  const file = process.env.ROUTING_SHAPE_DEBT_FILE
+    ? path.resolve(process.env.ROUTING_SHAPE_DEBT_FILE)
+    : ROUTING_SHAPE_DEBT_FILE;
+  const config = { maxSmartRoutingLines: ROUTING_SHAPE_MAX_LINES, debt: new Map() };
+  let parsed;
+  try {
+    parsed = readJson(file);
+  } catch {
+    return config;
+  }
+  if (!isPlainObject(parsed)) return config;
+  if (Number.isInteger(parsed.maxSmartRoutingLines) && parsed.maxSmartRoutingLines > 0) {
+    config.maxSmartRoutingLines = parsed.maxSmartRoutingLines;
+  }
+  if (isPlainObject(parsed.debt)) {
+    for (const [key, recorded] of Object.entries(parsed.debt)) {
+      if (Number.isInteger(recorded) && recorded >= 0) config.debt.set(key, recorded);
+    }
+  }
+  return config;
+}
+
+// A section title with its numbering and leading emoji or punctuation removed,
+// so `## 2. SMART ROUTING` and `## 🧭 Smart Routing` name the same section.
+function routingShapeTitle(line) {
+  return line
+    .replace(/^##\s+/, '')
+    .replace(/^\d+[a-z]?\.\s*/, '')
+    .replace(/^\W+/, '')
+    .trim()
+    .toUpperCase();
+}
+
+// Frontmatter, fences and H2s are read in one pass because only a fence's
+// state decides whether a `## ` line is a heading: templates inside a fenced
+// block routinely carry their own `##` headings, and those are not sections.
+function parseRoutingShape(source) {
+  const lines = source.split(/\r?\n/);
+  let first = 0;
+  if ((lines[0] || '').trim() === '---') {
+    const close = lines.findIndex((line, index) => index > 0 && line.trim() === '---');
+    if (close !== -1) first = close + 1;
+  }
+
+  const h2s = [];
+  const machineLines = [];
+  let fence = null;
+  for (let i = first; i < lines.length; i += 1) {
+    const stripped = lines[i].trim();
+    if (stripped.startsWith('```') || stripped.startsWith('~~~')) {
+      if (fence === null) {
+        fence = { open: i, inner: [] };
+      } else {
+        if (fence.inner.some((line) => ROUTING_SHAPE_MACHINE_LINE.test(line))) machineLines.push(fence.open + 1);
+        fence = null;
+      }
+      continue;
+    }
+    if (fence !== null) {
+      fence.inner.push(lines[i]);
+    } else if (lines[i].startsWith('## ')) {
+      h2s.push({ index: i, title: routingShapeTitle(lines[i]) });
+    }
+  }
+
+  const smartIndex = h2s.findIndex((h2) => h2.title.startsWith('SMART ROUTING'));
+  const appendixIndex = h2s.findIndex((h2) => h2.title === 'MACHINE ROUTER');
+
+  let smartLineCount = null;
+  if (smartIndex !== -1) {
+    const from = h2s[smartIndex].index + 1;
+    const to = smartIndex + 1 < h2s.length ? h2s[smartIndex + 1].index : lines.length;
+    smartLineCount = 0;
+    for (let i = from; i < to; i += 1) {
+      const stripped = lines[i].trim();
+      if (stripped !== '' && stripped !== '---') smartLineCount += 1;
+    }
+  }
+
+  let appendix = null;
+  if (appendixIndex !== -1) {
+    appendix = {
+      from: h2s[appendixIndex].index + 1,
+      to: appendixIndex + 1 < h2s.length ? h2s[appendixIndex + 1].index : lines.length,
+      isLast: appendixIndex === h2s.length - 1,
+    };
+  }
+
+  return { smartLineCount, machineLines, appendix };
+}
+
+// The four routing-shape rules, reported in the order the contract lists them.
+function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines }) {
+  const findings = [];
+  if (shape.smartLineCount !== null && shape.smartLineCount > maxLines) {
+    findings.push({
+      code: 'RS-001',
+      message: `routing shape RS-001: SMART ROUTING section has ${shape.smartLineCount} lines (max ${maxLines})`,
+    });
+  }
+  for (const line of shape.machineLines) {
+    const index = line - 1;
+    const inAppendix = shape.appendix !== null && index >= shape.appendix.from && index < shape.appendix.to;
+    if (!inAppendix) {
+      findings.push({
+        code: 'RS-002',
+        message: `routing shape RS-002: machine router block at line ${line} is outside a final '## MACHINE ROUTER' section`,
+      });
+    }
+  }
+  if (shape.appendix !== null && !shape.appendix.isLast) {
+    findings.push({
+      code: 'RS-003',
+      message: "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
+    });
+  }
+  if (isPacket && carriesOwnRouter) {
+    findings.push({
+      code: 'RS-004',
+      message: 'routing shape RS-004: mode packet carries its own ROUTER.md; the hub root ROUTER.md is the only router file',
+    });
+  }
+  return findings;
+}
+
+// A packet's key names its hub, so a ledger entry for one hub can never be
+// satisfied by a same-named folder in another.
+function routingShapeKey(dir) {
+  const parent = path.dirname(dir);
+  return fs.existsSync(path.join(parent, 'mode-registry.json'))
+    ? `${path.basename(parent)}/${path.basename(dir)}`
+    : path.basename(dir);
+}
+
+// 12b-routing-shape: the hub root and every mode packet share one routing
+// canon. A skill in the known-debt ledger keeps its current shape while it does
+// not grow; a finding past the recorded count is a real failure, so a ledger
+// entry can only ever shrink.
+function checkRoutingShape(ctx) {
+  const config = loadRoutingShapeDebt();
+  const packets = [...new Set(ctx.modes
+    .map((mode) => (typeof mode.packet === 'string' ? mode.packet.replace(/[\\/]+$/, '') : null))
+    .filter(Boolean))].sort();
+  const targets = [
+    { dir: ctx.target, isPacket: false },
+    ...packets.map((packet) => ({ dir: path.join(ctx.target, packet), isPacket: true })),
+  ];
+
+  let auditedPackets = 0;
+  let violations = 0;
+  let knownDebt = 0;
+
+  for (const { dir, isPacket } of targets) {
+    const skillFile = path.join(dir, 'SKILL.md');
+    if (!fs.existsSync(skillFile)) continue;
+    let source;
+    try {
+      source = fs.readFileSync(skillFile, 'utf8');
+    } catch {
+      continue;
+    }
+    if (isPacket) auditedPackets += 1;
+
+    const key = routingShapeKey(dir);
+    const shape = parseRoutingShape(source);
+    const findings = routingShapeFindings(shape, {
+      isPacket,
+      carriesOwnRouter: isPacket && fs.existsSync(path.join(dir, 'ROUTER.md')),
+      maxLines: config.maxSmartRoutingLines,
+    });
+    const recorded = config.debt.get(key);
+
+    if (recorded === undefined) {
+      for (const finding of findings) {
+        softFail(`12b-routing-shape: ${key}: ${finding.message}`);
+        violations += 1;
+      }
+      continue;
+    }
+
+    const tolerated = [];
+    for (const finding of findings) {
+      if (finding.code === 'RS-001' && shape.smartLineCount > recorded) {
+        softFail(`12b-routing-shape: ${key}: ${finding.message} (grew past its recorded known debt of ${recorded})`);
+        violations += 1;
+      } else {
+        tolerated.push(finding.code);
+      }
+    }
+    if (tolerated.length > 0) {
+      knownDebt += 1;
+      info(`12b-routing-shape: ${key}: routing shape: known debt, ${tolerated.join(', ')} (migrate to the routing canon)`);
+    } else if (findings.length === 0) {
+      info(`12b-routing-shape: ${key}: routing shape: known-debt entry is stale; remove ${key}`);
+    }
+  }
+
+  if (violations === 0) {
+    pass(`12b-routing-shape: hub and ${auditedPackets} packet(s) follow the routing canon (${knownDebt} known debt)`);
   }
 }
 
@@ -2055,6 +2267,7 @@ function main() {
   checkLeafManifest(ctx);
   checkRootMetadataClass(ctx);
   checkRootRouter(ctx);
+  checkRoutingShape(ctx);
   checkVersionParity(ctx);
   checkPacketChangelogVersions(ctx);
 

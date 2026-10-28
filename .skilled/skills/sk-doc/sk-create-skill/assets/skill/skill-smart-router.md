@@ -8,7 +8,7 @@ trigger_phrases:
   - "router fallback pattern"
 importance_tier: normal
 contextType: general
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Skill Smart Router - Resilience Pattern
@@ -23,7 +23,7 @@ Smart routers fail when resource paths drift, reference folders are deleted, sta
 
 ### Usage
 
-Copy the four pseudocode patterns from §2 into your skill's SMART ROUTING section. Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide. Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels — only swap the **discovery + load + fallback** mechanics. Apply the structural safeguards from §4 to every router-driven `load()` call. Audit your draft against §5 Anti-Patterns before merging.
+Copy the four pseudocode patterns from §2 into the final `## MACHINE ROUTER` section of your skill's `SKILL.md`. The pseudocode never goes inside SMART ROUTING, which stays 8 to 12 non-blank lines of plain prose. A packet never carries a `ROUTER.md` of its own; the hub root `ROUTER.md` is the only router file in the family. Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide. Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels — only swap the **discovery + load + fallback** mechanics. Apply the structural safeguards from §4 to every router-driven `load()` call. Audit your draft against §5 Anti-Patterns before merging.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.14
+version: 1.2.1.0
 ---
 
 # Skill Creation Process
@@ -127,7 +127,7 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 3. Creates example resource directories: `scripts/`, `references/`, `assets/`
 4. Adds example files that can be customized or deleted
 
-**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md. Normalize it to the required section order (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES) and add recommended sections (SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES) as you complete the skill.
+**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md. Normalize it to the required section order (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES) and add recommended sections (SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES) as you complete the skill. Keep Section 2 to 8 to 12 lines of prose and put the seeded router pseudocode in a final `## MACHINE ROUTER` section.
 
 **After initialization**: Customize or remove generated files as needed.
 
@@ -237,14 +237,15 @@ Answer these questions in SKILL.md:
 
 3. **How should the agent route to the right resources?**
    - Section 2: SMART ROUTING
-   - Follow the SMART ROUTING template generated in Step 3. Populate the five subsections: Primary Detection Signal, Phase Detection, Resource Domains, Resource Loading Levels and Smart Router Pseudocode.
-   - **Seed the pseudocode from the canonical resilience pattern**: copy the four patterns from [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2 (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) into the Smart Router Pseudocode subsection, then adapt the routing key and resource map to this skill's domain. A SKILL.md with an empty or missing Smart Router Pseudocode subsection is incomplete.
-   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables. Do NOT ship a SMART ROUTING section without the resilience pseudocode.
+   - Write 8 to 12 non-blank lines of plain prose. Say what selects this skill, what it loads first, and that the machine router sits in the final section. No pseudocode and no tables.
+   - **Seed the pseudocode from the canonical resilience pattern**: copy the four patterns from [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2 (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) into the final `## MACHINE ROUTER` section, then adapt the routing key and resource map to this skill's domain. A SKILL.md with no machine router block is incomplete unless the hub `ROUTER.md` already names every leaf this packet loads.
+   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables. Do NOT put the router block inside SMART ROUTING.
+   - `package_skill.py --strict` rejects the old shape with codes RS-001 to RS-004: an oversized SMART ROUTING section, a router block outside the final section, a `## MACHINE ROUTER` section that is not last, and a mode packet that carries its own `ROUTER.md`.
 
 4. **How should bundled resources be organized for routing clarity?**
    - Keep domain structure explicit (for example `references/backend/go/`)
    - Mirror key domains under `assets/` when templates/checklists are stack-specific
-   - Keep one source of truth for mapping in `Resource Domains`
+   - Keep one source of truth for the mapping in `RESOURCE_MAP` inside the machine router block
 
 5. **How should the agent use the skill in practice?**
    - Section 3: HOW IT WORKS

@@ -147,6 +147,7 @@ Identity:
 Validation:
 - parent-skill-check.cjs canonical gate (exit 0): [PASSED|FAILED]
 - Root router contract (check 12, stable RRC codes): [PASSED|FAILED]
+- SKILL.md routing shape (check 12b-routing-shape): SMART ROUTING 8 to 12 lines of prose per packet, machine router block in the final ## MACHINE ROUTER section, no ROUTER.md in a mode packet, one root ROUTER.md at the hub: [PASSED|FAILED]
 - Hub structure (SKILL.md + mode-registry.json + hub-router.json + ROUTER.md + description.json + graph-metadata.json): [PASSED|FAILED]
 - Canon files (hub-router.json, description.json, changelogs): [PRESENT|MISSING]
 - Per-mode packet (workflow folder == packetSkillName == [hub-prefix]-<mode>, surfaces bare-noun, own SKILL.md): [PASSED|FAILED]

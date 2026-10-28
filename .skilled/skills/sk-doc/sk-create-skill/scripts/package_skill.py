@@ -29,7 +29,7 @@ import re
 import sys
 import zipfile
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, NamedTuple, Optional, Tuple
 
 try:
     import yaml
@@ -184,6 +184,19 @@ SMART_ROUTER_MARKERS = [
     'UNKNOWN_FALLBACK',
 ]
 
+# Routing canon: a skill's SMART ROUTING section is short prose, any machine
+# router block belongs in a final `## MACHINE ROUTER` section, and a mode packet
+# never carries its own ROUTER.md. Skills still in the old shape are listed in
+# the known-debt ledger with the SMART ROUTING line count they were recorded at,
+# so the check fails only when that shape grows.
+ROUTING_SHAPE_DEBT_FILE_ENV = 'ROUTING_SHAPE_DEBT_FILE'
+ROUTING_SHAPE_DEBT_PATH = Path(__file__).resolve().parent / 'routing-shape-known-debt.json'
+ROUTING_SHAPE_MAX_LINES = 12
+# A fenced block holding either of these is a machine router, not prose.
+ROUTING_SHAPE_MACHINE_LINE_RE = re.compile(
+    r'^(?:\s*(?:INTENT_SIGNALS|RESOURCE_MAP)\s*=|\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b)'
+)
+
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
 VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
 
@@ -200,6 +213,7 @@ STRICT_PROMOTED_MARKERS = [
     "missing 'version' in frontmatter",  # versioned doc-class
     "is not 4-part",                  # bad version on doc-class
     "missing smart-router marker",    # SMART ROUTING resilience markers
+    "routing shape RS-",              # routing canon (SMART ROUTING length, appendix, packet ROUTER.md)
     "SMART ROUTING must be its own H2 section",  # non-standalone/merged routing heading
     "Placeholder file should be removed",  # example_*/placeholder_*/sample_* files
     "must use kebab-case",           # generated package path contract
@@ -765,6 +779,226 @@ def validate_resource_frontmatter(skill_path: Path) -> Tuple[bool, str, List[str
     return True, "Resource frontmatter checked", warnings
 
 
+class MachineRouterSection(NamedTuple):
+    """Span of a `## MACHINE ROUTER` section's body and whether it closes the file."""
+
+    body_from: int
+    body_to: int
+    is_last: bool
+
+
+class RoutingShape(NamedTuple):
+    """Routing sections parsed from a SKILL.md, as the routing canon reads them."""
+
+    smart_line_count: Optional[int]
+    machine_block_lines: List[int]
+    appendix: Optional[MachineRouterSection]
+
+
+def _routing_shape_title(line: str) -> str:
+    """Return an H2's title with numbering and leading emoji or punctuation removed."""
+    title = re.sub(r'^##\s+', '', line)
+    title = re.sub(r'^\d+[a-z]?\.\s*', '', title)
+    title = re.sub(r'^[^\w]+', '', title)
+    return title.strip().upper()
+
+
+def parse_routing_shape(content: str) -> RoutingShape:
+    """Parse a SKILL.md's routing sections per the routing canon.
+
+    Frontmatter, fences and H2s are read in one pass because only a fence's
+    state decides whether a `## ` line is a heading: templates inside a fenced
+    block routinely carry their own `##` headings, and those are not sections.
+    """
+    lines = content.split('\n')
+    first = 0
+    if lines and lines[0].strip() == '---':
+        for index in range(1, len(lines)):
+            if lines[index].strip() == '---':
+                first = index + 1
+                break
+
+    headings: List[Tuple[int, str]] = []
+    machine_block_lines: List[int] = []
+    fence_open: Optional[int] = None
+    inner: List[str] = []
+    for index in range(first, len(lines)):
+        stripped = lines[index].strip()
+        if stripped.startswith('```') or stripped.startswith('~~~'):
+            if fence_open is None:
+                fence_open = index
+                inner = []
+            else:
+                if any(ROUTING_SHAPE_MACHINE_LINE_RE.match(line) for line in inner):
+                    machine_block_lines.append(fence_open + 1)
+                fence_open = None
+            continue
+        if fence_open is not None:
+            inner.append(lines[index])
+        elif lines[index].startswith('## '):
+            headings.append((index, _routing_shape_title(lines[index])))
+
+    smart_index = next(
+        (i for i, (_index, title) in enumerate(headings) if title.startswith('SMART ROUTING')),
+        -1,
+    )
+    appendix_index = next(
+        (i for i, (_index, title) in enumerate(headings) if title == 'MACHINE ROUTER'),
+        -1,
+    )
+
+    smart_line_count: Optional[int] = None
+    if smart_index != -1:
+        start = headings[smart_index][0] + 1
+        end = headings[smart_index + 1][0] if smart_index + 1 < len(headings) else len(lines)
+        smart_line_count = sum(1 for line in lines[start:end] if line.strip() not in ('', '---'))
+
+    appendix = None
+    if appendix_index != -1:
+        appendix = MachineRouterSection(
+            body_from=headings[appendix_index][0] + 1,
+            body_to=(
+                headings[appendix_index + 1][0]
+                if appendix_index + 1 < len(headings)
+                else len(lines)
+            ),
+            is_last=appendix_index == len(headings) - 1,
+        )
+
+    return RoutingShape(smart_line_count, machine_block_lines, appendix)
+
+
+def load_routing_shape_debt() -> Tuple[int, Dict[str, int]]:
+    """Read the routing-shape known-debt ledger as (line limit, recorded counts).
+
+    An absent or unreadable ledger means the canon applies to every skill, so a
+    broken ledger can only tighten the check, never silently excuse a skill.
+    """
+    path = Path(os.environ.get(ROUTING_SHAPE_DEBT_FILE_ENV) or ROUTING_SHAPE_DEBT_PATH)
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return ROUTING_SHAPE_MAX_LINES, {}
+    if not isinstance(data, dict):
+        return ROUTING_SHAPE_MAX_LINES, {}
+
+    limit = data.get('maxSmartRoutingLines')
+    if not isinstance(limit, int) or isinstance(limit, bool) or limit <= 0:
+        limit = ROUTING_SHAPE_MAX_LINES
+
+    debt: Dict[str, int] = {}
+    recorded_counts = data.get('debt')
+    if isinstance(recorded_counts, dict):
+        for key, recorded in recorded_counts.items():
+            if isinstance(recorded, int) and not isinstance(recorded, bool) and recorded >= 0:
+                debt[str(key)] = recorded
+    return limit, debt
+
+
+def routing_shape_findings(
+    shape: RoutingShape,
+    limit: int,
+    is_packet: bool,
+    carries_own_router: bool,
+) -> List[Tuple[str, str]]:
+    """Return the (code, message) pair for each routing-shape rule a skill breaks."""
+    findings: List[Tuple[str, str]] = []
+
+    if shape.smart_line_count is not None and shape.smart_line_count > limit:
+        findings.append((
+            'RS-001',
+            f"routing shape RS-001: SMART ROUTING section has {shape.smart_line_count} lines (max {limit})",
+        ))
+
+    for line in shape.machine_block_lines:
+        index = line - 1
+        in_appendix = (
+            shape.appendix is not None
+            and shape.appendix.body_from <= index < shape.appendix.body_to
+        )
+        if not in_appendix:
+            findings.append((
+                'RS-002',
+                f"routing shape RS-002: machine router block at line {line} is outside a final "
+                "'## MACHINE ROUTER' section",
+            ))
+
+    if shape.appendix is not None and not shape.appendix.is_last:
+        findings.append((
+            'RS-003',
+            "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
+        ))
+
+    if is_packet and carries_own_router:
+        findings.append((
+            'RS-004',
+            'routing shape RS-004: mode packet carries its own ROUTER.md; '
+            'the hub root ROUTER.md is the only router file',
+        ))
+
+    return findings
+
+
+def _is_mode_packet(skill_path: Path) -> bool:
+    """Return whether a skill folder is a packet of the hub that contains it."""
+    return (skill_path.parent / 'mode-registry.json').is_file()
+
+
+def _routing_shape_key(skill_path: Path) -> str:
+    """Return the known-debt key for a skill; a packet's key also names its hub."""
+    if _is_mode_packet(skill_path):
+        return f'{skill_path.parent.name}/{skill_path.name}'
+    return skill_path.name
+
+
+def validate_routing_shape(skill_path: Path, content: str) -> Tuple[bool, str, List[str]]:
+    """Check SKILL.md against the routing canon, tolerating recorded known debt.
+
+    A skill listed in the known-debt ledger keeps the shape it was recorded with
+    while that shape does not grow; every other finding is a warning that
+    --strict promotes to an error.
+
+    Args:
+        skill_path: Path to the skill directory.
+        content: Raw SKILL.md file content.
+
+    Returns:
+        Tuple of (is_valid, message, warnings). Always valid=True.
+    """
+    warnings: List[str] = []
+    limit, debt = load_routing_shape_debt()
+    key = _routing_shape_key(skill_path)
+    is_packet = _is_mode_packet(skill_path)
+    shape = parse_routing_shape(content)
+    findings = routing_shape_findings(
+        shape,
+        limit,
+        is_packet,
+        is_packet and (skill_path / 'ROUTER.md').exists(),
+    )
+
+    recorded = debt.get(key)
+    if recorded is None:
+        warnings.extend(message for _code, message in findings)
+        return True, "Routing shape checked", warnings
+
+    tolerated = []
+    for code, message in findings:
+        if code == 'RS-001' and (shape.smart_line_count or 0) > recorded:
+            warnings.append(f"{message} (grew past its recorded known debt of {recorded})")
+        else:
+            tolerated.append(code)
+
+    if tolerated:
+        warnings.append(
+            f"routing shape: known debt, {', '.join(tolerated)} (migrate to the routing canon)"
+        )
+    elif not findings:
+        warnings.append(f"routing shape: known-debt entry is stale; remove {key}")
+
+    return True, "Routing shape checked", warnings
+
+
 def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
     """Validate SKILL.md Section 2 (SMART ROUTING) names the router markers.
 
@@ -805,6 +1039,12 @@ def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
         return True, "No SMART ROUTING section to validate", warnings
 
     section_body = section_match.group(1)
+    # A machine router may live in the final appendix instead of inline, so the
+    # markers are searched across the routing prose and that appendix body.
+    appendix = parse_routing_shape(content).appendix
+    if appendix is not None:
+        lines = content.split('\n')
+        section_body = section_body + '\n' + '\n'.join(lines[appendix.body_from:appendix.body_to])
     missing = [marker for marker in SMART_ROUTER_MARKERS if marker not in section_body]
     if missing:
         warnings.append(
@@ -941,6 +1181,14 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
         all_warnings.extend(warnings)
         if not valid:
             return False, message, all_warnings
+
+    # The routing canon binds every skill kind: a hub root, a mode packet, a
+    # surface packet and a standalone skill each keep their routing prose short
+    # and their machine block in the final appendix.
+    valid, message, warnings = validate_routing_shape(skill_path, content)
+    all_warnings.extend(warnings)
+    if not valid:
+        return False, message, all_warnings
 
     if strict:
         promoted, advisory = _partition_strict(all_warnings)

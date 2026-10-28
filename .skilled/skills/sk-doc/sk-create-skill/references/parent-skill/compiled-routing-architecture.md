@@ -9,7 +9,7 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # Compiled-Routing Architecture For Parent Hubs
@@ -22,7 +22,7 @@ The compiled skill router is a closed-cohort, byte-verified fast path that resol
 
 Two routers coexist for a parent hub:
 
-- The **prose smart-router** — the `SMART ROUTING` section of the hub's `SKILL.md`, read and reasoned over by the acting agent at request time. Every hub has this; it is the only router `create-skill` scaffolds.
+- The **prose smart-router** — the hub's `SMART ROUTING` section plus its root `ROUTER.md`, read and reasoned over by the acting agent at request time. The section is short prose that points at `ROUTER.md`, not the routing logic itself. Every hub has both, and `create-skill` scaffolds them.
 - The **compiled router** — a precompiled decision table over a hub's `hub-router.json` + `mode-registry.json`, evaluated by a small deterministic engine instead of prose reasoning. It only serves the five proven hubs in Section 2, is flag-gated (`SPECKIT_COMPILED_ROUTING`) and cohort-gated (`DEFAULT_ON_HUBS`), additive on top of the prose router, and fails closed to it on any gap, error, or ineligible hub.
 
 `create-skill` authors the files the compiled router eventually compiles (`hub-router.json`, `mode-registry.json`, `SKILL.md`) and can mint an onboarding manifest that records a hub's intent to join later. It does not build the compiled engine itself. Sections 5-6 draw that line precisely.

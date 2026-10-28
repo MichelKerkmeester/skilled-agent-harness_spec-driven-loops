@@ -1,6 +1,6 @@
 ---
 title: Common Skill-Creation Pitfalls
-description: Eight common pitfalls when creating skills - generic or bloated descriptions, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, and misplaced references.
+description: Nine common pitfalls when creating skills - generic or bloated descriptions, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, misplaced references, and a router in the wrong place.
 trigger_phrases:
   - "skill creation pitfalls"
   - "bloated skill description"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill description trim rules"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Common Skill-Creation Pitfalls
@@ -20,7 +20,7 @@ The recurring mistakes that keep skills from triggering, bloat the context windo
 
 ## 1. OVERVIEW
 
-This reference catalogs the eight pitfalls that most often degrade a skill: from descriptions that are too vague or too bloated to trigger reliably, through second-person voice and platform-specific assumptions, to YAML and section-placement mistakes. Each pitfall pairs a wrong example with the corrected form.
+This reference catalogs the nine pitfalls that most often degrade a skill: from descriptions that are too vague or too bloated to trigger reliably, through second-person voice and platform-specific assumptions, to YAML mistakes, section placement and a router in the wrong place. Each pitfall pairs a wrong example with the corrected form.
 
 **Core Principle**: Most failed skills fail at the description and the section boundaries — fix those first.
 
@@ -212,7 +212,7 @@ See `references/guide.md` for details...
 ### Smart Router Pseudocode
 ...
 
-# Good - Detection + domains + one authoritative pseudocode block
+# Good - Short prose in Section 2, pseudocode in the final section
 \## 1. WHEN TO USE
 
 ### Activation Triggers
@@ -220,34 +220,56 @@ See `references/guide.md` for details...
 
 \## 2. SMART ROUTING
 
-### [Primary Detection Signal]
-```bash
-[ -f "package.json" ] && STACK="NODEJS"
-```
+Use this skill when a request needs a document validated.
+Check the detection signal first, then load one resource domain.
+The router block that loads resources sits in the final section.
 
-### Resource Domains
-```text
-references/[domain]/...
-assets/[domain]/...
-```
+\## 3. HOW IT WORKS
+...
 
-### Smart Router Pseudocode
-```python
-def route_request(context):
-    if context.needs_validation:
-        return load("references/core-standards.md")  # Validation rules
-```
+\## MACHINE ROUTER
+
+INTENT_SIGNALS = {"validate": ["validate", "check"]}
+RESOURCE_MAP = {"validate": "references/core-standards.md"}
+
+def discover_markdown_resources(): ...
 ```
 
 **Rule**:
 ```
 "When to Use" = WHEN (triggers, conditions, use cases)
-"Smart Routing" = HOW resources are selected and loaded
+"Smart Routing" = HOW a prompt reaches the skill, in 8 to 12 lines of prose
+"MACHINE ROUTER" = the pseudocode that loads resources, in the last H2 section
 
 ⚠️ ANTI-PATTERN: Do NOT duplicate routing logic in separate lookup tables
+⚠️ ANTI-PATTERN: Do NOT put the router block inside SMART ROUTING
 ```
 
-**Fix**: Keep Section 2 cohesive with detection context, merged resource domains/mapping, loading levels, and one authoritative Smart Router Pseudocode block.
+**Fix**: Keep Section 2 to 8 to 12 lines of prose and put one machine router block in a final `## MACHINE ROUTER` section.
+
+### Pitfall 9: Router Block in the Wrong Place, or a Router File in a Mode Packet
+
+**Problem**: The machine router sits inside SMART ROUTING, or a mode packet carries its own `ROUTER.md`.
+
+**Example**:
+```markdown
+# Bad - Router block inside Section 2
+\## 2. SMART ROUTING
+[prose, then the whole router block]
+
+# Bad - Mode packet with its own router file
+parent-hub/example-packet/
+  ROUTER.md
+
+# Good - Packet follows the mode-packet shape
+\## 2. SMART ROUTING
+[8 to 12 lines of prose pointing at the final section]
+
+\## MACHINE ROUTER
+[the router block, last H2 in the file]
+```
+
+**Fix**: Move the block into a final `## MACHINE ROUTER` section. A hub keeps one `ROUTER.md` at its root and a packet keeps none. `package_skill.py --strict` rejects the two mistakes as RS-002 and RS-004.
 
 ---
 

@@ -141,6 +141,8 @@ Validation:
 - Hard minimum: 75
 - Operation target: [operation_target]
 
+Routing shape: SMART ROUTING is 8 to 12 lines of plain prose with any machine router block in the final ## MACHINE ROUTER section. A mode packet never carries ROUTER.md, and the hub keeps one root ROUTER.md.
+
 [When operation is full-create or full-update:]
 Advisor/Index Handoff (operator-owned; this command did not mutate advisor state; standalone scope - H-only fields omitted):
 - graph-metadata.json: sole skill advisor identity; source for graph indexing

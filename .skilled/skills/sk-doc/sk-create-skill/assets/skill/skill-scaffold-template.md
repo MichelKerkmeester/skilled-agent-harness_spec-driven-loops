@@ -2,7 +2,7 @@
 name: "{{SKILL_NAME}}"
 description: TODO one-line description of what this skill does and when to use it (verb + domain noun + trigger phrase)
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.3
+version: 1.2.1.0
 ---
 
 # {{SKILL_TITLE}}
@@ -32,62 +32,19 @@ Do not use this skill for:
 
 ## 2. SMART ROUTING
 
-### Routing Signals
+[TODO: Name the request signal that selects a resource — the intent, the file type, or the
+trigger phrase a user says.]
 
-[TODO: Describe the signal that selects a resource or workflow path.]
+[TODO: Name what loads first when that signal matches, then the smaller resource set it
+pulls in afterwards.]
 
-### Resource Domains
+[TODO: Name the signal that looks related but belongs to another skill, so the router refuses
+it instead of loading a near-miss resource.]
 
-- `references/` holds optional guidance and domain knowledge.
-- `assets/` holds optional templates and reusable output material.
-- `scripts/` holds optional deterministic automation.
+Resources live under `references/`, `assets/` and `scripts/`; the router selects from that
+inventory and loads nothing before a signal matches.
 
-### Smart Router Pseudocode
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "checklist": [
-        "Confirm the task intent",
-        "Provide one concrete input or expected output",
-    ],
-}
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError("Only skill-local markdown resources are routable")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def route_resources(request):
-    inventory = discover_markdown_resources()
-    selected = select_resources_for_request(request, inventory)
-    if not selected:
-        return {**UNKNOWN_FALLBACK, "resources": []}
-
-    loaded = []
-    for relative_path in selected:
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in loaded:
-            load(guarded)
-            loaded.append(guarded)
-    return {"resources": loaded}
-```
-
-[TODO: Replace `select_resources_for_request` with domain-specific routing logic.]
+The machine router is the final MACHINE ROUTER section.
 
 ---
 
@@ -171,3 +128,54 @@ The task is complete when:
 ### Related Workflows
 
 - [TODO: Name adjacent skills or workflows and their boundaries.]
+
+---
+
+## MACHINE ROUTER
+
+The router below selects the resources a request loads; it stays illustrative until the selection logic is authored.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "checklist": [
+        "Confirm the task intent",
+        "Provide one concrete input or expected output",
+    ],
+}
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError("Only skill-local markdown resources are routable")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def route_resources(request):
+    inventory = discover_markdown_resources()
+    selected = select_resources_for_request(request, inventory)
+    if not selected:
+        return {**UNKNOWN_FALLBACK, "resources": []}
+
+    loaded = []
+    for relative_path in selected:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in loaded:
+            load(guarded)
+            loaded.append(guarded)
+    return {"resources": loaded}
+```
+
+[TODO: Replace `select_resources_for_request` with domain-specific routing logic.]

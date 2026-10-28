@@ -571,6 +571,9 @@ def init_parent_skill(
     hub_content = with_initial_version(
         hub_template
         .replace('{{HUB_NAME}}', skill_name)
+        # The template quotes the token so its own frontmatter stays valid YAML;
+        # the rendered hub wants a bare flow list the doctor reads as tools.
+        .replace('"{{ALLOWED_TOOLS}}"', allowed_tools)
         .replace('{{ALLOWED_TOOLS}}', allowed_tools)
         .replace('{{HUB_TITLE}}', skill_title)
         .replace('{{MODE}}', mode)

@@ -15,7 +15,8 @@
       "skill routing phase 3",
       "routing canon and tooling plan",
       "routing canon and tooling tasks",
-      "routing canon and tooling acceptance criteria"
+      "routing canon and tooling acceptance criteria",
+      "routing canon and tooling implementation summary"
     ],
     "key_topics": [
       "routing",
@@ -27,19 +28,27 @@
       "tasks",
       "acceptance",
       "criteria",
-      "templates",
-      "checks",
-      "shape"
+      "implementation",
+      "summary",
+      "templates"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/routing-shape-contract.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+      "scratch/after.md",
       ".skilled/skills/sk-doc/scripts/package_skill.py",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      "scratch/before.md",
+      "scratch/baseline.md",
+      ".skilled/skills/sk-code/sk-code-ci/SKILL.md"
     ],
     "entities": [
       {
@@ -67,6 +76,36 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-shape-contract.md",
+        "kind": "doc",
+        "path": "scratch/routing-shape-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test_routing_shape.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
         "name": "package_skill.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/package_skill.py",
@@ -76,6 +115,24 @@
         "name": "verify-router-sync.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
         "source": "derived"
       },
       {
@@ -137,73 +194,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Edit",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The templates and checks that shape every skill still teach the long inline routing section",
     "created_at": "2026-10-28T06:38:44Z",
-    "last_save_at": "2026-10-28T07:43:23.130Z",
+    "last_save_at": "2026-10-28T08:50:09.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77ebbcfc793ed74985233ce98aee8cab9ab03b815c473d2c51182b29358ff207",
+    "source_fingerprint": "sha256:b994651ebb234f0fafe4cbca8762e5df323f066223088fa20334d5eca7b10d0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2934d2dd48920efb9e794058f5a63fbda95c483f7ffb58574228333a33ce1d9a",
+      "spec.md": "d4b44b7682c206245f78abe36d85bc86292014b61bc47436c5dc6dbac7062162",
       "plan.md": "7f13680daaf21f473bfd34c7f870bbd1bb6bda57f2e346531591845dfa05c7cd",
-      "tasks.md": "b9c0c073f8544e9386ffd987a8521e695b84fdd74538575014d156fb630f4ed6"
+      "tasks.md": "07ba7377fb17a665de832a287ecd69af9814f1673546db80ed9c63538191d787",
+      "implementation-summary.md": "7b133b5dd05351ef8f21bf61680e5ae3757c144e76f2ce71e7a63d3686d4e816"
     },
     "last_active_at": null
   }

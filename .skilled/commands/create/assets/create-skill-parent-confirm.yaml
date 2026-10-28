@@ -277,7 +277,7 @@ quality_standards:
   template_first: required
   frontmatter_required: true
   hub_requirements:
-    - thin routing-only SKILL.md (no per-mode logic)
+    - "thin routing-only SKILL.md (no per-mode logic): its SMART ROUTING section is short prose that points at the root ROUTER.md, the hub's only router file"
     - "exactly one graph-metadata.json at the hub root (from parent_skill_graph_metadata_template.json) with skill_id == hub folder name and family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
     - mode-registry.json present and valid JSON
     - "hub-router.json present and valid (routerSignals cover every workflowMode, typed vocabularyClasses, tieBreak covers all modes; any catch-all vocabulary class (hub-identity) is on the default mode only, not specialized modes (see parent_hub_router_schema.md); surface packets get metadata routerSignals plus a surfaceBundle outcome)"
@@ -297,7 +297,7 @@ quality_standards:
     - "RECOMMENDED DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (soft guidance, not a hard gate); surface packets use a bare-noun folder"
     - "ALLOWED: many modes mapping to one packet folder"
     - "ALLOWED: grandfathered packets where folder != packetSkillName (rare; record the rationale in the packet's decision record)"
-    - each packet has its own SKILL.md
+    - "each packet has its own SKILL.md whose SMART ROUTING section is 8 to 12 lines of plain prose, with any machine router block in the final '## MACHINE ROUTER' section and no ROUTER.md of its own"
     - "each mode's packet folder is a direct child of the hub (no absolute or ../ paths)"
     - NO per-packet graph-metadata.json
   shared_requirements:
@@ -465,6 +465,7 @@ workflow:
       - "Create or update description.json from parent_skill_description_template.json"
       - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
       - "Create or update one workflow packet dir per distinct packet value (default folder == packetSkillName == [hub-prefix]-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md, README.md, and changelog/"
+      - "Write every generated mode packet SKILL.md to the packet canon: SMART ROUTING is 8 to 12 lines of plain prose, any machine router block sits in the final '## MACHINE ROUTER' section, and the packet carries no ROUTER.md. Write the hub SKILL.md as short SMART ROUTING prose that points at the hub's one root ROUTER.md"
       - "When --surfaces <names> is given, generate each surface as a read-only evidence-base packet: bare-noun folder, packetKind surface, backendKind evidence-base, read-only toolSurface, routingClass metadata, with its own SKILL.md, README.md, and changelog/"
       - "Create the hub changelog/ and manual-testing-playbook/ (changelog files are real files, never symlinks)"
       - Create the non-discoverable shared/ dir with a shared/README.md
@@ -488,6 +489,7 @@ workflow:
     activities:
       - Run validate_document.py on the hub SKILL.md
       - "Run the canonical structural gate and REQUIRE exit 0: node .skilled/commands/doctor/scripts/parent-skill-check.cjs [skill_root]. The /doctor:skill-advisor parent-skill workflow runs this same gate, which checks owning hub identity, the two-axis discriminator, toolSurface, hub-router validity, description.json, changelog shape and registry/directory reverse consistency."
+      - "Check 12b-routing-shape rejects an old-shape packet: a SMART ROUTING section over 12 lines, a machine router block outside the final '## MACHINE ROUTER' section, that section not last, or a ROUTER.md inside a mode packet"
       - "For a net-new hub (create), the default gate now blocks on checks 5-9 (canon-promoted): node .skilled/commands/doctor/scripts/parent-skill-check.cjs [skill_root] must exit 0, so a fresh hub must carry no canon gaps in hub-router, description.json, changelog shape, playbook, or benchmark baseline"
       - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
       - Check mode-registry.json is valid JSON and has one advisorRouting block per mode
@@ -635,12 +637,14 @@ rules:
     - "Load the creation reference and all canon templates (hub, registry, hub-router, root router, description, graph-metadata) before writing"
     - "Keep the hub SKILL.md thin and routing-only"
     - "Resolve modes through the registry; keep per-mode contracts in packets"
+    - "Keep every generated mode packet SKILL.md on the packet canon: 8 to 12 lines of SMART ROUTING prose, the machine router in the final '## MACHINE ROUTER' section, and no ROUTER.md of its own. Keep the hub's SMART ROUTING short prose that points at its one root ROUTER.md"
     - "Emit the full canon set: mode-registry.json, hub-router.json, ROUTER.md (stage1-only on create), description.json, graph-metadata.json, and changelogs (real files) at hub and packet level"
     - "Gate completion on parent-skill-check.cjs exit 0"
     - "Keep exactly one graph-metadata.json (the hub's)"
     - "On update, classify the root ROUTER.md state and emit exactly one ROUTER.md: create|migrate|unchanged action; stop on conflict or malformed; preserve the machine block byte-for-byte in ordinary migration"
   must_not:
     - "Add a graph-metadata.json inside a packet or inside shared/"
+    - "Give a mode packet its own ROUTER.md"
     - "Emit runtimeLoopType for a mode that is not a runtime-loop workflow mode"
     - "Give a surface packet write or mutate tools — surfaces are read-only evidence bases"
     - "Use symlinks for changelog files"

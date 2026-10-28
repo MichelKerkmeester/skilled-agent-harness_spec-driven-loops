@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity"
     last_updated_at: "2026-10-28T09:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Phase 002 complete: baseline recorded and routing-correctness fixes landed"
-    next_safe_action: "Run /speckit:plan on 003-routing-canon-and-tooling"
+    recent_action: "Phase 003 complete: routing canon in templates and checks, proven on sk-code-ci"
+    next_safe_action: "Run /speckit:plan on 004-single-vocabulary-source"
     blockers: []
     key_files:
       - "001-deep-research/research/research.md"
@@ -111,7 +111,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Ten iterations of deep research that decided the routing shape per skill type and this plan | Complete |
 | 2 | 002-baseline-and-routing-correctness/ | Record a baseline for every routing gate; fix the routing bugs the research found, with no shape change | Complete |
-| 3 | 003-routing-canon-and-tooling/ | Packet routing canon in the templates, proven on one packet against parseRouter, verify-router-sync, package_skill and parent-skill-check; sk-create-skill produces it by default and its creation check rejects the old shape | Planned |
+| 3 | 003-routing-canon-and-tooling/ | Packet routing canon in the templates, proven on one packet against parseRouter, verify-router-sync, package_skill and parent-skill-check; sk-create-skill produces it by default and its creation check rejects the old shape | Complete |
 | 4 | 004-single-vocabulary-source/ | One authored vocabulary per hub; generate or check every copy against it; re-mint compiled routes | Planned |
 | 5 | 005-sk-code-hub/ | sk-code hub and its four packets to the canon shape, review last | Planned |
 | 6 | 006-sk-doc-hub/ | sk-doc hub and the five packets that still carry machine blocks | Planned |

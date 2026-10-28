@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,7 +61,8 @@ Change the canon and tooling once, prove the new packet shape on one packet, and
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+Before (scratch/before.md): package_skill --strict PASS on an old-shape skill fixture; parent-skill-check exit 0 on an old-shape parent fixture; a fresh /create:skill-parent scaffold FAIL 3j.
+After (scratch/after.md): both checks exit 1 on the old-shape fixtures (RS-001, RS-002, RS-004); fresh scaffolds pass both; every gate matches the baseline.
 ```
 <!-- /ANCHOR:measured-behavior -->
 

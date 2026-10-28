@@ -2,7 +2,7 @@
 name: "{{HUB_NAME}}"
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: "{{ALLOWED_TOOLS}}"
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # {{HUB_TITLE}}
@@ -21,7 +21,11 @@ Do not put packet-specific workflow logic in this hub.
 
 ## 2. SMART ROUTING
 
-`mode-registry.json` defines the available workflow packets. `hub-router.json` supplies the routing policy and intent signals used to select a `workflowMode`. The hub's second-stage control document lives at the root as `ROUTER.md`; a fresh scaffold declares `router_state: stage1-only` with empty maps, so all routing stays in stage one until an author promotes it to `active` with a concrete leaf map.
+Stage one picks the mode: `hub-router.json` scores the request and `mode-registry.json`
+names the packet that `workflowMode` resolves to. Stage two picks the first leaves: the root
+`ROUTER.md` maps the selected mode's intent to the packet-local resources it loads first.
+The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/SKILL.md`.
+A request no registered mode matches returns `UNKNOWN_FALLBACK`, never a silent default.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -29,55 +33,7 @@ Do not put packet-specific workflow logic in this hub.
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
-A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so the
-directive above stays inert (it returns the legacy sentinel) until `{{HUB_NAME}}` completes its
-own compiled-routing activation and joins the serving closure. That closure currently holds five hubs:
-`sk-code`, `sk-doc`, `mcp-tooling`, `system-deep-loop` and `cli-external-orchestration`. This paragraph sits outside the
-blockquote on purpose: the quoted directive is held in lockstep with every serving hub, and a
-template-only sentence inside it would read as drift to the parity check.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Name the requested workflow outcome.",
-    "Name the target component or document.",
-    "Confirm whether the request may mutate workspace files.",
-]
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "resources": [],
-    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
-}
-
-def discover_markdown_resources() -> set[str]:
-    return {
-        path.relative_to(SKILL_ROOT).as_posix()
-        for path in SKILL_ROOT.rglob("*.md")
-        if path.is_file()
-    }
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError("Only skill-local markdown resources are routable")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def route(request):
-    registry = read_json(SKILL_ROOT / "mode-registry.json")
-    router = read_json(SKILL_ROOT / "hub-router.json")
-    workflow_mode = select_workflow_mode(request, router)
-    entry = find_mode(registry, workflow_mode)
-    if not entry:
-        return UNKNOWN_FALLBACK
-    resource = _guard_in_skill(f"{entry['packet']}/SKILL.md")
-    return {"workflowMode": workflow_mode, "resources": [resource]}
-```
-
-The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/SKILL.md`.
+A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
 
 ---
 
@@ -88,6 +44,15 @@ The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/
 3. Load the registered packet's `SKILL.md`.
 4. Execute the packet contract with its declared tool surface.
 5. Ask for disambiguation when no registered mode is a safe match.
+
+### Terms
+
+This is the hub's only glossary; its packets link here instead of defining routing terms.
+
+| Term | Meaning |
+|---|---|
+| [TODO: Name a routing term this hub uses, e.g. `{{MODE}}` or `workflowMode`.] | [TODO: State what the term means in this hub.] |
+| [TODO: Name a second routing term.] | [TODO: State what it means, in one sentence.] |
 
 ---
 
@@ -135,3 +100,23 @@ The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/
 - Inputs: requests routed to the `{{HUB_NAME}}` hub.
 - Routing: `hub-router.json` selects a `workflowMode` registered in `mode-registry.json`.
 - Outputs: the selected packet's workflow result.
+
+---
+
+## MACHINE ROUTER
+
+The compiled router reads the fallback checklist below; the hub's leaf routing lives in the root ROUTER.md.
+
+```python
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Name the requested workflow outcome.",
+    "Name the target component or document.",
+    "Confirm whether the request may mutate workspace files.",
+]
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "resources": [],
+    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
+}
+```

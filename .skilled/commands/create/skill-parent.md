@@ -111,3 +111,5 @@ The generated package is:
 - A non-discoverable `shared/` directory (with `shared/README.md`) for packet-shared workflow-layer helpers.
 - Root `ROUTER.md` validation: the parent-skill doctor's check 12 (root-router contract with stable RRC codes) and the package gate both run the shared `root-router-contract.cjs` library on the generated hub.
 
+Every generated `SKILL.md` follows the routing canon: a mode packet's `SMART ROUTING` is 8 to 12 lines of plain prose, any machine router block sits in the final `## MACHINE ROUTER` section, and a mode packet never carries `ROUTER.md`. The hub keeps one root `ROUTER.md`, behind short `SMART ROUTING` prose that points at it.
+

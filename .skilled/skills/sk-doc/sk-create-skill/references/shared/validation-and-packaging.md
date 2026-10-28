@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Skill Validation and Packaging
@@ -62,6 +62,23 @@ scripts/package_skill.py <path/to/skill> --check
 - A missing required SKILL.md section (e.g., `REFERENCES` with no approved combined-heading variant).
 
 It reports non-kebab generated package paths as advisory findings so existing repository debt remains inspectable. Run `--strict` for a newly generated package: strict validation and actual packaging reject every non-exempt path that is not kebab-case. Python filenames, Python import-package directories, frozen/generated subtrees, and tool-mandated names such as `SKILL.md`, `README.md`, `.utcp_config.json`, `action.yml`, and `conftest.py` remain exact.
+
+### Routing Shape Check
+
+`package_skill.py` also checks the routing shape of every SKILL.md it is given:
+
+- A hub keeps one root `ROUTER.md`. Its `SKILL.md` SMART ROUTING section is short prose that points at that file.
+- A mode packet has no `ROUTER.md`. Its SMART ROUTING section is 8 to 12 non-blank lines of plain prose, and any router block sits in a final `## MACHINE ROUTER` section, the last H2.
+- A standalone skill follows the packet shape, with its inline router in that final section.
+
+Four codes report a violation:
+
+- `RS-001`: SMART ROUTING is longer than the line limit (12 by default).
+- `RS-002`: a machine router block sits outside the final `## MACHINE ROUTER` section.
+- `RS-003`: `## MACHINE ROUTER` exists but is not the last H2.
+- `RS-004`: a mode packet carries its own `ROUTER.md`.
+
+`--strict` promotes all four to errors. Known debt lives in `.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json`. Each entry records the SMART ROUTING line count the skill was listed with, and the ratchet fails the skill if that count grows. Remove the entry once the skill is migrated. `/create:skill-parent` applies the same rule as `parent-skill-check.cjs` check `12b-routing-shape`.
 
 ### Fleet Class Gate (ci-skill-root-metadata.cjs)
 

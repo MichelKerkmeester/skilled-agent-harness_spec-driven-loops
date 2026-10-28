@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -60,6 +60,8 @@ Core rules:
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
 - **Stage-two control document**: every hub also carries one root `ROUTER.md` declaring `router_state: stage1-only` or `active`. A fresh scaffold is `stage1-only` with empty maps, delegating all routing to stage one; `active` requires non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs. Promote only after authoring a concrete leaf map — never synthetic intents. `ROUTER.md` is a control-plane companion, never a leaf, advisor identity, or class discriminator.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
+
+A hub has exactly one `ROUTER.md`, at its root. A packet has none and follows the mode-packet shape: a short SMART ROUTING section with its router block in a final `## MACHINE ROUTER` section. The hub's `SKILL.md` holds the hub's only Terms glossary.
 
 Required fields for every `modes[]` entry:
 

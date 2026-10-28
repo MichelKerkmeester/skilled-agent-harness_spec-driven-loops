@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Skill Anatomy and Structure System
@@ -78,7 +78,7 @@ The content directories shown here are optional, but root metadata is not; use t
 
 **Required Sections** (enforced by markdown-document-specialist validation):
 1. WHEN TO USE (activation triggers and use cases ONLY)
-2. SMART ROUTING (detection guidance + merged resource domains/mapping + loading levels + authoritative pseudocode)
+2. SMART ROUTING (8 to 12 lines of plain prose: what selects this skill, what it loads first, where the machine router is)
 3. HOW IT WORKS
 4. RULES (ALWAYS/NEVER/ESCALATE IF)
 5. REFERENCES (or combined `SMART ROUTING & REFERENCES`)
@@ -107,9 +107,9 @@ Keep boundaries clear:
 
 ### Routing Authority Standard
 
-Intent scoring and the in-code resource map in SMART ROUTING are the authoritative routing source. Do not maintain separate use-case routing tables.
+The machine router is the authoritative routing source. It sits in a final `## MACHINE ROUTER` section, the last H2 in the file. Section 2 stays short prose that points at it. Do not maintain separate use-case routing tables.
 
-Router parity checklist for modern skills:
+Router parity checklist for the machine router block:
 - Guarded in-skill loading (`_guard_in_skill`)
 - Recursive markdown discovery (`discover_markdown_resources`)
 - Weighted intent scoring (`score_intents`)
@@ -125,10 +125,12 @@ Smart-router resilience reference:
 ```
 ❌ WRONG: File references or routing logic in "WHEN TO USE"
 ❌ WRONG: Separate use-case routing tables or navigation guides
-✅ RIGHT: Detection context plus merged domains/mapping and one authoritative pseudocode block
+❌ WRONG: A machine router block inside SMART ROUTING
+✅ RIGHT: Short routing prose in Section 2, one machine router block in the final MACHINE ROUTER section
 
 "WHEN TO USE" = WHEN (triggers, conditions, use cases)
-"SMART ROUTING" = HOW resources are selected and loaded (authoritative)
+"SMART ROUTING" = HOW a prompt reaches this skill, in 8 to 12 lines of prose
+"MACHINE ROUTER" = the pseudocode that loads resources (authoritative)
 ```
 
 ### Bundled Resources (Optional)
