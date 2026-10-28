@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scoringInstant": "2026-10-27T00:00:00Z",
+  "scoringInstant": "2026-10-28T00:00:00Z",
   "entries": [
     {
       "id": "harder:4798f04a4216",
@@ -713,9 +713,9 @@
       "gold": "deep-research",
       "promptHash": "sha256:ce0726a9d0f59b7774681ff7bab2c326215e15c45396e8cdb3e19082f8b99e53",
       "localTop": "none",
-      "nativeTop": "sk-design",
-      "reason": "reviewed 2026-09-23: cli-jev dropped its bare run keyword, so native moved from cli-jev to sk-design. Local abstains and gold is deep-research, which neither side reaches",
-      "approvedAt": "2026-09-23"
+      "nativeTop": "sk-doc",
+      "reason": "reviewed 2026-10-28: sk-doc gained the playbook and benchmark terms 'evidence collection' and 'run-label folder', whose bare run and evidence tokens moved native from sk-design to sk-doc. Local abstains and gold is deep-research, which neither side reaches",
+      "approvedAt": "2026-10-28"
     },
     {
       "id": "rr-iter2-020",

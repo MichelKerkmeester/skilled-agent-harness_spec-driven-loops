@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.3.11.0
+version: 2.3.12.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -155,9 +155,9 @@ dual-reads to a canonical typed pair through `leaf-manifest.json` or the hub's
 INTENT_SIGNALS = {
     "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validate a document", "validate this document", "validate markdown", "validation rules", "score this document", "score this doc", "dqi", "document audit", "fail sk-doc standards", "review the docs", "review the documentation", "check the docs", "check the documentation", "audit the docs", "documentation review bar", "quality bar", "flag", "meet our standards", "audit documentation quality", "ai-friendly documentation", "extract structure", "validate", "score", "harden", "audit", "/doc:quality"]},
     "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt", "reduce tokens", "fewer tokens", "trim", "compress the doc", "slim down", "model's budget", "machine-readable index", "optimize this doc"]},
-    "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability", "create skill", "skill scaffold", "opencode skill", "package skill", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "skill metadata drift gate", "/create:skill"]},
+    "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability", "create skill", "skill scaffold", "opencode skill", "package skill", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "/create:skill"]},
     "PARENT_HUB": {"weight": 4, "keywords": ["parent hub", "parent skill", "mode packet", "mode packets", "nested packet", "nested workflow packet", "mode-registry.json", "hub-router.json", "hub versus standalone skill class", "skill hub", "/create:skill-parent"]},
-    "AGENT_CREATION": {"weight": 4, "keywords": ["create an agent", "create agent", "new agent", "author an agent", "scaffold an agent", "agent file", "agent persona", "agent frontmatter", "agent template", "permission object", "authority boundary", "@analyze agent", "opencode agent", "claude code agent", "runtime agent directory", "/create:agent"]},
+    "AGENT_CREATION": {"weight": 4, "keywords": ["create an agent", "create agent", "new agent", "author an agent", "scaffold an agent", "agent file", "agent persona", "agent frontmatter", "agent template", "permission object", "authority boundary", "@analyze agent", "opencode agent", "claude code agent", "/create:agent"]},
     "COMMAND_CREATION": {"weight": 4, "keywords": ["create a command", "create command", "slash command", "new slash command", "author a command", "scaffold a command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "opencode command", "$arguments", "/create:command"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create"]},
     "HVR": {"weight": 4, "keywords": ["hvr", "human voice rules", "apply human voice", "rewrite in human voice", "make this sound human", "sounds ai-generated", "reads like ai wrote it", "reads like a machine wrote it", "remove ai tells", "ai writing tells", "voice pass", "de-ai the writing", "banned word check", "human voice"]},

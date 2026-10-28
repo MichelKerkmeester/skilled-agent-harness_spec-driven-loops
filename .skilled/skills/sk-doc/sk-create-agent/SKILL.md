@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.2.0
 ---
 
-<!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template, runtime agent directory -->
+<!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template -->
 
 # Create Agent - Runtime Persona Authoring
 
@@ -27,7 +27,7 @@ Use this workflow when the request involves:
 4. Deciding whether the requested component should be an agent, skill, or command.
 5. Running or supporting `/create:agent`.
 
-Keyword triggers: `create agent`, `/create:agent`, `OpenCode agent`, `Claude Code agent`, `agent file`, `new agent`, `agent persona`, `agent frontmatter`, `permission object`, `authority boundary`, `agent template`, `runtime agent directory`, `agent and paired`.
+Keyword triggers: `create agent`, `/create:agent`, `OpenCode agent`, `Claude Code agent`, `agent file`, `new agent`, `agent persona`, `agent frontmatter`, `permission object`, `authority boundary`, `agent template`, `agent and paired`.
 
 Create an agent only when the system needs a stable named persona with explicit tool permissions, denied capabilities, behavioral constraints, orchestration authority, or reusable execution posture.
 
@@ -71,7 +71,7 @@ DEFAULT_RESOURCE = "references/README.md"
 INTENT_MODEL = {
     "opencode_agent": {"weight": 4, "keywords": ["opencode agent", "permission object", ".skilled/agents"]},
     "claude_agent": {"weight": 4, "keywords": ["claude code agent", ".claude/agents"]},
-    "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template", "runtime agent directory"]},
+    "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the runtime target directory (.skilled/agents/ or .claude/agents/)",

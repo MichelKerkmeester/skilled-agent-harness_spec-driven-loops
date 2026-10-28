@@ -150,8 +150,7 @@
         "agent frontmatter",
         "permission object",
         "authority boundary",
-        "agent template",
-        "runtime agent directory"
+        "agent template"
       ],
       "advisorRouting": {
         "routingClass": "metadata"

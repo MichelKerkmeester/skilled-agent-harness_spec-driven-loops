@@ -6,7 +6,6 @@ trigger_phrases:
   - "skill root metadata contract"
   - "leaf-manifest config aliases required"
   - "hub versus standalone skill class"
-  - "skill metadata drift gate"
 importance_tier: normal
 contextType: implementation
 version: 1.2.2.0
