@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The operator opened the quality skill and found its frontmatter was not valid YAML: `description` held a sentence with `: ` in it, unquoted, so a strict parser read the rest of the line as a nested mapping",
     "created_at": "2026-10-28T05:17:32Z",
-    "last_save_at": "2026-10-28T06:46:54.256Z",
+    "last_save_at": "2026-10-28T06:48:41.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f1ba706c18dae1bd4d0a0538a764695a65414ae51e3f5ea526f624c874b779c",
+    "source_fingerprint": "sha256:7ec071770fa8e6d86f55e3fb700f1c7cb0dc9253bfd4668d97a8c992ca7a879c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6946e68740abeddbb60e707fa9a175e24711689a9c51c8f1e9ef4eb81c3936d9",

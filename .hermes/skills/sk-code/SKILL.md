@@ -2,9 +2,8 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.9.15.0
+version: 3.9.16.0
 metadata:
-  author: OpenCode
   family: sk-code
 ---
 

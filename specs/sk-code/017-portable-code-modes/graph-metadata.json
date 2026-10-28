@@ -17,7 +17,8 @@
     "sk-code/017-portable-code-modes/009-integration-fixes",
     "sk-code/017-portable-code-modes/007-ci-repo-profile",
     "sk-code/017-portable-code-modes/016-repository-config-in-skill",
-    "sk-code/017-portable-code-modes/010-docs-and-doctor-alignment"
+    "sk-code/017-portable-code-modes/010-docs-and-doctor-alignment",
+    "sk-code/017-portable-code-modes/015-frontmatter-yaml-validity"
   ],
   "manual": {
     "depends_on": [],
@@ -119,16 +120,16 @@
     ],
     "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
     "created_at": "2026-10-27T20:47:57Z",
-    "last_save_at": "2026-10-28T06:42:07.685Z",
+    "last_save_at": "2026-10-28T06:48:41.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bb3e2c6bfbfa0b3f19c229c48fcbe7508cd510c38e3e7e8626736242d658c0fc",
+    "source_fingerprint": "sha256:cd2378d68125bda4ff7b3554d817cd07151c7e29672d73d02dd433f63744bc69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b92542cb334d574e0d5af350d7eb3ae68209fb940e55e61d81f1dd8b83c6d83"
+      "spec.md": "9cdc10174d18688ec46021e8f0f38575125132a2a09565676b48146ddccb271a"
     },
     "last_active_at": null
   }
