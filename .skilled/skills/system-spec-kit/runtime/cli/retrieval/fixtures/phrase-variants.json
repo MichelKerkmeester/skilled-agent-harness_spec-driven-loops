@@ -1,5 +1,5 @@
 {
-  "manifestHash": "76b363047fc029574a49ac78d3d830d563856d36252cb59fe3dcce501413a504",
+  "manifestHash": "9aa9f25003343377e44aee58399a9365ecd9eb025548106db685e8522ad10e99",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19086,6 +19086,9 @@
     "claude code prompt templates": [
       "claude code prompt templates"
     ],
+    "claude code prose clarity": [
+      "Claude Code prose clarity"
+    ],
     "claude code providers and models": [
       "claude code providers and models"
     ],
@@ -19434,6 +19437,9 @@
     "cli classifier 0 8 4 0": [
       "cli-classifier 0.8.4.0"
     ],
+    "cli classifier 0 8 5 0": [
+      "cli-classifier 0.8.5.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -19590,6 +19596,9 @@
     "cli classifier v0 8 4 0": [
       "cli-classifier v0.8.4.0"
     ],
+    "cli classifier v0 8 5 0": [
+      "cli-classifier v0.8.5.0"
+    ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
     ],
@@ -19658,6 +19667,9 @@
     ],
     "cli claude code 1 5 5 0": [
       "cli-claude-code 1.5.5.0"
+    ],
+    "cli claude code 1 5 6 0": [
+      "cli-claude-code 1.5.6.0"
     ],
     "cli claude code benchmark": [
       "cli-claude-code benchmark"
@@ -19767,6 +19779,9 @@
     "cli claude code v1 5 5 0": [
       "cli-claude-code v1.5.5.0"
     ],
+    "cli claude code v1 5 6 0": [
+      "cli-claude-code v1.5.6.0"
+    ],
     "cli codex 1 0 0 0": [
       "cli-codex 1.0.0.0"
     ],
@@ -19844,6 +19859,9 @@
     ],
     "cli codex 1 9 10 0": [
       "cli-codex 1.9.10.0"
+    ],
+    "cli codex 1 9 11 0": [
+      "cli-codex 1.9.11.0"
     ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
@@ -20025,6 +20043,9 @@
     "cli codex v1 9 10 0": [
       "cli-codex v1.9.10.0"
     ],
+    "cli codex v1 9 11 0": [
+      "cli-codex v1.9.11.0"
+    ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
     ],
@@ -20136,6 +20157,9 @@
     "cli cursor 1 5 6 0": [
       "cli-cursor 1.5.6.0"
     ],
+    "cli cursor 1 5 7 0": [
+      "cli-cursor 1.5.7.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -20207,6 +20231,9 @@
     ],
     "cli cursor v1 5 6 0": [
       "cli-cursor v1.5.6.0"
+    ],
+    "cli cursor v1 5 7 0": [
+      "cli-cursor v1.5.7.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -20297,6 +20324,9 @@
     ],
     "cli devin 1 4 1 0": [
       "cli-devin 1.4.1.0"
+    ],
+    "cli devin 1 4 10 0": [
+      "cli-devin 1.4.10.0"
     ],
     "cli devin 1 4 2 0": [
       "cli-devin 1.4.2.0"
@@ -20391,6 +20421,9 @@
     "cli devin playbook smart precondition": [
       "cli-devin playbook smart precondition"
     ],
+    "cli devin prose clarity": [
+      "cli-devin prose clarity"
+    ],
     "cli devin readme template": [
       "cli-devin readme template"
     ],
@@ -20423,6 +20456,9 @@
     ],
     "cli devin v1 4 1 0": [
       "cli-devin v1.4.1.0"
+    ],
+    "cli devin v1 4 10 0": [
+      "cli-devin v1.4.10.0"
     ],
     "cli devin v1 4 2 0": [
       "cli-devin v1.4.2.0"
@@ -20474,6 +20510,9 @@
     ],
     "cli dispatch hangs with no output": [
       "cli dispatch hangs with no output"
+    ],
+    "cli dispatch hub prose clarity": [
+      "CLI dispatch hub prose clarity"
     ],
     "cli dispatch matrix": [
       "cli dispatch matrix"
@@ -20592,6 +20631,9 @@
     "cli external orchestration 1 7 10 0": [
       "cli-external-orchestration 1.7.10.0"
     ],
+    "cli external orchestration 1 7 11 0": [
+      "cli-external-orchestration 1.7.11.0"
+    ],
     "cli external orchestration 1 7 2 0": [
       "cli-external-orchestration 1.7.2.0"
     ],
@@ -20699,6 +20741,9 @@
     ],
     "cli external orchestration v1 7 10 0": [
       "cli-external-orchestration v1.7.10.0"
+    ],
+    "cli external orchestration v1 7 11 0": [
+      "cli-external-orchestration v1.7.11.0"
     ],
     "cli external orchestration v1 7 2 0": [
       "cli-external-orchestration v1.7.2.0"
@@ -20835,6 +20880,9 @@
     "cli hermes 1 0 8 0": [
       "cli-hermes 1.0.8.0"
     ],
+    "cli hermes 1 0 9 0": [
+      "cli-hermes 1.0.9.0"
+    ],
     "cli hermes benchmark": [
       "cli-hermes benchmark"
     ],
@@ -20907,6 +20955,9 @@
     "cli hermes prompt card": [
       "cli-hermes prompt card"
     ],
+    "cli hermes prose clarity": [
+      "cli-hermes prose clarity"
+    ],
     "cli hermes research scope": [
       "cli-hermes research scope"
     ],
@@ -20951,6 +21002,9 @@
     ],
     "cli hermes v1 0 8 0": [
       "cli-hermes v1.0.8.0"
+    ],
+    "cli hermes v1 0 9 0": [
+      "cli-hermes v1.0.9.0"
     ],
     "cli hermes validation report": [
       "cli-hermes validation report"
@@ -21384,6 +21438,9 @@
     "cli opencode 1 5 5 0": [
       "cli-opencode 1.5.5.0"
     ],
+    "cli opencode 1 5 6 0": [
+      "cli-opencode 1.5.6.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -21603,6 +21660,9 @@
     "cli opencode v1 5 5 0": [
       "cli-opencode v1.5.5.0"
     ],
+    "cli opencode v1 5 6 0": [
+      "cli-opencode v1.5.6.0"
+    ],
     "cli opencode version detection": [
       "cli-opencode version detection"
     ],
@@ -21620,6 +21680,9 @@
     ],
     "cli orca 0 1 4 0": [
       "cli-orca 0.1.4.0"
+    ],
+    "cli orca 0 1 5 0": [
+      "cli-orca 0.1.5.0"
     ],
     "cli orca audit surfaces": [
       "cli-orca audit surfaces"
@@ -21669,6 +21732,9 @@
     "cli orca path catalog": [
       "cli-orca path catalog"
     ],
+    "cli orca prose clarity": [
+      "cli-orca prose clarity"
+    ],
     "cli orca readme": [
       "cli-orca readme"
     ],
@@ -21698,6 +21764,9 @@
     ],
     "cli orca v0 1 4 0": [
       "cli-orca v0.1.4.0"
+    ],
+    "cli orca v0 1 5 0": [
+      "cli-orca v0.1.5.0"
     ],
     "cli orchestration ram overload": [
       "CLI orchestration RAM overload"
@@ -21797,6 +21866,9 @@
     ],
     "cli pi 1 5 18 0": [
       "cli-pi 1.5.18.0"
+    ],
+    "cli pi 1 5 19 0": [
+      "cli-pi 1.5.19.0"
     ],
     "cli pi 1 5 2 0": [
       "cli-pi 1.5.2.0"
@@ -21981,6 +22053,9 @@
     ],
     "cli pi v1 5 18 0": [
       "cli-pi v1.5.18.0"
+    ],
+    "cli pi v1 5 19 0": [
+      "cli-pi v1.5.19.0"
     ],
     "cli pi v1 5 2 0": [
       "cli-pi v1.5.2.0"
@@ -30481,6 +30556,9 @@
     "cursor prompt templates": [
       "cursor prompt templates"
     ],
+    "cursor prose clarity": [
+      "Cursor prose clarity"
+    ],
     "cursor providers and models": [
       "cursor providers and models"
     ],
@@ -32063,6 +32141,9 @@
     "deep ai council 1 8 6 0": [
       "deep-ai-council 1.8.6.0"
     ],
+    "deep ai council 1 8 7 0": [
+      "deep-ai-council 1.8.7.0"
+    ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
     ],
@@ -32206,6 +32287,9 @@
     ],
     "deep ai council projection reducer tasks": [
       "deep-ai-council projection reducer tasks"
+    ],
+    "deep ai council prose clarity": [
+      "deep-ai-council prose clarity"
     ],
     "deep ai council quick reference": [
       "deep ai council quick reference"
@@ -32422,6 +32506,9 @@
     ],
     "deep ai council v1 8 6 0": [
       "deep-ai-council v1.8.6.0"
+    ],
+    "deep ai council v1 8 7 0": [
+      "deep-ai-council v1.8.7.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -34158,6 +34245,9 @@
     "deep research 1 15 1 0": [
       "deep-research 1.15.1.0"
     ],
+    "deep research 1 15 10 0": [
+      "deep-research 1.15.10.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -34558,6 +34648,9 @@
     "deep research projections": [
       "deep research projections"
     ],
+    "deep research prose clarity": [
+      "deep-research prose clarity"
+    ],
     "deep research quarantined evidence": [
       "deep research quarantined evidence"
     ],
@@ -34838,6 +34931,9 @@
     "deep research v1 15 1 0": [
       "deep-research v1.15.1.0"
     ],
+    "deep research v1 15 10 0": [
+      "deep-research v1.15.10.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -34949,6 +35045,9 @@
     ],
     "deep review 1 11 11 0": [
       "deep-review 1.11.11.0"
+    ],
+    "deep review 1 11 12 0": [
+      "deep-review 1.11.12.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -35370,6 +35469,9 @@
     "deep review prompt template edit": [
       "deep-review prompt template edit"
     ],
+    "deep review prose clarity": [
+      "deep-review prose clarity"
+    ],
     "deep review pt 01 branching": [
       "deep-review pt-01 branching"
     ],
@@ -35687,6 +35789,9 @@
     ],
     "deep review v1 11 11 0": [
       "deep-review v1.11.11.0"
+    ],
+    "deep review v1 11 12 0": [
+      "deep-review v1.11.12.0"
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
@@ -60108,6 +60213,18 @@
     "logout": [
       "logout"
     ],
+    "long lines split": [
+      "long lines split"
+    ],
+    "long prose lines": [
+      "long prose lines"
+    ],
+    "long prose lines are short sentences": [
+      "long prose lines are short sentences"
+    ],
+    "long prose lines split": [
+      "long prose lines split"
+    ],
     "long retention optional plan": [
       "long retention optional plan"
     ],
@@ -61069,6 +61186,9 @@
     "mcp aside devtools 1 1 4 1": [
       "mcp-aside-devtools 1.1.4.1"
     ],
+    "mcp aside devtools 1 1 5 1": [
+      "mcp-aside-devtools 1.1.5.1"
+    ],
     "mcp aside devtools v1 0 0 0": [
       "mcp-aside-devtools v1.0.0.0"
     ],
@@ -61089,6 +61209,9 @@
     ],
     "mcp aside devtools v1 1 4 1": [
       "mcp-aside-devtools v1.1.4.1"
+    ],
+    "mcp aside devtools v1 1 5 1": [
+      "mcp-aside-devtools v1.1.5.1"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -61140,6 +61263,9 @@
     ],
     "mcp chrome devtools 1 0 16 1": [
       "mcp-chrome-devtools 1.0.16.1"
+    ],
+    "mcp chrome devtools 1 0 17 1": [
+      "mcp-chrome-devtools 1.0.17.1"
     ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
@@ -61194,6 +61320,9 @@
     ],
     "mcp chrome devtools v1 0 16 1": [
       "mcp-chrome-devtools v1.0.16.1"
+    ],
+    "mcp chrome devtools v1 0 17 1": [
+      "mcp-chrome-devtools v1.0.17.1"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -61261,6 +61390,9 @@
     "mcp click up 1 2 6 0": [
       "mcp-click-up 1.2.6.0"
     ],
+    "mcp click up 1 2 7 0": [
+      "mcp-click-up 1.2.7.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -61308,6 +61440,9 @@
     ],
     "mcp click up v1 2 6 0": [
       "mcp-click-up v1.2.6.0"
+    ],
+    "mcp click up v1 2 7 0": [
+      "mcp-click-up v1.2.7.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -61377,6 +61512,9 @@
     ],
     "mcp code mode 1 0 13 0": [
       "mcp-code-mode 1.0.13.0"
+    ],
+    "mcp code mode 1 0 14 0": [
+      "mcp-code-mode 1.0.14.0"
     ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
@@ -61455,6 +61593,9 @@
     ],
     "mcp code mode v1 0 13 0": [
       "mcp-code-mode v1.0.13.0"
+    ],
+    "mcp code mode v1 0 14 0": [
+      "mcp-code-mode v1.0.14.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -61734,6 +61875,9 @@
     "mcp figma 1 1 7 0": [
       "mcp-figma 1.1.7.0"
     ],
+    "mcp figma 1 1 8 0": [
+      "mcp-figma 1.1.8.0"
+    ],
     "mcp figma standards alignment": [
       "mcp-figma standards alignment"
     ],
@@ -61766,6 +61910,9 @@
     ],
     "mcp figma v1 1 7 0": [
       "mcp-figma v1.1.7.0"
+    ],
+    "mcp figma v1 1 8 0": [
+      "mcp-figma v1.1.8.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -61869,6 +62016,9 @@
     "mcp mobbin 1 1 4 0": [
       "mcp-mobbin 1.1.4.0"
     ],
+    "mcp mobbin 1 1 5 0": [
+      "mcp-mobbin 1.1.5.0"
+    ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
     ],
@@ -61895,6 +62045,9 @@
     ],
     "mcp mobbin v1 1 4 0": [
       "mcp-mobbin v1.1.4.0"
+    ],
+    "mcp mobbin v1 1 5 0": [
+      "mcp-mobbin v1.1.5.0"
     ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
@@ -61982,6 +62135,9 @@
     ],
     "mcp obsidian 0 24 3 0": [
       "mcp-obsidian 0.24.3.0"
+    ],
+    "mcp obsidian 0 24 4 0": [
+      "mcp-obsidian 0.24.4.0"
     ],
     "mcp obsidian 0 3 0 0": [
       "mcp-obsidian 0.3.0.0"
@@ -62076,6 +62232,9 @@
     "mcp obsidian v0 24 3 0": [
       "mcp-obsidian v0.24.3.0"
     ],
+    "mcp obsidian v0 24 4 0": [
+      "mcp-obsidian v0.24.4.0"
+    ],
     "mcp obsidian v0 3 0 0": [
       "mcp-obsidian v0.3.0.0"
     ],
@@ -62169,6 +62328,9 @@
     "mcp refero 1 1 5 0": [
       "mcp-refero 1.1.5.0"
     ],
+    "mcp refero 1 1 6 0": [
+      "mcp-refero 1.1.6.0"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
     ],
@@ -62192,6 +62354,9 @@
     ],
     "mcp refero v1 1 5 0": [
       "mcp-refero v1.1.5.0"
+    ],
+    "mcp refero v1 1 6 0": [
+      "mcp-refero v1.1.6.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -62506,6 +62671,9 @@
     "mcp tooling 1 9 0 0": [
       "mcp-tooling 1.9.0.0"
     ],
+    "mcp tooling 1 9 1 0": [
+      "mcp-tooling 1.9.1.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -62632,6 +62800,9 @@
     "mcp tooling v1 9 0 0": [
       "mcp-tooling v1.9.0.0"
     ],
+    "mcp tooling v1 9 1 0": [
+      "mcp-tooling v1.9.1.0"
+    ],
     "mcp tools": [
       "mcp tools"
     ],
@@ -62697,6 +62868,9 @@
     ],
     "md generator procedure card inventory": [
       "md-generator procedure card inventory"
+    ],
+    "md generator prose clarity": [
+      "md-generator prose clarity"
     ],
     "md generator readme rewrite": [
       "md generator readme rewrite"
@@ -79687,6 +79861,9 @@
     "proposed qualifier removal deep ai council": [
       "proposed qualifier removal deep-ai-council"
     ],
+    "prose clarity": [
+      "prose clarity"
+    ],
     "prose clarity pass": [
       "prose clarity pass"
     ],
@@ -79701,6 +79878,9 @@
     ],
     "prose clarity pass tasks": [
       "prose clarity pass tasks"
+    ],
+    "prose lines and bullet lists": [
+      "prose lines and bullet lists"
     ],
     "prose semicolon": [
       "prose semicolon"
@@ -89595,6 +89775,9 @@
     "routing findings status": [
       "routing findings status"
     ],
+    "routing glossary": [
+      "routing glossary"
+    ],
     "routing gold admission check": [
       "routing gold admission check"
     ],
@@ -94748,6 +94931,12 @@
     "short routing summary": [
       "short routing summary"
     ],
+    "short sentences and lists": [
+      "short sentences and lists"
+    ],
+    "short skill instructions": [
+      "short skill instructions"
+    ],
     "short smart routing section": [
       "short smart routing section"
     ],
@@ -94759,6 +94948,9 @@
     ],
     "shorter repo rules plan": [
       "shorter repo rules plan"
+    ],
+    "shorter skill prose": [
+      "shorter skill prose"
     ],
     "should the advisor suggest repo rules": [
       "should the advisor suggest repo rules"
@@ -95720,6 +95912,9 @@
     "sk code ci 1 1 10 0": [
       "sk-code-ci 1.1.10.0"
     ],
+    "sk code ci 1 1 11 0": [
+      "sk-code-ci 1.1.11.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -95792,6 +95987,9 @@
     ],
     "sk code ci v1 1 10 0": [
       "sk-code-ci v1.1.10.0"
+    ],
+    "sk code ci v1 1 11 0": [
+      "sk-code-ci v1.1.11.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -96356,6 +96554,9 @@
     "sk code quality 1 13 13 0": [
       "sk-code-quality 1.13.13.0"
     ],
+    "sk code quality 1 13 14 0": [
+      "sk-code-quality 1.13.14.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -96478,6 +96679,9 @@
     ],
     "sk code quality v1 13 13 0": [
       "sk-code-quality v1.13.13.0"
+    ],
+    "sk code quality v1 13 14 0": [
+      "sk-code-quality v1.13.14.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -96641,6 +96845,9 @@
     "sk code review 1 9 11 0": [
       "sk-code-review 1.9.11.0"
     ],
+    "sk code review 1 9 12 0": [
+      "sk-code-review 1.9.12.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -96760,6 +96967,9 @@
     ],
     "sk code review v1 9 11 0": [
       "sk-code-review v1.9.11.0"
+    ],
+    "sk code review v1 9 12 0": [
+      "sk-code-review v1.9.12.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -97079,6 +97289,9 @@
     "sk code skilled v2 1 12 0": [
       "sk-code-skilled v2.1.12.0"
     ],
+    "sk code skilled v2 1 13 0": [
+      "sk-code-skilled v2.1.13.0"
+    ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
     ],
@@ -97304,6 +97517,9 @@
     "sk code v3 9 20 0": [
       "sk-code v3.9.20.0"
     ],
+    "sk code v3 9 21 0": [
+      "sk-code v3.9.21.0"
+    ],
     "sk code v3 9 3 0": [
       "sk-code v3.9.3.0"
     ],
@@ -97376,6 +97592,9 @@
     "sk create agent 1 0 3 0": [
       "sk-create-agent 1.0.3.0"
     ],
+    "sk create agent 1 0 4 0": [
+      "sk-create-agent 1.0.4.0"
+    ],
     "sk create agent playbook": [
       "sk-create-agent playbook"
     ],
@@ -97396,6 +97615,9 @@
     ],
     "sk create agent v1 0 3 0": [
       "sk-create-agent v1.0.3.0"
+    ],
+    "sk create agent v1 0 4 0": [
+      "sk-create-agent v1.0.4.0"
     ],
     "sk create benchmark 1 0 0 0": [
       "sk-create-benchmark 1.0.0.0"
@@ -97481,6 +97703,9 @@
     "sk create changelog 1 3 1 0": [
       "sk-create-changelog 1.3.1.0"
     ],
+    "sk create changelog 1 3 10 0": [
+      "sk-create-changelog 1.3.10.0"
+    ],
     "sk create changelog 1 3 2 0": [
       "sk-create-changelog 1.3.2.0"
     ],
@@ -97537,6 +97762,9 @@
     ],
     "sk create changelog v1 3 1 0": [
       "sk-create-changelog v1.3.1.0"
+    ],
+    "sk create changelog v1 3 10 0": [
+      "sk-create-changelog v1.3.10.0"
     ],
     "sk create changelog v1 3 2 0": [
       "sk-create-changelog v1.3.2.0"
@@ -97631,6 +97859,9 @@
     "sk create command 1 0 7 0": [
       "sk-create-command 1.0.7.0"
     ],
+    "sk create command 1 0 8 0": [
+      "sk-create-command 1.0.8.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -97660,6 +97891,9 @@
     ],
     "sk create command v1 0 7 0": [
       "sk-create-command v1.0.7.0"
+    ],
+    "sk create command v1 0 8 0": [
+      "sk-create-command v1.0.8.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -97691,6 +97925,9 @@
     "sk create diff 1 1 6 0": [
       "sk-create-diff 1.1.6.0"
     ],
+    "sk create diff 1 1 7 0": [
+      "sk-create-diff 1.1.7.0"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -97714,6 +97951,9 @@
     ],
     "sk create diff v1 1 6 0": [
       "sk-create-diff v1.1.6.0"
+    ],
+    "sk create diff v1 1 7 0": [
+      "sk-create-diff v1.1.7.0"
     ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
@@ -97747,6 +97987,9 @@
     ],
     "sk create feature catalog 1 0 7 0": [
       "sk-create-feature-catalog 1.0.7.0"
+    ],
+    "sk create feature catalog 1 0 8 0": [
+      "sk-create-feature-catalog 1.0.8.0"
     ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
@@ -97784,6 +98027,9 @@
     "sk create feature catalog v1 0 7 0": [
       "sk-create-feature-catalog v1.0.7.0"
     ],
+    "sk create feature catalog v1 0 8 0": [
+      "sk-create-feature-catalog v1.0.8.0"
+    ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
     ],
@@ -97801,6 +98047,9 @@
     ],
     "sk create frontmatter 1 0 5 0": [
       "sk-create-frontmatter 1.0.5.0"
+    ],
+    "sk create frontmatter 1 0 6 0": [
+      "sk-create-frontmatter 1.0.6.0"
     ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
@@ -97829,6 +98078,9 @@
     "sk create frontmatter v1 0 5 0": [
       "sk-create-frontmatter v1.0.5.0"
     ],
+    "sk create frontmatter v1 0 6 0": [
+      "sk-create-frontmatter v1.0.6.0"
+    ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
     ],
@@ -97855,6 +98107,9 @@
     ],
     "sk create goal 1 4 4 0": [
       "sk-create-goal 1.4.4.0"
+    ],
+    "sk create goal 1 4 5 0": [
+      "sk-create-goal 1.4.5.0"
     ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
@@ -97940,6 +98195,9 @@
     "sk create goal v1 4 4 0": [
       "sk-create-goal v1.4.4.0"
     ],
+    "sk create goal v1 4 5 0": [
+      "sk-create-goal v1.4.5.0"
+    ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
     ],
@@ -97963,6 +98221,9 @@
     ],
     "sk create manual testing playbook 1 0 5 0": [
       "sk-create-manual-testing-playbook 1.0.5.0"
+    ],
+    "sk create manual testing playbook 1 0 6 0": [
+      "sk-create-manual-testing-playbook 1.0.6.0"
     ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
@@ -97991,6 +98252,9 @@
     "sk create manual testing playbook v1 0 5 0": [
       "sk-create-manual-testing-playbook v1.0.5.0"
     ],
+    "sk create manual testing playbook v1 0 6 0": [
+      "sk-create-manual-testing-playbook v1.0.6.0"
+    ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
     ],
@@ -98014,6 +98278,9 @@
     ],
     "sk create quality control 1 0 6 0": [
       "sk-create-quality-control 1.0.6.0"
+    ],
+    "sk create quality control 1 0 7 0": [
+      "sk-create-quality-control 1.0.7.0"
     ],
     "sk create quality control playbook": [
       "sk-create-quality-control playbook"
@@ -98041,6 +98308,9 @@
     ],
     "sk create quality control v1 0 6 0": [
       "sk-create-quality-control v1.0.6.0"
+    ],
+    "sk create quality control v1 0 7 0": [
+      "sk-create-quality-control v1.0.7.0"
     ],
     "sk create readme 1 0 0 0": [
       "sk-create-readme 1.0.0.0"
@@ -98077,6 +98347,9 @@
     ],
     "sk create readme 1 3 8 0": [
       "sk-create-readme 1.3.8.0"
+    ],
+    "sk create readme 1 3 9 0": [
+      "sk-create-readme 1.3.9.0"
     ],
     "sk create readme lacks the writing style rules": [
       "sk create readme lacks the writing style rules"
@@ -98123,6 +98396,9 @@
     "sk create readme v1 3 8 0": [
       "sk-create-readme v1.3.8.0"
     ],
+    "sk create readme v1 3 9 0": [
+      "sk-create-readme v1.3.9.0"
+    ],
     "sk create readme writing style": [
       "sk create readme writing style"
     ],
@@ -98153,6 +98429,9 @@
     "sk create repo rule 1 1 3 0": [
       "sk-create-repo-rule 1.1.3.0"
     ],
+    "sk create repo rule 1 1 4 0": [
+      "sk-create-repo-rule 1.1.4.0"
+    ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"
     ],
@@ -98170,6 +98449,9 @@
     ],
     "sk create repo rule v1 1 3 0": [
       "sk-create-repo-rule v1.1.3.0"
+    ],
+    "sk create repo rule v1 1 4 0": [
+      "sk-create-repo-rule v1.1.4.0"
     ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
@@ -98239,6 +98521,9 @@
     ],
     "sk create skill 1 7 3 0": [
       "sk-create-skill 1.7.3.0"
+    ],
+    "sk create skill 1 7 4 0": [
+      "sk-create-skill 1.7.4.0"
     ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
@@ -98318,6 +98603,9 @@
     "sk create skill v1 7 3 0": [
       "sk-create-skill v1.7.3.0"
     ],
+    "sk create skill v1 7 4 0": [
+      "sk-create-skill v1.7.4.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
@@ -98377,6 +98665,9 @@
     ],
     "sk design 2 0 8 0": [
       "sk-design 2.0.8.0"
+    ],
+    "sk design 2 0 9 0": [
+      "sk-design 2.0.9.0"
     ],
     "sk design advisor identity": [
       "sk-design advisor identity"
@@ -98498,6 +98789,9 @@
     "sk design chart 0 23 3 0": [
       "sk-design-chart 0.23.3.0"
     ],
+    "sk design chart 0 23 4 0": [
+      "sk-design-chart 0.23.4.0"
+    ],
     "sk design chart 0 3 0 0": [
       "sk-design-chart 0.3.0.0"
     ],
@@ -98579,6 +98873,9 @@
     "sk design chart v0 23 3 0": [
       "sk-design-chart v0.23.3.0"
     ],
+    "sk design chart v0 23 4 0": [
+      "sk-design-chart v0.23.4.0"
+    ],
     "sk design chart v0 3 0 0": [
       "sk-design-chart v0.3.0.0"
     ],
@@ -98651,6 +98948,9 @@
     "sk design diagram 1 2 7 0": [
       "sk-design-diagram 1.2.7.0"
     ],
+    "sk design diagram 1 2 8 0": [
+      "sk-design-diagram 1.2.8.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -98687,6 +98987,9 @@
     "sk design diagram v1 2 7 0": [
       "sk-design-diagram v1.2.7.0"
     ],
+    "sk design diagram v1 2 8 0": [
+      "sk-design-diagram v1.2.8.0"
+    ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
     ],
@@ -98705,6 +99008,9 @@
     "sk design fundamentals 1 0 2 0": [
       "sk-design-fundamentals 1.0.2.0"
     ],
+    "sk design fundamentals 1 0 3 0": [
+      "sk-design-fundamentals 1.0.3.0"
+    ],
     "sk design fundamentals reads as a ui skill": [
       "sk design fundamentals reads as a ui skill"
     ],
@@ -98716,6 +99022,9 @@
     ],
     "sk design fundamentals v1 0 2 0": [
       "sk-design-fundamentals v1.0.2.0"
+    ],
+    "sk design fundamentals v1 0 3 0": [
+      "sk-design-fundamentals v1.0.3.0"
     ],
     "sk design hub routing replay": [
       "sk-design hub routing replay"
@@ -98759,6 +99068,9 @@
     "sk design md generator 1 1 8 0": [
       "sk-design-md-generator 1.1.8.0"
     ],
+    "sk design md generator 1 1 9 0": [
+      "sk-design-md-generator 1.1.9.0"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
@@ -98785,6 +99097,9 @@
     ],
     "sk design md generator v1 1 8 0": [
       "sk-design-md-generator v1.1.8.0"
+    ],
+    "sk design md generator v1 1 9 0": [
+      "sk-design-md-generator v1.1.9.0"
     ],
     "sk design mode rename": [
       "sk-design mode rename"
@@ -98890,6 +99205,9 @@
     ],
     "sk design v2 0 8 0": [
       "sk-design v2.0.8.0"
+    ],
+    "sk design v2 0 9 0": [
+      "sk-design v2.0.9.0"
     ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
@@ -98998,6 +99316,9 @@
     ],
     "sk doc 2 3 27 0": [
       "sk-doc 2.3.27.0"
+    ],
+    "sk doc 2 3 28 0": [
+      "sk-doc 2.3.28.0"
     ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
@@ -99401,6 +99722,9 @@
     "sk doc v2 3 27 0": [
       "sk-doc v2.3.27.0"
     ],
+    "sk doc v2 3 28 0": [
+      "sk-doc v2.3.28.0"
+    ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
     ],
@@ -99505,6 +99829,9 @@
     ],
     "sk git 1 11 4 0": [
       "sk-git 1.11.4.0"
+    ],
+    "sk git 1 11 5 0": [
+      "sk-git 1.11.5.0"
     ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
@@ -99743,6 +100070,9 @@
     "sk git v1 11 4 0": [
       "sk-git v1.11.4.0"
     ],
+    "sk git v1 11 5 0": [
+      "sk-git v1.11.5.0"
+    ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
     ],
@@ -99898,6 +100228,9 @@
     ],
     "sk prompt 3 0 8 0": [
       "sk-prompt 3.0.8.0"
+    ],
+    "sk prompt 3 0 9 0": [
+      "sk-prompt 3.0.9.0"
     ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
@@ -100204,6 +100537,9 @@
     ],
     "sk prompt v3 0 8 0": [
       "sk-prompt v3.0.8.0"
+    ],
+    "sk prompt v3 0 9 0": [
+      "sk-prompt v3.0.9.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -102236,6 +102572,9 @@
     ],
     "skill prose checklist": [
       "skill prose checklist"
+    ],
+    "skill prose clarity": [
+      "skill prose clarity"
     ],
     "skill purpose correction": [
       "skill purpose correction"
@@ -108749,6 +109088,9 @@
     "system deep loop v1 6 18 0": [
       "system-deep-loop v1.6.18.0"
     ],
+    "system deep loop v1 6 19 0": [
+      "system-deep-loop v1.6.19.0"
+    ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
     ],
@@ -108925,6 +109267,9 @@
     ],
     "system skill advisor 0 17 21 0": [
       "system-skill-advisor 0.17.21.0"
+    ],
+    "system skill advisor 0 17 22 0": [
+      "system-skill-advisor 0.17.22.0"
     ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
@@ -109168,6 +109513,9 @@
     ],
     "system skill advisor v0 17 21 0": [
       "system-skill-advisor v0.17.21.0"
+    ],
+    "system skill advisor v0 17 22 0": [
+      "system-skill-advisor v0.17.22.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
@@ -109483,6 +109831,9 @@
     ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
+    ],
+    "system spec kit 2 12 20 0": [
+      "system-spec-kit 2.12.20.0"
     ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
@@ -109981,6 +110332,9 @@
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"
+    ],
+    "system spec kit v2 12 20 0": [
+      "system-spec-kit v2.12.20.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
@@ -111141,6 +111495,9 @@
     ],
     "termination opt in operator layer": [
       "termination opt in operator layer"
+    ],
+    "terms under how it works": [
+      "terms under how it works"
     ],
     "terra ultra ceiling": [
       "terra ultra ceiling"
