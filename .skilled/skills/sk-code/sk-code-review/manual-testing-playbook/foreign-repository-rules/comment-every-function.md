@@ -1,7 +1,7 @@
 ---
 title: "CR-030 -- Repository with the opposite rule: comment every function"
 description: "This scenario validates a repository that replaces the documentation rule with its opposite for `CR-030`. It focuses on the review applying a `replace:` row on `floor.documentation` and raising the missing doc comments at the severity of the rule it replaces."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-030 -- Repository with the opposite rule: comment every function
@@ -80,8 +80,11 @@ Every function in this repository carries a doc comment that says what it return
 | --- | --- | --- |
 | `floor.documentation` | replace: Every function carries a doc comment that states what it returns | The team documents every function |
 MD
+mkdir -p "$SCRATCH/.devin/skills" && cp -R "$HUB" "$SCRATCH/.devin/skills/sk-code"
 echo "$SCRATCH"
 ```
+
+The copy installs the hub in the skills folder of the runtime doing the review, `.devin/skills` for the devin executor used here, and a copy rather than a link keeps a reviewer with write permission from touching the tracked hub.
 
 ---
 

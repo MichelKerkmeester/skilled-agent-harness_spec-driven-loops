@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/012-verification-and-release",
+  "spec_folder": "sk-code/017-portable-code-modes/012-verification-and-release",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "verification and release",
+      "phase 12 verification and release",
+      "end-to-end playbook proof",
+      "repository quality config",
+      "verification and release plan",
+      "end-to-end playbook run plan",
+      "verification and release tasks",
+      "verification and release acceptance criteria",
+      "verification and release implementation summary"
+    ],
+    "key_topics": [
+      "verification",
+      "release",
+      "phase",
+      "end-to-end",
+      "playbook",
+      "proof",
+      "repository",
+      "quality",
+      "config",
+      "plan",
+      "run",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+      ".skilled/changelog/skilled/v4.0.0.17.md",
+      "scratch/e2e/CQ-012.md",
+      "scratch/e2e/CQ-013.md",
+      "scratch/e2e/CR-029.md",
+      "scratch/e2e/CR-030.md",
+      "scratch/e2e/CR-031.md",
+      "scratch/e2e/ci-foreign-repository-profile.md",
+      "scratch/in-repo.txt",
+      ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md",
+      ".skilled/changelog/skilled/v4.0.0.16.md",
+      ".skilled/skills/sk-code/changelog/v3.9.17.0.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-ci/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.17.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.17.md",
+        "source": "derived"
+      },
+      {
+        "name": "CQ-012.md",
+        "kind": "doc",
+        "path": "scratch/e2e/CQ-012.md",
+        "source": "derived"
+      },
+      {
+        "name": "CQ-013.md",
+        "kind": "doc",
+        "path": "scratch/e2e/CQ-013.md",
+        "source": "derived"
+      },
+      {
+        "name": "CR-029.md",
+        "kind": "doc",
+        "path": "scratch/e2e/CR-029.md",
+        "source": "derived"
+      },
+      {
+        "name": "CR-030.md",
+        "kind": "doc",
+        "path": "scratch/e2e/CR-030.md",
+        "source": "derived"
+      },
+      {
+        "name": "CR-031.md",
+        "kind": "doc",
+        "path": "scratch/e2e/CR-031.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-foreign-repository-profile.md",
+        "kind": "doc",
+        "path": "scratch/e2e/ci-foreign-repository-profile.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-repo.txt",
+        "kind": "file",
+        "path": "scratch/in-repo.txt",
+        "source": "derived"
+      },
+      {
+        "name": "foreign-repository-profile.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.16.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.16.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.9.17.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.9.17.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The earlier phases changed how the three modes read a repository's rules, and every mode ships playbook scenarios a reader is expected to run by hand, but nothing ran them end to end",
+    "created_at": "2026-10-28T07:05:32Z",
+    "last_save_at": "2026-10-28T08:01:44.962Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bc528beddaa6c08055edf82e1fddacc4f32a4edb4625fa5d25845783852a4a7e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0162a5c021da7bd6ff48a722e29f239fcd86105bdb009b8fe98ea7c0edd965da",
+      "plan.md": "65773396e73d906da1ecd8d664cfdf032698a04308f99c3c22015b4710d292c0",
+      "tasks.md": "13d809e43defd8bac7f7885fc8496319168749b09f75b3ebfcafc8c96c2678f4",
+      "implementation-summary.md": "b9247203821c8883553c23996bbcd38e5d558b25262e9cffe96f15e0a8d8893d"
+    },
+    "last_active_at": null
+  }
+}

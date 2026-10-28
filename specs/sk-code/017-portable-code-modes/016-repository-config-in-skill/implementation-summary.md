@@ -130,7 +130,7 @@ A fresh read-only review then returned three P1 and four P2 findings, all fixed 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This repository has no `quality.json` yet.** Child 012 creates it, so `/doctor:sk-code quality` reads source `none` here until then.
+1. **This repository had no `quality.json` when this child closed.** Child 012 created it at the skill-folder path with this repository's `repository` value, and `/doctor:sk-code quality` now reads source `repo`.
 2. **A fork's checkout reads the fork's identity.** A committed file written for upstream is ignored when the origin remote names the fork; set `GITHUB_REPOSITORY` or name the file with `--profile`/`--config` to read it.
 3. **The `repository` field is optional.** A copy that omits it still applies in every repository, so a repository that ships a file and wants it limited must add the field.
 4. **Historical changelog entries keep the old path.** They record what shipped at the time and are not rewritten.

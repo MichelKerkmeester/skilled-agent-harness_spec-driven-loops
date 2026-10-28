@@ -3,7 +3,7 @@ id: ci-foreign-repository-profile
 category: foreign_repository
 title: 'A repository with its own switch names reads clean in /doctor:ci'
 description: "This scenario validates the CI doctor in a repository that is not this one. It builds a fresh repository with ACME_CI switches and three workflows, then reads the report with a mocked gh, renders the scaffold and plans four toggles. The report reads the real switch state with no false flag, the scaffold prints no Skilled text, and the toggle accepts ACME_CI_TESTS and refuses the variable behind the required check."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # A Repository With Its Own Switch Names Reads Clean In /doctor:ci
@@ -73,9 +73,11 @@ CHECKOUT="$PWD"
 SCRATCH="$(mktemp -d)"
 S=.skilled/commands/doctor/scripts
 A=.skilled/skills/sk-code/sk-code-ci/assets
-mkdir -p "$SCRATCH/$S/lib" "$SCRATCH/$A" "$SCRATCH/.github/workflows" "$SCRATCH/bin"
+I=.skilled/skills/sk-code/shared/scripts/lib
+mkdir -p "$SCRATCH/$S/lib" "$SCRATCH/$A" "$SCRATCH/$I" "$SCRATCH/.github/workflows" "$SCRATCH/bin"
 for f in ci-report.cjs ci-toggle.cjs ci-scaffold.cjs lib/ci-profile.cjs; do cp "$CHECKOUT/$S/$f" "$SCRATCH/$S/$f"; done
 for f in workflow-template.yml job-block-template.yml; do cp "$CHECKOUT/$A/$f" "$SCRATCH/$A/$f"; done
+cp "$CHECKOUT/$I/repository-identity.cjs" "$SCRATCH/$I/repository-identity.cjs"
 cat > "$SCRATCH/.github/workflows/tests.yml" <<'YML'
 name: Tests
 on: push

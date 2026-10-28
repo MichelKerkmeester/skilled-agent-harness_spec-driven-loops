@@ -52,6 +52,7 @@
       ".skilled/commands/README.txt",
       ".skilled/skills/sk-code/README.md",
       ".skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+      ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
       ".skilled/skills/sk-code/changelog/v3.9.15.0.md",
       ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.7.0.md"
     ],
@@ -147,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "quality.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+        "source": "derived"
+      },
+      {
         "name": "v3.9.15.0.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/changelog/v3.9.15.0.md",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The CI profile and the quality config were committed at the repository root under `.sk-code/`, so every repository that installed the sk-code skills carried a folder the skills themselves did not own, and nothing stopped a copy of one repository's settings from applying in another",
     "created_at": "2026-10-28T05:17:43Z",
-    "last_save_at": "2026-10-28T06:42:07.686Z",
+    "last_save_at": "2026-10-28T07:46:07.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7285ad827fc8bd271018a7772ddaa26a4bad8db2a7d21bb9b6cc00a8ccc2e76e",
+    "source_fingerprint": "sha256:7fbe30d145c6047f1a08d84a485ac25913fcb9bd995285f2acbc24dbbc22ba11",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ffba13fa1d3c419b3bfbd9e39524154a9c861546b7f391554edefb9341d90ac",
       "plan.md": "d1f5f3ac6ba45ea09345c6fde130bf98a2b696e561463c35dfebc4d9b6f64da8",
       "tasks.md": "84326b2b3159f8edefae0b70df37cd20941d87bbfdba4c487820bee1d020821c",
-      "implementation-summary.md": "c81dafe82019b314c7b58628dccdf405730eaad5a4081e9f16fc2874c8c646ea"
+      "implementation-summary.md": "e7aa81083ee949f6eba577b0f32066243d5d1c1c6205676665efc8ef738d7865"
     },
     "last_active_at": null
   }

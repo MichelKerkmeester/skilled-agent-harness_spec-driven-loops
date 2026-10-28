@@ -51,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This is a top-level packet in the sk-code track |
@@ -78,7 +78,7 @@ A repository that wants almost no inline comments, or the opposite of what this 
 
 ### Purpose
 
-When the twelve phases in the map ship, the quality, review and CI modes ship workflows and universal rules and read each repository's own conventions. A repository or a surface can drop or replace any rule outside a fixed hard floor, and both modes honor the same override in the same file. This repository keeps every check that protects its alignment and quality, because it commits its own profile and config.
+When the sixteen phases in the map ship, the quality, review and CI modes ship workflows and universal rules and read each repository's own conventions. A repository or a surface can drop or replace any rule outside a fixed hard floor, and both modes honor the same override in the same file. This repository keeps every check that protects its alignment and quality, because it commits its own profile and config.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists and per-phase decisions live in the child phase folders listed in the Phase Documentation Map below. The program-wide decisions sit in section 5, because every phase depends on them.
 <!-- /ANCHOR:problem -->
@@ -95,7 +95,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 - A trimmed universal floor with rule ids, and the house style moved into `sk-code-skilled`.
 - A resolver that names each file's surfaces and checklists, which review reads.
 - Review with a floor separate from its default lens, overrides honored and `@review`'s verdict following severity.
-- A CI profile at `.sk-code/ci.json` that the report, the toggle and the scaffold read, with this repository's profile committed.
+- A CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json` and a quality config at `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` that the report, the toggle, the scaffold and the quality runner read, with this repository's profile committed.
 - The five CI drift fixes, two Node 20 test fixes and the doc and doctor alignment for every changed behavior.
 
 ### Out of Scope
@@ -133,9 +133,9 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 7 | 007-ci-repo-profile/ | The CI profile loader, report, scaffold and toggle reading `.sk-code/ci.json`, with this repository's profile committed | None (starts after the in-flight sk-code-ci lint lane lands) | Complete |
 | 8 | 008-ci-drift-flags/ | The five YAML drift fixes | None (starts after the in-flight sk-code-ci lint lane lands) | Complete |
 | 9 | 009-integration-fixes/ | Rule overrides applied in the quality run, the doctor quality status shows the applied rules, dashboard fix, outside-repo surface discovery documented | 002 to 006 | Complete |
-| 10 | 010-docs-and-doctor-alignment | Every doctor command, README, guide, skill document, agent and mirror aligned with the new behavior | 002 to 009 | Planned |
+| 10 | 010-docs-and-doctor-alignment/ | Every doctor command, README, guide, skill document, agent and mirror aligned with the new behavior | 002 to 009 | Complete |
 | 11 | 011-node20-test-fixes | The two tests that fail on Node 20 | None | Complete |
-| 12 | 012-verification-and-release | End-to-end proof, this repository's `.sk-code/quality.json`, the framework changelog and release | All | Planned |
+| 12 | 012-verification-and-release/ | End-to-end proof, this repository's quality config in the sk-code-quality skill folder, the framework changelog (release not published) | All | Complete |
 | 13 | 013-router-reach-local-ties/ | The router reach check judges only the shipped fleet, and an operator-local surface ranked ahead of a shipped hub is a non-failing note that never prints its name | None | Complete |
 | 14 | 014-advisor-phrase-calibration/ | The advisor stops counting one generic word twice, so a hub's exact declared phrase outranks a skill that lists the word in both keyword fields; a cross-scorer test and four harder-corpus prompts gate the rule | None | Complete |
 | 15 | 015-frontmatter-yaml-validity/ | Every frontmatter block parses as YAML, the validator rejects one that does not, and the unused author field is gone | None | Complete |
@@ -161,6 +161,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 013 | 014 | The reach check names the two phrases an operator-local surface takes on this machine | Both scorers route the fixture's exact-phrase prompts to the declaring hub; the routing-accuracy baseline is unchanged |
 | 014-advisor-phrase-calibration | 015-frontmatter-yaml-validity | [Criteria TBD] | [Verification TBD] |
 | 015-frontmatter-yaml-validity | 016-repository-config-in-skill | [Criteria TBD] | [Verification TBD] |
+| 016-repository-config-in-skill | 012-verification-and-release | The quality config exists at the skill-folder path with this repository's `repository` value, so the doctor reads source `repo` | `/doctor:sk-code quality status` reads `Trust: trusted`, `Errors: none` and `SOURCE="repo"`, exit 0 (`specs/sk-code/017-portable-code-modes/012-verification-and-release/scratch/in-repo.txt:11`) |
 <!-- /ANCHOR:phase-map -->
 
 ---

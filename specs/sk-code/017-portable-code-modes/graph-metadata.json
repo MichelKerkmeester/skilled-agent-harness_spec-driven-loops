@@ -18,7 +18,8 @@
     "sk-code/017-portable-code-modes/007-ci-repo-profile",
     "sk-code/017-portable-code-modes/016-repository-config-in-skill",
     "sk-code/017-portable-code-modes/010-docs-and-doctor-alignment",
-    "sk-code/017-portable-code-modes/015-frontmatter-yaml-validity"
+    "sk-code/017-portable-code-modes/015-frontmatter-yaml-validity",
+    "sk-code/017-portable-code-modes/012-verification-and-release"
   ],
   "manual": {
     "depends_on": [],
@@ -51,6 +52,8 @@
     "key_files": [
       "spec.md",
       "001-shared-rule-contract/spec.md",
+      ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
+      ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
       ".github/workflows/sk-code-script-tests.yml",
       "specs/sk-code/015-quality-agnostic-gate/spec.md",
       ".skilled/skills/sk-code/shared/references/universal/rule-overrides.json",
@@ -61,6 +64,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
         "source": "derived"
       },
       {
@@ -88,12 +103,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,20 +125,26 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
     "created_at": "2026-10-27T20:47:57Z",
-    "last_save_at": "2026-10-28T06:48:41.047Z",
+    "last_save_at": "2026-10-28T08:01:41.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cd2378d68125bda4ff7b3554d817cd07151c7e29672d73d02dd433f63744bc69",
+    "source_fingerprint": "sha256:4ff73def2f713b8338e8e4200c87648b522a5f61728db14e1013709f5cfb6a0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9cdc10174d18688ec46021e8f0f38575125132a2a09565676b48146ddccb271a"
+      "spec.md": "a346b52798a0ee4ee670f166ed36a7f47a92f044209574a0df08331e3e8b8844"
     },
     "last_active_at": null
   }

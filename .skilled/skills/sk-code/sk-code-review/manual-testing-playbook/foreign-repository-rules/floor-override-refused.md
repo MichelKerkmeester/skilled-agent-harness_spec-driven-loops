@@ -1,7 +1,7 @@
 ---
 title: "CR-031 -- Floor override refused"
 description: "This scenario validates a refused floor override for `CR-031`. It focuses on the shared linter refusing a `none` row on the input validation rule, the resolver marking the checklist refused and the review still enforcing the rule while listing the checklist under `Refused:`."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-031 -- Floor override refused
@@ -67,8 +67,11 @@ Handlers in this repository trust their callers.
 | --- | --- | --- |
 | `floor.input-validation` | none | Our callers always send clean input |
 MD
+mkdir -p "$SCRATCH/.devin/skills" && cp -R "$HUB" "$SCRATCH/.devin/skills/sk-code"
 echo "$SCRATCH"
 ```
+
+The copy installs the hub in the skills folder of the runtime doing the review, `.devin/skills` for the devin executor used here, and a copy rather than a link keeps a reviewer with write permission from touching the tracked hub.
 
 ---
 

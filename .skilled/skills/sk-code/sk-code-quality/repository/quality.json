@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "repository": "MichelKerkmeester/skilled-agent-harness_spec-driven-loops",
+  "exclude": [],
+  "checks": [
+    {
+      "id": "actionlint",
+      "argv": [
+        "actionlint",
+        "{files}"
+      ],
+      "paths": [
+        ".github/workflows/**"
+      ],
+      "requires": "actionlint",
+      "severity": "P1",
+      "required": false
+    }
+  ],
+  "checklists": [],
+  "generated": [],
+  "commentHygiene": {
+    "ticketPrefixes": [],
+    "extraPatterns": [],
+    "extensions": {},
+    "exclude": [],
+    "disableRules": []
+  },
+  "sensors": {
+    "conflictMarkers": {
+      "exclude": []
+    },
+    "secrets": {
+      "exclude": []
+    },
+    "debugLeftovers": {
+      "enabled": true,
+      "exclude": []
+    }
+  }
+}

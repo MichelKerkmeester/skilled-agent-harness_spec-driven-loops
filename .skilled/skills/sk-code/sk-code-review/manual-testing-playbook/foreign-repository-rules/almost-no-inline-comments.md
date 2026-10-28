@@ -1,7 +1,7 @@
 ---
 title: "CR-029 -- Repository that wants almost no inline comments"
 description: "This scenario validates a repository that wants almost no inline comments for `CR-029`. It focuses on the review reading the repository's own rule overrides through the quality runner's explain entry, applying a dropped documentation rule and a switched-off tracker-id hygiene rule, and raising no finding for either."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CR-029 -- Repository that wants almost no inline comments
@@ -83,8 +83,11 @@ This repository keeps code nearly free of inline comments. Names carry the meani
 | `floor.documentation` | none | Functions carry no doc comments here |
 | `hygiene.issue` | none | The team writes tracker references in comments |
 MD
+mkdir -p "$SCRATCH/.devin/skills" && cp -R "$HUB" "$SCRATCH/.devin/skills/sk-code"
 echo "$SCRATCH"
 ```
+
+The copy installs the hub in the skills folder of the runtime doing the review, `.devin/skills` for the devin executor used here, and a copy rather than a link keeps a reviewer with write permission from touching the tracked hub.
 
 ---
 

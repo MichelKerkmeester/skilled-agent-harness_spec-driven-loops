@@ -1,0 +1,16 @@
+In-repository checks, run from this worktree on 2026-10-28 after the sk-code version step and its compiled-route re-mint.
+
+ci-report: profile: repo (.skilled/skills/sk-code/sk-code-ci/repository/ci.json)
+  STATUS=OK workflows=32 on=32 off=0 partial=0 missing=0 unknown=0, exit 0, no drift flag on any row
+toggle --variable=SKILLED_CI_FRESHNESS --state=off, answered no:
+  "Protected workflows this switches off:" then "Second confirmation: Type SKILLED_CI_FRESHNESS to confirm a second time..."
+  STATUS=OK ACTION=plan, exit 0
+gh variable list: 0 lines (no repository variable was set)
+sk-code setup battery: STATUS=OK legs=9, exit 0
+  (before the re-mint it was STATUS=FAIL failed=3: guard, probe and quality legs, all from the stale sk-code manifest after the version step)
+quality config status: Config .skilled/skills/sk-code/sk-code-quality/repository/quality.json (repo, 748 bytes), Trust: trusted, Errors: none, exit 0
+compiled-route-guard --json: failures 0, exit 0
+compiled-route-sync --check: all 55 served copies match their authored files, exit 0
+skill-graph-freshness --strict: exit 0
+hermes sync --check: PASS, 67 Hermes skill copies in sync, exit 0
+routing accuracy capture: full corpus 155/195, holdout 49/66, ambiguity 19/24, exit 0 (equal to the committed baseline)
